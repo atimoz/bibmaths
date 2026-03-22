@@ -300,61 +300,96 @@ a {
 /* ---- Lib Switcher ---- */
 .lib-switcher {
   display: flex;
-  align-items: center;
-  gap: 2px;
-  background: rgba(0, 0, 0, 0.04);
-  border-radius: 12px;
-  padding: 3px;
+  align-items: stretch;
+  gap: 0;
   position: relative;
 }
 
-[data-theme="dark"] .lib-switcher {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.lib-switcher__item {
+.lib-switcher__tab {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 10px;
+  gap: 8px;
+  padding: 6px 16px 10px;
   font-family: var(--font-display);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--ink-muted);
-  transition: all 0.3s var(--ease-out);
   position: relative;
   white-space: nowrap;
+  transition: color 0.3s var(--ease-out);
 }
 
-.lib-switcher__item:hover {
+.lib-switcher__tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  border-radius: 2px;
+  background: transparent;
+  transition: background 0.3s var(--ease-out), left 0.3s var(--ease-out), right 0.3s var(--ease-out);
+}
+
+.lib-switcher__tab:hover {
   color: var(--ink-light);
 }
 
-.lib-switcher__item--active {
-  background: var(--bg);
+.lib-switcher__tab:hover .lib-switcher__icon {
+  transform: translateY(-1px);
+}
+
+/* Active tab */
+.lib-switcher__tab--active {
   color: var(--ink);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  font-weight: 600;
 }
 
-[data-theme="dark"] .lib-switcher__item--active {
-  background: var(--bg-card);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+.lib-switcher__tab--active::after {
+  background: var(--accent);
+  left: 8px;
+  right: 8px;
 }
 
-.lib-switcher__symbol {
-  font-size: 1rem;
+/* Divider */
+.lib-switcher__divider {
+  width: 1px;
+  align-self: center;
+  height: 16px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* Icon */
+.lib-switcher__icon {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
   font-weight: 300;
   line-height: 1;
+  color: var(--ink-muted);
+  transition: color 0.3s var(--ease-out), transform 0.4s var(--ease-spring);
 }
 
-.lib-switcher__item--active .lib-switcher__symbol {
+.lib-switcher__tab--active .lib-switcher__icon {
   color: var(--accent);
+  transform: scale(1.1);
 }
 
-.lib-switcher__name {
+/* Label */
+.lib-switcher__label {
   font-size: 0.825rem;
+  letter-spacing: 0.01em;
+}
+
+/* Mobile: hide labels, keep icons */
+@media (max-width: 480px) {
+  .lib-switcher__label {
+    display: none;
+  }
+  .lib-switcher__tab {
+    padding: 6px 12px 10px;
+  }
 }
 
 .nav__links {
