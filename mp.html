@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MP — Math Spé | BibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-symbol">∫</span>
+      <span class="nav__logo-text">BibMaths</span>
+    </a>
+    <div class="nav__links">
+      <div class="nav__dropdown">
+        <button class="nav__link nav__link--has-sub">Lycée <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="dropdown">
+          <a href="#" class="dropdown__item">Seconde</a>
+          <a href="#" class="dropdown__item">Grand Oral</a>
+        </div>
+      </div>
+      <a href="mpsi.html" class="nav__link">MPSI</a>
+      <a href="mp.html" class="nav__link nav__link--active">MP</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group">
+      <button class="mobile-menu__toggle">Lycée <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+      <div class="mobile-menu__sub">
+        <a href="#">Seconde</a>
+        <a href="#">Grand Oral</a>
+      </div>
+    </div>
+    <div class="mobile-menu__group">
+      <a href="mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a>
+    </div>
+    <div class="mobile-menu__group">
+      <a href="mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP — Math Spé</a>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="page-header__inner">
+      <a href="index.html" class="page-header__back">← Accueil</a>
+      <p class="page-header__eyebrow">Deuxième année</p>
+      <h1 class="page-header__title">MP</h1>
+      <p class="page-header__subtitle">Mathématiques et Physique — 19 chapitres et annales de concours.</p>
+      <div class="page-header__filters" id="filters">
+        <button class="filter-btn filter-btn--active" data-filter="cours">Cours</button>
+        <button class="filter-btn" data-filter="exercices">Exercices</button>
+        <button class="filter-btn" data-filter="methodes">Méthodes</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Program Content -->
+  <main class="program">
+
+    <!-- Algèbre & Bilinéaire -->
+    <div class="chapter-group">
+      <h2 class="chapter-group__title">Algèbre &amp; Formes bilinéaires</h2>
+      <div class="chapter-grid">
+        <a href="cours/mp-01-complements-algebre-lineaire.html" class="chapter-card chapter-card--link">
+          <span class="chapter-card__num">01</span>
+          <h3 class="chapter-card__title">Compléments d'algèbre linéaire</h3>
+          <p class="chapter-card__desc">Dualité, sous-espaces stables, polynôme caractéristique minimal.</p>
+        </a>
+        <div class="chapter-card">
+          <span class="chapter-card__num">02</span>
+          <h3 class="chapter-card__title">Réduction avancée</h3>
+          <p class="chapter-card__desc">Cayley-Hamilton, sous-espaces caractéristiques, décomposition de Dunford.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">03</span>
+          <h3 class="chapter-card__title">Formes bilinéaires et quadratiques</h3>
+          <p class="chapter-card__desc">Formes bilinéaires symétriques, formes quadratiques, signature.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">04</span>
+          <h3 class="chapter-card__title">Espaces euclidiens</h3>
+          <p class="chapter-card__desc">Endomorphismes symétriques, théorème spectral, adjoint.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">05</span>
+          <h3 class="chapter-card__title">Endomorphismes remarquables</h3>
+          <p class="chapter-card__desc">Endomorphismes normaux, unitaires, autoadjoints et projections orthogonales.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">06</span>
+          <h3 class="chapter-card__title">Topologie des espaces vectoriels normés</h3>
+          <p class="chapter-card__desc">Normes, équivalence, ouverts, fermés, compacité en dimension finie.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topologie -->
+    <div class="chapter-group">
+      <h2 class="chapter-group__title">Topologie</h2>
+      <div class="chapter-grid">
+        <div class="chapter-card">
+          <span class="chapter-card__num">07</span>
+          <h3 class="chapter-card__title">Suites et séries de fonctions</h3>
+          <p class="chapter-card__desc">Convergence uniforme, théorèmes d'interversion, approximation.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">08</span>
+          <h3 class="chapter-card__title">Séries entières avancées</h3>
+          <p class="chapter-card__desc">Produit de Cauchy, séries de Fourier, fonctions analytiques.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">09</span>
+          <h3 class="chapter-card__title">Espaces métriques complets</h3>
+          <p class="chapter-card__desc">Complétude, théorème du point fixe, espaces de Banach.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fonctions & Intégration -->
+    <div class="chapter-group">
+      <h2 class="chapter-group__title">Fonctions &amp; Intégration</h2>
+      <div class="chapter-grid">
+        <div class="chapter-card">
+          <span class="chapter-card__num">10</span>
+          <h3 class="chapter-card__title">Intégration sur un segment</h3>
+          <p class="chapter-card__desc">Intégrale de Riemann, fonctions en escalier, convergence dominée.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">11</span>
+          <h3 class="chapter-card__title">Intégrales généralisées</h3>
+          <p class="chapter-card__desc">Convergence absolue, fonctions définies par des intégrales, Gamma et Bêta.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">12</span>
+          <h3 class="chapter-card__title">Fonctions de plusieurs variables</h3>
+          <p class="chapter-card__desc">Différentiabilité, gradient, matrice jacobienne, extrema.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Séries -->
+    <div class="chapter-group">
+      <h2 class="chapter-group__title">Séries</h2>
+      <div class="chapter-grid">
+        <div class="chapter-card">
+          <span class="chapter-card__num">13</span>
+          <h3 class="chapter-card__title">Séries de Fourier</h3>
+          <p class="chapter-card__desc">Coefficients, convergence ponctuelle et normale, théorème de Parseval.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">14</span>
+          <h3 class="chapter-card__title">Familles sommables</h3>
+          <p class="chapter-card__desc">Sommabilité, convergence commutative, produit de Cauchy généralisé.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">15</span>
+          <h3 class="chapter-card__title">Séries de fonctions</h3>
+          <p class="chapter-card__desc">Convergence normale, applications aux séries entières et trigonométriques.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calcul différentiel -->
+    <div class="chapter-group">
+      <h2 class="chapter-group__title">Calcul différentiel</h2>
+      <div class="chapter-grid">
+        <div class="chapter-card">
+          <span class="chapter-card__num">16</span>
+          <h3 class="chapter-card__title">Équations différentielles linéaires</h3>
+          <p class="chapter-card__desc">Systèmes différentiels, exponentielle de matrice, résolvante.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">17</span>
+          <h3 class="chapter-card__title">Calcul différentiel</h3>
+          <p class="chapter-card__desc">Différentielle, fonctions implicites, extrema liés, théorème d'inversion.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Probabilités -->
+    <div class="chapter-group">
+      <h2 class="chapter-group__title">Probabilités</h2>
+      <div class="chapter-grid">
+        <div class="chapter-card">
+          <span class="chapter-card__num">18</span>
+          <h3 class="chapter-card__title">Variables aléatoires à densité</h3>
+          <p class="chapter-card__desc">Lois continues, fonction de répartition, espérance, convergences.</p>
+        </div>
+        <div class="chapter-card">
+          <span class="chapter-card__num">19</span>
+          <h3 class="chapter-card__title">Couples de variables à densité</h3>
+          <p class="chapter-card__desc">Loi conjointe, marginales, indépendance, loi conditionnelle.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Annales -->
+    <div class="chapter-group chapter-group--annales">
+      <h2 class="chapter-group__title">Annales de concours</h2>
+      <div class="chapter-grid">
+        <div class="chapter-card chapter-card--annale">
+          <span class="chapter-card__num">📄</span>
+          <h3 class="chapter-card__title">Filière MP</h3>
+          <p class="chapter-card__desc">Sujets et corrigés des concours Polytechnique, Mines-Ponts, Centrale, CCP.</p>
+        </div>
+        <div class="chapter-card chapter-card--annale">
+          <span class="chapter-card__num">📄</span>
+          <h3 class="chapter-card__title">Filière PC</h3>
+          <p class="chapter-card__desc">Épreuves de mathématiques des concours communs de la filière PC.</p>
+        </div>
+        <div class="chapter-card chapter-card--annale">
+          <span class="chapter-card__num">📄</span>
+          <h3 class="chapter-card__title">Filière PSI</h3>
+          <p class="chapter-card__desc">Épreuves de mathématiques des concours communs de la filière PSI.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">∫ BibMaths</span>
+        <p class="footer__tagline">La beauté des mathématiques, en ligne.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="index.html">Accueil</a>
+          <a href="mpsi.html">MPSI</a>
+          <a href="mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communauté</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 BibMaths — Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
