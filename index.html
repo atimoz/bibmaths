@@ -3,144 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>libmaths — Bibliothèque Mathématique</title>
+  <title>lib — Bibliothèque Scientifique</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
   <link rel="stylesheet" href="style.css">
-  <!-- KaTeX for math rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 </head>
 <body>
 
-  <!-- Geometric background decoration -->
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="bg-circle bg-circle--1" aria-hidden="true"></div>
   <div class="bg-circle bg-circle--2" aria-hidden="true"></div>
 
   <!-- Navigation -->
   <nav class="nav">
-    <div class="lib-switcher">
-      <a href="index.html" class="lib-switcher__tab lib-switcher__tab--active">
-        <span class="lib-switcher__icon">∫</span>
-        <span class="lib-switcher__label">maths</span>
-      </a>
-      <span class="lib-switcher__divider"></span>
-      <a href="physique/index.html" class="lib-switcher__tab">
-        <span class="lib-switcher__icon">Φ</span>
-        <span class="lib-switcher__label">physique</span>
-      </a>
-    </div>
-    <div class="nav__links">
-      <!-- Lycée -->
-      <div class="nav__dropdown">
-        <button class="nav__link nav__link--has-sub">Lycée <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-        <div class="dropdown">
-          <a href="#" class="dropdown__item">Seconde</a>
-          <a href="#" class="dropdown__item">Grand Oral</a>
-        </div>
-      </div>
-
-      <!-- Math Sup (MPSI) — links to dedicated page -->
-      <a href="mpsi.html" class="nav__link">MPSI</a>
-
-      <!-- Math Spé (MP) — links to dedicated page -->
-      <a href="mp.html" class="nav__link">MP</a>
-
-    </div>
+    <a href="index.html" class="nav__brand">
+      <span class="nav__brand-symbol">∞</span>
+      <span class="nav__brand-text">lib</span>
+    </a>
     <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
       <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
-    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
-      <span></span><span></span>
-    </button>
   </nav>
 
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__group">
-      <button class="mobile-menu__toggle">Lycée <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-      <div class="mobile-menu__sub">
-        <a href="#">Seconde</a>
-        <a href="#">Grand Oral</a>
-      </div>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mp.html" class="mobile-menu__page-link">MP — Math Spé</a>
-    </div>
-  </div>
-
   <!-- Hero -->
-  <header class="hero">
+  <header class="hero hero--landing">
     <div class="hero__content">
-      <p class="hero__eyebrow">Bibliothèque Mathématique</p>
+      <p class="hero__eyebrow">Bibliothèque Scientifique</p>
       <h1 class="hero__title">
         Cours & exercices de<br>
-        <span class="hero__title--accent">mathématiques</span>,<br>
+        <span class="hero__title--accent">sciences</span>,<br>
         100 % gratuits.
       </h1>
       <p class="hero__subtitle">
-        Accédez librement à des cours et exercices — de l'algèbre à la topologie —
+        Mathématiques et physique — de la prépa au lycée —
         sur une plateforme claire et structurée, ouverte à tous.
       </p>
-      <div class="hero__actions">
-        <a href="#programmes" class="btn btn--primary">Choisir mon programme</a>
-        <a href="#apropos" class="btn btn--ghost">En savoir plus</a>
-      </div>
-    </div>
-    <div class="hero__formula" aria-hidden="true">
-      <div class="hero__formula-card">
-        <span class="hero__formula-label">Identité d'Euler</span>
-        <span class="hero__formula-math" id="euler"></span>
-      </div>
     </div>
   </header>
 
-
-  <!-- Programmes Section -->
-  <section class="section" id="programmes">
+  <!-- Subject Choice -->
+  <section class="section" id="matieres">
     <div class="section__header">
       <span class="section__number">01</span>
-      <h2 class="section__title">Programmes</h2>
-      <p class="section__desc">Choisissez votre niveau et accédez aux cours, exercices et méthodes correspondants.</p>
+      <h2 class="section__title">Choisir sa matière</h2>
+      <p class="section__desc">Explorez nos bibliothèques par discipline.</p>
     </div>
 
-    <div class="programmes-grid">
-      <a href="#" class="programme-card">
-        <div class="programme-card__badge">Lycée</div>
-        <div class="programme-card__icon">√</div>
-        <h3 class="programme-card__title">Lycée</h3>
-        <p class="programme-card__desc">Seconde et Grand Oral — les bases fondamentales pour construire un raisonnement solide.</p>
-        <div class="programme-card__meta">
-          <span class="programme-card__count">2 programmes</span>
-          <span class="programme-card__arrow">→</span>
+    <div class="subject-grid">
+      <a href="mpsi.html" class="subject-card">
+        <div class="subject-card__accent"></div>
+        <div class="subject-card__symbol">∫</div>
+        <h3 class="subject-card__title">Mathématiques</h3>
+        <p class="subject-card__desc">
+          Algèbre, analyse, topologie, probabilités — des fondements aux concepts avancés.
+        </p>
+        <div class="subject-card__programmes">
+          <span>Lycée</span>
+          <span class="subject-card__dot">·</span>
+          <span>MPSI</span>
+          <span class="subject-card__dot">·</span>
+          <span>MP</span>
+        </div>
+        <div class="subject-card__footer">
+          <span class="subject-card__cta">Explorer</span>
+          <span class="subject-card__arrow">→</span>
         </div>
       </a>
-      <a href="mpsi.html" class="programme-card programme-card--featured">
-        <div class="programme-card__badge">Prépa 1A</div>
-        <div class="programme-card__icon">∑</div>
-        <h3 class="programme-card__title">MPSI</h3>
-        <p class="programme-card__desc">Math Sup — 33 chapitres d'algèbre, d'analyse et de probabilités répartis sur deux semestres.</p>
-        <div class="programme-card__meta">
-          <span class="programme-card__count">33 chapitres</span>
-          <span class="programme-card__arrow">→</span>
+
+      <a href="physique/index.html" class="subject-card">
+        <div class="subject-card__accent"></div>
+        <div class="subject-card__symbol">Φ</div>
+        <h3 class="subject-card__title">Physique</h3>
+        <p class="subject-card__desc">
+          Mécanique, thermodynamique, électromagnétisme — du concret aux lois universelles.
+        </p>
+        <div class="subject-card__programmes">
+          <span>MPSI</span>
+          <span class="subject-card__dot">·</span>
+          <span>MP</span>
         </div>
-      </a>
-      <a href="mp.html" class="programme-card programme-card--featured">
-        <div class="programme-card__badge">Prépa 2A</div>
-        <div class="programme-card__icon">∫</div>
-        <h3 class="programme-card__title">MP</h3>
-        <p class="programme-card__desc">Math Spé — 19 chapitres avancés et annales de concours pour préparer les épreuves.</p>
-        <div class="programme-card__meta">
-          <span class="programme-card__count">19 chapitres + annales</span>
-          <span class="programme-card__arrow">→</span>
+        <div class="subject-card__footer">
+          <span class="subject-card__cta">Explorer</span>
+          <span class="subject-card__arrow">→</span>
         </div>
       </a>
     </div>
@@ -164,9 +114,9 @@
         <span class="section__number">02</span>
         <h2 class="section__title">À propos</h2>
         <p class="about-text">
-          libmaths est une bibliothèque mathématique en ligne, conçue pour offrir un accès clair et structuré
-          aux concepts fondamentaux des mathématiques. Notre ambition : rendre la rigueur mathématique
-          accessible sans sacrifier l'élégance.
+          lib est une bibliothèque scientifique en ligne, conçue pour offrir un accès clair et structuré
+          aux concepts fondamentaux des mathématiques et de la physique. Notre ambition : rendre la rigueur
+          scientifique accessible sans sacrifier l'élégance.
         </p>
         <p class="about-text">
           Ce projet est pensé pour les étudiants, les enseignants et tous les passionnés
@@ -183,26 +133,24 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <span class="footer__logo">∫ libmaths</span>
-        <p class="footer__tagline">La beauté des mathématiques, en ligne.</p>
+        <span class="footer__logo">∞ lib</span>
+        <p class="footer__tagline">La beauté des sciences, en ligne.</p>
       </div>
       <div class="footer__links">
         <div class="footer__col">
-          <h4 class="footer__col-title">Navigation</h4>
-          <a href="#programmes">Programmes</a>
+          <h4 class="footer__col-title">Mathématiques</h4>
           <a href="mpsi.html">MPSI</a>
           <a href="mp.html">MP</a>
         </div>
         <div class="footer__col">
-          <h4 class="footer__col-title">Communauté</h4>
-          <a href="#">Contribuer</a>
-          <a href="#">GitHub</a>
-          <a href="#">Contact</a>
+          <h4 class="footer__col-title">Physique</h4>
+          <a href="physique/mpsi.html">MPSI</a>
+          <a href="physique/mp.html">MP</a>
         </div>
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; 2026 libmaths — Projet open source</span>
+      <span>&copy; 2026 lib — Projet open source</span>
     </div>
   </footer>
 

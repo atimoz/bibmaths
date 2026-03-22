@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- Scroll reveal ----
   const revealElements = document.querySelectorAll(
-    '.domain-card, .programme-card, .resource-card, .tool-card, .section__header, .formula-showcase__inner, .about-layout, .chapter-card, .chapter-group__title, .semester-label'
+    '.domain-card, .programme-card, .resource-card, .tool-card, .subject-card, .section__header, .formula-showcase__inner, .about-layout, .chapter-card, .chapter-group__title, .semester-label'
   );
 
   revealElements.forEach(el => el.classList.add('reveal'));

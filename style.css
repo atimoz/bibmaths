@@ -297,6 +297,24 @@ a {
   transition: background var(--duration) var(--ease-out);
 }
 
+/* ---- Nav Brand (landing) ---- */
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.nav__brand-symbol {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--accent);
+}
+
 /* ---- Lib Switcher ---- */
 .lib-switcher {
   display: flex;
@@ -1088,6 +1106,160 @@ a {
 .programme-card:hover .programme-card__arrow {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* ---- Subject Cards (Landing) ---- */
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.subject-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: var(--space-2xl) var(--space-xl) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--ink);
+  min-height: 350px;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out);
+}
+
+.subject-card__accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--border);
+  transition: background 0.4s var(--ease-out);
+}
+
+.subject-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 64px rgba(196, 135, 59, 0.1);
+}
+
+[data-theme="dark"] .subject-card:hover {
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+}
+
+.subject-card:hover .subject-card__accent {
+  background: var(--accent);
+}
+
+.subject-card__symbol {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 300;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: var(--space-md);
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.subject-card:hover .subject-card__symbol {
+  transform: scale(1.08);
+}
+
+.subject-card__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+}
+
+.subject-card__desc {
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.subject-card__programmes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-top: var(--space-md);
+}
+
+.subject-card__dot {
+  color: var(--border);
+}
+
+.subject-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-md);
+}
+
+.subject-card__cta {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink-light);
+  transition: color 0.3s var(--ease-out);
+}
+
+.subject-card:hover .subject-card__cta {
+  color: var(--accent);
+}
+
+.subject-card__arrow {
+  font-size: 1.3rem;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s var(--ease-out);
+}
+
+.subject-card:hover .subject-card__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Landing hero — no formula, centered */
+.hero--landing {
+  min-height: auto;
+  padding-bottom: var(--space-lg);
+}
+
+.hero--landing .hero__content {
+  max-width: 700px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hero--landing .hero__subtitle {
+  margin: 0 auto;
+}
+
+@media (max-width: 680px) {
+  .subject-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+
+  .subject-card {
+    min-height: 280px;
+  }
 }
 
 /* ---- Formula Showcase ---- */
