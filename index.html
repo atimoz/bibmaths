@@ -12,147 +12,408 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    /* ===== LANDING SPLIT SCREEN ===== */
+    .landing-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--space-lg);
+      z-index: 100;
+      background: transparent;
+      mix-blend-mode: normal;
+    }
+
+    .landing-nav__brand {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .landing-nav__brand-sym {
+      color: var(--accent);
+      font-weight: 300;
+      font-size: 1.1rem;
+    }
+
+    /* ---- Split Hero ---- */
+    .split {
+      display: flex;
+      min-height: 100vh;
+      padding-top: var(--nav-h);
+    }
+
+    .split__half {
+      flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: var(--space-3xl) var(--space-xl);
+      text-decoration: none;
+      color: var(--ink);
+      overflow: hidden;
+      transition: flex 0.6s var(--ease-out);
+    }
+
+    .split__half:first-child {
+      border-right: 1px solid var(--border);
+    }
+
+    /* Hover: one side grows */
+    .split:hover .split__half {
+      flex: 0.85;
+    }
+    .split:hover .split__half:hover {
+      flex: 1.15;
+    }
+
+    /* Background pattern — maths: grid */
+    .split__half--maths::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(196,135,59,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(196,135,59,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0;
+      transition: opacity 0.6s var(--ease-out);
+    }
+
+    .split__half--maths:hover::before {
+      opacity: 1;
+    }
+
+    /* Background pattern — physique: radial rings */
+    .split__half--physique::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 50%, transparent 60%, rgba(196,135,59,0.03) 61%, transparent 62%),
+        radial-gradient(circle at 50% 50%, transparent 40%, rgba(196,135,59,0.02) 41%, transparent 42%),
+        radial-gradient(circle at 50% 50%, transparent 20%, rgba(196,135,59,0.015) 21%, transparent 22%);
+      opacity: 0;
+      transition: opacity 0.6s var(--ease-out);
+    }
+
+    .split__half--physique:hover::before {
+      opacity: 1;
+    }
+
+    /* Giant symbol */
+    .split__symbol {
+      font-family: var(--font-display);
+      font-size: clamp(6rem, 12vw, 10rem);
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      opacity: 0.15;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .split__half:hover .split__symbol {
+      opacity: 0.08;
+      transform: translate(-50%, -50%) scale(1.15);
+    }
+
+    /* Content over symbol */
+    .split__content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 380px;
+    }
+
+    .split__eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-md);
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.3s forwards;
+    }
+
+    .split__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: var(--space-md);
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.45s forwards;
+    }
+
+    .split__title em {
+      font-weight: 600;
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .split__desc {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      margin-bottom: var(--space-lg);
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.6s forwards;
+    }
+
+    .split__programmes {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: var(--space-xl);
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.7s forwards;
+    }
+
+    .split__enter {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink);
+      padding: 12px 28px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.35s var(--ease-out);
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.8s forwards;
+    }
+
+    .split__enter-arrow {
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .split__half:hover .split__enter {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .split__half:hover .split__enter-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Divider label */
+    .split__divider {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    [data-theme="dark"] .split__divider {
+      background: var(--bg-card);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    /* ---- Sections below split ---- */
+    .landing-sections {
+      position: relative;
+    }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 680px) {
+      .split {
+        flex-direction: column;
+      }
+
+      .split__half {
+        min-height: 50vh;
+        padding: var(--space-2xl) var(--space-lg);
+      }
+
+      .split__half:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .split:hover .split__half,
+      .split:hover .split__half:hover {
+        flex: 1;
+      }
+
+      .split__symbol {
+        font-size: 5rem;
+      }
+
+      .split__divider {
+        top: auto;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 50%);
+      }
+
+      .split__half:first-child .split__divider-wrap {
+        display: block;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="bg-grid" aria-hidden="true"></div>
-  <div class="bg-circle bg-circle--1" aria-hidden="true"></div>
-  <div class="bg-circle bg-circle--2" aria-hidden="true"></div>
-
   <!-- Navigation -->
-  <nav class="nav">
-    <a href="index.html" class="nav__brand">
-      <span class="nav__brand-symbol">∞</span>
-      <span class="nav__brand-text">lib</span>
-    </a>
+  <nav class="landing-nav">
+    <span class="landing-nav__brand">
+      <span class="landing-nav__brand-sym">∞</span>
+      lib
+    </span>
     <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
       <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
   </nav>
 
-  <!-- Hero -->
-  <header class="hero hero--landing">
-    <div class="hero__content">
-      <p class="hero__eyebrow">Bibliothèque Scientifique</p>
-      <h1 class="hero__title">
-        Cours & exercices de<br>
-        <span class="hero__title--accent">sciences</span>,<br>
-        100 % gratuits.
-      </h1>
-      <p class="hero__subtitle">
-        Mathématiques et physique — de la prépa au lycée —
-        sur une plateforme claire et structurée, ouverte à tous.
-      </p>
-    </div>
-  </header>
-
-  <!-- Subject Choice -->
-  <section class="section" id="matieres">
-    <div class="section__header">
-      <span class="section__number">01</span>
-      <h2 class="section__title">Choisir sa matière</h2>
-      <p class="section__desc">Explorez nos bibliothèques par discipline.</p>
-    </div>
-
-    <div class="subject-grid">
-      <a href="mpsi.html" class="subject-card">
-        <div class="subject-card__accent"></div>
-        <div class="subject-card__symbol">∫</div>
-        <h3 class="subject-card__title">Mathématiques</h3>
-        <p class="subject-card__desc">
+  <!-- Split Screen Choice -->
+  <div class="split">
+    <a href="mpsi.html" class="split__half split__half--maths">
+      <div class="split__symbol">∫</div>
+      <div class="split__content">
+        <p class="split__eyebrow">libmaths</p>
+        <h2 class="split__title"><em>Mathématiques</em></h2>
+        <p class="split__desc">
           Algèbre, analyse, topologie, probabilités — des fondements aux concepts avancés.
         </p>
-        <div class="subject-card__programmes">
+        <div class="split__programmes">
           <span>Lycée</span>
-          <span class="subject-card__dot">·</span>
+          <span>·</span>
           <span>MPSI</span>
-          <span class="subject-card__dot">·</span>
+          <span>·</span>
           <span>MP</span>
         </div>
-        <div class="subject-card__footer">
-          <span class="subject-card__cta">Explorer</span>
-          <span class="subject-card__arrow">→</span>
-        </div>
-      </a>
+        <span class="split__enter">
+          Explorer
+          <span class="split__enter-arrow">→</span>
+        </span>
+      </div>
+    </a>
 
-      <a href="physique/index.html" class="subject-card">
-        <div class="subject-card__accent"></div>
-        <div class="subject-card__symbol">Φ</div>
-        <h3 class="subject-card__title">Physique</h3>
-        <p class="subject-card__desc">
+    <a href="physique/index.html" class="split__half split__half--physique">
+      <div class="split__symbol">Φ</div>
+      <div class="split__content">
+        <p class="split__eyebrow">libphysique</p>
+        <h2 class="split__title"><em>Physique</em></h2>
+        <p class="split__desc">
           Mécanique, thermodynamique, électromagnétisme — du concret aux lois universelles.
         </p>
-        <div class="subject-card__programmes">
+        <div class="split__programmes">
           <span>MPSI</span>
-          <span class="subject-card__dot">·</span>
+          <span>·</span>
           <span>MP</span>
         </div>
-        <div class="subject-card__footer">
-          <span class="subject-card__cta">Explorer</span>
-          <span class="subject-card__arrow">→</span>
-        </div>
-      </a>
-    </div>
-  </section>
+        <span class="split__enter">
+          Explorer
+          <span class="split__enter-arrow">→</span>
+        </span>
+      </div>
+    </a>
 
-  <!-- Featured Formula -->
-  <section class="formula-showcase">
-    <div class="formula-showcase__inner">
-      <span class="formula-showcase__label">Formule du jour</span>
-      <div class="formula-showcase__equation" id="dailyFormula"></div>
-      <p class="formula-showcase__caption">
-        Le théorème de Stokes — généralisation fondamentale reliant l'intégrale d'une forme différentielle sur le bord d'une variété à l'intégrale de sa dérivée extérieure sur la variété elle-même.
-      </p>
-    </div>
-  </section>
+    <div class="split__divider">ou</div>
+  </div>
 
-  <!-- À propos -->
-  <section class="section section--about" id="apropos">
-    <div class="about-layout">
-      <div class="about-content">
-        <span class="section__number">02</span>
-        <h2 class="section__title">À propos</h2>
-        <p class="about-text">
-          lib est une bibliothèque scientifique en ligne, conçue pour offrir un accès clair et structuré
-          aux concepts fondamentaux des mathématiques et de la physique. Notre ambition : rendre la rigueur
-          scientifique accessible sans sacrifier l'élégance.
-        </p>
-        <p class="about-text">
-          Ce projet est pensé pour les étudiants, les enseignants et tous les passionnés
-          qui cherchent une référence fiable et agréable à consulter.
+  <!-- Sections below -->
+  <div class="landing-sections">
+    <!-- Featured Formula -->
+    <section class="formula-showcase">
+      <div class="formula-showcase__inner">
+        <span class="formula-showcase__label">Formule du jour</span>
+        <div class="formula-showcase__equation" id="dailyFormula"></div>
+        <p class="formula-showcase__caption">
+          Le théorème de Stokes — généralisation fondamentale reliant l'intégrale d'une forme différentielle sur le bord d'une variété à l'intégrale de sa dérivée extérieure sur la variété elle-même.
         </p>
       </div>
-      <div class="about-deco" aria-hidden="true">
-        <div class="about-deco__symbol">∞</div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <span class="footer__logo">∞ lib</span>
-        <p class="footer__tagline">La beauté des sciences, en ligne.</p>
-      </div>
-      <div class="footer__links">
-        <div class="footer__col">
-          <h4 class="footer__col-title">Mathématiques</h4>
-          <a href="mpsi.html">MPSI</a>
-          <a href="mp.html">MP</a>
+    <!-- À propos -->
+    <section class="section section--about" id="apropos">
+      <div class="about-layout">
+        <div class="about-content">
+          <span class="section__number">∞</span>
+          <h2 class="section__title">À propos</h2>
+          <p class="about-text">
+            lib est une bibliothèque scientifique en ligne, conçue pour offrir un accès clair et structuré
+            aux concepts fondamentaux des mathématiques et de la physique. Notre ambition : rendre la rigueur
+            scientifique accessible sans sacrifier l'élégance.
+          </p>
+          <p class="about-text">
+            Ce projet est pensé pour les étudiants, les enseignants et tous les passionnés
+            qui cherchent une référence fiable et agréable à consulter.
+          </p>
         </div>
-        <div class="footer__col">
-          <h4 class="footer__col-title">Physique</h4>
-          <a href="physique/mpsi.html">MPSI</a>
-          <a href="physique/mp.html">MP</a>
+        <div class="about-deco" aria-hidden="true">
+          <div class="about-deco__symbol">∞</div>
         </div>
       </div>
-    </div>
-    <div class="footer__bottom">
-      <span>&copy; 2026 lib — Projet open source</span>
-    </div>
-  </footer>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <span class="footer__logo">∞ lib</span>
+          <p class="footer__tagline">La beauté des sciences, en ligne.</p>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col">
+            <h4 class="footer__col-title">Mathématiques</h4>
+            <a href="mpsi.html">MPSI</a>
+            <a href="mp.html">MP</a>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-title">Physique</h4>
+            <a href="physique/mpsi.html">MPSI</a>
+            <a href="physique/mp.html">MP</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 lib — Projet open source</span>
+      </div>
+    </footer>
+  </div>
 
   <script src="main.js"></script>
 </body>
