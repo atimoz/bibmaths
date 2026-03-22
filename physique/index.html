@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>libmaths — Bibliothèque Mathématique</title>
+  <title>libphysique — Bibliothèque de Physique</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
   <!-- KaTeX for math rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -25,31 +25,18 @@
   <nav class="nav">
     <div class="nav__dropdown nav__lib-switcher">
       <button class="nav__logo">
-        <span class="nav__logo-symbol">∫</span>
-        <span class="nav__logo-text">libmaths</span>
+        <span class="nav__logo-symbol">Φ</span>
+        <span class="nav__logo-text">libphysique</span>
         <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
       <div class="dropdown">
-        <a href="index.html" class="dropdown__item dropdown__item--accent">libmaths</a>
-        <a href="physique/index.html" class="dropdown__item">libphysique</a>
+        <a href="../index.html" class="dropdown__item">libmaths</a>
+        <a href="index.html" class="dropdown__item dropdown__item--accent">libphysique</a>
       </div>
     </div>
     <div class="nav__links">
-      <!-- Lycée -->
-      <div class="nav__dropdown">
-        <button class="nav__link nav__link--has-sub">Lycée <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-        <div class="dropdown">
-          <a href="#" class="dropdown__item">Seconde</a>
-          <a href="#" class="dropdown__item">Grand Oral</a>
-        </div>
-      </div>
-
-      <!-- Math Sup (MPSI) — links to dedicated page -->
       <a href="mpsi.html" class="nav__link">MPSI</a>
-
-      <!-- Math Spé (MP) — links to dedicated page -->
       <a href="mp.html" class="nav__link">MP</a>
-
     </div>
     <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
       <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -63,31 +50,24 @@
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu__group">
-      <button class="mobile-menu__toggle">Lycée <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-      <div class="mobile-menu__sub">
-        <a href="#">Seconde</a>
-        <a href="#">Grand Oral</a>
-      </div>
+      <a href="mpsi.html" class="mobile-menu__page-link">MPSI — Physique Sup</a>
     </div>
     <div class="mobile-menu__group">
-      <a href="mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mp.html" class="mobile-menu__page-link">MP — Math Spé</a>
+      <a href="mp.html" class="mobile-menu__page-link">MP — Physique Spé</a>
     </div>
   </div>
 
   <!-- Hero -->
   <header class="hero">
     <div class="hero__content">
-      <p class="hero__eyebrow">Bibliothèque Mathématique</p>
+      <p class="hero__eyebrow">Bibliothèque de Physique</p>
       <h1 class="hero__title">
         Cours & exercices de<br>
-        <span class="hero__title--accent">mathématiques</span>,<br>
+        <span class="hero__title--accent">physique</span>,<br>
         100 % gratuits.
       </h1>
       <p class="hero__subtitle">
-        Accédez librement à des cours et exercices — de l'algèbre à la topologie —
+        Accédez librement à des cours et exercices — de la mécanique à la thermodynamique —
         sur une plateforme claire et structurée, ouverte à tous.
       </p>
       <div class="hero__actions">
@@ -97,12 +77,11 @@
     </div>
     <div class="hero__formula" aria-hidden="true">
       <div class="hero__formula-card">
-        <span class="hero__formula-label">Identité d'Euler</span>
+        <span class="hero__formula-label">Équation d'Einstein</span>
         <span class="hero__formula-math" id="euler"></span>
       </div>
     </div>
   </header>
-
 
   <!-- Programmes Section -->
   <section class="section" id="programmes">
@@ -113,33 +92,23 @@
     </div>
 
     <div class="programmes-grid">
-      <a href="#" class="programme-card">
-        <div class="programme-card__badge">Lycée</div>
-        <div class="programme-card__icon">√</div>
-        <h3 class="programme-card__title">Lycée</h3>
-        <p class="programme-card__desc">Seconde et Grand Oral — les bases fondamentales pour construire un raisonnement solide.</p>
-        <div class="programme-card__meta">
-          <span class="programme-card__count">2 programmes</span>
-          <span class="programme-card__arrow">→</span>
-        </div>
-      </a>
       <a href="mpsi.html" class="programme-card programme-card--featured">
         <div class="programme-card__badge">Prépa 1A</div>
-        <div class="programme-card__icon">∑</div>
+        <div class="programme-card__icon">⚡</div>
         <h3 class="programme-card__title">MPSI</h3>
-        <p class="programme-card__desc">Math Sup — 33 chapitres d'algèbre, d'analyse et de probabilités répartis sur deux semestres.</p>
+        <p class="programme-card__desc">Physique Sup — Mécanique, thermodynamique, optique et électricité sur deux semestres.</p>
         <div class="programme-card__meta">
-          <span class="programme-card__count">33 chapitres</span>
+          <span class="programme-card__count">Chapitres à venir</span>
           <span class="programme-card__arrow">→</span>
         </div>
       </a>
       <a href="mp.html" class="programme-card programme-card--featured">
         <div class="programme-card__badge">Prépa 2A</div>
-        <div class="programme-card__icon">∫</div>
+        <div class="programme-card__icon">Φ</div>
         <h3 class="programme-card__title">MP</h3>
-        <p class="programme-card__desc">Math Spé — 19 chapitres avancés et annales de concours pour préparer les épreuves.</p>
+        <p class="programme-card__desc">Physique Spé — Électromagnétisme, mécanique quantique et physique des ondes.</p>
         <div class="programme-card__meta">
-          <span class="programme-card__count">19 chapitres + annales</span>
+          <span class="programme-card__count">Chapitres à venir</span>
           <span class="programme-card__arrow">→</span>
         </div>
       </a>
@@ -152,7 +121,7 @@
       <span class="formula-showcase__label">Formule du jour</span>
       <div class="formula-showcase__equation" id="dailyFormula"></div>
       <p class="formula-showcase__caption">
-        Le théorème de Stokes — généralisation fondamentale reliant l'intégrale d'une forme différentielle sur le bord d'une variété à l'intégrale de sa dérivée extérieure sur la variété elle-même.
+        L'équation de Schrödinger — équation fondamentale de la mécanique quantique décrivant l'évolution temporelle d'un système quantique.
       </p>
     </div>
   </section>
@@ -164,8 +133,8 @@
         <span class="section__number">02</span>
         <h2 class="section__title">À propos</h2>
         <p class="about-text">
-          libmaths est une bibliothèque mathématique en ligne, conçue pour offrir un accès clair et structuré
-          aux concepts fondamentaux des mathématiques. Notre ambition : rendre la rigueur mathématique
+          libphysique est une bibliothèque de physique en ligne, conçue pour offrir un accès clair et structuré
+          aux concepts fondamentaux de la physique. Notre ambition : rendre la rigueur scientifique
           accessible sans sacrifier l'élégance.
         </p>
         <p class="about-text">
@@ -183,8 +152,8 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <span class="footer__logo">∫ libmaths</span>
-        <p class="footer__tagline">La beauté des mathématiques, en ligne.</p>
+        <span class="footer__logo">Φ libphysique</span>
+        <p class="footer__tagline">La beauté de la physique, en ligne.</p>
       </div>
       <div class="footer__links">
         <div class="footer__col">
@@ -202,10 +171,23 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; 2026 libmaths — Projet open source</span>
+      <span>&copy; 2026 libphysique — Projet open source</span>
     </div>
   </footer>
 
-  <script src="main.js"></script>
+  <script src="../main.js"></script>
+  <script>
+    // Override formulas for physics
+    document.addEventListener('DOMContentLoaded', function() {
+      function renderPhysics() {
+        if (typeof katex === 'undefined') { setTimeout(renderPhysics, 100); return; }
+        const euler = document.getElementById('euler');
+        if (euler) katex.render('E = mc^2', euler, { displayMode: true, throwOnError: false });
+        const daily = document.getElementById('dailyFormula');
+        if (daily) katex.render('i\\hbar \\frac{\\partial}{\\partial t}|\\Psi\\rangle = \\hat{H}|\\Psi\\rangle', daily, { displayMode: true, throwOnError: false });
+      }
+      renderPhysics();
+    });
+  </script>
 </body>
 </html>
