@@ -56,19 +56,49 @@
     .block--thm .block__label{color:#A32A2A}
     .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
     .block--prop .block__label{color:#7638A3}
-    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
-    .block--example .block__label{color:#4B825A}
-    .block--example ol li::before{color:#4B825A}
-    .block--example ul li::before{color:#4B825A}
+    /* ── Exemples : discrets, en retrait visuel ── */
+    .block--example{
+      background:rgba(245,245,247,.5);
+      border-left:3px solid rgba(100,100,100,.2);
+      border-radius:8px;
+      padding:var(--space-md) var(--space-lg);
+      margin-left:0
+    }
+    .block--example .block__label{
+      color:#555;
+      font-size:.78rem;
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase
+    }
+    .block--example p,.block--example li{color:var(--ink);font-size:.95rem}
+    .block--example strong{color:var(--ink);font-weight:600}
+    .block--example ol li::before{color:#888}
+    .block--example ul li::before{color:#888}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
     .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
     .block--cor .block__label{color:#9B59B6}
-    .block--method{background:rgba(0,128,128,.06);border-left:3px solid #2A8A8A}
-    .block--method .block__label{color:#2A8A8A}
-    .block--method ol li::before{color:#2A8A8A}
-    .block--method ul li::before{color:#2A8A8A}
+    /* ── Apple-like Method Card (frosted glass) ── */
+    .block--method{
+      background:rgba(235,235,240,.6);
+      border-left:4px solid var(--accent);
+      border-radius:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+      padding:var(--space-lg) var(--space-xl)
+    }
+    .block--method .block__label{
+      color:var(--accent);
+      font-family:var(--font-display);
+      font-size:.72rem;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:10px
+    }
+    .block--method p,.block--method li{color:var(--ink)}
+    .block--method strong{color:var(--ink);font-weight:600}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
     .block--annale ol li::before{color:var(--accent)}
@@ -79,8 +109,36 @@
     .block--proof p{color:var(--ink-light);font-size:.875rem}
     .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
-    .vf-item{margin-bottom:var(--space-md)}
-    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
+    /* ── Quiz interactif ── */
+    .quiz-zone{background:rgba(240,240,245,.5);border:2px solid rgba(0,0,0,.06);border-radius:16px;padding:var(--space-xl);margin:var(--space-xl) 0}
+    .quiz-zone__header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg)}
+    .quiz-zone__title{font-family:var(--font-display);font-size:1.4rem;color:var(--ink)}
+    .quiz-zone__score{font-family:var(--font-mono);font-size:.85rem;color:var(--ink-muted);background:rgba(0,0,0,.04);padding:6px 14px;border-radius:20px}
+    .quiz-item{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-md);transition:border-color .3s}
+    .quiz-item.answered-correct{border-color:rgba(52,199,89,.4);background:rgba(52,199,89,.03)}
+    .quiz-item.answered-wrong{border-color:rgba(255,59,48,.3);background:rgba(255,59,48,.02)}
+    .quiz-statement{font-size:.95rem;line-height:1.8;color:var(--ink);margin-bottom:12px}
+    .quiz-buttons{display:flex;gap:10px;margin-bottom:0}
+    .quiz-btn{font-family:var(--font-body);font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:8px 28px;border-radius:8px;border:1.5px solid;cursor:pointer;transition:all .25s ease}
+    .quiz-btn--vrai{background:transparent;border-color:rgba(52,199,89,.4);color:#34C759}
+    .quiz-btn--vrai:hover{background:rgba(52,199,89,.08)}
+    .quiz-btn--faux{background:transparent;border-color:rgba(255,59,48,.35);color:#FF3B30}
+    .quiz-btn--faux:hover{background:rgba(255,59,48,.06)}
+    .quiz-btn:disabled{opacity:.4;cursor:default;pointer-events:none}
+    .quiz-feedback{display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,0,0,.06)}
+    .quiz-feedback.show{display:block;animation:fadeSlideIn .3s ease}
+    .quiz-result{font-family:var(--font-body);font-size:.88rem;font-weight:700;margin-bottom:6px}
+    .quiz-result--correct{color:#34C759}
+    .quiz-result--wrong{color:#FF3B30}
+    .quiz-explanation{font-size:.88rem;line-height:1.7;color:var(--ink-light)}
+    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+    [data-theme="dark"] .quiz-zone{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-zone__score{background:rgba(255,255,255,.06);color:rgba(255,255,255,.6)}
+    [data-theme="dark"] .quiz-item{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-item.answered-correct{border-color:rgba(52,199,89,.3);background:rgba(52,199,89,.05)}
+    [data-theme="dark"] .quiz-item.answered-wrong{border-color:rgba(255,59,48,.25);background:rgba(255,59,48,.04)}
+    [data-theme="dark"] .quiz-feedback{border-top-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-explanation{color:rgba(255,255,255,.7)}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -94,15 +152,26 @@
     [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
     [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
     [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
-    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
-    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--example{
+      background:rgba(255,255,255,.04);
+      border-left-color:rgba(255,255,255,.15)
+    }
+    [data-theme="dark"] .block--example .block__label{color:rgba(255,255,255,.7)}
+    [data-theme="dark"] .block--example p,
+    [data-theme="dark"] .block--example li{color:rgba(255,255,255,.88)}
+    [data-theme="dark"] .block--example strong{color:rgba(255,255,255,.95)}
     [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
     [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
     [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
-    [data-theme="dark"] .block--method{background:rgba(0,128,128,.1);border-left-color:#4ABABA}
-    [data-theme="dark"] .block--method .block__label{color:#4ABABA}
-    [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
-    [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
+    [data-theme="dark"] .block--method{
+      background:rgba(255,255,255,.07);
+      border-left-color:var(--accent);
+      box-shadow:0 2px 8px rgba(0,0,0,.3)
+    }
+    [data-theme="dark"] .block--method .block__label{color:var(--accent)}
+    [data-theme="dark"] .block--method p,
+    [data-theme="dark"] .block--method li{color:rgba(255,255,255,.9)}
+    [data-theme="dark"] .block--method strong{color:#fff}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
     [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
@@ -346,149 +415,135 @@
     <section class="course__section" id="part2">
       <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
 
-      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+            <div class="quiz-zone" id="quizZone">
+        <div class="quiz-zone__header">
+          <span class="quiz-zone__title">Testez vos connaissances</span>
+          <span class="quiz-zone__score" id="quizScore">0 / 10</span>
+        </div>
 
-      <!-- VF 1 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>1.</strong> La loi conjointe de \((X, Y)\) est entierement determinee par les lois marginales de \(X\) et \(Y\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : FAUX</span>
-              <p>Les lois marginales ne suffisent pas a determiner la loi conjointe. Deux couples \((X, Y)\) peuvent avoir les memes marginales mais des lois conjointes differentes. Ce n'est que sous l'hypothese d'independance que la loi conjointe est le produit des marginales. Contre-exemple classique : \(X \sim \mathcal{B}(1, 1/2)\), \(Y = X\) versus \(Y = 1 - X\) donnent les memes marginales mais des lois conjointes differentes.</p>
-            </div>
+        <div class="quiz-item" data-answer="false">
+          <p class="quiz-statement"><strong>1.</strong> La loi conjointe de \((X, Y)\) est entierement determinee par les lois marginales de \(X\) et \(Y\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Les lois marginales ne suffisent pas a determiner la loi conjointe. Deux couples \((X, Y)\) peuvent avoir les memes marginales mais des lois conjointes differentes. Ce n'est que sous l'hypothese d'independance que la loi conjointe est le produit des marginales. Contre-exemple classique : \(X \sim \mathcal{B}(1, 1/2)\), \(Y = X\) versus \(Y = 1 - X\) donnent les memes marginales mais des lois conjointes differentes.</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 2 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>2.</strong> Si \(\text{Cov}(X, Y) = 0\), alors \(X\) et \(Y\) sont independantes.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : FAUX</span>
-              <p>La non-correlation (\(\text{Cov}(X,Y) = 0\)) n'implique pas l'independance. Exemple classique : \(X\) uniforme sur \(\{-1, 0, 1\}\) et \(Y = X^2\). Alors \(\text{Cov}(X, Y) = E(X^3) - E(X)E(X^2) = 0\), mais \(Y\) est fonction deterministe de \(X\), donc ils ne sont pas independants. La reciproque est vraie : l'independance implique la non-correlation.</p>
-            </div>
+        <div class="quiz-item" data-answer="false">
+          <p class="quiz-statement"><strong>2.</strong> Si \(\text{Cov}(X, Y) = 0\), alors \(X\) et \(Y\) sont independantes.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>La non-correlation (\(\text{Cov}(X,Y) = 0\)) n'implique pas l'independance. Exemple classique : \(X\) uniforme sur \(\{-1, 0, 1\}\) et \(Y = X^2\). Alors \(\text{Cov}(X, Y) = E(X^3) - E(X)E(X^2) = 0\), mais \(Y\) est fonction deterministe de \(X\), donc ils ne sont pas independants. La reciproque est vraie : l'independance implique la non-correlation.</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 3 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>3.</strong> La covariance verifie \(\text{Cov}(X, X) = V(X)\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Par definition : \(\text{Cov}(X, X) = E(X \cdot X) - E(X) \cdot E(X) = E(X^2) - E(X)^2 = V(X)\). La covariance generalise la variance au cas de deux variables.</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>3.</strong> La covariance verifie \(\text{Cov}(X, X) = V(X)\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Par definition : \(\text{Cov}(X, X) = E(X \cdot X) - E(X) \cdot E(X) = E(X^2) - E(X)^2 = V(X)\). La covariance generalise la variance au cas de deux variables.</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 4 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>4.</strong> Si \(X \sim \mathcal{B}(100,\, 0{,}01)\), on peut approcher \(X\) par une loi \(\mathcal{P}(1)\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>On a \(n = 100\) (grand), \(p = 0{,}01\) (petit), et \(\lambda = np = 1\) (modere). Les conditions de l'approximation de Poisson sont satisfaites. Par exemple, \(P(X = 0) = 0{,}99^{100} \approx 0{,}366\) a comparer avec \(e^{-1} \approx 0{,}368\).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>4.</strong> Si \(X \sim \mathcal{B}(100,\, 0{,}01)\), on peut approcher \(X\) par une loi \(\mathcal{P}(1)\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>On a \(n = 100\) (grand), \(p = 0{,}01\) (petit), et \(\lambda = np = 1\) (modere). Les conditions de l'approximation de Poisson sont satisfaites. Par exemple, \(P(X = 0) = 0{,}99^{100} \approx 0{,}366\) a comparer avec \(e^{-1} \approx 0{,}368\).</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 5 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>5.</strong> Le coefficient de correlation \(\rho(X, Y)\) peut valoir \(2\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : FAUX</span>
-              <p>L'inegalite de Cauchy-Schwarz donne \(|\text{Cov}(X,Y)| \leq \sigma(X)\,\sigma(Y)\), d'ou \(\rho(X,Y) \in [-1, 1]\). L'egalite \(|\rho| = 1\) n'est atteinte que lorsque \(Y\) est une fonction affine de \(X\) (\(Y = aX + b\) avec \(a \neq 0\)).</p>
-            </div>
+        <div class="quiz-item" data-answer="false">
+          <p class="quiz-statement"><strong>5.</strong> Le coefficient de correlation \(\rho(X, Y)\) peut valoir \(2\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>L'inegalite de Cauchy-Schwarz donne \(|\text{Cov}(X,Y)| \leq \sigma(X)\,\sigma(Y)\), d'ou \(\rho(X,Y) \in [-1, 1]\). L'egalite \(|\rho| = 1\) n'est atteinte que lorsque \(Y\) est une fonction affine de \(X\) (\(Y = aX + b\) avec \(a \neq 0\)).</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 6 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>6.</strong> Pour deux VA independantes \(X \sim \mathcal{B}(n_1, p)\) et \(Y \sim \mathcal{B}(n_2, p)\), on a \(X + Y \sim \mathcal{B}(n_1 + n_2, p)\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Par les fonctions generatrices : \(G_{X+Y}(t) = G_X(t) \cdot G_Y(t) = (1-p+pt)^{n_1}(1-p+pt)^{n_2} = (1-p+pt)^{n_1+n_2}\). On reconnait la FG d'une \(\mathcal{B}(n_1 + n_2, p)\). Attention : il faut le meme parametre \(p\) et l'independance.</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>6.</strong> Pour deux VA independantes \(X \sim \mathcal{B}(n_1, p)\) et \(Y \sim \mathcal{B}(n_2, p)\), on a \(X + Y \sim \mathcal{B}(n_1 + n_2, p)\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Par les fonctions generatrices : \(G_{X+Y}(t) = G_X(t) \cdot G_Y(t) = (1-p+pt)^{n_1}(1-p+pt)^{n_2} = (1-p+pt)^{n_1+n_2}\). On reconnait la FG d'une \(\mathcal{B}(n_1 + n_2, p)\). Attention : il faut le meme parametre \(p\) et l'independance.</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 7 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>7.</strong> La variance est toujours additive : \(V(X + Y) = V(X) + V(Y)\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : FAUX</span>
-              <p>En general, \(V(X+Y) = V(X) + V(Y) + 2\,\text{Cov}(X,Y)\). L'additivite n'est valable que si \(\text{Cov}(X,Y) = 0\), ce qui est garanti par l'independance mais peut aussi arriver sans independance (non-correlation). Exemple : si \(Y = -X\), \(V(X+Y) = V(0) = 0 \neq V(X) + V(Y) = 2V(X)\).</p>
-            </div>
+        <div class="quiz-item" data-answer="false">
+          <p class="quiz-statement"><strong>7.</strong> La variance est toujours additive : \(V(X + Y) = V(X) + V(Y)\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>En general, \(V(X+Y) = V(X) + V(Y) + 2\,\text{Cov}(X,Y)\). L'additivite n'est valable que si \(\text{Cov}(X,Y) = 0\), ce qui est garanti par l'independance mais peut aussi arriver sans independance (non-correlation). Exemple : si \(Y = -X\), \(V(X+Y) = V(0) = 0 \neq V(X) + V(Y) = 2V(X)\).</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 8 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>8.</strong> Si \(X\) et \(Y\) sont independantes, alors \(f(X)\) et \(g(Y)\) sont independantes pour toutes fonctions \(f, g\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>C'est un resultat fondamental. Si \(X\) et \(Y\) sont independantes, alors pour tous \(a, b\) : \(P(f(X) = a, g(Y) = b) = P(X \in f^{-1}(\{a\}), Y \in g^{-1}(\{b\})) = P(X \in f^{-1}(\{a\})) \cdot P(Y \in g^{-1}(\{b\})) = P(f(X) = a) \cdot P(g(Y) = b)\).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>8.</strong> Si \(X\) et \(Y\) sont independantes, alors \(f(X)\) et \(g(Y)\) sont independantes pour toutes fonctions \(f, g\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>C'est un resultat fondamental. Si \(X\) et \(Y\) sont independantes, alors pour tous \(a, b\) : \(P(f(X) = a, g(Y) = b) = P(X \in f^{-1}(\{a\}), Y \in g^{-1}(\{b\})) = P(X \in f^{-1}(\{a\})) \cdot P(Y \in g^{-1}(\{b\})) = P(f(X) = a) \cdot P(g(Y) = b)\).</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 9 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>9.</strong> Pour \(X \sim \mathcal{P}(\lambda)\) et \(Y \sim \mathcal{P}(\mu)\) independantes, \(\text{Cov}(X + Y, X - Y) = \lambda - \mu\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Par bilinearite de la covariance et independance de \(X\) et \(Y\) :</p>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>9.</strong> Pour \(X \sim \mathcal{P}(\lambda)\) et \(Y \sim \mathcal{P}(\mu)\) independantes, \(\text{Cov}(X + Y, X - Y) = \lambda - \mu\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Par bilinearite de la covariance et independance de \(X\) et \(Y\) :</p>
               <p>\(\text{Cov}(X+Y, X-Y) = \text{Cov}(X,X) - \text{Cov}(X,Y) + \text{Cov}(Y,X) - \text{Cov}(Y,Y)\).</p>
-              <p>Comme \(X \perp Y\), \(\text{Cov}(X,Y) = 0\), donc \(\text{Cov}(X+Y, X-Y) = V(X) - V(Y) = \lambda - \mu\).</p>
-            </div>
+              <p>Comme \(X \perp Y\), \(\text{Cov}(X,Y) = 0\), donc \(\text{Cov}(X+Y, X-Y) = V(X) - V(Y) = \lambda - \mu\).</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 10 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>10.</strong> Trois VA \(X, Y, Z\) sont mutuellement independantes des que toute paire est independante.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : FAUX</span>
-              <p>L'independance deux a deux n'implique pas l'independance mutuelle. L'independance mutuelle exige que \(P(X = x, Y = y, Z = z) = P(X = x)\,P(Y = y)\,P(Z = z)\) pour tous \(x, y, z\), ce qui est strictement plus fort. Contre-exemple classique : on lance deux pieces. \(X = \mathbf{1}_{\text{pile piece 1}}\), \(Y = \mathbf{1}_{\text{pile piece 2}}\), \(Z = \mathbf{1}_{X \neq Y}\). Chaque paire est independante mais le triplet ne l'est pas car \(Z\) est determine par \(X\) et \(Y\).</p>
-            </div>
+        <div class="quiz-item" data-answer="false">
+          <p class="quiz-statement"><strong>10.</strong> Trois VA \(X, Y, Z\) sont mutuellement independantes des que toute paire est independante.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>L'independance deux a deux n'implique pas l'independance mutuelle. L'independance mutuelle exige que \(P(X = x, Y = y, Z = z) = P(X = x)\,P(Y = y)\,P(Z = z)\) pour tous \(x, y, z\), ce qui est strictement plus fort. Contre-exemple classique : on lance deux pieces. \(X = \mathbf{1}_{\text{pile piece 1}}\), \(Y = \mathbf{1}_{\text{pile piece 2}}\), \(Z = \mathbf{1}_{X \neq Y}\). Chaque paire est independante mais le triplet ne l'est pas car \(Z\) est determine par \(X\) et \(Y\).</p></div>
           </div>
         </div>
-      </div>
+
+      </div><!-- .quiz-zone -->
 
     </section>
 
@@ -869,6 +924,49 @@
         content.classList.toggle('open', !isOpen);
       });
     });
+    /* ── Quiz interactif ── */
+    (function(){
+      let score = 0;
+      let answered = 0;
+      const total = document.querySelectorAll('.quiz-item').length;
+      const scoreEl = document.getElementById('quizScore');
+      document.querySelectorAll('.quiz-item').forEach(item => {
+        const correct = item.dataset.answer === 'true';
+        const btns = item.querySelectorAll('.quiz-btn');
+        const feedback = item.querySelector('.quiz-feedback');
+        const result = item.querySelector('.quiz-result');
+        btns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (item.classList.contains('answered-correct') || item.classList.contains('answered-wrong')) return;
+            const userSaidTrue = btn.classList.contains('quiz-btn--vrai');
+            const isCorrect = userSaidTrue === correct;
+            answered++;
+            if (isCorrect) {
+              score++;
+              item.classList.add('answered-correct');
+              result.className = 'quiz-result quiz-result--correct';
+              result.textContent = '\u2713 Correct !';
+            } else {
+              item.classList.add('answered-wrong');
+              result.className = 'quiz-result quiz-result--wrong';
+              result.textContent = '\u2717 Incorrect \u2014 la reponse est ' + (correct ? 'VRAI' : 'FAUX');
+            }
+            feedback.classList.add('show');
+            btns.forEach(b => b.disabled = true);
+            if (scoreEl) scoreEl.textContent = score + ' / ' + total;
+            if (typeof renderMathInElement === 'function') {
+              renderMathInElement(feedback, {
+                delimiters: [
+                  { left: '$$', right: '$$', display: true },
+                  { left: '\\(', right: '\\)', display: false }
+                ],
+                throwOnError: false
+              });
+            }
+          });
+        });
+      });
+    })();
   </script>
 </body>
 </html>

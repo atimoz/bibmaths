@@ -56,19 +56,49 @@
     .block--thm .block__label{color:#A32A2A}
     .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
     .block--prop .block__label{color:#7638A3}
-    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
-    .block--example .block__label{color:#4B825A}
-    .block--example ol li::before{color:#4B825A}
-    .block--example ul li::before{color:#4B825A}
+    /* ── Exemples : discrets, en retrait visuel ── */
+    .block--example{
+      background:rgba(245,245,247,.5);
+      border-left:3px solid rgba(100,100,100,.2);
+      border-radius:8px;
+      padding:var(--space-md) var(--space-lg);
+      margin-left:0
+    }
+    .block--example .block__label{
+      color:#555;
+      font-size:.78rem;
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase
+    }
+    .block--example p,.block--example li{color:var(--ink);font-size:.95rem}
+    .block--example strong{color:var(--ink);font-weight:600}
+    .block--example ol li::before{color:#888}
+    .block--example ul li::before{color:#888}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
     .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
     .block--cor .block__label{color:#9B59B6}
-    .block--method{background:rgba(0,128,128,.06);border-left:3px solid #2A8A8A}
-    .block--method .block__label{color:#2A8A8A}
-    .block--method ol li::before{color:#2A8A8A}
-    .block--method ul li::before{color:#2A8A8A}
+    /* ── Apple-like Method Card (frosted glass) ── */
+    .block--method{
+      background:rgba(235,235,240,.6);
+      border-left:4px solid var(--accent);
+      border-radius:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+      padding:var(--space-lg) var(--space-xl)
+    }
+    .block--method .block__label{
+      color:var(--accent);
+      font-family:var(--font-display);
+      font-size:.72rem;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:10px
+    }
+    .block--method p,.block--method li{color:var(--ink)}
+    .block--method strong{color:var(--ink);font-weight:600}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
     .block--annale ol li::before{color:var(--accent)}
@@ -79,8 +109,36 @@
     .block--proof p{color:var(--ink-light);font-size:.875rem}
     .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
-    .vf-item{margin-bottom:var(--space-md)}
-    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
+    /* ── Quiz interactif ── */
+    .quiz-zone{background:rgba(240,240,245,.5);border:2px solid rgba(0,0,0,.06);border-radius:16px;padding:var(--space-xl);margin:var(--space-xl) 0}
+    .quiz-zone__header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg)}
+    .quiz-zone__title{font-family:var(--font-display);font-size:1.4rem;color:var(--ink)}
+    .quiz-zone__score{font-family:var(--font-mono);font-size:.85rem;color:var(--ink-muted);background:rgba(0,0,0,.04);padding:6px 14px;border-radius:20px}
+    .quiz-item{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-md);transition:border-color .3s}
+    .quiz-item.answered-correct{border-color:rgba(52,199,89,.4);background:rgba(52,199,89,.03)}
+    .quiz-item.answered-wrong{border-color:rgba(255,59,48,.3);background:rgba(255,59,48,.02)}
+    .quiz-statement{font-size:.95rem;line-height:1.8;color:var(--ink);margin-bottom:12px}
+    .quiz-buttons{display:flex;gap:10px;margin-bottom:0}
+    .quiz-btn{font-family:var(--font-body);font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:8px 28px;border-radius:8px;border:1.5px solid;cursor:pointer;transition:all .25s ease}
+    .quiz-btn--vrai{background:transparent;border-color:rgba(52,199,89,.4);color:#34C759}
+    .quiz-btn--vrai:hover{background:rgba(52,199,89,.08)}
+    .quiz-btn--faux{background:transparent;border-color:rgba(255,59,48,.35);color:#FF3B30}
+    .quiz-btn--faux:hover{background:rgba(255,59,48,.06)}
+    .quiz-btn:disabled{opacity:.4;cursor:default;pointer-events:none}
+    .quiz-feedback{display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,0,0,.06)}
+    .quiz-feedback.show{display:block;animation:fadeSlideIn .3s ease}
+    .quiz-result{font-family:var(--font-body);font-size:.88rem;font-weight:700;margin-bottom:6px}
+    .quiz-result--correct{color:#34C759}
+    .quiz-result--wrong{color:#FF3B30}
+    .quiz-explanation{font-size:.88rem;line-height:1.7;color:var(--ink-light)}
+    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+    [data-theme="dark"] .quiz-zone{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-zone__score{background:rgba(255,255,255,.06);color:rgba(255,255,255,.6)}
+    [data-theme="dark"] .quiz-item{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-item.answered-correct{border-color:rgba(52,199,89,.3);background:rgba(52,199,89,.05)}
+    [data-theme="dark"] .quiz-item.answered-wrong{border-color:rgba(255,59,48,.25);background:rgba(255,59,48,.04)}
+    [data-theme="dark"] .quiz-feedback{border-top-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-explanation{color:rgba(255,255,255,.7)}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -94,15 +152,26 @@
     [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
     [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
     [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
-    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
-    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--example{
+      background:rgba(255,255,255,.04);
+      border-left-color:rgba(255,255,255,.15)
+    }
+    [data-theme="dark"] .block--example .block__label{color:rgba(255,255,255,.7)}
+    [data-theme="dark"] .block--example p,
+    [data-theme="dark"] .block--example li{color:rgba(255,255,255,.88)}
+    [data-theme="dark"] .block--example strong{color:rgba(255,255,255,.95)}
     [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
     [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
     [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
-    [data-theme="dark"] .block--method{background:rgba(0,128,128,.1);border-left-color:#4ABABA}
-    [data-theme="dark"] .block--method .block__label{color:#4ABABA}
-    [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
-    [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
+    [data-theme="dark"] .block--method{
+      background:rgba(255,255,255,.07);
+      border-left-color:var(--accent);
+      box-shadow:0 2px 8px rgba(0,0,0,.3)
+    }
+    [data-theme="dark"] .block--method .block__label{color:var(--accent)}
+    [data-theme="dark"] .block--method p,
+    [data-theme="dark"] .block--method li{color:rgba(255,255,255,.9)}
+    [data-theme="dark"] .block--method strong{color:#fff}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
     [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
@@ -346,147 +415,133 @@
     <section class="course__section" id="part2">
       <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
 
-      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+            <div class="quiz-zone" id="quizZone">
+        <div class="quiz-zone__header">
+          <span class="quiz-zone__title">Testez vos connaissances</span>
+          <span class="quiz-zone__score" id="quizScore">0 / 10</span>
+        </div>
 
-      <!-- VF 1 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>1.</strong> Les valeurs propres d'une matrice triangulaire sont ses coefficients diagonaux.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Si \(A\) est triangulaire (superieure ou inferieure), alors \(\chi_A = \prod_{i=1}^n (a_{ii} - X)\) (a un signe pres). Les VP sont donc les \(a_{ii}\), avec multiplicite algebrique egale au nombre de repetitions sur la diagonale.</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>1.</strong> Les valeurs propres d'une matrice triangulaire sont ses coefficients diagonaux.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Si \(A\) est triangulaire (superieure ou inferieure), alors \(\chi_A = \prod_{i=1}^n (a_{ii} - X)\) (a un signe pres). Les VP sont donc les \(a_{ii}\), avec multiplicite algebrique egale au nombre de repetitions sur la diagonale.</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 2 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>2.</strong> Si \(\lambda\) est VP de \(A\), alors \(\lambda^2\) est VP de \(A^2\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Si \(Ax = \lambda x\) avec \(x \neq 0\), alors \(A^2 x = A(\lambda x) = \lambda Ax = \lambda^2 x\). Donc \(x\) est vecteur propre de \(A^2\) pour la VP \(\lambda^2\). Plus generalement, si \(P\) est un polynome, les VP de \(P(A)\) sont les \(P(\lambda)\) pour \(\lambda \in \operatorname{Sp}(A)\).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>2.</strong> Si \(\lambda\) est VP de \(A\), alors \(\lambda^2\) est VP de \(A^2\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Si \(Ax = \lambda x\) avec \(x \neq 0\), alors \(A^2 x = A(\lambda x) = \lambda Ax = \lambda^2 x\). Donc \(x\) est vecteur propre de \(A^2\) pour la VP \(\lambda^2\). Plus generalement, si \(P\) est un polynome, les VP de \(P(A)\) sont les \(P(\lambda)\) pour \(\lambda \in \operatorname{Sp}(A)\).</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 3 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>3.</strong> Une matrice reelle peut avoir des valeurs propres complexes non reelles.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Le polynome caracteristique est a coefficients reels, mais ses racines peuvent etre complexes. Elles viennent alors par paires conjuguees. Exemple : la matrice de rotation \(\begin{pmatrix}0&-1\\1&0\end{pmatrix}\) a pour VP \(i\) et \(-i\) (pas de VP reelle).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>3.</strong> Une matrice reelle peut avoir des valeurs propres complexes non reelles.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Le polynome caracteristique est a coefficients reels, mais ses racines peuvent etre complexes. Elles viennent alors par paires conjuguees. Exemple : la matrice de rotation \(\begin{pmatrix}0&-1\\1&0\end{pmatrix}\) a pour VP \(i\) et \(-i\) (pas de VP reelle).</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 4 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>4.</strong> Si \(A\) et \(B\) sont semblables, elles ont le meme polynome caracteristique.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Si \(B = P^{-1}AP\), alors \(\chi_B = \det(B - XI) = \det(P^{-1}AP - XI) = \det(P^{-1}(A - XI)P) = \det(A - XI) = \chi_A\). Le polynome caracteristique est un invariant de similitude.</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>4.</strong> Si \(A\) et \(B\) sont semblables, elles ont le meme polynome caracteristique.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Si \(B = P^{-1}AP\), alors \(\chi_B = \det(B - XI) = \det(P^{-1}AP - XI) = \det(P^{-1}(A - XI)P) = \det(A - XI) = \chi_A\). Le polynome caracteristique est un invariant de similitude.</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 5 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>5.</strong> Si deux matrices ont le meme polynome caracteristique, elles sont semblables.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : FAUX</span>
-              <p>Les matrices \(\begin{pmatrix}1&0\\0&1\end{pmatrix}\) et \(\begin{pmatrix}1&1\\0&1\end{pmatrix}\) ont le meme polynome caracteristique \((X-1)^2\), mais la premiere est \(I_2\) (semblable uniquement a elle-meme) tandis que la seconde n'est pas \(I_2\). Elles ne sont pas semblables. Le polynome caracteristique est un invariant necessaire mais pas suffisant.</p>
-            </div>
+        <div class="quiz-item" data-answer="false">
+          <p class="quiz-statement"><strong>5.</strong> Si deux matrices ont le meme polynome caracteristique, elles sont semblables.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Les matrices \(\begin{pmatrix}1&0\\0&1\end{pmatrix}\) et \(\begin{pmatrix}1&1\\0&1\end{pmatrix}\) ont le meme polynome caracteristique \((X-1)^2\), mais la premiere est \(I_2\) (semblable uniquement a elle-meme) tandis que la seconde n'est pas \(I_2\). Elles ne sont pas semblables. Le polynome caracteristique est un invariant necessaire mais pas suffisant.</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 6 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>6.</strong> Le determinant d'une matrice est egal au produit de ses valeurs propres.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>En evaluant \(\chi_A(X) = \det(A - XI)\) en \(X = 0\) : \(\chi_A(0) = \det(A)\). Par ailleurs \(\chi_A(0) = \prod (\lambda_i - 0) \cdot (-1)^n\) selon la convention. Dans la convention \(\chi_A = \det(A - XI)\), on a \(\chi_A(0) = \det(A) = (-1)^n \prod(-\lambda_i) = \prod \lambda_i\). L'egalite \(\det(A) = \prod \lambda_i\) est valable (les VP comptees avec multiplicite dans \(\mathbb{C}\)).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>6.</strong> Le determinant d'une matrice est egal au produit de ses valeurs propres.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>En evaluant \(\chi_A(X) = \det(A - XI)\) en \(X = 0\) : \(\chi_A(0) = \det(A)\). Par ailleurs \(\chi_A(0) = \prod (\lambda_i - 0) \cdot (-1)^n\) selon la convention. Dans la convention \(\chi_A = \det(A - XI)\), on a \(\chi_A(0) = \det(A) = (-1)^n \prod(-\lambda_i) = \prod \lambda_i\). L'egalite \(\det(A) = \prod \lambda_i\) est valable (les VP comptees avec multiplicite dans \(\mathbb{C}\)).</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 7 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>7.</strong> Si \(A\) est nilpotente, alors \(0\) est sa seule valeur propre.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Si \(A^p = 0\) et \(\lambda\) est VP de \(A\), alors \(\lambda^p\) est VP de \(A^p = 0\), donc \(\lambda^p = 0\), d'ou \(\lambda = 0\). Reciproquement, \(\chi_A = X^n\) et par Cayley-Hamilton, \(A^n = 0\). Toute matrice nilpotente a pour unique VP \(0\).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>7.</strong> Si \(A\) est nilpotente, alors \(0\) est sa seule valeur propre.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Si \(A^p = 0\) et \(\lambda\) est VP de \(A\), alors \(\lambda^p\) est VP de \(A^p = 0\), donc \(\lambda^p = 0\), d'ou \(\lambda = 0\). Reciproquement, \(\chi_A = X^n\) et par Cayley-Hamilton, \(A^n = 0\). Toute matrice nilpotente a pour unique VP \(0\).</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 8 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>8.</strong> La trace d'un projecteur est egale a son rang.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Un projecteur \(p\) verifie \(p^2 = p\). Le polynome \(X^2 - X = X(X-1)\) annule \(p\), donc \(\operatorname{Sp}(p) \subset \{0, 1\}\), et \(p\) est diagonalisable. La multiplicite de \(1\) est \(\dim \operatorname{Im}(p) = \operatorname{rg}(p)\), et la multiplicite de \(0\) est \(\dim \ker(p)\). Donc \(\operatorname{tr}(p) = 1 \times \operatorname{rg}(p) + 0 \times \dim\ker(p) = \operatorname{rg}(p)\).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>8.</strong> La trace d'un projecteur est egale a son rang.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Un projecteur \(p\) verifie \(p^2 = p\). Le polynome \(X^2 - X = X(X-1)\) annule \(p\), donc \(\operatorname{Sp}(p) \subset \{0, 1\}\), et \(p\) est diagonalisable. La multiplicite de \(1\) est \(\dim \operatorname{Im}(p) = \operatorname{rg}(p)\), et la multiplicite de \(0\) est \(\dim \ker(p)\). Donc \(\operatorname{tr}(p) = 1 \times \operatorname{rg}(p) + 0 \times \dim\ker(p) = \operatorname{rg}(p)\).</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 9 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>9.</strong> Les VP de \(A^{-1}\) sont les inverses des VP de \(A\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Si \(Ax = \lambda x\) avec \(x \neq 0\) et \(\lambda \neq 0\) (car \(A\) inversible), alors \(x = A^{-1}(\lambda x) = \lambda A^{-1} x\), d'ou \(A^{-1}x = \frac{1}{\lambda} x\). Les vecteurs propres sont les memes, avec les VP inversees.</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>9.</strong> Les VP de \(A^{-1}\) sont les inverses des VP de \(A\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Si \(Ax = \lambda x\) avec \(x \neq 0\) et \(\lambda \neq 0\) (car \(A\) inversible), alors \(x = A^{-1}(\lambda x) = \lambda A^{-1} x\), d'ou \(A^{-1}x = \frac{1}{\lambda} x\). Les vecteurs propres sont les memes, avec les VP inversees.</p></div>
           </div>
         </div>
-      </div>
 
-      <!-- VF 10 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>10.</strong> Si \(A \in \mathcal{M}_n(\mathbb{R})\) a \(n\) valeurs propres reelles distinctes, alors \(A\) est diagonalisable dans \(\mathcal{M}_n(\mathbb{R})\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Si \(A\) possede \(n\) VP distinctes, chacune est de multiplicite algebrique \(1\). La dimension de chaque sous-espace propre est au moins \(1\), donc exactement \(1\). La somme des dimensions vaut \(n = \dim E\), donc les sous-espaces propres sont en somme directe et engendrent \(\mathbb{R}^n\). Conclusion : \(A\) est diagonalisable.</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>10.</strong> Si \(A \in \mathcal{M}_n(\mathbb{R})\) a \(n\) valeurs propres reelles distinctes, alors \(A\) est diagonalisable dans \(\mathcal{M}_n(\mathbb{R})\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p>Si \(A\) possede \(n\) VP distinctes, chacune est de multiplicite algebrique \(1\). La dimension de chaque sous-espace propre est au moins \(1\), donc exactement \(1\). La somme des dimensions vaut \(n = \dim E\), donc les sous-espaces propres sont en somme directe et engendrent \(\mathbb{R}^n\). Conclusion : \(A\) est diagonalisable.</p></div>
           </div>
         </div>
-      </div>
+
+      </div><!-- .quiz-zone -->
 
     </section>
 
@@ -818,6 +873,49 @@
         content.classList.toggle('open', !isOpen);
       });
     });
+    /* ── Quiz interactif ── */
+    (function(){
+      let score = 0;
+      let answered = 0;
+      const total = document.querySelectorAll('.quiz-item').length;
+      const scoreEl = document.getElementById('quizScore');
+      document.querySelectorAll('.quiz-item').forEach(item => {
+        const correct = item.dataset.answer === 'true';
+        const btns = item.querySelectorAll('.quiz-btn');
+        const feedback = item.querySelector('.quiz-feedback');
+        const result = item.querySelector('.quiz-result');
+        btns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (item.classList.contains('answered-correct') || item.classList.contains('answered-wrong')) return;
+            const userSaidTrue = btn.classList.contains('quiz-btn--vrai');
+            const isCorrect = userSaidTrue === correct;
+            answered++;
+            if (isCorrect) {
+              score++;
+              item.classList.add('answered-correct');
+              result.className = 'quiz-result quiz-result--correct';
+              result.textContent = '\u2713 Correct !';
+            } else {
+              item.classList.add('answered-wrong');
+              result.className = 'quiz-result quiz-result--wrong';
+              result.textContent = '\u2717 Incorrect \u2014 la reponse est ' + (correct ? 'VRAI' : 'FAUX');
+            }
+            feedback.classList.add('show');
+            btns.forEach(b => b.disabled = true);
+            if (scoreEl) scoreEl.textContent = score + ' / ' + total;
+            if (typeof renderMathInElement === 'function') {
+              renderMathInElement(feedback, {
+                delimiters: [
+                  { left: '$$', right: '$$', display: true },
+                  { left: '\\(', right: '\\)', display: false }
+                ],
+                throwOnError: false
+              });
+            }
+          });
+        });
+      });
+    })();
   </script>
 </body>
 </html>

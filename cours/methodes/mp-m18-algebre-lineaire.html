@@ -48,21 +48,55 @@
     .block--thm .block__label{color:#A32A2A}
     .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
     .block--prop .block__label{color:#7638A3}
-    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
-    .block--example .block__label{color:#4B825A}
+    /* ── Exemples : discrets, en retrait visuel ── */
+    .block--example{
+      background:rgba(245,245,247,.5);
+      border-left:3px solid rgba(100,100,100,.2);
+      border-radius:8px;
+      padding:var(--space-md) var(--space-lg);
+      margin-left:0
+    }
+    .block--example .block__label{
+      color:#555;
+      font-size:.78rem;
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase
+    }
+    .block--example p,.block--example li{color:var(--ink);font-size:.95rem}
+    .block--example strong{color:var(--ink);font-weight:600}
+    .block--example ol li::before{color:#888}
+    .block--example ul li::before{color:#888}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
     .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
     .block--cor .block__label{color:#9B59B6}
-    .block--method{background:rgba(0,128,128,.06);border-left:3px solid #2A8A8A}
-    .block--method .block__label{color:#2A8A8A}
-    .block--method ol li::before{color:#2A8A8A}
-    .block--method ul li::before{color:#2A8A8A}
+    /* ── Apple-like Method Card (frosted glass) ── */
+    .block--method{
+      background:rgba(235,235,240,.6);
+      border-left:4px solid var(--accent);
+      border-radius:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+      padding:var(--space-lg) var(--space-xl)
+    }
+    .block--method .block__label{
+      color:var(--accent);
+      font-family:var(--font-display);
+      font-size:.72rem;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:10px
+    }
+    .block--method p,.block--method li{color:var(--ink)}
+    .block--method strong{color:var(--ink);font-weight:600}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
-    .block--proof{background:rgba(75,130,90,.04);border-left:3px solid #4B825A}
-    .block--proof .block__label{color:#4B825A}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
     .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
@@ -79,10 +113,36 @@
     .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
     .course__nav-link:hover span{color:var(--accent)}
     .course__nav-link--next{text-align:right}
-    .vf-grid{display:flex;flex-direction:column;gap:var(--space-md)}
-    .vf-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:var(--space-md) var(--space-lg)}
-    .vf-item__q{font-size:.9rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
-    .vf-item__q strong{color:var(--accent);font-family:var(--font-mono);font-size:.8rem;margin-right:6px}
+    /* ── Quiz interactif ── */
+    .quiz-zone{background:rgba(240,240,245,.5);border:2px solid rgba(0,0,0,.06);border-radius:16px;padding:var(--space-xl);margin:var(--space-xl) 0}
+    .quiz-zone__header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg)}
+    .quiz-zone__title{font-family:var(--font-display);font-size:1.4rem;color:var(--ink)}
+    .quiz-zone__score{font-family:var(--font-mono);font-size:.85rem;color:var(--ink-muted);background:rgba(0,0,0,.04);padding:6px 14px;border-radius:20px}
+    .quiz-item{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-md);transition:border-color .3s}
+    .quiz-item.answered-correct{border-color:rgba(52,199,89,.4);background:rgba(52,199,89,.03)}
+    .quiz-item.answered-wrong{border-color:rgba(255,59,48,.3);background:rgba(255,59,48,.02)}
+    .quiz-statement{font-size:.95rem;line-height:1.8;color:var(--ink);margin-bottom:12px}
+    .quiz-buttons{display:flex;gap:10px;margin-bottom:0}
+    .quiz-btn{font-family:var(--font-body);font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:8px 28px;border-radius:8px;border:1.5px solid;cursor:pointer;transition:all .25s ease}
+    .quiz-btn--vrai{background:transparent;border-color:rgba(52,199,89,.4);color:#34C759}
+    .quiz-btn--vrai:hover{background:rgba(52,199,89,.08)}
+    .quiz-btn--faux{background:transparent;border-color:rgba(255,59,48,.35);color:#FF3B30}
+    .quiz-btn--faux:hover{background:rgba(255,59,48,.06)}
+    .quiz-btn:disabled{opacity:.4;cursor:default;pointer-events:none}
+    .quiz-feedback{display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,0,0,.06)}
+    .quiz-feedback.show{display:block;animation:fadeSlideIn .3s ease}
+    .quiz-result{font-family:var(--font-body);font-size:.88rem;font-weight:700;margin-bottom:6px}
+    .quiz-result--correct{color:#34C759}
+    .quiz-result--wrong{color:#FF3B30}
+    .quiz-explanation{font-size:.88rem;line-height:1.7;color:var(--ink-light)}
+    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+    [data-theme="dark"] .quiz-zone{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-zone__score{background:rgba(255,255,255,.06);color:rgba(255,255,255,.6)}
+    [data-theme="dark"] .quiz-item{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-item.answered-correct{border-color:rgba(52,199,89,.3);background:rgba(52,199,89,.05)}
+    [data-theme="dark"] .quiz-item.answered-wrong{border-color:rgba(255,59,48,.25);background:rgba(255,59,48,.04)}
+    [data-theme="dark"] .quiz-feedback{border-top-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-explanation{color:rgba(255,255,255,.7)}
     [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
     [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
     [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
@@ -90,18 +150,28 @@
     [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
     [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
     [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
-    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
-    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--example{
+      background:rgba(255,255,255,.04);
+      border-left-color:rgba(255,255,255,.15)
+    }
+    [data-theme="dark"] .block--example .block__label{color:rgba(255,255,255,.7)}
+    [data-theme="dark"] .block--example p,
+    [data-theme="dark"] .block--example li{color:rgba(255,255,255,.88)}
+    [data-theme="dark"] .block--example strong{color:rgba(255,255,255,.95)}
     [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
     [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
     [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
-    [data-theme="dark"] .block--method{background:rgba(0,128,128,.1);border-left-color:#4ABABA}
-    [data-theme="dark"] .block--method .block__label{color:#4ABABA}
-    [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
-    [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
+    [data-theme="dark"] .block--method{
+      background:rgba(255,255,255,.07);
+      border-left-color:var(--accent);
+      box-shadow:0 2px 8px rgba(0,0,0,.3)
+    }
+    [data-theme="dark"] .block--method .block__label{color:var(--accent)}
+    [data-theme="dark"] .block--method p,
+    [data-theme="dark"] .block--method li{color:rgba(255,255,255,.9)}
+    [data-theme="dark"] .block--method strong{color:#fff}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
-    [data-theme="dark"] .block--proof{background:rgba(75,130,90,.08);border-left-color:#6AAF7A}
-    [data-theme="dark"] .block--proof .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -339,151 +409,133 @@
     <section class="course__section" id="vf">
       <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
 
-      <p>Pour chaque affirmation, dire si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+            <div class="quiz-zone" id="quizZone">
+        <div class="quiz-zone__header">
+          <span class="quiz-zone__title">Testez vos connaissances</span>
+          <span class="quiz-zone__score" id="quizScore">0 / 10</span>
+        </div>
 
-      <div class="vf-grid">
-
-        <!-- VF1 -->
-        <div class="vf-item">
-          <p class="vf-item__q"><strong>VF1.</strong> Si \(f : E \to F\) est lineaire avec \(\dim E = 5\) et \(\operatorname{rg}(f) = 3\), alors \(\dim \ker f = 2\).</p>
-          <div class="deepen">
-            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="deepen__content">
-              <div class="block block--proof">
-                <span class="block__label">Reponse</span>
-                <p><strong>VRAI.</strong> Par le theoreme du rang, \(\dim \ker f = \dim E - \operatorname{rg}(f) = 5 - 3 = 2\).</p>
-              </div>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>VF1.</strong> Si \(f : E \to F\) est lineaire avec \(\dim E = 5\) et \(\operatorname{rg}(f) = 3\), alors \(\dim \ker f = 2\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p><strong>VRAI.</strong> Par le theoreme du rang, \(\dim \ker f = \dim E - \operatorname{rg}(f) = 5 - 3 = 2\).</p></div>
           </div>
         </div>
 
-        <!-- VF2 -->
-        <div class="vf-item">
-          <p class="vf-item__q"><strong>VF2.</strong> Si \(f \circ g = 0\), alors \(\operatorname{Im} g \subset \ker f\).</p>
-          <div class="deepen">
-            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="deepen__content">
-              <div class="block block--proof">
-                <span class="block__label">Reponse</span>
-                <p><strong>VRAI.</strong> Pour tout \(y \in \operatorname{Im} g\), il existe \(x\) tel que \(y = g(x)\), et \(f(y) = f(g(x)) = 0\). Donc \(y \in \ker f\).</p>
-              </div>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>VF2.</strong> Si \(f \circ g = 0\), alors \(\operatorname{Im} g \subset \ker f\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p><strong>VRAI.</strong> Pour tout \(y \in \operatorname{Im} g\), il existe \(x\) tel que \(y = g(x)\), et \(f(y) = f(g(x)) = 0\). Donc \(y \in \ker f\).</p></div>
           </div>
         </div>
 
-        <!-- VF3 -->
-        <div class="vf-item">
-          <p class="vf-item__q"><strong>VF3.</strong> Tout endomorphisme de \(\mathbb{R}^n\) qui verifie \(u^2 = u\) est soit l'identite, soit l'endomorphisme nul.</p>
-          <div class="deepen">
-            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="deepen__content">
-              <div class="block block--proof">
-                <span class="block__label">Reponse</span>
-                <p><strong>FAUX.</strong> \(u^2 = u\) signifie que \(u\) est un projecteur. Il y en a bien d'autres : par exemple la projection sur \(\operatorname{Vect}(e_1)\) parallelement a \(\operatorname{Vect}(e_2, \ldots, e_n)\).</p>
-              </div>
-            </div>
+        <div class="quiz-item" data-answer="false">
+          <p class="quiz-statement"><strong>VF3.</strong> Tout endomorphisme de \(\mathbb{R}^n\) qui verifie \(u^2 = u\) est soit l'identite, soit l'endomorphisme nul.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p><strong>FAUX.</strong> \(u^2 = u\) signifie que \(u\) est un projecteur. Il y en a bien d'autres : par exemple la projection sur \(\operatorname{Vect}(e_1)\) parallelement a \(\operatorname{Vect}(e_2, \ldots, e_n)\).</p></div>
           </div>
         </div>
 
-        <!-- VF4 -->
-        <div class="vf-item">
-          <p class="vf-item__q"><strong>VF4.</strong> Si \(P_1 \wedge P_2 = 1\) et \(P_1(u) = 0\), alors \(\ker P_2(u) = \{0\}\).</p>
-          <div class="deepen">
-            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="deepen__content">
-              <div class="block block--proof">
-                <span class="block__label">Reponse</span>
-                <p><strong>FAUX</strong> en general. Si \(P_1(u) = 0\), alors \(\ker P_1(u) = E\). Par le lemme, \(\ker(P_1 P_2)(u) = E \oplus \ker P_2(u)\)... En fait, si \(P_1(u) = 0\) et \(P_1 \wedge P_2 = 1\), par Bezout \(U_1 P_1 + U_2 P_2 = 1\), donc \(U_2(u)P_2(u) = \operatorname{Id}\), ce qui signifie \(P_2(u)\) est inversible, donc \(\ker P_2(u) = \{0\}\). <strong>Finalement, c'est VRAI.</strong></p>
-              </div>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>VF4.</strong> Si \(P_1 \wedge P_2 = 1\) et \(P_1(u) = 0\), alors \(\ker P_2(u) = \{0\}\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p><strong>FAUX</strong> en general. Si \(P_1(u) = 0\), alors \(\ker P_1(u) = E\). Par le lemme, \(\ker(P_1 P_2)(u) = E \oplus \ker P_2(u)\)... En fait, si \(P_1(u) = 0\) et \(P_1 \wedge P_2 = 1\), par Bezout \(U_1 P_1 + U_2 P_2 = 1\), donc \(U_2(u)P_2(u) = \operatorname{Id}\), ce qui signifie \(P_2(u)\) est inversible, donc \(\ker P_2(u) = \{0\}\). <strong>Finalement, c'est VRAI.</strong></p></div>
           </div>
         </div>
 
-        <!-- VF5 -->
-        <div class="vf-item">
-          <p class="vf-item__q"><strong>VF5.</strong> Le dual \(E^*\) d'un espace de dimension \(n\) est de dimension \(n\).</p>
-          <div class="deepen">
-            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="deepen__content">
-              <div class="block block--proof">
-                <span class="block__label">Reponse</span>
-                <p><strong>VRAI.</strong> En dimension finie, \(\dim E^* = \dim \mathcal{L}(E, \mathbb{K}) = \dim E = n\) (la base duale est effectivement une base de \(E^*\)).</p>
-              </div>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>VF5.</strong> Le dual \(E^*\) d'un espace de dimension \(n\) est de dimension \(n\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p><strong>VRAI.</strong> En dimension finie, \(\dim E^* = \dim \mathcal{L}(E, \mathbb{K}) = \dim E = n\) (la base duale est effectivement une base de \(E^*\)).</p></div>
           </div>
         </div>
 
-        <!-- VF6 -->
-        <div class="vf-item">
-          <p class="vf-item__q"><strong>VF6.</strong> Si \(H\) est un hyperplan de \(E\) et \(v \notin H\), alors \(E = H \oplus \operatorname{Vect}(v)\).</p>
-          <div class="deepen">
-            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="deepen__content">
-              <div class="block block--proof">
-                <span class="block__label">Reponse</span>
-                <p><strong>VRAI.</strong> \(\dim H = n-1\) et \(v \notin H\), donc \(H \cap \operatorname{Vect}(v) = \{0\}\). Par dimension, \(H + \operatorname{Vect}(v) = E\).</p>
-              </div>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>VF6.</strong> Si \(H\) est un hyperplan de \(E\) et \(v \notin H\), alors \(E = H \oplus \operatorname{Vect}(v)\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p><strong>VRAI.</strong> \(\dim H = n-1\) et \(v \notin H\), donc \(H \cap \operatorname{Vect}(v) = \{0\}\). Par dimension, \(H + \operatorname{Vect}(v) = E\).</p></div>
           </div>
         </div>
 
-        <!-- VF7 -->
-        <div class="vf-item">
-          <p class="vf-item__q"><strong>VF7.</strong> Si \(F\) est stable par \(u\), alors \(F\) est stable par \(u^2\).</p>
-          <div class="deepen">
-            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="deepen__content">
-              <div class="block block--proof">
-                <span class="block__label">Reponse</span>
-                <p><strong>VRAI.</strong> Si \(x \in F\), alors \(u(x) \in F\) (stabilite par \(u\)), puis \(u^2(x) = u(u(x)) \in F\) (en appliquant a nouveau la stabilite).</p>
-              </div>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>VF7.</strong> Si \(F\) est stable par \(u\), alors \(F\) est stable par \(u^2\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p><strong>VRAI.</strong> Si \(x \in F\), alors \(u(x) \in F\) (stabilite par \(u\)), puis \(u^2(x) = u(u(x)) \in F\) (en appliquant a nouveau la stabilite).</p></div>
           </div>
         </div>
 
-        <!-- VF8 -->
-        <div class="vf-item">
-          <p class="vf-item__q"><strong>VF8.</strong> La somme de deux projecteurs est un projecteur.</p>
-          <div class="deepen">
-            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="deepen__content">
-              <div class="block block--proof">
-                <span class="block__label">Reponse</span>
-                <p><strong>FAUX</strong> en general. \((p+q)^2 = p^2 + pq + qp + q^2 = p + q + pq + qp\). Pour que ce soit egal a \(p+q\), il faut \(pq + qp = 0\). C'est le cas si \(pq = qp = 0\) (projections sur des sous-espaces supplementaires), mais pas en general.</p>
-              </div>
-            </div>
+        <div class="quiz-item" data-answer="false">
+          <p class="quiz-statement"><strong>VF8.</strong> La somme de deux projecteurs est un projecteur.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p><strong>FAUX</strong> en general. \((p+q)^2 = p^2 + pq + qp + q^2 = p + q + pq + qp\). Pour que ce soit egal a \(p+q\), il faut \(pq + qp = 0\). C'est le cas si \(pq = qp = 0\) (projections sur des sous-espaces supplementaires), mais pas en general.</p></div>
           </div>
         </div>
 
-        <!-- VF9 -->
-        <div class="vf-item">
-          <p class="vf-item__q"><strong>VF9.</strong> Si \(s\) est une symetrie, alors \(\frac{1}{2}(\operatorname{Id} + s)\) est un projecteur.</p>
-          <div class="deepen">
-            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="deepen__content">
-              <div class="block block--proof">
-                <span class="block__label">Reponse</span>
-                <p><strong>VRAI.</strong> Posons \(p = \frac{1}{2}(\operatorname{Id} + s)\). Alors \(p^2 = \frac{1}{4}(\operatorname{Id} + 2s + s^2) = \frac{1}{4}(\operatorname{Id} + 2s + \operatorname{Id}) = \frac{1}{2}(\operatorname{Id} + s) = p\).</p>
-              </div>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>VF9.</strong> Si \(s\) est une symetrie, alors \(\frac{1}{2}(\operatorname{Id} + s)\) est un projecteur.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p><strong>VRAI.</strong> Posons \(p = \frac{1}{2}(\operatorname{Id} + s)\). Alors \(p^2 = \frac{1}{4}(\operatorname{Id} + 2s + s^2) = \frac{1}{4}(\operatorname{Id} + 2s + \operatorname{Id}) = \frac{1}{2}(\operatorname{Id} + s) = p\).</p></div>
           </div>
         </div>
 
-        <!-- VF10 -->
-        <div class="vf-item">
-          <p class="vf-item__q"><strong>VF10.</strong> Si \(\operatorname{rg}(f) = \operatorname{rg}(f^2)\), alors \(\ker f = \ker f^2\).</p>
-          <div class="deepen">
-            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="deepen__content">
-              <div class="block block--proof">
-                <span class="block__label">Reponse</span>
-                <p><strong>VRAI.</strong> On a toujours \(\ker f \subset \ker f^2\). Par le theoreme du rang, \(\dim \ker f = n - \operatorname{rg}(f)\) et \(\dim \ker f^2 = n - \operatorname{rg}(f^2)\). Si les rangs sont egaux, les dimensions des noyaux le sont aussi, et l'inclusion donne l'egalite.</p>
-              </div>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>VF10.</strong> Si \(\operatorname{rg}(f) = \operatorname{rg}(f^2)\), alors \(\ker f = \ker f^2\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <div class="quiz-explanation"><p><strong>VRAI.</strong> On a toujours \(\ker f \subset \ker f^2\). Par le theoreme du rang, \(\dim \ker f = n - \operatorname{rg}(f)\) et \(\dim \ker f^2 = n - \operatorname{rg}(f^2)\). Si les rangs sont egaux, les dimensions des noyaux le sont aussi, et l'inclusion donne l'egalite.</p></div>
           </div>
         </div>
 
-      </div><!-- /vf-grid -->
+      </div><!-- .quiz-zone -->
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
@@ -796,6 +848,50 @@
         });
       });
     });
+
+    /* ── Quiz interactif ── */
+    (function(){
+      let score = 0;
+      let answered = 0;
+      const total = document.querySelectorAll('.quiz-item').length;
+      const scoreEl = document.getElementById('quizScore');
+      document.querySelectorAll('.quiz-item').forEach(item => {
+        const correct = item.dataset.answer === 'true';
+        const btns = item.querySelectorAll('.quiz-btn');
+        const feedback = item.querySelector('.quiz-feedback');
+        const result = item.querySelector('.quiz-result');
+        btns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (item.classList.contains('answered-correct') || item.classList.contains('answered-wrong')) return;
+            const userSaidTrue = btn.classList.contains('quiz-btn--vrai');
+            const isCorrect = userSaidTrue === correct;
+            answered++;
+            if (isCorrect) {
+              score++;
+              item.classList.add('answered-correct');
+              result.className = 'quiz-result quiz-result--correct';
+              result.textContent = '\u2713 Correct !';
+            } else {
+              item.classList.add('answered-wrong');
+              result.className = 'quiz-result quiz-result--wrong';
+              result.textContent = '\u2717 Incorrect \u2014 la reponse est ' + (correct ? 'VRAI' : 'FAUX');
+            }
+            feedback.classList.add('show');
+            btns.forEach(b => b.disabled = true);
+            if (scoreEl) scoreEl.textContent = score + ' / ' + total;
+            if (typeof renderMathInElement === 'function') {
+              renderMathInElement(feedback, {
+                delimiters: [
+                  { left: '$$', right: '$$', display: true },
+                  { left: '\\(', right: '\\)', display: false }
+                ],
+                throwOnError: false
+              });
+            }
+          });
+        });
+      });
+    })();
   </script>
 </body>
 </html>

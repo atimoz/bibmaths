@@ -56,19 +56,49 @@
     .block--thm .block__label{color:#A32A2A}
     .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
     .block--prop .block__label{color:#7638A3}
-    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
-    .block--example .block__label{color:#4B825A}
-    .block--example ol li::before{color:#4B825A}
-    .block--example ul li::before{color:#4B825A}
+    /* ── Exemples : discrets, en retrait visuel ── */
+    .block--example{
+      background:rgba(245,245,247,.5);
+      border-left:3px solid rgba(100,100,100,.2);
+      border-radius:8px;
+      padding:var(--space-md) var(--space-lg);
+      margin-left:0
+    }
+    .block--example .block__label{
+      color:#555;
+      font-size:.78rem;
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase
+    }
+    .block--example p,.block--example li{color:var(--ink);font-size:.95rem}
+    .block--example strong{color:var(--ink);font-weight:600}
+    .block--example ol li::before{color:#888}
+    .block--example ul li::before{color:#888}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
     .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
     .block--cor .block__label{color:#9B59B6}
-    .block--method{background:rgba(0,128,128,.06);border-left:3px solid #2A8A8A}
-    .block--method .block__label{color:#2A8A8A}
-    .block--method ol li::before{color:#2A8A8A}
-    .block--method ul li::before{color:#2A8A8A}
+    /* ── Apple-like Method Card (frosted glass) ── */
+    .block--method{
+      background:rgba(235,235,240,.6);
+      border-left:4px solid var(--accent);
+      border-radius:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+      padding:var(--space-lg) var(--space-xl)
+    }
+    .block--method .block__label{
+      color:var(--accent);
+      font-family:var(--font-display);
+      font-size:.72rem;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:10px
+    }
+    .block--method p,.block--method li{color:var(--ink)}
+    .block--method strong{color:var(--ink);font-weight:600}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
     .block--annale ol li::before{color:var(--accent)}
@@ -79,8 +109,29 @@
     .block--proof p{color:var(--ink-light);font-size:.875rem}
     .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
-    .vf-item{margin-bottom:var(--space-md)}
-    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
+    /* ── Quiz interactif ── */
+    .quiz-zone{background:rgba(240,240,245,.5);border:2px solid rgba(0,0,0,.06);border-radius:16px;padding:var(--space-xl);margin:var(--space-xl) 0}
+    .quiz-zone__header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg)}
+    .quiz-zone__title{font-family:var(--font-display);font-size:1.4rem;color:var(--ink)}
+    .quiz-zone__score{font-family:var(--font-mono);font-size:.85rem;color:var(--ink-muted);background:rgba(0,0,0,.04);padding:6px 14px;border-radius:20px}
+    .quiz-item{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-md);transition:border-color .3s}
+    .quiz-item.answered-correct{border-color:rgba(52,199,89,.4);background:rgba(52,199,89,.03)}
+    .quiz-item.answered-wrong{border-color:rgba(255,59,48,.3);background:rgba(255,59,48,.02)}
+    .quiz-statement{font-size:.95rem;line-height:1.8;color:var(--ink);margin-bottom:12px}
+    .quiz-buttons{display:flex;gap:10px;margin-bottom:0}
+    .quiz-btn{font-family:var(--font-body);font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:8px 28px;border-radius:8px;border:1.5px solid;cursor:pointer;transition:all .25s ease}
+    .quiz-btn--vrai{background:transparent;border-color:rgba(52,199,89,.4);color:#34C759}
+    .quiz-btn--vrai:hover{background:rgba(52,199,89,.08)}
+    .quiz-btn--faux{background:transparent;border-color:rgba(255,59,48,.35);color:#FF3B30}
+    .quiz-btn--faux:hover{background:rgba(255,59,48,.06)}
+    .quiz-btn:disabled{opacity:.4;cursor:default;pointer-events:none}
+    .quiz-feedback{display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,0,0,.06)}
+    .quiz-feedback.show{display:block;animation:fadeSlideIn .3s ease}
+    .quiz-result{font-family:var(--font-body);font-size:.88rem;font-weight:700;margin-bottom:6px}
+    .quiz-result--correct{color:#34C759}
+    .quiz-result--wrong{color:#FF3B30}
+    .quiz-explanation{font-size:.88rem;line-height:1.7;color:var(--ink-light)}
+    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -94,18 +145,36 @@
     [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
     [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
     [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
-    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
-    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--example{
+      background:rgba(255,255,255,.04);
+      border-left-color:rgba(255,255,255,.15)
+    }
+    [data-theme="dark"] .block--example .block__label{color:rgba(255,255,255,.7)}
+    [data-theme="dark"] .block--example p,
+    [data-theme="dark"] .block--example li{color:rgba(255,255,255,.88)}
+    [data-theme="dark"] .block--example strong{color:rgba(255,255,255,.95)}
     [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
     [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
     [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
-    [data-theme="dark"] .block--method{background:rgba(0,128,128,.1);border-left-color:#4ABABA}
-    [data-theme="dark"] .block--method .block__label{color:#4ABABA}
-    [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
-    [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
+    [data-theme="dark"] .block--method{
+      background:rgba(255,255,255,.07);
+      border-left-color:var(--accent);
+      box-shadow:0 2px 8px rgba(0,0,0,.3)
+    }
+    [data-theme="dark"] .block--method .block__label{color:var(--accent)}
+    [data-theme="dark"] .block--method p,
+    [data-theme="dark"] .block--method li{color:rgba(255,255,255,.9)}
+    [data-theme="dark"] .block--method strong{color:#fff}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
     [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
+    [data-theme="dark"] .quiz-zone{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-zone__score{background:rgba(255,255,255,.06);color:rgba(255,255,255,.6)}
+    [data-theme="dark"] .quiz-item{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-item.answered-correct{border-color:rgba(52,199,89,.3);background:rgba(52,199,89,.05)}
+    [data-theme="dark"] .quiz-item.answered-wrong{border-color:rgba(255,59,48,.25);background:rgba(255,59,48,.04)}
+    [data-theme="dark"] .quiz-feedback{border-top-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .quiz-explanation{color:rgba(255,255,255,.7)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
 </head>
@@ -344,148 +413,133 @@
     <section class="course__section" id="part2">
       <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
 
-      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+      <div class="quiz-zone" id="quizZone">
+        <div class="quiz-zone__header">
+          <span class="quiz-zone__title">Testez vos connaissances</span>
+          <span class="quiz-zone__score" id="quizScore">0 / 10</span>
+        </div>
 
-      <!-- VF 1 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>1.</strong> Toute matrice symetrique reelle est diagonalisable.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>C'est le theoreme spectral : toute matrice symetrique reelle est diagonalisable dans une base orthonormee. Plus precisement, \(A = A^T\) implique que \(A\) est diagonalisable dans \(\mathcal{M}_n(\mathbb{R})\) avec des VP reelles, et on peut choisir \(P\) orthogonale (\(P^{-1} = P^T\)).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>1.</strong> Toute matrice symetrique reelle est diagonalisable.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <p class="quiz-explanation">C'est le theoreme spectral : toute matrice symetrique reelle est diagonalisable dans une base orthonormee. Plus precisement, \(A = A^T\) implique que \(A\) est diagonalisable dans \(\mathcal{M}_n(\mathbb{R})\) avec des VP reelles, et on peut choisir \(P\) orthogonale (\(P^{-1} = P^T\)).</p>
           </div>
         </div>
-      </div>
 
-      <!-- VF 2 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>2.</strong> Si \(A\) est diagonalisable et \(B\) est diagonalisable, alors \(A + B\) est diagonalisable.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : FAUX</span>
-              <p>Contre-exemple : \(A = \begin{pmatrix}1&0\\0&0\end{pmatrix}\) et \(B = \begin{pmatrix}0&1\\0&0\end{pmatrix}\). \(A\) est diagonale (diagonalisable), \(B\) a pour seule VP \(0\) avec \(\dim E_0 = 1 = m(0) = 1\)... en fait \(B\) n'est pas diagonalisable. Prenons plutot \(A = \begin{pmatrix}1&1\\0&0\end{pmatrix}\) et \(B = \begin{pmatrix}-1&0\\0&0\end{pmatrix}\) (diag.). Alors \(A\) a VP \(0, 1\) (diag.) et \(A + B = \begin{pmatrix}0&1\\0&0\end{pmatrix}\) qui est nilpotente non nulle, donc non diagonalisable.</p>
-            </div>
+        <div class="quiz-item" data-answer="false">
+          <p class="quiz-statement"><strong>2.</strong> Si \(A\) est diagonalisable et \(B\) est diagonalisable, alors \(A + B\) est diagonalisable.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <p class="quiz-explanation">Contre-exemple : \(A = \begin{pmatrix}1&0\\0&0\end{pmatrix}\) et \(B = \begin{pmatrix}0&1\\0&0\end{pmatrix}\). \(A\) est diagonale (diagonalisable), \(B\) a pour seule VP \(0\) avec \(\dim E_0 = 1 = m(0) = 1\)... en fait \(B\) n'est pas diagonalisable. Prenons plutot \(A = \begin{pmatrix}1&1\\0&0\end{pmatrix}\) et \(B = \begin{pmatrix}-1&0\\0&0\end{pmatrix}\) (diag.). Alors \(A\) a VP \(0, 1\) (diag.) et \(A + B = \begin{pmatrix}0&1\\0&0\end{pmatrix}\) qui est nilpotente non nulle, donc non diagonalisable.</p>
           </div>
         </div>
-      </div>
 
-      <!-- VF 3 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>3.</strong> Si \(A\) est diagonalisable, alors \(A^T\) est diagonalisable.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>\(\chi_{A^T} = \chi_A\) et \(\pi_{A^T} = \pi_A\) (meme polynome minimal). Si \(A\) est diag., \(\pi_A\) est scinde a racines simples, donc \(\pi_{A^T}\) aussi, et \(A^T\) est diagonalisable. Alternativement, \(A = PDP^{-1}\) implique \(A^T = (P^{-1})^T D P^T\).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>3.</strong> Si \(A\) est diagonalisable, alors \(A^T\) est diagonalisable.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <p class="quiz-explanation">\(\chi_{A^T} = \chi_A\) et \(\pi_{A^T} = \pi_A\) (meme polynome minimal). Si \(A\) est diag., \(\pi_A\) est scinde a racines simples, donc \(\pi_{A^T}\) aussi, et \(A^T\) est diagonalisable. Alternativement, \(A = PDP^{-1}\) implique \(A^T = (P^{-1})^T D P^T\).</p>
           </div>
         </div>
-      </div>
 
-      <!-- VF 4 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>4.</strong> Toute matrice est trigonalisable sur \(\mathbb{C}\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Sur \(\mathbb{C}\), tout polynome est scinde (theoreme de d'Alembert-Gauss). Or, une matrice est trigonalisable sur \(\mathbb{K}\) si et seulement si \(\chi_A\) est scinde sur \(\mathbb{K}\). Donc toute matrice est trigonalisable sur \(\mathbb{C}\).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>4.</strong> Toute matrice est trigonalisable sur \(\mathbb{C}\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <p class="quiz-explanation">Sur \(\mathbb{C}\), tout polynome est scinde (theoreme de d'Alembert-Gauss). Or, une matrice est trigonalisable sur \(\mathbb{K}\) si et seulement si \(\chi_A\) est scinde sur \(\mathbb{K}\). Donc toute matrice est trigonalisable sur \(\mathbb{C}\).</p>
           </div>
         </div>
-      </div>
 
-      <!-- VF 5 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>5.</strong> Si \(A^2 = I\), alors \(A\) est diagonalisable.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Le polynome \(P = X^2 - 1 = (X-1)(X+1)\) annule \(A\). Il est scinde a racines simples, donc \(A\) est diagonalisable. Les VP de \(A\) sont dans \(\{-1, 1\}\). Les matrices verifiant \(A^2 = I\) sont appelees involutions.</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>5.</strong> Si \(A^2 = I\), alors \(A\) est diagonalisable.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <p class="quiz-explanation">Le polynome \(P = X^2 - 1 = (X-1)(X+1)\) annule \(A\). Il est scinde a racines simples, donc \(A\) est diagonalisable. Les VP de \(A\) sont dans \(\{-1, 1\}\). Les matrices verifiant \(A^2 = I\) sont appelees involutions.</p>
           </div>
         </div>
-      </div>
 
-      <!-- VF 6 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>6.</strong> La decomposition de Dunford \(A = D + N\) est unique.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Si \(\chi_A\) est scinde, il existe une unique decomposition \(A = D + N\) avec \(D\) diagonalisable, \(N\) nilpotente, \(DN = ND\). De plus, \(D\) et \(N\) sont des polynomes en \(A\). L'unicite vient du fait que \(D\) est la partie semi-simple de \(A\) (ses valeurs propres sur chaque sous-espace caracteristique).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>6.</strong> La decomposition de Dunford \(A = D + N\) est unique.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <p class="quiz-explanation">Si \(\chi_A\) est scinde, il existe une unique decomposition \(A = D + N\) avec \(D\) diagonalisable, \(N\) nilpotente, \(DN = ND\). De plus, \(D\) et \(N\) sont des polynomes en \(A\). L'unicite vient du fait que \(D\) est la partie semi-simple de \(A\) (ses valeurs propres sur chaque sous-espace caracteristique).</p>
           </div>
         </div>
-      </div>
 
-      <!-- VF 7 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>7.</strong> Si \(A\) et \(B\) commutent et sont diagonalisables, elles sont codiagonalisables.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Si \(AB = BA\) et \(A, B\) sont diagonalisables, alors il existe une base commune de vecteurs propres pour \(A\) et \(B\). En effet, les sous-espaces propres de \(A\) sont stables par \(B\) (car si \(Ax = \lambda x\), alors \(A(Bx) = BAx = \lambda(Bx)\)). On diagonalise \(B\) dans chaque sous-espace propre de \(A\).</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>7.</strong> Si \(A\) et \(B\) commutent et sont diagonalisables, elles sont codiagonalisables.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <p class="quiz-explanation">Si \(AB = BA\) et \(A, B\) sont diagonalisables, alors il existe une base commune de vecteurs propres pour \(A\) et \(B\). En effet, les sous-espaces propres de \(A\) sont stables par \(B\) (car si \(Ax = \lambda x\), alors \(A(Bx) = BAx = \lambda(Bx)\)). On diagonalise \(B\) dans chaque sous-espace propre de \(A\).</p>
           </div>
         </div>
-      </div>
 
-      <!-- VF 8 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>8.</strong> Le polynome minimal d'une matrice diagonale est le produit des \((X - \lambda_i)\) pour les \(\lambda_i\) <em>distincts</em> sur la diagonale.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Si \(D = \mathrm{diag}(\lambda_1, \ldots, \lambda_n)\) avec \(d\) valeurs distinctes \(\mu_1, \ldots, \mu_d\), alors \(\pi_D = \prod_{j=1}^d (X - \mu_j)\). En effet, ce polynome annule \(D\) (chaque coefficient diagonal est une racine) et c'est le polynome de degre minimal ayant cette propriete.</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>8.</strong> Le polynome minimal d'une matrice diagonale est le produit des \((X - \lambda_i)\) pour les \(\lambda_i\) <em>distincts</em> sur la diagonale.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <p class="quiz-explanation">Si \(D = \mathrm{diag}(\lambda_1, \ldots, \lambda_n)\) avec \(d\) valeurs distinctes \(\mu_1, \ldots, \mu_d\), alors \(\pi_D = \prod_{j=1}^d (X - \mu_j)\). En effet, ce polynome annule \(D\) (chaque coefficient diagonal est une racine) et c'est le polynome de degre minimal ayant cette propriete.</p>
           </div>
         </div>
-      </div>
 
-      <!-- VF 9 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>9.</strong> \(\exp(A + B) = \exp(A)\exp(B)\) pour toutes matrices \(A, B\).</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : FAUX</span>
-              <p>L'egalite \(\exp(A+B) = \exp(A)\exp(B)\) n'est vraie que si \(AB = BA\). En general, pour des matrices qui ne commutent pas, la formule de Baker-Campbell-Hausdorff montre que \(\exp(A)\exp(B) = \exp(A + B + \frac{1}{2}[A,B] + \cdots)\). Contre-exemple classique : prendre \(A, B\) nilpotentes non commutantes.</p>
-            </div>
+        <div class="quiz-item" data-answer="false">
+          <p class="quiz-statement"><strong>9.</strong> \(\exp(A + B) = \exp(A)\exp(B)\) pour toutes matrices \(A, B\).</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <p class="quiz-explanation">L'egalite \(\exp(A+B) = \exp(A)\exp(B)\) n'est vraie que si \(AB = BA\). En general, pour des matrices qui ne commutent pas, la formule de Baker-Campbell-Hausdorff montre que \(\exp(A)\exp(B) = \exp(A + B + \frac{1}{2}[A,B] + \cdots)\). Contre-exemple classique : prendre \(A, B\) nilpotentes non commutantes.</p>
           </div>
         </div>
-      </div>
 
-      <!-- VF 10 -->
-      <div class="vf-item">
-        <p class="vf-statement"><strong>10.</strong> Si \(\chi_A = (X - 1)^3(X - 2)^2\) et \(\dim E_1 = 3\), \(\dim E_2 = 2\), alors \(A\) est diagonalisable.</p>
-        <div class="deepen">
-          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="deepen__content">
-            <div class="block block--proof">
-              <span class="block__label">Reponse : VRAI</span>
-              <p>Pour chaque VP, la dimension geometrique egale la multiplicite algebrique : \(\dim E_1 = 3 = m(1)\) et \(\dim E_2 = 2 = m(2)\). La somme des dimensions vaut \(3 + 2 = 5 = n\). Les sous-espaces propres sont en somme directe et engendrent \(\mathbb{R}^5\). Donc \(A\) est diagonalisable.</p>
-            </div>
+        <div class="quiz-item" data-answer="true">
+          <p class="quiz-statement"><strong>10.</strong> Si \(\chi_A = (X - 1)^3(X - 2)^2\) et \(\dim E_1 = 3\), \(\dim E_2 = 2\), alors \(A\) est diagonalisable.</p>
+          <div class="quiz-buttons">
+            <button class="quiz-btn quiz-btn--vrai">Vrai</button>
+            <button class="quiz-btn quiz-btn--faux">Faux</button>
+          </div>
+          <div class="quiz-feedback">
+            <div class="quiz-result"></div>
+            <p class="quiz-explanation">Pour chaque VP, la dimension geometrique egale la multiplicite algebrique : \(\dim E_1 = 3 = m(1)\) et \(\dim E_2 = 2 = m(2)\). La somme des dimensions vaut \(3 + 2 = 5 = n\). Les sous-espaces propres sont en somme directe et engendrent \(\mathbb{R}^5\). Donc \(A\) est diagonalisable.</p>
           </div>
         </div>
-      </div>
 
+      </div><!-- .quiz-zone -->
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════ -->
@@ -853,6 +907,49 @@
         content.classList.toggle('open', !isOpen);
       });
     });
+    /* ── Quiz interactif ── */
+    (function(){
+      let score = 0;
+      let answered = 0;
+      const total = document.querySelectorAll('.quiz-item').length;
+      const scoreEl = document.getElementById('quizScore');
+      document.querySelectorAll('.quiz-item').forEach(item => {
+        const correct = item.dataset.answer === 'true';
+        const btns = item.querySelectorAll('.quiz-btn');
+        const feedback = item.querySelector('.quiz-feedback');
+        const result = item.querySelector('.quiz-result');
+        btns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (item.classList.contains('answered-correct') || item.classList.contains('answered-wrong')) return;
+            const userSaidTrue = btn.classList.contains('quiz-btn--vrai');
+            const isCorrect = userSaidTrue === correct;
+            answered++;
+            if (isCorrect) {
+              score++;
+              item.classList.add('answered-correct');
+              result.className = 'quiz-result quiz-result--correct';
+              result.textContent = '\u2713 Correct !';
+            } else {
+              item.classList.add('answered-wrong');
+              result.className = 'quiz-result quiz-result--wrong';
+              result.textContent = '\u2717 Incorrect \u2014 la reponse est ' + (correct ? 'VRAI' : 'FAUX');
+            }
+            feedback.classList.add('show');
+            btns.forEach(b => b.disabled = true);
+            if (scoreEl) scoreEl.textContent = score + ' / ' + total;
+            if (typeof renderMathInElement === 'function') {
+              renderMathInElement(feedback, {
+                delimiters: [
+                  { left: '$$', right: '$$', display: true },
+                  { left: '\\(', right: '\\)', display: false }
+                ],
+                throwOnError: false
+              });
+            }
+          });
+        });
+      });
+    })();
   </script>
 </body>
 </html>
