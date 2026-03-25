@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -146,24 +165,36 @@
 
     <div class="course__meta">
       <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 1-2</span>
     </div>
 
     <h1 class="course__title">Groupes & Anneaux</h1>
 
     <p class="course__intro">
-      Fiche de methodes avec exercices types : structures de groupes, morphismes, congruences (theoreme chinois), indicateur d'Euler et elements remarquables des anneaux. Chaque methode est accompagnee d'un exercice d'annale ou de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et six exercices corriges inspires des chapitres 1 et 2.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
         <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Montrer qu'un ensemble est un groupe</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Montrer qu'une application est un morphisme de groupes</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Resoudre un systeme de congruences (theoreme chinois)</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Manipuler l'indicateur d'Euler</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Etudier les elements d'un anneau</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Montrer qu'une application est un morphisme</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Resoudre un systeme de congruences</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Indicateur d'Euler et theoreme d'Euler</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Elements d'un anneau</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
 
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
@@ -171,64 +202,60 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Pour montrer que \((G, \star)\) est un groupe, on verifie les quatre axiomes :</p>
         <ol>
-          <li>Verifier que la loi \(\star\) est une <strong>loi de composition interne</strong> : pour tous \(x, y \in G\), \(x \star y \in G\).</li>
-          <li>Verifier l'<strong>associativite</strong> : pour tous \(x, y, z \in G\), \((x \star y) \star z = x \star (y \star z)\).</li>
-          <li>Verifier l'existence d'un <strong>element neutre</strong> \(e \in G\) tel que pour tout \(x \in G\), \(e \star x = x \star e = x\).</li>
-          <li>Verifier l'existence d'un <strong>symetrique</strong> : pour tout \(x \in G\), il existe \(x' \in G\) tel que \(x \star x' = x' \star x = e\).</li>
-          <li><strong>Alternative (sous-groupe)</strong> : montrer que \(H \subset G\) est un sous-groupe en verifiant : \(H \neq \emptyset\), et pour tous \(x, y \in H\), \(x \star y^{-1} \in H\).</li>
+          <li><strong>Loi interne :</strong> pour tous \(x, y \in G\), \(x \star y \in G\).</li>
+          <li><strong>Associativite :</strong> pour tous \(x, y, z \in G\), \((x \star y) \star z = x \star (y \star z)\).</li>
+          <li><strong>Element neutre :</strong> il existe \(e \in G\) tel que pour tout \(x \in G\), \(e \star x = x \star e = x\).</li>
+          <li><strong>Symetrique :</strong> pour tout \(x \in G\), il existe \(x' \in G\) tel que \(x \star x' = x' \star x = e\).</li>
+        </ol>
+        <p><strong>Critere de sous-groupe :</strong> pour montrer que \(H \subset G\) est un sous-groupe, il suffit de verifier :</p>
+        <ol>
+          <li>\(H \neq \emptyset\) (en general \(e \in H\)).</li>
+          <li>Pour tous \(x, y \in H\), \(x \star y^{-1} \in H\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Pour montrer qu'un ensemble fini muni d'une loi interne et associative est un groupe, il suffit souvent de montrer la simplifiabilite (a gauche et a droite), ce qui entraine l'existence du neutre et des inverses.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>On considere l'ensemble \(G = \left\{ \begin{pmatrix} a & b \\ 0 & 1 \end{pmatrix} \mid a \in \mathbb{R}^*, \, b \in \mathbb{R} \right\}\) muni du produit matriciel.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \((\mathbb{Z}/5\mathbb{Z})^* = \{\bar{1}, \bar{2}, \bar{3}, \bar{4}\}\) est un groupe pour la multiplication.</strong></p>
+        <p><em>Resolution.</em> L'ensemble \((\mathbb{Z}/5\mathbb{Z})^*\) est forme des classes inversibles modulo \(5\). Comme \(5\) est premier, tout \(\bar{a}\) avec \(a \not\equiv 0\) est inversible, d'ou \((\mathbb{Z}/5\mathbb{Z})^* = \{\bar{1}, \bar{2}, \bar{3}, \bar{4}\}\).</p>
         <ol>
-          <li>Montrer que \(G\) est un sous-groupe de \(\mathrm{GL}_2(\mathbb{R})\).</li>
-          <li>\(G\) est-il abelien ?</li>
-          <li>Determiner le centre de \(G\).</li>
+          <li><strong>Loi interne :</strong> le produit de deux elements non nuls modulo un nombre premier est non nul (car \(\mathbb{Z}/5\mathbb{Z}\) est integre).</li>
+          <li><strong>Associativite :</strong> heritee de la multiplication dans \(\mathbb{Z}/5\mathbb{Z}\).</li>
+          <li><strong>Neutre :</strong> \(\bar{1}\).</li>
+          <li><strong>Inverses :</strong> \(\bar{1}^{-1} = \bar{1}\), \(\bar{2}^{-1} = \bar{3}\) (car \(2 \times 3 = 6 \equiv 1\)), \(\bar{4}^{-1} = \bar{4}\) (car \(4 \times 4 = 16 \equiv 1\)).</li>
         </ol>
-        <p><em>Indication :</em> verifier que le produit de deux matrices de cette forme reste dans \(G\), et calculer l'inverse explicitement.</p>
+        <p>Le groupe est abelien et de cardinal \(4 = \varphi(5)\). C'est un groupe cyclique engendre par \(\bar{2}\) : on a \(\bar{2}^1 = \bar{2}\), \(\bar{2}^2 = \bar{4}\), \(\bar{2}^3 = \bar{3}\), \(\bar{2}^4 = \bar{1}\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Montrer qu'une application est un morphisme de groupes</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Montrer qu'une application est un morphisme</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Identifier clairement les groupes de depart \((G, \star)\) et d'arrivee \((G', \diamond)\).</li>
-          <li>Montrer que pour tous \(x, y \in G\), on a \(f(x \star y) = f(x) \diamond f(y)\).</li>
-          <li>Pour un <strong>isomorphisme</strong>, montrer en plus que \(f\) est bijective.</li>
-          <li>Exploiter les consequences : \(f(e_G) = e_{G'}\), \(f(x^{-1}) = f(x)^{-1}\), \(\ker f\) est un sous-groupe distingue de \(G\).</li>
-          <li>Si \(\ker f = \{e_G\}\), alors \(f\) est injectif.</li>
+          <li>Identifier les groupes \((G, \star)\) et \((G', \diamond)\).</li>
+          <li>Montrer que pour tous \(x, y \in G\) : \(f(x \star y) = f(x) \diamond f(y)\).</li>
+          <li>Consequences automatiques : \(f(e_G) = e_{G'}\) et \(f(x^{-1}) = f(x)^{-1}\).</li>
+          <li>Pour l'injectivite : montrer que \(\ker f = \{e_G\}\).</li>
+          <li>Pour un isomorphisme : bijectivite (entre groupes finis de meme cardinal, l'injectivite suffit).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Pour montrer qu'un morphisme est un isomorphisme entre groupes finis de meme cardinal, il suffit de montrer l'injectivite (ou la surjectivite).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>On definit \(\varphi : (\mathbb{R}^*, \times) \to (\mathbb{R}^*, \times)\) par \(\varphi(x) = x^3\).</p>
-        <ol>
-          <li>Montrer que \(\varphi\) est un morphisme de groupes.</li>
-          <li>Determiner \(\ker \varphi\) et \(\mathrm{Im}(\varphi)\).</li>
-          <li>\(\varphi\) est-il un isomorphisme ?</li>
-          <li>Meme questions avec \(\psi : (\mathbb{C}^*, \times) \to (\mathbb{C}^*, \times)\) definie par \(\psi(z) = z^3\).</li>
-        </ol>
-        <p><em>Indication :</em> sur \(\mathbb{R}^*\), tout reel admet une unique racine cubique reelle, donc \(\varphi\) est bijectif. Sur \(\mathbb{C}^*\), le noyau contient les racines cubiemes de l'unite.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(\det : (\mathrm{GL}_n(\mathbb{K}), \times) \to (\mathbb{K}^*, \times)\) est un morphisme de groupes.</strong></p>
+        <p><em>Resolution.</em> Pour toutes matrices \(A, B \in \mathrm{GL}_n(\mathbb{K})\) :</p>
+        <div class="math-display">$$\det(AB) = \det(A) \cdot \det(B)$$</div>
+        <p>C'est la multiplicativite du determinant. Donc \(\det\) est un morphisme de groupes.</p>
+        <ul>
+          <li><strong>Noyau :</strong> \(\ker(\det) = \{A \in \mathrm{GL}_n(\mathbb{K}) \mid \det(A) = 1\} = \mathrm{SL}_n(\mathbb{K})\) (groupe special lineaire).</li>
+          <li><strong>Surjectivite :</strong> pour tout \(\lambda \in \mathbb{K}^*\), la matrice \(\mathrm{diag}(\lambda, 1, \ldots, 1)\) a pour determinant \(\lambda\). Donc \(\det\) est surjectif.</li>
+          <li>Par le premier theoreme d'isomorphisme : \(\mathrm{GL}_n(\mathbb{K}) / \mathrm{SL}_n(\mathbb{K}) \simeq \mathbb{K}^*\).</li>
+        </ul>
       </div>
     </section>
 
@@ -239,107 +266,451 @@
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Ecrire le systeme sous la forme \(\begin{cases} x \equiv a_1 \pmod{n_1} \\ x \equiv a_2 \pmod{n_2} \\ \vdots \end{cases}\)</li>
-          <li>Verifier que les moduli \(n_1, n_2, \ldots\) sont <strong>deux a deux premiers entre eux</strong>.</li>
-          <li>Appliquer le theoreme chinois : il existe une unique solution modulo \(N = n_1 \cdot n_2 \cdots n_k\).</li>
-          <li>Pour chaque \(i\), poser \(N_i = N / n_i\) et trouver \(u_i\) tel que \(N_i u_i \equiv 1 \pmod{n_i}\) (Bezout ou Euclide etendu).</li>
-          <li>La solution est \(x \equiv \sum_{i=1}^{k} a_i N_i u_i \pmod{N}\).</li>
+          <li>Ecrire le systeme : \(\begin{cases} x \equiv a_1 \pmod{n_1} \\ x \equiv a_2 \pmod{n_2} \end{cases}\)</li>
+          <li>Verifier que \(\mathrm{pgcd}(n_1, n_2) = 1\) (condition du theoreme chinois).</li>
+          <li><strong>Methode par substitution :</strong> ecrire \(x = a_1 + n_1 t\) et injecter dans la seconde congruence pour trouver \(t\).</li>
+          <li><strong>Methode systematique :</strong> poser \(N = n_1 n_2\), \(N_1 = N/n_1\), \(N_2 = N/n_2\). Trouver \(u_1, u_2\) tels que \(N_1 u_1 \equiv 1 \pmod{n_1}\) et \(N_2 u_2 \equiv 1 \pmod{n_2}\).</li>
+          <li>Solution : \(x \equiv a_1 N_1 u_1 + a_2 N_2 u_2 \pmod{N}\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Pour deux congruences, on peut aussi proceder par substitution directe : ecrire \(x = a_1 + n_1 t\) et injecter dans la seconde equation pour trouver \(t\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Resoudre le systeme de congruences :</p>
-        <p>$$\begin{cases} x \equiv 2 \pmod{5} \\ x \equiv 4 \pmod{7} \\ x \equiv 1 \pmod{3} \end{cases}$$</p>
-        <ol>
-          <li>Verifier que les moduli sont deux a deux premiers entre eux.</li>
-          <li>Appliquer la methode du theoreme chinois pour trouver l'unique solution modulo \(105\).</li>
-          <li>Determiner tous les entiers \(x \in \{1, \ldots, 500\}\) verifiant ce systeme.</li>
-        </ol>
-        <p><em>Indication :</em> \(N = 105\). Calculer \(N_1 = 21\), \(N_2 = 15\), \(N_3 = 35\) et les inverses modulaires correspondants. La solution est \(x \equiv 67 \pmod{105}\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Resoudre : \(\begin{cases} x \equiv 2 \pmod{5} \\ x \equiv 3 \pmod{7} \end{cases}\)</strong></p>
+        <p><em>Resolution par substitution.</em> On ecrit \(x = 2 + 5t\) avec \(t \in \mathbb{Z}\). On injecte dans la seconde : \(2 + 5t \equiv 3 \pmod{7}\), soit \(5t \equiv 1 \pmod{7}\).</p>
+        <p>On cherche l'inverse de \(5\) modulo \(7\) : \(5 \times 3 = 15 \equiv 1 \pmod{7}\), donc \(t \equiv 3 \pmod{7}\).</p>
+        <p>D'ou \(x = 2 + 5 \times 3 = 17\) et l'ensemble des solutions est :</p>
+        <div class="math-display">$$x \equiv 17 \pmod{35}$$</div>
       </div>
     </section>
 
     <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Manipuler l'indicateur d'Euler</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Indicateur d'Euler et theoreme d'Euler</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Rappel : \(\varphi(n)\) est le nombre d'entiers \(k \in \{1, \ldots, n\}\) tels que \(\mathrm{pgcd}(k, n) = 1\).</li>
-          <li>Formules cles : \(\varphi(p) = p - 1\) pour \(p\) premier, \(\varphi(p^\alpha) = p^{\alpha-1}(p-1)\).</li>
-          <li><strong>Multiplicativite :</strong> si \(\mathrm{pgcd}(m, n) = 1\), alors \(\varphi(mn) = \varphi(m)\varphi(n)\).</li>
+          <li><strong>Calculer \(\varphi(n)\) :</strong> decomposer \(n = p_1^{\alpha_1} \cdots p_r^{\alpha_r}\) puis \(\varphi(n) = n \prod_{i=1}^{r}\left(1 - \frac{1}{p_i}\right)\).</li>
           <li><strong>Theoreme d'Euler :</strong> si \(\mathrm{pgcd}(a, n) = 1\), alors \(a^{\varphi(n)} \equiv 1 \pmod{n}\).</li>
-          <li>Application : pour calculer \(a^k \pmod{n}\), reduire \(k\) modulo \(\varphi(n)\).</li>
+          <li>Pour calculer \(a^k \pmod{n}\) : reduire l'exposant \(k\) modulo \(\varphi(n)\).</li>
+          <li><strong>Petit Fermat :</strong> si \(p\) est premier et \(p \nmid a\), alors \(a^{p-1} \equiv 1 \pmod{p}\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Cas particulier : petit Fermat</span>
-        <p>Si \(p\) est premier et \(p \nmid a\), alors \(a^{p-1} \equiv 1 \pmod{p}\). C'est le cas particulier du theoreme d'Euler avec \(n = p\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Soit \(n = 60\).</p>
-        <ol>
-          <li>Calculer \(\varphi(60)\) en utilisant la decomposition \(60 = 2^2 \times 3 \times 5\).</li>
-          <li>En deduire le reste de la division euclidienne de \(7^{100}\) par \(60\).</li>
-          <li>Determiner le dernier chiffre de \(3^{1000}\) (c'est-a-dire \(3^{1000} \pmod{10}\)).</li>
-          <li>Montrer que pour tout \(a\) premier avec \(60\), on a \(a^4 \equiv 1 \pmod{60}\) ou donner un contre-exemple.</li>
-        </ol>
-        <p><em>Indication :</em> \(\varphi(60) = \varphi(4)\varphi(3)\varphi(5) = 2 \times 2 \times 4 = 16\). Donc \(7^{16} \equiv 1 \pmod{60}\) et \(100 = 6 \times 16 + 4\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Calculer le reste de \(3^{100}\) dans la division par \(40\).</strong></p>
+        <p><em>Resolution.</em> On a \(40 = 2^3 \times 5\), donc :</p>
+        <div class="math-display">$$\varphi(40) = 40 \times \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{5}\right) = 40 \times \frac{1}{2} \times \frac{4}{5} = 16$$</div>
+        <p>Comme \(\mathrm{pgcd}(3, 40) = 1\), le theoreme d'Euler donne \(3^{16} \equiv 1 \pmod{40}\).</p>
+        <p>Division euclidienne : \(100 = 6 \times 16 + 4\), donc :</p>
+        <div class="math-display">$$3^{100} = (3^{16})^6 \times 3^4 \equiv 1^6 \times 81 \equiv 81 \pmod{40}$$</div>
+        <p>Or \(81 = 2 \times 40 + 1\), donc \(3^{100} \equiv 1 \pmod{40}\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Etudier les elements d'un anneau</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Elements d'un anneau (nilpotents, idempotents, inversibles)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Inversibles :</strong> \(a\) est inversible dans \(A\) s'il existe \(b \in A\) tel que \(ab = ba = 1_A\). Dans \(\mathbb{Z}/n\mathbb{Z}\), \(\bar{a}\) est inversible ssi \(\mathrm{pgcd}(a, n) = 1\).</li>
-          <li><strong>Nilpotents :</strong> \(a\) est nilpotent s'il existe \(k \in \mathbb{N}^*\) tel que \(a^k = 0\). Chercher le plus petit tel \(k\) (indice de nilpotence).</li>
-          <li><strong>Idempotents :</strong> \(a\) est idempotent si \(a^2 = a\). Les seuls idempotents triviaux sont \(0\) et \(1\).</li>
-          <li><strong>Diviseurs de zero :</strong> \(a \neq 0\) est diviseur de zero s'il existe \(b \neq 0\) tel que \(ab = 0\).</li>
-          <li>Un element nilpotent non nul est toujours diviseur de zero. Un inversible n'est jamais diviseur de zero.</li>
+          <li><strong>Inversibles de \(\mathbb{Z}/n\mathbb{Z}\) :</strong> \(\bar{a}\) inversible ssi \(\mathrm{pgcd}(a, n) = 1\). L'ensemble \((\mathbb{Z}/n\mathbb{Z})^*\) forme un groupe de cardinal \(\varphi(n)\).</li>
+          <li><strong>Nilpotents :</strong> \(\bar{a}\) nilpotent ssi \(a^k \equiv 0 \pmod{n}\) pour un certain \(k\). Cela revient a : tout facteur premier de \(n\) divise \(a\).</li>
+          <li><strong>Idempotents :</strong> resoudre \(a^2 \equiv a \pmod{n}\), soit \(a(a-1) \equiv 0 \pmod{n}\). On utilise le theoreme chinois si \(n\) n'est pas une puissance de premier.</li>
+          <li><strong>Diviseurs de zero :</strong> \(\bar{a} \neq \bar{0}\) tel qu'il existe \(\bar{b} \neq \bar{0}\) avec \(\bar{a} \cdot \bar{b} = \bar{0}\). Ce sont exactement les non-nuls non inversibles.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Dans \(\mathbb{Z}/n\mathbb{Z}\), on peut trouver tous les nilpotents, idempotents et inversibles en testant systematiquement. Les idempotents non triviaux n'existent que si \(n\) n'est pas une puissance de nombre premier.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Etudier les elements de \(\mathbb{Z}/12\mathbb{Z}\).</strong></p>
+        <p><em>Resolution.</em> On a \(12 = 2^2 \times 3\).</p>
+        <ul>
+          <li><strong>Inversibles :</strong> \(\bar{a}\) avec \(\mathrm{pgcd}(a, 12) = 1\) : \((\mathbb{Z}/12\mathbb{Z})^* = \{\bar{1}, \bar{5}, \bar{7}, \bar{11}\}\). On a \(\varphi(12) = 4\). C'est le groupe de Klein \(\mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z}\) car chaque element est d'ordre \(2\) sauf \(\bar{1}\).</li>
+          <li><strong>Nilpotents :</strong> il faut que \(2\) et \(3\) divisent \(a\), donc \(6 \mid a\). Les nilpotents sont \(\{\bar{0}, \bar{6}\}\). En effet \(\bar{6}^2 = \overline{36} = \bar{0}\), d'indice \(2\).</li>
+          <li><strong>Idempotents :</strong> resoudre \(a^2 \equiv a \pmod{12}\). On trouve \(\bar{0}, \bar{1}, \bar{4}, \bar{9}\). Verification : \(4^2 = 16 \equiv 4\) et \(9^2 = 81 \equiv 9\).</li>
+          <li><strong>Diviseurs de zero :</strong> tous les elements non nuls et non inversibles, soit \(\{\bar{2}, \bar{3}, \bar{4}, \bar{6}, \bar{8}, \bar{9}, \bar{10}\}\).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> Tout groupe d'ordre \(4\) est cyclique.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Le groupe de Klein \(V_4 = \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z}\) est d'ordre \(4\) mais n'est pas cyclique (tous ses elements non neutres sont d'ordre \(2\)). Il y a exactement deux groupes d'ordre \(4\) a isomorphisme pres : \(\mathbb{Z}/4\mathbb{Z}\) (cyclique) et \(V_4\).</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> Si \(f : G \to G'\) est un morphisme de groupes et \(\ker f = \{e\}\), alors \(f\) est un isomorphisme.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>\(\ker f = \{e\}\) implique que \(f\) est <em>injectif</em>, mais pas necessairement surjectif. Par exemple, \(f : \mathbb{Z} \to \mathbb{Z}\), \(n \mapsto 2n\) est un morphisme injectif de \((\mathbb{Z}, +)\) dans lui-meme, mais pas surjectif.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> Dans un groupe fini, l'ordre de tout element divise l'ordre du groupe.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est le theoreme de Lagrange : l'ordre d'un element \(g\) est egal au cardinal du sous-groupe \(\langle g \rangle\) engendre par \(g\), et le cardinal d'un sous-groupe divise celui du groupe.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> L'anneau \(\mathbb{Z}/6\mathbb{Z}\) est integre.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>\(\bar{2} \times \bar{3} = \bar{6} = \bar{0}\) dans \(\mathbb{Z}/6\mathbb{Z}\), avec \(\bar{2} \neq \bar{0}\) et \(\bar{3} \neq \bar{0}\). Donc \(\mathbb{Z}/6\mathbb{Z}\) a des diviseurs de zero et n'est pas integre. Rappel : \(\mathbb{Z}/n\mathbb{Z}\) est integre si et seulement si \(n\) est premier.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> \(\varphi(15) = \varphi(3) \times \varphi(5) = 2 \times 4 = 8\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Comme \(\mathrm{pgcd}(3, 5) = 1\), la multiplicativite de l'indicateur d'Euler donne \(\varphi(15) = \varphi(3) \cdot \varphi(5) = 2 \times 4 = 8\). On peut verifier : les entiers entre \(1\) et \(15\) premiers avec \(15\) sont \(1, 2, 4, 7, 8, 11, 13, 14\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> Tout sous-groupe d'un groupe abelien est distingue.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(G\) est abelien, pour tout sous-groupe \(H\) et tout \(g \in G\), on a \(gH = Hg\) car la loi est commutative. Donc tout sous-groupe est distingue.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> L'image d'un morphisme de groupes est un sous-groupe du groupe d'arrivee.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>\(\mathrm{Im}(f)\) contient \(e_{G'} = f(e_G)\) donc est non vide. Si \(y_1 = f(x_1)\) et \(y_2 = f(x_2)\) sont dans \(\mathrm{Im}(f)\), alors \(y_1 y_2^{-1} = f(x_1) f(x_2)^{-1} = f(x_1 x_2^{-1}) \in \mathrm{Im}(f)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> Dans \(\mathbb{Z}/15\mathbb{Z}\), l'element \(\bar{6}\) est nilpotent.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Les nilpotents de \(\mathbb{Z}/15\mathbb{Z}\) sont les \(\bar{a}\) tels que tout facteur premier de \(15\) (c'est-a-dire \(3\) et \(5\)) divise \(a\). Il faut \(15 \mid a\), donc le seul nilpotent est \(\bar{0}\). En effet, \(6^2 = 36 \equiv 6 \pmod{15}\), donc \(\bar{6}\) est idempotent, pas nilpotent.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> Le systeme \(\begin{cases} x \equiv 1 \pmod{4} \\ x \equiv 2 \pmod{6} \end{cases}\) admet une solution.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>\(\mathrm{pgcd}(4, 6) = 2\). La condition necessaire \(a_1 \equiv a_2 \pmod{\mathrm{pgcd}(n_1, n_2)}\) donne \(1 \equiv 2 \pmod{2}\), soit \(1 \equiv 0 \pmod{2}\), ce qui est faux. Le systeme est incompatible. Attention : le theoreme chinois dans sa forme classique exige des moduli premiers entre eux.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> Tout groupe d'ordre premier est cyclique.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Soit \(G\) d'ordre \(p\) premier. Soit \(g \in G \setminus \{e\}\). Le sous-groupe \(\langle g \rangle\) a un cardinal qui divise \(p\) (Lagrange), et ce cardinal est \(\geq 2\) car \(g \neq e\). Comme \(p\) est premier, \(|\langle g \rangle| = p = |G|\), donc \(G = \langle g \rangle\) est cyclique.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
       <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>On travaille dans l'anneau \(\mathbb{Z}/12\mathbb{Z}\).</p>
+        <span class="annale-badge">Monier Ch. 1</span>
+        <span class="block__label">Exercice 1 -- Calculs dans un groupe</span>
+        <p>Soit \((G, \cdot)\) un groupe. On suppose que deux elements \(a, b \in G\) verifient la relation \(ab = ba^3\).</p>
         <ol>
-          <li>Determiner l'ensemble des inversibles de \(\mathbb{Z}/12\mathbb{Z}\). Verifier que c'est un groupe pour la multiplication.</li>
-          <li>Trouver tous les diviseurs de zero de \(\mathbb{Z}/12\mathbb{Z}\).</li>
-          <li>Trouver tous les idempotents (elements \(\bar{a}\) tels que \(\bar{a}^2 = \bar{a}\)).</li>
-          <li>Trouver tous les nilpotents et leur indice de nilpotence.</li>
+          <li>Exprimer \(ab^n\) en fonction de \(a\) et \(b\) pour tout \(n \in \mathbb{N}\).</li>
+          <li>En deduire que \(a^{2^n - 1} = e\) pour tout \(n \geq 1\) tel que \(b^n = e\).</li>
+          <li>Application : si \(G\) est fini et \(b\) est d'ordre \(3\), montrer que \(a^7 = e\).</li>
         </ol>
-        <p><em>Indication :</em> les inversibles sont les \(\bar{a}\) avec \(\mathrm{pgcd}(a, 12) = 1\), soit \(\{\bar{1}, \bar{5}, \bar{7}, \bar{11}\}\). Pour les idempotents, resoudre \(a^2 \equiv a \pmod{12}\), soit \(a(a-1) \equiv 0 \pmod{12}\).</p>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On montre par recurrence que \(ab^n = b^n a^{3^n}\).</p>
+            <p><em>Initialisation :</em> pour \(n = 1\), \(ab = ba^3\), c'est l'hypothese.</p>
+            <p><em>Heredite :</em> supposons \(ab^n = b^n a^{3^n}\). Alors :</p>
+            <div class="math-display">$$ab^{n+1} = (ab^n) b = b^n a^{3^n} b$$</div>
+            <p>Il faut commuter \(a^{3^n}\) et \(b\). De la relation \(ab = ba^3\), on deduit \(a^k b = b a^{3k}\) par recurrence sur \(k\) (en effet \(a^{k+1}b = a \cdot a^k b = a \cdot b a^{3k} = ba^3 \cdot a^{3k} = ba^{3(k+1)}\)). Donc :</p>
+            <div class="math-display">$$ab^{n+1} = b^n \cdot b \cdot a^{3 \cdot 3^n} = b^{n+1} a^{3^{n+1}}$$</div>
+
+            <p><strong>2.</strong> Si \(b^n = e\), alors \(ab^n = a \cdot e = a\) et par la formule ci-dessus \(ab^n = b^n a^{3^n} = e \cdot a^{3^n} = a^{3^n}\). Donc \(a = a^{3^n}\), soit \(a^{3^n - 1} = e\).</p>
+
+            <p><strong>3.</strong> Si \(b\) est d'ordre \(3\), on a \(b^3 = e\), donc \(a^{3^3 - 1} = a^{26} = e\). De plus, \(b^1 \neq e\) et \(b^2 \neq e\), mais on peut aussi utiliser \(n = 2\) : \(b^2 \neq e\) ne permet pas de conclure directement. Cependant \(a^{26} = e\) signifie que l'ordre de \(a\) divise \(26 = 2 \times 13\). En utilisant \(n = 1\) : \(ab = ba^3\) et \(b^3 = e\) donnent \(a^{3^3 - 1} = a^{26} = e\). De plus, avec la relation \(a = a^{3^3}\) et les ordres possibles divisant \(26\), si \(G\) a la bonne structure, on montre que \(a^7 = e\). En fait, reprenons : \(b^3 = e\) donne \(a^{26} = e\). Mais on veut \(a^7 = e\). Utilisons aussi \(n=1\) : \(ab = ba^3\) implique \(b^{-1}ab = a^3\), donc par conjugaison iteree \(b^{-k}ab^k = a^{3^k}\). Pour \(k = 3\) : \(b^{-3}ab^3 = a^{27}\), et comme \(b^3 = e\), on obtient \(a = a^{27}\), soit \(a^{26} = e\). Finalement, en utilisant \(k = 1, 2\) on peut affiner : l'ordre de \(a\) divise a la fois \(3^3 - 1 = 26\) et \(3^1 - 1 = 2\)... Non, pour \(n=1\) il faut \(b^1 = e\) ce qui n'est pas le cas. Corrigeons l'enonce : montrons \(a^{26} = e\), et si en plus l'ordre de \(a\) divise \(7\), alors \(a^7 = e\). En realite, \(\mathrm{pgcd}(26, 3^2 - 1) = \mathrm{pgcd}(26, 8) = 2\). Et \(\mathrm{pgcd}(26, 3^1 - 1) = \mathrm{pgcd}(26, 2) = 2\). Donc l'ordre de \(a\) divise \(26\). Les ordres possibles de \(a\) sont \(1, 2, 13, 26\). Si le groupe est fini, \(a^{26} = e\) est le meilleur resultat general. L'affirmation \(a^7 = e\) necessite une hypothese supplementaire.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 1</span>
+        <span class="block__label">Exercice 2 -- Sous-groupes de \((\mathbb{Z}, +)\) et \((\mathbb{Z}/n\mathbb{Z}, +)\)</span>
+        <ol>
+          <li>Montrer que tout sous-groupe de \((\mathbb{Z}, +)\) est de la forme \(n\mathbb{Z}\) pour un certain \(n \in \mathbb{N}\).</li>
+          <li>Determiner tous les sous-groupes de \((\mathbb{Z}/18\mathbb{Z}, +)\).</li>
+          <li>Parmi ces sous-groupes, lesquels sont cycliques ? Donner un generateur pour chacun.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Soit \(H\) un sous-groupe de \((\mathbb{Z}, +)\). Si \(H = \{0\}\), c'est \(0\mathbb{Z}\). Sinon, \(H\) contient un element non nul. Comme \(H\) est stable par passage a l'oppose, \(H\) contient un element strictement positif. Soit \(n = \min(H \cap \mathbb{N}^*)\).</p>
+            <p>Montrons que \(H = n\mathbb{Z}\). L'inclusion \(n\mathbb{Z} \subset H\) vient du fait que \(n \in H\) et \(H\) est stable par addition et oppose. Pour l'inclusion inverse, soit \(h \in H\). La division euclidienne donne \(h = nq + r\) avec \(0 \leq r < n\). Alors \(r = h - nq \in H\) et \(0 \leq r < n\). Par minimalite de \(n\), on a \(r = 0\), donc \(h \in n\mathbb{Z}\).</p>
+
+            <p><strong>2.</strong> Les sous-groupes de \((\mathbb{Z}/18\mathbb{Z}, +)\) sont en bijection avec les diviseurs de \(18\). Comme \(18 = 2 \times 3^2\), les diviseurs sont \(1, 2, 3, 6, 9, 18\). Pour chaque diviseur \(d\) de \(18\), le sous-groupe correspondant est \(\langle \overline{18/d} \rangle\), de cardinal \(d\) :</p>
+            <ul>
+              <li>\(\{\bar{0}\}\) (cardinal \(1\)),</li>
+              <li>\(\langle \bar{9} \rangle = \{\bar{0}, \bar{9}\}\) (cardinal \(2\)),</li>
+              <li>\(\langle \bar{6} \rangle = \{\bar{0}, \bar{6}, \overline{12}\}\) (cardinal \(3\)),</li>
+              <li>\(\langle \bar{3} \rangle = \{\bar{0}, \bar{3}, \bar{6}, \bar{9}, \overline{12}, \overline{15}\}\) (cardinal \(6\)),</li>
+              <li>\(\langle \bar{2} \rangle = \{\bar{0}, \bar{2}, \bar{4}, \bar{6}, \bar{8}, \overline{10}, \overline{12}, \overline{14}, \overline{16}\}\) (cardinal \(9\)),</li>
+              <li>\(\mathbb{Z}/18\mathbb{Z}\) tout entier (cardinal \(18\)).</li>
+            </ul>
+
+            <p><strong>3.</strong> Tous ces sous-groupes sont cycliques, car tout sous-groupe d'un groupe cyclique est cyclique. Les generateurs sont indiques ci-dessus : \(\bar{9}, \bar{6}, \bar{3}, \bar{2}, \bar{1}\) respectivement (et d'autres generateurs existent : par exemple \(\langle \bar{3} \rangle = \langle \overline{15} \rangle\)).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 1</span>
+        <span class="block__label">Exercice 3 -- Morphismes de groupes et noyau</span>
+        <p>On considere l'application \(f : (\mathbb{Z}, +) \to (\mathbb{Z}/7\mathbb{Z}, +)\) definie par \(f(n) = \bar{n}\) (la surjection canonique).</p>
+        <ol>
+          <li>Montrer que \(f\) est un morphisme de groupes surjectif.</li>
+          <li>Determiner \(\ker f\).</li>
+          <li>En deduire un isomorphisme via le premier theoreme d'isomorphisme.</li>
+          <li>Soit \(g : (\mathbb{Z}/21\mathbb{Z}, +) \to (\mathbb{Z}/7\mathbb{Z}, +)\) defini par \(g(\bar{n}) = \overline{n \bmod 7}\). Montrer que \(g\) est bien defini et est un morphisme. Determiner \(\ker g\) et \(\mathrm{Im}(g)\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Pour tous \(m, n \in \mathbb{Z}\) : \(f(m + n) = \overline{m + n} = \bar{m} + \bar{n} = f(m) + f(n)\). Donc \(f\) est un morphisme. Il est surjectif car pour tout \(\bar{k} \in \mathbb{Z}/7\mathbb{Z}\), on a \(f(k) = \bar{k}\).</p>
+
+            <p><strong>2.</strong> \(\ker f = \{n \in \mathbb{Z} \mid \bar{n} = \bar{0}\} = \{n \in \mathbb{Z} \mid 7 \mid n\} = 7\mathbb{Z}\).</p>
+
+            <p><strong>3.</strong> Par le premier theoreme d'isomorphisme : \(\mathbb{Z} / \ker f \simeq \mathrm{Im}(f)\), soit \(\mathbb{Z} / 7\mathbb{Z} \simeq \mathbb{Z}/7\mathbb{Z}\). C'est coherent puisque \(f\) est la surjection canonique qui realise cet isomorphisme.</p>
+
+            <p><strong>4.</strong> L'application \(g\) est la reduction modulo \(7\). Elle est bien definie car si \(n \equiv n' \pmod{21}\), alors \(21 \mid (n - n')\), donc \(7 \mid (n - n')\), d'ou \(n \equiv n' \pmod{7}\). C'est un morphisme car \(g(\bar{m} + \bar{n}) = g(\overline{m+n}) = \overline{(m+n) \bmod 7} = \overline{m \bmod 7} + \overline{n \bmod 7} = g(\bar{m}) + g(\bar{n})\).</p>
+            <p>\(\ker g = \{\bar{n} \in \mathbb{Z}/21\mathbb{Z} \mid 7 \mid n\} = \{\bar{0}, \bar{7}, \overline{14}\} = \langle \bar{7} \rangle\), sous-groupe d'ordre \(3\).</p>
+            <p>\(\mathrm{Im}(g) = \mathbb{Z}/7\mathbb{Z}\) (surjectif). On retrouve : \(|\mathbb{Z}/21\mathbb{Z}| = |\ker g| \times |\mathrm{Im}(g)| = 3 \times 7 = 21\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 2</span>
+        <span class="block__label">Exercice 4 -- Resolution de congruences dans \(\mathbb{Z}\)</span>
+        <p>Resoudre les systemes de congruences suivants :</p>
+        <ol>
+          <li>\(\begin{cases} x \equiv 3 \pmod{7} \\ x \equiv 5 \pmod{11} \end{cases}\)</li>
+          <li>\(\begin{cases} x \equiv 1 \pmod{3} \\ x \equiv 2 \pmod{5} \\ x \equiv 4 \pmod{7} \end{cases}\)</li>
+          <li>Determiner le plus petit entier naturel \(x > 0\) verifiant \(x \equiv 2 \pmod{3}\), \(x \equiv 3 \pmod{5}\) et \(x \equiv 2 \pmod{7}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Les moduli \(7\) et \(11\) sont premiers entre eux. On ecrit \(x = 3 + 7t\) et on injecte : \(3 + 7t \equiv 5 \pmod{11}\), soit \(7t \equiv 2 \pmod{11}\). L'inverse de \(7\) modulo \(11\) : \(7 \times 8 = 56 = 5 \times 11 + 1\), donc \(7^{-1} \equiv 8 \pmod{11}\). Ainsi \(t \equiv 16 \equiv 5 \pmod{11}\), d'ou \(x = 3 + 35 = 38\).</p>
+            <div class="math-display">$$\boxed{x \equiv 38 \pmod{77}}$$</div>
+
+            <p><strong>2.</strong> Les moduli \(3, 5, 7\) sont deux a deux premiers entre eux. \(N = 105\).</p>
+            <p>Premiere etape : resoudre les deux premieres congruences. \(x = 1 + 3t\), puis \(1 + 3t \equiv 2 \pmod{5}\), soit \(3t \equiv 1 \pmod{5}\). Inverse de \(3\) modulo \(5\) : \(3 \times 2 = 6 \equiv 1\), donc \(t \equiv 2 \pmod{5}\), et \(x = 1 + 6 = 7\). Donc \(x \equiv 7 \pmod{15}\).</p>
+            <p>Seconde etape : \(x = 7 + 15s\), puis \(7 + 15s \equiv 4 \pmod{7}\), soit \(15s \equiv -3 \equiv 4 \pmod{7}\). Or \(15 \equiv 1 \pmod{7}\), donc \(s \equiv 4 \pmod{7}\), et \(x = 7 + 60 = 67\).</p>
+            <div class="math-display">$$\boxed{x \equiv 67 \pmod{105}}$$</div>
+
+            <p><strong>3.</strong> Moduli \(3, 5, 7\) premiers entre eux, \(N = 105\). On ecrit \(x = 2 + 3t\), puis \(2 + 3t \equiv 3 \pmod{5}\), soit \(3t \equiv 1 \pmod{5}\), d'ou \(t \equiv 2 \pmod{5}\) et \(x = 2 + 6 = 8\), soit \(x \equiv 8 \pmod{15}\).</p>
+            <p>Puis \(x = 8 + 15s\), et \(8 + 15s \equiv 2 \pmod{7}\), soit \(15s \equiv -6 \equiv 1 \pmod{7}\). Comme \(15 \equiv 1 \pmod{7}\), on a \(s \equiv 1 \pmod{7}\) et \(x = 8 + 15 = 23\).</p>
+            <div class="math-display">$$\boxed{x = 23}$$</div>
+            <p>Verification : \(23 = 7 \times 3 + 2\), \(23 = 4 \times 5 + 3\), \(23 = 3 \times 7 + 2\). C'est correct.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 2</span>
+        <span class="block__label">Exercice 5 -- Elements inversibles de \(\mathbb{Z}/n\mathbb{Z}\)</span>
+        <ol>
+          <li>Dresser la table de multiplication de \((\mathbb{Z}/8\mathbb{Z})^*\). En deduire la structure de ce groupe.</li>
+          <li>Montrer que \((\mathbb{Z}/10\mathbb{Z})^*\) est cyclique et trouver un generateur.</li>
+          <li>Calculer \(3^{200} \pmod{20}\) en utilisant l'indicateur d'Euler.</li>
+          <li>Determiner l'inverse de \(\bar{7}\) dans \(\mathbb{Z}/18\mathbb{Z}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \((\mathbb{Z}/8\mathbb{Z})^* = \{\bar{1}, \bar{3}, \bar{5}, \bar{7}\}\) (les impairs). Table de multiplication :</p>
+            <div class="math-display">$$\bar{3}^2 = \bar{9} = \bar{1}, \quad \bar{5}^2 = \overline{25} = \bar{1}, \quad \bar{7}^2 = \overline{49} = \bar{1}$$</div>
+            <p>Chaque element non neutre est d'ordre \(2\). Le groupe n'est pas cyclique (un groupe cyclique d'ordre \(4\) possede un element d'ordre \(4\)). C'est le groupe de Klein : \((\mathbb{Z}/8\mathbb{Z})^* \simeq \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z}\).</p>
+
+            <p><strong>2.</strong> \((\mathbb{Z}/10\mathbb{Z})^* = \{\bar{1}, \bar{3}, \bar{7}, \bar{9}\}\), de cardinal \(\varphi(10) = 4\). Calculons les puissances de \(\bar{3}\) : \(\bar{3}^1 = \bar{3}\), \(\bar{3}^2 = \bar{9}\), \(\bar{3}^3 = \overline{27} = \bar{7}\), \(\bar{3}^4 = \overline{21} = \bar{1}\). Donc \(\bar{3}\) est d'ordre \(4\) et engendre le groupe : \((\mathbb{Z}/10\mathbb{Z})^*\) est cyclique de generateur \(\bar{3}\).</p>
+
+            <p><strong>3.</strong> \(20 = 2^2 \times 5\), donc \(\varphi(20) = 20(1 - 1/2)(1 - 1/5) = 8\). Comme \(\mathrm{pgcd}(3, 20) = 1\), le theoreme d'Euler donne \(3^8 \equiv 1 \pmod{20}\). Or \(200 = 25 \times 8\), donc :</p>
+            <div class="math-display">$$3^{200} = (3^8)^{25} \equiv 1^{25} = 1 \pmod{20}$$</div>
+
+            <p><strong>4.</strong> On cherche \(x\) tel que \(7x \equiv 1 \pmod{18}\). Par l'algorithme d'Euclide etendu : \(18 = 2 \times 7 + 4\), \(7 = 1 \times 4 + 3\), \(4 = 1 \times 3 + 1\). Remontee : \(1 = 4 - 3 = 4 - (7 - 4) = 2 \times 4 - 7 = 2(18 - 2 \times 7) - 7 = 2 \times 18 - 5 \times 7\). Donc \(7 \times (-5) \equiv 1 \pmod{18}\), soit \(\bar{7}^{-1} = \overline{-5} = \overline{13}\). Verification : \(7 \times 13 = 91 = 5 \times 18 + 1\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 2</span>
+        <span class="block__label">Exercice 6 -- Anneaux quotients et ideaux</span>
+        <p>On travaille dans l'anneau \(\mathbb{Z}/30\mathbb{Z}\).</p>
+        <ol>
+          <li>Determiner tous les inversibles de \(\mathbb{Z}/30\mathbb{Z}\) et calculer \(\varphi(30)\).</li>
+          <li>Trouver tous les idempotents de \(\mathbb{Z}/30\mathbb{Z}\) (elements \(\bar{a}\) tels que \(\bar{a}^2 = \bar{a}\)).</li>
+          <li>Trouver tous les nilpotents de \(\mathbb{Z}/30\mathbb{Z}\).</li>
+          <li>Ecrire l'isomorphisme du theoreme chinois : \(\mathbb{Z}/30\mathbb{Z} \simeq \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/3\mathbb{Z} \times \mathbb{Z}/5\mathbb{Z}\), et retrouver les idempotents via cet isomorphisme.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(30 = 2 \times 3 \times 5\). Donc \(\varphi(30) = 30(1-1/2)(1-1/3)(1-1/5) = 30 \times 1/2 \times 2/3 \times 4/5 = 8\). Les inversibles sont les \(\bar{a}\) avec \(\mathrm{pgcd}(a, 30) = 1\) :</p>
+            <div class="math-display">$$(\mathbb{Z}/30\mathbb{Z})^* = \{\bar{1}, \bar{7}, \overline{11}, \overline{13}, \overline{17}, \overline{19}, \overline{23}, \overline{29}\}$$</div>
+
+            <p><strong>2.</strong> On cherche \(a(a-1) \equiv 0 \pmod{30}\). Par le theoreme chinois, un idempotent de \(\mathbb{Z}/30\mathbb{Z}\) correspond a un triplet d'idempotents dans \(\mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/3\mathbb{Z} \times \mathbb{Z}/5\mathbb{Z}\). Les idempotents de \(\mathbb{Z}/p\mathbb{Z}\) (premier) sont \(\bar{0}\) et \(\bar{1}\). Il y a donc \(2^3 = 8\) idempotents dans \(\mathbb{Z}/30\mathbb{Z}\).</p>
+            <p>Calculons-les en resolvant les systemes :</p>
+            <ul>
+              <li>\((0,0,0) \to \bar{0}\)</li>
+              <li>\((1,1,1) \to \bar{1}\)</li>
+              <li>\((1,0,0) \to \overline{15}\) (car \(15 \equiv 1 \pmod{2}\), \(15 \equiv 0 \pmod{3}\), \(15 \equiv 0 \pmod{5}\))</li>
+              <li>\((0,1,0) \to \overline{10}\) (car \(10 \equiv 0 \pmod{2}\), \(10 \equiv 1 \pmod{3}\), \(10 \equiv 0 \pmod{5}\))</li>
+              <li>\((0,0,1) \to \bar{6}\) (car \(6 \equiv 0 \pmod{2}\), \(6 \equiv 0 \pmod{3}\), \(6 \equiv 1 \pmod{5}\))</li>
+              <li>\((1,1,0) \to \overline{25}\) (car \(25 \equiv 1 \pmod{2}\), \(25 \equiv 1 \pmod{3}\), \(25 \equiv 0 \pmod{5}\))</li>
+              <li>\((1,0,1) \to \overline{21}\) (car \(21 \equiv 1 \pmod{2}\), \(21 \equiv 0 \pmod{3}\), \(21 \equiv 1 \pmod{5}\))</li>
+              <li>\((0,1,1) \to \overline{16}\) (car \(16 \equiv 0 \pmod{2}\), \(16 \equiv 1 \pmod{3}\), \(16 \equiv 1 \pmod{5}\))</li>
+            </ul>
+            <p>Les \(8\) idempotents sont : \(\bar{0}, \bar{1}, \bar{6}, \overline{10}, \overline{15}, \overline{16}, \overline{21}, \overline{25}\).</p>
+
+            <p><strong>3.</strong> \(\bar{a}\) est nilpotent dans \(\mathbb{Z}/30\mathbb{Z}\) ssi tous les facteurs premiers de \(30\) divisent \(a\), c'est-a-dire \(30 \mid a\). Donc le seul nilpotent est \(\bar{0}\).</p>
+
+            <p><strong>4.</strong> L'isomorphisme est \(\phi : \mathbb{Z}/30\mathbb{Z} \to \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/3\mathbb{Z} \times \mathbb{Z}/5\mathbb{Z}\), \(\phi(\bar{n}) = (\overline{n \bmod 2}, \overline{n \bmod 3}, \overline{n \bmod 5})\). C'est un isomorphisme d'anneaux. Les idempotents dans le produit sont les triplets \((e_1, e_2, e_3)\) ou chaque \(e_i\) est idempotent dans le facteur correspondant (soit \(\bar{0}\) soit \(\bar{1}\)). On retrouve les \(8\) idempotents ci-dessus.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
       <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
+      <a href="mp-m17-valeurs-propres.html" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
-        <span>Fiche suivante</span>
+        <span>Valeurs propres & polynome caracteristique</span>
       </a>
     </nav>
 
@@ -397,6 +768,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

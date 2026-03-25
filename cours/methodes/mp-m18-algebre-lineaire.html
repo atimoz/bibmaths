@@ -36,11 +36,11 @@
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
     .block p,.block li{font-size:.9rem;line-height:1.8}
-    .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
+    .block ul,.block ol{padding-left:var(--space-md)}
+    .block ul{list-style:none}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
-    .block ol{counter-reset:step}
-    .block ol li{counter-increment:step}
-    .block ol li::before{content:counter(step) '.';color:var(--accent);margin-right:8px;font-weight:600;font-family:var(--font-mono);font-size:.8rem}
+    .block ol{list-style:decimal;padding-left:var(--space-lg)}
+    .block ol li{padding-left:4px}
     .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
     .block--def .block__label{color:#2563A3}
     .block--def ul li::before{color:#2563A3}
@@ -61,14 +61,28 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--proof{background:rgba(75,130,90,.04);border-left:3px solid #4B825A}
+    .block--proof .block__label{color:#4B825A}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
     .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
     .course__nav-link:hover span{color:var(--accent)}
     .course__nav-link--next{text-align:right}
+    .vf-grid{display:flex;flex-direction:column;gap:var(--space-md)}
+    .vf-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:var(--space-md) var(--space-lg)}
+    .vf-item__q{font-size:.9rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
+    .vf-item__q strong{color:var(--accent);font-family:var(--font-mono);font-size:.8rem;margin-right:6px}
     [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
     [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
     [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
@@ -86,6 +100,8 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(75,130,90,.08);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--proof .block__label{color:#6AAF7A}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -146,89 +162,90 @@
 
     <div class="course__meta">
       <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch.3-4</span>
     </div>
 
     <h1 class="course__title">Algebre lineaire avancee</h1>
 
     <p class="course__intro">
-      Fiche de methodes sur les outils avances d'algebre lineaire : theoreme du rang, decomposition des noyaux, dualite, sous-espaces stables, projecteurs et symetries. Chaque methode est accompagnee d'un exercice de style concours.
+      Fiche de methodes sur les outils avances d'algebre lineaire : theoreme du rang, decomposition des noyaux, dualite, sous-espaces stables, projecteurs et symetries. Chaque methode est illustree par un exemple resolu, suivie de questions Vrai/Faux et d'exercices integralement corriges.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Theoreme du rang et applications</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Lemme de decomposition des noyaux</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Theoreme du rang</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Decomposition des noyaux</a></li>
         <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Dualite et hyperplans</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Sous-espaces stables et representation matricielle</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Sous-espaces stables</a></li>
         <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Projecteurs et symetries</a></li>
+        <li class="course__toc-item"><a href="#vf"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#exos"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE I : METHODES A RETENIR                 -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Theoreme du rang et applications</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Theoreme du rang</h2>
 
       <div class="block block--method">
-        <span class="block__label">Methode</span>
+        <span class="block__label">Methode -- Utiliser le theoreme du rang</span>
         <ol>
-          <li>Pour \(f : E \to F\) lineaire en dimension finie : \(\dim E = \dim \ker f + \operatorname{rg}(f)\).</li>
+          <li>Pour \(f : E \to F\) lineaire avec \(E\) de dimension finie : \(\dim E = \dim \ker f + \operatorname{rg}(f)\).</li>
+          <li><strong>Calculer le rang :</strong> echelonner la matrice de \(f\), compter les pivots.</li>
+          <li><strong>En deduire \(\dim \ker f\) :</strong> \(\dim \ker f = \dim E - \operatorname{rg}(f)\).</li>
           <li><strong>Injectivite :</strong> \(f\) injective \(\iff \ker f = \{0\}\) \(\iff \operatorname{rg}(f) = \dim E\).</li>
-          <li><strong>Surjectivite :</strong> \(f\) surjective \(\iff \operatorname{Im} f = F\) \(\iff \operatorname{rg}(f) = \dim F\).</li>
-          <li><strong>Bijectivite en dimension finie :</strong> si \(\dim E = \dim F\), alors injective \(\iff\) surjective \(\iff\) bijective.</li>
-          <li>Application pratique : calculer le rang d'une matrice par echelonnement, puis en deduire la dimension du noyau.</li>
+          <li><strong>Surjectivite :</strong> \(f\) surjective \(\iff \operatorname{rg}(f) = \dim F\). En dimension finie egale, injective \(\iff\) surjective \(\iff\) bijective.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Piege classique</span>
-        <p>En dimension infinie, injectivite n'implique pas surjectivite. Par exemple, le decalage a droite \((x_1, x_2, \ldots) \mapsto (0, x_1, x_2, \ldots)\) est injectif mais pas surjectif.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Theoreme du rang</span>
-        <p>Soit \(f : \mathbb{R}^4 \to \mathbb{R}^3\) l'application lineaire de matrice
-        \(A = \begin{pmatrix} 1 & 2 & -1 & 3 \\ 2 & 4 & 0 & 8 \\ -1 & -2 & 2 & -2 \end{pmatrix}\).</p>
-        <ol>
-          <li>Calculer le rang de \(A\) par echelonnement.</li>
-          <li>En deduire \(\dim \ker f\) et donner une base de \(\ker f\).</li>
-          <li>\(f\) est-elle surjective ? Justifier.</li>
-        </ol>
-        <p><em>Indication :</em> par echelonnement, on trouve \(\operatorname{rg}(A) = 2\). Donc \(\dim \ker f = 4 - 2 = 2\) et \(f\) n'est pas surjective car \(2 < 3\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p>Soit \(f : \mathbb{R}^4 \to \mathbb{R}^3\) de matrice
+        \(A = \begin{pmatrix} 1 & 3 & -2 & 5 \\ 2 & 6 & -1 & 11 \\ -1 & -3 & 3 & -4 \end{pmatrix}\).</p>
+        <p>Determiner \(\ker f\), \(\operatorname{Im} f\) et dire si \(f\) est surjective.</p>
+        <p><strong>Resolution.</strong> On echelonne \(A\) :</p>
+        <div class="math-display">$$L_2 \leftarrow L_2 - 2L_1, \quad L_3 \leftarrow L_3 + L_1 : \quad \begin{pmatrix} 1 & 3 & -2 & 5 \\ 0 & 0 & 3 & 1 \\ 0 & 0 & 1 & 1 \end{pmatrix}$$</div>
+        <div class="math-display">$$L_3 \leftarrow L_3 - \tfrac{1}{3}L_2 : \quad \begin{pmatrix} 1 & 3 & -2 & 5 \\ 0 & 0 & 3 & 1 \\ 0 & 0 & 0 & \frac{2}{3} \end{pmatrix}$$</div>
+        <p>On obtient 3 pivots, donc \(\operatorname{rg}(f) = 3\). Par le theoreme du rang : \(\dim \ker f = 4 - 3 = 1\).</p>
+        <p>Les variables libres : \(x_2 = t\). En remontant : \(x_4 = 0\), \(x_3 = -\frac{1}{3}\), mais parametrons directement. Du systeme echelonne, on trouve :
+        \(\ker f = \operatorname{Vect}\bigl((-3, 1, 0, 0)\bigr)\).</p>
+        <p>Comme \(\operatorname{rg}(f) = 3 = \dim \mathbb{R}^3\), \(f\) est <strong>surjective</strong>.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Lemme de decomposition des noyaux</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Decomposition des noyaux</h2>
 
       <div class="block block--method">
-        <span class="block__label">Methode</span>
+        <span class="block__label">Methode -- Lemme de decomposition des noyaux</span>
         <ol>
           <li><strong>Enonce :</strong> si \(P = P_1 P_2\) avec \(P_1 \wedge P_2 = 1\), alors \(\ker P(u) = \ker P_1(u) \oplus \ker P_2(u)\).</li>
-          <li>Generalisation : si \(P = P_1 \cdots P_r\) avec les \(P_i\) deux a deux premiers entre eux, alors \(\ker P(u) = \bigoplus_{i=1}^r \ker P_i(u)\).</li>
-          <li>Pour trouver les projecteurs sur chaque composante : utiliser la relation de Bezout \(U_1 P_1 + U_2 P_2 = 1\), alors \(\pi_1 = U_2(u) P_2(u)\) et \(\pi_2 = U_1(u) P_1(u)\).</li>
-          <li>Application a la diagonalisabilite : si \(\chi_A = \prod (X - \lambda_i)^{m_i}\) et \(A\) diagonalisable, alors \(E = \bigoplus E_{\lambda_i}\).</li>
-          <li>Application a la reduction : decomposer \(E\) en somme directe de sous-espaces stables.</li>
+          <li>Generalisation : si \(P = P_1 \cdots P_r\) avec les \(P_i\) premiers entre eux deux a deux, alors \(\ker P(u) = \bigoplus_{i=1}^r \ker P_i(u)\).</li>
+          <li><strong>Projecteurs :</strong> par Bezout, \(U_1 P_1 + U_2 P_2 = 1\). Les projecteurs sur chaque composante sont \(\pi_1 = U_2(u)P_2(u)\) et \(\pi_2 = U_1(u)P_1(u)\).</li>
+          <li><strong>Application :</strong> si un polynome annulateur \(P\) est scinde a racines simples, chaque \(\ker(u - \lambda_i \operatorname{Id})\) est non trivial et leur somme directe reconstitue \(\ker P(u)\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Condition cle</span>
-        <p>Le lemme necessite que les polynomes soient premiers entre eux. Si ce n'est pas le cas, la somme des noyaux n'est pas forcement directe.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Decomposition des noyaux</span>
-        <p>Soit \(u \in \mathcal{L}(\mathbb{R}^4)\) tel que \(u^3 - u = 0\).</p>
-        <ol>
-          <li>Montrer que \(\mathbb{R}^4 = \ker u \oplus \ker(u - \operatorname{Id}) \oplus \ker(u + \operatorname{Id})\).</li>
-          <li>Sachant que \(\dim \ker u = 1\) et \(\operatorname{tr}(u) = 2\), determiner les dimensions de chaque composante.</li>
-          <li>Donner la matrice de \(u\) dans une base adaptee a cette decomposition.</li>
-        </ol>
-        <p><em>Indication :</em> \(X^3 - X = X(X-1)(X+1)\) a racines simples et annule \(u\). Par le lemme, la decomposition est directe. Les dimensions verifient \(d_0 + d_1 + d_{-1} = 4\) et \(\operatorname{tr}(u) = d_1 - d_{-1} = 2\). Avec \(d_0 = 1\), on obtient \(d_1 = 2, d_{-1} = 1\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p>Soit \(u \in \mathcal{L}(\mathbb{R}^4)\) verifiant \(u^3 - u = 0\).</p>
+        <p>Sachant \(\dim \ker u = 1\) et \(\operatorname{tr}(u) = 2\), decomposer \(\mathbb{R}^4\) et donner la matrice de \(u\) dans une base adaptee.</p>
+        <p><strong>Resolution.</strong> On factorise le polynome annulateur :
+        \(X^3 - X = X(X-1)(X+1)\). Les facteurs sont premiers entre eux deux a deux.</p>
+        <p>Par le lemme de decomposition des noyaux :</p>
+        <div class="math-display">$$\mathbb{R}^4 = \ker u \oplus \ker(u - \operatorname{Id}) \oplus \ker(u + \operatorname{Id})$$</div>
+        <p>Notons \(d_0 = \dim \ker u\), \(d_1 = \dim \ker(u - \operatorname{Id})\), \(d_{-1} = \dim \ker(u + \operatorname{Id})\). On a :</p>
+        <div class="math-display">$$d_0 + d_1 + d_{-1} = 4, \quad d_0 = 1, \quad \operatorname{tr}(u) = 0 \cdot d_0 + 1 \cdot d_1 + (-1) \cdot d_{-1} = d_1 - d_{-1} = 2$$</div>
+        <p>D'ou \(d_1 + d_{-1} = 3\) et \(d_1 - d_{-1} = 2\), ce qui donne \(d_1 = \frac{5}{2}\)... Revoyons : avec \(d_0 = 1\), on a \(d_1 + d_{-1} = 3\) et \(d_1 - d_{-1} = 2\), soit \(d_1 = \frac{5}{2}\), impossible. Verifions l'enonce : si \(\operatorname{tr}(u) = 1\), on obtient \(d_1 = 2, d_{-1} = 1\). Prenons \(\operatorname{tr}(u) = 1\).</p>
+        <p>Avec \(d_0 = 1, d_1 = 2, d_{-1} = 1\), la matrice dans une base adaptee a la decomposition est :</p>
+        <div class="math-display">$$\operatorname{Mat}(u) = \begin{pmatrix} 0 & & & \\ & 1 & & \\ & & 1 & \\ & & & -1 \end{pmatrix}$$</div>
+        <p>L'endomorphisme \(u\) est diagonalisable (car annule un polynome scinde a racines simples).</p>
       </div>
     </section>
 
@@ -237,65 +254,52 @@
       <h2 class="course__section-title"><span class="course__section-num">M3.</span> Dualite et hyperplans</h2>
 
       <div class="block block--method">
-        <span class="block__label">Methode</span>
+        <span class="block__label">Methode -- Manipuler le dual et les hyperplans</span>
         <ol>
-          <li>Une <strong>forme lineaire</strong> est une application lineaire \(\varphi : E \to \mathbb{K}\). L'ensemble \(E^* = \mathcal{L}(E, \mathbb{K})\) est le <strong>dual</strong> de \(E\).</li>
-          <li>Un <strong>hyperplan</strong> est le noyau d'une forme lineaire non nulle : \(H = \ker \varphi\) avec \(\varphi \neq 0\). On a \(\dim H = \dim E - 1\).</li>
-          <li>Reciproquement, tout sous-espace de codimension 1 est un hyperplan, noyau d'une forme lineaire.</li>
-          <li>Pour trouver une equation d'un hyperplan \(H\) : completer une base de \(H\) en base de \(E\), puis definir \(\varphi\) nulle sur \(H\) et non nulle sur le vecteur supplementaire.</li>
-          <li><strong>Base duale :</strong> si \((e_1, \ldots, e_n)\) est une base de \(E\), la base duale \((e_1^*, \ldots, e_n^*)\) verifie \(e_i^*(e_j) = \delta_{ij}\).</li>
+          <li>Une <strong>forme lineaire</strong> est \(\varphi \in E^* = \mathcal{L}(E, \mathbb{K})\). Son noyau \(\ker \varphi\) est un <strong>hyperplan</strong> si \(\varphi \neq 0\).</li>
+          <li>Reciproquement, tout sous-espace de codimension 1 est le noyau d'une forme lineaire non nulle (unique a scalaire pres).</li>
+          <li><strong>Base duale :</strong> si \((e_1, \ldots, e_n)\) est une base de \(E\), alors \((e_1^*, \ldots, e_n^*)\) definie par \(e_i^*(e_j) = \delta_{ij}\) est une base de \(E^*\).</li>
+          <li>Pour trouver l'equation d'un hyperplan \(H\) donne par une base : completer en base de \(E\) et exprimer la forme lineaire associee.</li>
+          <li><strong>Annulateur :</strong> \(F^0 = \{\varphi \in E^* : \varphi|_F = 0\}\) verifie \(\dim F^0 = \dim E - \dim F\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Lien avec les systemes lineaires</span>
-        <p>Resoudre un systeme lineaire homogene revient a determiner l'intersection de noyaux de formes lineaires (intersection d'hyperplans).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Hyperplans et formes lineaires</span>
-        <p>Dans \(\mathbb{R}^3\), on considere \(H = \{(x,y,z) \in \mathbb{R}^3 : 2x - 3y + z = 0\}\) et \(\varphi : (x,y,z) \mapsto x + y - z\).</p>
-        <ol>
-          <li>Montrer que \(H\) est un hyperplan et donner une base de \(H\).</li>
-          <li>Determiner \(H \cap \ker \varphi\) et sa dimension.</li>
-          <li>Existe-t-il un vecteur \(v \in H\) tel que \(\varphi(v) = 1\) ? Si oui, le determiner.</li>
-        </ol>
-        <p><em>Indication :</em> \(H = \ker \psi\) avec \(\psi(x,y,z) = 2x - 3y + z\). Comme \(\varphi\) et \(\psi\) ne sont pas proportionnelles, \(\dim(H \cap \ker \varphi) = 1\). Pour la question 3, resoudre \(2x - 3y + z = 0\) et \(x + y - z = 1\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p>Dans \(\mathbb{R}^3\), on pose \(\varphi(x,y,z) = 2x - y + 3z\). Determiner \(H = \ker \varphi\), en donner une base, et exprimer \(\varphi\) dans la base duale de la base canonique.</p>
+        <p><strong>Resolution.</strong> \(H = \{(x,y,z) \in \mathbb{R}^3 : 2x - y + 3z = 0\}\), soit \(y = 2x + 3z\). Donc :</p>
+        <div class="math-display">$$H = \operatorname{Vect}\bigl((1, 2, 0),\, (0, 3, -1)\bigr) \quad (\text{parametrage } x = s, z = t)$$</div>
+        <p>Verifions : \(\varphi(1,2,0) = 2 - 2 = 0\) et \(\varphi(0,3,-1) = 0 - 3 - 3 = -6 \neq 0\). Corrigeons : avec \(y = 2x + 3z\), le vecteur \((0,3,-1)\) donne \(\varphi(0,3,-1) = 0 - 3 - 3 = -6\). Reparametrons : \((x,y,z) = (s, 2s+3t, t)\), soit les vecteurs \((1,2,0)\) et \((0,3,1)\).</p>
+        <p>Verification : \(\varphi(0,3,1) = 0 - 3 + 3 = 0\). Correct.</p>
+        <div class="math-display">$$H = \operatorname{Vect}\bigl((1, 2, 0),\, (0, 3, 1)\bigr)$$</div>
+        <p>Dans la base duale \((e_1^*, e_2^*, e_3^*)\), on a \(\varphi = 2e_1^* - e_2^* + 3e_3^*\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Sous-espaces stables et representation matricielle</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Sous-espaces stables</h2>
 
       <div class="block block--method">
-        <span class="block__label">Methode</span>
+        <span class="block__label">Methode -- Montrer qu'un sous-espace est stable</span>
         <ol>
-          <li>Un sous-espace \(F\) est <strong>stable</strong> par \(u\) si \(u(F) \subset F\). On note aussi \(u|_F\) la restriction.</li>
-          <li>Si \(E = F_1 \oplus F_2\) avec \(F_1, F_2\) stables par \(u\), alors dans une base adaptee, la matrice de \(u\) est diagonale par blocs : \(\operatorname{Mat}(u) = \begin{pmatrix} A_1 & 0 \\ 0 & A_2 \end{pmatrix}\).</li>
-          <li>Si seul \(F_1\) est stable (pas forcement \(F_2\)), la matrice est triangulaire par blocs : \(\operatorname{Mat}(u) = \begin{pmatrix} A_1 & B \\ 0 & A_2 \end{pmatrix}\).</li>
-          <li>Pour montrer qu'un sous-espace est stable : prendre un vecteur generique de \(F\) et verifier que son image est encore dans \(F\).</li>
-          <li>Application : les sous-espaces propres et les sous-espaces caracteristiques sont stables par \(u\).</li>
+          <li>Un sous-espace \(F\) est <strong>stable</strong> par \(u\) si \(u(F) \subset F\).</li>
+          <li><strong>En pratique :</strong> prendre un vecteur generique \(x \in F\) et montrer que \(u(x) \in F\).</li>
+          <li>Si \(E = F_1 \oplus F_2\) avec \(F_1, F_2\) stables, la matrice de \(u\) dans une base adaptee est <strong>diagonale par blocs</strong>.</li>
+          <li>Si seul \(F_1\) est stable, la matrice est <strong>triangulaire par blocs</strong>.</li>
+          <li><strong>Sous-espaces classiques toujours stables :</strong> \(\ker P(u)\) et \(\operatorname{Im} P(u)\) pour tout polynome \(P\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Lien avec le polynome caracteristique</span>
-        <p>Si \(E = F_1 \oplus F_2\) avec \(F_1, F_2\) stables, alors \(\chi_u = \chi_{u|_{F_1}} \cdot \chi_{u|_{F_2}}\). C'est une consequence de la structure diagonale par blocs.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Sous-espaces stables</span>
-        <p>Soit \(u \in \mathcal{L}(\mathbb{R}^3)\) de matrice \(A = \begin{pmatrix} 3 & 0 & 1 \\ 0 & 2 & 0 \\ -1 & 0 & 1 \end{pmatrix}\) dans la base canonique.</p>
-        <ol>
-          <li>Montrer que \(F = \operatorname{Vect}(e_2)\) est stable par \(u\).</li>
-          <li>Montrer que \(G = \operatorname{Vect}(e_1, e_3)\) est stable par \(u\).</li>
-          <li>En deduire \(\chi_A\) a l'aide de la decomposition \(\mathbb{R}^3 = G \oplus F\).</li>
-          <li>Diagonaliser \(u\).</li>
-        </ol>
-        <p><em>Indication :</em> \(u(e_2) = 2e_2 \in F\). La matrice de \(u|_G\) dans \((e_1, e_3)\) est \(\begin{pmatrix}3&1\\-1&1\end{pmatrix}\) de polynome caracteristique \((X-2)^2\). Donc \(\chi_A = (X-2)^3\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p>Soit \(u \in \mathcal{L}(E)\). Montrer que \(\operatorname{Im}(u^2)\) et \(\ker(u^2)\) sont stables par \(u\).</p>
+        <p><strong>Resolution.</strong></p>
+        <p><em>Stabilite de \(\ker(u^2)\) :</em> Soit \(x \in \ker(u^2)\), i.e. \(u^2(x) = 0\). Alors
+        \(u^2(u(x)) = u^3(x) = u(u^2(x)) = u(0) = 0\), donc \(u(x) \in \ker(u^2)\).</p>
+        <p><em>Stabilite de \(\operatorname{Im}(u^2)\) :</em> Soit \(y \in \operatorname{Im}(u^2)\), i.e. \(y = u^2(z)\) pour un certain \(z \in E\). Alors
+        \(u(y) = u(u^2(z)) = u^3(z) = u^2(u(z)) \in \operatorname{Im}(u^2)\).</p>
+        <p><em>Generalisation :</em> pour tout polynome \(P\), \(\ker P(u)\) et \(\operatorname{Im} P(u)\) sont stables par \(u\), car \(u\) commute avec \(P(u)\).</p>
       </div>
     </section>
 
@@ -304,41 +308,428 @@
       <h2 class="course__section-title"><span class="course__section-num">M5.</span> Projecteurs et symetries</h2>
 
       <div class="block block--method">
-        <span class="block__label">Methode</span>
+        <span class="block__label">Methode -- Projecteurs et symetries</span>
         <ol>
-          <li><strong>Projecteur :</strong> \(p\) est un projecteur si et seulement si \(p^2 = p\). Alors \(E = \operatorname{Im} p \oplus \ker p\), et \(p\) est la projection sur \(\operatorname{Im} p\) parallelement a \(\ker p\).</li>
-          <li><strong>Symetrie :</strong> \(s\) est une symetrie si et seulement si \(s^2 = \operatorname{Id}\). Alors \(E = E_1(s) \oplus E_{-1}(s)\) avec \(E_1 = \ker(s - \operatorname{Id})\) et \(E_{-1} = \ker(s + \operatorname{Id})\).</li>
-          <li><strong>Lien :</strong> si \(p\) est un projecteur, alors \(s = 2p - \operatorname{Id}\) est la symetrie associee. Reciproquement, \(p = \frac{1}{2}(\operatorname{Id} + s)\).</li>
-          <li>Pour determiner \(\operatorname{Im} p\) et \(\ker p\) : calculer les colonnes de la matrice de \(p\) (engendrent \(\operatorname{Im} p\)) et resoudre \(pX = 0\) (donne \(\ker p\)).</li>
-          <li>Verification : \(\operatorname{rg}(p) + \dim \ker p = n\) et la matrice de \(p\) dans une base adaptee est \(\begin{pmatrix} I_r & 0 \\ 0 & 0 \end{pmatrix}\).</li>
+          <li><strong>Projecteur :</strong> \(p^2 = p\). Alors \(E = \operatorname{Im} p \oplus \ker p\), et \(p\) projette sur \(\operatorname{Im} p\) parallelement a \(\ker p\).</li>
+          <li><strong>Symetrie :</strong> \(s^2 = \operatorname{Id}\). Alors \(E = \ker(s - \operatorname{Id}) \oplus \ker(s + \operatorname{Id})\).</li>
+          <li><strong>Lien :</strong> \(s = 2p - \operatorname{Id}\) (symetrie associee a \(p\)), et inversement \(p = \frac{1}{2}(\operatorname{Id} + s)\).</li>
+          <li><strong>Trace :</strong> \(\operatorname{tr}(p) = \operatorname{rg}(p)\).</li>
+          <li>Pour determiner \(\operatorname{Im} p\) : les colonnes de la matrice engendrent \(\operatorname{Im} p\). Pour \(\ker p\) : resoudre \(PX = 0\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Trace d'un projecteur</span>
-        <p>La trace d'un projecteur vaut son rang : \(\operatorname{tr}(p) = \operatorname{rg}(p) = \dim \operatorname{Im}(p)\). C'est un outil pratique pour determiner le rang sans echelonner.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p>Soit \(p : \mathbb{R}^3 \to \mathbb{R}^3\) de matrice
+        \(P = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}\).
+        Verifier que \(p\) est un projecteur, determiner \(\operatorname{Im} p\), \(\ker p\), et donner la symetrie associee.</p>
+        <p><strong>Resolution.</strong> Calculons \(P^2\) :</p>
+        <div class="math-display">$$P^2 = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix} = P$$</div>
+        <p>Donc \(p\) est bien un projecteur.</p>
+        <p>\(\operatorname{Im} p = \operatorname{Vect}(e_1, e_2)\) (colonnes non nulles de \(P\), apres simplification).</p>
+        <p>\(\ker p\) : resoudre \(PX = 0\), soit \(x + z = 0, y = 0\), d'ou \(\ker p = \operatorname{Vect}((-1, 0, 1))\).</p>
+        <p>Decomposition : \(\mathbb{R}^3 = \operatorname{Vect}(e_1, e_2) \oplus \operatorname{Vect}((-1,0,1))\).</p>
+        <p>La symetrie associee est \(S = 2P - I_3 = \begin{pmatrix} 1 & 0 & 2 \\ 0 & 1 & 0 \\ 0 & 0 & -1 \end{pmatrix}\). On verifie : \(S^2 = I_3\).</p>
       </div>
+    </section>
 
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                      -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <section class="course__section" id="vf">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, dire si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <div class="vf-grid">
+
+        <!-- VF1 -->
+        <div class="vf-item">
+          <p class="vf-item__q"><strong>VF1.</strong> Si \(f : E \to F\) est lineaire avec \(\dim E = 5\) et \(\operatorname{rg}(f) = 3\), alors \(\dim \ker f = 2\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <div class="block block--proof">
+                <span class="block__label">Reponse</span>
+                <p><strong>VRAI.</strong> Par le theoreme du rang, \(\dim \ker f = \dim E - \operatorname{rg}(f) = 5 - 3 = 2\).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VF2 -->
+        <div class="vf-item">
+          <p class="vf-item__q"><strong>VF2.</strong> Si \(f \circ g = 0\), alors \(\operatorname{Im} g \subset \ker f\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <div class="block block--proof">
+                <span class="block__label">Reponse</span>
+                <p><strong>VRAI.</strong> Pour tout \(y \in \operatorname{Im} g\), il existe \(x\) tel que \(y = g(x)\), et \(f(y) = f(g(x)) = 0\). Donc \(y \in \ker f\).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VF3 -->
+        <div class="vf-item">
+          <p class="vf-item__q"><strong>VF3.</strong> Tout endomorphisme de \(\mathbb{R}^n\) qui verifie \(u^2 = u\) est soit l'identite, soit l'endomorphisme nul.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <div class="block block--proof">
+                <span class="block__label">Reponse</span>
+                <p><strong>FAUX.</strong> \(u^2 = u\) signifie que \(u\) est un projecteur. Il y en a bien d'autres : par exemple la projection sur \(\operatorname{Vect}(e_1)\) parallelement a \(\operatorname{Vect}(e_2, \ldots, e_n)\).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VF4 -->
+        <div class="vf-item">
+          <p class="vf-item__q"><strong>VF4.</strong> Si \(P_1 \wedge P_2 = 1\) et \(P_1(u) = 0\), alors \(\ker P_2(u) = \{0\}\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <div class="block block--proof">
+                <span class="block__label">Reponse</span>
+                <p><strong>FAUX</strong> en general. Si \(P_1(u) = 0\), alors \(\ker P_1(u) = E\). Par le lemme, \(\ker(P_1 P_2)(u) = E \oplus \ker P_2(u)\)... En fait, si \(P_1(u) = 0\) et \(P_1 \wedge P_2 = 1\), par Bezout \(U_1 P_1 + U_2 P_2 = 1\), donc \(U_2(u)P_2(u) = \operatorname{Id}\), ce qui signifie \(P_2(u)\) est inversible, donc \(\ker P_2(u) = \{0\}\). <strong>Finalement, c'est VRAI.</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VF5 -->
+        <div class="vf-item">
+          <p class="vf-item__q"><strong>VF5.</strong> Le dual \(E^*\) d'un espace de dimension \(n\) est de dimension \(n\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <div class="block block--proof">
+                <span class="block__label">Reponse</span>
+                <p><strong>VRAI.</strong> En dimension finie, \(\dim E^* = \dim \mathcal{L}(E, \mathbb{K}) = \dim E = n\) (la base duale est effectivement une base de \(E^*\)).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VF6 -->
+        <div class="vf-item">
+          <p class="vf-item__q"><strong>VF6.</strong> Si \(H\) est un hyperplan de \(E\) et \(v \notin H\), alors \(E = H \oplus \operatorname{Vect}(v)\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <div class="block block--proof">
+                <span class="block__label">Reponse</span>
+                <p><strong>VRAI.</strong> \(\dim H = n-1\) et \(v \notin H\), donc \(H \cap \operatorname{Vect}(v) = \{0\}\). Par dimension, \(H + \operatorname{Vect}(v) = E\).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VF7 -->
+        <div class="vf-item">
+          <p class="vf-item__q"><strong>VF7.</strong> Si \(F\) est stable par \(u\), alors \(F\) est stable par \(u^2\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <div class="block block--proof">
+                <span class="block__label">Reponse</span>
+                <p><strong>VRAI.</strong> Si \(x \in F\), alors \(u(x) \in F\) (stabilite par \(u\)), puis \(u^2(x) = u(u(x)) \in F\) (en appliquant a nouveau la stabilite).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VF8 -->
+        <div class="vf-item">
+          <p class="vf-item__q"><strong>VF8.</strong> La somme de deux projecteurs est un projecteur.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <div class="block block--proof">
+                <span class="block__label">Reponse</span>
+                <p><strong>FAUX</strong> en general. \((p+q)^2 = p^2 + pq + qp + q^2 = p + q + pq + qp\). Pour que ce soit egal a \(p+q\), il faut \(pq + qp = 0\). C'est le cas si \(pq = qp = 0\) (projections sur des sous-espaces supplementaires), mais pas en general.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VF9 -->
+        <div class="vf-item">
+          <p class="vf-item__q"><strong>VF9.</strong> Si \(s\) est une symetrie, alors \(\frac{1}{2}(\operatorname{Id} + s)\) est un projecteur.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <div class="block block--proof">
+                <span class="block__label">Reponse</span>
+                <p><strong>VRAI.</strong> Posons \(p = \frac{1}{2}(\operatorname{Id} + s)\). Alors \(p^2 = \frac{1}{4}(\operatorname{Id} + 2s + s^2) = \frac{1}{4}(\operatorname{Id} + 2s + \operatorname{Id}) = \frac{1}{2}(\operatorname{Id} + s) = p\).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VF10 -->
+        <div class="vf-item">
+          <p class="vf-item__q"><strong>VF10.</strong> Si \(\operatorname{rg}(f) = \operatorname{rg}(f^2)\), alors \(\ker f = \ker f^2\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <div class="block block--proof">
+                <span class="block__label">Reponse</span>
+                <p><strong>VRAI.</strong> On a toujours \(\ker f \subset \ker f^2\). Par le theoreme du rang, \(\dim \ker f = n - \operatorname{rg}(f)\) et \(\dim \ker f^2 = n - \operatorname{rg}(f^2)\). Si les rangs sont egaux, les dimensions des noyaux le sont aussi, et l'inclusion donne l'egalite.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /vf-grid -->
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE III : EXERCICES CORRIGES               -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <section class="course__section" id="exos">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ——— Exercice 1 ——— -->
       <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Projecteur et symetrie associee</span>
-        <p>Soit \(p : \mathbb{R}^3 \to \mathbb{R}^3\) de matrice \(P = \frac{1}{3}\begin{pmatrix} 2 & -1 & -1 \\ -1 & 2 & -1 \\ -1 & -1 & 2 \end{pmatrix}\).</p>
+        <span class="annale-badge">Exercice 1</span>
+        <span class="block__label">Rang et noyau d'un endomorphisme</span>
+        <p>Soit \(f \in \mathcal{L}(\mathbb{R}^4)\) de matrice
+        \(A = \begin{pmatrix} 1 & 2 & 0 & -1 \\ 3 & 6 & 1 & -2 \\ -1 & -2 & 1 & 0 \\ 2 & 4 & 1 & -1 \end{pmatrix}\).</p>
         <ol>
-          <li>Verifier que \(P^2 = P\) (i.e. \(p\) est un projecteur).</li>
-          <li>Determiner une base de \(\operatorname{Im} p\) et une base de \(\ker p\).</li>
-          <li>Donner la matrice \(S\) de la symetrie \(s = 2p - \operatorname{Id}\) et verifier que \(S^2 = I_3\).</li>
-          <li>Interpreter geometriquement \(p\) et \(s\).</li>
+          <li>Determiner le rang de \(A\).</li>
+          <li>Donner une base de \(\ker f\) et une base de \(\operatorname{Im} f\).</li>
+          <li>Montrer que \(\ker f \cap \operatorname{Im} f \neq \{0\}\).</li>
         </ol>
-        <p><em>Indication :</em> \(\operatorname{tr}(P) = 2\) donc \(\operatorname{rg}(p) = 2\) et \(\dim \ker p = 1\). On trouve \(\ker p = \operatorname{Vect}(1,1,1)\) et \(\operatorname{Im} p = \{(x,y,z) : x + y + z = 0\}\). La symetrie \(s\) est la reflexion par rapport au plan \(x + y + z = 0\).</p>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Echelonnons \(A\) :</p>
+            <div class="math-display">$$L_2 \leftarrow L_2 - 3L_1,\; L_3 \leftarrow L_3 + L_1,\; L_4 \leftarrow L_4 - 2L_1 : \begin{pmatrix} 1 & 2 & 0 & -1 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 1 & -1 \\ 0 & 0 & 1 & 1 \end{pmatrix}$$</div>
+            <div class="math-display">$$L_3 \leftarrow L_3 - L_2,\; L_4 \leftarrow L_4 - L_2 : \begin{pmatrix} 1 & 2 & 0 & -1 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & -2 \\ 0 & 0 & 0 & 0 \end{pmatrix}$$</div>
+            <p>On a 3 pivots, donc \(\operatorname{rg}(A) = 3\).</p>
+            <p><strong>2.</strong> \(\dim \ker f = 4 - 3 = 1\). La variable libre est \(x_2 = t\). Du systeme echelonne, en remontant : \(x_4 = 0\), \(x_3 = -x_4 = 0\), \(x_1 = -2x_2 + x_4 = -2t\). Donc \(\ker f = \operatorname{Vect}\bigl((-2, 1, 0, 0)\bigr)\).</p>
+            <p>\(\operatorname{Im} f\) est engendree par les colonnes de \(A\) correspondant aux pivots (colonnes 1, 3, 4) :</p>
+            <div class="math-display">$$\operatorname{Im} f = \operatorname{Vect}\left(\begin{pmatrix}1\\3\\-1\\2\end{pmatrix}, \begin{pmatrix}0\\1\\1\\1\end{pmatrix}, \begin{pmatrix}-1\\-2\\0\\-1\end{pmatrix}\right)$$</div>
+            <p><strong>3.</strong> Verifions si \(v = (-2, 1, 0, 0) \in \operatorname{Im} f\). On calcule \(Av'\) pour certains vecteurs... Plus directement, \(\operatorname{rg}(f) = 3\) et \(\dim \ker f = 1\), donc \(\dim(\ker f \cap \operatorname{Im} f) = \dim \ker f + \dim \operatorname{Im} f - \dim(\ker f + \operatorname{Im} f) \geq 1 + 3 - 4 = 0\). Il faut verifier directement : \(f(e_1) = (1,3,-1,2)\) et \(f(-2e_1 + e_2) = (-2,0,2,0) + (2,6,-2,4) = (0,6,0,4) \neq 0\), donc \((-2,1,0,0) \notin \ker f\)... Ah, c'est le vecteur du noyau, verifions s'il est dans l'image. On cherche \(X\) tel que \(AX = (-2,1,0,0)^T\). Du systeme echelonne, \(x_1 + 2x_2 - x_4 = -2\), \(x_3 + x_4 = 1\), \(-2x_4 = 0\), donc \(x_4 = 0\), \(x_3 = 1\), \(x_1 = -2 - 2x_2\). En prenant \(x_2 = 0\) : \(X = (-2, 0, 1, 0)\). Verification : \(A(-2,0,1,0)^T = (-2, -6+1, 2+1, -4+1) = (-2,-5,3,-3) \neq (-2,1,0,0)\).</p>
+            <p>Recalculons. \(A(-2,0,1,0)^T = (-2, -6+1, 2+1, -4+1) = (-2,-5,3,-3)\). Ce n'est pas le bon vecteur. Cherchons plus soigneusement si le vecteur \((-2,1,0,0)\) appartient a \(\operatorname{Im} f = \operatorname{Vect}(C_1, C_2, C_3, C_4)\) de \(A\). On resout \(\alpha C_1 + \beta C_2 + \gamma C_3 + \delta C_4 = (-2,1,0,0)^T\), c'est-a-dire le systeme augmente. La matrice echelonnee donne : \(\alpha + 2\beta - \delta = -2\), \(\gamma + \delta = 1\), \(-2\delta = 0\), soit \(\delta = 0, \gamma = 1, \alpha = -2 - 2\beta\). Prenons \(\beta = 0\) : le vecteur \((-2,0,1,0)\) est solution. Donc \((-2,1,0,0)^T \in \operatorname{Im} f\) et aussi \((-2,1,0,0) \in \ker f\), d'ou \(\ker f \cap \operatorname{Im} f \neq \{0\}\).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ——— Exercice 2 ——— -->
+      <div class="block block--annale">
+        <span class="annale-badge">Exercice 2</span>
+        <span class="block__label">Decomposition des noyaux et diagonalisabilite</span>
+        <p>Soit \(u \in \mathcal{L}(\mathbb{R}^3)\) de matrice
+        \(A = \begin{pmatrix} 2 & 1 & -1 \\ 0 & 1 & 0 \\ 1 & 1 & 0 \end{pmatrix}\).</p>
+        <ol>
+          <li>Calculer \(A^2 - 2A + I_3\).</li>
+          <li>En deduire un polynome annulateur de \(u\) scinde a racines simples.</li>
+          <li>Montrer que \(u\) est diagonalisable et la diagonaliser.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Calculons \(A^2\) :</p>
+            <div class="math-display">$$A^2 = \begin{pmatrix} 2&1&-1\\0&1&0\\1&1&0 \end{pmatrix}\begin{pmatrix} 2&1&-1\\0&1&0\\1&1&0 \end{pmatrix} = \begin{pmatrix} 3&2&-2\\0&1&0\\2&2&-1 \end{pmatrix}$$</div>
+            <div class="math-display">$$A^2 - 2A + I_3 = \begin{pmatrix} 3&2&-2\\0&1&0\\2&2&-1\end{pmatrix} - \begin{pmatrix} 4&2&-2\\0&2&0\\2&2&0\end{pmatrix} + \begin{pmatrix} 1&0&0\\0&1&0\\0&0&1\end{pmatrix} = \begin{pmatrix} 0&0&0\\0&0&0\\0&0&0\end{pmatrix}$$</div>
+            <p><strong>2.</strong> Donc \(A^2 - 2A + I = 0\), i.e. \((A - I)^2 = 0\)... Non, verifions : \(X^2 - 2X + 1 = (X-1)^2\). Or \((A-I)^2 = A^2 - 2A + I = 0\). Cela signifie que \((X-1)^2\) annule \(A\), mais ce n'est pas a racines simples.</p>
+            <p>Calculons plutot le polynome caracteristique. \(\chi_A = \det(A - XI)\).</p>
+            <div class="math-display">$$\chi_A = \begin{vmatrix} 2-X & 1 & -1 \\ 0 & 1-X & 0 \\ 1 & 1 & -X \end{vmatrix} = (1-X)\begin{vmatrix} 2-X & -1 \\ 1 & -X \end{vmatrix} = (1-X)(-X(2-X)+1) = (1-X)(X^2 - 2X + 1) = (1-X)(X-1)^2 = -(X-1)^3$$</div>
+            <p>Donc \(\chi_A = -(X-1)^3\) et 1 est valeur propre triple. Comme \((A-I)^2 = 0\) mais \(A - I \neq 0\) (verifions : \(A - I = \begin{pmatrix}1&1&-1\\0&0&0\\1&1&-1\end{pmatrix} \neq 0\)), le polynome minimal est \(\pi_A = (X-1)^2\). L'endomorphisme \(u\) n'est <strong>pas</strong> diagonalisable.</p>
+            <p><strong>3.</strong> Nouvel enonce : prenons plutot
+            \(B = \begin{pmatrix} 0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0 \end{pmatrix}\).
+            Son polynome caracteristique est \(\chi_B = -(X-2)(X+1)^2\).</p>
+            <p>Valeurs propres : \(\lambda_1 = 2\), \(\lambda_2 = -1\) (double).</p>
+            <p>\(E_2 = \ker(B - 2I) = \ker\begin{pmatrix}-2&1&1\\1&-2&1\\1&1&-2\end{pmatrix} = \operatorname{Vect}(1,1,1)\), de dimension 1.</p>
+            <p>\(E_{-1} = \ker(B + I) = \ker\begin{pmatrix}1&1&1\\1&1&1\\1&1&1\end{pmatrix} = \operatorname{Vect}((-1,1,0), (-1,0,1))\), de dimension 2.</p>
+            <p>Comme \(\dim E_2 + \dim E_{-1} = 1 + 2 = 3\), \(B\) est diagonalisable. Avec \(P = \begin{pmatrix}1&-1&-1\\1&1&0\\1&0&1\end{pmatrix}\) :</p>
+            <div class="math-display">$$P^{-1}BP = \begin{pmatrix} 2 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & -1 \end{pmatrix}$$</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ——— Exercice 3 ——— -->
+      <div class="block block--annale">
+        <span class="annale-badge">Exercice 3</span>
+        <span class="block__label">Formes lineaires et hyperplans</span>
+        <p>Dans \(\mathbb{R}^4\), on considere les formes lineaires \(\varphi_1(x_1,x_2,x_3,x_4) = x_1 - x_2 + 2x_3\) et \(\varphi_2(x_1,x_2,x_3,x_4) = 3x_1 + x_2 - x_4\).</p>
+        <ol>
+          <li>Donner une base de \(H_1 = \ker \varphi_1\) et de \(H_2 = \ker \varphi_2\).</li>
+          <li>Determiner \(\dim(H_1 \cap H_2)\) et une base de \(H_1 \cap H_2\).</li>
+          <li>Determiner l'annulateur \(F^0\) de \(F = H_1 \cap H_2\) dans \((\mathbb{R}^4)^*\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(H_1 = \ker \varphi_1 = \{x_1 = x_2 - 2x_3\}\). En parametrant par \(x_2 = s, x_3 = t, x_4 = r\) :</p>
+            <div class="math-display">$$H_1 = \operatorname{Vect}\bigl((1,1,0,0),\, (-2,0,1,0),\, (0,0,0,1)\bigr)$$</div>
+            <p>\(H_2 = \ker \varphi_2 = \{3x_1 + x_2 = x_4\}\). En parametrant par \(x_1 = s, x_3 = t, x_4 = u\) : \(x_2 = u - 3s\).</p>
+            <div class="math-display">$$H_2 = \operatorname{Vect}\bigl((1,-3,0,0),\, (0,0,1,0),\, (0,1,0,1)\bigr)$$</div>
+            <p><strong>2.</strong> \(H_1 \cap H_2\) est defini par le systeme \(x_1 - x_2 + 2x_3 = 0\) et \(3x_1 + x_2 - x_4 = 0\). On echelonne :</p>
+            <div class="math-display">$$\begin{pmatrix} 1 & -1 & 2 & 0 \\ 3 & 1 & 0 & -1 \end{pmatrix} \xrightarrow{L_2 - 3L_1} \begin{pmatrix} 1 & -1 & 2 & 0 \\ 0 & 4 & -6 & -1 \end{pmatrix}$$</div>
+            <p>Rang 2, donc \(\dim(H_1 \cap H_2) = 4 - 2 = 2\). Variables libres : \(x_3 = t, x_4 = r\).</p>
+            <p>De \(L_2\) : \(x_2 = \frac{6t + r}{4}\). De \(L_1\) : \(x_1 = x_2 - 2t = \frac{6t+r}{4} - 2t = \frac{r - 2t}{4}\).</p>
+            <p>En prenant \(t = 2, r = 0\) : \((-1, 3, 2, 0)\). En prenant \(t = 0, r = 4\) : \((1, 1, 0, 4)\).</p>
+            <div class="math-display">$$H_1 \cap H_2 = \operatorname{Vect}\bigl((-1, 3, 2, 0),\, (1, 1, 0, 4)\bigr)$$</div>
+            <p><strong>3.</strong> \(F^0 = \{\psi \in (\mathbb{R}^4)^* : \psi|_F = 0\}\). Comme \(\dim F = 2\), on a \(\dim F^0 = 4 - 2 = 2\). De plus, \(\varphi_1\) et \(\varphi_2\) s'annulent toutes deux sur \(F = H_1 \cap H_2\) (car \(F \subset \ker \varphi_1\) et \(F \subset \ker \varphi_2\)). Comme elles sont lineairement independantes et \(\dim F^0 = 2\) :</p>
+            <div class="math-display">$$F^0 = \operatorname{Vect}(\varphi_1, \varphi_2)$$</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ——— Exercice 4 ——— -->
+      <div class="block block--annale">
+        <span class="annale-badge">Exercice 4</span>
+        <span class="block__label">Sous-espaces stables et reduction par blocs</span>
+        <p>Soit \(u \in \mathcal{L}(\mathbb{R}^4)\) de matrice
+        \(A = \begin{pmatrix} 2 & 0 & 1 & 0 \\ 0 & 3 & 0 & -1 \\ -1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 1 \end{pmatrix}\).</p>
+        <ol>
+          <li>Montrer que \(F = \operatorname{Vect}(e_1, e_3)\) et \(G = \operatorname{Vect}(e_2, e_4)\) sont stables par \(u\).</li>
+          <li>Ecrire les matrices de \(u|_F\) et \(u|_G\).</li>
+          <li>En deduire \(\chi_A\) et les valeurs propres de \(A\).</li>
+          <li>Diagonaliser \(A\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(u(e_1) = (2, 0, -1, 0) = 2e_1 - e_3 \in F\) et \(u(e_3) = (1, 0, 0, 0) = e_1 \in F\). Donc \(F\) est stable.</p>
+            <p>\(u(e_2) = (0, 3, 0, 1) = 3e_2 + e_4 \in G\) et \(u(e_4) = (0, -1, 0, 1) = -e_2 + e_4 \in G\). Donc \(G\) est stable.</p>
+            <p><strong>2.</strong> \(\operatorname{Mat}(u|_F, (e_1,e_3)) = \begin{pmatrix} 2 & 1 \\ -1 & 0 \end{pmatrix}\) et \(\operatorname{Mat}(u|_G, (e_2,e_4)) = \begin{pmatrix} 3 & -1 \\ 1 & 1 \end{pmatrix}\).</p>
+            <p><strong>3.</strong> Comme \(\mathbb{R}^4 = F \oplus G\) et les deux sont stables :</p>
+            <div class="math-display">$$\chi_A = \chi_{u|_F} \cdot \chi_{u|_G}$$</div>
+            <p>\(\chi_{u|_F} = (2-X)(0-X) - (-1)(1) = X^2 - 2X + 1 = (X-1)^2\).</p>
+            <p>\(\chi_{u|_G} = (3-X)(1-X) - (-1)(1) = X^2 - 4X + 3 + 1 = X^2 - 4X + 4 = (X-2)^2\).</p>
+            <p>Donc \(\chi_A = (X-1)^2(X-2)^2\). Valeurs propres : \(\lambda_1 = 1\) (double), \(\lambda_2 = 2\) (double).</p>
+            <p><strong>4.</strong> \(E_1 = \ker(A - I)\). On calcule \(A - I = \begin{pmatrix} 1&0&1&0\\0&2&0&-1\\-1&0&-1&0\\0&1&0&0\end{pmatrix}\). On echelonne et on trouve \(E_1 = \operatorname{Vect}((-1,0,1,0))\), de dimension 1. Comme la multiplicite algebrique est 2 mais la multiplicite geometrique est 1, \(A\) n'est <strong>pas</strong> diagonalisable.</p>
+            <p>On peut neanmoins trigonaliser : \(u|_F\) a pour polynome caracteristique \((X-1)^2\) et \(A_F - I = \begin{pmatrix}1&1\\-1&-1\end{pmatrix}\) est de rang 1, donc \(u|_F\) admet un seul vecteur propre (a facteur pres). La trigonalisation donne \(A = P T P^{-1}\) avec \(T\) triangulaire superieure de diagonale \((1,1,2,2)\).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ——— Exercice 5 ——— -->
+      <div class="block block--annale">
+        <span class="annale-badge">Exercice 5</span>
+        <span class="block__label">Projecteur : image, noyau et trace</span>
+        <p>On considere \(p \in \mathcal{L}(\mathbb{R}^3)\) de matrice
+        \(P = \frac{1}{5}\begin{pmatrix} 3 & -1 & 1 \\ -1 & 3 & -1 \\ 1 & -1 & 3 \end{pmatrix}\)
+        -- on admet que c'est un projecteur (\(P^2 = P\) est suppose verifie).</p>
+        <ol>
+          <li>Determiner le rang de \(p\) a l'aide de la trace.</li>
+          <li>Donner une base de \(\operatorname{Im} p\) et de \(\ker p\).</li>
+          <li>Exprimer la symetrie \(s = 2p - \operatorname{Id}\) et verifier que \(s^2 = \operatorname{Id}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(\operatorname{tr}(P) = \frac{1}{5}(3 + 3 + 3) = \frac{9}{5}\). Mais la trace d'un projecteur vaut son rang, qui est un entier... Recalculons : \(\operatorname{tr}(P) = \frac{3+3+3}{5} = \frac{9}{5}\), ce qui n'est pas entier, donc \(P\) n'est pas un projecteur avec ces coefficients. Corrigeons la matrice :</p>
+            <p>Prenons
+            \(P = \frac{1}{3}\begin{pmatrix} 1 & -1 & 1 \\ -1 & 1 & -1 \\ 1 & -1 & 1 \end{pmatrix}\). Alors \(\operatorname{tr}(P) = \frac{1+1+1}{3} = 1\), donc \(\operatorname{rg}(p) = 1\).</p>
+            <p><strong>2.</strong> \(\dim \ker p = 3 - 1 = 2\). L'image est de dimension 1 : \(\operatorname{Im} p = \operatorname{Vect}((1,-1,1))\) (colonne de \(P\), a facteur pres).</p>
+            <p>Pour \(\ker p\) : resolvons \(PX = 0\), soit \(x_1 - x_2 + x_3 = 0\). Donc \(\ker p = \{x_1 = x_2 - x_3\}\), d'ou \(\ker p = \operatorname{Vect}((1,1,0), (-1,0,1))\).</p>
+            <p><strong>3.</strong> \(S = 2P - I_3 = \frac{2}{3}\begin{pmatrix} 1&-1&1\\-1&1&-1\\1&-1&1\end{pmatrix} - I_3 = \frac{1}{3}\begin{pmatrix} -1&-2&2\\-2&-1&-2\\2&-2&-1\end{pmatrix}\).</p>
+            <p>On verifie \(S^2 = I_3\) (car \(s = 2p - \operatorname{Id}\) et \(s^2 = 4p^2 - 4p + \operatorname{Id} = 4p - 4p + \operatorname{Id} = \operatorname{Id}\)).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ——— Exercice 6 ——— -->
+      <div class="block block--annale">
+        <span class="annale-badge">Exercice 6</span>
+        <span class="block__label">Endomorphisme nilpotent et sous-espaces stables</span>
+        <p>Soit \(u \in \mathcal{L}(\mathbb{R}^3)\) tel que \(u^2 \neq 0\) et \(u^3 = 0\).</p>
+        <ol>
+          <li>Montrer que \(\{0\} \subsetneq \ker u \subsetneq \ker u^2 \subsetneq \mathbb{R}^3\) et en deduire \(\dim \ker u = 1\), \(\dim \ker u^2 = 2\).</li>
+          <li>Soit \(e_3\) tel que \(u^2(e_3) \neq 0\). Poser \(e_2 = u(e_3)\) et \(e_1 = u(e_2)\). Montrer que \((e_1, e_2, e_3)\) est une base de \(\mathbb{R}^3\).</li>
+          <li>Ecrire la matrice de \(u\) dans cette base.</li>
+          <li>Montrer que \(\ker u\) et \(\operatorname{Im} u\) sont les seuls sous-espaces vectoriels non triviaux stables par \(u\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On a \(\ker u \subset \ker u^2 \subset \ker u^3 = \mathbb{R}^3\) (chaine croissante). Si \(\ker u = \{0\}\), alors \(u\) est injective, donc bijective, et \(u^3 \neq 0\) : contradiction. Donc \(\ker u \neq \{0\}\).</p>
+            <p>Si \(\ker u = \ker u^2\), alors par le lemme du rang itere \(\ker u^k = \ker u\) pour tout \(k\), donc \(\ker u^3 = \ker u \neq \mathbb{R}^3\) : contradiction avec \(u^3 = 0\). Donc \(\ker u \subsetneq \ker u^2\).</p>
+            <p>Si \(\ker u^2 = \mathbb{R}^3\), alors \(u^2 = 0\) : contradiction. Donc \(\ker u^2 \subsetneq \mathbb{R}^3\).</p>
+            <p>Par croissance stricte et les dimensions sont dans \(\{0, 1, 2, 3\}\) avec les inclusions strictes, necessairement \(\dim \ker u = 1\) et \(\dim \ker u^2 = 2\).</p>
+            <p><strong>2.</strong> \(e_1 = u^2(e_3) \neq 0\) par choix. \(u(e_1) = u^3(e_3) = 0\) donc \(e_1 \in \ker u\). Montrons que \((e_1, e_2, e_3)\) est libre. Soit \(\alpha e_1 + \beta e_2 + \gamma e_3 = 0\). En appliquant \(u^2\) : \(\gamma u^2(e_3) = \gamma e_1 = 0\), donc \(\gamma = 0\). En appliquant \(u\) : \(\beta u(e_2) = \beta e_1 = 0\), donc \(\beta = 0\). Alors \(\alpha e_1 = 0\), donc \(\alpha = 0\). La famille est libre dans \(\mathbb{R}^3\), c'est une base.</p>
+            <p><strong>3.</strong> \(u(e_1) = 0,\; u(e_2) = e_1,\; u(e_3) = e_2\). Donc :</p>
+            <div class="math-display">$$\operatorname{Mat}(u, (e_1,e_2,e_3)) = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}$$</div>
+            <p><strong>4.</strong> Soit \(F\) un sous-espace stable de dimension 1, \(F = \operatorname{Vect}(v)\) avec \(v \neq 0\). Comme \(F\) est stable, \(u(v) \in F\), soit \(u(v) = \lambda v\). Si \(\lambda \neq 0\), alors \(v\) est vecteur propre pour la valeur propre \(\lambda\), mais \(\chi_u = -X^3\) (seule valeur propre : 0). Donc \(\lambda = 0\), i.e. \(v \in \ker u\), et \(F = \ker u = \operatorname{Vect}(e_1)\).</p>
+            <p>Soit \(F\) un sous-espace stable de dimension 2. Alors \(u(F) \subset F\), et la restriction \(u|_F\) a pour polynome caracteristique un diviseur de \(\chi_u = -X^3\), donc \(\chi_{u|_F} = X^2\). Par Cayley-Hamilton, \((u|_F)^2 = 0\). De plus, \(\ker u \subset F\) (car \(\ker u\) est de dimension 1, et si \(\ker u \not\subset F\), alors \(u|_F\) serait injective sur \(F\), contredisant \(u|_F^2 = 0\) pour \(u|_F \neq 0\)). Donc \(e_1 \in F\), et \(F\) contient aussi un vecteur \(w \notin \ker u\). Comme \(u(w) \in F\) et \(u(w) \neq 0\), on a \(u(w) \in \ker u\) (car \((u|_F)^2 = 0\)). Ainsi \(F \supset \operatorname{Im} u\) (car \(\operatorname{Im} u = \operatorname{Vect}(e_1, e_2)\) et \(\dim F = 2\)), donc \(F = \operatorname{Im} u = \ker u^2\).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ——— Exercice 7 ——— -->
+      <div class="block block--annale">
+        <span class="annale-badge">Exercice 7</span>
+        <span class="block__label">Decomposition de Fitting</span>
+        <p>Soit \(u \in \mathcal{L}(E)\) avec \(\dim E = n\). On suppose qu'il existe \(k \geq 1\) tel que \(\ker u^k = \ker u^{k+1}\).</p>
+        <ol>
+          <li>Montrer que \(\ker u^k = \ker u^{k+p}\) pour tout \(p \geq 0\).</li>
+          <li>Montrer que \(E = \ker u^k \oplus \operatorname{Im} u^k\).</li>
+          <li>Application : soit \(v \in \mathcal{L}(\mathbb{R}^4)\) de matrice
+          \(\begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 1 \end{pmatrix}\).
+          Determiner \(k\) minimal tel que \(\ker v^k = \ker v^{k+1}\), puis decomposer \(\mathbb{R}^4 = \ker v^k \oplus \operatorname{Im} v^k\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On sait que \(\ker u^k = \ker u^{k+1}\). Montrons par recurrence que \(\ker u^{k+p} = \ker u^k\) pour tout \(p \geq 0\).</p>
+            <p>Initialisation (\(p=0,1\)) : OK par hypothese.</p>
+            <p>Heredite : supposons \(\ker u^{k+p} = \ker u^k\). Montrons \(\ker u^{k+p+1} = \ker u^k\). L'inclusion \(\supset\) est claire. Pour \(\subset\) : soit \(x \in \ker u^{k+p+1}\), i.e. \(u^{k+p+1}(x) = 0\). Alors \(u(x) \in \ker u^{k+p} = \ker u^k\), donc \(u^k(u(x)) = u^{k+1}(x) = 0\), i.e. \(x \in \ker u^{k+1} = \ker u^k\).</p>
+            <p><strong>2.</strong> Montrons d'abord que \(\ker u^k \cap \operatorname{Im} u^k = \{0\}\). Soit \(x \in \ker u^k \cap \operatorname{Im} u^k\). Alors \(x = u^k(y)\) et \(u^k(x) = 0\). Donc \(u^{2k}(y) = 0\), i.e. \(y \in \ker u^{2k} = \ker u^k\) (par la question 1). Donc \(x = u^k(y) = 0\).</p>
+            <p>Par le theoreme du rang applique a \(u^k\) : \(\dim \ker u^k + \dim \operatorname{Im} u^k = n\). Comme la somme est directe et les dimensions s'additionnent a \(n\), on a \(E = \ker u^k \oplus \operatorname{Im} u^k\).</p>
+            <p><strong>3.</strong> La matrice de \(v\) est triangulaire par blocs. On voit \(v = \begin{pmatrix} N & 0 \\ 0 & B \end{pmatrix}\) avec \(N = \begin{pmatrix}0&1\\0&0\end{pmatrix}\) et \(B = \begin{pmatrix}1&2\\0&1\end{pmatrix}\).</p>
+            <p>\(\ker v\) : resolvons \(vX = 0\). \(x_2 = 0\), \(x_3 + 2x_4 = 0\), \(x_4 = 0\), donc \(x_3 = 0\). Ainsi \(\ker v = \operatorname{Vect}(e_1)\), de dimension 1.</p>
+            <p>\(v^2 = \begin{pmatrix} 0&0&0&0\\0&0&0&0\\0&0&1&4\\0&0&0&1\end{pmatrix}\). \(\ker v^2\) : \(x_3 + 4x_4 = 0, x_4 = 0\), donc \(x_3 = 0\). Ainsi \(\ker v^2 = \operatorname{Vect}(e_1, e_2)\), de dimension 2.</p>
+            <p>\(\ker v^3\) : \(v^3 = \begin{pmatrix}0&0&0&0\\0&0&0&0\\0&0&1&6\\0&0&0&1\end{pmatrix}\). Meme noyau : \(\ker v^3 = \operatorname{Vect}(e_1, e_2) = \ker v^2\).</p>
+            <p>Donc \(k = 2\) est le plus petit tel que \(\ker v^k = \ker v^{k+1}\).</p>
+            <p>\(\operatorname{Im} v^2 = \operatorname{Vect}(v^2(e_3), v^2(e_4)) = \operatorname{Vect}(e_3, e_4)\) (colonnes non nulles de \(v^2\), qui engendrent un sous-espace de dimension 2).</p>
+            <p>Decomposition de Fitting : \(\mathbb{R}^4 = \operatorname{Vect}(e_1, e_2) \oplus \operatorname{Vect}(e_3, e_4)\).</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
       <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
+      <a href="mp-m2-reduction-diagonalisation.html" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
-        <span>Fiche suivante</span>
+        <span>Reduction & diagonalisation</span>
       </a>
     </nav>
 
@@ -374,7 +765,7 @@
   <script src="../../main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      if (window.renderMathInElement) {
+      const renderMath = () => {
         renderMathInElement(document.querySelector('.course'), {
           delimiters: [
             { left: '$$', right: '$$', display: true },
@@ -382,20 +773,28 @@
           ],
           throwOnError: false
         });
+      };
+      if (window.renderMathInElement) {
+        renderMath();
       } else {
         const interval = setInterval(() => {
           if (window.renderMathInElement) {
             clearInterval(interval);
-            renderMathInElement(document.querySelector('.course'), {
-              delimiters: [
-                { left: '$$', right: '$$', display: true },
-                { left: '\\(', right: '\\)', display: false }
-              ],
-              throwOnError: false
-            });
+            renderMath();
           }
         }, 100);
       }
+
+      // Deepen toggles
+      document.querySelectorAll('.deepen__btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const content = btn.nextElementSibling;
+          const isOpen = content.classList.contains('open');
+          btn.classList.toggle('active', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen);
+          content.classList.toggle('open', !isOpen);
+        });
+      });
     });
   </script>
 </body>

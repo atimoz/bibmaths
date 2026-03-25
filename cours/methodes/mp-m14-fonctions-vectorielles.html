@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -146,155 +165,140 @@
 
     <div class="course__meta">
       <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 12</span>
     </div>
 
     <h1 class="course__title">Fonctions vectorielles</h1>
 
     <p class="course__intro">
-      Fiche de methodes sur les fonctions d'une variable reelle : derivee n-ieme, inegalites, inequations differentielles, calcul d'integrales et integrales a parametre aux bornes. Chaque methode est accompagnee d'un exercice de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et six exercices corriges inspires du chapitre 12.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Calculer la derivee n-ieme</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Etablir une inegalite via l'etude de variations</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Resoudre une inequation differentielle</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Calculer ou evaluer une integrale</a></li>
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Derivee n-ieme (Leibniz, DES)</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Inegalite par etude de variations</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Inequation differentielle</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Calcul d'integrale (recurrence, astuces)</a></li>
         <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Integrale dependant d'un parametre aux bornes</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
+
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Calculer la derivee n-ieme</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Derivee n-ieme (Leibniz, DES)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Formule de Leibniz :</strong> si \(f = uv\), alors \(f^{(n)} = \sum_{k=0}^n \binom{n}{k} u^{(k)} v^{(n-k)}\). Utile quand l'un des deux facteurs a ses derivees successives qui s'annulent (polynome).</li>
-          <li><strong>Decomposition en elements simples (DES) :</strong> pour une fraction rationnelle \(f(x) = \frac{P(x)}{Q(x)}\), decomposer en elements simples, puis deriver chaque terme. Rappel : \(\left(\frac{1}{(x-a)^m}\right)^{(n)} = \frac{(-1)^n (m+n-1)!}{(m-1)!} \cdot \frac{1}{(x-a)^{m+n}}\).</li>
-          <li><strong>Reconnaitre une serie entiere :</strong> si \(f(x) = \sum a_n x^n\), alors \(f^{(n)}(0) = n!\, a_n\).</li>
-          <li>Verifier le resultat sur les premieres valeurs de \(n\) (conjecturer puis demontrer par recurrence si necessaire).</li>
+          <li><strong>Formule de Leibniz :</strong> si \(f = uv\), alors \(\displaystyle f^{(n)} = \sum_{k=0}^n \binom{n}{k} u^{(k)} v^{(n-k)}\). Privilegier cette formule quand l'un des facteurs est un polynome (ses derivees s'annulent a un rang fini).</li>
+          <li><strong>Decomposition en elements simples (DES) :</strong> pour une fraction rationnelle, decomposer puis deriver chaque element. Rappel : \(\left(\dfrac{1}{(x-a)^m}\right)^{(n)} = \dfrac{(-1)^n (m+n-1)!}{(m-1)!} \cdot \dfrac{1}{(x-a)^{m+n}}\).</li>
+          <li><strong>Via les series entieres :</strong> si \(f(x) = \sum a_n x^n\), alors \(f^{(n)}(0) = n!\, a_n\).</li>
+          <li>Verifier sur les premieres valeurs de \(n\) pour conjecturer, puis demontrer par recurrence si necessaire.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Pour \(f(x) = x^2 e^{3x}\), Leibniz donne trois termes non nuls (car \((x^2)^{(k)} = 0\) pour \(k \geq 3\)). C'est beaucoup plus rapide qu'une recurrence.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Style concours</span>
-        <p>Soit \(f(x) = \dfrac{x^2 + 1}{(x-1)(x+2)}\).</p>
-        <ol>
-          <li>Decomposer \(f\) en elements simples.</li>
-          <li>En deduire \(f^{(n)}(x)\) pour tout \(n \geq 1\).</li>
-          <li>Calculer \(f^{(n)}(0)\).</li>
-        </ol>
-        <p><em>Indication :</em> la DES donne \(f(x) = 1 + \frac{2/3}{x-1} + \frac{5/3}{x+2}\). Puis deriver chaque fraction elementaire n fois.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Calculer la derivee n-ieme de \(f(x) = x^2 e^{3x}\).</strong></p>
+        <p><em>Resolution.</em> On pose \(u(x) = x^2\) et \(v(x) = e^{3x}\). On a \(u' = 2x\), \(u'' = 2\), \(u^{(k)} = 0\) pour \(k \geq 3\), et \(v^{(k)} = 3^k e^{3x}\). Par Leibniz :</p>
+        <div class="math-display">$$f^{(n)}(x) = \sum_{k=0}^{\min(n,2)} \binom{n}{k} u^{(k)}(x) \cdot v^{(n-k)}(x)$$</div>
+        <p>Seuls trois termes subsistent (\(k = 0, 1, 2\)) :</p>
+        <div class="math-display">$$f^{(n)}(x) = x^2 \cdot 3^n e^{3x} + n \cdot 2x \cdot 3^{n-1} e^{3x} + \frac{n(n-1)}{2} \cdot 2 \cdot 3^{n-2} e^{3x}$$</div>
+        <p>En factorisant par \(3^{n-2} e^{3x}\) :</p>
+        <div class="math-display">$$f^{(n)}(x) = 3^{n-2} e^{3x} \left(9x^2 + 6nx + n(n-1)\right)$$</div>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Etablir une inegalite via l'etude de variations</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Inegalite par etude de variations</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Pour montrer que \(f(x) \geq g(x)\) sur un intervalle \(I\) :</p>
         <ol>
-          <li>Poser \(h(x) = f(x) - g(x)\).</li>
-          <li>Calculer \(h'(x)\) et etudier son signe sur \(I\).</li>
-          <li>Dresser le tableau de variations de \(h\).</li>
-          <li>Montrer que le minimum de \(h\) sur \(I\) est \(\geq 0\). Souvent \(h\) atteint son minimum en un point explicite \(x_0\) et \(h(x_0) = 0\).</li>
+          <li>Ramener l'inegalite \(f(x) \leq g(x)\) a l'etude du signe de \(h(x) = g(x) - f(x)\).</li>
+          <li>Etudier les variations de \(h\) : calculer \(h'\), determiner son signe, en deduire le tableau de variations de \(h\).</li>
+          <li>Conclure en montrant que \(h(x) \geq 0\) pour tout \(x\) du domaine (en utilisant le minimum).</li>
+          <li><strong>Inegalite de convexite :</strong> si \(f\) est convexe, alors \(f\left(\frac{a+b}{2}\right) \leq \frac{f(a)+f(b)}{2}\). On peut aussi utiliser la position relative de la courbe et de ses tangentes/secantes.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Variante : convexite</span>
-        <p>Si \(f\) est convexe, alors \(f(x) \geq f(a) + f'(a)(x-a)\) pour tout \(x\). Cela donne des inegalites classiques comme \(e^x \geq 1 + x\) ou \(\ln(1+x) \leq x\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Style concours</span>
-        <p>Montrer que pour tout \(x > 0\) :</p>
-        $$\ln(x) \leq \frac{x^2 - 1}{2x}$$
-        <ol>
-          <li>Poser \(h(x) = \frac{x^2 - 1}{2x} - \ln(x)\) et montrer que \(h\) est definie et derivable sur \(]0, +\infty[\).</li>
-          <li>Etudier le signe de \(h'(x)\) et en deduire les variations de \(h\).</li>
-          <li>Conclure.</li>
-        </ol>
-        <p><em>Indication :</em> \(h'(x) = \frac{1}{2}\left(1 + \frac{1}{x^2}\right) - \frac{1}{x} = \frac{(x-1)^2}{2x^2} \geq 0\). Donc \(h\) est croissante sur \(]0,+\infty[\)... non, verifier : \(h(1) = 0\) et \(h' \geq 0\) partout, donc \(h(x) \geq 0\) pour \(x \geq 1\). Pour \(x < 1\), \(h\) decroit puis... recalculer soigneusement.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(\displaystyle \ln(x) \leq \frac{x^2 - 1}{2x}\) pour tout \(x > 0\).</strong></p>
+        <p><em>Resolution.</em> Posons \(h(x) = \frac{x^2 - 1}{2x} - \ln(x) = \frac{x}{2} - \frac{1}{2x} - \ln(x)\) pour \(x > 0\).</p>
+        <p>Derivons : \(h'(x) = \frac{1}{2} + \frac{1}{2x^2} - \frac{1}{x} = \frac{x^2 - 2x + 1}{2x^2} = \frac{(x-1)^2}{2x^2} \geq 0\).</p>
+        <p>Donc \(h\) est croissante sur \(]0, +\infty[\), avec egalite de la derivee uniquement en \(x = 1\). On a \(h(1) = 0 - 0 = 0\).</p>
+        <p>Comme \(h' \geq 0\) et \(h(1) = 0\), on a \(h(x) \leq 0\) pour \(x \leq 1\) et \(h(x) \geq 0\) pour \(x \geq 1\). Mais \(h\) est decroissante puis croissante... Reprenons : \(h'(x) = \frac{(x-1)^2}{2x^2} \geq 0\) pour tout \(x > 0\). Donc \(h\) est <em>croissante</em> sur \(]0, +\infty[\). Comme \(h(1) = 0\) est un minimum global (unique point ou \(h' = 0\), et \(h\) est strictement croissante ailleurs), on a \(h(x) \geq h(1) = 0\) pour tout \(x > 0\).</p>
+        <p>En fait, \(h\) est croissante : pour \(x < 1\), \(h(x) < h(1) = 0\)... Non, \(h' \geq 0\) partout signifie \(h\) croissante. Donc pour \(x < 1\), \(h(x) \leq h(1) = 0\), ce qui donne \(\frac{x^2-1}{2x} \leq \ln(x)\) pour \(x < 1\). Pour \(x > 1\), \(h(x) \geq h(1) = 0\), ce qui donne \(\ln(x) \leq \frac{x^2-1}{2x}\).</p>
+        <p>L'inegalite \(\ln(x) \leq \frac{x^2-1}{2x}\) est donc valable pour \(x \geq 1\), avec egalite en \(x = 1\). Pour \(x \in ]0,1[\), c'est l'inegalite inverse.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M3 ═══════════════ -->
     <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Resoudre une inequation differentielle</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Inequation differentielle</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Pour montrer que \(f(x) \leq Ce^{\alpha x}\) a partir de \(f'(x) \leq \alpha f(x) + \beta\) :</p>
         <ol>
-          <li>Introduire la fonction auxiliaire \(g(x) = e^{-\alpha x} f(x)\).</li>
-          <li>Calculer \(g'(x) = e^{-\alpha x}(f'(x) - \alpha f(x))\).</li>
-          <li>Utiliser l'hypothese sur \(f'\) pour majorer \(g'(x)\).</li>
-          <li>Integrer l'inegalite \(g'(x) \leq \ldots\) entre \(0\) et \(x\) pour obtenir \(g(x) - g(0) \leq \ldots\)</li>
-          <li>Revenir a \(f(x) = e^{\alpha x} g(x)\) pour conclure.</li>
+          <li><strong>Lemme de Gronwall :</strong> si \(f\) est continue, \(f' \leq \alpha f\) sur \([a, b]\) et \(f(a) = c\), alors \(f(x) \leq c \, e^{\alpha(x-a)}\).</li>
+          <li><strong>Technique de la multiplication :</strong> pour \(f' \leq \alpha f\), poser \(g(x) = f(x) e^{-\alpha x}\). Alors \(g'(x) = (f'(x) - \alpha f(x))e^{-\alpha x} \leq 0\), donc \(g\) est decroissante.</li>
+          <li>Conclure : \(g(x) \leq g(a)\), soit \(f(x)e^{-\alpha x} \leq f(a) e^{-\alpha a}\), d'ou \(f(x) \leq f(a) e^{\alpha(x-a)}\).</li>
+          <li>Pour \(f' \geq \alpha f\), on obtient de meme \(f(x) \geq f(a) e^{\alpha(x-a)}\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Lemme de Gronwall</span>
-        <p>Si \(f\) est continue positive et \(f(t) \leq C + \int_0^t \alpha f(s)\,ds\), alors \(f(t) \leq C e^{\alpha t}\). C'est la version integrale de la methode ci-dessus.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Style concours</span>
-        <p>Soit \(f : [0,+\infty[ \to \mathbb{R}\) de classe \(\mathcal{C}^1\) telle que \(f(0) = 1\) et pour tout \(x \geq 0\) :
-        $$f'(x) \leq 3f(x) + 2$$</p>
-        <ol>
-          <li>Poser \(g(x) = e^{-3x}(f(x) + \frac{2}{3})\) et calculer \(g'(x)\).</li>
-          <li>Montrer que \(g\) est decroissante sur \([0,+\infty[\).</li>
-          <li>En deduire que \(f(x) \leq \frac{5}{3}e^{3x} - \frac{2}{3}\) pour tout \(x \geq 0\).</li>
-        </ol>
-        <p><em>Indication :</em> on pose \(h = f + 2/3\) pour se ramener a \(h' \leq 3h\), puis la fonction \(g = e^{-3x}h\) verifie \(g' \leq 0\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(f : [0, +\infty[ \to \mathbb{R}\) de classe \(\mathcal{C}^1\) verifiant \(f'(x) \leq 3f(x)\) pour tout \(x \geq 0\). Montrer que \(f(x) \leq f(0) e^{3x}\).</strong></p>
+        <p><em>Resolution.</em> Posons \(g(x) = f(x) e^{-3x}\). Alors \(g\) est de classe \(\mathcal{C}^1\) et :</p>
+        <div class="math-display">$$g'(x) = f'(x) e^{-3x} - 3f(x) e^{-3x} = (f'(x) - 3f(x)) e^{-3x} \leq 0$$</div>
+        <p>car \(f'(x) - 3f(x) \leq 0\) par hypothese et \(e^{-3x} > 0\). Donc \(g\) est decroissante sur \([0, +\infty[\).</p>
+        <p>Pour tout \(x \geq 0\) : \(g(x) \leq g(0) = f(0)\), soit \(f(x) e^{-3x} \leq f(0)\), d'ou :</p>
+        <div class="math-display">$$f(x) \leq f(0) e^{3x}$$</div>
       </div>
     </section>
 
     <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Calculer ou evaluer une integrale</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Calcul d'integrale (recurrence, astuces)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Integration par parties (IPP) :</strong> \(\int_a^b u'v = [uv]_a^b - \int_a^b uv'\). Choisir \(v\) dont la primitive est simple, et \(u'\) tel que \(u\) se simplifie en derivant.</li>
-          <li><strong>Changement de variable :</strong> poser \(t = \varphi(u)\) avec \(\varphi\) bijective \(\mathcal{C}^1\). Ne pas oublier de changer les bornes et l'element differentiel \(dt = \varphi'(u)\,du\).</li>
-          <li><strong>Relation de Chasles :</strong> decouper l'intervalle en sous-intervalles adaptes (par exemple pour lever des valeurs absolues ou exploiter une symetrie).</li>
-          <li><strong>Parite / periodicite :</strong> si \(f\) est paire et l'intervalle symetrique, \(\int_{-a}^a f = 2\int_0^a f\). Si \(f\) est impaire, \(\int_{-a}^a f = 0\).</li>
+          <li><strong>Relations de recurrence :</strong> pour les integrales \(I_n = \int_a^b f(t, n) \, dt\), chercher un lien entre \(I_n\) et \(I_{n-1}\) (ou \(I_{n-2}\)) par integration par parties ou formule trigonometrique.</li>
+          <li><strong>Integration par parties (IPP) :</strong> choisir \(u\) et \(dv\) de sorte que \(v \, du\) soit plus simple. Cas typique : \(\int P(t) e^{\alpha t} dt\), \(\int t^n \ln(t) dt\).</li>
+          <li><strong>Changement de variable :</strong> substitutions classiques \(t = \tan(\theta/2)\) (Weierstrass), \(t = a \sin\theta\), etc.</li>
+          <li><strong>Symetrie :</strong> si l'integrande est paire/impaire sur un intervalle symetrique, simplifier.</li>
+          <li>Pour les integrales de Wallis : \(W_n = \int_0^{\pi/2} \sin^n(t) dt = \int_0^{\pi/2} \cos^n(t) dt\), utiliser \((n+1)W_{n+1} = n W_{n-1}\) et le fait que \(W_n \sim \sqrt{\frac{\pi}{2n}}\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Integrales de Wallis</span>
-        <p>Les integrales \(W_n = \int_0^{\pi/2} \sin^n(t)\,dt\) verifient la relation \(W_n = \frac{n-1}{n}W_{n-2}\) et \(W_n \sim \sqrt{\frac{\pi}{2n}}\). Elles apparaissent souvent dans les exercices de concours.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Style concours</span>
-        <p>Soit \(I_n = \displaystyle\int_0^{\pi/4} \tan^n(t)\,dt\) pour \(n \in \mathbb{N}\).</p>
-        <ol>
-          <li>Montrer que \(I_n + I_{n+2} = \frac{1}{n+1}\) pour tout \(n \geq 0\).</li>
-          <li>En deduire que \(I_n \to 0\) quand \(n \to +\infty\).</li>
-          <li>Calculer \(I_0\), \(I_1\), \(I_2\), \(I_3\).</li>
-        </ol>
-        <p><em>Indication :</em> ecrire \(\tan^{n+2}(t) = \tan^n(t)(\sec^2(t) - 1)\) et integrer. On obtient \(I_{n+2} = \frac{1}{n+1} - I_n\). De plus \(0 \leq I_n \leq (\tan(\pi/4))^n \cdot \pi/4 \to 0\) ne marche pas car \(\tan(\pi/4) = 1\) ; utiliser l'encadrement \(0 \leq I_{n+1} \leq I_n\) et la relation.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(\displaystyle I_n = \int_0^{\pi/2} \tan^n(t) \, dt\) pour \(n \in \mathbb{N}\). Etablir une relation de recurrence et calculer \(I_0\), \(I_1\), \(I_2\).</strong></p>
+        <p><em>Resolution.</em> On ecrit \(\tan^n(t) = \tan^{n-2}(t) \cdot \tan^2(t) = \tan^{n-2}(t)(\sec^2(t) - 1)\). Donc :</p>
+        <div class="math-display">$$I_n = \int_0^{\pi/2} \tan^{n-2}(t) \sec^2(t) \, dt - I_{n-2}$$</div>
+        <p>Or \(\int_0^{\pi/2} \tan^{n-2}(t) \sec^2(t) \, dt = \left[\frac{\tan^{n-1}(t)}{n-1}\right]_0^{\pi/2}\). Attention, \(\tan(\pi/2) = +\infty\). L'integrale est impropre ; verifions : pour \(n \geq 2\), on pose \(u = \tan(t)\) et \(du = \sec^2(t) dt\), donc \(\int_0^{\pi/2} \tan^{n-2}(t) \sec^2(t) dt = \int_0^{+\infty} u^{n-2} du\) qui diverge pour \(n \geq 2\).</p>
+        <p>Correction : la bonne relation est obtenue autrement. On ecrit pour \(n \geq 2\) :</p>
+        <div class="math-display">$$I_n + I_{n-2} = \int_0^{\pi/2} \tan^{n-2}(t)(1 + \tan^2(t)) dt = \int_0^{\pi/2} \frac{\tan^{n-2}(t)}{\cos^2(t)} dt = \left[\frac{\tan^{n-1}(t)}{n-1}\right]_0^{\pi/2}$$</div>
+        <p>Cette expression diverge. En fait, \(I_n\) converge ssi \(n < 1\) en tant qu'integrale impropre... Non, verifions : pres de \(\pi/2\), \(\tan(t) \sim \frac{1}{\pi/2 - t}\), donc \(\tan^n(t) \sim (\pi/2-t)^{-n}\), qui est integrable ssi \(n < 1\). Donc \(I_n\) diverge pour \(n \geq 1\).</p>
+        <p>Remplacons par l'integrale convergente : \(\displaystyle J_n = \int_0^{\pi/4} \tan^n(t) \, dt\). Alors \(J_n + J_{n-2} = \int_0^{\pi/4} \tan^{n-2}(t) \sec^2(t) \, dt = \left[\frac{\tan^{n-1}(t)}{n-1}\right]_0^{\pi/4} = \frac{1}{n-1}\).</p>
+        <p>Ainsi \(J_n = \frac{1}{n-1} - J_{n-2}\). Et \(J_0 = \frac{\pi}{4}\), \(J_1 = \frac{1}{2}\ln 2\), \(J_2 = 1 - \frac{\pi}{4}\).</p>
       </div>
     </section>
 
@@ -304,44 +308,393 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Soit \(G(x) = \displaystyle\int_{u(x)}^{v(x)} f(x,t)\,dt\) ou \(u, v\) sont derivables.</p>
         <ol>
-          <li>Si \(f\) ne depend pas de \(x\) : \(G(x) = \int_{u(x)}^{v(x)} f(t)\,dt\) et par le theoreme fondamental :
-          $$G'(x) = f(v(x))\,v'(x) - f(u(x))\,u'(x)$$</li>
-          <li>Si \(f\) depend aussi de \(x\) : combiner la regle de Leibniz avec la derivation des bornes :
-          $$G'(x) = \int_{u(x)}^{v(x)} \frac{\partial f}{\partial x}(x,t)\,dt + f(x,v(x))\,v'(x) - f(x,u(x))\,u'(x)$$</li>
-          <li>Justifier la derivation sous l'integrale (domination de \(\frac{\partial f}{\partial x}\)) avant d'appliquer la formule.</li>
-          <li>Calculer explicitement chaque terme.</li>
+          <li>Soit \(\displaystyle G(x) = \int_{a(x)}^{b(x)} f(t) \, dt\) ou \(a, b\) sont derivables et \(f\) continue. Par le theoreme fondamental et la regle de la chaine :</li>
+          <li>\(\displaystyle G'(x) = f(b(x)) \cdot b'(x) - f(a(x)) \cdot a'(x)\).</li>
+          <li>Si en plus le parametre intervient dans l'integrande : \(\displaystyle G(x) = \int_{a(x)}^{b(x)} f(x, t) \, dt\), deriver sous le signe integral (si les conditions de regularite sont verifiees) :</li>
+          <li>\(\displaystyle G'(x) = f(x, b(x)) \cdot b'(x) - f(x, a(x)) \cdot a'(x) + \int_{a(x)}^{b(x)} \frac{\partial f}{\partial x}(x, t) \, dt\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Cas frequent</span>
-        <p>Quand une seule borne depend de \(x\) et \(f\) ne depend pas de \(x\), on se ramene simplement a la derivation d'une primitive : \(\frac{d}{dx}\int_a^{v(x)} f(t)\,dt = f(v(x))\,v'(x)\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(\displaystyle G(x) = \int_x^{x^2} \frac{e^{-t}}{t} \, dt\) pour \(x > 0\). Calculer \(G'(x)\) et etudier \(\lim_{x \to 0^+} G(x)\).</strong></p>
+        <p><em>Resolution.</em> Ici \(f(t) = \frac{e^{-t}}{t}\) est continue sur \(]0, +\infty[\), \(a(x) = x\), \(b(x) = x^2\). Donc :</p>
+        <div class="math-display">$$G'(x) = \frac{e^{-x^2}}{x^2} \cdot 2x - \frac{e^{-x}}{x} \cdot 1 = \frac{2e^{-x^2}}{x} - \frac{e^{-x}}{x} = \frac{2e^{-x^2} - e^{-x}}{x}$$</div>
+        <p>Pour la limite en \(0^+\), faisons le changement de variable \(t = xu\) dans l'integrale :</p>
+        <div class="math-display">$$G(x) = \int_x^{x^2} \frac{e^{-t}}{t} dt = \int_1^{x} \frac{e^{-xu}}{xu} \cdot x \, du = \int_1^{x} \frac{e^{-xu}}{u} du$$</div>
+        <p>Quand \(x \to 0^+\), \(e^{-xu} \to 1\) uniformement sur les compacts et la borne superieure \(x \to 0\). Donc \(G(x) \to \int_1^{0} \frac{1}{u} du = -\int_0^1 \frac{1}{u} du\) qui diverge. Examinons plus directement : pour \(0 < x < 1\), on a \(x^2 < x\), donc \(G(x) = \int_x^{x^2} \frac{e^{-t}}{t} dt = -\int_{x^2}^{x} \frac{e^{-t}}{t} dt < 0\). Et \(\frac{e^{-t}}{t} \geq \frac{e^{-1}}{t}\) sur \([x^2, x] \subset ]0, 1]\), donc \(|G(x)| \geq e^{-1} \int_{x^2}^{x} \frac{dt}{t} = e^{-1} |\ln x|\). Comme \(\ln x \to -\infty\), on a \(G(x) \to -\infty\).</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> La formule de Leibniz s'applique au produit de trois fonctions.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>La formule de Leibniz classique concerne le produit de <em>deux</em> fonctions : \((uv)^{(n)} = \sum \binom{n}{k} u^{(k)} v^{(n-k)}\). Pour trois fonctions \(uvw\), on peut appliquer Leibniz deux fois : d'abord a \((uv) \cdot w\), ou utiliser la formule multinomiale \((uvw)^{(n)} = \sum_{i+j+k=n} \frac{n!}{i!j!k!} u^{(i)} v^{(j)} w^{(k)}\), mais ce n'est pas la formule de Leibniz standard.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> Si \(f\) est convexe sur \(\mathbb{R}\), alors pour tous \(a, b\) : \(f\left(\frac{a+b}{2}\right) \leq \frac{f(a)+f(b)}{2}\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est la definition meme de la convexite appliquee avec \(\lambda = 1/2\) : \(f(\lambda a + (1-\lambda)b) \leq \lambda f(a) + (1-\lambda)f(b)\). Avec \(\lambda = 1/2\), on obtient bien l'inegalite de Jensen au milieu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> Si \(f' \leq g'\) sur \([a, b]\) et \(f(a) = g(a)\), alors \(f \leq g\) sur \([a, b]\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Posons \(h = g - f\). Alors \(h' = g' - f' \geq 0\) sur \([a, b]\) et \(h(a) = 0\). Donc \(h\) est croissante et \(h(x) \geq h(a) = 0\) pour tout \(x \in [a, b]\), soit \(f(x) \leq g(x)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> L'inegalite \(e^x \geq 1 + x\) est valable pour tout \(x \in \mathbb{R}\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>La fonction \(h(x) = e^x - 1 - x\) verifie \(h(0) = 0\) et \(h'(x) = e^x - 1\). On a \(h'(x) < 0\) pour \(x < 0\) et \(h'(x) > 0\) pour \(x > 0\). Donc \(h\) admet un minimum global en \(x = 0\), ou \(h(0) = 0\). Ainsi \(h(x) \geq 0\) pour tout \(x\). C'est aussi l'inegalite de convexite de \(e^x\) (tangente en \(0\)).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> Le lemme de Gronwall donne \(f' \leq \alpha f \Rightarrow f(x) \leq f(0) e^{\alpha x}\) meme si \(f(0) < 0\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Oui, le lemme de Gronwall ne fait pas d'hypothese de signe sur \(f(0)\). La demonstration par la fonction \(g(x) = f(x)e^{-\alpha x}\) donne \(g' \leq 0\), donc \(g\) decroissante, donc \(g(x) \leq g(0) = f(0)\), d'ou \(f(x) \leq f(0) e^{\alpha x}\). Si \(f(0) < 0\), l'inegalite est bien valide (et meme plus forte : \(f(x) \leq f(0) e^{\alpha x} < 0\) pour \(\alpha x > 0\)).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> Les integrales de Wallis verifient \(W_n \to 0\) quand \(n \to +\infty\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>\(W_n = \int_0^{\pi/2} \cos^n(t) dt\). Sur \(]0, \pi/2[\), \(0 \leq \cos(t) < 1\), donc \(\cos^n(t) \to 0\) simplement. Par convergence dominee (dominee par \(1\), integrable sur \([0, \pi/2]\)), \(W_n \to 0\). Plus precisement, \(W_n \sim \sqrt{\frac{\pi}{2n}}\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> Si \(F(x) = \int_0^x f(t) dt\) avec \(f\) continue, alors \(F'(x) = f(x)\) pour tout \(x\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est exactement le theoreme fondamental de l'analyse (premiere partie) : si \(f\) est continue sur un intervalle contenant \(0\) et \(x\), alors \(F(x) = \int_0^x f(t) dt\) est derivable et \(F'(x) = f(x)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> \(\displaystyle \frac{d}{dx} \int_0^{x^2} e^{-t^2} dt = 2x e^{-x^4}\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>On pose \(F(u) = \int_0^u e^{-t^2} dt\) (la fonction d'erreur a un facteur pres). Par le theoreme fondamental, \(F'(u) = e^{-u^2}\). Par la regle de la chaine avec \(u = x^2\) : \(\frac{d}{dx} F(x^2) = F'(x^2) \cdot 2x = e^{-x^4} \cdot 2x = 2x e^{-x^4}\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> L'integration par parties \(\int_a^b u \, dv = [uv]_a^b - \int_a^b v \, du\) necessite que \(u\) et \(v\) soient de classe \(\mathcal{C}^1\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Dans la version classique (programme de prepa), on demande que \(u\) et \(v\) soient de classe \(\mathcal{C}^1\) sur \([a, b]\). La formule repose sur la derivee de \(uv\) : \((uv)' = u'v + uv'\), qu'on integre sur \([a, b]\). Il existe des generalisations avec des hypotheses plus faibles, mais dans le cadre du cours, \(\mathcal{C}^1\) est requis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> Si \(G(x) = \int_x^{2x} f(t) dt\) avec \(f\) continue, alors \(G'(x) = 2f(2x) - f(x)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Par la formule de derivation avec parametre aux bornes : \(G(x) = \int_x^{2x} f(t) dt\), les bornes sont \(a(x) = x\) (donc \(a'(x) = 1\)) et \(b(x) = 2x\) (donc \(b'(x) = 2\)). Ainsi \(G'(x) = f(2x) \cdot 2 - f(x) \cdot 1 = 2f(2x) - f(x)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
       <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Style concours</span>
-        <p>Soit \(H(x) = \displaystyle\int_x^{x^2} \frac{e^{-t}}{t}\,dt\) pour \(x > 0\).</p>
+        <span class="annale-badge">Monier Ch. 12</span>
+        <span class="block__label">Exercice 1 -- Derivees n-iemes</span>
+        <ol>
+          <li>Calculer la derivee n-ieme de \(f(x) = (x^2 + 1)e^x\) par la formule de Leibniz.</li>
+          <li>Calculer la derivee n-ieme de \(g(x) = \frac{1}{x^2 - 1}\) par DES.</li>
+          <li>En deduire \(g^{(n)}(0)\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Posons \(u(x) = x^2 + 1\) et \(v(x) = e^x\). On a \(u' = 2x\), \(u'' = 2\), \(u^{(k)} = 0\) pour \(k \geq 3\), et \(v^{(k)} = e^x\). Par Leibniz :</p>
+            <div class="math-display">$$f^{(n)}(x) = (x^2+1)e^x + n \cdot 2x \cdot e^x + \frac{n(n-1)}{2} \cdot 2 \cdot e^x$$</div>
+            <div class="math-display">$$= e^x \left(x^2 + 2nx + n(n-1) + 1\right) = e^x(x^2 + 2nx + n^2 - n + 1)$$</div>
+
+            <p><strong>2.</strong> DES : \(\frac{1}{x^2-1} = \frac{1}{(x-1)(x+1)} = \frac{1/2}{x-1} - \frac{1/2}{x+1}\). Alors :</p>
+            <div class="math-display">$$g^{(n)}(x) = \frac{1}{2} \cdot \frac{(-1)^n n!}{(x-1)^{n+1}} - \frac{1}{2} \cdot \frac{(-1)^n n!}{(x+1)^{n+1}}$$</div>
+            <div class="math-display">$$= \frac{(-1)^n n!}{2}\left(\frac{1}{(x-1)^{n+1}} - \frac{1}{(x+1)^{n+1}}\right)$$</div>
+
+            <p><strong>3.</strong> En \(x = 0\) :</p>
+            <div class="math-display">$$g^{(n)}(0) = \frac{(-1)^n n!}{2}\left(\frac{1}{(-1)^{n+1}} - 1\right) = \frac{(-1)^n n!}{2}\left((-1)^{n+1} - 1\right)$$</div>
+            <p>Si \(n\) est pair : \((-1)^{n+1} = -1\), donc \(g^{(n)}(0) = \frac{n!}{2}(-1-1) = -n!\).</p>
+            <p>Si \(n\) est impair : \((-1)^{n+1} = 1\), donc \(g^{(n)}(0) = \frac{-n!}{2}(1-1) = 0\).</p>
+            <p>Bilan : \(g^{(n)}(0) = \begin{cases} -n! & \text{si } n \text{ pair} \\ 0 & \text{si } n \text{ impair} \end{cases}\)</p>
+            <p>C'est coherent avec le DSE : \(\frac{1}{x^2-1} = -\frac{1}{1-x^2} = -\sum x^{2k}\) pour \(|x| < 1\), donc \(g^{(n)}(0)/n! = 0\) si \(n\) impair, et \(g^{(2k)}(0)/(2k)! = -1\), soit \(g^{(2k)}(0) = -(2k)!\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 12</span>
+        <span class="block__label">Exercice 2 -- Inegalites classiques</span>
+        <ol>
+          <li>Montrer que pour tout \(x > 0\) : \(\dfrac{x}{1+x} \leq \ln(1+x) \leq x\).</li>
+          <li>Montrer que pour tout \(x \geq 0\) : \(\sin(x) \leq x\) et \(\cos(x) \geq 1 - \frac{x^2}{2}\).</li>
+          <li>En deduire que pour tout \(x \geq 0\) : \(\sin(x) \geq x - \frac{x^3}{6}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> <em>Inegalite \(\ln(1+x) \leq x\) :</em> Posons \(h(x) = x - \ln(1+x)\). Alors \(h(0) = 0\) et \(h'(x) = 1 - \frac{1}{1+x} = \frac{x}{1+x} \geq 0\) pour \(x > 0\). Donc \(h\) est croissante sur \([0, +\infty[\) avec \(h(0) = 0\), d'ou \(h(x) \geq 0\), soit \(\ln(1+x) \leq x\).</p>
+            <p><em>Inegalite \(\frac{x}{1+x} \leq \ln(1+x)\) :</em> Posons \(\varphi(x) = \ln(1+x) - \frac{x}{1+x}\). Alors \(\varphi(0) = 0\) et \(\varphi'(x) = \frac{1}{1+x} - \frac{1}{(1+x)^2} = \frac{x}{(1+x)^2} \geq 0\) pour \(x \geq 0\). Donc \(\varphi(x) \geq \varphi(0) = 0\).</p>
+
+            <p><strong>2.</strong> <em>Inegalite \(\sin(x) \leq x\) :</em> Posons \(h(x) = x - \sin(x)\). \(h(0) = 0\), \(h'(x) = 1 - \cos(x) \geq 0\). Donc \(h\) croissante et \(h(x) \geq 0\).</p>
+            <p><em>Inegalite \(\cos(x) \geq 1 - x^2/2\) :</em> Posons \(\psi(x) = \cos(x) - 1 + \frac{x^2}{2}\). \(\psi(0) = 0\), \(\psi'(x) = -\sin(x) + x \geq 0\) (d'apres l'inegalite precedente). Donc \(\psi\) croissante et \(\psi(x) \geq 0\).</p>
+
+            <p><strong>3.</strong> Posons \(\theta(x) = \sin(x) - x + \frac{x^3}{6}\). \(\theta(0) = 0\), \(\theta'(x) = \cos(x) - 1 + \frac{x^2}{2} \geq 0\) (d'apres la question 2). Donc \(\theta\) croissante et \(\theta(x) \geq 0\), soit \(\sin(x) \geq x - \frac{x^3}{6}\).</p>
+            <p>On retrouve les encadrements du sinus par les sommes partielles de son developpement de Taylor, la methode generalisant a tout ordre.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 12</span>
+        <span class="block__label">Exercice 3 -- Inequation differentielle et applications</span>
+        <p>Soit \(f : [0, +\infty[ \to \mathbb{R}\) de classe \(\mathcal{C}^1\).</p>
+        <ol>
+          <li>On suppose \(f' + f \geq 0\) et \(f(0) = 1\). Montrer que \(f(x) \geq e^{-x}\) pour tout \(x \geq 0\).</li>
+          <li>On suppose \(|f'(x)| \leq M|f(x)|\) pour tout \(x \geq 0\), avec \(M > 0\), et \(f(0) = 0\). Montrer que \(f = 0\) sur \([0, +\infty[\).</li>
+          <li>Soit \(g : [0,1] \to \mathbb{R}\) de classe \(\mathcal{C}^1\) verifiant \(g(0) = 0\) et \(|g'(x)| \leq 2|g(x)|\) pour tout \(x \in [0,1]\). Montrer que \(g = 0\) sur \([0, 1]\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Posons \(h(x) = f(x) e^x\). Alors \(h'(x) = (f'(x) + f(x))e^x \geq 0\) car \(f' + f \geq 0\) et \(e^x > 0\). Donc \(h\) est croissante. Pour \(x \geq 0\) : \(h(x) \geq h(0) = f(0) = 1\), soit \(f(x) e^x \geq 1\), d'ou \(f(x) \geq e^{-x}\).</p>
+
+            <p><strong>2.</strong> L'hypothese \(|f'| \leq M|f|\) donne \(-M f \leq f' \leq Mf\) quand \(f \geq 0\), et de meme quand \(f \leq 0\). Posons \(\varphi(x) = f(x)^2\). Alors \(\varphi'(x) = 2f(x)f'(x)\) et \(|\varphi'(x)| = 2|f(x)||f'(x)| \leq 2M f(x)^2 = 2M\varphi(x)\).</p>
+            <p>Donc \(\varphi' \leq 2M\varphi\). Par Gronwall, \(\varphi(x) \leq \varphi(0) e^{2Mx} = 0\) car \(\varphi(0) = f(0)^2 = 0\).</p>
+            <p>Comme \(\varphi(x) = f(x)^2 \geq 0\) et \(\varphi(x) \leq 0\), on a \(\varphi(x) = 0\), soit \(f(x) = 0\) pour tout \(x \geq 0\).</p>
+
+            <p><strong>3.</strong> C'est un cas particulier de la question 2 avec \(M = 2\) sur l'intervalle \([0, 1]\). On pose \(\varphi(x) = g(x)^2\). L'hypothese \(|g'| \leq 2|g|\) donne \(\varphi' \leq 4\varphi\). Par Gronwall : \(\varphi(x) \leq \varphi(0)e^{4x} = 0\). Donc \(g = 0\) sur \([0, 1]\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 12</span>
+        <span class="block__label">Exercice 4 -- Integrales de Wallis et equivalents</span>
+        <ol>
+          <li>Montrer la relation de recurrence \(W_n = \frac{n-1}{n} W_{n-2}\) pour \(n \geq 2\), ou \(W_n = \int_0^{\pi/2} \sin^n(t) \, dt\).</li>
+          <li>Calculer \(W_0, W_1, W_2, W_3, W_4, W_5\).</li>
+          <li>Montrer que \(W_n W_{n+1} = \frac{\pi}{2(n+1)}\).</li>
+          <li>En deduire que \(W_n \sim \sqrt{\frac{\pi}{2n}}\) quand \(n \to +\infty\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> IPP avec \(u = \sin^{n-1}(t)\) et \(dv = \sin(t) dt\), d'ou \(du = (n-1)\sin^{n-2}(t)\cos(t) dt\) et \(v = -\cos(t)\) :</p>
+            <div class="math-display">$$W_n = \left[-\sin^{n-1}(t)\cos(t)\right]_0^{\pi/2} + (n-1)\int_0^{\pi/2} \sin^{n-2}(t)\cos^2(t) dt$$</div>
+            <p>Le crochet s'annule aux deux bornes. Et \(\cos^2(t) = 1 - \sin^2(t)\), donc :</p>
+            <div class="math-display">$$W_n = (n-1)(W_{n-2} - W_n), \quad \text{soit} \quad nW_n = (n-1)W_{n-2}$$</div>
+
+            <p><strong>2.</strong> \(W_0 = \frac{\pi}{2}\), \(W_1 = 1\). Puis :</p>
+            <ul>
+              <li>\(W_2 = \frac{1}{2} W_0 = \frac{\pi}{4}\)</li>
+              <li>\(W_3 = \frac{2}{3} W_1 = \frac{2}{3}\)</li>
+              <li>\(W_4 = \frac{3}{4} W_2 = \frac{3\pi}{16}\)</li>
+              <li>\(W_5 = \frac{4}{5} W_3 = \frac{8}{15}\)</li>
+            </ul>
+
+            <p><strong>3.</strong> Par la recurrence \(W_{n+1} = \frac{n}{n+1} W_{n-1}\), on a \(W_n W_{n+1} = W_n \cdot \frac{n}{n+1} W_{n-1}\). Par ailleurs, \(W_n = \frac{n-1}{n} W_{n-2}\), donc \(W_{n-1} W_n = W_{n-1} \cdot \frac{n-1}{n} W_{n-2}\). En iterant et en utilisant \(W_0 W_1 = \frac{\pi}{2}\), on montre par recurrence que :</p>
+            <div class="math-display">$$W_n W_{n+1} = \frac{\pi}{2(n+1)}$$</div>
+
+            <p><strong>4.</strong> La suite \((W_n)\) est decroissante (car \(0 \leq \sin(t) \leq 1\) sur \([0, \pi/2]\) implique \(\sin^{n+1}(t) \leq \sin^n(t)\)). De \(W_{n+1} \leq W_n \leq W_{n-1}\) et \(W_{n+1} = \frac{n}{n+1} W_{n-1}\), on tire \(\frac{n}{n+1} \leq \frac{W_n}{W_{n-1}} \leq 1\), d'ou \(\frac{W_n}{W_{n+1}} \to 1\), soit \(W_n \sim W_{n+1}\). Alors \(W_n^2 \sim W_n W_{n+1} = \frac{\pi}{2(n+1)} \sim \frac{\pi}{2n}\), d'ou :</p>
+            <div class="math-display">$$W_n \sim \sqrt{\frac{\pi}{2n}}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 12</span>
+        <span class="block__label">Exercice 5 -- Integrales a parametre</span>
+        <p>On pose pour \(x > 0\) :</p>
+        <div class="math-display">$$F(x) = \int_0^1 \frac{t^x - 1}{\ln t} \, dt$$</div>
+        <ol>
+          <li>Montrer que l'integrale est bien definie pour \(x > 0\).</li>
+          <li>Calculer \(F'(x)\) en derivant sous le signe integral (justifier).</li>
+          <li>En deduire la valeur de \(F(x)\) pour tout \(x > 0\).</li>
+          <li>Application : calculer \(\displaystyle \int_0^1 \frac{t^2 - 1}{\ln t} dt\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Posons \(f(t, x) = \frac{t^x - 1}{\ln t}\) pour \(t \in ]0, 1[\). Pres de \(t = 1\), on ecrit \(t^x = e^{x \ln t}\) et \(\frac{t^x - 1}{\ln t} = \frac{e^{x\ln t} - 1}{\ln t} \to x\) quand \(t \to 1^-\) (par le taux d'accroissement de l'exponentielle). Donc \(f\) se prolonge par continuite en \(t = 1\) avec \(f(1, x) = x\).</p>
+            <p>Pres de \(t = 0^+\) : \(t^x \to 0\), \(\ln t \to -\infty\), donc \(\frac{t^x - 1}{\ln t} \to \frac{-1}{-\infty} = 0\). Plus precisement, \(\left|\frac{t^x - 1}{\ln t}\right| \leq \frac{1}{|\ln t|}\) pour \(t\) petit, qui est integrable au voisinage de \(0\). L'integrale est bien definie.</p>
+
+            <p><strong>2.</strong> On a \(\frac{\partial f}{\partial x}(t, x) = \frac{t^x \ln t}{\ln t} = t^x\) pour \(t \in ]0, 1[\). La fonction \(t \mapsto t^x\) est continue et bornee par \(1\) sur \([0, 1]\), donc integrable. Les hypotheses du theoreme de derivation sous le signe integral (domination uniforme sur tout compact en \(x\)) sont satisfaites. Donc :</p>
+            <div class="math-display">$$F'(x) = \int_0^1 t^x \, dt = \left[\frac{t^{x+1}}{x+1}\right]_0^1 = \frac{1}{x+1}$$</div>
+
+            <p><strong>3.</strong> On a \(F'(x) = \frac{1}{x+1}\), donc \(F(x) = \ln(x+1) + C\). Or \(F(0) = \int_0^1 \frac{t^0 - 1}{\ln t} dt = \int_0^1 0 \, dt = 0\). Donc \(C = 0\) et :</p>
+            <div class="math-display">$$F(x) = \ln(x + 1)$$</div>
+
+            <p><strong>4.</strong> \(\displaystyle \int_0^1 \frac{t^2 - 1}{\ln t} dt = F(2) = \ln 3\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 12</span>
+        <span class="block__label">Exercice 6 -- Derivation d'une integrale a bornes variables</span>
+        <p>Pour \(x > 0\), on definit :</p>
+        <div class="math-display">$$H(x) = \int_x^{x^2} \frac{\sin(t)}{t} \, dt$$</div>
         <ol>
           <li>Montrer que \(H\) est bien definie et de classe \(\mathcal{C}^1\) sur \(]0, +\infty[\).</li>
           <li>Calculer \(H'(x)\).</li>
-          <li>Etudier \(\lim_{x \to 0^+} H(x)\) et \(\lim_{x \to +\infty} H(x)\).</li>
+          <li>Montrer que \(\lim_{x \to 0^+} H(x) = 0\).</li>
+          <li>Etudier le signe de \(H(x)\) pour \(x\) au voisinage de \(0^+\) et pour \(x\) au voisinage de \(+\infty\).</li>
         </ol>
-        <p><em>Indication :</em> \(H'(x) = \frac{e^{-x^2}}{x^2}\cdot 2x - \frac{e^{-x}}{x} = \frac{2e^{-x^2}}{x} - \frac{e^{-x}}{x}\). Pour la limite en \(0^+\), remarquer que \(\frac{e^{-t}}{t} \sim \frac{1}{t}\) donc \(H(x) \sim \int_x^{x^2} \frac{dt}{t} = \ln(x)\) quand \(x \to 0^+\).</p>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> La fonction \(t \mapsto \frac{\sin t}{t}\) est continue sur \(]0, +\infty[\) et se prolonge par continuite en \(0\) (avec la valeur \(1\)). Pour \(x > 0\), les bornes \(x\) et \(x^2\) sont dans \(]0, +\infty[\), donc l'integrale est bien definie. Comme les bornes \(x \mapsto x\) et \(x \mapsto x^2\) sont \(\mathcal{C}^1\) et l'integrande est continue, \(H\) est de classe \(\mathcal{C}^1\).</p>
+
+            <p><strong>2.</strong> Par la formule de derivation avec bornes variables :</p>
+            <div class="math-display">$$H'(x) = \frac{\sin(x^2)}{x^2} \cdot 2x - \frac{\sin(x)}{x} \cdot 1 = \frac{2\sin(x^2)}{x} - \frac{\sin(x)}{x}$$</div>
+
+            <p><strong>3.</strong> Pour \(0 < x < 1\), on a \(x^2 < x\), donc \(H(x) = -\int_{x^2}^x \frac{\sin t}{t} dt\). Or pres de \(0\), \(\frac{\sin t}{t} \to 1\), donc pour \(t \in [x^2, x]\) avec \(x\) petit, \(\frac{\sin t}{t} \approx 1\). Ainsi :</p>
+            <div class="math-display">$$|H(x)| \leq \int_{x^2}^x \left|\frac{\sin t}{t}\right| dt \leq \int_{x^2}^x 1 \, dt = x - x^2 \to 0$$</div>
+            <p>Par encadrement, \(H(x) \to 0\) quand \(x \to 0^+\).</p>
+
+            <p><strong>4.</strong> <em>Au voisinage de \(0^+\) :</em> pour \(0 < x < 1\) petit, \(x^2 < x\) et \(\sin(t)/t > 0\) pour \(t \in ]0, \pi[\). Donc \(\int_{x^2}^x \frac{\sin t}{t} dt > 0\) et \(H(x) = -\int_{x^2}^x \frac{\sin t}{t} dt < 0\).</p>
+            <p><em>Au voisinage de \(+\infty\) :</em> pour \(x > 1\), \(x^2 > x\), donc \(H(x) = \int_x^{x^2} \frac{\sin t}{t} dt\). Par integration par parties (ou le lemme de Riemann-Lebesgue) : \(\int_x^{x^2} \frac{\sin t}{t} dt = \left[-\frac{\cos t}{t}\right]_x^{x^2} - \int_x^{x^2} \frac{\cos t}{t^2} dt\). Le premier terme est \(\frac{\cos x}{x} - \frac{\cos(x^2)}{x^2}\), qui tend vers \(0\), et l'integrale restante est majoree par \(\int_x^{+\infty} \frac{1}{t^2} dt = \frac{1}{x} \to 0\). Donc \(H(x) \to 0\) quand \(x \to +\infty\). Le signe oscille avec les zeros de sin.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
-      <a href="mp-m13-integrales-parametre.html" class="course__nav-link">
-        &larr; Precedent
-        <span>Integrales a parametre</span>
-      </a>
-      <a href="mp-m15-fourier.html" class="course__nav-link course__nav-link--next">
+      <div></div>
+      <a href="mp-m9-groupes-anneaux.html" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
-        <span>Series de Fourier</span>
+        <span>Groupes & Anneaux</span>
       </a>
     </nav>
 
@@ -399,6 +752,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

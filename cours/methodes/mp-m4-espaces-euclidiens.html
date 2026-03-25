@@ -18,6 +18,7 @@
     .course__back:hover{color:var(--accent)}
     .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
     .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .badge--tier1{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;background:rgba(163,42,42,.15);color:#A32A2A;border:1px solid rgba(163,42,42,.3);padding:4px 12px;border-radius:20px}
     .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
     .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
     .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
@@ -34,12 +35,20 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
-    .block ol{counter-reset:block-step}
-    .block ol li{counter-increment:block-step}
-    .block ol li::before{content:counter(block-step) '.';color:var(--accent);margin-right:8px;font-weight:600;font-family:var(--font-mono);font-size:.8rem}
+    .block ol{counter-reset:step}
+    .block ol li{counter-increment:step}
+    .block ol li::before{content:counter(step) '.';color:var(--accent);margin-right:8px;font-weight:600;font-family:var(--font-mono);font-size:.8rem}
     .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
     .block--def .block__label{color:#2563A3}
     .block--def ul li::before{color:#2563A3}
@@ -54,14 +63,25 @@
     .block--remark p{color:var(--ink-light);font-size:.875rem}
     .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
     .block--cor .block__label{color:#9B59B6}
-    .block--method{background:rgba(14,116,144,.06);border-left:3px solid #0E7490}
-    .block--method .block__label{color:#0E7490}
-    .block--method ul li::before{color:#0E7490}
-    .block--method ol li::before{color:#0E7490}
-    .block--annale{background:rgba(180,83,9,.06);border-left:3px solid #B45309}
-    .block--annale .block__label{color:#B45309}
-    .block--annale ul li::before{color:#B45309}
+    .block--method{background:rgba(0,128,128,.06);border-left:3px solid #2A8A8A}
+    .block--method .block__label{color:#2A8A8A}
+    .block--method ol li::before{color:#2A8A8A}
+    .block--method ul li::before{color:#2A8A8A}
+    .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
+    .block--annale .block__label{color:var(--accent)}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
+    .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-grid{display:flex;flex-direction:column;gap:var(--space-md)}
+    .vf-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:var(--space-md) var(--space-lg)}
+    .vf-item__q{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:4px}
+    .vf-item__a{font-size:.85rem;color:var(--ink-light);line-height:1.7}
+    .vf-item__tag{display:inline-block;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:8px;margin-right:6px}
+    .vf-item__tag--v{background:rgba(75,130,90,.12);color:#4B825A}
+    .vf-item__tag--f{background:rgba(163,42,42,.12);color:#A32A2A}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -80,13 +100,17 @@
     [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
     [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
     [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
-    [data-theme="dark"] .block--method{background:rgba(14,116,144,.1);border-left-color:#22D3EE}
-    [data-theme="dark"] .block--method .block__label{color:#22D3EE}
-    [data-theme="dark"] .block--method ul li::before{color:#22D3EE}
-    [data-theme="dark"] .block--method ol li::before{color:#22D3EE}
-    [data-theme="dark"] .block--annale{background:rgba(180,83,9,.1);border-left-color:#F59E0B}
-    [data-theme="dark"] .block--annale .block__label{color:#F59E0B}
-    [data-theme="dark"] .block--annale ul li::before{color:#F59E0B}
+    [data-theme="dark"] .block--method{background:rgba(0,128,128,.1);border-left-color:#4ABABA}
+    [data-theme="dark"] .block--method .block__label{color:#4ABABA}
+    [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
+    [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
+    [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
+    [data-theme="dark"] .block--proof .block__label{color:#8888A0}
+    [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
+    [data-theme="dark"] .vf-item{background:var(--bg-card);border-color:var(--border)}
+    [data-theme="dark"] .vf-item__tag--v{background:rgba(75,130,90,.2);color:#6AAF7A}
+    [data-theme="dark"] .vf-item__tag--f{background:rgba(163,42,42,.2);color:#D45A5A}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
 </head>
@@ -145,148 +169,530 @@
     <a href="../../mp.html#methodes" class="course__back">&larr; Retour aux methodes MP</a>
 
     <div class="course__meta">
-      <span class="course__badge">MP -- Methodes CCINP</span>
-      <span class="course__chapter">Methode 4</span>
+      <span class="course__badge">MP -- Methodes Monier Ch.5</span>
     </div>
 
     <h1 class="course__title">Espaces euclidiens</h1>
 
     <p class="course__intro">
-      Methodes essentielles pour les espaces euclidiens : projection orthogonale, Gram-Schmidt, theoreme spectral, distance a un hyperplan et inegalite de Cauchy-Schwarz. Chaque methode est illustree par un exercice type concours CCINP.
+      Fiche de methodes au format Monier : adjoint d'un endomorphisme, endomorphismes orthogonaux, theoreme spectral, matrices symetriques definies positives et projection orthogonale. Chaque methode est illustree par un exemple detaille, suivie d'un Vrai ou Faux et d'exercices entierement corriges.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Projection orthogonale sur un sous-espace</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Procede de Gram-Schmidt</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Theoreme spectral et diagonalisation en BON</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Distance a un hyperplan</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Inegalite de Cauchy-Schwarz et applications</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Calculer et utiliser l'adjoint \(f^*\)</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Endomorphismes orthogonaux</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Theoreme spectral</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Matrices SDP et \(\mathcal{S}_n^{++}\)</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Projection orthogonale</a></li>
+        <li class="course__toc-item"><a href="#vf"><span class="course__toc-num">VF.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#exos"><span class="course__toc-num">Ex.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--                  PARTIE 1 : METHODES                  -->
+    <!-- ══════════════════════════════════════════════════════ -->
+
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Projection orthogonale sur un sous-espace</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Calculer et utiliser l'adjoint \(f^*\)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Determiner l'adjoint \(f^*\) d'un endomorphisme \(f\) d'un espace euclidien \((E, \langle\cdot,\cdot\rangle)\).</p>
         <ol>
-          <li>Determiner une base orthonormee \((e_1, \ldots, e_p)\) de \(F\) (par Gram-Schmidt si la base donnee n'est pas orthonormee).</li>
-          <li>Calculer la projection orthogonale :</li>
+          <li><strong>Definition :</strong> \(f^*\) est l'unique endomorphisme tel que \(\langle f(x), y \rangle = \langle x, f^*(y) \rangle\) pour tout \(x, y \in E\).</li>
+          <li><strong>En matrice :</strong> si \(\mathcal{B}\) est une BON, alors \(\mathrm{Mat}_{\mathcal{B}}(f^*) = (\mathrm{Mat}_{\mathcal{B}}(f))^T\).</li>
+          <li><strong>Methode directe :</strong> pour tout \(y \in E\), calculer \(\langle f(x), y \rangle\) et l'ecrire sous la forme \(\langle x, g(y) \rangle\). Alors \(f^* = g\).</li>
+          <li><strong>Proprietes :</strong> \((f \circ g)^* = g^* \circ f^*\), \((f^*)^* = f\), \(\ker(f^*) = \mathrm{Im}(f)^\perp\).</li>
         </ol>
-        <div class="math-display">$$p_F(x) = \sum_{i=1}^{p} \langle x, e_i \rangle \, e_i$$</div>
-        <ol start="3">
-          <li>En deduire la distance :</li>
-        </ol>
-        <div class="math-display">$$d(x, F) = \| x - p_F(x) \|$$</div>
       </div>
 
-      <div class="block block--annale">
-        <span class="block__label">Exercice -- Style CCINP 2023 M2</span>
-        <p>Dans \(\mathbb{R}_2[X]\) muni du produit scalaire \(\displaystyle\langle P, Q \rangle = \int_{-1}^{1} P(t)\,Q(t)\,dt\), calculer la projection orthogonale de \(X^2\) sur \(\mathrm{Vect}(1, X)\). En deduire \(d(X^2,\, \mathbb{R}_1[X])\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Soit \(E = \mathbb{R}^3\) muni du produit scalaire canonique, \(a = \begin{pmatrix}1\\2\\1\end{pmatrix}\), \(b = \begin{pmatrix}0\\1\\-1\end{pmatrix}\) et \(f(x) = \langle a, x \rangle\,b\). Trouver \(f^*\).</p>
+        <ol>
+          <li>Pour tout \(x, y \in \mathbb{R}^3\) :
+            $$\langle f(x), y \rangle = \langle a, x \rangle \langle b, y \rangle = \langle x, a \rangle \langle b, y \rangle = \langle x,\, \langle b, y \rangle\,a \rangle$$
+          </li>
+          <li>Donc \(f^*(y) = \langle b, y \rangle\,a\).</li>
+          <li><strong>Verification :</strong> \(\mathrm{Mat}(f) = ba^T = \begin{pmatrix}0&0&0\\1&2&1\\-1&-2&-1\end{pmatrix}\) et \(\mathrm{Mat}(f^*) = (ba^T)^T = ab^T = \begin{pmatrix}0&1&-1\\0&2&-2\\0&1&-1\end{pmatrix}\).</li>
+          <li>On verifie que \(f^*(y) = \langle b, y \rangle\,a = (y_2 - y_3)\begin{pmatrix}1\\2\\1\end{pmatrix}\), ce qui correspond bien a \(ab^T\,y\).</li>
+        </ol>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Procede de Gram-Schmidt</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Endomorphismes orthogonaux</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>A partir d'une famille libre \((u_1, \ldots, u_p)\) :</p>
+        <p>Reconnaitre et classifier les endomorphismes orthogonaux.</p>
         <ol>
-          <li>Poser \(v_1 = u_1\).</li>
-          <li>Pour \(k \geq 1\) : \(\displaystyle v_{k+1} = u_{k+1} - p_{F_k}(u_{k+1})\) ou \(F_k = \mathrm{Vect}(v_1, \ldots, v_k)\).</li>
+          <li><strong>Definition :</strong> \(f \in \mathcal{L}(E)\) est orthogonal ssi \(\|f(x)\| = \|x\|\) pour tout \(x\), ssi \(f^* \circ f = \mathrm{Id}\), ssi la matrice \(M\) de \(f\) en BON verifie \(M^T M = I_n\).</li>
+          <li><strong>Proprietes :</strong> \(\det(f) = \pm 1\). Si \(\det(f) = 1\), \(f\) est une rotation (element de \(\mathrm{SO}_n\)). Si \(\det(f) = -1\), \(f\) est une reflexion composee avec une rotation.</li>
+          <li><strong>En dimension 2 :</strong> les rotations sont de matrice \(\begin{pmatrix}\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{pmatrix}\) et les reflexions (symetries) de matrice \(\begin{pmatrix}\cos\theta & \sin\theta \\ \sin\theta & -\cos\theta\end{pmatrix}\).</li>
+          <li><strong>En dimension 3 :</strong> toute rotation \(r \in \mathrm{SO}_3(\mathbb{R})\) admet un axe \(D\) (valeur propre 1) et un angle \(\theta\), avec \(\mathrm{tr}(r) = 1 + 2\cos\theta\).</li>
         </ol>
-        <div class="math-display">$$v_{k+1} = u_{k+1} - \sum_{i=1}^{k} \frac{\langle u_{k+1}, v_i \rangle}{\| v_i \|^2}\, v_i$$</div>
-        <ol start="3">
-          <li>Normaliser : \(\displaystyle e_k = \frac{v_k}{\| v_k \|}\).</li>
-        </ol>
-        <p>La famille \((e_1, \ldots, e_p)\) est une base orthonormee de \(\mathrm{Vect}(u_1, \ldots, u_p)\).</p>
       </div>
 
-      <div class="block block--annale">
-        <span class="block__label">Exercice -- Style CCINP 2025 M2</span>
-        <p>Orthonormaliser la famille \((1, X, X^2)\) dans \(\mathbb{R}_2[X]\) muni de \(\displaystyle\langle P, Q \rangle = \int_{-1}^{1} P(t)\,Q(t)\,dt\).</p>
-        <p><em>[Ce sont les polynomes de Legendre normalises.]</em></p>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Classification en dimension 2 et 3.</p>
+        <ol>
+          <li><strong>Dim 2 :</strong> soit \(M = \begin{pmatrix}0&1\\1&0\end{pmatrix}\). On a \(M^T M = I_2\), \(\det(M) = -1\). C'est une <strong>reflexion</strong> par rapport a la droite \(y = x\) (angle \(\theta = \pi/2\) dans la parametrisation ci-dessus, i.e. la droite fait un angle \(\pi/4\)).</li>
+          <li><strong>Dim 3 :</strong> soit \(R = \begin{pmatrix}0&0&1\\1&0&0\\0&1&0\end{pmatrix}\). On a \(\det(R) = 1\), \(\mathrm{tr}(R) = 0 = 1 + 2\cos\theta\), donc \(\cos\theta = -\tfrac{1}{2}\) et \(\theta = \tfrac{2\pi}{3}\). L'axe est \(\ker(R - I)\), on trouve \(\mathrm{Vect}\begin{pmatrix}1\\1\\1\end{pmatrix}\). C'est la rotation d'angle \(\tfrac{2\pi}{3}\) autour de \((1,1,1)\).</li>
+        </ol>
       </div>
     </section>
 
     <!-- ═══════════════ M3 ═══════════════ -->
     <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Theoreme spectral et diagonalisation en BON</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Theoreme spectral</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Pour \(A \in \mathscr{S}_n(\mathbb{R})\) (matrice symetrique reelle) :</p>
+        <p>Diagonaliser une matrice symetrique reelle en <strong>base orthonormee</strong>.</p>
         <ol>
-          <li>Calculer les <strong>valeurs propres</strong> (elles sont reelles).</li>
-          <li>Determiner les <strong>sous-espaces propres</strong> (ils sont deux a deux orthogonaux).</li>
-          <li><strong>Orthonormaliser</strong> chaque sous-espace propre (Gram-Schmidt si \(\dim E_\lambda \geq 2\)).</li>
-          <li>Former la matrice de passage orthogonale \(P\) : on a \(A = P D P^\top\).</li>
+          <li><strong>Theoreme spectral :</strong> toute matrice \(S \in \mathcal{S}_n(\mathbb{R})\) est diagonalisable dans une base orthonormee : \(S = PDP^T\) avec \(P \in \mathcal{O}_n(\mathbb{R})\) et \(D\) diagonale reelle.</li>
+          <li>Calculer le polynome caracteristique \(\chi_S(\lambda) = \det(S - \lambda I)\) et trouver les valeurs propres (toutes reelles).</li>
+          <li>Pour chaque valeur propre, calculer l'espace propre et en extraire une base orthonormee (procede de Gram-Schmidt si necessaire).</li>
+          <li>Les espaces propres de valeurs propres distinctes sont <strong>automatiquement orthogonaux</strong> (propriete des matrices symetriques).</li>
+          <li>Former \(P\) en juxtaposant les vecteurs propres normes.</li>
         </ol>
-        <div class="math-display">$$A = P D P^\top, \quad P \in \mathscr{O}_n(\mathbb{R}), \quad D = \mathrm{diag}(\lambda_1, \ldots, \lambda_n)$$</div>
       </div>
 
-      <div class="block block--annale">
-        <span class="block__label">Exercice -- Style CCINP 2024 M2</span>
-        <p>Diagonaliser dans une base orthonormee la matrice :</p>
-        <div class="math-display">$$A = \begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 2 \end{pmatrix}$$</div>
-        <p>Calculer une racine carree de \(A\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Diagonaliser \(S = \begin{pmatrix}3&1\\1&3\end{pmatrix}\) en BON.</p>
+        <ol>
+          <li>\(\chi_S(\lambda) = (3-\lambda)^2 - 1 = \lambda^2 - 6\lambda + 8 = (\lambda - 2)(\lambda - 4)\).</li>
+          <li>Valeurs propres : \(\lambda_1 = 2\), \(\lambda_2 = 4\).</li>
+          <li>\(E_2 = \ker(S - 2I) = \mathrm{Vect}\begin{pmatrix}1\\-1\end{pmatrix}\). Vecteur norme : \(v_1 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix}\).</li>
+          <li>\(E_4 = \ker(S - 4I) = \mathrm{Vect}\begin{pmatrix}1\\1\end{pmatrix}\). Vecteur norme : \(v_2 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix}\).</li>
+          <li>Verification d'orthogonalite : \(\langle v_1, v_2 \rangle = \frac{1}{2}(1-1) = 0\).</li>
+          <li>Conclusion : \(S = PDP^T\) avec \(P = \frac{1}{\sqrt{2}}\begin{pmatrix}1&1\\-1&1\end{pmatrix}\) et \(D = \begin{pmatrix}2&0\\0&4\end{pmatrix}\).</li>
+        </ol>
       </div>
     </section>
 
     <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Distance a un hyperplan</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Matrices SDP et \(\mathcal{S}_n^{++}\)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Si \(H = \ker(\varphi)\) avec \(\varphi\) forme lineaire, et \(u \in H^\perp \setminus \{0\}\) :</p>
-        <div class="math-display">$$d(x, H) = \frac{|\langle x, u \rangle|}{\| u \|}$$</div>
-        <p>Cas particulier dans \(\mathbb{R}^n\) canonique : pour \(H = \{a_1 x_1 + \cdots + a_n x_n = 0\}\) :</p>
-        <div class="math-display">$$d(x, H) = \frac{|a_1 x_1 + \cdots + a_n x_n|}{\sqrt{a_1^2 + \cdots + a_n^2}}$$</div>
+        <p>Manipuler les matrices symetriques definies positives et leurs proprietes.</p>
+        <ol>
+          <li><strong>Caracterisations equivalentes :</strong> \(S \in \mathcal{S}_n^{++}\) ssi \(\mathrm{Sp}(S) \subset \mathbb{R}_+^*\), ssi \(X^T S X > 0\) pour tout \(X \neq 0\), ssi les mineurs principaux dominants sont \(> 0\) (Sylvester).</li>
+          <li><strong>Proprietes :</strong> \(\det(S) > 0\), \(\mathrm{tr}(S) > 0\), \(S^{-1} \in \mathcal{S}_n^{++}\), \(\sqrt{S}\) existe et est unique dans \(\mathcal{S}_n^{++}\).</li>
+          <li><strong>Produit :</strong> si \(S \in \mathcal{S}_n^{++}\), alors \(A^T S A \in \mathcal{S}_n^+\) pour tout \(A\), et \(A^T S A \in \mathcal{S}_n^{++}\) ssi \(A\) est inversible.</li>
+          <li><strong>Propriete cle :</strong> pour \(S \in \mathcal{S}_n^{++}\), on a \(\det(I_n + S) \geq 1 + \det(S) > 1\).</li>
+        </ol>
       </div>
 
-      <div class="block block--annale">
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Dans \(\mathbb{R}^3\) euclidien canonique, calculer la distance du vecteur \((1, 2, 3)\) au plan d'equation \(x + y + z = 0\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Montrer que pour toute \(A \in \mathcal{M}_n(\mathbb{R})\), la matrice \(A^T A\) est symetrique positive. Quand est-elle SDP ?</p>
+        <ol>
+          <li><strong>Symetrie :</strong> \((A^TA)^T = A^T(A^T)^T = A^TA\).</li>
+          <li><strong>Positivite :</strong> pour tout \(X \in \mathbb{R}^n\), \(X^T(A^TA)X = (AX)^T(AX) = \|AX\|^2 \geq 0\).</li>
+          <li><strong>Definie positive ssi :</strong> \(\|AX\|^2 > 0\) pour tout \(X \neq 0\), i.e. \(\ker(A) = \{0\}\), i.e. \(A\) est inversible.</li>
+          <li><strong>Conclusion :</strong> \(A^TA \in \mathcal{S}_n^+\) toujours, et \(A^TA \in \mathcal{S}_n^{++} \iff A \in \mathrm{GL}_n(\mathbb{R})\).</li>
+        </ol>
       </div>
     </section>
 
     <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Inegalite de Cauchy-Schwarz et applications</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Projection orthogonale</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p><strong>Inegalite de Cauchy-Schwarz :</strong></p>
-        <div class="math-display">$$|\langle x, y \rangle| \leq \| x \| \cdot \| y \|$$</div>
-        <p>avec egalite si et seulement si \(x\) et \(y\) sont colineaires.</p>
-        <p><strong>Version integrale :</strong></p>
-        <div class="math-display">$$\left(\int_a^b f(t)\,g(t)\,dt\right)^2 \leq \left(\int_a^b f(t)^2\,dt\right)\left(\int_a^b g(t)^2\,dt\right)$$</div>
-        <p><strong>Version sommes finies :</strong></p>
-        <div class="math-display">$$\left(\sum_{i=1}^n a_i b_i\right)^2 \leq \left(\sum_{i=1}^n a_i^2\right)\left(\sum_{i=1}^n b_i^2\right)$$</div>
+        <p>Calculer la projection orthogonale sur un sous-espace et la distance associee.</p>
+        <ol>
+          <li>Soit \(F\) un sous-espace de dimension \(r\) de \((E, \langle\cdot,\cdot\rangle)\) et \((e_1, \ldots, e_r)\) une BON de \(F\).</li>
+          <li><strong>Formule de projection :</strong> \(p_F(x) = \sum_{i=1}^{r} \langle x, e_i \rangle\, e_i\).</li>
+          <li><strong>Distance :</strong> \(d(x, F) = \|x - p_F(x)\| = \sqrt{\|x\|^2 - \sum_{i=1}^{r} \langle x, e_i \rangle^2}\).</li>
+          <li><strong>Matrice de projection :</strong> si \(A\) est la matrice dont les colonnes sont les \(e_i\), alors \(P = A(A^T A)^{-1}A^T = AA^T\) (car les \(e_i\) sont orthonormes).</li>
+          <li><strong>Propriete :</strong> \(p_F\) est l'unique endomorphisme tel que \(p_F^2 = p_F\), \(p_F^* = p_F\) (projecteur autoadjoint).</li>
+        </ol>
       </div>
 
-      <div class="block block--annale">
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Montrer que pour \(f \in \mathscr{C}([0,1], \mathbb{R})\) :</p>
-        <div class="math-display">$$\left(\int_0^1 f(t)\,dt\right)^2 \leq \int_0^1 f(t)^2\,dt$$</div>
-        <p>Preciser le cas d'egalite.</p>
-        <p><strong>Application :</strong> montrer que</p>
-        <div class="math-display">$$\left(\sum_{k=1}^{n} \frac{1}{k}\right) \cdot \left(\sum_{k=1}^{n} k\right) \geq n^2$$</div>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Dans \(\mathbb{R}^3\) euclidien canonique, soit \(F = \{(x,y,z) : x + y + z = 0\}\). Calculer \(p_F\begin{pmatrix}1\\2\\3\end{pmatrix}\) et \(d\!\left(\begin{pmatrix}1\\2\\3\end{pmatrix}, F\right)\).</p>
+        <ol>
+          <li>\(F = \mathrm{Vect}(n)^\perp\) avec \(n = \begin{pmatrix}1\\1\\1\end{pmatrix}\). On a \(F^\perp = \mathrm{Vect}(n)\).</li>
+          <li>BON de \(F\) : on peut prendre \(e_1 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\\0\end{pmatrix}\) et \(e_2 = \frac{1}{\sqrt{6}}\begin{pmatrix}1\\1\\-2\end{pmatrix}\).</li>
+          <li>Projection plus simple via \(F^\perp\) : \(p_{F^\perp}(x) = \frac{\langle x, n \rangle}{\|n\|^2}\,n\) et \(p_F(x) = x - p_{F^\perp}(x)\).</li>
+          <li>\(p_{F^\perp}\begin{pmatrix}1\\2\\3\end{pmatrix} = \frac{1+2+3}{3}\begin{pmatrix}1\\1\\1\end{pmatrix} = \begin{pmatrix}2\\2\\2\end{pmatrix}\).</li>
+          <li>\(p_F\begin{pmatrix}1\\2\\3\end{pmatrix} = \begin{pmatrix}1\\2\\3\end{pmatrix} - \begin{pmatrix}2\\2\\2\end{pmatrix} = \begin{pmatrix}-1\\0\\1\end{pmatrix}\).</li>
+          <li>\(d\!\left(\begin{pmatrix}1\\2\\3\end{pmatrix}, F\right) = \left\|\begin{pmatrix}2\\2\\2\end{pmatrix}\right\| = 2\sqrt{3}\).</li>
+        </ol>
       </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--                PARTIE 2 : VRAI OU FAUX               -->
+    <!-- ══════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="vf">
+      <h2 class="course__section-title"><span class="course__section-num">VF.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse et justifier.</p>
+
+      <div class="vf-grid">
+
+        <div class="vf-item">
+          <p class="vf-item__q">1. L'adjoint de \(f \circ g\) est \(f^* \circ g^*\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--f">Faux</span> \((f \circ g)^* = g^* \circ f^*\) (l'ordre est inverse, comme pour la transposee du produit de matrices).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">2. Si \(f\) est un endomorphisme orthogonal, alors \(f\) conserve le produit scalaire.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> Par polarisation : \(\langle f(x), f(y) \rangle = \frac{1}{2}(\|f(x+y)\|^2 - \|f(x)\|^2 - \|f(y)\|^2) = \frac{1}{2}(\|x+y\|^2 - \|x\|^2 - \|y\|^2) = \langle x, y \rangle\).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">3. Une matrice orthogonale a toutes ses valeurs propres egales a \(\pm 1\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--f">Faux</span> Les valeurs propres <em>reelles</em> sont bien \(\pm 1\), mais une matrice orthogonale peut aussi avoir des valeurs propres complexes \(e^{\pm i\theta}\) avec \(\theta \notin \{0, \pi\}\) (exemple : rotation d'angle \(\theta\) en dimension 2).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">4. Le theoreme spectral est vrai pour les matrices symetriques complexes.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--f">Faux</span> Il est vrai pour les matrices <strong>hermitiennes</strong> (\(A = \overline{A}^T\)), pas pour les symetriques complexes (\(A = A^T\)). Exemple : \(\begin{pmatrix}1&i\\i&-1\end{pmatrix}\) est symetrique complexe mais n'est pas diagonalisable en base unitaire.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">5. Si \(S\) est SDP, alors \(S^{-1}\) est aussi SDP.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> \(S^{-1}\) est symetrique (\((S^{-1})^T = (S^T)^{-1} = S^{-1}\)) et ses valeurs propres sont \(1/\lambda_i > 0\).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">6. La projection orthogonale sur un sous-espace est un endomorphisme symetrique.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> \(p^* = p\) car \(\langle p(x), y \rangle = \langle p(x), p(y) + (y-p(y)) \rangle = \langle p(x), p(y) \rangle = \langle x, p(y) \rangle\) (la derniere egalite vient de \(x - p(x) \perp p(y)\)).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">7. Si \(f\) est autoadjoint (\(f = f^*\)), alors toutes les valeurs propres de \(f\) sont reelles.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> C'est une consequence directe du theoreme spectral : un endomorphisme symetrique d'un espace euclidien a toutes ses valeurs propres reelles.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">8. L'ensemble \(\mathcal{O}_n(\mathbb{R})\) est un sous-groupe de \(\mathrm{GL}_n(\mathbb{R})\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> \(I_n \in \mathcal{O}_n\), si \(M, N \in \mathcal{O}_n\) alors \(MN \in \mathcal{O}_n\) (car \((MN)^T(MN) = N^T M^T M N = I\)), et \(M^{-1} = M^T \in \mathcal{O}_n\).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">9. Si \(p\) est un projecteur orthogonal, alors \(\|p(x)\| \leq \|x\|\) pour tout \(x\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> Par Pythagore : \(\|x\|^2 = \|p(x)\|^2 + \|x - p(x)\|^2 \geq \|p(x)\|^2\). Un projecteur orthogonal est une <strong>contraction</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">10. Toute matrice symetrique reelle positive est diagonalement dominante.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--f">Faux</span> Contre-exemple : \(S = \begin{pmatrix}1&0{,}9\\0{,}9&1\end{pmatrix}\) est SDP (valeurs propres \(0{,}1\) et \(1{,}9\)) mais \(|a_{12}| = 0{,}9 < 1 = a_{11}\), elle est diagonalement dominante. Cependant, \(S = \begin{pmatrix}2&3\\3&5\end{pmatrix}\) est SDP (det = 1 > 0, tr > 0) mais \(|a_{12}| = 3 > 2 = a_{11}\), donc pas diagonalement dominante.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--           PARTIE 3 : EXERCICES CORRIGES               -->
+    <!-- ══════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="exos">
+      <h2 class="course__section-title"><span class="course__section-num">Ex.</span> Exercices corriges</h2>
+
+      <!-- ── Exercice 1 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 1 -- Adjoint d'une application lineaire</span>
+        <p>Soit \(E = \mathbb{R}_2[X]\) muni du produit scalaire \(\langle P, Q \rangle = \int_0^1 P(t)\,Q(t)\,dt\).</p>
+        <p>On definit \(f : P \mapsto P'\) (derivation).</p>
+        <ol>
+          <li>Montrer que \(f\) est bien un endomorphisme de \(E\)... Attendez, \(f\) va de \(\mathbb{R}_2[X]\) dans \(\mathbb{R}_1[X] \subset \mathbb{R}_2[X]\), c'est bien un endomorphisme.</li>
+          <li>Determiner la matrice de \(f\) dans la base canonique \((1, X, X^2)\).</li>
+          <li>Calculer \(f^*\) en utilisant la definition \(\langle f(P), Q \rangle = \langle P, f^*(Q) \rangle\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Pour \(P \in \mathbb{R}_2[X]\), on a \(\deg(P') \leq 1 \leq 2\), donc \(P' \in \mathbb{R}_2[X]\). Ainsi \(f\) est bien un endomorphisme de \(E\).</p>
+            <p><strong>2.</strong> \(f(1) = 0\), \(f(X) = 1\), \(f(X^2) = 2X\). La matrice est :</p>
+            <div class="math-display">$$M = \begin{pmatrix}0&1&0\\0&0&2\\0&0&0\end{pmatrix}$$</div>
+            <p><strong>3.</strong> Attention : la base \((1, X, X^2)\) n'est <em>pas</em> orthonormee pour ce produit scalaire. On utilise la definition directement.</p>
+            <p>Pour \(P, Q \in \mathbb{R}_2[X]\), on a par integration par parties :</p>
+            <div class="math-display">$$\langle f(P), Q \rangle = \int_0^1 P'(t)\,Q(t)\,dt = [P(t)\,Q(t)]_0^1 - \int_0^1 P(t)\,Q'(t)\,dt = P(1)Q(1) - P(0)Q(0) - \langle P, f(Q) \rangle$$</div>
+            <p>Donc \(\langle P, f^*(Q) \rangle = P(1)Q(1) - P(0)Q(0) - \langle P, Q' \rangle\).</p>
+            <p>On cherche \(f^*(Q)\) tel que pour tout \(P\) : \(\langle P, f^*(Q) \rangle = P(1)Q(1) - P(0)Q(0) - \langle P, Q' \rangle\).</p>
+            <p>On doit exprimer \(P(1)Q(1) - P(0)Q(0)\) comme un produit scalaire avec \(P\). On sait que \(P(1) = \langle P, R_1 \rangle\) et \(P(0) = \langle P, R_0 \rangle\) pour certains noyaux reproduisants \(R_0, R_1 \in E\).</p>
+            <p>En notant que l'evaluation est lineaire continue : \(P(1) = \int_0^1 P(t) \cdot R_1(t)\,dt\), on cherche \(R_1\) tel que \(\int_0^1 P(t)\,R_1(t)\,dt = P(1)\) pour tout \(P \in \mathbb{R}_2[X]\). En posant \(R_1 = a + bX + cX^2\) et en testant \(P = 1, X, X^2\), on resout le systeme et on obtient les coefficients.</p>
+            <p>Finalement : \(f^*(Q) = Q(1)\,R_1 - Q(0)\,R_0 - Q'\), ou \(R_0\) et \(R_1\) sont les noyaux reproduisants des evaluations en 0 et 1.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Exercice 2 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 2 -- Rotation en dimension 3</span>
+        <p>Soit \(R = \frac{1}{3}\begin{pmatrix}2&-1&2\\2&2&-1\\-1&2&2\end{pmatrix}\).</p>
+        <ol>
+          <li>Montrer que \(R \in \mathrm{SO}_3(\mathbb{R})\).</li>
+          <li>Determiner l'axe et l'angle de la rotation \(R\).</li>
+          <li>Ecrire \(R\) dans une BON adaptee a la rotation.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Calculons \(R^T R\) :</p>
+            <div class="math-display">$$R^T R = \frac{1}{9}\begin{pmatrix}2&2&-1\\-1&2&2\\2&-1&2\end{pmatrix}\begin{pmatrix}2&-1&2\\2&2&-1\\-1&2&2\end{pmatrix} = \frac{1}{9}\begin{pmatrix}9&0&0\\0&9&0\\0&0&9\end{pmatrix} = I_3$$</div>
+            <p>Donc \(R\) est orthogonale. De plus, \(\det(R) = \frac{1}{27}\det\begin{pmatrix}2&-1&2\\2&2&-1\\-1&2&2\end{pmatrix}\).</p>
+            <p>Developpons : \(2(4+2) + 1(4-1) + 2(4+2) = 12 + 3 + 12 = 27\). Donc \(\det(R) = 1\) et \(R \in \mathrm{SO}_3(\mathbb{R})\).</p>
+            <p><strong>2.</strong> L'angle \(\theta\) verifie \(\mathrm{tr}(R) = 1 + 2\cos\theta\). Or \(\mathrm{tr}(R) = \frac{2+2+2}{3} = 2\). Donc \(2\cos\theta = 1\), i.e. \(\cos\theta = \frac{1}{2}\), d'ou \(\theta = \frac{\pi}{3}\).</p>
+            <p>L'axe est \(\ker(R - I_3)\). On resout \((R - I_3)X = 0\) :</p>
+            <div class="math-display">$$R - I = \frac{1}{3}\begin{pmatrix}-1&-1&2\\2&-1&-1\\-1&2&-1\end{pmatrix}$$</div>
+            <p>On verifie que le vecteur \(u = \begin{pmatrix}1\\1\\1\end{pmatrix}\) est dans le noyau : \(-1-1+2 = 0\), \(2-1-1 = 0\), \(-1+2-1 = 0\). L'axe est \(D = \mathrm{Vect}\begin{pmatrix}1\\1\\1\end{pmatrix}\).</p>
+            <p><strong>3.</strong> On norme le vecteur d'axe : \(e_1 = \frac{1}{\sqrt{3}}\begin{pmatrix}1\\1\\1\end{pmatrix}\). On complete en une BON \((e_1, e_2, e_3)\) avec \(e_2, e_3 \in D^\perp\). Par exemple \(e_2 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\\0\end{pmatrix}\), \(e_3 = \frac{1}{\sqrt{6}}\begin{pmatrix}1\\1\\-2\end{pmatrix}\).</p>
+            <p>Dans cette BON : \(R = \begin{pmatrix}1&0&0\\0&\cos(\pi/3)&-\sin(\pi/3)\\0&\sin(\pi/3)&\cos(\pi/3)\end{pmatrix} = \begin{pmatrix}1&0&0\\0&1/2&-\sqrt{3}/2\\0&\sqrt{3}/2&1/2\end{pmatrix}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Exercice 3 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 3 -- Diagonalisation en BON (theoreme spectral)</span>
+        <p>Soit \(S = \begin{pmatrix}2&1&1\\1&2&1\\1&1&2\end{pmatrix}\).</p>
+        <ol>
+          <li>Montrer que \(S\) est symetrique definie positive.</li>
+          <li>Diagonaliser \(S\) en base orthonormee.</li>
+          <li>En deduire \(S^{100}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(S\) est visiblement symetrique. Ecrivons \(S = I_3 + J\) ou \(J = \begin{pmatrix}1&1&1\\1&1&1\\1&1&1\end{pmatrix}\). Alors \(J = uu^T\) avec \(u = (1,1,1)^T\), donc \(J\) est symetrique positive (rang 1, \(\mathrm{Sp}(J) = \{0, 3\}\)). Ainsi \(\mathrm{Sp}(S) = \{1, 4\}\), toutes positives : \(S\) est SDP.</p>
+            <p><strong>2.</strong> Valeurs propres :</p>
+            <p>\(\lambda_1 = 1\) (double) : \(E_1 = \ker(S - I) = \ker(J) = \{(x,y,z) : x+y+z=0\}\), dimension 2.</p>
+            <p>\(\lambda_2 = 4\) (simple) : \(E_4 = \mathrm{Vect}(u) = \mathrm{Vect}\begin{pmatrix}1\\1\\1\end{pmatrix}\).</p>
+            <p>BON de \(E_1\) : \(e_1 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\\0\end{pmatrix}\), \(e_2 = \frac{1}{\sqrt{6}}\begin{pmatrix}1\\1\\-2\end{pmatrix}\).</p>
+            <p>Vecteur norme de \(E_4\) : \(e_3 = \frac{1}{\sqrt{3}}\begin{pmatrix}1\\1\\1\end{pmatrix}\).</p>
+            <p>On a \(S = PDP^T\) avec \(P = (e_1\,|\,e_2\,|\,e_3)\) et \(D = \mathrm{diag}(1, 1, 4)\).</p>
+            <p><strong>3.</strong> \(S^{100} = PD^{100}P^T = P\,\mathrm{diag}(1, 1, 4^{100})\,P^T\).</p>
+            <div class="math-display">$$S^{100} = 1 \cdot (e_1 e_1^T + e_2 e_2^T) + 4^{100}\,e_3 e_3^T$$</div>
+            <p>Or \(e_1 e_1^T + e_2 e_2^T = I_3 - e_3 e_3^T\) (projecteur sur \(E_1 = E_4^\perp\)). Et \(e_3 e_3^T = \frac{1}{3}J\). Donc :</p>
+            <div class="math-display">$$S^{100} = I_3 - \frac{1}{3}J + \frac{4^{100}}{3}J = I_3 + \frac{4^{100}-1}{3}\,J = \begin{pmatrix}\frac{4^{100}+2}{3}&\frac{4^{100}-1}{3}&\frac{4^{100}-1}{3}\\\frac{4^{100}-1}{3}&\frac{4^{100}+2}{3}&\frac{4^{100}-1}{3}\\\frac{4^{100}-1}{3}&\frac{4^{100}-1}{3}&\frac{4^{100}+2}{3}\end{pmatrix}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Exercice 4 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 4 -- Endomorphisme symetrique et spectre</span>
+        <p>Soit \(E = \mathbb{R}^3\) euclidien canonique et \(f\) l'endomorphisme de matrice \(A = \begin{pmatrix}1&2&0\\2&1&0\\0&0&3\end{pmatrix}\).</p>
+        <ol>
+          <li>Montrer que \(f\) est un endomorphisme symetrique.</li>
+          <li>Determiner les sous-espaces propres et une BON de diagonalisation.</li>
+          <li>Calculer la matrice de la projection orthogonale sur chaque sous-espace propre.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(A^T = A\), donc la matrice est symetrique. Puisque la base canonique est orthonormee, \(f = f^*\), i.e. \(f\) est symetrique (autoadjoint).</p>
+            <p><strong>2.</strong> \(\chi_A(\lambda) = (1-\lambda)^2(3-\lambda) - 4(3-\lambda) = (3-\lambda)[(1-\lambda)^2 - 4] = (3-\lambda)(\lambda+1)(\lambda-3)\).</p>
+            <p>Donc \(\chi_A(\lambda) = -(3-\lambda)^2(\lambda+1)\)... Recalculons soigneusement.</p>
+            <p>En fait : \(\chi_A(\lambda) = \det\begin{pmatrix}1-\lambda&2&0\\2&1-\lambda&0\\0&0&3-\lambda\end{pmatrix} = (3-\lambda)[(1-\lambda)^2 - 4] = (3-\lambda)(\lambda^2 - 2\lambda - 3) = (3-\lambda)(\lambda-3)(\lambda+1)\).</p>
+            <p>Donc \(\chi_A(\lambda) = -(3-\lambda)(\lambda-3)(\lambda+1) = (3-\lambda)^2(\lambda+1) \cdot (-1)\)... Non : \((3-\lambda)(\lambda-3) = -(3-\lambda)^2\).</p>
+            <p>Reprenons : \(\lambda^2 - 2\lambda - 3 = (\lambda - 3)(\lambda + 1)\). Donc \(\chi_A(\lambda) = (3-\lambda)(\lambda-3)(\lambda+1) = -(3-\lambda)^2(\lambda+1)\).</p>
+            <p>Valeurs propres : \(\lambda_1 = -1\) (simple) et \(\lambda_2 = 3\) (double).</p>
+            <p>\(E_{-1} = \ker(A + I) = \ker\begin{pmatrix}2&2&0\\2&2&0\\0&0&4\end{pmatrix} = \mathrm{Vect}\begin{pmatrix}1\\-1\\0\end{pmatrix}\). Vecteur norme : \(v_1 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\\0\end{pmatrix}\).</p>
+            <p>\(E_3 = \ker(A - 3I) = \ker\begin{pmatrix}-2&2&0\\2&-2&0\\0&0&0\end{pmatrix} = \mathrm{Vect}\left(\begin{pmatrix}1\\1\\0\end{pmatrix}, \begin{pmatrix}0\\0\\1\end{pmatrix}\right)\). BON : \(v_2 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\\0\end{pmatrix}\), \(v_3 = \begin{pmatrix}0\\0\\1\end{pmatrix}\).</p>
+            <p><strong>3.</strong> Projection sur \(E_{-1}\) : \(P_{-1} = v_1 v_1^T = \frac{1}{2}\begin{pmatrix}1&-1&0\\-1&1&0\\0&0&0\end{pmatrix}\).</p>
+            <p>Projection sur \(E_3\) : \(P_3 = v_2 v_2^T + v_3 v_3^T = \frac{1}{2}\begin{pmatrix}1&1&0\\1&1&0\\0&0&0\end{pmatrix} + \begin{pmatrix}0&0&0\\0&0&0\\0&0&1\end{pmatrix} = \begin{pmatrix}1/2&1/2&0\\1/2&1/2&0\\0&0&1\end{pmatrix}\).</p>
+            <p>Verification : \(P_{-1} + P_3 = I_3\) et \(A = (-1)P_{-1} + 3P_3\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Exercice 5 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 5 -- Distance a un sous-espace et meilleure approximation</span>
+        <p>Dans \(\mathbb{R}^4\) euclidien canonique, soit \(F = \mathrm{Vect}\left(\begin{pmatrix}1\\1\\0\\0\end{pmatrix}, \begin{pmatrix}0\\1\\1\\0\end{pmatrix}, \begin{pmatrix}0\\0\\1\\1\end{pmatrix}\right)\).</p>
+        <ol>
+          <li>Trouver une BON de \(F\) par le procede de Gram-Schmidt.</li>
+          <li>Calculer la projection orthogonale de \(x = (1, 0, 0, 1)^T\) sur \(F\).</li>
+          <li>En deduire \(d(x, F)\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Notons \(u_1 = (1,1,0,0)^T\), \(u_2 = (0,1,1,0)^T\), \(u_3 = (0,0,1,1)^T\).</p>
+            <p><em>Gram-Schmidt :</em></p>
+            <p>\(e_1 = \frac{u_1}{\|u_1\|} = \frac{1}{\sqrt{2}}(1,1,0,0)^T\).</p>
+            <p>\(w_2 = u_2 - \langle u_2, e_1 \rangle\,e_1 = (0,1,1,0)^T - \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}(1,1,0,0)^T = (0,1,1,0)^T - \frac{1}{2}(1,1,0,0)^T = (-\frac{1}{2}, \frac{1}{2}, 1, 0)^T\).</p>
+            <p>\(\|w_2\|^2 = \frac{1}{4} + \frac{1}{4} + 1 = \frac{3}{2}\). Donc \(e_2 = \frac{1}{\sqrt{3/2}}(-\frac{1}{2}, \frac{1}{2}, 1, 0)^T = \frac{1}{\sqrt{6}}(-1, 1, 2, 0)^T\).</p>
+            <p>\(w_3 = u_3 - \langle u_3, e_1 \rangle\,e_1 - \langle u_3, e_2 \rangle\,e_2\).</p>
+            <p>\(\langle u_3, e_1 \rangle = 0\), \(\langle u_3, e_2 \rangle = \frac{1}{\sqrt{6}}(0+0+2+0) = \frac{2}{\sqrt{6}}\).</p>
+            <p>\(w_3 = (0,0,1,1)^T - \frac{2}{\sqrt{6}} \cdot \frac{1}{\sqrt{6}}(-1,1,2,0)^T = (0,0,1,1)^T - \frac{1}{3}(-1,1,2,0)^T = (\frac{1}{3}, -\frac{1}{3}, \frac{1}{3}, 1)^T\).</p>
+            <p>\(\|w_3\|^2 = \frac{1}{9} + \frac{1}{9} + \frac{1}{9} + 1 = \frac{4}{3}\). Donc \(e_3 = \frac{1}{\sqrt{4/3}}(\frac{1}{3}, -\frac{1}{3}, \frac{1}{3}, 1)^T = \frac{1}{2\sqrt{3}}(1, -1, 1, 3)^T\).</p>
+            <p><strong>2.</strong> \(p_F(x) = \langle x, e_1 \rangle\,e_1 + \langle x, e_2 \rangle\,e_2 + \langle x, e_3 \rangle\,e_3\).</p>
+            <p>\(\langle x, e_1 \rangle = \frac{1}{\sqrt{2}}(1+0) = \frac{1}{\sqrt{2}}\).</p>
+            <p>\(\langle x, e_2 \rangle = \frac{1}{\sqrt{6}}(-1+0+0+0) = \frac{-1}{\sqrt{6}}\).</p>
+            <p>\(\langle x, e_3 \rangle = \frac{1}{2\sqrt{3}}(1+0+0+3) = \frac{4}{2\sqrt{3}} = \frac{2}{\sqrt{3}}\).</p>
+            <p>\(p_F(x) = \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}(1,1,0,0)^T + \frac{-1}{\sqrt{6}} \cdot \frac{1}{\sqrt{6}}(-1,1,2,0)^T + \frac{2}{\sqrt{3}} \cdot \frac{1}{2\sqrt{3}}(1,-1,1,3)^T\)</p>
+            <p>\(= \frac{1}{2}(1,1,0,0)^T + \frac{1}{6}(1,-1,-2,0)^T + \frac{1}{3}(1,-1,1,3)^T\)</p>
+            <p>\(= \left(\frac{1}{2}+\frac{1}{6}+\frac{1}{3},\, \frac{1}{2}-\frac{1}{6}-\frac{1}{3},\, 0-\frac{2}{6}+\frac{1}{3},\, 0+0+1\right)^T = (1, 0, 0, 1)^T\).</p>
+            <p>Resultat surprenant : \(p_F(x) = x\), ce qui signifie que \(x \in F\) !</p>
+            <p><strong>3.</strong> \(d(x, F) = \|x - p_F(x)\| = 0\). En effet, \(x = u_1 + u_3 - u_2 = (1,1,0,0)^T + (0,0,1,1)^T - (0,1,1,0)^T = (1,0,0,1)^T\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Exercice 6 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 6 -- Endomorphismes orthogonaux et sous-groupes</span>
+        <p>Soit \(n \geq 2\).</p>
+        <ol>
+          <li>Montrer que \(\mathcal{O}_n(\mathbb{R})\) est une partie bornee et fermee de \(\mathcal{M}_n(\mathbb{R})\) (donc compacte).</li>
+          <li>Montrer que l'application \(\det : \mathcal{O}_n(\mathbb{R}) \to \{-1, 1\}\) est un morphisme de groupes surjectif.</li>
+          <li>En deduire que \(\mathrm{SO}_n(\mathbb{R})\) est un sous-groupe distingue d'indice 2 de \(\mathcal{O}_n(\mathbb{R})\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1. Bornee :</strong> si \(M \in \mathcal{O}_n\), les colonnes de \(M\) sont de norme 1 (car \(M^TM = I_n\)). Donc chaque coefficient verifie \(|m_{ij}| \leq 1\), et \(\|M\|_F = \sqrt{\sum m_{ij}^2} = \sqrt{n}\) (norme de Frobenius). L'ensemble est borne.</p>
+            <p><strong>Fermee :</strong> l'application \(\varphi : M \mapsto M^T M\) est continue (polynomiale). Or \(\mathcal{O}_n = \varphi^{-1}(\{I_n\})\) est l'image reciproque d'un ferme (singleton) par une application continue, donc est fermee.</p>
+            <p><strong>Compacte :</strong> en dimension finie, bornee + fermee = compacte (Heine-Borel).</p>
+            <p><strong>2.</strong> Le determinant est un morphisme de groupes multiplicatif : \(\det(MN) = \det(M)\det(N)\). Pour \(M \in \mathcal{O}_n\), \(\det(M)^2 = \det(M^TM) = 1\), donc \(\det(M) \in \{-1, 1\}\).</p>
+            <p>Surjectivite : \(\det(I_n) = 1\) et \(\det(\mathrm{diag}(-1, 1, \ldots, 1)) = -1\), et ces deux matrices sont orthogonales.</p>
+            <p><strong>3.</strong> \(\mathrm{SO}_n = \ker(\det)\) est le noyau d'un morphisme de groupes, c'est donc un <strong>sous-groupe distingue</strong>. L'image est \(\{-1, 1\}\) de cardinal 2, donc l'indice est \([\mathcal{O}_n : \mathrm{SO}_n] = |\{-1,1\}| = 2\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Exercice 7 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 7 -- Inegalite de Hadamard</span>
+        <p>Soit \(A = (c_1 | \cdots | c_n) \in \mathrm{GL}_n(\mathbb{R})\) ou les \(c_j\) sont les vecteurs colonnes de \(A\).</p>
+        <ol>
+          <li>Appliquer le procede de Gram-Schmidt aux colonnes de \(A\) et en deduire la decomposition \(A = QR\) avec \(Q\) orthogonale et \(R\) triangulaire superieure a diagonale strictement positive.</li>
+          <li>Montrer que \(r_{jj} = d(c_j, \mathrm{Vect}(c_1, \ldots, c_{j-1})) \cdot \|w_j\|^{-1} \cdot \|w_j\| = \|w_j\|\) ou \(w_j\) est le vecteur issu de Gram-Schmidt. En deduire que \(r_{jj} \leq \|c_j\|\).</li>
+          <li>En deduire l'<strong>inegalite de Hadamard</strong> : \(|\det(A)| \leq \prod_{j=1}^n \|c_j\|\).</li>
+          <li>A quelle condition y a-t-il egalite ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On applique Gram-Schmidt aux colonnes \(c_1, \ldots, c_n\). On obtient une famille orthonormee \((q_1, \ldots, q_n)\) avec :</p>
+            <div class="math-display">$$c_j = \sum_{i=1}^{j} r_{ij}\,q_i, \quad r_{ij} = \langle c_j, q_i \rangle, \quad r_{jj} = \|w_j\| > 0$$</div>
+            <p>ou \(w_j = c_j - \sum_{i=1}^{j-1} \langle c_j, q_i \rangle\,q_i\) et \(q_j = w_j / \|w_j\|\). En posant \(Q = (q_1 | \cdots | q_n)\) et \(R = (r_{ij})\), on obtient \(A = QR\).</p>
+            <p><strong>2.</strong> \(w_j\) est la composante de \(c_j\) orthogonale a \(\mathrm{Vect}(c_1, \ldots, c_{j-1}) = \mathrm{Vect}(q_1, \ldots, q_{j-1})\). Donc \(r_{jj} = \|w_j\| = d(c_j, \mathrm{Vect}(c_1, \ldots, c_{j-1}))\).</p>
+            <p>Par Pythagore : \(\|c_j\|^2 = \|w_j\|^2 + \|c_j - w_j\|^2 \geq \|w_j\|^2\), donc \(r_{jj} = \|w_j\| \leq \|c_j\|\).</p>
+            <p><strong>3.</strong> \(|\det(A)| = |\det(Q)| \cdot |\det(R)| = 1 \cdot \prod_{j=1}^n r_{jj} \leq \prod_{j=1}^n \|c_j\|\).</p>
+            <p>C'est l'<strong>inegalite de Hadamard</strong>.</p>
+            <p><strong>4.</strong> Egalite ssi \(r_{jj} = \|c_j\|\) pour tout \(j\), ssi \(\|w_j\| = \|c_j\|\), ssi \(c_j - w_j = 0\), ssi \(c_j \perp \mathrm{Vect}(c_1, \ldots, c_{j-1})\) pour tout \(j\). Autrement dit, egalite ssi les colonnes de \(A\) sont <strong>deux a deux orthogonales</strong>.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
-      <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
+      <a href="mp-m3-series-fonctions-cvu.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Series de fonctions & CVU</span>
+      </a>
+      <a href="mp-m5-calcul-differentiel.html" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
-        <span>Methode suivante</span>
+        <span>Calcul differentiel</span>
       </a>
     </nav>
 
@@ -344,6 +750,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

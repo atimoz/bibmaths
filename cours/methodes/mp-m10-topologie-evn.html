@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -146,24 +165,36 @@
 
     <div class="course__meta">
       <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 6-7</span>
     </div>
 
     <h1 class="course__title">Topologie des EVN</h1>
 
     <p class="course__intro">
-      Fiche de methodes avec exercices types : normes, equivalence de normes, ouverts et fermes, continuite des applications lineaires et compacite. Chaque methode est accompagnee d'un exercice d'annale ou de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et six exercices corriges inspires des chapitres 6 et 7.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
         <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Montrer qu'une application est une norme</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Montrer que deux normes sont/ne sont pas equivalentes</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Montrer qu'une partie est ouverte/fermee</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Montrer la continuite d'une application lineaire</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Utiliser la compacite</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Equivalence de normes</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Ouverts et fermes dans un EVN</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Continuite d'une application lineaire</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Compacite dans un EVN</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
 
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
@@ -171,174 +202,487 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Pour montrer que \(N : E \to \mathbb{R}\) est une norme sur l'espace vectoriel \(E\), on verifie les trois axiomes :</p>
         <ol>
-          <li><strong>Separation :</strong> \(\|x\| = 0 \Longleftrightarrow x = 0\).</li>
-          <li><strong>Homogeneite :</strong> pour tout \(\lambda \in \mathbb{K}\) et tout \(x \in E\), \(\|\lambda x\| = |\lambda| \cdot \|x\|\).</li>
-          <li><strong>Inegalite triangulaire :</strong> pour tous \(x, y \in E\), \(\|x + y\| \leq \|x\| + \|y\|\).</li>
-          <li>Verifier au prealable que l'application est bien definie et a valeurs dans \(\mathbb{R}^+\).</li>
-          <li>Pour l'inegalite triangulaire, on utilise souvent Cauchy-Schwarz, Minkowski, ou la convexite.</li>
+          <li><strong>Separation :</strong> \(N(x) = 0 \Longleftrightarrow x = 0_E\).</li>
+          <li><strong>Homogeneite :</strong> pour tout \(\lambda \in \mathbb{K}\) et tout \(x \in E\), \(N(\lambda x) = |\lambda| \, N(x)\).</li>
+          <li><strong>Inegalite triangulaire :</strong> pour tous \(x, y \in E\), \(N(x + y) \leq N(x) + N(y)\).</li>
         </ol>
+        <p><strong>Remarque :</strong> la positivite \(N(x) \geq 0\) decoule des axiomes (prendre \(y = -x\) dans l'inegalite triangulaire).</p>
+        <p><strong>Astuce frequente :</strong> pour l'inegalite triangulaire, on utilise souvent la croissance de l'integrale, l'inegalite de Cauchy-Schwarz ou l'inegalite triangulaire dans \(\mathbb{R}\).</p>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Si l'on a seulement une semi-norme (c'est-a-dire sans la separation), il suffit de verifier que \(\|x\| = 0 \Rightarrow x = 0\) pour conclure que c'est une norme.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Sur \(E = \mathcal{C}^1([0,1], \mathbb{R})\), on definit :</p>
-        <p>$$N(f) = |f(0)| + \sup_{t \in [0,1]} |f'(t)|$$</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(N : \mathcal{C}^1([0,1], \mathbb{R}) \to \mathbb{R}\) definie par \(N(f) = |f(0)| + \int_0^1 |f'(t)|\,\mathrm{d}t\) est une norme.</strong></p>
+        <p><em>Resolution.</em></p>
         <ol>
-          <li>Montrer que \(N\) est une norme sur \(E\).</li>
-          <li>Montrer que \(N\) n'est pas equivalente a la norme \(\|f\|_\infty = \sup_{t \in [0,1]} |f(t)|\).</li>
-          <li>Comparer \(\|f\|_\infty\) et \(N(f)\) (montrer que \(\|f\|_\infty \leq N(f)\)).</li>
+          <li><strong>Separation :</strong> si \(N(f) = 0\), alors \(|f(0)| = 0\) et \(\int_0^1 |f'(t)|\,\mathrm{d}t = 0\). La premiere condition donne \(f(0) = 0\). La seconde, comme \(|f'|\) est continue et positive, implique \(f' = 0\) sur \([0,1]\). Donc \(f\) est constante egale a \(f(0) = 0\). Reciproquement, \(N(0) = 0\).</li>
+          <li><strong>Homogeneite :</strong> \(N(\lambda f) = |\lambda f(0)| + \int_0^1 |\lambda f'(t)|\,\mathrm{d}t = |\lambda|\,|f(0)| + |\lambda|\int_0^1 |f'(t)|\,\mathrm{d}t = |\lambda|\,N(f)\).</li>
+          <li><strong>Inegalite triangulaire :</strong> \(N(f+g) = |f(0)+g(0)| + \int_0^1 |f'(t)+g'(t)|\,\mathrm{d}t \leq |f(0)| + |g(0)| + \int_0^1 |f'(t)|\,\mathrm{d}t + \int_0^1 |g'(t)|\,\mathrm{d}t = N(f) + N(g)\).</li>
         </ol>
-        <p><em>Indication :</em> pour la separation, si \(N(f) = 0\) alors \(f(0) = 0\) et \(f' = 0\), donc \(f\) est constante egale a \(0\). Pour la non-equivalence, considerer \(f_n(t) = t^n / n\).</p>
+        <p>Donc \(N\) est bien une norme sur \(\mathcal{C}^1([0,1], \mathbb{R})\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Montrer que deux normes sont/ne sont pas equivalentes</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Equivalence de normes</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Equivalence :</strong> \(N_1 \sim N_2\) ssi il existe \(\alpha, \beta > 0\) tels que pour tout \(x \in E\), \(\alpha N_1(x) \leq N_2(x) \leq \beta N_1(x)\).</li>
-          <li><strong>Pour montrer l'equivalence :</strong> trouver explicitement les constantes \(\alpha\) et \(\beta\) par des inegalites.</li>
-          <li><strong>Pour montrer la non-equivalence :</strong> exhiber une suite \((x_n)\) telle que \(\frac{N_1(x_n)}{N_2(x_n)} \to +\infty\) ou \(\to 0\).</li>
-          <li><strong>En dimension finie :</strong> toutes les normes sont equivalentes (pas besoin de demontrer).</li>
-          <li>En dimension infinie, utiliser des suites de fonctions bien choisies (polynomes, fonctions en pic, etc.).</li>
+          <li>Deux normes \(N_1\) et \(N_2\) sont equivalentes s'il existe \(\alpha, \beta > 0\) tels que pour tout \(x \in E\) : \(\alpha \, N_1(x) \leq N_2(x) \leq \beta \, N_1(x)\).</li>
+          <li><strong>En dimension finie :</strong> toutes les normes sont equivalentes (theoreme fondamental). On peut donc choisir la norme la plus adaptee au probleme.</li>
+          <li><strong>En dimension infinie :</strong> il faut exhiber les constantes \(\alpha, \beta\) explicitement, ou montrer que l'une des inegalites est impossible (pour prouver la non-equivalence).</li>
+          <li><strong>Pour la non-equivalence :</strong> exhiber une suite \((x_n)\) telle que \(N_1(x_n) \to 0\) mais \(N_2(x_n) \not\to 0\) (ou inversement).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Rappel</span>
-        <p>Sur \(\mathbb{R}^n\), on a les inegalites classiques : \(\|x\|_\infty \leq \|x\|_2 \leq \sqrt{n} \|x\|_\infty\) et \(\|x\|_\infty \leq \|x\|_1 \leq n \|x\|_\infty\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Sur \(E = \mathcal{C}([0,1], \mathbb{R})\), on considere les normes :</p>
-        <p>$$\|f\|_1 = \int_0^1 |f(t)|\,dt \qquad \text{et} \qquad \|f\|_\infty = \sup_{t \in [0,1]} |f(t)|$$</p>
-        <ol>
-          <li>Montrer que \(\|f\|_1 \leq \|f\|_\infty\) pour tout \(f \in E\).</li>
-          <li>Montrer que les normes \(\|\cdot\|_1\) et \(\|\cdot\|_\infty\) ne sont pas equivalentes.</li>
-          <li><em>Indication :</em> considerer la suite \(f_n(t) = (1 - t)^n\) et calculer le rapport \(\|f_n\|_\infty / \|f_n\|_1\).</li>
-        </ol>
-        <p><em>Indication :</em> \(\|f_n\|_\infty = 1\) et \(\|f_n\|_1 = 1/(n+1) \to 0\), donc le rapport tend vers \(+\infty\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(\|\cdot\|_1\) et \(\|\cdot\|_\infty\) ne sont pas equivalentes sur \(\mathcal{C}^1([0,1], \mathbb{R})\), ou \(\|f\|_1 = \int_0^1 |f(t)|\,\mathrm{d}t\) et \(\|f\|_\infty = \sup_{t \in [0,1]} |f(t)|\).</strong></p>
+        <p><em>Resolution.</em> On a toujours \(\|f\|_1 = \int_0^1 |f(t)|\,\mathrm{d}t \leq \int_0^1 \|f\|_\infty \,\mathrm{d}t = \|f\|_\infty\), donc l'inegalite \(\|f\|_1 \leq \|f\|_\infty\) est verifiee avec \(\beta = 1\).</p>
+        <p>Pour montrer qu'il n'existe pas de \(\alpha > 0\) tel que \(\alpha \|f\|_\infty \leq \|f\|_1\) pour tout \(f\), on considere la suite \(f_n(t) = t^n\). Alors :</p>
+        <div class="math-display">$$\|f_n\|_\infty = \sup_{[0,1]} t^n = 1, \quad \|f_n\|_1 = \int_0^1 t^n\,\mathrm{d}t = \frac{1}{n+1} \xrightarrow[n \to +\infty]{} 0$$</div>
+        <p>Si l'on avait \(\alpha \|f_n\|_\infty \leq \|f_n\|_1\), on aurait \(\alpha \leq \frac{1}{n+1}\) pour tout \(n\), ce qui est absurde. Donc les deux normes ne sont pas equivalentes.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M3 ═══════════════ -->
     <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Montrer qu'une partie est ouverte/fermee</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Ouverts et fermes dans un EVN</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Ouvert (definition) :</strong> montrer que pour tout \(x \in U\), il existe \(r > 0\) tel que \(B(x, r) \subset U\).</li>
-          <li><strong>Ferme (sequentiel) :</strong> montrer que pour toute suite \((x_n)\) d'elements de \(F\) convergente, la limite est encore dans \(F\).</li>
-          <li><strong>Ferme (complementaire) :</strong> montrer que \(E \setminus F\) est ouvert.</li>
-          <li><strong>Image reciproque :</strong> si \(f\) est continue, \(f^{-1}(U)\) est ouvert pour tout ouvert \(U\), et \(f^{-1}(F)\) est ferme pour tout ferme \(F\).</li>
-          <li>Utiliser les operations : intersection finie d'ouverts = ouvert, union quelconque d'ouverts = ouvert, intersection quelconque de fermes = ferme.</li>
+          <li><strong>Ouvert :</strong> montrer que pour tout \(x \in A\), il existe \(r > 0\) tel que \(B(x, r) \subset A\). Souvent, on exhibe \(r\) en fonction de \(x\).</li>
+          <li><strong>Ferme :</strong> montrer que le complementaire est ouvert, ou que \(A\) contient toutes ses valeurs d'adherence (toute suite convergente d'elements de \(A\) a sa limite dans \(A\)).</li>
+          <li><strong>Image reciproque :</strong> si \(f\) est continue, \(f^{-1}(O)\) est ouvert pour \(O\) ouvert, et \(f^{-1}(F)\) est ferme pour \(F\) ferme. C'est souvent la methode la plus elegante.</li>
+          <li><strong>Ni ouvert ni ferme :</strong> exhiber un point de \(A\) qui n'est pas interieur (pas ouvert) et une suite convergente vers un point hors de \(A\) (pas ferme).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>L'ensemble \(\mathrm{GL}_n(\mathbb{R})\) est ouvert dans \(\mathcal{M}_n(\mathbb{R})\) car c'est l'image reciproque de \(\mathbb{R}^*\) (ouvert) par l'application continue \(\det\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>On munit \(\mathcal{M}_2(\mathbb{R})\) de la norme \(\|A\| = \sup_{1 \leq i,j \leq 2} |a_{ij}|\).</p>
-        <ol>
-          <li>Montrer que l'ensemble \(\mathcal{S}_2^{++}(\mathbb{R})\) des matrices symetriques definies positives de taille 2 est un ouvert de \(\mathcal{S}_2(\mathbb{R})\).</li>
-          <li>L'ensemble des matrices de rang 1 de \(\mathcal{M}_2(\mathbb{R})\) est-il ouvert ? Ferme ? Ni l'un ni l'autre ?</li>
-          <li>Montrer que l'ensemble \(\{A \in \mathcal{M}_2(\mathbb{R}) \mid \mathrm{tr}(A) = 0\}\) est un ferme.</li>
-        </ol>
-        <p><em>Indication :</em> pour 1., utiliser que les valeurs propres dependent continument de la matrice, ou que \(\det\) et \(\mathrm{tr}\) sont continues. Pour 2., montrer que l'adherence contient la matrice nulle.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(\mathcal{S}_n^{++}(\mathbb{R})\) (matrices symetriques definies positives) est un ouvert de \(\mathcal{S}_n(\mathbb{R})\), et que \(\{M \in \mathcal{M}_n(\mathbb{R}) \mid \mathrm{rg}(M) = r\}\) n'est ni ouvert ni ferme pour \(0 < r < n\).</strong></p>
+        <p><em>Resolution.</em></p>
+        <p><strong>Partie 1 :</strong> Soit \(A \in \mathcal{S}_n^{++}(\mathbb{R})\). Notons \(\lambda_1 \leq \cdots \leq \lambda_n\) ses valeurs propres, toutes strictement positives. Posons \(\alpha = \lambda_1 > 0\). Pour toute \(H \in \mathcal{S}_n(\mathbb{R})\) avec \(\|H\| < \alpha\) (norme d'operateur), et tout \(x \neq 0\) :</p>
+        <div class="math-display">$$\langle (A+H)x, x \rangle = \langle Ax, x \rangle + \langle Hx, x \rangle \geq \alpha \|x\|^2 - \|H\| \|x\|^2 > 0$$</div>
+        <p>Donc \(A + H \in \mathcal{S}_n^{++}(\mathbb{R})\), et la boule ouverte \(B(A, \alpha)\) est incluse dans \(\mathcal{S}_n^{++}(\mathbb{R})\).</p>
+        <p><strong>Partie 2 :</strong> Posons \(E_r = \{M \in \mathcal{M}_n(\mathbb{R}) \mid \mathrm{rg}(M) = r\}\) avec \(0 < r < n\).</p>
+        <ul>
+          <li><strong>Pas ouvert :</strong> soit \(M = \mathrm{diag}(1, \ldots, 1, 0, \ldots, 0)\) de rang \(r\). La suite \(M_k = M + \frac{1}{k}I_n\) verifie \(\mathrm{rg}(M_k) = n\) pour tout \(k\), et \(M_k \to M\). Toute boule autour de \(M\) contient des matrices de rang \(n\).</li>
+          <li><strong>Pas ferme :</strong> la suite \(N_k = \mathrm{diag}(1, \ldots, 1, \frac{1}{k}, 0, \ldots, 0)\) avec les \(r-1\) premiers termes egaux a \(1\), le \(r\)-ieme egal a \(1/k\), les autres nuls, est de rang \(r\) pour tout \(k\), mais converge vers une matrice de rang \(r-1\).</li>
+        </ul>
       </div>
     </section>
 
     <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Montrer la continuite d'une application lineaire</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Continuite d'une application lineaire</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Soit \(f : (E, \|\cdot\|_E) \to (F, \|\cdot\|_F)\) une application lineaire entre EVN. Les assertions suivantes sont equivalentes :</p>
         <ol>
-          <li><strong>Critere fondamental :</strong> une application lineaire \(f : E \to F\) est continue ssi elle est bornee sur la boule unite, c'est-a-dire ssi il existe \(M > 0\) tel que \(\|f(x)\|_F \leq M \|x\|_E\) pour tout \(x \in E\).</li>
-          <li>Trouver la meilleure constante \(M\) : c'est la norme d'operateur \(\|f\| = \sup_{\|x\| = 1} \|f(x)\|\).</li>
-          <li><strong>En dimension finie :</strong> toute application lineaire est continue (pas besoin de majoration).</li>
-          <li><strong>En dimension infinie :</strong> exhiber la constante \(M\) par des inegalites (Cauchy-Schwarz, Holder, etc.).</li>
-          <li><strong>Pour la non-continuite :</strong> exhiber une suite \((x_n)\) avec \(\|x_n\| = 1\) et \(\|f(x_n)\| \to +\infty\).</li>
+          <li>\(f\) est continue sur \(E\).</li>
+          <li>\(f\) est continue en \(0\).</li>
+          <li>\(f\) est lipschitzienne.</li>
+          <li>\(f\) est bornee sur la boule unite : \(\exists\, C \geq 0,\; \forall x \in E,\; \|f(x)\|_F \leq C \|x\|_E\).</li>
         </ol>
+        <p><strong>En pratique :</strong> on majore \(\|f(x)\|_F\) par \(C \|x\|_E\). La plus petite constante est la norme d'operateur \(\|f\| = \sup_{\|x\|_E = 1} \|f(x)\|_F\).</p>
+        <p><strong>En dimension finie :</strong> toute application lineaire est continue (consequence de l'equivalence des normes).</p>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Pour une forme lineaire \(\varphi : E \to \mathbb{R}\), la continuite equivaut a la fermeture de \(\ker \varphi\) (un hyperplan est ferme ssi la forme lineaire associee est continue).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>On munit \(E = \mathcal{C}([0,1], \mathbb{R})\) de la norme \(\|f\|_\infty\). On definit les applications lineaires :</p>
-        <p>$$\varphi(f) = \int_0^1 t^2 f(t)\,dt \qquad \text{et} \qquad T(f)(x) = \int_0^x f(t)\,dt$$</p>
-        <ol>
-          <li>Montrer que \(\varphi : (E, \|\cdot\|_\infty) \to \mathbb{R}\) est continue et calculer \(\|\varphi\|\).</li>
-          <li>Montrer que \(T : (E, \|\cdot\|_\infty) \to (E, \|\cdot\|_\infty)\) est continue et calculer \(\|T\|\).</li>
-          <li>L'application \(\varphi\) est-elle continue pour la norme \(\|f\|_1 = \int_0^1 |f(t)|\,dt\) ?</li>
-        </ol>
-        <p><em>Indication :</em> \(|\varphi(f)| \leq \int_0^1 t^2 |f(t)|\,dt \leq \frac{1}{3}\|f\|_\infty\). L'egalite est atteinte pour \(f = 1\), donc \(\|\varphi\| = 1/3\). Pour \(T\), \(\|T(f)\|_\infty \leq \|f\|_\infty\) et l'egalite est atteinte pour \(f = 1\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que la forme lineaire \(\varphi : (\mathcal{C}([0,1], \mathbb{R}), \|\cdot\|_\infty) \to \mathbb{R}\) definie par \(\varphi(f) = \int_0^1 t^2 f(t)\,\mathrm{d}t\) est continue, et calculer \(\|\varphi\|\).</strong></p>
+        <p><em>Resolution.</em> Pour tout \(f \in \mathcal{C}([0,1], \mathbb{R})\) :</p>
+        <div class="math-display">$$|\varphi(f)| = \left|\int_0^1 t^2 f(t)\,\mathrm{d}t\right| \leq \int_0^1 t^2 |f(t)|\,\mathrm{d}t \leq \|f\|_\infty \int_0^1 t^2\,\mathrm{d}t = \frac{1}{3}\|f\|_\infty$$</div>
+        <p>Donc \(\varphi\) est continue et \(\|\varphi\| \leq \frac{1}{3}\).</p>
+        <p>Pour l'egalite, on prend \(f_0 = 1\) (fonction constante). Alors \(\varphi(f_0) = \int_0^1 t^2\,\mathrm{d}t = \frac{1}{3}\) et \(\|f_0\|_\infty = 1\). Donc \(\|\varphi\| \geq \frac{|\varphi(f_0)|}{\|f_0\|_\infty} = \frac{1}{3}\).</p>
+        <div class="math-display">$$\boxed{\|\varphi\| = \frac{1}{3}}$$</div>
       </div>
     </section>
 
     <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Utiliser la compacite</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Compacite dans un EVN</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Identifier un compact :</strong> en dimension finie, compact = ferme borne (Borel-Lebesgue). Exemples : \([a,b]\), sphere unite, boule fermee.</li>
-          <li><strong>Image continue d'un compact :</strong> si \(f\) est continue et \(K\) est compact, alors \(f(K)\) est compact. En particulier, \(f\) est bornee et atteint ses bornes sur \(K\).</li>
-          <li><strong>Theoreme de Heine :</strong> une fonction continue sur un compact est uniformement continue.</li>
-          <li><strong>Suite extraite (Bolzano-Weierstrass) :</strong> de toute suite d'un compact, on peut extraire une sous-suite convergente.</li>
-          <li>En dimension infinie, la boule unite fermee n'est pas compacte. Il faut des criteres specifiques (Ascoli, etc.).</li>
+          <li><strong>Definition sequentielle :</strong> \(K\) est compact si de toute suite d'elements de \(K\) on peut extraire une sous-suite convergente dans \(K\).</li>
+          <li><strong>En dimension finie :</strong> compact \(\Leftrightarrow\) ferme et borne (Borel-Lebesgue).</li>
+          <li><strong>En dimension infinie :</strong> ferme et borne n'implique PAS compact. La boule unite fermee n'est pas compacte (theoreme de Riesz).</li>
+          <li><strong>Image d'un compact :</strong> si \(f\) est continue et \(K\) compact, alors \(f(K)\) est compact. En particulier, \(f\) est bornee et atteint ses bornes sur \(K\).</li>
+          <li><strong>Theoreme de Heine :</strong> \(f\) continue sur un compact \(K\) est uniformement continue sur \(K\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Rappel</span>
-        <p>Pour montrer qu'une fonction continue sur un compact atteint son minimum, on utilise directement le theoreme des bornes atteintes. C'est un argument tres frequent en analyse et en optimisation.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(f : K \to \mathbb{R}\) continue, ou \(K\) est une partie compacte non vide d'un EVN. Montrer que \(f\) atteint ses bornes et que \(f\) est uniformement continue sur \(K\).</strong></p>
+        <p><em>Resolution.</em></p>
+        <p><strong>Bornes atteintes :</strong> l'image \(f(K)\) est une partie compacte de \(\mathbb{R}\), donc fermee et bornee. Elle admet une borne superieure \(M = \sup f(K)\). Comme \(f(K)\) est ferme, \(M \in f(K)\), c'est-a-dire qu'il existe \(x_0 \in K\) tel que \(f(x_0) = M\). De meme pour la borne inferieure.</p>
+        <p><strong>Continuite uniforme (Heine) :</strong> raisonnons par l'absurde. Supposons \(f\) non uniformement continue. Il existe \(\varepsilon_0 > 0\) et deux suites \((x_n), (y_n)\) de \(K\) telles que \(\|x_n - y_n\| < 1/n\) et \(|f(x_n) - f(y_n)| \geq \varepsilon_0\). Par compacite de \(K\), on extrait \(x_{\sigma(n)} \to \ell \in K\). Comme \(\|y_{\sigma(n)} - \ell\| \leq \|y_{\sigma(n)} - x_{\sigma(n)}\| + \|x_{\sigma(n)} - \ell\| \to 0\), on a aussi \(y_{\sigma(n)} \to \ell\). Par continuite : \(|f(x_{\sigma(n)}) - f(y_{\sigma(n)})| \to 0\), contradiction.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> Toute partie ouverte d'un EVN est connexe.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Contre-exemple : dans \(\mathbb{R}\), l'ensemble \(]-\infty, 0[ \cup ]0, +\infty[\) est ouvert mais n'est pas connexe (reunion disjointe de deux ouverts non vides).</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> En dimension finie, toute partie fermee et bornee est compacte.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est le theoreme de Borel-Lebesgue : dans un EVN de dimension finie, les compacts sont exactement les fermes bornes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> La boule unite fermee de \((\mathcal{C}([0,1], \mathbb{R}), \|\cdot\|_\infty)\) est compacte.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>\(\mathcal{C}([0,1], \mathbb{R})\) est de dimension infinie. Par le theoreme de Riesz, la boule unite fermee d'un EVN n'est compacte que si l'espace est de dimension finie. On peut exhiber la suite \(f_n(t) = t^n\) qui n'admet aucune sous-suite convergente pour \(\|\cdot\|_\infty\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> Si \(f : E \to F\) est lineaire et continue, alors \(\ker f\) est un ferme de \(E\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>\(\{0_F\}\) est ferme dans \(F\), et \(\ker f = f^{-1}(\{0_F\})\). L'image reciproque d'un ferme par une application continue est un ferme.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> Deux normes equivalentes definissent les memes ouverts.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(\alpha N_1 \leq N_2 \leq \beta N_1\), toute boule ouverte pour \(N_1\) contient une boule ouverte pour \(N_2\) et reciproquement. Les topologies sont identiques.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> L'intersection d'une famille quelconque d'ouverts est un ouvert.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Seule une intersection <em>finie</em> d'ouverts est garantie ouverte. Contre-exemple : \(\bigcap_{n \geq 1} ]-1/n, 1/n[ = \{0\}\), qui n'est pas ouvert dans \(\mathbb{R}\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> Si \(A\) est dense dans \(E\) et \(f : E \to F\) est continue, alors \(f(A)\) est dense dans \(f(E)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Soit \(y = f(x) \in f(E)\). Comme \(A\) est dense, il existe \((a_n) \subset A\) avec \(a_n \to x\). Par continuite, \(f(a_n) \to f(x) = y\), et \(f(a_n) \in f(A)\). Donc tout element de \(f(E)\) est adherent a \(f(A)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> La norme d'operateur verifie \(\|\varphi\| = \sup_{\|x\| \leq 1} |\varphi(x)|\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>On a \(\|\varphi\| = \sup_{\|x\| = 1} |\varphi(x)| = \sup_{\|x\| \leq 1} |\varphi(x)|\). L'egalite decoule de l'homogeneite : le sup sur la boule fermee est atteint sur la sphere.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> L'adherence d'un sous-espace vectoriel d'un EVN est un sous-espace vectoriel.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Soient \(x, y \in \overline{F}\) et \(\lambda \in \mathbb{K}\). Il existe \((x_n), (y_n) \subset F\) avec \(x_n \to x\), \(y_n \to y\). Alors \(\lambda x_n + y_n \in F\) et \(\lambda x_n + y_n \to \lambda x + y\). Donc \(\lambda x + y \in \overline{F}\), et \(0 \in F \subset \overline{F}\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> Si \(E\) est de dimension finie et \(f : E \to E\) est lineaire injective, alors \(f\) est un homeomorphisme.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>En dimension finie, lineaire et injective implique surjective (meme dimension), donc \(f\) est bijective. De plus \(f\) et \(f^{-1}\) sont lineaires en dimension finie, donc continues. Ainsi \(f\) est un homeomorphisme.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
       <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Soit \(f : [0,1] \to \mathbb{R}\) continue telle que \(f(0) = f(1) = 0\) et \(f\) non identiquement nulle.</p>
+        <span class="annale-badge">Monier Ch. 6</span>
+        <span class="block__label">Exercice 1 -- Normes sur les polynomes</span>
+        <p>On considere \(E = \mathbb{R}_n[X]\) muni de la norme \(\|P\|_\infty = \sup_{t \in [0,1]} |P(t)|\). On definit aussi \(N(P) = \sum_{k=0}^{n} |a_k|\) ou \(P = \sum_{k=0}^{n} a_k X^k\).</p>
         <ol>
-          <li>Montrer que \(f\) atteint son maximum \(M > 0\) en un point \(c \in ]0,1[\).</li>
-          <li>En deduire que l'ensemble \(A = \{t \in [0,1] \mid f(t) \geq M/2\}\) est un compact non vide.</li>
-          <li>On pose \(g : \mathbb{R}^2 \to \mathbb{R}\) definie par \(g(x,y) = x^2 + y^2\) pour \((x,y) \in S^1 = \{(x,y) \mid x^2 + y^2 = 1\}\). Montrer que \(g\) atteint ses bornes sur \(S^1\) et les determiner.</li>
+          <li>Montrer que \(N\) est une norme sur \(E\).</li>
+          <li>Montrer que \(\|P\|_\infty \leq N(P)\) pour tout \(P \in E\).</li>
+          <li>En deduire que les deux normes sont equivalentes. Pourquoi pouvait-on le prevoir sans calcul ?</li>
         </ol>
-        <p><em>Indication :</em> \([0,1]\) est compact, donc \(f\) atteint son max. Comme \(f(0) = f(1) = 0\) et \(f \not\equiv 0\), le max est strictement positif et atteint a l'interieur. \(A\) est ferme (image reciproque de \([M/2, +\infty[\) par \(f\) continue) et inclus dans le compact \([0,1]\).</p>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Verifions les trois axiomes de norme pour \(N\) :</p>
+            <ul>
+              <li><strong>Separation :</strong> \(N(P) = 0 \Rightarrow |a_k| = 0\) pour tout \(k\), donc \(P = 0\). Reciproquement, \(N(0) = 0\).</li>
+              <li><strong>Homogeneite :</strong> \(N(\lambda P) = \sum_k |\lambda a_k| = |\lambda| \sum_k |a_k| = |\lambda| N(P)\).</li>
+              <li><strong>Inegalite triangulaire :</strong> si \(Q = \sum_k b_k X^k\), alors \(N(P+Q) = \sum_k |a_k + b_k| \leq \sum_k (|a_k| + |b_k|) = N(P) + N(Q)\).</li>
+            </ul>
+
+            <p><strong>2.</strong> Pour tout \(t \in [0,1]\) : \(|P(t)| = |\sum_k a_k t^k| \leq \sum_k |a_k| |t|^k \leq \sum_k |a_k| = N(P)\). En passant au sup : \(\|P\|_\infty \leq N(P)\).</p>
+
+            <p><strong>3.</strong> On a \(\|P\|_\infty \leq N(P)\). Pour l'inegalite inverse, \(E\) est de dimension finie \(n+1\), donc toute norme est continue par rapport a toute autre norme. En particulier \(N\) est continue pour \(\|\cdot\|_\infty\). Par compacite de la sphere unite \(S = \{P : \|P\|_\infty = 1\}\), la restriction de \(N\) a \(S\) atteint son maximum \(\beta\). Donc \(N(P) \leq \beta \|P\|_\infty\) pour tout \(P\). On pouvait le prevoir car \(\dim E = n + 1 < +\infty\) et en dimension finie toutes les normes sont equivalentes.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 6</span>
+        <span class="block__label">Exercice 2 -- Ouverts et fermes dans \(\mathcal{M}_n(\mathbb{R})\)</span>
+        <ol>
+          <li>Montrer que \(\mathrm{GL}_n(\mathbb{R})\) est un ouvert de \(\mathcal{M}_n(\mathbb{R})\).</li>
+          <li>En deduire que \(\mathrm{SL}_n(\mathbb{R}) = \{M \mid \det(M) = 1\}\) est un ferme.</li>
+          <li>Montrer que \(\mathcal{O}_n(\mathbb{R}) = \{M \mid M^T M = I_n\}\) est compact.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> L'application \(\det : \mathcal{M}_n(\mathbb{R}) \to \mathbb{R}\) est polynomiale en les coefficients, donc continue. Comme \(\mathrm{GL}_n(\mathbb{R}) = \det^{-1}(\mathbb{R}^*)\) et \(\mathbb{R}^*\) est ouvert, l'image reciproque \(\mathrm{GL}_n(\mathbb{R})\) est ouverte.</p>
+
+            <p><strong>2.</strong> \(\mathrm{SL}_n(\mathbb{R}) = \det^{-1}(\{1\})\). Le singleton \(\{1\}\) est ferme dans \(\mathbb{R}\), et \(\det\) est continue, donc \(\mathrm{SL}_n(\mathbb{R})\) est ferme.</p>
+
+            <p><strong>3.</strong> Montrons que \(\mathcal{O}_n(\mathbb{R})\) est ferme et borne dans \(\mathcal{M}_n(\mathbb{R})\).</p>
+            <ul>
+              <li><strong>Ferme :</strong> l'application \(\Phi : M \mapsto M^T M\) est continue (polynomiale). Donc \(\mathcal{O}_n(\mathbb{R}) = \Phi^{-1}(\{I_n\})\) est un ferme.</li>
+              <li><strong>Borne :</strong> si \(M \in \mathcal{O}_n(\mathbb{R})\), les colonnes de \(M\) sont de norme euclidienne \(1\), donc chaque coefficient verifie \(|m_{ij}| \leq 1\). L'ensemble est borne.</li>
+            </ul>
+            <p>Comme \(\mathcal{M}_n(\mathbb{R}) \simeq \mathbb{R}^{n^2}\) est de dimension finie, ferme et borne implique compact.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 6</span>
+        <span class="block__label">Exercice 3 -- Continuite de formes lineaires</span>
+        <p>On munit \(E = \mathcal{C}([0,1], \mathbb{R})\) de la norme \(\|f\|_\infty = \sup_{[0,1]} |f|\). Determiner si chaque forme lineaire est continue et, le cas echeant, calculer sa norme.</p>
+        <ol>
+          <li>\(\varphi_1(f) = f(1/2)\).</li>
+          <li>\(\varphi_2(f) = \int_0^1 f(t)\,\mathrm{d}t\).</li>
+          <li>\(\varphi_3(f) = \int_0^1 \sin(\pi t)\,f(t)\,\mathrm{d}t\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(|\varphi_1(f)| = |f(1/2)| \leq \|f\|_\infty\), donc \(\varphi_1\) est continue et \(\|\varphi_1\| \leq 1\). Prenant \(f = 1\) : \(\varphi_1(1) = 1\) et \(\|1\|_\infty = 1\), d'ou \(\|\varphi_1\| \geq 1\). Conclusion : \(\boxed{\|\varphi_1\| = 1}\).</p>
+
+            <p><strong>2.</strong> \(|\varphi_2(f)| = |\int_0^1 f(t)\,\mathrm{d}t| \leq \int_0^1 |f(t)|\,\mathrm{d}t \leq \|f\|_\infty\). Donc \(\|\varphi_2\| \leq 1\). Prenant \(f = 1\) : \(\varphi_2(1) = 1\). Donc \(\boxed{\|\varphi_2\| = 1}\).</p>
+
+            <p><strong>3.</strong> \(|\varphi_3(f)| \leq \int_0^1 |\sin(\pi t)| |f(t)|\,\mathrm{d}t \leq \|f\|_\infty \int_0^1 \sin(\pi t)\,\mathrm{d}t\). Or \(\int_0^1 \sin(\pi t)\,\mathrm{d}t = \left[-\frac{\cos(\pi t)}{\pi}\right]_0^1 = \frac{1}{\pi}(1+1) = \frac{2}{\pi}\). Donc \(\|\varphi_3\| \leq \frac{2}{\pi}\).</p>
+            <p>Prenant \(f = 1\) : \(\varphi_3(1) = \frac{2}{\pi}\) et \(\|1\|_\infty = 1\), d'ou \(\|\varphi_3\| \geq \frac{2}{\pi}\). Conclusion : \(\boxed{\|\varphi_3\| = \frac{2}{\pi}}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 7</span>
+        <span class="block__label">Exercice 4 -- Compacite et existence d'extremum</span>
+        <p>Soit \(f : \mathbb{R}^n \to \mathbb{R}\) continue telle que \(\lim_{\|x\| \to +\infty} f(x) = +\infty\).</p>
+        <ol>
+          <li>Montrer qu'il existe \(R > 0\) tel que pour tout \(x\) avec \(\|x\| > R\), on a \(f(x) > f(0)\).</li>
+          <li>En deduire que \(f\) admet un minimum global sur \(\mathbb{R}^n\).</li>
+          <li>Application : montrer que \(g(x, y) = x^4 + y^4 - 2x^2 + 4xy - 2y^2 + 1\) admet un minimum global.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Par definition de la limite en \(+\infty\), pour \(M = f(0) + 1\), il existe \(R > 0\) tel que \(\|x\| > R \Rightarrow f(x) > M > f(0)\).</p>
+
+            <p><strong>2.</strong> La boule fermee \(\overline{B}(0, R)\) est compacte dans \(\mathbb{R}^n\) (fermee et bornee en dimension finie). La restriction de \(f\) a \(\overline{B}(0, R)\) est continue sur un compact, donc elle atteint son minimum : il existe \(x_0 \in \overline{B}(0, R)\) tel que \(f(x_0) = \min_{\overline{B}(0,R)} f\).</p>
+            <p>Pour \(x \notin \overline{B}(0, R)\), on a \(f(x) > f(0) \geq f(x_0)\). Donc \(f(x_0) = \min_{\mathbb{R}^n} f\).</p>
+
+            <p><strong>3.</strong> Montrons que \(g(x,y) \to +\infty\) quand \(r = \|(x,y)\| \to +\infty\). Le terme dominant est \(x^4 + y^4 \geq \frac{1}{2}(x^2 + y^2)^2 = \frac{r^4}{2}\). Les termes restants verifient \(|-2x^2 + 4xy - 2y^2| \leq 2x^2 + 4|xy| + 2y^2 \leq 4(x^2+y^2) = 4r^2\). Donc :</p>
+            <div class="math-display">$$g(x,y) \geq \frac{r^4}{2} - 4r^2 + 1 \xrightarrow[r \to +\infty]{} +\infty$$</div>
+            <p>Par la question 2, \(g\) admet un minimum global sur \(\mathbb{R}^2\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 7</span>
+        <span class="block__label">Exercice 5 -- Prolongement par densite</span>
+        <p>Soient \((E, \|\cdot\|_E)\) et \((F, \|\cdot\|_F)\) deux EVN, \(F\) complet. Soit \(D\) un sous-espace vectoriel dense dans \(E\) et \(f : D \to F\) lineaire continue.</p>
+        <ol>
+          <li>Montrer que pour tout \(x \in E\), si \((d_n)\) et \((d_n')\) sont deux suites de \(D\) convergeant vers \(x\), alors \((f(d_n))\) et \((f(d_n'))\) convergent vers la meme limite.</li>
+          <li>On pose \(\tilde{f}(x) = \lim f(d_n)\). Montrer que \(\tilde{f}\) est lineaire et continue.</li>
+          <li>Montrer que \(\|\tilde{f}\| = \|f\|\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Comme \(f\) est lineaire continue, \(\exists\, C > 0\) tel que \(\|f(u)\|_F \leq C\|u\|_E\) pour tout \(u \in D\). On a \(\|f(d_n) - f(d_n')\|_F = \|f(d_n - d_n')\|_F \leq C\|d_n - d_n'\|_E \to 0\) car \(d_n - d_n' \to 0\).</p>
+            <p>Il reste a montrer la convergence. La suite \((f(d_n))\) est de Cauchy : \(\|f(d_m) - f(d_n)\|_F \leq C\|d_m - d_n\|_E \to 0\). Comme \(F\) est complet, elle converge.</p>
+
+            <p><strong>2.</strong> <strong>Linearite :</strong> soient \(x, y \in E\), \(\lambda \in \mathbb{K}\), \((d_n) \to x\) et \((e_n) \to y\) dans \(D\). Alors \(\lambda d_n + e_n \to \lambda x + y\) et :</p>
+            <div class="math-display">$$\tilde{f}(\lambda x + y) = \lim f(\lambda d_n + e_n) = \lim (\lambda f(d_n) + f(e_n)) = \lambda \tilde{f}(x) + \tilde{f}(y)$$</div>
+            <p><strong>Continuite :</strong> \(\|\tilde{f}(x)\|_F = \lim \|f(d_n)\|_F \leq \lim C\|d_n\|_E = C\|x\|_E\). Donc \(\|\tilde{f}\| \leq \|f\|\).</p>
+
+            <p><strong>3.</strong> On a deja \(\|\tilde{f}\| \leq \|f\|\). Reciproquement, pour \(d \in D\) : \(\tilde{f}(d) = f(d)\) (suite constante). Donc \(\|f(d)\|_F = \|\tilde{f}(d)\|_F \leq \|\tilde{f}\| \|d\|_E\). Passant au sup sur \(\|d\| = 1\) : \(\|f\| \leq \|\tilde{f}\|\). Conclusion : \(\|\tilde{f}\| = \|f\|\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 7</span>
+        <span class="block__label">Exercice 6 -- Theoreme du point fixe de Banach</span>
+        <p>Soit \((E, d)\) un espace metrique complet et \(f : E \to E\) contractante : \(\exists\, k \in [0,1[\), \(\forall\, x,y \in E\), \(d(f(x), f(y)) \leq k\,d(x,y)\).</p>
+        <ol>
+          <li>Montrer que \(f\) est uniformement continue.</li>
+          <li>Soit \(x_0 \in E\) et \(x_{n+1} = f(x_n)\). Montrer que \(d(x_{n+1}, x_n) \leq k^n d(x_1, x_0)\).</li>
+          <li>En deduire que \((x_n)\) est de Cauchy et que \(f\) admet un unique point fixe.</li>
+          <li>Application : montrer que \(x = \frac{1}{2}\cos(x)\) admet une unique solution dans \(\mathbb{R}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Soit \(\varepsilon > 0\). Posons \(\delta = \varepsilon\). Si \(d(x,y) < \delta\), alors \(d(f(x), f(y)) \leq k\,d(x,y) < k\delta \leq \varepsilon\). Donc \(f\) est lipschitzienne (rapport \(k\)), a fortiori uniformement continue.</p>
+
+            <p><strong>2.</strong> Recurrence : \(d(x_2, x_1) = d(f(x_1), f(x_0)) \leq k\,d(x_1, x_0)\). Si \(d(x_{n+1}, x_n) \leq k^n d(x_1, x_0)\), alors \(d(x_{n+2}, x_{n+1}) = d(f(x_{n+1}), f(x_n)) \leq k\,d(x_{n+1}, x_n) \leq k^{n+1} d(x_1, x_0)\).</p>
+
+            <p><strong>3.</strong> Pour \(m > n\), par l'inegalite triangulaire :</p>
+            <div class="math-display">$$d(x_m, x_n) \leq \sum_{j=n}^{m-1} d(x_{j+1}, x_j) \leq d(x_1, x_0)\sum_{j=n}^{m-1} k^j \leq \frac{k^n}{1-k}\,d(x_1, x_0) \xrightarrow[n \to \infty]{} 0$$</div>
+            <p>Donc \((x_n)\) est de Cauchy. Comme \(E\) est complet, \(x_n \to \ell \in E\). Par continuite de \(f\) : \(\ell = \lim x_{n+1} = \lim f(x_n) = f(\ell)\).</p>
+            <p><strong>Unicite :</strong> si \(\ell'\) est un autre point fixe, \(d(\ell, \ell') = d(f(\ell), f(\ell')) \leq k\,d(\ell, \ell')\), donc \((1-k)d(\ell, \ell') \leq 0\) et \(\ell = \ell'\).</p>
+
+            <p><strong>4.</strong> Posons \(g(x) = \frac{1}{2}\cos(x)\). On a \(|g'(x)| = \frac{1}{2}|\sin(x)| \leq \frac{1}{2}\). Par le TAF : \(|g(x)-g(y)| \leq \frac{1}{2}|x-y|\). Donc \(g\) est contractante de rapport \(k = 1/2\) sur \(\mathbb{R}\) complet. De plus, \(g\) envoie \([-1/2, 1/2]\) dans lui-meme (cet intervalle est ferme, donc complet). Par le theoreme du point fixe de Banach, l'equation admet une unique solution. En iterant a partir de \(x_0 = 0\) : \(x_1 = 0{,}5\), \(x_2 \approx 0{,}439\), et la suite converge vers \(\ell \approx 0{,}450\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
-      <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
+      <a href="mp-m9-groupes-anneaux.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Groupes & Anneaux</span>
+      </a>
+      <a href="mp-m11-series-numeriques.html" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
-        <span>Fiche suivante</span>
+        <span>Series numeriques</span>
       </a>
     </nav>
 
@@ -396,6 +740,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

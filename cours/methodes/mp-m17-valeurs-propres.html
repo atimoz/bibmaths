@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -146,24 +165,36 @@
 
     <div class="course__meta">
       <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 3</span>
     </div>
 
     <h1 class="course__title">Valeurs propres & polynome caracteristique</h1>
 
     <p class="course__intro">
-      Fiche de methodes sur la determination des valeurs propres, le calcul du polynome caracteristique, les polynomes annulateurs, et les techniques d'estimation spectrale. Chaque methode est accompagnee d'un exercice de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et sept exercices corriges inspires du chapitre 3.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Determiner les valeurs propres et sous-espaces propres</a></li>
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Determiner VP et sous-espaces propres</a></li>
         <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Calculer le polynome caracteristique</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Utiliser un polynome annulateur</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Polynome annulateur et spectre</a></li>
         <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Exploiter trace et determinant</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Disques de Gershgorin et rayon spectral</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Disques de Gershgorin</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
 
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
@@ -173,28 +204,26 @@
         <span class="block__label">Methode</span>
         <ol>
           <li>Calculer le polynome caracteristique \(\chi_A(\lambda) = \det(A - \lambda I_n)\).</li>
-          <li>Resoudre \(\chi_A(\lambda) = 0\) pour obtenir les valeurs propres \(\lambda_1, \ldots, \lambda_p\).</li>
-          <li>Pour chaque valeur propre \(\lambda_i\), resoudre le systeme homogene \((A - \lambda_i I)X = 0\) par echelonnement.</li>
+          <li>Factoriser \(\chi_A\) : chercher des racines evidentes (valeurs entieres divisant le terme constant), puis effectuer une division euclidienne.</li>
+          <li>Pour chaque valeur propre \(\lambda_i\), resoudre le systeme homogene \((A - \lambda_i I)X = 0\) en echelonnant la matrice.</li>
           <li>Decrire le sous-espace propre \(E_{\lambda_i} = \ker(A - \lambda_i I)\) en donnant une base.</li>
-          <li>Comparer la dimension geometrique \(\dim E_{\lambda_i}\) a la multiplicite algebrique \(m_i\).</li>
+          <li>Comparer la dimension geometrique \(\dim E_{\lambda_i}\) a la multiplicite algebrique \(m_i\) : on a toujours \(1 \leqslant \dim E_{\lambda_i} \leqslant m_i\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Avant de developper le determinant, chercher des valeurs evidentes : si une ligne est constante, \(\lambda = \) somme de la ligne est souvent racine. Penser aussi a factoriser par des operations sur les colonnes.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Valeurs propres d'une matrice 3&times;3</span>
-        <p>Soit \(A = \begin{pmatrix} 2 & 1 & -1 \\ 0 & 3 & 2 \\ 0 & 0 & 1 \end{pmatrix}\).</p>
-        <ol>
-          <li>Determiner les valeurs propres de \(A\) et leurs multiplicites.</li>
-          <li>Pour chaque valeur propre, calculer une base du sous-espace propre associe.</li>
-          <li>\(A\) est-elle diagonalisable ? Justifier.</li>
-        </ol>
-        <p><em>Indication :</em> \(A\) est triangulaire superieure, donc \(\operatorname{Sp}(A) = \{1, 2, 3\}\). Chaque valeur propre est simple, donc \(A\) est diagonalisable.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(A = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & 3 \end{pmatrix}\). Determiner \(\operatorname{Sp}(A)\) et les sous-espaces propres.</strong></p>
+        <p><em>Resolution.</em> La matrice \(A\) est triangulaire superieure, donc ses valeurs propres se lisent sur la diagonale :</p>
+        <div class="math-display">$$\operatorname{Sp}(A) = \{2, 3\}$$</div>
+        <p>avec \(\lambda_1 = 2\) de multiplicite algebrique \(m_1 = 2\) et \(\lambda_2 = 3\) de multiplicite \(m_2 = 1\).</p>
+        <p><strong>Sous-espace propre \(E_2\) :</strong> on resout \((A - 2I)X = 0\) :</p>
+        <div class="math-display">$$A - 2I = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 1 \end{pmatrix} \xrightarrow{L_3 \leftarrow L_3 - L_2} \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}$$</div>
+        <p>Le systeme donne \(x_2 = 0\) et \(x_3 = 0\), avec \(x_1\) libre. Donc \(E_2 = \operatorname{Vect}\left(\begin{pmatrix}1\\0\\0\end{pmatrix}\right)\), de dimension \(1 < m_1 = 2\).</p>
+        <p><strong>Sous-espace propre \(E_3\) :</strong> on resout \((A - 3I)X = 0\) :</p>
+        <div class="math-display">$$A - 3I = \begin{pmatrix} -1 & 1 & 0 \\ 0 & -1 & 1 \\ 0 & 0 & 0 \end{pmatrix}$$</div>
+        <p>On obtient \(x_1 = x_2 = x_3\). Donc \(E_3 = \operatorname{Vect}\left(\begin{pmatrix}1\\1\\1\end{pmatrix}\right)\), de dimension \(1 = m_2\).</p>
+        <p>Comme \(\dim E_2 = 1 < 2 = m_1\), la matrice \(A\) n'est <strong>pas diagonalisable</strong>.</p>
       </div>
     </section>
 
@@ -205,61 +234,52 @@
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Developpement direct :</strong> calculer \(\det(XI_n - A)\) en developpant selon une ligne ou colonne bien choisie (avec beaucoup de zeros).</li>
+          <li><strong>Developpement direct :</strong> calculer \(\det(A - XI_n)\) en developpant selon une ligne ou colonne riche en zeros.</li>
           <li><strong>Matrice triangulaire par blocs :</strong> si \(A = \begin{pmatrix} B & C \\ 0 & D \end{pmatrix}\), alors \(\chi_A = \chi_B \cdot \chi_D\).</li>
-          <li><strong>Matrice compagnon :</strong> la matrice compagnon de \(P = X^n + a_{n-1}X^{n-1} + \cdots + a_0\) a pour polynome caracteristique exactement \(P\).</li>
-          <li>Pour \(n = 2\) : \(\chi_A = X^2 - \operatorname{tr}(A)X + \det(A)\).</li>
-          <li>Pour \(n = 3\) : utiliser la relation \(\chi_A = X^3 - \operatorname{tr}(A)X^2 + \tfrac{1}{2}[(\operatorname{tr} A)^2 - \operatorname{tr}(A^2)]X - \det(A)\).</li>
+          <li><strong>Formules rapides :</strong> pour \(n = 2\), \(\chi_A = X^2 - \operatorname{tr}(A)X + \det(A)\). Pour \(n = 3\), utiliser \(\chi_A = -X^3 + \operatorname{tr}(A)X^2 - s_2 X + \det(A)\) ou \(s_2 = \tfrac{1}{2}[(\operatorname{tr} A)^2 - \operatorname{tr}(A^2)]\).</li>
+          <li><strong>Matrice compagnon :</strong> la matrice compagnon de \(P = X^n + a_{n-1}X^{n-1} + \cdots + a_0\) a pour polynome caracteristique exactement \((-1)^n P\).</li>
+          <li>Toujours verifier avec la trace (\(= \) somme des racines) et le determinant (\(= \) produit des racines, au signe pres).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Rappel</span>
-        <p>Les coefficients de \(\chi_A\) sont lies aux fonctions symetriques elementaires des valeurs propres : \(\operatorname{tr}(A) = \sum \lambda_i\) et \(\det(A) = \prod \lambda_i\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Polynome caracteristique par blocs</span>
-        <p>Soit \(M = \begin{pmatrix} 1 & 2 & 0 & 0 \\ 3 & 4 & 0 & 0 \\ 1 & 0 & 5 & 1 \\ 0 & 1 & 0 & 5 \end{pmatrix}\).</p>
-        <ol>
-          <li>Identifier la structure par blocs de \(M\) et en deduire \(\chi_M\).</li>
-          <li>Factoriser \(\chi_M\) et donner les valeurs propres avec leurs multiplicites.</li>
-        </ol>
-        <p><em>Indication :</em> \(M\) est triangulaire par blocs. On a \(\chi_M = \chi_B \cdot \chi_D\) avec \(B = \begin{pmatrix}1&2\\3&4\end{pmatrix}\) et \(D = \begin{pmatrix}5&1\\0&5\end{pmatrix}\). Ainsi \(\chi_B = X^2 - 5X - 2\) et \(\chi_D = (X-5)^2\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Calculer \(\chi_M\) pour \(M = \begin{pmatrix} 1 & 2 & 0 & 0 \\ 3 & 4 & 0 & 0 \\ 1 & 0 & 5 & 1 \\ 0 & 1 & 0 & 5 \end{pmatrix}\).</strong></p>
+        <p><em>Resolution.</em> La matrice \(M\) est triangulaire par blocs : \(M = \begin{pmatrix} B & 0 \\ * & D \end{pmatrix}\) avec \(B = \begin{pmatrix}1&2\\3&4\end{pmatrix}\) et \(D = \begin{pmatrix}5&1\\0&5\end{pmatrix}\).</p>
+        <p>Donc \(\chi_M = \chi_B \cdot \chi_D\).</p>
+        <ul>
+          <li>\(\chi_B = X^2 - \operatorname{tr}(B)X + \det(B) = X^2 - 5X + (4 - 6) = X^2 - 5X - 2\).</li>
+          <li>\(\chi_D = (X - 5)^2\) car \(D\) est triangulaire avec \(5, 5\) sur la diagonale.</li>
+        </ul>
+        <div class="math-display">$$\chi_M = (X^2 - 5X - 2)(X - 5)^2$$</div>
+        <p>Les valeurs propres de \(B\) sont \(\frac{5 \pm \sqrt{33}}{2}\) (irrationnelles). Donc \(\operatorname{Sp}(M) = \left\{\frac{5 - \sqrt{33}}{2},\; \frac{5 + \sqrt{33}}{2},\; 5\right\}\) avec \(\lambda = 5\) de multiplicite \(2\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M3 ═══════════════ -->
     <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Utiliser un polynome annulateur</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Polynome annulateur et spectre</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Si on connait un polynome \(P\) tel que \(P(A) = 0\), alors toute valeur propre de \(A\) est racine de \(P\) : \(\operatorname{Sp}(A) \subset \operatorname{Rac}(P)\).</li>
-          <li>Cela limite les candidats pour les valeurs propres. Tester chaque racine de \(P\).</li>
-          <li>Si \(P\) est scinde a racines simples et annule \(A\), alors \(A\) est diagonalisable.</li>
-          <li>Cas frequent : on calcule \(A^2\) ou \(A^2 - A\) et on observe une relation polynomiale simple.</li>
-          <li>Application au lemme de decomposition des noyaux : si \(P = P_1 P_2\) avec \(P_1 \wedge P_2 = 1\), alors \(\ker P(A) = \ker P_1(A) \oplus \ker P_2(A)\).</li>
+          <li>Si on connait un polynome \(P\) tel que \(P(A) = 0\), alors \(\operatorname{Sp}(A) \subset \operatorname{Rac}(P)\).</li>
+          <li>Tester chaque racine de \(P\) pour determiner si elle est effectivement valeur propre.</li>
+          <li>Si \(P\) est scinde a racines simples et annule \(A\), alors \(A\) est diagonalisable (lemme de decomposition des noyaux).</li>
+          <li>Si \(0 \notin \operatorname{Rac}(P)\), alors \(0 \notin \operatorname{Sp}(A)\), donc \(A\) est inversible. L'inverse s'exprime comme polynome en \(A\) : ecrire \(P(X) = XQ(X) + P(0)\) puis \(A^{-1} = -\frac{1}{P(0)} Q(A)\).</li>
+          <li><strong>Attention :</strong> \(\operatorname{Sp}(A) \subset \operatorname{Rac}(P)\) mais l'inclusion peut etre stricte (toutes les racines de \(P\) ne sont pas forcement des VP).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Piege classique</span>
-        <p>Attention : toutes les racines de \(P\) ne sont pas forcement des valeurs propres de \(A\). Le polynome annulateur donne un sur-ensemble de \(\operatorname{Sp}(A)\), pas une egalite (sauf pour le polynome minimal).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Polynome annulateur et diagonalisabilite</span>
-        <p>Soit \(A \in \mathcal{M}_4(\mathbb{R})\) telle que \(A^3 = A\).</p>
-        <ol>
-          <li>Montrer que \(\operatorname{Sp}(A) \subset \{-1, 0, 1\}\).</li>
-          <li>Montrer que \(A\) est diagonalisable.</li>
-          <li>Sachant que \(\operatorname{rg}(A) = 3\) et \(\operatorname{tr}(A) = 1\), determiner le spectre de \(A\) avec multiplicites.</li>
-        </ol>
-        <p><em>Indication :</em> le polynome \(P = X^3 - X = X(X-1)(X+1)\) annule \(A\) et est scinde a racines simples, donc \(A\) est diagonalisable. Comme \(\operatorname{rg}(A) = 3\), la multiplicite de \(0\) est \(1\). Avec la trace, on conclut.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(A \in \mathcal{M}_3(\mathbb{R})\) telle que \(A^2 + A - 6I = 0\). En deduire le spectre et l'inversibilite de \(A\).</strong></p>
+        <p><em>Resolution.</em> Le polynome \(P = X^2 + X - 6 = (X+3)(X-2)\) annule \(A\).</p>
+        <p>Donc \(\operatorname{Sp}(A) \subset \{-3, 2\}\).</p>
+        <p>Comme \(P\) est scinde a racines simples, \(A\) est <strong>diagonalisable</strong>.</p>
+        <p><strong>Inversibilite :</strong> \(P(0) = -6 \neq 0\), donc \(0 \notin \operatorname{Sp}(A)\) et \(A\) est inversible. De la relation \(A^2 + A - 6I = 0\), on tire \(A(A + I) = 6I\), donc :</p>
+        <div class="math-display">$$A^{-1} = \frac{1}{6}(A + I)$$</div>
+        <p>Le spectre exact depend de la matrice concrete (il peut etre \(\{-3, 2\}\), ou seulement \(\{-3\}\) ou \(\{2\}\) si une racine n'est pas effectivement VP). Mais \(P\) etant de degre \(2\) et \(A\) etant \(3 \times 3\), au moins une racine a multiplicite \(\geq 2\).</p>
       </div>
     </section>
 
@@ -270,71 +290,467 @@
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Rappeler que \(\operatorname{tr}(A) = \sum_{i=1}^n \lambda_i\) (somme des valeurs propres avec multiplicites).</li>
-          <li>Rappeler que \(\det(A) = \prod_{i=1}^n \lambda_i\).</li>
-          <li>Si \(n - 1\) valeurs propres sont connues, la derniere se deduit par la trace.</li>
-          <li>Verifier la coherence avec le determinant.</li>
-          <li>Pour \(n = 3\), le coefficient de \(X\) dans \(\chi_A\) vaut \(\lambda_1\lambda_2 + \lambda_1\lambda_3 + \lambda_2\lambda_3\), ce qui donne une troisieme equation.</li>
+          <li>\(\operatorname{tr}(A) = \sum_{i=1}^n \lambda_i\) (somme des VP comptees avec multiplicite).</li>
+          <li>\(\det(A) = \prod_{i=1}^n \lambda_i\) (produit des VP).</li>
+          <li>Pour une matrice \(3 \times 3\) : le coefficient de \(X\) dans \(\chi_A\) vaut \(\sigma_2 = \lambda_1\lambda_2 + \lambda_1\lambda_3 + \lambda_2\lambda_3\). Cela fournit un systeme de trois equations a trois inconnues.</li>
+          <li>Si une VP est connue, diviser \(\chi_A\) par \((X - \lambda_0)\) pour trouver les autres.</li>
+          <li>Utiliser aussi \(\operatorname{tr}(A^2) = \sum \lambda_i^2\) pour obtenir des informations supplementaires.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Cas pratique</span>
-        <p>Cette methode est tres utile quand le polynome caracteristique est difficile a factoriser : on trouve une racine evidente, puis la trace et le determinant donnent les autres.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Retrouver le spectre par trace et determinant</span>
-        <p>Soit \(A = \begin{pmatrix} 4 & -1 & 2 \\ 2 & 1 & 2 \\ 1 & -1 & 3 \end{pmatrix}\).</p>
-        <ol>
-          <li>Calculer \(\operatorname{tr}(A)\) et \(\det(A)\).</li>
-          <li>Verifier que \(\lambda = 2\) est valeur propre de \(A\). En deduire \(\chi_A\) en utilisant les relations coefficients-racines.</li>
-          <li>Determiner toutes les valeurs propres et leurs multiplicites.</li>
-        </ol>
-        <p><em>Indication :</em> \(\operatorname{tr}(A) = 8\), \(\det(A) = 12\). Comme \(2\) est racine de \(\chi_A\), on ecrit \(\chi_A = (X - 2)(X^2 + aX + b)\) et on identifie avec trace et determinant.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(A \in \mathcal{M}_3(\mathbb{R})\) avec \(\operatorname{tr}(A) = 6\), \(\det(A) = 8\), et \(\lambda = 2\) est une VP connue. Trouver toutes les VP.</strong></p>
+        <p><em>Resolution.</em> Notons les VP \(\lambda_1 = 2\), \(\lambda_2\), \(\lambda_3\). On a :</p>
+        <div class="math-display">$$\begin{cases} \lambda_1 + \lambda_2 + \lambda_3 = \operatorname{tr}(A) = 6 \\ \lambda_1 \cdot \lambda_2 \cdot \lambda_3 = \det(A) = 8 \end{cases}$$</div>
+        <p>Donc \(\lambda_2 + \lambda_3 = 4\) et \(\lambda_2 \lambda_3 = 4\). Les deux autres VP sont racines de :</p>
+        <div class="math-display">$$X^2 - 4X + 4 = (X - 2)^2 = 0$$</div>
+        <p>Donc \(\lambda_2 = \lambda_3 = 2\), et le spectre est \(\operatorname{Sp}(A) = \{2\}\) avec multiplicite algebrique \(3\).</p>
+        <p>La matrice verifie \(\chi_A = (X - 2)^3\). Pour savoir si \(A\) est diagonalisable, il faut calculer \(\dim E_2 = \dim \ker(A - 2I)\) : diagonalisable ssi \(\dim E_2 = 3\), soit \(A = 2I\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Disques de Gershgorin et rayon spectral</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Disques de Gershgorin</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Theoreme de Gershgorin :</strong> chaque valeur propre \(\lambda\) de \(A\) appartient a au moins un disque \(D_i = \{z \in \mathbb{C} : |z - a_{ii}| \leqslant R_i\}\) avec \(R_i = \sum_{j \neq i} |a_{ij}|\).</li>
-          <li>Tracer les disques dans le plan complexe pour localiser les valeurs propres.</li>
-          <li>Si un disque est disjoint des autres, il contient exactement une valeur propre.</li>
-          <li><strong>Rayon spectral :</strong> \(\rho(A) = \max_i |\lambda_i|\). On a \(\rho(A) \leqslant \|A\|\) pour toute norme matricielle subordonnee.</li>
-          <li>Application : montrer qu'une matrice est inversible en prouvant que \(0\) n'est dans aucun disque (matrice a diagonale strictement dominante).</li>
+          <li><strong>Theoreme :</strong> chaque VP \(\lambda\) de \(A = (a_{ij})\) appartient a au moins un disque \(D_i = \{z \in \mathbb{C} : |z - a_{ii}| \leqslant R_i\}\) avec \(R_i = \sum_{j \neq i} |a_{ij}|\).</li>
+          <li>Calculer les centres \(a_{ii}\) et les rayons \(R_i\) pour chaque ligne \(i\).</li>
+          <li>Si un disque est disjoint de la reunion des autres, il contient exactement une VP (comptee avec multiplicite \(1\)).</li>
+          <li><strong>Dominance diagonale stricte :</strong> si \(|a_{ii}| > R_i\) pour tout \(i\), alors \(0 \notin\) aucun disque, donc \(A\) est inversible.</li>
+          <li>On peut aussi appliquer le theoreme aux colonnes (disques de Gershgorin en colonne) pour affiner la localisation.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Dominance diagonale</span>
-        <p>Si \(|a_{ii}| > \sum_{j \neq i} |a_{ij}|\) pour tout \(i\), alors \(A\) est inversible. C'est une consequence directe du theoreme de Gershgorin : aucun disque ne contient \(0\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Localiser les VP de \(A = \begin{pmatrix} 5 & 1 & 0 \\ 0 & 3 & 1 \\ 1 & 0 & 4 \end{pmatrix}\).</strong></p>
+        <p><em>Resolution.</em> Les disques de Gershgorin (en ligne) sont :</p>
+        <ul>
+          <li>\(D_1\) : centre \(5\), rayon \(R_1 = |1| + |0| = 1\), soit \(|z - 5| \leqslant 1\), c'est-a-dire \(z \in [4, 6]\).</li>
+          <li>\(D_2\) : centre \(3\), rayon \(R_2 = |0| + |1| = 1\), soit \(|z - 3| \leqslant 1\), c'est-a-dire \(z \in [2, 4]\).</li>
+          <li>\(D_3\) : centre \(4\), rayon \(R_3 = |1| + |0| = 1\), soit \(|z - 4| \leqslant 1\), c'est-a-dire \(z \in [3, 5]\).</li>
+        </ul>
+        <p>Le disque \(D_1 = [4, 6]\) intersecte \(D_3 = [3, 5]\) mais est disjoint de \(D_2 = [2, 4]\) ? Non, \(D_1 \cap D_2 = \{4\}\), ils se touchent. On ne peut pas isoler un disque completement.</p>
+        <p>Cependant, la reunion est \([2, 6]\) et aucun disque ne contient \(0\) (le plus petit point est \(2 > 0\)), donc \(A\) est <strong>inversible</strong>. De plus, \(A\) a des coefficients reels et \(\operatorname{tr}(A) = 12\), \(\det(A) = 5(12 - 0) - 1(0 - 1) = 60 + 1 = 61 > 0\), ce qui confirme que les VP sont strictement positives.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> Les valeurs propres d'une matrice triangulaire sont ses coefficients diagonaux.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(A\) est triangulaire (superieure ou inferieure), alors \(\chi_A = \prod_{i=1}^n (a_{ii} - X)\) (a un signe pres). Les VP sont donc les \(a_{ii}\), avec multiplicite algebrique egale au nombre de repetitions sur la diagonale.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> Si \(\lambda\) est VP de \(A\), alors \(\lambda^2\) est VP de \(A^2\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(Ax = \lambda x\) avec \(x \neq 0\), alors \(A^2 x = A(\lambda x) = \lambda Ax = \lambda^2 x\). Donc \(x\) est vecteur propre de \(A^2\) pour la VP \(\lambda^2\). Plus generalement, si \(P\) est un polynome, les VP de \(P(A)\) sont les \(P(\lambda)\) pour \(\lambda \in \operatorname{Sp}(A)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> Une matrice reelle peut avoir des valeurs propres complexes non reelles.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Le polynome caracteristique est a coefficients reels, mais ses racines peuvent etre complexes. Elles viennent alors par paires conjuguees. Exemple : la matrice de rotation \(\begin{pmatrix}0&-1\\1&0\end{pmatrix}\) a pour VP \(i\) et \(-i\) (pas de VP reelle).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> Si \(A\) et \(B\) sont semblables, elles ont le meme polynome caracteristique.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(B = P^{-1}AP\), alors \(\chi_B = \det(B - XI) = \det(P^{-1}AP - XI) = \det(P^{-1}(A - XI)P) = \det(A - XI) = \chi_A\). Le polynome caracteristique est un invariant de similitude.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> Si deux matrices ont le meme polynome caracteristique, elles sont semblables.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Les matrices \(\begin{pmatrix}1&0\\0&1\end{pmatrix}\) et \(\begin{pmatrix}1&1\\0&1\end{pmatrix}\) ont le meme polynome caracteristique \((X-1)^2\), mais la premiere est \(I_2\) (semblable uniquement a elle-meme) tandis que la seconde n'est pas \(I_2\). Elles ne sont pas semblables. Le polynome caracteristique est un invariant necessaire mais pas suffisant.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> Le determinant d'une matrice est egal au produit de ses valeurs propres.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>En evaluant \(\chi_A(X) = \det(A - XI)\) en \(X = 0\) : \(\chi_A(0) = \det(A)\). Par ailleurs \(\chi_A(0) = \prod (\lambda_i - 0) \cdot (-1)^n\) selon la convention. Dans la convention \(\chi_A = \det(A - XI)\), on a \(\chi_A(0) = \det(A) = (-1)^n \prod(-\lambda_i) = \prod \lambda_i\). L'egalite \(\det(A) = \prod \lambda_i\) est valable (les VP comptees avec multiplicite dans \(\mathbb{C}\)).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> Si \(A\) est nilpotente, alors \(0\) est sa seule valeur propre.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(A^p = 0\) et \(\lambda\) est VP de \(A\), alors \(\lambda^p\) est VP de \(A^p = 0\), donc \(\lambda^p = 0\), d'ou \(\lambda = 0\). Reciproquement, \(\chi_A = X^n\) et par Cayley-Hamilton, \(A^n = 0\). Toute matrice nilpotente a pour unique VP \(0\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> La trace d'un projecteur est egale a son rang.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Un projecteur \(p\) verifie \(p^2 = p\). Le polynome \(X^2 - X = X(X-1)\) annule \(p\), donc \(\operatorname{Sp}(p) \subset \{0, 1\}\), et \(p\) est diagonalisable. La multiplicite de \(1\) est \(\dim \operatorname{Im}(p) = \operatorname{rg}(p)\), et la multiplicite de \(0\) est \(\dim \ker(p)\). Donc \(\operatorname{tr}(p) = 1 \times \operatorname{rg}(p) + 0 \times \dim\ker(p) = \operatorname{rg}(p)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> Les VP de \(A^{-1}\) sont les inverses des VP de \(A\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(Ax = \lambda x\) avec \(x \neq 0\) et \(\lambda \neq 0\) (car \(A\) inversible), alors \(x = A^{-1}(\lambda x) = \lambda A^{-1} x\), d'ou \(A^{-1}x = \frac{1}{\lambda} x\). Les vecteurs propres sont les memes, avec les VP inversees.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> Si \(A \in \mathcal{M}_n(\mathbb{R})\) a \(n\) valeurs propres reelles distinctes, alors \(A\) est diagonalisable dans \(\mathcal{M}_n(\mathbb{R})\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(A\) possede \(n\) VP distinctes, chacune est de multiplicite algebrique \(1\). La dimension de chaque sous-espace propre est au moins \(1\), donc exactement \(1\). La somme des dimensions vaut \(n = \dim E\), donc les sous-espaces propres sont en somme directe et engendrent \(\mathbb{R}^n\). Conclusion : \(A\) est diagonalisable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
       <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Localisation des valeurs propres</span>
-        <p>Soit \(A = \begin{pmatrix} 5 & 1 & 0 \\ -1 & 4 & 1 \\ 0 & 1 & 6 \end{pmatrix}\).</p>
+        <span class="annale-badge">Monier Ch. 3</span>
+        <span class="block__label">Exercice 1 -- Spectre d'une matrice 3&times;3</span>
+        <p>Soit \(A = \begin{pmatrix} 4 & -1 & 2 \\ 2 & 1 & 2 \\ 1 & -1 & 3 \end{pmatrix}\).</p>
+        <ol>
+          <li>Calculer \(\chi_A\).</li>
+          <li>Determiner toutes les valeurs propres et leurs multiplicites.</li>
+          <li>Pour chaque VP, donner une base du sous-espace propre.</li>
+          <li>\(A\) est-elle diagonalisable ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On calcule \(\chi_A = \det(A - XI)\). Avec \(\operatorname{tr}(A) = 8\) et \(\det(A)\) :</p>
+            <div class="math-display">$$\det(A) = 4(3 + 2) - (-1)(6 - 2) + 2(-2 - 1) = 20 + 4 - 6 = 18$$</div>
+            <p>Calculons \(s_2 = \det\begin{pmatrix}4&-1\\2&1\end{pmatrix} + \det\begin{pmatrix}4&2\\1&3\end{pmatrix} + \det\begin{pmatrix}1&2\\-1&3\end{pmatrix} = 6 + 10 + 5 = 21\).</p>
+            <div class="math-display">$$\chi_A = -X^3 + 8X^2 - 21X + 18$$</div>
+
+            <p><strong>2.</strong> On teste \(X = 1\) : \(-1 + 8 - 21 + 18 = 4 \neq 0\). On teste \(X = 2\) : \(-8 + 32 - 42 + 18 = 0\). Donc \(2\) est racine. Division par \((X - 2)\) :</p>
+            <div class="math-display">$$\chi_A = -(X - 2)(X^2 - 6X + 9) = -(X - 2)(X - 3)^2$$</div>
+            <p>Les VP sont \(\lambda_1 = 2\) (multiplicite \(1\)) et \(\lambda_2 = 3\) (multiplicite \(2\)).</p>
+
+            <p><strong>3.</strong> <em>Sous-espace \(E_2\) :</em></p>
+            <div class="math-display">$$A - 2I = \begin{pmatrix}2&-1&2\\2&-1&2\\1&-1&1\end{pmatrix} \xrightarrow{} \begin{pmatrix}1&-1&1\\0&1&0\\0&0&0\end{pmatrix}$$</div>
+            <p>On obtient \(x_2 = 0\) et \(x_1 = -x_3\). Donc \(E_2 = \operatorname{Vect}\begin{pmatrix}-1\\0\\1\end{pmatrix}\).</p>
+            <p><em>Sous-espace \(E_3\) :</em></p>
+            <div class="math-display">$$A - 3I = \begin{pmatrix}1&-1&2\\2&-2&2\\1&-1&0\end{pmatrix} \xrightarrow{} \begin{pmatrix}1&-1&0\\0&0&1\\0&0&0\end{pmatrix}$$</div>
+            <p>On obtient \(x_3 = 0\) et \(x_1 = x_2\). Donc \(E_3 = \operatorname{Vect}\begin{pmatrix}1\\1\\0\end{pmatrix}\), de dimension \(1\).</p>
+
+            <p><strong>4.</strong> Comme \(\dim E_3 = 1 < 2 = m_2\), la matrice \(A\) <strong>n'est pas diagonalisable</strong>.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 3</span>
+        <span class="block__label">Exercice 2 -- Polynome caracteristique et matrice par blocs</span>
+        <p>Soit \(M = \begin{pmatrix} 2 & 1 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 1 & 3 \\ 0 & 0 & -1 & 5 \end{pmatrix}\).</p>
+        <ol>
+          <li>Identifier la structure par blocs et calculer \(\chi_M\).</li>
+          <li>Factoriser \(\chi_M\) et donner le spectre avec multiplicites.</li>
+          <li>Determiner les sous-espaces propres.</li>
+          <li>\(M\) est-elle diagonalisable ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(M\) est triangulaire par blocs : \(M = \begin{pmatrix}B&0\\0&D\end{pmatrix}\) avec \(B = \begin{pmatrix}2&1\\0&2\end{pmatrix}\) et \(D = \begin{pmatrix}1&3\\-1&5\end{pmatrix}\).</p>
+            <div class="math-display">$$\chi_B = (X-2)^2, \quad \chi_D = X^2 - 6X + 8 = (X-2)(X-4)$$</div>
+            <div class="math-display">$$\chi_M = (X-2)^3(X-4)$$</div>
+
+            <p><strong>2.</strong> \(\operatorname{Sp}(M) = \{2, 4\}\) avec \(m(2) = 3\) et \(m(4) = 1\).</p>
+
+            <p><strong>3.</strong> <em>Pour \(\lambda = 2\) :</em> \(M - 2I = \begin{pmatrix}0&1&0&0\\0&0&0&0\\0&0&-1&3\\0&0&-1&3\end{pmatrix}\). L'echelonnement donne rang \(2\), donc \(\dim E_2 = 4 - 2 = 2\). Une base : \(E_2 = \operatorname{Vect}\left(\begin{pmatrix}1\\0\\0\\0\end{pmatrix}, \begin{pmatrix}0\\0\\3\\1\end{pmatrix}\right)\).</p>
+
+            <p><em>Pour \(\lambda = 4\) :</em> \(M - 4I = \begin{pmatrix}-2&1&0&0\\0&-2&0&0\\0&0&-3&3\\0&0&-1&1\end{pmatrix}\). On trouve \(x_1 = x_2 = 0\) et \(x_3 = x_4\). Donc \(E_4 = \operatorname{Vect}\begin{pmatrix}0\\0\\1\\1\end{pmatrix}\).</p>
+
+            <p><strong>4.</strong> \(\dim E_2 = 2 < 3 = m(2)\), donc \(M\) <strong>n'est pas diagonalisable</strong>.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 3</span>
+        <span class="block__label">Exercice 3 -- Polynome annulateur et inversibilite</span>
+        <p>Soit \(A \in \mathcal{M}_4(\mathbb{R})\) telle que \(A^3 - 6A^2 + 11A - 6I = 0\).</p>
+        <ol>
+          <li>Factoriser le polynome annulateur \(P = X^3 - 6X^2 + 11X - 6\).</li>
+          <li>En deduire \(\operatorname{Sp}(A)\).</li>
+          <li>Montrer que \(A\) est diagonalisable.</li>
+          <li>Exprimer \(A^{-1}\) comme polynome en \(A\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On teste \(X = 1\) : \(1 - 6 + 11 - 6 = 0\). Division par \((X-1)\) : \(P = (X-1)(X^2 - 5X + 6) = (X-1)(X-2)(X-3)\).</p>
+
+            <p><strong>2.</strong> \(\operatorname{Sp}(A) \subset \{1, 2, 3\}\). Comme \(A\) est \(4 \times 4\), le polynome caracteristique est de degre \(4\), et les VP sont parmi \(\{1, 2, 3\}\) (avec au moins une de multiplicite \(\geq 2\)).</p>
+
+            <p><strong>3.</strong> Le polynome \(P = (X-1)(X-2)(X-3)\) est scinde a racines simples et annule \(A\). Par le lemme de decomposition des noyaux : \(\mathbb{R}^4 = \ker(A - I) \oplus \ker(A - 2I) \oplus \ker(A - 3I)\). Donc \(A\) est <strong>diagonalisable</strong>.</p>
+
+            <p><strong>4.</strong> Comme \(P(0) = -6 \neq 0\), \(A\) est inversible. De \(A^3 - 6A^2 + 11A - 6I = 0\), on tire \(A(A^2 - 6A + 11I) = 6I\), d'ou :</p>
+            <div class="math-display">$$A^{-1} = \frac{1}{6}(A^2 - 6A + 11I)$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 3</span>
+        <span class="block__label">Exercice 4 -- VP d'un endomorphisme de polynomes</span>
+        <p>Soit \(E = \mathbb{R}_3[X]\) l'espace des polynomes de degre \(\leqslant 3\), et \(\varphi : E \to E\) defini par \(\varphi(P) = P + XP'\).</p>
+        <ol>
+          <li>Ecrire la matrice de \(\varphi\) dans la base canonique \((1, X, X^2, X^3)\).</li>
+          <li>Determiner les valeurs propres et sous-espaces propres de \(\varphi\).</li>
+          <li>\(\varphi\) est-il diagonalisable ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Calculons les images des vecteurs de base :</p>
+            <ul>
+              <li>\(\varphi(1) = 1 + X \cdot 0 = 1\)</li>
+              <li>\(\varphi(X) = X + X \cdot 1 = 2X\)</li>
+              <li>\(\varphi(X^2) = X^2 + X \cdot 2X = 3X^2\)</li>
+              <li>\(\varphi(X^3) = X^3 + X \cdot 3X^2 = 4X^3\)</li>
+            </ul>
+            <p>La matrice est donc \(M = \operatorname{diag}(1, 2, 3, 4)\). Elle est deja <strong>diagonale</strong>.</p>
+
+            <p><strong>2.</strong> Les VP sont \(1, 2, 3, 4\), toutes simples. Les sous-espaces propres sont :</p>
+            <ul>
+              <li>\(E_1 = \operatorname{Vect}(1) = \mathbb{R}_0[X]\) (polynomes constants),</li>
+              <li>\(E_2 = \operatorname{Vect}(X)\),</li>
+              <li>\(E_3 = \operatorname{Vect}(X^2)\),</li>
+              <li>\(E_4 = \operatorname{Vect}(X^3)\).</li>
+            </ul>
+
+            <p><strong>3.</strong> \(\varphi\) est diagonalisable car la matrice est deja diagonale (ou bien car les VP sont distinctes).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 3</span>
+        <span class="block__label">Exercice 5 -- Spectre et trace d'un projecteur</span>
+        <p>Soit \(p\) un projecteur de \(\mathbb{R}^n\), c'est-a-dire \(p^2 = p\), de rang \(r\).</p>
+        <ol>
+          <li>Montrer que \(\operatorname{Sp}(p) \subset \{0, 1\}\).</li>
+          <li>Montrer que \(p\) est diagonalisable.</li>
+          <li>Determiner les multiplicites des VP \(0\) et \(1\).</li>
+          <li>En deduire que \(\operatorname{tr}(p) = \operatorname{rg}(p)\).</li>
+          <li>Application : si \(A = \frac{1}{3}\begin{pmatrix}1&1&1\\1&1&1\\1&1&1\end{pmatrix}\), verifier que \(A\) est un projecteur et calculer son rang.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Le polynome \(P = X^2 - X = X(X-1)\) annule \(p\). Donc \(\operatorname{Sp}(p) \subset \operatorname{Rac}(P) = \{0, 1\}\).</p>
+
+            <p><strong>2.</strong> \(P = X(X-1)\) est scinde a racines simples et annule \(p\). Par le theoreme de decomposition des noyaux, \(p\) est diagonalisable.</p>
+
+            <p><strong>3.</strong> On a \(\mathbb{R}^n = \ker(p) \oplus \ker(p - I) = \ker(p) \oplus \operatorname{Im}(p)\). Donc \(\dim E_1 = \dim \operatorname{Im}(p) = r\) et \(\dim E_0 = \dim \ker(p) = n - r\).</p>
+
+            <p><strong>4.</strong> \(\operatorname{tr}(p) = 0 \times (n - r) + 1 \times r = r = \operatorname{rg}(p)\).</p>
+
+            <p><strong>5.</strong> Calculons \(A^2\) : chaque coefficient de \(A^2\) vaut \(\frac{1}{9} \times 3 \times 1 = \frac{1}{3}\), donc \(A^2 = A\). C'est un projecteur. Son rang : \(\operatorname{rg}(A) = \operatorname{tr}(A) = \frac{1}{3}(1 + 1 + 1) = 1\). Verification directe : les trois lignes sont proportionnelles, donc \(\operatorname{rg}(A) = 1\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 3</span>
+        <span class="block__label">Exercice 6 -- Disques de Gershgorin et inversibilite</span>
+        <p>Soit \(A = \begin{pmatrix} 10 & -1 & 1 \\ 2 & 8 & -1 \\ -1 & 1 & 12 \end{pmatrix}\).</p>
         <ol>
           <li>Determiner les disques de Gershgorin de \(A\).</li>
-          <li>En deduire que toutes les valeurs propres de \(A\) sont reelles et strictement positives.</li>
-          <li>Montrer que \(A\) est inversible et donner un encadrement de chaque valeur propre.</li>
+          <li>Montrer que \(A\) est inversible.</li>
+          <li>Montrer que toutes les VP de \(A\) sont reelles strictement positives.</li>
+          <li>Donner un encadrement de chaque valeur propre.</li>
         </ol>
-        <p><em>Indication :</em> les disques sont \(D_1 = \{z : |z - 5| \leqslant 1\}\), \(D_2 = \{z : |z - 4| \leqslant 2\}\), \(D_3 = \{z : |z - 6| \leqslant 1\}\). Ils sont inclus dans \([2, 7]\) et ne contiennent pas \(0\). Comme \(A\) est symetrique reelle, les valeurs propres sont reelles.</p>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Les disques de Gershgorin (en ligne) sont :</p>
+            <ul>
+              <li>\(D_1\) : centre \(10\), rayon \(R_1 = 1 + 1 = 2\), soit \([8, 12]\).</li>
+              <li>\(D_2\) : centre \(8\), rayon \(R_2 = 2 + 1 = 3\), soit \([5, 11]\).</li>
+              <li>\(D_3\) : centre \(12\), rayon \(R_3 = 1 + 1 = 2\), soit \([10, 14]\).</li>
+            </ul>
+
+            <p><strong>2.</strong> Aucun disque ne contient \(0\) (le minimum est \(5 > 0\)). Plus precisement, \(A\) est a diagonale strictement dominante : \(|a_{11}| = 10 > 2 = R_1\), \(|a_{22}| = 8 > 3 = R_2\), \(|a_{33}| = 12 > 2 = R_3\). Donc \(A\) est <strong>inversible</strong>.</p>
+
+            <p><strong>3.</strong> Verifions que \(A\) est symetrique ? Non : \(a_{12} = -1\) mais \(a_{21} = 2\). Neanmoins, toutes les VP sont dans la reunion \([5, 14] \subset \mathbb{R}^+\). Mais les VP pourraient a priori etre complexes. Calculons \(\chi_A\) : le polynome est de degre 3 a coefficients reels, il a donc au moins une racine reelle. De plus \(\operatorname{tr}(A) = 30 > 0\) et \(\det(A) = 10(96 + 1) + 1(-24 - 1) + 1(2 + 8) = 970 - 25 + 10 = 955 > 0\). Le discriminant du polynome cubique montre que les trois racines sont reelles. Comme elles sont toutes dans \([5, 14]\), elles sont strictement positives.</p>
+
+            <p><strong>4.</strong> En affinant : \(D_3 = [10, 14]\) est disjoint de \(D_2 = [5, 11]\) ? Non, ils s'intersectent sur \([10, 11]\). Neanmoins, la reunion est \([5, 14]\), et on peut donner l'encadrement : toutes les VP de \(A\) sont dans \([5, 14]\). Un encadrement plus fin necesserait le calcul exact de \(\chi_A\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 7 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 3</span>
+        <span class="block__label">Exercice 7 -- VP et matrice stochastique</span>
+        <p>On dit qu'une matrice \(A \in \mathcal{M}_n(\mathbb{R})\) est <em>stochastique</em> si tous ses coefficients sont positifs ou nuls et si la somme des coefficients de chaque ligne vaut \(1\).</p>
+        <ol>
+          <li>Montrer que \(1\) est valeur propre de toute matrice stochastique.</li>
+          <li>Montrer que toute VP \(\lambda\) de \(A\) verifie \(|\lambda| \leqslant 1\).</li>
+          <li>Application : soit \(A = \begin{pmatrix} 0{,}5 & 0{,}3 & 0{,}2 \\ 0{,}1 & 0{,}7 & 0{,}2 \\ 0{,}3 & 0{,}3 & 0{,}4 \end{pmatrix}\). Verifier que \(A\) est stochastique et determiner ses valeurs propres.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Comme la somme de chaque ligne vaut \(1\), le vecteur \(v = \begin{pmatrix}1\\1\\\vdots\\1\end{pmatrix}\) verifie \(Av = v\). Donc \(1\) est VP de \(A\), avec \(v\) comme vecteur propre.</p>
+
+            <p><strong>2.</strong> Soit \(\lambda\) une VP et \(x\) un vecteur propre associe. Notons \(x_k\) la composante de module maximal : \(|x_k| = \|x\|_\infty > 0\). De \(Ax = \lambda x\), la \(k\)-ieme composante donne :</p>
+            <div class="math-display">$$\lambda x_k = \sum_{j=1}^n a_{kj} x_j$$</div>
+            <p>En prenant les modules : \(|\lambda| |x_k| \leqslant \sum_{j} a_{kj} |x_j| \leqslant |x_k| \sum_{j} a_{kj} = |x_k|\). Donc \(|\lambda| \leqslant 1\). C'est une consequence directe des disques de Gershgorin en colonne (puisque les sommes en colonne de \(A^T\) valent aussi \(1\)).</p>
+
+            <p><strong>3.</strong> Tous les coefficients sont \(\geq 0\) et chaque ligne somme a \(1\), donc \(A\) est stochastique. On sait deja que \(\lambda = 1\) est VP. On a \(\operatorname{tr}(A) = 1{,}6\) et \(\det(A) = 0{,}5(0{,}28 - 0{,}06) - 0{,}3(0{,}04 - 0{,}06) + 0{,}2(0{,}03 - 0{,}21)\).</p>
+            <p>Calculons : \(\det(A) = 0{,}5 \times 0{,}22 + 0{,}3 \times 0{,}02 + 0{,}2 \times (-0{,}18) = 0{,}11 + 0{,}006 - 0{,}036 = 0{,}08\).</p>
+            <p>Le polynome \(\chi_A\) a pour racine \(\lambda = 1\). On divise \(\chi_A = -X^3 + 1{,}6X^2 - s_2 X + 0{,}08\) par \((X-1)\). On calcule \(s_2\) par la formule des sommes de mineurs \(2 \times 2\) diagonaux : \(s_2 = (0{,}35 - 0{,}03) + (0{,}20 - 0{,}04) + (0{,}28 - 0{,}06) = 0{,}32 + 0{,}16 + 0{,}22 = 0{,}70\).</p>
+            <div class="math-display">$$\chi_A = -(X-1)(X^2 - 0{,}6X + 0{,}08) = -(X-1)(X - 0{,}2)(X - 0{,}4)$$</div>
+            <p>Les VP sont \(\lambda_1 = 1\), \(\lambda_2 = 0{,}4\), \(\lambda_3 = 0{,}2\), toutes dans \([0, 1]\) comme prevu. Les trois VP sont distinctes, donc \(A\) est diagonalisable.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
       <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
+      <a href="mp-m2-reduction-diagonalisation.html" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
-        <span>Fiche suivante</span>
+        <span>Reduction & diagonalisation</span>
       </a>
     </nav>
 
@@ -392,6 +808,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

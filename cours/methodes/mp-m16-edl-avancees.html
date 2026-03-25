@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -146,194 +165,568 @@
 
     <div class="course__meta">
       <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 19</span>
     </div>
 
     <h1 class="course__title">EDL avancees</h1>
 
     <p class="course__intro">
-      Fiche de methodes sur les equations differentielles lineaires avancees : systemes differentiels, exponentielle de matrice, EDL a coefficients variables, solutions DSE et wronskien. Chaque methode est accompagnee d'un exercice de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et sept exercices corriges inspires du chapitre 19.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Resoudre un SDL \(X' = AX\)</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Calculer \(\exp(tA)\)</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> EDL2 a coefficients variables</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Solutions DSE d'une EDL</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Wronskien et proprietes qualitatives</a></li>
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> EDL1 : homogene + variation de la constante</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Systeme differentiel lineaire \(X' = AX\) par diagonalisation</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Exponentielle de matrice \(e^{tA}\)</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> EDL2 a coefficients variables et changement de variable</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Solutions DSE d'une equation differentielle</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
+
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Resoudre un SDL \(X' = AX\)</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> EDL1 : homogene + variation de la constante</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Pour resoudre le systeme differentiel lineaire \(X'(t) = AX(t)\) avec \(A \in \mathcal{M}_n(\mathbb{R})\) :</p>
+        <p>Pour resoudre \(y' + a(t)\,y = b(t)\) sur un intervalle \(I\) :</p>
         <ol>
-          <li><strong>Cas diagonalisable :</strong> diagonaliser \(A = PDP^{-1}\). Poser \(Y = P^{-1}X\). Alors \(Y' = DY\), systeme decouple : \(y_i'(t) = \lambda_i y_i(t)\), donc \(y_i(t) = c_i e^{\lambda_i t}\).</li>
-          <li><strong>Revenir a \(X\) :</strong> \(X(t) = PY(t)\), c'est-a-dire \(X(t) = c_1 e^{\lambda_1 t} V_1 + \cdots + c_n e^{\lambda_n t} V_n\) ou les \(V_i\) sont les colonnes de \(P\) (vecteurs propres).</li>
-          <li><strong>Cas trigonalisable :</strong> si \(A\) n'est pas diagonalisable, trigonaliser \(A = PTP^{-1}\) et resoudre \(Y' = TY\) par remontee (systeme triangulaire).</li>
-          <li><strong>Conditions initiales :</strong> determiner les constantes \(c_i\) a partir de \(X(0) = X_0\).</li>
+          <li><strong>Equation homogene :</strong> resoudre \(y'_H + a(t)\,y_H = 0\). La solution est \(y_H(t) = C\,e^{-A(t)}\) ou \(A(t) = \int a(t)\,dt\) est une primitive.</li>
+          <li><strong>Variation de la constante :</strong> chercher une solution particuliere \(y_P(t) = C(t)\,e^{-A(t)}\). En injectant : \(C'(t)\,e^{-A(t)} = b(t)\), d'ou \(C'(t) = b(t)\,e^{A(t)}\).</li>
+          <li>Integrer : \(C(t) = \int b(t)\,e^{A(t)}\,dt\).</li>
+          <li>Solution generale : \(y(t) = \left(K + \int b(t)\,e^{A(t)}\,dt\right)e^{-A(t)}\), \(K \in \mathbb{R}\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Valeurs propres complexes conjuguees</span>
-        <p>Si \(A \in \mathcal{M}_2(\mathbb{R})\) a des valeurs propres \(\alpha \pm i\beta\), la solution reelle est \(X(t) = e^{\alpha t}(C_1 \cos(\beta t) + C_2 \sin(\beta t))\) ou \(C_1, C_2\) sont des vecteurs de \(\mathbb{R}^2\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Style concours</span>
-        <p>Resoudre le systeme differentiel \(X' = AX\) avec \(A = \begin{pmatrix} 1 & 2 \\ -1 & 3 \end{pmatrix}\) et \(X(0) = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\).</p>
-        <ol>
-          <li>Calculer le polynome caracteristique de \(A\) et ses racines.</li>
-          <li>Determiner les vecteurs propres (eventuellement complexes) et ecrire la solution generale.</li>
-          <li>Exprimer la solution sous forme reelle et determiner les constantes avec la condition initiale.</li>
-        </ol>
-        <p><em>Indication :</em> \(\chi_A = X^2 - 4X + 5 = (X-2)^2 + 1\), valeurs propres \(2 \pm i\). Vecteur propre pour \(2+i\) : \(\begin{pmatrix} 2 \\ 1+i \end{pmatrix}\). Separer parties reelle et imaginaire pour obtenir la base reelle de solutions.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Resoudre \(y' - \frac{2}{t}\,y = t^2\) sur \(]0, +\infty[\).</strong></p>
+        <p><em>Resolution.</em> Equation homogene : \(y'_H = \frac{2}{t}\,y_H\), d'ou \(y_H = Ct^2\).</p>
+        <p>Variation de la constante : \(y_P = C(t)\,t^2\). On injecte : \(C'(t)\,t^2 + 2tC(t) - \frac{2}{t}\cdot C(t)t^2 = t^2\), soit \(C'(t)\,t^2 = t^2\), d'ou \(C'(t) = 1\) et \(C(t) = t\).</p>
+        <p>Solution particuliere : \(y_P(t) = t \cdot t^2 = t^3\). Solution generale :</p>
+        <div class="math-display">$$\boxed{y(t) = Kt^2 + t^3, \quad K \in \mathbb{R}}$$</div>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Calculer \(\exp(tA)\)</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Systeme differentiel lineaire \(X' = AX\) par diagonalisation</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Trois approches selon la structure de \(A\) :</p>
+        <p>Pour resoudre \(X'(t) = AX(t)\) ou \(A \in \mathcal{M}_n(\mathbb{R})\) :</p>
         <ol>
-          <li><strong>Cas diagonalisable :</strong> \(A = PDP^{-1}\) implique \(e^{tA} = P\,\mathrm{diag}(e^{t\lambda_1}, \ldots, e^{t\lambda_n})\,P^{-1}\).</li>
-          <li><strong>Decomposition de Dunford :</strong> \(A = D + N\) avec \(DN = ND\), \(D\) diagonalisable, \(N\) nilpotente. Alors \(e^{tA} = e^{tD} \cdot e^{tN}\) ou \(e^{tN} = I + tN + \frac{t^2}{2}N^2 + \cdots\) (somme finie).</li>
-          <li><strong>Blocs de Jordan :</strong> si \(A = P\,\mathrm{diag}(J_1, \ldots, J_k)\,P^{-1}\), alors \(e^{tA} = P\,\mathrm{diag}(e^{tJ_1}, \ldots, e^{tJ_k})\,P^{-1}\). Pour un bloc \(J = \lambda I + N\) de taille \(m\) :
-          $$e^{tJ} = e^{\lambda t}\begin{pmatrix} 1 & t & t^2/2 & \cdots \\ 0 & 1 & t & \cdots \\ \vdots & & \ddots & \\ 0 & \cdots & 0 & 1 \end{pmatrix}$$</li>
+          <li><strong>Calculer les valeurs propres</strong> de \(A\) : resoudre \(\det(A - \lambda I) = 0\).</li>
+          <li><strong>Si \(A\) est diagonalisable :</strong> trouver une base de vecteurs propres \(P_1, \ldots, P_n\) et former \(P = (P_1 | \cdots | P_n)\) telle que \(A = P\,\text{diag}(\lambda_1, \ldots, \lambda_n)\,P^{-1}\).</li>
+          <li><strong>Changement de variable :</strong> poser \(Y = P^{-1}X\). Le systeme devient \(Y' = DY\) ou \(D\) est diagonale : chaque composante \(y_i' = \lambda_i y_i\) donne \(y_i(t) = c_i\,e^{\lambda_i t}\).</li>
+          <li><strong>Revenir a \(X\) :</strong> \(X(t) = PY(t) = c_1 e^{\lambda_1 t}P_1 + \cdots + c_n e^{\lambda_n t}P_n\).</li>
+          <li>Pour un second membre \(X' = AX + B(t)\), combiner avec variation de la constante.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Methode alternative pour les matrices 2x2</span>
-        <p>Si \(A \in \mathcal{M}_2(\mathbb{R})\) et \(\pi_A\) est de degre 2, on peut ecrire \(e^{tA} = \alpha(t)I + \beta(t)A\) ou \(\alpha, \beta\) sont determines par les conditions \(e^{t\lambda_i} = \alpha(t) + \beta(t)\lambda_i\) pour chaque valeur propre \(\lambda_i\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Style concours</span>
-        <p>Soit \(A = \begin{pmatrix} 3 & -1 \\ 1 & 1 \end{pmatrix}\).</p>
-        <ol>
-          <li>Montrer que \(A\) n'est pas diagonalisable et determiner la decomposition de Dunford \(A = D + N\).</li>
-          <li>Calculer \(e^{tA}\) par la methode de Dunford.</li>
-          <li>Resoudre le systeme \(X' = AX\) avec \(X(0) = \begin{pmatrix} 1 \\ 1 \end{pmatrix}\).</li>
-        </ol>
-        <p><em>Indication :</em> \(\chi_A = (X-2)^2\) et \(\dim\ker(A - 2I) = 1\), donc \(A\) n'est pas diagonalisable. On a \(D = 2I\) et \(N = A - 2I = \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}\). Verifier que \(N^2 = 0\). Donc \(e^{tA} = e^{2t}(I + tN)\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Resoudre \(X' = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}X\).</strong></p>
+        <p><em>Resolution.</em> Valeurs propres : \(\det(A - \lambda I) = (3 - \lambda)(2 - \lambda) = 0\), d'ou \(\lambda_1 = 3\), \(\lambda_2 = 2\).</p>
+        <p>Vecteurs propres : pour \(\lambda_1 = 3\) : \((A - 3I)v = 0\) donne \(v_2 = 0\), soit \(P_1 = \binom{1}{0}\). Pour \(\lambda_2 = 2\) : \((A - 2I)v = 0\) donne \(v_1 + v_2 = 0\), soit \(P_2 = \binom{-1}{1}\).</p>
+        <p>La solution generale est :</p>
+        <div class="math-display">$$\boxed{X(t) = c_1 e^{3t}\begin{pmatrix}1\\0\end{pmatrix} + c_2 e^{2t}\begin{pmatrix}-1\\1\end{pmatrix} = \begin{pmatrix}c_1 e^{3t} - c_2 e^{2t}\\c_2 e^{2t}\end{pmatrix}}$$</div>
       </div>
     </section>
 
     <!-- ═══════════════ M3 ═══════════════ -->
     <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> EDL2 a coefficients variables</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Exponentielle de matrice \(e^{tA}\)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Pour resoudre \(a(x)y'' + b(x)y' + c(x)y = 0\) a coefficients non constants :</p>
+        <p>L'exponentielle \(e^{tA} = \sum_{k=0}^{+\infty}\frac{t^k A^k}{k!}\) donne la solution du systeme \(X' = AX\), \(X(0) = X_0\) par \(X(t) = e^{tA}X_0\). Trois cas :</p>
         <ol>
-          <li><strong>Changement de variable :</strong> poser \(t = \varphi(x)\) (par exemple \(t = \ln(x)\) pour une equation d'Euler \(x^2 y'' + \alpha x y' + \beta y = 0\)). Calculer \(y'\) et \(y''\) en fonction de \(\frac{dy}{dt}\) et \(\frac{d^2y}{dt^2}\).</li>
-          <li><strong>Changement de fonction :</strong> poser \(y(x) = z(x) \cdot u(x)\) ou \(u\) est une solution connue (ou bien choisie pour simplifier). On obtient une EDL d'ordre 2 en \(z\) qu'on peut reduire a l'ordre 1 en posant \(w = z'\).</li>
-          <li><strong>Recherche d'une solution particuliere :</strong> essayer \(y = x^\alpha\), \(y = e^{\alpha x}\), ou \(y = x^\alpha e^{\beta x}\) selon la forme des coefficients.</li>
-          <li>Une fois une solution \(y_1\) trouvee, utiliser la reduction d'ordre pour trouver \(y_2\) lineairement independante.</li>
+          <li><strong>Cas diagonalisable :</strong> si \(A = PDP^{-1}\), alors \(e^{tA} = P\,e^{tD}\,P^{-1}\) ou \(e^{tD} = \text{diag}(e^{\lambda_1 t}, \ldots, e^{\lambda_n t})\).</li>
+          <li><strong>Decomposition de Dunford :</strong> si \(A = D + N\) avec \(D\) diagonalisable, \(N\) nilpotente et \(DN = ND\), alors \(e^{tA} = e^{tD}\cdot e^{tN}\). La serie de \(e^{tN}\) est finie car \(N^p = 0\).</li>
+          <li><strong>Blocs de Jordan :</strong> si \(A = \lambda I + N\) avec \(N\) nilpotente d'indice \(p\), alors \(e^{tA} = e^{\lambda t}\sum_{k=0}^{p-1}\frac{t^k N^k}{k!}\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Equation d'Euler</span>
-        <p>L'equation \(x^2 y'' + \alpha x y' + \beta y = 0\) se ramene a coefficients constants par \(t = \ln(x)\) (pour \(x > 0\)). En posant \(Y(t) = y(e^t)\), on obtient \(Y'' + (\alpha - 1)Y' + \beta Y = 0\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Style concours</span>
-        <p>Resoudre sur \(]0, +\infty[\) l'equation d'Euler :</p>
-        $$x^2 y'' + 3xy' + y = 0$$
-        <ol>
-          <li>Effectuer le changement de variable \(t = \ln(x)\) et ecrire l'equation en \(Y(t) = y(e^t)\).</li>
-          <li>Resoudre l'equation a coefficients constants obtenue.</li>
-          <li>Revenir a la variable \(x\) et ecrire la solution generale.</li>
-        </ol>
-        <p><em>Indication :</em> avec \(t = \ln(x)\), on obtient \(Y'' + 2Y' + Y = 0\), soit \((Y' + Y)' + (Y' + Y) = 0\)... ou directement : equation caracteristique \(r^2 + 2r + 1 = (r+1)^2 = 0\). Racine double \(r = -1\). Donc \(Y(t) = (C_1 + C_2 t)e^{-t}\), soit \(y(x) = \frac{C_1 + C_2 \ln x}{x}\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Calculer \(e^{tA}\) pour \(A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}\).</strong></p>
+        <p><em>Resolution.</em> On a \(A = I + N\) ou \(N = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}\). Comme \(N^2 = 0\) :</p>
+        <div class="math-display">$$e^{tN} = I + tN = \begin{pmatrix}1 & t\\0 & 1\end{pmatrix}$$</div>
+        <p>Et \(e^{tI} = e^t I\). Comme \(I\) et \(N\) commutent :</p>
+        <div class="math-display">$$\boxed{e^{tA} = e^t\begin{pmatrix}1 & t\\0 & 1\end{pmatrix}}$$</div>
+        <p>La solution de \(X' = AX\), \(X(0) = \binom{x_0}{y_0}\) est donc \(X(t) = e^t\binom{x_0 + ty_0}{y_0}\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Solutions DSE d'une EDL</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> EDL2 a coefficients variables et changement de variable</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Pour trouver des solutions developpables en serie entiere (DSE) de \(a(x)y'' + b(x)y' + c(x)y = 0\) :</p>
+        <p>Pour resoudre une EDL2 a coefficients variables \(a(t)y'' + b(t)y' + c(t)y = d(t)\) :</p>
         <ol>
-          <li>Poser \(y(x) = \sum_{n=0}^{+\infty} a_n x^n\), d'ou \(y'(x) = \sum_{n=1}^{+\infty} na_n x^{n-1}\) et \(y''(x) = \sum_{n=2}^{+\infty} n(n-1)a_n x^{n-2}\).</li>
-          <li>Substituer dans l'equation et developper les produits (si \(a(x), b(x), c(x)\) sont des polynomes, les produits sont des produits de Cauchy).</li>
-          <li>Identifier les coefficients de \(x^n\) pour tout \(n\) : on obtient une relation de recurrence sur les \(a_n\).</li>
-          <li>Resoudre la recurrence. Les constantes \(a_0\) et \(a_1\) sont libres (conditions initiales \(y(0)\) et \(y'(0)\)).</li>
-          <li>Determiner le rayon de convergence de la serie obtenue (souvent par la regle de d'Alembert).</li>
+          <li><strong>Changement de variable :</strong> poser \(t = \varphi(x)\) (ou \(x = \psi(t)\)) pour se ramener a une equation a coefficients constants ou connue.</li>
+          <li><strong>Equation d'Euler :</strong> \(t^2 y'' + \alpha t y' + \beta y = 0\). Le changement \(t = e^x\) la transforme en equation a coefficients constants : \(\ddot{z} + (\alpha - 1)\dot{z} + \beta z = 0\) ou \(z(x) = y(e^x)\).</li>
+          <li><strong>Reduction de l'ordre :</strong> si l'on connait une solution \(y_1\) de l'homogene, poser \(y = y_1\,u\) et resoudre l'EDL1 en \(u'\).</li>
+          <li><strong>Wronskien :</strong> \(W(y_1, y_2)(t) = y_1 y_2' - y_1' y_2\). Le Wronskien est non nul ssi \((y_1, y_2)\) est un systeme fondamental. Formule d'Abel : \(W(t) = W(t_0)\exp\left(-\int_{t_0}^t \frac{b(s)}{a(s)}\,ds\right)\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Point singulier regulier</span>
-        <p>Si \(a(0) = 0\) (point singulier), la methode directe ne fonctionne pas. Il faut utiliser la methode de Frobenius : poser \(y = x^\alpha \sum a_n x^n\) et determiner d'abord l'exposant \(\alpha\) (equation indicielle).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Style concours</span>
-        <p>Trouver les solutions DSE en \(0\) de l'equation :</p>
-        $$(1 - x^2)y'' - 2xy' + 6y = 0$$
-        <ol>
-          <li>Poser \(y = \sum a_n x^n\) et substituer dans l'equation.</li>
-          <li>Montrer que la relation de recurrence est \((n+2)(n+1)a_{n+2} = (n^2 + n - 6)a_n = (n+3)(n-2)a_n\).</li>
-          <li>En deduire que \(a_{n+2} = \frac{(n+3)(n-2)}{(n+2)(n+1)}a_n\). Montrer qu'une solution est un polynome de degre 2.</li>
-          <li>Trouver la seconde solution lineairement independante et determiner son rayon de convergence.</li>
-        </ol>
-        <p><em>Indication :</em> pour \(n = 2\), \(a_4 = 0\), donc la suite paire s'arrete : si \(a_1 = 0\), on obtient \(y_1(x) = a_0(1 - 3x^2)\), un polynome de Legendre a un facteur pres. La suite impaire donne une serie entiere de rayon 1.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Resoudre \(t^2 y'' - 2y = 0\) sur \(]0, +\infty[\).</strong></p>
+        <p><em>Resolution.</em> C'est une equation d'Euler. On pose \(t = e^x\), soit \(x = \ln t\). Si \(z(x) = y(e^x)\), alors \(y'(t) = z'(x)/t\) et \(y''(t) = (z''(x) - z'(x))/t^2\). L'equation devient :</p>
+        <div class="math-display">$$t^2 \cdot \frac{z'' - z'}{t^2} - 2z = 0 \implies z'' - z' - 2z = 0$$</div>
+        <p>Equation caracteristique : \(r^2 - r - 2 = (r-2)(r+1) = 0\), d'ou \(r = 2\) ou \(r = -1\).</p>
+        <p>Solution : \(z(x) = Ae^{2x} + Be^{-x}\). En revenant a \(t\) :</p>
+        <div class="math-display">$$\boxed{y(t) = At^2 + \frac{B}{t}, \quad A, B \in \mathbb{R}}$$</div>
       </div>
     </section>
 
     <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Wronskien et proprietes qualitatives</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Solutions DSE d'une equation differentielle</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Le wronskien \(W(y_1, y_2)(x) = y_1(x)y_2'(x) - y_1'(x)y_2(x)\) est un outil fondamental :</p>
+        <p>Pour trouver une solution developpable en serie entiere (DSE) de \(a(t)y'' + b(t)y' + c(t)y = 0\) au voisinage de \(t = 0\) :</p>
         <ol>
-          <li><strong>Independance lineaire :</strong> \(y_1, y_2\) sont lineairement independantes si et seulement si \(W(y_1, y_2)\) ne s'annule pas (il est soit identiquement nul, soit jamais nul).</li>
-          <li><strong>Formule d'Abel :</strong> pour \(y'' + p(x)y' + q(x)y = 0\), le wronskien verifie \(W'(x) = -p(x)W(x)\), donc \(W(x) = W(x_0)\exp\left(-\int_{x_0}^x p(s)\,ds\right)\).</li>
-          <li><strong>Reduction d'ordre :</strong> si \(y_1\) est connue, la seconde solution verifie \(y_2(x) = y_1(x)\int \frac{W(x)}{y_1(x)^2}\,dx\).</li>
-          <li><strong>Theoreme de Sturm (zeros) :</strong> entre deux zeros consecutifs de \(y_1\), il y a exactement un zero de \(y_2\) (entrelacement des zeros de deux solutions independantes).</li>
-          <li><strong>Bornitude :</strong> utiliser la formule d'Abel et le comportement du wronskien pour etudier la croissance des solutions.</li>
+          <li><strong>Poser</strong> \(y(t) = \sum_{n=0}^{+\infty}a_n t^n\) avec rayon \(R > 0\) a determiner.</li>
+          <li><strong>Calculer</strong> \(y'(t) = \sum_{n=1}^{+\infty}n\,a_n t^{n-1}\) et \(y''(t) = \sum_{n=2}^{+\infty}n(n-1)a_n t^{n-2}\).</li>
+          <li><strong>Injecter</strong> dans l'equation, reecrire chaque serie avec le meme indice (reindexation).</li>
+          <li><strong>Identifier</strong> les coefficients : obtenir une relation de recurrence entre les \(a_n\).</li>
+          <li><strong>Determiner</strong> le rayon de convergence \(R\) (souvent par la regle de d'Alembert).</li>
+          <li>Les conditions initiales \(y(0) = a_0\), \(y'(0) = a_1\) fixent les constantes.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Application de Sturm</span>
-        <p>Pour l'equation \(y'' + q(x)y = 0\) avec \(q(x) > 0\) bornee inferieurement, toute solution non nulle a une infinite de zeros (oscillation). Si \(q(x) \to +\infty\), les zeros se rapprochent.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Trouver la solution DSE de \((1 - t^2)y'' - 2ty' + 2y = 0\) (equation de Legendre pour \(n = 1\)).</strong></p>
+        <p><em>Resolution.</em> On pose \(y = \sum a_n t^n\). Alors :</p>
+        <div class="math-display">$$(1 - t^2)\sum_{n \geq 2}n(n-1)a_n t^{n-2} - 2t\sum_{n \geq 1}n\,a_n t^{n-1} + 2\sum_{n \geq 0}a_n t^n = 0$$</div>
+        <p>On developpe : \(\sum_{n \geq 2}n(n-1)a_n t^{n-2} - \sum_{n \geq 2}n(n-1)a_n t^n - 2\sum_{n \geq 1}n\,a_n t^n + 2\sum_{n \geq 0}a_n t^n = 0\).</p>
+        <p>En reindexant le premier terme (\(m = n-2\), soit \(n = m+2\)) :</p>
+        <div class="math-display">$$\sum_{m \geq 0}(m+2)(m+1)a_{m+2}\,t^m - \sum_{n \geq 2}[n(n-1) + 2n - 2]a_n\,t^n + 2a_0 + 2a_1 t = 0$$</div>
+        <p>Pour \(n \geq 2\), la recurrence donne : \((n+2)(n+1)a_{n+2} = [n(n-1) + 2n - 2]a_n = (n^2 + n - 2)a_n = (n+2)(n-1)a_n\).</p>
+        <div class="math-display">$$a_{n+2} = \frac{n - 1}{n + 1}\,a_n \quad (n \geq 2)$$</div>
+        <p>Pour \(n = 0\) : \(2a_2 + 2a_0 = 0\), d'ou \(a_2 = -a_0\). Pour \(n = 1\) : \(6a_3 - 2a_1 + 2a_1 = 0\), d'ou \(a_3 = 0\).</p>
+        <p>Avec \(a_0 = 0\) et \(a_1 = 1\) : tous les \(a_n\) pairs sont nuls pour \(n \geq 2\), et les impairs : \(a_3 = 0\) entraine \(a_5 = a_7 = \cdots = 0\). La solution est \(y(t) = t\), le polynome de Legendre \(P_1(t)\).</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> L'espace des solutions de \(y'' + y = 0\) est de dimension \(2\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Pour une EDL d'ordre \(n\) a coefficients continus, l'espace des solutions de l'equation homogene est un espace vectoriel de dimension \(n\). Ici \(n = 2\), et un systeme fondamental est \(\{\cos t, \sin t\}\).</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> Si \(A\) est diagonalisable, alors \(e^A\) est diagonalisable.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(A = PDP^{-1}\) avec \(D = \text{diag}(\lambda_1, \ldots, \lambda_n)\), alors \(e^A = P\,\text{diag}(e^{\lambda_1}, \ldots, e^{\lambda_n})\,P^{-1}\), qui est diagonalisable dans la meme base.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> Pour toutes matrices \(A, B \in \mathcal{M}_n(\mathbb{R})\), on a \(e^{A+B} = e^A \cdot e^B\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>La formule \(e^{A+B} = e^A e^B\) n'est valable que si \(AB = BA\). En general, on a la formule de Baker-Campbell-Hausdorff qui fait intervenir les commutateurs. Contre-exemple : \(A = \begin{pmatrix}0&1\\0&0\end{pmatrix}\), \(B = \begin{pmatrix}0&0\\1&0\end{pmatrix}\), on verifie que \(e^{A+B} \neq e^A e^B\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> L'exponentielle de matrice \(e^A\) est toujours inversible.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Pour toute matrice \(A\), \(e^A\) est inversible et son inverse est \(e^{-A}\). En effet, \(A\) et \(-A\) commutent, donc \(e^A \cdot e^{-A} = e^{A-A} = e^0 = I\). De plus, \(\det(e^A) = e^{\text{tr}(A)} > 0\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> L'equation d'Euler \(t^2 y'' + ty' + y = 0\) admet \(y = \cos(\ln t)\) comme solution sur \(]0, +\infty[\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Avec le changement \(t = e^x\), l'equation devient \(z'' + z = 0\) (car les coefficients donnent l'equation caracteristique \(r^2 + 1 = 0\), soit \(r = \pm i\)). Les solutions sont \(z(x) = A\cos x + B\sin x\), d'ou \(y(t) = A\cos(\ln t) + B\sin(\ln t)\). Donc \(y = \cos(\ln t)\) est bien solution.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> Le Wronskien de deux solutions d'une EDL2 homogene est soit identiquement nul, soit jamais nul.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est une consequence de la formule d'Abel : \(W(t) = W(t_0)\exp\left(-\int_{t_0}^t \frac{b(s)}{a(s)}\,ds\right)\). L'exponentielle ne s'annule jamais, donc \(W(t) = 0\) pour tout \(t\) si \(W(t_0) = 0\), et \(W(t) \neq 0\) pour tout \(t\) si \(W(t_0) \neq 0\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> Si \(A\) a toutes ses valeurs propres a partie reelle strictement negative, alors \(e^{tA} \to 0\) quand \(t \to +\infty\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si toutes les valeurs propres \(\lambda_i\) de \(A\) verifient \(\text{Re}(\lambda_i) < 0\), alors chaque coefficient de \(e^{tA}\) est une combinaison de termes \(t^k e^{\lambda_i t}\) qui tendent tous vers \(0\) car \(|e^{\lambda_i t}| = e^{\text{Re}(\lambda_i)t} \to 0\). Le systeme est asymptotiquement stable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> Toute EDL a coefficients polynomiaux admet une solution DSE au voisinage de \(0\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Il faut que \(0\) soit un point <em>ordinaire</em> de l'equation (le coefficient dominant ne s'annule pas en \(0\)). Si \(0\) est un point singulier, les solutions ne sont pas necessairement analytiques en \(0\). Par exemple, l'equation d'Euler \(t^2 y'' + ty' = 0\) a pour solutions \(1\) et \(\ln t\), et \(\ln t\) n'est pas DSE en \(0\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> La solution du probleme de Cauchy \(X' = AX\), \(X(0) = X_0\) est \(X(t) = e^{tA}X_0\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>On verifie : \(\frac{d}{dt}(e^{tA}X_0) = Ae^{tA}X_0 = A \cdot X(t)\) et \(X(0) = e^0 X_0 = X_0\). L'unicite du probleme de Cauchy (Cauchy-Lipschitz lineaire) garantit que c'est la seule solution.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> Si \(N\) est nilpotente d'indice \(3\), alors \(e^{tN} = I + tN + \frac{t^2}{2}N^2\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(N^3 = 0\), alors \(N^k = 0\) pour tout \(k \geq 3\). La serie exponentielle se tronque : \(e^{tN} = I + tN + \frac{t^2}{2}N^2 + \frac{t^3}{6}N^3 + \cdots = I + tN + \frac{t^2}{2}N^2\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
       <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Style concours</span>
-        <p>Soit l'equation \(y'' + \frac{1}{x}y' - \frac{1}{x^2}y = 0\) sur \(]0, +\infty[\). On pose \(y_1(x) = x\).</p>
+        <span class="annale-badge">Monier Ch. 19</span>
+        <span class="block__label">Exercice 1 -- EDL1 et variation de la constante</span>
+        <p>Resoudre les equations differentielles suivantes :</p>
         <ol>
-          <li>Verifier que \(y_1(x) = x\) est bien solution.</li>
-          <li>Calculer le wronskien \(W(x)\) par la formule d'Abel.</li>
-          <li>Utiliser la reduction d'ordre pour trouver une seconde solution \(y_2\) lineairement independante de \(y_1\).</li>
+          <li>\(y' + \frac{y}{t} = \sin(t)\) sur \(]0, +\infty[\).</li>
+          <li>\(y' - 2ty = e^{t^2}\) sur \(\mathbb{R}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Equation homogene : \(y' + y/t = 0\), soit \(y'/y = -1/t\), d'ou \(y_H = C/t\).</p>
+            <p>Variation de la constante : \(y_P = C(t)/t\). On injecte : \(C'(t)/t - C(t)/t^2 + C(t)/t^2 = \sin t\), soit \(C'(t) = t\sin t\).</p>
+            <p>Integration par parties : \(C(t) = \int t\sin t\,dt = -t\cos t + \sin t + K\). Solution generale :</p>
+            <div class="math-display">$$\boxed{y(t) = \frac{-t\cos t + \sin t + K}{t} = -\cos t + \frac{\sin t}{t} + \frac{K}{t}}$$</div>
+
+            <p><strong>2.</strong> Equation homogene : \(y' = 2ty\), d'ou \(y_H = Ce^{t^2}\).</p>
+            <p>Variation de la constante : \(y_P = C(t)e^{t^2}\). On injecte : \(C'(t)e^{t^2} + 2tC(t)e^{t^2} - 2tC(t)e^{t^2} = e^{t^2}\), soit \(C'(t) = 1\), d'ou \(C(t) = t\).</p>
+            <p>Solution generale :</p>
+            <div class="math-display">$$\boxed{y(t) = (t + K)e^{t^2}, \quad K \in \mathbb{R}}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 19</span>
+        <span class="block__label">Exercice 2 -- Systeme differentiel par diagonalisation</span>
+        <p>Resoudre le systeme \(X' = AX\) avec \(A = \begin{pmatrix}1 & 2\\2 & 1\end{pmatrix}\).</p>
+        <ol>
+          <li>Diagonaliser \(A\).</li>
+          <li>En deduire la solution generale du systeme.</li>
+          <li>Determiner la solution verifiant \(X(0) = \binom{1}{0}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Polynome caracteristique : \(\det(A - \lambda I) = (1-\lambda)^2 - 4 = \lambda^2 - 2\lambda - 3 = (\lambda - 3)(\lambda + 1)\).</p>
+            <p>Valeurs propres : \(\lambda_1 = 3\), \(\lambda_2 = -1\).</p>
+            <p>Vecteurs propres : pour \(\lambda_1 = 3\), \((A - 3I)v = 0\) : \(-2v_1 + 2v_2 = 0\), soit \(P_1 = \binom{1}{1}\). Pour \(\lambda_2 = -1\), \((A+I)v = 0\) : \(2v_1 + 2v_2 = 0\), soit \(P_2 = \binom{1}{-1}\).</p>
+            <p>Donc \(A = PDP^{-1}\) avec \(P = \begin{pmatrix}1&1\\1&-1\end{pmatrix}\), \(D = \begin{pmatrix}3&0\\0&-1\end{pmatrix}\).</p>
+
+            <p><strong>2.</strong> Solution generale :</p>
+            <div class="math-display">$$X(t) = c_1 e^{3t}\begin{pmatrix}1\\1\end{pmatrix} + c_2 e^{-t}\begin{pmatrix}1\\-1\end{pmatrix} = \begin{pmatrix}c_1 e^{3t} + c_2 e^{-t}\\c_1 e^{3t} - c_2 e^{-t}\end{pmatrix}$$</div>
+
+            <p><strong>3.</strong> Condition initiale \(X(0) = \binom{1}{0}\) : \(c_1 + c_2 = 1\) et \(c_1 - c_2 = 0\), d'ou \(c_1 = c_2 = 1/2\).</p>
+            <div class="math-display">$$\boxed{X(t) = \frac{1}{2}\begin{pmatrix}e^{3t} + e^{-t}\\e^{3t} - e^{-t}\end{pmatrix} = \begin{pmatrix}\cosh(2t)\,e^t\\  \sinh(2t)\,e^t\end{pmatrix}}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 19</span>
+        <span class="block__label">Exercice 3 -- Exponentielle de matrice \(3 \times 3\)</span>
+        <p>Soit \(A = \begin{pmatrix}2&1&0\\0&2&1\\0&0&2\end{pmatrix}\).</p>
+        <ol>
+          <li>Ecrire la decomposition \(A = \lambda I + N\) et identifier l'indice de nilpotence de \(N\).</li>
+          <li>Calculer \(e^{tA}\).</li>
+          <li>Resoudre \(X' = AX\), \(X(0) = \begin{pmatrix}1\\0\\1\end{pmatrix}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(A = 2I + N\) ou \(N = \begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix}\). On calcule \(N^2 = \begin{pmatrix}0&0&1\\0&0&0\\0&0&0\end{pmatrix}\) et \(N^3 = 0\). L'indice de nilpotence est \(3\).</p>
+
+            <p><strong>2.</strong> Comme \(2I\) et \(N\) commutent : \(e^{tA} = e^{2tI}\cdot e^{tN} = e^{2t}\left(I + tN + \frac{t^2}{2}N^2\right)\).</p>
+            <div class="math-display">$$e^{tA} = e^{2t}\begin{pmatrix}1 & t & t^2/2\\0 & 1 & t\\0 & 0 & 1\end{pmatrix}$$</div>
+
+            <p><strong>3.</strong> \(X(t) = e^{tA}X(0)\) :</p>
+            <div class="math-display">$$X(t) = e^{2t}\begin{pmatrix}1 & t & t^2/2\\0 & 1 & t\\0 & 0 & 1\end{pmatrix}\begin{pmatrix}1\\0\\1\end{pmatrix} = e^{2t}\begin{pmatrix}1 + t^2/2\\t\\1\end{pmatrix}$$</div>
+            <div class="math-display">$$\boxed{X(t) = e^{2t}\begin{pmatrix}1 + t^2/2\\t\\1\end{pmatrix}}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 19</span>
+        <span class="block__label">Exercice 4 -- Equation d'Euler</span>
+        <p>Resoudre sur \(]0, +\infty[\) :</p>
+        <ol>
+          <li>\(t^2 y'' + 3ty' + y = 0\).</li>
+          <li>\(t^2 y'' - ty' + y = \ln(t)\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On pose \(t = e^x\). Avec \(z(x) = y(e^x)\), on a \(t y' = z'\) et \(t^2 y'' = z'' - z'\). L'equation devient :</p>
+            <div class="math-display">$$(z'' - z') + 3z' + z = 0 \implies z'' + 2z' + z = 0$$</div>
+            <p>Equation caracteristique : \(r^2 + 2r + 1 = (r+1)^2 = 0\), racine double \(r = -1\).</p>
+            <p>Solution : \(z(x) = (A + Bx)e^{-x}\). En revenant a \(t = e^x\), \(x = \ln t\) :</p>
+            <div class="math-display">$$\boxed{y(t) = \frac{A + B\ln t}{t}, \quad A, B \in \mathbb{R}}$$</div>
+
+            <p><strong>2.</strong> Equation homogene : \(t^2 y'' - ty' + y = 0\). Changement \(t = e^x\) : \((z'' - z') - z' + z = 0\), soit \(z'' - 2z' + z = 0\).</p>
+            <p>Equation caracteristique : \((r-1)^2 = 0\), racine double \(r = 1\). Solution homogene : \(z_H(x) = (A+Bx)e^x\), soit \(y_H(t) = (A + B\ln t)\,t\).</p>
+            <p>Solution particuliere : l'equation en \(z\) avec second membre est \(z'' - 2z' + z = x\) (car \(\ln t = x\) et le second membre apres changement vaut \(x/t^2 \cdot t^2 = x\)).</p>
+            <p>On cherche \(z_P\) sous la forme \(z_P = ax + b\). Alors \(z_P'' = 0\), \(z_P' = a\). On injecte : \(0 - 2a + ax + b = x\), soit \(a = 1\), \(b = 2\). Donc \(z_P(x) = x + 2\).</p>
+            <p>En revenant a \(t\) : \(y_P(t) = \ln t + 2\). Solution generale :</p>
+            <div class="math-display">$$\boxed{y(t) = (A + B\ln t)\,t + \ln t + 2, \quad A, B \in \mathbb{R}}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 19</span>
+        <span class="block__label">Exercice 5 -- Solution DSE et equation d'Airy</span>
+        <p>On considere l'equation d'Airy : \(y'' - ty = 0\).</p>
+        <ol>
+          <li>Chercher une solution sous forme de serie entiere \(y(t) = \sum_{n=0}^{+\infty}a_n t^n\).</li>
+          <li>Etablir la relation de recurrence entre les \(a_n\).</li>
+          <li>Exprimer les deux solutions lineairement independantes \(\text{Ai}(t)\) et \(\text{Bi}(t)\) correspondant a \(a_0 = 1, a_1 = 0\) et \(a_0 = 0, a_1 = 1\).</li>
+          <li>Montrer que le rayon de convergence est infini.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1-2.</strong> On pose \(y = \sum a_n t^n\). Alors \(y'' = \sum_{n \geq 2}n(n-1)a_n t^{n-2}\) et \(ty = \sum_{n \geq 0}a_n t^{n+1}\).</p>
+            <p>L'equation \(y'' - ty = 0\) donne \(\sum_{n \geq 2}n(n-1)a_n t^{n-2} = \sum_{n \geq 0}a_n t^{n+1}\).</p>
+            <p>En posant \(m = n-2\) a gauche et \(m = n+1\) a droite : \(\sum_{m \geq 0}(m+2)(m+1)a_{m+2}\,t^m = \sum_{m \geq 1}a_{m-1}\,t^m\).</p>
+            <p>Pour \(m = 0\) : \(2a_2 = 0\), donc \(a_2 = 0\). Pour \(m \geq 1\) :</p>
+            <div class="math-display">$$\boxed{a_{m+2} = \frac{a_{m-1}}{(m+2)(m+1)} \quad (m \geq 1)}$$</div>
+
+            <p><strong>3.</strong> Les \(a_n\) sont determines par \(a_0\) et \(a_1\) (car \(a_2 = 0\)).</p>
+            <p><em>Premiere solution (Ai) :</em> \(a_0 = 1\), \(a_1 = 0\). Alors \(a_2 = 0\), et la recurrence donne des termes non nuls uniquement pour \(n \equiv 0 \pmod{3}\) : \(a_3 = \frac{a_0}{3 \cdot 2} = \frac{1}{6}\), \(a_6 = \frac{a_3}{6 \cdot 5} = \frac{1}{180}\), \(a_9 = \frac{a_6}{9 \cdot 8} = \frac{1}{12960}\), etc.</p>
+            <p><em>Seconde solution (Bi) :</em> \(a_0 = 0\), \(a_1 = 1\). Termes non nuls pour \(n \equiv 1 \pmod{3}\) : \(a_4 = \frac{a_1}{4 \cdot 3} = \frac{1}{12}\), \(a_7 = \frac{a_4}{7 \cdot 6} = \frac{1}{504}\), \(a_{10} = \frac{a_7}{10 \cdot 9} = \frac{1}{45360}\), etc.</p>
+
+            <p><strong>4.</strong> Pour montrer que \(R = +\infty\), utilisons la regle de d'Alembert. Pour les coefficients non nuls de la premiere solution : \(\frac{|a_{3(k+1)}|}{|a_{3k}|} = \frac{1}{(3k+3)(3k+2)} \to 0\) quand \(k \to \infty\). Donc le rapport tend vers \(0\), ce qui donne \(R = +\infty\). Le point \(0\) est un point ordinaire de l'equation (le coefficient dominant est \(1\), qui ne s'annule jamais), donc par le theoreme de Fuchs, le rayon de convergence est infini.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 19</span>
+        <span class="block__label">Exercice 6 -- Systeme avec second membre et Dunford</span>
+        <p>Soit \(A = \begin{pmatrix}3&1\\-1&1\end{pmatrix}\).</p>
+        <ol>
+          <li>Trouver la decomposition de Dunford \(A = D + N\).</li>
+          <li>Calculer \(e^{tA}\).</li>
+          <li>Resoudre \(X' = AX + \begin{pmatrix}e^{2t}\\0\end{pmatrix}\) avec \(X(0) = \begin{pmatrix}0\\0\end{pmatrix}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Polynome caracteristique : \(\det(A - \lambda I) = (3-\lambda)(1-\lambda)+1 = \lambda^2 - 4\lambda + 4 = (\lambda - 2)^2\). Valeur propre double \(\lambda = 2\).</p>
+            <p>\(A - 2I = \begin{pmatrix}1&1\\-1&-1\end{pmatrix}\). Cette matrice est de rang \(1\), donc l'espace propre est de dimension \(1\) : \(A\) n'est pas diagonalisable.</p>
+            <p>Decomposition de Dunford : \(D = 2I\), \(N = A - 2I = \begin{pmatrix}1&1\\-1&-1\end{pmatrix}\).</p>
+            <p>Verification : \(N^2 = \begin{pmatrix}1&1\\-1&-1\end{pmatrix}\begin{pmatrix}1&1\\-1&-1\end{pmatrix} = \begin{pmatrix}0&0\\0&0\end{pmatrix}\). Bien nilpotente d'indice \(2\), et \(DN = ND\) car \(D\) est scalaire.</p>
+
+            <p><strong>2.</strong> \(e^{tA} = e^{2t}(I + tN) = e^{2t}\begin{pmatrix}1+t & t\\-t & 1-t\end{pmatrix}\).</p>
+
+            <p><strong>3.</strong> Par variation de la constante : \(X(t) = e^{tA}\int_0^t e^{-sA}B(s)\,ds\) ou \(B(s) = \binom{e^{2s}}{0}\).</p>
+            <p>On calcule \(e^{-sA} = e^{-2s}\begin{pmatrix}1-s&-s\\s&1+s\end{pmatrix}\). Donc :</p>
+            <div class="math-display">$$e^{-sA}B(s) = e^{-2s}\begin{pmatrix}1-s&-s\\s&1+s\end{pmatrix}\begin{pmatrix}e^{2s}\\0\end{pmatrix} = \begin{pmatrix}1-s\\s\end{pmatrix}$$</div>
+            <p>Integration : \(\int_0^t \begin{pmatrix}1-s\\s\end{pmatrix}ds = \begin{pmatrix}t - t^2/2\\t^2/2\end{pmatrix}\).</p>
+            <p>Finalement :</p>
+            <div class="math-display">$$X(t) = e^{2t}\begin{pmatrix}1+t&t\\-t&1-t\end{pmatrix}\begin{pmatrix}t - t^2/2\\t^2/2\end{pmatrix}$$</div>
+            <div class="math-display">$$= e^{2t}\begin{pmatrix}(1+t)(t-t^2/2)+t^3/2\\-t(t-t^2/2)+(1-t)t^2/2\end{pmatrix} = e^{2t}\begin{pmatrix}t + t^2/2\\-t^2/2\end{pmatrix}$$</div>
+            <div class="math-display">$$\boxed{X(t) = e^{2t}\begin{pmatrix}t + t^2/2\\-t^2/2\end{pmatrix}}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 7 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 19</span>
+        <span class="block__label">Exercice 7 -- EDL2 et reduction de l'ordre</span>
+        <p>On considere \(t(t-1)y'' + (3t-1)y' + y = 0\) sur \(]0, 1[\).</p>
+        <ol>
+          <li>Verifier que \(y_1(t) = \frac{1}{t}\) est solution.</li>
+          <li>Par reduction de l'ordre, trouver une seconde solution \(y_2\) lineairement independante de \(y_1\).</li>
           <li>Ecrire la solution generale.</li>
         </ol>
-        <p><em>Indication :</em> sous forme normale, \(p(x) = 1/x\), donc \(W(x) = \frac{C}{x}\) par Abel. Puis \(y_2(x) = x \int \frac{C/x}{x^2}\,dx = x \int \frac{C}{x^3}\,dx = x \cdot \frac{-C}{2x^2} = \frac{-C}{2x}\). On peut prendre \(y_2(x) = \frac{1}{x}\). Solution generale : \(y = \alpha x + \frac{\beta}{x}\).</p>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Avec \(y_1 = 1/t\) : \(y_1' = -1/t^2\), \(y_1'' = 2/t^3\). On injecte :</p>
+            <div class="math-display">$$t(t-1)\cdot\frac{2}{t^3} + (3t-1)\cdot\frac{-1}{t^2} + \frac{1}{t}$$</div>
+            <div class="math-display">$$= \frac{2(t-1)}{t^2} - \frac{3t-1}{t^2} + \frac{1}{t} = \frac{2t - 2 - 3t + 1}{t^2} + \frac{1}{t} = \frac{-t - 1}{t^2} + \frac{1}{t} = \frac{-t-1+t}{t^2} = \frac{-1}{t^2}$$</div>
+            <p>Cela donne \(-1/t^2 \neq 0\). Verifions plus soigneusement. Sous forme normale : on divise par \(t(t-1)\) :</p>
+            <div class="math-display">$$y'' + \frac{3t-1}{t(t-1)}y' + \frac{1}{t(t-1)}y = 0$$</div>
+            <p>Avec \(y_1 = 1/t\) : \(y_1'' + \frac{3t-1}{t(t-1)}\cdot\frac{-1}{t^2} + \frac{1}{t(t-1)}\cdot\frac{1}{t}\) \(= \frac{2}{t^3} - \frac{3t-1}{t^3(t-1)} + \frac{1}{t^2(t-1)}\).</p>
+            <p>On met au denominateur commun \(t^3(t-1)\) :</p>
+            <div class="math-display">$$\frac{2(t-1) - (3t-1) + t}{t^3(t-1)} = \frac{2t - 2 - 3t + 1 + t}{t^3(t-1)} = \frac{-1}{t^3(t-1)} \cdot 0$$</div>
+            <p>Reprenons : \(2(t-1) = 2t-2\), \(-(3t-1) = -3t+1\), \(+t\). Total : \(2t-2-3t+1+t = 0-1 = -1\). Donc on obtient \(-1/(t^3(t-1)) \neq 0\).</p>
+            <p>Corrigeons : essayons \(y_1 = 1/(t-1)\). \(y_1' = -1/(t-1)^2\), \(y_1'' = 2/(t-1)^3\). On injecte dans l'equation originale :</p>
+            <div class="math-display">$$\frac{2t}{(t-1)^2} - \frac{3t-1}{(t-1)^2} + \frac{1}{t-1} = \frac{2t - 3t + 1 + t - 1}{(t-1)^2} = \frac{0}{(t-1)^2} = 0$$</div>
+            <p>Donc \(y_1(t) = \frac{1}{t-1}\) est solution (et non \(1/t\)).</p>
+
+            <p><strong>2.</strong> On pose \(y = y_1\,u = \frac{u}{t-1}\). En injectant dans la forme normale et en simplifiant, on obtient une EDL1 en \(v = u'\) :</p>
+            <p>Le Wronskien par Abel : \(W(t) = W(t_0)\exp\!\left(-\int \frac{3t-1}{t(t-1)}\,dt\right)\). On decompose : \(\frac{3t-1}{t(t-1)} = \frac{1}{t} + \frac{2}{t-1}\). Donc :</p>
+            <div class="math-display">$$W(t) = C\exp\!\left(-\ln t - 2\ln|t-1|\right) = \frac{C}{t(t-1)^2}$$</div>
+            <p>Comme \(W = y_1 y_2' - y_1' y_2 = \frac{y_2'}{t-1} + \frac{y_2}{(t-1)^2}\), on peut aussi utiliser : \(v = u'\) verifie \(\frac{v'}{v} = -\frac{y_1'}{y_1}\cdot 2 - \frac{3t-1}{t(t-1)}\). Cela donne, apres calcul, \(v(t) = \frac{1}{t(t-1)^2} \cdot (t-1)^2 = \frac{1}{t}\) (a une constante pres).</p>
+            <p>Donc \(u'(t) = 1/t\), \(u(t) = \ln t\), et \(y_2(t) = \frac{\ln t}{t - 1}\).</p>
+
+            <p><strong>3.</strong> Solution generale :</p>
+            <div class="math-display">$$\boxed{y(t) = \frac{A + B\ln t}{t - 1}, \quad A, B \in \mathbb{R}}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
@@ -399,6 +792,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

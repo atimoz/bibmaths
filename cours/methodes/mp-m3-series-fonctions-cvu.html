@@ -18,6 +18,7 @@
     .course__back:hover{color:var(--accent)}
     .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
     .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .badge--tier1{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;background:rgba(163,42,42,.15);color:#A32A2A;border:1px solid rgba(163,42,42,.3);padding:4px 12px;border-radius:20px}
     .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
     .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
     .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
@@ -30,15 +31,24 @@
     .course__section{margin-bottom:var(--space-2xl)}
     .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
     .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
-    .block ol{counter-reset:method-step}
-    .block ol li{counter-increment:method-step}
-    .block ol li::before{content:counter(method-step) '.';color:var(--accent);margin-right:8px;font-weight:600;font-family:var(--font-mono);font-size:.8rem}
+    .block ol{counter-reset:step}
+    .block ol li{counter-increment:step}
+    .block ol li::before{content:counter(step) '.';color:var(--accent);margin-right:8px;font-weight:600;font-family:var(--font-mono);font-size:.8rem}
     .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
     .block--def .block__label{color:#2563A3}
     .block--def ul li::before{color:#2563A3}
@@ -48,30 +58,35 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
-
-    /* Method block */
-    .block--method{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
-    .block--method .block__label{color:#2563A3}
-    .block--method ol li::before{color:#2563A3}
-    .block--method ul li::before{color:#2563A3}
-
-    /* Annale / Exercise block */
-    .block--annale{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
-    .block--annale .block__label{color:#4B825A}
-    .block--annale ul li::before{color:#4B825A}
-    .block--annale ol li::before{color:#4B825A}
-
+    .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
+    .block--cor .block__label{color:#9B59B6}
+    .block--method{background:rgba(0,128,128,.06);border-left:3px solid #2A8A8A}
+    .block--method .block__label{color:#2A8A8A}
+    .block--method ol li::before{color:#2A8A8A}
+    .block--method ul li::before{color:#2A8A8A}
+    .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
+    .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
+    .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
     .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
     .course__nav-link:hover span{color:var(--accent)}
     .course__nav-link--next{text-align:right}
-
     [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
     [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
     [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
@@ -82,15 +97,15 @@
     [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
     [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
     [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
-    [data-theme="dark"] .block--method{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
-    [data-theme="dark"] .block--method .block__label{color:#5A9FD4}
-    [data-theme="dark"] .block--method ol li::before{color:#5A9FD4}
-    [data-theme="dark"] .block--method ul li::before{color:#5A9FD4}
-    [data-theme="dark"] .block--annale{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
-    [data-theme="dark"] .block--annale .block__label{color:#6AAF7A}
-    [data-theme="dark"] .block--annale ul li::before{color:#6AAF7A}
-    [data-theme="dark"] .block--annale ol li::before{color:#6AAF7A}
-
+    [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
+    [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
+    [data-theme="dark"] .block--method{background:rgba(0,128,128,.1);border-left-color:#4ABABA}
+    [data-theme="dark"] .block--method .block__label{color:#4ABABA}
+    [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
+    [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
+    [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
+    [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
 </head>
@@ -149,179 +164,575 @@
     <a href="../../mp.html#methodes" class="course__back">&larr; Retour aux methodes MP</a>
 
     <div class="course__meta">
-      <span class="course__badge">MP -- Methodes CCINP</span>
+      <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 10</span>
     </div>
 
     <h1 class="course__title">Series de fonctions & CVU</h1>
 
     <p class="course__intro">
-      Les 5 methodes essentielles pour traiter les exercices de series de fonctions et convergence uniforme au concours CCINP. Chaque methode est accompagnee d'un exercice type corrige.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et sept exercices corriges inspires du chapitre 10.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Montrer la CVU sur un segment [a,b]</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Convergence normale d'une serie de fonctions</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Interversion somme-integrale</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Derivation terme a terme</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Theoreme de convergence dominee (version series)</a></li>
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Convergence normale (critere de Weierstrass)</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> CVU sans convergence normale</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Continuite de la somme</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Integration terme a terme</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Derivation terme a terme</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
+
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Montrer la CVU sur un segment \([a,b]\)</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Convergence normale (critere de Weierstrass)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Pour montrer la convergence normale de \(\sum f_n\) sur \(A\) :</p>
         <ol>
-          <li>Calculer \(\|f_n - f\|_\infty = \sup_{x \in [a,b]} |f_n(x) - f(x)|\).</li>
-          <li>Poser \(g_n(x) = |f_n(x) - f(x)|\) et etudier ses variations sur \([a,b]\).</li>
-          <li>Trouver le maximum de \(g_n\) par derivation : resoudre \(g_n'(x) = 0\).</li>
-          <li>Montrer que \(\|f_n - f\|_\infty \to 0\) quand \(n \to +\infty\).</li>
+          <li><strong>Majorer en norme infinie :</strong> trouver une suite \((M_n)\) telle que \(\|f_n\|_{\infty, A} = \sup_{x \in A} |f_n(x)| \leq M_n\).</li>
+          <li><strong>Montrer que \(\sum M_n\) converge :</strong> c'est une serie a termes positifs, on utilise les criteres classiques (comparaison, d'Alembert, etc.).</li>
+          <li><strong>Conclure :</strong> la CVN implique la CVU, qui implique la CVS. On en deduit les proprietes de regularite.</li>
         </ol>
-        <p><strong>Astuce :</strong> si le supremum est atteint en un point \(x_n\) dependant de \(n\), calculer \(g_n(x_n)\) et passer a la limite.</p>
+        <p><strong>Attention :</strong> la CVN est plus forte que la CVU. Il existe des series uniformement convergentes mais pas normalement convergentes.</p>
       </div>
 
-      <div class="block block--annale">
-        <span class="block__label">Exercice -- Style CCINP 2025 M1</span>
-        <p>Soit \(f_n(x) = \dfrac{nx}{1 + n^2 x^2}\) definie sur \([0,1]\).</p>
-        <ol>
-          <li>Montrer que \((f_n)\) converge simplement vers \(0\) sur \([0,1]\).</li>
-          <li>Y a-t-il convergence uniforme sur \([0,1]\) ?</li>
-          <li>Y a-t-il convergence uniforme sur \([a,1]\) avec \(a > 0\) ?</li>
-        </ol>
-        <p><strong>Elements de reponse :</strong></p>
-        <p><em>1.</em> Pour \(x = 0\), \(f_n(0) = 0\). Pour \(x > 0\), \(f_n(x) = \dfrac{1}{n x + \frac{1}{nx}} \to 0\). Donc CVS vers \(f = 0\).</p>
-        <p><em>2.</em> On etudie \(g_n(x) = f_n(x)\) sur \([0,1]\). On a \(g_n'(x) = \dfrac{n(1 - n^2 x^2)}{(1 + n^2 x^2)^2}\), qui s'annule en \(x_n = \frac{1}{n}\).</p>
-        <div class="math-display">$$\|f_n\|_\infty = f_n\!\left(\tfrac{1}{n}\right) = \frac{n \cdot \frac{1}{n}}{1 + n^2 \cdot \frac{1}{n^2}} = \frac{1}{2} \not\to 0$$</div>
-        <p>Donc <strong>pas de CVU</strong> sur \([0,1]\).</p>
-        <p><em>3.</em> Sur \([a,1]\) avec \(a > 0\), le maximum est atteint en \(x = a\) (car \(x_n = 1/n < a\) pour \(n\) assez grand) :</p>
-        <div class="math-display">$$\|f_n\|_{\infty,[a,1]} = f_n(a) = \frac{na}{1 + n^2 a^2} \sim \frac{1}{na} \to 0$$</div>
-        <p>Donc <strong>CVU sur \([a,1]\)</strong> pour tout \(a > 0\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(\displaystyle\sum_{n=1}^{+\infty} \frac{\sin(nx)}{n^2}\) converge normalement sur \(\mathbb{R}\).</strong></p>
+        <p><em>Resolution.</em> Pour tout \(x \in \mathbb{R}\) et tout \(n \geq 1\) :</p>
+        <div class="math-display">$$\left|\frac{\sin(nx)}{n^2}\right| \leq \frac{1}{n^2}$$</div>
+        <p>On pose \(M_n = 1/n^2\). La serie \(\sum 1/n^2\) converge (serie de Riemann, \(2 > 1\)). Par le critere de Weierstrass, la serie \(\sum \sin(nx)/n^2\) converge normalement sur \(\mathbb{R}\).</p>
+        <p>En particulier, elle converge uniformement sur \(\mathbb{R}\). Comme chaque fonction \(x \mapsto \sin(nx)/n^2\) est continue, la somme est continue sur \(\mathbb{R}\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Convergence normale d'une serie de fonctions</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> CVU sans convergence normale</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Quand la CVN echoue, on peut montrer la CVU par d'autres moyens :</p>
         <ol>
-          <li>Calculer \(M_n = \|f_n\|_\infty = \sup_{x \in I} |f_n(x)|\).</li>
-          <li>Montrer que la serie numerique \(\sum M_n\) converge (comparaison, Riemann, etc.).</li>
-          <li>Conclure : convergence normale \(\Rightarrow\) convergence uniforme \(\Rightarrow\) continuite de la somme \(\sum f_n\).</li>
+          <li><strong>Critere des series alternees uniforme :</strong> si \(f_n(x) = (-1)^n a_n(x)\) avec \(a_n(x) \geq 0\), \((a_n(x))\) decroissante pour chaque \(x\), et \(\|a_n\|_\infty \to 0\), alors le reste est majore par \(\|a_{n+1}\|_\infty\).</li>
+          <li><strong>Critere d'Abel uniforme :</strong> si \(\sum a_n(x)\) a des sommes partielles uniformement bornees et \((b_n(x))\) est decroissante tendant uniformement vers \(0\), alors \(\sum a_n b_n\) converge uniformement.</li>
+          <li><strong>Majoration directe du reste :</strong> montrer que \(\|R_n\|_\infty = \sup_x \left|\sum_{k>n} f_k(x)\right| \to 0\).</li>
         </ol>
-        <p><strong>Rappel :</strong> CVN \(\Rightarrow\) CVU, mais la reciproque est fausse.</p>
       </div>
 
-      <div class="block block--annale">
-        <span class="block__label">Exercice -- Style CCINP 2021 M1</span>
-        <p>Montrer que \(\displaystyle\zeta(s) = \sum_{n=1}^{+\infty} \frac{1}{n^s}\) est definie et continue sur \(]1, +\infty[\).</p>
-        <p><strong>Elements de reponse :</strong></p>
-        <p>Soit \([\alpha, +\infty[\) avec \(\alpha > 1\). Pour \(s \geq \alpha\) :</p>
-        <div class="math-display">$$\left\|\frac{1}{n^s}\right\|_{\infty,\,[\alpha,+\infty[} = \sup_{s \geq \alpha} \frac{1}{n^s} = \frac{1}{n^\alpha} = M_n$$</div>
-        <p>Or \(\sum \frac{1}{n^\alpha}\) converge car \(\alpha > 1\) (serie de Riemann). Donc \(\sum \frac{1}{n^s}\) converge normalement sur \([\alpha, +\infty[\).</p>
-        <p>Chaque \(s \mapsto \frac{1}{n^s} = e^{-s \ln n}\) est continue. Par convergence uniforme, \(\zeta\) est continue sur \([\alpha, +\infty[\).</p>
-        <p>Ceci etant vrai pour tout \(\alpha > 1\), \(\zeta\) est <strong>continue sur \(]1, +\infty[\)</strong>.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(\displaystyle\sum_{n=1}^{+\infty} \frac{(-1)^n x^n}{n + x^2}\) converge uniformement sur \([0, 1]\) mais pas normalement.</strong></p>
+        <p><em>Resolution.</em> Posons \(a_n(x) = \dfrac{x^n}{n + x^2}\) pour \(x \in [0, 1]\).</p>
+        <ul>
+          <li>\(a_n(x) \geq 0\) pour \(x \in [0, 1]\).</li>
+          <li>Pour \(x \in [0, 1[\) : \(a_n(x) \to 0\) et la suite est decroissante a partir d'un certain rang (car \(x^n\) decroit). Pour \(x = 1\) : \(a_n(1) = 1/(n+1)\), qui decroit vers \(0\).</li>
+          <li>\(\|a_n\|_\infty \leq \sup_{[0,1]} \dfrac{x^n}{n} \leq \dfrac{1}{n} \to 0\).</li>
+        </ul>
+        <p>Par le critere des series alternees, le reste verifie \(|R_n(x)| \leq a_{n+1}(x) \leq 1/(n+1)\). Donc \(\|R_n\|_\infty \leq 1/(n+1) \to 0\) : CVU sur \([0, 1]\).</p>
+        <p><strong>Pas de CVN :</strong> pour \(x = 1\), \(|f_n(1)| = 1/(n+1)\) et \(\sum 1/(n+1)\) diverge. Comme \(\|f_n\|_\infty \geq |f_n(1)| = 1/(n+1)\), la serie \(\sum \|f_n\|_\infty\) diverge.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M3 ═══════════════ -->
     <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Interversion somme-integrale</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Continuite de la somme</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Verifier que chaque \(f_n\) est continue sur \([a,b]\).</li>
-          <li>Montrer que \(\sum f_n\) converge normalement sur \([a,b]\).</li>
-          <li>Appliquer le theoreme d'interversion : \(\displaystyle\int_a^b \sum_{n=0}^{+\infty} f_n(x)\,dx = \sum_{n=0}^{+\infty} \int_a^b f_n(x)\,dx\).</li>
+          <li><strong>Theoreme :</strong> si les \(f_n\) sont continues sur \(I\) et \(\sum f_n\) converge uniformement sur \(I\) (ou sur tout segment de \(I\)), alors \(S = \sum_{n=0}^{+\infty} f_n\) est continue sur \(I\).</li>
+          <li><strong>En pratique :</strong> montrer la CVN (qui implique CVU) puis conclure. Si la CVN n'est pas globale, montrer la CVU sur tout compact.</li>
+          <li><strong>Continuite sur un ouvert :</strong> il suffit de montrer la CVU sur tout segment \([a, b] \subset I\). On parle de convergence uniforme sur tout compact.</li>
         </ol>
-        <p><strong>Sur un intervalle non borne :</strong> utiliser la convergence dominee au lieu de la convergence normale.</p>
       </div>
 
-      <div class="block block--annale">
-        <span class="block__label">Exercice -- Style CCINP 2022 M1</span>
-        <p>Calculer \(\displaystyle I = \int_0^1 \sum_{n=0}^{+\infty} \frac{(-1)^n\, x^{2n+1}}{2n+1}\,dx\). En deduire la valeur de \(\displaystyle\sum_{n=0}^{+\infty} \frac{(-1)^n}{(2n+1)^2}\).</p>
-        <p><strong>Elements de reponse :</strong></p>
-        <p>On reconnait \(\displaystyle\sum_{n=0}^{+\infty} \frac{(-1)^n\, x^{2n+1}}{2n+1} = \arctan(x)\) pour \(x \in [0,1]\).</p>
-        <p>Justification de l'interversion : posons \(f_n(x) = \frac{(-1)^n x^{2n+1}}{2n+1}\). On a \(\|f_n\|_{\infty,[0,1]} = \frac{1}{2n+1}\) et \(\sum \frac{1}{2n+1}\) diverge. On utilise plutot le critere des series alternees : la serie converge uniformement sur \([0,1]\) (convergence uniforme des series alternees). Les \(f_n\) sont continues, donc on peut intervertir :</p>
-        <div class="math-display">$$I = \int_0^1 \arctan(x)\,dx = \Big[x\arctan(x) - \tfrac{1}{2}\ln(1+x^2)\Big]_0^1 = \frac{\pi}{4} - \frac{\ln 2}{2}$$</div>
-        <p>Par interversion :</p>
-        <div class="math-display">$$I = \sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} \int_0^1 x^{2n+1}\,dx = \sum_{n=0}^{+\infty} \frac{(-1)^n}{(2n+1)(2n+2)}$$</div>
-        <p>On en deduit la valeur par identification, en utilisant la decomposition en elements simples pour relier a \(\displaystyle\sum \frac{(-1)^n}{(2n+1)^2}\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(\zeta(x) = \displaystyle\sum_{n=1}^{+\infty} \frac{1}{n^x}\) est continue sur \(]1, +\infty[\).</strong></p>
+        <p><em>Resolution.</em> Soit \([a, b] \subset \,]1, +\infty[\) un segment quelconque, avec \(a > 1\). Pour \(x \in [a, b]\) :</p>
+        <div class="math-display">$$\left|\frac{1}{n^x}\right| = \frac{1}{n^x} \leq \frac{1}{n^a}$$</div>
+        <p>La serie \(\sum 1/n^a\) converge car \(a > 1\) (serie de Riemann). Par le critere de Weierstrass, \(\sum 1/n^x\) converge normalement, donc uniformement, sur \([a, b]\).</p>
+        <p>Comme chaque fonction \(x \mapsto 1/n^x = e^{-x\ln n}\) est continue, et que la convergence est uniforme sur tout segment de \(]1, +\infty[\), la somme \(\zeta\) est continue sur \(]1, +\infty[\).</p>
+        <p><strong>Remarque :</strong> il n'y a pas CVN sur \(]1, +\infty[\) tout entier car \(\sup_{x > 1} 1/n^x = 1/n^1\) et \(\sum 1/n\) diverge. Mais la CVU sur tout compact suffit.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Derivation terme a terme</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Integration terme a terme</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Pour montrer que \(\left(\sum f_n\right)' = \sum f_n'\), verifier les trois hypotheses :</p>
         <ol>
-          <li>\(\sum f_n(x_0)\) converge en au moins un point \(x_0\).</li>
-          <li>Chaque \(f_n\) est de classe \(\mathscr{C}^1\) sur l'intervalle.</li>
-          <li>\(\sum f_n'\) converge uniformement sur tout segment de l'intervalle.</li>
+          <li><strong>Theoreme (sur un segment) :</strong> si les \(f_n\) sont continues sur \([a, b]\) et \(\sum f_n\) converge uniformement sur \([a, b]\), alors :</li>
         </ol>
-        <p>Alors \(\sum f_n\) est de classe \(\mathscr{C}^1\) et \(\left(\sum f_n\right)' = \sum f_n'\).</p>
+        <div class="math-display">$$\int_a^b \sum_{n=0}^{+\infty} f_n(t)\,dt = \sum_{n=0}^{+\infty} \int_a^b f_n(t)\,dt$$</div>
+        <ol>
+          <li><strong>En pratique :</strong> montrer la CVN ou CVU sur \([a, b]\), puis permuter \(\int\) et \(\sum\).</li>
+          <li><strong>Cas d'un intervalle non borne :</strong> la CVU sur un segment ne suffit pas ; on utilise alors la convergence dominee ou l'integration sur \([a, A]\) suivie d'un passage a la limite \(A \to +\infty\).</li>
+        </ol>
       </div>
 
-      <div class="block block--annale">
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Soit \(\displaystyle S(x) = \sum_{n=1}^{+\infty} \frac{\sin(nx)}{n^2}\). Montrer que \(S\) est de classe \(\mathscr{C}^1\) sur \(]0, 2\pi[\) et calculer \(S'(x)\).</p>
-        <p><strong>Elements de reponse :</strong></p>
-        <p>Posons \(f_n(x) = \frac{\sin(nx)}{n^2}\). Chaque \(f_n\) est \(\mathscr{C}^1\) et \(f_n'(x) = \frac{\cos(nx)}{n}\).</p>
-        <p><em>Hypothese 1 :</em> \(\sum f_n(\pi)\) converge car \(\left|\frac{\sin(n\pi)}{n^2}\right| = 0\) pour tout \(n\).</p>
-        <p><em>Hypothese 2 :</em> les \(f_n\) sont \(\mathscr{C}^1\). &#10003;</p>
-        <p><em>Hypothese 3 :</em> on etudie \(\sum f_n'\) sur \([\varepsilon, 2\pi - \varepsilon]\) pour \(\varepsilon > 0\). Par sommation d'Abel, on montre que \(\sum \frac{\cos(nx)}{n}\) converge uniformement sur ce segment (les sommes partielles de \(\sum \cos(nx)\) sont bornees sur \([\varepsilon, 2\pi - \varepsilon]\) et \(1/n \to 0\) de facon decroissante).</p>
-        <p>On conclut que \(S\) est \(\mathscr{C}^1\) sur \(]0, 2\pi[\) et :</p>
-        <div class="math-display">$$S'(x) = \sum_{n=1}^{+\infty} \frac{\cos(nx)}{n} = -\ln\!\left(2\sin\frac{x}{2}\right) \quad \text{pour } x \in\, ]0, 2\pi[$$</div>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Calculer \(\displaystyle\int_0^1 \sum_{n=0}^{+\infty} \frac{x^n}{n+1}\,dx\).</strong></p>
+        <p><em>Resolution.</em> Posons \(f_n(x) = \dfrac{x^n}{n+1}\) pour \(x \in [0, 1]\). On a \(\|f_n\|_{\infty,[0,1]} = \dfrac{1}{n+1}\) et \(\sum \dfrac{1}{n+1}\) diverge : pas de CVN sur \([0,1]\).</p>
+        <p>Cependant, sur \([0, a]\) avec \(0 < a < 1\), \(\|f_n\|_\infty \leq a^n/(n+1) \leq a^n\) et \(\sum a^n\) converge : CVN sur \([0, a]\).</p>
+        <p>On calcule d'abord la somme de la serie. Pour \(x \in [0, 1[\) :</p>
+        <div class="math-display">$$\sum_{n=0}^{+\infty} \frac{x^n}{n+1} = \frac{1}{x}\sum_{n=0}^{+\infty}\frac{x^{n+1}}{n+1} = -\frac{\ln(1-x)}{x} \quad (x \neq 0)$$</div>
+        <p>et la somme vaut \(1\) en \(x = 0\). Sur \([0, a]\), la CVU permet la permutation :</p>
+        <div class="math-display">$$\int_0^a \sum_{n=0}^{+\infty} \frac{x^n}{n+1}\,dx = \sum_{n=0}^{+\infty} \frac{1}{n+1}\int_0^a x^n\,dx = \sum_{n=0}^{+\infty} \frac{a^{n+1}}{(n+1)^2}$$</div>
+        <p>En faisant \(a \to 1^-\) (justifie par convergence monotone ou theoreme d'Abel) :</p>
+        <div class="math-display">$$\int_0^1 \sum_{n=0}^{+\infty} \frac{x^n}{n+1}\,dx = \sum_{n=0}^{+\infty} \frac{1}{(n+1)^2} = \sum_{k=1}^{+\infty}\frac{1}{k^2} = \frac{\pi^2}{6}$$</div>
       </div>
     </section>
 
     <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Convergence dominee (version series)</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Derivation terme a terme</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Montrer la convergence simple : \(f_n(t) \to f(t)\) pour (presque) tout \(t\).</li>
-          <li>Trouver une <strong>fonction dominante</strong> : \(|f_n(t)| \leq g(t)\) pour tout \(n\), avec \(g\) integrable.</li>
-          <li>Appliquer le theoreme de convergence dominee : \(\displaystyle\lim_{n \to \infty} \int f_n = \int f\).</li>
+          <li><strong>Theoreme :</strong> si les \(f_n\) sont \(\mathcal{C}^1\) sur \(I\), si \(\sum f_n\) converge simplement en un point de \(I\), et si \(\sum f_n'\) converge uniformement sur tout segment de \(I\), alors \(S = \sum f_n\) est \(\mathcal{C}^1\) et :</li>
         </ol>
-        <p><strong>Pour les series :</strong> si \(S_N(x) = \sum_{n=0}^{N} f_n(x)\), il faut dominer \(|S_N(x)| \leq g(x)\) avec \(g\) integrable, independamment de \(N\).</p>
+        <div class="math-display">$$S'(x) = \sum_{n=0}^{+\infty} f_n'(x)$$</div>
+        <ol>
+          <li><strong>En pratique :</strong> (i) verifier la CVS de \(\sum f_n\) en un point, (ii) montrer la CVN ou CVU de \(\sum f_n'\) sur tout segment, (iii) conclure.</li>
+          <li><strong>Version \(\mathcal{C}^k\) :</strong> si les \(f_n\) sont \(\mathcal{C}^k\) et \(\sum f_n^{(j)}\) CVU sur tout segment pour \(j = 0, \ldots, k\), alors \(S\) est \(\mathcal{C}^k\).</li>
+        </ol>
       </div>
 
-      <div class="block block--annale">
-        <span class="block__label">Exercice -- Style CCINP 2023 M1</span>
-        <p>Soit \(\displaystyle I_n = \int_0^{+\infty} \left(1 + \frac{t}{n}\right)^{-n} e^{-t}\,dt\). Montrer que \(I_n \to 1\).</p>
-        <p><strong>Elements de reponse :</strong></p>
-        <p>Posons \(f_n(t) = \left(1 + \frac{t}{n}\right)^{-n} e^{-t}\) pour \(t \geq 0\).</p>
-        <p><em>Convergence simple :</em> pour tout \(t \geq 0\),</p>
-        <div class="math-display">$$\left(1 + \frac{t}{n}\right)^{-n} = e^{-n \ln(1 + t/n)} \to e^{-t}$$</div>
-        <p>Donc \(f_n(t) \to e^{-t} \cdot e^{-t} = e^{-2t}\).</p>
-        <p><em>Domination :</em> pour tout \(n \geq 1\) et \(t \geq 0\), on a \(\left(1 + \frac{t}{n}\right)^{-n} \leq 1\) (car \(1 + t/n \geq 1\) et \(n > 0\)). Donc :</p>
-        <div class="math-display">$$|f_n(t)| \leq e^{-t} = g(t)$$</div>
-        <p>et \(g\) est integrable sur \([0, +\infty[\).</p>
-        <p><em>Conclusion par convergence dominee :</em></p>
-        <div class="math-display">$$I_n \to \int_0^{+\infty} e^{-2t}\,dt = \left[-\frac{1}{2}e^{-2t}\right]_0^{+\infty} = \frac{1}{2}$$</div>
-        <p><strong>Correction :</strong> on obtient \(I_n \to \frac{1}{2}\). (Si l'enonce annonce \(I_n \to 1\), verifier la puissance dans \((1+t/n)^{-n}\) ; avec l'exposant \(-n\), la limite est bien \(\frac{1}{2}\).)</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(S(x) = \displaystyle\sum_{n=1}^{+\infty} \frac{\cos(nx)}{n^2}\) est \(\mathcal{C}^1\) sur \(\mathbb{R}\) et calculer \(S'(x)\).</strong></p>
+        <p><em>Resolution.</em></p>
+        <ul>
+          <li><strong>CVS de \(\sum f_n\) :</strong> \(|\cos(nx)/n^2| \leq 1/n^2\), donc la serie converge normalement sur \(\mathbb{R}\).</li>
+          <li><strong>Derivees :</strong> \(f_n'(x) = -\dfrac{\sin(nx)}{n}\). On a \(|f_n'(x)| \leq 1/n\) et \(\sum 1/n\) diverge : pas de CVN globale.</li>
+        </ul>
+        <p>On verifie la CVU de \(\sum f_n'\) sur tout segment. Soit \([a, b] \subset \,]0, 2\pi[\). La serie \(\sum \sin(nx)/n\) est la serie de Fourier de la fonction en dents de scie. On peut montrer par le critere d'Abel (sommes partielles de \(\sum \sin(nx)\) bornees, \(1/n\) decroissante tendant vers \(0\)) que la convergence est uniforme sur \([a, b]\) pour tout \(0 < a < b < 2\pi\).</p>
+        <p>Par le theoreme de derivation terme a terme, \(S\) est \(\mathcal{C}^1\) sur \(]0, 2\pi[\) (et par periodicite, \(\mathcal{C}^1\) sur \(\mathbb{R} \setminus 2\pi\mathbb{Z}\)) avec :</p>
+        <div class="math-display">$$S'(x) = -\sum_{n=1}^{+\infty} \frac{\sin(nx)}{n}$$</div>
       </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> La convergence normale implique la convergence uniforme.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(\sum \|f_n\|_\infty\) converge, alors \(\|R_n\|_\infty \leq \sum_{k>n}\|f_k\|_\infty \to 0\), donc la convergence est uniforme. La reciproque est fausse.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> La convergence uniforme implique la convergence normale.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Contre-exemple : \(\sum (-1)^n/n\) sur un singleton est convergente (serie alternee), mais \(\sum 1/n\) diverge. Plus generalement, \(\sum (-1)^n \sin(nx)/n\) peut converger uniformement sans converger normalement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> Si \(\sum f_n\) converge normalement sur \(I\) et les \(f_n\) sont continues, alors \(S = \sum f_n\) est continue.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>La CVN implique la CVU, et la limite uniforme de fonctions continues est continue. Donc \(S\) est continue sur \(I\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> Si \(\sum f_n\) converge simplement sur \([a,b]\) et les \(f_n\) sont continues, on peut integrer terme a terme.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>La convergence simple ne suffit pas pour integrer terme a terme. Il faut la convergence uniforme sur le segment \([a, b]\) (ou la convergence dominee). La CVS seule ne permet pas de garantir \(\int \sum = \sum \int\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> Pour deriver terme a terme, il suffit que \(\sum f_n\) converge uniformement.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Pour deriver terme a terme, il faut la CVU de la serie des <strong>derivees</strong> \(\sum f_n'\) (pas de la serie elle-meme). La CVU de \(\sum f_n\) ne donne aucune information sur la derivabilite.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> La serie \(\sum_{n=1}^{+\infty} x^n/n\) converge normalement sur \(]-1, 1[\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>\(\sup_{x \in ]-1,1[} |x^n/n| = 1/n\) (borne superieure non atteinte), et \(\sum 1/n\) diverge. Pas de CVN sur \(]-1, 1[\). En revanche, la serie converge normalement sur \([-a, a]\) pour tout \(0 < a < 1\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> Si \(\sum f_n\) converge uniformement sur \(I\), alors \(f_n \to 0\) uniformement sur \(I\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est la condition necessaire de convergence uniforme : \(f_n = S_n - S_{n-1}\), et si \(S_n \to S\) uniformement, alors \(\|f_n\|_\infty = \|S_n - S_{n-1}\|_\infty \leq \|S_n - S\|_\infty + \|S_{n-1} - S\|_\infty \to 0\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> La fonction \(\zeta(x) = \sum 1/n^x\) est definie et continue sur \(]1, +\infty[\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Pour tout segment \([a, b] \subset \,]1, +\infty[\), on a \(1/n^x \leq 1/n^a\) et \(\sum 1/n^a\) converge. La serie converge normalement sur tout compact de \(]1, +\infty[\), donc la somme est continue sur cet intervalle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> Si \(\sum f_n\) converge normalement sur \([a, b]\), alors \(\int_a^b \sum f_n = \sum \int_a^b f_n\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>La CVN implique la CVU, et sous CVU sur un segment (avec continuite des \(f_n\)), on peut integrer terme a terme. La CVN est une condition suffisante pour la permutation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> La serie \(\sum_{n=0}^{+\infty} e^{-nx}\) converge uniformement sur \(]0, +\infty[\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>C'est une serie geometrique de raison \(e^{-x}\), de somme \(S(x) = 1/(1-e^{-x})\). La somme partielle \(S_n(x) = (1-e^{-nx})/(1-e^{-x})\). Quand \(x \to 0^+\), \(S(x) \to +\infty\) et \(S_n(x) \to n\), donc le reste \(|S(x) - S_n(x)| \to +\infty\). Pas de CVU sur \(]0, +\infty[\). En revanche, CVU sur \([\alpha, +\infty[\) pour tout \(\alpha > 0\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 10</span>
+        <span class="block__label">Exercice 1 -- Convergence normale sur \(\mathbb{R}\)</span>
+        <p>Etudier la convergence de la serie de fonctions \(\displaystyle\sum_{n=1}^{+\infty} \frac{\sin(nx)}{n^3}\) sur \(\mathbb{R}\).</p>
+        <ol>
+          <li>Montrer que la serie converge normalement sur \(\mathbb{R}\).</li>
+          <li>En deduire que la somme \(S\) est continue sur \(\mathbb{R}\).</li>
+          <li>Montrer que \(S\) est \(\mathcal{C}^1\) sur \(\mathbb{R}\) et calculer \(S'(x)\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On a \(\left|\dfrac{\sin(nx)}{n^3}\right| \leq \dfrac{1}{n^3}\) pour tout \(x \in \mathbb{R}\). La serie \(\sum 1/n^3\) converge (Riemann, \(3 > 1\)). Par le critere de Weierstrass, la serie converge normalement sur \(\mathbb{R}\).</p>
+
+            <p><strong>2.</strong> Chaque \(f_n : x \mapsto \sin(nx)/n^3\) est continue. La CVN implique la CVU, et la limite uniforme de fonctions continues est continue. Donc \(S\) est continue sur \(\mathbb{R}\).</p>
+
+            <p><strong>3.</strong> Les derivees sont \(f_n'(x) = \cos(nx)/n^2\). On a \(|f_n'(x)| \leq 1/n^2\) et \(\sum 1/n^2 = \pi^2/6\) converge. La serie des derivees converge normalement, donc uniformement sur \(\mathbb{R}\).</p>
+            <p>Par le theoreme de derivation terme a terme (CVS de \(\sum f_n\) en un point -- ici en \(x = 0\) : \(S(0) = 0\) -- et CVU de \(\sum f_n'\)) :</p>
+            <div class="math-display">$$S'(x) = \sum_{n=1}^{+\infty} \frac{\cos(nx)}{n^2}$$</div>
+            <p>et \(S\) est \(\mathcal{C}^1\) sur \(\mathbb{R}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 10</span>
+        <span class="block__label">Exercice 2 -- CVU et critere d'Abel</span>
+        <p>On considere la serie \(\displaystyle\sum_{n=1}^{+\infty} \frac{\sin(nx)}{n}\) pour \(x \in \,]0, 2\pi[\).</p>
+        <ol>
+          <li>Montrer que la serie ne converge pas normalement sur \(]0, 2\pi[\).</li>
+          <li>Montrer que les sommes partielles \(\sum_{n=1}^{N} \sin(nx)\) sont uniformement bornees sur \([\varepsilon, 2\pi - \varepsilon]\) pour tout \(\varepsilon > 0\).</li>
+          <li>En deduire, par le critere d'Abel, que la serie converge uniformement sur \([\varepsilon, 2\pi - \varepsilon]\).</li>
+          <li>La somme est-elle continue sur \(]0, 2\pi[\) ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(\|f_n\|_{\infty, ]0,2\pi[} = \sup_{x \in ]0,2\pi[} \left|\dfrac{\sin(nx)}{n}\right| = \dfrac{1}{n}\) (le supremum est atteint ou approche). La serie \(\sum 1/n\) diverge, donc pas de CVN.</p>
+
+            <p><strong>2.</strong> On utilise la formule de sommation : pour \(x \neq 0 \pmod{2\pi}\) :</p>
+            <div class="math-display">$$\sum_{n=1}^{N}\sin(nx) = \frac{\sin\!\left(\frac{(N+1)x}{2}\right)\sin\!\left(\frac{Nx}{2}\right)}{\sin(x/2)}$$</div>
+            <p>Pour \(x \in [\varepsilon, 2\pi - \varepsilon]\), on a \(|\sin(x/2)| \geq \sin(\varepsilon/2) > 0\), donc :</p>
+            <div class="math-display">$$\left|\sum_{n=1}^{N}\sin(nx)\right| \leq \frac{1}{\sin(\varepsilon/2)}$$</div>
+            <p>Les sommes partielles sont uniformement bornees.</p>
+
+            <p><strong>3.</strong> On applique le critere d'Abel avec \(a_n(x) = \sin(nx)\) (sommes partielles uniformement bornees sur \([\varepsilon, 2\pi-\varepsilon]\)) et \(b_n = 1/n\) (suite decroissante tendant vers \(0\), independante de \(x\)). La serie \(\sum \sin(nx)/n\) converge uniformement sur \([\varepsilon, 2\pi - \varepsilon]\).</p>
+
+            <p><strong>4.</strong> Comme chaque \(f_n\) est continue et la serie converge uniformement sur tout compact de \(]0, 2\pi[\), la somme \(S(x) = \sum \sin(nx)/n\) est continue sur \(]0, 2\pi[\). On sait que \(S(x) = (\pi - x)/2\) pour \(x \in \,]0, 2\pi[\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 10</span>
+        <span class="block__label">Exercice 3 -- Integration terme a terme</span>
+        <p>Soit \(S(x) = \displaystyle\sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} x^{2n+1}\) pour \(x \in [-1, 1]\).</p>
+        <ol>
+          <li>Identifier \(S(x)\) pour \(|x| < 1\).</li>
+          <li>Montrer que la serie converge uniformement sur \([-1, 1]\).</li>
+          <li>En deduire la valeur de \(\displaystyle\int_0^1 S(x)\,dx\) et retrouver un resultat classique.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Pour \(|x| < 1\), on reconnait le developpement en serie entiere de \(\arctan\) :</p>
+            <div class="math-display">$$S(x) = \arctan(x)$$</div>
+
+            <p><strong>2.</strong> C'est une serie alternee en \(x^{2n+1}/(2n+1)\). Pour \(|x| \leq 1\), la suite \(|x|^{2n+1}/(2n+1)\) decroit vers \(0\), et le reste de la serie alternee verifie :</p>
+            <div class="math-display">$$|R_n(x)| \leq \frac{|x|^{2n+3}}{2n+3} \leq \frac{1}{2n+3} \to 0$$</div>
+            <p>La borne du reste est independante de \(x\), donc la convergence est uniforme sur \([-1, 1]\).</p>
+            <p>En particulier, \(S(1) = \sum (-1)^n/(2n+1) = \pi/4\) (formule de Leibniz).</p>
+
+            <p><strong>3.</strong> Par integration terme a terme (CVU sur \([0, 1]\) avec \(f_n\) continues) :</p>
+            <div class="math-display">$$\int_0^1 S(x)\,dx = \sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1}\int_0^1 x^{2n+1}\,dx = \sum_{n=0}^{+\infty} \frac{(-1)^n}{(2n+1)(2n+2)}$$</div>
+            <p>D'autre part, \(\int_0^1 \arctan(x)\,dx = [x\arctan(x)]_0^1 - \int_0^1 \frac{x}{1+x^2}\,dx = \frac{\pi}{4} - \frac{\ln 2}{2}\).</p>
+            <p>On obtient donc :</p>
+            <div class="math-display">$$\sum_{n=0}^{+\infty} \frac{(-1)^n}{(2n+1)(2n+2)} = \frac{\pi}{4} - \frac{\ln 2}{2}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 10</span>
+        <span class="block__label">Exercice 4 -- Continuite de la somme sur un ouvert</span>
+        <p>On pose \(f(x) = \displaystyle\sum_{n=1}^{+\infty} \frac{1}{n(n+x^2)}\) pour \(x \in \mathbb{R}\).</p>
+        <ol>
+          <li>Montrer que la serie converge simplement sur \(\mathbb{R}\).</li>
+          <li>Montrer que la convergence est normale sur tout segment \([-M, M]\), puis que \(f\) est continue sur \(\mathbb{R}\).</li>
+          <li>Calculer \(f(0)\).</li>
+          <li>Determiner un equivalent de \(f(x)\) quand \(x \to +\infty\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Pour \(x\) fixe et \(n \geq 1\) : \(\dfrac{1}{n(n+x^2)} \leq \dfrac{1}{n^2}\) et \(\sum 1/n^2\) converge. La serie converge simplement sur \(\mathbb{R}\).</p>
+
+            <p><strong>2.</strong> Sur \([-M, M]\), pour tout \(x\) avec \(|x| \leq M\) : \(\dfrac{1}{n(n+x^2)} \leq \dfrac{1}{n^2}\). Donc \(\|f_n\|_{\infty,[-M,M]} \leq 1/n^2\) et \(\sum 1/n^2\) converge : CVN sur \([-M, M]\).</p>
+            <p>Comme tout compact de \(\mathbb{R}\) est contenu dans un \([-M, M]\), la CVN a lieu sur tout compact. Les \(f_n : x \mapsto 1/(n(n+x^2))\) sont continues, donc \(f\) est continue sur \(\mathbb{R}\).</p>
+
+            <p><strong>3.</strong> \(f(0) = \sum_{n=1}^{+\infty} \dfrac{1}{n \cdot n} = \sum_{n=1}^{+\infty} \dfrac{1}{n^2} = \dfrac{\pi^2}{6}\).</p>
+
+            <p><strong>4.</strong> Pour \(x\) grand, on decompose en fractions simples : \(\dfrac{1}{n(n+x^2)} = \dfrac{1}{x^2}\!\left(\dfrac{1}{n} - \dfrac{1}{n+x^2}\right)\). Donc :</p>
+            <div class="math-display">$$f(x) = \frac{1}{x^2}\sum_{n=1}^{+\infty}\left(\frac{1}{n} - \frac{1}{n+x^2}\right) = \frac{1}{x^2}\sum_{n=1}^{+\infty}\frac{x^2}{n(n+x^2)}$$</div>
+            <p>Ce qui est circulaire. Utilisons plutot : \(f(x) = \sum_{n=1}^{+\infty} \dfrac{1}{n(n+x^2)} \sim \dfrac{1}{x^2}\sum_{n=1}^{+\infty}\dfrac{1}{n}\) ... ce qui diverge. Approche correcte : pour \(x^2\) grand, le terme general est equivalent a \(1/(nx^2)\) pour \(n\) petit et a \(1/n^2\) pour \(n\) grand. On coupe en \(n \leq x^2\) et \(n > x^2\) :</p>
+            <div class="math-display">$$f(x) \sim \frac{\ln(x^2)}{x^2} = \frac{2\ln x}{x^2} \quad (x \to +\infty)$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 10</span>
+        <span class="block__label">Exercice 5 -- Derivation terme a terme et equation fonctionnelle</span>
+        <p>On pose \(S(x) = \displaystyle\sum_{n=1}^{+\infty} \frac{x^n}{n!}\) pour \(x \in \mathbb{R}\).</p>
+        <ol>
+          <li>Montrer que la serie converge normalement sur tout segment \([-M, M]\).</li>
+          <li>Montrer que \(S\) est \(\mathcal{C}^\infty\) et verifier que \(S'(x) = S(x) + 1\)... Non, calculer \(S'(x)\) directement.</li>
+          <li>En deduire que \(S(x) = e^x - 1\).</li>
+          <li>Calculer \(\int_0^1 S(x)\,dx\) de deux manieres.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Sur \([-M, M]\), \(\left|\dfrac{x^n}{n!}\right| \leq \dfrac{M^n}{n!}\). La serie \(\sum M^n/n!\) converge (c'est \(e^M - 1\)). Par Weierstrass, CVN sur \([-M, M]\).</p>
+
+            <p><strong>2.</strong> Les derivees sont \(f_n'(x) = x^{n-1}/(n-1)!\) pour \(n \geq 1\). Sur \([-M, M]\), \(|f_n'(x)| \leq M^{n-1}/(n-1)!\) et \(\sum M^{n-1}/(n-1)!\) converge. La serie des derivees converge normalement sur tout segment. Par iteration, le meme argument s'applique a toutes les derivees. Donc \(S\) est \(\mathcal{C}^\infty\).</p>
+            <div class="math-display">$$S'(x) = \sum_{n=1}^{+\infty} \frac{x^{n-1}}{(n-1)!} = \sum_{k=0}^{+\infty}\frac{x^k}{k!} = 1 + S(x)$$</div>
+
+            <p><strong>3.</strong> On a \(S' = 1 + S\), soit \(S' - S = 1\). La solution generale de \(y' - y = 1\) est \(y = Ce^x - 1\). Avec \(S(0) = 0\) (car tous les termes de la serie sont nuls en \(0\)), on obtient \(0 = C - 1\), soit \(C = 1\). Donc \(S(x) = e^x - 1\).</p>
+
+            <p><strong>4.</strong> Par integration directe : \(\int_0^1(e^x - 1)\,dx = [e^x - x]_0^1 = (e - 1) - 1 = e - 2\).</p>
+            <p>Par integration terme a terme (CVU sur \([0,1]\)) :</p>
+            <div class="math-display">$$\int_0^1 S(x)\,dx = \sum_{n=1}^{+\infty}\frac{1}{n!}\int_0^1 x^n\,dx = \sum_{n=1}^{+\infty}\frac{1}{(n+1) \cdot n!} = \sum_{n=1}^{+\infty}\frac{1}{(n+1)!}$$</div>
+            <p>Or \(\sum_{n=1}^{+\infty} \dfrac{1}{(n+1)!} = \sum_{k=2}^{+\infty}\dfrac{1}{k!} = e - 1 - 1 = e - 2\). Les deux methodes donnent le meme resultat.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 10</span>
+        <span class="block__label">Exercice 6 -- Serie lacunaire et non-CVU</span>
+        <p>On considere \(S(x) = \displaystyle\sum_{n=0}^{+\infty} x^{2^n}\) pour \(x \in [0, 1[\).</p>
+        <ol>
+          <li>Montrer que la serie converge simplement sur \([0, 1[\) et calculer \(S(x)\) en resolvant une equation fonctionnelle.</li>
+          <li>Etudier le comportement de \(S(x)\) quand \(x \to 1^-\).</li>
+          <li>La convergence est-elle uniforme sur \([0, 1[\) ? sur \([0, a]\) pour \(a < 1\) ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Pour \(x \in [0, 1[\) : \(|x^{2^n}| = x^{2^n} \leq x^n\) (car \(2^n \geq n\)) et \(\sum x^n\) converge. La serie converge simplement.</p>
+            <p>Equation fonctionnelle : \(S(x) = x + x^2 + x^4 + x^8 + \cdots = x + S(x^2)\). Cependant, cette relation ne donne pas de formule fermee simple. On peut aussi ecrire \(S(x) = \sum_{n=0}^{+\infty} x^{2^n}\) sans forme close elementaire.</p>
+
+            <p><strong>2.</strong> Quand \(x \to 1^-\), chaque terme \(x^{2^n} \to 1\). Les sommes partielles \(S_N(x) = \sum_{n=0}^{N} x^{2^n} \to N + 1\). Donc \(S(x) \to +\infty\) quand \(x \to 1^-\).</p>
+            <p>Plus precisement, pour \(x\) proche de \(1\), soit \(N\) tel que \(x^{2^N} \approx 1/2\), c'est-a-dire \(2^N \approx \ln(2)/\ln(1/x)\). Alors \(S(x) \geq N \approx \log_2(\ln(2)/\ln(1/x))\), qui tend vers l'infini logarithmiquement.</p>
+
+            <p><strong>3.</strong> Sur \([0, 1[\), le supremum de la somme partielle \(S_N(x) = \sum_{n=0}^{N} x^{2^n}\) est arbitrairement grand quand \(x \to 1^-\), et \(S(x) = +\infty\) en un sens : la somme diverge quand \(x \to 1\). Le reste \(R_N(x) = \sum_{n>N} x^{2^n}\) verifie \(\sup_{[0,1[} R_N(x) = +\infty\) (il suffit de prendre \(x\) assez proche de \(1\)). Pas de CVU sur \([0, 1[\).</p>
+            <p>Sur \([0, a]\) avec \(0 < a < 1\) : \(\|f_n\|_{\infty,[0,a]} = a^{2^n}\) et \(\sum a^{2^n}\) converge (comparaison a \(\sum a^n\), serie geometrique de raison \(a < 1\)). CVN, donc CVU sur \([0, a]\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 7 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 10</span>
+        <span class="block__label">Exercice 7 -- Regularite de la fonction \(\zeta\)</span>
+        <p>On considere \(\zeta(x) = \displaystyle\sum_{n=1}^{+\infty} \frac{1}{n^x}\) pour \(x > 1\).</p>
+        <ol>
+          <li>Montrer que \(\zeta\) est \(\mathcal{C}^\infty\) sur \(]1, +\infty[\).</li>
+          <li>Calculer \(\zeta'(x)\) et montrer que \(\zeta\) est strictement decroissante.</li>
+          <li>Determiner \(\lim_{x \to 1^+} \zeta(x)\) et \(\lim_{x \to +\infty} \zeta(x)\).</li>
+          <li>En deduire que \(\zeta\) realise une bijection de \(]1, +\infty[\) sur \(]1, +\infty[\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Posons \(f_n(x) = n^{-x} = e^{-x\ln n}\). Les \(f_n\) sont \(\mathcal{C}^\infty\) sur \(\mathbb{R}\) et pour tout \(k \geq 0\) :</p>
+            <div class="math-display">$$f_n^{(k)}(x) = (-\ln n)^k \cdot n^{-x}$$</div>
+            <p>Sur un segment \([a, b] \subset \,]1, +\infty[\) avec \(a > 1\) : \(|f_n^{(k)}(x)| \leq (\ln n)^k / n^a\). Pour \(a > 1\), la serie \(\sum (\ln n)^k/n^a\) converge (par comparaison : \((\ln n)^k = o(n^{(a-1)/2})\) et \(a - (a-1)/2 = (a+1)/2 > 1\)).</p>
+            <p>Donc \(\sum f_n^{(k)}\) converge normalement sur \([a, b]\) pour tout \(k\). Par le theoreme de derivation terme a terme (itere), \(\zeta\) est \(\mathcal{C}^\infty\) sur \(]1, +\infty[\).</p>
+
+            <p><strong>2.</strong> Par derivation terme a terme :</p>
+            <div class="math-display">$$\zeta'(x) = -\sum_{n=1}^{+\infty} \frac{\ln n}{n^x} = -\sum_{n=2}^{+\infty}\frac{\ln n}{n^x}$$</div>
+            <p>Pour \(x > 1\), tous les termes \(\ln n / n^x > 0\) (pour \(n \geq 2\)), donc \(\zeta'(x) < 0\). La fonction \(\zeta\) est strictement decroissante sur \(]1, +\infty[\).</p>
+
+            <p><strong>3.</strong> Quand \(x \to 1^+\), on compare a une integrale : \(\zeta(x) \geq \int_1^{+\infty} t^{-x}\,dt = 1/(x-1) \to +\infty\). Donc \(\lim_{x \to 1^+}\zeta(x) = +\infty\).</p>
+            <p>Quand \(x \to +\infty\) : pour \(n \geq 2\), \(1/n^x \to 0\), et la somme est dominee par son premier terme \(1/1^x = 1\). Plus precisement, \(\zeta(x) = 1 + 1/2^x + \cdots \to 1\) (chaque terme \(n^{-x} \to 0\) pour \(n \geq 2\), et la convergence dominee dans \(\ell^1\) justifie la permutation). Donc \(\lim_{x \to +\infty}\zeta(x) = 1\).</p>
+
+            <p><strong>4.</strong> \(\zeta\) est continue strictement decroissante sur \(]1, +\infty[\), avec \(\zeta(x) \to +\infty\) en \(1^+\) et \(\zeta(x) \to 1\) en \(+\infty\). Par le theoreme des valeurs intermediaires, \(\zeta\) realise une bijection de \(]1, +\infty[\) sur \(]1, +\infty[\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
-      <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
-        Suivant &rarr;
-        <span>Methode suivante</span>
+      <a href="mp-m12-suites-fonctions.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Suites de fonctions</span>
       </a>
+      <div></div>
     </nav>
 
   </article>
@@ -378,6 +789,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

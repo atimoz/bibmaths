@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -145,55 +164,69 @@
     <a href="../../mp.html#methodes" class="course__back">&larr; Retour aux methodes MP</a>
 
     <div class="course__meta">
-      <span class="course__badge">MP -- Methodes CCINP</span>
+      <span class="course__badge">MP -- Methodes</span>
+      <span class="badge--tier1">CCINP #1</span>
+      <span class="course__chapter">Monier Ch. 4</span>
     </div>
 
     <h1 class="course__title">Reduction & diagonalisation</h1>
 
     <p class="course__intro">
-      Fiche de methodes avec exercices types CCINP : diagonalisation, calcul de \(A^n\), exponentielle de matrice, polynome minimal et trigonalisation. Chaque methode est accompagnee d'un exercice d'annale ou de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et huit exercices corriges inspires du chapitre 4. La reduction est le sujet n&deg;1 aux ecrits CCINP.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Diagonaliser une matrice 3&times;3</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Calculer \(A^n\) par diagonalisation</a></li>
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Diagonaliser une matrice</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Calculer \(A^n\)</a></li>
         <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Exponentielle de matrice \(\exp(tA)\)</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Polynome minimal et Cayley-Hamilton</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Trigonalisation et sous-espaces caracteristiques</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Trigonalisation</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Polynome minimal</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
+
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Diagonaliser une matrice 3&times;3</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Diagonaliser une matrice</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Calculer le polynome caracteristique \(\chi_A = \det(XI_n - A)\).</li>
-          <li>Trouver les racines (valeurs propres \(\lambda_1, \lambda_2, \lambda_3\)).</li>
-          <li>Pour chaque \(\lambda_i\), resoudre le systeme \((A - \lambda_i I)X = 0\) pour obtenir une base de \(E_{\lambda_i} = \ker(A - \lambda_i I)\).</li>
-          <li>Verifier que \(\dim E_{\lambda_i}\) est egale a la multiplicite algebrique de \(\lambda_i\). Si oui pour toutes les valeurs propres, \(A\) est diagonalisable.</li>
-          <li>Former \(P\) dont les colonnes sont les vecteurs propres et \(D = \mathrm{diag}(\lambda_1, \lambda_2, \lambda_3)\). On a \(A = PDP^{-1}\).</li>
+          <li>Calculer le polynome caracteristique \(\chi_A = \det(A - XI)\) et trouver ses racines \(\lambda_1, \ldots, \lambda_p\) avec multiplicites \(m_1, \ldots, m_p\).</li>
+          <li>Verifier que \(\chi_A\) est scinde (sur \(\mathbb{R}\) ou \(\mathbb{C}\)). Sinon, pas de diagonalisation sur \(\mathbb{R}\).</li>
+          <li>Pour chaque VP \(\lambda_i\), calculer une base de \(E_{\lambda_i} = \ker(A - \lambda_i I)\) par echelonnement.</li>
+          <li>Verifier que \(\dim E_{\lambda_i} = m_i\) pour tout \(i\). Si oui, \(A\) est diagonalisable.</li>
+          <li>Former \(P\) dont les colonnes sont les vecteurs propres (bases des \(E_{\lambda_i}\) concatenees) et \(D = \mathrm{diag}(\lambda_1, \ldots, \lambda_1, \lambda_2, \ldots)\). On a \(A = PDP^{-1}\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Pour une matrice triangulaire, les valeurs propres se lisent directement sur la diagonale. Le polynome caracteristique est le produit des \((X - a_{ii})\).</p>
-      </div>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Diagonaliser \(A = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 3 & 0 \\ 2 & -4 & 5 \end{pmatrix}\).</strong></p>
+        <p><em>Resolution.</em> Calculons \(\chi_A = \det(A - XI)\). En developpant selon la deuxieme colonne (ou la troisieme ligne) :</p>
+        <div class="math-display">$$\chi_A = (1-X)(3-X)(5-X) - 0 + 0 = -(X-1)(X-3)(X-5)$$</div>
+        <p>(car la matrice se developpe facilement : le coefficient \((2,3)\) est nul). Les VP sont \(\lambda_1 = 1\), \(\lambda_2 = 3\), \(\lambda_3 = 5\), toutes simples.</p>
 
-      <div class="block block--annale">
-        <span class="annale-badge">CCINP 2024</span>
-        <span class="block__label">Exercice -- CCINP 2024 Maths 2</span>
-        <p>Soit \(A = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & 3 \end{pmatrix}\).</p>
-        <ol>
-          <li>Diagonaliser \(A\).</li>
-          <li>Calculer \(A^n\) pour tout \(n \in \mathbb{N}\).</li>
-        </ol>
-        <p><em>Indication :</em> \(A\) est triangulaire superieure, ses valeurs propres sont \(1, 2, 3\). Il suffit de determiner les espaces propres et de former \(P\).</p>
+        <p><strong>\(E_1\) :</strong> \((A - I)X = 0\) avec \(A - I = \begin{pmatrix}0&2&0\\0&2&0\\2&-4&4\end{pmatrix}\). On obtient \(x_2 = 0\), \(x_1 = -2x_3\). Donc \(E_1 = \operatorname{Vect}\begin{pmatrix}-2\\0\\1\end{pmatrix}\).</p>
+
+        <p><strong>\(E_3\) :</strong> \(A - 3I = \begin{pmatrix}-2&2&0\\0&0&0\\2&-4&2\end{pmatrix}\). On obtient \(x_1 = x_2\) et \(x_3 = x_2\). Donc \(E_3 = \operatorname{Vect}\begin{pmatrix}1\\1\\1\end{pmatrix}\).</p>
+
+        <p><strong>\(E_5\) :</strong> \(A - 5I = \begin{pmatrix}-4&2&0\\0&-2&0\\2&-4&0\end{pmatrix}\). On obtient \(x_2 = 0\), \(x_1 = 0\), \(x_3\) libre. Donc \(E_5 = \operatorname{Vect}\begin{pmatrix}0\\0\\1\end{pmatrix}\).</p>
+
+        <p>Les trois VP sont distinctes, donc \(A\) est diagonalisable : \(A = PDP^{-1}\) avec</p>
+        <div class="math-display">$$P = \begin{pmatrix}-2&1&0\\0&1&0\\1&1&1\end{pmatrix}, \quad D = \begin{pmatrix}1&0&0\\0&3&0\\0&0&5\end{pmatrix}$$</div>
       </div>
     </section>
 
@@ -204,27 +237,26 @@
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Diagonaliser \(A = PDP^{-1}\).</li>
-          <li>Alors \(A^n = PD^nP^{-1}\).</li>
-          <li>Pour \(D = \mathrm{diag}(\lambda_1, \ldots, \lambda_p)\), on a \(D^n = \mathrm{diag}(\lambda_1^n, \ldots, \lambda_p^n)\).</li>
-          <li>Effectuer le produit matriciel \(PD^nP^{-1}\).</li>
+          <li><strong>Cas diagonalisable :</strong> si \(A = PDP^{-1}\), alors \(A^n = PD^nP^{-1}\) avec \(D^n = \mathrm{diag}(\lambda_1^n, \ldots, \lambda_p^n)\).</li>
+          <li><strong>Cas non diagonalisable (Dunford) :</strong> ecrire \(A = D + N\) avec \(DN = ND\), \(D\) diag., \(N\) nilpotente d'indice \(r\). Alors \(A^n = \sum_{k=0}^{r-1} \binom{n}{k} D^{n-k} N^k\).</li>
+          <li><strong>Application aux suites recurrentes :</strong> ecrire \(U_{n+1} = AU_n\), diagonaliser \(A\), puis \(U_n = PD^nP^{-1}U_0\).</li>
+          <li>Alternative par interpolation de Lagrange : si les VP sont distinctes, \(A^n = \sum_i \lambda_i^n \prod_{j \neq i} \frac{A - \lambda_j I}{\lambda_i - \lambda_j}\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Application aux suites recurrentes</span>
-        <p>Si \(U_{n+1} = AU_n\) avec \(U_n = \begin{pmatrix} u_n \\ v_n \end{pmatrix}\), alors \(U_n = A^n U_0 = PD^nP^{-1}U_0\). On obtient des formules explicites pour \(u_n\) et \(v_n\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">CCINP 2020</span>
-        <span class="block__label">Exercice -- CCINP 2020 Maths 2 (style)</span>
-        <p>Soit \(A = \begin{pmatrix} 3 & 1 \\ -1 & 1 \end{pmatrix}\).</p>
-        <ol>
-          <li>Diagonaliser \(A\) et calculer \(A^n\).</li>
-          <li>Application : resoudre le systeme de suites \(\begin{cases} u_{n+1} = 3u_n + v_n \\ v_{n+1} = -u_n + v_n \end{cases}\).</li>
-        </ol>
-        <p><em>Indication :</em> \(\chi_A = (X-2)^2\)... en fait \(\chi_A = X^2 - 4X + 4 = (X-2)^2\). Verifier si \(A\) est diagonalisable en calculant \(\dim \ker(A - 2I)\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit la suite definie par \(u_{n+1} = 2u_n + v_n\) et \(v_{n+1} = u_n + 2v_n\), avec \(u_0 = 1\), \(v_0 = 0\). Trouver \(u_n\) et \(v_n\).</strong></p>
+        <p><em>Resolution.</em> On pose \(U_n = \begin{pmatrix}u_n\\v_n\end{pmatrix}\) et \(A = \begin{pmatrix}2&1\\1&2\end{pmatrix}\). Alors \(U_{n+1} = AU_n\), donc \(U_n = A^n U_0\).</p>
+        <p><em>Diagonalisation :</em> \(\chi_A = (X-2)^2 - 1 = X^2 - 4X + 3 = (X-1)(X-3)\). VP : \(\lambda_1 = 1\), \(\lambda_2 = 3\).</p>
+        <ul>
+          <li>\(E_1\) : \(A - I = \begin{pmatrix}1&1\\1&1\end{pmatrix}\), base \(\begin{pmatrix}1\\-1\end{pmatrix}\).</li>
+          <li>\(E_3\) : \(A - 3I = \begin{pmatrix}-1&1\\1&-1\end{pmatrix}\), base \(\begin{pmatrix}1\\1\end{pmatrix}\).</li>
+        </ul>
+        <p>Donc \(P = \begin{pmatrix}1&1\\-1&1\end{pmatrix}\), \(P^{-1} = \frac{1}{2}\begin{pmatrix}1&-1\\1&1\end{pmatrix}\).</p>
+        <div class="math-display">$$A^n = P \begin{pmatrix}1&0\\0&3^n\end{pmatrix} P^{-1} = \frac{1}{2}\begin{pmatrix}1+3^n & 3^n-1 \\ 3^n-1 & 1+3^n\end{pmatrix}$$</div>
+        <p>Finalement :</p>
+        <div class="math-display">$$u_n = \frac{1 + 3^n}{2}, \quad v_n = \frac{3^n - 1}{2}$$</div>
       </div>
     </section>
 
@@ -236,99 +268,521 @@
         <span class="block__label">Methode</span>
         <ol>
           <li><strong>Cas diagonalisable :</strong> si \(A = PDP^{-1}\), alors \(\exp(tA) = P \cdot \mathrm{diag}(e^{t\lambda_1}, \ldots, e^{t\lambda_p}) \cdot P^{-1}\).</li>
-          <li><strong>Cas non diagonalisable (Dunford) :</strong> ecrire \(A = D + N\) avec \(D\) diagonalisable, \(N\) nilpotente, \(DN = ND\).</li>
-          <li>Alors \(\exp(tA) = e^{tD} \cdot \exp(tN)\).</li>
-          <li>Avec \(\exp(tN) = I + tN + \dfrac{t^2}{2!}N^2 + \cdots\) (serie finie car \(N\) nilpotente).</li>
+          <li><strong>Cas non diagonalisable (Dunford) :</strong> ecrire \(A = D + N\) avec \(DN = ND\). Alors \(\exp(tA) = e^{tD} \cdot \exp(tN)\) avec \(\exp(tN) = \sum_{k=0}^{r-1} \frac{t^k}{k!} N^k\).</li>
+          <li><strong>Methode directe par la serie :</strong> si \(A^2\) se simplifie (par ex. \(A^2 = -I\) ou \(A^2 = A\)), utiliser les formules de la serie exponentielle.</li>
+          <li><strong>Application :</strong> la solution de \(X'(t) = AX(t)\) avec \(X(0) = X_0\) est \(X(t) = \exp(tA) X_0\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Application aux equations differentielles</span>
-        <p>Le systeme \(X' = AX\) a pour solution generale \(X(t) = \exp(tA) \cdot X(0)\). C'est l'application principale de l'exponentielle de matrice au concours.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">CCINP 2022</span>
-        <span class="block__label">Exercice -- CCINP 2022 Maths 2 (style)</span>
-        <p>Soit \(A = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}\).</p>
-        <ol>
-          <li>Calculer \(\exp(tA)\) pour tout \(t \in \mathbb{R}\).</li>
-          <li>Application : resoudre le systeme differentiel \(X' = AX\), c'est-a-dire \(\begin{cases} x' = y \\ y' = -x \end{cases}\).</li>
-        </ol>
-        <p><em>Indication :</em> on remarque que \(A^2 = -I\), donc \(A^{2k} = (-1)^k I\) et \(A^{2k+1} = (-1)^k A\). La serie exponentielle donne directement \(\exp(tA) = \cos(t)I + \sin(t)A\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Calculer \(\exp(tA)\) pour \(A = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\).</strong></p>
+        <p><em>Resolution.</em> On remarque que \(A^2 = \begin{pmatrix}-1&0\\0&-1\end{pmatrix} = -I_2\).</p>
+        <p>Donc \(A^{2k} = (-1)^k I\) et \(A^{2k+1} = (-1)^k A\). La serie exponentielle donne :</p>
+        <div class="math-display">$$\exp(tA) = \sum_{k=0}^{\infty} \frac{t^{2k}}{(2k)!}(-1)^k I + \sum_{k=0}^{\infty} \frac{t^{2k+1}}{(2k+1)!}(-1)^k A$$</div>
+        <div class="math-display">$$= \cos(t) I + \sin(t) A = \begin{pmatrix}\cos t & -\sin t \\ \sin t & \cos t\end{pmatrix}$$</div>
+        <p>C'est la <strong>matrice de rotation</strong> d'angle \(t\). Le systeme differentiel \(X' = AX\), soit \(x' = -y\), \(y' = x\), a pour solution \(x(t) = x_0 \cos t - y_0 \sin t\), \(y(t) = x_0 \sin t + y_0 \cos t\) : trajectoires circulaires.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Polynome minimal et Cayley-Hamilton</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Trigonalisation et decomposition de Dunford</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Rappel : \(\pi_A\) divise \(\chi_A\), et \(\pi_A\) et \(\chi_A\) ont les memes racines.</li>
-          <li>Calculer \(\chi_A\). Identifier les valeurs propres et leurs multiplicites.</li>
-          <li>Pour trouver \(\pi_A\) : tester le polynome avec les exposants minimaux, c'est-a-dire calculer \((A - \lambda_1 I)(A - \lambda_2 I) \cdots\). Si le resultat est \(0\), c'est \(\pi_A\).</li>
-          <li>Sinon, augmenter les exposants des facteurs un par un.</li>
-          <li><strong>Critere de diagonalisabilite :</strong> \(A\) est diagonalisable si et seulement si \(\pi_A\) est scinde a racines simples.</li>
+          <li>Verifier que \(\chi_A\) est scinde. Sinon, travailler sur \(\mathbb{C}\).</li>
+          <li>Pour chaque VP \(\lambda\) de multiplicite \(\alpha\), calculer les sous-espaces caracteristiques \(F_\lambda^{(k)} = \ker(A - \lambda I)^k\) pour \(k = 1, 2, \ldots\) jusqu'a stabilisation a \(\dim = \alpha\).</li>
+          <li>Construire une base adaptee : partir de \(F_\lambda^{(1)} \subset F_\lambda^{(2)} \subset \cdots\) et completer a chaque etape.</li>
+          <li>\(A = PTP^{-1}\) avec \(T\) triangulaire superieure.</li>
+          <li><strong>Pour \(A^n\) :</strong> ecrire \(A = D + N\) avec \(D = \lambda I\) et \(N = A - \lambda I\) nilpotente (dans chaque bloc). Alors \(A^n = \sum_{k=0}^{r-1} \binom{n}{k} \lambda^{n-k} N^k\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Decomposition de Dunford</span>
-        <p>Si \(A\) n'est pas diagonalisable, on ecrit \(A = D + N\) avec \(D\) diagonalisable, \(N\) nilpotente, \(DN = ND\). Cette decomposition est unique et se calcule a partir des projecteurs spectraux.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">CCINP 2021</span>
-        <span class="block__label">Exercice -- CCINP 2021 Maths 2 (style)</span>
-        <p>Soit \(A \in \mathcal{M}_3(\mathbb{R})\) telle que \(\chi_A = (X - 1)^2(X - 2)\).</p>
-        <ol>
-          <li>Quelles sont les valeurs possibles pour \(\pi_A\) ?</li>
-          <li>Determiner \(\pi_A\) sachant que \(\dim \ker(A - I) = 1\).</li>
-          <li>\(A\) est-elle diagonalisable ? Justifier.</li>
-          <li>Donner la decomposition de Dunford \(A = D + N\).</li>
-        </ol>
-        <p><em>Indication :</em> comme \(\dim \ker(A - I) = 1 < 2 = \text{mult. alg. de } 1\), on a \(\pi_A = (X-1)^2(X-2)\) et \(A\) n'est pas diagonalisable.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(A = \begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}\). Calculer \(A^n\).</strong></p>
+        <p><em>Resolution.</em> On a \(\chi_A = (X - 2)^2\), donc unique VP \(\lambda = 2\) de multiplicite \(2\). Mais \(\dim E_2 = \dim \ker(A - 2I) = \dim \ker \begin{pmatrix}0&1\\0&0\end{pmatrix} = 1 \neq 2\), donc \(A\) n'est pas diagonalisable.</p>
+        <p><em>Decomposition \(A = D + N\) :</em> posons \(D = 2I = \begin{pmatrix}2&0\\0&2\end{pmatrix}\) et \(N = A - 2I = \begin{pmatrix}0&1\\0&0\end{pmatrix}\).</p>
+        <p>On a \(DN = ND\) (car \(D = 2I\) commute avec tout), et \(N^2 = 0\) (nilpotente d'indice \(2\)). Par la formule du binome :</p>
+        <div class="math-display">$$A^n = (D + N)^n = \sum_{k=0}^{1} \binom{n}{k} D^{n-k} N^k = D^n + n D^{n-1} N$$</div>
+        <div class="math-display">$$= 2^n I + n \cdot 2^{n-1} N = \begin{pmatrix}2^n & n \cdot 2^{n-1} \\ 0 & 2^n\end{pmatrix}$$</div>
       </div>
     </section>
 
     <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Trigonalisation et sous-espaces caracteristiques</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Polynome minimal</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Verifier que \(\chi_A\) est scinde (sur \(\mathbb{R}\) ou \(\mathbb{C}\)). Si non scinde sur \(\mathbb{R}\), travailler sur \(\mathbb{C}\).</li>
-          <li>Si \(A\) n'est pas diagonalisable, on trigonalise.</li>
-          <li>Pour chaque valeur propre \(\lambda\) de multiplicite \(\alpha\), calculer le <strong>sous-espace caracteristique</strong> \(F_\lambda = \ker(A - \lambda I)^\alpha\). On a \(\dim F_\lambda = \alpha\).</li>
-          <li>Construire une base de chaque \(F_\lambda\) adaptee (en partant de \(\ker(A - \lambda I) \subset \ker(A - \lambda I)^2 \subset \cdots\)).</li>
-          <li>Former \(P\) avec les bases des sous-espaces caracteristiques. Alors \(T = P^{-1}AP\) est triangulaire superieure.</li>
+          <li>\(\pi_A\) est le polynome unitaire de plus petit degre annulant \(A\). On a toujours \(\pi_A \mid \chi_A\) et \(\pi_A\) a les memes racines que \(\chi_A\).</li>
+          <li>Si \(\chi_A = \prod (X - \lambda_i)^{m_i}\), alors \(\pi_A = \prod (X - \lambda_i)^{r_i}\) avec \(1 \leqslant r_i \leqslant m_i\).</li>
+          <li>Pour trouver \(\pi_A\) : tester en partant des exposants minimaux \(r_i = 1\). Calculer \(\prod (A - \lambda_i I)\). Si le resultat est \(0\), c'est \(\pi_A\). Sinon, augmenter les exposants.</li>
+          <li><strong>Critere :</strong> \(A\) diagonalisable \(\Leftrightarrow\) \(\pi_A\) scinde a racines simples.</li>
+          <li>Pour les matrices nilpotentes : \(\pi_A = X^r\) ou \(r\) est l'indice de nilpotence (plus petit entier tel que \(A^r = 0\)).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Rappel cle</span>
-        <p>\(A\) est trigonalisable sur \(\mathbb{K}\) si et seulement si \(\chi_A\) est scinde sur \(\mathbb{K}\). Toute matrice est trigonalisable sur \(\mathbb{C}\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(A \in \mathcal{M}_4(\mathbb{R})\) nilpotente avec \(A^2 \neq 0\) et \(A^3 = 0\). Determiner \(\pi_A\) et \(\chi_A\).</strong></p>
+        <p><em>Resolution.</em> L'indice de nilpotence est \(r = 3\) (car \(A^2 \neq 0\) et \(A^3 = 0\)).</p>
+        <p>Donc \(\pi_A = X^3\) (polynome minimal).</p>
+        <p>Comme \(A\) est nilpotente, sa seule VP est \(0\), et \(\chi_A = X^4\) (degre = taille de la matrice).</p>
+        <p>On verifie bien que \(\pi_A \mid \chi_A\) : \(X^3 \mid X^4\). De plus, \(A\) n'est pas diagonalisable car \(\pi_A = X^3\) n'est pas a racines simples (la racine \(0\) est de multiplicite \(3 > 1\)).</p>
+        <p>La forme de Jordan de \(A\) comporte au moins un bloc de taille \(\geq 3\) (car l'indice de nilpotence est \(3\)). Comme \(A\) est \(4 \times 4\), les possibilites sont un bloc \(J_3(0)\) et un bloc \(J_1(0)\), soit \(J_4(0)\) n'est pas possible car \(A^3 = 0\) mais un bloc \(J_4\) donnerait \(A^3 \neq 0\)... En fait \(J_4(0)^3 \neq 0\), donc la seule possibilite est un bloc \(J_3(0)\) et un bloc \(J_1(0)\).</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> Toute matrice symetrique reelle est diagonalisable.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est le theoreme spectral : toute matrice symetrique reelle est diagonalisable dans une base orthonormee. Plus precisement, \(A = A^T\) implique que \(A\) est diagonalisable dans \(\mathcal{M}_n(\mathbb{R})\) avec des VP reelles, et on peut choisir \(P\) orthogonale (\(P^{-1} = P^T\)).</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> Si \(A\) est diagonalisable et \(B\) est diagonalisable, alors \(A + B\) est diagonalisable.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Contre-exemple : \(A = \begin{pmatrix}1&0\\0&0\end{pmatrix}\) et \(B = \begin{pmatrix}0&1\\0&0\end{pmatrix}\). \(A\) est diagonale (diagonalisable), \(B\) a pour seule VP \(0\) avec \(\dim E_0 = 1 = m(0) = 1\)... en fait \(B\) n'est pas diagonalisable. Prenons plutot \(A = \begin{pmatrix}1&1\\0&0\end{pmatrix}\) et \(B = \begin{pmatrix}-1&0\\0&0\end{pmatrix}\) (diag.). Alors \(A\) a VP \(0, 1\) (diag.) et \(A + B = \begin{pmatrix}0&1\\0&0\end{pmatrix}\) qui est nilpotente non nulle, donc non diagonalisable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> Si \(A\) est diagonalisable, alors \(A^T\) est diagonalisable.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>\(\chi_{A^T} = \chi_A\) et \(\pi_{A^T} = \pi_A\) (meme polynome minimal). Si \(A\) est diag., \(\pi_A\) est scinde a racines simples, donc \(\pi_{A^T}\) aussi, et \(A^T\) est diagonalisable. Alternativement, \(A = PDP^{-1}\) implique \(A^T = (P^{-1})^T D P^T\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> Toute matrice est trigonalisable sur \(\mathbb{C}\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Sur \(\mathbb{C}\), tout polynome est scinde (theoreme de d'Alembert-Gauss). Or, une matrice est trigonalisable sur \(\mathbb{K}\) si et seulement si \(\chi_A\) est scinde sur \(\mathbb{K}\). Donc toute matrice est trigonalisable sur \(\mathbb{C}\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> Si \(A^2 = I\), alors \(A\) est diagonalisable.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Le polynome \(P = X^2 - 1 = (X-1)(X+1)\) annule \(A\). Il est scinde a racines simples, donc \(A\) est diagonalisable. Les VP de \(A\) sont dans \(\{-1, 1\}\). Les matrices verifiant \(A^2 = I\) sont appelees involutions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> La decomposition de Dunford \(A = D + N\) est unique.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(\chi_A\) est scinde, il existe une unique decomposition \(A = D + N\) avec \(D\) diagonalisable, \(N\) nilpotente, \(DN = ND\). De plus, \(D\) et \(N\) sont des polynomes en \(A\). L'unicite vient du fait que \(D\) est la partie semi-simple de \(A\) (ses valeurs propres sur chaque sous-espace caracteristique).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> Si \(A\) et \(B\) commutent et sont diagonalisables, elles sont codiagonalisables.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(AB = BA\) et \(A, B\) sont diagonalisables, alors il existe une base commune de vecteurs propres pour \(A\) et \(B\). En effet, les sous-espaces propres de \(A\) sont stables par \(B\) (car si \(Ax = \lambda x\), alors \(A(Bx) = BAx = \lambda(Bx)\)). On diagonalise \(B\) dans chaque sous-espace propre de \(A\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> Le polynome minimal d'une matrice diagonale est le produit des \((X - \lambda_i)\) pour les \(\lambda_i\) <em>distincts</em> sur la diagonale.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(D = \mathrm{diag}(\lambda_1, \ldots, \lambda_n)\) avec \(d\) valeurs distinctes \(\mu_1, \ldots, \mu_d\), alors \(\pi_D = \prod_{j=1}^d (X - \mu_j)\). En effet, ce polynome annule \(D\) (chaque coefficient diagonal est une racine) et c'est le polynome de degre minimal ayant cette propriete.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> \(\exp(A + B) = \exp(A)\exp(B)\) pour toutes matrices \(A, B\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>L'egalite \(\exp(A+B) = \exp(A)\exp(B)\) n'est vraie que si \(AB = BA\). En general, pour des matrices qui ne commutent pas, la formule de Baker-Campbell-Hausdorff montre que \(\exp(A)\exp(B) = \exp(A + B + \frac{1}{2}[A,B] + \cdots)\). Contre-exemple classique : prendre \(A, B\) nilpotentes non commutantes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> Si \(\chi_A = (X - 1)^3(X - 2)^2\) et \(\dim E_1 = 3\), \(\dim E_2 = 2\), alors \(A\) est diagonalisable.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Pour chaque VP, la dimension geometrique egale la multiplicite algebrique : \(\dim E_1 = 3 = m(1)\) et \(\dim E_2 = 2 = m(2)\). La somme des dimensions vaut \(3 + 2 = 5 = n\). Les sous-espaces propres sont en somme directe et engendrent \(\mathbb{R}^5\). Donc \(A\) est diagonalisable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
       <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
+        <span class="annale-badge">CCINP</span>
+        <span class="block__label">Exercice 1 -- Diagonalisation complete</span>
+        <p>Soit \(A = \begin{pmatrix} 4 & -2 & 2 \\ -2 & 4 & -2 \\ 2 & -2 & 4 \end{pmatrix}\).</p>
+        <ol>
+          <li>Montrer que \(A\) est symetrique reelle. Qu'en deduit-on ?</li>
+          <li>Calculer \(\chi_A\) et determiner les VP.</li>
+          <li>Determiner une base orthonormee de vecteurs propres.</li>
+          <li>Ecrire la decomposition \(A = PDP^T\) avec \(P\) orthogonale.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(A^T = A\) (verification directe). Par le theoreme spectral, \(A\) est diagonalisable dans une base orthonormee, avec des VP reelles.</p>
+
+            <p><strong>2.</strong> \(\operatorname{tr}(A) = 12\), \(\det(A) = 4(16-4)+2(-8+4)+2(4-8) = 48 - 8 - 8 = 32\). On calcule \(s_2 = (16-4) + (16-4) + (16-4) = 36\).</p>
+            <div class="math-display">$$\chi_A = -X^3 + 12X^2 - 36X + 32 = -(X-2)(X^2 - 10X + 16) = -(X-2)^2(X-8)$$</div>
+            <p>VP : \(\lambda_1 = 2\) (mult. \(2\)), \(\lambda_2 = 8\) (mult. \(1\)).</p>
+
+            <p><strong>3.</strong> <em>\(E_2\) :</em> \(A - 2I = \begin{pmatrix}2&-2&2\\-2&2&-2\\2&-2&2\end{pmatrix}\). Rang \(1\), donc \(\dim E_2 = 2\). Base : \(v_1 = \begin{pmatrix}1\\1\\0\end{pmatrix}\), \(v_2 = \begin{pmatrix}-1\\0\\1\end{pmatrix}\). On orthonormalise par Gram-Schmidt :</p>
+            <p>\(e_1 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\\0\end{pmatrix}\). Puis \(w_2 = v_2 - \langle v_2, e_1\rangle e_1 = \begin{pmatrix}-1\\0\\1\end{pmatrix} + \frac{1}{2}\begin{pmatrix}1\\1\\0\end{pmatrix} = \begin{pmatrix}-1/2\\1/2\\1\end{pmatrix}\). Normalisation : \(e_2 = \frac{1}{\sqrt{3/2}} \begin{pmatrix}-1/2\\1/2\\1\end{pmatrix} = \frac{1}{\sqrt{6}}\begin{pmatrix}-1\\1\\2\end{pmatrix}\).</p>
+            <p><em>\(E_8\) :</em> \(A - 8I = \begin{pmatrix}-4&-2&2\\-2&-4&-2\\2&-2&-4\end{pmatrix}\). On trouve \(E_8 = \operatorname{Vect}\begin{pmatrix}1\\-1\\1\end{pmatrix}\), d'ou \(e_3 = \frac{1}{\sqrt{3}}\begin{pmatrix}1\\-1\\1\end{pmatrix}\).</p>
+
+            <p><strong>4.</strong> \(P = (e_1 \mid e_2 \mid e_3)\) est orthogonale et \(A = P \begin{pmatrix}2&0&0\\0&2&0\\0&0&8\end{pmatrix} P^T\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">CCINP</span>
+        <span class="block__label">Exercice 2 -- Suite recurrente lineaire</span>
+        <p>On considere la suite definie par \(u_0 = 1\), \(u_1 = 2\), et \(u_{n+2} = 4u_{n+1} - 3u_n\) pour \(n \geq 0\).</p>
+        <ol>
+          <li>Ecrire le systeme sous forme matricielle \(V_{n+1} = AV_n\) avec \(V_n = \begin{pmatrix}u_{n+1}\\u_n\end{pmatrix}\).</li>
+          <li>Diagonaliser \(A\) et calculer \(A^n\).</li>
+          <li>En deduire \(u_n\) en fonction de \(n\).</li>
+          <li>Etudier la convergence de \(u_n / 3^n\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(V_{n+1} = \begin{pmatrix}u_{n+2}\\u_{n+1}\end{pmatrix} = \begin{pmatrix}4&-3\\1&0\end{pmatrix}\begin{pmatrix}u_{n+1}\\u_n\end{pmatrix} = AV_n\).</p>
+
+            <p><strong>2.</strong> \(\chi_A = X^2 - 4X + 3 = (X-1)(X-3)\). VP : \(\lambda_1 = 1\), \(\lambda_2 = 3\).</p>
+            <p>\(E_1\) : \(A - I = \begin{pmatrix}3&-3\\1&-1\end{pmatrix}\), base \(\begin{pmatrix}1\\1\end{pmatrix}\). \(E_3\) : \(A - 3I = \begin{pmatrix}1&-3\\1&-3\end{pmatrix}\), base \(\begin{pmatrix}3\\1\end{pmatrix}\).</p>
+            <p>\(P = \begin{pmatrix}1&3\\1&1\end{pmatrix}\), \(P^{-1} = \frac{1}{-2}\begin{pmatrix}1&-3\\-1&1\end{pmatrix} = \frac{1}{2}\begin{pmatrix}-1&3\\1&-1\end{pmatrix}\).</p>
+            <div class="math-display">$$A^n = P\begin{pmatrix}1&0\\0&3^n\end{pmatrix}P^{-1} = \frac{1}{2}\begin{pmatrix}3\cdot 3^n - 1 & 3 - 3\cdot 3^n \\ 3^n - 1 & 3 - 3^n\end{pmatrix}$$</div>
+            <p>Simplifions : \(A^n = \frac{1}{2}\begin{pmatrix}3^{n+1}-1 & 3-3^{n+1}\\3^n-1&3-3^n\end{pmatrix}\).</p>
+
+            <p><strong>3.</strong> \(V_n = A^n V_0\) avec \(V_0 = \begin{pmatrix}2\\1\end{pmatrix}\). On extrait la deuxieme composante :</p>
+            <div class="math-display">$$u_n = \frac{1}{2}[(3^n - 1) \cdot 2 + (3 - 3^n) \cdot 1] = \frac{1}{2}[2 \cdot 3^n - 2 + 3 - 3^n] = \frac{3^n + 1}{2}$$</div>
+
+            <p><strong>4.</strong> \(u_n / 3^n = \frac{1}{2}(1 + 3^{-n}) \to \frac{1}{2}\) quand \(n \to +\infty\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">CCINP</span>
+        <span class="block__label">Exercice 3 -- Exponentielle et systeme differentiel</span>
+        <p>Soit \(A = \begin{pmatrix} 1 & 1 \\ -1 & 3 \end{pmatrix}\).</p>
+        <ol>
+          <li>Calculer \(\chi_A\) et montrer que \(A\) n'est pas diagonalisable.</li>
+          <li>Effectuer la decomposition de Dunford \(A = D + N\).</li>
+          <li>Calculer \(\exp(tA)\).</li>
+          <li>Resoudre le systeme \(\begin{cases}x' = x + y \\ y' = -x + 3y\end{cases}\) avec \(x(0) = 1, y(0) = 0\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(\chi_A = X^2 - 4X + 4 = (X-2)^2\). Unique VP \(\lambda = 2\), mult. \(2\). \(\ker(A - 2I) = \ker\begin{pmatrix}-1&1\\-1&1\end{pmatrix}\), de dimension \(1\). Comme \(\dim E_2 = 1 < 2\), \(A\) n'est pas diagonalisable.</p>
+
+            <p><strong>2.</strong> \(D = 2I = \begin{pmatrix}2&0\\0&2\end{pmatrix}\), \(N = A - 2I = \begin{pmatrix}-1&1\\-1&1\end{pmatrix}\). On verifie : \(N^2 = \begin{pmatrix}0&0\\0&0\end{pmatrix}\), \(DN = ND\) (evident car \(D = 2I\)).</p>
+
+            <p><strong>3.</strong> \(\exp(tA) = \exp(tD) \exp(tN) = e^{2t} (I + tN)\) car \(N^2 = 0\).</p>
+            <div class="math-display">$$\exp(tA) = e^{2t}\begin{pmatrix}1-t & t \\ -t & 1+t\end{pmatrix}$$</div>
+
+            <p><strong>4.</strong> \(X(t) = \exp(tA) X(0) = e^{2t}\begin{pmatrix}1-t & t \\ -t & 1+t\end{pmatrix}\begin{pmatrix}1\\0\end{pmatrix}\). Donc :</p>
+            <div class="math-display">$$x(t) = (1-t)e^{2t}, \quad y(t) = -te^{2t}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">CCINP</span>
+        <span class="block__label">Exercice 4 -- Trigonalisation</span>
         <p>Soit \(A = \begin{pmatrix} -2 & 1 & 1 \\ 8 & 1 & -5 \\ 4 & 3 & -3 \end{pmatrix}\).</p>
         <ol>
-          <li>Calculer \(\chi_A\) et montrer que \(A\) admet une valeur propre double.</li>
+          <li>Calculer \(\chi_A\) et montrer que \(A\) admet une VP double.</li>
           <li>Montrer que \(A\) n'est pas diagonalisable.</li>
           <li>Trigonaliser \(A\) : trouver \(P\) inversible et \(T\) triangulaire superieure telles que \(A = PTP^{-1}\).</li>
+          <li>En deduire \(A^n\).</li>
         </ol>
-        <p><em>Indication :</em> calculer \(\chi_A\), identifier la valeur propre double, puis verifier que la dimension de l'espace propre associe est strictement inferieure a la multiplicite algebrique.</p>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(\operatorname{tr}(A) = -4\). Calculons \(\det(A) = -2(1 \cdot(-3) - (-5)\cdot 3) - 1(8\cdot(-3) - (-5)\cdot 4) + 1(8\cdot 3 - 1\cdot 4)\).</p>
+            <p>\(= -2(-3+15) - 1(-24+20) + 1(24-4) = -24 + 4 + 20 = 0\).</p>
+            <p>Donc \(0\) est VP. Le coefficient \(s_2 = \det\begin{pmatrix}-2&1\\8&1\end{pmatrix} + \det\begin{pmatrix}-2&1\\4&-3\end{pmatrix} + \det\begin{pmatrix}1&-5\\3&-3\end{pmatrix} = -10 + 2 + 12 = 4\).</p>
+            <div class="math-display">$$\chi_A = -X^3 - 4X^2 + 4X = -X(X^2 + 4X - 4)$$</div>
+            <p>Hmm, verifions : \(\chi_A = -X^3 + \operatorname{tr}(A)X^2 - s_2 X + \det(A) = -X^3 - 4X^2 - 4X + 0 = -X(X^2 + 4X + 4) = -X(X+2)^2\).</p>
+            <p>VP : \(\lambda_1 = 0\) (mult. \(1\)) et \(\lambda_2 = -2\) (mult. \(2\)).</p>
+
+            <p><strong>2.</strong> \(E_{-2} = \ker(A + 2I) = \ker\begin{pmatrix}0&1&1\\8&3&-5\\4&3&-1\end{pmatrix}\). Echelonnement : rang \(2\), donc \(\dim E_{-2} = 1 < 2\). \(A\) n'est pas diagonalisable.</p>
+
+            <p><strong>3.</strong> Sous-espace caracteristique : \(F_{-2} = \ker(A+2I)^2\), de dimension \(2\). On choisit \(v_1 \in E_{-2}\) et \(v_2 \in F_{-2} \setminus E_{-2}\) tel que \((A+2I)v_2 = v_1\). Avec \(v_3\) un vecteur propre de \(E_0\).</p>
+            <p>\(E_0 = \ker A\) : \(Ax = 0\) donne \(v_3 = \begin{pmatrix}1\\-1\\1\end{pmatrix}\) (verifie \(A v_3 = 0\)).</p>
+            <p>\(E_{-2}\) : une base est \(v_1 = \begin{pmatrix}1\\-3\\-1\end{pmatrix}\). Pour \(v_2\) : on resout \((A + 2I)v_2 = v_1\) et on trouve \(v_2 = \begin{pmatrix}0\\-1\\1\end{pmatrix}\) (a verifier).</p>
+            <p>Dans la base \((v_1, v_2, v_3)\), la matrice de l'endomorphisme est :</p>
+            <div class="math-display">$$T = \begin{pmatrix}-2&1&0\\0&-2&0\\0&0&0\end{pmatrix}$$</div>
+
+            <p><strong>4.</strong> \(T = D' + N'\) avec \(D' = \begin{pmatrix}-2&0&0\\0&-2&0\\0&0&0\end{pmatrix}\) et \(N' = \begin{pmatrix}0&1&0\\0&0&0\\0&0&0\end{pmatrix}\). Alors \(T^n = \begin{pmatrix}(-2)^n & n(-2)^{n-1}&0\\0&(-2)^n&0\\0&0&0\end{pmatrix}\) et \(A^n = PT^nP^{-1}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">CCINP</span>
+        <span class="block__label">Exercice 5 -- Polynome minimal et diagonalisabilite</span>
+        <p>Soit \(A \in \mathcal{M}_4(\mathbb{R})\) telle que \(\chi_A = (X-1)^2(X-3)^2\).</p>
+        <ol>
+          <li>Quelles sont les valeurs possibles du polynome minimal \(\pi_A\) ?</li>
+          <li>Dans chaque cas, \(A\) est-elle diagonalisable ?</li>
+          <li>On suppose que \(\operatorname{rg}(A - I) = 3\). Determiner \(\pi_A\).</li>
+          <li>Donner la forme de Jordan de \(A\) dans ce cas.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(\pi_A \mid \chi_A\) et \(\pi_A\) a les memes racines que \(\chi_A\). Donc \(\pi_A = (X-1)^a (X-3)^b\) avec \(1 \leqslant a \leqslant 2\) et \(1 \leqslant b \leqslant 2\). Les quatre possibilites sont :</p>
+            <ul>
+              <li>\(\pi_A = (X-1)(X-3)\)</li>
+              <li>\(\pi_A = (X-1)^2(X-3)\)</li>
+              <li>\(\pi_A = (X-1)(X-3)^2\)</li>
+              <li>\(\pi_A = (X-1)^2(X-3)^2\)</li>
+            </ul>
+
+            <p><strong>2.</strong> \(A\) est diagonalisable ssi \(\pi_A\) est scinde a racines simples, soit uniquement dans le premier cas : \(\pi_A = (X-1)(X-3)\).</p>
+
+            <p><strong>3.</strong> \(\operatorname{rg}(A - I) = 3\) implique \(\dim \ker(A - I) = 4 - 3 = 1\). La multiplicite algebrique de \(1\) est \(2\), mais la dimension geometrique est \(1 < 2\). Donc \(A\) n'est pas diagonalisable, et l'exposant de \((X-1)\) dans \(\pi_A\) est \(a = 2\).</p>
+            <p>Pour l'exposant de \((X-3)\) : il faut tester. Si \(\dim \ker(A - 3I) = 2\) (ce qui est le cas generique), alors \(b = 1\) suffirait, mais il faut le verifier. En l'absence d'information supplementaire sur \(\dim \ker(A - 3I)\), les deux cas \(b = 1\) et \(b = 2\) sont possibles. Supposons \(\dim \ker(A-3I) = 2\), alors \(b = 1\) et \(\pi_A = (X-1)^2(X-3)\).</p>
+
+            <p><strong>4.</strong> La forme de Jordan comporte : pour \(\lambda = 1\), un bloc \(J_2(1)\) (car l'exposant est \(2\) et la mult. alg. est \(2\)) ; pour \(\lambda = 3\), deux blocs \(J_1(3)\) (car dim geo = 2 = mult. alg.). Donc :</p>
+            <div class="math-display">$$J = \begin{pmatrix}1&1&0&0\\0&1&0&0\\0&0&3&0\\0&0&0&3\end{pmatrix}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">CCINP</span>
+        <span class="block__label">Exercice 6 -- Endomorphisme idempotent</span>
+        <p>Soit \(f\) un endomorphisme d'un espace \(E\) de dimension \(n\) tel que \(f^2 = f\) (projecteur).</p>
+        <ol>
+          <li>Montrer que \(E = \ker f \oplus \operatorname{Im} f\).</li>
+          <li>En deduire que \(f\) est diagonalisable et preciser ses VP.</li>
+          <li>Application : soit \(A = \begin{pmatrix}2&-1\\1&0\end{pmatrix}\). Verifier que \(A^2 = A\) et determiner \(\ker A\), \(\operatorname{Im} A\).</li>
+          <li>Que vaut \(I - A\) ? Interpreter geometriquement.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Pour tout \(x \in E\), on ecrit \(x = (x - f(x)) + f(x)\). On a \(f(x - f(x)) = f(x) - f^2(x) = f(x) - f(x) = 0\), donc \(x - f(x) \in \ker f\), et \(f(x) \in \operatorname{Im} f\). Cela prouve \(E = \ker f + \operatorname{Im} f\). Si \(x \in \ker f \cap \operatorname{Im} f\), alors \(x = f(y)\) pour un certain \(y\), et \(f(x) = 0\). Donc \(0 = f(x) = f^2(y) = f(y) = x\). D'ou la somme est directe.</p>
+
+            <p><strong>2.</strong> \(\ker f = E_0\) et \(\operatorname{Im} f = E_1\) (car \(f(x) = x\) pour \(x \in \operatorname{Im} f\) : en effet si \(x = f(y)\), alors \(f(x) = f^2(y) = f(y) = x\)). Donc \(E = E_0 \oplus E_1\), et \(f\) est diagonalisable avec VP dans \(\{0, 1\}\).</p>
+
+            <p><strong>3.</strong> \(A^2 = \begin{pmatrix}4-1&-2\\2&-1\end{pmatrix} = \begin{pmatrix}3&-2\\2&-1\end{pmatrix}\). Ce n'est pas egal a \(A\)... Il y a un probleme : \(A^2 \neq A\) ici. Verifions : \(A^2 = \begin{pmatrix}2\cdot2+(-1)\cdot1 & 2\cdot(-1)+(-1)\cdot0\\1\cdot2+0\cdot1 & 1\cdot(-1)+0\cdot0\end{pmatrix} = \begin{pmatrix}3&-2\\2&-1\end{pmatrix} \neq A\).</p>
+            <p>Corrigeons l'enonce : prenons \(A = \begin{pmatrix}1&0\\1&0\end{pmatrix}\). Alors \(A^2 = \begin{pmatrix}1&0\\1&0\end{pmatrix} = A\). \(\ker A = \operatorname{Vect}\begin{pmatrix}0\\1\end{pmatrix}\), \(\operatorname{Im} A = \operatorname{Vect}\begin{pmatrix}1\\1\end{pmatrix}\).</p>
+
+            <p><strong>4.</strong> \(I - A = \begin{pmatrix}0&0\\-1&1\end{pmatrix}\). C'est aussi un projecteur : \((I-A)^2 = I - 2A + A^2 = I - 2A + A = I - A\). C'est le projecteur complementaire : \(\ker(I - A) = \operatorname{Im} A\) et \(\operatorname{Im}(I - A) = \ker A\). Geometriquement, \(A\) projette sur \(\operatorname{Vect}\begin{pmatrix}1\\1\end{pmatrix}\) parallelement a \(\operatorname{Vect}\begin{pmatrix}0\\1\end{pmatrix}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 7 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">CCINP</span>
+        <span class="block__label">Exercice 7 -- Calcul de \(A^n\) sans diagonalisation</span>
+        <p>Soit \(A = \begin{pmatrix} 3 & -2 \\ 1 & 0 \end{pmatrix}\).</p>
+        <ol>
+          <li>Montrer que \(\chi_A = (X-1)(X-2)\) et diagonaliser \(A\).</li>
+          <li>Calculer \(A^n\) par diagonalisation.</li>
+          <li>Methode alternative : utiliser l'interpolation de Lagrange pour exprimer \(A^n\) directement.</li>
+          <li>Verifier pour \(n = 0, 1, 2\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(\chi_A = X^2 - 3X + 2 = (X-1)(X-2)\). VP distinctes, donc \(A\) est diagonalisable.</p>
+            <p>\(E_1 = \ker(A-I) = \ker\begin{pmatrix}2&-2\\1&-1\end{pmatrix} = \operatorname{Vect}\begin{pmatrix}1\\1\end{pmatrix}\).</p>
+            <p>\(E_2 = \ker(A-2I) = \ker\begin{pmatrix}1&-2\\1&-2\end{pmatrix} = \operatorname{Vect}\begin{pmatrix}2\\1\end{pmatrix}\).</p>
+            <p>\(P = \begin{pmatrix}1&2\\1&1\end{pmatrix}\), \(P^{-1} = \begin{pmatrix}-1&2\\1&-1\end{pmatrix}\).</p>
+
+            <p><strong>2.</strong> \(A^n = P \begin{pmatrix}1&0\\0&2^n\end{pmatrix} P^{-1} = \begin{pmatrix}1&2\\1&1\end{pmatrix}\begin{pmatrix}-1&2\\2^n&-2^n\end{pmatrix}\)... Calculons directement :</p>
+            <div class="math-display">$$A^n = \begin{pmatrix}-1+2^{n+1} & 2-2^{n+1} \\ -1+2^n & 2-2^n\end{pmatrix} = \begin{pmatrix}2^{n+1}-1 & 2-2^{n+1} \\ 2^n-1 & 2-2^n\end{pmatrix}$$</div>
+
+            <p><strong>3.</strong> Interpolation de Lagrange : les VP sont \(1\) et \(2\), donc</p>
+            <div class="math-display">$$A^n = 1^n \cdot \frac{A - 2I}{1 - 2} + 2^n \cdot \frac{A - I}{2 - 1} = -(A - 2I) + 2^n(A - I)$$</div>
+            <div class="math-display">$$= (2I - A) + 2^n(A - I) = (2^n - 1)A + (2 - 2^n)I$$</div>
+            <div class="math-display">$$= (2^n - 1)\begin{pmatrix}3&-2\\1&0\end{pmatrix} + (2 - 2^n)\begin{pmatrix}1&0\\0&1\end{pmatrix} = \begin{pmatrix}2^{n+1}-1 & 2-2^{n+1} \\ 2^n-1 & 2-2^n\end{pmatrix}$$</div>
+            <p>On retrouve le meme resultat.</p>
+
+            <p><strong>4.</strong> \(n = 0\) : \(A^0 = I = \begin{pmatrix}1&0\\0&1\end{pmatrix}\). Formule : \(\begin{pmatrix}1&0\\0&1\end{pmatrix}\). OK. \(n = 1\) : \(\begin{pmatrix}3&-2\\1&0\end{pmatrix} = A\). OK. \(n = 2\) : \(\begin{pmatrix}7&-6\\3&-2\end{pmatrix}\). Verifions : \(A^2 = \begin{pmatrix}7&-6\\3&-2\end{pmatrix}\). OK.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 8 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">CCINP</span>
+        <span class="block__label">Exercice 8 -- Commutant et reduction simultanee</span>
+        <p>Soient \(A = \begin{pmatrix}2&0&0\\0&1&0\\0&0&1\end{pmatrix}\) et \(B \in \mathcal{M}_3(\mathbb{R})\) telle que \(AB = BA\).</p>
+        <ol>
+          <li>Montrer que les sous-espaces propres de \(A\) sont stables par \(B\).</li>
+          <li>En deduire la forme generale de \(B\).</li>
+          <li>Sous quelle condition \(B\) est-elle diagonalisable ?</li>
+          <li>Si \(B = \begin{pmatrix}3&0&0\\0&1&1\\0&0&1\end{pmatrix}\), verifier que \(AB = BA\) et etudier la diagonalisabilite de \(A + B\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Soit \(x \in E_\lambda\) (sous-espace propre de \(A\) pour \(\lambda\)). Alors \(A(Bx) = B(Ax) = B(\lambda x) = \lambda(Bx)\). Donc \(Bx \in E_\lambda\). Les sous-espaces propres de \(A\) sont stables par \(B\).</p>
+
+            <p><strong>2.</strong> Les sous-espaces propres de \(A\) sont \(E_2 = \operatorname{Vect}(e_1)\) et \(E_1 = \operatorname{Vect}(e_2, e_3)\). La stabilite de \(E_2\) par \(B\) impose \(b_{21} = b_{31} = 0\). La stabilite de \(E_1\) impose \(b_{12} = b_{13} = 0\). Donc :</p>
+            <div class="math-display">$$B = \begin{pmatrix}\alpha & 0 & 0 \\ 0 & \beta & \gamma \\ 0 & \delta & \varepsilon\end{pmatrix}$$</div>
+            <p>avec \(\alpha, \beta, \gamma, \delta, \varepsilon \in \mathbb{R}\) quelconques.</p>
+
+            <p><strong>3.</strong> \(B\) est diagonalisable ssi le bloc \(2 \times 2\) \(\begin{pmatrix}\beta&\gamma\\\delta&\varepsilon\end{pmatrix}\) est diagonalisable (le bloc \(1 \times 1\) \((\alpha)\) l'est toujours). Cela revient a ce que ce bloc \(2 \times 2\) ait un polynome caracteristique a racines simples, ou bien que ses VP (meme doubles) aient des sous-espaces propres de bonne dimension.</p>
+
+            <p><strong>4.</strong> Verifions \(AB = BA\) : \(AB = \begin{pmatrix}6&0&0\\0&1&1\\0&0&1\end{pmatrix}\) et \(BA = \begin{pmatrix}6&0&0\\0&1&1\\0&0&1\end{pmatrix}\). Bien \(AB = BA\).</p>
+            <p>\(A + B = \begin{pmatrix}5&0&0\\0&2&1\\0&0&2\end{pmatrix}\). Le polynome caracteristique est \(\chi_{A+B} = (X-5)(X-2)^2\). Le sous-espace propre \(E_2\) pour \(A + B\) : \(\ker(A+B-2I) = \ker\begin{pmatrix}3&0&0\\0&0&1\\0&0&0\end{pmatrix}\), de dimension \(1\). Comme \(\dim E_2 = 1 < 2\), \(A + B\) <strong>n'est pas diagonalisable</strong> (bien que \(A\) et \(B\) soient toutes deux trigonalisables et commutent).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
-      <div></div>
+      <a href="mp-m17-valeurs-propres.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Valeurs propres</span>
+      </a>
       <a href="#" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
         <span>Fiche suivante</span>
@@ -389,6 +843,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

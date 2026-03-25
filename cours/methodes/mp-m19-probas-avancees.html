@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -146,203 +165,644 @@
 
     <div class="course__meta">
       <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 17-18</span>
     </div>
 
     <h1 class="course__title">Probabilites avancees</h1>
 
     <p class="course__intro">
-      Fiche de methodes sur les probabilites discretes avancees : formule des probabilites totales, couples de variables aleatoires, fonctions generatrices, lois usuelles et approximation de Poisson. Chaque methode est accompagnee d'un exercice de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et sept exercices corriges inspires des chapitres 17 et 18.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Formule des probabilites totales et Bayes</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Couples de variables aleatoires</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Fonction generatrice</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Lois usuelles et reconnaissance</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Approximation de la binomiale par Poisson</a></li>
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Loi conjointe et lois marginales</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Verifier l'independance de deux VA</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Calculer la covariance</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Lois usuelles (tableau B, Bin, P, G)</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Approximation de Poisson</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
+
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Formule des probabilites totales et Bayes</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Loi conjointe et lois marginales</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Soient \(X\) et \(Y\) deux VA discretes definies sur le meme espace \((\Omega, \mathcal{A}, P)\).</p>
         <ol>
-          <li>Identifier un <strong>systeme complet d'evenements</strong> \((B_1, \ldots, B_n)\) : les \(B_i\) sont deux a deux incompatibles et \(\bigcup B_i = \Omega\).</li>
-          <li><strong>Formule des probabilites totales :</strong> pour tout evenement \(A\),
-          $$P(A) = \sum_{i=1}^n P(A \mid B_i) \, P(B_i).$$</li>
-          <li><strong>Formule de Bayes :</strong> si \(P(A) > 0\),
-          $$P(B_k \mid A) = \frac{P(A \mid B_k) \, P(B_k)}{P(A)} = \frac{P(A \mid B_k) \, P(B_k)}{\sum_{i=1}^n P(A \mid B_i) \, P(B_i)}.$$</li>
-          <li>Strategie typique : on connait les probabilites « dans le sens direct » \(P(A \mid B_i)\) et on cherche la probabilite « inverse » \(P(B_k \mid A)\).</li>
-          <li>Dessiner un arbre pondere pour organiser les calculs et eviter les erreurs.</li>
+          <li><strong>Loi conjointe :</strong> c'est la donnee de \(P(X = x_i, Y = y_j)\) pour tous \((x_i, y_j) \in X(\Omega) \times Y(\Omega)\). On la presente souvent sous forme de tableau a double entree.</li>
+          <li><strong>Lois marginales :</strong> on les obtient en sommant la loi conjointe :
+            $$P(X = x_i) = \sum_j P(X = x_i, Y = y_j), \quad P(Y = y_j) = \sum_i P(X = x_i, Y = y_j).$$</li>
+          <li>Ajouter une ligne et une colonne de totaux pour verifier les sommes.</li>
+          <li><strong>Attention :</strong> les lois marginales ne determinent pas la loi conjointe (sauf si independance).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Erreur frequente</span>
-        <p>Ne pas confondre \(P(A \mid B)\) et \(P(B \mid A)\). La formule de Bayes sert precisement a passer de l'un a l'autre.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Test medical et Bayes</span>
-        <p>Un test de depistage a une sensibilite de \(0{,}98\) (probabilite de positif sachant malade) et une specificite de \(0{,}95\) (probabilite de negatif sachant sain). La prevalence de la maladie est \(0{,}005\).</p>
-        <ol>
-          <li>Calculer la probabilite qu'un individu pris au hasard soit teste positif.</li>
-          <li>Sachant qu'un individu est teste positif, calculer la probabilite qu'il soit reellement malade (valeur predictive positive).</li>
-          <li>Commenter le resultat. Comment ameliorer la valeur predictive positive ?</li>
-        </ol>
-        <p><em>Indication :</em> soit \(M\) l'evenement « malade » et \(T^+\) l'evenement « teste positif ». On a \(P(T^+) = P(T^+ \mid M)P(M) + P(T^+ \mid \overline{M})P(\overline{M}) = 0{,}98 \times 0{,}005 + 0{,}05 \times 0{,}995 = 0{,}0547\). Par Bayes, \(P(M \mid T^+) \approx 0{,}090\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Couple de VA.</strong> On lance deux des equilibres. Soit \(X = \min(d_1, d_2)\) et \(Y = \max(d_1, d_2)\). Determiner \(P(X = 1, Y = 4)\) et la loi marginale de \(X\) restreinte a \(X = 1\).</p>
+        <p><em>Resolution.</em> L'univers a \(36\) issues equiprobables. L'evenement \(\{X = 1, Y = 4\}\) correspond aux cas ou l'un des des vaut \(1\) et l'autre \(4\) : ce sont \((1,4)\) et \((4,1)\), soit \(2\) issues.</p>
+        <div class="math-display">$$P(X = 1, Y = 4) = \frac{2}{36} = \frac{1}{18}$$</div>
+        <p>Loi marginale de \(X\) en \(X = 1\) : \(\{X = 1\}\) signifie qu'au moins un de vaut \(1\). Pour \(Y = j\) avec \(j \in \{1, \ldots, 6\}\) :</p>
+        <ul>
+          <li>\(P(X = 1, Y = 1) = 1/36\) (les deux des valent \(1\))</li>
+          <li>\(P(X = 1, Y = j) = 2/36\) pour \(j \geq 2\) (un de vaut \(1\), l'autre vaut \(j\))</li>
+        </ul>
+        <p>Donc \(P(X = 1) = \frac{1}{36} + 5 \times \frac{2}{36} = \frac{11}{36}\). On verifie : c'est \(1 - P(\text{aucun des ne vaut } 1) = 1 - (5/6)^2 = 11/36\). Correct.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Couples de variables aleatoires</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Verifier l'independance de deux VA</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Loi conjointe :</strong> determiner \(P(X = x_i, Y = y_j)\) pour tous \((x_i, y_j)\). On remplit un tableau a double entree.</li>
-          <li><strong>Lois marginales :</strong> sommer en ligne pour obtenir \(P(Y = y_j)\), en colonne pour \(P(X = x_i)\).</li>
-          <li><strong>Independence :</strong> \(X\) et \(Y\) sont independantes si et seulement si \(P(X = x_i, Y = y_j) = P(X = x_i) \cdot P(Y = y_j)\) pour tous \(i, j\).</li>
-          <li><strong>Covariance :</strong> \(\operatorname{Cov}(X, Y) = E(XY) - E(X)E(Y)\). Si \(X \perp Y\), alors \(\operatorname{Cov}(X,Y) = 0\).</li>
-          <li><strong>Variance d'une somme :</strong> \(V(X + Y) = V(X) + V(Y) + 2\operatorname{Cov}(X,Y)\). Si \(X \perp Y\), \(V(X+Y) = V(X) + V(Y)\).</li>
+          <li><strong>Definition :</strong> \(X\) et \(Y\) sont independantes si et seulement si pour tous \((x_i, y_j)\) :
+            $$P(X = x_i, Y = y_j) = P(X = x_i) \cdot P(Y = y_j).$$</li>
+          <li><strong>Pour montrer l'independance :</strong> verifier la factorisation pour tous les couples, ou utiliser les fonctions generatrices (\(G_{(X,Y)}(s,t) = G_X(s) \cdot G_Y(t)\)).</li>
+          <li><strong>Pour montrer la non-independance :</strong> il suffit de trouver un seul couple \((x_i, y_j)\) pour lequel la factorisation echoue.</li>
+          <li><strong>Consequence :</strong> si \(X \perp Y\), alors \(E(XY) = E(X)\,E(Y)\) et \(V(X + Y) = V(X) + V(Y)\).</li>
+          <li><strong>Piege :</strong> \(E(XY) = E(X)E(Y)\) n'implique pas l'independance (non-correlation n'implique pas independance).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Attention</span>
-        <p>La reciproque est fausse : \(\operatorname{Cov}(X,Y) = 0\) n'implique pas l'independence. Contre-exemple classique : \(X\) uniforme sur \(\{-1, 0, 1\}\) et \(Y = X^2\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Couple de variables aleatoires</span>
-        <p>On lance deux des equilibres. Soit \(X\) le minimum et \(Y\) le maximum des deux resultats.</p>
-        <ol>
-          <li>Determiner la loi conjointe de \((X, Y)\).</li>
-          <li>En deduire les lois marginales de \(X\) et \(Y\).</li>
-          <li>\(X\) et \(Y\) sont-elles independantes ?</li>
-          <li>Calculer \(E(X + Y)\) et \(V(X + Y)\).</li>
-        </ol>
-        <p><em>Indication :</em> pour \(i \leqslant j\), \(P(X = i, Y = j) = \frac{1}{36}\) si \(i = j\) et \(P(X = i, Y = j) = \frac{2}{36}\) si \(i < j\). Remarquer que \(X + Y = D_1 + D_2\) (somme des deux des) mais \(X\) et \(Y\) ne sont pas independantes.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Non-correlation sans independance.</strong> Soit \(X\) uniforme sur \(\{-1, 0, 1\}\) et \(Y = X^2\). Montrer que \(\text{Cov}(X, Y) = 0\) mais que \(X\) et \(Y\) ne sont pas independantes.</p>
+        <p><em>Resolution.</em> On a \(P(X = k) = 1/3\) pour \(k \in \{-1, 0, 1\}\). Alors \(E(X) = 0\) (par symetrie) et :</p>
+        <div class="math-display">$$E(XY) = E(X \cdot X^2) = E(X^3) = \frac{(-1)^3 + 0^3 + 1^3}{3} = 0$$</div>
+        <p>Donc \(\text{Cov}(X, Y) = E(XY) - E(X)E(Y) = 0 - 0 = 0\). Les VA sont non correlees.</p>
+        <p>Cependant, \(P(X = 0, Y = 1) = 0\) (car \(X = 0 \Rightarrow Y = 0\)), tandis que \(P(X = 0) \cdot P(Y = 1) = \frac{1}{3} \times \frac{2}{3} = \frac{2}{9} \neq 0\). Donc \(X\) et \(Y\) ne sont pas independantes.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M3 ═══════════════ -->
     <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Fonction generatrice</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Calculer la covariance</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Definition :</strong> pour \(X\) a valeurs dans \(\mathbb{N}\), la fonction generatrice est \(G_X(t) = E(t^X) = \sum_{k=0}^{+\infty} P(X = k) \, t^k\), definie au moins sur \([-1, 1]\).</li>
-          <li><strong>Retrouver la loi :</strong> \(P(X = k) = \frac{G_X^{(k)}(0)}{k!}\).</li>
-          <li><strong>Moments :</strong> \(E(X) = G_X'(1)\), \(E(X(X-1)) = G_X''(1)\), d'ou \(V(X) = G_X''(1) + G_X'(1) - [G_X'(1)]^2\).</li>
-          <li><strong>Somme d'independantes :</strong> si \(X \perp Y\), alors \(G_{X+Y}(t) = G_X(t) \cdot G_Y(t)\).</li>
-          <li><strong>Identification :</strong> la fonction generatrice caracterise la loi. Comparer avec les generatrices des lois usuelles.</li>
+          <li><strong>Definition :</strong> \(\text{Cov}(X, Y) = E\bigl((X - E(X))(Y - E(Y))\bigr) = E(XY) - E(X)\,E(Y)\).</li>
+          <li><strong>Calcul pratique :</strong> utiliser la formule developpee. Calculer d'abord \(E(X)\), \(E(Y)\), puis \(E(XY)\) par la loi conjointe :
+            $$E(XY) = \sum_{i,j} x_i\, y_j\, P(X = x_i, Y = y_j).$$</li>
+          <li><strong>Proprietes :</strong>
+            $$V(X + Y) = V(X) + V(Y) + 2\,\text{Cov}(X, Y)$$
+            $$V(aX + bY) = a^2 V(X) + b^2 V(Y) + 2ab\,\text{Cov}(X, Y)$$</li>
+          <li><strong>Coefficient de correlation :</strong> \(\rho(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma(X)\,\sigma(Y)} \in [-1, 1]\).</li>
+          <li><strong>Bilinearite :</strong> \(\text{Cov}(aX + bY, Z) = a\,\text{Cov}(X, Z) + b\,\text{Cov}(Y, Z)\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Generatrices usuelles</span>
-        <p>\(X \sim \mathcal{B}(n,p)\) : \(G_X(t) = (1 - p + pt)^n\). \(X \sim \mathcal{P}(\lambda)\) : \(G_X(t) = e^{\lambda(t-1)}\). \(X \sim \mathcal{G}(p)\) : \(G_X(t) = \frac{pt}{1 - (1-p)t}\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Fonction generatrice et somme</span>
-        <p>Soit \(N \sim \mathcal{P}(\lambda)\) et \((X_i)_{i \geqslant 1}\) une suite i.i.d. de loi \(\mathcal{B}(1, p)\), independante de \(N\). On pose \(S = \sum_{i=1}^N X_i\) (avec la convention \(S = 0\) si \(N = 0\)).</p>
-        <ol>
-          <li>Calculer \(G_S(t)\) en fonction de \(\lambda\) et \(p\).</li>
-          <li>Reconnaitre la loi de \(S\).</li>
-          <li>En deduire \(E(S)\) et \(V(S)\).</li>
-        </ol>
-        <p><em>Indication :</em> \(G_S(t) = G_N(G_{X_1}(t)) = e^{\lambda(G_{X_1}(t) - 1)} = e^{\lambda(1 - p + pt - 1)} = e^{\lambda p(t - 1)}\). On reconnait \(S \sim \mathcal{P}(\lambda p)\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Variance d'une somme.</strong> Soient \(X\) et \(Y\) de loi conjointe : \(P(X=0,Y=0) = 1/4\), \(P(X=0,Y=1) = 1/4\), \(P(X=1,Y=0) = 1/4\), \(P(X=1,Y=1) = 1/4\). Calculer \(\text{Cov}(X,Y)\) et \(V(X+Y)\).</p>
+        <p><em>Resolution.</em> Marginales : \(P(X = 0) = P(X = 1) = 1/2\) et \(P(Y = 0) = P(Y = 1) = 1/2\).</p>
+        <p>Donc \(E(X) = 1/2\), \(E(Y) = 1/2\), \(V(X) = 1/4\), \(V(Y) = 1/4\).</p>
+        <div class="math-display">$$E(XY) = 0 \cdot 0 \cdot \frac{1}{4} + 0 \cdot 1 \cdot \frac{1}{4} + 1 \cdot 0 \cdot \frac{1}{4} + 1 \cdot 1 \cdot \frac{1}{4} = \frac{1}{4}$$</div>
+        <div class="math-display">$$\text{Cov}(X,Y) = E(XY) - E(X)E(Y) = \frac{1}{4} - \frac{1}{2} \cdot \frac{1}{2} = 0$$</div>
+        <p>Ici on verifie aussi que \(P(X=x, Y=y) = P(X=x)P(Y=y)\) pour tout couple : \(X\) et \(Y\) sont independantes.</p>
+        <div class="math-display">$$V(X + Y) = V(X) + V(Y) + 2\,\text{Cov}(X,Y) = \frac{1}{4} + \frac{1}{4} + 0 = \frac{1}{2}$$</div>
       </div>
     </section>
 
     <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Lois usuelles et reconnaissance</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Lois usuelles (tableau B, Bin, P, G)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Tableau recapitulatif des lois discretes fondamentales :</p>
+        <ul>
+          <li><strong>Bernoulli \(\mathcal{B}(1, p)\) :</strong> \(X(\Omega) = \{0, 1\}\), \(P(X=1) = p\). \(E = p\), \(V = p(1-p)\), \(G_X(t) = 1 - p + pt\).</li>
+          <li><strong>Binomiale \(\mathcal{B}(n, p)\) :</strong> \(P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}\). \(E = np\), \(V = np(1-p)\), \(G_X(t) = (1-p+pt)^n\).</li>
+          <li><strong>Poisson \(\mathcal{P}(\lambda)\) :</strong> \(P(X=k) = e^{-\lambda}\frac{\lambda^k}{k!}\). \(E = V = \lambda\), \(G_X(t) = e^{\lambda(t-1)}\).</li>
+          <li><strong>Geometrique \(\mathcal{G}(p)\) :</strong> \(P(X=k) = p(1-p)^{k-1}\), \(k \geq 1\). \(E = 1/p\), \(V = (1-p)/p^2\), \(G_X(t) = \frac{pt}{1-(1-p)t}\).</li>
+        </ul>
+        <p><strong>Strategie de reconnaissance :</strong></p>
         <ol>
-          <li><strong>Bernoulli \(\mathcal{B}(p)\) :</strong> \(X(\Omega) = \{0, 1\}\), \(E(X) = p\), \(V(X) = p(1-p)\). Modelise une epreuve a deux issues.</li>
-          <li><strong>Binomiale \(\mathcal{B}(n, p)\) :</strong> nombre de succes en \(n\) epreuves independantes. \(P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}\), \(E(X) = np\), \(V(X) = np(1-p)\).</li>
-          <li><strong>Poisson \(\mathcal{P}(\lambda)\) :</strong> \(P(X = k) = e^{-\lambda} \frac{\lambda^k}{k!}\), \(E(X) = V(X) = \lambda\). Modelise les evenements rares.</li>
-          <li><strong>Geometrique \(\mathcal{G}(p)\) :</strong> temps du premier succes. \(P(X = k) = (1-p)^{k-1}p\), \(E(X) = \frac{1}{p}\), \(V(X) = \frac{1-p}{p^2}\). Seule loi discrete sans memoire.</li>
-          <li><strong>Reconnaissance :</strong> verifier le support, calculer \(E(X)\) et \(V(X)\), ou identifier la fonction generatrice.</li>
+          <li>Nombre de succes en \(n\) epreuves independantes avec remise : binomiale.</li>
+          <li>Temps d'attente du premier succes : geometrique.</li>
+          <li>Nombre d'evenements rares sur un grand nombre d'essais : Poisson.</li>
+          <li>Verifier \(E = V\) pour suspecter une Poisson.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Stabilite par somme</span>
-        <p>Somme de \(\mathcal{B}(n_1, p) + \mathcal{B}(n_2, p)\) independantes : \(\mathcal{B}(n_1 + n_2, p)\). Somme de \(\mathcal{P}(\lambda_1) + \mathcal{P}(\lambda_2)\) independantes : \(\mathcal{P}(\lambda_1 + \lambda_2)\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Identifier la loi</span>
-        <p>Soit \(X\) une variable aleatoire a valeurs dans \(\mathbb{N}^*\) verifiant :
-        $$\forall k \geqslant 1, \quad P(X > k + 1 \mid X > k) = \frac{2}{3}.$$</p>
-        <ol>
-          <li>En deduire \(P(X > k)\) pour tout \(k \geqslant 0\), puis \(P(X = k)\) pour tout \(k \geqslant 1\).</li>
-          <li>Reconnaitre la loi de \(X\) et donner ses parametres.</li>
-          <li>Calculer \(E(X)\) et \(V(X)\).</li>
-        </ol>
-        <p><em>Indication :</em> la relation \(P(X > k+1 \mid X > k) = \frac{2}{3}\) est la propriete sans memoire de la loi geometrique. Par recurrence, \(P(X > k) = \left(\frac{2}{3}\right)^k\), donc \(P(X = k) = \frac{1}{3}\left(\frac{2}{3}\right)^{k-1}\) et \(X \sim \mathcal{G}\left(\frac{1}{3}\right)\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Reconnaissance de loi.</strong> Un standard telephonique recoit en moyenne \(4\) appels par heure. Quel est le nombre d'appels en une heure ? En deduire \(P(X \geq 2)\).</p>
+        <p><em>Resolution.</em> Les appels sont des evenements rares, independants, de taux constant : \(X \sim \mathcal{P}(4)\).</p>
+        <div class="math-display">$$P(X \geq 2) = 1 - P(X = 0) - P(X = 1) = 1 - e^{-4} - 4e^{-4} = 1 - 5e^{-4}$$</div>
+        <p>Numeriquement : \(e^{-4} \approx 0{,}0183\), donc \(P(X \geq 2) \approx 1 - 5 \times 0{,}0183 = 1 - 0{,}0916 \approx 0{,}908\).</p>
+        <p>Verification : \(E(X) = 4\), \(V(X) = 4\). L'egalite \(E = V\) confirme la loi de Poisson.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Approximation de la binomiale par Poisson</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Approximation de Poisson</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Lorsque \(n\) est grand, \(p\) est petit, et \(\lambda = np\) est modere, la loi binomiale \(\mathcal{B}(n, p)\) est bien approchee par la loi de Poisson \(\mathcal{P}(\lambda)\) :</p>
+        <div class="math-display">$$\binom{n}{k} p^k (1-p)^{n-k} \approx e^{-\lambda} \frac{\lambda^k}{k!}, \quad \lambda = np$$</div>
         <ol>
-          <li><strong>Cadre :</strong> \(X_n \sim \mathcal{B}(n, p_n)\) avec \(n \to +\infty\), \(p_n \to 0\), et \(np_n \to \lambda > 0\).</li>
-          <li><strong>Convergence :</strong> pour tout \(k \in \mathbb{N}\),
-          $$P(X_n = k) = \binom{n}{k} p_n^k (1-p_n)^{n-k} \xrightarrow[n \to +\infty]{} e^{-\lambda} \frac{\lambda^k}{k!}.$$</li>
-          <li><strong>Preuve :</strong> ecrire \(\binom{n}{k} p_n^k = \frac{n!}{k!(n-k)!} \left(\frac{\lambda}{n}\right)^k \sim \frac{\lambda^k}{k!}\) et \((1-p_n)^{n-k} \to e^{-\lambda}\).</li>
-          <li><strong>Regle pratique :</strong> l'approximation est bonne lorsque \(n \geqslant 30\), \(p \leqslant 0{,}1\), et \(np \leqslant 10\).</li>
-          <li><strong>Application :</strong> calculer des probabilites pour des evenements rares (defauts de fabrication, pannes, erreurs) sans manipuler de grandes factorielles.</li>
+          <li><strong>Regle pratique :</strong> l'approximation est bonne si \(n \geq 30\) et \(p \leq 0{,}1\) (ou \(np \leq 10\)).</li>
+          <li><strong>Justification :</strong> si \(X_n \sim \mathcal{B}(n, \lambda/n)\), alors pour tout \(k\) fixe, \(P(X_n = k) \to e^{-\lambda}\frac{\lambda^k}{k!}\) quand \(n \to +\infty\).</li>
+          <li><strong>Par les FG :</strong> \(G_{X_n}(t) = (1 - \lambda/n + \lambda t/n)^n \to e^{\lambda(t-1)} = G_{\mathcal{P}(\lambda)}(t)\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Via les fonctions generatrices</span>
-        <p>On peut aussi montrer la convergence par les generatrices : \(G_{X_n}(t) = (1 - p_n + p_n t)^n = \left(1 + \frac{\lambda(t-1)}{n}\right)^n \to e^{\lambda(t-1)} = G_{\mathcal{P}(\lambda)}(t)\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Defauts sur une chaine.</strong> Une chaine de production fabrique \(n = 1000\) composants par jour. Chaque composant a une probabilite \(p = 0{,}002\) d'etre defectueux (independamment). Soit \(X\) le nombre de composants defectueux. Approcher \(P(X \geq 3)\).</p>
+        <p><em>Resolution.</em> On a \(X \sim \mathcal{B}(1000,\, 0{,}002)\). Comme \(n\) est grand et \(p\) petit, on approche par \(\mathcal{P}(\lambda)\) avec \(\lambda = np = 2\).</p>
+        <div class="math-display">$$P(X \geq 3) \approx 1 - P(X = 0) - P(X = 1) - P(X = 2)$$</div>
+        <div class="math-display">$$= 1 - e^{-2}\left(1 + 2 + \frac{4}{2}\right) = 1 - 5e^{-2} \approx 1 - 0{,}6767 = 0{,}3233$$</div>
+        <p>Avec la loi binomiale exacte, on trouverait \(P(X \geq 3) \approx 0{,}3222\). L'approximation de Poisson est tres bonne (erreur relative inferieure a \(0{,}4\%\)).</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> La loi conjointe de \((X, Y)\) est entierement determinee par les lois marginales de \(X\) et \(Y\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Les lois marginales ne suffisent pas a determiner la loi conjointe. Deux couples \((X, Y)\) peuvent avoir les memes marginales mais des lois conjointes differentes. Ce n'est que sous l'hypothese d'independance que la loi conjointe est le produit des marginales. Contre-exemple classique : \(X \sim \mathcal{B}(1, 1/2)\), \(Y = X\) versus \(Y = 1 - X\) donnent les memes marginales mais des lois conjointes differentes.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> Si \(\text{Cov}(X, Y) = 0\), alors \(X\) et \(Y\) sont independantes.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>La non-correlation (\(\text{Cov}(X,Y) = 0\)) n'implique pas l'independance. Exemple classique : \(X\) uniforme sur \(\{-1, 0, 1\}\) et \(Y = X^2\). Alors \(\text{Cov}(X, Y) = E(X^3) - E(X)E(X^2) = 0\), mais \(Y\) est fonction deterministe de \(X\), donc ils ne sont pas independants. La reciproque est vraie : l'independance implique la non-correlation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> La covariance verifie \(\text{Cov}(X, X) = V(X)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Par definition : \(\text{Cov}(X, X) = E(X \cdot X) - E(X) \cdot E(X) = E(X^2) - E(X)^2 = V(X)\). La covariance generalise la variance au cas de deux variables.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> Si \(X \sim \mathcal{B}(100,\, 0{,}01)\), on peut approcher \(X\) par une loi \(\mathcal{P}(1)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>On a \(n = 100\) (grand), \(p = 0{,}01\) (petit), et \(\lambda = np = 1\) (modere). Les conditions de l'approximation de Poisson sont satisfaites. Par exemple, \(P(X = 0) = 0{,}99^{100} \approx 0{,}366\) a comparer avec \(e^{-1} \approx 0{,}368\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> Le coefficient de correlation \(\rho(X, Y)\) peut valoir \(2\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>L'inegalite de Cauchy-Schwarz donne \(|\text{Cov}(X,Y)| \leq \sigma(X)\,\sigma(Y)\), d'ou \(\rho(X,Y) \in [-1, 1]\). L'egalite \(|\rho| = 1\) n'est atteinte que lorsque \(Y\) est une fonction affine de \(X\) (\(Y = aX + b\) avec \(a \neq 0\)).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> Pour deux VA independantes \(X \sim \mathcal{B}(n_1, p)\) et \(Y \sim \mathcal{B}(n_2, p)\), on a \(X + Y \sim \mathcal{B}(n_1 + n_2, p)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Par les fonctions generatrices : \(G_{X+Y}(t) = G_X(t) \cdot G_Y(t) = (1-p+pt)^{n_1}(1-p+pt)^{n_2} = (1-p+pt)^{n_1+n_2}\). On reconnait la FG d'une \(\mathcal{B}(n_1 + n_2, p)\). Attention : il faut le meme parametre \(p\) et l'independance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> La variance est toujours additive : \(V(X + Y) = V(X) + V(Y)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>En general, \(V(X+Y) = V(X) + V(Y) + 2\,\text{Cov}(X,Y)\). L'additivite n'est valable que si \(\text{Cov}(X,Y) = 0\), ce qui est garanti par l'independance mais peut aussi arriver sans independance (non-correlation). Exemple : si \(Y = -X\), \(V(X+Y) = V(0) = 0 \neq V(X) + V(Y) = 2V(X)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> Si \(X\) et \(Y\) sont independantes, alors \(f(X)\) et \(g(Y)\) sont independantes pour toutes fonctions \(f, g\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est un resultat fondamental. Si \(X\) et \(Y\) sont independantes, alors pour tous \(a, b\) : \(P(f(X) = a, g(Y) = b) = P(X \in f^{-1}(\{a\}), Y \in g^{-1}(\{b\})) = P(X \in f^{-1}(\{a\})) \cdot P(Y \in g^{-1}(\{b\})) = P(f(X) = a) \cdot P(g(Y) = b)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> Pour \(X \sim \mathcal{P}(\lambda)\) et \(Y \sim \mathcal{P}(\mu)\) independantes, \(\text{Cov}(X + Y, X - Y) = \lambda - \mu\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Par bilinearite de la covariance et independance de \(X\) et \(Y\) :</p>
+              <p>\(\text{Cov}(X+Y, X-Y) = \text{Cov}(X,X) - \text{Cov}(X,Y) + \text{Cov}(Y,X) - \text{Cov}(Y,Y)\).</p>
+              <p>Comme \(X \perp Y\), \(\text{Cov}(X,Y) = 0\), donc \(\text{Cov}(X+Y, X-Y) = V(X) - V(Y) = \lambda - \mu\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> Trois VA \(X, Y, Z\) sont mutuellement independantes des que toute paire est independante.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>L'independance deux a deux n'implique pas l'independance mutuelle. L'independance mutuelle exige que \(P(X = x, Y = y, Z = z) = P(X = x)\,P(Y = y)\,P(Z = z)\) pour tous \(x, y, z\), ce qui est strictement plus fort. Contre-exemple classique : on lance deux pieces. \(X = \mathbf{1}_{\text{pile piece 1}}\), \(Y = \mathbf{1}_{\text{pile piece 2}}\), \(Z = \mathbf{1}_{X \neq Y}\). Chaque paire est independante mais le triplet ne l'est pas car \(Z\) est determine par \(X\) et \(Y\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
       <div class="block block--annale">
-        <span class="annale-badge">Style concours</span>
-        <span class="block__label">Exercice -- Approximation de Poisson</span>
-        <p>Une usine produit \(n = 500\) composants par jour. Chaque composant a une probabilite \(p = 0{,}004\) d'etre defectueux, independamment des autres.</p>
+        <span class="annale-badge">Monier Ch. 17</span>
+        <span class="block__label">Exercice 1 -- Loi conjointe et marginales</span>
+        <p>Le couple \((X, Y)\) a pour loi conjointe :</p>
+        <p>\(P(X=0,Y=0) = 0{,}1\), \(P(X=0,Y=1) = 0{,}2\), \(P(X=0,Y=2) = 0{,}1\),<br>
+        \(P(X=1,Y=0) = 0{,}15\), \(P(X=1,Y=1) = 0{,}25\), \(P(X=1,Y=2) = 0{,}2\).</p>
         <ol>
-          <li>Soit \(X\) le nombre de composants defectueux. Donner la loi exacte de \(X\).</li>
-          <li>Justifier l'approximation \(X \approx \mathcal{P}(\lambda)\) et preciser \(\lambda\).</li>
-          <li>Calculer (avec l'approximation) la probabilite d'avoir exactement 3 defauts, puis au moins 4 defauts.</li>
-          <li>Combien de composants faut-il produire pour que la probabilite d'avoir au moins un defaut depasse \(0{,}99\) ?</li>
+          <li>Determiner les lois marginales de \(X\) et de \(Y\).</li>
+          <li>Calculer \(E(X)\), \(E(Y)\), \(V(X)\) et \(V(Y)\).</li>
+          <li>\(X\) et \(Y\) sont-elles independantes ?</li>
+          <li>Calculer \(\text{Cov}(X, Y)\) et \(\rho(X, Y)\).</li>
         </ol>
-        <p><em>Indication :</em> \(X \sim \mathcal{B}(500, 0{,}004)\), \(\lambda = np = 2\). Avec \(\mathcal{P}(2)\) : \(P(X = 3) = e^{-2}\frac{8}{6} \approx 0{,}180\). Pour la question 4, on resout \(1 - e^{-np} \geqslant 0{,}99\), soit \(n \geqslant \frac{\ln 100}{0{,}004} \approx 1151\).</p>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Marginale de \(X\) :</p>
+            <ul>
+              <li>\(P(X = 0) = 0{,}1 + 0{,}2 + 0{,}1 = 0{,}4\)</li>
+              <li>\(P(X = 1) = 0{,}15 + 0{,}25 + 0{,}2 = 0{,}6\)</li>
+            </ul>
+            <p>Marginale de \(Y\) :</p>
+            <ul>
+              <li>\(P(Y = 0) = 0{,}1 + 0{,}15 = 0{,}25\)</li>
+              <li>\(P(Y = 1) = 0{,}2 + 0{,}25 = 0{,}45\)</li>
+              <li>\(P(Y = 2) = 0{,}1 + 0{,}2 = 0{,}3\)</li>
+            </ul>
+            <p>Verification : \(0{,}4 + 0{,}6 = 1\) et \(0{,}25 + 0{,}45 + 0{,}3 = 1\). Correct.</p>
+
+            <p><strong>2.</strong> \(E(X) = 0 \times 0{,}4 + 1 \times 0{,}6 = 0{,}6\). \(E(X^2) = 0{,}6\), donc \(V(X) = 0{,}6 - 0{,}36 = 0{,}24\).</p>
+            <p>\(E(Y) = 0 \times 0{,}25 + 1 \times 0{,}45 + 2 \times 0{,}3 = 1{,}05\). \(E(Y^2) = 0 + 0{,}45 + 4 \times 0{,}3 = 1{,}65\), donc \(V(Y) = 1{,}65 - 1{,}1025 = 0{,}5475\).</p>
+
+            <p><strong>3.</strong> Verifions : \(P(X=0)\,P(Y=0) = 0{,}4 \times 0{,}25 = 0{,}1 = P(X=0,Y=0)\). Continuons : \(P(X=0)\,P(Y=1) = 0{,}4 \times 0{,}45 = 0{,}18 \neq 0{,}2 = P(X=0,Y=1)\).</p>
+            <p>Donc \(X\) et \(Y\) ne sont pas independantes.</p>
+
+            <p><strong>4.</strong> Calculons \(E(XY)\) par la loi conjointe :</p>
+            <div class="math-display">$$E(XY) = \sum_{i,j} x_i\,y_j\,P(X=x_i, Y=y_j)$$</div>
+            <p>Les seuls termes non nuls sont ceux avec \(x_i = 1\) et \(y_j \geq 1\) :</p>
+            <div class="math-display">$$E(XY) = 1 \times 1 \times 0{,}25 + 1 \times 2 \times 0{,}2 = 0{,}25 + 0{,}4 = 0{,}65$$</div>
+            <div class="math-display">$$\text{Cov}(X,Y) = E(XY) - E(X)E(Y) = 0{,}65 - 0{,}6 \times 1{,}05 = 0{,}65 - 0{,}63 = 0{,}02$$</div>
+            <p>Coefficient de correlation : \(\sigma(X) = \sqrt{0{,}24} \approx 0{,}4899\) et \(\sigma(Y) = \sqrt{0{,}5475} \approx 0{,}7399\).</p>
+            <div class="math-display">$$\rho(X,Y) = \frac{0{,}02}{0{,}4899 \times 0{,}7399} \approx \frac{0{,}02}{0{,}3625} \approx 0{,}0552$$</div>
+            <p>La correlation est tres faible et positive malgre la non-independance.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 17</span>
+        <span class="block__label">Exercice 2 -- Independance et loi du couple</span>
+        <p>On tire une carte au hasard dans un jeu de \(32\) cartes. Soient \(X = \mathbf{1}_{\text{coeur}}\) et \(Y = \mathbf{1}_{\text{figure}}\).</p>
+        <ol>
+          <li>Determiner la loi conjointe de \((X, Y)\).</li>
+          <li>\(X\) et \(Y\) sont-elles independantes ? Justifier.</li>
+          <li>Calculer \(\text{Cov}(X, Y)\).</li>
+          <li>Calculer \(E(X + Y)\) et \(V(X + Y)\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Dans un jeu de 32 cartes : 8 coeurs (dont 3 figures : valet, dame, roi), 4 couleurs, 12 figures au total (3 par couleur).</p>
+            <ul>
+              <li>\(P(X=1, Y=1) = 3/32\) (figure de coeur)</li>
+              <li>\(P(X=1, Y=0) = 5/32\) (coeur non-figure : 7, 8, 9, 10, as)</li>
+              <li>\(P(X=0, Y=1) = 9/32\) (figure non-coeur)</li>
+              <li>\(P(X=0, Y=0) = 15/32\) (ni coeur ni figure)</li>
+            </ul>
+            <p>Verification : \(3 + 5 + 9 + 15 = 32\). Correct.</p>
+
+            <p><strong>2.</strong> Marginales : \(P(X=1) = 8/32 = 1/4\), \(P(Y=1) = 12/32 = 3/8\).</p>
+            <p>Verifions : \(P(X=1)\,P(Y=1) = 1/4 \times 3/8 = 3/32 = P(X=1, Y=1)\). Verifions les autres :</p>
+            <ul>
+              <li>\(P(X=1)\,P(Y=0) = 1/4 \times 5/8 = 5/32 = P(X=1, Y=0)\). Correct.</li>
+              <li>\(P(X=0)\,P(Y=1) = 3/4 \times 3/8 = 9/32 = P(X=0, Y=1)\). Correct.</li>
+              <li>\(P(X=0)\,P(Y=0) = 3/4 \times 5/8 = 15/32 = P(X=0, Y=0)\). Correct.</li>
+            </ul>
+            <p>Toutes les factorisations sont verifiees : \(X\) et \(Y\) sont independantes.</p>
+
+            <p><strong>3.</strong> Par independance, \(\text{Cov}(X,Y) = 0\). Verification directe : \(E(XY) = P(X=1,Y=1) = 3/32\), \(E(X)\,E(Y) = 1/4 \times 3/8 = 3/32\). Donc \(\text{Cov}(X,Y) = 0\).</p>
+
+            <p><strong>4.</strong> \(E(X+Y) = E(X) + E(Y) = 1/4 + 3/8 = 5/8\).</p>
+            <p>\(V(X) = 1/4 \times 3/4 = 3/16\) et \(V(Y) = 3/8 \times 5/8 = 15/64\).</p>
+            <p>Par independance : \(V(X+Y) = V(X) + V(Y) = 3/16 + 15/64 = 12/64 + 15/64 = 27/64\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 17</span>
+        <span class="block__label">Exercice 3 -- Covariance et combinaisons lineaires</span>
+        <p>Soient \(X\) et \(Y\) deux VA de meme loi \(\mathcal{B}(1, 1/2)\) avec \(\text{Cov}(X, Y) = -1/4\). On pose \(U = X + Y\) et \(V = X - Y\).</p>
+        <ol>
+          <li>Calculer \(E(U)\), \(E(V)\), \(V(U)\) et \(V(V)\).</li>
+          <li>Calculer \(\text{Cov}(U, V)\). Que peut-on en deduire ?</li>
+          <li>Determiner la loi de \(U\) et la loi de \(V\).</li>
+          <li>Montrer que \(Y = 1 - X\) est la seule possibilite pour obtenir \(\text{Cov}(X,Y) = -1/4\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(E(X) = E(Y) = 1/2\), \(V(X) = V(Y) = 1/4\).</p>
+            <div class="math-display">$$E(U) = E(X) + E(Y) = 1, \quad E(V) = E(X) - E(Y) = 0$$</div>
+            <div class="math-display">$$V(U) = V(X) + V(Y) + 2\,\text{Cov}(X,Y) = \frac{1}{4} + \frac{1}{4} - \frac{1}{2} = 0$$</div>
+            <div class="math-display">$$V(V) = V(X) + V(Y) - 2\,\text{Cov}(X,Y) = \frac{1}{4} + \frac{1}{4} + \frac{1}{2} = 1$$</div>
+
+            <p><strong>2.</strong> Par bilinearite :</p>
+            <div class="math-display">$$\text{Cov}(U,V) = \text{Cov}(X+Y, X-Y) = V(X) - \text{Cov}(X,Y) + \text{Cov}(Y,X) - V(Y)$$</div>
+            <div class="math-display">$$= V(X) - V(Y) = \frac{1}{4} - \frac{1}{4} = 0$$</div>
+            <p>\(U\) et \(V\) sont non correlees. Mais attention, cela n'implique pas l'independance.</p>
+
+            <p><strong>3.</strong> Comme \(V(U) = 0\), \(U\) est presque surement constante : \(U = E(U) = 1\) p.s. Donc \(X + Y = 1\) p.s., ce qui signifie \(Y = 1 - X\) p.s.</p>
+            <p>Pour \(V = X - Y = X - (1-X) = 2X - 1\) : comme \(X \sim \mathcal{B}(1, 1/2)\), on a \(V \in \{-1, 1\}\) avec \(P(V = -1) = P(V = 1) = 1/2\). C'est une loi de Rademacher.</p>
+
+            <p><strong>4.</strong> Si \(X, Y \sim \mathcal{B}(1, 1/2)\), alors \(\text{Cov}(X,Y) = E(XY) - 1/4\). Comme \(XY \in \{0,1\}\), on a \(E(XY) = P(X=1, Y=1)\). Donc \(\text{Cov}(X,Y) = P(X=1,Y=1) - 1/4 = -1/4\) implique \(P(X=1,Y=1) = 0\). Comme de plus \(P(X=0,Y=0) = 1 - P(X=1) - P(Y=1) + P(X=1,Y=1) = 0\), le seul cas est \(Y = 1-X\) p.s. La covariance \(-1/4\) est le minimum possible (correlation \(\rho = -1\)).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 18</span>
+        <span class="block__label">Exercice 4 -- Approximation de Poisson</span>
+        <p>Dans un lot de \(n = 500\) composants electroniques, chacun a une probabilite \(p = 0{,}004\) d'etre defectueux (independamment). Soit \(X\) le nombre de defectueux.</p>
+        <ol>
+          <li>Donner la loi exacte de \(X\). Pourquoi est-il difficile de calculer directement \(P(X = k)\) ?</li>
+          <li>Justifier l'approximation de Poisson et donner le parametre \(\lambda\).</li>
+          <li>Calculer (par l'approximation) \(P(X = 0)\), \(P(X = 1)\), \(P(X = 2)\), \(P(X \geq 3)\).</li>
+          <li>On accepte le lot si \(X \leq 3\). Quelle est la probabilite d'acceptation ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(X \sim \mathcal{B}(500,\, 0{,}004)\). Le calcul direct de \(P(X = k) = \binom{500}{k}(0{,}004)^k(0{,}996)^{500-k}\) est numeriquement instable car \(\binom{500}{k}\) est immense et \(p^k\) est minuscule.</p>
+
+            <p><strong>2.</strong> On a \(n = 500 \geq 30\), \(p = 0{,}004 \leq 0{,}1\), et \(\lambda = np = 2\). L'approximation de Poisson est justifiee : \(X \approx \mathcal{P}(2)\).</p>
+
+            <p><strong>3.</strong> Avec \(\lambda = 2\) et \(e^{-2} \approx 0{,}13534\) :</p>
+            <ul>
+              <li>\(P(X = 0) \approx e^{-2} \approx 0{,}1353\)</li>
+              <li>\(P(X = 1) \approx 2e^{-2} \approx 0{,}2707\)</li>
+              <li>\(P(X = 2) \approx 2e^{-2} \approx 0{,}2707\)</li>
+            </ul>
+            <div class="math-display">$$P(X \geq 3) \approx 1 - e^{-2}(1 + 2 + 2) = 1 - 5e^{-2} \approx 0{,}3233$$</div>
+
+            <p><strong>4.</strong> Probabilite d'acceptation (\(X \leq 3\)) :</p>
+            <div class="math-display">$$P(X \leq 3) = P(X \leq 2) + P(X = 3) \approx 5e^{-2} + \frac{8}{6}\,e^{-2} = e^{-2}\left(5 + \frac{4}{3}\right) = \frac{19}{3}\,e^{-2} \approx 0{,}8571$$</div>
+            <p>Il y a environ \(85{,}7\%\) de chances que le lot soit accepte.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 17</span>
+        <span class="block__label">Exercice 5 -- Loi conjointe et esperance conditionnelle</span>
+        <p>On dispose de deux urnes. L'urne \(A\) contient \(3\) boules blanches et \(2\) noires. L'urne \(B\) contient \(1\) blanche et \(4\) noires. On lance un de equilibre : si on obtient \(1\) ou \(2\), on tire dans l'urne \(A\) ; sinon dans l'urne \(B\). Soit \(X = \mathbf{1}_{\text{urne } A}\) et \(Y = \mathbf{1}_{\text{boule blanche}}\).</p>
+        <ol>
+          <li>Determiner la loi conjointe de \((X, Y)\).</li>
+          <li>\(X\) et \(Y\) sont-elles independantes ?</li>
+          <li>Calculer \(P(Y = 1)\) par les probabilites totales.</li>
+          <li>Calculer \(\text{Cov}(X, Y)\) et interpreter le signe.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(P(X = 1) = 2/6 = 1/3\) et \(P(X = 0) = 4/6 = 2/3\).</p>
+            <ul>
+              <li>\(P(X=1, Y=1) = P(X=1)\,P(Y=1 \mid X=1) = \frac{1}{3} \times \frac{3}{5} = \frac{1}{5}\)</li>
+              <li>\(P(X=1, Y=0) = \frac{1}{3} \times \frac{2}{5} = \frac{2}{15}\)</li>
+              <li>\(P(X=0, Y=1) = \frac{2}{3} \times \frac{1}{5} = \frac{2}{15}\)</li>
+              <li>\(P(X=0, Y=0) = \frac{2}{3} \times \frac{4}{5} = \frac{8}{15}\)</li>
+            </ul>
+            <p>Verification : \(\frac{1}{5} + \frac{2}{15} + \frac{2}{15} + \frac{8}{15} = \frac{3 + 2 + 2 + 8}{15} = 1\). Correct.</p>
+
+            <p><strong>2.</strong> \(P(Y = 1) = 1/5 + 2/15 = 3/15 + 2/15 = 1/3\). Verifions la factorisation : \(P(X=1)\,P(Y=1) = 1/3 \times 1/3 = 1/9\), mais \(P(X=1, Y=1) = 1/5 \neq 1/9\). Donc \(X\) et \(Y\) ne sont pas independantes.</p>
+
+            <p><strong>3.</strong> Par les probabilites totales :</p>
+            <div class="math-display">$$P(Y=1) = P(X=1)\,P(Y=1 \mid X=1) + P(X=0)\,P(Y=1 \mid X=0) = \frac{1}{3} \times \frac{3}{5} + \frac{2}{3} \times \frac{1}{5} = \frac{1}{5} + \frac{2}{15} = \frac{1}{3}$$</div>
+
+            <p><strong>4.</strong> \(E(XY) = P(X=1, Y=1) = 1/5\). \(E(X) = 1/3\), \(E(Y) = 1/3\).</p>
+            <div class="math-display">$$\text{Cov}(X,Y) = \frac{1}{5} - \frac{1}{3} \times \frac{1}{3} = \frac{1}{5} - \frac{1}{9} = \frac{9 - 5}{45} = \frac{4}{45} > 0$$</div>
+            <p>La covariance est positive : quand on tire dans l'urne \(A\) (plus riche en boules blanches), on a plus de chances d'obtenir une blanche. Il y a une dependance positive entre le choix de l'urne et la couleur.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 18</span>
+        <span class="block__label">Exercice 6 -- Somme de VA independantes et stabilite</span>
+        <p>Soient \(X_1, \ldots, X_n\) des VA independantes avec \(X_i \sim \mathcal{P}(\lambda_i)\). On pose \(S = X_1 + \cdots + X_n\).</p>
+        <ol>
+          <li>Determiner la loi de \(S\) par les fonctions generatrices.</li>
+          <li>Application : \(X \sim \mathcal{P}(3)\) et \(Y \sim \mathcal{P}(5)\) independantes. Calculer \(P(X + Y = 2)\) et \(E(XY)\).</li>
+          <li>Montrer que si \(S = X + Y \sim \mathcal{P}(\lambda + \mu)\) et \(X \sim \mathcal{P}(\lambda)\), \(Y \sim \mathcal{P}(\mu)\) independantes, alors \(P(X = k \mid S = n) = \binom{n}{k}\left(\frac{\lambda}{\lambda+\mu}\right)^k\left(\frac{\mu}{\lambda+\mu}\right)^{n-k}\).</li>
+          <li>Reconnaitre la loi conditionnelle de \(X\) sachant \(S = n\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Par independance et propriete multiplicative de la FG :</p>
+            <div class="math-display">$$G_S(t) = \prod_{i=1}^{n} G_{X_i}(t) = \prod_{i=1}^{n} e^{\lambda_i(t-1)} = e^{(\lambda_1 + \cdots + \lambda_n)(t-1)}$$</div>
+            <p>On reconnait la FG d'une loi \(\mathcal{P}(\Lambda)\) avec \(\Lambda = \sum_{i=1}^n \lambda_i\). Par unicite :</p>
+            <div class="math-display">$$\boxed{S \sim \mathcal{P}\left(\sum_{i=1}^n \lambda_i\right)}$$</div>
+
+            <p><strong>2.</strong> \(X + Y \sim \mathcal{P}(8)\). Donc :</p>
+            <div class="math-display">$$P(X+Y = 2) = e^{-8}\frac{8^2}{2!} = 32e^{-8} \approx 32 \times 0{,}000\,3355 \approx 0{,}01073$$</div>
+            <p>Pour \(E(XY)\) : par independance, \(E(XY) = E(X)\,E(Y) = 3 \times 5 = 15\).</p>
+
+            <p><strong>3.</strong> Par definition de la probabilite conditionnelle :</p>
+            <div class="math-display">$$P(X = k \mid S = n) = \frac{P(X = k, Y = n-k)}{P(S = n)} = \frac{P(X=k)\,P(Y=n-k)}{P(S=n)}$$</div>
+            <p>En remplacant par les formules de Poisson :</p>
+            <div class="math-display">$$= \frac{e^{-\lambda}\frac{\lambda^k}{k!} \cdot e^{-\mu}\frac{\mu^{n-k}}{(n-k)!}}{e^{-(\lambda+\mu)}\frac{(\lambda+\mu)^n}{n!}} = \frac{n!}{k!(n-k)!} \cdot \frac{\lambda^k \mu^{n-k}}{(\lambda+\mu)^n}$$</div>
+            <div class="math-display">$$= \binom{n}{k}\left(\frac{\lambda}{\lambda+\mu}\right)^k\left(\frac{\mu}{\lambda+\mu}\right)^{n-k}$$</div>
+
+            <p><strong>4.</strong> On reconnait une loi binomiale : \((X \mid S = n) \sim \mathcal{B}\left(n, \frac{\lambda}{\lambda + \mu}\right)\). Sachant que la somme vaut \(n\), le nombre d'evenements de type \(X\) se repartit selon une binomiale avec parametre de succes egal a la proportion des intensites.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 7 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 18</span>
+        <span class="block__label">Exercice 7 -- Variance et covariance dans un modele d'urne</span>
+        <p>On tire \(n\) boules avec remise dans une urne contenant \(N\) boules dont \(R\) rouges. Pour \(i = 1, \ldots, n\), on pose \(X_i = \mathbf{1}_{\text{la }i\text{-eme boule est rouge}}\) et \(S_n = \sum_{i=1}^n X_i\).</p>
+        <ol>
+          <li>Donner la loi de \(X_i\) et calculer \(E(X_i)\), \(V(X_i)\).</li>
+          <li>Les \(X_i\) sont-elles independantes ? En deduire la loi de \(S_n\), \(E(S_n)\) et \(V(S_n)\).</li>
+          <li>On tire maintenant sans remise (\(n \leq N\)). Calculer \(\text{Cov}(X_i, X_j)\) pour \(i \neq j\).</li>
+          <li>En deduire \(V(S_n)\) dans le cas sans remise et comparer avec le cas avec remise.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Avec remise : \(X_i \sim \mathcal{B}(1, p)\) avec \(p = R/N\). Donc \(E(X_i) = p\) et \(V(X_i) = p(1-p)\).</p>
+
+            <p><strong>2.</strong> Avec remise, les tirages sont independants, donc les \(X_i\) sont independantes. Par consequent :</p>
+            <div class="math-display">$$S_n \sim \mathcal{B}(n, p), \quad E(S_n) = np, \quad V(S_n) = np(1-p)$$</div>
+
+            <p><strong>3.</strong> Sans remise, pour \(i \neq j\) :</p>
+            <div class="math-display">$$\text{Cov}(X_i, X_j) = E(X_i X_j) - E(X_i)E(X_j)$$</div>
+            <p>\(E(X_i X_j) = P(X_i = 1, X_j = 1)\) = probabilite que les \(i\)-eme et \(j\)-eme boules soient rouges :</p>
+            <div class="math-display">$$P(X_i = 1, X_j = 1) = \frac{R}{N} \cdot \frac{R-1}{N-1}$$</div>
+            <p>Donc :</p>
+            <div class="math-display">$$\text{Cov}(X_i, X_j) = \frac{R(R-1)}{N(N-1)} - \frac{R^2}{N^2} = \frac{R^2(N) - R \cdot N - R^2(N-1)}{N^2(N-1)}$$</div>
+            <p>Simplifions : \(\frac{R(R-1)}{N(N-1)} - p^2 = p \cdot \frac{R-1}{N-1} - p^2 = p\left(\frac{R-1}{N-1} - p\right)\).</p>
+            <p>Or \(\frac{R-1}{N-1} - \frac{R}{N} = \frac{N(R-1) - R(N-1)}{N(N-1)} = \frac{-N+R}{N(N-1)} = \frac{-(N-R)}{N(N-1)}\). Donc :</p>
+            <div class="math-display">$$\text{Cov}(X_i, X_j) = -\frac{p(1-p)}{N-1}$$</div>
+            <p>La covariance est negative : si une boule est rouge, la proportion de rouges restantes diminue.</p>
+
+            <p><strong>4.</strong> Par bilinearite de la variance :</p>
+            <div class="math-display">$$V(S_n) = \sum_{i=1}^n V(X_i) + 2\sum_{i < j} \text{Cov}(X_i, X_j) = np(1-p) + n(n-1) \times \left(-\frac{p(1-p)}{N-1}\right)$$</div>
+            <div class="math-display">$$= np(1-p)\left(1 - \frac{n-1}{N-1}\right) = np(1-p) \cdot \frac{N-n}{N-1}$$</div>
+            <p>Le facteur \(\frac{N-n}{N-1}\) est le <strong>facteur de correction de population finie</strong>. Comme \(\frac{N-n}{N-1} \leq 1\), la variance sans remise est toujours inferieure ou egale a celle avec remise. Quand \(N \gg n\), le facteur est proche de \(1\) et l'on retrouve la variance binomiale.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
-      <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
-        Suivant &rarr;
-        <span>Fiche suivante</span>
+      <a href="mp-m6-probabilites.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Probabilites</span>
       </a>
+      <div></div>
     </nav>
 
   </article>
@@ -399,6 +859,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

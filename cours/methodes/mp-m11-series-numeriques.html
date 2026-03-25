@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -146,55 +165,59 @@
 
     <div class="course__meta">
       <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 8</span>
     </div>
 
     <h1 class="course__title">Series numeriques</h1>
 
     <p class="course__intro">
-      Fiche de methodes avec exercices types : series a termes positifs, regle de d'Alembert, comparaison serie-integrale, series alternees et developpements asymptotiques. Chaque methode est accompagnee d'un exercice d'annale ou de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et sept exercices corriges inspires du chapitre 8.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Nature d'une serie a termes positifs</a></li>
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Termes positifs : comparaison</a></li>
         <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Regle de d'Alembert</a></li>
         <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Comparaison serie-integrale</a></li>
         <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Series alternees (TSCSA)</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Developpement asymptotique de sommes partielles</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> DA de sommes partielles</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
+
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Nature d'une serie a termes positifs</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Termes positifs : comparaison</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Pour une serie \(\sum u_n\) a termes positifs, on dispose des outils suivants :</p>
         <ol>
-          <li><strong>Comparaison directe :</strong> si \(0 \leq u_n \leq v_n\) a partir d'un certain rang, et si \(\sum v_n\) converge, alors \(\sum u_n\) converge.</li>
-          <li><strong>Equivalent :</strong> si \(u_n \sim v_n\) avec \(u_n, v_n > 0\), alors \(\sum u_n\) et \(\sum v_n\) ont meme nature.</li>
-          <li><strong>Regle en \(n^\alpha\) :</strong> si \(u_n \sim \frac{C}{n^\alpha}\) avec \(C > 0\), alors \(\sum u_n\) converge ssi \(\alpha > 1\).</li>
-          <li><strong>Negligeabilite :</strong> si \(u_n = o(v_n)\) et \(\sum v_n\) converge, alors \(\sum u_n\) converge.</li>
-          <li>Toujours commencer par chercher un equivalent simple du terme general.</li>
+          <li><strong>Comparaison directe :</strong> si \(0 \leq u_n \leq v_n\) a partir d'un certain rang, alors \(\sum v_n\) converge \(\Rightarrow\) \(\sum u_n\) converge.</li>
+          <li><strong>Equivalents :</strong> si \(u_n \sim v_n\) avec \(u_n, v_n > 0\), alors \(\sum u_n\) et \(\sum v_n\) ont la meme nature.</li>
+          <li><strong>\(O\) et \(o\) :</strong> si \(u_n = O(v_n)\) avec \(v_n > 0\) et \(\sum v_n\) converge, alors \(\sum u_n\) converge absolument.</li>
+          <li><strong>Series de reference :</strong> \(\sum 1/n^\alpha\) converge ssi \(\alpha > 1\) ; \(\sum r^n\) converge ssi \(|r| < 1\).</li>
         </ol>
+        <p><strong>Strategie :</strong> chercher un equivalent simple de \(u_n\) en utilisant un DL a l'ordre adequat, puis comparer a une serie de Riemann ou geometrique.</p>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Pour trouver un equivalent, les developpements limites sont l'outil principal : \(\ln(1+u) \sim u\), \(e^u - 1 \sim u\), \((1+u)^\alpha - 1 \sim \alpha u\) quand \(u \to 0\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Etudier la nature des series suivantes :</p>
-        <ol>
-          <li>\(\displaystyle\sum_{n \geq 1} \frac{\ln(n)}{n^{3/2}}\)</li>
-          <li>\(\displaystyle\sum_{n \geq 2} \frac{1}{n \ln(n) \ln(\ln(n))}\)</li>
-          <li>\(\displaystyle\sum_{n \geq 1} \left(\sqrt[n]{n} - 1\right)^2\)</li>
-        </ol>
-        <p><em>Indication :</em> 1. \(\ln(n) / n^{3/2} = o(1/n^{5/4})\) donc CV. 2. Comparaison serie-integrale avec \(\int \frac{dx}{x \ln x \ln(\ln x)}\), diverge. 3. \(\sqrt[n]{n} - 1 \sim \frac{\ln n}{n}\), donc le terme general est equivalent a \(\frac{(\ln n)^2}{n^2}\) et la serie converge.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que la serie \(\sum_{n \geq 1} \ln\!\left(1 + \frac{1}{n^2}\right)\) converge.</strong></p>
+        <p><em>Resolution.</em> Posons \(u_n = \ln(1 + 1/n^2)\). Pour \(n \to +\infty\) :</p>
+        <div class="math-display">$$u_n = \ln\!\left(1 + \frac{1}{n^2}\right) \sim \frac{1}{n^2}$$</div>
+        <p>car \(\ln(1+x) \sim x\) quand \(x \to 0\), et ici \(x = 1/n^2 \to 0\). Comme \(u_n > 0\), \(1/n^2 > 0\), et \(\sum 1/n^2\) converge (serie de Riemann, \(\alpha = 2 > 1\)), par le critere d'equivalence, \(\sum u_n\) converge.</p>
       </div>
     </section>
 
@@ -204,30 +227,24 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Soit \(\sum u_n\) une serie a termes strictement positifs. On calcule \(\ell = \lim_{n \to \infty} \frac{u_{n+1}}{u_n}\).</p>
         <ol>
-          <li>Calculer \(\ell = \lim_{n \to +\infty} \left|\frac{u_{n+1}}{u_n}\right|\).</li>
-          <li>Si \(\ell < 1\) : la serie \(\sum u_n\) converge absolument.</li>
-          <li>Si \(\ell > 1\) : le terme general ne tend pas vers 0, la serie diverge grossierement.</li>
-          <li>Si \(\ell = 1\) : la regle ne conclut pas, utiliser un autre critere.</li>
-          <li>Cette regle est particulierement adaptee aux termes contenant des <strong>factorielles</strong> ou des <strong>exponentielles</strong>.</li>
+          <li>Si \(\ell < 1\) : la serie converge.</li>
+          <li>Si \(\ell > 1\) : la serie diverge grossierement (\(u_n \not\to 0\)).</li>
+          <li>Si \(\ell = 1\) : on ne peut pas conclure (exemples : \(\sum 1/n\) et \(\sum 1/n^2\)).</li>
         </ol>
+        <p><strong>Quand l'utiliser :</strong> la regle de d'Alembert est particulierement adaptee aux series contenant des factorielles, des puissances de \(n\), ou des produits du type \(\frac{n!}{a^n}\).</p>
+        <p><strong>Variante :</strong> on peut aussi utiliser le critere de Cauchy (racine n-ieme) : \(\ell = \lim u_n^{1/n}\), memes conclusions.</p>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Rappel utile</span>
-        <p>Formules cles : \(\frac{(n+1)!}{n!} = n + 1\), \(\frac{a^{n+1}}{a^n} = a\), \(\frac{(2n+2)!}{(2n)!} = (2n+2)(2n+1)\). Penser aussi a la formule de Stirling \(n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Etudier la nature des series suivantes :</p>
-        <ol>
-          <li>\(\displaystyle\sum_{n \geq 0} \frac{3^n \cdot n!}{(2n)!}\)</li>
-          <li>\(\displaystyle\sum_{n \geq 1} \frac{n^n}{e^n \cdot n!}\)</li>
-          <li>\(\displaystyle\sum_{n \geq 1} \frac{(2n)!}{4^n (n!)^2} \cdot \frac{1}{n}\)</li>
-        </ol>
-        <p><em>Indication :</em> 1. \(\frac{u_{n+1}}{u_n} = \frac{3(n+1)}{(2n+2)(2n+1)} = \frac{3}{2(2n+1)} \to 0 < 1\), converge. 2. \(\frac{u_{n+1}}{u_n} = \left(\frac{n+1}{n}\right)^n \cdot \frac{1}{e} \to 1\), d'Alembert ne conclut pas (utiliser Stirling : \(u_n \sim \frac{1}{\sqrt{2\pi n}}\), diverge). 3. Par Stirling, \(\frac{(2n)!}{4^n(n!)^2} \sim \frac{1}{\sqrt{\pi n}}\), donc le terme general est equivalent a \(\frac{1}{n\sqrt{\pi n}}\) et converge.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Nature de la serie \(\sum_{n \geq 0} \frac{n!\, 3^n}{(2n)!}\).</strong></p>
+        <p><em>Resolution.</em> Posons \(u_n = \frac{n!\, 3^n}{(2n)!}\). Calculons le rapport :</p>
+        <div class="math-display">$$\frac{u_{n+1}}{u_n} = \frac{(n+1)!\, 3^{n+1}}{(2n+2)!} \cdot \frac{(2n)!}{n!\, 3^n} = \frac{(n+1) \cdot 3}{(2n+2)(2n+1)} = \frac{3(n+1)}{2(n+1)(2n+1)} = \frac{3}{2(2n+1)}$$</div>
+        <p>Donc :</p>
+        <div class="math-display">$$\lim_{n \to \infty} \frac{u_{n+1}}{u_n} = \lim_{n \to \infty} \frac{3}{2(2n+1)} = 0 < 1$$</div>
+        <p>Par la regle de d'Alembert, la serie \(\sum u_n\) converge.</p>
       </div>
     </section>
 
@@ -237,30 +254,24 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Soit \(f : [1, +\infty[ \to \mathbb{R}^+\) continue, decroissante. Alors :</p>
         <ol>
-          <li>Soit \(f : [1, +\infty[ \to \mathbb{R}^+\) continue, decroissante. Alors :</li>
-          <li>\(\displaystyle\int_1^{n+1} f(t)\,dt \leq \sum_{k=1}^{n} f(k) \leq f(1) + \int_1^n f(t)\,dt\)</li>
-          <li>En consequence, \(\sum f(n)\) converge ssi \(\int_1^{+\infty} f(t)\,dt\) converge.</li>
-          <li><strong>Encadrement du reste :</strong> si la serie converge, \(\displaystyle\int_{n+1}^{+\infty} f(t)\,dt \leq R_n \leq \int_n^{+\infty} f(t)\,dt\).</li>
-          <li><strong>Equivalent de la somme partielle :</strong> si la serie diverge, \(\displaystyle S_n \sim \int_1^n f(t)\,dt\).</li>
+          <li>\(\sum_{n \geq 1} f(n)\) et \(\int_1^{+\infty} f(t)\,\mathrm{d}t\) sont de meme nature.</li>
+          <li><strong>Encadrement des sommes partielles :</strong> pour tout \(N \geq 1\) : \(\int_1^{N+1} f(t)\,\mathrm{d}t \leq \sum_{n=1}^{N} f(n) \leq f(1) + \int_1^{N} f(t)\,\mathrm{d}t\).</li>
+          <li><strong>Equivalent du reste :</strong> si \(\int_1^{+\infty} f = +\infty\), alors \(\sum_{k=1}^{n} f(k) \sim \int_1^n f(t)\,\mathrm{d}t\).</li>
         </ol>
+        <p><strong>Usage principal :</strong> obtenir un equivalent de \(H_n = \sum_{k=1}^n \frac{1}{k}\), des sommes partielles de series de Riemann divergentes, ou pour montrer la convergence.</p>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Constante d'Euler</span>
-        <p>Application celebre : \(\displaystyle\sum_{k=1}^{n} \frac{1}{k} = \ln(n) + \gamma + o(1)\) ou \(\gamma \approx 0{,}5772\) est la constante d'Euler-Mascheroni. Elle provient de la comparaison serie-integrale avec \(f(t) = 1/t\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>On pose \(H_n = \sum_{k=1}^{n} \frac{1}{k}\) et \(S_n = \sum_{k=1}^{n} \frac{1}{k^2}\).</p>
-        <ol>
-          <li>A l'aide d'une comparaison serie-integrale, montrer que \(H_n = \ln(n) + \gamma + \frac{1}{2n} + O\!\left(\frac{1}{n^2}\right)\).</li>
-          <li>Montrer que \(\sum_{k=1}^{+\infty} \frac{1}{k^2}\) converge et encadrer son reste \(R_n = \sum_{k=n+1}^{+\infty} \frac{1}{k^2}\) par \(\frac{1}{n+1} \leq R_n \leq \frac{1}{n}\).</li>
-          <li>Donner un equivalent de \(\sum_{k=1}^{n} \frac{1}{\sqrt{k}}\) quand \(n \to +\infty\).</li>
-        </ol>
-        <p><em>Indication :</em> pour 3., comparer avec \(\int_1^n \frac{dt}{\sqrt{t}} = 2\sqrt{n} - 2\), donc \(\sum_{k=1}^n \frac{1}{\sqrt{k}} \sim 2\sqrt{n}\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(H_n = \sum_{k=1}^n \frac{1}{k} \sim \ln n\) et en deduire l'existence de la constante d'Euler \(\gamma\).</strong></p>
+        <p><em>Resolution.</em> La fonction \(f(t) = 1/t\) est continue, positive, decroissante sur \([1, +\infty[\). Par comparaison serie-integrale :</p>
+        <div class="math-display">$$\int_1^{n+1} \frac{\mathrm{d}t}{t} \leq H_n \leq 1 + \int_1^n \frac{\mathrm{d}t}{t}$$</div>
+        <p>soit \(\ln(n+1) \leq H_n \leq 1 + \ln n\). Comme \(\ln(n+1) \sim \ln n\), on obtient par encadrement \(H_n \sim \ln n\).</p>
+        <p>Posons \(\gamma_n = H_n - \ln n\). On a \(\gamma_n \in [0, 1]\) pour tout \(n\). Montrons que \((\gamma_n)\) converge. On ecrit :</p>
+        <div class="math-display">$$\gamma_{n+1} - \gamma_n = \frac{1}{n+1} - \ln(n+1) + \ln n = \frac{1}{n+1} - \ln\!\left(1 + \frac{1}{n}\right)$$</div>
+        <p>Or \(\ln(1 + 1/n) \geq \frac{1}{n+1}\) (par concavite du logarithme), donc \(\gamma_{n+1} - \gamma_n \leq 0\) : la suite est decroissante. Etant minoree (par \(0\)), elle converge. Sa limite \(\gamma = \lim_{n \to \infty}(H_n - \ln n) \approx 0{,}5772\) est la constante d'Euler.</p>
       </div>
     </section>
 
@@ -270,29 +281,28 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Le theoreme special des series alternees (TSCSA) s'applique a \(\sum (-1)^n a_n\) lorsque :</p>
         <ol>
-          <li>Ecrire la serie sous la forme \(\sum (-1)^n a_n\) avec \(a_n \geq 0\).</li>
-          <li>Verifier que la suite \((a_n)\) est <strong>decroissante</strong> a partir d'un certain rang.</li>
-          <li>Verifier que \(a_n \to 0\).</li>
-          <li>Conclure par le <strong>theoreme special des series alternees (TSCSA)</strong> : la serie converge.</li>
-          <li><strong>Majoration du reste :</strong> \(|R_n| \leq a_{n+1}\), et le reste est du signe de son premier terme.</li>
+          <li>La suite \((a_n)\) est a termes positifs.</li>
+          <li>La suite \((a_n)\) est decroissante (a partir d'un certain rang).</li>
+          <li>\(a_n \to 0\).</li>
         </ol>
+        <p>Alors la serie converge et le reste verifie \(|R_n| \leq a_{n+1}\) (majoration du reste).</p>
+        <p><strong>Attention :</strong> la serie peut converger sans que le TSCSA s'applique. Ne pas oublier de verifier la decroissance (par etude de \(a_{n+1}/a_n\) ou \(a_{n+1} - a_n\)).</p>
+        <p><strong>Convergence absolue vs semi-convergence :</strong> si \(\sum |u_n|\) converge aussi, on dit que la serie converge absolument. Sinon, elle est semi-convergente.</p>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Attention</span>
-        <p>Le TSCSA ne donne que la convergence, pas la convergence absolue. Souvent, la serie converge mais ne converge pas absolument (convergence conditionnelle), comme \(\sum \frac{(-1)^n}{n}\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(\sum_{n \geq 1} \frac{(-1)^n}{\sqrt{n + \ln n}}\) converge.</strong></p>
+        <p><em>Resolution.</em> Posons \(a_n = \frac{1}{\sqrt{n + \ln n}}\). Verifions les hypotheses du TSCSA :</p>
         <ol>
-          <li>Montrer que la serie \(\displaystyle\sum_{n \geq 1} \frac{(-1)^{n+1}}{n + \ln(n)}\) converge. Converge-t-elle absolument ?</li>
-          <li>Montrer que la serie \(\displaystyle\sum_{n \geq 1} \frac{(-1)^n \ln(n)}{n}\) converge. Donner une majoration du reste \(R_N\).</li>
-          <li>Montrer que la serie \(\displaystyle\sum_{n \geq 2} \frac{\cos(n\pi)}{\sqrt{n} + (-1)^n}\) converge.</li>
+          <li>\(a_n > 0\) pour tout \(n \geq 1\) : evident car \(n + \ln n > 0\).</li>
+          <li><strong>Decroissance :</strong> la fonction \(g(x) = \frac{1}{\sqrt{x + \ln x}}\) est decroissante pour \(x \geq 1\) car \(h(x) = x + \ln x\) est strictement croissante (\(h'(x) = 1 + 1/x > 0\)). Donc \((a_n)\) est decroissante.</li>
+          <li>\(a_n \to 0\) car \(n + \ln n \to +\infty\).</li>
         </ol>
-        <p><em>Indication :</em> 1. Poser \(a_n = \frac{1}{n + \ln(n)}\) : decroissante et tend vers 0, TSCSA. Pas de CV absolue car \(a_n \sim 1/n\). 2. TSCSA avec \(a_n = \frac{\ln n}{n}\), et \(|R_N| \leq \frac{\ln(N+1)}{N+1}\). 3. Remarquer que \(\cos(n\pi) = (-1)^n\) et ecrire le terme general sous forme alternee.</p>
+        <p>Par le TSCSA, la serie \(\sum (-1)^n a_n\) converge.</p>
+        <p><strong>Semi-convergence :</strong> on a \(a_n \sim 1/\sqrt{n}\) et \(\sum 1/\sqrt{n}\) diverge (Riemann, \(\alpha = 1/2 \leq 1\)). Donc la serie ne converge pas absolument : elle est semi-convergente.</p>
       </div>
     </section>
 
@@ -303,38 +313,412 @@
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Lemme de Cesaro :</strong> si \(u_n \to \ell\), alors \(\frac{1}{n}\sum_{k=1}^n u_k \to \ell\).</li>
-          <li><strong>Sommation d'equivalents :</strong> si \(u_n \sim v_n\) avec \(v_n > 0\) decroissante et \(\sum v_n\) diverge, alors \(\sum_{k=1}^n u_k \sim \sum_{k=1}^n v_k\).</li>
-          <li><strong>Comparaison serie-integrale :</strong> utiliser l'encadrement pour obtenir un DL de la somme partielle.</li>
-          <li><strong>Formule de Stirling :</strong> \(n! \sim \sqrt{2\pi n} \left(\frac{n}{e}\right)^n\), utile pour les sommes contenant des factorielles.</li>
-          <li>Pour un developpement plus precis, utiliser la formule d'Euler-Maclaurin.</li>
+          <li><strong>Principe :</strong> pour \(S_n = \sum_{k=1}^n f(k)\), on cherche un equivalent ou un developpement asymptotique de \(S_n\) a l'aide de la comparaison serie-integrale ou de formules sommatoires.</li>
+          <li><strong>Technique :</strong> ecrire \(f(k) = g(k) + r(k)\) ou \(g(k)\) est le terme principal et \(\sum r(k)\) converge.</li>
+          <li><strong>Sommation par parties (Abel) :</strong> \(\sum_{k=1}^n a_k b_k = A_n b_n - \sum_{k=1}^{n-1} A_k (b_{k+1} - b_k)\) avec \(A_k = \sum_{j=1}^k a_j\).</li>
+          <li><strong>Sommation serie-integrale :</strong> \(\sum_{k=1}^n f(k) = \int_1^n f(t)\,\mathrm{d}t + \frac{f(1)+f(n)}{2} + \cdots\) (Euler-Maclaurin).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Attention</span>
-        <p>On ne peut sommer des equivalents que pour des series <strong>divergentes</strong> a termes positifs. Pour une serie convergente, il faut travailler sur le reste, pas sur la somme partielle.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(\sum_{k=2}^n \frac{\ln k}{k} \sim \frac{(\ln n)^2}{2}\).</strong></p>
+        <p><em>Resolution.</em> La fonction \(f(t) = \frac{\ln t}{t}\) est positive et decroissante pour \(t \geq e\). Par comparaison serie-integrale :</p>
+        <div class="math-display">$$\sum_{k=2}^n \frac{\ln k}{k} \sim \int_2^n \frac{\ln t}{t}\,\mathrm{d}t$$</div>
+        <p>Calculons l'integrale par le changement \(u = \ln t\) :</p>
+        <div class="math-display">$$\int_2^n \frac{\ln t}{t}\,\mathrm{d}t = \int_{\ln 2}^{\ln n} u\,\mathrm{d}u = \left[\frac{u^2}{2}\right]_{\ln 2}^{\ln n} = \frac{(\ln n)^2}{2} - \frac{(\ln 2)^2}{2}$$</div>
+        <p>Comme \(\frac{(\ln 2)^2}{2}\) est une constante, on obtient :</p>
+        <div class="math-display">$$\sum_{k=2}^n \frac{\ln k}{k} \sim \frac{(\ln n)^2}{2}$$</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> Si \(u_n \to 0\), alors \(\sum u_n\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>C'est une condition necessaire mais pas suffisante. Contre-exemple classique : la serie harmonique \(\sum 1/n\) verifie \(1/n \to 0\) mais diverge.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> La serie \(\sum_{n \geq 1} \frac{1}{n^2}\) converge et sa somme vaut \(\frac{\pi^2}{6}\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est une serie de Riemann avec \(\alpha = 2 > 1\), elle converge. La somme \(\sum_{n=1}^{+\infty} 1/n^2 = \pi^2/6\) est le probleme de Bale, resolu par Euler en 1735.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> Si \(\sum u_n\) converge, alors \(\sum u_n^2\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Contre-exemple : \(u_n = (-1)^n / \sqrt{n}\). La serie \(\sum u_n\) converge (TSCSA), mais \(u_n^2 = 1/n\) et \(\sum 1/n\) diverge. En revanche, si \(\sum u_n\) converge <em>absolument</em>, alors \(|u_n| \to 0\), donc \(u_n^2 \leq |u_n|\) a partir d'un certain rang, et \(\sum u_n^2\) converge.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> La regle de d'Alembert permet toujours de conclure.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Quand la limite du rapport vaut \(1\), la regle de d'Alembert ne conclut pas. Exemples : \(\sum 1/n\) (diverge) et \(\sum 1/n^2\) (converge) donnent toutes les deux \(\ell = 1\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> Si \(\sum u_n\) et \(\sum v_n\) divergent, alors \(\sum (u_n + v_n)\) diverge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Prendre \(u_n = 1/n\) et \(v_n = -1/n\). Les deux series divergent mais \(u_n + v_n = 0\) et \(\sum 0\) converge (vers \(0\)).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> Toute serie absolument convergente est convergente.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est une propriete fondamentale dans les espaces complets. Comme \(\mathbb{R}\) (et \(\mathbb{C}\)) sont complets, si \(\sum |u_n|\) converge, alors les sommes partielles de \(\sum u_n\) forment une suite de Cauchy, donc convergente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> La serie \(\sum_{n \geq 2} \frac{1}{n \ln n}\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Par comparaison serie-integrale avec \(f(t) = 1/(t \ln t)\), on a \(\int_2^{+\infty} \frac{\mathrm{d}t}{t \ln t} = [\ln(\ln t)]_2^{+\infty} = +\infty\). Donc la serie diverge. C'est une serie de Bertrand \(\sum 1/(n^\alpha (\ln n)^\beta)\) avec \(\alpha = 1, \beta = 1\), et le critere donne divergence pour \(\alpha = 1, \beta \leq 1\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> Si \(u_n \sim v_n\) et \(\sum v_n\) converge, alors \(\sum u_n\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Le critere d'equivalence ne s'applique qu'aux series a termes <em>positifs</em> (ou de signe constant). Contre-exemple : \(u_n = (-1)^n/\sqrt{n} + 1/n\) et \(v_n = (-1)^n/\sqrt{n}\). On a \(u_n \sim v_n\) et \(\sum v_n\) converge (TSCSA), mais \(\sum u_n\) diverge car \(\sum 1/n\) diverge.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> Pour une serie alternee \(\sum (-1)^n a_n\) verifiant le TSCSA, le reste \(R_n\) est du signe de \((-1)^{n+1} a_{n+1}\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est une propriete du TSCSA : le reste \(R_n = S - S_n\) est du signe du premier terme neglige \((-1)^{n+1} a_{n+1}\) et verifie \(|R_n| \leq a_{n+1}\). Cela permet d'encadrer la somme de la serie.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> \(\sum_{n \geq 0} \frac{n^{100}}{2^n}\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Par la regle de d'Alembert : \(\frac{u_{n+1}}{u_n} = \frac{(n+1)^{100}}{2 \cdot n^{100}} \to \frac{1}{2} < 1\). Donc la serie converge. Plus generalement, toute serie \(\sum n^\alpha r^n\) avec \(|r| < 1\) converge, car l'exponentielle l'emporte sur toute puissance de \(n\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
       <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
+        <span class="annale-badge">Monier Ch. 8</span>
+        <span class="block__label">Exercice 1 -- Nature de series a termes positifs</span>
+        <p>Etudier la nature des series suivantes :</p>
         <ol>
-          <li>Donner un equivalent de \(\displaystyle S_n = \sum_{k=1}^{n} \frac{\ln(k)}{k}\) quand \(n \to +\infty\).</li>
-          <li>Donner un equivalent de \(\displaystyle\sum_{k=2}^{n} \frac{1}{k \ln(k)}\) quand \(n \to +\infty\).</li>
-          <li>Soit \(\displaystyle T_n = \sum_{k=0}^{n} \frac{1}{k!}\). Montrer que \(T_n = e - \frac{1}{n! \cdot n}\left(1 + o(1)\right)\).</li>
+          <li>\(\displaystyle\sum_{n \geq 1} \left(\frac{n}{n+1}\right)^{n^2}\)</li>
+          <li>\(\displaystyle\sum_{n \geq 1} \frac{1}{\sqrt{n}}\left(1 - \cos\frac{1}{n}\right)\)</li>
+          <li>\(\displaystyle\sum_{n \geq 2} \frac{1}{(\ln n)^{\ln n}}\)</li>
         </ol>
-        <p><em>Indication :</em> 1. Par comparaison serie-integrale avec \(f(t) = \frac{\ln t}{t}\), on obtient \(S_n \sim \frac{(\ln n)^2}{2}\). 2. Comparer avec \(\int_2^n \frac{dt}{t \ln t} = \ln(\ln n) - \ln(\ln 2)\), donc la somme est equivalente a \(\ln(\ln n)\). 3. Le reste est \(e - T_n = \sum_{k \geq n+1} \frac{1}{k!}\), et le premier terme \(\frac{1}{(n+1)!}\) domine.</p>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Posons \(u_n = (n/(n+1))^{n^2} = (1 - 1/(n+1))^{n^2}\). On a :</p>
+            <div class="math-display">$$\ln u_n = n^2 \ln\!\left(1 - \frac{1}{n+1}\right) = n^2 \left(-\frac{1}{n+1} - \frac{1}{2(n+1)^2} + \cdots\right) \sim -\frac{n^2}{n+1} \sim -n$$</div>
+            <p>Donc \(u_n \sim e^{-n}\), et comme \(\sum e^{-n}\) est une serie geometrique de raison \(e^{-1} < 1\), la serie \(\sum u_n\) <strong>converge</strong>.</p>
+
+            <p><strong>2.</strong> Pour \(n \to +\infty\) : \(1 - \cos(1/n) \sim \frac{1}{2n^2}\) (DL de \(\cos\)). Donc :</p>
+            <div class="math-display">$$u_n = \frac{1}{\sqrt{n}} \cdot \frac{1}{2n^2} \cdot (1 + o(1)) \sim \frac{1}{2n^{5/2}}$$</div>
+            <p>Comme \(\sum 1/n^{5/2}\) converge (Riemann, \(\alpha = 5/2 > 1\)), la serie \(\sum u_n\) <strong>converge</strong>.</p>
+
+            <p><strong>3.</strong> Posons \(u_n = 1/(\ln n)^{\ln n}\). Par le critere de Cauchy : \(u_n^{1/n} = (\ln n)^{-\ln n / n}\). Or \(\frac{\ln n}{n} \to 0\), donc \(\ln(u_n^{1/n}) = -\frac{\ln n}{n} \ln(\ln n) \to 0\), et \(u_n^{1/n} \to 1\). Le critere de Cauchy ne conclut pas directement. Comparons : \((\ln n)^{\ln n} = e^{(\ln n) \ln(\ln n)}\). Pour \(n\) assez grand, \(\ln(\ln n) \geq 3\), donc \((\ln n)^{\ln n} \geq n^3\) et \(u_n \leq 1/n^3\). La serie <strong>converge</strong>.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 8</span>
+        <span class="block__label">Exercice 2 -- Regle de d'Alembert et variantes</span>
+        <ol>
+          <li>Etudier la nature de \(\displaystyle\sum_{n \geq 0} \frac{(2n)!}{4^n (n!)^2}\).</li>
+          <li>Etudier la nature de \(\displaystyle\sum_{n \geq 1} \frac{n^n}{3^n \, n!}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Posons \(u_n = \frac{(2n)!}{4^n (n!)^2}\). Calculons :</p>
+            <div class="math-display">$$\frac{u_{n+1}}{u_n} = \frac{(2n+2)!}{4^{n+1}((n+1)!)^2} \cdot \frac{4^n (n!)^2}{(2n)!} = \frac{(2n+2)(2n+1)}{4(n+1)^2} = \frac{2(2n+1)}{4(n+1)} = \frac{2n+1}{2(n+1)}$$</div>
+            <p>Donc \(\frac{u_{n+1}}{u_n} = \frac{2n+1}{2n+2} \to 1\). La regle de d'Alembert ne conclut pas. Utilisons Stirling : \(n! \sim \sqrt{2\pi n}\,(n/e)^n\), donc :</p>
+            <div class="math-display">$$u_n = \frac{(2n)!}{4^n(n!)^2} \sim \frac{\sqrt{4\pi n}\,(2n/e)^{2n}}{4^n \cdot 2\pi n \cdot (n/e)^{2n}} = \frac{\sqrt{4\pi n} \cdot 4^n \cdot n^{2n}/e^{2n}}{4^n \cdot 2\pi n \cdot n^{2n}/e^{2n}} = \frac{1}{\sqrt{\pi n}}$$</div>
+            <p>Comme \(\sum 1/\sqrt{n}\) diverge (Riemann, \(\alpha = 1/2\)), la serie \(\sum u_n\) <strong>diverge</strong>.</p>
+
+            <p><strong>2.</strong> Posons \(u_n = \frac{n^n}{3^n \, n!}\). Par d'Alembert :</p>
+            <div class="math-display">$$\frac{u_{n+1}}{u_n} = \frac{(n+1)^{n+1}}{3^{n+1}(n+1)!} \cdot \frac{3^n \, n!}{n^n} = \frac{(n+1)^n}{3 \cdot n^n} = \frac{1}{3}\left(1 + \frac{1}{n}\right)^n \to \frac{e}{3} < 1$$</div>
+            <p>Par la regle de d'Alembert, la serie <strong>converge</strong>.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 8</span>
+        <span class="block__label">Exercice 3 -- Comparaison serie-integrale</span>
+        <ol>
+          <li>Donner un equivalent de \(\displaystyle S_n = \sum_{k=1}^n \frac{1}{\sqrt{k}}\).</li>
+          <li>Montrer que \(\displaystyle\sum_{k=1}^n \frac{1}{k^2} = \frac{\pi^2}{6} - \frac{1}{n} + o\!\left(\frac{1}{n}\right)\).</li>
+          <li>Nature et equivalent du reste de \(\displaystyle\sum_{n \geq 2} \frac{1}{n(\ln n)^2}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> La fonction \(f(t) = 1/\sqrt{t}\) est positive, continue, decroissante sur \([1, +\infty[\). Par comparaison serie-integrale :</p>
+            <div class="math-display">$$S_n = \sum_{k=1}^n \frac{1}{\sqrt{k}} \sim \int_1^n \frac{\mathrm{d}t}{\sqrt{t}} = \left[2\sqrt{t}\right]_1^n = 2\sqrt{n} - 2$$</div>
+            <p>Donc \(S_n \sim 2\sqrt{n}\).</p>
+
+            <p><strong>2.</strong> Notons \(R_n = \sum_{k=n+1}^{+\infty} 1/k^2\) le reste. Par comparaison serie-integrale :</p>
+            <div class="math-display">$$\int_{n+1}^{+\infty} \frac{\mathrm{d}t}{t^2} \leq R_n \leq \int_n^{+\infty} \frac{\mathrm{d}t}{t^2}$$</div>
+            <p>soit \(\frac{1}{n+1} \leq R_n \leq \frac{1}{n}\). Donc \(R_n \sim \frac{1}{n}\), et :</p>
+            <div class="math-display">$$\sum_{k=1}^n \frac{1}{k^2} = \frac{\pi^2}{6} - R_n = \frac{\pi^2}{6} - \frac{1}{n} + o\!\left(\frac{1}{n}\right)$$</div>
+
+            <p><strong>3.</strong> La fonction \(f(t) = 1/(t(\ln t)^2)\) est positive, continue, decroissante pour \(t \geq 2\). On a \(\int_2^{+\infty} \frac{\mathrm{d}t}{t(\ln t)^2} = \left[-\frac{1}{\ln t}\right]_2^{+\infty} = \frac{1}{\ln 2} < +\infty\). Donc la serie <strong>converge</strong>.</p>
+            <p>Pour le reste : \(R_n = \sum_{k=n+1}^{+\infty} \frac{1}{k(\ln k)^2} \sim \int_n^{+\infty} \frac{\mathrm{d}t}{t(\ln t)^2} = \frac{1}{\ln n}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 8</span>
+        <span class="block__label">Exercice 4 -- Series alternees et semi-convergence</span>
+        <ol>
+          <li>Montrer que \(\displaystyle\sum_{n \geq 1} \frac{(-1)^{n-1}}{n}\) converge et donner sa somme.</li>
+          <li>Montrer que \(\displaystyle\sum_{n \geq 1} \frac{(-1)^n}{n + (-1)^n \sqrt{n}}\) converge.</li>
+          <li>Cette derniere serie converge-t-elle absolument ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> La suite \(a_n = 1/n\) est positive, decroissante, de limite nulle. Par le TSCSA, \(\sum (-1)^{n-1}/n\) converge. Sa somme est \(\ln 2\) (developpement en serie entiere de \(\ln(1+x)\) en \(x = 1\), justifie par le theoreme d'Abel).</p>
+
+            <p><strong>2.</strong> Posons \(u_n = \frac{(-1)^n}{n + (-1)^n \sqrt{n}}\). Ecrivons :</p>
+            <div class="math-display">$$u_n = \frac{(-1)^n}{n + (-1)^n \sqrt{n}} = \frac{(-1)^n}{n} \cdot \frac{1}{1 + (-1)^n / \sqrt{n}}$$</div>
+            <p>En developpant \(\frac{1}{1+\varepsilon} = 1 - \varepsilon + \varepsilon^2 + \cdots\) avec \(\varepsilon = (-1)^n / \sqrt{n}\) :</p>
+            <div class="math-display">$$u_n = \frac{(-1)^n}{n} - \frac{1}{n^{3/2}} + O\!\left(\frac{1}{n^2}\right)$$</div>
+            <p>La serie \(\sum (-1)^n/n\) converge (TSCSA), la serie \(\sum 1/n^{3/2}\) converge absolument (Riemann), et \(\sum O(1/n^2)\) converge absolument. Donc \(\sum u_n\) <strong>converge</strong>.</p>
+
+            <p><strong>3.</strong> On a \(|u_n| = \frac{1}{|n + (-1)^n\sqrt{n}|}\). Pour \(n\) pair : \(|u_n| = \frac{1}{n + \sqrt{n}} \sim \frac{1}{n}\). Pour \(n\) impair : \(|u_n| = \frac{1}{n - \sqrt{n}} \sim \frac{1}{n}\). Dans les deux cas \(|u_n| \sim 1/n\), et \(\sum 1/n\) diverge. Donc la serie ne converge <strong>pas absolument</strong> : elle est semi-convergente.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 8</span>
+        <span class="block__label">Exercice 5 -- Produit de Cauchy de series</span>
+        <p>On rappelle que le produit de Cauchy de \(\sum a_n\) et \(\sum b_n\) est la serie \(\sum c_n\) ou \(c_n = \sum_{k=0}^n a_k b_{n-k}\).</p>
+        <ol>
+          <li>Montrer que si \(\sum a_n\) et \(\sum b_n\) convergent absolument, alors \(\sum c_n\) converge absolument et \(\sum c_n = (\sum a_n)(\sum b_n)\).</li>
+          <li>Application : calculer le produit de Cauchy de \(\sum_{n \geq 0} x^n/n!\) avec elle-meme et retrouver que \(e^x \cdot e^x = e^{2x}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Notons \(A = \sum |a_n|\) et \(B = \sum |b_n|\). On a :</p>
+            <div class="math-display">$$\sum_{n=0}^N |c_n| = \sum_{n=0}^N \left|\sum_{k=0}^n a_k b_{n-k}\right| \leq \sum_{n=0}^N \sum_{k=0}^n |a_k| |b_{n-k}| \leq \left(\sum_{k=0}^N |a_k|\right)\left(\sum_{j=0}^N |b_j|\right) \leq AB$$</div>
+            <p>Donc \(\sum c_n\) converge absolument. Pour la valeur de la somme, notons \(S_N = \sum_{n=0}^N c_n\). On montre que \(S_N - A_N B_N \to 0\) ou \(A_N = \sum_{k=0}^N a_k\) et \(B_N = \sum_{k=0}^N b_k\). En developpant \(A_N B_N = \sum_{k+j \leq 2N} a_k b_j\) et en comparant avec \(S_N = \sum_{n=0}^N \sum_{k=0}^n a_k b_{n-k}\), la difference est un terme de reste qui tend vers \(0\) par convergence absolue.</p>
+
+            <p><strong>2.</strong> Posons \(a_n = b_n = x^n/n!\). Le coefficient du produit de Cauchy est :</p>
+            <div class="math-display">$$c_n = \sum_{k=0}^n \frac{x^k}{k!} \cdot \frac{x^{n-k}}{(n-k)!} = x^n \sum_{k=0}^n \frac{1}{k!(n-k)!} = \frac{x^n}{n!} \sum_{k=0}^n \binom{n}{k} = \frac{x^n \cdot 2^n}{n!} = \frac{(2x)^n}{n!}$$</div>
+            <p>Donc \(\sum c_n = e^{2x}\). Par le resultat de la question 1 : \(e^x \cdot e^x = e^{2x}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 8</span>
+        <span class="block__label">Exercice 6 -- Sommation d'Abel et transformation</span>
+        <p>On veut montrer que \(\displaystyle\sum_{n \geq 1} \frac{\sin n}{n}\) converge.</p>
+        <ol>
+          <li>Montrer que pour tout \(N \geq 1\) : \(\displaystyle\left|\sum_{k=1}^N \sin k\right| \leq \frac{1}{|\sin(1/2)|}\).</li>
+          <li>En deduire, par sommation d'Abel, que \(\sum \frac{\sin n}{n}\) converge.</li>
+          <li>Cette serie converge-t-elle absolument ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On utilise la formule des sommes de sinus. En multipliant par \(2\sin(1/2)\) :</p>
+            <div class="math-display">$$2\sin(1/2) \sum_{k=1}^N \sin k = \sum_{k=1}^N [\cos(k - 1/2) - \cos(k + 1/2)]$$</div>
+            <p>C'est une somme telescopique : \(= \cos(1/2) - \cos(N + 1/2)\). Donc :</p>
+            <div class="math-display">$$\sum_{k=1}^N \sin k = \frac{\cos(1/2) - \cos(N + 1/2)}{2\sin(1/2)}$$</div>
+            <p>En valeur absolue : \(|\sum_{k=1}^N \sin k| \leq \frac{2}{2|\sin(1/2)|} = \frac{1}{|\sin(1/2)|}\).</p>
+
+            <p><strong>2.</strong> On applique la sommation d'Abel (ou critere de Dirichlet) avec \(a_k = \sin k\) et \(b_k = 1/k\). Les sommes partielles \(A_N = \sum_{k=1}^N \sin k\) sont bornees (question 1), et \((1/n)\) est une suite positive decroissante tendant vers \(0\). Par le critere de Dirichlet, la serie \(\sum \frac{\sin n}{n}\) <strong>converge</strong>.</p>
+
+            <p><strong>3.</strong> Montrons que la convergence n'est pas absolue. On a \(|\sin n|/n \geq \sin^2(n)/n = \frac{1 - \cos(2n)}{2n}\). Or \(\sum 1/(2n)\) diverge et \(\sum \cos(2n)/(2n)\) converge (par Dirichlet). Donc \(\sum |\sin n|/n\) <strong>diverge</strong>. La serie est semi-convergente.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 7 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 8</span>
+        <span class="block__label">Exercice 7 -- Developpement asymptotique</span>
+        <p>On pose \(\displaystyle S_n = \sum_{k=1}^n \frac{1}{k!}\).</p>
+        <ol>
+          <li>Montrer que \(\sum_{n \geq 0} 1/n!\) converge et donner sa somme.</li>
+          <li>Majorer le reste \(R_n = e - S_n - 1\) et en deduire que \(n! \, R_n \to 0\).</li>
+          <li>En deduire un developpement : \(S_n = e - 1 - \frac{1}{(n+1)!}(1 + o(1))\).</li>
+          <li>Application : montrer que \(e\) est irrationnel.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> C'est la serie exponentielle evaluee en \(x = 1\) : \(\sum_{n=0}^{+\infty} 1/n! = e\). La convergence se voit par d'Alembert : \(\frac{1/(n+1)!}{1/n!} = \frac{1}{n+1} \to 0 < 1\).</p>
+
+            <p><strong>2.</strong> Le reste est :</p>
+            <div class="math-display">$$R_n = \sum_{k=n+1}^{+\infty} \frac{1}{k!} = \frac{1}{(n+1)!} + \frac{1}{(n+2)!} + \cdots$$</div>
+            <p>Factorisons par \(1/(n+1)!\) :</p>
+            <div class="math-display">$$R_n = \frac{1}{(n+1)!}\left(1 + \frac{1}{n+2} + \frac{1}{(n+2)(n+3)} + \cdots\right)$$</div>
+            <p>La serie entre parentheses est majoree par la serie geometrique \(\sum_{j=0}^{+\infty} (1/(n+2))^j = \frac{n+2}{n+1}\). Donc :</p>
+            <div class="math-display">$$R_n \leq \frac{1}{(n+1)!} \cdot \frac{n+2}{n+1}$$</div>
+            <p>En multipliant par \(n!\) : \(n! \, R_n \leq \frac{n+2}{(n+1)^2} \to 0\). Plus precisement, \(n! \, R_n \sim \frac{1}{n+1} \to 0\).</p>
+
+            <p><strong>3.</strong> La parenthese ci-dessus tend vers \(1\), donc \(R_n = \frac{1}{(n+1)!}(1 + o(1))\), et :</p>
+            <div class="math-display">$$S_n = e - 1 - R_n = e - 1 - \frac{1}{(n+1)!}(1 + o(1))$$</div>
+
+            <p><strong>4.</strong> Supposons par l'absurde \(e = p/q\) avec \(p, q \in \mathbb{N}^*\). Alors \(q! \, e = q! \cdot p/q = (q-1)! \cdot p \in \mathbb{N}\). Et :</p>
+            <div class="math-display">$$q! \sum_{k=0}^q \frac{1}{k!} = q!\left(1 + 1 + \frac{1}{2!} + \cdots + \frac{1}{q!}\right) \in \mathbb{N}$$</div>
+            <p>Donc \(q! \, R_q = q! \, e - q! \sum_{k=0}^q 1/k! \in \mathbb{N}\). Mais d'apres la question 2, \(0 < q! \, R_q < 1\) pour \(q \geq 1\). Aucun entier naturel n'est strictement compris entre \(0\) et \(1\). Contradiction. Donc \(e\) est irrationnel.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
-      <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
-        Suivant &rarr;
-        <span>Fiche suivante</span>
+      <a href="mp-m10-topologie-evn.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Topologie des EVN</span>
       </a>
+      <div></div>
     </nav>
 
   </article>
@@ -391,6 +775,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

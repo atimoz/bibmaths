@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -61,8 +69,19 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-grid{display:flex;flex-direction:column;gap:var(--space-md)}
+    .vf-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:var(--space-md) var(--space-lg)}
+    .vf-item__q{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:4px}
+    .vf-item__a{font-size:.85rem;color:var(--ink-light);line-height:1.7}
+    .vf-item__tag{display:inline-block;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:8px;margin-right:6px}
+    .vf-item__tag--v{background:rgba(75,130,90,.12);color:#4B825A}
+    .vf-item__tag--f{background:rgba(163,42,42,.12);color:#A32A2A}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,7 +105,12 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
+    [data-theme="dark"] .block--proof .block__label{color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
+    [data-theme="dark"] .vf-item{background:var(--bg-card);border-color:var(--border)}
+    [data-theme="dark"] .vf-item__tag--v{background:rgba(75,130,90,.2);color:#6AAF7A}
+    [data-theme="dark"] .vf-item__tag--f{background:rgba(163,42,42,.2);color:#D45A5A}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
 </head>
@@ -145,13 +169,13 @@
     <a href="../../mp.html#methodes" class="course__back">&larr; Retour aux methodes MP</a>
 
     <div class="course__meta">
-      <span class="course__badge">MP -- Methodes CCINP</span>
+      <span class="course__badge">MP -- Methodes Monier Ch.5</span>
     </div>
 
     <h1 class="course__title">Matrices & bilineaire</h1>
 
     <p class="course__intro">
-      Fiche de methodes avec exercices types CCINP : critere de Sylvester, reduction de formes quadratiques par Gauss, matrices de rang 1, racine carree de matrice SDP et decomposition polaire. Chaque methode est accompagnee d'un exercice d'annale ou de style concours.
+      Fiche de methodes au format Monier : formes bilineaires symetriques, formes quadratiques, critere de Sylvester, reduction de Gauss, matrices de rang 1, racine carree d'une matrice SDP et decomposition polaire. Chaque methode est illustree par un exemple detaille, suivie d'un Vrai ou Faux et d'exercices entierement corriges.
     </p>
 
     <nav class="course__toc">
@@ -162,8 +186,14 @@
         <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Matrices de rang 1</a></li>
         <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Racine carree d'une matrice SDP</a></li>
         <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Decomposition polaire</a></li>
+        <li class="course__toc-item"><a href="#vf"><span class="course__toc-num">VF.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#exos"><span class="course__toc-num">Ex.</span> Exercices corriges</a></li>
       </ol>
     </nav>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--                  PARTIE 1 : METHODES                  -->
+    <!-- ══════════════════════════════════════════════════════ -->
 
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
@@ -171,24 +201,24 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Pour determiner si une matrice symetrique reelle \(A \in \mathcal{S}_n(\mathbb{R})\) est <strong>definie positive</strong> sans calculer ses valeurs propres.</p>
         <ol>
-          <li><strong>Enonce :</strong> une matrice symetrique reelle \(A\) est <strong>symetrique definie positive (SDP)</strong> si et seulement si tous ses mineurs principaux dominants sont strictement positifs.</li>
-          <li>Les mineurs principaux dominants sont \(\Delta_1 = a_{11}\), \(\Delta_2 = \det\begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22}\end{pmatrix}\), ..., \(\Delta_n = \det(A)\).</li>
-          <li>Calculer \(\Delta_1, \Delta_2, \ldots, \Delta_n\) successivement.</li>
-          <li>Si tous sont \(> 0\), alors \(A\) est SDP. Si l'un est \(\leq 0\), \(A\) n'est pas SDP.</li>
+          <li>Extraire les <strong>mineurs principaux dominants</strong> : \(\Delta_k = \det(A_k)\) ou \(A_k\) est la sous-matrice formee des \(k\) premieres lignes et colonnes.</li>
+          <li>Calculer successivement \(\Delta_1 = a_{11}\), \(\Delta_2 = \det\begin{pmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{pmatrix}\), ..., \(\Delta_n = \det(A)\).</li>
+          <li><strong>Conclusion :</strong> \(A\) est SDP \(\iff\) \(\Delta_k > 0\) pour tout \(k \in \{1, \ldots, n\}\).</li>
+          <li><strong>Variante :</strong> \(A\) est definie negative \(\iff\) \((-1)^k \Delta_k > 0\) pour tout \(k\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Rappel</span>
-        <p>\(A\) est SDP si et seulement si toutes ses valeurs propres sont strictement positives, ou encore si \(\langle AX, X \rangle > 0\) pour tout \(X \neq 0\). Le critere de Sylvester evite de calculer les valeurs propres.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">CCINP 2024 M2</span>
-        <span class="block__label">Exercice -- CCINP 2024 Maths 2 (style)</span>
-        <p>Montrer que la matrice \(A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}\) est symetrique definie positive en utilisant le critere de Sylvester.</p>
-        <p><em>Indication :</em> \(\Delta_1 = 2 > 0\) et \(\Delta_2 = \det(A) = 4 - 1 = 3 > 0\). Par le critere de Sylvester, \(A\) est SDP.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Soit \(A(\alpha) = \begin{pmatrix} 2 & 1 & 0 \\ 1 & \alpha & 1 \\ 0 & 1 & 3 \end{pmatrix}\). Pour quelles valeurs de \(\alpha\) la matrice \(A(\alpha)\) est-elle SDP ?</p>
+        <ol>
+          <li>\(\Delta_1 = 2 > 0\) : toujours verifie.</li>
+          <li>\(\Delta_2 = 2\alpha - 1\). On a \(\Delta_2 > 0 \iff \alpha > \tfrac{1}{2}\).</li>
+          <li>\(\Delta_3 = \det(A(\alpha)) = 2(3\alpha - 1) - 1 \cdot 3 = 6\alpha - 5\). On a \(\Delta_3 > 0 \iff \alpha > \tfrac{5}{6}\).</li>
+          <li><strong>Conclusion :</strong> \(A(\alpha)\) est SDP si et seulement si \(\alpha > \tfrac{5}{6}\).</li>
+        </ol>
       </div>
     </section>
 
@@ -198,29 +228,33 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Reduire la forme quadratique \(q\) en somme de carres par la <strong>methode de Gauss</strong> (completion du carre).</p>
         <ol>
-          <li>Ecrire la forme quadratique \(q(x_1, \ldots, x_n)\) sous forme developpee.</li>
-          <li><strong>Etape de Gauss :</strong> s'il existe un terme en \(x_i^2\), completer le carre en regroupant tous les termes contenant \(x_i\).</li>
-          <li>Poser \(y_i = x_i + \text{(termes lineaires en les autres variables)}\) pour isoler un carre parfait.</li>
-          <li>Repeter avec les variables restantes jusqu'a obtenir \(q = \lambda_1 y_1^2 + \cdots + \lambda_r y_r^2\).</li>
-          <li>La <strong>signature</strong> est \((p, q)\) ou \(p\) est le nombre de \(\lambda_i > 0\) et \(q\) le nombre de \(\lambda_i < 0\).</li>
+          <li>Ecrire \(q(x_1, \ldots, x_n)\) sous forme developpee.</li>
+          <li>S'il existe un terme en \(x_i^2\), regrouper tous les termes contenant \(x_i\) et completer le carre : poser \(y_i = x_i + \text{(combinaison lineaire des autres variables)}\).</li>
+          <li>Remplacer et repeter avec les variables restantes.</li>
+          <li><strong>Cas sans terme carre :</strong> s'il n'y a aucun \(x_i^2\) mais un produit croise \(x_i x_j\), poser \(x_i = u + v\), \(x_j = u - v\) pour faire apparaitre \(u^2 - v^2\).</li>
+          <li>La forme finale est \(q = \lambda_1 y_1^2 + \cdots + \lambda_r y_r^2\). La <strong>signature</strong> \((p,q)\) est le nombre de coefficients positifs et negatifs.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Cas sans terme carre</span>
-        <p>Si aucun \(x_i^2\) n'apparait mais qu'il y a un produit croise \(x_i x_j\), effectuer le changement \(x_i = u + v\), \(x_j = u - v\) pour faire apparaitre \(u^2 - v^2\), puis completer le carre.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Reduire la forme quadratique \(q(x,y,z) = x^2 + 2xy + 3y^2 + 2yz + z^2\) par la methode de Gauss et determiner sa signature.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Reduire \(q(x,y,z) = 2x^2 + xy + y^2 - 2yz + 3z^2\).</p>
         <ol>
-          <li>Completer le carre en \(x\) : \(q = (x + y)^2 - y^2 + 3y^2 + 2yz + z^2 = (x+y)^2 + 2y^2 + 2yz + z^2\).</li>
-          <li>Completer le carre en \(y\) : \(2y^2 + 2yz = 2\left(y + \frac{z}{2}\right)^2 - \frac{z^2}{2}\).</li>
-          <li>Donc \(q = (x+y)^2 + 2\left(y + \frac{z}{2}\right)^2 + \frac{z^2}{2}\).</li>
-          <li>Signature : \((3, 0)\), la forme est definie positive.</li>
+          <li><strong>Etape 1 :</strong> regrouper les termes en \(x\) :
+            $$q = 2\!\left(x^2 + \frac{y}{2}\,x\right) + y^2 - 2yz + 3z^2 = 2\!\left(x + \frac{y}{4}\right)^{\!2} - \frac{y^2}{8} + y^2 - 2yz + 3z^2$$
+          </li>
+          <li>Poser \(u = x + \tfrac{y}{4}\). Il reste :
+            $$q = 2u^2 + \frac{7}{8}\,y^2 - 2yz + 3z^2$$
+          </li>
+          <li><strong>Etape 2 :</strong> completer le carre en \(y\) :
+            $$\frac{7}{8}\!\left(y^2 - \frac{16}{7}\,yz\right) = \frac{7}{8}\!\left(y - \frac{8z}{7}\right)^{\!2} - \frac{8z^2}{7}$$
+          </li>
+          <li>Poser \(v = y - \tfrac{8z}{7}\). Il reste :
+            $$q = 2u^2 + \frac{7}{8}\,v^2 + \left(3 - \frac{8}{7}\right)z^2 = 2u^2 + \frac{7}{8}\,v^2 + \frac{13}{7}\,z^2$$
+          </li>
+          <li><strong>Signature \((3,0)\)</strong> : les trois coefficients sont strictement positifs, donc \(q\) est <strong>definie positive</strong>.</li>
         </ol>
       </div>
     </section>
@@ -231,30 +265,26 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Exploiter la structure des matrices de rang 1 pour calculer spectre et puissances.</p>
         <ol>
-          <li>Une matrice \(A \in \mathcal{M}_n(\mathbb{R})\) est de <strong>rang 1</strong> si et seulement si \(A = CL\) avec \(C\) vecteur colonne non nul et \(L\) vecteur ligne non nul.</li>
-          <li><strong>Spectre :</strong> \(\mathrm{Sp}(A) = \{0, \mathrm{tr}(A)\}\). La valeur propre \(0\) est de multiplicite \(n-1\) et \(\mathrm{tr}(A)\) est de multiplicite \(1\).</li>
-          <li>\(A\) est <strong>diagonalisable</strong> si et seulement si \(\mathrm{tr}(A) \neq 0\).</li>
-          <li><strong>Puissances :</strong> \(A^2 = CLC \cdot L = (LC) \cdot A = \mathrm{tr}(A) \cdot A\) car \(LC = \mathrm{tr}(A)\) (scalaire). Par recurrence, \(A^n = (\mathrm{tr}(A))^{n-1} A\).</li>
+          <li>\(A \in \mathcal{M}_n(\mathbb{R})\) est de rang 1 \(\iff\) \(A = C \cdot L\) avec \(C\) colonne non nulle et \(L\) ligne non nulle, autrement dit \(A = u\,v^T\) avec \(u, v \in \mathbb{R}^n\).</li>
+          <li><strong>Spectre :</strong> \(\mathrm{Sp}(A) = \{0,\, \mathrm{tr}(A)\}\) avec \(\dim E_0 = n-1\) et \(\mathrm{tr}(A) = v^T u\).</li>
+          <li><strong>Diagonalisabilite :</strong> \(A\) est diagonalisable \(\iff\) \(\mathrm{tr}(A) \neq 0\).</li>
+          <li><strong>Puissances :</strong> \(A^2 = (v^T u)\,A\), donc par recurrence \(A^n = (\mathrm{tr}(A))^{n-1}\,A\) pour \(n \geq 1\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Ecriture \(A = uv^T\)</span>
-        <p>Si \(A = uv^T\) avec \(u, v \in \mathbb{R}^n\), alors \(\mathrm{tr}(A) = v^T u = \langle u, v \rangle\). On a \(A^n = (v^T u)^{n-1} A\). Le projecteur sur \(\mathrm{Vect}(u)\) parallellement a \((\mathrm{Vect}(v))^\perp\) est \(\frac{1}{v^T u} A\) si \(v^T u \neq 0\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">CCINP 2025 M2</span>
-        <span class="block__label">Exercice -- CCINP 2025 Maths 2 (style)</span>
-        <p>Soit \(u, v \in \mathbb{R}^n\) non nuls et \(A = uv^T\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Soit \(u = \begin{pmatrix}1\\2\\-1\end{pmatrix}\), \(v = \begin{pmatrix}2\\1\\1\end{pmatrix}\) et \(A = uv^T\). Calculer \(A^n\).</p>
         <ol>
-          <li>Montrer que \(\mathrm{rg}(A) = 1\).</li>
-          <li>Determiner \(\mathrm{Sp}(A)\) et les espaces propres.</li>
-          <li>Calculer \(A^n\) pour tout \(n \geq 1\).</li>
-          <li>Montrer que \(A\) est diagonalisable si et seulement si \(u^T v \neq 0\).</li>
+          <li>\(A = uv^T = \begin{pmatrix}2&1&1\\4&2&2\\-2&-1&-1\end{pmatrix}\).</li>
+          <li>\(\mathrm{tr}(A) = 2 + 2 + (-1) = 3\). Donc \(v^T u = 3\).</li>
+          <li>Par la formule : \(A^n = 3^{n-1}\,A\) pour tout \(n \geq 1\), soit :
+            $$A^n = 3^{n-1}\begin{pmatrix}2&1&1\\4&2&2\\-2&-1&-1\end{pmatrix}$$
+          </li>
+          <li>Les espaces propres sont \(E_0 = \ker(A) = (\mathrm{Vect}(v))^\perp\) (dimension 2) et \(E_3 = \mathrm{Vect}(u)\).</li>
         </ol>
-        <p><em>Indication :</em> \(\ker(A) = (\mathrm{Vect}(v))^\perp\) est de dimension \(n-1\), donc \(\mathrm{rg}(A) = 1\). La seule valeur propre non nulle est \(\mathrm{tr}(A) = v^T u\). Si \(v^T u \neq 0\), \(u\) est un vecteur propre associe et \(A\) est diagonalisable.</p>
       </div>
     </section>
 
@@ -264,27 +294,27 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Calculer l'unique racine carree SDP d'une matrice SDP \(S\).</p>
         <ol>
-          <li>Soit \(A\) une matrice SDP. Comme \(A\) est symetrique reelle, elle est diagonalisable dans une base orthonormee : \(A = PDP^T\) avec \(P\) orthogonale et \(D = \mathrm{diag}(\lambda_1, \ldots, \lambda_n)\) avec \(\lambda_i > 0\).</li>
-          <li>Definir \(\sqrt{A} = P \cdot \mathrm{diag}(\sqrt{\lambda_1}, \ldots, \sqrt{\lambda_n}) \cdot P^T\).</li>
-          <li>On verifie : \((\sqrt{A})^2 = P \cdot \mathrm{diag}(\lambda_1, \ldots, \lambda_n) \cdot P^T = A\).</li>
-          <li>\(\sqrt{A}\) est l'unique matrice SDP telle que \((\sqrt{A})^2 = A\).</li>
+          <li>Diagonaliser \(S\) en base orthonormee : \(S = PDP^T\) avec \(D = \mathrm{diag}(\lambda_1, \ldots, \lambda_n)\), \(\lambda_i > 0\) et \(P\) orthogonale.</li>
+          <li>Definir \(\sqrt{S} = P\,\mathrm{diag}(\sqrt{\lambda_1}, \ldots, \sqrt{\lambda_n})\,P^T\).</li>
+          <li>Verifier : \((\sqrt{S})^2 = P\,D\,P^T = S\) et \(\sqrt{S}\) est bien SDP (valeurs propres \(\sqrt{\lambda_i} > 0\)).</li>
+          <li>\(\sqrt{S}\) est l'<strong>unique</strong> matrice SDP verifiant \(B^2 = S\). Elle commute avec \(S\) et est symetrique.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Proprietes de \(\sqrt{A}\)</span>
-        <p>\(\sqrt{A}\) est elle-meme SDP (ses valeurs propres sont \(\sqrt{\lambda_i} > 0\)) et commute avec \(A\). De plus, \(\sqrt{A}\) est symetrique : \((\sqrt{A})^T = \sqrt{A}\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Calculer \(\sqrt{A}\) pour \(A = \begin{pmatrix} 5 & 2 \\ 2 & 2 \end{pmatrix}\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Calculer \(\sqrt{S}\) pour \(S = \begin{pmatrix}5&2\\2&2\end{pmatrix}\).</p>
         <ol>
-          <li>Calculer les valeurs propres : \(\chi_A = (5 - \lambda)(2 - \lambda) - 4 = \lambda^2 - 7\lambda + 6 = (\lambda - 1)(\lambda - 6)\). Donc \(\lambda_1 = 1\), \(\lambda_2 = 6\).</li>
-          <li>Trouver les vecteurs propres normes : \(v_1 = \frac{1}{\sqrt{5}}\begin{pmatrix} -2 \\ 1 \end{pmatrix}\), \(v_2 = \frac{1}{\sqrt{5}}\begin{pmatrix} 1 \\ 2 \end{pmatrix}\).</li>
-          <li>\(\sqrt{A} = P \cdot \mathrm{diag}(1, \sqrt{6}) \cdot P^T = \dfrac{1}{5}\begin{pmatrix} 4 + \sqrt{6} & -2 + 2\sqrt{6} \\ -2 + 2\sqrt{6} & 1 + 4\sqrt{6}\end{pmatrix}\).</li>
+          <li><strong>Valeurs propres :</strong> \(\chi_S(\lambda) = \lambda^2 - 7\lambda + 6 = (\lambda - 1)(\lambda - 6)\). Donc \(\lambda_1 = 1\), \(\lambda_2 = 6\).</li>
+          <li><strong>Vecteurs propres normes :</strong>
+            $$v_1 = \frac{1}{\sqrt{5}}\begin{pmatrix}-2\\1\end{pmatrix}, \quad v_2 = \frac{1}{\sqrt{5}}\begin{pmatrix}1\\2\end{pmatrix}$$
+          </li>
+          <li><strong>Calcul de \(\sqrt{S}\) :</strong>
+            $$\sqrt{S} = P\begin{pmatrix}1&0\\0&\sqrt{6}\end{pmatrix}P^T = \frac{1}{5}\begin{pmatrix}4+\sqrt{6} & -2+2\sqrt{6} \\ -2+2\sqrt{6} & 1+4\sqrt{6}\end{pmatrix}$$
+          </li>
+          <li><strong>Verification :</strong> \((\sqrt{S})^2 = S\). On peut verifier numeriquement : \(\sqrt{6} \approx 2{,}449\), d'ou \(\sqrt{S} \approx \begin{pmatrix}1{,}290 & 0{,}580 \\ 0{,}580 & 2{,}160\end{pmatrix}\).</li>
         </ol>
       </div>
     </section>
@@ -295,32 +325,339 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Ecrire une matrice inversible \(M \in \mathrm{GL}_n(\mathbb{R})\) sous la forme \(M = OS\) avec \(O\) orthogonale et \(S\) SDP.</p>
         <ol>
-          <li><strong>Theoreme :</strong> toute matrice \(M \in \mathrm{GL}_n(\mathbb{R})\) s'ecrit de maniere unique \(M = OS\) avec \(O \in \mathcal{O}_n(\mathbb{R})\) (matrice orthogonale) et \(S\) symetrique definie positive.</li>
-          <li>Calculer \(M^T M\) : c'est une matrice SDP.</li>
-          <li>Calculer \(S = \sqrt{M^T M}\) par la methode M4 (diagonaliser \(M^T M\) et prendre les racines des valeurs propres).</li>
-          <li>En deduire \(O = M S^{-1}\).</li>
-          <li>Verifier : \(O^T O = (MS^{-1})^T(MS^{-1}) = S^{-1}M^TMS^{-1} = S^{-1}S^2S^{-1} = I\).</li>
+          <li>Calculer \(M^T M\) : c'est une matrice SDP (car \(X^T M^T M X = \|MX\|^2 > 0\) pour \(X \neq 0\)).</li>
+          <li>Calculer \(S = \sqrt{M^T M}\) par la methode M4.</li>
+          <li>En deduire \(O = M\,S^{-1}\).</li>
+          <li><strong>Verification :</strong> \(O^T O = S^{-1}M^T M\,S^{-1} = S^{-1}S^2 S^{-1} = I_n\), donc \(O \in \mathcal{O}_n(\mathbb{R})\).</li>
+          <li><strong>Unicite :</strong> si \(M = O_1 S_1 = O_2 S_2\), alors \(S_1^2 = S_2^2 = M^T M\), d'ou \(S_1 = S_2\) par unicite de la racine carree SDP.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Analogie</span>
-        <p>La decomposition polaire est l'analogue matriciel de l'ecriture d'un complexe \(z = e^{i\theta} r\) avec \(r > 0\). Ici \(O\) joue le role de la rotation \(e^{i\theta}\) et \(S\) celui du module \(r\) (dilatation).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Determiner la decomposition polaire de \(M = \begin{pmatrix}2&1\\0&1\end{pmatrix}\).</p>
+        <ol>
+          <li>\(M^T M = \begin{pmatrix}4&2\\2&2\end{pmatrix}\).</li>
+          <li><strong>Valeurs propres de \(M^T M\) :</strong> \(\chi = \lambda^2 - 6\lambda + 4\), donc \(\lambda_{1,2} = 3 \pm \sqrt{5}\).</li>
+          <li><strong>Vecteurs propres normes :</strong> apres calcul, on pose \(P\) la matrice de passage orthogonale et :
+            $$S = \sqrt{M^T M} = P\,\mathrm{diag}\!\left(\sqrt{3+\sqrt{5}},\, \sqrt{3-\sqrt{5}}\right)P^T$$
+          </li>
+          <li><strong>Methode alternative :</strong> on cherche \(S = \begin{pmatrix}a&b\\b&c\end{pmatrix}\) SDP telle que \(S^2 = M^T M\). On resout le systeme :
+            $$a^2 + b^2 = 4, \quad ab + bc = 2, \quad b^2 + c^2 = 2$$
+            Avec \(\mathrm{tr}(S) = a + c = \sqrt{\mathrm{tr}(M^T M) + 2\sqrt{\det(M^T M)}} = \sqrt{6 + 2\cdot 2} = \sqrt{10}\) et \(\det(S) = \sqrt{\det(M^T M)} = 2\). On obtient :
+            $$S = \frac{1}{\sqrt{10}}\begin{pmatrix}3+\frac{1}{\sqrt{5}} & 1 \\ 1 & 1+\frac{3}{\sqrt{5}}\end{pmatrix}$$
+          </li>
+          <li>\(O = MS^{-1}\). On verifie \(\det(O) = \dfrac{\det(M)}{\det(S)} = \dfrac{2}{2} = 1\), donc \(O \in \mathrm{SO}_2(\mathbb{R})\) est une rotation.</li>
+        </ol>
       </div>
+    </section>
 
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--                PARTIE 2 : VRAI OU FAUX               -->
+    <!-- ══════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="vf">
+      <h2 class="course__section-title"><span class="course__section-num">VF.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse et justifier.</p>
+
+      <div class="vf-grid">
+
+        <div class="vf-item">
+          <p class="vf-item__q">1. Si \(A \in \mathcal{S}_n(\mathbb{R})\) a tous ses coefficients diagonaux strictement positifs, alors \(A\) est SDP.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--f">Faux</span> Contre-exemple : \(A = \begin{pmatrix}1&2\\2&1\end{pmatrix}\) a des coefficients diagonaux positifs mais \(\det(A) = -3 < 0\), donc \(A\) n'est pas SDP.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">2. Toute matrice symetrique reelle admet une decomposition en forme quadratique de signature unique.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> C'est la loi d'inertie de Sylvester : la signature \((p, q)\) est un invariant, independant de la base choisie pour la reduction.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">3. Si \(A\) est de rang 1, alors \(A^2 = \mathrm{tr}(A) \cdot A\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> Si \(A = uv^T\), alors \(A^2 = u(v^T u)v^T = (v^Tu)\,A = \mathrm{tr}(A)\,A\).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">4. Toute matrice de rang 1 est diagonalisable.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--f">Faux</span> \(A\) de rang 1 est diagonalisable ssi \(\mathrm{tr}(A) \neq 0\). Contre-exemple : \(A = \begin{pmatrix}0&1\\0&0\end{pmatrix}\) est de rang 1 avec \(\mathrm{tr}(A) = 0\) et n'est pas diagonalisable (nilpotente non nulle).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">5. La racine carree d'une matrice SDP est unique.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> Il existe une unique matrice SDP \(B\) telle que \(B^2 = S\). Attention : il peut exister d'autres matrices (non SDP) dont le carre vaut \(S\), mais la racine carree SDP est unique.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">6. Si \(A\) et \(B\) sont SDP, alors \(AB\) est SDP.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--f">Faux</span> Le produit de deux matrices SDP n'est en general meme pas symetrique. \(AB\) est symetrique ssi \(A\) et \(B\) commutent. En revanche, \(AB\) a des valeurs propres reelles strictement positives.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">7. La decomposition polaire \(M = OS\) est valable pour toute \(M \in \mathcal{M}_n(\mathbb{R})\).</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--f">Faux</span> Sous la forme \(M = OS\) avec \(S\) SDP, il faut \(M\) inversible. Pour \(M\) quelconque, on a \(M = OS\) avec \(S\) symetrique positive (non necessairement definie), mais \(O\) n'est plus unique.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">8. Si \(q\) est une forme quadratique de signature \((n, 0)\) sur \(\mathbb{R}^n\), alors \(q\) definit un produit scalaire.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> Signature \((n,0)\) signifie que la forme bilineaire associee \(\varphi\) verifie \(\varphi(x,x) > 0\) pour tout \(x \neq 0\), ce qui est la definition d'un produit scalaire (avec symetrie et bilinearite).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">9. Le critere de Sylvester s'applique aussi aux matrices hermitiennes complexes.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> Le critere de Sylvester se generalise : une matrice hermitienne \(H\) est definie positive ssi tous ses mineurs principaux dominants sont reels strictement positifs.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vf-item">
+          <p class="vf-item__q">10. Si \(\mathrm{tr}(A) > 0\) et \(\det(A) > 0\), alors \(A \in \mathcal{S}_2(\mathbb{R})\) est SDP.</p>
+          <div class="deepen">
+            <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <div class="deepen__content">
+              <p class="vf-item__a"><span class="vf-item__tag vf-item__tag--v">Vrai</span> Pour \(A \in \mathcal{S}_2(\mathbb{R})\), les valeurs propres verifient \(\lambda_1 + \lambda_2 = \mathrm{tr}(A) > 0\) et \(\lambda_1 \lambda_2 = \det(A) > 0\), donc \(\lambda_1, \lambda_2 > 0\).</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!--           PARTIE 3 : EXERCICES CORRIGES               -->
+    <!-- ══════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="exos">
+      <h2 class="course__section-title"><span class="course__section-num">Ex.</span> Exercices corriges</h2>
+
+      <!-- ── Exercice 1 ── -->
       <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Determiner la decomposition polaire de \(M = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}\).</p>
+        <span class="block__label">Exercice 1 -- Critere de Sylvester parametrique</span>
+        <p>Soit \(A = \begin{pmatrix} a & 1 & 1 \\ 1 & a & 1 \\ 1 & 1 & a \end{pmatrix}\) avec \(a \in \mathbb{R}\).</p>
         <ol>
-          <li>Calculer \(M^T M = \begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}\).</li>
-          <li>Valeurs propres de \(M^T M\) : \(\chi = \lambda^2 - 3\lambda + 1\), donc \(\lambda_{1,2} = \dfrac{3 \pm \sqrt{5}}{2}\).</li>
-          <li>Calculer \(S = \sqrt{M^T M}\) en diagonalisant dans une BON et en prenant les racines des valeurs propres.</li>
-          <li>En deduire \(O = M S^{-1}\) et verifier que \(O\) est orthogonale (\(\det(O) = \pm 1\)).</li>
+          <li>Determiner les valeurs de \(a\) pour lesquelles \(A\) est SDP.</li>
+          <li>Determiner la signature de la forme quadratique associee pour \(a = 0\).</li>
         </ol>
-        <p><em>Indication :</em> on peut aussi utiliser la formule directe : si \(S = \begin{pmatrix} a & b \\ b & c \end{pmatrix}\) verifie \(S^2 = M^T M\), resoudre le systeme.</p>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Calculons les mineurs principaux dominants.</p>
+            <p>\(\Delta_1 = a\). On a \(\Delta_1 > 0 \iff a > 0\).</p>
+            <p>\(\Delta_2 = a^2 - 1\). On a \(\Delta_2 > 0 \iff a > 1\) (puisqu'on a deja \(a > 0\)).</p>
+            <p>\(\Delta_3 = \det(A)\). En developpant : \(\det(A) = a(a^2-1) - (a-1) + (1-a) = a^3 - 3a + 2 = (a-1)^2(a+2)\).</p>
+            <p>On a \(\Delta_3 > 0 \iff (a-1)^2(a+2) > 0\). Puisqu'on a deja \(a > 1\), cela est automatiquement verifie.</p>
+            <p><strong>Conclusion :</strong> \(A\) est SDP \(\iff a > 1\).</p>
+            <p><strong>2.</strong> Pour \(a = 0\) : \(A = \begin{pmatrix}0&1&1\\1&0&1\\1&1&0\end{pmatrix}\). Les valeurs propres sont \(2\) (vecteur propre \((1,1,1)^T\)) et \(-1\) (double, espace propre orthogonal a \((1,1,1)^T\)). La signature est donc \((1, 2)\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Exercice 2 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 2 -- Reduction de Gauss</span>
+        <p>Soit \(q(x,y,z) = x^2 + 4xy + 5y^2 + 2xz + 6yz + 5z^2\).</p>
+        <ol>
+          <li>Reduire \(q\) par la methode de Gauss.</li>
+          <li>En deduire la signature et la nature de \(q\).</li>
+          <li>Donner la matrice de passage du changement de variables.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On regroupe les termes en \(x\) :</p>
+            <div class="math-display">$$q = (x + 2y + z)^2 - 4y^2 - z^2 - 4yz + 5y^2 + 6yz + 5z^2 = (x + 2y + z)^2 + y^2 + 2yz + 4z^2$$</div>
+            <p>Posons \(u = x + 2y + z\). Il reste \(y^2 + 2yz + 4z^2\).</p>
+            <p>On complete le carre en \(y\) : \(y^2 + 2yz = (y + z)^2 - z^2\).</p>
+            <p>Posons \(v = y + z\). On obtient :</p>
+            <div class="math-display">$$q = u^2 + v^2 + 3z^2$$</div>
+            <p><strong>2.</strong> Signature \((3, 0)\) : la forme quadratique est <strong>definie positive</strong>.</p>
+            <p><strong>3.</strong> Le changement de variables est \(u = x + 2y + z\), \(v = y + z\), \(w = z\), soit en matrice :
+            $$\begin{pmatrix}u\\v\\w\end{pmatrix} = \begin{pmatrix}1&2&1\\0&1&1\\0&0&1\end{pmatrix}\begin{pmatrix}x\\y\\z\end{pmatrix}$$
+            La matrice de passage est \(P = \begin{pmatrix}1&2&1\\0&1&1\\0&0&1\end{pmatrix}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Exercice 3 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 3 -- Puissances d'une matrice de rang 1</span>
+        <p>Soit \(A = \begin{pmatrix}1&-1&2\\-2&2&-4\\3&-3&6\end{pmatrix}\).</p>
+        <ol>
+          <li>Montrer que \(A\) est de rang 1 et l'ecrire sous la forme \(uv^T\).</li>
+          <li>Calculer \(A^n\) pour tout \(n \geq 1\).</li>
+          <li>En deduire \(e^{tA}\) pour \(t \in \mathbb{R}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Les lignes 2 et 3 sont proportionnelles a la ligne 1 (facteurs \(-2\) et \(3\)). Donc \(\mathrm{rg}(A) = 1\).</p>
+            <p>On ecrit \(A = uv^T\) avec \(u = \begin{pmatrix}1\\-2\\3\end{pmatrix}\) et \(v = \begin{pmatrix}1\\-1\\2\end{pmatrix}\).</p>
+            <p><strong>2.</strong> \(\mathrm{tr}(A) = 1 + 2 + 6 = 9\). On verifie : \(v^T u = 1 \cdot 1 + (-1)(-2) + 2 \cdot 3 = 9\). Par la formule des matrices de rang 1 :</p>
+            <div class="math-display">$$A^n = 9^{n-1}\,A = 9^{n-1}\begin{pmatrix}1&-1&2\\-2&2&-4\\3&-3&6\end{pmatrix}$$</div>
+            <p><strong>3.</strong> L'exponentielle de matrice :
+            $$e^{tA} = I + \sum_{n=1}^{+\infty}\frac{t^n}{n!}\,A^n = I + \sum_{n=1}^{+\infty}\frac{t^n \cdot 9^{n-1}}{n!}\,A = I + \frac{1}{9}\left(\sum_{n=1}^{+\infty}\frac{(9t)^n}{n!}\right)A = I + \frac{e^{9t}-1}{9}\,A$$</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Exercice 4 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 4 -- Racine carree et inegalite</span>
+        <p>Soient \(A, B \in \mathcal{S}_n^{++}(\mathbb{R})\) (matrices SDP).</p>
+        <ol>
+          <li>Montrer que \(A + B\) est SDP et calculer \(\sqrt{A + B}\) pour \(A = \begin{pmatrix}2&1\\1&1\end{pmatrix}\) et \(B = \begin{pmatrix}1&0\\0&2\end{pmatrix}\).</li>
+          <li>Montrer que \(\det(\sqrt{A} + \sqrt{B})^2 \geq \det(A + B)\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(A + B\) est SDP car pour \(X \neq 0\), \(X^T(A+B)X = X^TAX + X^TBX > 0\).</p>
+            <p>Calcul : \(A + B = \begin{pmatrix}3&1\\1&3\end{pmatrix}\). Valeurs propres : \(\lambda_1 = 2\), \(\lambda_2 = 4\).</p>
+            <p>Vecteurs propres normes : \(v_1 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix}\), \(v_2 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix}\).</p>
+            <div class="math-display">$$\sqrt{A+B} = P\begin{pmatrix}\sqrt{2}&0\\0&2\end{pmatrix}P^T = \frac{1}{2}\begin{pmatrix}\sqrt{2}+2 & -\sqrt{2}+2 \\ -\sqrt{2}+2 & \sqrt{2}+2\end{pmatrix}$$</div>
+            <p><strong>2.</strong> Notons \(C = \sqrt{A}\) et \(D = \sqrt{B}\). On veut montrer \(\det(C+D)^2 \geq \det(C^2 + D^2)\).</p>
+            <p>Par l'inegalite arithmetico-geometrique matricielle, pour \(C, D\) SDP, on a \(\det(C+D) \geq \det(C) + \det(D)\) (inegalite de Minkowski pour les determinants). Alors :</p>
+            <div class="math-display">$$\det(C+D)^2 \geq (\det(C) + \det(D))^2 \geq \det(C)^2 + \det(D)^2 \geq \det(C^2 + D^2)$$</div>
+            <p>La derniere inegalite vient de \(\det(C^2+D^2) \leq \det(C^2) + \det(D^2)\) pour des matrices SDP de taille 2 (par concavite de \(X \mapsto \det(X)^{1/n}\) sur \(\mathcal{S}_n^+\)).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Exercice 5 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 5 -- Decomposition polaire explicite</span>
+        <p>Soit \(M = \begin{pmatrix}1&1\\-1&1\end{pmatrix}\).</p>
+        <ol>
+          <li>Calculer \(M^T M\) et ses valeurs propres.</li>
+          <li>Determiner \(S = \sqrt{M^T M}\).</li>
+          <li>En deduire \(O = MS^{-1}\) et verifier que \(O \in \mathrm{SO}_2(\mathbb{R})\).</li>
+          <li>Identifier geometriquement \(O\) et \(S\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(M^T M = \begin{pmatrix}1&-1\\1&1\end{pmatrix}\begin{pmatrix}1&1\\-1&1\end{pmatrix} = \begin{pmatrix}2&0\\0&2\end{pmatrix} = 2I_2\).</p>
+            <p>Valeurs propres : \(\lambda_1 = \lambda_2 = 2\).</p>
+            <p><strong>2.</strong> \(S = \sqrt{2I_2} = \sqrt{2}\,I_2\).</p>
+            <p><strong>3.</strong> \(O = MS^{-1} = \frac{1}{\sqrt{2}}M = \frac{1}{\sqrt{2}}\begin{pmatrix}1&1\\-1&1\end{pmatrix} = \begin{pmatrix}\cos(-\pi/4)&-\sin(-\pi/4)\\\sin(-\pi/4)&\cos(-\pi/4)\end{pmatrix}\).</p>
+            <p>Verification : \(O^T O = \frac{1}{2}M^T M = I_2\) et \(\det(O) = \frac{1}{2}(1+1) = 1\). Donc \(O \in \mathrm{SO}_2(\mathbb{R})\).</p>
+            <p><strong>4.</strong> Geometriquement : \(S = \sqrt{2}\,I_2\) est une homothetie de rapport \(\sqrt{2}\) et \(O\) est la rotation d'angle \(-\pi/4\). Donc \(M\) est la composee d'une homothetie et d'une rotation, ce qui correspond a la multiplication par le complexe \(1 - i = \sqrt{2}\,e^{-i\pi/4}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Exercice 6 ── -->
+      <div class="block block--annale">
+        <span class="block__label">Exercice 6 -- Forme quadratique et extrema</span>
+        <p>Soit \(q : \mathbb{R}^3 \to \mathbb{R}\) definie par \(q(x,y,z) = x^2 + 2y^2 + 3z^2 + 2xy - 2xz\).</p>
+        <ol>
+          <li>Ecrire la matrice \(A\) de \(q\) dans la base canonique.</li>
+          <li>Appliquer le critere de Sylvester pour determiner si \(q\) est definie positive.</li>
+          <li>Reduire \(q\) par Gauss et verifier la coherence avec la question 2.</li>
+          <li>Application : montrer que \(f(x,y,z) = q(x,y,z) - 2x + 4y - 6z\) admet un minimum global et le calculer.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> La matrice de \(q\) est :
+            $$A = \begin{pmatrix}1&1&-1\\1&2&0\\-1&0&3\end{pmatrix}$$
+            (les coefficients hors diagonale sont les demi-coefficients des produits croises).</p>
+            <p><strong>2.</strong> Mineurs principaux dominants :</p>
+            <p>\(\Delta_1 = 1 > 0\).</p>
+            <p>\(\Delta_2 = 1 \cdot 2 - 1 = 1 > 0\).</p>
+            <p>\(\Delta_3 = \det(A) = 1(6-0) - 1(3-0) + (-1)(0+2) = 6 - 3 - 2 = 1 > 0\).</p>
+            <p>Par le critere de Sylvester, \(A\) est SDP, donc \(q\) est definie positive.</p>
+            <p><strong>3.</strong> Reduction de Gauss :</p>
+            <p>\(q = (x + y - z)^2 - y^2 + 2yz - z^2 + 2y^2 + 3z^2 = (x+y-z)^2 + y^2 + 2yz + 2z^2\).</p>
+            <p>\(= (x+y-z)^2 + (y+z)^2 + z^2\).</p>
+            <p>Avec \(u = x+y-z\), \(v = y+z\), \(w = z\) : \(q = u^2 + v^2 + w^2\). Signature \((3,0)\), coherent avec SDP.</p>
+            <p><strong>4.</strong> Comme \(q\) est definie positive, \(f(X) = q(X) + L(X)\) (avec \(L\) lineaire) admet un minimum global au point \(X_0\) tel que \(\nabla f(X_0) = 0\), i.e. \(2AX_0 + \begin{pmatrix}-2\\4\\-6\end{pmatrix} = 0\), soit \(X_0 = -\frac{1}{2}A^{-1}\begin{pmatrix}-2\\4\\-6\end{pmatrix}\).</p>
+            <p>On calcule \(A^{-1}\) (par la comatrice ou par Gauss) :
+            $$A^{-1} = \begin{pmatrix}6&-3&2\\-3&2&-1\\2&-1&1\end{pmatrix}$$</p>
+            <p>Donc \(X_0 = -\frac{1}{2}\begin{pmatrix}6&-3&2\\-3&2&-1\\2&-1&1\end{pmatrix}\begin{pmatrix}-2\\4\\-6\end{pmatrix} = -\frac{1}{2}\begin{pmatrix}-36\\20\\-14\end{pmatrix} = \begin{pmatrix}18\\-10\\7\end{pmatrix}\).</p>
+            <p>Le minimum vaut \(f(X_0) = q(X_0) - 2(18) + 4(-10) - 6(7)\). En utilisant \(f(X_0) = -\frac{1}{4}L^T A^{-1}L\) ou \(L = (-2, 4, -6)^T\) :</p>
+            <div class="math-display">$$f(X_0) = -\frac{1}{4}(-2, 4, -6)\begin{pmatrix}6&-3&2\\-3&2&-1\\2&-1&1\end{pmatrix}\begin{pmatrix}-2\\4\\-6\end{pmatrix} = -\frac{1}{4}(-2,4,-6)\begin{pmatrix}-36\\20\\-14\end{pmatrix}$$</div>
+            <div class="math-display">$$= -\frac{1}{4}(72 + 80 + 84) = -\frac{236}{4} = -59$$</div>
+            <p>Le minimum global de \(f\) est \(\boxed{-59}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
@@ -386,6 +723,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

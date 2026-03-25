@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -145,116 +164,64 @@
     <a href="../../mp.html#methodes" class="course__back">&larr; Retour aux methodes MP</a>
 
     <div class="course__meta">
-      <span class="course__badge">MP -- Methodes CCINP</span>
+      <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 11</span>
     </div>
 
     <h1 class="course__title">Series entieres & EDL</h1>
 
     <p class="course__intro">
-      Fiche de methodes avec exercices types CCINP : rayon de convergence, developpement en serie entiere, resolution d'EDL par series entieres, somme de series et theoreme d'Abel radial. Chaque methode est accompagnee d'un exercice d'annale ou de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et sept exercices corriges inspires du chapitre 11.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Calculer le rayon de convergence \(R\)</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Obtenir un DSE par operations</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Resoudre une EDL par series entieres</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Somme d'une serie entiere</a></li>
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Rayon de convergence (d'Alembert, comparaison)</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Somme d'une serie entiere (deriver/integrer)</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> DSE par operations</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Resoudre une EDL par series entieres</a></li>
         <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Theoreme d'Abel radial</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
+
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Calculer le rayon de convergence \(R\)</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Rayon de convergence (d'Alembert, comparaison)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
           <li><strong>Regle de d'Alembert :</strong> calculer \(\displaystyle L = \lim_{n \to +\infty} \left| \frac{a_{n+1}}{a_n} \right|\). Alors \(R = \dfrac{1}{L}\) (avec \(R = +\infty\) si \(L = 0\) et \(R = 0\) si \(L = +\infty\)).</li>
-          <li><strong>Regle de Hadamard :</strong> \(\displaystyle \frac{1}{R} = \limsup_{n \to +\infty} |a_n|^{1/n}\).</li>
-          <li><strong>Par comparaison :</strong> si \(|a_n| \sim |b_n|\) ou \(a_n = O(b_n)\), comparer avec une serie de rayon connu.</li>
-          <li>Etudier la convergence aux bornes \(x = \pm R\) separement (series numeriques).</li>
+          <li><strong>Regle de Hadamard :</strong> \(\displaystyle \frac{1}{R} = \limsup_{n \to +\infty} |a_n|^{1/n}\). Utile quand \(a_n\) est de la forme \(f(n)^n\).</li>
+          <li><strong>Par comparaison :</strong> si \(|a_n| \sim |b_n|\), les deux series entieres ont meme rayon. Si \(a_n = O(b_n)\), alors \(R_a \geq R_b\).</li>
+          <li>Etudier la convergence aux bornes \(x = \pm R\) separement (revenir a des series numeriques).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>La regle de d'Alembert est la plus rapide quand \(a_n\) fait intervenir des factorielles ou des puissances. La regle de Hadamard est utile quand \(a_n = f(n)^n\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Determiner le rayon de convergence de la serie entiere \(\displaystyle \sum_{n \geq 1} \frac{n! \, x^n}{n^n}\).</p>
-        <p><em>Indication :</em> appliquer la regle de d'Alembert. On calcule \(\left|\dfrac{a_{n+1}}{a_n}\right| = \dfrac{(n+1)!}{(n+1)^{n+1}} \cdot \dfrac{n^n}{n!} = \left(\dfrac{n}{n+1}\right)^n \to e^{-1}\). Donc \(R = e\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Determiner le rayon de convergence de \(\displaystyle \sum_{n \geq 0} \frac{n^2}{3^n} x^n\).</strong></p>
+        <p><em>Resolution.</em> Ici \(a_n = \dfrac{n^2}{3^n}\). Appliquons d'Alembert :</p>
+        <div class="math-display">$$\left|\frac{a_{n+1}}{a_n}\right| = \frac{(n+1)^2}{3^{n+1}} \cdot \frac{3^n}{n^2} = \frac{1}{3}\left(\frac{n+1}{n}\right)^2 \xrightarrow[n\to+\infty]{} \frac{1}{3}$$</div>
+        <p>Donc \(R = 3\). Aux bornes : pour \(x = 3\), \(a_n \cdot 3^n = n^2 \to +\infty\), donc divergence grossiere. Pour \(x = -3\), \(a_n(-3)^n = (-1)^n n^2\) ne tend pas vers \(0\), donc divergence. Le domaine de convergence est \(]-3, 3[\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Obtenir un DSE par operations</h2>
-
-      <div class="block block--method">
-        <span class="block__label">Methode</span>
-        <ol>
-          <li><strong>Derivation terme a terme :</strong> si \(f(x) = \sum a_n x^n\) pour \(|x| < R\), alors \(f'(x) = \sum n a_n x^{n-1}\) avec le meme rayon \(R\).</li>
-          <li><strong>Integration terme a terme :</strong> \(\displaystyle \int_0^x f(t)\,dt = \sum \frac{a_n}{n+1} x^{n+1}\) avec le meme rayon \(R\).</li>
-          <li><strong>Substitution :</strong> remplacer \(x\) par \(g(x)\) dans un DSE connu (ex : \(x^2\), \(-x\), etc.) en verifiant que \(|g(x)| < R\).</li>
-          <li><strong>Produit de Cauchy :</strong> si \(f(x) = \sum a_n x^n\) et \(g(x) = \sum b_n x^n\), alors \(f(x)g(x) = \sum c_n x^n\) avec \(c_n = \sum_{k=0}^n a_k b_{n-k}\).</li>
-        </ol>
-      </div>
-
-      <div class="block block--remark">
-        <span class="block__label">DSE de reference</span>
-        <p>Retenir : \(\dfrac{1}{1-x} = \sum_{n=0}^{+\infty} x^n\), \(e^x = \sum \dfrac{x^n}{n!}\), \(\ln(1+x) = \sum \dfrac{(-1)^{n+1}}{n} x^n\), \((1+x)^\alpha = \sum \binom{\alpha}{n} x^n\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Trouver le developpement en serie entiere de \(f(x) = \dfrac{x}{(1-x)^2}\) pour \(|x| < 1\).</p>
-        <p><em>Indication :</em> on part de \(\dfrac{1}{1-x} = \sum_{n=0}^{+\infty} x^n\). En derivant : \(\dfrac{1}{(1-x)^2} = \sum_{n=1}^{+\infty} n x^{n-1} = \sum_{n=0}^{+\infty} (n+1) x^n\). Donc \(\dfrac{x}{(1-x)^2} = \sum_{n=0}^{+\infty} (n+1) x^{n+1} = \sum_{n=1}^{+\infty} n x^n\).</p>
-      </div>
-    </section>
-
-    <!-- ═══════════════ M3 ═══════════════ -->
-    <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Resoudre une EDL par series entieres</h2>
-
-      <div class="block block--method">
-        <span class="block__label">Methode</span>
-        <ol>
-          <li>Poser \(y(x) = \displaystyle\sum_{n=0}^{+\infty} a_n x^n\) avec rayon de convergence \(R > 0\) a determiner.</li>
-          <li>Calculer \(y'(x) = \sum_{n=1}^{+\infty} n a_n x^{n-1}\) et eventuellement \(y''(x)\).</li>
-          <li>Injecter dans l'EDL et reindexer les sommes pour que toutes portent sur \(x^n\).</li>
-          <li>Identifier les coefficients : pour tout \(n\), le coefficient de \(x^n\) est nul. Cela donne une relation de recurrence sur les \((a_n)\).</li>
-          <li>Resoudre la recurrence, determiner \(R\) et reconnaitre la somme si possible.</li>
-        </ol>
-      </div>
-
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Quand l'EDL a des coefficients polynomiaux en \(x\) (comme \(y' - 2xy = 0\)), la methode des series entieres est particulierement adaptee car la multiplication par \(x\) decale simplement les indices.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP 2024</span>
-        <span class="block__label">Exercice -- Style CCINP 2024 Maths 1</span>
-        <p>Resoudre l'equation differentielle \(y' - 2xy = 0\) par developpement en serie entiere.</p>
-        <ol>
-          <li>Poser \(y = \sum a_n x^n\). Injecter dans l'EDL.</li>
-          <li>Montrer que la relation de recurrence donne \((n+1)a_{n+1} = 2a_{n-1}\) pour \(n \geq 1\) et \(a_1 = 0\).</li>
-          <li>En deduire que les coefficients d'indice impair sont nuls et que \(a_{2p} = \dfrac{a_0}{p!}\).</li>
-          <li>Conclure que \(y(x) = a_0 \displaystyle\sum_{p=0}^{+\infty} \frac{x^{2p}}{p!} = a_0 \, e^{x^2}\), de rayon \(R = +\infty\).</li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ═══════════════ M4 ═══════════════ -->
-    <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Somme d'une serie entiere</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Somme d'une serie entiere (deriver/integrer)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
@@ -262,21 +229,72 @@
           <li>Poser \(S(x) = \sum_{n=0}^{+\infty} a_n x^n\) et determiner le rayon de convergence \(R\).</li>
           <li><strong>Si \(a_n\) contient un facteur \(n\) :</strong> reconnaitre que \(\sum n x^n = x \left(\sum x^n\right)'\). Deriver ou multiplier par \(x\) pour se ramener a une serie connue.</li>
           <li><strong>Si \(a_n\) contient un facteur \(\frac{1}{n}\) :</strong> reconnaitre une primitive. Integrer la serie pour se ramener a une forme connue.</li>
-          <li>Combiner derivation et integration si necessaire (ex : \(n^2 = n(n-1) + n\)).</li>
-          <li>Evaluer la somme en forme close.</li>
+          <li>Combiner derivation et integration si necessaire. Decomposition utile : \(n^2 = n(n-1) + n\).</li>
+          <li>Evaluer la somme en forme close sur \(]-R, R[\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Decomposition utile</span>
-        <p>Pour \(n^2 x^n\), ecrire \(n^2 = n(n-1) + n\). Alors \(\sum n^2 x^n = \sum n(n-1)x^n + \sum n x^n = x^2 S''(x) + x S'(x)\) avec \(S(x) = \dfrac{1}{1-x}\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Calculer \(\displaystyle S(x) = \sum_{n=1}^{+\infty} n x^n\) pour \(|x| < 1\).</strong></p>
+        <p><em>Resolution.</em> On part de la serie geometrique \(\displaystyle \sum_{n=0}^{+\infty} x^n = \frac{1}{1-x}\) pour \(|x| < 1\).</p>
+        <p>En derivant terme a terme : \(\displaystyle \sum_{n=1}^{+\infty} n x^{n-1} = \frac{1}{(1-x)^2}\).</p>
+        <p>En multipliant par \(x\) :</p>
+        <div class="math-display">$$S(x) = \sum_{n=1}^{+\infty} n x^n = \frac{x}{(1-x)^2}$$</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ M3 ═══════════════ -->
+    <section class="course__section" id="m3">
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> DSE par operations</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <ol>
+          <li><strong>Derivation/integration :</strong> deriver ou integrer un DSE connu pour en obtenir un nouveau. Le rayon est conserve.</li>
+          <li><strong>Substitution :</strong> remplacer \(x\) par \(g(x)\) dans un DSE connu (ex : \(x^2\), \(-x\), \(2x\)) en verifiant \(|g(x)| < R\).</li>
+          <li><strong>Produit de Cauchy :</strong> \(f(x)g(x) = \sum c_n x^n\) avec \(c_n = \sum_{k=0}^n a_k b_{n-k}\). Le rayon est au moins \(\min(R_f, R_g)\).</li>
+          <li><strong>EDL satisfaite :</strong> si \(f\) verifie une EDL a coefficients polynomiaux, poser \(f = \sum a_n x^n\) et identifier les coefficients.</li>
+          <li>Toujours preciser le domaine de validite du DSE obtenu.</li>
+        </ol>
       </div>
 
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Calculer \(\displaystyle S(x) = \sum_{n=1}^{+\infty} n^2 x^n\) pour \(|x| < 1\).</p>
-        <p><em>Indication :</em> on pose \(f(x) = \sum x^n = \dfrac{1}{1-x}\). Alors \(f'(x) = \dfrac{1}{(1-x)^2}\) et \(xf'(x) = \sum n x^n = \dfrac{x}{(1-x)^2}\). En derivant a nouveau : \((xf'(x))' = \sum n^2 x^{n-1}\), donc \(\sum n^2 x^n = x(xf'(x))' = x \cdot \dfrac{1+x}{(1-x)^3} = \dfrac{x(1+x)}{(1-x)^3}\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Obtenir le DSE de \(\displaystyle f(x) = \ln\frac{1+x}{1-x}\) au voisinage de \(0\).</strong></p>
+        <p><em>Resolution.</em> On ecrit \(f(x) = \ln(1+x) - \ln(1-x)\). On connait :</p>
+        <div class="math-display">$$\ln(1+x) = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n} x^n, \qquad R = 1$$</div>
+        <p>En substituant \(-x\) a \(x\) : \(\ln(1-x) = -\sum_{n=1}^{+\infty} \frac{x^n}{n}\). Donc :</p>
+        <div class="math-display">$$f(x) = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n} x^n + \sum_{n=1}^{+\infty} \frac{x^n}{n} = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1} + 1}{n} x^n$$</div>
+        <p>Les termes pairs (\(n\) pair) s'annulent et les termes impairs valent \(\frac{2}{n}\). En posant \(n = 2p+1\) :</p>
+        <div class="math-display">$$\ln\frac{1+x}{1-x} = 2\sum_{p=0}^{+\infty} \frac{x^{2p+1}}{2p+1}, \qquad |x| < 1$$</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ M4 ═══════════════ -->
+    <section class="course__section" id="m4">
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Resoudre une EDL par series entieres</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <ol>
+          <li>Poser \(y(x) = \displaystyle\sum_{n=0}^{+\infty} a_n x^n\) avec rayon \(R > 0\) a determiner.</li>
+          <li>Calculer \(y'(x) = \sum_{n=1}^{+\infty} n a_n x^{n-1}\) et eventuellement \(y''(x)\).</li>
+          <li>Injecter dans l'EDL et reindexer les sommes pour que toutes portent sur \(x^n\).</li>
+          <li>Identifier les coefficients : pour tout \(n\), le coefficient de \(x^n\) est nul. On obtient une recurrence sur les \((a_n)\).</li>
+          <li>Resoudre la recurrence, determiner \(R\) et reconnaitre la somme si possible.</li>
+        </ol>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Resoudre \(y' - 2xy = 0\) par series entieres.</strong></p>
+        <p><em>Resolution.</em> Posons \(y = \sum a_n x^n\). Alors \(y' = \sum_{n=1}^{+\infty} n a_n x^{n-1} = \sum_{n=0}^{+\infty} (n+1) a_{n+1} x^n\).</p>
+        <p>Et \(2xy = 2\sum_{n=0}^{+\infty} a_n x^{n+1} = 2\sum_{n=1}^{+\infty} a_{n-1} x^n\).</p>
+        <p>L'equation \(y' - 2xy = 0\) donne, pour \(n = 0\) : \(a_1 = 0\), et pour \(n \geq 1\) :</p>
+        <div class="math-display">$$(n+1) a_{n+1} = 2 a_{n-1}$$</div>
+        <p>Comme \(a_1 = 0\), tous les coefficients d'indice impair sont nuls. Pour les indices pairs, posons \(n = 2p\) : \((2p+1)a_{2p+1} = 2a_{2p-1} = 0\). Pour \(n = 2p-1\) : \(2p \cdot a_{2p} = 2 a_{2p-2}\), soit \(a_{2p} = \frac{a_{2p-2}}{p}\). Par recurrence : \(a_{2p} = \frac{a_0}{p!}\).</p>
+        <div class="math-display">$$y(x) = a_0 \sum_{p=0}^{+\infty} \frac{x^{2p}}{p!} = a_0 \, e^{x^2}, \qquad R = +\infty$$</div>
       </div>
     </section>
 
@@ -288,28 +306,434 @@
         <span class="block__label">Methode</span>
         <ol>
           <li><strong>Theoreme d'Abel radial :</strong> si la serie numerique \(\sum a_n\) converge, alors la serie entiere \(\sum a_n x^n\) (de rayon \(R \geq 1\)) verifie \(\displaystyle \lim_{x \to 1^-} \sum_{n=0}^{+\infty} a_n x^n = \sum_{n=0}^{+\infty} a_n\).</li>
-          <li>On peut donc calculer la somme d'une serie numerique en l'interpretant comme la limite d'une serie entiere dont on connait la somme.</li>
-          <li>Identifier la serie entiere \(f(x) = \sum a_n x^n\) et calculer \(f(x)\) en forme close sur \(]-R, R[\).</li>
+          <li>Pour calculer la somme d'une serie numerique : l'interpreter comme la limite d'une serie entiere dont on connait la somme en forme close.</li>
+          <li>Identifier \(f(x) = \sum a_n x^n\), calculer \(f(x)\) sur \(]-1, 1[\).</li>
           <li>Passer a la limite \(x \to 1^-\) : par Abel, \(\sum a_n = \lim_{x \to 1^-} f(x)\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Attention</span>
-        <p>La reciproque est fausse : la convergence de \(f(x)\) quand \(x \to 1^-\) n'implique pas la convergence de \(\sum a_n\). Le theoreme d'Abel ne fonctionne que dans un sens.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(\displaystyle \ln 2 = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n}\).</strong></p>
+        <p><em>Resolution.</em> On sait que pour \(|x| < 1\) :</p>
+        <div class="math-display">$$\ln(1+x) = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n} x^n$$</div>
+        <p>La serie numerique \(\sum \frac{(-1)^{n+1}}{n}\) est une serie alternee dont le terme general tend vers \(0\) en decroissant : elle converge (critere de Leibniz).</p>
+        <p>Par le theoreme d'Abel radial : \(\displaystyle \lim_{x \to 1^-} \ln(1+x) = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n}\).</p>
+        <p>Or \(\lim_{x \to 1^-} \ln(1+x) = \ln 2\). Conclusion :</p>
+        <div class="math-display">$$\ln 2 = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots$$</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> Le rayon de convergence de \(\sum \frac{x^n}{n!}\) est \(+\infty\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Par d'Alembert : \(\left|\frac{a_{n+1}}{a_n}\right| = \frac{1}{n+1} \to 0\). Donc \(R = +\infty\). C'est le DSE de \(e^x\).</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> Si \(\sum a_n x^n\) a un rayon \(R\), alors \(\sum n a_n x^n\) a un rayon strictement inferieur a \(R\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>La derivation terme a terme conserve le rayon de convergence. Si \(\sum a_n x^n\) a pour rayon \(R\), alors \(\sum n a_n x^n\) a aussi pour rayon \(R\). Seul le comportement aux bornes peut changer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> La serie entiere \(\sum n! \, x^n\) a un rayon de convergence nul.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Par d'Alembert : \(\left|\frac{a_{n+1}}{a_n}\right| = n+1 \to +\infty\). Donc \(R = 0\). La serie ne converge que pour \(x = 0\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> Le produit de Cauchy de deux series entieres de rayons \(R_1\) et \(R_2\) a pour rayon \(\min(R_1, R_2)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Le rayon du produit est <em>au moins</em> \(\min(R_1, R_2)\), mais il peut etre strictement plus grand. Par exemple, \(\sum x^n\) (rayon \(1\)) multipliee par \(\sum (-1)^n x^n\) (rayon \(1\)) donne \(\frac{1}{1-x^2}\) dont le DSE a pour rayon \(1\), mais le produit de \(\sum x^n\) par \(\sum (1 - x^n)\) peut donner un rayon plus grand dans certains cas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> Si \(f(x) = \sum a_n x^n\) sur \(]-R, R[\) et \(f\) est paire, alors \(a_n = 0\) pour tout \(n\) impair.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(f\) est paire, \(f(x) = f(-x)\) pour tout \(x\). Or \(f(-x) = \sum a_n (-1)^n x^n\). Par unicite du DSE, \(a_n = (-1)^n a_n\) pour tout \(n\), ce qui impose \(a_n = 0\) pour \(n\) impair.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> La somme de la serie \(\sum_{n=0}^{+\infty} x^n\) est continue sur \([-1, 1]\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>La serie geometrique \(\sum x^n\) a pour rayon \(R = 1\). Elle diverge pour \(x = 1\) et pour \(x = -1\), donc sa somme \(\frac{1}{1-x}\) n'est meme pas definie aux bornes. La somme d'une serie entiere est \(\mathcal{C}^\infty\) sur l'intervalle ouvert \(]-R, R[\), pas sur le ferme.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> Le DSE de \(\arctan(x)\) est \(\sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} x^{2n+1}\) et son rayon vaut \(1\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>On a \(\arctan'(x) = \frac{1}{1+x^2} = \sum_{n=0}^{+\infty} (-1)^n x^{2n}\) pour \(|x| < 1\). En integrant et en utilisant \(\arctan(0) = 0\), on obtient \(\arctan(x) = \sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} x^{2n+1}\). Le rayon est bien \(1\) (celui de la serie en \(x^2\) est \(1\)).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> La reciproque du theoreme d'Abel radial est vraie : si \(\lim_{x\to 1^-} f(x)\) existe, alors \(\sum a_n\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>La reciproque est fausse en general. La serie \(\sum (-1)^n (n+1) x^n = \frac{1}{(1+x)^2}\) a pour somme \(\frac{1}{(1+x)^2}\) sur \(]-1,1[\), et \(\lim_{x\to 1^-} \frac{1}{(1+x)^2} = \frac{1}{4}\) existe, mais \(\sum (-1)^n(n+1)\) diverge. Le theoreme tauberien de Hardy-Littlewood donne des conditions supplementaires pour la reciproque.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> Si \(y\) est solution de \(y' = 2xy\) developpable en serie entiere, alors \(y\) est necessairement de la forme \(C e^{x^2}\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>L'EDL \(y' - 2xy = 0\) est lineaire du premier ordre. Sa solution generale est \(y(x) = C e^{\int 2x \, dx} = C e^{x^2}\). Par la methode des series entieres, on retrouve bien \(y(x) = a_0 \sum \frac{x^{2p}}{p!} = a_0 e^{x^2}\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> On peut appliquer le theoreme d'Abel pour calculer \(\sum_{n=1}^{+\infty} \frac{1}{n}\) en evaluant \(-\ln(1-x)\) en \(x = 1\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Le theoreme d'Abel radial suppose que la serie numerique \(\sum a_n\) <em>converge</em>. Or la serie harmonique \(\sum \frac{1}{n}\) diverge. L'hypothese de convergence n'est pas satisfaite, on ne peut pas appliquer Abel. De plus, \(-\ln(1-x) \to +\infty\) quand \(x \to 1^-\), ce qui est coherent.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
       <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Montrer que \(\displaystyle \ln 2 = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n}\) en utilisant le theoreme d'Abel radial.</p>
+        <span class="annale-badge">Monier Ch. 11</span>
+        <span class="block__label">Exercice 1 -- Rayons de convergence</span>
+        <p>Determiner le rayon de convergence des series entieres suivantes :</p>
         <ol>
-          <li>On sait que \(\ln(1+x) = \sum_{n=1}^{+\infty} \dfrac{(-1)^{n+1}}{n} x^n\) pour \(|x| < 1\).</li>
-          <li>La serie numerique \(\sum \dfrac{(-1)^{n+1}}{n}\) est une serie alternee convergente (critere de Leibniz).</li>
-          <li>Par le theoreme d'Abel radial : \(\displaystyle \lim_{x \to 1^-} \ln(1+x) = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n}\).</li>
-          <li>Or \(\lim_{x \to 1^-} \ln(1+x) = \ln 2\). Conclusion : \(\ln 2 = \sum_{n=1}^{+\infty} \dfrac{(-1)^{n+1}}{n}\).</li>
+          <li>\(\displaystyle \sum_{n \geq 1} \frac{n!}{n^n} x^n\)</li>
+          <li>\(\displaystyle \sum_{n \geq 0} \frac{(-1)^n}{(2n)!} x^{2n}\)</li>
+          <li>\(\displaystyle \sum_{n \geq 1} \frac{(\ln n)^2}{n} x^n\)</li>
         </ol>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Posons \(a_n = \frac{n!}{n^n}\). Par d'Alembert :</p>
+            <div class="math-display">$$\frac{a_{n+1}}{a_n} = \frac{(n+1)!}{(n+1)^{n+1}} \cdot \frac{n^n}{n!} = \frac{n^n}{(n+1)^n} = \left(\frac{n}{n+1}\right)^n = \left(1 - \frac{1}{n+1}\right)^n \xrightarrow[n\to+\infty]{} e^{-1}$$</div>
+            <p>Donc \(R = e\).</p>
+
+            <p><strong>2.</strong> C'est le DSE de \(\cos(x)\) en posant \(u = x^2\) : la serie en \(u\) est \(\sum \frac{(-1)^n}{(2n)!} u^n\). Par d'Alembert : \(\frac{|a_{n+1}|}{|a_n|} = \frac{(2n)!}{(2n+2)!} = \frac{1}{(2n+1)(2n+2)} \to 0\). Le rayon en \(u\) est \(+\infty\), donc le rayon en \(x\) est aussi \(+\infty\).</p>
+
+            <p><strong>3.</strong> Par Hadamard : \(|a_n|^{1/n} = \frac{(\ln n)^{2/n}}{n^{1/n}} \to \frac{1}{1} = 1\) car \((\ln n)^{2/n} \to 1\) et \(n^{1/n} \to 1\). Donc \(R = 1\). Pour l'etude aux bornes : en \(x = 1\), \(\sum \frac{(\ln n)^2}{n}\) diverge (comparaison a \(\sum \frac{1}{n}\)). En \(x = -1\), \(\sum \frac{(-1)^n (\ln n)^2}{n}\) converge par le critere de Leibniz (car \(\frac{(\ln n)^2}{n}\) decroit vers \(0\) a partir d'un certain rang).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 11</span>
+        <span class="block__label">Exercice 2 -- Sommes de series entieres</span>
+        <ol>
+          <li>Calculer \(\displaystyle S(x) = \sum_{n=0}^{+\infty} (n+1)^2 x^n\) pour \(|x| < 1\).</li>
+          <li>Calculer \(\displaystyle T(x) = \sum_{n=1}^{+\infty} \frac{x^n}{n(n+1)}\) pour \(|x| \leq 1\).</li>
+          <li>En deduire la valeur de \(\displaystyle \sum_{n=1}^{+\infty} \frac{1}{n(n+1)}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Posons \(f(x) = \frac{1}{1-x} = \sum x^n\). Alors \(f'(x) = \frac{1}{(1-x)^2} = \sum (n+1) x^n\) (decalage d'indice apres derivation).</p>
+            <p>Derivons encore : \(f''(x) = \frac{2}{(1-x)^3} = \sum (n+1)n \, x^{n-1} = \sum_{n=0}^{+\infty} (n+2)(n+1) x^n\).</p>
+            <p>On ecrit \((n+1)^2 = (n+2)(n+1) - (n+1)\), donc :</p>
+            <div class="math-display">$$S(x) = \sum (n+2)(n+1) x^n - \sum (n+1) x^n = \frac{2}{(1-x)^3} - \frac{1}{(1-x)^2} = \frac{1+x}{(1-x)^3}$$</div>
+
+            <p><strong>2.</strong> Decomposition en elements simples : \(\frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}\). Donc :</p>
+            <div class="math-display">$$T(x) = \sum_{n=1}^{+\infty} \frac{x^n}{n} - \sum_{n=1}^{+\infty} \frac{x^n}{n+1} = -\ln(1-x) - \left(\frac{1}{x}\sum_{n=1}^{+\infty} \frac{x^{n+1}}{n+1}\right)$$</div>
+            <p>Or \(\sum_{n=1}^{+\infty} \frac{x^{n+1}}{n+1} = \sum_{k=2}^{+\infty} \frac{x^k}{k} = -\ln(1-x) - x\). Donc :</p>
+            <div class="math-display">$$T(x) = -\ln(1-x) - \frac{-\ln(1-x) - x}{x} = -\ln(1-x) + \frac{\ln(1-x)}{x} + 1 = 1 + \frac{(x-1)\ln(1-x)}{x} - \ln(1-x) + \ln(1-x)$$</div>
+            <p>Simplifions : \(T(x) = 1 + \left(1 - \frac{1}{x}\right)\ln(1-x)\) pour \(x \neq 0\), et \(T(0) = 0\).</p>
+
+            <p><strong>3.</strong> Par Abel radial (la serie \(\sum \frac{1}{n(n+1)}\) converge car telescopique) :</p>
+            <div class="math-display">$$\sum_{n=1}^{+\infty} \frac{1}{n(n+1)} = T(1) = 1 + \lim_{x \to 1^-} \left(1 - \frac{1}{x}\right)\ln(1-x)$$</div>
+            <p>Or \(\left(1 - \frac{1}{x}\right)\ln(1-x) = \frac{x-1}{x}\ln(1-x) \to 0\) quand \(x \to 1^-\) (car \((x-1)\ln(1-x) \to 0\)). Donc \(\sum_{n=1}^{+\infty} \frac{1}{n(n+1)} = 1\). On retrouve le resultat classique par telescopage.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 11</span>
+        <span class="block__label">Exercice 3 -- DSE et operations</span>
+        <ol>
+          <li>Obtenir le DSE de \(\dfrac{1}{1+x^2}\) au voisinage de \(0\) et preciser le rayon.</li>
+          <li>En deduire le DSE de \(\arctan(x)\).</li>
+          <li>Par le theoreme d'Abel, en deduire la valeur de \(\displaystyle \sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1}\).</li>
+          <li>Obtenir le DSE de \(\dfrac{x}{(1+x^2)^2}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Substituons \(-x^2\) a \(x\) dans \(\frac{1}{1-x} = \sum x^n\) :</p>
+            <div class="math-display">$$\frac{1}{1+x^2} = \sum_{n=0}^{+\infty} (-1)^n x^{2n}, \qquad |x| < 1$$</div>
+            <p>Le rayon est \(1\) (condition \(|x^2| < 1\), soit \(|x| < 1\)).</p>
+
+            <p><strong>2.</strong> On integre terme a terme sur \([0, x]\) avec \(|x| < 1\) :</p>
+            <div class="math-display">$$\arctan(x) = \sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} x^{2n+1}, \qquad |x| < 1$$</div>
+            <p>Le rayon est \(1\) (conserve par integration).</p>
+
+            <p><strong>3.</strong> La serie alternee \(\sum \frac{(-1)^n}{2n+1}\) converge (Leibniz). Par Abel :</p>
+            <div class="math-display">$$\sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} = \lim_{x\to 1^-} \arctan(x) = \arctan(1) = \frac{\pi}{4}$$</div>
+            <p>C'est la formule de Leibniz-Gregory.</p>
+
+            <p><strong>4.</strong> Derivons \(\frac{1}{1+x^2} = \sum (-1)^n x^{2n}\) :</p>
+            <div class="math-display">$$\frac{-2x}{(1+x^2)^2} = \sum_{n=1}^{+\infty} (-1)^n \cdot 2n \cdot x^{2n-1}$$</div>
+            <p>Donc \(\frac{x}{(1+x^2)^2} = -\frac{1}{2} \cdot \frac{-2x}{(1+x^2)^2} = \sum_{n=1}^{+\infty} (-1)^{n+1} n \, x^{2n-1}\), soit en decalant :</p>
+            <div class="math-display">$$\frac{x}{(1+x^2)^2} = \sum_{n=0}^{+\infty} (-1)^n (n+1) x^{2n+1}, \qquad |x| < 1$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 11</span>
+        <span class="block__label">Exercice 4 -- EDL et series entieres</span>
+        <p>Soit l'equation differentielle \((1-x^2)y'' - xy' + 4y = 0\) (equation de Tchebychev d'ordre \(2\)).</p>
+        <ol>
+          <li>Chercher les solutions DSE au voisinage de \(0\) : poser \(y = \sum a_n x^n\) et etablir la relation de recurrence sur les \(a_n\).</li>
+          <li>Montrer que l'on obtient deux familles de solutions selon la parite. Determiner chacune.</li>
+          <li>Reconnaitre les solutions polynomiales et montrer que \(y_1(x) = 2x^2 - 1\) est solution.</li>
+          <li>Quel est le rayon de convergence de la serie entiere solution ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Posons \(y = \sum a_n x^n\). Alors :</p>
+            <ul>
+              <li>\(y'' = \sum_{n=2}^{+\infty} n(n-1) a_n x^{n-2} = \sum_{n=0}^{+\infty} (n+2)(n+1) a_{n+2} x^n\)</li>
+              <li>\(x^2 y'' = \sum_{n=2}^{+\infty} n(n-1) a_n x^n\)</li>
+              <li>\(xy' = \sum_{n=1}^{+\infty} n a_n x^n\)</li>
+            </ul>
+            <p>L'equation \((1-x^2)y'' - xy' + 4y = 0\) donne, pour le coefficient de \(x^n\) (\(n \geq 2\)) :</p>
+            <div class="math-display">$$(n+2)(n+1) a_{n+2} - n(n-1) a_n - n a_n + 4 a_n = 0$$</div>
+            <p>Soit \((n+2)(n+1) a_{n+2} = (n^2 - 4) a_n = (n-2)(n+2) a_n\), d'ou :</p>
+            <div class="math-display">$$a_{n+2} = \frac{(n-2)}{(n+1)} a_n, \qquad n \geq 0$$</div>
+            <p>(On verifie pour \(n=0\) : \(2a_2 + 4a_0 = 0\) donne \(a_2 = -2a_0\) ; et la formule donne \(a_2 = \frac{-2}{1} a_0 = -2a_0\), coherent. Pour \(n=1\) : \(6a_3 - a_1 + 4a_1 = 0\) n'est pas obtenu ainsi, verifions : \(6a_3 + 3a_1 = 0\) donne \(a_3 = -\frac{1}{2} a_1\). La formule donne \(a_3 = \frac{-1}{2} a_1\), coherent.)</p>
+
+            <p><strong>2.</strong> Les coefficients pairs ne dependent que de \(a_0\) et les impairs que de \(a_1\).</p>
+            <p><em>Suite paire :</em> \(a_2 = -2a_0\), \(a_4 = \frac{0}{3} a_2 = 0\). Pour \(n \geq 4\) pair, \(a_n = 0\). Donc la solution paire est le polynome \(y_{\text{pair}}(x) = a_0(1 - 2x^2)\).</p>
+            <p><em>Suite impaire :</em> \(a_3 = \frac{-1}{2} a_1\), \(a_5 = \frac{1}{4} a_3 = -\frac{1}{8} a_1\), \(a_7 = \frac{3}{6} a_5 = -\frac{1}{16} a_1\), etc. La serie impaire ne s'arrete pas.</p>
+
+            <p><strong>3.</strong> La solution \(y_1(x) = 2x^2 - 1\) est (a une constante pres) la solution paire ci-dessus avec \(a_0 = -1\). Verification directe : \(y_1' = 4x\), \(y_1'' = 4\). Donc \((1-x^2) \cdot 4 - x \cdot 4x + 4(2x^2 - 1) = 4 - 4x^2 - 4x^2 + 8x^2 - 4 = 0\). C'est le polynome de Tchebychev \(T_2(x)\).</p>
+
+            <p><strong>4.</strong> Les coefficients de l'EDL sont polynomiaux en \(x\), avec des singularites en \(x = \pm 1\) (les zeros de \(1 - x^2\)). Le rayon de convergence de la solution serie entiere est donc \(R = 1\) (distance a la singularite la plus proche). Pour la solution polynomiale, le rayon est bien sur \(+\infty\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 11</span>
+        <span class="block__label">Exercice 5 -- Application d'Abel radial</span>
+        <ol>
+          <li>Montrer que pour \(|x| < 1\) : \(\displaystyle \sum_{n=0}^{+\infty} (-1)^n x^{2n} = \frac{1}{1+x^2}\).</li>
+          <li>En integrant, obtenir \(\displaystyle \arctan(x) = \sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} x^{2n+1}\) pour \(|x| < 1\).</li>
+          <li>Justifier que l'on peut appliquer le theoreme d'Abel en \(x = 1\) et en deduire la formule de Leibniz \(\dfrac{\pi}{4} = \sum_{n=0}^{+\infty} \dfrac{(-1)^n}{2n+1}\).</li>
+          <li>De meme, montrer que \(\displaystyle \frac{\pi^2}{12} = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n^2}\) en partant du DSE de \(\mathrm{Li}_2(-x) = -\sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n^2} x^n\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> C'est la serie geometrique de raison \(-x^2\) : pour \(|x^2| < 1\), \(\sum_{n=0}^{+\infty} (-x^2)^n = \frac{1}{1-(-x^2)} = \frac{1}{1+x^2}\).</p>
+
+            <p><strong>2.</strong> On integre terme a terme sur \([0, x]\) (licite pour \(|x| < 1\), integrale d'une somme de serie entiere) :</p>
+            <div class="math-display">$$\int_0^x \frac{dt}{1+t^2} = \arctan(x) = \sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} x^{2n+1}$$</div>
+
+            <p><strong>3.</strong> La serie numerique \(\sum \frac{(-1)^n}{2n+1}\) est une serie alternee dont le terme general \(\frac{1}{2n+1}\) decroit vers \(0\). Elle converge par le critere de Leibniz. L'hypothese du theoreme d'Abel est donc satisfaite. On applique Abel :</p>
+            <div class="math-display">$$\sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} = \lim_{x \to 1^-} \arctan(x) = \arctan(1) = \frac{\pi}{4}$$</div>
+
+            <p><strong>4.</strong> On considere \(f(x) = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n^2} x^n\) pour \(|x| \leq 1\) (le rayon est \(1\) et la serie converge absolument aux bornes par comparaison a \(\sum 1/n^2\)). En fait, on peut montrer que pour \(|x| \leq 1\) :</p>
+            <div class="math-display">$$f(x) = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n^2} x^n$$</div>
+            <p>La serie numerique \(\sum \frac{(-1)^{n+1}}{n^2}\) converge (absolument meme). Par Abel (ou directement par evaluation en \(x=1\)) :</p>
+            <div class="math-display">$$f(1) = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n^2} = 1 - \frac{1}{4} + \frac{1}{9} - \frac{1}{16} + \cdots$$</div>
+            <p>Or la relation avec la fonction \(\zeta\) donne \(f(1) = \eta(2) = (1 - 2^{1-2})\zeta(2) = \frac{1}{2} \cdot \frac{\pi^2}{6} = \frac{\pi^2}{12}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 11</span>
+        <span class="block__label">Exercice 6 -- EDL d'Hermite</span>
+        <p>On considere l'equation differentielle \(y'' - 2xy' + 2ny = 0\) ou \(n \in \mathbb{N}\) est un parametre.</p>
+        <ol>
+          <li>Pour \(n = 0\), resoudre par DSE. Determiner la solution verifiant \(y(0) = 1\), \(y'(0) = 0\).</li>
+          <li>Pour \(n = 1\), determiner la solution verifiant \(y(0) = 0\), \(y'(0) = 1\).</li>
+          <li>Pour \(n\) quelconque, etablir la relation de recurrence sur les coefficients du DSE.</li>
+          <li>Montrer que l'une des deux solutions (paire ou impaire) est un polynome de degre \(n\). Calculer ce polynome pour \(n = 2, 3, 4\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Pour \(n = 0\) : \(y'' - 2xy' = 0\). Posons \(z = y'\), alors \(z' = 2xz\), EDL du premier ordre. Solution : \(z(x) = C_1 e^{x^2}\). Donc \(y(x) = C_1 \int_0^x e^{t^2} dt + C_2\). Avec \(y(0) = 1\) : \(C_2 = 1\). Avec \(y'(0) = C_1 e^0 = 0\) : \(C_1 = 0\). La solution est \(y(x) = 1\), la constante \(1\).</p>
+
+            <p><strong>2.</strong> Pour \(n = 1\) : \(y'' - 2xy' + 2y = 0\). On verifie que \(y(x) = x\) est solution : \(y'' = 0\), \(-2x \cdot 1 + 2x = 0\). Avec \(y(0) = 0\) et \(y'(0) = 1\), la solution est \(y(x) = x\).</p>
+
+            <p><strong>3.</strong> Posons \(y = \sum a_k x^k\). Alors \(y'' = \sum_{k=0}^{+\infty} (k+2)(k+1) a_{k+2} x^k\), \(xy' = \sum_{k=1}^{+\infty} k a_k x^k\). L'equation donne :</p>
+            <div class="math-display">$$(k+2)(k+1) a_{k+2} - 2k a_k + 2n a_k = 0, \qquad k \geq 0$$</div>
+            <p>Soit la recurrence :</p>
+            <div class="math-display">$$a_{k+2} = \frac{2(k - n)}{(k+2)(k+1)} a_k$$</div>
+
+            <p><strong>4.</strong> Si \(n\) est pair, la suite des \(a_k\) pairs s'arrete a \(k = n\) (car \(a_{n+2} = 0\)), et la solution paire est un polynome de degre \(n\). Si \(n\) est impair, c'est la solution impaire qui est polynomiale.</p>
+            <ul>
+              <li>\(n = 2\) : \(a_0 = 1\), \(a_2 = \frac{2(0-2)}{2} = -2\), \(a_4 = \frac{2(2-2)}{12} a_2 = 0\). Donc \(H_2(x) = 1 - 2x^2\) (a normalisation pres, \(H_2(x) = 4x^2 - 2\)).</li>
+              <li>\(n = 3\) : \(a_1 = 1\), \(a_3 = \frac{2(1-3)}{6} = -\frac{2}{3}\), \(a_5 = \frac{2(3-3)}{20} a_3 = 0\). Donc \(H_3(x) = x - \frac{2}{3}x^3\) (a normalisation pres, \(H_3(x) = 8x^3 - 12x\)).</li>
+              <li>\(n = 4\) : \(a_0 = 1\), \(a_2 = \frac{-8}{2} = -4\), \(a_4 = \frac{2(2-4)}{12}(-4) = \frac{4}{3}\), \(a_6 = 0\). Donc \(H_4(x) = 1 - 4x^2 + \frac{4}{3}x^4\) (a normalisation pres, \(H_4(x) = 16x^4 - 48x^2 + 12\)).</li>
+            </ul>
+            <p>Ce sont les polynomes d'Hermite (aux normalisations pres).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 7 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 11</span>
+        <span class="block__label">Exercice 7 -- Produit de Cauchy et exponentielle</span>
+        <ol>
+          <li>Rappeler les DSE de \(e^x\) et \(\frac{1}{1-x}\) et leurs rayons de convergence.</li>
+          <li>Calculer le produit de Cauchy des deux series et en deduire le DSE de \(\frac{e^x}{1-x}\) au voisinage de \(0\).</li>
+          <li>Montrer que les coefficients \(c_n\) verifient \(c_n = \sum_{k=0}^{n} \frac{1}{k!}\).</li>
+          <li>Etudier le rayon de convergence de la serie \(\sum c_n x^n\) et le comportement en \(x = 1\) et \(x = -1\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(e^x = \sum_{n=0}^{+\infty} \frac{x^n}{n!}\) de rayon \(+\infty\), et \(\frac{1}{1-x} = \sum_{n=0}^{+\infty} x^n\) de rayon \(1\).</p>
+
+            <p><strong>2.</strong> Le produit de Cauchy donne \(\frac{e^x}{1-x} = \sum c_n x^n\) avec :</p>
+            <div class="math-display">$$c_n = \sum_{k=0}^{n} \frac{1}{k!} \cdot 1 = \sum_{k=0}^{n} \frac{1}{k!}$$</div>
+            <p>Le rayon est au moins \(\min(+\infty, 1) = 1\).</p>
+
+            <p><strong>3.</strong> C'est exactement le calcul ci-dessus : le coefficient de \(x^n\) dans le produit de \(\sum \frac{x^k}{k!}\) par \(\sum x^j\) est \(c_n = \sum_{k=0}^{n} \frac{1}{k!}\). On remarque que \(c_n \to e\) quand \(n \to +\infty\) (ce sont les sommes partielles de la serie de l'exponentielle en \(1\)).</p>
+
+            <p><strong>4.</strong> Par Hadamard : \(|c_n|^{1/n} \to 1\) car \(c_n \to e\), une constante non nulle, et \(e^{1/n} \to 1\). Donc \(R = 1\).</p>
+            <p>En \(x = 1\) : \(c_n \to e \neq 0\), donc la serie \(\sum c_n\) diverge (divergence grossiere).</p>
+            <p>En \(x = -1\) : \(\sum (-1)^n c_n\) avec \(c_n \to e\). Le terme general ne tend pas vers \(0\) (il tend vers \(\pm e\)), donc divergence grossiere egalement.</p>
+            <p>Le domaine de convergence est \(]-1, 1[\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
@@ -375,6 +799,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

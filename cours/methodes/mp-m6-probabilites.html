@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -145,200 +164,638 @@
     <a href="../../mp.html#methodes" class="course__back">&larr; Retour aux methodes MP</a>
 
     <div class="course__meta">
-      <span class="course__badge">MP -- Methodes CCINP</span>
+      <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 15-16</span>
     </div>
 
     <h1 class="course__title">Probabilites</h1>
 
     <p class="course__intro">
-      Fiche de methodes avec exercices types CCINP : loi du max/min, esperance par transfert, fonction generatrice, inegalite de Bienayme-Tchebychev et independance. Chaque methode est accompagnee d'un exercice d'annale ou de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et sept exercices corriges inspires des chapitres 15 et 16.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Loi du max/min par la fonction de repartition</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Esperance par transfert</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Fonction generatrice</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Inegalite de Bienayme-Tchebychev</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Independance et loi conjointe</a></li>
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Probabilites totales et formule de Bayes</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Determiner la loi d'une variable aleatoire discrete</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Calculer esperance et variance (transfert)</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Fonction generatrice \(G_X(t) = E(t^X)\)</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Series et probabilites (geometrique, exponentielle)</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
+
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Loi du max/min par la fonction de repartition</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Probabilites totales et formule de Bayes</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Soit \((B_i)_{i \in I}\) un systeme complet d'evenements (partition de \(\Omega\) avec \(P(B_i) > 0\)).</p>
         <ol>
-          <li>Pour \(M = \max(X_1, \ldots, X_n)\) avec \(X_1, \ldots, X_n\) independantes :
-            $$F_M(t) = P(M \leq t) = P(X_1 \leq t) \cdots P(X_n \leq t) = \prod_{i=1}^n F_{X_i}(t)$$</li>
-          <li>Pour \(m = \min(X_1, \ldots, X_n)\) : utiliser le complementaire
-            $$P(m > t) = \prod_{i=1}^n P(X_i > t) = \prod_{i=1}^n (1 - F_{X_i}(t))$$</li>
-          <li>Deriver \(F_M\) (ou \(F_m\)) pour obtenir la densite, si elle existe.</li>
-          <li>Calculer l'esperance par \(E(M) = \int_{\mathbb{R}} t \, f_M(t) \, \mathrm{d}t\).</li>
+          <li><strong>Formule des probabilites totales :</strong> pour tout evenement \(A\),
+            $$P(A) = \sum_{i \in I} P(B_i)\, P(A \mid B_i).$$</li>
+          <li><strong>Formule de Bayes :</strong> si \(P(A) > 0\),
+            $$P(B_j \mid A) = \frac{P(B_j)\, P(A \mid B_j)}{P(A)} = \frac{P(B_j)\, P(A \mid B_j)}{\sum_{i} P(B_i)\, P(A \mid B_i)}.$$</li>
+          <li><strong>Strategie :</strong> identifier la bonne partition (souvent liee a la « cause ») puis conditionner.</li>
         </ol>
       </div>
 
-      <div class="block block--annale">
-        <span class="annale-badge">CCINP 2023</span>
-        <span class="block__label">Exercice -- CCINP 2023 Maths 2</span>
-        <p>Soient \(X\) et \(Y\) deux variables aleatoires independantes de loi uniforme sur \([0,1]\). On pose \(M = \max(X, Y)\).</p>
-        <ol>
-          <li>Determiner la fonction de repartition de \(M\).</li>
-          <li>En deduire la densite de \(M\).</li>
-          <li>Calculer \(E(M)\).</li>
-        </ol>
-        <p><em>Indication :</em> pour \(t \in [0,1]\), \(F_M(t) = P(X \leq t) P(Y \leq t) = t^2\). Donc \(f_M(t) = 2t\) sur \([0,1]\) et \(E(M) = \int_0^1 2t^2 \, \mathrm{d}t = \frac{2}{3}\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Test medical.</strong> Une maladie touche \(1\%\) de la population. Un test a une sensibilite de \(95\%\) (positif si malade) et une specificite de \(90\%\) (negatif si sain). Quelle est la probabilite d'etre malade sachant que le test est positif ?</p>
+        <p><em>Resolution.</em> Posons \(M\) = « malade » et \(T^+\) = « test positif ». On a \(P(M) = 0{,}01\), \(P(\bar{M}) = 0{,}99\), \(P(T^+ \mid M) = 0{,}95\), \(P(T^+ \mid \bar{M}) = 0{,}10\).</p>
+        <p>Probabilites totales :</p>
+        <div class="math-display">$$P(T^+) = P(M)\,P(T^+ \mid M) + P(\bar{M})\,P(T^+ \mid \bar{M}) = 0{,}01 \times 0{,}95 + 0{,}99 \times 0{,}10 = 0{,}1085$$</div>
+        <p>Formule de Bayes :</p>
+        <div class="math-display">$$P(M \mid T^+) = \frac{0{,}01 \times 0{,}95}{0{,}1085} = \frac{0{,}0095}{0{,}1085} \approx 0{,}0876$$</div>
+        <p>Malgre un test positif, la probabilite d'etre reellement malade n'est que d'environ \(8{,}8\%\). Ce resultat contre-intuitif vient de la faible prevalence de la maladie.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Esperance par transfert</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Determiner la loi d'une variable aleatoire discrete</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Cas discret :</strong> si \(X\) est une variable aleatoire discrete a valeurs dans \(E\) et \(g\) une fonction :
-            $$E(g(X)) = \sum_{x \in E} g(x) \, P(X = x)$$</li>
-          <li><strong>Cas continu :</strong> si \(X\) admet une densite \(f_X\) :
-            $$E(g(X)) = \int_{\mathbb{R}} g(x) \, f_X(x) \, \mathrm{d}x$$</li>
-          <li>Cela permet de calculer \(E(X^2)\), \(E(e^{tX})\), etc. sans determiner la loi de \(g(X)\).</li>
-          <li>Pour la variance : \(V(X) = E(X^2) - (E(X))^2\) (formule de Koenig-Huygens).</li>
+          <li>Identifier l'ensemble des valeurs prises \(X(\Omega)\).</li>
+          <li>Pour chaque \(x_k \in X(\Omega)\), calculer \(P(X = x_k)\) en decrivant l'evenement \(\{X = x_k\}\).</li>
+          <li>Verifier que \(\sum_k P(X = x_k) = 1\).</li>
+          <li>Reconnaitre eventuellement une loi usuelle (Bernoulli, binomiale, geometrique, Poisson, uniforme).</li>
         </ol>
+        <p><strong>Cas des tirages dans une urne :</strong></p>
+        <ul>
+          <li>Avec remise : \(X \sim \mathcal{B}(n, p)\) (binomiale).</li>
+          <li>Sans remise : loi hypergeometrique \(P(X = k) = \frac{\binom{a}{k}\binom{N-a}{n-k}}{\binom{N}{n}}\).</li>
+        </ul>
       </div>
 
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP 2024</span>
-        <span class="block__label">Exercice -- CCINP 2024 Maths 1 (style)</span>
-        <p>Soit \(X\) une variable aleatoire suivant une loi geometrique de parametre \(p \in \,]0,1[\), c'est-a-dire \(P(X = k) = p(1-p)^{k-1}\) pour \(k \geq 1\).</p>
-        <ol>
-          <li>Rappeler \(E(X)\).</li>
-          <li>Calculer \(E(X^2)\) par la formule de transfert.</li>
-          <li>En deduire \(V(X)\).</li>
-        </ol>
-        <p><em>Indication :</em> on a \(E(X) = \frac{1}{p}\). Pour \(E(X^2)\), on utilise \(E(X^2) = \sum_{k=1}^{+\infty} k^2 p(1-p)^{k-1}\). En posant \(q = 1-p\), on peut deriver deux fois la serie geometrique \(\sum q^k\). On trouve \(E(X^2) = \frac{2-p}{p^2}\), d'ou \(V(X) = \frac{1-p}{p^2}\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Urne.</strong> Une urne contient \(3\) boules rouges et \(7\) boules bleues. On tire \(4\) boules sans remise. Soit \(X\) le nombre de boules rouges obtenues. Determiner la loi de \(X\).</p>
+        <p><em>Resolution.</em> On a \(N = 10\), \(a = 3\), \(n = 4\). La variable \(X\) suit une loi hypergeometrique. Les valeurs possibles sont \(X(\Omega) = \{0, 1, 2, 3\}\).</p>
+        <div class="math-display">$$P(X = k) = \frac{\binom{3}{k}\binom{7}{4-k}}{\binom{10}{4}}$$</div>
+        <p>On calcule \(\binom{10}{4} = 210\) :</p>
+        <ul>
+          <li>\(P(X = 0) = \frac{\binom{3}{0}\binom{7}{4}}{210} = \frac{1 \times 35}{210} = \frac{1}{6}\)</li>
+          <li>\(P(X = 1) = \frac{\binom{3}{1}\binom{7}{3}}{210} = \frac{3 \times 35}{210} = \frac{1}{2}\)</li>
+          <li>\(P(X = 2) = \frac{\binom{3}{2}\binom{7}{2}}{210} = \frac{3 \times 21}{210} = \frac{3}{10}\)</li>
+          <li>\(P(X = 3) = \frac{\binom{3}{3}\binom{7}{1}}{210} = \frac{1 \times 7}{210} = \frac{1}{30}\)</li>
+        </ul>
+        <p>Verification : \(\frac{1}{6} + \frac{1}{2} + \frac{3}{10} + \frac{1}{30} = \frac{5 + 15 + 9 + 1}{30} = 1\). Correct.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M3 ═══════════════ -->
     <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Fonction generatrice</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Calculer esperance et variance (formule de transfert)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>La fonction generatrice de \(X\) (a valeurs dans \(\mathbb{N}\)) est :
-            $$G_X(s) = E(s^X) = \sum_{k=0}^{+\infty} s^k \, P(X = k)$$</li>
-          <li>Proprietes cles :
-            \(G_X(1) = 1\), \(G_X'(1) = E(X)\), \(G_X''(1) = E(X(X-1))\).</li>
-          <li>Donc \(V(X) = G_X''(1) + G_X'(1) - (G_X'(1))^2\).</li>
-          <li>Si \(X\) et \(Y\) sont independantes : \(G_{X+Y}(s) = G_X(s) \cdot G_Y(s)\).</li>
+          <li><strong>Esperance :</strong> si \(X(\Omega) = \{x_k\}\) et \(\sum_k |x_k|\, P(X = x_k) < +\infty\), alors
+            $$E(X) = \sum_k x_k\, P(X = x_k).$$</li>
+          <li><strong>Formule de transfert :</strong> pour toute fonction \(g\),
+            $$E(g(X)) = \sum_k g(x_k)\, P(X = x_k).$$</li>
+          <li><strong>Variance :</strong> \(V(X) = E(X^2) - E(X)^2\). On calcule \(E(X^2)\) par transfert avec \(g(x) = x^2\).</li>
+          <li><strong>Ecart-type :</strong> \(\sigma(X) = \sqrt{V(X)}\).</li>
+          <li><strong>Linearite :</strong> \(E(aX + b) = aE(X) + b\), \(V(aX + b) = a^2 V(X)\).</li>
         </ol>
       </div>
 
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP 2022</span>
-        <span class="block__label">Exercice -- CCINP 2022 Maths 1 (style)</span>
-        <p>Soit \(X \sim \mathcal{B}(n, p)\) une variable aleatoire binomiale.</p>
-        <ol>
-          <li>Calculer la fonction generatrice \(G_X(s)\).</li>
-          <li>En deduire \(E(X)\) et \(V(X)\) a l'aide de \(G_X\).</li>
-        </ol>
-        <p><em>Indication :</em> on a \(G_X(s) = \sum_{k=0}^{n} \binom{n}{k} (ps)^k (1-p)^{n-k} = (ps + 1 - p)^n\). Donc \(G_X'(s) = np(ps + 1-p)^{n-1}\), d'ou \(G_X'(1) = np = E(X)\). De meme \(G_X''(1) = n(n-1)p^2\), et \(V(X) = np(1-p)\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>De truque.</strong> Un de a 6 faces est truque : \(P(X = k) = \frac{k}{21}\) pour \(k \in \{1, \ldots, 6\}\). Calculer \(E(X)\) et \(V(X)\).</p>
+        <p><em>Resolution.</em> Verification : \(\sum_{k=1}^{6} \frac{k}{21} = \frac{21}{21} = 1\). Correct.</p>
+        <div class="math-display">$$E(X) = \sum_{k=1}^{6} k \cdot \frac{k}{21} = \frac{1}{21}\sum_{k=1}^{6} k^2 = \frac{1}{21} \cdot \frac{6 \times 7 \times 13}{6} = \frac{91}{21} = \frac{13}{3}$$</div>
+        <div class="math-display">$$E(X^2) = \sum_{k=1}^{6} k^2 \cdot \frac{k}{21} = \frac{1}{21}\sum_{k=1}^{6} k^3 = \frac{1}{21} \cdot \left(\frac{6 \times 7}{2}\right)^2 = \frac{441}{21} = 21$$</div>
+        <div class="math-display">$$V(X) = E(X^2) - E(X)^2 = 21 - \frac{169}{9} = \frac{189 - 169}{9} = \frac{20}{9}$$</div>
+        <p>L'ecart-type est \(\sigma(X) = \sqrt{20/9} = \frac{2\sqrt{5}}{3} \approx 1{,}49\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Inegalite de Bienayme-Tchebychev</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Fonction generatrice \(G_X(t) = E(t^X)\)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Soit \(X\) une variable aleatoire a valeurs dans \(\mathbb{N}\). La fonction generatrice est :</p>
+        <div class="math-display">$$G_X(t) = E(t^X) = \sum_{k=0}^{+\infty} P(X = k)\, t^k$$</div>
         <ol>
-          <li><strong>Inegalite de Markov :</strong> pour \(X \geq 0\) et \(a > 0\) :
-            $$P(X \geq a) \leq \frac{E(X)}{a}$$</li>
-          <li><strong>Inegalite de Bienayme-Tchebychev :</strong> pour tout \(a > 0\) :
-            $$P(|X - E(X)| \geq a) \leq \frac{V(X)}{a^2}$$</li>
-          <li>Application principale : la <strong>loi faible des grands nombres</strong>. Si \(X_1, \ldots, X_n\) sont i.i.d. d'esperance \(\mu\) et de variance \(\sigma^2\), et \(\bar{X}_n = \frac{1}{n}\sum X_i\), alors :
-            $$P(|\bar{X}_n - \mu| \geq \varepsilon) \leq \frac{\sigma^2}{n\varepsilon^2} \xrightarrow[n \to +\infty]{} 0$$</li>
+          <li>\(G_X\) est definie au moins sur \([-1, 1]\) et \(G_X(1) = 1\).</li>
+          <li><strong>Retrouver la loi :</strong> \(P(X = k) = \frac{G_X^{(k)}(0)}{k!}\).</li>
+          <li><strong>Esperance :</strong> \(E(X) = G_X'(1)\).</li>
+          <li><strong>Variance :</strong> \(V(X) = G_X''(1) + G_X'(1) - [G_X'(1)]^2\).</li>
+          <li><strong>Somme independante :</strong> si \(X\) et \(Y\) sont independantes, \(G_{X+Y}(t) = G_X(t) \cdot G_Y(t)\).</li>
         </ol>
+        <p><strong>Fonctions generatrices usuelles :</strong></p>
+        <ul>
+          <li>\(X \sim \mathcal{B}(n, p)\) : \(G_X(t) = (1 - p + pt)^n\).</li>
+          <li>\(X \sim \mathcal{G}(p)\) (geometrique) : \(G_X(t) = \frac{pt}{1 - (1-p)t}\).</li>
+          <li>\(X \sim \mathcal{P}(\lambda)\) : \(G_X(t) = e^{\lambda(t - 1)}\).</li>
+        </ul>
       </div>
 
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Soient \(X_1, \ldots, X_n\) des variables aleatoires independantes de loi de Bernoulli de parametre \(p\). On pose \(S_n = X_1 + \cdots + X_n\).</p>
-        <ol>
-          <li>Calculer \(E\!\left(\dfrac{S_n}{n}\right)\) et \(V\!\left(\dfrac{S_n}{n}\right)\).</li>
-          <li>En appliquant l'inegalite de Bienayme-Tchebychev, montrer que pour tout \(\varepsilon > 0\) :
-            $$P\!\left(\left|\frac{S_n}{n} - p\right| \geq \varepsilon\right) \leq \frac{p(1-p)}{n\varepsilon^2}$$</li>
-          <li>En deduire que \(\dfrac{S_n}{n}\) converge en probabilite vers \(p\).</li>
-        </ol>
-        <p><em>Indication :</em> on a \(E(S_n/n) = p\) et \(V(S_n/n) = \frac{p(1-p)}{n}\). L'inegalite de Bienayme-Tchebychev appliquee a \(S_n/n\) donne directement le resultat.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Somme de deux VA de Poisson independantes.</strong> Soient \(X \sim \mathcal{P}(\lambda)\) et \(Y \sim \mathcal{P}(\mu)\) independantes. Determiner la loi de \(S = X + Y\).</p>
+        <p><em>Resolution.</em> Par independance :</p>
+        <div class="math-display">$$G_S(t) = G_X(t) \cdot G_Y(t) = e^{\lambda(t-1)} \cdot e^{\mu(t-1)} = e^{(\lambda + \mu)(t-1)}$$</div>
+        <p>On reconnait la fonction generatrice d'une loi de Poisson de parametre \(\lambda + \mu\). Par unicite de la fonction generatrice :</p>
+        <div class="math-display">$$\boxed{S = X + Y \sim \mathcal{P}(\lambda + \mu)}$$</div>
+        <p>Ce resultat se generalise : la somme de \(n\) VA de Poisson independantes de parametres \(\lambda_1, \ldots, \lambda_n\) suit une loi \(\mathcal{P}(\lambda_1 + \cdots + \lambda_n)\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Independance et loi conjointe</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Series et probabilites (geometrique, exponentielle)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>De nombreux calculs en probabilites discretes reposent sur des sommes de series :</p>
         <ol>
-          <li>Deux variables aleatoires discretes \(X\) et \(Y\) sont <strong>independantes</strong> si et seulement si :
-            $$P(X = x,\, Y = y) = P(X = x) \cdot P(Y = y) \quad \forall\, x, y$$</li>
-          <li>Calculer les lois marginales : \(P(X = x) = \sum_{y} P(X = x, Y = y)\) et de meme pour \(Y\).</li>
-          <li>Verifier l'egalite pour <strong>tous</strong> les couples \((x, y)\). Un seul contre-exemple suffit a prouver la non-independance.</li>
-          <li>Si independantes, alors \(E(XY) = E(X) \cdot E(Y)\) et \(V(X + Y) = V(X) + V(Y)\).</li>
+          <li><strong>Serie geometrique :</strong> \(\sum_{k=0}^{+\infty} q^k = \frac{1}{1-q}\) pour \(|q| < 1\). Par derivation :
+            $$\sum_{k=1}^{+\infty} k\,q^{k-1} = \frac{1}{(1-q)^2}, \quad \sum_{k=0}^{+\infty} k\,q^{k} = \frac{q}{(1-q)^2}.$$</li>
+          <li><strong>Serie exponentielle :</strong> \(\sum_{k=0}^{+\infty} \frac{\lambda^k}{k!} = e^{\lambda}\). Utile pour la loi de Poisson :
+            $$\sum_{k=0}^{+\infty} e^{-\lambda}\frac{\lambda^k}{k!} = 1.$$</li>
+          <li><strong>Strategie :</strong> verifier la convergence absolue pour justifier les interversions (somme/derivation, somme/somme).</li>
+          <li><strong>Loi geometrique :</strong> si \(X \sim \mathcal{G}(p)\), \(P(X = k) = p(1-p)^{k-1}\) pour \(k \geq 1\). Alors \(E(X) = 1/p\) et \(V(X) = (1-p)/p^2\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Attention</span>
-        <p>La condition \(E(XY) = E(X)E(Y)\) (non-correlation) n'implique pas l'independance en general. L'independance est une condition plus forte qui porte sur tous les evenements, pas seulement les moments.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Esperance de la loi geometrique.</strong> Soit \(X \sim \mathcal{G}(p)\) avec \(0 < p \leq 1\). Calculer \(E(X)\) directement.</p>
+        <p><em>Resolution.</em> On a \(q = 1 - p\) et :</p>
+        <div class="math-display">$$E(X) = \sum_{k=1}^{+\infty} k\, p\, q^{k-1} = p \sum_{k=1}^{+\infty} k\, q^{k-1}$$</div>
+        <p>La serie derivee de la serie geometrique donne \(\sum_{k=1}^{+\infty} k\, q^{k-1} = \frac{1}{(1-q)^2} = \frac{1}{p^2}\). D'ou :</p>
+        <div class="math-display">$$\boxed{E(X) = p \cdot \frac{1}{p^2} = \frac{1}{p}}$$</div>
+        <p>De meme, pour \(E(X^2)\), on utilise \(\sum_{k=1}^{+\infty} k^2 q^{k-1} = \frac{1+q}{(1-q)^3}\), ce qui donne \(E(X^2) = \frac{1+q}{p^2} = \frac{2-p}{p^2}\), et enfin \(V(X) = \frac{2-p}{p^2} - \frac{1}{p^2} = \frac{1-p}{p^2}\).</p>
       </div>
+    </section>
 
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>On considere le couple \((X, Y)\) dont la loi conjointe est donnee par le tableau :</p>
-        <div style="overflow-x:auto;margin:var(--space-md) 0">
-          <table style="border-collapse:collapse;margin:0 auto;font-size:.85rem">
-            <tr>
-              <td style="border:1px solid var(--border);padding:8px 16px;background:var(--bg-card);font-weight:600">\(X \backslash Y\)</td>
-              <td style="border:1px solid var(--border);padding:8px 16px;background:var(--bg-card);font-weight:600;text-align:center">\(Y = 0\)</td>
-              <td style="border:1px solid var(--border);padding:8px 16px;background:var(--bg-card);font-weight:600;text-align:center">\(Y = 1\)</td>
-            </tr>
-            <tr>
-              <td style="border:1px solid var(--border);padding:8px 16px;font-weight:600">\(X = 0\)</td>
-              <td style="border:1px solid var(--border);padding:8px 16px;text-align:center">\(\frac{1}{4}\)</td>
-              <td style="border:1px solid var(--border);padding:8px 16px;text-align:center">\(\frac{1}{4}\)</td>
-            </tr>
-            <tr>
-              <td style="border:1px solid var(--border);padding:8px 16px;font-weight:600">\(X = 1\)</td>
-              <td style="border:1px solid var(--border);padding:8px 16px;text-align:center">\(\frac{1}{4}\)</td>
-              <td style="border:1px solid var(--border);padding:8px 16px;text-align:center">\(\frac{1}{4}\)</td>
-            </tr>
-          </table>
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> Si \(A\) et \(B\) sont independants, alors \(P(A \cap B) = P(A) + P(B)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>L'independance donne \(P(A \cap B) = P(A) \times P(B)\) (produit, pas somme). La formule avec la somme est celle des evenements incompatibles : \(P(A \cup B) = P(A) + P(B)\) si \(A \cap B = \emptyset\). Ne pas confondre independance et incompatibilite.</p>
+            </div>
+          </div>
         </div>
-        <ol>
-          <li>Calculer les lois marginales de \(X\) et de \(Y\).</li>
-          <li>\(X\) et \(Y\) sont-elles independantes ? Justifier.</li>
-          <li>Calculer \(\mathrm{Cov}(X, Y)\).</li>
-        </ol>
-        <p><em>Indication :</em> on a \(P(X = 0) = P(X = 1) = \frac{1}{2}\) et \(P(Y = 0) = P(Y = 1) = \frac{1}{2}\). On verifie que \(P(X = 0, Y = 0) = \frac{1}{4} = \frac{1}{2} \times \frac{1}{2} = P(X=0)P(Y=0)\), et de meme pour tous les couples. Donc \(X\) et \(Y\) sont independantes. De plus \(\mathrm{Cov}(X,Y) = 0\).</p>
       </div>
+
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> Si \(X\) suit une loi de Poisson \(\mathcal{P}(\lambda)\), alors \(E(X) = V(X) = \lambda\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est une propriete caracteristique de la loi de Poisson. On a \(E(X) = \lambda\) et \(V(X) = \lambda\). On peut le verifier par la fonction generatrice : \(G_X'(1) = \lambda\) et \(G_X''(1) + G_X'(1) - [G_X'(1)]^2 = \lambda^2 + \lambda - \lambda^2 = \lambda\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> La formule de Bayes permet de « retourner » un conditionnement : calculer \(P(B \mid A)\) a partir de \(P(A \mid B)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est exactement le role de la formule de Bayes : \(P(B \mid A) = \frac{P(B)\,P(A \mid B)}{P(A)}\). On passe de la probabilite « effet sachant cause » a la probabilite « cause sachant effet ».</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> Si \(X \sim \mathcal{B}(n, p)\), alors \(E(X) = np\) et \(V(X) = np(1-p)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(X = X_1 + \cdots + X_n\) avec les \(X_i \sim \mathcal{B}(1, p)\) independantes, alors par linearite \(E(X) = nE(X_1) = np\). Pour la variance, par independance : \(V(X) = nV(X_1) = np(1-p)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> L'esperance est toujours definie pour une variable aleatoire discrete.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>L'esperance n'est definie que si la serie \(\sum_k |x_k|\,P(X = x_k)\) converge (convergence absolue). Par exemple, si \(X\) prend la valeur \(2^k\) avec probabilite \(2^{-k}\) pour \(k \geq 1\), alors \(E(X) = \sum_{k=1}^{+\infty} 2^k \cdot 2^{-k} = \sum_{k=1}^{+\infty} 1 = +\infty\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> Si \(X\) et \(Y\) sont independantes, alors \(V(X + Y) = V(X) + V(Y)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>L'independance implique \(\text{Cov}(X, Y) = 0\), donc \(V(X + Y) = V(X) + V(Y) + 2\text{Cov}(X,Y) = V(X) + V(Y)\). Attention : cette egalite est fausse en general sans hypothese d'independance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> La fonction generatrice \(G_X\) d'une VA a valeurs dans \(\mathbb{N}\) est toujours definie sur \(\mathbb{R}\) entier.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>\(G_X(t) = \sum_{k=0}^{+\infty} P(X = k)\,t^k\) est une serie entiere de rayon de convergence \(R \geq 1\) (car \(\sum P(X=k) = 1\) converge). Mais le rayon peut etre fini. Par exemple, pour \(X \sim \mathcal{G}(p)\), \(G_X(t) = \frac{pt}{1-(1-p)t}\) n'est definie que pour \(|t| < \frac{1}{1-p}\). La fonction generatrice est toujours definie sur \([-1, 1]\), pas sur \(\mathbb{R}\) tout entier.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> Pour une loi geometrique \(\mathcal{G}(p)\), la propriete d'absence de memoire s'ecrit \(P(X > m + n \mid X > m) = P(X > n)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est la propriete d'absence de memoire de la loi geometrique. On a \(P(X > k) = (1-p)^k\), donc \(P(X > m + n \mid X > m) = \frac{P(X > m + n)}{P(X > m)} = \frac{(1-p)^{m+n}}{(1-p)^m} = (1-p)^n = P(X > n)\). La loi geometrique est la seule loi discrete a valeurs dans \(\mathbb{N}^*\) verifiant cette propriete.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> L'inegalite de Markov affirme que \(P(X \geq a) \leq \frac{E(X)}{a}\) pour toute VA positive et \(a > 0\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est l'inegalite de Markov. Preuve : \(E(X) = \sum_k x_k P(X = x_k) \geq \sum_{x_k \geq a} x_k P(X = x_k) \geq a \sum_{x_k \geq a} P(X = x_k) = a\,P(X \geq a)\). En divisant par \(a > 0\), on obtient le resultat. L'inegalite de Bienayme-Tchebychev en decoule en l'appliquant a \((X - E(X))^2\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> Si \(X\) et \(Y\) sont deux VA discretes telles que \(P(X = k) = P(Y = k)\) pour tout \(k\), alors \(X = Y\) presque surement.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Avoir la meme loi (egalite en loi, notee \(X \overset{d}{=} Y\)) ne signifie pas que \(X = Y\) presque surement. Par exemple, si \(X \sim \mathcal{B}(1, 1/2)\) et \(Y = 1 - X\), alors \(X\) et \(Y\) ont la meme loi (Bernoulli de parametre \(1/2\)) mais \(P(X \neq Y) = 1\). L'egalite en loi est plus faible que l'egalite presque sure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 15</span>
+        <span class="block__label">Exercice 1 -- Probabilites totales et Bayes</span>
+        <p>Un fabricant produit des pieces sur trois machines \(M_1, M_2, M_3\) qui representent respectivement \(50\%\), \(30\%\) et \(20\%\) de la production. Les taux de defaut sont \(2\%\), \(3\%\) et \(5\%\) respectivement.</p>
+        <ol>
+          <li>Calculer la probabilite qu'une piece prise au hasard soit defectueuse.</li>
+          <li>Sachant qu'une piece est defectueuse, quelle est la probabilite qu'elle provienne de \(M_3\) ?</li>
+          <li>On controle deux pieces independamment. Quelle est la probabilite qu'au moins une soit defectueuse ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Notons \(D\) = « piece defectueuse ». Le systeme complet est \((M_1, M_2, M_3)\). Par la formule des probabilites totales :</p>
+            <div class="math-display">$$P(D) = P(M_1)\,P(D \mid M_1) + P(M_2)\,P(D \mid M_2) + P(M_3)\,P(D \mid M_3)$$</div>
+            <div class="math-display">$$P(D) = 0{,}50 \times 0{,}02 + 0{,}30 \times 0{,}03 + 0{,}20 \times 0{,}05 = 0{,}01 + 0{,}009 + 0{,}01 = 0{,}029$$</div>
+            <p>La probabilite qu'une piece soit defectueuse est \(2{,}9\%\).</p>
+
+            <p><strong>2.</strong> Par la formule de Bayes :</p>
+            <div class="math-display">$$P(M_3 \mid D) = \frac{P(M_3)\,P(D \mid M_3)}{P(D)} = \frac{0{,}20 \times 0{,}05}{0{,}029} = \frac{0{,}01}{0{,}029} \approx 0{,}3448$$</div>
+            <p>Il y a environ \(34{,}5\%\) de chances que la piece defectueuse provienne de \(M_3\), alors que \(M_3\) ne produit que \(20\%\) des pieces. Son taux de defaut eleve explique sa surrepresentation.</p>
+
+            <p><strong>3.</strong> Soit \(A\) = « au moins une defectueuse sur deux ». Par le complementaire, en notant \(q = 1 - P(D) = 0{,}971\) :</p>
+            <div class="math-display">$$P(A) = 1 - P(\text{aucune defectueuse}) = 1 - q^2 = 1 - 0{,}971^2 = 1 - 0{,}942841 \approx 0{,}0572$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 15</span>
+        <span class="block__label">Exercice 2 -- Loi d'une variable aleatoire</span>
+        <p>On lance trois des equilibres. Soit \(X\) le nombre de \(6\) obtenus.</p>
+        <ol>
+          <li>Identifier la loi de \(X\). Donner \(X(\Omega)\) et la loi complete.</li>
+          <li>Calculer \(E(X)\) et \(V(X)\).</li>
+          <li>Calculer \(P(X \geq 1)\).</li>
+          <li>Soit \(Y = 10X - 5\) le gain d'un jeu. Calculer \(E(Y)\) et determiner si le jeu est favorable.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Chaque de donne un \(6\) avec probabilite \(p = 1/6\), et les lancers sont independants. Donc \(X \sim \mathcal{B}(3, 1/6)\). On a \(X(\Omega) = \{0, 1, 2, 3\}\).</p>
+            <div class="math-display">$$P(X = k) = \binom{3}{k} \left(\frac{1}{6}\right)^k \left(\frac{5}{6}\right)^{3-k}$$</div>
+            <ul>
+              <li>\(P(X = 0) = \frac{125}{216}\)</li>
+              <li>\(P(X = 1) = 3 \times \frac{1}{6} \times \frac{25}{36} = \frac{75}{216}\)</li>
+              <li>\(P(X = 2) = 3 \times \frac{1}{36} \times \frac{5}{6} = \frac{15}{216}\)</li>
+              <li>\(P(X = 3) = \frac{1}{216}\)</li>
+            </ul>
+            <p>Verification : \(125 + 75 + 15 + 1 = 216\). Correct.</p>
+
+            <p><strong>2.</strong> Pour une binomiale \(\mathcal{B}(n, p)\) : \(E(X) = np = 3 \times \frac{1}{6} = \frac{1}{2}\) et \(V(X) = np(1-p) = 3 \times \frac{1}{6} \times \frac{5}{6} = \frac{5}{12}\).</p>
+
+            <p><strong>3.</strong> Par le complementaire :</p>
+            <div class="math-display">$$P(X \geq 1) = 1 - P(X = 0) = 1 - \frac{125}{216} = \frac{91}{216} \approx 0{,}4213$$</div>
+
+            <p><strong>4.</strong> Par linearite de l'esperance :</p>
+            <div class="math-display">$$E(Y) = 10\,E(X) - 5 = 10 \times \frac{1}{2} - 5 = 5 - 5 = 0$$</div>
+            <p>Le jeu est equitable : l'esperance de gain est nulle.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 15</span>
+        <span class="block__label">Exercice 3 -- Formule de transfert et moments</span>
+        <p>Soit \(X\) une VA a valeurs dans \(\{-1, 0, 1, 2\}\) de loi : \(P(X = -1) = 1/6\), \(P(X = 0) = 1/3\), \(P(X = 1) = 1/3\), \(P(X = 2) = 1/6\).</p>
+        <ol>
+          <li>Calculer \(E(X)\), \(E(X^2)\) et \(V(X)\).</li>
+          <li>Determiner la loi de \(Y = X^2\) et verifier que \(E(Y) = E(X^2)\).</li>
+          <li>Calculer \(E(e^X)\) (fonction generatrice des moments en \(t = 1\)).</li>
+          <li>Determiner la loi de \(Z = |X|\). Les variables \(X\) et \(Z\) sont-elles independantes ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Par definition :</p>
+            <div class="math-display">$$E(X) = (-1) \times \frac{1}{6} + 0 \times \frac{1}{3} + 1 \times \frac{1}{3} + 2 \times \frac{1}{6} = \frac{-1 + 0 + 2 + 2}{6} = \frac{1}{2}$$</div>
+            <p>Par transfert avec \(g(x) = x^2\) :</p>
+            <div class="math-display">$$E(X^2) = 1 \times \frac{1}{6} + 0 \times \frac{1}{3} + 1 \times \frac{1}{3} + 4 \times \frac{1}{6} = \frac{1 + 0 + 2 + 4}{6} = \frac{7}{6}$$</div>
+            <div class="math-display">$$V(X) = E(X^2) - E(X)^2 = \frac{7}{6} - \frac{1}{4} = \frac{14 - 3}{12} = \frac{11}{12}$$</div>
+
+            <p><strong>2.</strong> \(Y = X^2\) prend les valeurs \(\{0, 1, 4\}\) :</p>
+            <ul>
+              <li>\(P(Y = 0) = P(X = 0) = 1/3\)</li>
+              <li>\(P(Y = 1) = P(X = -1) + P(X = 1) = 1/6 + 1/3 = 1/2\)</li>
+              <li>\(P(Y = 4) = P(X = 2) = 1/6\)</li>
+            </ul>
+            <p>Verification : \(E(Y) = 0 \times \frac{1}{3} + 1 \times \frac{1}{2} + 4 \times \frac{1}{6} = \frac{1}{2} + \frac{2}{3} = \frac{3 + 4}{6} = \frac{7}{6} = E(X^2)\). Correct par transfert.</p>
+
+            <p><strong>3.</strong> Par transfert avec \(g(x) = e^x\) :</p>
+            <div class="math-display">$$E(e^X) = e^{-1} \times \frac{1}{6} + e^0 \times \frac{1}{3} + e^1 \times \frac{1}{3} + e^2 \times \frac{1}{6} = \frac{e^{-1} + e^2}{6} + \frac{1 + e}{3}$$</div>
+            <p>Numeriquement : \(\frac{0{,}368 + 7{,}389}{6} + \frac{1 + 2{,}718}{3} \approx 1{,}293 + 1{,}239 \approx 2{,}532\).</p>
+
+            <p><strong>4.</strong> \(Z = |X|\) prend les valeurs \(\{0, 1, 2\}\) :</p>
+            <ul>
+              <li>\(P(Z = 0) = P(X = 0) = 1/3\)</li>
+              <li>\(P(Z = 1) = P(X = -1) + P(X = 1) = 1/2\)</li>
+              <li>\(P(Z = 2) = P(X = 2) = 1/6\)</li>
+            </ul>
+            <p>Pour l'independance, verifions : \(P(X = -1, Z = 1) = P(X = -1) = 1/6\). Or \(P(X = -1) \times P(Z = 1) = 1/6 \times 1/2 = 1/12 \neq 1/6\). Donc \(X\) et \(Z\) ne sont pas independantes. C'est logique : connaitre \(Z = |X|\) donne de l'information sur \(X\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 16</span>
+        <span class="block__label">Exercice 4 -- Fonction generatrice</span>
+        <p>Soit \(X\) une VA a valeurs dans \(\mathbb{N}\) de fonction generatrice \(G_X(t) = \frac{1}{(2 - t)^2}\).</p>
+        <ol>
+          <li>Verifier que \(G_X(1) = 1\) et determiner le rayon de convergence.</li>
+          <li>Developper \(G_X(t)\) en serie entiere pour trouver \(P(X = k)\).</li>
+          <li>Calculer \(E(X)\) et \(V(X)\) a l'aide de \(G_X\).</li>
+          <li>Reconnaitre la loi de \(X\) comme une loi connue.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(G_X(1) = \frac{1}{(2-1)^2} = 1\). Correct. Le rayon de convergence est \(R = 2\), car la singularite la plus proche de \(0\) est en \(t = 2\).</p>
+
+            <p><strong>2.</strong> On ecrit \(G_X(t) = \frac{1}{4} \cdot \frac{1}{(1 - t/2)^2}\). Or, la derivee de \(\frac{1}{1-u} = \sum_{k=0}^{+\infty} u^k\) donne \(\frac{1}{(1-u)^2} = \sum_{k=0}^{+\infty} (k+1) u^k\). En posant \(u = t/2\) :</p>
+            <div class="math-display">$$G_X(t) = \frac{1}{4} \sum_{k=0}^{+\infty} (k+1) \frac{t^k}{2^k} = \sum_{k=0}^{+\infty} \frac{k+1}{2^{k+2}}\, t^k$$</div>
+            <p>Donc \(P(X = k) = \frac{k+1}{2^{k+2}}\) pour \(k \in \mathbb{N}\).</p>
+            <p>Verification : \(\sum_{k=0}^{+\infty} \frac{k+1}{2^{k+2}} = \frac{1}{4} \sum_{k=0}^{+\infty} (k+1)\left(\frac{1}{2}\right)^k = \frac{1}{4} \cdot \frac{1}{(1-1/2)^2} = \frac{1}{4} \cdot 4 = 1\). Correct.</p>
+
+            <p><strong>3.</strong> Derivons \(G_X(t) = (2-t)^{-2}\) :</p>
+            <div class="math-display">$$G_X'(t) = 2(2-t)^{-3}, \quad G_X''(t) = 6(2-t)^{-4}$$</div>
+            <p>Esperance : \(E(X) = G_X'(1) = 2 \cdot 1 = 2\).</p>
+            <p>Pour la variance : \(G_X''(1) = 6\), donc :</p>
+            <div class="math-display">$$V(X) = G_X''(1) + G_X'(1) - [G_X'(1)]^2 = 6 + 2 - 4 = 4$$</div>
+
+            <p><strong>4.</strong> On reconnait \(X\) comme suivant une loi binomiale negative (loi de Pascal) de parametres \(r = 2\) et \(p = 1/2\). En effet, si \(Y_1, Y_2 \sim \mathcal{G}(1/2)\) sont independantes (geometriques a valeurs dans \(\mathbb{N}\)), alors \(X = Y_1 + Y_2\) a pour FG \(G_X(t) = \left(\frac{1}{2-t}\right)^2 = \frac{1}{(2-t)^2}\). C'est le temps d'attente (decale) du deuxieme succes dans des epreuves de Bernoulli de parametre \(1/2\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 16</span>
+        <span class="block__label">Exercice 5 -- Loi geometrique et absence de memoire</span>
+        <p>Un joueur lance un de equilibre et s'arrete au premier \(6\). Soit \(X\) le numero du lancer ou il obtient le premier \(6\).</p>
+        <ol>
+          <li>Montrer que \(X \sim \mathcal{G}(1/6)\). Calculer \(E(X)\) et \(V(X)\).</li>
+          <li>Calculer \(P(X > 10)\) et \(P(X \leq 4)\).</li>
+          <li>Sachant que les \(5\) premiers lancers n'ont pas donne de \(6\), quelle est la probabilite d'attendre encore plus de \(3\) lancers ? Justifier par l'absence de memoire.</li>
+          <li>Calculer \(E(X(X-1))\) et en deduire \(E(X^2)\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Le premier \(6\) au lancer \(k\) signifie \(k - 1\) echecs suivis d'un succes. Avec \(p = 1/6\) et \(q = 5/6\) :</p>
+            <div class="math-display">$$P(X = k) = q^{k-1}\,p = \left(\frac{5}{6}\right)^{k-1} \frac{1}{6}, \quad k \geq 1$$</div>
+            <p>C'est bien la loi \(\mathcal{G}(1/6)\). On a \(E(X) = 1/p = 6\) et \(V(X) = q/p^2 = \frac{5/6}{1/36} = 30\).</p>
+
+            <p><strong>2.</strong> \(P(X > n) = q^n\) (il faut \(n\) echecs consecutifs), donc :</p>
+            <div class="math-display">$$P(X > 10) = \left(\frac{5}{6}\right)^{10} = \frac{5^{10}}{6^{10}} = \frac{9\,765\,625}{60\,466\,176} \approx 0{,}1615$$</div>
+            <div class="math-display">$$P(X \leq 4) = 1 - P(X > 4) = 1 - \left(\frac{5}{6}\right)^4 = 1 - \frac{625}{1296} = \frac{671}{1296} \approx 0{,}5177$$</div>
+
+            <p><strong>3.</strong> Par l'absence de memoire :</p>
+            <div class="math-display">$$P(X > 8 \mid X > 5) = P(X > 3) = \left(\frac{5}{6}\right)^3 = \frac{125}{216} \approx 0{,}5787$$</div>
+            <p>Le fait d'avoir deja echoue 5 fois ne change rien : la probabilite d'attendre encore plus de 3 lancers est la meme que si on repartait de zero. C'est la propriete d'absence de memoire : \(P(X > m + n \mid X > m) = P(X > n)\).</p>
+
+            <p><strong>4.</strong> On calcule le moment factoriel. En utilisant la derivee seconde de la FG, ou directement :</p>
+            <div class="math-display">$$E(X(X-1)) = \sum_{k=2}^{+\infty} k(k-1)\, q^{k-1}\, p = p\,q \sum_{k=2}^{+\infty} k(k-1)\, q^{k-2}$$</div>
+            <p>Or \(\sum_{k=2}^{+\infty} k(k-1)\,q^{k-2} = \frac{2}{(1-q)^3} = \frac{2}{p^3}\). Donc :</p>
+            <div class="math-display">$$E(X(X-1)) = p\,q \cdot \frac{2}{p^3} = \frac{2q}{p^2} = \frac{2 \times 5/6}{1/36} = 60$$</div>
+            <p>On en deduit \(E(X^2) = E(X(X-1)) + E(X) = 60 + 6 = 66\). Verification : \(V(X) = E(X^2) - E(X)^2 = 66 - 36 = 30\). Correct.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 16</span>
+        <span class="block__label">Exercice 6 -- Variables de Poisson et series</span>
+        <p>Soit \(X \sim \mathcal{P}(2)\) une variable de Poisson de parametre \(2\).</p>
+        <ol>
+          <li>Calculer \(P(X = 0)\), \(P(X = 1)\), \(P(X = 2)\) et \(P(X \leq 2)\).</li>
+          <li>Calculer \(P(X \geq 3)\).</li>
+          <li>Montrer que \(E(X(X-1)(X-2)) = \lambda^3 = 8\) et en deduire \(E(X^3)\).</li>
+          <li>Soit \(Y = \mathbf{1}_{X \geq 1}\). Determiner la loi de \(Y\), puis \(E(Y)\) et \(V(Y)\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Pour \(X \sim \mathcal{P}(\lambda)\) avec \(\lambda = 2\) : \(P(X = k) = e^{-2}\frac{2^k}{k!}\).</p>
+            <ul>
+              <li>\(P(X = 0) = e^{-2} \approx 0{,}1353\)</li>
+              <li>\(P(X = 1) = 2e^{-2} \approx 0{,}2707\)</li>
+              <li>\(P(X = 2) = \frac{4}{2}\,e^{-2} = 2e^{-2} \approx 0{,}2707\)</li>
+            </ul>
+            <div class="math-display">$$P(X \leq 2) = e^{-2}(1 + 2 + 2) = 5e^{-2} \approx 0{,}6767$$</div>
+
+            <p><strong>2.</strong> Par le complementaire :</p>
+            <div class="math-display">$$P(X \geq 3) = 1 - P(X \leq 2) = 1 - 5e^{-2} \approx 0{,}3233$$</div>
+
+            <p><strong>3.</strong> Pour la loi de Poisson, le moment factoriel d'ordre \(r\) vaut \(\lambda^r\). En effet :</p>
+            <div class="math-display">$$E(X(X-1)(X-2)) = \sum_{k=3}^{+\infty} k(k-1)(k-2)\,e^{-\lambda}\frac{\lambda^k}{k!} = \lambda^3 \sum_{k=3}^{+\infty} e^{-\lambda}\frac{\lambda^{k-3}}{(k-3)!} = \lambda^3$$</div>
+            <p>Pour \(\lambda = 2\), \(E(X(X-1)(X-2)) = 8\).</p>
+            <p>Developpons : \(E(X^3 - 3X^2 + 2X) = 8\), donc \(E(X^3) = 8 + 3E(X^2) - 2E(X)\).</p>
+            <p>Or \(E(X^2) = V(X) + E(X)^2 = 2 + 4 = 6\), et \(E(X) = 2\). Donc :</p>
+            <div class="math-display">$$E(X^3) = 8 + 3 \times 6 - 2 \times 2 = 8 + 18 - 4 = 22$$</div>
+
+            <p><strong>4.</strong> \(Y = \mathbf{1}_{X \geq 1}\) est une indicatrice, donc \(Y \sim \mathcal{B}(1, p)\) avec \(p = P(X \geq 1) = 1 - P(X = 0) = 1 - e^{-2}\).</p>
+            <p>Donc \(E(Y) = 1 - e^{-2} \approx 0{,}8647\) et \(V(Y) = p(1-p) = (1 - e^{-2})\,e^{-2} \approx 0{,}1170\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 7 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 16</span>
+        <span class="block__label">Exercice 7 -- Inegalites et convergence</span>
+        <p>On considere \(X_1, \ldots, X_n\) des VA independantes de meme loi de Bernoulli \(\mathcal{B}(1, p)\) avec \(p \in {]0, 1[}\). On pose \(\bar{X}_n = \frac{1}{n}\sum_{i=1}^{n} X_i\).</p>
+        <ol>
+          <li>Calculer \(E(\bar{X}_n)\) et \(V(\bar{X}_n)\).</li>
+          <li>En deduire, par l'inegalite de Bienayme-Tchebychev, que \(P(|\bar{X}_n - p| \geq \varepsilon) \leq \frac{p(1-p)}{n\varepsilon^2}\).</li>
+          <li>Application : pour \(p = 1/2\) et \(n = 1000\), majorer \(P(|\bar{X}_n - 1/2| \geq 0{,}05)\).</li>
+          <li>Combien de tirages faut-il pour avoir \(P(|\bar{X}_n - p| \geq 0{,}01) \leq 0{,}05\) quelle que soit la valeur de \(p\) ?</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Par linearite : \(E(\bar{X}_n) = \frac{1}{n}\sum_{i=1}^{n} E(X_i) = \frac{1}{n} \cdot np = p\).</p>
+            <p>Par independance : \(V(\bar{X}_n) = \frac{1}{n^2}\sum_{i=1}^{n} V(X_i) = \frac{1}{n^2} \cdot n\,p(1-p) = \frac{p(1-p)}{n}\).</p>
+
+            <p><strong>2.</strong> L'inegalite de Bienayme-Tchebychev donne, pour tout \(\varepsilon > 0\) :</p>
+            <div class="math-display">$$P(|\bar{X}_n - E(\bar{X}_n)| \geq \varepsilon) \leq \frac{V(\bar{X}_n)}{\varepsilon^2}$$</div>
+            <p>En remplacant :</p>
+            <div class="math-display">$$\boxed{P(|\bar{X}_n - p| \geq \varepsilon) \leq \frac{p(1-p)}{n\varepsilon^2}}$$</div>
+            <p>Quand \(n \to +\infty\), le majorant tend vers \(0\) : c'est la loi faible des grands nombres.</p>
+
+            <p><strong>3.</strong> Pour \(p = 1/2\), \(n = 1000\), \(\varepsilon = 0{,}05\) :</p>
+            <div class="math-display">$$P\left(|\bar{X}_{1000} - 1/2| \geq 0{,}05\right) \leq \frac{1/4}{1000 \times 0{,}0025} = \frac{0{,}25}{2{,}5} = 0{,}1$$</div>
+            <p>On obtient une majoration de \(10\%\).</p>
+
+            <p><strong>4.</strong> On veut \(\frac{p(1-p)}{n\varepsilon^2} \leq 0{,}05\) pour tout \(p \in {]0,1[}\) et \(\varepsilon = 0{,}01\). Or \(p(1-p) \leq 1/4\) (maximum atteint en \(p = 1/2\)). Donc il suffit que :</p>
+            <div class="math-display">$$\frac{1/4}{n \times 10^{-4}} \leq 0{,}05 \iff \frac{2500}{n} \leq 0{,}05 \iff n \geq 50\,000$$</div>
+            <p>Il faut au moins \(n = 50\,000\) tirages. Cette borne est pessimiste (Tchebychev est une inegalite grossiere). En pratique, le theoreme central limite donnerait une borne bien meilleure.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
       <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
+      <a href="mp-m19-probas-avancees.html" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
-        <span>Fiche suivante</span>
+        <span>Probabilites avancees</span>
       </a>
     </nav>
 
@@ -396,6 +853,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

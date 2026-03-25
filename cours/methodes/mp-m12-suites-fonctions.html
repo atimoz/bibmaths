@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -146,24 +165,36 @@
 
     <div class="course__meta">
       <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 9</span>
     </div>
 
     <h1 class="course__title">Suites de fonctions</h1>
 
     <p class="course__intro">
-      Fiche de methodes avec exercices types : convergence simple, convergence uniforme, regularite de la limite, permutation limite-integrale et theoreme de Weierstrass. Chaque methode est accompagnee d'un exercice d'annale ou de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et six exercices corriges inspires du chapitre 9.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
         <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Etudier la convergence simple</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Montrer/infirmer la convergence uniforme</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Regularite de la limite</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Montrer ou infirmer la convergence uniforme</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Regularite de la limite (continuite, derivabilite)</a></li>
         <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Permuter integrale et limite</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Approximation uniforme par polynomes (Weierstrass)</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Utiliser le theoreme de Weierstrass (densite des polynomes)</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
 
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
@@ -171,97 +202,75 @@
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Pour montrer que \((f_n)\) converge simplement vers \(f\) sur un ensemble \(A\) :</p>
         <ol>
-          <li>Fixer \(x\) dans le domaine de definition.</li>
-          <li>Etudier la limite \(\lim_{n \to +\infty} f_n(x)\) comme une suite numerique (en la variable \(n\)).</li>
-          <li>La fonction limite est \(f(x) = \lim_{n \to +\infty} f_n(x)\).</li>
-          <li>Determiner le domaine de convergence simple : l'ensemble des \(x\) pour lesquels la limite existe.</li>
-          <li>Distinguer les cas selon la position de \(x\) (par exemple \(x = 0\), \(0 < x < 1\), \(x = 1\), \(x > 1\)).</li>
+          <li><strong>Fixer \(x \in A\) :</strong> on etudie la suite numerique \((f_n(x))_{n \geq 0}\).</li>
+          <li><strong>Calculer la limite :</strong> determiner \(\lim_{n \to +\infty} f_n(x) = f(x)\) pour chaque \(x\).</li>
+          <li><strong>Traiter les cas particuliers :</strong> penser aux bords de l'intervalle, ou la limite peut changer de forme.</li>
+          <li><strong>Conclusion :</strong> exprimer la fonction limite \(f\) et preciser son domaine de definition.</li>
         </ol>
+        <p><strong>Attention :</strong> la convergence simple est point par point. Le rang a partir duquel \(|f_n(x) - f(x)| < \varepsilon\) peut dependre de \(x\).</p>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Pour \(f_n(x) = x^n\) sur \([0,1]\), la limite simple est \(f(x) = 0\) si \(x \in [0,1[\) et \(f(1) = 1\). La limite simple peut etre discontinue meme si chaque \(f_n\) est continue.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>On definit \(f_n : [0, +\infty[ \to \mathbb{R}\) par \(f_n(x) = \dfrac{nx}{1 + n^2 x^2}\).</p>
-        <ol>
-          <li>Determiner la limite simple \(f(x) = \lim_{n \to +\infty} f_n(x)\) pour tout \(x \geq 0\).</li>
-          <li>Calculer \(\sup_{x \geq 0} |f_n(x) - f(x)|\). Y a-t-il convergence uniforme sur \([0, +\infty[\) ?</li>
-          <li>Y a-t-il convergence uniforme sur \([a, +\infty[\) pour un \(a > 0\) fixe ?</li>
-        </ol>
-        <p><em>Indication :</em> pour tout \(x > 0\), \(f_n(x) = \frac{1}{n x + \frac{1}{nx}} \to 0\), et \(f_n(0) = 0\). Donc \(f = 0\). Le sup est atteint en \(x = 1/n\) et vaut \(1/2\), donc pas de CVU sur \([0, +\infty[\). Sur \([a, +\infty[\), \(\|f_n - f\|_\infty \leq \frac{1}{na} \to 0\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Etudier la convergence simple de \(f_n(x) = \dfrac{nx^2}{1 + nx^2}\) sur \([0, +\infty[\).</strong></p>
+        <p><em>Resolution.</em> On fixe \(x \geq 0\).</p>
+        <ul>
+          <li><strong>Si \(x = 0\) :</strong> \(f_n(0) = 0\) pour tout \(n\), donc \(f_n(0) \to 0\).</li>
+          <li><strong>Si \(x > 0\) :</strong> \(f_n(x) = \dfrac{nx^2}{1 + nx^2} = \dfrac{1}{1/(nx^2) + 1} \to 1\) quand \(n \to +\infty\).</li>
+        </ul>
+        <p>La suite \((f_n)\) converge simplement sur \([0, +\infty[\) vers la fonction :</p>
+        <div class="math-display">$$f(x) = \begin{cases} 0 & \text{si } x = 0 \\ 1 & \text{si } x > 0 \end{cases}$$</div>
+        <p>La limite \(f\) est discontinue en \(0\), alors que chaque \(f_n\) est continue. La convergence n'est donc pas uniforme sur \([0, +\infty[\) (ni sur tout voisinage de \(0\)).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Montrer/infirmer la convergence uniforme</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Montrer ou infirmer la convergence uniforme</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Pour etudier la CVU de \((f_n)\) vers \(f\) sur \(A\), on pose \(\|f_n - f\|_\infty = \sup_{x \in A} |f_n(x) - f(x)|\).</p>
         <ol>
-          <li><strong>Pour montrer la CVU :</strong> calculer ou majorer \(\|f_n - f\|_\infty = \sup_{x \in I} |f_n(x) - f(x)|\) et montrer que cette quantite tend vers \(0\).</li>
-          <li>Pour trouver le sup, etudier la fonction \(g_n(x) = |f_n(x) - f(x)|\) : deriver, trouver le maximum.</li>
-          <li><strong>Pour infirmer la CVU :</strong> exhiber une suite \((x_n)\) (dependant de \(n\)) telle que \(|f_n(x_n) - f(x_n)| \not\to 0\).</li>
-          <li>Souvent, \(x_n = 1/n\), \(x_n = n\), ou le point ou \(f_n\) atteint son extremum.</li>
-          <li><strong>Critere de non-CVU par discontinuite :</strong> si chaque \(f_n\) est continue et \(f\) est discontinue, alors la CVU est impossible.</li>
+          <li><strong>Pour montrer la CVU :</strong> majorer \(\|f_n - f\|_\infty\) par une suite tendant vers \(0\). On etudie \(g_n(x) = f_n(x) - f(x)\) : derivee, extremum, puis \(\sup |g_n|\).</li>
+          <li><strong>Pour infirmer la CVU :</strong> trouver une suite \((x_n)\) dans \(A\) telle que \(|f_n(x_n) - f(x_n)| \not\to 0\), ou utiliser un critere d'obstruction (limite discontinue, \(\sup |g_n| \not\to 0\)).</li>
+          <li><strong>Astuce :</strong> si la limite de fonctions continues est discontinue, il n'y a pas CVU.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Penser a etudier \(f_n - f\) comme une fonction d'une variable reelle : deriver, trouver le max, etc. Si \(g_n = f_n - f\) atteint son maximum en \(x_n^*\), calculer \(g_n(x_n^*)\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>On considere les suites de fonctions suivantes sur \([0,1]\) :</p>
-        <ol>
-          <li>\(f_n(x) = n x^n (1 - x)\). Montrer la convergence simple vers \(0\). Y a-t-il CVU ?</li>
-          <li>\(g_n(x) = \dfrac{x}{1 + nx^2}\). Determiner la limite simple et etudier la CVU sur \([0,1]\).</li>
-          <li>\(h_n(x) = \left(1 + \dfrac{x}{n}\right)^n\). Montrer la convergence simple vers \(e^x\) et la CVU sur tout segment \([a, b]\).</li>
-        </ol>
-        <p><em>Indication :</em> 1. Le max de \(f_n\) est atteint en \(x_n = n/(n+1)\) et vaut \(\frac{n^{n+1}}{(n+1)^{n+1}} \to 1/e \neq 0\), donc pas de CVU. 2. La limite simple est \(0\) pour \(x > 0\) et \(g_n(0) = 0\). Le sup vaut \(\frac{1}{2\sqrt{n}} \to 0\), donc CVU. 3. CVU sur tout segment par croissance et continuite de l'exponentielle.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Etudier la convergence uniforme de \(f_n(x) = x^n(1 - x)\) sur \([0, 1]\).</strong></p>
+        <p><em>Resolution.</em> Pour \(x \in [0, 1[\), \(x^n \to 0\) donc \(f_n(x) \to 0\). Pour \(x = 1\), \(f_n(1) = 0\). Donc \(f_n \xrightarrow{\text{CVS}} 0\) sur \([0, 1]\).</p>
+        <p>Etude de \(\|f_n\|_\infty\). On pose \(g_n(x) = x^n(1 - x)\) sur \([0, 1]\). On derive :</p>
+        <div class="math-display">$$g_n'(x) = nx^{n-1}(1-x) - x^n = x^{n-1}\bigl(n - (n+1)x\bigr)$$</div>
+        <p>Pour \(x \in \,]0, 1[\), \(g_n'(x) = 0\) ssi \(x_n = \dfrac{n}{n+1}\). C'est un maximum car \(g_n(0) = g_n(1) = 0\) et \(g_n > 0\) sur \(]0, 1[\).</p>
+        <div class="math-display">$$\|g_n\|_\infty = g_n\!\left(\frac{n}{n+1}\right) = \left(\frac{n}{n+1}\right)^n \cdot \frac{1}{n+1} \sim \frac{e^{-1}}{n+1} \to 0$$</div>
+        <p>Donc \(\|f_n - 0\|_\infty \to 0\) : la convergence est uniforme sur \([0, 1]\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M3 ═══════════════ -->
     <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Regularite de la limite</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Regularite de la limite (continuite, derivabilite)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Continuite :</strong> si \(f_n\) est continue pour tout \(n\) et \(f_n \to f\) uniformement, alors \(f\) est continue.</li>
-          <li><strong>Derivation :</strong> si \(f_n\) est \(\mathcal{C}^1\), \(f_n \to f\) simplement, et \(f_n' \to g\) uniformement, alors \(f\) est \(\mathcal{C}^1\) et \(f' = g\).</li>
-          <li>Autrement dit : la CVU des derivees + la convergence simple des fonctions permettent de permuter limite et derivation.</li>
-          <li><strong>Integration :</strong> si \(f_n \to f\) uniformement sur \([a,b]\), alors \(\int_a^b f_n \to \int_a^b f\).</li>
-          <li>L'hypothese cle pour la derivation est la CVU de \((f_n')\), pas de \((f_n)\).</li>
+          <li><strong>Continuite :</strong> si les \(f_n\) sont continues sur \(I\) et \(f_n \xrightarrow{\text{CVU}} f\) sur \(I\), alors \(f\) est continue sur \(I\).</li>
+          <li><strong>Derivabilite (theoreme de derivation) :</strong> si les \(f_n\) sont \(\mathcal{C}^1\) sur \(I\), si \((f_n)\) converge simplement en au moins un point de \(I\), et si \((f_n')\) converge uniformement sur tout segment de \(I\), alors \(f\) est \(\mathcal{C}^1\) et \(f' = \lim f_n'\).</li>
+          <li><strong>Version \(\mathcal{C}^k\) :</strong> si les \(f_n\) sont \(\mathcal{C}^k\) et si \(f_n^{(j)} \xrightarrow{\text{CVU}}\) pour \(j = 0, \ldots, k\), alors la limite est \(\mathcal{C}^k\) et on peut intervertir derivation et passage a la limite.</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Attention</span>
-        <p>La convergence simple ne preserve pas la continuite. Contre-exemple classique : \(f_n(x) = x^n\) sur \([0,1]\), les \(f_n\) sont continues mais la limite est discontinue en \(1\). C'est la CVU qui garantit le transfert de regularite.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Soit \(f_n(x) = \dfrac{\sin(nx)}{n}\) pour \(x \in \mathbb{R}\).</p>
-        <ol>
-          <li>Montrer que \((f_n)\) converge uniformement sur \(\mathbb{R}\) vers la fonction nulle.</li>
-          <li>Calculer \(f_n'(x)\). La suite \((f_n')\) converge-t-elle simplement ? uniformement ?</li>
-          <li>Que peut-on dire de la derivabilite de la limite ? Commenter.</li>
-          <li>Soit maintenant \(g_n(x) = \sum_{k=1}^{n} \frac{\sin(kx)}{k^2}\). Montrer que \((g_n)\) converge uniformement sur \(\mathbb{R}\) et que la limite est \(\mathcal{C}^1\).</li>
-        </ol>
-        <p><em>Indication :</em> 1. \(\|f_n\|_\infty = 1/n \to 0\). 2. \(f_n'(x) = \cos(nx)\), pas de convergence simple en general (prendre \(x = 0\) : \(f_n'(0) = 1\) pour tout \(n\)). 3. La limite est derivable (c'est \(0\)), mais on ne peut pas conclure par le theoreme d'echange car \(f_n'\) ne converge pas uniformement. 4. La serie des derivees \(\sum \frac{\cos(kx)}{k^2}\) converge normalement, donc CVU.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que la suite \(f_n(x) = \dfrac{\sin(nx)}{\sqrt{n}}\) converge uniformement sur \(\mathbb{R}\) et que la limite est \(\mathcal{C}^0\).</strong></p>
+        <p><em>Resolution.</em> On a \(|f_n(x)| \leq \dfrac{1}{\sqrt{n}}\) pour tout \(x \in \mathbb{R}\), donc \(\|f_n\|_\infty \leq \dfrac{1}{\sqrt{n}} \to 0\).</p>
+        <p>La suite converge uniformement vers \(f = 0\) sur \(\mathbb{R}\). Comme chaque \(f_n\) est continue et la convergence est uniforme, la limite \(f = 0\) est continue.</p>
+        <p><strong>Attention a la derivee :</strong> \(f_n'(x) = \dfrac{n \cos(nx)}{\sqrt{n}} = \sqrt{n}\cos(nx)\). On a \(\|f_n'\|_\infty = \sqrt{n} \to +\infty\), donc \((f_n')\) ne converge pas uniformement. Le theoreme de derivation ne s'applique pas, et en effet \(f_n'(0) = \sqrt{n} \to +\infty\).</p>
       </div>
     </section>
 
@@ -272,71 +281,410 @@
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>CVU sur un segment :</strong> si \(f_n \to f\) uniformement sur \([a,b]\), alors \(\int_a^b f_n(t)\,dt \to \int_a^b f(t)\,dt\). C'est le theoreme le plus simple.</li>
-          <li><strong>Convergence dominee (hors programme strict, mais utile) :</strong> si \(f_n \to f\) simplement et \(|f_n| \leq g\) avec \(g\) integrable, alors on peut permuter.</li>
-          <li>Pour une integrale sur \([0, +\infty[\), decomposer en \(\int_0^A + \int_A^{+\infty}\) et utiliser la CVU sur \([0,A]\).</li>
-          <li>Verifier la convergence de l'integrale finale (la limite doit etre integrable).</li>
-          <li>Application typique : calcul de \(\lim_{n \to +\infty} \int_0^1 f_n(t)\,dt\).</li>
+          <li><strong>Theoreme d'interversion (CVU sur segment) :</strong> si les \(f_n\) sont continues sur \([a, b]\) et \(f_n \xrightarrow{\text{CVU}} f\) sur \([a, b]\), alors :</li>
         </ol>
-      </div>
-
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Si \(f_n \to f\) uniformement sur \([a,b]\), on a directement \(\left|\int_a^b f_n - \int_a^b f\right| \leq (b-a) \|f_n - f\|_\infty \to 0\). C'est souvent la justification la plus rapide.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Calculer les limites suivantes :</p>
+        <div class="math-display">$$\lim_{n \to +\infty} \int_a^b f_n(t)\,dt = \int_a^b f(t)\,dt = \int_a^b \lim_{n \to +\infty} f_n(t)\,dt$$</div>
         <ol>
-          <li>\(\displaystyle\lim_{n \to +\infty} \int_0^1 \frac{n t}{1 + n t^3}\,dt\)</li>
-          <li>\(\displaystyle\lim_{n \to +\infty} \int_0^1 \left(1 + \frac{t}{n}\right)^n e^{-2t}\,dt\)</li>
-          <li>\(\displaystyle\lim_{n \to +\infty} \int_0^{\pi/2} \sin^n(t)\,dt\)</li>
+          <li><strong>En pratique :</strong> verifier la CVU sur le segment d'integration (pas seulement sur un intervalle ouvert).</li>
+          <li><strong>Majoration directe :</strong> \(\left|\int_a^b f_n - \int_a^b f\right| \leq \|f_n - f\|_\infty \cdot (b - a)\).</li>
+          <li><strong>Si pas CVU :</strong> essayer la convergence dominee (theoreme de Lebesgue) ou un encadrement direct.</li>
         </ol>
-        <p><em>Indication :</em> 1. Pas de CVU sur \([0,1]\) (la limite simple est \(1/t^2\) pour \(t > 0\), non integrable). Decouper : \(\int_0^{1/\sqrt{n}} + \int_{1/\sqrt{n}}^1\). On montre que la limite vaut \(+\infty\). 2. CVU de \((1+t/n)^n\) vers \(e^t\) sur \([0,1]\), donc la limite vaut \(\int_0^1 e^{-t}\,dt = 1 - e^{-1}\). 3. Convergence simple vers \(0\) sur \([0, \pi/2[\), dominee par \(1\). La limite vaut \(0\). Plus precisement, par les integrales de Wallis, \(\int_0^{\pi/2} \sin^n t\,dt \sim \sqrt{\frac{\pi}{2n}}\).</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(f_n(x) = \dfrac{n x}{1 + n^2 x^2}\) sur \([0, 1]\). Calculer \(\lim \int_0^1 f_n(x)\,dx\) et verifier si on peut permuter.</strong></p>
+        <p><em>Resolution.</em> Pour \(x > 0\) : \(f_n(x) = \dfrac{1}{n x + 1/(nx)} \to 0\) et \(f_n(0) = 0\), donc \(f_n \xrightarrow{\text{CVS}} 0\).</p>
+        <p>Calculons l'integrale directement :</p>
+        <div class="math-display">$$\int_0^1 f_n(x)\,dx = \int_0^1 \frac{nx}{1 + n^2 x^2}\,dx = \frac{1}{2}\Big[\ln(1 + n^2 x^2)\Big]_0^1 = \frac{\ln(1 + n^2)}{2} \to +\infty$$</div>
+        <p>Or \(\int_0^1 f(x)\,dx = \int_0^1 0\,dx = 0\). On ne peut pas permuter ! La convergence n'est pas uniforme sur \([0, 1]\).</p>
+        <p><strong>Verification :</strong> \(f_n(1/n) = \dfrac{n \cdot 1/n}{1 + 1} = \dfrac{1}{2}\), donc \(\|f_n\|_\infty \geq 1/2 \not\to 0\). Pas de CVU.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Approximation uniforme par polynomes (Weierstrass)</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Utiliser le theoreme de Weierstrass (densite des polynomes)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li><strong>Theoreme de Weierstrass :</strong> toute fonction continue sur \([a,b]\) est limite uniforme d'une suite de polynomes.</li>
-          <li><strong>Polynomes de Bernstein :</strong> pour \(f \in \mathcal{C}([0,1])\), les polynomes \(B_n(f)(x) = \sum_{k=0}^n f\!\left(\frac{k}{n}\right) \binom{n}{k} x^k (1-x)^{n-k}\) convergent uniformement vers \(f\).</li>
-          <li>Application : pour montrer qu'un espace de polynomes est dense dans \(\mathcal{C}([a,b])\) muni de \(\|\cdot\|_\infty\).</li>
-          <li>Consequence : si \(\int_0^1 f(t) t^n\,dt = 0\) pour tout \(n \geq 0\) et \(f\) continue, alors \(f = 0\).</li>
-          <li>Ce lemme (moments nuls) est une consequence directe de Weierstrass et revient tres souvent aux concours.</li>
+          <li><strong>Enonce :</strong> toute fonction continue sur un segment \([a, b]\) est limite uniforme d'une suite de polynomes.</li>
+          <li><strong>Application typique :</strong> si \(\int_0^1 f(x) x^n\,dx = 0\) pour tout \(n \in \mathbb{N}\), alors par linearite \(\int_0^1 f(x) P(x)\,dx = 0\) pour tout polynome \(P\).</li>
+          <li>Par Weierstrass, il existe \((P_k)\) suite de polynomes telle que \(P_k \xrightarrow{\text{CVU}} f\) sur \([0, 1]\).</li>
+          <li>En passant a la limite : \(\int_0^1 f(x)^2\,dx = 0\), et comme \(f\) est continue, \(f = 0\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Variante utile</span>
-        <p>Le theoreme de Weierstrass s'applique aussi avec des polynomes trigonometriques : toute fonction continue et \(2\pi\)-periodique est limite uniforme de polynomes trigonometriques (theoreme de Fejer).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(f \in \mathcal{C}^0([0,1], \mathbb{R})\) telle que \(\int_0^1 x^n f(x)\,dx = 0\) pour tout \(n \in \mathbb{N}\). Montrer que \(f = 0\).</strong></p>
+        <p><em>Resolution.</em> Par hypothese, \(\int_0^1 x^n f(x)\,dx = 0\) pour tout \(n \geq 0\). Par linearite de l'integrale, pour tout polynome \(P = \sum a_k x^k\) :</p>
+        <div class="math-display">$$\int_0^1 P(x) f(x)\,dx = \sum a_k \int_0^1 x^k f(x)\,dx = 0$$</div>
+        <p>Par le theoreme de Weierstrass, il existe une suite \((P_k)\) de polynomes convergeant uniformement vers \(f\) sur \([0, 1]\). Alors :</p>
+        <div class="math-display">$$\int_0^1 f(x)^2\,dx = \int_0^1 f(x) \cdot \lim_{k \to +\infty} P_k(x)\,dx = \lim_{k \to +\infty} \int_0^1 f(x) P_k(x)\,dx = 0$$</div>
+        <p>La permutation est justifiee car \(P_k \to f\) uniformement sur \([0, 1]\) et \(f\) est bornee. Comme \(f^2\) est continue et positive d'integrale nulle, on conclut \(f = 0\) sur \([0, 1]\).</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> Si \((f_n)\) converge uniformement sur \(I\) et chaque \(f_n\) est continue, alors la limite est continue.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est le theoreme fondamental : la limite uniforme de fonctions continues est continue. C'est une des proprietes les plus importantes de la CVU.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> La convergence uniforme sur \(I\) implique la convergence simple sur \(I\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(\sup_{x \in I}|f_n(x) - f(x)| \to 0\), alors en particulier pour chaque \(x\) fixe \(|f_n(x) - f(x)| \to 0\). La CVU implique la CVS (la reciproque est fausse).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> La suite \(f_n(x) = x^n\) converge uniformement sur \([0, 1[\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>On a \(f_n \to 0\) simplement sur \([0, 1[\), mais \(\sup_{x \in [0,1[} x^n = 1\) pour tout \(n\) (borne superieure non atteinte mais egale a \(1\)). Donc \(\|f_n\|_\infty = 1 \not\to 0\). Pas de CVU sur \([0, 1[\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> Si \(f_n \to f\) uniformement sur \([a, b]\) et les \(f_n\) sont continues, alors \(\int_a^b f_n \to \int_a^b f\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est le theoreme de permutation integrale-limite sous CVU sur un segment. On a \(\left|\int_a^b f_n - \int_a^b f\right| \leq \|f_n - f\|_\infty \cdot (b-a) \to 0\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> Si \(f_n \to f\) simplement et \(\int_a^b f_n \to \int_a^b f\), alors la convergence est uniforme.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Contre-exemple : \(f_n = n \mathbf{1}_{[0,1/n^2]}\) sur \([0,1]\). Alors \(f_n \to 0\) simplement, \(\int_0^1 f_n = 1/n \to 0 = \int_0^1 0\), mais \(\|f_n\|_\infty = n \to +\infty\). La convergence des integrales n'implique pas la CVU.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> Si \(f_n \to f\) uniformement sur \(I\) et les \(f_n\) sont derivables, alors \(f\) est derivable.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>La CVU ne preserve pas la derivabilite en general. Les fonctions de Weierstrass fournissent un exemple de suite de fonctions \(\mathcal{C}^\infty\) convergeant uniformement vers une fonction continue nulle part derivable. Pour conserver la derivabilite, il faut la CVU des derivees.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> La suite \(f_n(x) = \frac{x}{n}\) converge uniformement sur \(\mathbb{R}\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>On a \(f_n \to 0\) simplement, mais \(\sup_{x \in \mathbb{R}} |x/n| = +\infty\) pour tout \(n\). Pas de CVU sur \(\mathbb{R}\). En revanche, sur tout segment \([-M, M]\), \(\|f_n\|_\infty = M/n \to 0\) : convergence uniforme sur tout compact.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> Si les \(f_n\) sont \(\mathcal{C}^1\), \(f_n(a) \to \ell\) et \(f_n' \xrightarrow{\text{CVU}} g\) sur \([a, b]\), alors \(f_n \xrightarrow{\text{CVU}} f\) avec \(f' = g\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est le theoreme de derivation des suites de fonctions. Hypotheses : (i) \(f_n \in \mathcal{C}^1\), (ii) convergence simple en un point, (iii) CVU de \((f_n')\). Conclusion : \((f_n)\) converge uniformement vers une fonction \(\mathcal{C}^1\) dont la derivee est \(\lim f_n'\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> Le theoreme de Weierstrass affirme que toute fonction continue sur \(\mathbb{R}\) est limite uniforme de polynomes.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Le theoreme ne s'applique qu'aux fonctions continues sur un <strong>segment</strong> \([a, b]\). Sur \(\mathbb{R}\), un polynome non constant est non borne, donc ne peut approcher uniformement une fonction bornee comme \(\sin\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> Si \(f_n \xrightarrow{\text{CVU}} f\) sur \([a, b]\) et \(f_n \xrightarrow{\text{CVU}} f\) sur \([b, c]\), alors \(f_n \xrightarrow{\text{CVU}} f\) sur \([a, c]\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>On a \(\sup_{[a,c]}|f_n - f| = \max\!\left(\sup_{[a,b]}|f_n - f|,\, \sup_{[b,c]}|f_n - f|\right)\). Chacun des deux termes tend vers \(0\), donc leur maximum aussi. La CVU sur la reunion d'un nombre fini de segments decoule de la CVU sur chacun.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
       <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Soit \(f \in \mathcal{C}([0,1], \mathbb{R})\).</p>
+        <span class="annale-badge">Monier Ch. 9</span>
+        <span class="block__label">Exercice 1 -- Convergence simple et uniforme</span>
+        <p>On pose \(f_n(x) = \dfrac{x}{1 + nx^2}\) pour \(x \in \mathbb{R}\) et \(n \geq 1\).</p>
         <ol>
-          <li>On suppose que \(\int_0^1 f(t) t^n\,dt = 0\) pour tout \(n \in \mathbb{N}\). Montrer que \(f = 0\).</li>
-          <li>On suppose que \(\int_0^1 f(t) e^{nt}\,dt = 0\) pour tout \(n \in \mathbb{N}\). Montrer que \(f = 0\).</li>
-          <li>Soit \(g \in \mathcal{C}([0,1], \mathbb{R})\) telle que \(\int_0^1 g(t) t^{2n}\,dt = 0\) pour tout \(n \in \mathbb{N}\). A-t-on necessairement \(g = 0\) ?</li>
+          <li>Determiner la limite simple \(f\) de la suite \((f_n)\) sur \(\mathbb{R}\).</li>
+          <li>Calculer \(\|f_n - f\|_\infty\) sur \(\mathbb{R}\). La convergence est-elle uniforme ?</li>
+          <li>Montrer que la convergence est uniforme sur \([\alpha, +\infty[\) pour tout \(\alpha > 0\).</li>
         </ol>
-        <p><em>Indication :</em> 1. Par Weierstrass, les polynomes sont denses dans \((\mathcal{C}([0,1]), \|\cdot\|_\infty)\). Donc \(\int_0^1 f(t) P(t)\,dt = 0\) pour tout polynome \(P\), en particulier pour des polynomes approchant \(f\), d'ou \(\int_0^1 f^2 = 0\). 2. Developper \(e^{nt}\) en serie entiere et utiliser 1. 3. Oui, en effectuant le changement de variable \(u = t^2\).</p>
       </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Pour \(x = 0\) : \(f_n(0) = 0\). Pour \(x \neq 0\) : \(f_n(x) = \dfrac{x}{1 + nx^2} = \dfrac{1}{1/x + nx} \to 0\) car \(nx \to \pm\infty\). Donc \(f = 0\) sur \(\mathbb{R}\).</p>
+
+            <p><strong>2.</strong> Par imparite, \(\|f_n\|_\infty = \sup_{x \geq 0} f_n(x)\). On derive : \(f_n'(x) = \dfrac{1 - nx^2}{(1 + nx^2)^2}\). Le maximum est en \(x = 1/\sqrt{n}\) :</p>
+            <div class="math-display">$$\|f_n\|_\infty = f_n\!\left(\frac{1}{\sqrt{n}}\right) = \frac{1/\sqrt{n}}{1 + 1} = \frac{1}{2\sqrt{n}} \to 0$$</div>
+            <p>La convergence est uniforme sur \(\mathbb{R}\).</p>
+
+            <p><strong>3.</strong> Sur \([\alpha, +\infty[\) avec \(\alpha > 0\), pour \(x \geq \alpha\) :</p>
+            <div class="math-display">$$|f_n(x)| = \frac{x}{1 + nx^2} \leq \frac{1}{nx} \leq \frac{1}{n\alpha} \to 0$$</div>
+            <p>La CVU est meme plus facile a etablir ici, avec une majoration en \(O(1/n)\) au lieu de \(O(1/\sqrt{n})\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 9</span>
+        <span class="block__label">Exercice 2 -- Limite discontinue et non-CVU</span>
+        <p>Soit \(f_n(x) = n x e^{-nx}\) pour \(x \geq 0\) et \(n \geq 1\).</p>
+        <ol>
+          <li>Determiner la limite simple de \((f_n)\) sur \([0, +\infty[\).</li>
+          <li>Calculer \(\|f_n - f\|_\infty\). Conclure sur la CVU.</li>
+          <li>Calculer \(\int_0^{+\infty} f_n(x)\,dx\). Comparer a \(\int_0^{+\infty} f(x)\,dx\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Pour \(x = 0\) : \(f_n(0) = 0\). Pour \(x > 0\) : \(f_n(x) = nxe^{-nx} \to 0\) car l'exponentielle l'emporte. Donc \(f \equiv 0\).</p>
+
+            <p><strong>2.</strong> On derive \(g_n(x) = nxe^{-nx}\) : \(g_n'(x) = ne^{-nx}(1 - nx)\). Maximum en \(x_n = 1/n\) :</p>
+            <div class="math-display">$$\|f_n\|_\infty = g_n(1/n) = n \cdot \frac{1}{n} \cdot e^{-1} = e^{-1} \not\to 0$$</div>
+            <p>La convergence n'est pas uniforme sur \([0, +\infty[\). Le pic de hauteur \(1/e\) se deplace vers \(0\).</p>
+
+            <p><strong>3.</strong> Par changement de variable \(u = nx\) :</p>
+            <div class="math-display">$$\int_0^{+\infty} nxe^{-nx}\,dx = \frac{1}{n}\int_0^{+\infty} ue^{-u}\,du = \frac{\Gamma(2)}{n} = \frac{1}{n} \to 0$$</div>
+            <p>Et \(\int_0^{+\infty} f(x)\,dx = 0\). Malgre l'absence de CVU, les integrales convergent vers l'integrale de la limite. La CVU est suffisante mais pas necessaire pour permuter.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 9</span>
+        <span class="block__label">Exercice 3 -- Theoreme de derivation</span>
+        <p>On pose \(f_n(x) = \dfrac{\arctan(nx)}{n}\) pour \(x \in \mathbb{R}\) et \(n \geq 1\).</p>
+        <ol>
+          <li>Montrer que \((f_n)\) converge uniformement sur \(\mathbb{R}\). Identifier la limite.</li>
+          <li>Calculer \(f_n'(x)\). La suite \((f_n')\) converge-t-elle simplement ? uniformement sur \(\mathbb{R}\) ?</li>
+          <li>Verifier que le theoreme de derivation ne s'applique pas. Montrer directement que la fonction limite n'est pas \(\mathcal{C}^1\) sur... attendez : la limite est \(0\), qui est \(\mathcal{C}^\infty\). Commenter.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(|f_n(x)| = \dfrac{|\arctan(nx)|}{n} \leq \dfrac{\pi/2}{n} \to 0\). Donc \(\|f_n\|_\infty \leq \pi/(2n) \to 0\) : CVU vers \(f = 0\).</p>
+
+            <p><strong>2.</strong> \(f_n'(x) = \dfrac{1}{1 + n^2x^2}\). Pour \(x = 0\) : \(f_n'(0) = 1\) pour tout \(n\). Pour \(x \neq 0\) : \(f_n'(x) \to 0\). Donc \(f_n' \to g\) simplement, ou \(g(x) = \mathbf{1}_{\{0\}}(x)\) (fonction valant \(1\) en \(0\) et \(0\) ailleurs).</p>
+            <p>La convergence n'est pas uniforme car \(g\) est discontinue et les \(f_n'\) sont continues. On peut aussi voir que \(\sup |f_n' - g| \geq |f_n'(1/n) - g(1/n)| = |1/2 - 0| = 1/2 \not\to 0\).</p>
+
+            <p><strong>3.</strong> Le theoreme de derivation ne s'applique pas car \((f_n')\) ne converge pas uniformement. Cependant, la limite \(f = 0\) est bien \(\mathcal{C}^\infty\) avec \(f' = 0\). Mais \(f' = 0 \neq g = \lim f_n'\) (en \(x = 0\)). Cela illustre que sans CVU des derivees, on ne peut pas ecrire \((\lim f_n)' = \lim f_n'\) : la derivee de la limite n'est pas la limite des derivees.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 9</span>
+        <span class="block__label">Exercice 4 -- Interversion integrale-limite</span>
+        <p>Pour \(n \geq 1\), on pose \(I_n = \displaystyle\int_0^1 \frac{n x^{n-1}}{1 + x}\,dx\).</p>
+        <ol>
+          <li>Montrer que la suite \((I_n)\) converge et calculer sa limite.</li>
+          <li>Peut-on appliquer directement le theoreme de permutation sous CVU ? Justifier.</li>
+          <li>Calculer \(I_n\) par le changement de variable \(u = x^n\) et retrouver la limite.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Posons \(f_n(x) = \dfrac{nx^{n-1}}{1+x}\). On encadre :</p>
+            <div class="math-display">$$\frac{nx^{n-1}}{2} \leq f_n(x) \leq nx^{n-1} \quad \text{pour } x \in [0,1]$$</div>
+            <p>Donc \(\dfrac{1}{2} \leq I_n \leq 1\). Pour trouver la limite exacte, on utilise la question 3.</p>
+
+            <p><strong>2.</strong> Le theoreme de permutation sous CVU ne s'applique pas. En effet, \(f_n(1) = n/2 \to +\infty\), donc la suite n'est meme pas bornee en \(x = 1\), et la convergence simple n'a pas lieu sur le ferme \([0, 1]\).</p>
+
+            <p><strong>3.</strong> Changement de variable \(u = x^n\), \(x = u^{1/n}\), \(dx = \dfrac{1}{n}u^{1/n - 1}\,du\) :</p>
+            <div class="math-display">$$I_n = \int_0^1 \frac{n \cdot u^{(n-1)/n}}{1 + u^{1/n}} \cdot \frac{u^{1/n - 1}}{n}\,du = \int_0^1 \frac{du}{1 + u^{1/n}}$$</div>
+            <p>Pour \(u \in \,]0, 1]\), \(u^{1/n} \to 1\), donc l'integrande converge simplement vers \(\dfrac{1}{2}\). De plus \(\dfrac{1}{1 + u^{1/n}} \leq 1\) pour tout \(n\) (domination). Par convergence dominee :</p>
+            <div class="math-display">$$I_n \to \int_0^1 \frac{du}{2} = \frac{1}{2}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 9</span>
+        <span class="block__label">Exercice 5 -- Weierstrass et moments nuls</span>
+        <p>Soit \(f \in \mathcal{C}^0([0, 1], \mathbb{R})\).</p>
+        <ol>
+          <li>On suppose \(\int_0^1 f(x) x^{2n}\,dx = 0\) pour tout \(n \in \mathbb{N}\). Montrer que \(\int_0^1 f(x) P(x^2)\,dx = 0\) pour tout polynome \(P\).</li>
+          <li>En deduire que \(f = 0\) sur \([0, 1]\). (Indication : poser \(g(t) = f(\sqrt{t})\) et appliquer Weierstrass.)</li>
+          <li>L'hypothese \(f \in \mathcal{C}^0([0,1])\) est-elle necessaire ? Donner un contre-exemple avec une fonction seulement integrable.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Soit \(P(t) = \sum_{k=0}^N a_k t^k\). Alors \(P(x^2) = \sum_{k=0}^N a_k x^{2k}\), et :</p>
+            <div class="math-display">$$\int_0^1 f(x)P(x^2)\,dx = \sum_{k=0}^N a_k \int_0^1 f(x)x^{2k}\,dx = 0$$</div>
+
+            <p><strong>2.</strong> Posons \(g : [0,1] \to \mathbb{R}\), \(g(t) = f(\sqrt{t})\). Comme \(f\) et \(\sqrt{\cdot}\) sont continues sur \([0,1]\), \(g\) est continue. Par Weierstrass, il existe \((P_m)\) suite de polynomes convergeant uniformement vers \(g\) sur \([0,1]\).</p>
+            <p>Posons \(Q_m(x) = P_m(x^2)\). Alors \(Q_m(x) \to g(x^2) = f(|x|) = f(x)\) uniformement sur \([0,1]\) (car \(x \geq 0\)).</p>
+            <p>Pour tout \(m\), \(Q_m(x) = P_m(x^2)\) est un polynome en \(x^2\), donc par la question 1 :</p>
+            <div class="math-display">$$\int_0^1 f(x) Q_m(x)\,dx = 0$$</div>
+            <p>Passage a la limite (justifie par CVU et \(f\) bornee sur \([0,1]\)) :</p>
+            <div class="math-display">$$\int_0^1 f(x)^2\,dx = \lim_{m \to +\infty} \int_0^1 f(x) Q_m(x)\,dx = 0$$</div>
+            <p>Comme \(f^2 \geq 0\) est continue d'integrale nulle, \(f = 0\).</p>
+
+            <p><strong>3.</strong> La continuite est essentielle pour conclure \(f^2 = 0 \Rightarrow f = 0\). Si \(f\) est seulement integrable, on peut avoir \(f \neq 0\) sur un ensemble de mesure nulle sans changer les integrales. Cependant, la conclusion reste : \(f = 0\) <em>presque partout</em>. La continuite permet de passer de "presque partout" a "partout".</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 9</span>
+        <span class="block__label">Exercice 6 -- CVU sur compacts et regularite</span>
+        <p>Pour \(n \geq 1\) et \(x \in [0, 1]\), on pose \(f_n(x) = nx^n(1-x)\).</p>
+        <ol>
+          <li>Montrer que \((f_n)\) converge simplement vers \(0\) sur \([0, 1]\).</li>
+          <li>Calculer \(\|f_n\|_\infty\) sur \([0, 1]\). La convergence est-elle uniforme ?</li>
+          <li>Calculer \(\int_0^1 f_n(x)\,dx\). Que peut-on en conclure ?</li>
+          <li>Montrer que la convergence est uniforme sur \([0, a]\) pour tout \(a \in \,]0, 1[\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Pour \(x \in [0, 1[\) : \(nx^n \to 0\) (car \(|x| < 1\)), donc \(f_n(x) = nx^n(1-x) \to 0\). Pour \(x = 1\) : \(f_n(1) = 0\). Donc \(f_n \to 0\) simplement sur \([0, 1]\).</p>
+
+            <p><strong>2.</strong> On derive \(f_n(x) = nx^n(1-x)\) :</p>
+            <div class="math-display">$$f_n'(x) = nx^{n-1}\bigl(n(1-x) - x\bigr) = nx^{n-1}\bigl(n - (n+1)x\bigr)$$</div>
+            <p>Maximum en \(x_n = \dfrac{n}{n+1}\) :</p>
+            <div class="math-display">$$\|f_n\|_\infty = n\left(\frac{n}{n+1}\right)^n \cdot \frac{1}{n+1} = \frac{n}{n+1}\left(\frac{n}{n+1}\right)^n \to 1 \cdot e^{-1} = e^{-1} \neq 0$$</div>
+            <p>La convergence n'est pas uniforme sur \([0, 1]\).</p>
+
+            <p><strong>3.</strong> On calcule :</p>
+            <div class="math-display">$$\int_0^1 f_n(x)\,dx = n\left(\frac{1}{n+1} - \frac{1}{n+2}\right) = \frac{n}{(n+1)(n+2)} \to 0$$</div>
+            <p>L'integrale converge vers \(\int_0^1 0\,dx = 0\). Malgre l'absence de CVU, la permutation integrale-limite fonctionne ici (on pourrait le justifier par convergence dominee : \(|f_n(x)| \leq n x^n \leq C\) n'est pas borne, mais \(\int f_n\) converge quand meme).</p>
+
+            <p><strong>4.</strong> Sur \([0, a]\) avec \(0 < a < 1\) : \(|f_n(x)| = nx^n(1-x) \leq na^n\). Or \(na^n \to 0\) car \(a < 1\) (l'exponentielle \(a^{-n}\) croit plus vite que \(n\)). Donc \(\|f_n\|_{\infty,[0,a]} \leq na^n \to 0\) : CVU sur \([0, a]\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
       <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
+      <a href="mp-m3-series-fonctions-cvu.html" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
-        <span>Fiche suivante</span>
+        <span>Series de fonctions & CVU</span>
       </a>
     </nav>
 
@@ -394,6 +742,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

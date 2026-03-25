@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Methodes — Calcul differentiel | LibMaths</title>
+  <title>Methodes — Calcul differentiel & optimisation | LibMaths</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -35,6 +35,14 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
     .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
@@ -50,6 +58,8 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
@@ -61,8 +71,16 @@
     .block--method ul li::before{color:#2A8A8A}
     .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
     .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
     .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -86,6 +104,7 @@
     [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
     [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
     [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
     @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
@@ -145,181 +164,610 @@
     <a href="../../mp.html#methodes" class="course__back">&larr; Retour aux methodes MP</a>
 
     <div class="course__meta">
-      <span class="course__badge">MP -- Methodes CCINP</span>
+      <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 20</span>
     </div>
 
-    <h1 class="course__title">Calcul differentiel</h1>
+    <h1 class="course__title">Calcul differentiel & optimisation</h1>
 
     <p class="course__intro">
-      Fiche de methodes avec exercices types CCINP : points critiques, critere de la hessienne, optimisation par projection, fonctions implicites et regle de la chaine. Chaque methode est accompagnee d'un exercice d'annale ou de style concours.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et sept exercices corriges inspires du chapitre 20.
     </p>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Trouver les points critiques</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Critere de la hessienne</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Optimisation par projection</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Fonctions implicites</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Regle de la chaine</a></li>
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Limite et continuite en (0,0)</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Derivees partielles et classe C^k</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Resoudre une EDP</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Extrema locaux (Hessienne)</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Extrema sous contrainte (Lagrange)</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
+
     <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Trouver les points critiques</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Limite et continuite en \((0,0)\)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
+        <p>Pour etudier la limite d'une fonction \(f(x,y)\) quand \((x,y) \to (0,0)\) :</p>
         <ol>
-          <li>Calculer les derivees partielles \(\dfrac{\partial f}{\partial x}\) et \(\dfrac{\partial f}{\partial y}\).</li>
-          <li>Ecrire le systeme \(\nabla f = 0\), c'est-a-dire \(\dfrac{\partial f}{\partial x} = 0\) et \(\dfrac{\partial f}{\partial y} = 0\).</li>
-          <li>Resoudre le systeme pour trouver les points critiques \((x_0, y_0)\).</li>
-          <li>Verifier la nature de chaque point critique (minimum, maximum, point selle) a l'aide du critere de la hessienne (voir M2).</li>
+          <li><strong>Recherche de contre-exemples par chemins :</strong> calculer la limite le long de droites \(y = mx\), de paraboles \(y = x^2\), etc. Si deux chemins donnent des limites differentes, la limite n'existe pas.</li>
+          <li><strong>Passage en coordonnees polaires :</strong> poser \(x = r\cos\theta\), \(y = r\sin\theta\). Si \(|f(r\cos\theta, r\sin\theta) - \ell| \leq \varphi(r)\) avec \(\varphi(r) \to 0\) independamment de \(\theta\), alors \(\lim f = \ell\).</li>
+          <li><strong>Majoration directe :</strong> utiliser \(|xy| \leq \frac{x^2 + y^2}{2}\), \(|x| \leq \sqrt{x^2 + y^2}\), etc.</li>
+          <li><strong>Continuite :</strong> si la limite existe et vaut \(f(0,0)\), la fonction est continue en \((0,0)\).</li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Pour une fonction de deux variables, le gradient nul donne un systeme de deux equations a deux inconnues. Penser a factoriser ou a substituer pour simplifier la resolution.</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">CCINP 2023</span>
-        <span class="block__label">Exercice -- CCINP 2023 Maths 1</span>
-        <p>Soit \(f(x,y) = x^3 + y^3 - 3xy\).</p>
-        <ol>
-          <li>Calculer \(\nabla f(x,y)\).</li>
-          <li>Trouver les points critiques de \(f\).</li>
-          <li>Determiner la nature de chaque point critique (extremum local ou point selle).</li>
-        </ol>
-        <p><em>Indication :</em> on a \(\dfrac{\partial f}{\partial x} = 3x^2 - 3y\) et \(\dfrac{\partial f}{\partial y} = 3y^2 - 3x\). Le systeme donne \(y = x^2\) et \(x = y^2\), d'ou les points critiques \((0,0)\) et \((1,1)\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Etudier la limite en \((0,0)\) de \(f(x,y) = \dfrac{x^2 y}{x^2 + y^2}\) (prolongee par \(0\) en l'origine).</strong></p>
+        <p><em>Resolution.</em> En coordonnees polaires :</p>
+        <div class="math-display">$$f(r\cos\theta, r\sin\theta) = \frac{r^2 \cos^2\theta \cdot r\sin\theta}{r^2} = r\cos^2\theta\sin\theta$$</div>
+        <p>Donc \(|f(r\cos\theta, r\sin\theta)| \leq r \cdot 1 \cdot 1 = r \xrightarrow[r \to 0]{} 0\), independamment de \(\theta\).</p>
+        <p>La limite vaut \(0\), et comme \(f(0,0) = 0\), la fonction est continue en \((0,0)\).</p>
+        <p><em>Verification par majoration directe :</em> \(|x^2 y| = x^2 |y| \leq (x^2 + y^2)|y|\) et \(|y| \leq \sqrt{x^2 + y^2}\), donc :</p>
+        <div class="math-display">$$\left|\frac{x^2 y}{x^2 + y^2}\right| \leq |y| \leq \sqrt{x^2 + y^2} \to 0$$</div>
       </div>
     </section>
 
     <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Critere de la hessienne</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Derivees partielles et classe \(\mathcal{C}^k\)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Calculer la matrice hessienne au point critique \((x_0, y_0)\) :
-            $$H_f(x_0,y_0) = \begin{pmatrix} \dfrac{\partial^2 f}{\partial x^2} & \dfrac{\partial^2 f}{\partial x \partial y} \\[6pt] \dfrac{\partial^2 f}{\partial x \partial y} & \dfrac{\partial^2 f}{\partial y^2} \end{pmatrix}$$</li>
-          <li>Calculer le determinant \(\Delta = \det(H_f) = \dfrac{\partial^2 f}{\partial x^2} \cdot \dfrac{\partial^2 f}{\partial y^2} - \left(\dfrac{\partial^2 f}{\partial x \partial y}\right)^2\).</li>
-          <li>Si \(\Delta > 0\) et \(\dfrac{\partial^2 f}{\partial x^2} > 0\) : <strong>minimum local</strong>.</li>
-          <li>Si \(\Delta > 0\) et \(\dfrac{\partial^2 f}{\partial x^2} < 0\) : <strong>maximum local</strong>.</li>
-          <li>Si \(\Delta < 0\) : <strong>point selle</strong>.</li>
-          <li>Si \(\Delta = 0\) : le critere ne conclut pas.</li>
+          <li><strong>Derivees partielles :</strong> calculer \(\frac{\partial f}{\partial x}\) en derivant par rapport a \(x\) a \(y\) fixe, et reciproquement.</li>
+          <li><strong>Classe \(\mathcal{C}^1\) :</strong> si les derivees partielles existent et sont continues sur un ouvert, alors \(f\) est de classe \(\mathcal{C}^1\) sur cet ouvert.</li>
+          <li><strong>Attention au point singulier :</strong> en un point ou la formule change (typiquement l'origine), calculer les derivees partielles par la definition (taux d'accroissement), puis verifier la continuite de ces derivees.</li>
+          <li><strong>Differentiabilite :</strong> \(\mathcal{C}^1 \Rightarrow\) differentiable. La differentielle est \(\mathrm{d}f_{(a,b)}(h,k) = \frac{\partial f}{\partial x}(a,b)\,h + \frac{\partial f}{\partial y}(a,b)\,k\).</li>
+          <li><strong>Theoreme de Schwarz :</strong> si \(f \in \mathcal{C}^2\), alors \(\frac{\partial^2 f}{\partial x \partial y} = \frac{\partial^2 f}{\partial y \partial x}\).</li>
         </ol>
       </div>
 
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Soit \(f(x,y) = x^2 + y^2 - xy - x\).</p>
-        <ol>
-          <li>Trouver les points critiques de \(f\).</li>
-          <li>Calculer la matrice hessienne de \(f\) en chaque point critique.</li>
-          <li>En deduire la nature de chaque point critique.</li>
-        </ol>
-        <p><em>Indication :</em> on a \(\nabla f = (2x - y - 1,\; 2y - x)\). Le systeme donne \(x = \frac{2}{3}\), \(y = \frac{1}{3}\). La hessienne est \(H = \begin{pmatrix} 2 & -1 \\ -1 & 2 \end{pmatrix}\) avec \(\det H = 3 > 0\) et \(\frac{\partial^2 f}{\partial x^2} = 2 > 0\), donc minimum local.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Soit \(f(x,y) = \dfrac{\sin(xy)}{|x| + |y|}\) si \((x,y) \neq (0,0)\), et \(f(0,0) = 0\). La fonction \(f\) est-elle de classe \(\mathcal{C}^1\) ?</strong></p>
+        <p><em>Resolution.</em> Hors de l'origine, \(f\) est \(\mathcal{C}^\infty\) comme quotient de fonctions \(\mathcal{C}^\infty\) (le denominateur ne s'annule pas en dehors de l'origine, et les valeurs absolues sont \(\mathcal{C}^\infty\) quand \(x \neq 0\) et \(y \neq 0\)).</p>
+        <p><strong>Continuite en \((0,0)\) :</strong> on a \(|\sin(xy)| \leq |xy|\) et \(|xy| \leq \frac{(|x|+|y|)^2}{4}\), donc :</p>
+        <div class="math-display">$$|f(x,y)| \leq \frac{|xy|}{|x|+|y|} \leq \frac{|x|+|y|}{4} \cdot \frac{|x|+|y|}{|x|+|y|} \leq \frac{|x|+|y|}{2} \to 0$$</div>
+        <p>(Plus precisement, \(\frac{|xy|}{|x|+|y|} \leq \frac{|x|+|y|}{2}\) car \(|xy| \leq \frac{(|x|+|y|)^2}{4}\) et on simplifie par \(|x|+|y|\).) Donc \(f\) est continue en \((0,0)\).</p>
+        <p><strong>Derivees partielles en \((0,0)\) :</strong></p>
+        <div class="math-display">$$\frac{\partial f}{\partial x}(0,0) = \lim_{h \to 0} \frac{f(h,0) - f(0,0)}{h} = \lim_{h \to 0} \frac{\sin(0)/(|h|+0)}{h} = \lim_{h \to 0} \frac{0}{h} = 0$$</div>
+        <p>De meme, \(\frac{\partial f}{\partial y}(0,0) = 0\).</p>
+        <p><strong>Continuite des derivees partielles :</strong> pour \((x,y)\) dans un voisinage de l'origine avec \(x > 0, y > 0\) :</p>
+        <div class="math-display">$$\frac{\partial f}{\partial x}(x,y) = \frac{y\cos(xy)(x+y) - \sin(xy)}{(x+y)^2}$$</div>
+        <p>Quand \((x,y) \to (0,0)\) par ce quadrant, \(y\cos(xy)(x+y) \approx y(x+y)\) et \(\sin(xy) \approx xy\), donc le numerateur est \(\approx y(x+y) - xy = y^2\), et le quotient \(\approx \frac{y^2}{(x+y)^2}\). Le long de \(y = x\), cela donne \(\frac{x^2}{4x^2} = \frac{1}{4} \neq 0\).</p>
+        <p>La derivee partielle \(\frac{\partial f}{\partial x}\) n'est pas continue en \((0,0)\) (elle vaut \(0\) en l'origine mais ne tend pas vers \(0\)). <strong>Donc \(f\) n'est pas de classe \(\mathcal{C}^1\).</strong></p>
       </div>
     </section>
 
     <!-- ═══════════════ M3 ═══════════════ -->
     <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Optimisation par projection</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Resoudre une EDP (primitivation, changement de variables)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>On cherche a minimiser \(\|x - a\|^2\) sous une contrainte lineaire \(Cx = d\) (ou de maniere equivalente, minimiser \(\|x\|^2\) sous contrainte affine).</li>
-          <li>La solution est la <strong>projection orthogonale</strong> de \(a\) sur le sous-espace affine defini par la contrainte.</li>
-          <li>En pratique : parametrer le sous-espace affine, puis minimiser la norme au carre en fonction du parametre.</li>
-          <li>Ou bien utiliser les multiplicateurs de Lagrange : former \(\mathcal{L}(x, \lambda) = \|x - a\|^2 + \lambda(Cx - d)\) et annuler les derivees partielles.</li>
+          <li><strong>EDP par primitivation :</strong> pour \(\frac{\partial^2 f}{\partial x \partial y} = 0\), integrer d'abord par rapport a \(y\) (a \(x\) fixe) puis par rapport a \(x\). La solution generale contient des fonctions arbitraires.</li>
+          <li><strong>Changement de variables :</strong> poser de nouvelles variables \((u, v)\) pour se ramener a une EDP plus simple. Utiliser la regle de la chaine pour exprimer les derivees partielles.</li>
+          <li><strong>Separation de variables :</strong> chercher des solutions de la forme \(f(x,y) = g(x)h(y)\). Chaque facteur satisfait une EDO.</li>
+          <li><strong>Bien compter les fonctions arbitraires :</strong> une EDP d'ordre \(k\) en \(n\) variables admet generalement des solutions dependant de fonctions arbitraires (pas de constantes comme pour les EDO).</li>
         </ol>
       </div>
 
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP 2025</span>
-        <span class="block__label">Exercice -- CCINP 2025 Maths 1 (style)</span>
-        <p>Minimiser \(f(x,y,z) = x^2 + y^2 + z^2\) sous la contrainte \(x + y + z = 1\).</p>
-        <ol>
-          <li>Ecrire le lagrangien et determiner le point critique.</li>
-          <li>Verifier que la solution est le projete orthogonal de l'origine sur le plan \(x + y + z = 1\).</li>
-          <li>Calculer la valeur minimale.</li>
-        </ol>
-        <p><em>Indication :</em> par Lagrange, \(2x = 2y = 2z = \lambda\), donc \(x = y = z\). Avec la contrainte \(x + y + z = 1\), on obtient \(x = y = z = \frac{1}{3}\) et \(f_{\min} = \frac{1}{3}\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Trouver toutes les fonctions \(f \in \mathcal{C}^2(\mathbb{R}^2, \mathbb{R})\) telles que \(\dfrac{\partial^2 f}{\partial x \partial y} = 0\).</strong></p>
+        <p><em>Resolution.</em> On integre par rapport a \(y\) a \(x\) fixe. Posons \(g(x,y) = \frac{\partial f}{\partial x}(x,y)\). Alors \(\frac{\partial g}{\partial y} = 0\), donc \(g\) ne depend pas de \(y\) :</p>
+        <div class="math-display">$$\frac{\partial f}{\partial x}(x,y) = \varphi(x)$$</div>
+        <p>ou \(\varphi\) est une fonction \(\mathcal{C}^1\) quelconque. On integre par rapport a \(x\) :</p>
+        <div class="math-display">$$f(x,y) = \Phi(x) + \psi(y)$$</div>
+        <p>ou \(\Phi\) est une primitive de \(\varphi\) (fonction \(\mathcal{C}^2\) arbitraire de \(x\)) et \(\psi\) est une fonction \(\mathcal{C}^2\) arbitraire de \(y\).</p>
+        <p><strong>Conclusion :</strong> les solutions sont exactement les fonctions de la forme \(f(x,y) = \Phi(x) + \psi(y)\) avec \(\Phi, \psi \in \mathcal{C}^2\).</p>
+        <p><em>Verification :</em> \(\frac{\partial f}{\partial x} = \Phi'(x)\), puis \(\frac{\partial^2 f}{\partial x \partial y} = 0\). C'est correct.</p>
       </div>
     </section>
 
     <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Fonctions implicites</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Extrema locaux (matrice hessienne, critere \(rt - s^2\))</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>On a une equation \(F(x,y) = 0\) avec \(F\) de classe \(\mathcal{C}^1\).</li>
-          <li>Verifier que \(\dfrac{\partial F}{\partial y}(x_0, y_0) \neq 0\) en un point \((x_0, y_0)\) tel que \(F(x_0, y_0) = 0\).</li>
-          <li>Par le theoreme des fonctions implicites, il existe localement une fonction \(y = \varphi(x)\) de classe \(\mathcal{C}^1\) telle que \(F(x, \varphi(x)) = 0\).</li>
-          <li>La derivee de \(\varphi\) est donnee par :
-            $$\varphi'(x) = -\frac{\dfrac{\partial F}{\partial x}(x, \varphi(x))}{\dfrac{\partial F}{\partial y}(x, \varphi(x))}$$</li>
+          <li><strong>Points critiques :</strong> resoudre le systeme \(\frac{\partial f}{\partial x} = 0\) et \(\frac{\partial f}{\partial y} = 0\).</li>
+          <li><strong>Matrice hessienne :</strong> en un point critique \((a,b)\), calculer \(r = \frac{\partial^2 f}{\partial x^2}(a,b)\), \(s = \frac{\partial^2 f}{\partial x \partial y}(a,b)\), \(t = \frac{\partial^2 f}{\partial y^2}(a,b)\).</li>
+          <li><strong>Critere :</strong>
+            <ul>
+              <li>Si \(rt - s^2 > 0\) et \(r > 0\) : minimum local.</li>
+              <li>Si \(rt - s^2 > 0\) et \(r < 0\) : maximum local.</li>
+              <li>Si \(rt - s^2 < 0\) : point-selle (pas d'extremum).</li>
+              <li>Si \(rt - s^2 = 0\) : on ne peut pas conclure (etude supplementaire necessaire).</li>
+            </ul>
+          </li>
         </ol>
       </div>
 
-      <div class="block block--remark">
-        <span class="block__label">Astuce</span>
-        <p>Pour trouver \(\varphi'(x)\), on peut aussi deriver directement l'equation \(F(x, \varphi(x)) = 0\) par rapport a \(x\) en appliquant la regle de la chaine : \(\dfrac{\partial F}{\partial x} + \dfrac{\partial F}{\partial y} \cdot \varphi'(x) = 0\).</p>
-      </div>
-
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Soit \(F(x,y) = x^2 + y^2 + xy - 1\).</p>
-        <ol>
-          <li>Verifier que \(F(1, 0) = 0\) et que le theoreme des fonctions implicites s'applique au voisinage de \((1, 0)\).</li>
-          <li>Calculer \(y'(x)\) en fonction de \(x\) et \(y\).</li>
-          <li>En deduire la valeur de \(y'(1)\).</li>
-        </ol>
-        <p><em>Indication :</em> on a \(\dfrac{\partial F}{\partial y} = 2y + x\). En \((1,0)\), \(\dfrac{\partial F}{\partial y} = 1 \neq 0\). Donc \(\varphi'(x) = -\dfrac{2x + y}{2y + x}\), et \(\varphi'(1) = -2\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Trouver les extrema locaux de \(f(x,y) = x^3 + y^3 - 3xy\).</strong></p>
+        <p><em>Resolution.</em> <strong>Points critiques :</strong></p>
+        <div class="math-display">$$\frac{\partial f}{\partial x} = 3x^2 - 3y = 0 \implies y = x^2$$</div>
+        <div class="math-display">$$\frac{\partial f}{\partial y} = 3y^2 - 3x = 0 \implies x = y^2$$</div>
+        <p>En substituant \(y = x^2\) dans \(x = y^2\) : \(x = x^4\), soit \(x(x^3 - 1) = 0\). Donc \(x = 0\) ou \(x = 1\).</p>
+        <ul>
+          <li>\(x = 0 \implies y = 0\) : point critique \((0, 0)\).</li>
+          <li>\(x = 1 \implies y = 1\) : point critique \((1, 1)\).</li>
+        </ul>
+        <p><strong>Matrice hessienne :</strong> \(r = 6x\), \(s = -3\), \(t = 6y\). Donc \(rt - s^2 = 36xy - 9\).</p>
+        <p><strong>En \((0,0)\) :</strong> \(rt - s^2 = 0 - 9 = -9 < 0\). C'est un <strong>point-selle</strong>.</p>
+        <p><strong>En \((1,1)\) :</strong> \(rt - s^2 = 36 - 9 = 27 > 0\) et \(r = 6 > 0\). C'est un <strong>minimum local</strong>.</p>
+        <p>La valeur au minimum est \(f(1,1) = 1 + 1 - 3 = -1\).</p>
       </div>
     </section>
 
     <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Regle de la chaine</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Extrema sous contrainte (multiplicateurs de Lagrange)</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
         <ol>
-          <li>Soit \(f(x,y)\) differentiable, et \(x = x(t)\), \(y = y(t)\) differentiables. On a :
-            $$\frac{\mathrm{d}}{\mathrm{d}t} f(x(t), y(t)) = \frac{\partial f}{\partial x} \cdot x'(t) + \frac{\partial f}{\partial y} \cdot y'(t)$$</li>
-          <li>Plus generalement, si \(x = x(u,v)\) et \(y = y(u,v)\) :
-            $$\frac{\partial f}{\partial u} = \frac{\partial f}{\partial x} \cdot \frac{\partial x}{\partial u} + \frac{\partial f}{\partial y} \cdot \frac{\partial y}{\partial u}$$</li>
-          <li>Application typique : changement de variables en coordonnees polaires \(x = r\cos\theta\), \(y = r\sin\theta\).</li>
+          <li><strong>Enoncer le probleme :</strong> optimiser \(f(x,y)\) sous la contrainte \(g(x,y) = 0\) (ou \(g(x,y) = c\)).</li>
+          <li><strong>Condition de Lagrange :</strong> en un extremum, il existe \(\lambda \in \mathbb{R}\) tel que \(\nabla f = \lambda \nabla g\), c'est-a-dire :
+            \(\frac{\partial f}{\partial x} = \lambda \frac{\partial f}{\partial x}\) et \(\frac{\partial f}{\partial y} = \lambda \frac{\partial g}{\partial y}\).</li>
+          <li><strong>Systeme a resoudre :</strong> trois equations (les deux composantes de \(\nabla f = \lambda \nabla g\) plus la contrainte \(g = c\)) pour trois inconnues \((x, y, \lambda)\).</li>
+          <li><strong>Identifier la nature :</strong> comparer les valeurs de \(f\) aux points critiques pour determiner le maximum et le minimum (si le domaine est compact, les extrema existent par Weierstrass).</li>
+          <li><strong>Cas de plusieurs contraintes :</strong> \(\nabla f = \lambda_1 \nabla g_1 + \lambda_2 \nabla g_2 + \cdots\)</li>
         </ol>
       </div>
 
-      <div class="block block--annale">
-        <span class="annale-badge">Style CCINP</span>
-        <span class="block__label">Exercice -- Style CCINP</span>
-        <p>Soit \(f(x,y)\) de classe \(\mathcal{C}^1\) et \(F(r,\theta) = f(r\cos\theta, r\sin\theta)\) le passage en coordonnees polaires.</p>
-        <ol>
-          <li>Exprimer \(\dfrac{\partial F}{\partial r}\) en fonction des derivees partielles de \(f\).</li>
-          <li>Montrer que \(r\dfrac{\partial F}{\partial r} = x\dfrac{\partial f}{\partial x} + y\dfrac{\partial f}{\partial y}\).</li>
-        </ol>
-        <p><em>Indication :</em> par la regle de la chaine, \(\dfrac{\partial F}{\partial r} = \dfrac{\partial f}{\partial x} \cos\theta + \dfrac{\partial f}{\partial y} \sin\theta\). En multipliant par \(r\) et en utilisant \(x = r\cos\theta\), \(y = r\sin\theta\), on obtient le resultat.</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Trouver le maximum de \(e^{xy}\) sous la contrainte \(x^5 + y^5 = 2\).</strong></p>
+        <p><em>Resolution.</em> Posons \(f(x,y) = e^{xy}\) et \(g(x,y) = x^5 + y^5 - 2\).</p>
+        <p><strong>Gradients :</strong></p>
+        <div class="math-display">$$\nabla f = (ye^{xy},\, xe^{xy}), \qquad \nabla g = (5x^4,\, 5y^4)$$</div>
+        <p><strong>Conditions de Lagrange :</strong> \(ye^{xy} = 5\lambda x^4\) et \(xe^{xy} = 5\lambda y^4\).</p>
+        <p>En divisant (si \(x, y \neq 0\)) : \(\frac{y}{x} = \frac{x^4}{y^4}\), soit \(y^5 = x^5\), d'ou \(y = x\) (dans \(\mathbb{R}\)).</p>
+        <p>En injectant dans la contrainte : \(2x^5 = 2\), donc \(x = 1\) et \(y = 1\).</p>
+        <p>La valeur est \(f(1,1) = e^{1} = e\).</p>
+        <p><strong>Verification que c'est un maximum :</strong> sur la courbe \(x^5 + y^5 = 2\), quand \(x \to +\infty\), on a \(y \to -\infty\), donc \(xy \to -\infty\) et \(e^{xy} \to 0\). Le point \((1,1)\) donne bien la valeur maximale. De meme, le cas \(x \to -\infty\) donne \(xy \to -\infty\).</p>
+        <div class="math-display">$$\boxed{\max_{x^5 + y^5 = 2} e^{xy} = e, \quad \text{atteint en } (1,1)}$$</div>
       </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
+
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
+
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> Si \(f(x,y) \to \ell\) le long de toute droite passant par l'origine, alors \(\lim_{(x,y)\to(0,0)} f(x,y) = \ell\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Contre-exemple classique : \(f(x,y) = \frac{x^2 y}{x^4 + y^2}\). Le long de toute droite \(y = mx\), \(f \to 0\), mais le long de la parabole \(y = x^2\), \(f = \frac{x^4}{2x^4} = \frac{1}{2}\). La limite n'existe pas en \((0,0)\). Les chemins rectilignes ne suffisent pas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> Si \(f\) admet des derivees partielles en \((a,b)\), alors \(f\) est continue en \((a,b)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Contre-exemple : \(f(x,y) = \frac{xy}{x^2+y^2}\) si \((x,y) \neq (0,0)\) et \(f(0,0) = 0\). Les derivees partielles en \((0,0)\) existent (et valent \(0\) car \(f(h,0) = 0\) et \(f(0,k) = 0\)), mais \(f\) n'est pas continue en \((0,0)\) (le long de \(y = x\), \(f = 1/2\)).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> Si \(f\) est de classe \(\mathcal{C}^1\) sur un ouvert, alors \(f\) est differentiable sur cet ouvert.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est un theoreme fondamental : si les derivees partielles existent et sont continues sur un ouvert, alors \(f\) est differentiable sur cet ouvert. L'implication reciproque est fausse (differentiable n'implique pas \(\mathcal{C}^1\)).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> Le gradient de \(f\) en un point critique est le vecteur nul.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Par definition, un point critique (ou point stationnaire) de \(f\) differentiable est un point \((a,b)\) ou \(\mathrm{d}f_{(a,b)} = 0\), c'est-a-dire \(\nabla f(a,b) = (0,0)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> Si \(rt - s^2 = 0\) en un point critique, alors ce point est un point-selle.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Quand \(rt - s^2 = 0\), le critere est non conclusif. Le point peut etre un minimum (\(f(x,y) = x^4 + y^4\) en \((0,0)\)), un maximum (\(f(x,y) = -x^4 - y^4\)), ou un point-selle (\(f(x,y) = x^4 - y^4\)). Il faut une etude supplementaire.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> La differentielle de \(f \circ g\) est \(\mathrm{d}f_{g(a)} \circ \mathrm{d}g_a\) (regle de la chaine).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est le theoreme de derivation des fonctions composees (chain rule). Si \(g\) est differentiable en \(a\) et \(f\) est differentiable en \(g(a)\), alors \(f \circ g\) est differentiable en \(a\) et \(\mathrm{d}(f \circ g)_a = \mathrm{d}f_{g(a)} \circ \mathrm{d}g_a\). En termes de matrices jacobiennes : \(J_{f \circ g}(a) = J_f(g(a)) \cdot J_g(a)\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> Si \(f\) est differentiable en \((a,b)\), alors \(f\) admet des derivees directionnelles dans toutes les directions en \((a,b)\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(f\) est differentiable en \((a,b)\), alors pour tout vecteur unitaire \(\vec{u} = (h,k)\), la derivee directionnelle existe et vaut \(D_{\vec{u}}f(a,b) = \mathrm{d}f_{(a,b)}(\vec{u}) = \frac{\partial f}{\partial x}(a,b)\,h + \frac{\partial f}{\partial y}(a,b)\,k = \nabla f(a,b) \cdot \vec{u}\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> Les solutions de l'EDP \(\frac{\partial f}{\partial x} = 0\) sur \(\mathbb{R}^2\) sont les fonctions constantes.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>L'equation \(\frac{\partial f}{\partial x} = 0\) signifie que \(f\) ne depend pas de \(x\). La solution generale est \(f(x,y) = \psi(y)\) ou \(\psi\) est une fonction arbitraire. Ce sont les fonctions qui ne dependent que de \(y\), pas necessairement constantes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> Dans la methode des multiplicateurs de Lagrange, le multiplicateur \(\lambda\) a toujours une interpretation comme taux de variation de l'optimum par rapport a la contrainte.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Si \(f^*\!(c)\) designe la valeur optimale de \(f\) sous la contrainte \(g = c\), alors sous les hypotheses de regularite du theoreme des fonctions implicites, on a \(\frac{\mathrm{d}f^*}{\mathrm{d}c} = \lambda\). Le multiplicateur de Lagrange represente la sensibilite de l'optimum a un desserrement de la contrainte.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> Toute fonction continue sur un compact de \(\mathbb{R}^2\) atteint ses bornes.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est le theoreme des bornes atteintes (Weierstrass). L'image continue d'un compact est un compact de \(\mathbb{R}\), donc ferme et borne, et le supremum et l'infimum sont atteints. Ce theoreme est fondamental pour garantir l'existence d'extrema dans les problemes d'optimisation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 20</span>
+        <span class="block__label">Exercice 1 -- Limites en \((0,0)\)</span>
+        <p>Etudier l'existence et la valeur de la limite en \((0,0)\) pour chacune des fonctions suivantes :</p>
+        <ol>
+          <li>\(f_1(x,y) = \dfrac{x^3 + y^3}{x^2 + y^2}\)</li>
+          <li>\(f_2(x,y) = \dfrac{x^2 y^2}{x^2 y^2 + (x-y)^2}\)</li>
+          <li>\(f_3(x,y) = (x^2 + y^2) \sin\!\left(\dfrac{1}{xy}\right)\) pour \(xy \neq 0\)</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> En polaires : \(f_1 = \frac{r^3(\cos^3\theta + \sin^3\theta)}{r^2} = r(\cos^3\theta + \sin^3\theta)\). Donc \(|f_1| \leq r \cdot 2 \to 0\). La limite est \(0\).</p>
+
+            <p><strong>2.</strong> Le long de \(y = x\) : \(f_2 = \frac{x^4}{x^4 + 0} = 1\). Le long de \(y = 0\) (pour \(x \neq 0\)) : \(f_2 = \frac{0}{0 + x^2} = 0\). Deux chemins donnent des limites differentes. <strong>La limite n'existe pas.</strong></p>
+
+            <p><strong>3.</strong> Pour \(xy \neq 0\), on a \(|\sin(1/(xy))| \leq 1\), donc \(|f_3(x,y)| \leq x^2 + y^2 \to 0\). Cependant, la fonction n'est pas definie sur les axes. Si l'on prolonge par \(0\) sur les axes, alors on obtient une fonction continue en \((0,0)\) avec la limite \(0\). <strong>La limite est \(0\)</strong> (au sens de la restriction a \(\{xy \neq 0\}\)).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 20</span>
+        <span class="block__label">Exercice 2 -- Differentiabilite et derivees partielles</span>
+        <p>Soit \(f : \mathbb{R}^2 \to \mathbb{R}\) definie par \(f(x,y) = \sqrt[3]{x^2 y^2}\).</p>
+        <ol>
+          <li>Montrer que \(f\) est continue sur \(\mathbb{R}^2\).</li>
+          <li>Calculer les derivees partielles de \(f\) en tout point \((x,y)\).</li>
+          <li>\(f\) est-elle differentiable en \((0,0)\) ?</li>
+          <li>Calculer la derivee directionnelle de \(f\) en \((0,0)\) dans la direction \(\vec{u} = (\cos\alpha, \sin\alpha)\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On a \(f(x,y) = (x^2 y^2)^{1/3} = |xy|^{2/3}\). La fonction \((x,y) \mapsto xy\) est continue, \(t \mapsto |t|\) est continue, et \(t \mapsto t^{2/3}\) est continue sur \(\mathbb{R}_+\). Par composition, \(f\) est continue sur \(\mathbb{R}^2\).</p>
+
+            <p><strong>2.</strong> Pour \((x,y) \neq (0,0)\) avec \(x \neq 0\) :</p>
+            <div class="math-display">$$\frac{\partial f}{\partial x}(x,y) = \frac{2}{3} (x^2 y^2)^{-2/3} \cdot 2xy^2 = \frac{2y^2}{3(x^2 y^2)^{2/3}} \cdot x$$</div>
+            <p>Plus simplement, \(f = |xy|^{2/3}\). Pour \(x > 0, y > 0\) : \(f = x^{2/3} y^{2/3}\), donc \(\frac{\partial f}{\partial x} = \frac{2}{3} x^{-1/3} y^{2/3}\).</p>
+            <p>En \((0,0)\) : \(\frac{\partial f}{\partial x}(0,0) = \lim_{h \to 0} \frac{f(h,0) - f(0,0)}{h} = \lim_{h \to 0} \frac{0}{h} = 0\). De meme \(\frac{\partial f}{\partial y}(0,0) = 0\).</p>
+
+            <p><strong>3.</strong> Si \(f\) etait differentiable en \((0,0)\), on aurait \(f(h,k) = f(0,0) + 0 \cdot h + 0 \cdot k + o(\|(h,k)\|)\), soit \(|hk|^{2/3} = o(\sqrt{h^2+k^2})\). Le long de \(h = k\), cela donne \(|h|^{4/3} = o(|h|\sqrt{2})\), soit \(|h|^{1/3} \to 0\) quand \(h \to 0\), ce qui est vrai. Mais le long de \(k = h\) : \(\frac{|h^2|^{2/3}}{|h|\sqrt{2}} = \frac{|h|^{4/3}}{|h|\sqrt{2}} = \frac{|h|^{1/3}}{\sqrt{2}} \to 0\). Verifions plutot : le quotient \(\frac{|hk|^{2/3}}{\sqrt{h^2+k^2}}\) le long de \(k = h\) donne \(\frac{h^{4/3}}{h\sqrt{2}} = \frac{h^{1/3}}{\sqrt{2}} \to 0\). Cela tend bien vers \(0\).</p>
+            <p>En fait, montrons que \(f\) n'est pas differentiable. En polaires : \(\frac{|r^2\cos\theta\sin\theta|^{2/3}}{r} = r^{1/3}|\cos\theta\sin\theta|^{2/3}\). Ce quotient tend vers \(0\) uniformement en \(\theta\), donc \(f\) <strong>est differentiable</strong> en \((0,0)\), avec \(\mathrm{d}f_{(0,0)} = 0\).</p>
+
+            <p><strong>4.</strong> La derivee directionnelle dans la direction \(\vec{u} = (\cos\alpha, \sin\alpha)\) :</p>
+            <div class="math-display">$$D_{\vec{u}}f(0,0) = \lim_{t \to 0} \frac{f(t\cos\alpha, t\sin\alpha) - 0}{t} = \lim_{t \to 0} \frac{|t^2\cos\alpha\sin\alpha|^{2/3}}{t} = \lim_{t \to 0} \frac{t^{4/3}|\cos\alpha\sin\alpha|^{2/3}}{t}$$</div>
+            <div class="math-display">$$= \lim_{t \to 0} t^{1/3}|\cos\alpha\sin\alpha|^{2/3} = 0$$</div>
+            <p>La derivee directionnelle est nulle dans toutes les directions.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 20</span>
+        <span class="block__label">Exercice 3 -- Resolution d'une EDP par changement de variables</span>
+        <p>Trouver toutes les fonctions \(f \in \mathcal{C}^2(\mathbb{R}^2, \mathbb{R})\) verifiant :</p>
+        <div class="math-display">$$\frac{\partial^2 f}{\partial x^2} - \frac{\partial^2 f}{\partial y^2} = 0$$</div>
+        <p><em>Indication :</em> poser \(u = x + y\), \(v = x - y\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p>Posons \(u = x + y\), \(v = x - y\), et \(g(u,v) = f\!\left(\frac{u+v}{2}, \frac{u-v}{2}\right)\).</p>
+            <p><strong>Calcul des derivees :</strong> par la regle de la chaine :</p>
+            <div class="math-display">$$\frac{\partial f}{\partial x} = \frac{\partial g}{\partial u} + \frac{\partial g}{\partial v}, \qquad \frac{\partial f}{\partial y} = \frac{\partial g}{\partial u} - \frac{\partial g}{\partial v}$$</div>
+            <p>Derivons a nouveau :</p>
+            <div class="math-display">$$\frac{\partial^2 f}{\partial x^2} = \frac{\partial^2 g}{\partial u^2} + 2\frac{\partial^2 g}{\partial u \partial v} + \frac{\partial^2 g}{\partial v^2}$$</div>
+            <div class="math-display">$$\frac{\partial^2 f}{\partial y^2} = \frac{\partial^2 g}{\partial u^2} - 2\frac{\partial^2 g}{\partial u \partial v} + \frac{\partial^2 g}{\partial v^2}$$</div>
+            <p>Donc :</p>
+            <div class="math-display">$$\frac{\partial^2 f}{\partial x^2} - \frac{\partial^2 f}{\partial y^2} = 4\frac{\partial^2 g}{\partial u \partial v} = 0$$</div>
+            <p>On est ramene a l'EDP \(\frac{\partial^2 g}{\partial u \partial v} = 0\), dont la solution est \(g(u,v) = \varphi(u) + \psi(v)\) (cf. M3).</p>
+            <p>En revenant aux variables \((x,y)\) :</p>
+            <div class="math-display">$$\boxed{f(x,y) = \varphi(x+y) + \psi(x-y)}$$</div>
+            <p>ou \(\varphi, \psi \in \mathcal{C}^2(\mathbb{R}, \mathbb{R})\) sont arbitraires. C'est la solution generale de l'equation des ondes en dimension 1 (formule de d'Alembert).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 20</span>
+        <span class="block__label">Exercice 4 -- Extrema libres</span>
+        <p>Trouver et classifier les points critiques de :</p>
+        <ol>
+          <li>\(f(x,y) = x^4 + y^4 - 2(x-y)^2\)</li>
+          <li>\(g(x,y) = xy\,e^{-(x^2+y^2)/2}\)</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On a \(f(x,y) = x^4 + y^4 - 2x^2 + 4xy - 2y^2\).</p>
+            <div class="math-display">$$\frac{\partial f}{\partial x} = 4x^3 - 4x + 4y = 0, \qquad \frac{\partial f}{\partial y} = 4y^3 + 4x - 4y = 0$$</div>
+            <p>En additionnant : \(4(x^3 + y^3) = 0\), soit \((x+y)(x^2 - xy + y^2) = 0\).</p>
+            <p><em>Cas 1 :</em> \(y = -x\). Alors \(\frac{\partial f}{\partial x} = 4x^3 - 4x - 4x = 4x^3 - 8x = 0\), soit \(x(x^2 - 2) = 0\). Points : \((0,0)\), \((\sqrt{2}, -\sqrt{2})\), \((-\sqrt{2}, \sqrt{2})\).</p>
+            <p><em>Cas 2 :</em> \(x^2 - xy + y^2 = 0\). Comme \(x^2 - xy + y^2 = (x - y/2)^2 + 3y^2/4 \geq 0\), l'egalite n'a lieu que si \(x = y = 0\), deja compte.</p>
+            <p><strong>Hessienne :</strong> \(r = 12x^2 - 4\), \(s = 4\), \(t = 12y^2 - 4\). Donc \(rt - s^2 = (12x^2 - 4)(12y^2 - 4) - 16\).</p>
+            <ul>
+              <li><strong>En \((0,0)\) :</strong> \(rt - s^2 = (-4)(-4) - 16 = 0\). Cas degenere. Etude directe : \(f(x,-x) = 2x^4 - 8x^2\), qui a un maximum local en \(x = 0\) ? Non, \(f(x,-x) = 2x^4 - 8x^2 < 0\) pour \(x\) petit non nul. Mais \(f(x,x) = 2x^4 + 4x^2 - 4x^2 = 2x^4 > 0\) pour \(x \neq 0\). Donc \((0,0)\) est un <strong>point-selle</strong>.</li>
+              <li><strong>En \((\sqrt{2}, -\sqrt{2})\) :</strong> \(r = 24 - 4 = 20\), \(t = 24 - 4 = 20\), \(rt - s^2 = 400 - 16 = 384 > 0\) et \(r > 0\). <strong>Minimum local.</strong> Valeur : \(f(\sqrt{2},-\sqrt{2}) = 4 + 4 - 2 \cdot 8 = -8\).</li>
+              <li><strong>En \((-\sqrt{2}, \sqrt{2})\) :</strong> par symetrie, memes valeurs. <strong>Minimum local</strong>, valeur \(-8\).</li>
+            </ul>
+
+            <p><strong>2.</strong> Posons \(h(x,y) = xye^{-(x^2+y^2)/2}\).</p>
+            <div class="math-display">$$\frac{\partial g}{\partial x} = y(1-x^2)e^{-(x^2+y^2)/2} = 0, \qquad \frac{\partial g}{\partial y} = x(1-y^2)e^{-(x^2+y^2)/2} = 0$$</div>
+            <p>Comme \(e^{-(x^2+y^2)/2} > 0\), on a \(y(1-x^2) = 0\) et \(x(1-y^2) = 0\).</p>
+            <ul>
+              <li>Si \(y = 0\) : alors \(x \cdot 1 = 0\) donc \(x = 0\). Point : \((0,0)\).</li>
+              <li>Si \(x^2 = 1\) et \(x = 0\) : impossible.</li>
+              <li>Si \(x^2 = 1\) et \(y^2 = 1\) : points \((\pm 1, \pm 1)\).</li>
+            </ul>
+            <p><strong>Hessienne en \((0,0)\) :</strong> \(r = \frac{\partial^2 g}{\partial x^2}(0,0)\). On calcule \(\frac{\partial^2 g}{\partial x^2} = y(-2x)(1-x^2)e^{-\ldots} + y(-2x)e^{-\ldots} + \ldots\). En \((0,0)\) : \(r = 0\), \(t = 0\), \(s = e^0 = 1\). Donc \(rt - s^2 = -1 < 0\). <strong>Point-selle.</strong></p>
+            <p><strong>En \((1,1)\) :</strong> \(g(1,1) = e^{-1}\). On peut verifier que \(rt - s^2 > 0\) et \(r < 0\), donnant un <strong>maximum local</strong>. Par symetrie \((-1,-1)\) donne aussi un maximum, valeur \(e^{-1}\).</p>
+            <p><strong>En \((1,-1)\) :</strong> \(g(1,-1) = -e^{-1}\). C'est un <strong>minimum local</strong>. De meme \((-1,1)\) est un minimum.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 20</span>
+        <span class="block__label">Exercice 5 -- Extrema sous contrainte</span>
+        <ol>
+          <li>Trouver les extrema de \(f(x,y,z) = x + y + z\) sous la contrainte \(x^2 + y^2 + z^2 = 1\).</li>
+          <li>En deduire que pour tout \((x,y,z)\) de norme \(1\) : \(|x + y + z| \leq \sqrt{3}\).</li>
+          <li>Trouver les extrema de \(g(x,y) = x^2 + y^2\) sous la contrainte \(x^4 + y^4 = 1\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Lagrange : \(\nabla f = \lambda \nabla g\) avec \(g(x,y,z) = x^2+y^2+z^2-1\). Cela donne \(1 = 2\lambda x\), \(1 = 2\lambda y\), \(1 = 2\lambda z\). Donc \(x = y = z = \frac{1}{2\lambda}\).</p>
+            <p>Contrainte : \(3 \cdot \frac{1}{4\lambda^2} = 1\), soit \(\lambda^2 = \frac{3}{4}\), \(\lambda = \pm\frac{\sqrt{3}}{2}\).</p>
+            <ul>
+              <li>\(\lambda = \frac{\sqrt{3}}{2}\) : \(x = y = z = \frac{1}{\sqrt{3}}\), \(f = \sqrt{3}\). <strong>Maximum.</strong></li>
+              <li>\(\lambda = -\frac{\sqrt{3}}{2}\) : \(x = y = z = -\frac{1}{\sqrt{3}}\), \(f = -\sqrt{3}\). <strong>Minimum.</strong></li>
+            </ul>
+            <p>(La sphere est compacte, donc les extrema existent par Weierstrass.)</p>
+
+            <p><strong>2.</strong> On a montre que sur la sphere unite, \(-\sqrt{3} \leq x+y+z \leq \sqrt{3}\), d'ou \(|x+y+z| \leq \sqrt{3}\). C'est un cas particulier de l'inegalite de Cauchy-Schwarz : \(|x+y+z| = |(1,1,1)\cdot(x,y,z)| \leq \|(1,1,1)\| \cdot \|(x,y,z)\| = \sqrt{3}\).</p>
+
+            <p><strong>3.</strong> Lagrange : \(\nabla g = \mu \nabla h\) avec \(h = x^4+y^4-1\). Cela donne \(2x = 4\mu x^3\) et \(2y = 4\mu y^3\).</p>
+            <p><em>Cas \(x \neq 0, y \neq 0\) :</em> \(\mu = \frac{1}{2x^2} = \frac{1}{2y^2}\), donc \(x^2 = y^2\). Avec la contrainte \(2x^4 = 1\), on obtient \(x^2 = \frac{1}{\sqrt{2}}\). La valeur est \(g = 2x^2 = \sqrt{2}\).</p>
+            <p><em>Cas \(x = 0\) :</em> \(y^4 = 1\), \(y = \pm 1\), \(g = 1\). De meme pour \(y = 0\).</p>
+            <p>Comme la courbe \(x^4+y^4=1\) est compacte, les extrema existent.</p>
+            <div class="math-display">$$\boxed{\min g = 1 \text{ (aux points } (\pm 1, 0), (0, \pm 1)\text{)}, \quad \max g = \sqrt{2} \text{ (aux points } (\pm 2^{-1/4}, \pm 2^{-1/4})\text{)}}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 20</span>
+        <span class="block__label">Exercice 6 -- Differentielle et fonctions composees</span>
+        <p>Soit \(f : \mathbb{R}^2 \to \mathbb{R}\) de classe \(\mathcal{C}^2\) et \(g(r,\theta) = f(r\cos\theta, r\sin\theta)\) le passage en coordonnees polaires.</p>
+        <ol>
+          <li>Exprimer \(\frac{\partial g}{\partial r}\) et \(\frac{\partial g}{\partial \theta}\) en fonction de \(\frac{\partial f}{\partial x}\) et \(\frac{\partial f}{\partial y}\).</li>
+          <li>Montrer que \(\frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} = \frac{\partial^2 g}{\partial r^2} + \frac{1}{r}\frac{\partial g}{\partial r} + \frac{1}{r^2}\frac{\partial^2 g}{\partial \theta^2}\) (laplacien en polaires).</li>
+          <li>Application : trouver toutes les fonctions harmoniques (\(\Delta f = 0\)) de la forme \(f(x,y) = h(r)\) ou \(r = \sqrt{x^2+y^2}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Par la regle de la chaine avec \(x = r\cos\theta\), \(y = r\sin\theta\) :</p>
+            <div class="math-display">$$\frac{\partial g}{\partial r} = \cos\theta\,\frac{\partial f}{\partial x} + \sin\theta\,\frac{\partial f}{\partial y}$$</div>
+            <div class="math-display">$$\frac{\partial g}{\partial \theta} = -r\sin\theta\,\frac{\partial f}{\partial x} + r\cos\theta\,\frac{\partial f}{\partial y}$$</div>
+
+            <p><strong>2.</strong> On derive a nouveau. Pour \(\frac{\partial^2 g}{\partial r^2}\) :</p>
+            <div class="math-display">$$\frac{\partial^2 g}{\partial r^2} = \cos^2\theta\,\frac{\partial^2 f}{\partial x^2} + 2\cos\theta\sin\theta\,\frac{\partial^2 f}{\partial x \partial y} + \sin^2\theta\,\frac{\partial^2 f}{\partial y^2}$$</div>
+            <p>Pour \(\frac{1}{r}\frac{\partial g}{\partial r}\) :</p>
+            <div class="math-display">$$\frac{1}{r}\frac{\partial g}{\partial r} = \frac{\cos\theta}{r}\frac{\partial f}{\partial x} + \frac{\sin\theta}{r}\frac{\partial f}{\partial y}$$</div>
+            <p>Pour \(\frac{1}{r^2}\frac{\partial^2 g}{\partial \theta^2}\), on derive \(\frac{\partial g}{\partial \theta}\) par rapport a \(\theta\), ce qui donne (apres calcul) :</p>
+            <div class="math-display">$$\frac{1}{r^2}\frac{\partial^2 g}{\partial \theta^2} = \sin^2\theta\,\frac{\partial^2 f}{\partial x^2} - 2\cos\theta\sin\theta\,\frac{\partial^2 f}{\partial x \partial y} + \cos^2\theta\,\frac{\partial^2 f}{\partial y^2} - \frac{\cos\theta}{r}\frac{\partial f}{\partial x} - \frac{\sin\theta}{r}\frac{\partial f}{\partial y}$$</div>
+            <p>En sommant les trois termes, les termes croises \(\frac{\partial^2 f}{\partial x\partial y}\) s'annulent, les termes en \(\frac{1}{r}\frac{\partial f}{\partial x}\) et \(\frac{1}{r}\frac{\partial f}{\partial y}\) aussi, et il reste :</p>
+            <div class="math-display">$$\frac{\partial^2 g}{\partial r^2} + \frac{1}{r}\frac{\partial g}{\partial r} + \frac{1}{r^2}\frac{\partial^2 g}{\partial \theta^2} = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} = \Delta f$$</div>
+
+            <p><strong>3.</strong> Si \(f(x,y) = h(r)\), alors \(g(r,\theta) = h(r)\) ne depend pas de \(\theta\). Le laplacien donne :</p>
+            <div class="math-display">$$\Delta f = h''(r) + \frac{1}{r}h'(r) = 0$$</div>
+            <p>C'est une EDO : \(rh'' + h' = 0\), soit \((rh')' = 0\). Donc \(rh'(r) = C\), et \(h'(r) = C/r\), d'ou :</p>
+            <div class="math-display">$$\boxed{h(r) = C\ln(r) + D}$$</div>
+            <p>Les fonctions harmoniques a symetrie radiale sont les fonctions de la forme \(f(x,y) = C\ln\sqrt{x^2+y^2} + D\) (definies pour \((x,y) \neq (0,0)\)).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 7 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 20</span>
+        <span class="block__label">Exercice 7 -- Theoreme des fonctions implicites et application</span>
+        <p>On considere l'equation \(F(x,y) = x^3 + y^3 - 3xy = 0\) (folium de Descartes).</p>
+        <ol>
+          <li>Montrer que la courbe passe par le point \(A = \left(\frac{3}{2}, \frac{3}{2}\right)\).</li>
+          <li>Montrer que le theoreme des fonctions implicites s'applique au voisinage de \(A\) : il existe une fonction \(y = \varphi(x)\) de classe \(\mathcal{C}^1\) telle que \(F(x, \varphi(x)) = 0\).</li>
+          <li>Calculer \(\varphi'\!\left(\frac{3}{2}\right)\).</li>
+          <li>Determiner les points de la courbe ou la tangente est horizontale ou verticale.</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Verification : \(F\!\left(\frac{3}{2}, \frac{3}{2}\right) = \frac{27}{8} + \frac{27}{8} - 3 \cdot \frac{9}{4} = \frac{54}{8} - \frac{27}{4} = \frac{27}{4} - \frac{27}{4} = 0\). Le point \(A\) est bien sur la courbe.</p>
+
+            <p><strong>2.</strong> On a \(F(x,y) = x^3 + y^3 - 3xy\), donc \(\frac{\partial F}{\partial y} = 3y^2 - 3x\). En \(A\) : \(\frac{\partial F}{\partial y}\!\left(\frac{3}{2},\frac{3}{2}\right) = 3 \cdot \frac{9}{4} - 3 \cdot \frac{3}{2} = \frac{27}{4} - \frac{9}{2} = \frac{27 - 18}{4} = \frac{9}{4} \neq 0\).</p>
+            <p>La fonction \(F\) est de classe \(\mathcal{C}^\infty\), \(F(A) = 0\) et \(\frac{\partial F}{\partial y}(A) \neq 0\). Par le theoreme des fonctions implicites, il existe un voisinage de \(x_0 = \frac{3}{2}\) et une unique fonction \(\varphi\) de classe \(\mathcal{C}^1\) telle que \(\varphi(x_0) = \frac{3}{2}\) et \(F(x, \varphi(x)) = 0\).</p>
+
+            <p><strong>3.</strong> En derivant \(F(x, \varphi(x)) = 0\) par rapport a \(x\) :</p>
+            <div class="math-display">$$\frac{\partial F}{\partial x} + \frac{\partial F}{\partial y}\varphi'(x) = 0 \implies \varphi'(x) = -\frac{\partial F / \partial x}{\partial F / \partial y} = -\frac{3x^2 - 3y}{3y^2 - 3x}$$</div>
+            <p>En \(A\) : \(\varphi'\!\left(\frac{3}{2}\right) = -\frac{3 \cdot 9/4 - 3 \cdot 3/2}{3 \cdot 9/4 - 3 \cdot 3/2} = -\frac{9/4}{9/4} = -1\).</p>
+            <p>La tangente en \(A\) a pour pente \(-1\) : c'est la droite \(y - \frac{3}{2} = -(x - \frac{3}{2})\), soit \(x + y = 3\).</p>
+
+            <p><strong>4.</strong> <em>Tangente horizontale :</em> \(\frac{\partial F}{\partial x} = 3x^2 - 3y = 0\), soit \(y = x^2\). En injectant dans \(F = 0\) : \(x^3 + x^6 - 3x^3 = 0\), soit \(x^6 - 2x^3 = 0\), \(x^3(x^3 - 2) = 0\). Donc \(x = 0\) (point \((0,0)\), singulier) ou \(x = \sqrt[3]{2}\), \(y = \sqrt[3]{4}\). <strong>Tangente horizontale en \((\sqrt[3]{2}, \sqrt[3]{4})\).</strong></p>
+            <p><em>Tangente verticale :</em> \(\frac{\partial F}{\partial y} = 3y^2 - 3x = 0\), soit \(x = y^2\). En injectant : \(y^6 + y^3 - 3y^3 = 0\), soit \(y^3(y^3 - 2) = 0\). Donc \(y = \sqrt[3]{2}\), \(x = \sqrt[3]{4}\). <strong>Tangente verticale en \((\sqrt[3]{4}, \sqrt[3]{2})\).</strong></p>
+            <p>(Le point \((0,0)\) est un point singulier ou \(\nabla F = 0\), ce qui rend le theoreme des fonctions implicites inapplicable.)</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
       <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
+      <a href="mp-m15-fourier.html" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
-        <span>Fiche suivante</span>
+        <span>Series de Fourier</span>
       </a>
     </nav>
 
@@ -377,6 +825,15 @@
           }
         }, 100);
       }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
     });
   </script>
 </body>

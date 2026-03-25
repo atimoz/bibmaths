@@ -35,12 +35,20 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
     .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
     .block p,.block li{font-size:.9rem;line-height:1.8}
-    .block ul,.block ol{padding-left:var(--space-md)}
-    .block ul{list-style:none}
+    .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
     .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
-    .block ol{list-style:decimal;padding-left:var(--space-lg)}
-    .block ol li{padding-left:4px}
+    .block ol{counter-reset:step}
+    .block ol li{counter-increment:step}
+    .block ol li::before{content:counter(step) '.';color:var(--accent);margin-right:8px;font-weight:600;font-family:var(--font-mono);font-size:.8rem}
     .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
     .block--def .block__label{color:#2563A3}
     .block--def ul li::before{color:#2563A3}
@@ -50,28 +58,29 @@
     .block--prop .block__label{color:#7638A3}
     .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
     .block--example .block__label{color:#4B825A}
+    .block--example ol li::before{color:#4B825A}
+    .block--example ul li::before{color:#4B825A}
     .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
     .block--remark .block__label{color:var(--accent)}
     .block--remark p{color:var(--ink-light);font-size:.875rem}
     .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
     .block--cor .block__label{color:#9B59B6}
-    .block--proof{background:rgba(75,130,90,.04);border-left:3px solid #4B825A}
-    .block--proof .block__label{color:#4B825A}
     .block--method{background:rgba(0,128,128,.06);border-left:3px solid #2A8A8A}
     .block--method .block__label{color:#2A8A8A}
+    .block--method ol li::before{color:#2A8A8A}
     .block--method ul li::before{color:#2A8A8A}
-    .block--annale{background:rgba(163,42,42,.04);border-left:3px solid #A32A2A}
-    .block--annale .block__label{color:#A32A2A}
-    .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;background:rgba(163,42,42,.12);color:#A32A2A;padding:3px 10px;border-radius:12px}
+    .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
+    .block--annale .block__label{color:var(--accent)}
+    .block--annale ol li::before{color:var(--accent)}
+    .block--annale ul li::before{color:var(--accent)}
+    .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
-    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
-    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
-    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
-    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
-    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
-    .deepen__btn.active svg{transform:rotate(180deg)}
-    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
-    .deepen__content.open{max-height:8000px;opacity:1}
+    .vf-item{margin-bottom:var(--space-md)}
+    .vf-statement{font-size:.93rem;line-height:1.8;color:var(--ink);margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
     .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
     .course__nav-link:hover{color:var(--accent)}
@@ -90,16 +99,14 @@
     [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
     [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
     [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
-    [data-theme="dark"] .block--proof{background:rgba(75,130,90,.08);border-left-color:#6AAF7A}
-    [data-theme="dark"] .block--proof .block__label{color:#6AAF7A}
-    [data-theme="dark"] .block--method{background:rgba(0,128,128,.1);border-left-color:#3DBFBF}
-    [data-theme="dark"] .block--method .block__label{color:#3DBFBF}
-    [data-theme="dark"] .block--method ul li::before{color:#3DBFBF}
-    [data-theme="dark"] .block--annale{background:rgba(163,42,42,.08);border-left-color:#D45A5A}
-    [data-theme="dark"] .block--annale .block__label{color:#D45A5A}
-    [data-theme="dark"] .annale-badge{background:rgba(212,90,90,.15);color:#D45A5A}
+    [data-theme="dark"] .block--method{background:rgba(0,128,128,.1);border-left-color:#4ABABA}
+    [data-theme="dark"] .block--method .block__label{color:#4ABABA}
+    [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
+    [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
+    [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
     [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
-    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}.annale-badge{position:static;display:inline-block;margin-bottom:8px}}
+    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
   </style>
 </head>
 <body>
@@ -157,280 +164,558 @@
     <a href="../../mp.html#methodes" class="course__back">&larr; Retour aux methodes MP</a>
 
     <div class="course__meta">
-      <span class="course__badge">MP -- Methodes CCINP</span>
-      <span class="badge--tier1">CCINP Tier 1</span>
-      <span class="course__chapter">Chapitre 11</span>
+      <span class="course__badge">MP -- Methodes</span>
+      <span class="course__chapter">Monier Ch. 13</span>
     </div>
 
     <h1 class="course__title">Integrales generalisees</h1>
 
     <p class="course__intro">
-      Cinq methodes incontournables pour les integrales generalisees, chacune illustree par un exercice de type annale CCINP. Convergence, derivation sous l'integrale, comparaison serie-integrale, Wallis/Gamma, et integrale gaussienne.
+      Fiche de methodes au format Monier : cinq methodes fondamentales accompagnees d'exemples resolus, dix questions Vrai/Faux pour tester sa comprehension, et sept exercices corriges inspires du chapitre 13.
     </p>
 
     <nav class="course__toc">
-      <span class="course__toc-title">Sommaire des methodes</span>
+      <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Convergence par comparaison</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Derivation sous le signe integral (Leibniz)</a></li>
-        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Comparaison serie-integrale</a></li>
-        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Integrales de Wallis et Gamma</a></li>
-        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Integrale gaussienne et Fresnel</a></li>
+        <li class="course__toc-item"><a href="#part1"><span class="course__toc-num">I.</span> Methodes a retenir</a></li>
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Etudier l'integrabilite par comparaison</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Demontrer l'existence et calculer une integrale impropre</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Etablir la semi-convergence d'une integrale</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Calculer la limite d'une integrale a parametre</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Trouver un equivalent d'une integrale</a></li>
+        <li class="course__toc-item"><a href="#part2"><span class="course__toc-num">II.</span> Vrai ou Faux</a></li>
+        <li class="course__toc-item"><a href="#part3"><span class="course__toc-num">III.</span> Exercices corriges</a></li>
       </ol>
     </nav>
 
-    <!-- ═══════════════ M1. Convergence par comparaison ═══════════════ -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                    PARTIE I : METHODES                       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Methodes a retenir</h2>
+    </section>
+
+    <!-- ═══════════════ M1 ═══════════════ -->
     <section class="course__section" id="m1">
-      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Convergence par comparaison</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Etudier l'integrabilite par comparaison</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Pour montrer la convergence (ou divergence) d'une integrale impropre \(\displaystyle\int_a^{+\infty} f(t)\,dt\) :</p>
+        <p>Pour montrer qu'une fonction \(f\) est integrable sur un intervalle \([a, b[\) (ou \([a, +\infty[\)), on utilise les theoremes de comparaison :</p>
         <ol>
-          <li><strong>Identifier le comportement</strong> de \(f(t)\) au voisinage de la borne problematique (\(+\infty\) ou singularite).</li>
-          <li><strong>Comparer \(|f(t)|\)</strong> a une integrale de reference :
-            <ul>
-              <li>Riemann : \(\dfrac{1}{t^\alpha}\) avec \(\alpha > 1\) (convergente en \(+\infty\))</li>
-              <li>Exponentielle : \(e^{-\lambda t}\) avec \(\lambda > 0\) (convergente en \(+\infty\))</li>
-            </ul>
-          </li>
-          <li>Utiliser les relations de comparaison \(o\), \(O\), \(\sim\) pour conclure.</li>
-          <li>Si \(f\) change de signe : tenter la <strong>convergence absolue</strong>, sinon utiliser Abel ou une IPP.</li>
+          <li><strong>Fonctions positives :</strong> si \(0 \leq f(t) \leq g(t)\) et \(g\) est integrable, alors \(f\) est integrable.</li>
+          <li><strong>Equivalents :</strong> si \(f(t) \sim g(t)\) au voisinage du point critique et \(f, g \geq 0\), alors \(f\) et \(g\) sont de meme nature.</li>
+          <li><strong>Domination :</strong> si \(f(t) = O(g(t))\) avec \(g\) integrable, alors \(f\) est integrable.</li>
+          <li><strong>Integrales de Riemann :</strong> \(\displaystyle\int_1^{+\infty} \frac{dt}{t^\alpha}\) converge ssi \(\alpha > 1\) ; \(\displaystyle\int_0^{1} \frac{dt}{t^\alpha}\) converge ssi \(\alpha < 1\).</li>
         </ol>
+        <p><strong>Conseil :</strong> au voisinage de \(+\infty\), chercher un equivalent de la forme \(C/t^\alpha\). Au voisinage d'un point singulier \(b\), chercher un equivalent en \(C/(b-t)^\alpha\).</p>
       </div>
 
-      <div class="block block--annale" style="position:relative">
-        <span class="annale-badge">CCINP 2023 -- Maths 1</span>
-        <span class="block__label">Exercice d'annale</span>
-        <p><strong>1.</strong> Montrer que \(\displaystyle\int_1^{+\infty} \frac{\sin t}{t^2}\,dt\) converge absolument.</p>
-        <p><strong>2.</strong> Etudier la nature de \(\displaystyle\int_1^{+\infty} \frac{\sin t}{t}\,dt\). Cette integrale est-elle absolument convergente ?</p>
-      </div>
-
-      <div class="deepen">
-        <button class="deepen__btn" aria-expanded="false">Solution <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-        <div class="deepen__content">
-          <div class="block block--proof">
-            <span class="block__label">Solution</span>
-            <p><strong>1. Convergence absolue de \(\displaystyle\int_1^{+\infty} \frac{\sin t}{t^2}\,dt\)</strong></p>
-            <p>Pour tout \(t \geq 1\), on a \(|\sin t| \leq 1\), donc :</p>
-            <div class="math-display">$$\left|\frac{\sin t}{t^2}\right| \leq \frac{1}{t^2}$$</div>
-            <p>Or \(\displaystyle\int_1^{+\infty} \frac{dt}{t^2}\) converge (integrale de Riemann avec \(\alpha = 2 > 1\)).</p>
-            <p>Par comparaison de fonctions positives, \(\displaystyle\int_1^{+\infty} \left|\frac{\sin t}{t^2}\right|\,dt\) converge. Donc l'integrale converge <strong>absolument</strong>.</p>
-
-            <p style="margin-top:var(--space-lg)"><strong>2. Nature de \(\displaystyle\int_1^{+\infty} \frac{\sin t}{t}\,dt\)</strong></p>
-            <p><em>Convergence :</em> On effectue une integration par parties avec \(u = \dfrac{1}{t}\) et \(v' = \sin t\) :</p>
-            <div class="math-display">$$\int_1^{A} \frac{\sin t}{t}\,dt = \left[-\frac{\cos t}{t}\right]_1^{A} - \int_1^{A} \frac{\cos t}{t^2}\,dt$$</div>
-            <p>Quand \(A \to +\infty\) : le crochet admet une limite (car \(\cos A / A \to 0\)), et l'integrale du second membre converge absolument par la question 1 (en remplacant \(\sin\) par \(\cos\)). Donc \(\displaystyle\int_1^{+\infty} \frac{\sin t}{t}\,dt\) <strong>converge</strong>.</p>
-            <p><em>Non-convergence absolue :</em> On minore :</p>
-            <div class="math-display">$$\int_1^{N\pi} \frac{|\sin t|}{t}\,dt \geq \sum_{k=1}^{N-1} \int_{k\pi}^{(k+1)\pi} \frac{|\sin t|}{(k+1)\pi}\,dt = \sum_{k=1}^{N-1} \frac{2}{(k+1)\pi}$$</div>
-            <p>Cette somme diverge (serie harmonique). Donc l'integrale n'est <strong>pas absolument convergente</strong> : elle est <strong>semi-convergente</strong>.</p>
-          </div>
-        </div>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Etudier la nature de \(\displaystyle\int_0^{+\infty} \frac{dt}{1 + t^3}\).</strong></p>
+        <p><em>Resolution.</em> La fonction \(f(t) = \frac{1}{1+t^3}\) est continue sur \([0, +\infty[\) et positive.</p>
+        <ul>
+          <li><strong>En \(+\infty\) :</strong> \(f(t) \sim \frac{1}{t^3}\) quand \(t \to +\infty\). Or \(\int_1^{+\infty} \frac{dt}{t^3}\) converge car \(3 > 1\) (integrale de Riemann).</li>
+          <li><strong>En \(0\) :</strong> \(f\) est continue sur \([0, 1]\) donc integrable sur cet intervalle.</li>
+        </ul>
+        <p>Par comparaison a une integrale de Riemann convergente, \(\int_0^{+\infty} \frac{dt}{1+t^3}\) converge.</p>
       </div>
     </section>
 
-    <!-- ═══════════════ M2. Derivation sous le signe integral ═══════════════ -->
+    <!-- ═══════════════ M2 ═══════════════ -->
     <section class="course__section" id="m2">
-      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Derivation sous le signe integral (Leibniz)</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Demontrer l'existence et calculer une integrale impropre</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Pour calculer \(\displaystyle F(x) = \int_a^{+\infty} f(x,t)\,dt\), appliquer le theoreme de Leibniz :</p>
         <ol>
-          <li><strong>Verifier</strong> que \(t \mapsto f(x,t)\) est continue par morceaux et integrable pour tout \(x\).</li>
-          <li><strong>Verifier</strong> que \(\dfrac{\partial f}{\partial x}(x,t)\) existe et est continue en \(x\).</li>
-          <li><strong>Trouver une domination</strong> : \(\left|\dfrac{\partial f}{\partial x}(x,t)\right| \leq \varphi(t)\) avec \(\varphi\) integrable, independante de \(x\) (sur tout segment \([c,d] \subset I\)).</li>
-          <li><strong>Conclure</strong> : \(F\) est \(\mathscr{C}^1\) et \(\displaystyle F'(x) = \int_a^{+\infty} \frac{\partial f}{\partial x}(x,t)\,dt\).</li>
-          <li><strong>Integrer</strong> \(F'\) pour retrouver \(F\), puis determiner la constante par une valeur connue de \(F\).</li>
+          <li><strong>Identifier les points singuliers :</strong> bornes infinies ou points ou \(f\) n'est pas definie/continue.</li>
+          <li><strong>Montrer la convergence :</strong> utiliser la comparaison (M1) ou l'absolue convergence.</li>
+          <li><strong>Calculer :</strong> trouver une primitive \(F\) et passer a la limite : \(\displaystyle\int_a^{+\infty} f(t)\,dt = \lim_{A \to +\infty} [F(t)]_a^A\).</li>
+          <li><strong>Techniques courantes :</strong> changement de variable, integration par parties, decomposition en elements simples.</li>
         </ol>
       </div>
 
-      <div class="block block--annale" style="position:relative">
-        <span class="annale-badge">CCINP 2024 -- Maths 1</span>
-        <span class="block__label">Exercice d'annale</span>
-        <p>Soit \(\displaystyle F(x) = \int_0^{+\infty} \frac{e^{-xt}}{1+t^2}\,dt\) pour \(x > 0\).</p>
-        <p><strong>1.</strong> Montrer que \(F\) est de classe \(\mathscr{C}^1\) sur \(]0, +\infty[\) et calculer \(F'(x)\).</p>
-        <p><strong>2.</strong> En deduire une equation differentielle verifiee par \(F\), puis exprimer \(F(x)\).</p>
-      </div>
-
-      <div class="deepen">
-        <button class="deepen__btn" aria-expanded="false">Solution <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-        <div class="deepen__content">
-          <div class="block block--proof">
-            <span class="block__label">Solution</span>
-            <p><strong>1. \(F\) est \(\mathscr{C}^1\) et calcul de \(F'(x)\)</strong></p>
-            <p>Posons \(f(x,t) = \dfrac{e^{-xt}}{1+t^2}\). On a \(\dfrac{\partial f}{\partial x}(x,t) = \dfrac{-t\,e^{-xt}}{1+t^2}\).</p>
-            <p>Pour \(x \geq c > 0\) (avec \(c\) fixe), on a :</p>
-            <div class="math-display">$$\left|\frac{\partial f}{\partial x}(x,t)\right| = \frac{t\,e^{-xt}}{1+t^2} \leq \frac{t\,e^{-ct}}{1+t^2} \leq e^{-ct}$$</div>
-            <p>La fonction \(t \mapsto e^{-ct}\) est integrable sur \([0,+\infty[\). Par le theoreme de derivation sous le signe integrale, \(F\) est \(\mathscr{C}^1\) et :</p>
-            <div class="math-display">$$F'(x) = -\int_0^{+\infty} \frac{t\,e^{-xt}}{1+t^2}\,dt$$</div>
-
-            <p style="margin-top:var(--space-lg)"><strong>2. Equation differentielle et expression de \(F\)</strong></p>
-            <p>On calcule \(F''(x)\) (meme justification de domination) :</p>
-            <div class="math-display">$$F''(x) = \int_0^{+\infty} \frac{t^2\,e^{-xt}}{1+t^2}\,dt = \int_0^{+\infty} \frac{(1+t^2-1)\,e^{-xt}}{1+t^2}\,dt$$</div>
-            <div class="math-display">$$F''(x) = \int_0^{+\infty} e^{-xt}\,dt - F(x) = \frac{1}{x} - F(x)$$</div>
-            <p>Donc \(F\) verifie l'equation differentielle : \(F''(x) + F(x) = \dfrac{1}{x}\).</p>
-            <p>On peut aussi proceder par integration par parties directe. En ecrivant \(\displaystyle F'(x) = -\int_0^{+\infty} \frac{t\,e^{-xt}}{1+t^2}\,dt\) et en integrant par parties (\(u' = te^{-xt}\), \(v = \frac{1}{1+t^2}\)), on montre que :</p>
-            <div class="math-display">$$F(x) = \frac{\pi}{2}\,e^{-x} + \int_0^x e^{-(x-u)} \frac{du}{u} \quad \text{(via la variation de la constante)}$$</div>
-            <p>En particulier, \(F(x) \underset{x \to +\infty}{\longrightarrow} 0\) et \(F(0^+) = \dfrac{\pi}{2}\).</p>
-          </div>
-        </div>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Calculer \(\displaystyle\int_0^{+\infty} e^{-t}\,dt\) et \(\displaystyle\int_0^{+\infty} t\,e^{-t}\,dt\).</strong></p>
+        <p><em>Resolution.</em> Pour la premiere : une primitive de \(e^{-t}\) est \(-e^{-t}\). Donc :</p>
+        <div class="math-display">$$\int_0^{+\infty} e^{-t}\,dt = \lim_{A \to +\infty} \bigl[-e^{-t}\bigr]_0^A = \lim_{A \to +\infty} (-e^{-A} + 1) = 1$$</div>
+        <p>Pour la seconde, on effectue une integration par parties avec \(u = t\), \(v' = e^{-t}\), soit \(u' = 1\), \(v = -e^{-t}\) :</p>
+        <div class="math-display">$$\int_0^A t\,e^{-t}\,dt = \bigl[-te^{-t}\bigr]_0^A + \int_0^A e^{-t}\,dt = -Ae^{-A} + 1 - e^{-A}$$</div>
+        <p>Quand \(A \to +\infty\), \(Ae^{-A} \to 0\) et \(e^{-A} \to 0\), d'ou \(\displaystyle\int_0^{+\infty} t\,e^{-t}\,dt = 1\).</p>
       </div>
     </section>
 
-    <!-- ═══════════════ M3. Comparaison serie-integrale ═══════════════ -->
+    <!-- ═══════════════ M3 ═══════════════ -->
     <section class="course__section" id="m3">
-      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Comparaison serie-integrale</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Etablir la semi-convergence d'une integrale</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Pour etudier une serie \(\displaystyle\sum f(n)\) ou une integrale \(\displaystyle\int_1^{+\infty} f\) quand \(f\) est <strong>positive decroissante</strong> :</p>
+        <p>Une integrale est <strong>semi-convergente</strong> si elle converge mais pas absolument. La strategie est :</p>
         <ol>
-          <li><strong>Verifier</strong> que \(f\) est continue, positive et decroissante sur \([N, +\infty[\).</li>
-          <li><strong>Appliquer l'encadrement</strong> : \(\displaystyle\int_1^{n+1} f(t)\,dt \;\leq\; \sum_{k=1}^{n} f(k) \;\leq\; f(1) + \int_1^{n} f(t)\,dt\).</li>
-          <li>En deduire la <strong>meme nature</strong> de la serie et de l'integrale.</li>
-          <li>Pour un <strong>equivalent</strong> de la somme partielle : poser \(R_n = \sum_{k=1}^n f(k) - \int_1^n f(t)\,dt\) ; la suite \((R_n)\) converge, ce qui donne l'equivalent.</li>
+          <li><strong>Montrer la convergence :</strong> en general via une integration par parties ou le critere d'Abel.</li>
+          <li><strong>Montrer la non-integrabilite :</strong> prouver que \(\int |f(t)|\,dt\) diverge, souvent par minoration.</li>
+          <li><strong>Critere d'Abel :</strong> si \(g\) est de classe \(\mathcal{C}^1\), monotone et tend vers \(0\), et si \(\int_a^A f(t)\,dt\) est bornee, alors \(\int_a^{+\infty} f(t)\,g(t)\,dt\) converge.</li>
         </ol>
       </div>
 
-      <div class="block block--annale" style="position:relative">
-        <span class="annale-badge">CCINP 2025 -- Maths 1</span>
-        <span class="block__label">Exercice d'annale</span>
-        <p><strong>1.</strong> Montrer que la serie \(\displaystyle\sum_{n \geq 2} \frac{1}{n\,(\ln n)^2}\) converge.</p>
-        <p><strong>2.</strong> Donner un equivalent de la somme partielle \(\displaystyle S_N = \sum_{n=2}^{N} \frac{1}{n\,\ln n}\) quand \(N \to +\infty\).</p>
-      </div>
-
-      <div class="deepen">
-        <button class="deepen__btn" aria-expanded="false">Solution <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-        <div class="deepen__content">
-          <div class="block block--proof">
-            <span class="block__label">Solution</span>
-            <p><strong>1. Convergence de \(\displaystyle\sum \frac{1}{n\,(\ln n)^2}\)</strong></p>
-            <p>Posons \(f(t) = \dfrac{1}{t\,(\ln t)^2}\) pour \(t \geq 2\). La fonction \(f\) est continue, positive et decroissante sur \([2, +\infty[\).</p>
-            <p>Par comparaison serie-integrale, la serie et l'integrale sont de meme nature. Calculons :</p>
-            <div class="math-display">$$\int_2^{A} \frac{dt}{t\,(\ln t)^2} = \left[-\frac{1}{\ln t}\right]_2^{A} = \frac{1}{\ln 2} - \frac{1}{\ln A} \;\underset{A \to +\infty}{\longrightarrow}\; \frac{1}{\ln 2}$$</div>
-            <p>L'integrale converge, donc la serie \(\displaystyle\sum \frac{1}{n\,(\ln n)^2}\) <strong>converge</strong>.</p>
-
-            <p style="margin-top:var(--space-lg)"><strong>2. Equivalent de \(S_N\)</strong></p>
-            <p>Posons \(g(t) = \dfrac{1}{t\,\ln t}\) pour \(t \geq 2\). On a :</p>
-            <div class="math-display">$$\int_2^{N} \frac{dt}{t\,\ln t} = \big[\ln(\ln t)\big]_2^{N} = \ln(\ln N) - \ln(\ln 2)$$</div>
-            <p>Par comparaison serie-integrale, \(\displaystyle S_N = \sum_{k=2}^{N} \frac{1}{k\,\ln k}\) et \(\displaystyle\int_2^{N} g(t)\,dt\) different d'une quantite bornee. Plus precisement, la suite \(R_N = S_N - \ln(\ln N)\) converge vers une constante \(\ell\). Donc :</p>
-            <div class="math-display">$$\boxed{S_N \;\underset{N \to +\infty}{\sim}\; \ln(\ln N)}$$</div>
-          </div>
-        </div>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Montrer que \(\displaystyle\int_1^{+\infty} \frac{\sin t}{t}\,dt\) est semi-convergente.</strong></p>
+        <p><em>Convergence.</em> On integre par parties avec \(u = 1/t\), \(v' = \sin t\), soit \(u' = -1/t^2\), \(v = -\cos t\) :</p>
+        <div class="math-display">$$\int_1^A \frac{\sin t}{t}\,dt = \left[\frac{-\cos t}{t}\right]_1^A - \int_1^A \frac{\cos t}{t^2}\,dt$$</div>
+        <p>Le crochet tend vers \(\cos 1\) quand \(A \to +\infty\). L'integrale restante converge absolument car \(|\cos t/t^2| \leq 1/t^2\) qui est integrable. Donc \(\int_1^{+\infty} \frac{\sin t}{t}\,dt\) converge.</p>
+        <p><em>Non-integrabilite.</em> On minore : \(\left|\frac{\sin t}{t}\right| \geq \frac{\sin^2 t}{t} = \frac{1 - \cos(2t)}{2t}\). Or \(\int_1^{+\infty} \frac{dt}{2t}\) diverge et \(\int_1^{+\infty} \frac{\cos(2t)}{2t}\,dt\) converge (par le meme argument d'IPP). Donc \(\int_1^{+\infty} \frac{|\sin t|}{t}\,dt = +\infty\).</p>
       </div>
     </section>
 
-    <!-- ═══════════════ M4. Integrales de Wallis et Gamma ═══════════════ -->
+    <!-- ═══════════════ M4 ═══════════════ -->
     <section class="course__section" id="m4">
-      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Integrales de Wallis et Gamma</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Calculer la limite d'une integrale a parametre</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Les integrales de Wallis et la fonction Gamma sont des outils fondamentaux :</p>
         <ol>
-          <li><strong>Wallis :</strong> \(\displaystyle W_n = \int_0^{\pi/2} \sin^n(t)\,dt\). Par IPP : \(W_n = \frac{n-1}{n}\,W_{n-2}\), avec \(W_0 = \frac{\pi}{2}\), \(W_1 = 1\).</li>
-          <li><strong>Equivalent :</strong> \(W_n \sim \sqrt{\dfrac{\pi}{2n}}\) quand \(n \to +\infty\).</li>
-          <li><strong>Formule de Wallis :</strong> \(W_n\,W_{n+1}\,(n+1) = \dfrac{\pi}{2}\) (utile pour les equivalents).</li>
-          <li><strong>Gamma :</strong> \(\Gamma(x) = \displaystyle\int_0^{+\infty} t^{x-1}\,e^{-t}\,dt\), \(\Gamma(n+1) = n!\), \(\Gamma(1/2) = \sqrt{\pi}\).</li>
-          <li><strong>Strategie :</strong> Pour calculer une integrale, la ramener a Wallis (changement \(t = \sin u\)) ou a Gamma (changement \(t = u^p\)).</li>
+          <li>On veut calculer \(\displaystyle\lim_{n \to +\infty} \int_a^b f_n(t)\,dt\).</li>
+          <li><strong>Convergence dominee :</strong> si \(f_n(t) \to f(t)\) p.p. et \(|f_n(t)| \leq g(t)\) avec \(g\) integrable, alors on peut permuter limite et integrale.</li>
+          <li><strong>Convergence monotone :</strong> si \((f_n)\) est une suite croissante de fonctions positives, \(\int f_n \to \int \lim f_n\).</li>
+          <li><strong>Lemme de Riemann-Lebesgue :</strong> si \(f\) est integrable sur \(\mathbb{R}\), alors \(\int f(t)\,e^{int}\,dt \to 0\) quand \(n \to +\infty\).</li>
         </ol>
       </div>
 
-      <div class="block block--annale" style="position:relative">
-        <span class="annale-badge">CCINP 2024 -- Maths 1</span>
-        <span class="block__label">Exercice d'annale</span>
-        <p>On pose \(\displaystyle I = \int_0^{\pi/2} \ln(\sin t)\,dt\).</p>
-        <p><strong>1.</strong> Justifier la convergence de cette integrale impropre.</p>
-        <p><strong>2.</strong> En utilisant la relation \(\sin(2t) = 2\sin t\cos t\), montrer que \(I = -\dfrac{\pi}{2}\ln 2\).</p>
-        <p><strong>3.</strong> En deduire, a l'aide des integrales de Wallis, la formule de Stirling : \(n! \sim \sqrt{2\pi n}\left(\dfrac{n}{e}\right)^n\).</p>
-      </div>
-
-      <div class="deepen">
-        <button class="deepen__btn" aria-expanded="false">Solution <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-        <div class="deepen__content">
-          <div class="block block--proof">
-            <span class="block__label">Solution</span>
-            <p><strong>1. Convergence de \(I\)</strong></p>
-            <p>Au voisinage de \(0^+\), \(\sin t \sim t\) donc \(\ln(\sin t) \sim \ln t\). Or \(\displaystyle\int_0^{1} |\ln t|\,dt\) converge (integrer par parties : \(\int_0^1 |\ln t|\,dt = 1\)). Donc l'integrale \(I\) converge.</p>
-
-            <p style="margin-top:var(--space-lg)"><strong>2. Calcul de \(I\)</strong></p>
-            <p>On effectue le changement de variable \(u = 2t\) dans \(\displaystyle\int_0^{\pi/2} \ln(\sin(2t))\,dt\) :</p>
-            <div class="math-display">$$\int_0^{\pi/2} \ln(\sin(2t))\,dt = \frac{1}{2}\int_0^{\pi} \ln(\sin u)\,du = \frac{1}{2} \cdot 2I = I$$</div>
-            <p>(par symetrie \(\sin(\pi - u) = \sin u\)). D'autre part :</p>
-            <div class="math-display">$$\int_0^{\pi/2} \ln(\sin(2t))\,dt = \int_0^{\pi/2} \ln 2\,dt + \int_0^{\pi/2} \ln(\sin t)\,dt + \int_0^{\pi/2} \ln(\cos t)\,dt$$</div>
-            <div class="math-display">$$= \frac{\pi}{2}\ln 2 + I + I = \frac{\pi}{2}\ln 2 + 2I$$</div>
-            <p>Donc \(I = \frac{\pi}{2}\ln 2 + 2I\), ce qui donne \(\boxed{I = -\frac{\pi}{2}\ln 2}\).</p>
-
-            <p style="margin-top:var(--space-lg)"><strong>3. Formule de Stirling</strong></p>
-            <p>On sait que \(\ln(W_n) = \displaystyle\int_0^{\pi/2} n\ln(\sin t)\,dt = nI = -\frac{n\pi}{2}\ln 2\) n'est pas directement utile. On utilise plutot l'equivalent \(W_n \sim \sqrt{\frac{\pi}{2n}}\) et l'expression explicite de \(W_{2n}\) via la formule de recurrence :</p>
-            <div class="math-display">$$W_{2n} = \frac{(2n)!}{4^n\,(n!)^2}\cdot\frac{\pi}{2}$$</div>
-            <p>En combinant \(W_{2n} \sim \sqrt{\frac{\pi}{4n}}\) et l'expression ci-dessus, on obtient :</p>
-            <div class="math-display">$$\frac{(2n)!}{4^n\,(n!)^2} \sim \frac{1}{\sqrt{\pi n}}$$</div>
-            <p>Ce qui, apres simplification, donne la formule de Stirling : \(\boxed{n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n}\).</p>
-          </div>
-        </div>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Calculer \(\displaystyle\lim_{n \to +\infty} \int_0^1 \frac{nt}{1 + n^2 t^2}\,dt\).</strong></p>
+        <p><em>Resolution.</em> Par le changement de variable \(u = nt\) (\(du = n\,dt\)) :</p>
+        <div class="math-display">$$\int_0^1 \frac{nt}{1+n^2t^2}\,dt = \int_0^n \frac{u/n}{1+u^2}\,\frac{du}{n} = \frac{1}{n^2}\int_0^n \frac{u}{1+u^2}\,du$$</div>
+        <div class="math-display">$$= \frac{1}{n^2} \left[\frac{1}{2}\ln(1+u^2)\right]_0^n = \frac{\ln(1+n^2)}{2n^2} \xrightarrow[n \to +\infty]{} 0$$</div>
+        <p><em>Remarque :</em> la limite ponctuelle est \(f(t) = 0\) pour \(t > 0\), ce qui est coherent. Mais attention, la convergence n'est pas dominee ici (la borne superieure vaut \(1/2\) en \(t = 1/n\)), d'ou l'interet du calcul explicite.</p>
       </div>
     </section>
 
-    <!-- ═══════════════ M5. Integrale gaussienne et Fresnel ═══════════════ -->
+    <!-- ═══════════════ M5 ═══════════════ -->
     <section class="course__section" id="m5">
-      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Integrale gaussienne et Fresnel</h2>
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Trouver un equivalent d'une integrale</h2>
 
       <div class="block block--method">
         <span class="block__label">Methode</span>
-        <p>Pour calculer l'integrale de Gauss \(\displaystyle\int_0^{+\infty} e^{-t^2}\,dt = \frac{\sqrt{\pi}}{2}\) :</p>
         <ol>
-          <li><strong>Methode classique (coordonnees polaires) :</strong> Poser \(I = \int_0^{+\infty} e^{-t^2}\,dt\). Alors \(I^2 = \int_0^{+\infty}\int_0^{+\infty} e^{-(x^2+y^2)}\,dx\,dy\). En polaires : \(I^2 = \frac{\pi}{4}\).</li>
-          <li><strong>Methode CCINP (sans coordonnees polaires) :</strong> Poser \(J(x) = \left(\int_0^x e^{-t^2}\,dt\right)^2\) et \(K(x) = \int_0^1 \frac{e^{-x^2(1+t^2)}}{1+t^2}\,dt\). Montrer que \(J(x) + K(x)\) est constante.</li>
-          <li><strong>Integrales de Fresnel :</strong> Le changement \(u = t^2\) ramene \(\int_0^{+\infty} \cos(t^2)\,dt\) a une integrale a parametre. Resultat : \(\int_0^{+\infty} \cos(t^2)\,dt = \int_0^{+\infty} \sin(t^2)\,dt = \frac{1}{2}\sqrt{\frac{\pi}{2}}\).</li>
+          <li><strong>Equivalent par domination :</strong> identifier le terme preponderant dans l'integrande et montrer que le reste est negligeable.</li>
+          <li><strong>Methode de Laplace :</strong> pour \(\int_a^b e^{n\varphi(t)}\,dt\), le maximum de \(\varphi\) localise la contribution principale.</li>
+          <li><strong>Integration par parties iteree :</strong> pour obtenir un developpement asymptotique de \(\int_x^{+\infty} f(t)\,dt\).</li>
+          <li><strong>Changement de variable adapte :</strong> poser \(t = u/n\) ou \(t = a + u/\sqrt{n}\) pour centrer l'analyse pres du point critique.</li>
         </ol>
       </div>
 
-      <div class="block block--annale" style="position:relative">
-        <span class="annale-badge">CCINP 2023 -- Maths 1</span>
-        <span class="block__label">Exercice d'annale</span>
-        <p>On pose \(\displaystyle I = \int_0^{+\infty} e^{-t^2}\,dt\). Pour \(x > 0\), on definit :</p>
-        <div class="math-display">$$J(x) = \left(\int_0^{x} e^{-t^2}\,dt\right)^2 \qquad \text{et} \qquad K(x) = \int_0^{1} \frac{e^{-x^2(1+t^2)}}{1+t^2}\,dt$$</div>
-        <p><strong>1.</strong> Montrer que \(J\) et \(K\) sont derivables sur \(]0, +\infty[\) et calculer \(J'(x)\) et \(K'(x)\).</p>
-        <p><strong>2.</strong> En deduire que \(J(x) + K(x)\) est constante sur \(]0, +\infty[\).</p>
-        <p><strong>3.</strong> Calculer cette constante et en deduire la valeur de \(I\).</p>
+      <div class="block block--example">
+        <span class="block__label">Exemple resolu</span>
+        <p><strong>Trouver un equivalent de \(\displaystyle I_n = \int_0^1 t^n \ln t\,dt\) quand \(n \to +\infty\).</strong></p>
+        <p><em>Resolution.</em> Par IPP avec \(u = \ln t\), \(v' = t^n\), soit \(u' = 1/t\), \(v = t^{n+1}/(n+1)\) :</p>
+        <div class="math-display">$$I_n = \left[\frac{t^{n+1}\ln t}{n+1}\right]_0^1 - \frac{1}{n+1}\int_0^1 t^n\,dt = 0 - \frac{1}{n+1}\cdot\frac{1}{n+1} = -\frac{1}{(n+1)^2}$$</div>
+        <p>Donc \(I_n = -\frac{1}{(n+1)^2} \sim -\frac{1}{n^2}\) quand \(n \to +\infty\). Le terme de bord en \(0\) s'annule car \(t^{n+1}\ln t \to 0\) quand \(t \to 0^+\).</p>
       </div>
+    </section>
 
-      <div class="deepen">
-        <button class="deepen__btn" aria-expanded="false">Solution <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-        <div class="deepen__content">
-          <div class="block block--proof">
-            <span class="block__label">Solution</span>
-            <p><strong>1. Derivees de \(J\) et \(K\)</strong></p>
-            <p>\(J(x) = \left(\int_0^x e^{-t^2}\,dt\right)^2\). Par derivation d'un carre de fonction :</p>
-            <div class="math-display">$$J'(x) = 2\,e^{-x^2}\int_0^{x} e^{-t^2}\,dt$$</div>
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--                  PARTIE II : VRAI OU FAUX                    -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
 
-            <p>Pour \(K(x)\), on applique le theoreme de derivation sous le signe integrale. On a \(\frac{\partial}{\partial x}\left(\frac{e^{-x^2(1+t^2)}}{1+t^2}\right) = -2x\,e^{-x^2(1+t^2)}\).</p>
-            <p>La domination est assuree sur tout segment \([c,d] \subset ]0,+\infty[\) car \(|-2x\,e^{-x^2(1+t^2)}| \leq 2d\,e^{-c^2}\). Donc :</p>
-            <div class="math-display">$$K'(x) = -2x\int_0^{1} e^{-x^2(1+t^2)}\,dt = -2x\,e^{-x^2}\int_0^{1} e^{-x^2 t^2}\,dt$$</div>
+    <section class="course__section" id="part2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Vrai ou Faux</h2>
 
-            <p style="margin-top:var(--space-lg)"><strong>2. \(J(x) + K(x)\) est constante</strong></p>
-            <p>Dans \(K'(x)\), on effectue le changement de variable \(u = xt\) (donc \(dt = du/x\)) :</p>
-            <div class="math-display">$$K'(x) = -2x\,e^{-x^2}\int_0^{x} e^{-u^2}\,\frac{du}{x} = -2\,e^{-x^2}\int_0^{x} e^{-u^2}\,du = -J'(x)$$</div>
-            <p>Donc \((J + K)'(x) = 0\) pour tout \(x > 0\) : la fonction \(J + K\) est <strong>constante</strong>.</p>
+      <p>Pour chaque affirmation, determiner si elle est vraie ou fausse, puis cliquer pour verifier.</p>
 
-            <p style="margin-top:var(--space-lg)"><strong>3. Calcul de \(I\)</strong></p>
-            <p>En \(x = 0\) : \(J(0) = 0\) et \(K(0) = \int_0^1 \frac{dt}{1+t^2} = \arctan(1) = \frac{\pi}{4}\).</p>
-            <p>Quand \(x \to +\infty\) : \(J(x) \to I^2\) et \(K(x) \to 0\) (car \(e^{-x^2(1+t^2)} \to 0\) pour tout \(t \in [0,1]\), avec convergence dominee).</p>
-            <p>Par continuite de \(J + K\), la constante vaut \(\frac{\pi}{4}\), et a la limite :</p>
-            <div class="math-display">$$I^2 + 0 = \frac{\pi}{4} \implies \boxed{I = \int_0^{+\infty} e^{-t^2}\,dt = \frac{\sqrt{\pi}}{2}}$$</div>
+      <!-- VF 1 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>1.</strong> Si \(f\) est continue et positive sur \([1, +\infty[\) avec \(f(t) \to 0\), alors \(\int_1^{+\infty} f(t)\,dt\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Contre-exemple : \(f(t) = 1/t\). On a \(f(t) \to 0\) mais \(\int_1^{+\infty} dt/t = +\infty\). La condition \(f(t) \to 0\) est necessaire a la convergence (pour \(f \geq 0\)) mais pas suffisante.</p>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- VF 2 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>2.</strong> \(\displaystyle\int_0^1 \frac{dt}{\sqrt{t}}\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>C'est une integrale de Riemann en \(0\) : \(\int_0^1 t^{-1/2}\,dt\) converge car \(1/2 < 1\). On peut calculer directement : \(\int_\varepsilon^1 t^{-1/2}\,dt = [2\sqrt{t}]_\varepsilon^1 = 2 - 2\sqrt{\varepsilon} \to 2\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 3 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>3.</strong> Si \(\int_a^{+\infty} f(t)\,dt\) converge, alors \(f(t) \to 0\) quand \(t \to +\infty\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Il existe des fonctions integrables qui ne tendent pas vers \(0\). On peut construire \(f\) positive, continue, avec des pics de hauteur \(1\) et de largeur decroissante (par exemple de largeur \(1/n^2\) autour de \(t = n\)). L'integrale converge (somme des aires en \(\sum 1/n^2\)) mais \(f(n) = 1\). En revanche, si \(f\) est <em>uniformement continue</em> et integrable, alors \(f(t) \to 0\) (lemme de Barbalat).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 4 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>4.</strong> L'integrale \(\displaystyle\int_2^{+\infty} \frac{dt}{t \ln t}\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Par le changement de variable \(u = \ln t\) (\(du = dt/t\)), on obtient \(\int_{\ln 2}^{+\infty} \frac{du}{u}\) qui diverge. Plus generalement, \(\int_2^{+\infty} \frac{dt}{t(\ln t)^\alpha}\) converge ssi \(\alpha > 1\) (integrale de Bertrand).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 5 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>5.</strong> Si \(f\) est integrable sur \([0, +\infty[\), alors \(f^2\) est integrable sur \([0, +\infty[\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Contre-exemple : \(f(t) = 1/\sqrt{t}\) sur \(]0,1]\). On a \(f \in L^1(]0,1])\) car l'exposant vaut \(1/2 < 1\), mais \(f^2(t) = 1/t\) n'est pas integrable (\(\alpha = 1\)). Il n'y a pas de relation d'inclusion entre \(L^1\) et \(L^2\) en general. En revanche, si \(f\) est bornee et integrable, alors \(f^2\) est integrable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 6 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>6.</strong> \(\displaystyle\int_0^{+\infty} \frac{\sin t}{t}\,dt\) converge absolument.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>L'integrale \(\int_0^{+\infty} \frac{\sin t}{t}\,dt\) converge (integrale de Dirichlet, egale a \(\pi/2\)), mais \(\int_0^{+\infty} \frac{|\sin t|}{t}\,dt = +\infty\). C'est l'exemple classique d'integrale semi-convergente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 7 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>7.</strong> Si \(f\) est continue, positive, bornee et \(\int_0^{+\infty} f(t)\,dt\) converge, alors \(\int_0^{+\infty} f(t)^2\,dt\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>Soit \(M = \sup |f|\). Alors \(0 \leq f(t)^2 \leq M \cdot f(t)\), et comme \(\int_0^{+\infty} M \cdot f(t)\,dt = M \int_0^{+\infty} f(t)\,dt < +\infty\), par comparaison \(\int_0^{+\infty} f^2\) converge. L'hypothese de bornitude est essentielle (voir question 5).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 8 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>8.</strong> L'integrale \(\displaystyle\int_0^{+\infty} e^{-t^2}\,dt\) converge et vaut \(\sqrt{\pi}/2\).</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>La convergence se verifie par comparaison : pour \(t \geq 1\), \(e^{-t^2} \leq e^{-t}\) qui est integrable. La valeur \(\sqrt{\pi}/2\) est l'integrale de Gauss, demontrable par le calcul en coordonnees polaires de \(\left(\int_0^{+\infty} e^{-t^2}\,dt\right)^2 = \int_0^{+\infty}\int_0^{+\infty} e^{-(x^2+y^2)}\,dx\,dy = \pi/4\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 9 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>9.</strong> Si \(\int_1^{+\infty} f(t)\,dt\) et \(\int_1^{+\infty} g(t)\,dt\) convergent, alors \(\int_1^{+\infty} f(t)g(t)\,dt\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : FAUX</span>
+              <p>Contre-exemple : \(f(t) = g(t) = \frac{\sin t}{\sqrt{t}}\). On a \(\int_1^{+\infty} \frac{\sin t}{\sqrt{t}}\,dt\) converge (critere d'Abel). Mais \(f(t)g(t) = \frac{\sin^2 t}{t} = \frac{1 - \cos(2t)}{2t}\), et \(\int_1^{+\infty} \frac{dt}{2t} = +\infty\) tandis que \(\int_1^{+\infty} \frac{\cos(2t)}{2t}\,dt\) converge, donc \(\int_1^{+\infty} \frac{\sin^2 t}{t}\,dt = +\infty\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VF 10 -->
+      <div class="vf-item">
+        <p class="vf-statement"><strong>10.</strong> Pour tout \(\alpha > 0\), \(\displaystyle\int_0^{+\infty} t^{\alpha - 1} e^{-t}\,dt = \Gamma(\alpha)\) converge.</p>
+        <div class="deepen">
+          <button class="deepen__btn" aria-expanded="false">Reponse <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="deepen__content">
+            <div class="block block--proof">
+              <span class="block__label">Reponse : VRAI</span>
+              <p>En \(+\infty\) : \(t^{\alpha-1}e^{-t} = o(1/t^2)\) par croissances comparees, donc pas de probleme. En \(0^+\) : \(t^{\alpha-1}e^{-t} \sim t^{\alpha-1}\) qui est integrable sur \(]0,1]\) ssi \(\alpha - 1 > -1\), c'est-a-dire \(\alpha > 0\). La fonction Gamma est donc bien definie pour tout \(\alpha > 0\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!--               PARTIE III : EXERCICES CORRIGES                -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+
+    <section class="course__section" id="part3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Exercices corriges</h2>
+
+      <!-- ═══════════════ Exercice 1 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 13</span>
+        <span class="block__label">Exercice 1 -- Nature d'integrales generalisees</span>
+        <p>Etudier la nature (convergence, divergence, integrabilite) des integrales suivantes :</p>
+        <ol>
+          <li>\(\displaystyle\int_0^{+\infty} \frac{t\,dt}{1 + t^4}\)</li>
+          <li>\(\displaystyle\int_0^1 \frac{dt}{\sqrt{t(1-t)}}\)</li>
+          <li>\(\displaystyle\int_1^{+\infty} \frac{\ln t}{t^2}\,dt\)</li>
+          <li>\(\displaystyle\int_0^{+\infty} \frac{dt}{\cosh t}\)</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> En \(+\infty\) : \(\frac{t}{1+t^4} \sim \frac{1}{t^3}\), integrable (\(\alpha = 3 > 1\)). En \(0\) : la fonction est continue. L'integrale converge. On peut calculer : \(\int_0^{+\infty} \frac{t}{1+t^4}\,dt = \frac{1}{2}\int_0^{+\infty} \frac{du}{1+u^2} = \frac{\pi}{4}\) par le changement \(u = t^2\).</p>
+
+            <p><strong>2.</strong> Deux singularites : en \(0^+\), \(\frac{1}{\sqrt{t(1-t)}} \sim \frac{1}{\sqrt{t}}\) (integrale de Riemann avec \(\alpha = 1/2 < 1\), convergente). En \(1^-\), \(\frac{1}{\sqrt{t(1-t)}} \sim \frac{1}{\sqrt{1-t}}\) (idem). L'integrale converge. Par le changement \(t = \sin^2\theta\) :</p>
+            <div class="math-display">$$\int_0^1 \frac{dt}{\sqrt{t(1-t)}} = \int_0^{\pi/2} \frac{2\sin\theta\cos\theta}{\sin\theta\cos\theta}\,d\theta = \pi$$</div>
+
+            <p><strong>3.</strong> En \(+\infty\) : \(\frac{\ln t}{t^2} = o(1/t^{3/2})\) car \(\ln t = o(t^{1/2})\). Or \(\int_1^{+\infty} t^{-3/2}\,dt\) converge. Par domination, l'integrale converge. Par IPP avec \(u = \ln t\), \(v' = t^{-2}\) :</p>
+            <div class="math-display">$$\int_1^{+\infty} \frac{\ln t}{t^2}\,dt = \left[-\frac{\ln t}{t}\right]_1^{+\infty} + \int_1^{+\infty} \frac{dt}{t^2} = 0 + 1 = 1$$</div>
+
+            <p><strong>4.</strong> En \(+\infty\) : \(\frac{1}{\cosh t} = \frac{2}{e^t + e^{-t}} \sim 2e^{-t}\), integrable. En \(0\) : la fonction est continue et vaut \(1\). L'integrale converge. De plus :</p>
+            <div class="math-display">$$\int_0^{+\infty} \frac{dt}{\cosh t} = 2\int_0^{+\infty} \frac{e^{-t}}{1 + e^{-2t}}\,dt = 2\bigl[\arctan(e^{-t})\bigr]_{+\infty}^0 = 2\left(\frac{\pi}{4} - 0\right) = \frac{\pi}{2}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 2 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 13</span>
+        <span class="block__label">Exercice 2 -- Calcul d'integrales par IPP et changement de variable</span>
+        <ol>
+          <li>Calculer \(\displaystyle\int_0^{+\infty} t^2 e^{-t}\,dt\) par integration par parties.</li>
+          <li>Calculer \(\displaystyle\int_0^{+\infty} \frac{dt}{(1+t^2)^2}\) par le changement \(t = \tan\theta\).</li>
+          <li>En deduire la valeur de \(\displaystyle\int_0^{+\infty} \frac{t^2}{(1+t^2)^2}\,dt\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Deux IPP successives. Premiere : \(u = t^2\), \(v' = e^{-t}\) donne \(\int_0^{+\infty} t^2 e^{-t}\,dt = [-t^2 e^{-t}]_0^{+\infty} + 2\int_0^{+\infty} t e^{-t}\,dt = 0 + 2 \cdot 1 = 2\). Car \(\int_0^{+\infty} t e^{-t}\,dt = 1\) (calcule en M2). Donc :</p>
+            <div class="math-display">$$\int_0^{+\infty} t^2 e^{-t}\,dt = 2 = \Gamma(3) = 2!$$</div>
+
+            <p><strong>2.</strong> On pose \(t = \tan\theta\), \(dt = \frac{d\theta}{\cos^2\theta}\), et \(1 + t^2 = \frac{1}{\cos^2\theta}\). Quand \(t : 0 \to +\infty\), \(\theta : 0 \to \pi/2\). Donc :</p>
+            <div class="math-display">$$\int_0^{+\infty} \frac{dt}{(1+t^2)^2} = \int_0^{\pi/2} \cos^4\theta \cdot \frac{d\theta}{\cos^2\theta} = \int_0^{\pi/2} \cos^2\theta\,d\theta = \frac{\pi}{4}$$</div>
+
+            <p><strong>3.</strong> On ecrit \(\frac{t^2}{(1+t^2)^2} = \frac{1}{1+t^2} - \frac{1}{(1+t^2)^2}\). Donc :</p>
+            <div class="math-display">$$\int_0^{+\infty} \frac{t^2}{(1+t^2)^2}\,dt = \frac{\pi}{2} - \frac{\pi}{4} = \frac{\pi}{4}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 3 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 13</span>
+        <span class="block__label">Exercice 3 -- Integrales de Wallis</span>
+        <p>On pose \(\displaystyle W_n = \int_0^{\pi/2} \sin^n t\,dt\) pour \(n \in \mathbb{N}\).</p>
+        <ol>
+          <li>Calculer \(W_0\) et \(W_1\).</li>
+          <li>Etablir la relation de recurrence : \(W_n = \frac{n-1}{n}\,W_{n-2}\) pour \(n \geq 2\).</li>
+          <li>En deduire \(W_{2p}\) et \(W_{2p+1}\) en fonction de \(p\).</li>
+          <li>Montrer que \(W_n \sim \sqrt{\pi/(2n)}\) quand \(n \to +\infty\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> \(W_0 = \int_0^{\pi/2} dt = \frac{\pi}{2}\) et \(W_1 = \int_0^{\pi/2} \sin t\,dt = [-\cos t]_0^{\pi/2} = 1\).</p>
+
+            <p><strong>2.</strong> IPP avec \(u = \sin^{n-1}t\), \(v' = \sin t\) donne \(u' = (n-1)\sin^{n-2}t\cos t\), \(v = -\cos t\) :</p>
+            <div class="math-display">$$W_n = \bigl[-\sin^{n-1}t\cos t\bigr]_0^{\pi/2} + (n-1)\int_0^{\pi/2} \sin^{n-2}t\cos^2 t\,dt$$</div>
+            <p>Le crochet vaut \(0\). On remplace \(\cos^2 t = 1 - \sin^2 t\) :</p>
+            <div class="math-display">$$W_n = (n-1)(W_{n-2} - W_n), \quad \text{soit} \quad nW_n = (n-1)W_{n-2}$$</div>
+
+            <p><strong>3.</strong> Par recurrence :</p>
+            <div class="math-display">$$W_{2p} = \frac{(2p)!}{4^p (p!)^2} \cdot \frac{\pi}{2}, \qquad W_{2p+1} = \frac{4^p (p!)^2}{(2p+1)!}$$</div>
+
+            <p><strong>4.</strong> Le produit \(W_n W_{n+1}\) se calcule par telescopage : \(W_n W_{n+1} = \frac{\pi}{2(n+1)}\). Comme \(W_{n+1} \leq W_n \leq W_{n-1} = \frac{n}{n-1}W_{n+1}\), on a \(W_n / W_{n+1} \to 1\). Donc \(W_n^2 \sim W_n W_{n+1} = \frac{\pi}{2(n+1)} \sim \frac{\pi}{2n}\), d'ou :</p>
+            <div class="math-display">$$\boxed{W_n \sim \sqrt{\frac{\pi}{2n}}}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 4 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 13</span>
+        <span class="block__label">Exercice 4 -- Integrale de Dirichlet</span>
+        <p>Le but est de calculer \(\displaystyle I = \int_0^{+\infty} \frac{\sin t}{t}\,dt\).</p>
+        <ol>
+          <li>Montrer que \(I\) converge (semi-convergence).</li>
+          <li>Pour \(x > 0\), on pose \(\displaystyle F(x) = \int_0^{+\infty} \frac{\sin t}{t}\,e^{-xt}\,dt\). Montrer que \(F\) est bien definie et de classe \(\mathcal{C}^1\).</li>
+          <li>Calculer \(F'(x)\) et en deduire \(F(x)\).</li>
+          <li>En passant a la limite \(x \to 0^+\), determiner \(I\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> La convergence a ete demontree dans M3 par integration par parties. L'integrale est semi-convergente car \(\int_0^{+\infty} |\sin t|/t\,dt = +\infty\).</p>
+
+            <p><strong>2.</strong> Pour \(x > 0\), \(\left|\frac{\sin t}{t} e^{-xt}\right| \leq e^{-xt}\) (car \(|\sin t| \leq t\) pour \(t \geq 0\), et \(|\sin t/t| \leq 1\)), qui est integrable sur \([0, +\infty[\). La derivee partielle en \(x\) est \(-\sin(t)\,e^{-xt}\), et \(|\sin(t)\,e^{-xt}| \leq e^{-xt}\), integrable sur \([0, +\infty[\) pour \(x > 0\). Par le theoreme de derivation sous l'integrale, \(F\) est \(\mathcal{C}^1\) sur \(]0, +\infty[\).</p>
+
+            <p><strong>3.</strong> On calcule :</p>
+            <div class="math-display">$$F'(x) = -\int_0^{+\infty} \sin(t)\,e^{-xt}\,dt = -\mathrm{Im}\!\int_0^{+\infty} e^{(i-x)t}\,dt = -\mathrm{Im}\frac{1}{x - i} = -\frac{1}{1+x^2}$$</div>
+            <p>Donc \(F(x) = -\arctan(x) + C\). Quand \(x \to +\infty\), \(F(x) \to 0\) (domination par \(e^{-xt}\)), d'ou \(C = \pi/2\) et :</p>
+            <div class="math-display">$$F(x) = \frac{\pi}{2} - \arctan(x)$$</div>
+
+            <p><strong>4.</strong> Quand \(x \to 0^+\), \(F(x) \to \pi/2\). Il reste a justifier que \(F(x) \to I\). On ecrit \(F(x) - I = \int_0^{+\infty} \frac{\sin t}{t}(e^{-xt} - 1)\,dt \to 0\) par convergence dominee (apres un argument d'IPP). Donc :</p>
+            <div class="math-display">$$\boxed{I = \int_0^{+\infty} \frac{\sin t}{t}\,dt = \frac{\pi}{2}}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 5 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 13</span>
+        <span class="block__label">Exercice 5 -- Fonction Gamma</span>
+        <p>On rappelle \(\displaystyle\Gamma(\alpha) = \int_0^{+\infty} t^{\alpha - 1} e^{-t}\,dt\) pour \(\alpha > 0\).</p>
+        <ol>
+          <li>Montrer que \(\Gamma\) est bien definie et continue sur \(]0, +\infty[\).</li>
+          <li>Montrer la relation fonctionnelle \(\Gamma(\alpha + 1) = \alpha\,\Gamma(\alpha)\).</li>
+          <li>En deduire que \(\Gamma(n+1) = n!\) pour tout \(n \in \mathbb{N}\).</li>
+          <li>Montrer que \(\Gamma(1/2) = \sqrt{\pi}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> On decompose en \(\int_0^1 + \int_1^{+\infty}\). En \(0^+\) : \(t^{\alpha-1}e^{-t} \sim t^{\alpha-1}\), integrable ssi \(\alpha > 0\). En \(+\infty\) : \(t^{\alpha-1}e^{-t} = o(1/t^2)\) par croissances comparees. Les deux integrales convergent. La continuite resulte du theoreme de continuite des integrales a parametre avec domination locale : sur tout \([\varepsilon, M] \subset\,]0,+\infty[\), on domine par \(t^{\varepsilon-1}e^{-t} + t^{M-1}e^{-t}\), integrable.</p>
+
+            <p><strong>2.</strong> IPP avec \(u = t^\alpha\), \(v' = e^{-t}\), soit \(u' = \alpha t^{\alpha-1}\), \(v = -e^{-t}\) :</p>
+            <div class="math-display">$$\Gamma(\alpha+1) = \bigl[-t^\alpha e^{-t}\bigr]_0^{+\infty} + \alpha\int_0^{+\infty} t^{\alpha-1}e^{-t}\,dt = \alpha\,\Gamma(\alpha)$$</div>
+            <p>car \(t^\alpha e^{-t} \to 0\) en \(+\infty\) et en \(0^+\) (pour \(\alpha > 0\)).</p>
+
+            <p><strong>3.</strong> \(\Gamma(1) = \int_0^{+\infty} e^{-t}\,dt = 1\). Par recurrence : \(\Gamma(n+1) = n \cdot \Gamma(n) = n \cdot (n-1)! = n!\).</p>
+
+            <p><strong>4.</strong> \(\Gamma(1/2) = \int_0^{+\infty} t^{-1/2} e^{-t}\,dt\). Par le changement \(t = u^2\) (\(dt = 2u\,du\)) :</p>
+            <div class="math-display">$$\Gamma(1/2) = \int_0^{+\infty} \frac{e^{-u^2}}{u} \cdot 2u\,du = 2\int_0^{+\infty} e^{-u^2}\,du = 2 \cdot \frac{\sqrt{\pi}}{2} = \sqrt{\pi}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 6 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 13</span>
+        <span class="block__label">Exercice 6 -- Integrales de Bertrand</span>
+        <p>On considere les integrales de Bertrand \(\displaystyle B(\alpha, \beta) = \int_2^{+\infty} \frac{dt}{t^\alpha (\ln t)^\beta}\).</p>
+        <ol>
+          <li>Montrer que \(B(\alpha, \beta)\) converge si \(\alpha > 1\) (quel que soit \(\beta\)).</li>
+          <li>Montrer que \(B(\alpha, \beta)\) diverge si \(\alpha < 1\) (quel que soit \(\beta\)).</li>
+          <li>Etudier le cas \(\alpha = 1\) : montrer que \(B(1, \beta)\) converge ssi \(\beta > 1\).</li>
+          <li>Determiner la nature de \(\displaystyle\int_2^{+\infty} \frac{dt}{t\sqrt{\ln t}}\) et de \(\displaystyle\int_2^{+\infty} \frac{dt}{t(\ln t)^2}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Si \(\alpha > 1\), choisissons \(\gamma\) tel que \(1 < \gamma < \alpha\). Alors \(\frac{1}{t^\alpha(\ln t)^\beta} = o\!\left(\frac{1}{t^\gamma}\right)\) car \(t^{\alpha - \gamma}/(\ln t)^\beta \to +\infty\). Comme \(\int_2^{+\infty} t^{-\gamma}\,dt\) converge, par comparaison \(B(\alpha, \beta)\) converge.</p>
+
+            <p><strong>2.</strong> Si \(\alpha < 1\), pour tout \(\varepsilon > 0\), \((\ln t)^\beta = o(t^\varepsilon)\). En prenant \(\varepsilon\) assez petit pour que \(\alpha + \varepsilon < 1\) : \(\frac{1}{t^\alpha(\ln t)^\beta} \geq \frac{C}{t^{\alpha+\varepsilon}}\) pour \(t\) assez grand, et \(\int t^{-(\alpha+\varepsilon)}\,dt\) diverge. Par minoration, \(B(\alpha,\beta)\) diverge.</p>
+
+            <p><strong>3.</strong> Pour \(\alpha = 1\), le changement \(u = \ln t\) (\(du = dt/t\)) donne :</p>
+            <div class="math-display">$$B(1, \beta) = \int_{\ln 2}^{+\infty} \frac{du}{u^\beta}$$</div>
+            <p>C'est une integrale de Riemann convergente ssi \(\beta > 1\).</p>
+
+            <p><strong>4.</strong> \(\int_2^{+\infty} \frac{dt}{t\sqrt{\ln t}} = B(1, 1/2)\) : \(\beta = 1/2 < 1\), donc <strong>divergente</strong>.</p>
+            <p>\(\int_2^{+\infty} \frac{dt}{t(\ln t)^2} = B(1, 2)\) : \(\beta = 2 > 1\), donc <strong>convergente</strong>. On peut calculer : \(\int_{\ln 2}^{+\infty} u^{-2}\,du = [-1/u]_{\ln 2}^{+\infty} = \frac{1}{\ln 2}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ Exercice 7 ═══════════════ -->
+      <div class="block block--annale">
+        <span class="annale-badge">Monier Ch. 13</span>
+        <span class="block__label">Exercice 7 -- Equivalent d'une suite d'integrales</span>
+        <p>Pour \(n \geq 1\), on pose \(\displaystyle u_n = \int_0^1 \frac{n\,t^{n-1}}{1 + t}\,dt\).</p>
+        <ol>
+          <li>Calculer \(u_n\) explicitement a l'aide de la decomposition \(\frac{1}{1+t} = \sum_{k=0}^{n-1} (-t)^k \cdot \frac{1}{1+t} + \cdots\) (methode directe).</li>
+          <li>Montrer que \(u_n \to \frac{1}{2}\) quand \(n \to +\infty\) en utilisant la convergence dominee.</li>
+          <li>Trouver un equivalent de \(u_n - \frac{1}{2}\).</li>
+        </ol>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Correction detaillee <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Correction</span>
+            <p><strong>1.</strong> Le changement \(t = s^{1/n}\) (\(dt = \frac{1}{n}s^{1/n-1}\,ds\)) donne \(u_n = \int_0^1 \frac{ds}{1 + s^{1/n}}\). Mais calculons plutot directement. Par le changement \(u = t^n\) (\(du = nt^{n-1}\,dt\)) :</p>
+            <div class="math-display">$$u_n = \int_0^1 \frac{du}{1 + u^{1/n}}$$</div>
+
+            <p><strong>2.</strong> L'integrande \(f_n(u) = \frac{1}{1 + u^{1/n}}\) verifie : pour \(u \in\, ]0, 1[\) fixe, \(u^{1/n} \to 1\) quand \(n \to +\infty\), donc \(f_n(u) \to \frac{1}{2}\). De plus \(|f_n(u)| \leq 1\), integrable sur \([0, 1]\). Par convergence dominee :</p>
+            <div class="math-display">$$u_n \to \int_0^1 \frac{1}{2}\,du = \frac{1}{2}$$</div>
+
+            <p><strong>3.</strong> On ecrit \(\frac{1}{1+u^{1/n}} = \frac{1}{2} - \frac{u^{1/n} - 1}{2(1 + u^{1/n})}\). Pour \(u \in\, ]0, 1[\), \(u^{1/n} = e^{\ln u / n} = 1 + \frac{\ln u}{n} + O((\ln u)^2/n^2)\), donc :</p>
+            <div class="math-display">$$\frac{1}{1+u^{1/n}} - \frac{1}{2} = -\frac{\ln u}{4n} + O\!\left(\frac{(\ln u)^2}{n^2}\right)$$</div>
+            <p>En integrant et en justifiant l'interversion (domination par \(C|\ln u|\), integrable sur \([0,1]\)) :</p>
+            <div class="math-display">$$u_n - \frac{1}{2} \sim -\frac{1}{4n}\int_0^1 \ln u\,du = -\frac{1}{4n}\cdot(-1) = \frac{1}{4n}$$</div>
+            <div class="math-display">$$\boxed{u_n - \frac{1}{2} \sim \frac{1}{4n}}$$</div>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Navigation -->
     <nav class="course__nav">
       <div></div>
-      <a href="#" class="course__nav-link course__nav-link--next">
+      <a href="mp-m13-integrales-parametre.html" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
-        <span>Methodes suivantes</span>
+        <span>Integrales a parametre</span>
       </a>
     </nav>
 
@@ -466,38 +751,36 @@
   <script src="../../main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // KaTeX rendering
-      const renderMath = () => {
-        if (window.renderMathInElement) {
-          renderMathInElement(document.querySelector('.course'), {
-            delimiters: [
-              { left: '$$', right: '$$', display: true },
-              { left: '\\(', right: '\\)', display: false }
-            ],
-            throwOnError: false
-          });
-        }
-      };
       if (window.renderMathInElement) {
-        renderMath();
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
       } else {
         const interval = setInterval(() => {
           if (window.renderMathInElement) {
             clearInterval(interval);
-            renderMath();
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
           }
         }, 100);
       }
-
-      // Deepen toggles
-      document.querySelectorAll('.deepen__btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const content = btn.nextElementSibling;
-          const isOpen = content.classList.contains('open');
-          btn.classList.toggle('active', !isOpen);
-          btn.setAttribute('aria-expanded', !isOpen);
-          content.classList.toggle('open', !isOpen);
-        });
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
       });
     });
   </script>
