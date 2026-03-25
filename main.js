@@ -101,16 +101,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       var coursGroups = document.querySelectorAll('[data-type="cours"]');
       var fichesSection = document.querySelector('[data-type="fiches"]');
+      var methodesSection = document.querySelector('[data-type="methodes"]');
       var concoursDossier = document.querySelector('[data-type="concours"]');
 
       // Hide all sections first
       coursGroups.forEach(function(g) { g.style.display = 'none'; });
       if (fichesSection) fichesSection.style.display = 'none';
+      if (methodesSection) methodesSection.style.display = 'none';
       if (concoursDossier) concoursDossier.style.display = 'none';
 
       // Show the relevant section
       if (filterValue === 'fiches') {
         if (fichesSection) fichesSection.style.display = '';
+      } else if (filterValue === 'methodes') {
+        if (methodesSection) methodesSection.style.display = '';
       } else if (filterValue === 'concours') {
         if (concoursDossier) concoursDossier.style.display = '';
       } else {
