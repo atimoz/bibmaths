@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séries de Fourier — MP | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    /* ---- Course-specific styles ---- */
+    .course {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl);
+    }
+
+    .course__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.825rem;
+      color: var(--ink-muted);
+      margin-bottom: var(--space-lg);
+      transition: color 0.3s;
+    }
+    .course__back:hover { color: var(--accent); }
+
+    .course__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    .course__badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-glow);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .course__chapter {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
+    }
+
+    .course__title {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: var(--space-md);
+    }
+
+    .course__intro {
+      font-size: 1.05rem;
+      color: var(--ink-light);
+      line-height: 1.8;
+      margin-bottom: var(--space-xl);
+      max-width: 640px;
+    }
+
+    /* Table of contents */
+    .course__toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+    .course__toc-title {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: var(--space-md);
+    }
+    .course__toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .course__toc-item a {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+      padding: 6px 8px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--ink);
+      transition: all 0.2s;
+    }
+    .course__toc-item a:hover {
+      background: var(--accent-glow);
+      color: var(--accent);
+    }
+    .course__toc-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      min-width: 24px;
+    }
+
+    /* Section headings */
+    .course__section {
+      margin-bottom: var(--space-2xl);
+    }
+    .course__section-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      padding-bottom: var(--space-sm);
+      border-bottom: 2px solid var(--accent);
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+    }
+    .course__section-num {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .course__subsection-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-md);
+      color: var(--ink);
+    }
+
+    /* Content blocks */
+    .course p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--ink);
+      margin-bottom: var(--space-md);
+    }
+
+    /* Definition, Theorem, Proposition, Proof, Example, Remark blocks */
+    .block {
+      border-radius: 12px;
+      padding: var(--space-md) var(--space-lg);
+      margin: var(--space-md) 0 var(--space-lg) 0;
+      position: relative;
+    }
+    .block__label {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    /* Approfondir toggle */
+    .deepen {
+      margin: var(--space-sm) 0 var(--space-lg) 0;
+    }
+    .deepen__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+    }
+    .deepen__btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .deepen__btn svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.3s var(--ease-out);
+    }
+    .deepen__btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .deepen__btn.active svg {
+      transform: rotate(180deg);
+    }
+    .deepen__content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s var(--ease-out), opacity 0.4s;
+      opacity: 0;
+    }
+    .deepen__content.open {
+      max-height: 2000px;
+      opacity: 1;
+    }
+    .block p, .block li {
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+    .block ul {
+      list-style: none;
+      padding-left: var(--space-md);
+    }
+    .block ul li::before {
+      content: '—';
+      color: var(--accent);
+      margin-right: 8px;
+    }
+
+    /* Définition — Bleu profond */
+    .block--def {
+      background: rgba(37, 99, 163, 0.06);
+      border-left: 3px solid #2563A3;
+    }
+    .block--def .block__label {
+      color: #2563A3;
+    }
+    .block--def ul li::before { color: #2563A3; }
+
+    /* Théorème — Rouge bordeaux */
+    .block--thm {
+      background: rgba(163, 42, 42, 0.06);
+      border-left: 3px solid #A32A2A;
+    }
+    .block--thm .block__label {
+      color: #A32A2A;
+    }
+
+    /* Proposition — Violet */
+    .block--prop {
+      background: rgba(118, 56, 163, 0.06);
+      border-left: 3px solid #7638A3;
+    }
+    .block--prop .block__label {
+      color: #7638A3;
+    }
+
+    /* Démonstration — Gris ardoise */
+    .block--proof {
+      background: rgba(100, 100, 115, 0.04);
+      border-left: 3px solid #64647A;
+      padding-top: var(--space-sm);
+      padding-bottom: var(--space-sm);
+    }
+    .block--proof .block__label {
+      color: #64647A;
+      font-style: italic;
+      text-transform: none;
+      letter-spacing: 0;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+    }
+    .block--proof p {
+      color: var(--ink-light);
+      font-size: 0.875rem;
+    }
+    .block--proof .qed {
+      text-align: right;
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Exemple — Vert sauge */
+    .block--example {
+      background: rgba(75, 130, 90, 0.06);
+      border-left: 3px solid #4B825A;
+    }
+    .block--example .block__label {
+      color: #4B825A;
+    }
+
+    /* Remarque — Orange cuivré */
+    .block--remark {
+      background: rgba(196, 135, 59, 0.06);
+      border-left: 3px solid var(--accent);
+    }
+    .block--remark .block__label {
+      color: var(--accent);
+    }
+    .block--remark p {
+      color: var(--ink-light);
+      font-size: 0.875rem;
+    }
+
+    /* Math display blocks */
+    .math-display {
+      text-align: center;
+      padding: var(--space-md) 0;
+      overflow-x: auto;
+    }
+
+    /* Navigation between chapters */
+    .course__nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--border);
+      margin-top: var(--space-2xl);
+    }
+    .course__nav-link {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      transition: color 0.3s;
+    }
+    .course__nav-link:hover { color: var(--accent); }
+    .course__nav-link span {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .course__nav-link:hover span { color: var(--accent); }
+    .course__nav-link--next { text-align: right; }
+
+    /* Dark mode adjustments */
+    [data-theme="dark"] .block--def {
+      background: rgba(37, 99, 163, 0.1);
+      border-left-color: #5A9FD4;
+    }
+    [data-theme="dark"] .block--def .block__label { color: #5A9FD4; }
+    [data-theme="dark"] .block--def ul li::before { color: #5A9FD4; }
+
+    [data-theme="dark"] .block--thm {
+      background: rgba(163, 42, 42, 0.1);
+      border-left-color: #D45A5A;
+    }
+    [data-theme="dark"] .block--thm .block__label { color: #D45A5A; }
+
+    [data-theme="dark"] .block--prop {
+      background: rgba(118, 56, 163, 0.1);
+      border-left-color: #A87DD4;
+    }
+    [data-theme="dark"] .block--prop .block__label { color: #A87DD4; }
+
+    [data-theme="dark"] .block--proof {
+      background: rgba(100, 100, 115, 0.08);
+      border-left-color: #8888A0;
+    }
+    [data-theme="dark"] .block--proof .block__label { color: #8888A0; }
+
+    [data-theme="dark"] .block--example {
+      background: rgba(75, 130, 90, 0.1);
+      border-left-color: #6AAF7A;
+    }
+    [data-theme="dark"] .block--example .block__label { color: #6AAF7A; }
+
+    [data-theme="dark"] .block--remark {
+      background: rgba(212, 160, 75, 0.08);
+    }
+
+    /* Responsive */
+    @media (max-width: 680px) {
+      .course__title { font-size: 2rem; }
+      .course__section-title { font-size: 1.4rem; }
+      .course { padding-left: var(--space-md); padding-right: var(--space-md); }
+      .block { padding: var(--space-md); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mpsi.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mp.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group">
+      <a href="../mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a>
+    </div>
+    <div class="mobile-menu__group">
+      <a href="../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP — Math Spé</a>
+    </div>
+  </div>
+
+  <!-- Course Content -->
+  <article class="course">
+
+    <a href="../mp.html" class="course__back">&larr; Retour au programme MP</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MP — Cours</span>
+      <span class="course__chapter">Chapitre 13</span>
+    </div>
+
+    <h1 class="course__title">Séries de Fourier</h1>
+
+    <p class="course__intro">
+      L'analyse de Fourier décompose toute fonction périodique régulière en une somme (finie ou infinie) de sinusoïdes. Ce chapitre développe la théorie des coefficients de Fourier, les trois modes de convergence de la série (ponctuelle, en moyenne quadratique, normale), le formulaire des développements classiques et les applications aux équations aux dérivées partielles.
+    </p>
+
+    <!-- Table of Contents -->
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> Coefficients de Fourier</a></li>
+        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Convergence ponctuelle</a></li>
+        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> Convergence en moyenne quadratique</a></li>
+        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> Convergence normale</a></li>
+        <li class="course__toc-item"><a href="#sec5"><span class="course__toc-num">V.</span> Formulaire</a></li>
+        <li class="course__toc-item"><a href="#sec6"><span class="course__toc-num">VI.</span> Applications</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION I -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="course__section" id="sec1">
+      <h2 class="course__section-title">
+        <span class="course__section-num">I.</span> Coefficients de Fourier
+      </h2>
+
+      <p>Dans tout ce chapitre, \(T > 0\) est un réel fixé et \(f : \mathbb{R} \to \mathbb{C}\) désigne une fonction \(T\)-périodique et continue par morceaux. On pose \(\omega = \frac{2\pi}{T}\). Le cas le plus courant est \(T = 2\pi\) (soit \(\omega = 1\)).</p>
+
+      <h3 class="course__subsection-title">Produit scalaire hermitien</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Produit scalaire sur les fonctions \(T\)-périodiques</span>
+        <p>On munit l'espace \(\mathcal{E}\) des fonctions \(T\)-périodiques continues par morceaux du <strong>produit scalaire hermitien</strong> :</p>
+        <div class="math-display">$$\langle f, g \rangle = \frac{1}{T} \int_0^T f(t)\, \overline{g(t)}\, \mathrm{d}t$$</div>
+        <p>La norme associée est \(\|f\|_2 = \sqrt{\langle f, f \rangle} = \left( \frac{1}{T} \int_0^T |f(t)|^2\, \mathrm{d}t \right)^{1/2}\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>L'intégrale est prise sur une période quelconque : on peut intégrer sur \([0, T]\), \([-T/2, T/2]\) ou tout intervalle de longueur \(T\). Le choix dépend de la commodité du calcul (parité, symétrie).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Système orthonormal des exponentielles</span>
+        <p>La famille \((e_n)_{n \in \mathbb{Z}}\) définie par \(e_n(t) = e^{in\omega t}\) forme un <strong>système orthonormal</strong> pour le produit scalaire ci-dessus :</p>
+        <div class="math-display">$$\langle e_n, e_m \rangle = \frac{1}{T} \int_0^T e^{i(n-m)\omega t}\, \mathrm{d}t = \delta_{n,m}$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Si \(n = m\), l'intégrande vaut \(1\) et l'intégrale vaut \(T\), d'où \(\langle e_n, e_n \rangle = 1\).</p>
+            <p>Si \(n \neq m\), on calcule :</p>
+            <div class="math-display">$$\frac{1}{T} \int_0^T e^{i(n-m)\omega t}\, \mathrm{d}t = \frac{1}{T} \left[ \frac{e^{i(n-m)\omega t}}{i(n-m)\omega} \right]_0^T = \frac{1}{T} \cdot \frac{e^{i(n-m)2\pi} - 1}{i(n-m)\omega} = 0$$</div>
+            <p>car \(e^{i(n-m)2\pi} = 1\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Coefficients de Fourier complexes</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Coefficients de Fourier exponentiels</span>
+        <p>Les <strong>coefficients de Fourier</strong> de \(f\) sont les nombres complexes :</p>
+        <div class="math-display">$$c_n(f) = \langle f, e_n \rangle = \frac{1}{T} \int_0^T f(t)\, e^{-in\omega t}\, \mathrm{d}t, \quad n \in \mathbb{Z}$$</div>
+        <p>La <strong>série de Fourier</strong> de \(f\) est la série trigonométrique \(\displaystyle S_N f(t) = \sum_{n=-N}^{N} c_n(f)\, e^{in\omega t}\) dont on étudie la convergence quand \(N \to +\infty\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Interprétation géométrique</span>
+        <p>Le coefficient \(c_n(f)\) est la projection orthogonale de \(f\) sur la droite engendrée par \(e_n\). La somme partielle \(S_N f\) est la projection orthogonale de \(f\) sur le sous-espace \(\operatorname{Vect}(e_{-N}, \ldots, e_N)\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Coefficients de Fourier réels</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Coefficients réels \(a_n\), \(b_n\)</span>
+        <p>Lorsque \(f\) est à valeurs réelles, on définit les <strong>coefficients de Fourier réels</strong> :</p>
+        <div class="math-display">$$a_0(f) = \frac{1}{T} \int_0^T f(t)\, \mathrm{d}t = c_0(f)$$</div>
+        <div class="math-display">$$a_n(f) = \frac{2}{T} \int_0^T f(t) \cos(n\omega t)\, \mathrm{d}t, \quad b_n(f) = \frac{2}{T} \int_0^T f(t) \sin(n\omega t)\, \mathrm{d}t \quad (n \geqslant 1)$$</div>
+        <p>La série de Fourier s'écrit alors \(\displaystyle a_0 + \sum_{n=1}^{+\infty} \bigl( a_n \cos(n\omega t) + b_n \sin(n\omega t) \bigr)\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Lien entre coefficients réels et complexes</span>
+        <p>Pour \(n \geqslant 1\) :</p>
+        <div class="math-display">$$c_n = \frac{a_n - i b_n}{2}, \quad c_{-n} = \frac{a_n + i b_n}{2} = \overline{c_n}$$</div>
+        <p>et réciproquement \(a_n = c_n + c_{-n} = 2\, \operatorname{Re}(c_n)\), \(b_n = i(c_n - c_{-n}) = -2\, \operatorname{Im}(c_n)\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Influence de la parité</h3>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Parité et coefficients de Fourier</span>
+        <p>Soit \(f\) une fonction \(T\)-périodique continue par morceaux à valeurs réelles.</p>
+        <ul>
+          <li>Si \(f\) est <strong>paire</strong>, alors \(b_n = 0\) pour tout \(n \geqslant 1\), et \(a_n = \frac{4}{T} \int_0^{T/2} f(t) \cos(n\omega t)\, \mathrm{d}t\). La série de Fourier est une <strong>série en cosinus</strong>.</li>
+          <li>Si \(f\) est <strong>impaire</strong>, alors \(a_n = 0\) pour tout \(n \geqslant 0\), et \(b_n = \frac{4}{T} \int_0^{T/2} f(t) \sin(n\omega t)\, \mathrm{d}t\). La série de Fourier est une <strong>série en sinus</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration (cas pair)</span>
+            <p>Si \(f\) est paire et \(T\)-périodique, on intègre sur \([-T/2, T/2]\). Le produit \(f(t)\sin(n\omega t)\) est impair, donc \(b_n = \frac{2}{T} \int_{-T/2}^{T/2} f(t)\sin(n\omega t)\, \mathrm{d}t = 0\).</p>
+            <p>Le produit \(f(t)\cos(n\omega t)\) est pair, donc \(a_n = \frac{2}{T} \cdot 2 \int_0^{T/2} f(t)\cos(n\omega t)\, \mathrm{d}t = \frac{4}{T} \int_0^{T/2} f(t)\cos(n\omega t)\, \mathrm{d}t\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Coefficients de \(f(t) = t\) sur \(]-\pi, \pi]\)</span>
+        <p>La fonction \(f(t) = t\), étendue par \(2\pi\)-périodicité, est impaire donc \(a_n = 0\). On calcule :</p>
+        <div class="math-display">$$b_n = \frac{2}{2\pi} \int_{-\pi}^{\pi} t \sin(nt)\, \mathrm{d}t = \frac{2}{\pi} \int_0^{\pi} t \sin(nt)\, \mathrm{d}t = \frac{2(-1)^{n+1}}{n}$$</div>
+        <p>par intégration par parties. Ainsi \(c_n = \frac{i(-1)^{n+1}}{n}\) pour \(n \neq 0\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION II -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="course__section" id="sec2">
+      <h2 class="course__section-title">
+        <span class="course__section-num">II.</span> Convergence ponctuelle
+      </h2>
+
+      <p>La question centrale est : la série de Fourier converge-t-elle vers \(f\) ? Le résultat fondamental est le théorème de Dirichlet, qui donne une condition suffisante de convergence ponctuelle.</p>
+
+      <h3 class="course__subsection-title">Fonctions \(\mathcal{C}^1\) par morceaux</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Fonction \(\mathcal{C}^1\) par morceaux</span>
+        <p>Une fonction \(f : [a, b] \to \mathbb{C}\) est dite <strong>\(\mathcal{C}^1\) par morceaux</strong> s'il existe une subdivision \(a = a_0 < a_1 < \cdots < a_p = b\) telle que, sur chaque intervalle ouvert \(]a_k, a_{k+1}[\), la restriction de \(f\) se prolonge en une fonction de classe \(\mathcal{C}^1\) sur \([a_k, a_{k+1}]\).</p>
+        <p>En particulier, \(f\) admet des <strong>limites à gauche et à droite</strong> en chaque point de discontinuité.</p>
+      </div>
+
+      <h3 class="course__subsection-title">Théorème de Dirichlet</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Théorème de Dirichlet (convergence ponctuelle)</span>
+        <p>Soit \(f\) une fonction \(T\)-périodique et \(\mathcal{C}^1\) par morceaux. Alors pour tout \(t \in \mathbb{R}\) :</p>
+        <div class="math-display">$$\sum_{n=-\infty}^{+\infty} c_n(f)\, e^{in\omega t} = \frac{f(t^+) + f(t^-)}{2}$$</div>
+        <p>En particulier, en tout point de continuité de \(f\), la série de Fourier converge vers \(f(t)\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration (idée)</span>
+            <p>On écrit la somme partielle à l'aide du <strong>noyau de Dirichlet</strong> \(D_N(u) = \sum_{n=-N}^{N} e^{inu} = \frac{\sin\bigl((N+\frac{1}{2})u\bigr)}{\sin(u/2)}\) :</p>
+            <div class="math-display">$$S_N f(t) = \frac{1}{T} \int_0^T f(s)\, D_N(\omega(t-s))\, \mathrm{d}s$$</div>
+            <p>On effectue le changement de variable \(u = t - s\) et on utilise le fait que \(\frac{1}{T}\int_0^T D_N(\omega u)\, \mathrm{d}u = 1\). On écrit alors :</p>
+            <div class="math-display">$$S_N f(t) - \frac{f(t^+)+f(t^-)}{2} = \frac{1}{T} \int_0^{T/2} \left[ \frac{f(t+u)-f(t^+) + f(t-u)-f(t^-)}{2\sin(\omega u/2)} \right] \sin\!\left(\left(N+\tfrac{1}{2}\right)\omega u\right) \mathrm{d}u$$</div>
+            <p>L'hypothèse \(\mathcal{C}^1\) par morceaux assure que le crochet est une fonction continue par morceaux de \(u\). Le lemme de Riemann-Lebesgue permet alors de conclure que cette intégrale tend vers \(0\) quand \(N \to +\infty\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Lemme de Riemann-Lebesgue</span>
+        <p>Soit \(g : [a, b] \to \mathbb{C}\) continue par morceaux. Alors :</p>
+        <div class="math-display">$$\int_a^b g(t)\, e^{i\lambda t}\, \mathrm{d}t \xrightarrow[\lambda \to \pm\infty]{} 0$$</div>
+        <p>En particulier, les coefficients de Fourier d'une fonction continue par morceaux tendent vers \(0\) : \(c_n(f) \to 0\) quand \(|n| \to +\infty\).</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — DSF de la fonction dent de scie au point de discontinuité</span>
+        <p>Pour \(f(t) = t\) sur \(]-\pi, \pi]\), prolongée par \(2\pi\)-périodicité, la série de Fourier vaut en \(t = \pi\) :</p>
+        <div class="math-display">$$\frac{f(\pi^+) + f(\pi^-)}{2} = \frac{-\pi + \pi}{2} = 0$$</div>
+        <p>Ce qui est cohérent : \(\sum_{n=1}^{+\infty} \frac{2(-1)^{n+1}}{n} \sin(n\pi) = 0\) car \(\sin(n\pi) = 0\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Phénomène de Gibbs</h3>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Phénomène de Gibbs</span>
+        <p>Au voisinage d'un point de discontinuité, les sommes partielles \(S_N f\) présentent des oscillations dont l'amplitude ne tend pas vers zéro. Plus précisément, le dépassement maximal tend vers environ \(9\%\) du saut de la discontinuité (soit un facteur \(\frac{2}{\pi}\int_0^{\pi} \frac{\sin u}{u}\, \mathrm{d}u \approx 1{,}179\)). Ce phénomène, découvert par Wilbraham et popularisé par Gibbs, montre que la convergence ponctuelle n'est pas uniforme au voisinage des discontinuités.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Non-uniformité de la convergence</span>
+        <p>Si \(f\) est \(\mathcal{C}^1\) par morceaux et présente au moins une discontinuité, alors la convergence de la série de Fourier est ponctuelle mais <strong>pas uniforme</strong> sur tout \(\mathbb{R}\) (à cause du phénomène de Gibbs).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION III -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="course__section" id="sec3">
+      <h2 class="course__section-title">
+        <span class="course__section-num">III.</span> Convergence en moyenne quadratique
+      </h2>
+
+      <p>La convergence en moyenne quadratique (ou convergence \(L^2\)) est un mode de convergence plus faible que la convergence uniforme, mais plus fort que la convergence ponctuelle en un certain sens. Elle est reliée au produit scalaire hermitien et à la théorie hilbertienne.</p>
+
+      <h3 class="course__subsection-title">Inégalité de Bessel</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Inégalité de Bessel</span>
+        <p>Pour toute fonction \(f\) \(T\)-périodique et continue par morceaux :</p>
+        <div class="math-display">$$\sum_{n=-\infty}^{+\infty} |c_n(f)|^2 \leqslant \|f\|_2^2 = \frac{1}{T} \int_0^T |f(t)|^2\, \mathrm{d}t$$</div>
+        <p>En coefficients réels : \(a_0^2 + \frac{1}{2} \sum_{n=1}^{+\infty} (a_n^2 + b_n^2) \leqslant \frac{1}{T} \int_0^T |f(t)|^2\, \mathrm{d}t\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>La somme partielle \(S_N f\) est la projection orthogonale de \(f\) sur \(V_N = \operatorname{Vect}(e_{-N}, \ldots, e_N)\). Par le théorème de Pythagore dans l'espace préhilbertien :</p>
+            <div class="math-display">$$\|f\|_2^2 = \|f - S_N f\|_2^2 + \|S_N f\|_2^2 \geqslant \|S_N f\|_2^2 = \sum_{n=-N}^{N} |c_n(f)|^2$$</div>
+            <p>En faisant tendre \(N \to +\infty\), on obtient l'inégalité de Bessel.</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>L'inégalité de Bessel montre en particulier que la série \(\sum |c_n|^2\) converge. C'est une conséquence du fait que \(S_N f\) est la meilleure approximation de \(f\) dans \(V_N\) au sens de la norme \(\|\cdot\|_2\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Égalité de Parseval</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Égalité de Parseval</span>
+        <p>Pour toute fonction \(f\) \(T\)-périodique et continue par morceaux :</p>
+        <div class="math-display">$$\sum_{n=-\infty}^{+\infty} |c_n(f)|^2 = \frac{1}{T} \int_0^T |f(t)|^2\, \mathrm{d}t$$</div>
+        <p>En coefficients réels (pour \(f\) à valeurs réelles) :</p>
+        <div class="math-display">$$a_0^2 + \frac{1}{2} \sum_{n=1}^{+\infty} (a_n^2 + b_n^2) = \frac{1}{T} \int_0^T f(t)^2\, \mathrm{d}t$$</div>
+        <p>Autrement dit, \(\|f - S_N f\|_2 \to 0\) quand \(N \to +\infty\) : les sommes partielles convergent vers \(f\) <strong>en moyenne quadratique</strong>.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration (idée)</span>
+            <p>On utilise le théorème de Weierstrass trigonométrique : toute fonction continue et \(T\)-périodique peut être approchée uniformément par des polynômes trigonométriques. Si \(f\) est continue, pour tout \(\varepsilon > 0\), il existe un polynôme trigonométrique \(P\) tel que \(\|f - P\|_\infty \leqslant \varepsilon\), donc \(\|f - P\|_2 \leqslant \varepsilon\).</p>
+            <p>Comme \(S_N f\) est la meilleure approximation de \(f\) dans \(V_N\), on a \(\|f - S_N f\|_2 \leqslant \|f - P\|_2 \leqslant \varepsilon\) dès que \(N\) est assez grand pour que \(P \in V_N\). On étend ensuite par densité aux fonctions continues par morceaux.</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Applications au calcul de sommes de séries</h3>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Calcul de \(\sum \frac{1}{n^2} = \frac{\pi^2}{6}\)</span>
+        <p>On applique l'égalité de Parseval à \(f(t) = t\) sur \(]-\pi, \pi]\) (étendue par \(2\pi\)-périodicité). On a \(c_0 = 0\) et \(c_n = \frac{i(-1)^{n+1}}{n}\) pour \(n \neq 0\), donc \(|c_n|^2 = \frac{1}{n^2}\).</p>
+        <p>L'égalité de Parseval donne :</p>
+        <div class="math-display">$$\sum_{n \neq 0} \frac{1}{n^2} = \frac{1}{2\pi} \int_{-\pi}^{\pi} t^2\, \mathrm{d}t = \frac{\pi^2}{3}$$</div>
+        <p>Comme \(\sum_{n \neq 0} \frac{1}{n^2} = 2 \sum_{n=1}^{+\infty} \frac{1}{n^2}\), on obtient :</p>
+        <div class="math-display">$$\boxed{\sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}}$$</div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Calcul de \(\sum \frac{1}{n^4} = \frac{\pi^4}{90}\)</span>
+        <p>On applique Parseval à \(f(t) = t^2\) sur \(]-\pi, \pi]\). On calcule \(c_0 = \frac{\pi^2}{3}\) et, pour \(n \neq 0\), \(c_n = \frac{2(-1)^n}{n^2}\) (par double intégration par parties). Parseval donne :</p>
+        <div class="math-display">$$\frac{\pi^4}{9} + 2\sum_{n=1}^{+\infty} \frac{4}{n^4} = \frac{1}{2\pi}\int_{-\pi}^{\pi} t^4\, \mathrm{d}t = \frac{\pi^4}{5}$$</div>
+        <p>D'où \(\displaystyle\sum_{n=1}^{+\infty} \frac{1}{n^4} = \frac{1}{8}\left(\frac{\pi^4}{5} - \frac{\pi^4}{9}\right) = \frac{\pi^4}{90}\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Formule de Parseval généralisée</span>
+        <p>Pour \(f, g\) deux fonctions \(T\)-périodiques continues par morceaux :</p>
+        <div class="math-display">$$\langle f, g \rangle = \sum_{n=-\infty}^{+\infty} c_n(f)\, \overline{c_n(g)}$$</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION IV -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="course__section" id="sec4">
+      <h2 class="course__section-title">
+        <span class="course__section-num">IV.</span> Convergence normale
+      </h2>
+
+      <p>La convergence normale est le mode de convergence le plus fort. Elle entraîne la convergence uniforme (donc ponctuelle) et la convergence en moyenne quadratique.</p>
+
+      <h3 class="course__subsection-title">Critère de convergence normale</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Convergence normale de la série de Fourier</span>
+        <p>Si \(\displaystyle\sum_{n=-\infty}^{+\infty} |c_n(f)| < +\infty\), alors la série de Fourier de \(f\) converge <strong>normalement</strong> (donc uniformément) vers une fonction continue, et cette fonction coïncide avec \(f\) en tout point de continuité.</p>
+        <p>Si de plus \(f\) est continue, alors la série converge normalement vers \(f\) :</p>
+        <div class="math-display">$$\forall\, t \in \mathbb{R}, \quad f(t) = \sum_{n=-\infty}^{+\infty} c_n(f)\, e^{in\omega t}$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>On a \(\sup_t |c_n(f) e^{in\omega t}| = |c_n(f)|\). Si \(\sum |c_n(f)| < +\infty\), alors la série \(\sum c_n(f) e^{in\omega t}\) est normalement convergente sur \(\mathbb{R}\) (critère de Weierstrass). La somme est donc continue comme limite uniforme de fonctions continues.</p>
+            <p>Le théorème de Dirichlet montre que cette somme vaut \(\frac{f(t^+)+f(t^-)}{2}\) en chaque point, soit \(f(t)\) aux points de continuité.</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Régularité et décroissance des coefficients</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Décroissance des coefficients selon la régularité</span>
+        <p>Soit \(f\) une fonction \(T\)-périodique de classe \(\mathcal{C}^k\) (avec \(k \geqslant 1\)). Alors :</p>
+        <div class="math-display">$$c_n(f^{(k)}) = (in\omega)^k\, c_n(f) \quad \text{pour tout } n \in \mathbb{Z}$$</div>
+        <p>En particulier \(c_n(f) = o\!\left(\frac{1}{|n|^k}\right)\) quand \(|n| \to +\infty\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>On intègre par parties \(k\) fois. Pour \(k = 1\) :</p>
+            <div class="math-display">$$c_n(f') = \frac{1}{T}\int_0^T f'(t) e^{-in\omega t}\, \mathrm{d}t = \frac{1}{T}\Bigl[f(t) e^{-in\omega t}\Bigr]_0^T + \frac{in\omega}{T}\int_0^T f(t) e^{-in\omega t}\, \mathrm{d}t$$</div>
+            <p>Le crochet vaut \(0\) par \(T\)-périodicité de \(f\) et de l'exponentielle, donc \(c_n(f') = in\omega\, c_n(f)\). On itère pour obtenir \(c_n(f^{(k)}) = (in\omega)^k c_n(f)\).</p>
+            <p>Comme \(f^{(k)}\) est continue donc bornée, \(c_n(f^{(k)}) \to 0\) par Riemann-Lebesgue, d'où \(n^k c_n(f) \to 0\), soit \(c_n(f) = o(1/|n|^k)\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Critère suffisant de CVN</span>
+        <p>Si \(f\) est \(T\)-périodique et de classe \(\mathcal{C}^2\), alors \(c_n(f) = O(1/n^2)\) et la série \(\sum |c_n(f)|\) converge (car \(\sum 1/n^2\) converge). Donc la série de Fourier de \(f\) converge normalement vers \(f\).</p>
+        <p>Plus généralement, si \(f \in \mathcal{C}^k\) avec \(k \geqslant 2\), la série de Fourier converge normalement.</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Résumé hiérarchique</span>
+        <p>Les modes de convergence se comparent ainsi : convergence normale \(\Rightarrow\) convergence uniforme \(\Rightarrow\) convergence simple, et convergence normale \(\Rightarrow\) convergence en moyenne quadratique. La réciproque de chaque implication est fausse en général.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>La fonction créneau (définie ci-dessous dans le formulaire) est \(\mathcal{C}^0\) par morceaux mais pas continue, donc on a seulement \(c_n = O(1/n)\). La série \(\sum |c_n|\) diverge : il n'y a pas convergence normale, et en effet la convergence n'est pas uniforme (phénomène de Gibbs).</p>
+        <p>En revanche, la fonction \(f(t) = t^2\) sur \(]-\pi, \pi]\), qui est continue et \(\mathcal{C}^1\) par morceaux, vérifie \(c_n = O(1/n^2)\) et sa série de Fourier converge normalement.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION V -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="course__section" id="sec5">
+      <h2 class="course__section-title">
+        <span class="course__section-num">V.</span> Formulaire
+      </h2>
+
+      <p>On rassemble ici les développements en séries de Fourier des fonctions classiques, tous pour \(T = 2\pi\). Ces résultats sont des outils essentiels pour le calcul de sommes de séries numériques.</p>
+
+      <h3 class="course__subsection-title">Signal créneau</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Fonction créneau</span>
+        <p>Fonction \(2\pi\)-périodique impaire définie par \(f(t) = 1\) si \(t \in\, ]0, \pi[\) et \(f(t) = -1\) si \(t \in\, ]-\pi, 0[\), \(f(0) = f(\pi) = 0\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">DSF du créneau</span>
+        <p>Les coefficients réels sont \(a_n = 0\) et \(b_n = \frac{2}{n\pi}(1 - (-1)^n)\), donc \(b_{2k} = 0\) et \(b_{2k+1} = \frac{4}{\pi(2k+1)}\). La série de Fourier est :</p>
+        <div class="math-display">$$f(t) = \frac{4}{\pi} \sum_{k=0}^{+\infty} \frac{\sin\bigl((2k+1)t\bigr)}{2k+1}$$</div>
+        <p>En \(t = \pi/2\) : \(\displaystyle\sum_{k=0}^{+\infty} \frac{(-1)^k}{2k+1} = \frac{\pi}{4}\) (formule de Leibniz).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Dent de scie</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">DSF de la dent de scie</span>
+        <p>Pour \(f(t) = t\) sur \(]-\pi, \pi]\), prolongée par \(2\pi\)-périodicité :</p>
+        <div class="math-display">$$f(t) = 2 \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n} \sin(nt)$$</div>
+        <p>Parseval : \(\sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Valeur absolue : \(|t|\)</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">DSF de \(|t|\)</span>
+        <p>Pour \(f(t) = |t|\) sur \(]-\pi, \pi]\), fonction paire. On a \(a_0 = \frac{\pi}{2}\), \(b_n = 0\), et \(a_n = \frac{2}{n^2\pi}((-1)^n - 1)\), donc \(a_{2k} = 0\) et \(a_{2k+1} = -\frac{4}{\pi(2k+1)^2}\) :</p>
+        <div class="math-display">$$|t| = \frac{\pi}{2} - \frac{4}{\pi} \sum_{k=0}^{+\infty} \frac{\cos\bigl((2k+1)t\bigr)}{(2k+1)^2}$$</div>
+        <p>En \(t = 0\) : \(\displaystyle\sum_{k=0}^{+\infty} \frac{1}{(2k+1)^2} = \frac{\pi^2}{8}\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Fonction \(t^2\)</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">DSF de \(t^2\)</span>
+        <p>Pour \(f(t) = t^2\) sur \(]-\pi, \pi]\), fonction paire. On a \(a_0 = \frac{\pi^2}{3}\), \(b_n = 0\), et \(a_n = \frac{4(-1)^n}{n^2}\) :</p>
+        <div class="math-display">$$t^2 = \frac{\pi^2}{3} + 4 \sum_{n=1}^{+\infty} \frac{(-1)^n}{n^2} \cos(nt)$$</div>
+        <p>En \(t = 0\) : \(\displaystyle\sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n^2} = \frac{\pi^2}{12}\). En \(t = \pi\) : \(\displaystyle\sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}\).</p>
+        <p>Parseval : \(\displaystyle\sum_{n=1}^{+\infty} \frac{1}{n^4} = \frac{\pi^4}{90}\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Fonction \(t^3\)</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">DSF de \(t^3\)</span>
+        <p>Pour \(f(t) = t^3\) sur \(]-\pi, \pi]\), fonction impaire. On a \(a_n = 0\) et :</p>
+        <div class="math-display">$$b_n = \frac{2(-1)^{n+1}}{n}\left(\pi^2 - \frac{6}{n^2}\right)$$</div>
+        <div class="math-display">$$t^3 = 2\sum_{n=1}^{+\infty} (-1)^{n+1}\left(\frac{\pi^2}{n} - \frac{6}{n^3}\right) \sin(nt)$$</div>
+        <p>En \(t = \pi/2\) et en exploitant les coefficients, on retrouve des sommes faisant intervenir \(\sum \frac{(-1)^k}{(2k+1)^3}\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Stratégie</span>
+        <p>Pour obtenir la somme d'une série numérique à partir d'une série de Fourier : (1) identifier le bon DSF, (2) évaluer en un point bien choisi (souvent \(0\), \(\pi\), \(\pi/2\)), (3) ou appliquer Parseval si la série porte sur les carrés des coefficients. Le choix du point d'évaluation dépend de la somme visée.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION VI -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="course__section" id="sec6">
+      <h2 class="course__section-title">
+        <span class="course__section-num">VI.</span> Applications
+      </h2>
+
+      <p>Les séries de Fourier ont des applications fondamentales en physique mathématique et en analyse fonctionnelle. On présente ici deux applications majeures au programme.</p>
+
+      <h3 class="course__subsection-title">Résolution de l'équation de la chaleur</h3>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Équation de la chaleur sur un anneau</span>
+        <p>On cherche \(u(t, x)\) définie pour \(t \geqslant 0\) et \(x \in \mathbb{R}\), \(2\pi\)-périodique en \(x\), vérifiant :</p>
+        <div class="math-display">$$\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}, \quad u(0, x) = f(x)$$</div>
+        <p>On décompose la condition initiale \(f\) en série de Fourier : \(f(x) = \sum_{n \in \mathbb{Z}} c_n\, e^{inx}\). On cherche \(u\) sous la forme :</p>
+        <div class="math-display">$$u(t, x) = \sum_{n \in \mathbb{Z}} \hat{u}_n(t)\, e^{inx}$$</div>
+        <p>En substituant dans l'équation : \(\hat{u}_n'(t) = -n^2 \hat{u}_n(t)\), d'où \(\hat{u}_n(t) = c_n\, e^{-n^2 t}\). La solution est :</p>
+        <div class="math-display">$$\boxed{u(t, x) = \sum_{n \in \mathbb{Z}} c_n\, e^{-n^2 t}\, e^{inx}}$$</div>
+        <p>Pour \(t > 0\), le facteur \(e^{-n^2 t}\) assure la convergence normale en \(n\), ce qui justifie toutes les interversions et montre que \(u\) est \(\mathcal{C}^\infty\) pour \(t > 0\) : la chaleur régularise instantanément.</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Effet régularisant</span>
+        <p>Même si la condition initiale \(f\) est seulement continue par morceaux (par exemple un créneau), la solution \(u(t, \cdot)\) est de classe \(\mathcal{C}^\infty\) pour tout \(t > 0\). C'est une propriété fondamentale des équations paraboliques : l'information se propage instantanément et lisse les irrégularités.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Corde vibrante (équation des ondes)</span>
+        <p>Pour l'équation des ondes \(\frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}\) avec conditions aux limites \(u(t, 0) = u(t, L) = 0\), on cherche \(u\) sous la forme \(u(t, x) = \sum_{n=1}^{+\infty} T_n(t) \sin\!\left(\frac{n\pi x}{L}\right)\). On obtient \(T_n''(t) = -\left(\frac{n\pi c}{L}\right)^2 T_n(t)\), soit :</p>
+        <div class="math-display">$$T_n(t) = A_n \cos\!\left(\frac{n\pi c t}{L}\right) + B_n \sin\!\left(\frac{n\pi c t}{L}\right)$$</div>
+        <p>Les coefficients \(A_n, B_n\) sont déterminés par les conditions initiales (position et vitesse) via les formules de Fourier en sinus.</p>
+      </div>
+
+      <h3 class="course__subsection-title">Isomorphisme \(L^2\) et \(\ell^2\)</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Isomorphisme hilbertien</span>
+        <p>L'application qui à une fonction \(f\) \(T\)-périodique de carré intégrable associe la suite de ses coefficients de Fourier \((c_n(f))_{n \in \mathbb{Z}}\) réalise une <strong>isométrie</strong> de l'espace \(L^2_T\) (muni du produit scalaire \(\langle \cdot, \cdot \rangle\)) sur l'espace \(\ell^2(\mathbb{Z})\) (muni du produit scalaire \(\langle u, v \rangle_{\ell^2} = \sum_{n \in \mathbb{Z}} u_n \overline{v_n}\)).</p>
+        <p>En particulier, le système \((e_n)_{n \in \mathbb{Z}}\) est une <strong>base hilbertienne</strong> de \(L^2_T\) : toute fonction de carré intégrable est la somme (au sens \(L^2\)) de sa série de Fourier.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration (structure)</span>
+            <p><strong>Isométrie :</strong> c'est exactement l'égalité de Parseval \(\|f\|_2^2 = \sum |c_n|^2 = \|(c_n)\|_{\ell^2}^2\).</p>
+            <p><strong>Surjectivité :</strong> soit \((u_n) \in \ell^2(\mathbb{Z})\). La série \(\sum u_n e_n\) converge dans \(L^2_T\) car c'est une série à termes orthogonaux avec \(\sum \|u_n e_n\|_2^2 = \sum |u_n|^2 < +\infty\). La fonction \(f = \sum u_n e_n\) vérifie \(c_n(f) = u_n\) par continuité du produit scalaire.</p>
+            <p><strong>Injectivité :</strong> si \(c_n(f) = 0\) pour tout \(n\), Parseval donne \(\|f\|_2 = 0\), donc \(f = 0\) dans \(L^2\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Portée conceptuelle</span>
+        <p>Cet isomorphisme est le prototype de tous les théorèmes de décomposition spectrale en analyse fonctionnelle. Il montre que l'espace des fonctions périodiques de carré intégrable et l'espace des suites de carré sommable sont, du point de vue hilbertien, le même objet mathématique. Cette identification est à la base du traitement du signal et de la mécanique quantique.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Application : inégalité isopérimétrique</span>
+        <p>Soit \(\gamma : [0, 2\pi] \to \mathbb{R}^2\) une courbe fermée simple de classe \(\mathcal{C}^1\), de longueur \(L\) et enclosant une aire \(A\). En paramétrant \(\gamma(t) = (x(t), y(t))\) et en utilisant Parseval sur les coefficients de Fourier de \(x'\) et \(y'\), on démontre l'<strong>inégalité isopérimétrique</strong> :</p>
+        <div class="math-display">$$4\pi A \leqslant L^2$$</div>
+        <p>avec égalité si et seulement si \(\gamma\) est un cercle.</p>
+      </div>
+    </section>
+
+    <!-- Chapter navigation -->
+    <nav class="course__nav">
+      <a href="mp-12-fonctions-plusieurs-variables.html" class="course__nav-link">
+        &larr; Chapitre précédent
+        <span>Fonctions de plusieurs variables</span>
+      </a>
+      <a href="mp-14-familles-sommables.html" class="course__nav-link course__nav-link--next">
+        Chapitre suivant &rarr;
+        <span>Familles sommables</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">&int; LibMaths</span>
+        <p class="footer__tagline">La beauté des mathématiques, en ligne.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../index.html">Accueil</a>
+          <a href="../mpsi.html">MPSI</a>
+          <a href="../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communauté</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths — Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script>
+    // Render LaTeX with auto-render
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+
+    // Approfondir toggles
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
+    });
+  </script>
+</body>
+</html>
