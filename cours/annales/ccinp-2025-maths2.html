@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCINP 2025 — Maths 2 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md);padding-left:var(--space-lg)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:6px}
+    .course ol ol{margin-top:6px;margin-bottom:6px}
+    .course ol ol li{margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .code-block{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0;font-family:var(--font-mono);font-size:.82rem;line-height:1.7;overflow-x:auto;white-space:pre}
+    .code-inline{font-family:var(--font-mono);font-size:.85em;background:var(--bg-card);border:1px solid var(--border);padding:1px 6px;border-radius:4px}
+    .graph-diagram{display:flex;justify-content:center;margin:var(--space-md) 0 var(--space-lg);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:12px}
+    .graph-diagram svg text{fill:var(--ink);font-family:var(--font-mono);font-size:13px}
+    .graph-diagram svg circle{stroke:var(--accent);fill:var(--bg-card);stroke-width:2}
+    .graph-diagram svg line,.graph-diagram svg path{stroke:var(--ink-muted);stroke-width:1.5;fill:none}
+    .graph-diagram svg polygon{fill:var(--ink-muted)}
+    .table-sql{width:100%;border-collapse:collapse;margin:var(--space-md) 0;font-size:.85rem}
+    .table-sql th,.table-sql td{padding:8px 12px;border:1px solid var(--border);text-align:left}
+    .table-sql th{background:var(--bg-card);font-weight:600;font-family:var(--font-mono);font-size:.8rem}
+    @media(max-width:680px){.course__title{font-size:2rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html" class="course__back">&larr; Retour aux annales MP</a>
+
+    <div class="course__meta">
+      <span class="course__badge">CCINP 2025</span>
+    </div>
+
+    <h1 class="course__title">CCINP 2025 -- Mathematiques 2</h1>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 2, filiere MP. Un exercice d'informatique (graphes, SQL), un exercice sur les polynomes de Tchebychev, et un probleme sur les matrices de rang 1.
+    </p>
+
+    <div class="annale-info">
+      <span class="annale-info__item"><strong>Concours :</strong> CCINP</span>
+      <span class="annale-info__item"><strong>Filiere :</strong> MP</span>
+      <span class="annale-info__item"><strong>Annee :</strong> 2025</span>
+      <span class="annale-info__item"><strong>Duree :</strong> 4h</span>
+      <span class="annale-info__item"><strong>Epreuve :</strong> Mathematiques 2</span>
+    </div>
+
+    <!-- ═══════════════ Exercice 1 (Informatique) ═══════════════ -->
+    <section class="annale-exercice" id="exercice1">
+      <h2 class="annale-exercice__title">Exercice 1 (Informatique du tronc commun)</h2>
+
+      <p>Hormis Q3 et Q4, les questions de cet exercice sont independantes.</p>
+
+      <p>Dans cet exercice, les graphes ont leurs sommets numerotes a partir de 0 et ils sont orientes. On les represente par un dictionnaire d'adjacence.</p>
+
+      <p>Par exemple, le graphe :</p>
+
+      <div class="graph-diagram">
+        <svg viewBox="0 0 420 120" width="420" height="120">
+          <!-- Sommets -->
+          <circle cx="30" cy="60" r="18"/><text x="30" y="65" text-anchor="middle">0</text>
+          <circle cx="100" cy="30" r="18"/><text x="100" y="35" text-anchor="middle">1</text>
+          <circle cx="170" cy="60" r="18"/><text x="170" y="65" text-anchor="middle">2</text>
+          <circle cx="100" cy="90" r="18"/><text x="100" y="95" text-anchor="middle">3</text>
+          <circle cx="240" cy="30" r="18"/><text x="240" y="35" text-anchor="middle">4</text>
+          <circle cx="240" cy="90" r="18"/><text x="240" y="95" text-anchor="middle">5</text>
+          <circle cx="310" cy="60" r="18"/><text x="310" y="65" text-anchor="middle">6</text>
+          <!-- Aretes -->
+          <line x1="46" y1="50" x2="82" y2="36" marker-end="url(#arrow)"/>
+          <line x1="46" y1="70" x2="82" y2="84" marker-end="url(#arrow)"/>
+          <line x1="116" y1="36" x2="154" y2="54" marker-end="url(#arrow)"/>
+          <line x1="186" y1="50" x2="222" y2="36" marker-end="url(#arrow)"/>
+          <line x1="186" y1="70" x2="222" y2="84" marker-end="url(#arrow)"/>
+          <line x1="116" y1="84" x2="222" y2="36" marker-end="url(#arrow)"/>
+          <line x1="232" y1="14" x2="108" y2="14" marker-end="url(#arrow)"/>
+          <line x1="294" y1="54" x2="186" y2="54" marker-end="url(#arrow)"/>
+          <defs><marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6"/></marker></defs>
+        </svg>
+      </div>
+
+      <p>est represente par le dictionnaire :</p>
+      <div class="code-block">d = {0:[1,3], 1:[2], 2:[4,5], 3:[4], 4:[1], 5:[], 6:[2]}</div>
+
+      <p><strong>Q1.</strong> Ecrire en langage Python une fonction <span class="code-inline">degreMax(d : dict) -> int</span> qui recoit en entree un dictionnaire d'adjacence representant un graphe oriente et renvoie le degre sortant maximal parmi tous les degres sortants des sommets du graphe.</p>
+
+      <p>Si \(G\) est un graphe oriente, on appelle <em>graphe inverse</em> de \(G\) le graphe possedant les memes sommets ainsi que les memes aretes mais en sens inverse par rapport a celles de \(G\).</p>
+
+      <p><strong>Q2.</strong> Representer le graphe inverse du graphe oriente donne en introduction.<br>
+      Ecrire en langage Python une fonction <span class="code-inline">grapheInv(d : dict) -> dict</span> qui renvoie un dictionnaire d'adjacence du graphe inverse du graphe represente par <span class="code-inline">d</span>.</p>
+
+      <p>On souhaite colorier notre graphe oriente. Les couleurs sont representees par des entiers naturels. La coloration du graphe est modelisee par une liste <span class="code-inline">L</span> telle que <span class="code-inline">L[s]</span> est egale a la couleur attribuee au sommet <span class="code-inline">s</span>.</p>
+      <p>Deux sommets du graphe relies par une arete ne doivent pas etre de la meme couleur (coloration du graphe valide).</p>
+
+      <p><strong>Q3.</strong> Ecrire en langage Python une fonction <span class="code-inline">colorationValide(d : dict, L : list) -> bool</span> qui renvoie <span class="code-inline">True</span> si la coloration <span class="code-inline">L</span> du graphe represente par <span class="code-inline">d</span> est valide et <span class="code-inline">False</span> dans le cas contraire.</p>
+
+      <p><strong>Q4.</strong> Donner la complexite dans le pire des cas de la fonction precedente en fonction du nombre \(N\) de sommets et du nombre \(M\) d'aretes. Justifier votre reponse.</p>
+
+      <p>On considere deux tables : <strong>FILMS</strong> et <strong>LOCATIONS</strong>.</p>
+
+      <p>La table <strong>FILMS</strong> contient les attributs suivants :</p>
+      <table class="table-sql">
+        <tr><th>Attribut</th><th>Type</th><th>Description</th></tr>
+        <tr><td><span class="code-inline">codefilm</span></td><td>entier</td><td>code d'un film, <em>cle primaire</em></td></tr>
+        <tr><td><span class="code-inline">nomfilm</span></td><td>chaine de caracteres</td><td>nom du film</td></tr>
+      </table>
+
+      <p>La table <strong>LOCATIONS</strong> contient les attributs suivants :</p>
+      <table class="table-sql">
+        <tr><th>Attribut</th><th>Type</th><th>Description</th></tr>
+        <tr><td><span class="code-inline">codecli</span></td><td>entier</td><td>code du client, <em>cle primaire</em> avec <span class="code-inline">codefilm</span></td></tr>
+        <tr><td><span class="code-inline">codefilm</span></td><td>entier</td><td>code du film, <em>cle primaire</em> avec <span class="code-inline">codecli</span></td></tr>
+        <tr><td><span class="code-inline">datedebut</span></td><td>chaine de caracteres</td><td>date de debut de la location</td></tr>
+        <tr><td><span class="code-inline">duree</span></td><td>flottant</td><td>duree de la location</td></tr>
+      </table>
+
+      <p><strong>Q5.</strong> Ecrire une requete SQL permettant de connaitre la plus grande duree de location parmi tous les films.</p>
+
+      <p><strong>Q6.</strong> Ecrire une requete SQL permettant d'extraire le code du film, le nom du film et la duree moyenne de location des films qui ont ete en moyenne loues moins de 2 jours. Le resultat doit etre classe dans l'ordre decroissant des durees moyennes de location.</p>
+    </section>
+
+    <!-- ═══════════════ Exercice 2 (Tchebychev) ═══════════════ -->
+    <section class="annale-exercice" id="exercice2">
+      <h2 class="annale-exercice__title">Exercice 2</h2>
+
+      <p>On definit une suite \((P_n)_{n \in \mathbb{N}}\) de \(\mathbb{R}[X]\) en posant \(P_0 = 1\), \(P_1 = X\) et pour tout entier naturel \(n\) :</p>
+      <div class="math-display">
+        $$P_{n+2} = 2X P_{n+1} - P_n$$
+      </div>
+      <p>Dans les questions suivantes, \(n\) et \(k\) sont des entiers naturels.</p>
+
+      <p><strong>Q7.</strong> Donner le degre et le terme dominant de \(P_n\) en fonction de \(n\).</p>
+
+      <p><strong>Q8.</strong> Justifier que pour tout reel \(\theta\) :</p>
+      <div class="math-display">
+        $$P_n(\cos\theta) = \cos(n\theta)$$
+      </div>
+
+      <p>Pour \(P\) et \(Q\) dans \(\mathbb{R}[X]\), on pose :</p>
+      <div class="math-display">
+        $$\langle P, Q \rangle = \int_{-1}^{1} \frac{P(t)\,Q(t)}{\sqrt{1 - t^2}}\,dt$$
+      </div>
+
+      <p><strong>Q9.</strong> Justifier la convergence de cette integrale.</p>
+
+      <p><strong>Q10.</strong> Demontrer que \(\langle \cdot, \cdot \rangle\) est un produit scalaire sur \(\mathbb{R}_k[X]\) (ensemble des polynomes de \(\mathbb{R}[X]\) de degre inferieur ou egal a \(k\)).</p>
+
+      <p><strong>Q11.</strong> Calculer pour \(n\) et \(m\) entiers naturels,</p>
+      <div class="math-display">
+        $$\int_0^{\pi} \cos(n\theta)\cos(m\theta)\,d\theta.$$
+      </div>
+
+      <p><strong>Q12.</strong> Donner une base orthonormale de \(\mathbb{R}_k[X]\) pour ce produit scalaire.</p>
+    </section>
+
+    <!-- ═══════════════ Probleme ═══════════════ -->
+    <section class="annale-exercice" id="probleme">
+      <h2 class="annale-exercice__title">Probleme : Matrices de rang 1</h2>
+
+      <p>\(n\) est un entier naturel superieur ou egal a 2. On note \(\mathcal{M}_n(\mathbb{R})\) l'ensemble des matrices reelles d'ordre \(n\), \(\mathcal{M}_{n,1}(\mathbb{R})\) l'ensemble des matrices colonnes reelles d'ordre \(n\) et \(\mathcal{M}_{1,n}(\mathbb{R})\) l'ensemble des matrices lignes reelles d'ordre \(n\).</p>
+
+      <!-- Partie I -->
+      <div class="annale-partie" id="partie1">
+        <h3 class="annale-partie__title">Partie I -- Exemples</h3>
+
+        <p>On suppose que \(X_1, X_2, \ldots, X_n\) sont des variables aleatoires definies sur le meme espace probabilise, independantes et toutes de loi de Bernoulli de parametre \(p \in ]0,1[\). On definit les matrices aleatoires :</p>
+
+        <div class="math-display">
+          $$U = \begin{pmatrix} X_1 \\ X_2 \\ \vdots \\ X_n \end{pmatrix} \qquad \text{et} \qquad M = U \times U^T = \begin{pmatrix} X_1^2 & X_1 X_2 & X_1 X_3 & \cdots & X_1 X_n \\ X_2 X_1 & X_2^2 & X_2 X_3 & \cdots & X_2 X_n \\ X_3 X_1 & X_3 X_2 & X_3^2 & \cdots & X_3 X_n \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ X_n X_1 & X_n X_2 & X_n X_3 & \cdots & X_n^2 \end{pmatrix}$$
+        </div>
+
+        <p><strong>Q13.</strong> On pose \(Y = \mathrm{rg}(M)\). Montrer que la variable aleatoire \(Y\) suit une loi de Bernoulli de parametre \(1 - (1 - p)^n\).</p>
+
+        <p><strong>Q14.</strong> Reconnaitre la loi de la variable aleatoire \(\mathrm{Tr}(M)\).</p>
+
+        <p><strong>Q15.</strong> Verifier que \(M^2 = \mathrm{Tr}(M) \cdot M\) et en deduire la probabilite de l'evenement &laquo; \(M\) est une matrice de projection &raquo;.</p>
+
+        <p><strong>Q16.</strong> Dans cette question, on suppose que \(X_1, X_2, \ldots, X_n\) sont des variables aleatoires definies sur le meme espace probabilise, independantes et toutes de loi de Poisson de parametre \(\lambda > 0\). On definit la matrice aleatoire \(M\) comme ci-dessus. Avec ces nouvelles hypotheses, calculer a nouveau la probabilite de l'evenement &laquo; \(M\) est une matrice de projection &raquo;.</p>
+
+        <p><strong>Q17.</strong> On note \(J\) la matrice de \(\mathcal{M}_n(\mathbb{R})\) dont tous les coefficients sont egaux a 1. Donner son rang et sa trace, puis la diagonaliser (on precisera une matrice de passage).</p>
+
+        <p><strong>Q18.</strong> Donner (en le justifiant) une matrice d'ordre 3 de rang 1 non diagonalisable. Preciser sa trace.</p>
+      </div>
+
+      <!-- Partie II -->
+      <div class="annale-partie" id="partie2">
+        <h3 class="annale-partie__title">Partie II -- Resultats generaux</h3>
+
+        <p>Dans cette partie, \(A\) designe une matrice de \(\mathcal{M}_n(\mathbb{R})\) de rang egal a 1.</p>
+
+        <p><strong>Q19.</strong> On note \(C \in \mathcal{M}_{n,1}(\mathbb{R})\) la premiere colonne non nulle de \(A\). Demontrer qu'il existe une matrice ligne \(L \in \mathcal{M}_{1,n}(\mathbb{R})\) non nulle telle que \(A = C \times L\).</p>
+
+        <p><strong>Q20.</strong> Calculer le reel \(L \times C\) et en deduire que \(A^2 = \mathrm{Tr}(A) \cdot A\).</p>
+
+        <p><strong>Q21.</strong> Determiner le polynome caracteristique de \(A\) ainsi que son polynome minimal.</p>
+
+        <p><strong>Q22.</strong> Etablir que :</p>
+        <div class="math-display">
+          $$A \text{ est diagonalisable} \iff \mathrm{Tr}(A) \neq 0$$
+        </div>
+
+        <p>On note desormais \(u\) l'endomorphisme de \(\mathbb{R}^n\) canoniquement associe a \(A\).</p>
+
+        <p><strong>Q23.</strong> On suppose que \(\mathrm{Im}(u) \cap \ker(u) \neq \{0_{\mathbb{R}^n}\}\). Justifier que \(\mathrm{Im}(u) \subseteq \ker(u)\), puis qu'il existe une base de \(\mathbb{R}^n\) dans laquelle \(u\) est represente par la matrice :</p>
+        <div class="math-display">
+          $$\begin{pmatrix} 0 & 0 & 0 & & \\ 1 & 0 & 0 & (0) & \\ 0 & 0 & 0 & & \\ & & & \ddots & \\ & (0) & & & 0 \end{pmatrix}$$
+        </div>
+
+        <p><strong>Q24.</strong> On suppose que \(\mathrm{Im}(u) \cap \ker(u) = \{0_{\mathbb{R}^n}\}\). Demontrer qu'il existe une base de \(\mathbb{R}^n\) dans laquelle \(u\) est represente par la matrice :</p>
+        <div class="math-display">
+          $$\begin{pmatrix} a & 0 & 0 & & \\ 0 & 0 & 0 & (0) & \\ 0 & 0 & 0 & & \\ & & & \ddots & \\ & (0) & & & 0 \end{pmatrix}$$
+        </div>
+        <p>ou \(a\) est un reel non nul.</p>
+
+        <p><strong>Q25.</strong> Conclure que dans \(\mathcal{M}_n(\mathbb{R})\) deux matrices de rang 1 sont semblables si et seulement si elles ont la meme trace.</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="course__nav" style="display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)">
+      <a href="ccinp-2025-maths1.html" class="course__nav-link" style="display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s">
+        &larr; Precedent
+        <span style="font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)">CCINP 2025 -- Maths 1</span>
+      </a>
+      <div></div>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

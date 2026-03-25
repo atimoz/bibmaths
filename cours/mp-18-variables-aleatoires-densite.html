@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables aléatoires à densité — MP | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md)}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
+    .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:4000px;opacity:1}
+    .block p,.block li{font-size:.9rem;line-height:1.8}
+    .block ul{list-style:none;padding-left:var(--space-md)}
+    .block ul li::before{content:'—';color:var(--accent);margin-right:8px}
+    .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
+    .block--def .block__label{color:#2563A3}
+    .block--def ul li::before{color:#2563A3}
+    .block--thm{background:rgba(163,42,42,.06);border-left:3px solid #A32A2A}
+    .block--thm .block__label{color:#A32A2A}
+    .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
+    .block--prop .block__label{color:#7638A3}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
+    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--example .block__label{color:#4B825A}
+    .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
+    .block--remark .block__label{color:var(--accent)}
+    .block--remark p{color:var(--ink-light);font-size:.875rem}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
+    [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
+    [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
+    [data-theme="dark"] .block--thm{background:rgba(163,42,42,.1);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
+    [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
+    [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
+    [data-theme="dark"] .block--proof .block__label{color:#8888A0}
+    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
+    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mpsi.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mp.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP — Math Spé</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../mp.html" class="course__back">&larr; Retour au programme MP</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MP — Cours</span>
+      <span class="course__chapter">Chapitre 18</span>
+    </div>
+
+    <h1 class="course__title">Variables aléatoires à densité</h1>
+
+    <p class="course__intro">
+      Ce chapitre étend la théorie des probabilités au cadre continu. On y définit les variables aléatoires à densité via leur fonction de densité et leur fonction de répartition, puis on étudie les lois classiques continues (uniforme, exponentielle, normale). On développe le calcul de l'espérance, de la variance et des moments, avant d'aborder les vecteurs aléatoires à densité, les sommes de variables aléatoires indépendantes et les techniques de changement de variable pour les densités.
+    </p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> Variables aléatoires à densité</a></li>
+        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Lois classiques continues</a></li>
+        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> Espérance et moments</a></li>
+        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> Vecteurs aléatoires à densité</a></li>
+        <li class="course__toc-item"><a href="#sec5"><span class="course__toc-num">V.</span> Sommes de variables aléatoires</a></li>
+        <li class="course__toc-item"><a href="#sec6"><span class="course__toc-num">VI.</span> Fonctions de variables aléatoires</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════ SECTION I ═══════════════ -->
+    <section class="course__section" id="sec1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Variables aléatoires à densité</h2>
+
+      <p>On considère un espace probabilisé \((\Omega, \mathcal{A}, P)\). Une variable aléatoire réelle \(X : \Omega \to \mathbb{R}\) est dite <em>à densité</em> (ou <em>absolument continue</em>) lorsque sa loi peut être décrite par une fonction intégrable, appelée densité.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Densité de probabilité</span>
+        <p>Une fonction \(f : \mathbb{R} \to \mathbb{R}\) est une <strong>densité de probabilité</strong> si :</p>
+        <ul>
+          <li>\(f\) est continue par morceaux et positive : \(f(x) \geq 0\) pour tout \(x \in \mathbb{R}\).</li>
+          <li>\(f\) est intégrable et normalisée : \(\displaystyle\int_{-\infty}^{+\infty} f(x)\,\mathrm{d}x = 1\).</li>
+        </ul>
+        <p>Une variable aléatoire \(X\) admet \(f\) pour densité si, pour tout intervalle \([a, b]\) :</p>
+        <div class="math-display">$$P(a \leq X \leq b) = \int_a^b f(x)\,\mathrm{d}x$$</div>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Fonction de répartition</span>
+        <p>La <strong>fonction de répartition</strong> de \(X\) est la fonction \(F : \mathbb{R} \to [0, 1]\) définie par :</p>
+        <div class="math-display">$$F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t)\,\mathrm{d}t$$</div>
+        <p>Elle vérifie \(\displaystyle\lim_{x \to -\infty} F(x) = 0\), \(\displaystyle\lim_{x \to +\infty} F(x) = 1\), et \(F\) est croissante et continue.</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Lien densité / fonction de répartition</span>
+        <p>Si \(X\) admet une densité \(f\) continue par morceaux, alors sa fonction de répartition \(F\) est de classe \(\mathcal{C}^1\) en tout point de continuité de \(f\), et :</p>
+        <div class="math-display">$$F'(x) = f(x)$$</div>
+        <p>Réciproquement, si \(F\) est de classe \(\mathcal{C}^1\) sauf en un nombre fini de points, alors \(X\) admet la densité \(f = F'\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Par définition, \(F(x) = \int_{-\infty}^{x} f(t)\,\mathrm{d}t\). En un point \(x_0\) où \(f\) est continue, le théorème fondamental de l'analyse donne \(F'(x_0) = f(x_0)\). Réciproquement, si \(F\) est \(\mathcal{C}^1\), on a pour tout intervalle \([a,b]\) :
+            \(P(a \leq X \leq b) = F(b) - F(a) = \int_a^b F'(t)\,\mathrm{d}t\), donc \(f = F'\) est une densité de \(X\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Probabilités et densité</span>
+        <p>Si \(X\) admet une densité, alors pour tout \(x_0 \in \mathbb{R}\) :</p>
+        <div class="math-display">$$P(X = x_0) = 0$$</div>
+        <p>En conséquence, \(P(X \leq x_0) = P(X &lt; x_0)\) et \(P(a \leq X \leq b) = P(a &lt; X &lt; b)\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Unicité de la densité</span>
+        <p>La densité n'est pas unique : on peut la modifier sur un ensemble de mesure nulle sans changer la loi. On convient en général de choisir la version continue par morceaux. Cependant, la fonction de répartition, elle, est toujours unique.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Vérification d'une densité</span>
+        <p>Soit \(f(x) = 2x\,\mathbf{1}_{[0,1]}(x)\). On vérifie : \(f \geq 0\) et \(\int_0^1 2x\,\mathrm{d}x = [x^2]_0^1 = 1\). C'est donc bien une densité. La fonction de répartition associée est \(F(x) = x^2\) pour \(x \in [0,1]\), \(F(x) = 0\) pour \(x &lt; 0\) et \(F(x) = 1\) pour \(x > 1\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION II ═══════════════ -->
+    <section class="course__section" id="sec2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Lois classiques continues</h2>
+
+      <p>On présente ici les lois à densité les plus courantes, qui interviennent dans de nombreux problèmes de probabilités et de statistiques.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Loi uniforme \(\mathcal{U}([a, b])\)</span>
+        <p>On dit que \(X\) suit la <strong>loi uniforme</strong> sur \([a, b]\) si sa densité est :</p>
+        <div class="math-display">$$f(x) = \frac{1}{b - a}\,\mathbf{1}_{[a,b]}(x)$$</div>
+        <p>On a alors \(\mathbb{E}(X) = \dfrac{a + b}{2}\) et \(\mathrm{Var}(X) = \dfrac{(b - a)^2}{12}\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Loi exponentielle \(\mathcal{E}(\lambda)\)</span>
+        <p>Soit \(\lambda > 0\). On dit que \(X\) suit la <strong>loi exponentielle</strong> de paramètre \(\lambda\) si sa densité est :</p>
+        <div class="math-display">$$f(x) = \lambda\, e^{-\lambda x}\,\mathbf{1}_{[0, +\infty[}(x)$$</div>
+        <p>On a \(\mathbb{E}(X) = \dfrac{1}{\lambda}\) et \(\mathrm{Var}(X) = \dfrac{1}{\lambda^2}\). Sa fonction de répartition est \(F(x) = (1 - e^{-\lambda x})\,\mathbf{1}_{[0,+\infty[}(x)\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Propriété d'absence de mémoire</span>
+        <p>La loi exponentielle est la seule loi à densité sur \(\mathbb{R}_+\) vérifiant la propriété d'absence de mémoire : pour tous \(s, t \geq 0\),</p>
+        <div class="math-display">$$P(X > s + t \mid X > s) = P(X > t)$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Notons \(G(t) = P(X > t) = e^{-\lambda t}\). Alors \(P(X > s+t \mid X > s) = \frac{P(X > s+t)}{P(X > s)} = \frac{e^{-\lambda(s+t)}}{e^{-\lambda s}} = e^{-\lambda t} = G(t)\). Réciproquement, si \(G(s+t) = G(s)G(t)\) avec \(G\) continue décroissante, \(G(0) = 1\), alors \(G(t) = e^{-\lambda t}\) pour un certain \(\lambda > 0\) (équation de Cauchy).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Loi normale (gaussienne) \(\mathcal{N}(\mu, \sigma^2)\)</span>
+        <p>Soit \(\mu \in \mathbb{R}\) et \(\sigma > 0\). On dit que \(X\) suit la <strong>loi normale</strong> de paramètres \(\mu\) et \(\sigma^2\) si sa densité est :</p>
+        <div class="math-display">$$f(x) = \frac{1}{\sigma\sqrt{2\pi}}\,\exp\!\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)$$</div>
+        <p>On a \(\mathbb{E}(X) = \mu\) et \(\mathrm{Var}(X) = \sigma^2\). La loi \(\mathcal{N}(0, 1)\) est la <strong>loi normale centrée réduite</strong>.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Intégrale de Gauss et normalisation</span>
+        <p>L'intégrale de Gauss vaut :</p>
+        <div class="math-display">$$\int_{-\infty}^{+\infty} e^{-x^2/2}\,\mathrm{d}x = \sqrt{2\pi}$$</div>
+        <p>Ce résultat garantit que la fonction \(f\) ci-dessus est bien une densité de probabilité.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration (intégrale de Gauss) <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Posons \(I = \int_{-\infty}^{+\infty} e^{-x^2/2}\,\mathrm{d}x\). Alors \(I^2 = \int_{\mathbb{R}^2} e^{-(x^2+y^2)/2}\,\mathrm{d}x\,\mathrm{d}y\). En passant en coordonnées polaires \(x = r\cos\theta\), \(y = r\sin\theta\) :</p>
+            <p>\(I^2 = \int_0^{2\pi}\int_0^{+\infty} e^{-r^2/2}\,r\,\mathrm{d}r\,\mathrm{d}\theta = 2\pi \cdot \left[-e^{-r^2/2}\right]_0^{+\infty} = 2\pi\). Donc \(I = \sqrt{2\pi}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Loi de Cauchy et loi Gamma</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Loi de Cauchy</span>
+        <p>On dit que \(X\) suit la <strong>loi de Cauchy standard</strong> si sa densité est :</p>
+        <div class="math-display">$$f(x) = \frac{1}{\pi(1 + x^2)}$$</div>
+        <p>La loi de Cauchy n'admet pas d'espérance (l'intégrale \(\int |x| f(x)\,\mathrm{d}x\) diverge). C'est un contre-exemple fondamental en probabilités.</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Loi Gamma \(\Gamma(a, \lambda)\)</span>
+        <p>Soit \(a > 0\) et \(\lambda > 0\). On dit que \(X\) suit la <strong>loi Gamma</strong> de paramètres \(a\) et \(\lambda\) si sa densité est :</p>
+        <div class="math-display">$$f(x) = \frac{\lambda^a}{\Gamma(a)}\,x^{a-1}\,e^{-\lambda x}\,\mathbf{1}_{]0, +\infty[}(x)$$</div>
+        <p>où \(\Gamma(a) = \int_0^{+\infty} t^{a-1}\,e^{-t}\,\mathrm{d}t\) est la fonction Gamma d'Euler. On a \(\mathbb{E}(X) = \dfrac{a}{\lambda}\) et \(\mathrm{Var}(X) = \dfrac{a}{\lambda^2}\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Cas particuliers de la loi Gamma</span>
+        <p>Pour \(a = 1\), on retrouve la loi exponentielle \(\mathcal{E}(\lambda)\). Pour \(a = n/2\) et \(\lambda = 1/2\), on obtient la loi du chi-deux \(\chi^2(n)\), qui intervient en statistiques. La fonction Gamma vérifie \(\Gamma(n) = (n-1)!\) pour \(n \in \mathbb{N}^*\) et la relation fonctionnelle \(\Gamma(a+1) = a\,\Gamma(a)\).</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Simulation par inversion de la CDF</span>
+        <p>Pour simuler une variable aléatoire \(X \sim \mathcal{E}(\lambda)\), on utilise la méthode d'inversion : si \(U \sim \mathcal{U}([0,1])\), alors \(X = -\frac{1}{\lambda}\ln(1 - U)\) suit la loi \(\mathcal{E}(\lambda)\). En effet, \(P(X \leq x) = P\bigl(U \leq 1 - e^{-\lambda x}\bigr) = 1 - e^{-\lambda x}\) pour \(x \geq 0\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION III ═══════════════ -->
+    <section class="course__section" id="sec3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Espérance et moments</h2>
+
+      <p>On généralise ici les notions d'espérance, de variance et de moments au cadre des variables aléatoires à densité.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Espérance</span>
+        <p>Soit \(X\) une variable aléatoire admettant la densité \(f\). L'<strong>espérance</strong> de \(X\) existe si \(\int_{-\infty}^{+\infty} |x|\,f(x)\,\mathrm{d}x &lt; +\infty\), et vaut alors :</p>
+        <div class="math-display">$$\mathbb{E}(X) = \int_{-\infty}^{+\infty} x\,f(x)\,\mathrm{d}x$$</div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Théorème de transfert</span>
+        <p>Soit \(X\) une variable aléatoire de densité \(f\) et \(g : \mathbb{R} \to \mathbb{R}\) une fonction mesurable. Alors \(g(X)\) admet une espérance si et seulement si \(\int |g(x)|\,f(x)\,\mathrm{d}x &lt; +\infty\), et dans ce cas :</p>
+        <div class="math-display">$$\mathbb{E}(g(X)) = \int_{-\infty}^{+\infty} g(x)\,f(x)\,\mathrm{d}x$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration (admise)</span>
+            <p>Ce résultat repose sur la théorie de l'intégration de Lebesgue. L'idée est que la loi image de \(P_X\) par \(g\) admet pour densité une mesure dont l'intégrale se ramène à \(\int g(x)\,f(x)\,\mathrm{d}x\) par changement de variable dans l'intégrale de Lebesgue. La preuve complète utilise le théorème de changement de variables pour les mesures images.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Variance et écart-type</span>
+        <p>Si \(X\) admet un moment d'ordre 2 (i.e. \(\mathbb{E}(X^2) &lt; +\infty\)), on définit la <strong>variance</strong> :</p>
+        <div class="math-display">$$\mathrm{Var}(X) = \mathbb{E}\bigl((X - \mathbb{E}(X))^2\bigr) = \mathbb{E}(X^2) - \mathbb{E}(X)^2$$</div>
+        <p>L'<strong>écart-type</strong> est \(\sigma(X) = \sqrt{\mathrm{Var}(X)}\). La formule de Koenig-Huygens \(\mathrm{Var}(X) = \mathbb{E}(X^2) - \mathbb{E}(X)^2\) est fondamentale pour le calcul pratique.</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Inégalité de Markov</span>
+        <p>Soit \(X\) une variable aléatoire positive admettant une espérance. Pour tout \(a > 0\) :</p>
+        <div class="math-display">$$P(X \geq a) \leq \frac{\mathbb{E}(X)}{a}$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>On a \(\mathbb{E}(X) = \int_0^{+\infty} x\,f(x)\,\mathrm{d}x \geq \int_a^{+\infty} x\,f(x)\,\mathrm{d}x \geq a \int_a^{+\infty} f(x)\,\mathrm{d}x = a\,P(X \geq a)\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Inégalité de Bienaymé-Tchebychev</span>
+        <p>Soit \(X\) une variable aléatoire admettant un moment d'ordre 2. Pour tout \(\varepsilon > 0\) :</p>
+        <div class="math-display">$$P\bigl(|X - \mathbb{E}(X)| \geq \varepsilon\bigr) \leq \frac{\mathrm{Var}(X)}{\varepsilon^2}$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>On applique l'inégalité de Markov à la variable aléatoire positive \(Y = (X - \mathbb{E}(X))^2\) et au seuil \(a = \varepsilon^2\) : \(P(|X - \mathbb{E}(X)| \geq \varepsilon) = P(Y \geq \varepsilon^2) \leq \frac{\mathbb{E}(Y)}{\varepsilon^2} = \frac{\mathrm{Var}(X)}{\varepsilon^2}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Moments et fonction génératrice des moments</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Moments d'ordre \(k\)</span>
+        <p>Le <strong>moment d'ordre \(k\)</strong> de \(X\) est \(m_k = \mathbb{E}(X^k)\) lorsqu'il existe. Le <strong>moment centré d'ordre \(k\)</strong> est \(\mu_k = \mathbb{E}\bigl((X - \mathbb{E}(X))^k\bigr)\). On a \(\mu_1 = 0\), \(\mu_2 = \mathrm{Var}(X)\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Fonction génératrice des moments</span>
+        <p>La <strong>fonction génératrice des moments</strong> (MGF) de \(X\) est définie, lorsqu'elle existe dans un voisinage de \(0\), par :</p>
+        <div class="math-display">$$M_X(t) = \mathbb{E}(e^{tX}) = \int_{-\infty}^{+\infty} e^{tx}\,f(x)\,\mathrm{d}x$$</div>
+        <p>On a alors \(M_X^{(k)}(0) = \mathbb{E}(X^k)\) : les dérivées successives en \(0\) donnent les moments.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — MGF de la loi normale</span>
+        <p>Si \(X \sim \mathcal{N}(\mu, \sigma^2)\), alors \(M_X(t) = \exp\!\left(\mu t + \frac{\sigma^2 t^2}{2}\right)\). En particulier, pour \(X \sim \mathcal{N}(0,1)\) : \(M_X(t) = e^{t^2/2}\). On en déduit \(\mathbb{E}(X) = M_X'(0) = \mu\) et \(\mathbb{E}(X^2) = M_X''(0) = \mu^2 + \sigma^2\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Caractérisation par la MGF</span>
+        <p>Si la MGF de \(X\) existe dans un voisinage ouvert de \(0\), elle caractérise entièrement la loi de \(X\). Autrement dit, deux variables aléatoires ayant la même MGF (définie au voisinage de \(0\)) ont la même loi. Attention : la loi de Cauchy n'admet pas de MGF.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION IV ═══════════════ -->
+    <section class="course__section" id="sec4">
+      <h2 class="course__section-title"><span class="course__section-num">IV.</span> Vecteurs aléatoires à densité</h2>
+
+      <p>On étend les notions précédentes aux couples et, plus généralement, aux vecteurs de variables aléatoires.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Densité conjointe</span>
+        <p>Un couple \((X, Y)\) de variables aléatoires réelles est dit <strong>à densité</strong> s'il existe une fonction \(f_{(X,Y)} : \mathbb{R}^2 \to \mathbb{R}_+\) intégrable telle que, pour tout borélien \(B \subset \mathbb{R}^2\) :</p>
+        <div class="math-display">$$P\bigl((X, Y) \in B\bigr) = \iint_B f_{(X,Y)}(x, y)\,\mathrm{d}x\,\mathrm{d}y$$</div>
+        <p>On a la normalisation \(\iint_{\mathbb{R}^2} f_{(X,Y)}(x, y)\,\mathrm{d}x\,\mathrm{d}y = 1\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Densités marginales</span>
+        <p>Si \((X, Y)\) admet la densité conjointe \(f_{(X,Y)}\), alors \(X\) et \(Y\) admettent des densités (dites <strong>marginales</strong>) données par :</p>
+        <div class="math-display">$$f_X(x) = \int_{-\infty}^{+\infty} f_{(X,Y)}(x, y)\,\mathrm{d}y \qquad \text{et} \qquad f_Y(y) = \int_{-\infty}^{+\infty} f_{(X,Y)}(x, y)\,\mathrm{d}x$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Pour tout borélien \(A \subset \mathbb{R}\) : \(P(X \in A) = P\bigl((X,Y) \in A \times \mathbb{R}\bigr) = \int_A \left(\int_{-\infty}^{+\infty} f_{(X,Y)}(x,y)\,\mathrm{d}y\right)\mathrm{d}x\) par le théorème de Fubini (applicable car \(f_{(X,Y)} \geq 0\)). Donc \(f_X(x) = \int_{-\infty}^{+\infty} f_{(X,Y)}(x,y)\,\mathrm{d}y\). Le raisonnement est analogue pour \(f_Y\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Caractérisation de l'indépendance</span>
+        <p>Soit \((X, Y)\) un couple de variables aléatoires admettant une densité conjointe \(f_{(X,Y)}\). Alors \(X\) et \(Y\) sont <strong>indépendantes</strong> si et seulement si :</p>
+        <div class="math-display">$$f_{(X,Y)}(x, y) = f_X(x) \cdot f_Y(y) \qquad \text{pour presque tout } (x, y) \in \mathbb{R}^2$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Si \(f_{(X,Y)} = f_X \cdot f_Y\) p.p., alors pour tous boréliens \(A, B\) : \(P(X \in A, Y \in B) = \int_A \int_B f_X(x)f_Y(y)\,\mathrm{d}y\,\mathrm{d}x = P(X \in A)\,P(Y \in B)\). Réciproquement, si \(X\) et \(Y\) sont indépendantes, alors la mesure \(P_{(X,Y)}\) coïncide avec \(P_X \otimes P_Y\), dont la densité par rapport à la mesure de Lebesgue est \(f_X \cdot f_Y\). Par unicité de la densité (à un ensemble de mesure nulle près), \(f_{(X,Y)} = f_X \cdot f_Y\) p.p.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Covariance et corrélation</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Covariance et coefficient de corrélation</span>
+        <p>Si \(X\) et \(Y\) admettent un moment d'ordre 2, la <strong>covariance</strong> de \(X\) et \(Y\) est :</p>
+        <div class="math-display">$$\mathrm{Cov}(X, Y) = \mathbb{E}\bigl((X - \mathbb{E}(X))(Y - \mathbb{E}(Y))\bigr) = \mathbb{E}(XY) - \mathbb{E}(X)\,\mathbb{E}(Y)$$</div>
+        <p>Le <strong>coefficient de corrélation linéaire</strong> est \(\rho(X, Y) = \dfrac{\mathrm{Cov}(X, Y)}{\sigma(X)\,\sigma(Y)}\) lorsque \(\sigma(X) > 0\) et \(\sigma(Y) > 0\). On a \(-1 \leq \rho(X, Y) \leq 1\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Indépendance et corrélation</span>
+        <p>Si \(X\) et \(Y\) sont indépendantes et admettent un moment d'ordre 2, alors \(\mathrm{Cov}(X, Y) = 0\) (on dit qu'elles sont <strong>non corrélées</strong>). La réciproque est fausse en général.</p>
+        <p>Pour des variables indépendantes : \(\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y)\).</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Non-corrélation sans indépendance</span>
+        <p>Soit \(X \sim \mathcal{N}(0,1)\) et \(Y = X^2\). Alors \(\mathrm{Cov}(X, Y) = \mathbb{E}(X^3) - \mathbb{E}(X)\mathbb{E}(X^2) = 0 - 0 = 0\) (car les moments impairs d'une gaussienne centrée sont nuls). Pourtant, \(X\) et \(Y\) ne sont pas indépendantes : \(Y\) est une fonction déterministe de \(X\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION V ═══════════════ -->
+    <section class="course__section" id="sec5">
+      <h2 class="course__section-title"><span class="course__section-num">V.</span> Sommes de variables aléatoires</h2>
+
+      <p>La détermination de la loi de la somme de variables aléatoires indépendantes est un problème central. L'outil fondamental est le produit de convolution.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Produit de convolution</span>
+        <p>Si \(X\) et \(Y\) sont deux variables aléatoires indépendantes de densités respectives \(f_X\) et \(f_Y\), alors \(Z = X + Y\) admet pour densité le <strong>produit de convolution</strong> :</p>
+        <div class="math-display">$$f_Z(z) = (f_X * f_Y)(z) = \int_{-\infty}^{+\infty} f_X(t)\,f_Y(z - t)\,\mathrm{d}t$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Par indépendance, \((X,Y)\) a pour densité conjointe \(f_{(X,Y)}(x,y) = f_X(x)\,f_Y(y)\). Pour \(z \in \mathbb{R}\) :
+            \(F_Z(z) = P(X + Y \leq z) = \iint_{x+y \leq z} f_X(x)\,f_Y(y)\,\mathrm{d}x\,\mathrm{d}y\).
+            Le changement de variable \(u = x\), \(v = x + y\) (de jacobien 1) donne
+            \(F_Z(z) = \int_{-\infty}^{z}\left(\int_{-\infty}^{+\infty} f_X(u)\,f_Y(v-u)\,\mathrm{d}u\right)\mathrm{d}v\).
+            En dérivant par rapport à \(z\), on obtient \(f_Z(z) = \int_{-\infty}^{+\infty} f_X(u)\,f_Y(z-u)\,\mathrm{d}u\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Somme de variables normales indépendantes</span>
+        <p>Si \(X \sim \mathcal{N}(\mu_1, \sigma_1^2)\) et \(Y \sim \mathcal{N}(\mu_2, \sigma_2^2)\) sont indépendantes, alors :</p>
+        <div class="math-display">$$X + Y \sim \mathcal{N}(\mu_1 + \mu_2,\; \sigma_1^2 + \sigma_2^2)$$</div>
+        <p>Plus généralement, toute combinaison linéaire de variables normales indépendantes est normale.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration (via la MGF) <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Par indépendance, \(M_{X+Y}(t) = M_X(t) \cdot M_Y(t) = \exp(\mu_1 t + \sigma_1^2 t^2/2) \cdot \exp(\mu_2 t + \sigma_2^2 t^2/2) = \exp\!\bigl((\mu_1+\mu_2)t + (\sigma_1^2+\sigma_2^2)t^2/2\bigr)\). C'est la MGF d'une loi \(\mathcal{N}(\mu_1+\mu_2, \sigma_1^2+\sigma_2^2)\). Comme la MGF caractérise la loi (lorsqu'elle existe au voisinage de 0), on conclut.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Somme d'exponentielles indépendantes</span>
+        <p>Si \(X_1, \ldots, X_n\) sont des variables aléatoires indépendantes de loi \(\mathcal{E}(\lambda)\), alors leur somme suit une loi Gamma :</p>
+        <div class="math-display">$$X_1 + X_2 + \cdots + X_n \sim \Gamma(n, \lambda)$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Par récurrence via la MGF. Pour \(X \sim \mathcal{E}(\lambda)\), \(M_X(t) = \frac{\lambda}{\lambda - t}\) pour \(t &lt; \lambda\). Par indépendance, \(M_{X_1+\cdots+X_n}(t) = \left(\frac{\lambda}{\lambda - t}\right)^n\), qui est la MGF d'une loi \(\Gamma(n, \lambda)\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Loi du chi-deux</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Loi du chi-deux \(\chi^2(n)\)</span>
+        <p>Si \(Z_1, \ldots, Z_n\) sont des variables aléatoires indépendantes de loi \(\mathcal{N}(0, 1)\), alors :</p>
+        <div class="math-display">$$Z_1^2 + Z_2^2 + \cdots + Z_n^2 \sim \chi^2(n) = \Gamma\!\left(\frac{n}{2}, \frac{1}{2}\right)$$</div>
+        <p>On a \(\mathbb{E}(\chi^2(n)) = n\) et \(\mathrm{Var}(\chi^2(n)) = 2n\). La loi du chi-deux est fondamentale en statistiques (tests, intervalles de confiance).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Additivité du chi-deux</span>
+        <p>Si \(U \sim \chi^2(p)\) et \(V \sim \chi^2(q)\) sont indépendantes, alors \(U + V \sim \chi^2(p + q)\). Cette propriété d'additivité découle directement de l'additivité de la loi Gamma (à paramètre \(\lambda\) fixé).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Lien avec la loi normale</span>
+        <p>Si \(X \sim \mathcal{N}(0,1)\), alors \(X^2 \sim \chi^2(1)\). On le vérifie en calculant la CDF : \(P(X^2 \leq t) = P(-\sqrt{t} \leq X \leq \sqrt{t}) = 2\Phi(\sqrt{t}) - 1\) pour \(t \geq 0\), où \(\Phi\) est la CDF de la loi \(\mathcal{N}(0,1)\). En dérivant, on retrouve la densité \(\Gamma(1/2, 1/2)\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION VI ═══════════════ -->
+    <section class="course__section" id="sec6">
+      <h2 class="course__section-title"><span class="course__section-num">VI.</span> Fonctions de variables aléatoires</h2>
+
+      <p>Lorsque \(Y = g(X)\), comment déterminer la densité de \(Y\) à partir de celle de \(X\) ? On dispose de deux méthodes : la méthode de la CDF et la formule de changement de variable.</p>
+
+      <h3 class="course__subsection-title">Méthode de la fonction de répartition</h3>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Méthode de la CDF</span>
+        <p>Pour trouver la loi de \(Y = g(X)\) lorsque \(X\) a une densité \(f_X\) :</p>
+        <ul>
+          <li>On calcule la CDF de \(Y\) : \(F_Y(y) = P(Y \leq y) = P(g(X) \leq y)\).</li>
+          <li>On exprime cette probabilité en termes de \(X\) et on intègre.</li>
+          <li>On dérive pour obtenir \(f_Y(y) = F_Y'(y)\).</li>
+        </ul>
+        <p>Cette méthode est universelle et fonctionne pour toute fonction \(g\) mesurable.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Loi de \(Y = X^2\)</span>
+        <p>Soit \(X \sim \mathcal{N}(0, 1)\). Pour \(y > 0\) :
+        \(F_Y(y) = P(X^2 \leq y) = P(-\sqrt{y} \leq X \leq \sqrt{y}) = 2\Phi(\sqrt{y}) - 1\).
+        En dérivant : \(f_Y(y) = \frac{2\varphi(\sqrt{y})}{2\sqrt{y}} = \frac{1}{\sqrt{y}}\,\varphi(\sqrt{y}) = \frac{1}{\sqrt{2\pi y}}\,e^{-y/2}\) pour \(y > 0\), qui est la densité de la loi \(\chi^2(1)\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Formule de changement de variable</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Changement de variable pour les densités</span>
+        <p>Soit \(X\) une variable aléatoire de densité \(f_X\) et \(g : I \to J\) un \(\mathcal{C}^1\)-difféomorphisme (bijection de classe \(\mathcal{C}^1\) d'inverse \(\mathcal{C}^1\)) d'un intervalle \(I\) sur un intervalle \(J\), avec \(P(X \in I) = 1\). Alors \(Y = g(X)\) admet pour densité :</p>
+        <div class="math-display">$$f_Y(y) = f_X\!\bigl(g^{-1}(y)\bigr) \cdot \bigl|(g^{-1})'(y)\bigr|$$</div>
+        <p>pour \(y \in J\), et \(f_Y(y) = 0\) sinon.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Supposons d'abord \(g\) strictement croissante. Alors \(F_Y(y) = P(g(X) \leq y) = P(X \leq g^{-1}(y)) = F_X(g^{-1}(y))\). En dérivant par la règle de la chaîne : \(f_Y(y) = f_X(g^{-1}(y)) \cdot (g^{-1})'(y)\). Comme \(g\) est croissante, \((g^{-1})' > 0\) et la valeur absolue est superflue.</p>
+            <p>Si \(g\) est strictement décroissante, \(F_Y(y) = P(X \geq g^{-1}(y)) = 1 - F_X(g^{-1}(y))\). En dérivant : \(f_Y(y) = -f_X(g^{-1}(y)) \cdot (g^{-1})'(y)\). Comme \((g^{-1})' &lt; 0\), on a \(-\!(g^{-1})' = |(g^{-1})'|\). D'où la formule avec la valeur absolue dans les deux cas.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Transformation affine</span>
+        <p>Si \(X \sim \mathcal{N}(\mu, \sigma^2)\) et \(Y = aX + b\) avec \(a \neq 0\), on applique le théorème avec \(g(x) = ax + b\), \(g^{-1}(y) = (y-b)/a\), \(|(g^{-1})'(y)| = 1/|a|\). On obtient :</p>
+        <div class="math-display">$$f_Y(y) = \frac{1}{|a|\,\sigma\sqrt{2\pi}}\,\exp\!\left(-\frac{(y - b - a\mu)^2}{2a^2\sigma^2}\right)$$</div>
+        <p>Donc \(Y \sim \mathcal{N}(a\mu + b,\; a^2\sigma^2)\). En particulier, si \(X \sim \mathcal{N}(\mu, \sigma^2)\), alors \(\frac{X - \mu}{\sigma} \sim \mathcal{N}(0, 1)\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Changement de variable en dimension 2</span>
+        <p>Soit \((X, Y)\) un couple de densité \(f_{(X,Y)}\) et \(\varphi : U \to V\) un \(\mathcal{C}^1\)-difféomorphisme d'un ouvert \(U \subset \mathbb{R}^2\) sur un ouvert \(V\), avec \(P((X,Y) \in U) = 1\). Posons \((S, T) = \varphi(X, Y)\). Alors la densité de \((S, T)\) est :</p>
+        <div class="math-display">$$f_{(S,T)}(s, t) = f_{(X,Y)}\!\bigl(\varphi^{-1}(s, t)\bigr) \cdot \bigl|\det J_{\varphi^{-1}}(s, t)\bigr|$$</div>
+        <p>où \(J_{\varphi^{-1}}\) est la matrice jacobienne de \(\varphi^{-1}\).</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Passage en coordonnées polaires</span>
+        <p>Soit \((X, Y)\) un couple de variables aléatoires indépendantes avec \(X, Y \sim \mathcal{N}(0, 1)\). On pose \(R = \sqrt{X^2 + Y^2}\) et \(\Theta = \arctan(Y/X)\). Le changement de variable \((x, y) \mapsto (r, \theta)\) avec \(x = r\cos\theta\), \(y = r\sin\theta\) a pour jacobien \(r\). On obtient :</p>
+        <div class="math-display">$$f_{(R,\Theta)}(r, \theta) = \frac{r}{2\pi}\,e^{-r^2/2}\,\mathbf{1}_{r > 0}\,\mathbf{1}_{\theta \in [0, 2\pi[}$$</div>
+        <p>Ainsi \(R\) et \(\Theta\) sont indépendantes, \(\Theta \sim \mathcal{U}([0, 2\pi[)\) et \(R^2 \sim \mathcal{E}(1/2)\), i.e. \(R\) suit une loi de Rayleigh.</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Cas non bijectif</span>
+        <p>Lorsque \(g\) n'est pas bijective, on découpe le domaine en morceaux sur chacun desquels \(g\) est un difféomorphisme, et on somme les contributions. Par exemple, pour \(Y = X^2\) avec \(X\) de densité \(f_X\), on découpe selon \(x > 0\) et \(x &lt; 0\) pour obtenir \(f_Y(y) = \frac{1}{2\sqrt{y}}\bigl(f_X(\sqrt{y}) + f_X(-\sqrt{y})\bigr)\) pour \(y > 0\).</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="mp-17-calcul-differentiel.html" class="course__nav-link">
+        &larr; Précédent
+        <span>Calcul différentiel</span>
+      </a>
+      <a href="mp-19-convergences-statistiques.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Convergences et statistiques</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathématiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../index.html">Accueil</a>
+          <a href="../mpsi.html">MPSI</a>
+          <a href="../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communauté</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths — Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
+    });
+  </script>
+</body>
+</html>

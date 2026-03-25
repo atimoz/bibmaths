@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espaces vectoriels — MPSI | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md)}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
+    .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:4000px;opacity:1}
+    .block p,.block li{font-size:.9rem;line-height:1.8}
+    .block ul{list-style:none;padding-left:var(--space-md)}
+    .block ul li::before{content:'—';color:var(--accent);margin-right:8px}
+    .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
+    .block--def .block__label{color:#2563A3}
+    .block--def ul li::before{color:#2563A3}
+    .block--thm{background:rgba(163,42,42,.06);border-left:3px solid #A32A2A}
+    .block--thm .block__label{color:#A32A2A}
+    .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
+    .block--prop .block__label{color:#7638A3}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
+    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--example .block__label{color:#4B825A}
+    .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
+    .block--remark .block__label{color:var(--accent)}
+    .block--remark p{color:var(--ink-light);font-size:.875rem}
+    .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
+    .block--cor .block__label{color:#9B59B6}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
+    [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
+    [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
+    [data-theme="dark"] .block--thm{background:rgba(163,42,42,.1);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
+    [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
+    [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
+    [data-theme="dark"] .block--proof .block__label{color:#8888A0}
+    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
+    [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
+    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../mpsi.html" class="nav__link nav__link--has-sub nav__link--active">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mpsi.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mp.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../mpsi.html" class="mobile-menu__page-link mobile-menu__page-link--active">MPSI — Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../mp.html" class="mobile-menu__page-link">MP — Math Spé</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../mpsi.html" class="course__back">&larr; Retour au programme MPSI</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MPSI — Cours</span>
+      <span class="course__chapter">Chapitre 25</span>
+    </div>
+
+    <h1 class="course__title">Espaces vectoriels</h1>
+
+    <p class="course__intro">
+      Ce chapitre introduit la notion fondamentale d'espace vectoriel sur un corps \(\mathbb{K}\) (\(\mathbb{R}\) ou \(\mathbb{C}\)). On y définit les sous-espaces vectoriels, les combinaisons linéaires, les familles libres, génératrices et les bases, puis la notion de dimension. On étudie ensuite les sommes directes, les supplémentaires et la formule de Grassmann, avant de conclure sur le rang d'une famille de vecteurs. Ces concepts constituent le socle de toute l'algèbre linéaire.
+    </p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> Espaces vectoriels</a></li>
+        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Combinaisons linéaires et sous-espaces</a></li>
+        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> Familles libres, génératrices, bases</a></li>
+        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> Dimension</a></li>
+        <li class="course__toc-item"><a href="#sec5"><span class="course__toc-num">V.</span> Somme directe et supplémentaires</a></li>
+        <li class="course__toc-item"><a href="#sec6"><span class="course__toc-num">VI.</span> Rang d'une famille</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════ SECTION I ═══════════════ -->
+    <section class="course__section" id="sec1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Espaces vectoriels</h2>
+
+      <p>On fixe un corps \(\mathbb{K}\) (en pratique \(\mathbb{R}\) ou \(\mathbb{C}\)). On définit la structure d'espace vectoriel, qui généralise les propriétés géométriques des vecteurs du plan et de l'espace à des ensembles abstraits.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Espace vectoriel</span>
+        <p>Soit \(E\) un ensemble muni d'une loi interne \(+\) (addition) et d'une loi externe \(\cdot\) (multiplication par un scalaire de \(\mathbb{K}\)). On dit que \((E, +, \cdot)\) est un <strong>\(\mathbb{K}\)-espace vectoriel</strong> si :</p>
+        <ul>
+          <li>\((E, +)\) est un groupe abélien (associativité, commutativité, élément neutre \(0_E\), opposé) ;</li>
+          <li>La loi externe vérifie, pour tous \(\lambda, \mu \in \mathbb{K}\) et \(x, y \in E\) :
+            \(\lambda \cdot (x + y) = \lambda \cdot x + \lambda \cdot y\),
+            \((\lambda + \mu) \cdot x = \lambda \cdot x + \mu \cdot x\),
+            \((\lambda \mu) \cdot x = \lambda \cdot (\mu \cdot x)\),
+            \(1_{\mathbb{K}} \cdot x = x\).</li>
+        </ul>
+        <p>Les éléments de \(E\) sont appelés <strong>vecteurs</strong> et les éléments de \(\mathbb{K}\) sont appelés <strong>scalaires</strong>.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Règles de calcul</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel. Pour tout \(\lambda \in \mathbb{K}\) et tout \(x \in E\) :</p>
+        <ul>
+          <li>\(\lambda \cdot 0_E = 0_E\) ;</li>
+          <li>\(0_{\mathbb{K}} \cdot x = 0_E\) ;</li>
+          <li>\((-1) \cdot x = -x\) ;</li>
+          <li>\(\lambda \cdot x = 0_E \implies \lambda = 0_{\mathbb{K}}\) ou \(x = 0_E\).</li>
+        </ul>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Démonstration
+          <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Pour \(\lambda \cdot 0_E\) : on a \(\lambda \cdot 0_E = \lambda \cdot (0_E + 0_E) = \lambda \cdot 0_E + \lambda \cdot 0_E\), d'où par simplification \(\lambda \cdot 0_E = 0_E\).</p>
+            <p>Pour \(0_{\mathbb{K}} \cdot x\) : on a \(0_{\mathbb{K}} \cdot x = (0_{\mathbb{K}} + 0_{\mathbb{K}}) \cdot x = 0_{\mathbb{K}} \cdot x + 0_{\mathbb{K}} \cdot x\), d'où \(0_{\mathbb{K}} \cdot x = 0_E\).</p>
+            <p>Pour \((-1) \cdot x\) : on a \(x + (-1) \cdot x = 1 \cdot x + (-1) \cdot x = (1 + (-1)) \cdot x = 0 \cdot x = 0_E\), donc \((-1) \cdot x\) est l'opposé de \(x\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Sous-espace vectoriel</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel. Une partie \(F \subseteq E\) est un <strong>sous-espace vectoriel</strong> de \(E\) si \(F\) est non vide et si \(F\), muni des lois induites par \(E\), est lui-même un \(\mathbb{K}\)-espace vectoriel.</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Caractérisation des sous-espaces vectoriels</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel et \(F \subseteq E\). Alors \(F\) est un sous-espace vectoriel de \(E\) si et seulement si :</p>
+        <ul>
+          <li>\(0_E \in F\) (en particulier \(F \neq \varnothing\)) ;</li>
+          <li>Pour tous \(\lambda \in \mathbb{K}\) et \(x, y \in F\) : \(\lambda x + y \in F\) (stabilité par combinaison linéaire).</li>
+        </ul>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Démonstration
+          <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Le sens direct est immédiat : un sev contient \(0_E\) et est stable par combinaison linéaire.</p>
+            <p>Réciproquement, si les deux conditions sont vérifiées : la stabilité par CL avec \(\lambda = 1\) donne la stabilité par addition ; avec \(y = 0_E\) elle donne la stabilité par multiplication scalaire ; avec \(\lambda = -1\) et \(y = 0_E\) elle donne l'existence de l'opposé. Les axiomes d'espace vectoriel sont hérités de \(E\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemples fondamentaux</span>
+        <ul>
+          <li>\(\mathbb{K}^n\) est un \(\mathbb{K}\)-espace vectoriel pour les opérations composante par composante.</li>
+          <li>\(\mathbb{K}[X]\) est un \(\mathbb{K}\)-espace vectoriel (polynômes à coefficients dans \(\mathbb{K}\)).</li>
+          <li>\(\mathbb{K}_n[X]\) (polynômes de degré \(\leq n\)) est un sous-espace vectoriel de \(\mathbb{K}[X]\).</li>
+          <li>\(\mathcal{M}_{n,p}(\mathbb{K})\) est un \(\mathbb{K}\)-espace vectoriel (matrices à \(n\) lignes et \(p\) colonnes).</li>
+          <li>\(\mathcal{F}(I, \mathbb{K})\), l'ensemble des fonctions de \(I\) dans \(\mathbb{K}\), est un \(\mathbb{K}\)-espace vectoriel.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION II ═══════════════ -->
+    <section class="course__section" id="sec2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Combinaisons linéaires et sous-espaces</h2>
+
+      <p>On introduit la notion de combinaison linéaire, qui est l'opération fondamentale dans un espace vectoriel, et le sous-espace engendré par une partie.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Combinaison linéaire</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel et \(x_1, \dots, x_n \in E\). On appelle <strong>combinaison linéaire</strong> (CL) de \(x_1, \dots, x_n\) tout vecteur de la forme</p>
+        <div class="math-display">$$\lambda_1 x_1 + \lambda_2 x_2 + \cdots + \lambda_n x_n = \sum_{i=1}^{n} \lambda_i x_i$$</div>
+        <p>où \(\lambda_1, \dots, \lambda_n \in \mathbb{K}\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Sous-espace engendré</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel et \(X \subseteq E\) une partie. Le <strong>sous-espace vectoriel engendré</strong> par \(X\), noté \(\mathrm{Vect}(X)\), est l'ensemble de toutes les combinaisons linéaires d'éléments de \(X\) :</p>
+        <div class="math-display">$$\mathrm{Vect}(X) = \left\{ \sum_{i=1}^{n} \lambda_i x_i \;\middle|\; n \in \mathbb{N}^*,\; x_i \in X,\; \lambda_i \in \mathbb{K} \right\}$$</div>
+        <p>Par convention, \(\mathrm{Vect}(\varnothing) = \{0_E\}\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Intersection de sous-espaces vectoriels</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel et \((F_i)_{i \in I}\) une famille de sous-espaces vectoriels de \(E\). Alors l'intersection \(\displaystyle\bigcap_{i \in I} F_i\) est un sous-espace vectoriel de \(E\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>En revanche, la réunion de deux sous-espaces vectoriels n'est en général pas un sous-espace vectoriel. Par exemple, dans \(\mathbb{R}^2\), la réunion des deux axes de coordonnées n'est pas stable par addition.</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Somme de sous-espaces</span>
+        <p>Soient \(F\) et \(G\) deux sous-espaces vectoriels de \(E\). La <strong>somme</strong> de \(F\) et \(G\) est :</p>
+        <div class="math-display">$$F + G = \{ x + y \mid x \in F,\; y \in G \}$$</div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Somme et sous-espace engendré</span>
+        <p>\(F + G\) est un sous-espace vectoriel de \(E\), et c'est le plus petit sous-espace vectoriel contenant \(F \cup G\). Autrement dit :</p>
+        <div class="math-display">$$F + G = \mathrm{Vect}(F \cup G)$$</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION III ═══════════════ -->
+    <section class="course__section" id="sec3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Familles libres, génératrices, bases</h2>
+
+      <p>On introduit les notions de liberté, de famille génératrice et de base, qui permettent de mesurer la « taille » d'un espace vectoriel.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Famille génératrice</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel. Une famille \((x_1, \dots, x_n)\) de vecteurs de \(E\) est dite <strong>génératrice</strong> de \(E\) si tout vecteur de \(E\) est combinaison linéaire de \(x_1, \dots, x_n\), c'est-à-dire si \(\mathrm{Vect}(x_1, \dots, x_n) = E\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Famille libre et liée</span>
+        <p>Une famille \((x_1, \dots, x_n)\) de vecteurs de \(E\) est dite <strong>libre</strong> (ou <strong>linéairement indépendante</strong>) si :</p>
+        <div class="math-display">$$\forall (\lambda_1, \dots, \lambda_n) \in \mathbb{K}^n, \quad \lambda_1 x_1 + \cdots + \lambda_n x_n = 0_E \implies \lambda_1 = \cdots = \lambda_n = 0$$</div>
+        <p>Une famille qui n'est pas libre est dite <strong>liée</strong> (ou <strong>linéairement dépendante</strong>).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Base</span>
+        <p>Une famille \((x_1, \dots, x_n)\) est une <strong>base</strong> de \(E\) si elle est à la fois libre et génératrice. Autrement dit, tout vecteur de \(E\) s'écrit de manière <strong>unique</strong> comme combinaison linéaire de \(x_1, \dots, x_n\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Caractérisation de la liberté</span>
+        <p>Une famille \((x_1, \dots, x_n)\) est libre si et seulement si aucun vecteur de la famille n'est combinaison linéaire des autres.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Démonstration
+          <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Si la famille est liée, il existe une relation \(\lambda_1 x_1 + \cdots + \lambda_n x_n = 0\) avec un \(\lambda_j \neq 0\). On peut alors isoler \(x_j = -\lambda_j^{-1}(\lambda_1 x_1 + \cdots + \widehat{\lambda_j x_j} + \cdots + \lambda_n x_n)\), donc \(x_j\) est CL des autres.</p>
+            <p>Réciproquement, si \(x_j\) est CL des autres : \(x_j = \sum_{i \neq j} \mu_i x_i\), alors \(\sum_{i \neq j} \mu_i x_i - x_j = 0\) est une relation de dépendance non triviale (le coefficient de \(x_j\) vaut \(-1 \neq 0\)).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Encadrement dans un espace de dimension finie</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel admettant une famille génératrice de \(n\) éléments. Alors :</p>
+        <ul>
+          <li>Toute famille libre de \(E\) a au plus \(n\) éléments ;</li>
+          <li>Toute famille génératrice de \(E\) a au moins \(n'\) éléments, où \(n'\) est le cardinal de toute base (si elle existe).</li>
+        </ul>
+        <p>En particulier, toutes les bases de \(E\) ont le même cardinal.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Base canonique de \(\mathbb{K}^n\)</span>
+        <p>La famille \((e_1, \dots, e_n)\) où \(e_i = (0, \dots, 0, 1, 0, \dots, 0)\) (le \(1\) étant en position \(i\)) est une base de \(\mathbb{K}^n\), appelée <strong>base canonique</strong>.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION IV ═══════════════ -->
+    <section class="course__section" id="sec4">
+      <h2 class="course__section-title"><span class="course__section-num">IV.</span> Dimension</h2>
+
+      <p>La dimension d'un espace vectoriel est l'invariant fondamental : c'est le nombre de vecteurs dans toute base.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Dimension</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel de dimension finie. La <strong>dimension</strong> de \(E\), notée \(\dim E\) (ou \(\dim_{\mathbb{K}} E\)), est le cardinal commun de toutes les bases de \(E\).</p>
+        <p>Par convention, \(\dim \{0_E\} = 0\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème de la base incomplète</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel de dimension finie et \(\mathcal{L} = (x_1, \dots, x_p)\) une famille libre de \(E\). Alors on peut compléter \(\mathcal{L}\) en une base de \(E\), c'est-à-dire trouver des vecteurs \(x_{p+1}, \dots, x_n\) tels que \((x_1, \dots, x_n)\) soit une base de \(E\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème de la base extraite</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel de dimension finie et \(\mathcal{G} = (x_1, \dots, x_p)\) une famille génératrice de \(E\). Alors on peut extraire de \(\mathcal{G}\) une base de \(E\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Dimension d'un sous-espace</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel de dimension finie et \(F\) un sous-espace vectoriel de \(E\). Alors :</p>
+        <ul>
+          <li>\(F\) est de dimension finie et \(\dim F \leq \dim E\) ;</li>
+          <li>\(\dim F = \dim E \iff F = E\).</li>
+        </ul>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Démonstration
+          <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Toute famille libre de \(F\) est aussi libre dans \(E\), donc a au plus \(\dim E\) éléments. Ainsi \(F\) est de dimension finie et \(\dim F \leq \dim E\).</p>
+            <p>Si \(\dim F = \dim E = n\), une base de \(F\) est une famille libre de \(n\) éléments dans \(E\) de dimension \(n\), donc elle est aussi génératrice de \(E\), d'où \(F = E\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Dimensions usuelles</span>
+        <ul>
+          <li>\(\dim \mathbb{K}^n = n\)</li>
+          <li>\(\dim \mathbb{K}_n[X] = n + 1\)</li>
+          <li>\(\dim \mathcal{M}_{n,p}(\mathbb{K}) = np\)</li>
+        </ul>
+      </div>
+
+      <div class="block block--cor">
+        <span class="block__label">Corollaire — Critères en dimension finie</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel de dimension \(n\). Soit \(\mathcal{F}\) une famille de \(n\) vecteurs de \(E\). Alors les assertions suivantes sont équivalentes :</p>
+        <ul>
+          <li>\(\mathcal{F}\) est une base de \(E\) ;</li>
+          <li>\(\mathcal{F}\) est libre ;</li>
+          <li>\(\mathcal{F}\) est génératrice.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION V ═══════════════ -->
+    <section class="course__section" id="sec5">
+      <h2 class="course__section-title"><span class="course__section-num">V.</span> Somme directe et supplémentaires</h2>
+
+      <p>On étudie les décompositions d'un espace vectoriel en somme de sous-espaces, en s'intéressant à l'unicité de la décomposition.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Somme directe</span>
+        <p>Soient \(F\) et \(G\) deux sous-espaces vectoriels de \(E\). On dit que la somme \(F + G\) est <strong>directe</strong>, et on note \(F \oplus G\), si tout vecteur de \(F + G\) se décompose de manière <strong>unique</strong> sous la forme \(x + y\) avec \(x \in F\) et \(y \in G\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Caractérisation de la somme directe</span>
+        <p>Soient \(F\) et \(G\) deux sous-espaces vectoriels de \(E\). Les assertions suivantes sont équivalentes :</p>
+        <ul>
+          <li>La somme \(F + G\) est directe ;</li>
+          <li>\(F \cap G = \{0_E\}\).</li>
+        </ul>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Démonstration
+          <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Supposons la somme directe et soit \(z \in F \cap G\). Alors \(0_E = z + (-z)\) avec \(z \in F\) et \(-z \in G\), mais aussi \(0_E = 0_E + 0_E\). Par unicité, \(z = 0_E\).</p>
+            <p>Réciproquement, supposons \(F \cap G = \{0_E\}\) et soit \(x_1 + y_1 = x_2 + y_2\) avec \(x_1, x_2 \in F\) et \(y_1, y_2 \in G\). Alors \(x_1 - x_2 = y_2 - y_1 \in F \cap G = \{0_E\}\), donc \(x_1 = x_2\) et \(y_1 = y_2\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Sous-espaces supplémentaires</span>
+        <p>Soient \(F\) et \(G\) deux sous-espaces vectoriels de \(E\). On dit que \(F\) et \(G\) sont <strong>supplémentaires</strong> dans \(E\) si \(E = F \oplus G\), c'est-à-dire si :</p>
+        <ul>
+          <li>\(E = F + G\) (tout vecteur de \(E\) se décompose en une somme d'un vecteur de \(F\) et d'un vecteur de \(G\)) ;</li>
+          <li>\(F \cap G = \{0_E\}\) (la décomposition est unique).</li>
+        </ul>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Formule de Grassmann</span>
+        <p>Soient \(F\) et \(G\) deux sous-espaces vectoriels d'un espace de dimension finie \(E\). Alors :</p>
+        <div class="math-display">$$\dim(F + G) = \dim F + \dim G - \dim(F \cap G)$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Démonstration
+          <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Posons \(r = \dim(F \cap G)\) et soit \((e_1, \dots, e_r)\) une base de \(F \cap G\). Par le théorème de la base incomplète, on la complète en une base \((e_1, \dots, e_r, f_1, \dots, f_p)\) de \(F\) et en une base \((e_1, \dots, e_r, g_1, \dots, g_q)\) de \(G\).</p>
+            <p>On montre que \((e_1, \dots, e_r, f_1, \dots, f_p, g_1, \dots, g_q)\) est une base de \(F + G\). Elle est génératrice par construction. Pour la liberté, si \(\sum \alpha_i e_i + \sum \beta_j f_j + \sum \gamma_k g_k = 0\), alors \(\sum \gamma_k g_k = -\sum \alpha_i e_i - \sum \beta_j f_j \in F \cap G\), d'où les \(\gamma_k = 0\) (car \((e_1, \dots, e_r, g_1, \dots, g_q)\) est libre), puis les \(\alpha_i\) et \(\beta_j\) sont nuls.</p>
+            <p>Ainsi \(\dim(F+G) = r + p + q = (r + p) + (r + q) - r = \dim F + \dim G - \dim(F \cap G)\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--cor">
+        <span class="block__label">Corollaire — Dimension de la somme directe</span>
+        <p>Si \(F\) et \(G\) sont en somme directe dans \(E\), alors :</p>
+        <div class="math-display">$$\dim(F \oplus G) = \dim F + \dim G$$</div>
+        <p>En particulier, \(F\) et \(G\) sont supplémentaires dans \(E\) si et seulement si \(F \cap G = \{0_E\}\) et \(\dim F + \dim G = \dim E\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Existence d'un supplémentaire</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel de dimension finie et \(F\) un sous-espace vectoriel de \(E\). Alors \(F\) admet (au moins) un supplémentaire dans \(E\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Démonstration
+          <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Soit \((e_1, \dots, e_p)\) une base de \(F\). Par le théorème de la base incomplète, on la complète en une base \((e_1, \dots, e_p, e_{p+1}, \dots, e_n)\) de \(E\). Alors \(G = \mathrm{Vect}(e_{p+1}, \dots, e_n)\) est un supplémentaire de \(F\) dans \(E\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>En dimension finie, un supplémentaire existe toujours mais n'est <strong>pas unique</strong> en général. C'est le choix d'un supplémentaire qui correspond au choix d'une projection.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION VI ═══════════════ -->
+    <section class="course__section" id="sec6">
+      <h2 class="course__section-title"><span class="course__section-num">VI.</span> Rang d'une famille</h2>
+
+      <p>Le rang d'une famille de vecteurs est la dimension du sous-espace qu'elle engendre. C'est un invariant essentiel qui se calcule par des opérations élémentaires.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Rang d'une famille</span>
+        <p>Soit \((x_1, \dots, x_n)\) une famille de vecteurs de \(E\). Le <strong>rang</strong> de cette famille est :</p>
+        <div class="math-display">$$\mathrm{rg}(x_1, \dots, x_n) = \dim \mathrm{Vect}(x_1, \dots, x_n)$$</div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Rang et propriétés</span>
+        <p>Soit \(\mathcal{F} = (x_1, \dots, x_n)\) une famille de vecteurs d'un espace \(E\) de dimension finie. Alors :</p>
+        <ul>
+          <li>\(0 \leq \mathrm{rg}(\mathcal{F}) \leq \min(n, \dim E)\) ;</li>
+          <li>\(\mathrm{rg}(\mathcal{F}) = n \iff \mathcal{F}\) est libre ;</li>
+          <li>\(\mathrm{rg}(\mathcal{F}) = \dim E \iff \mathcal{F}\) est génératrice.</li>
+        </ul>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Rang et opérations élémentaires</span>
+        <p>Le rang d'une famille de vecteurs est invariant par les opérations élémentaires suivantes :</p>
+        <ul>
+          <li>Échange de deux vecteurs de la famille ;</li>
+          <li>Multiplication d'un vecteur par un scalaire non nul ;</li>
+          <li>Ajout à un vecteur d'une combinaison linéaire des autres.</li>
+        </ul>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Matrice d'une famille dans une base</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel de dimension \(p\), \(\mathcal{B} = (e_1, \dots, e_p)\) une base de \(E\) et \((x_1, \dots, x_n)\) une famille de vecteurs de \(E\). La <strong>matrice de la famille</strong> \((x_1, \dots, x_n)\) dans la base \(\mathcal{B}\) est la matrice \(M \in \mathcal{M}_{p,n}(\mathbb{K})\) dont la \(j\)-ème colonne contient les coordonnées de \(x_j\) dans \(\mathcal{B}\).</p>
+        <p>Le rang de la famille est égal au rang de cette matrice.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Considérons la famille \((x_1, x_2, x_3)\) de \(\mathbb{R}^3\) avec \(x_1 = (1, 2, 1)\), \(x_2 = (2, 3, 0)\), \(x_3 = (0, 1, 2)\). La matrice de cette famille dans la base canonique est :</p>
+        <div class="math-display">$$M = \begin{pmatrix} 1 & 2 & 0 \\ 2 & 3 & 1 \\ 1 & 0 & 2 \end{pmatrix}$$</div>
+        <p>En effectuant des opérations sur les colonnes (ou en échelonnant), on trouve \(\mathrm{rg}(x_1, x_2, x_3) = 3\), donc la famille est libre (et c'est une base de \(\mathbb{R}^3\)).</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="mpsi-24-courbes-parametrees.html" class="course__nav-link">
+        &larr; Précédent
+        <span>Courbes paramétrées</span>
+      </a>
+      <a href="mpsi-26-applications-lineaires.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Applications linéaires</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathématiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../index.html">Accueil</a>
+          <a href="../mpsi.html">MPSI</a>
+          <a href="../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communauté</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths — Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
+    });
+  </script>
+</body>
+</html>

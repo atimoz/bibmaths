@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Équations différentielles linéaires — MP | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md)}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
+    .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:4000px;opacity:1}
+    .block p,.block li{font-size:.9rem;line-height:1.8}
+    .block ul{list-style:none;padding-left:var(--space-md)}
+    .block ul li::before{content:'—';color:var(--accent);margin-right:8px}
+    .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
+    .block--def .block__label{color:#2563A3}
+    .block--def ul li::before{color:#2563A3}
+    .block--thm{background:rgba(163,42,42,.06);border-left:3px solid #A32A2A}
+    .block--thm .block__label{color:#A32A2A}
+    .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
+    .block--prop .block__label{color:#7638A3}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
+    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--example .block__label{color:#4B825A}
+    .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
+    .block--remark .block__label{color:var(--accent)}
+    .block--remark p{color:var(--ink-light);font-size:.875rem}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
+    [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
+    [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
+    [data-theme="dark"] .block--thm{background:rgba(163,42,42,.1);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
+    [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
+    [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
+    [data-theme="dark"] .block--proof .block__label{color:#8888A0}
+    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
+    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mpsi.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mp.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP — Math Spé</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../mp.html" class="course__back">&larr; Retour au programme MP</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MP — Cours</span>
+      <span class="course__chapter">Chapitre 16</span>
+    </div>
+
+    <h1 class="course__title">Équations différentielles linéaires</h1>
+
+    <p class="course__intro">
+      Ce chapitre présente la théorie des équations différentielles linéaires dans le cadre de la dimension finie. On étudie les systèmes différentiels linéaires, l'exponentielle de matrices, la résolution des systèmes à coefficients constants, puis les équations scalaires d'ordre \(n\) et en particulier d'ordre 2. Les applications vont de la mécanique (oscillateurs harmoniques) aux circuits électriques et aux équations d'Euler.
+    </p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> Systèmes différentiels linéaires</a></li>
+        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Exponentielle de matrices</a></li>
+        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> Systèmes à coefficients constants</a></li>
+        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> Équations scalaires d'ordre \(n\)</a></li>
+        <li class="course__toc-item"><a href="#sec5"><span class="course__toc-num">V.</span> Équations linéaires d'ordre 2</a></li>
+        <li class="course__toc-item"><a href="#sec6"><span class="course__toc-num">VI.</span> Applications</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════ SECTION I ═══════════════ -->
+    <section class="course__section" id="sec1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Systèmes différentiels linéaires</h2>
+
+      <p>Dans tout ce chapitre, \(I\) désigne un intervalle de \(\mathbb{R}\), \(n \geq 1\) un entier, et les fonctions considérées sont à valeurs dans \(\mathbb{K} = \mathbb{R}\) ou \(\mathbb{C}\). On note \(\mathcal{M}_n(\mathbb{K})\) l'algèbre des matrices carrées d'ordre \(n\).</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Système différentiel linéaire</span>
+        <p>Un <strong>système différentiel linéaire</strong> (SDL) d'ordre 1 est une équation de la forme :</p>
+        <div class="math-display">$$X'(t) = A(t)\,X(t) + B(t) \qquad (\mathcal{S})$$</div>
+        <p>où \(A : I \to \mathcal{M}_n(\mathbb{K})\) et \(B : I \to \mathbb{K}^n\) sont des fonctions continues, et \(X : I \to \mathbb{K}^n\) est l'inconnue. Le système est dit <strong>homogène</strong> si \(B = 0\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème de Cauchy-Lipschitz linéaire</span>
+        <p>Soient \(A \in \mathcal{C}(I, \mathcal{M}_n(\mathbb{K}))\) et \(B \in \mathcal{C}(I, \mathbb{K}^n)\). Pour tout \(t_0 \in I\) et tout \(X_0 \in \mathbb{K}^n\), le problème de Cauchy :</p>
+        <div class="math-display">$$\begin{cases} X'(t) = A(t)\,X(t) + B(t) \\ X(t_0) = X_0 \end{cases}$$</div>
+        <p>admet une <strong>unique solution</strong> définie sur \(I\) tout entier (solutions globales).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>L'unicité se démontre par le lemme de Grönwall. Si \(X\) et \(Y\) sont deux solutions avec \(X(t_0) = Y(t_0)\), posons \(\varphi(t) = \|X(t) - Y(t)\|^2\). On montre que \(\varphi'(t) \leq 2\|A(t)\|\,\varphi(t)\), ce qui par Grönwall donne \(\varphi \equiv 0\).</p>
+            <p>L'existence se démontre par la méthode des approximations successives de Picard. On pose \(X_0(t) = X_0\) et \(X_{k+1}(t) = X_0 + \int_{t_0}^t [A(s)\,X_k(s) + B(s)]\,\mathrm{d}s\). La suite \((X_k)\) converge uniformément sur tout compact de \(I\) vers une solution du problème de Cauchy.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Structure de l'espace des solutions</span>
+        <p>L'ensemble \(\mathcal{S}_H\) des solutions du système homogène \(X' = A(t)\,X\) est un <strong>sous-espace vectoriel</strong> de \(\mathcal{C}^1(I, \mathbb{K}^n)\) de dimension \(n\). L'ensemble des solutions du système complet est :</p>
+        <div class="math-display">$$\mathcal{S} = X_p + \mathcal{S}_H$$</div>
+        <p>où \(X_p\) est une solution particulière quelconque de \((\mathcal{S})\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>L'application \(\Phi : \mathcal{S}_H \to \mathbb{K}^n\), \(X \mapsto X(t_0)\) est linéaire. Par Cauchy-Lipschitz, elle est bijective (injectivité par unicité, surjectivité par existence). Donc \(\dim(\mathcal{S}_H) = n\). La structure affine de \(\mathcal{S}\) est immédiate par linéarité.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Système fondamental et wronskien</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Système fondamental de solutions</span>
+        <p>On appelle <strong>système fondamental de solutions</strong> du système homogène toute base \((X_1, \ldots, X_n)\) de \(\mathcal{S}_H\). La matrice \(R(t) = \bigl(X_1(t) \mid \cdots \mid X_n(t)\bigr) \in \mathcal{M}_n(\mathbb{K})\) dont les colonnes sont les vecteurs \(X_i(t)\) est appelée <strong>matrice fondamentale</strong> ou <strong>résolvante</strong>. Elle vérifie \(R'(t) = A(t)\,R(t)\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Wronskien</span>
+        <p>Le <strong>wronskien</strong> d'un système de \(n\) solutions \((X_1, \ldots, X_n)\) est la fonction :</p>
+        <div class="math-display">$$W(t) = \det\bigl(X_1(t), \ldots, X_n(t)\bigr)$$</div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Formule de Liouville</span>
+        <p>Le wronskien de \(n\) solutions du système homogène \(X' = A(t)\,X\) vérifie :</p>
+        <div class="math-display">$$W(t) = W(t_0)\,\exp\!\left(\int_{t_0}^{t} \mathrm{tr}\bigl(A(s)\bigr)\,\mathrm{d}s\right)$$</div>
+        <p>En particulier, \(W\) est soit identiquement nul, soit ne s'annule jamais. Les solutions forment un système fondamental si et seulement si \(W(t_0) \neq 0\) pour un (donc pour tout) \(t_0 \in I\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>En dérivant le déterminant \(W(t) = \det R(t)\), on utilise la multilinéarité par rapport aux colonnes. Seuls les termes où l'on dérive une colonne survivent. En remplaçant \(X_i'(t) = A(t)\,X_i(t)\) et en développant, on obtient \(W'(t) = \mathrm{tr}(A(t))\,W(t)\). Cette EDL scalaire d'ordre 1 donne la formule annoncée.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>La formule de Liouville est un outil puissant : elle permet de vérifier qu'un système de solutions est fondamental sans calculer explicitement le déterminant, en évaluant simplement le wronskien en un seul point.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION II ═══════════════ -->
+    <section class="course__section" id="sec2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Exponentielle de matrices</h2>
+
+      <p>L'exponentielle de matrices est l'outil central pour la résolution des systèmes différentiels à coefficients constants. On munit \(\mathcal{M}_n(\mathbb{K})\) d'une norme sous-multiplicative, par exemple \(\|M\| = \sup_{\|x\|=1}\|Mx\|\).</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Exponentielle de matrice</span>
+        <p>Pour toute matrice \(A \in \mathcal{M}_n(\mathbb{K})\), on définit :</p>
+        <div class="math-display">$$\exp(A) = e^A = \sum_{k=0}^{+\infty} \frac{A^k}{k!}$$</div>
+        <p>Cette série converge absolument dans \(\mathcal{M}_n(\mathbb{K})\) pour toute matrice \(A\), car \(\left\|\frac{A^k}{k!}\right\| \leq \frac{\|A\|^k}{k!}\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Propriétés fondamentales</span>
+        <p>Pour toutes matrices \(A, B \in \mathcal{M}_n(\mathbb{K})\) :</p>
+        <ul>
+          <li>\(\exp(0_n) = I_n\).</li>
+          <li>Si \(AB = BA\), alors \(\exp(A + B) = \exp(A)\exp(B)\).</li>
+          <li>\(\exp(A)\) est inversible et \(\bigl(\exp(A)\bigr)^{-1} = \exp(-A)\).</li>
+          <li>\(\det\bigl(\exp(A)\bigr) = e^{\mathrm{tr}(A)}\).</li>
+          <li>Si \(P\) est inversible, \(\exp(PAP^{-1}) = P\,\exp(A)\,P^{-1}\).</li>
+        </ul>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration (propriété de commutation)</span>
+            <p>Si \(AB = BA\), on peut appliquer la formule du binôme : \((A + B)^k = \sum_{j=0}^{k} \binom{k}{j} A^j B^{k-j}\). Alors :</p>
+            <div class="math-display">$$\exp(A+B) = \sum_{k=0}^{\infty}\frac{1}{k!}\sum_{j=0}^{k}\binom{k}{j}A^j B^{k-j} = \left(\sum_{p=0}^{\infty}\frac{A^p}{p!}\right)\left(\sum_{q=0}^{\infty}\frac{B^q}{q!}\right)$$</div>
+            <p>par le produit de Cauchy de séries absolument convergentes. D'où \(\exp(A+B) = \exp(A)\exp(B)\).</p>
+            <p>Pour le déterminant, on trigonalise \(A = P\,T\,P^{-1}\) sur \(\mathbb{C}\) avec \(T\) triangulaire supérieure de diagonale \((\lambda_1, \ldots, \lambda_n)\). Alors \(\exp(A) = P\,\exp(T)\,P^{-1}\) et \(\exp(T)\) est triangulaire supérieure de diagonale \((e^{\lambda_1}, \ldots, e^{\lambda_n})\). Donc \(\det(\exp(A)) = \prod e^{\lambda_i} = e^{\sum \lambda_i} = e^{\mathrm{tr}(A)}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Calcul de l'exponentielle</h3>
+
+      <div class="block block--example">
+        <span class="block__label">Méthode — Matrice diagonalisable</span>
+        <p>Si \(A = P\,D\,P^{-1}\) avec \(D = \mathrm{diag}(\lambda_1, \ldots, \lambda_n)\), alors :</p>
+        <div class="math-display">$$\exp(tA) = P\,\mathrm{diag}(e^{t\lambda_1}, \ldots, e^{t\lambda_n})\,P^{-1}$$</div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Méthode — Matrice trigonalisable, décomposition \(D + N\)</span>
+        <p>Si \(A = D + N\) avec \(D\) diagonalisable, \(N\) nilpotente et \(DN = ND\), alors :</p>
+        <div class="math-display">$$\exp(tA) = \exp(tD)\,\exp(tN) = \exp(tD) \sum_{k=0}^{p-1} \frac{t^k N^k}{k!}$$</div>
+        <p>où \(p\) est l'indice de nilpotence de \(N\) (i.e. \(N^p = 0\)). C'est la décomposition de Dunford appliquée à l'exponentielle.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Matrice \(2 \times 2\) non diagonalisable</span>
+        <p>Soit \(A = \begin{pmatrix} \lambda & 1 \\ 0 & \lambda \end{pmatrix} = \lambda I_2 + N\) avec \(N = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}\). Comme \(N^2 = 0\) :</p>
+        <div class="math-display">$$\exp(tA) = e^{\lambda t}\begin{pmatrix} 1 & t \\ 0 & 1 \end{pmatrix}$$</div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Dérivée de l'exponentielle</span>
+        <p>L'application \(t \mapsto \exp(tA)\) est de classe \(\mathcal{C}^\infty\) sur \(\mathbb{R}\) et vérifie :</p>
+        <div class="math-display">$$\frac{\mathrm{d}}{\mathrm{d}t}\exp(tA) = A\,\exp(tA) = \exp(tA)\,A$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>On dérive terme à terme la série : \(\frac{\mathrm{d}}{\mathrm{d}t}\sum_{k=0}^{\infty}\frac{t^k A^k}{k!} = \sum_{k=1}^{\infty}\frac{k\,t^{k-1} A^k}{k!} = A\sum_{k=1}^{\infty}\frac{t^{k-1} A^{k-1}}{(k-1)!} = A\,\exp(tA)\). La dérivation terme à terme est justifiée par la convergence normale de la série sur tout compact.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>Attention : si \(A(t)\) dépend de \(t\), la formule \(\frac{\mathrm{d}}{\mathrm{d}t}e^{A(t)} = A'(t)\,e^{A(t)}\) est <strong>fausse</strong> en général. Elle n'est valide que si \(A(t)\) commute avec \(A'(t)\) pour tout \(t\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION III ═══════════════ -->
+    <section class="course__section" id="sec3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Systèmes à coefficients constants</h2>
+
+      <p>On considère maintenant le cas fondamental où la matrice \(A\) est constante : \(X'(t) = AX(t) + B(t)\) avec \(A \in \mathcal{M}_n(\mathbb{K})\) fixée.</p>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Solution du système homogène</span>
+        <p>La solution du problème de Cauchy \(X' = AX\), \(X(0) = X_0\) est :</p>
+        <div class="math-display">$$X(t) = e^{tA}\,X_0$$</div>
+        <p>La matrice \(e^{tA}\) est la matrice résolvante du système. L'espace des solutions est \(\mathcal{S}_H = \{t \mapsto e^{tA}\,X_0 \mid X_0 \in \mathbb{K}^n\}\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Posons \(X(t) = e^{tA}\,X_0\). Alors \(X'(t) = A\,e^{tA}\,X_0 = A\,X(t)\) et \(X(0) = e^0\,X_0 = I_n\,X_0 = X_0\). Par unicité de Cauchy-Lipschitz, c'est l'unique solution.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Résolution pratique par diagonalisation</h3>
+
+      <div class="block block--example">
+        <span class="block__label">Méthode — Système \(2 \times 2\) diagonalisable</span>
+        <p>Pour résoudre \(X' = AX\) avec \(A\) diagonalisable, on diagonalise \(A = P\,D\,P^{-1}\). Le changement de variable \(Y = P^{-1}X\) ramène au système découplé \(Y' = DY\), dont les solutions sont \(y_i(t) = c_i\,e^{\lambda_i t}\). Puis \(X(t) = P\,Y(t)\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Variation de la constante</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Méthode de variation de la constante</span>
+        <p>La solution du problème de Cauchy \(X' = AX + B(t)\), \(X(t_0) = X_0\) est donnée par la <strong>formule de Duhamel</strong> :</p>
+        <div class="math-display">$$X(t) = e^{(t-t_0)A}\,X_0 + \int_{t_0}^{t} e^{(t-s)A}\,B(s)\,\mathrm{d}s$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>On cherche une solution sous la forme \(X(t) = e^{tA}\,C(t)\) (variation de la constante). En dérivant : \(X'(t) = A\,e^{tA}\,C(t) + e^{tA}\,C'(t)\). L'équation \(X' = AX + B\) donne \(e^{tA}\,C'(t) = B(t)\), soit \(C'(t) = e^{-tA}\,B(t)\). En intégrant et en utilisant la condition initiale, on obtient la formule de Duhamel.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>La formule de Duhamel s'interprète comme une superposition : le terme \(e^{(t-t_0)A}\,X_0\) est la réponse libre (évolution naturelle) et l'intégrale représente la réponse forcée (effet du second membre). C'est le <strong>principe de superposition</strong>.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Résoudre \(\begin{cases} x' = 2x + y + e^t \\ y' = y \end{cases}\) avec \(A = \begin{pmatrix} 2 & 1 \\ 0 & 1 \end{pmatrix}\). La matrice est triangulaire de valeurs propres 2 et 1. Par Dunford, \(A = D + N\) avec \(D = \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}\) et \(N = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}\). On calcule \(e^{tA}\) et on applique Duhamel.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION IV ═══════════════ -->
+    <section class="course__section" id="sec4">
+      <h2 class="course__section-title"><span class="course__section-num">IV.</span> Équations scalaires d'ordre \(n\)</h2>
+
+      <p>On s'intéresse aux équations différentielles linéaires scalaires d'ordre \(n\) à coefficients continus sur un intervalle \(I\) :</p>
+      <div class="math-display">$$y^{(n)}(t) + a_{n-1}(t)\,y^{(n-1)}(t) + \cdots + a_1(t)\,y'(t) + a_0(t)\,y(t) = b(t) \qquad (\mathcal{E})$$</div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Réduction à un système d'ordre 1</span>
+        <p>En posant \(X(t) = \begin{pmatrix} y(t) \\ y'(t) \\ \vdots \\ y^{(n-1)}(t) \end{pmatrix}\), l'équation \((\mathcal{E})\) se ramène au système :</p>
+        <div class="math-display">$$X'(t) = \underbrace{\begin{pmatrix} 0 & 1 & 0 & \cdots & 0 \\ 0 & 0 & 1 & \cdots & 0 \\ \vdots & & & \ddots & \vdots \\ 0 & 0 & 0 & \cdots & 1 \\ -a_0 & -a_1 & -a_2 & \cdots & -a_{n-1} \end{pmatrix}}_{\displaystyle C(t)}\,X(t) + \begin{pmatrix} 0 \\ \vdots \\ 0 \\ b(t) \end{pmatrix}$$</div>
+        <p>La matrice \(C(t)\) est la <strong>matrice compagnon</strong> de l'équation.</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Structure des solutions</span>
+        <p>L'ensemble des solutions de l'équation homogène associée est un espace vectoriel de dimension \(n\). Pour tout \(t_0 \in I\) et toutes conditions initiales \(y(t_0) = y_0, y'(t_0) = y_1, \ldots, y^{(n-1)}(t_0) = y_{n-1}\), il existe une unique solution définie sur \(I\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Équation à coefficients constants</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Équation caractéristique</span>
+        <p>L'<strong>équation caractéristique</strong> associée à l'équation homogène \(y^{(n)} + a_{n-1}\,y^{(n-1)} + \cdots + a_0\,y = 0\) (coefficients constants \(a_i \in \mathbb{K}\)) est :</p>
+        <div class="math-display">$$r^n + a_{n-1}\,r^{n-1} + \cdots + a_1\,r + a_0 = 0$$</div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Solutions de l'équation homogène à coefficients constants</span>
+        <p>Si le polynôme caractéristique admet les racines \(r_1, \ldots, r_p\) de multiplicités respectives \(m_1, \ldots, m_p\) (dans \(\mathbb{C}\)), alors un système fondamental de solutions est constitué des fonctions :</p>
+        <div class="math-display">$$t^j\,e^{r_k t}, \quad k = 1, \ldots, p, \quad j = 0, 1, \ldots, m_k - 1$$</div>
+        <p>La solution générale de l'équation homogène est toute combinaison linéaire de ces fonctions.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration (cas racines simples)</span>
+            <p>Si \(r\) est racine simple du polynôme caractéristique, on vérifie que \(y(t) = e^{rt}\) est solution. En effet, \(y^{(k)}(t) = r^k\,e^{rt}\) et la substitution donne \((r^n + a_{n-1}r^{n-1} + \cdots + a_0)\,e^{rt} = 0\). Les \(n\) fonctions \(e^{r_k t}\) sont linéairement indépendantes (wronskien de type Vandermonde), elles forment donc un système fondamental. Le cas des racines multiples se traite par dérivation du polynôme caractéristique.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Méthode — Variation de la constante (ordre \(n\))</span>
+        <p>Pour trouver une solution particulière de \((\mathcal{E})\), on cherche \(y_p = c_1(t)\,y_1 + \cdots + c_n(t)\,y_n\) où \((y_1, \ldots, y_n)\) est un système fondamental. Les fonctions \(c_i\) sont déterminées par le système :</p>
+        <div class="math-display">$$\begin{pmatrix} y_1 & \cdots & y_n \\ y_1' & \cdots & y_n' \\ \vdots & & \vdots \\ y_1^{(n-1)} & \cdots & y_n^{(n-1)} \end{pmatrix} \begin{pmatrix} c_1' \\ c_2' \\ \vdots \\ c_n' \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ \vdots \\ b(t) \end{pmatrix}$$</div>
+        <p>Ce système est de Cramer (wronskien non nul) et se résout par les formules de Cramer, puis intégration.</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>Lorsque les coefficients sont réels et que le polynôme caractéristique a des racines complexes conjuguées \(\alpha \pm i\beta\), les solutions réelles correspondantes sont \(e^{\alpha t}\cos(\beta t)\) et \(e^{\alpha t}\sin(\beta t)\). On n'a pas besoin de travailler dans \(\mathbb{C}\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION V ═══════════════ -->
+    <section class="course__section" id="sec5">
+      <h2 class="course__section-title"><span class="course__section-num">V.</span> Équations linéaires d'ordre 2</h2>
+
+      <p>Le cas de l'ordre 2 est particulièrement important en raison de ses nombreuses applications. On étudie l'équation :</p>
+      <div class="math-display">$$y'' + a\,y' + b\,y = f(t) \qquad (\mathcal{E}_2)$$</div>
+      <p>avec \(a, b \in \mathbb{K}\) constants et \(f \in \mathcal{C}(I, \mathbb{K})\).</p>
+
+      <h3 class="course__subsection-title">Équation homogène</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Solutions de \(y'' + ay' + by = 0\)</span>
+        <p>Le polynôme caractéristique est \(r^2 + ar + b\), de discriminant \(\Delta = a^2 - 4b\). Trois cas se présentent :</p>
+        <ul>
+          <li><strong>Deux racines réelles distinctes</strong> \(r_1 \neq r_2\) (si \(\Delta > 0\)) : la solution générale est \(y(t) = C_1\,e^{r_1 t} + C_2\,e^{r_2 t}\).</li>
+          <li><strong>Racine double</strong> \(r_0 = -a/2\) (si \(\Delta = 0\)) : la solution générale est \(y(t) = (C_1 + C_2\,t)\,e^{r_0 t}\).</li>
+          <li><strong>Racines complexes conjuguées</strong> \(r = \alpha \pm i\beta\) (si \(\Delta &lt; 0\), avec \(\alpha = -a/2\), \(\beta = \sqrt{4b - a^2}/2\)) : la solution générale réelle est \(y(t) = e^{\alpha t}\bigl(C_1\cos(\beta t) + C_2\sin(\beta t)\bigr)\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Résoudre \(y'' - 3y' + 2y = 0\). Le polynôme caractéristique est \(r^2 - 3r + 2 = (r-1)(r-2)\). Les racines sont \(r_1 = 1\) et \(r_2 = 2\). La solution générale est :</p>
+        <div class="math-display">$$y(t) = C_1\,e^t + C_2\,e^{2t}$$</div>
+      </div>
+
+      <h3 class="course__subsection-title">Second membre polynomial</h3>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Second membre polynomial-exponentiel</span>
+        <p>Pour \(y'' + ay' + by = P(t)\,e^{\gamma t}\) où \(P \in \mathbb{K}[t]\) et \(\gamma \in \mathbb{K}\), on cherche une solution particulière sous la forme :</p>
+        <div class="math-display">$$y_p(t) = t^s\,Q(t)\,e^{\gamma t}$$</div>
+        <p>où \(Q\) est un polynôme de même degré que \(P\), et \(s\) est la multiplicité de \(\gamma\) comme racine du polynôme caractéristique (\(s = 0, 1\) ou \(2\)).</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Résoudre \(y'' - 3y' + 2y = e^t\). Ici \(\gamma = 1\) est racine simple du polynôme caractéristique, donc \(s = 1\). On cherche \(y_p = at\,e^t\). En substituant : \(y_p' = a(1 + t)e^t\), \(y_p'' = a(2 + t)e^t\). L'équation donne \(a(2 + t) - 3a(1 + t) + 2at = -a\), d'où \(a = -1\) et \(y_p(t) = -t\,e^t\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Second membre trigonométrique</h3>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Second membre trigonométrique</span>
+        <p>Pour résoudre \(y'' + ay' + by = P(t)\cos(\omega t)\) ou \(P(t)\sin(\omega t)\) à coefficients réels, on utilise la méthode de complexification. On résout d'abord :</p>
+        <div class="math-display">$$z'' + az' + bz = P(t)\,e^{i\omega t}$$</div>
+        <p>et on prend \(y_p = \mathrm{Re}(z_p)\) ou \(y_p = \mathrm{Im}(z_p)\) selon le cas.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Principe de superposition</span>
+        <p>Si \(y_1\) est solution de \(y'' + ay' + by = f_1(t)\) et \(y_2\) est solution de \(y'' + ay' + by = f_2(t)\), alors pour tous scalaires \(\alpha, \beta\) :</p>
+        <div class="math-display">$$\alpha\,y_1 + \beta\,y_2 \quad \text{est solution de} \quad y'' + ay' + by = \alpha\,f_1(t) + \beta\,f_2(t)$$</div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Second membre trigonométrique</span>
+        <p>Résoudre \(y'' + y = \cos(t)\). Le polynôme caractéristique \(r^2 + 1 = 0\) a pour racines \(\pm i\). On complexifie : \(z'' + z = e^{it}\). Ici \(\gamma = i\) est racine simple, donc \(s = 1\), et on cherche \(z_p = at\,e^{it}\). En substituant : \(z_p'' + z_p = 2ia\,e^{it} = e^{it}\), d'où \(a = 1/(2i) = -i/2\). Ainsi \(z_p = -\frac{i}{2}\,t\,e^{it}\) et :</p>
+        <div class="math-display">$$y_p(t) = \mathrm{Re}(z_p) = \frac{t}{2}\sin(t)$$</div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Phénomène de résonance</span>
+        <p>Lorsque la pulsation \(\omega\) du second membre coïncide avec une pulsation propre de l'équation homogène (i.e. \(i\omega\) est racine du polynôme caractéristique), la solution particulière contient un facteur \(t\) qui fait diverger l'amplitude. C'est le <strong>phénomène de résonance</strong>, crucial en physique.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION VI ═══════════════ -->
+    <section class="course__section" id="sec6">
+      <h2 class="course__section-title"><span class="course__section-num">VI.</span> Applications</h2>
+
+      <h3 class="course__subsection-title">Oscillateur harmonique</h3>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Oscillateur harmonique amorti</span>
+        <p>Le mouvement d'une masse \(m\) reliée à un ressort de raideur \(k\) avec un amortissement de coefficient \(\lambda > 0\) est régi par :</p>
+        <div class="math-display">$$m\,x'' + \lambda\,x' + k\,x = 0$$</div>
+        <p>En posant \(\omega_0 = \sqrt{k/m}\) et \(\xi = \lambda/(2m\omega_0)\), l'équation se réécrit \(x'' + 2\xi\omega_0\,x' + \omega_0^2\,x = 0\). Trois régimes :</p>
+        <ul>
+          <li><strong>Sous-amorti</strong> (\(\xi &lt; 1\)) : oscillations décroissantes \(x(t) = Ce^{-\xi\omega_0 t}\cos(\omega_d t + \varphi)\) avec \(\omega_d = \omega_0\sqrt{1-\xi^2}\).</li>
+          <li><strong>Critique</strong> (\(\xi = 1\)) : retour apériodique le plus rapide, \(x(t) = (A + Bt)\,e^{-\omega_0 t}\).</li>
+          <li><strong>Sur-amorti</strong> (\(\xi > 1\)) : retour apériodique lent, somme de deux exponentielles décroissantes.</li>
+        </ul>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Oscillateur harmonique forcé</span>
+        <p>Sous l'action d'une force sinusoïdale \(F_0\cos(\omega t)\), l'équation devient :</p>
+        <div class="math-display">$$x'' + 2\xi\omega_0\,x' + \omega_0^2\,x = \frac{F_0}{m}\cos(\omega t)$$</div>
+        <p>En régime permanent, la solution est \(x_p(t) = X_0\cos(\omega t - \varphi)\) avec l'amplitude :</p>
+        <div class="math-display">$$X_0 = \frac{F_0/m}{\sqrt{(\omega_0^2 - \omega^2)^2 + 4\xi^2\omega_0^2\omega^2}}$$</div>
+        <p>L'amplitude est maximale pour \(\omega = \omega_0\sqrt{1 - 2\xi^2}\) (résonance d'amplitude).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Circuits électriques RLC</h3>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Circuit RLC série</span>
+        <p>La charge \(q(t)\) aux bornes du condensateur dans un circuit RLC série soumis à une tension \(e(t)\) vérifie :</p>
+        <div class="math-display">$$L\,q'' + R\,q' + \frac{1}{C}\,q = e(t)$$</div>
+        <p>C'est l'analogue électrique de l'oscillateur mécanique, avec \(\omega_0 = 1/\sqrt{LC}\) et \(\xi = R/(2L\omega_0) = R\sqrt{C}/(2\sqrt{L})\). Les mêmes trois régimes (sous-amorti, critique, sur-amorti) se retrouvent.</p>
+      </div>
+
+      <h3 class="course__subsection-title">Équations d'Euler</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Équation d'Euler</span>
+        <p>Une <strong>équation d'Euler</strong> d'ordre 2 est une équation de la forme :</p>
+        <div class="math-display">$$t^2\,y'' + \alpha\,t\,y' + \beta\,y = f(t)$$</div>
+        <p>définie sur \(]0, +\infty[\) (ou \(]-\infty, 0[\)), où \(\alpha, \beta \in \mathbb{R}\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Résolution par changement de variable</span>
+        <p>Le changement de variable \(t = e^u\) (i.e. \(u = \ln t\)) et \(z(u) = y(e^u)\) transforme l'équation d'Euler en une équation à coefficients constants :</p>
+        <div class="math-display">$$z'' + (\alpha - 1)\,z' + \beta\,z = g(u)$$</div>
+        <p>En effet, \(t\,y' = z'\) et \(t^2\,y'' = z'' - z'\). On résout en \(z(u)\) puis on revient à \(y(t) = z(\ln t)\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Posons \(u = \ln t\), \(z(u) = y(e^u)\). Par la règle de la chaîne : \(z'(u) = y'(e^u)\,e^u = t\,y'(t)\). Puis \(z''(u) = (t\,y'(t))' \cdot t = t\,(y'(t) + t\,y''(t)) = t\,y'(t) + t^2\,y''(t)\), d'où \(t^2\,y'' = z'' - z'\). En substituant dans \(t^2\,y'' + \alpha\,t\,y' + \beta\,y = f(t)\) : \((z'' - z') + \alpha\,z' + \beta\,z = f(e^u)\), soit \(z'' + (\alpha - 1)\,z' + \beta\,z = f(e^u)\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Équation d'Euler</span>
+        <p>Résoudre \(t^2\,y'' + t\,y' - y = 0\) sur \(]0, +\infty[\). Ici \(\alpha = 1\), \(\beta = -1\). Le changement \(t = e^u\) donne \(z'' - z = 0\), d'équation caractéristique \(r^2 - 1 = 0\), soit \(r = \pm 1\). Donc \(z(u) = C_1\,e^u + C_2\,e^{-u}\), et en revenant à \(t\) :</p>
+        <div class="math-display">$$y(t) = C_1\,t + \frac{C_2}{t}$$</div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Solutions sous forme de puissances</span>
+        <p>Pour l'équation d'Euler homogène, on peut aussi chercher directement des solutions de la forme \(y(t) = t^r\). En substituant, on obtient l'<strong>équation indicielle</strong> \(r(r-1) + \alpha\,r + \beta = 0\), soit \(r^2 + (\alpha - 1)r + \beta = 0\), qui redonne le polynôme caractéristique de l'équation en \(z\).</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="mp-15-series-fonctions.html" class="course__nav-link">
+        &larr; Précédent
+        <span>Séries de fonctions</span>
+      </a>
+      <a href="mp-17-calcul-differentiel.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Calcul différentiel</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathématiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../index.html">Accueil</a>
+          <a href="../mpsi.html">MPSI</a>
+          <a href="../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communauté</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths — Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
+    });
+  </script>
+</body>
+</html>

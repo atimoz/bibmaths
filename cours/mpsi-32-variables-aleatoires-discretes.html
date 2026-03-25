@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables aléatoires discrètes — MPSI | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md)}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
+    .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:4000px;opacity:1}
+    .block p,.block li{font-size:.9rem;line-height:1.8}
+    .block ul{list-style:none;padding-left:var(--space-md)}
+    .block ul li::before{content:'—';color:var(--accent);margin-right:8px}
+    .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
+    .block--def .block__label{color:#2563A3}
+    .block--def ul li::before{color:#2563A3}
+    .block--thm{background:rgba(163,42,42,.06);border-left:3px solid #A32A2A}
+    .block--thm .block__label{color:#A32A2A}
+    .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
+    .block--prop .block__label{color:#7638A3}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
+    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--example .block__label{color:#4B825A}
+    .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
+    .block--remark .block__label{color:var(--accent)}
+    .block--remark p{color:var(--ink-light);font-size:.875rem}
+    .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
+    .block--cor .block__label{color:#9B59B6}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
+    [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
+    [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
+    [data-theme="dark"] .block--thm{background:rgba(163,42,42,.1);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
+    [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
+    [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
+    [data-theme="dark"] .block--proof .block__label{color:#8888A0}
+    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
+    [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
+    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../mpsi.html" class="nav__link nav__link--has-sub nav__link--active">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mpsi.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mp.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../mpsi.html" class="mobile-menu__page-link mobile-menu__page-link--active">MPSI — Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../mp.html" class="mobile-menu__page-link">MP — Math Spé</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../mpsi.html" class="course__back">&larr; Retour au programme MPSI</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MPSI — Cours</span>
+      <span class="course__chapter">Chapitre 32</span>
+    </div>
+
+    <h1 class="course__title">Variables aléatoires discrètes</h1>
+
+    <p class="course__intro">
+      Ce chapitre introduit la notion de variable aléatoire discrète sur un espace probabilisé fini. On y définit la loi d'une variable aléatoire, les lois classiques (Bernoulli, binomiale, uniforme), puis les outils numériques fondamentaux : espérance, variance, écart-type. On établit les inégalités de concentration (Markov, Bienaymé-Tchebychev) et on présente les fonctions génératrices, outil puissant pour l'étude des sommes de variables indépendantes.
+    </p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> Variables aléatoires</a></li>
+        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Lois classiques</a></li>
+        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> Espérance</a></li>
+        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> Variance et écart-type</a></li>
+        <li class="course__toc-item"><a href="#sec5"><span class="course__toc-num">V.</span> Inégalités de concentration</a></li>
+        <li class="course__toc-item"><a href="#sec6"><span class="course__toc-num">VI.</span> Fonctions génératrices</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════ SECTION I ═══════════════ -->
+    <section class="course__section" id="sec1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Variables aléatoires</h2>
+
+      <p>On se place sur un espace probabilisé fini \((\Omega, \mathcal{P}(\Omega), P)\). Une variable aléatoire est une fonction définie sur \(\Omega\) à valeurs dans un ensemble \(E\). Elle permet de modéliser une grandeur numérique aléatoire associée à une expérience.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Variable aléatoire</span>
+        <p>Soit \((\Omega, \mathcal{P}(\Omega), P)\) un espace probabilisé fini et \(E\) un ensemble. Une <strong>variable aléatoire</strong> sur \(\Omega\) à valeurs dans \(E\) est une application</p>
+        <div class="math-display">$$X : \Omega \longrightarrow E$$</div>
+        <p>Lorsque \(E \subset \mathbb{R}\), on parle de variable aléatoire <strong>réelle</strong>. L'ensemble des valeurs prises par \(X\) est noté \(X(\Omega)\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Loi d'une variable aléatoire</span>
+        <p>La <strong>loi</strong> de \(X\) est la famille de probabilités \(\big(P(X = x)\big)_{x \in X(\Omega)}\). Pour tout \(x \in E\), on note</p>
+        <div class="math-display">$$P(X = x) = P\big(\{\omega \in \Omega \mid X(\omega) = x\}\big) = P(X^{-1}(\{x\}))$$</div>
+        <p>La loi de \(X\) est entièrement déterminée par ces probabilités et l'on a \(\displaystyle\sum_{x \in X(\Omega)} P(X = x) = 1\).</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Lancer de deux dés</span>
+        <p>On lance deux dés équilibrés. L'univers est \(\Omega = \{1,\ldots,6\}^2\) muni de la probabilité uniforme. La variable aléatoire \(X : (i,j) \mapsto i + j\) représente la somme des deux dés. On a \(X(\Omega) = \{2, 3, \ldots, 12\}\) et par exemple \(P(X = 7) = \frac{6}{36} = \frac{1}{6}\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Système complet d'événements</span>
+        <p>Les événements \((X = x)_{x \in X(\Omega)}\) forment un <strong>système complet d'événements</strong>. Pour tout événement \(A\), la formule des probabilités totales donne</p>
+        <div class="math-display">$$P(A) = \sum_{x \in X(\Omega)} P(A \cap (X = x)) = \sum_{x \in X(\Omega)} P(A \mid X = x)\, P(X = x)$$</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION II ═══════════════ -->
+    <section class="course__section" id="sec2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Lois classiques</h2>
+
+      <p>Plusieurs lois discrètes apparaissent naturellement dans les situations de dénombrement et les schémas d'épreuves répétées. On en présente ici les plus fondamentales.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Loi de Bernoulli \(\mathcal{B}(p)\)</span>
+        <p>Soit \(p \in [0,1]\). Une variable aléatoire \(X\) suit la <strong>loi de Bernoulli</strong> de paramètre \(p\), notée \(X \sim \mathcal{B}(p)\), si \(X(\Omega) = \{0, 1\}\) et</p>
+        <div class="math-display">$$P(X = 1) = p \qquad \text{et} \qquad P(X = 0) = 1 - p = q$$</div>
+        <p>Elle modélise une expérience à deux issues : succès (1) avec probabilité \(p\) et échec (0) avec probabilité \(q = 1-p\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Loi binomiale \(\mathcal{B}(n,p)\)</span>
+        <p>Soit \(n \in \mathbb{N}^*\) et \(p \in [0,1]\). Une variable aléatoire \(X\) suit la <strong>loi binomiale</strong> de paramètres \(n\) et \(p\), notée \(X \sim \mathcal{B}(n,p)\), si \(X(\Omega) = \{0, 1, \ldots, n\}\) et</p>
+        <div class="math-display">$$\forall k \in \{0, \ldots, n\},\quad P(X = k) = \binom{n}{k}\, p^k\, (1-p)^{n-k}$$</div>
+        <p>Elle modélise le nombre de succès lors de \(n\) épreuves de Bernoulli indépendantes de même paramètre \(p\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Loi uniforme \(\mathcal{U}(\llbracket 1, n \rrbracket)\)</span>
+        <p>Une variable aléatoire \(X\) suit la <strong>loi uniforme</strong> sur \(\llbracket 1, n \rrbracket\), notée \(X \sim \mathcal{U}(\llbracket 1, n \rrbracket)\), si</p>
+        <div class="math-display">$$\forall k \in \{1, \ldots, n\},\quad P(X = k) = \frac{1}{n}$$</div>
+        <p>Tous les résultats sont équiprobables. Cette loi modélise un tirage au hasard parmi \(n\) valeurs.</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>La loi de Bernoulli est un cas particulier de la loi binomiale : \(\mathcal{B}(p) = \mathcal{B}(1,p)\). On vérifie que la somme des probabilités vaut bien 1 grâce à la formule du binôme de Newton : \(\sum_{k=0}^n \binom{n}{k} p^k (1-p)^{n-k} = (p + 1-p)^n = 1\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION III ═══════════════ -->
+    <section class="course__section" id="sec3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Espérance</h2>
+
+      <p>L'espérance est la valeur moyenne théorique d'une variable aléatoire. Elle généralise la notion de moyenne pondérée et possède des propriétés algébriques essentielles.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Espérance</span>
+        <p>Soit \(X\) une variable aléatoire réelle sur \((\Omega, P)\). L'<strong>espérance</strong> de \(X\) est</p>
+        <div class="math-display">$$E(X) = \sum_{x \in X(\Omega)} x \, P(X = x)$$</div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Formule de transfert</span>
+        <p>Soit \(X\) une variable aléatoire à valeurs dans \(E\) et \(f : E \to \mathbb{R}\). Alors \(f(X)\) est une variable aléatoire réelle et</p>
+        <div class="math-display">$$E\big(f(X)\big) = \sum_{x \in X(\Omega)} f(x) \, P(X = x)$$</div>
+        <p>Cette formule permet de calculer l'espérance de \(f(X)\) sans déterminer la loi de \(f(X)\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Propriétés de l'espérance</span>
+        <p>Soient \(X, Y\) des variables aléatoires réelles et \(a, b \in \mathbb{R}\). Alors :</p>
+        <ul>
+          <li><strong>Linéarité :</strong> \(E(aX + bY) = aE(X) + bE(Y)\).</li>
+          <li><strong>Positivité :</strong> si \(X \geq 0\) p.s., alors \(E(X) \geq 0\).</li>
+          <li><strong>Croissance :</strong> si \(X \leq Y\) p.s., alors \(E(X) \leq E(Y)\).</li>
+          <li><strong>Espérance d'une constante :</strong> \(E(c) = c\) pour tout \(c \in \mathbb{R}\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Espérance des lois usuelles</span>
+        <ul>
+          <li>Si \(X \sim \mathcal{B}(p)\), alors \(E(X) = p\).</li>
+          <li>Si \(X \sim \mathcal{B}(n,p)\), alors \(E(X) = np\).</li>
+          <li>Si \(X \sim \mathcal{U}(\llbracket 1, n \rrbracket)\), alors \(E(X) = \dfrac{n+1}{2}\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>L'espérance de la loi binomiale se retrouve par linéarité : si \(X = X_1 + \cdots + X_n\) avec \(X_i \sim \mathcal{B}(p)\), alors \(E(X) = nE(X_1) = np\). Ce raisonnement par décomposition est un outil très puissant.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION IV ═══════════════ -->
+    <section class="course__section" id="sec4">
+      <h2 class="course__section-title"><span class="course__section-num">IV.</span> Variance et écart-type</h2>
+
+      <p>La variance mesure la dispersion d'une variable aléatoire autour de son espérance. L'écart-type en est la racine carrée, exprimé dans la même unité que la variable.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Variance et écart-type</span>
+        <p>Soit \(X\) une variable aléatoire réelle. La <strong>variance</strong> de \(X\) est</p>
+        <div class="math-display">$$V(X) = E\big((X - E(X))^2\big) = E(X^2) - E(X)^2$$</div>
+        <p>L'<strong>écart-type</strong> de \(X\) est \(\sigma(X) = \sqrt{V(X)}\).</p>
+        <p>La seconde expression, dite <strong>formule de König-Huygens</strong>, est la plus utilisée en pratique.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Propriétés de la variance</span>
+        <ul>
+          <li>\(V(X) \geq 0\) pour toute variable aléatoire \(X\).</li>
+          <li>Pour tous \(a, b \in \mathbb{R}\) : \(V(aX + b) = a^2 V(X)\).</li>
+          <li>\(V(X) = 0\) si et seulement si \(X\) est <strong>presque sûrement constante</strong>, c'est-à-dire \(P(X = E(X)) = 1\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Variance des lois usuelles</span>
+        <ul>
+          <li>Si \(X \sim \mathcal{B}(p)\), alors \(V(X) = p(1-p) = pq\).</li>
+          <li>Si \(X \sim \mathcal{B}(n,p)\), alors \(V(X) = np(1-p) = npq\).</li>
+          <li>Si \(X \sim \mathcal{U}(\llbracket 1, n \rrbracket)\), alors \(V(X) = \dfrac{n^2 - 1}{12}\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>La formule de König-Huygens \(V(X) = E(X^2) - E(X)^2\) est presque toujours plus rapide que la définition pour calculer une variance. Pour la retrouver, il suffit de développer \(E((X - E(X))^2)\) par linéarité de l'espérance.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION V ═══════════════ -->
+    <section class="course__section" id="sec5">
+      <h2 class="course__section-title"><span class="course__section-num">V.</span> Inégalités de concentration</h2>
+
+      <p>Les inégalités de concentration permettent de majorer la probabilité qu'une variable aléatoire s'écarte de son espérance. Elles sont fondamentales pour l'étude de la convergence.</p>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Inégalité de Markov</span>
+        <p>Soit \(X\) une variable aléatoire réelle <strong>positive</strong>. Pour tout \(a > 0\),</p>
+        <div class="math-display">$$P(X \geq a) \leq \frac{E(X)}{a}$$</div>
+      </div>
+
+      <div class="block block--proof">
+        <span class="block__label">Démonstration</span>
+        <p>On a \(X \geq a \cdot \mathbf{1}_{X \geq a}\), donc par positivité et linéarité de l'espérance : \(E(X) \geq a \cdot E(\mathbf{1}_{X \geq a}) = a \cdot P(X \geq a)\).</p>
+        <p class="qed">\(\square\)</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Inégalité de Bienaymé-Tchebychev</span>
+        <p>Soit \(X\) une variable aléatoire réelle d'espérance \(\mu = E(X)\) et de variance \(\sigma^2 = V(X)\). Pour tout \(a > 0\),</p>
+        <div class="math-display">$$P\big(|X - \mu| \geq a\big) \leq \frac{\sigma^2}{a^2} = \frac{V(X)}{a^2}$$</div>
+      </div>
+
+      <div class="block block--proof">
+        <span class="block__label">Démonstration</span>
+        <p>On applique l'inégalité de Markov à la variable aléatoire positive \((X - \mu)^2\) avec le seuil \(a^2\) :</p>
+        <div class="math-display">$$P\big(|X - \mu| \geq a\big) = P\big((X-\mu)^2 \geq a^2\big) \leq \frac{E\big((X-\mu)^2\big)}{a^2} = \frac{V(X)}{a^2}$$</div>
+        <p class="qed">\(\square\)</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>L'inégalité de Bienaymé-Tchebychev est un outil grossier mais universel : elle ne dépend que de l'espérance et de la variance, sans hypothèse sur la forme de la loi. Elle est l'ingrédient clé de la démonstration de la loi faible des grands nombres.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION VI ═══════════════ -->
+    <section class="course__section" id="sec6">
+      <h2 class="course__section-title"><span class="course__section-num">VI.</span> Fonctions génératrices</h2>
+
+      <p>La fonction génératrice encode toute l'information sur la loi d'une variable aléatoire à valeurs entières positives. Elle transforme les convolutions en produits et fournit un accès direct aux moments.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Fonction génératrice</span>
+        <p>Soit \(X\) une variable aléatoire à valeurs dans \(\mathbb{N}\). La <strong>fonction génératrice</strong> de \(X\) est la série entière</p>
+        <div class="math-display">$$G_X(t) = E(t^X) = \sum_{k=0}^{+\infty} P(X = k)\, t^k$$</div>
+        <p>définie au moins pour \(t \in [-1, 1]\). Si \(X(\Omega)\) est fini, \(G_X\) est un polynôme.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — La fonction génératrice détermine la loi</span>
+        <p>Deux variables aléatoires à valeurs dans \(\mathbb{N}\) ont la même loi si et seulement si elles ont la même fonction génératrice. En effet, \(P(X = k) = \dfrac{G_X^{(k)}(0)}{k!}\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Fonction génératrice d'une somme</span>
+        <p>Si \(X\) et \(Y\) sont deux variables aléatoires <strong>indépendantes</strong> à valeurs dans \(\mathbb{N}\), alors</p>
+        <div class="math-display">$$G_{X+Y}(t) = G_X(t) \cdot G_Y(t)$$</div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Moments et fonction génératrice</span>
+        <p>Soit \(X\) une variable aléatoire à valeurs dans \(\mathbb{N}\) de fonction génératrice \(G_X\). Alors :</p>
+        <ul>
+          <li>\(E(X) = G_X'(1)\).</li>
+          <li>\(V(X) = G_X''(1) + G_X'(1) - \big(G_X'(1)\big)^2\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Fonction génératrice de la loi binomiale</span>
+        <p>Si \(X \sim \mathcal{B}(n,p)\), alors</p>
+        <div class="math-display">$$G_X(t) = \sum_{k=0}^n \binom{n}{k} (pt)^k (1-p)^{n-k} = (pt + 1 - p)^n$$</div>
+        <p>On retrouve \(E(X) = G_X'(1) = np\) et \(V(X) = np(1-p)\).</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="mpsi-31-probabilites-univers-fini.html" class="course__nav-link">
+        &larr; Précédent
+        <span>Probabilités sur un univers fini</span>
+      </a>
+      <a href="mpsi-33-couples-variables-aleatoires.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Couples de variables aléatoires</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathématiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../index.html">Accueil</a>
+          <a href="../mpsi.html">MPSI</a>
+          <a href="../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communauté</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths — Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
+    });
+  </script>
+</body>
+</html>

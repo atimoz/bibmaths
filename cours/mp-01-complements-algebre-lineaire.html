@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compléments d'algèbre linéaire — MP | BibMaths</title>
+  <title>Compléments d'algèbre linéaire — MP | LibMaths</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -393,20 +393,33 @@
 
   <!-- Navigation -->
   <nav class="nav">
-    <a href="../index.html" class="nav__logo">
-      <span class="nav__logo-symbol">&int;</span>
-      <span class="nav__logo-text">BibMaths</span>
-    </a>
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
     <div class="nav__links">
+      <a href="../index.html" class="nav__link">Accueil</a>
       <div class="nav__dropdown">
-        <button class="nav__link nav__link--has-sub">Lycée <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <a href="../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
         <div class="dropdown">
-          <a href="#" class="dropdown__item">Seconde</a>
-          <a href="#" class="dropdown__item">Grand Oral</a>
+          <a href="../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mpsi.html#methodes" class="dropdown__item">Méthodes</a>
         </div>
       </div>
-      <a href="../mpsi.html" class="nav__link">MPSI</a>
-      <a href="../mp.html" class="nav__link nav__link--active">MP</a>
+      <div class="nav__dropdown">
+        <a href="../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mp.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
     </div>
     <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
       <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -419,12 +432,9 @@
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__group">
-      <button class="mobile-menu__toggle">Lycée <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-      <div class="mobile-menu__sub">
-        <a href="#">Seconde</a>
-        <a href="#">Grand Oral</a>
-      </div>
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
     </div>
     <div class="mobile-menu__group">
       <a href="../mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a>
@@ -437,7 +447,7 @@
   <!-- Course Content -->
   <article class="course">
 
-    <a href="../mp.html" class="course__back">← Retour au programme MP</a>
+    <a href="../mp.html" class="course__back">&larr; Retour au programme MP</a>
 
     <div class="course__meta">
       <span class="course__badge">MP — Cours</span>
@@ -447,17 +457,19 @@
     <h1 class="course__title">Compléments d'algèbre linéaire</h1>
 
     <p class="course__intro">
-      Ce chapitre approfondit les notions d'algèbre linéaire vues en première année. On y étudie les sommes de sous-espaces vectoriels, la notion de dualité, les projections et symétries, ainsi que les matrices par blocs.
+      Ce chapitre approfondit les notions fondamentales d'algèbre linéaire vues en première année. On y revient sur les applications linéaires et le théorème du rang, on étudie les sommes de sous-espaces vectoriels et la notion de supplémentaire, les projections et symétries, la dualité et les formes linéaires, le calcul matriciel par blocs, et enfin les changements de base et la notion d'équivalence de matrices.
     </p>
 
     <!-- Table of Contents -->
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> Sommes de sous-espaces vectoriels</a></li>
-        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Projections et symétries</a></li>
-        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> Dualité</a></li>
-        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> Matrices par blocs</a></li>
+        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> Rappels et compléments sur les applications linéaires</a></li>
+        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Sommes de sous-espaces vectoriels</a></li>
+        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> Projections et symétries</a></li>
+        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> Dualité</a></li>
+        <li class="course__toc-item"><a href="#sec5"><span class="course__toc-num">V.</span> Matrices par blocs</a></li>
+        <li class="course__toc-item"><a href="#sec6"><span class="course__toc-num">VI.</span> Changement de base et équivalence</a></li>
       </ol>
     </nav>
 
@@ -466,32 +478,106 @@
     <!-- ═══════════════════════════════════════ -->
     <section class="course__section" id="sec1">
       <h2 class="course__section-title">
-        <span class="course__section-num">I.</span> Sommes de sous-espaces vectoriels
+        <span class="course__section-num">I.</span> Rappels et compléments sur les applications linéaires
       </h2>
 
-      <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel et \(F_1, F_2\) deux sous-espaces vectoriels de \(E\).</p>
+      <p>Dans tout ce chapitre, \(\mathbb{K}\) désigne un corps commutatif (\(\mathbb{R}\) ou \(\mathbb{C}\)), et \(E\), \(F\), \(G\) des \(\mathbb{K}\)-espaces vectoriels.</p>
 
       <div class="block block--def">
-        <span class="block__label">Définition — Somme de sous-espaces</span>
-        <p>La <strong>somme</strong> de \(F_1\) et \(F_2\) est le sous-espace vectoriel :</p>
-        <div class="math-display">$$F_1 + F_2 = \{ x_1 + x_2 \mid x_1 \in F_1,\, x_2 \in F_2 \}$$</div>
-        <p>C'est le plus petit sous-espace de \(E\) contenant à la fois \(F_1\) et \(F_2\).</p>
+        <span class="block__label">Définition — Application linéaire</span>
+        <p>Une application \(f : E \to F\) est dite <strong>linéaire</strong> (ou est un <strong>morphisme d'espaces vectoriels</strong>) si :</p>
+        <ul>
+          <li>\(\forall\, (x, y) \in E^2,\quad f(x + y) = f(x) + f(y)\)</li>
+          <li>\(\forall\, \lambda \in \mathbb{K},\ \forall\, x \in E,\quad f(\lambda x) = \lambda f(x)\)</li>
+        </ul>
+        <p>On note \(\mathcal{L}(E, F)\) l'ensemble des applications linéaires de \(E\) dans \(F\), et \(\mathcal{L}(E) = \mathcal{L}(E, E)\) l'algèbre des endomorphismes de \(E\).</p>
       </div>
 
       <div class="block block--def">
-        <span class="block__label">Définition — Somme directe</span>
-        <p>On dit que la somme \(F_1 + F_2\) est <strong>directe</strong>, et on note \(F_1 \oplus F_2\), lorsque :</p>
-        <div class="math-display">$$F_1 \cap F_2 = \{0_E\}$$</div>
-        <p>Autrement dit, tout vecteur de \(F_1 + F_2\) s'écrit de manière <strong>unique</strong> comme somme d'un élément de \(F_1\) et d'un élément de \(F_2\).</p>
+        <span class="block__label">Définition — Noyau et image</span>
+        <p>Soit \(f \in \mathcal{L}(E, F)\). On définit :</p>
+        <ul>
+          <li>Le <strong>noyau</strong> : \(\ker(f) = \{ x \in E \mid f(x) = 0_F \}\), sous-espace vectoriel de \(E\).</li>
+          <li>L'<strong>image</strong> : \(\text{Im}(f) = \{ f(x) \mid x \in E \}\), sous-espace vectoriel de \(F\).</li>
+        </ul>
+        <p>Le <strong>rang</strong> de \(f\) est \(\text{rg}(f) = \dim(\text{Im}(f))\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Théorème du rang</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Théorème du rang</span>
+        <p>Soit \(f \in \mathcal{L}(E, F)\) avec \(E\) de dimension finie. Alors :</p>
+        <div class="math-display">$$\dim(E) = \dim(\ker(f)) + \text{rg}(f)$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Posons \(n = \dim(E)\) et \(p = \dim(\ker(f))\). Soit \((e_1, \ldots, e_p)\) une base de \(\ker(f)\). On la complète en une base \((e_1, \ldots, e_p, e_{p+1}, \ldots, e_n)\) de \(E\) (théorème de la base incomplète).</p>
+            <p>Montrons que \((f(e_{p+1}), \ldots, f(e_n))\) est une base de \(\text{Im}(f)\).</p>
+            <p><em>Famille génératrice :</em> Soit \(y \in \text{Im}(f)\). Il existe \(x = \sum_{i=1}^{n} \lambda_i e_i \in E\) tel que \(f(x) = y\). Par linéarité, \(y = \sum_{i=1}^{n} \lambda_i f(e_i) = \sum_{i=p+1}^{n} \lambda_i f(e_i)\) car \(f(e_i) = 0\) pour \(i \leqslant p\).</p>
+            <p><em>Famille libre :</em> Supposons \(\sum_{i=p+1}^{n} \mu_i f(e_i) = 0\). Alors \(f\!\left(\sum_{i=p+1}^{n} \mu_i e_i\right) = 0\), donc \(\sum_{i=p+1}^{n} \mu_i e_i \in \ker(f)\). Il existe donc \(\alpha_1, \ldots, \alpha_p\) tels que \(\sum_{i=p+1}^{n} \mu_i e_i = \sum_{i=1}^{p} \alpha_i e_i\). Par liberté de la base de \(E\), on obtient \(\mu_i = 0\) pour tout \(i\).</p>
+            <p>Ainsi \(\text{rg}(f) = n - p = \dim(E) - \dim(\ker(f))\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Inégalité du rang de la composée</span>
+        <p>Soient \(f \in \mathcal{L}(E, F)\) et \(g \in \mathcal{L}(F, G)\). Alors :</p>
+        <div class="math-display">$$\text{rg}(g \circ f) \leqslant \min(\text{rg}(f),\, \text{rg}(g))$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>On a \(\text{Im}(g \circ f) = g(f(E)) = g(\text{Im}(f)) \subset g(F) = \text{Im}(g)\), donc \(\text{rg}(g \circ f) \leqslant \text{rg}(g)\).</p>
+            <p>Par ailleurs, \(\text{Im}(g \circ f) = g(\text{Im}(f))\). L'image d'un sous-espace par une application linéaire a une dimension au plus égale à la dimension du sous-espace, donc \(\text{rg}(g \circ f) \leqslant \dim(\text{Im}(f)) = \text{rg}(f)\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Caractérisations d'injectivité et surjectivité</h3>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Caractérisations</span>
+        <p>Soit \(f \in \mathcal{L}(E, F)\).</p>
+        <ul>
+          <li>\(f\) est <strong>injective</strong> si et seulement si \(\ker(f) = \{0_E\}\).</li>
+          <li>\(f\) est <strong>surjective</strong> si et seulement si \(\text{Im}(f) = F\).</li>
+          <li>\(f\) est <strong>bijective</strong> si et seulement si \(f\) est injective et surjective.</li>
+        </ul>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Image de familles libres, liées, génératrices</span>
+        <p>Soit \(f \in \mathcal{L}(E, F)\) et \((x_1, \ldots, x_p)\) une famille de vecteurs de \(E\).</p>
+        <ul>
+          <li>Si \(f\) est injective et \((x_1, \ldots, x_p)\) est libre, alors \((f(x_1), \ldots, f(x_p))\) est libre.</li>
+          <li>Si \(f\) est surjective et \((x_1, \ldots, x_p)\) est génératrice de \(E\), alors \((f(x_1), \ldots, f(x_p))\) est génératrice de \(F\).</li>
+          <li>Si \((x_1, \ldots, x_p)\) est liée, alors \((f(x_1), \ldots, f(x_p))\) est liée.</li>
+        </ul>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>Attention : l'image d'une famille libre par une application linéaire non injective peut être liée. De meme, l'image d'une famille génératrice par une application non surjective n'est pas forcément génératrice de l'espace d'arrivée.</p>
       </div>
 
       <div class="block block--thm">
-        <span class="block__label">Théorème — Caractérisation de la somme directe</span>
-        <p>Soient \(F_1\) et \(F_2\) deux sous-espaces de \(E\). Les assertions suivantes sont équivalentes :</p>
+        <span class="block__label">Théorème — Isomorphisme en dimension finie</span>
+        <p>Soit \(f \in \mathcal{L}(E, F)\) avec \(\dim(E) = \dim(F) = n < +\infty\). Alors les assertions suivantes sont équivalentes :</p>
         <ul>
-          <li>\(F_1 + F_2\) est une somme directe ;</li>
-          <li>\(F_1 \cap F_2 = \{0_E\}\) ;</li>
-          <li>Tout \(x \in F_1 + F_2\) admet une unique décomposition \(x = x_1 + x_2\) avec \(x_1 \in F_1\) et \(x_2 \in F_2\).</li>
+          <li>\(f\) est injective</li>
+          <li>\(f\) est surjective</li>
+          <li>\(f\) est bijective (i.e. \(f\) est un isomorphisme)</li>
         </ul>
       </div>
 
@@ -500,8 +586,64 @@
         <div class="deepen__content">
           <div class="block block--proof">
             <span class="block__label">Démonstration</span>
-            <p>Supposons \(F_1 \cap F_2 = \{0_E\}\) et soit \(x \in F_1 + F_2\) ayant deux décompositions : \(x = x_1 + x_2 = x_1' + x_2'\). Alors \(x_1 - x_1' = x_2' - x_2\). Le membre de gauche appartient à \(F_1\), le membre de droite à \(F_2\), donc leur valeur commune appartient à \(F_1 \cap F_2 = \{0_E\}\). D'où \(x_1 = x_1'\) et \(x_2 = x_2'\).</p>
-            <p>Réciproquement, si la décomposition est unique, soit \(x \in F_1 \cap F_2\). On a \(x = x + 0 = 0 + x\), d'où par unicité \(x = 0\).</p>
+            <p>Il suffit de montrer l'équivalence entre injectivité et surjectivité (la bijectivité en découle).</p>
+            <p>Par le théorème du rang : \(\text{rg}(f) = \dim(E) - \dim(\ker(f)) = n - \dim(\ker(f))\).</p>
+            <p>\(f\) injective \(\Leftrightarrow \ker(f) = \{0\} \Leftrightarrow \dim(\ker(f)) = 0 \Leftrightarrow \text{rg}(f) = n = \dim(F) \Leftrightarrow \text{Im}(f) = F \Leftrightarrow f\) surjective.</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Soit \(f : \mathbb{R}_2[X] \to \mathbb{R}_2[X]\) défini par \(f(P) = P - P(0) + P'(1)X\). Comme \(\dim(\mathbb{R}_2[X]) = 3\), il suffit de vérifier l'injectivité pour conclure que \(f\) est un isomorphisme. Si \(f(P) = 0\), alors \(P = P(0) - P'(1)X\), ce qui donne un polynôme de degré au plus 1 ; en réinjectant on montre \(P = 0\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>Ce résultat est faux en dimension infinie. Par exemple, l'opérateur de décalage à droite \(T : \mathbb{K}^{\mathbb{N}} \to \mathbb{K}^{\mathbb{N}}\), \((u_n) \mapsto (0, u_0, u_1, \ldots)\) est injectif mais pas surjectif.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION II -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="course__section" id="sec2">
+      <h2 class="course__section-title">
+        <span class="course__section-num">II.</span> Sommes de sous-espaces vectoriels
+      </h2>
+
+      <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel et \(F_1, F_2\) deux sous-espaces vectoriels de \(E\).</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Somme de sous-espaces</span>
+        <p>La <strong>somme</strong> de \(F_1\) et \(F_2\) est le sous-espace vectoriel :</p>
+        <div class="math-display">$$F_1 + F_2 = \{ x_1 + x_2 \mid x_1 \in F_1,\, x_2 \in F_2 \}$$</div>
+        <p>C'est le plus petit sous-espace de \(E\) contenant \(F_1\) et \(F_2\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Somme directe</span>
+        <p>On dit que la somme \(F_1 + F_2\) est <strong>directe</strong>, et on note \(F_1 \oplus F_2\), lorsque :</p>
+        <div class="math-display">$$F_1 \cap F_2 = \{0_E\}$$</div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Caractérisation de la somme directe</span>
+        <p>Soient \(F_1\) et \(F_2\) deux sous-espaces de \(E\). Les assertions suivantes sont équivalentes :</p>
+        <ul>
+          <li>\(F_1 + F_2\) est une somme directe (i.e. \(F_1 \cap F_2 = \{0_E\}\)) ;</li>
+          <li>Tout vecteur \(x \in F_1 + F_2\) admet une <strong>unique</strong> décomposition \(x = x_1 + x_2\) avec \(x_1 \in F_1\), \(x_2 \in F_2\).</li>
+        </ul>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p><em>Sens direct :</em> Supposons \(F_1 \cap F_2 = \{0_E\}\) et soit \(x \in F_1 + F_2\) ayant deux décompositions : \(x = x_1 + x_2 = x_1' + x_2'\) avec \(x_1, x_1' \in F_1\) et \(x_2, x_2' \in F_2\). Alors \(x_1 - x_1' = x_2' - x_2\). Le membre de gauche appartient à \(F_1\), le membre de droite à \(F_2\), donc leur valeur commune appartient à \(F_1 \cap F_2 = \{0_E\}\). D'où \(x_1 = x_1'\) et \(x_2 = x_2'\).</p>
+            <p><em>Réciproque :</em> Si la décomposition est unique, soit \(x \in F_1 \cap F_2\). On a \(x = x + 0_E = 0_E + x\), ce qui donne deux décompositions de \(x\) dans \(F_1 + F_2\). Par unicité, \(x = 0_E\).</p>
             <p class="qed">&#9632;</p>
           </div>
         </div>
@@ -513,55 +655,105 @@
         <div class="math-display">$$\dim(F_1 + F_2) = \dim F_1 + \dim F_2 - \dim(F_1 \cap F_2)$$</div>
       </div>
 
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Posons \(r = \dim(F_1 \cap F_2)\), \(p = \dim F_1\), \(q = \dim F_2\). Soit \((e_1, \ldots, e_r)\) une base de \(F_1 \cap F_2\). On la complète en une base \((e_1, \ldots, e_r, f_1, \ldots, f_{p-r})\) de \(F_1\) et en une base \((e_1, \ldots, e_r, g_1, \ldots, g_{q-r})\) de \(F_2\).</p>
+            <p>Montrons que \(\mathcal{B} = (e_1, \ldots, e_r, f_1, \ldots, f_{p-r}, g_1, \ldots, g_{q-r})\) est une base de \(F_1 + F_2\). C'est clairement une famille génératrice. Vérifions la liberté.</p>
+            <p>Soit \(\sum \alpha_i e_i + \sum \beta_j f_j + \sum \gamma_k g_k = 0\). Alors \(v = \sum \gamma_k g_k = -\sum \alpha_i e_i - \sum \beta_j f_j \in F_1\). Comme \(v \in F_2\), on a \(v \in F_1 \cap F_2\). Donc \(v = \sum \delta_i e_i\), et par liberté de la base de \(F_2\) : \(\gamma_k = 0\) pour tout \(k\) et \(\delta_i = 0\). Il reste \(\sum \alpha_i e_i + \sum \beta_j f_j = 0\), d'où \(\alpha_i = \beta_j = 0\) par liberté dans \(F_1\).</p>
+            <p>Ainsi \(\dim(F_1 + F_2) = r + (p - r) + (q - r) = p + q - r\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Dans \(\mathbb{R}^3\), posons \(F_1 = \text{Vect}((1,0,0), (0,1,0))\) et \(F_2 = \text{Vect}((0,1,0), (0,0,1))\). On a \(F_1 \cap F_2 = \text{Vect}((0,1,0))\). La formule de Grassmann donne \(\dim(F_1 + F_2) = 2 + 2 - 1 = 3\), donc \(F_1 + F_2 = \mathbb{R}^3\). Mais la somme n'est pas directe puisque \(F_1 \cap F_2 \neq \{0\}\).</p>
+      </div>
+
       <h3 class="course__subsection-title">Sous-espaces supplémentaires</h3>
 
       <div class="block block--def">
         <span class="block__label">Définition — Sous-espaces supplémentaires</span>
         <p>On dit que \(F_1\) et \(F_2\) sont <strong>supplémentaires</strong> dans \(E\) lorsque :</p>
         <div class="math-display">$$E = F_1 \oplus F_2$$</div>
-        <p>Autrement dit, \(F_1 + F_2 = E\) et \(F_1 \cap F_2 = \{0_E\}\). Tout vecteur de \(E\) s'écrit alors de manière unique \(x = x_1 + x_2\).</p>
+        <p>Autrement dit, \(F_1 + F_2 = E\) et \(F_1 \cap F_2 = \{0_E\}\). Tout vecteur de \(E\) s'écrit alors de manière unique \(x = x_1 + x_2\) avec \(x_1 \in F_1\), \(x_2 \in F_2\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Dimension et supplémentaires</span>
+        <p>Si \(E\) est de dimension finie \(n\), alors \(F_1\) et \(F_2\) sont supplémentaires dans \(E\) si et seulement si l'une des conditions suivantes est remplie :</p>
+        <ul>
+          <li>\(F_1 \cap F_2 = \{0_E\}\) et \(\dim F_1 + \dim F_2 = n\) ;</li>
+          <li>\(F_1 + F_2 = E\) et \(\dim F_1 + \dim F_2 = n\).</li>
+        </ul>
       </div>
 
       <div class="deepen">
         <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="deepen__content">
-          <div class="block block--example">
-            <span class="block__label">Exemple</span>
-            <p>Dans \(\mathbb{R}^3\), posons \(F_1 = \text{Vect}(e_1, e_2)\) et \(F_2 = \text{Vect}(e_3)\). Alors \(F_1 \oplus F_2 = \mathbb{R}^3\) car tout vecteur \((x,y,z)\) s'écrit de manière unique \((x,y,0) + (0,0,z)\).</p>
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>On utilise la formule de Grassmann : \(\dim(F_1 + F_2) = \dim F_1 + \dim F_2 - \dim(F_1 \cap F_2)\).</p>
+            <p>Si \(F_1 \cap F_2 = \{0\}\) et \(\dim F_1 + \dim F_2 = n\), alors \(\dim(F_1 + F_2) = n\). Comme \(F_1 + F_2 \subset E\), on en déduit \(F_1 + F_2 = E\), et la somme est directe.</p>
+            <p>De même, si \(F_1 + F_2 = E\) et \(\dim F_1 + \dim F_2 = n\), alors \(n = \dim F_1 + \dim F_2 - \dim(F_1 \cap F_2)\), d'où \(\dim(F_1 \cap F_2) = 0\) et la somme est directe.</p>
+            <p class="qed">&#9632;</p>
           </div>
         </div>
       </div>
 
-      <div class="block block--prop">
-        <span class="block__label">Proposition — Dimension et supplémentaires</span>
-        <p>En dimension finie, \(F_1\) et \(F_2\) sont supplémentaires dans \(E\) si et seulement si :</p>
-        <div class="math-display">$$F_1 \cap F_2 = \{0_E\} \quad \text{et} \quad \dim F_1 + \dim F_2 = \dim E$$</div>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Dans \(\mathbb{R}^3\), posons \(F_1 = \text{Vect}(e_1, e_2)\) et \(F_2 = \text{Vect}(e_3)\). Alors \(F_1 \oplus F_2 = \mathbb{R}^3\) car tout vecteur \((x,y,z)\) s'écrit de manière unique \((x,y,0) + (0,0,z)\).</p>
       </div>
 
       <div class="block block--remark">
         <span class="block__label">Remarque</span>
-        <p>Attention : en dimension infinie, la condition \(F_1 \cap F_2 = \{0_E\}\) ne suffit pas pour que \(F_1\) et \(F_2\) soient supplémentaires. Il faut aussi que \(F_1 + F_2 = E\).</p>
+        <p>En dimension infinie, la condition \(F_1 \cap F_2 = \{0_E\}\) ne suffit pas pour que \(F_1\) et \(F_2\) soient supplémentaires. Il faut aussi vérifier que \(F_1 + F_2 = E\). Par exemple dans \(\mathbb{R}[X]\), les espaces \(F_1 = \mathbb{R}_{2n}[X]\) (polynômes de degré pair) et \(F_2 = X \cdot \mathbb{R}[X]\) ont une intersection triviale mais ne sont pas supplémentaires.</p>
+      </div>
+
+      <h3 class="course__subsection-title">Somme directe de \(n\) sous-espaces</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Somme directe de \(n\) sous-espaces</span>
+        <p>Soient \(F_1, \ldots, F_k\) des sous-espaces de \(E\). On dit que la somme \(F_1 + \cdots + F_k\) est <strong>directe</strong>, et on note \(F_1 \oplus \cdots \oplus F_k\), si tout vecteur \(x \in F_1 + \cdots + F_k\) s'écrit de manière <strong>unique</strong> comme \(x = x_1 + \cdots + x_k\) avec \(x_i \in F_i\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Caractérisation de la somme directe de \(n\) sous-espaces</span>
+        <p>La somme \(F_1 + \cdots + F_k\) est directe si et seulement si :</p>
+        <div class="math-display">$$\forall\, i \in \{1, \ldots, k\},\quad F_i \cap \left(\sum_{j \neq i} F_j\right) = \{0_E\}$$</div>
+        <p>En dimension finie, cela équivaut à \(\dim(F_1 + \cdots + F_k) = \dim F_1 + \cdots + \dim F_k\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>Pour \(k \geqslant 3\) sous-espaces, la condition \(F_i \cap F_j = \{0\}\) pour tous \(i \neq j\) ne suffit pas. Par exemple dans \(\mathbb{R}^2\), les droites \(F_1 = \text{Vect}(e_1)\), \(F_2 = \text{Vect}(e_2)\) et \(F_3 = \text{Vect}(e_1 + e_2)\) sont deux à deux en somme directe, mais \(F_1 + F_2 + F_3\) n'est pas une somme directe.</p>
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════ -->
-    <!-- SECTION II -->
+    <!-- SECTION III -->
     <!-- ═══════════════════════════════════════ -->
-    <section class="course__section" id="sec2">
+    <section class="course__section" id="sec3">
       <h2 class="course__section-title">
-        <span class="course__section-num">II.</span> Projections et symétries
+        <span class="course__section-num">III.</span> Projections et symétries
       </h2>
 
-      <p>La décomposition en somme directe permet de définir deux familles fondamentales d'endomorphismes.</p>
+      <p>La décomposition en somme directe permet de définir deux familles fondamentales d'endomorphismes : les projecteurs et les symétries.</p>
 
       <div class="block block--def">
         <span class="block__label">Définition — Projection</span>
         <p>Soit \(E = F_1 \oplus F_2\). La <strong>projection sur \(F_1\) parallèlement à \(F_2\)</strong> est l'application linéaire \(p : E \to E\) définie par :</p>
-        <div class="math-display">$$\forall\, x = x_1 + x_2,\quad p(x) = x_1$$</div>
+        <div class="math-display">$$\forall\, x = x_1 + x_2 \in F_1 \oplus F_2,\quad p(x) = x_1$$</div>
+        <p>On dit que \(p\) est un <strong>projecteur</strong>.</p>
       </div>
 
       <div class="block block--thm">
-        <span class="block__label">Théorème — Caractérisation des projecteurs</span>
+        <span class="block__label">Théorème — Caractérisation des projecteurs (idempotence)</span>
         <p>Un endomorphisme \(p \in \mathcal{L}(E)\) est un projecteur si et seulement si :</p>
         <div class="math-display">$$p^2 = p \quad \text{(idempotence)}$$</div>
         <p>Dans ce cas, \(E = \text{Im}(p) \oplus \ker(p)\) et \(p\) est la projection sur \(\text{Im}(p)\) parallèlement à \(\ker(p)\).</p>
@@ -572,94 +764,95 @@
         <div class="deepen__content">
           <div class="block block--proof">
             <span class="block__label">Démonstration</span>
-            <p>Si \(p^2 = p\), soit \(x \in E\). On écrit \(x = p(x) + (x - p(x))\). On a \(p(x) \in \text{Im}(p)\). Par ailleurs, \(p(x - p(x)) = p(x) - p^2(x) = p(x) - p(x) = 0\), donc \(x - p(x) \in \ker(p)\). D'où \(E = \text{Im}(p) + \ker(p)\).</p>
-            <p>Si \(x \in \text{Im}(p) \cap \ker(p)\), alors \(x = p(y)\) pour un certain \(y\) et \(p(x) = 0\). Donc \(0 = p(x) = p^2(y) = p(y) = x\). La somme est directe.</p>
+            <p><em>Sens direct :</em> Si \(p\) est la projection sur \(F_1\) parallèlement à \(F_2\), soit \(x = x_1 + x_2 \in E\). Alors \(p(x) = x_1 \in F_1\), donc \(p^2(x) = p(x_1) = x_1 = p(x)\). D'où \(p^2 = p\).</p>
+            <p><em>Réciproque :</em> Supposons \(p^2 = p\). Pour tout \(x \in E\), on écrit :</p>
+            <div class="math-display">$$x = p(x) + (x - p(x))$$</div>
+            <p>On a \(p(x) \in \text{Im}(p)\). De plus, \(p(x - p(x)) = p(x) - p^2(x) = p(x) - p(x) = 0\), donc \(x - p(x) \in \ker(p)\). Ainsi \(E = \text{Im}(p) + \ker(p)\).</p>
+            <p>Montrons que la somme est directe. Soit \(y \in \text{Im}(p) \cap \ker(p)\). Il existe \(z \in E\) tel que \(y = p(z)\), et \(p(y) = 0\). Donc \(0 = p(y) = p(p(z)) = p^2(z) = p(z) = y\).</p>
             <p class="qed">&#9632;</p>
           </div>
         </div>
       </div>
 
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Image d'un projecteur</span>
+        <p>Soit \(p\) un projecteur. Alors :</p>
+        <div class="math-display">$$\text{Im}(p) = \{ x \in E \mid p(x) = x \} = \ker(p - \text{Id}_E)$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Si \(y \in \text{Im}(p)\), il existe \(x\) tel que \(y = p(x)\). Alors \(p(y) = p^2(x) = p(x) = y\). Donc \(\text{Im}(p) \subset \{x \mid p(x) = x\}\).</p>
+            <p>Réciproquement, si \(p(x) = x\), alors \(x = p(x) \in \text{Im}(p)\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Dans \(\mathbb{R}^3\), la projection sur le plan \(F_1 = \{z = 0\}\) parallèlement à \(F_2 = \text{Vect}(e_3)\) est \(p(x, y, z) = (x, y, 0)\). On vérifie bien \(p^2 = p\), \(\text{Im}(p) = F_1\) et \(\ker(p) = F_2\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Symétries</h3>
+
       <div class="block block--def">
         <span class="block__label">Définition — Symétrie</span>
         <p>Soit \(E = F_1 \oplus F_2\). La <strong>symétrie par rapport à \(F_1\) parallèlement à \(F_2\)</strong> est l'application linéaire \(s : E \to E\) définie par :</p>
-        <div class="math-display">$$\forall\, x = x_1 + x_2,\quad s(x) = x_1 - x_2$$</div>
+        <div class="math-display">$$\forall\, x = x_1 + x_2 \in F_1 \oplus F_2,\quad s(x) = x_1 - x_2$$</div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Caractérisation des symétries</span>
+        <p>Un endomorphisme \(s \in \mathcal{L}(E)\) est une symétrie si et seulement si :</p>
+        <div class="math-display">$$s^2 = \text{Id}_E$$</div>
+        <p>Autrement dit, \(s\) est une <strong>involution</strong>.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p><em>Sens direct :</em> Si \(s\) est la symétrie par rapport à \(F_1\) parallèlement à \(F_2\), soit \(x = x_1 + x_2\). Alors \(s(x) = x_1 - x_2\) et \(s^2(x) = s(x_1 - x_2) = x_1 - (-x_2) = x_1 + x_2 = x\). Donc \(s^2 = \text{Id}_E\).</p>
+            <p><em>Réciproque :</em> Supposons \(s^2 = \text{Id}_E\). Posons \(F_1 = \ker(s - \text{Id})\) et \(F_2 = \ker(s + \text{Id})\). Pour tout \(x \in E\) :</p>
+            <div class="math-display">$$x = \frac{x + s(x)}{2} + \frac{x - s(x)}{2}$$</div>
+            <p>Le premier terme appartient à \(F_1\) (on vérifie que \(s\) le fixe) et le second à \(F_2\) (on vérifie que \(s\) lui applique le signe \(-\)). Donc \(E = F_1 + F_2\).</p>
+            <p>Si \(x \in F_1 \cap F_2\), alors \(s(x) = x\) et \(s(x) = -x\), d'où \(x = -x\) et \(x = 0\). La somme est directe, et \(s\) est bien la symétrie par rapport à \(F_1\) parallèlement à \(F_2\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
       </div>
 
       <div class="block block--prop">
         <span class="block__label">Proposition — Lien projection-symétrie</span>
-        <p>Soit \(p\) un projecteur. Alors \(s = 2p - \text{Id}_E\) est une symétrie. Réciproquement, si \(s^2 = \text{Id}_E\), alors \(p = \frac{1}{2}(s + \text{Id}_E)\) est un projecteur.</p>
+        <p>Soit \(E = F_1 \oplus F_2\), \(p\) la projection sur \(F_1\) parallèlement à \(F_2\), et \(s\) la symétrie correspondante. Alors :</p>
+        <div class="math-display">$$s = 2p - \text{Id}_E \qquad \text{et} \qquad p = \frac{1}{2}(s + \text{Id}_E)$$</div>
       </div>
 
       <div class="deepen">
         <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="deepen__content">
-          <div class="block block--example">
-            <span class="block__label">Exemple</span>
-            <p>Dans \(\mathbb{R}^2\), la projection sur l'axe des abscisses parallèlement à l'axe des ordonnées est définie par \(p(x,y) = (x, 0)\). La symétrie associée est \(s(x,y) = (x, -y)\), c'est la réflexion par rapport à l'axe \(Ox\).</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════ -->
-    <!-- SECTION III -->
-    <!-- ═══════════════════════════════════════ -->
-    <section class="course__section" id="sec3">
-      <h2 class="course__section-title">
-        <span class="course__section-num">III.</span> Dualité
-      </h2>
-
-      <p>La dualité fournit un point de vue puissant et élégant sur les espaces vectoriels, en étudiant les formes linéaires.</p>
-
-      <div class="block block--def">
-        <span class="block__label">Définition — Dual d'un espace vectoriel</span>
-        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel. Le <strong>dual</strong> de \(E\) est l'espace des formes linéaires sur \(E\) :</p>
-        <div class="math-display">$$E^* = \mathcal{L}(E, \mathbb{K})$$</div>
-        <p>Les éléments de \(E^*\) sont appelés <strong>formes linéaires</strong>.</p>
-      </div>
-
-      <div class="deepen">
-        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
-        <div class="deepen__content">
-          <div class="block block--example">
-            <span class="block__label">Exemple</span>
-            <p>La trace \(\text{tr} : \mathcal{M}_n(\mathbb{K}) \to \mathbb{K}\) est une forme linéaire sur l'espace des matrices carrées. De même, l'application \(\varphi : \mathbb{R}[X] \to \mathbb{R}\) définie par \(\varphi(P) = P(1)\) est une forme linéaire.</p>
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Soit \(x = x_1 + x_2\). On a \((2p - \text{Id})(x) = 2p(x) - x = 2x_1 - (x_1 + x_2) = x_1 - x_2 = s(x)\).</p>
+            <p>Réciproquement, \(\frac{1}{2}(s + \text{Id})(x) = \frac{1}{2}(x_1 - x_2 + x_1 + x_2) = x_1 = p(x)\).</p>
+            <p class="qed">&#9632;</p>
           </div>
         </div>
       </div>
 
-      <h3 class="course__subsection-title">Base duale</h3>
-
-      <div class="block block--def">
-        <span class="block__label">Définition — Base duale</span>
-        <p>Soit \((e_1, \ldots, e_n)\) une base de \(E\). La <strong>base duale</strong> est la famille \((e_1^*, \ldots, e_n^*)\) de \(E^*\) définie par :</p>
-        <div class="math-display">$$e_i^*(e_j) = \delta_{ij} = \begin{cases} 1 & \text{si } i = j \\ 0 & \text{si } i \neq j \end{cases}$$</div>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Dans \(\mathbb{R}^2\), la projection sur l'axe \(Ox\) parallèlement à \(Oy\) est \(p(x,y) = (x, 0)\). La symétrie associée est \(s(x,y) = 2p(x,y) - (x,y) = (2x, 0) - (x, y) = (x, -y)\). C'est la réflexion par rapport à l'axe des abscisses.</p>
       </div>
 
-      <div class="block block--thm">
-        <span class="block__label">Théorème — La base duale est une base</span>
-        <p>Si \(E\) est de dimension finie \(n\), alors \((e_1^*, \ldots, e_n^*)\) est une base de \(E^*\). En particulier, \(\dim E^* = \dim E\).</p>
-      </div>
-
-      <div class="block block--prop">
-        <span class="block__label">Proposition — Coordonnées via la base duale</span>
-        <p>Pour tout \(x \in E\), on a la décomposition :</p>
-        <div class="math-display">$$x = \sum_{i=1}^{n} e_i^*(x) \cdot e_i$$</div>
-        <p>Autrement dit, \(e_i^*(x)\) est la \(i\)-ème coordonnée de \(x\) dans la base \((e_1, \ldots, e_n)\).</p>
-      </div>
-
-      <h3 class="course__subsection-title">Orthogonalité</h3>
-
-      <div class="block block--def">
-        <span class="block__label">Définition — Orthogonal d'un sous-espace</span>
-        <p>Soit \(F\) un sous-espace de \(E\). L'<strong>orthogonal</strong> de \(F\) est le sous-espace de \(E^*\) :</p>
-        <div class="math-display">$$F^\circ = \{ \varphi \in E^* \mid \forall\, x \in F,\ \varphi(x) = 0 \}$$</div>
-      </div>
-
-      <div class="block block--thm">
-        <span class="block__label">Théorème — Dimension de l'orthogonal</span>
-        <p>Si \(E\) est de dimension finie \(n\) et \(F\) un sous-espace de dimension \(p\), alors :</p>
-        <div class="math-display">$$\dim F^\circ = n - p$$</div>
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Soit \(E = \mathbb{R}^3\), \(F_1 = \text{Vect}((1,1,0))\) et \(F_2 = \{(x,y,z) \mid x + y = 0\}\). On vérifie que \(E = F_1 \oplus F_2\). Pour \(v = (a, b, c)\), on décompose \(v = \frac{a+b}{2}(1,1,0) + \left(\frac{a-b}{2}, \frac{b-a}{2}, c\right)\). La projection donne \(p(a,b,c) = \frac{a+b}{2}(1,1,0)\) et la symétrie \(s(a,b,c) = (b, a, -c)\).</p>
       </div>
     </section>
 
@@ -668,64 +861,299 @@
     <!-- ═══════════════════════════════════════ -->
     <section class="course__section" id="sec4">
       <h2 class="course__section-title">
-        <span class="course__section-num">IV.</span> Matrices par blocs
+        <span class="course__section-num">IV.</span> Dualité
+      </h2>
+
+      <p>La dualité fournit un point de vue puissant sur les espaces vectoriels, en étudiant les formes linéaires. On suppose dans cette section que \(E\) est un \(\mathbb{K}\)-espace vectoriel de dimension finie \(n\).</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Dual d'un espace vectoriel</span>
+        <p>Le <strong>dual</strong> de \(E\) est l'espace des formes linéaires sur \(E\) :</p>
+        <div class="math-display">$$E^* = \mathcal{L}(E, \mathbb{K})$$</div>
+        <p>Les éléments de \(E^*\) sont appelés <strong>formes linéaires</strong>.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Formes linéaires classiques</span>
+        <ul>
+          <li>La <strong>trace</strong> \(\text{tr} : \mathcal{M}_n(\mathbb{K}) \to \mathbb{K}\) est une forme linéaire sur l'espace des matrices carrées.</li>
+          <li>L'<strong>évaluation</strong> en un point : \(\varphi_a : \mathbb{K}[X] \to \mathbb{K}\), \(P \mapsto P(a)\), est une forme linéaire.</li>
+          <li>L'<strong>intégrale</strong> : \(\ell : \mathcal{C}^0([0,1], \mathbb{R}) \to \mathbb{R}\), \(f \mapsto \int_0^1 f(t)\, dt\), est une forme linéaire.</li>
+        </ul>
+      </div>
+
+      <h3 class="course__subsection-title">Base duale</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Base duale</span>
+        <p>Soit \(\mathcal{B} = (e_1, \ldots, e_n)\) une base de \(E\). La <strong>base duale</strong> est la famille \((e_1^*, \ldots, e_n^*)\) d'éléments de \(E^*\) définis par :</p>
+        <div class="math-display">$$e_i^*(e_j) = \delta_{ij} = \begin{cases} 1 & \text{si } i = j \\ 0 & \text{si } i \neq j \end{cases}$$</div>
+        <p>Chaque \(e_i^*\) est entièrement déterminé par ses valeurs sur la base \(\mathcal{B}\) (par linéarité).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — La base duale est une base de \(E^*\)</span>
+        <p>Si \(E\) est de dimension finie \(n\) et \(\mathcal{B} = (e_1, \ldots, e_n)\) est une base de \(E\), alors \(\mathcal{B}^* = (e_1^*, \ldots, e_n^*)\) est une base de \(E^*\). En particulier :</p>
+        <div class="math-display">$$\dim E^* = \dim E = n$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p><em>Famille libre :</em> Soit \(\lambda_1, \ldots, \lambda_n \in \mathbb{K}\) tels que \(\sum_{i=1}^n \lambda_i e_i^* = 0\) (la forme nulle). En évaluant en \(e_j\) : \(\sum_{i=1}^n \lambda_i e_i^*(e_j) = \sum_{i=1}^n \lambda_i \delta_{ij} = \lambda_j = 0\). Donc la famille est libre.</p>
+            <p><em>Famille génératrice :</em> Soit \(\varphi \in E^*\). Posons \(\psi = \sum_{i=1}^n \varphi(e_i)\, e_i^*\). Pour tout \(j\), \(\psi(e_j) = \sum_{i=1}^n \varphi(e_i)\, \delta_{ij} = \varphi(e_j)\). Comme \(\varphi\) et \(\psi\) coïncident sur une base de \(E\), elles sont égales. Donc \(\varphi = \sum_{i=1}^n \varphi(e_i)\, e_i^*\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Coordonnées via la base duale</span>
+        <p>Pour tout \(x \in E\), on a :</p>
+        <div class="math-display">$$x = \sum_{i=1}^{n} e_i^*(x) \cdot e_i$$</div>
+        <p>Autrement dit, \(e_i^*(x)\) est la \(i\)-ème coordonnée de \(x\) dans la base \(\mathcal{B}\).</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Dans \(\mathbb{R}^3\) muni de la base canonique \((e_1, e_2, e_3)\), les formes duales sont les projections sur les coordonnées : \(e_1^*(x, y, z) = x\), \(e_2^*(x, y, z) = y\), \(e_3^*(x, y, z) = z\).</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Dans \(\mathbb{R}_1[X]\) muni de la base \((1, X)\), la base duale est \((\varepsilon_0, \varepsilon_1)\) où \(\varepsilon_0(P) = P(0)\) et \(\varepsilon_1(P) = P'(0)\). En effet, \(\varepsilon_0(1) = 1\), \(\varepsilon_0(X) = 0\), \(\varepsilon_1(1) = 0\), \(\varepsilon_1(X) = 1\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Orthogonal d'un sous-espace</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Orthogonal d'un sous-espace</span>
+        <p>Soit \(F\) un sous-espace de \(E\). L'<strong>orthogonal</strong> (ou <strong>annulateur</strong>) de \(F\) est le sous-espace de \(E^*\) :</p>
+        <div class="math-display">$$F^\circ = \{ \varphi \in E^* \mid \forall\, x \in F,\ \varphi(x) = 0 \}$$</div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Dimension de l'orthogonal</span>
+        <p>Si \(E\) est de dimension \(n\) et \(F\) un sous-espace de dimension \(p\), alors :</p>
+        <div class="math-display">$$\dim F^\circ = n - p$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Soit \((e_1, \ldots, e_p)\) une base de \(F\), complétée en \((e_1, \ldots, e_p, e_{p+1}, \ldots, e_n)\) base de \(E\). Notons \((e_1^*, \ldots, e_n^*)\) la base duale.</p>
+            <p>Montrons que \(F^\circ = \text{Vect}(e_{p+1}^*, \ldots, e_n^*)\).</p>
+            <p>Si \(\varphi \in \text{Vect}(e_{p+1}^*, \ldots, e_n^*)\), alors pour tout \(j \leqslant p\), \(\varphi(e_j) = \sum_{i=p+1}^{n} \lambda_i e_i^*(e_j) = 0\). Donc \(\varphi\) s'annule sur la base de \(F\), et par linéarité sur tout \(F\). Ainsi \(\varphi \in F^\circ\).</p>
+            <p>Réciproquement, si \(\varphi \in F^\circ\), on écrit \(\varphi = \sum_{i=1}^{n} \varphi(e_i) e_i^*\). Comme \(\varphi(e_j) = 0\) pour \(j \leqslant p\), on a \(\varphi = \sum_{i=p+1}^{n} \varphi(e_i) e_i^* \in \text{Vect}(e_{p+1}^*, \ldots, e_n^*)\).</p>
+            <p>Donc \(F^\circ = \text{Vect}(e_{p+1}^*, \ldots, e_n^*)\) et \(\dim F^\circ = n - p\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Dans \(\mathbb{R}^3\), soit \(F = \text{Vect}(e_1)\). Alors \(F^\circ = \{\varphi \in (\mathbb{R}^3)^* \mid \varphi(e_1) = 0\} = \text{Vect}(e_2^*, e_3^*)\), de dimension \(3 - 1 = 2\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>L'orthogonal au sens de la dualité ne doit pas être confondu avec l'orthogonal au sens d'un produit scalaire. Ici, \(F^\circ\) est un sous-espace du dual \(E^*\), pas de \(E\) lui-même. Cependant, en présence d'un produit scalaire, on peut identifier \(E^*\) et \(E\) via le théorème de représentation de Riesz.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION V -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="course__section" id="sec5">
+      <h2 class="course__section-title">
+        <span class="course__section-num">V.</span> Matrices par blocs
       </h2>
 
       <p>Le calcul par blocs est un outil essentiel pour manipuler des matrices de grande taille et pour exprimer la matrice d'un endomorphisme relativement à une décomposition en somme directe.</p>
 
       <div class="block block--def">
         <span class="block__label">Définition — Matrice par blocs</span>
-        <p>Une matrice \(M \in \mathcal{M}_n(\mathbb{K})\) est dite <strong>écrite par blocs</strong> lorsqu'on la décompose en sous-matrices :</p>
+        <p>Une matrice \(M \in \mathcal{M}_{m,n}(\mathbb{K})\) est dite <strong>écrite par blocs</strong> lorsqu'on la décompose en sous-matrices par un découpage compatible des lignes et des colonnes :</p>
         <div class="math-display">$$M = \begin{pmatrix} A & B \\ C & D \end{pmatrix}$$</div>
-        <p>où \(A \in \mathcal{M}_{p,p}\), \(B \in \mathcal{M}_{p,q}\), \(C \in \mathcal{M}_{q,p}\), \(D \in \mathcal{M}_{q,q}\) avec \(p + q = n\).</p>
+        <p>où \(A \in \mathcal{M}_{p,r}\), \(B \in \mathcal{M}_{p,s}\), \(C \in \mathcal{M}_{q,r}\), \(D \in \mathcal{M}_{q,s}\) avec \(p + q = m\) et \(r + s = n\).</p>
       </div>
 
       <div class="block block--thm">
         <span class="block__label">Théorème — Produit par blocs</span>
-        <p>Si les tailles sont compatibles, le produit de matrices par blocs suit les mêmes règles que le produit matriciel usuel :</p>
+        <p>Si les découpages sont compatibles (le découpage en colonnes de la première matrice coïncide avec le découpage en lignes de la seconde), alors le produit par blocs suit les mêmes règles que le produit matriciel usuel :</p>
         <div class="math-display">$$\begin{pmatrix} A & B \\ C & D \end{pmatrix} \begin{pmatrix} A' & B' \\ C' & D' \end{pmatrix} = \begin{pmatrix} AA' + BC' & AB' + BD' \\ CA' + DC' & CB' + DD' \end{pmatrix}$$</div>
+        <p>à condition que les tailles des blocs rendent les produits individuels bien définis.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Calculons le produit par blocs :</p>
+        <div class="math-display">$$\begin{pmatrix} I_2 & A \\ 0 & I_1 \end{pmatrix} \begin{pmatrix} I_2 & -A \\ 0 & I_1 \end{pmatrix} = \begin{pmatrix} I_2 + 0 & -A + A \\ 0 & I_1 \end{pmatrix} = \begin{pmatrix} I_2 & 0 \\ 0 & I_1 \end{pmatrix} = I_3$$</div>
+        <p>Ceci montre que la matrice triangulaire supérieure par blocs avec des identités sur la diagonale est inversible, d'inverse obtenu en changeant le signe du bloc hors-diagonal.</p>
       </div>
 
       <h3 class="course__subsection-title">Matrice d'un projecteur</h3>
 
       <div class="block block--prop">
-        <span class="block__label">Proposition — Matrice d'une projection</span>
-        <p>Soit \(E = F_1 \oplus F_2\) et \(p\) la projection sur \(F_1\) parallèlement à \(F_2\). Dans une base adaptée à cette décomposition \(\mathcal{B} = (\underbrace{e_1,\ldots,e_r}_{F_1}, \underbrace{e_{r+1},\ldots,e_n}_{F_2})\), la matrice de \(p\) est :</p>
+        <span class="block__label">Proposition — Matrice d'une projection dans une base adaptée</span>
+        <p>Soit \(E = F_1 \oplus F_2\) avec \(\dim F_1 = r\) et \(p\) la projection sur \(F_1\) parallèlement à \(F_2\). Dans une base adaptée \(\mathcal{B} = (\underbrace{e_1,\ldots,e_r}_{F_1}, \underbrace{e_{r+1},\ldots,e_n}_{F_2})\), la matrice de \(p\) est :</p>
         <div class="math-display">$$\text{Mat}_\mathcal{B}(p) = \begin{pmatrix} I_r & 0 \\ 0 & 0 \end{pmatrix}$$</div>
       </div>
 
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>On vérifie bien l'idempotence au niveau matriciel : \(\begin{pmatrix} I_r & 0 \\ 0 & 0 \end{pmatrix}^2 = \begin{pmatrix} I_r & 0 \\ 0 & 0 \end{pmatrix}\). De même, la matrice de la symétrie associée dans la même base est \(\begin{pmatrix} I_r & 0 \\ 0 & -I_{n-r} \end{pmatrix}\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Sous-espace stable et matrice triangulaire par blocs</h3>
+
       <div class="block block--prop">
         <span class="block__label">Proposition — Sous-espace stable et matrice triangulaire</span>
-        <p>Soit \(u \in \mathcal{L}(E)\) et \(F\) un sous-espace de \(E\) stable par \(u\). Si on choisit une base \(\mathcal{B}\) dont les premiers vecteurs forment une base de \(F\), alors :</p>
+        <p>Soit \(u \in \mathcal{L}(E)\) et \(F\) un sous-espace de \(E\) stable par \(u\) (i.e. \(u(F) \subset F\)). Si on choisit une base \(\mathcal{B}\) dont les \(p\) premiers vecteurs forment une base de \(F\), alors :</p>
         <div class="math-display">$$\text{Mat}_\mathcal{B}(u) = \begin{pmatrix} A & B \\ 0 & D \end{pmatrix}$$</div>
-        <p>où \(A\) est la matrice de la restriction \(u|_F\) dans la base de \(F\).</p>
+        <p>où \(A \in \mathcal{M}_p(\mathbb{K})\) est la matrice de la restriction \(u|_F\) dans la base de \(F\).</p>
       </div>
 
       <div class="deepen">
         <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
         <div class="deepen__content">
-          <div class="block block--example">
-            <span class="block__label">Exemple</span>
-            <p>Considérons \(u : \mathbb{R}^3 \to \mathbb{R}^3\) défini par \(u(x,y,z) = (x+z, y, z)\). Le sous-espace \(F = \text{Vect}(e_1, e_2)\) est stable par \(u\). Dans la base canonique, la matrice de \(u\) s'écrit bien par blocs :</p>
-            <div class="math-display">$$\begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} I_2 & B \\ 0 & (1) \end{pmatrix}$$</div>
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Soit \(\mathcal{B} = (e_1, \ldots, e_p, e_{p+1}, \ldots, e_n)\) avec \((e_1, \ldots, e_p)\) base de \(F\). Pour \(j \leqslant p\), on a \(u(e_j) \in F\) (stabilité), donc \(u(e_j) = \sum_{i=1}^{p} a_{ij} e_i\). Cela signifie que les coefficients de \(u(e_j)\) sur \(e_{p+1}, \ldots, e_n\) sont tous nuls, ce qui donne le bloc \(0\) en bas à gauche de la matrice.</p>
+            <p>Le bloc \(A = (a_{ij})_{1 \leqslant i,j \leqslant p}\) est la matrice de \(u|_F\) dans la base \((e_1, \ldots, e_p)\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Soit \(u : \mathbb{R}^3 \to \mathbb{R}^3\) défini par \(u(x,y,z) = (x+z, y, z)\). Le sous-espace \(F = \text{Vect}(e_1, e_2)\) est stable par \(u\) car \(u(e_1) = e_1 \in F\) et \(u(e_2) = e_2 \in F\). Dans la base canonique :</p>
+        <div class="math-display">$$\text{Mat}(u) = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} I_2 & B \\ 0 & (1) \end{pmatrix}$$</div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>Si \(u\) admet deux sous-espaces stables supplémentaires \(F_1\) et \(F_2\), alors dans une base adaptée, la matrice de \(u\) est diagonale par blocs : \(\text{Mat}(u) = \begin{pmatrix} A & 0 \\ 0 & D \end{pmatrix}\). Ceci permet de traiter les restrictions \(u|_{F_1}\) et \(u|_{F_2}\) indépendamment, technique fondamentale en réduction des endomorphismes.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION VI -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="course__section" id="sec6">
+      <h2 class="course__section-title">
+        <span class="course__section-num">VI.</span> Changement de base et équivalence
+      </h2>
+
+      <p>On étudie ici comment la matrice d'une application linéaire se transforme par changement de base, ce qui conduit aux notions d'équivalence et de similitude de matrices.</p>
+
+      <h3 class="course__subsection-title">Matrice de passage et changement de base</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Matrice de passage</span>
+        <p>Soient \(\mathcal{B} = (e_1, \ldots, e_n)\) et \(\mathcal{B}' = (e_1', \ldots, e_n')\) deux bases de \(E\). La <strong>matrice de passage</strong> de \(\mathcal{B}\) à \(\mathcal{B}'\) est la matrice dont la \(j\)-ème colonne contient les coordonnées de \(e_j'\) dans la base \(\mathcal{B}\) :</p>
+        <div class="math-display">$$P = P_{\mathcal{B} \to \mathcal{B}'} = \text{Mat}_\mathcal{B}(\text{Id}_E, \mathcal{B}', \mathcal{B})$$</div>
+        <p>Cette matrice est inversible, et \(P^{-1} = P_{\mathcal{B}' \to \mathcal{B}}\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Formule de changement de base</span>
+        <p>Soit \(f \in \mathcal{L}(E, F)\), \(\mathcal{B}, \mathcal{B}'\) deux bases de \(E\) et \(\mathcal{C}, \mathcal{C}'\) deux bases de \(F\). Si \(P = P_{\mathcal{B} \to \mathcal{B}'}\) et \(Q = P_{\mathcal{C} \to \mathcal{C}'}\), alors :</p>
+        <div class="math-display">$$\text{Mat}_{\mathcal{B}', \mathcal{C}'}(f) = Q^{-1} \cdot \text{Mat}_{\mathcal{B}, \mathcal{C}}(f) \cdot P$$</div>
+        <p>Pour un endomorphisme \(u \in \mathcal{L}(E)\) avec changement de base dans \(E\) uniquement :</p>
+        <div class="math-display">$$\text{Mat}_{\mathcal{B}'}(u) = P^{-1} \cdot \text{Mat}_{\mathcal{B}}(u) \cdot P$$</div>
+      </div>
+
+      <h3 class="course__subsection-title">Matrices équivalentes et semblables</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Matrices équivalentes</span>
+        <p>Deux matrices \(A, B \in \mathcal{M}_{m,n}(\mathbb{K})\) sont dites <strong>équivalentes</strong> s'il existe \(P \in GL_n(\mathbb{K})\) et \(Q \in GL_m(\mathbb{K})\) telles que :</p>
+        <div class="math-display">$$B = Q^{-1} A P$$</div>
+        <p>Cela signifie que \(A\) et \(B\) représentent la même application linéaire dans des bases différentes.</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Matrices semblables</span>
+        <p>Deux matrices carrées \(A, B \in \mathcal{M}_n(\mathbb{K})\) sont dites <strong>semblables</strong> s'il existe \(P \in GL_n(\mathbb{K})\) telle que :</p>
+        <div class="math-display">$$B = P^{-1} A P$$</div>
+        <p>Cela signifie que \(A\) et \(B\) représentent le même endomorphisme dans des bases différentes.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Invariants de similitude</span>
+        <p>Si \(A\) et \(B\) sont semblables, alors elles ont mêmes :</p>
+        <ul>
+          <li><strong>rang</strong> : \(\text{rg}(A) = \text{rg}(B)\)</li>
+          <li><strong>trace</strong> : \(\text{tr}(A) = \text{tr}(B)\)</li>
+          <li><strong>déterminant</strong> : \(\det(A) = \det(B)\)</li>
+          <li><strong>polynôme caractéristique</strong> : \(\chi_A = \chi_B\)</li>
+        </ul>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration (trace et déterminant)</span>
+            <p>Si \(B = P^{-1}AP\), alors \(\text{tr}(B) = \text{tr}(P^{-1}AP) = \text{tr}(AP \cdot P^{-1}) = \text{tr}(A)\) par cyclicité de la trace.</p>
+            <p>Pour le déterminant : \(\det(B) = \det(P^{-1}AP) = \det(P^{-1}) \det(A) \det(P) = \frac{1}{\det(P)} \det(A) \det(P) = \det(A)\).</p>
+            <p>Pour le rang : \(\text{rg}(B) = \text{rg}(P^{-1}AP)\). Comme \(P\) et \(P^{-1}\) sont inversibles, la multiplication par une matrice inversible conserve le rang (elle ne modifie ni l'injectivité ni la surjectivité).</p>
+            <p class="qed">&#9632;</p>
           </div>
         </div>
       </div>
 
       <div class="block block--remark">
         <span class="block__label">Remarque</span>
-        <p>Le calcul par blocs est particulièrement utile pour la réduction des endomorphismes. Si \(u\) admet deux sous-espaces stables supplémentaires \(F_1\) et \(F_2\), alors dans une base adaptée, la matrice de \(u\) est diagonale par blocs, ce qui permet de traiter chaque restriction indépendamment.</p>
+        <p>La réciproque est fausse : deux matrices peuvent avoir mêmes trace, déterminant et rang sans être semblables. Par exemple, \(I_2\) et \(\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}\) ont mêmes trace (2) et déterminant (1) mais ne sont pas semblables (la première est diagonale et la seconde ne l'est pas).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Classification par le rang (équivalence)</span>
+        <p>Soit \(A \in \mathcal{M}_{m,n}(\mathbb{K})\) de rang \(r\). Alors \(A\) est équivalente à la matrice :</p>
+        <div class="math-display">$$J_r = \begin{pmatrix} I_r & 0 \\ 0 & 0 \end{pmatrix} \in \mathcal{M}_{m,n}(\mathbb{K})$$</div>
+        <p>Autrement dit, deux matrices de \(\mathcal{M}_{m,n}(\mathbb{K})\) sont équivalentes si et seulement si elles ont le même rang.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Approfondir <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Soit \(f \in \mathcal{L}(\mathbb{K}^n, \mathbb{K}^m)\) l'application de matrice \(A\) dans les bases canoniques. On a \(\text{rg}(f) = r\).</p>
+            <p>Par le théorème du rang, \(\dim(\ker f) = n - r\). Soit \((v_1, \ldots, v_{n-r})\) une base de \(\ker f\), complétée en \((u_1, \ldots, u_r, v_1, \ldots, v_{n-r})\) base de \(\mathbb{K}^n\). Alors \((f(u_1), \ldots, f(u_r))\) est une base de \(\text{Im}(f)\), qu'on complète en \((f(u_1), \ldots, f(u_r), w_1, \ldots, w_{m-r})\) base de \(\mathbb{K}^m\).</p>
+            <p>Dans ces nouvelles bases, la matrice de \(f\) est \(J_r\) car \(f(u_i) = f(u_i)\) (le \(i\)-ème vecteur de la base d'arrivée) et \(f(v_j) = 0\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>La matrice \(A = \begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix}\) est de rang 1 (les lignes sont proportionnelles). Elle est donc équivalente à \(J_1 = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\). On peut vérifier qu'avec \(P = \begin{pmatrix} 1 & -2 \\ 0 & 1 \end{pmatrix}\) et \(Q = \begin{pmatrix} 1 & 0 \\ -3 & 1 \end{pmatrix}\), on obtient \(Q^{-1}AP = J_1\).</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Soit \(A = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix} \in \mathcal{M}_{2,3}(\mathbb{R})\). On a \(\text{rg}(A) = 2\) (les deux lignes sont indépendantes). Donc \(A\) est équivalente à \(J_2 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}\).</p>
       </div>
     </section>
 
     <!-- Chapter navigation -->
     <nav class="course__nav">
       <a href="../mp.html" class="course__nav-link">
-        ← Programme MP
+        &larr; Programme MP
         <span>Tous les chapitres</span>
       </a>
       <a href="#" class="course__nav-link course__nav-link--next">
-        Chapitre suivant →
+        Chapitre suivant &rarr;
         <span>Réduction avancée</span>
       </a>
     </nav>
@@ -736,7 +1164,7 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <span class="footer__logo">&int; BibMaths</span>
+        <span class="footer__logo">&int; LibMaths</span>
         <p class="footer__tagline">La beauté des mathématiques, en ligne.</p>
       </div>
       <div class="footer__links">
@@ -755,7 +1183,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; 2026 BibMaths — Projet open source</span>
+      <span>&copy; 2026 LibMaths — Projet open source</span>
     </div>
   </footer>
 

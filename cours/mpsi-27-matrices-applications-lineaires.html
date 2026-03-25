@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrices et applications lineaires — MPSI | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md)}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
+    .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:4000px;opacity:1}
+    .block p,.block li{font-size:.9rem;line-height:1.8}
+    .block ul{list-style:none;padding-left:var(--space-md)}
+    .block ul li::before{content:'---';color:var(--accent);margin-right:8px}
+    .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
+    .block--def .block__label{color:#2563A3}
+    .block--def ul li::before{color:#2563A3}
+    .block--thm{background:rgba(163,42,42,.06);border-left:3px solid #A32A2A}
+    .block--thm .block__label{color:#A32A2A}
+    .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
+    .block--prop .block__label{color:#7638A3}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
+    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--example .block__label{color:#4B825A}
+    .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
+    .block--remark .block__label{color:var(--accent)}
+    .block--remark p{color:var(--ink-light);font-size:.875rem}
+    .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
+    .block--cor .block__label{color:#9B59B6}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
+    [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
+    [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
+    [data-theme="dark"] .block--thm{background:rgba(163,42,42,.1);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
+    [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
+    [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
+    [data-theme="dark"] .block--proof .block__label{color:#8888A0}
+    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
+    [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
+    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../mpsi.html" class="nav__link nav__link--has-sub nav__link--active">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../mpsi.html" class="mobile-menu__page-link mobile-menu__page-link--active">MPSI — Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../mp.html" class="mobile-menu__page-link">MP — Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../mpsi.html" class="course__back">&larr; Retour au programme MPSI</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MPSI — Cours</span>
+      <span class="course__chapter">Chapitre 27</span>
+    </div>
+
+    <h1 class="course__title">Matrices et applications lineaires</h1>
+
+    <p class="course__intro">
+      Ce chapitre etablit le lien fondamental entre les applications lineaires et les matrices. On associe a toute application lineaire entre espaces de dimension finie une matrice qui la represente dans des bases choisies, et on montre que cette correspondance est un isomorphisme d'algebres. On etudie ensuite l'effet d'un changement de base sur la matrice, ce qui conduit aux notions d'equivalence et de similitude. On definit enfin la trace d'un endomorphisme et on conclut par l'etude de la matrice de Vandermonde.
+    </p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> Matrice d'une application lineaire</a></li>
+        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Isomorphisme \(\mathcal{L}(E,F) \simeq \mathcal{M}_{n,p}(\mathbb{K})\)</a></li>
+        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> Matrice de passage et changement de base</a></li>
+        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> Equivalence et similitude</a></li>
+        <li class="course__toc-item"><a href="#sec5"><span class="course__toc-num">V.</span> Trace d'un endomorphisme</a></li>
+        <li class="course__toc-item"><a href="#sec6"><span class="course__toc-num">VI.</span> Matrice de Vandermonde</a></li>
+      </ol>
+    </nav>
+
+    <!-- =============== SECTION I =============== -->
+    <section class="course__section" id="sec1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Matrice d'une application lineaire</h2>
+
+      <p>Soient \(E\) et \(F\) deux \(\mathbb{K}\)-espaces vectoriels de dimensions finies respectives \(p\) et \(n\), munis de bases \(\mathcal{B} = (e_1, \ldots, e_p)\) et \(\mathcal{C} = (f_1, \ldots, f_n)\). On associe a toute application lineaire \(f \in \mathcal{L}(E, F)\) une matrice qui la represente entierement.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Definition --- Matrice d'une application lineaire</span>
+        <p>Soit \(f \in \mathcal{L}(E, F)\). La <strong>matrice de \(f\) relativement aux bases \(\mathcal{B}\) et \(\mathcal{C}\)</strong>, notee \(\mathrm{Mat}_{\mathcal{B},\mathcal{C}}(f)\), est la matrice \(A = (a_{i,j}) \in \mathcal{M}_{n,p}(\mathbb{K})\) dont la \(j\)-ieme colonne est formee des coordonnees de \(f(e_j)\) dans la base \(\mathcal{C}\) :</p>
+        <div class="math-display">$$f(e_j) = \sum_{i=1}^{n} a_{i,j}\, f_i \qquad \text{pour } j = 1, \ldots, p$$</div>
+        <p>Autrement dit, la colonne \(j\) de \(A\) est le vecteur-colonne des composantes de \(f(e_j)\) dans \(\mathcal{C}\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition --- Rang</span>
+        <p>Soit \(f \in \mathcal{L}(E, F)\) et \(A = \mathrm{Mat}_{\mathcal{B},\mathcal{C}}(f)\). Alors :</p>
+        <div class="math-display">$$\mathrm{rg}(f) = \mathrm{rg}(A)$$</div>
+        <p>Le rang de l'application lineaire est egal au rang de sa matrice, c'est-a-dire au rang de la famille de ses vecteurs-colonnes.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition --- Calcul de l'image par produit matriciel</span>
+        <p>Soit \(x \in E\) de coordonnees \(X \in \mathcal{M}_{p,1}(\mathbb{K})\) dans \(\mathcal{B}\), et soit \(A = \mathrm{Mat}_{\mathcal{B},\mathcal{C}}(f)\). Alors les coordonnees \(Y\) de \(f(x)\) dans \(\mathcal{C}\) verifient :</p>
+        <div class="math-display">$$Y = AX$$</div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>L'application lineaire \(f : \mathbb{R}^2 \to \mathbb{R}^3\) definie par \(f(x,y) = (x+y,\, 2x,\, x-y)\) a pour matrice dans les bases canoniques :</p>
+        <div class="math-display">$$\mathrm{Mat}(f) = \begin{pmatrix} 1 & 1 \\ 2 & 0 \\ 1 & -1 \end{pmatrix}$$</div>
+      </div>
+    </section>
+
+    <!-- =============== SECTION II =============== -->
+    <section class="course__section" id="sec2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Isomorphisme \(\mathcal{L}(E,F) \simeq \mathcal{M}_{n,p}(\mathbb{K})\)</h2>
+
+      <p>On fixe des bases \(\mathcal{B}\) de \(E\) et \(\mathcal{C}\) de \(F\). L'application qui a une application lineaire associe sa matrice est un isomorphisme fondamental.</p>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme --- Isomorphisme algebrique</span>
+        <p>L'application</p>
+        <div class="math-display">$$\Phi : \mathcal{L}(E,F) \longrightarrow \mathcal{M}_{n,p}(\mathbb{K}), \qquad u \longmapsto \mathrm{Mat}_{\mathcal{B},\mathcal{C}}(u)$$</div>
+        <p>est un <strong>isomorphisme d'espaces vectoriels</strong>. En particulier, \(\dim \mathcal{L}(E,F) = np\).</p>
+        <p>Lorsque \(E = F\) et \(\mathcal{B} = \mathcal{C}\), l'application \(\Phi : \mathcal{L}(E) \to \mathcal{M}_n(\mathbb{K})\) est un <strong>isomorphisme d'algebres</strong> : elle est compatible avec la composition et la multiplication matricielle.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition --- Compatibilite avec la composition</span>
+        <p>Soient \(E\), \(F\), \(G\) trois espaces vectoriels de dimensions finies munis de bases \(\mathcal{B}\), \(\mathcal{C}\), \(\mathcal{D}\). Pour \(u \in \mathcal{L}(E,F)\) et \(v \in \mathcal{L}(F,G)\) :</p>
+        <div class="math-display">$$\mathrm{Mat}_{\mathcal{B},\mathcal{D}}(v \circ u) = \mathrm{Mat}_{\mathcal{C},\mathcal{D}}(v) \cdot \mathrm{Mat}_{\mathcal{B},\mathcal{C}}(u)$$</div>
+        <p>La matrice de la composee est le produit des matrices.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition --- Linearite</span>
+        <p>Pour tous \(u, v \in \mathcal{L}(E,F)\) et tous \(\lambda, \mu \in \mathbb{K}\) :</p>
+        <div class="math-display">$$\mathrm{Mat}_{\mathcal{B},\mathcal{C}}(\lambda u + \mu v) = \lambda\, \mathrm{Mat}_{\mathcal{B},\mathcal{C}}(u) + \mu\, \mathrm{Mat}_{\mathcal{B},\mathcal{C}}(v)$$</div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>Ce theoreme est le coeur du <strong>dictionnaire algebre lineaire / calcul matriciel</strong>. Toute propriete des applications lineaires se traduit en une propriete des matrices, et reciproquement. La composition devient la multiplication, l'inversibilite de \(u\) correspond a l'inversibilite de sa matrice, etc.</p>
+      </div>
+    </section>
+
+    <!-- =============== SECTION III =============== -->
+    <section class="course__section" id="sec3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Matrice de passage et changement de base</h2>
+
+      <p>Lorsqu'on change de base, la matrice representant une application lineaire change. Les formules de changement de base sont gouvernees par la matrice de passage.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Definition --- Matrice de passage</span>
+        <p>Soient \(\mathcal{B} = (e_1, \ldots, e_n)\) et \(\mathcal{B}' = (e'_1, \ldots, e'_n)\) deux bases de \(E\). La <strong>matrice de passage</strong> de \(\mathcal{B}\) a \(\mathcal{B}'\) est la matrice :</p>
+        <div class="math-display">$$P = \mathrm{Mat}_{\mathcal{B}}(\mathcal{B}') = \mathrm{Mat}_{\mathcal{B},\mathcal{B}}(\mathrm{Id}_E) \text{ ou la colonne } j \text{ contient les coordonnees de } e'_j \text{ dans } \mathcal{B}$$</div>
+        <p>Plus precisement : \(P = \mathrm{Pass}(\mathcal{B}, \mathcal{B}')\) est la matrice dont la \(j\)-ieme colonne contient les coordonnees de \(e'_j\) dans la base \(\mathcal{B}\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition --- Inversibilite de la matrice de passage</span>
+        <p>La matrice de passage \(P = \mathrm{Pass}(\mathcal{B}, \mathcal{B}')\) est <strong>inversible</strong> et :</p>
+        <div class="math-display">$$P^{-1} = \mathrm{Pass}(\mathcal{B}', \mathcal{B})$$</div>
+        <p>De plus, si \(X\) et \(X'\) sont les colonnes de coordonnees d'un meme vecteur \(x\) dans \(\mathcal{B}\) et \(\mathcal{B}'\), alors \(X = PX'\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme --- Changement de base pour une application lineaire</span>
+        <p>Soit \(f \in \mathcal{L}(E,F)\). On note \(A = \mathrm{Mat}_{\mathcal{B},\mathcal{C}}(f)\), \(A' = \mathrm{Mat}_{\mathcal{B}',\mathcal{C}'}(f)\), \(P = \mathrm{Pass}(\mathcal{B}, \mathcal{B}')\) et \(Q = \mathrm{Pass}(\mathcal{C}, \mathcal{C}')\). Alors :</p>
+        <div class="math-display">$$A' = Q^{-1} A P$$</div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme --- Formule de similitude pour les endomorphismes</span>
+        <p>Soit \(u \in \mathcal{L}(E)\). Si \(A = \mathrm{Mat}_{\mathcal{B}}(u)\) et \(A' = \mathrm{Mat}_{\mathcal{B}'}(u)\), avec \(P = \mathrm{Pass}(\mathcal{B}, \mathcal{B}')\), alors :</p>
+        <div class="math-display">$$A' = P^{-1} A P$$</div>
+        <p>Les matrices \(A\) et \(A'\) sont dites <strong>semblables</strong>.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Soit \(u \in \mathcal{L}(\mathbb{R}^2)\) de matrice \(A = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}\) dans la base canonique \(\mathcal{B}\). Dans la base \(\mathcal{B}' = ((1,0),(1,1))\), la matrice de passage est \(P = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}\) et on obtient :</p>
+        <div class="math-display">$$A' = P^{-1}AP = \begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 3 & 2 \\ 0 & 2 \end{pmatrix}$$</div>
+      </div>
+    </section>
+
+    <!-- =============== SECTION IV =============== -->
+    <section class="course__section" id="sec4">
+      <h2 class="course__section-title"><span class="course__section-num">IV.</span> Equivalence et similitude</h2>
+
+      <p>Les formules de changement de base conduisent a deux relations d'equivalence fondamentales sur les matrices.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Definition --- Matrices equivalentes</span>
+        <p>Deux matrices \(A, B \in \mathcal{M}_{n,p}(\mathbb{K})\) sont dites <strong>equivalentes</strong> s'il existe \(Q \in \mathrm{GL}_n(\mathbb{K})\) et \(P \in \mathrm{GL}_p(\mathbb{K})\) telles que :</p>
+        <div class="math-display">$$B = Q^{-1} A P$$</div>
+        <p>Cela revient a dire que \(A\) et \(B\) representent la meme application lineaire dans des bases differentes.</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Definition --- Matrices semblables (similaires)</span>
+        <p>Deux matrices \(A, B \in \mathcal{M}_n(\mathbb{K})\) sont dites <strong>semblables</strong> s'il existe \(P \in \mathrm{GL}_n(\mathbb{K})\) telle que :</p>
+        <div class="math-display">$$B = P^{-1} A P$$</div>
+        <p>Cela revient a dire que \(A\) et \(B\) representent le meme endomorphisme dans des bases differentes.</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme --- Forme canonique par equivalence</span>
+        <p>Toute matrice \(A \in \mathcal{M}_{n,p}(\mathbb{K})\) de rang \(r\) est equivalente a la matrice :</p>
+        <div class="math-display">$$J_r = \begin{pmatrix} I_r & 0 \\ 0 & 0 \end{pmatrix} \in \mathcal{M}_{n,p}(\mathbb{K})$$</div>
+        <p>Ainsi, deux matrices sont equivalentes si et seulement si elles ont le meme rang.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition --- Invariants de similitude</span>
+        <p>Si \(A\) et \(B\) sont semblables, alors elles partagent les memes invariants :</p>
+        <ul>
+          <li><strong>Trace :</strong> \(\mathrm{tr}(A) = \mathrm{tr}(B)\)</li>
+          <li><strong>Determinant :</strong> \(\det(A) = \det(B)\)</li>
+          <li><strong>Rang :</strong> \(\mathrm{rg}(A) = \mathrm{rg}(B)\)</li>
+          <li><strong>Polynome caracteristique :</strong> \(\chi_A = \chi_B\)</li>
+        </ul>
+        <p>La reciproque est fausse en general : deux matrices ayant les memes invariants ne sont pas necessairement semblables.</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>La similitude est une relation d'equivalence plus fine que l'equivalence matricielle. Pour l'equivalence, le seul invariant est le rang. Pour la similitude, la classification est beaucoup plus riche et fait intervenir le polynome caracteristique, le polynome minimal, et les sous-espaces propres.</p>
+      </div>
+    </section>
+
+    <!-- =============== SECTION V =============== -->
+    <section class="course__section" id="sec5">
+      <h2 class="course__section-title"><span class="course__section-num">V.</span> Trace d'un endomorphisme</h2>
+
+      <p>La trace d'une matrice carree est un invariant de similitude, ce qui permet de definir de maniere intrinseque la trace d'un endomorphisme.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Definition --- Trace d'un endomorphisme</span>
+        <p>Soit \(u \in \mathcal{L}(E)\) ou \(E\) est de dimension finie. La <strong>trace de \(u\)</strong> est definie par :</p>
+        <div class="math-display">$$\mathrm{tr}(u) = \mathrm{tr}\bigl(\mathrm{Mat}_{\mathcal{B}}(u)\bigr)$$</div>
+        <p>Cette definition est <strong>independante du choix de la base</strong> \(\mathcal{B}\), car deux matrices representant le meme endomorphisme sont semblables et ont donc la meme trace.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition --- Proprietes de la trace</span>
+        <p>Soient \(u, v \in \mathcal{L}(E)\) et \(\lambda \in \mathbb{K}\). Alors :</p>
+        <ul>
+          <li><strong>Linearite :</strong> \(\mathrm{tr}(\lambda u + v) = \lambda\, \mathrm{tr}(u) + \mathrm{tr}(v)\).</li>
+          <li><strong>Commutativite cyclique :</strong> \(\mathrm{tr}(u \circ v) = \mathrm{tr}(v \circ u)\).</li>
+        </ul>
+        <p>En termes matriciels : \(\mathrm{tr}(AB) = \mathrm{tr}(BA)\) pour toutes matrices \(A\) et \(B\) de tailles compatibles.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple --- Trace d'un projecteur</span>
+        <p>Soit \(p\) un projecteur de \(E\), c'est-a-dire un endomorphisme verifiant \(p^2 = p\). Alors :</p>
+        <div class="math-display">$$\mathrm{tr}(p) = \mathrm{rg}(p)$$</div>
+        <p>En effet, dans une base adaptee a la decomposition \(E = \mathrm{Im}(p) \oplus \mathrm{Ker}(p)\), la matrice de \(p\) est diagonale avec \(r\) coefficients egaux a \(1\) et \(n - r\) coefficients nuls, ou \(r = \mathrm{rg}(p)\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>La trace est une forme lineaire sur \(\mathcal{L}(E)\). C'est l'un des outils les plus simples pour distinguer deux endomorphismes : si \(\mathrm{tr}(u) \neq \mathrm{tr}(v)\), alors \(u\) et \(v\) ne sont certainement pas le meme endomorphisme (dans quelque base que ce soit).</p>
+      </div>
+    </section>
+
+    <!-- =============== SECTION VI =============== -->
+    <section class="course__section" id="sec6">
+      <h2 class="course__section-title"><span class="course__section-num">VI.</span> Matrice de Vandermonde</h2>
+
+      <p>La matrice de Vandermonde est une matrice remarquable qui intervient naturellement dans les problemes d'interpolation polynomiale.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Definition --- Matrice de Vandermonde</span>
+        <p>Soient \(x_0, x_1, \ldots, x_n \in \mathbb{K}\). La <strong>matrice de Vandermonde</strong> associee est la matrice \(V \in \mathcal{M}_{n+1}(\mathbb{K})\) definie par :</p>
+        <div class="math-display">$$V = \begin{pmatrix} 1 & x_0 & x_0^2 & \cdots & x_0^n \\ 1 & x_1 & x_1^2 & \cdots & x_1^n \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_n & x_n^2 & \cdots & x_n^n \end{pmatrix}$$</div>
+        <p>Autrement dit, \(V_{i,j} = x_i^j\) pour \(0 \leq i, j \leq n\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme --- Determinant de Vandermonde</span>
+        <p>Le determinant de la matrice de Vandermonde vaut :</p>
+        <div class="math-display">$$\det(V) = \prod_{0 \leq i < j \leq n} (x_j - x_i)$$</div>
+      </div>
+
+      <div class="block block--proof">
+        <span class="block__label">Idee de demonstration</span>
+        <p>On procede par recurrence sur \(n\). On effectue les operations \(C_j \leftarrow C_j - x_0\, C_{j-1}\) pour \(j = n, n-1, \ldots, 1\), ce qui fait apparaitre le facteur \((x_j - x_0)\) dans chaque ligne \(i \geq 1\). On factorise puis on applique l'hypothese de recurrence au mineur d'ordre \(n\).</p>
+        <p class="qed">\(\blacksquare\)</p>
+      </div>
+
+      <div class="block block--cor">
+        <span class="block__label">Corollaire --- Inversibilite</span>
+        <p>La matrice de Vandermonde \(V\) est <strong>inversible</strong> si et seulement si les scalaires \(x_0, x_1, \ldots, x_n\) sont <strong>deux a deux distincts</strong>.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple --- Application a l'interpolation de Lagrange</span>
+        <p>Soient \(x_0, \ldots, x_n\) des scalaires deux a deux distincts et \(y_0, \ldots, y_n \in \mathbb{K}\). Le probleme d'interpolation consiste a trouver \(P \in \mathbb{K}_n[X]\) tel que \(P(x_i) = y_i\) pour tout \(i\). En ecrivant \(P = a_0 + a_1 X + \cdots + a_n X^n\), les conditions \(P(x_i) = y_i\) forment un systeme de Cramer :</p>
+        <div class="math-display">$$V \begin{pmatrix} a_0 \\ a_1 \\ \vdots \\ a_n \end{pmatrix} = \begin{pmatrix} y_0 \\ y_1 \\ \vdots \\ y_n \end{pmatrix}$$</div>
+        <p>Comme les \(x_i\) sont distincts, \(V\) est inversible et le systeme admet une unique solution. Cela fournit une preuve de l'existence et de l'unicite du polynome interpolateur de Lagrange.</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="mpsi-26-applications-lineaires.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Applications lineaires</span>
+      </a>
+      <a href="mpsi-28-reduction-endomorphismes.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Reduction des endomorphismes</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../index.html">Accueil</a>
+          <a href="../mpsi.html">MPSI</a>
+          <a href="../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths --- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
+    });
+  </script>
+</body>
+</html>

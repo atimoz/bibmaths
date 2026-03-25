@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dérivation — MPSI | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md)}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
+    .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:4000px;opacity:1}
+    .block p,.block li{font-size:.9rem;line-height:1.8}
+    .block ul{list-style:none;padding-left:var(--space-md)}
+    .block ul li::before{content:'—';color:var(--accent);margin-right:8px}
+    .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
+    .block--def .block__label{color:#2563A3}
+    .block--def ul li::before{color:#2563A3}
+    .block--thm{background:rgba(163,42,42,.06);border-left:3px solid #A32A2A}
+    .block--thm .block__label{color:#A32A2A}
+    .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
+    .block--prop .block__label{color:#7638A3}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
+    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--example .block__label{color:#4B825A}
+    .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
+    .block--remark .block__label{color:var(--accent)}
+    .block--remark p{color:var(--ink-light);font-size:.875rem}
+    .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
+    .block--cor .block__label{color:#9B59B6}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
+    [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
+    [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
+    [data-theme="dark"] .block--thm{background:rgba(163,42,42,.1);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
+    [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
+    [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
+    [data-theme="dark"] .block--proof .block__label{color:#8888A0}
+    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
+    [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
+    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../mpsi.html" class="nav__link nav__link--has-sub nav__link--active">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mpsi.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mp.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../mpsi.html" class="mobile-menu__page-link mobile-menu__page-link--active">MPSI — Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../mp.html" class="mobile-menu__page-link">MP — Math Spé</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../mpsi.html" class="course__back">&larr; Retour au programme MPSI</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MPSI — Cours</span>
+      <span class="course__chapter">Chapitre 09</span>
+    </div>
+
+    <h1 class="course__title">Dérivation</h1>
+
+    <p class="course__intro">
+      Ce chapitre développe la théorie de la dérivation des fonctions réelles d'une variable réelle. On y définit le nombre dérivé et la tangente, on établit les règles de calcul (somme, produit, composition, réciproque, formule de Leibniz), puis on démontre les théorèmes fondamentaux de Rolle et des accroissements finis. On étudie ensuite le lien entre monotonie et signe de la dérivée, les fonctions de classe \(\mathcal{C}^n\), et enfin la convexité et ses caractérisations.
+    </p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> Dérivabilité en un point</a></li>
+        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Opérations sur les dérivées</a></li>
+        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> Théorèmes de Rolle et des accroissements finis</a></li>
+        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> Monotonie et dérivée</a></li>
+        <li class="course__toc-item"><a href="#sec5"><span class="course__toc-num">V.</span> Fonctions de classe \(\mathcal{C}^n\)</a></li>
+        <li class="course__toc-item"><a href="#sec6"><span class="course__toc-num">VI.</span> Convexité</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════ SECTION I ═══════════════ -->
+    <section class="course__section" id="sec1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Dérivabilité en un point</h2>
+
+      <p>Soit \(I\) un intervalle de \(\mathbb{R}\) et \(f : I \to \mathbb{R}\) une fonction. On s'intéresse au comportement local de \(f\) au voisinage d'un point \(a \in I\).</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Nombre dérivé</span>
+        <p>Soit \(a \in I\). On dit que \(f\) est <strong>dérivable en \(a\)</strong> si la limite suivante existe et est finie :</p>
+        <div class="math-display">$$f'(a) = \lim_{x \to a} \frac{f(x) - f(a)}{x - a}$$</div>
+        <p>Le réel \(f'(a)\) est appelé le <strong>nombre dérivé</strong> de \(f\) en \(a\). De manière équivalente, en posant \(h = x - a\) :</p>
+        <div class="math-display">$$f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}$$</div>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Tangente au graphe</span>
+        <p>Si \(f\) est dérivable en \(a\), la <strong>tangente</strong> au graphe de \(f\) au point \((a, f(a))\) est la droite d'équation :</p>
+        <div class="math-display">$$y = f(a) + f'(a)(x - a)$$</div>
+        <p>Le nombre dérivé \(f'(a)\) est la pente de cette tangente. Le quotient \(\frac{f(x)-f(a)}{x-a}\) est la pente de la sécante passant par \((a,f(a))\) et \((x,f(x))\), et \(f'(a)\) est la limite de ces pentes.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Dérivable implique continue</span>
+        <p>Si \(f\) est dérivable en \(a\), alors \(f\) est continue en \(a\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>On écrit pour \(x \neq a\) : \(f(x) - f(a) = \frac{f(x)-f(a)}{x-a} \cdot (x - a)\). Quand \(x \to a\), le premier facteur tend vers \(f'(a)\) (par hypothèse) et le second vers \(0\), donc \(f(x) - f(a) \to 0\), ce qui signifie \(f(x) \to f(a)\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>La réciproque est fausse : une fonction peut être continue en un point sans y être dérivable. L'exemple fondamental est la fonction valeur absolue en \(0\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Dérivées à gauche et à droite</span>
+        <p>On dit que \(f\) est <strong>dérivable à droite</strong> en \(a\) si la limite</p>
+        <div class="math-display">$$f'_d(a) = \lim_{\substack{x \to a \\ x > a}} \frac{f(x) - f(a)}{x - a}$$</div>
+        <p>existe et est finie. De même, \(f\) est <strong>dérivable à gauche</strong> en \(a\) si</p>
+        <div class="math-display">$$f'_g(a) = \lim_{\substack{x \to a \\ x < a}} \frac{f(x) - f(a)}{x - a}$$</div>
+        <p>existe et est finie. La fonction \(f\) est dérivable en \(a\) si et seulement si \(f'_g(a)\) et \(f'_d(a)\) existent et sont égales.</p>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — La valeur absolue</span>
+        <p>La fonction \(f : x \mapsto |x|\) est dérivable sur \(\mathbb{R}^*\), avec \(f'(x) = 1\) si \(x > 0\) et \(f'(x) = -1\) si \(x < 0\). En revanche, elle n'est <strong>pas dérivable en \(0\)</strong> car :</p>
+        <div class="math-display">$$f'_d(0) = \lim_{h \to 0^+} \frac{|h|}{h} = 1 \qquad \text{et} \qquad f'_g(0) = \lim_{h \to 0^-} \frac{|h|}{h} = -1$$</div>
+        <p>Les dérivées à gauche et à droite existent mais diffèrent, donc \(f\) n'est pas dérivable en \(0\). Géométriquement, le graphe présente un « point anguleux » en \(0\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Fonction dérivée</span>
+        <p>On dit que \(f\) est <strong>dérivable sur \(I\)</strong> si elle est dérivable en tout point de \(I\). La fonction \(f' : I \to \mathbb{R}\), \(a \mapsto f'(a)\) est appelée la <strong>fonction dérivée</strong> de \(f\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION II ═══════════════ -->
+    <section class="course__section" id="sec2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Opérations sur les dérivées</h2>
+
+      <p>On établit ici les règles permettant de calculer la dérivée d'une combinaison de fonctions dérivables.</p>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Somme, produit, quotient</span>
+        <p>Soient \(f, g : I \to \mathbb{R}\) dérivables en \(a\) et \(\lambda \in \mathbb{R}\). Alors :</p>
+        <ul>
+          <li>\(\lambda f + g\) est dérivable en \(a\) et \((\lambda f + g)'(a) = \lambda f'(a) + g'(a)\).</li>
+          <li>\(fg\) est dérivable en \(a\) et \((fg)'(a) = f'(a)g(a) + f(a)g'(a)\).</li>
+          <li>Si \(g(a) \neq 0\), alors \(\dfrac{f}{g}\) est dérivable en \(a\) et \(\displaystyle\left(\frac{f}{g}\right)'(a) = \frac{f'(a)g(a) - f(a)g'(a)}{g(a)^2}\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Dérivée d'une composée</span>
+        <p>Soient \(f : I \to J\) dérivable en \(a\) et \(g : J \to \mathbb{R}\) dérivable en \(f(a)\). Alors \(g \circ f\) est dérivable en \(a\) et :</p>
+        <div class="math-display">$$(g \circ f)'(a) = f'(a) \cdot g'(f(a))$$</div>
+        <p>Plus globalement, si \(f\) est dérivable sur \(I\) et \(g\) est dérivable sur \(J\), alors \((g \circ f)' = f' \cdot (g' \circ f)\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Dérivée de la réciproque</span>
+        <p>Soit \(f : I \to J\) une bijection continue et dérivable sur \(I\). Si \(f'(a) \neq 0\), alors \(f^{-1}\) est dérivable en \(f(a)\) et :</p>
+        <div class="math-display">$$(f^{-1})'(f(a)) = \frac{1}{f'(a)}$$</div>
+        <p>Autrement dit, en tout point \(y = f(a)\) où \(f' \circ f^{-1}(y) \neq 0\) :</p>
+        <div class="math-display">$$(f^{-1})'(y) = \frac{1}{f'(f^{-1}(y))}$$</div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>La fonction \(\ln\) est la réciproque de \(\exp\). Comme \(\exp'(x) = \exp(x) \neq 0\) pour tout \(x\), on obtient pour tout \(y > 0\) :</p>
+        <div class="math-display">$$(\ln)'(y) = \frac{1}{\exp(\ln(y))} = \frac{1}{y}$$</div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Formule de Leibniz</span>
+        <p>Soient \(f, g : I \to \mathbb{R}\) de classe \(\mathcal{C}^n\). Alors \(fg\) est de classe \(\mathcal{C}^n\) et :</p>
+        <div class="math-display">$$(fg)^{(n)} = \sum_{k=0}^{n} \binom{n}{k} f^{(k)} g^{(n-k)}$$</div>
+        <p>Cette formule est l'analogue de la formule du binôme de Newton pour la dérivation.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration (Leibniz) <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Par récurrence sur \(n\). Pour \(n = 1\), c'est la formule \((fg)' = f'g + fg'\). Supposons la formule vraie au rang \(n\). Alors :</p>
+            <div class="math-display">$$(fg)^{(n+1)} = \left((fg)^{(n)}\right)' = \sum_{k=0}^{n} \binom{n}{k} \left(f^{(k)}g^{(n-k)}\right)' = \sum_{k=0}^{n} \binom{n}{k} \left(f^{(k+1)}g^{(n-k)} + f^{(k)}g^{(n+1-k)}\right)$$</div>
+            <p>En réindexant et en utilisant la relation \(\binom{n}{k} + \binom{n}{k-1} = \binom{n+1}{k}\), on obtient la formule au rang \(n+1\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION III ═══════════════ -->
+    <section class="course__section" id="sec3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Théorèmes de Rolle et des accroissements finis</h2>
+
+      <p>Ces résultats fondamentaux relient les valeurs de \(f\) et celles de \(f'\). Ils constituent les outils centraux de l'analyse réelle.</p>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Extremum local et dérivée</span>
+        <p>Soit \(f : I \to \mathbb{R}\) dérivable en un point intérieur \(a\) de \(I\). Si \(f\) admet un <strong>extremum local</strong> en \(a\), alors \(f'(a) = 0\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Supposons que \(f\) admet un maximum local en \(a\). Alors pour \(x\) proche de \(a\), \(f(x) \leq f(a)\). Pour \(x > a\), le taux d'accroissement \(\frac{f(x)-f(a)}{x-a} \leq 0\), donc \(f'_d(a) \leq 0\). Pour \(x < a\), \(\frac{f(x)-f(a)}{x-a} \geq 0\), donc \(f'_g(a) \geq 0\). Comme \(f\) est dérivable en \(a\), \(f'_d(a) = f'_g(a) = f'(a)\), d'où \(f'(a) = 0\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème de Rolle</span>
+        <p>Soit \(f : [a, b] \to \mathbb{R}\) vérifiant :</p>
+        <ul>
+          <li>\(f\) est <strong>continue sur \([a, b]\)</strong>,</li>
+          <li>\(f\) est <strong>dérivable sur \(]a, b[\)</strong>,</li>
+          <li>\(f(a) = f(b)\).</li>
+        </ul>
+        <p>Alors il existe \(c \in \,]a, b[\) tel que \(f'(c) = 0\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>La fonction \(f\) est continue sur le segment \([a,b]\), donc par le théorème des bornes atteintes, elle atteint son maximum \(M\) et son minimum \(m\) sur \([a,b]\). Si \(M = m\), alors \(f\) est constante et \(f'(c) = 0\) pour tout \(c \in \,]a,b[\). Sinon, l'un des deux (\(M\) ou \(m\)) est différent de \(f(a) = f(b)\), et est donc atteint en un point intérieur \(c \in \,]a,b[\). Ce point est un extremum local, donc \(f'(c) = 0\) d'après la proposition précédente.</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème des accroissements finis (TAF)</span>
+        <p>Soit \(f : [a, b] \to \mathbb{R}\) continue sur \([a, b]\) et dérivable sur \(]a, b[\). Alors il existe \(c \in \,]a, b[\) tel que :</p>
+        <div class="math-display">$$f(b) - f(a) = f'(c)(b - a)$$</div>
+        <p>Autrement dit : \(\displaystyle f'(c) = \frac{f(b) - f(a)}{b - a}\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>On introduit la fonction auxiliaire \(\varphi(x) = f(x) - f(a) - \frac{f(b)-f(a)}{b-a}(x-a)\). Alors \(\varphi\) est continue sur \([a,b]\), dérivable sur \(]a,b[\), et \(\varphi(a) = \varphi(b) = 0\). Par le théorème de Rolle, il existe \(c \in \,]a,b[\) tel que \(\varphi'(c) = 0\), soit \(f'(c) = \frac{f(b)-f(a)}{b-a}\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Interprétation géométrique</span>
+        <p>Le TAF affirme qu'il existe un point du graphe où la tangente est parallèle à la corde reliant \((a, f(a))\) et \((b, f(b))\). Le théorème de Rolle est le cas particulier où la corde est horizontale.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION IV ═══════════════ -->
+    <section class="course__section" id="sec4">
+      <h2 class="course__section-title"><span class="course__section-num">IV.</span> Monotonie et dérivée</h2>
+
+      <p>Le théorème des accroissements finis permet de caractériser la monotonie d'une fonction par le signe de sa dérivée.</p>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Caractérisation de la monotonie</span>
+        <p>Soit \(f : I \to \mathbb{R}\) continue sur \(I\) et dérivable sur l'intérieur de \(I\). Alors :</p>
+        <ul>
+          <li>\(f\) est <strong>croissante</strong> sur \(I\) si et seulement si \(f' \geq 0\) sur \(I\).</li>
+          <li>\(f\) est <strong>décroissante</strong> sur \(I\) si et seulement si \(f' \leq 0\) sur \(I\).</li>
+          <li>\(f\) est <strong>constante</strong> sur \(I\) si et seulement si \(f' = 0\) sur \(I\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Condition suffisante de stricte monotonie</span>
+        <p>Si \(f' > 0\) sur \(I\) (sauf éventuellement en des points isolés où \(f' = 0\)), alors \(f\) est <strong>strictement croissante</strong> sur \(I\). De même, \(f' < 0\) implique \(f\) strictement décroissante.</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>La réciproque est fausse : \(f(x) = x^3\) est strictement croissante sur \(\mathbb{R}\) alors que \(f'(0) = 0\). En revanche, si \(f\) est strictement croissante et dérivable, alors \(f' \geq 0\) (et \(f'\) ne peut s'annuler sur un intervalle non trivial).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Inégalité des accroissements finis (IAF)</span>
+        <p>Soit \(f : I \to \mathbb{R}\) dérivable sur \(I\). S'il existe \(K \geq 0\) tel que \(|f'(x)| \leq K\) pour tout \(x \in I\), alors pour tous \(x, y \in I\) :</p>
+        <div class="math-display">$$|f(x) - f(y)| \leq K|x - y|$$</div>
+        <p>Autrement dit, \(f\) est <strong>\(K\)-lipschitzienne</strong> sur \(I\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Soient \(x, y \in I\) avec \(x < y\). Par le TAF, il existe \(c \in \,]x, y[\) tel que \(f(y) - f(x) = f'(c)(y-x)\). Donc \(|f(y) - f(x)| = |f'(c)||y-x| \leq K|y-x|\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION V ═══════════════ -->
+    <section class="course__section" id="sec5">
+      <h2 class="course__section-title"><span class="course__section-num">V.</span> Fonctions de classe \(\mathcal{C}^n\)</h2>
+
+      <p>On introduit ici la notion de régularité d'une fonction, mesurée par le nombre de fois qu'on peut la dériver en obtenant une fonction continue.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Classe \(\mathcal{C}^k\)</span>
+        <p>Soit \(f : I \to \mathbb{R}\) et \(k \in \mathbb{N}\). On dit que \(f\) est de <strong>classe \(\mathcal{C}^k\)</strong> sur \(I\) si \(f\) est \(k\) fois dérivable sur \(I\) et si sa dérivée \(k\)-ième \(f^{(k)}\) est <strong>continue</strong> sur \(I\). On note \(\mathcal{C}^k(I, \mathbb{R})\) l'ensemble de ces fonctions.</p>
+        <p>On dit que \(f\) est de classe \(\mathcal{C}^\infty\) si elle est de classe \(\mathcal{C}^k\) pour tout \(k \in \mathbb{N}\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Stabilité de \(\mathcal{C}^k\)</span>
+        <p>Les opérations suivantes préservent la classe \(\mathcal{C}^k\) :</p>
+        <ul>
+          <li>Combinaison linéaire : si \(f, g \in \mathcal{C}^k(I)\) et \(\lambda, \mu \in \mathbb{R}\), alors \(\lambda f + \mu g \in \mathcal{C}^k(I)\).</li>
+          <li>Produit : si \(f, g \in \mathcal{C}^k(I)\), alors \(fg \in \mathcal{C}^k(I)\).</li>
+          <li>Quotient : si \(f, g \in \mathcal{C}^k(I)\) et \(g\) ne s'annule pas, alors \(f/g \in \mathcal{C}^k(I)\).</li>
+          <li>Composition : si \(f \in \mathcal{C}^k(I)\) et \(g \in \mathcal{C}^k(J)\) avec \(f(I) \subset J\), alors \(g \circ f \in \mathcal{C}^k(I)\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Limite de la dérivée</span>
+        <p>Soit \(f : I \to \mathbb{R}\) continue sur \(I\) et dérivable sur \(I \setminus \{a\}\), où \(a \in I\). Si \(f'\) admet une <strong>limite finie</strong> \(\ell\) en \(a\), alors \(f\) est dérivable en \(a\) et \(f'(a) = \ell\).</p>
+        <p>De plus, \(f'\) est alors continue en \(a\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Pour \(x \neq a\), le TAF donne l'existence de \(c_x\) entre \(a\) et \(x\) tel que \(\frac{f(x)-f(a)}{x-a} = f'(c_x)\). Quand \(x \to a\), on a \(c_x \to a\) (par encadrement), donc \(f'(c_x) \to \ell\). Ainsi le taux d'accroissement tend vers \(\ell\), ce qui prouve que \(f'(a) = \ell\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>Ce théorème est très utile pour prolonger la dérivabilité d'une fonction définie par morceaux : il suffit de vérifier la continuité en le point de raccordement et que les dérivées de chaque morceau admettent une limite commune.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION VI ═══════════════ -->
+    <section class="course__section" id="sec6">
+      <h2 class="course__section-title"><span class="course__section-num">VI.</span> Convexité</h2>
+
+      <p>La convexité est une propriété géométrique fondamentale des fonctions, liée au signe de la dérivée seconde. Elle intervient dans de nombreuses inégalités classiques.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Fonction convexe, concave</span>
+        <p>Soit \(f : I \to \mathbb{R}\). On dit que \(f\) est <strong>convexe</strong> sur \(I\) si pour tous \(x, y \in I\) et tout \(t \in [0, 1]\) :</p>
+        <div class="math-display">$$f(tx + (1-t)y) \leq tf(x) + (1-t)f(y)$$</div>
+        <p>On dit que \(f\) est <strong>concave</strong> si \(-f\) est convexe, c'est-à-dire si l'inégalité est inversée.</p>
+        <p>Géométriquement, \(f\) est convexe si et seulement si la corde reliant deux points quelconques du graphe est toujours <strong>au-dessus</strong> du graphe.</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Caractérisations de la convexité</span>
+        <p>Soit \(f : I \to \mathbb{R}\). Les propriétés suivantes sont équivalentes :</p>
+        <ul>
+          <li>\(f\) est convexe sur \(I\).</li>
+          <li>Si \(f\) est dérivable sur \(I\) : \(f'\) est <strong>croissante</strong> sur \(I\).</li>
+          <li>Si \(f\) est deux fois dérivable sur \(I\) : \(f'' \geq 0\) sur \(I\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Graphe au-dessus des tangentes</span>
+        <p>Si \(f\) est convexe et dérivable sur \(I\), alors pour tous \(a, x \in I\) :</p>
+        <div class="math-display">$$f(x) \geq f(a) + f'(a)(x - a)$$</div>
+        <p>Autrement dit, le graphe de \(f\) est toujours <strong>au-dessus de ses tangentes</strong>. Pour une fonction concave, le graphe est au-dessous de ses tangentes.</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Inégalité de Jensen</span>
+        <p>Soit \(f : I \to \mathbb{R}\) convexe. Pour tous \(x_1, \ldots, x_n \in I\) et tous \(\lambda_1, \ldots, \lambda_n \geq 0\) tels que \(\lambda_1 + \cdots + \lambda_n = 1\) :</p>
+        <div class="math-display">$$f\!\left(\sum_{i=1}^{n} \lambda_i x_i\right) \leq \sum_{i=1}^{n} \lambda_i f(x_i)$$</div>
+        <p>C'est la généralisation de la définition de convexité à une combinaison convexe de \(n\) points.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration (Jensen) <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Par récurrence sur \(n\). Le cas \(n = 2\) est la définition de la convexité. Au rang \(n+1\), si \(\lambda_{n+1} = 1\), c'est trivial. Sinon, posons \(s = 1 - \lambda_{n+1} > 0\) et \(\mu_i = \lambda_i / s\) pour \(i \leq n\). Alors \(\sum \mu_i = 1\) et :</p>
+            <div class="math-display">$$f\!\left(\sum_{i=1}^{n+1} \lambda_i x_i\right) = f\!\left(s\sum_{i=1}^{n}\mu_i x_i + \lambda_{n+1}x_{n+1}\right) \leq sf\!\left(\sum_{i=1}^{n}\mu_i x_i\right) + \lambda_{n+1}f(x_{n+1})$$</div>
+            <p>Par hypothèse de récurrence, \(f\!\left(\sum \mu_i x_i\right) \leq \sum \mu_i f(x_i)\), d'où le résultat en multipliant par \(s\).</p>
+            <p class="qed">&#9632;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Applications de Jensen</span>
+        <p>L'inégalité arithmético-géométrique \(\sqrt[n]{x_1 \cdots x_n} \leq \frac{x_1 + \cdots + x_n}{n}\) (pour \(x_i > 0\)) découle de l'inégalité de Jensen appliquée à la fonction concave \(\ln\) avec \(\lambda_i = 1/n\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Point d'inflexion</span>
+        <p>Soit \(f : I \to \mathbb{R}\) dérivable sur \(I\). On dit que \(a \in I\) est un <strong>point d'inflexion</strong> de \(f\) si \(f\) change de convexité en \(a\), c'est-à-dire si \(f\) est convexe d'un côté de \(a\) et concave de l'autre.</p>
+        <p>Si \(f\) est deux fois dérivable, alors \(a\) est un point d'inflexion si et seulement si \(f''\) change de signe en \(a\). En un point d'inflexion, la tangente <strong>traverse</strong> le graphe de \(f\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>La condition \(f''(a) = 0\) est nécessaire mais pas suffisante pour avoir un point d'inflexion : par exemple, \(f(x) = x^4\) vérifie \(f''(0) = 0\) mais \(f\) est convexe sur \(\mathbb{R}\), il n'y a pas de changement de convexité en \(0\).</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="mpsi-08-limites-continuite.html" class="course__nav-link">
+        &larr; Précédent
+        <span>Limites et continuité</span>
+      </a>
+      <a href="mpsi-10-fonctions-usuelles.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Fonctions usuelles</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathématiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../index.html">Accueil</a>
+          <a href="../mpsi.html">MPSI</a>
+          <a href="../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communauté</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths — Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -94,10 +94,89 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterBtns = document.querySelectorAll('.filter-btn');
 
   if (filterBtns.length > 0) {
+    function applyFilter(filterValue) {
+      filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
+      const activeBtn = document.querySelector('.filter-btn[data-filter="' + filterValue + '"]');
+      if (activeBtn) activeBtn.classList.add('filter-btn--active');
+
+      var coursGroups = document.querySelectorAll('[data-type="cours"]');
+      var concoursDossier = document.querySelector('[data-type="concours"]');
+
+      // Hide all sections first
+      coursGroups.forEach(function(g) { g.style.display = 'none'; });
+      if (concoursDossier) concoursDossier.style.display = 'none';
+
+      // Show the relevant section
+      if (filterValue === 'concours') {
+        if (concoursDossier) concoursDossier.style.display = '';
+      } else {
+        // cours, exercices, or anything else → show cours
+        coursGroups.forEach(function(g) { g.style.display = ''; });
+      }
+
+      history.replaceState(null, '', '#' + filterValue);
+    }
+
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
-        btn.classList.add('filter-btn--active');
+        applyFilter(btn.dataset.filter);
+      });
+    });
+
+    // Auto-select filter from URL hash
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.querySelector('.filter-btn[data-filter="' + hash + '"]')) {
+      applyFilter(hash);
+    }
+
+    // Listen for hash changes (dropdown nav links like mp.html#fiches)
+    window.addEventListener('hashchange', function() {
+      const h = window.location.hash.replace('#', '');
+      if (h && document.querySelector('.filter-btn[data-filter="' + h + '"]')) {
+        applyFilter(h);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    // Intercept same-page dropdown links that point to #cours/#fiches/#exercices/#methodes
+    document.querySelectorAll('.dropdown__item[href*="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var href = link.getAttribute('href');
+        var currentPage = window.location.pathname.split('/').pop();
+        if (href.indexOf(currentPage) !== -1 || href.startsWith('#')) {
+          var filterVal = href.split('#')[1];
+          if (filterVal && document.querySelector('.filter-btn[data-filter="' + filterVal + '"]')) {
+            e.preventDefault();
+            applyFilter(filterVal);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  }
+
+  // ---- Concours segmented control ----
+  var segBtns = document.querySelectorAll('.concours-seg__btn');
+  var segIndicator = document.querySelector('.concours-seg__indicator');
+  if (segBtns.length > 0 && segIndicator) {
+    function switchConcoursPanel(btn) {
+      var target = btn.getAttribute('data-target');
+      var index = Array.from(segBtns).indexOf(btn);
+      // Move indicator
+      segIndicator.style.transform = 'translateX(' + (index * 100) + '%)';
+      // Toggle active class
+      segBtns.forEach(function(b) { b.classList.remove('concours-seg__btn--active'); });
+      btn.classList.add('concours-seg__btn--active');
+      // Toggle panels
+      document.querySelectorAll('.concours-panel').forEach(function(p) { p.style.display = 'none'; });
+      var panel = document.getElementById(target);
+      if (panel) { panel.style.display = ''; }
+    }
+    segBtns.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        switchConcoursPanel(btn);
       });
     });
   }

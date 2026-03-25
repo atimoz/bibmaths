@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methodes — Integrales generalisees | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .badge--tier1{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;background:rgba(163,42,42,.15);color:#A32A2A;border:1px solid rgba(163,42,42,.3);padding:4px 12px;border-radius:20px}
+    .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
+    .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .block p,.block li{font-size:.9rem;line-height:1.8}
+    .block ul,.block ol{padding-left:var(--space-md)}
+    .block ul{list-style:none}
+    .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
+    .block ol{list-style:decimal;padding-left:var(--space-lg)}
+    .block ol li{padding-left:4px}
+    .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
+    .block--def .block__label{color:#2563A3}
+    .block--def ul li::before{color:#2563A3}
+    .block--thm{background:rgba(163,42,42,.06);border-left:3px solid #A32A2A}
+    .block--thm .block__label{color:#A32A2A}
+    .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
+    .block--prop .block__label{color:#7638A3}
+    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--example .block__label{color:#4B825A}
+    .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
+    .block--remark .block__label{color:var(--accent)}
+    .block--remark p{color:var(--ink-light);font-size:.875rem}
+    .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
+    .block--cor .block__label{color:#9B59B6}
+    .block--proof{background:rgba(75,130,90,.04);border-left:3px solid #4B825A}
+    .block--proof .block__label{color:#4B825A}
+    .block--method{background:rgba(0,128,128,.06);border-left:3px solid #2A8A8A}
+    .block--method .block__label{color:#2A8A8A}
+    .block--method ul li::before{color:#2A8A8A}
+    .block--annale{background:rgba(163,42,42,.04);border-left:3px solid #A32A2A}
+    .block--annale .block__label{color:#A32A2A}
+    .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;background:rgba(163,42,42,.12);color:#A32A2A;padding:3px 10px;border-radius:12px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:8000px;opacity:1}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
+    [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
+    [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
+    [data-theme="dark"] .block--thm{background:rgba(163,42,42,.1);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
+    [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
+    [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
+    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
+    [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
+    [data-theme="dark"] .block--proof{background:rgba(75,130,90,.08);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--proof .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--method{background:rgba(0,128,128,.1);border-left-color:#3DBFBF}
+    [data-theme="dark"] .block--method .block__label{color:#3DBFBF}
+    [data-theme="dark"] .block--method ul li::before{color:#3DBFBF}
+    [data-theme="dark"] .block--annale{background:rgba(163,42,42,.08);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--annale .block__label{color:#D45A5A}
+    [data-theme="dark"] .annale-badge{background:rgba(212,90,90,.15);color:#D45A5A}
+    [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
+    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}.annale-badge{position:static;display:inline-block;margin-bottom:8px}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#methodes" class="course__back">&larr; Retour aux methodes MP</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MP -- Methodes CCINP</span>
+      <span class="badge--tier1">CCINP Tier 1</span>
+      <span class="course__chapter">Chapitre 11</span>
+    </div>
+
+    <h1 class="course__title">Integrales generalisees</h1>
+
+    <p class="course__intro">
+      Cinq methodes incontournables pour les integrales generalisees, chacune illustree par un exercice de type annale CCINP. Convergence, derivation sous l'integrale, comparaison serie-integrale, Wallis/Gamma, et integrale gaussienne.
+    </p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire des methodes</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Convergence par comparaison</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Derivation sous le signe integral (Leibniz)</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Comparaison serie-integrale</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Integrales de Wallis et Gamma</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Integrale gaussienne et Fresnel</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════ M1. Convergence par comparaison ═══════════════ -->
+    <section class="course__section" id="m1">
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Convergence par comparaison</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <p>Pour montrer la convergence (ou divergence) d'une integrale impropre \(\displaystyle\int_a^{+\infty} f(t)\,dt\) :</p>
+        <ol>
+          <li><strong>Identifier le comportement</strong> de \(f(t)\) au voisinage de la borne problematique (\(+\infty\) ou singularite).</li>
+          <li><strong>Comparer \(|f(t)|\)</strong> a une integrale de reference :
+            <ul>
+              <li>Riemann : \(\dfrac{1}{t^\alpha}\) avec \(\alpha > 1\) (convergente en \(+\infty\))</li>
+              <li>Exponentielle : \(e^{-\lambda t}\) avec \(\lambda > 0\) (convergente en \(+\infty\))</li>
+            </ul>
+          </li>
+          <li>Utiliser les relations de comparaison \(o\), \(O\), \(\sim\) pour conclure.</li>
+          <li>Si \(f\) change de signe : tenter la <strong>convergence absolue</strong>, sinon utiliser Abel ou une IPP.</li>
+        </ol>
+      </div>
+
+      <div class="block block--annale" style="position:relative">
+        <span class="annale-badge">CCINP 2023 -- Maths 1</span>
+        <span class="block__label">Exercice d'annale</span>
+        <p><strong>1.</strong> Montrer que \(\displaystyle\int_1^{+\infty} \frac{\sin t}{t^2}\,dt\) converge absolument.</p>
+        <p><strong>2.</strong> Etudier la nature de \(\displaystyle\int_1^{+\infty} \frac{\sin t}{t}\,dt\). Cette integrale est-elle absolument convergente ?</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Solution <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Solution</span>
+            <p><strong>1. Convergence absolue de \(\displaystyle\int_1^{+\infty} \frac{\sin t}{t^2}\,dt\)</strong></p>
+            <p>Pour tout \(t \geq 1\), on a \(|\sin t| \leq 1\), donc :</p>
+            <div class="math-display">$$\left|\frac{\sin t}{t^2}\right| \leq \frac{1}{t^2}$$</div>
+            <p>Or \(\displaystyle\int_1^{+\infty} \frac{dt}{t^2}\) converge (integrale de Riemann avec \(\alpha = 2 > 1\)).</p>
+            <p>Par comparaison de fonctions positives, \(\displaystyle\int_1^{+\infty} \left|\frac{\sin t}{t^2}\right|\,dt\) converge. Donc l'integrale converge <strong>absolument</strong>.</p>
+
+            <p style="margin-top:var(--space-lg)"><strong>2. Nature de \(\displaystyle\int_1^{+\infty} \frac{\sin t}{t}\,dt\)</strong></p>
+            <p><em>Convergence :</em> On effectue une integration par parties avec \(u = \dfrac{1}{t}\) et \(v' = \sin t\) :</p>
+            <div class="math-display">$$\int_1^{A} \frac{\sin t}{t}\,dt = \left[-\frac{\cos t}{t}\right]_1^{A} - \int_1^{A} \frac{\cos t}{t^2}\,dt$$</div>
+            <p>Quand \(A \to +\infty\) : le crochet admet une limite (car \(\cos A / A \to 0\)), et l'integrale du second membre converge absolument par la question 1 (en remplacant \(\sin\) par \(\cos\)). Donc \(\displaystyle\int_1^{+\infty} \frac{\sin t}{t}\,dt\) <strong>converge</strong>.</p>
+            <p><em>Non-convergence absolue :</em> On minore :</p>
+            <div class="math-display">$$\int_1^{N\pi} \frac{|\sin t|}{t}\,dt \geq \sum_{k=1}^{N-1} \int_{k\pi}^{(k+1)\pi} \frac{|\sin t|}{(k+1)\pi}\,dt = \sum_{k=1}^{N-1} \frac{2}{(k+1)\pi}$$</div>
+            <p>Cette somme diverge (serie harmonique). Donc l'integrale n'est <strong>pas absolument convergente</strong> : elle est <strong>semi-convergente</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ M2. Derivation sous le signe integral ═══════════════ -->
+    <section class="course__section" id="m2">
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Derivation sous le signe integral (Leibniz)</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <p>Pour calculer \(\displaystyle F(x) = \int_a^{+\infty} f(x,t)\,dt\), appliquer le theoreme de Leibniz :</p>
+        <ol>
+          <li><strong>Verifier</strong> que \(t \mapsto f(x,t)\) est continue par morceaux et integrable pour tout \(x\).</li>
+          <li><strong>Verifier</strong> que \(\dfrac{\partial f}{\partial x}(x,t)\) existe et est continue en \(x\).</li>
+          <li><strong>Trouver une domination</strong> : \(\left|\dfrac{\partial f}{\partial x}(x,t)\right| \leq \varphi(t)\) avec \(\varphi\) integrable, independante de \(x\) (sur tout segment \([c,d] \subset I\)).</li>
+          <li><strong>Conclure</strong> : \(F\) est \(\mathscr{C}^1\) et \(\displaystyle F'(x) = \int_a^{+\infty} \frac{\partial f}{\partial x}(x,t)\,dt\).</li>
+          <li><strong>Integrer</strong> \(F'\) pour retrouver \(F\), puis determiner la constante par une valeur connue de \(F\).</li>
+        </ol>
+      </div>
+
+      <div class="block block--annale" style="position:relative">
+        <span class="annale-badge">CCINP 2024 -- Maths 1</span>
+        <span class="block__label">Exercice d'annale</span>
+        <p>Soit \(\displaystyle F(x) = \int_0^{+\infty} \frac{e^{-xt}}{1+t^2}\,dt\) pour \(x > 0\).</p>
+        <p><strong>1.</strong> Montrer que \(F\) est de classe \(\mathscr{C}^1\) sur \(]0, +\infty[\) et calculer \(F'(x)\).</p>
+        <p><strong>2.</strong> En deduire une equation differentielle verifiee par \(F\), puis exprimer \(F(x)\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Solution <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Solution</span>
+            <p><strong>1. \(F\) est \(\mathscr{C}^1\) et calcul de \(F'(x)\)</strong></p>
+            <p>Posons \(f(x,t) = \dfrac{e^{-xt}}{1+t^2}\). On a \(\dfrac{\partial f}{\partial x}(x,t) = \dfrac{-t\,e^{-xt}}{1+t^2}\).</p>
+            <p>Pour \(x \geq c > 0\) (avec \(c\) fixe), on a :</p>
+            <div class="math-display">$$\left|\frac{\partial f}{\partial x}(x,t)\right| = \frac{t\,e^{-xt}}{1+t^2} \leq \frac{t\,e^{-ct}}{1+t^2} \leq e^{-ct}$$</div>
+            <p>La fonction \(t \mapsto e^{-ct}\) est integrable sur \([0,+\infty[\). Par le theoreme de derivation sous le signe integrale, \(F\) est \(\mathscr{C}^1\) et :</p>
+            <div class="math-display">$$F'(x) = -\int_0^{+\infty} \frac{t\,e^{-xt}}{1+t^2}\,dt$$</div>
+
+            <p style="margin-top:var(--space-lg)"><strong>2. Equation differentielle et expression de \(F\)</strong></p>
+            <p>On calcule \(F''(x)\) (meme justification de domination) :</p>
+            <div class="math-display">$$F''(x) = \int_0^{+\infty} \frac{t^2\,e^{-xt}}{1+t^2}\,dt = \int_0^{+\infty} \frac{(1+t^2-1)\,e^{-xt}}{1+t^2}\,dt$$</div>
+            <div class="math-display">$$F''(x) = \int_0^{+\infty} e^{-xt}\,dt - F(x) = \frac{1}{x} - F(x)$$</div>
+            <p>Donc \(F\) verifie l'equation differentielle : \(F''(x) + F(x) = \dfrac{1}{x}\).</p>
+            <p>On peut aussi proceder par integration par parties directe. En ecrivant \(\displaystyle F'(x) = -\int_0^{+\infty} \frac{t\,e^{-xt}}{1+t^2}\,dt\) et en integrant par parties (\(u' = te^{-xt}\), \(v = \frac{1}{1+t^2}\)), on montre que :</p>
+            <div class="math-display">$$F(x) = \frac{\pi}{2}\,e^{-x} + \int_0^x e^{-(x-u)} \frac{du}{u} \quad \text{(via la variation de la constante)}$$</div>
+            <p>En particulier, \(F(x) \underset{x \to +\infty}{\longrightarrow} 0\) et \(F(0^+) = \dfrac{\pi}{2}\).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ M3. Comparaison serie-integrale ═══════════════ -->
+    <section class="course__section" id="m3">
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Comparaison serie-integrale</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <p>Pour etudier une serie \(\displaystyle\sum f(n)\) ou une integrale \(\displaystyle\int_1^{+\infty} f\) quand \(f\) est <strong>positive decroissante</strong> :</p>
+        <ol>
+          <li><strong>Verifier</strong> que \(f\) est continue, positive et decroissante sur \([N, +\infty[\).</li>
+          <li><strong>Appliquer l'encadrement</strong> : \(\displaystyle\int_1^{n+1} f(t)\,dt \;\leq\; \sum_{k=1}^{n} f(k) \;\leq\; f(1) + \int_1^{n} f(t)\,dt\).</li>
+          <li>En deduire la <strong>meme nature</strong> de la serie et de l'integrale.</li>
+          <li>Pour un <strong>equivalent</strong> de la somme partielle : poser \(R_n = \sum_{k=1}^n f(k) - \int_1^n f(t)\,dt\) ; la suite \((R_n)\) converge, ce qui donne l'equivalent.</li>
+        </ol>
+      </div>
+
+      <div class="block block--annale" style="position:relative">
+        <span class="annale-badge">CCINP 2025 -- Maths 1</span>
+        <span class="block__label">Exercice d'annale</span>
+        <p><strong>1.</strong> Montrer que la serie \(\displaystyle\sum_{n \geq 2} \frac{1}{n\,(\ln n)^2}\) converge.</p>
+        <p><strong>2.</strong> Donner un equivalent de la somme partielle \(\displaystyle S_N = \sum_{n=2}^{N} \frac{1}{n\,\ln n}\) quand \(N \to +\infty\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Solution <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Solution</span>
+            <p><strong>1. Convergence de \(\displaystyle\sum \frac{1}{n\,(\ln n)^2}\)</strong></p>
+            <p>Posons \(f(t) = \dfrac{1}{t\,(\ln t)^2}\) pour \(t \geq 2\). La fonction \(f\) est continue, positive et decroissante sur \([2, +\infty[\).</p>
+            <p>Par comparaison serie-integrale, la serie et l'integrale sont de meme nature. Calculons :</p>
+            <div class="math-display">$$\int_2^{A} \frac{dt}{t\,(\ln t)^2} = \left[-\frac{1}{\ln t}\right]_2^{A} = \frac{1}{\ln 2} - \frac{1}{\ln A} \;\underset{A \to +\infty}{\longrightarrow}\; \frac{1}{\ln 2}$$</div>
+            <p>L'integrale converge, donc la serie \(\displaystyle\sum \frac{1}{n\,(\ln n)^2}\) <strong>converge</strong>.</p>
+
+            <p style="margin-top:var(--space-lg)"><strong>2. Equivalent de \(S_N\)</strong></p>
+            <p>Posons \(g(t) = \dfrac{1}{t\,\ln t}\) pour \(t \geq 2\). On a :</p>
+            <div class="math-display">$$\int_2^{N} \frac{dt}{t\,\ln t} = \big[\ln(\ln t)\big]_2^{N} = \ln(\ln N) - \ln(\ln 2)$$</div>
+            <p>Par comparaison serie-integrale, \(\displaystyle S_N = \sum_{k=2}^{N} \frac{1}{k\,\ln k}\) et \(\displaystyle\int_2^{N} g(t)\,dt\) different d'une quantite bornee. Plus precisement, la suite \(R_N = S_N - \ln(\ln N)\) converge vers une constante \(\ell\). Donc :</p>
+            <div class="math-display">$$\boxed{S_N \;\underset{N \to +\infty}{\sim}\; \ln(\ln N)}$$</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ M4. Integrales de Wallis et Gamma ═══════════════ -->
+    <section class="course__section" id="m4">
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Integrales de Wallis et Gamma</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <p>Les integrales de Wallis et la fonction Gamma sont des outils fondamentaux :</p>
+        <ol>
+          <li><strong>Wallis :</strong> \(\displaystyle W_n = \int_0^{\pi/2} \sin^n(t)\,dt\). Par IPP : \(W_n = \frac{n-1}{n}\,W_{n-2}\), avec \(W_0 = \frac{\pi}{2}\), \(W_1 = 1\).</li>
+          <li><strong>Equivalent :</strong> \(W_n \sim \sqrt{\dfrac{\pi}{2n}}\) quand \(n \to +\infty\).</li>
+          <li><strong>Formule de Wallis :</strong> \(W_n\,W_{n+1}\,(n+1) = \dfrac{\pi}{2}\) (utile pour les equivalents).</li>
+          <li><strong>Gamma :</strong> \(\Gamma(x) = \displaystyle\int_0^{+\infty} t^{x-1}\,e^{-t}\,dt\), \(\Gamma(n+1) = n!\), \(\Gamma(1/2) = \sqrt{\pi}\).</li>
+          <li><strong>Strategie :</strong> Pour calculer une integrale, la ramener a Wallis (changement \(t = \sin u\)) ou a Gamma (changement \(t = u^p\)).</li>
+        </ol>
+      </div>
+
+      <div class="block block--annale" style="position:relative">
+        <span class="annale-badge">CCINP 2024 -- Maths 1</span>
+        <span class="block__label">Exercice d'annale</span>
+        <p>On pose \(\displaystyle I = \int_0^{\pi/2} \ln(\sin t)\,dt\).</p>
+        <p><strong>1.</strong> Justifier la convergence de cette integrale impropre.</p>
+        <p><strong>2.</strong> En utilisant la relation \(\sin(2t) = 2\sin t\cos t\), montrer que \(I = -\dfrac{\pi}{2}\ln 2\).</p>
+        <p><strong>3.</strong> En deduire, a l'aide des integrales de Wallis, la formule de Stirling : \(n! \sim \sqrt{2\pi n}\left(\dfrac{n}{e}\right)^n\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Solution <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Solution</span>
+            <p><strong>1. Convergence de \(I\)</strong></p>
+            <p>Au voisinage de \(0^+\), \(\sin t \sim t\) donc \(\ln(\sin t) \sim \ln t\). Or \(\displaystyle\int_0^{1} |\ln t|\,dt\) converge (integrer par parties : \(\int_0^1 |\ln t|\,dt = 1\)). Donc l'integrale \(I\) converge.</p>
+
+            <p style="margin-top:var(--space-lg)"><strong>2. Calcul de \(I\)</strong></p>
+            <p>On effectue le changement de variable \(u = 2t\) dans \(\displaystyle\int_0^{\pi/2} \ln(\sin(2t))\,dt\) :</p>
+            <div class="math-display">$$\int_0^{\pi/2} \ln(\sin(2t))\,dt = \frac{1}{2}\int_0^{\pi} \ln(\sin u)\,du = \frac{1}{2} \cdot 2I = I$$</div>
+            <p>(par symetrie \(\sin(\pi - u) = \sin u\)). D'autre part :</p>
+            <div class="math-display">$$\int_0^{\pi/2} \ln(\sin(2t))\,dt = \int_0^{\pi/2} \ln 2\,dt + \int_0^{\pi/2} \ln(\sin t)\,dt + \int_0^{\pi/2} \ln(\cos t)\,dt$$</div>
+            <div class="math-display">$$= \frac{\pi}{2}\ln 2 + I + I = \frac{\pi}{2}\ln 2 + 2I$$</div>
+            <p>Donc \(I = \frac{\pi}{2}\ln 2 + 2I\), ce qui donne \(\boxed{I = -\frac{\pi}{2}\ln 2}\).</p>
+
+            <p style="margin-top:var(--space-lg)"><strong>3. Formule de Stirling</strong></p>
+            <p>On sait que \(\ln(W_n) = \displaystyle\int_0^{\pi/2} n\ln(\sin t)\,dt = nI = -\frac{n\pi}{2}\ln 2\) n'est pas directement utile. On utilise plutot l'equivalent \(W_n \sim \sqrt{\frac{\pi}{2n}}\) et l'expression explicite de \(W_{2n}\) via la formule de recurrence :</p>
+            <div class="math-display">$$W_{2n} = \frac{(2n)!}{4^n\,(n!)^2}\cdot\frac{\pi}{2}$$</div>
+            <p>En combinant \(W_{2n} \sim \sqrt{\frac{\pi}{4n}}\) et l'expression ci-dessus, on obtient :</p>
+            <div class="math-display">$$\frac{(2n)!}{4^n\,(n!)^2} \sim \frac{1}{\sqrt{\pi n}}$$</div>
+            <p>Ce qui, apres simplification, donne la formule de Stirling : \(\boxed{n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n}\).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ M5. Integrale gaussienne et Fresnel ═══════════════ -->
+    <section class="course__section" id="m5">
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Integrale gaussienne et Fresnel</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <p>Pour calculer l'integrale de Gauss \(\displaystyle\int_0^{+\infty} e^{-t^2}\,dt = \frac{\sqrt{\pi}}{2}\) :</p>
+        <ol>
+          <li><strong>Methode classique (coordonnees polaires) :</strong> Poser \(I = \int_0^{+\infty} e^{-t^2}\,dt\). Alors \(I^2 = \int_0^{+\infty}\int_0^{+\infty} e^{-(x^2+y^2)}\,dx\,dy\). En polaires : \(I^2 = \frac{\pi}{4}\).</li>
+          <li><strong>Methode CCINP (sans coordonnees polaires) :</strong> Poser \(J(x) = \left(\int_0^x e^{-t^2}\,dt\right)^2\) et \(K(x) = \int_0^1 \frac{e^{-x^2(1+t^2)}}{1+t^2}\,dt\). Montrer que \(J(x) + K(x)\) est constante.</li>
+          <li><strong>Integrales de Fresnel :</strong> Le changement \(u = t^2\) ramene \(\int_0^{+\infty} \cos(t^2)\,dt\) a une integrale a parametre. Resultat : \(\int_0^{+\infty} \cos(t^2)\,dt = \int_0^{+\infty} \sin(t^2)\,dt = \frac{1}{2}\sqrt{\frac{\pi}{2}}\).</li>
+        </ol>
+      </div>
+
+      <div class="block block--annale" style="position:relative">
+        <span class="annale-badge">CCINP 2023 -- Maths 1</span>
+        <span class="block__label">Exercice d'annale</span>
+        <p>On pose \(\displaystyle I = \int_0^{+\infty} e^{-t^2}\,dt\). Pour \(x > 0\), on definit :</p>
+        <div class="math-display">$$J(x) = \left(\int_0^{x} e^{-t^2}\,dt\right)^2 \qquad \text{et} \qquad K(x) = \int_0^{1} \frac{e^{-x^2(1+t^2)}}{1+t^2}\,dt$$</div>
+        <p><strong>1.</strong> Montrer que \(J\) et \(K\) sont derivables sur \(]0, +\infty[\) et calculer \(J'(x)\) et \(K'(x)\).</p>
+        <p><strong>2.</strong> En deduire que \(J(x) + K(x)\) est constante sur \(]0, +\infty[\).</p>
+        <p><strong>3.</strong> Calculer cette constante et en deduire la valeur de \(I\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Solution <svg viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Solution</span>
+            <p><strong>1. Derivees de \(J\) et \(K\)</strong></p>
+            <p>\(J(x) = \left(\int_0^x e^{-t^2}\,dt\right)^2\). Par derivation d'un carre de fonction :</p>
+            <div class="math-display">$$J'(x) = 2\,e^{-x^2}\int_0^{x} e^{-t^2}\,dt$$</div>
+
+            <p>Pour \(K(x)\), on applique le theoreme de derivation sous le signe integrale. On a \(\frac{\partial}{\partial x}\left(\frac{e^{-x^2(1+t^2)}}{1+t^2}\right) = -2x\,e^{-x^2(1+t^2)}\).</p>
+            <p>La domination est assuree sur tout segment \([c,d] \subset ]0,+\infty[\) car \(|-2x\,e^{-x^2(1+t^2)}| \leq 2d\,e^{-c^2}\). Donc :</p>
+            <div class="math-display">$$K'(x) = -2x\int_0^{1} e^{-x^2(1+t^2)}\,dt = -2x\,e^{-x^2}\int_0^{1} e^{-x^2 t^2}\,dt$$</div>
+
+            <p style="margin-top:var(--space-lg)"><strong>2. \(J(x) + K(x)\) est constante</strong></p>
+            <p>Dans \(K'(x)\), on effectue le changement de variable \(u = xt\) (donc \(dt = du/x\)) :</p>
+            <div class="math-display">$$K'(x) = -2x\,e^{-x^2}\int_0^{x} e^{-u^2}\,\frac{du}{x} = -2\,e^{-x^2}\int_0^{x} e^{-u^2}\,du = -J'(x)$$</div>
+            <p>Donc \((J + K)'(x) = 0\) pour tout \(x > 0\) : la fonction \(J + K\) est <strong>constante</strong>.</p>
+
+            <p style="margin-top:var(--space-lg)"><strong>3. Calcul de \(I\)</strong></p>
+            <p>En \(x = 0\) : \(J(0) = 0\) et \(K(0) = \int_0^1 \frac{dt}{1+t^2} = \arctan(1) = \frac{\pi}{4}\).</p>
+            <p>Quand \(x \to +\infty\) : \(J(x) \to I^2\) et \(K(x) \to 0\) (car \(e^{-x^2(1+t^2)} \to 0\) pour tout \(t \in [0,1]\), avec convergence dominee).</p>
+            <p>Par continuite de \(J + K\), la constante vaut \(\frac{\pi}{4}\), et a la limite :</p>
+            <div class="math-display">$$I^2 + 0 = \frac{\pi}{4} \implies \boxed{I = \int_0^{+\infty} e^{-t^2}\,dt = \frac{\sqrt{\pi}}{2}}$$</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <div></div>
+      <a href="#" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Methodes suivantes</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // KaTeX rendering
+      const renderMath = () => {
+        if (window.renderMathInElement) {
+          renderMathInElement(document.querySelector('.course'), {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            throwOnError: false
+          });
+        }
+      };
+      if (window.renderMathInElement) {
+        renderMath();
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMath();
+          }
+        }, 100);
+      }
+
+      // Deepen toggles
+      document.querySelectorAll('.deepen__btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const content = btn.nextElementSibling;
+          const isOpen = content.classList.contains('open');
+          btn.classList.toggle('active', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen);
+          content.classList.toggle('open', !isOpen);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

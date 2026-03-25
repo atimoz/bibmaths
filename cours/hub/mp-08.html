@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ch.08 — Series entieres avancees | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <style>
+    .hub{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .hub__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-xl);transition:color .3s}
+    .hub__back:hover{color:var(--accent)}
+
+    /* Header */
+    .hub__header{margin-bottom:var(--space-2xl);padding-bottom:var(--space-xl);border-bottom:1px solid var(--border)}
+    .hub__chapter{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--space-sm);display:block}
+    .hub__title{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.2rem);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-bottom:var(--space-md)}
+    .hub__subtitle{font-size:1rem;color:var(--ink-light);line-height:1.8;max-width:640px}
+    .hub__tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--space-md)}
+    .hub__tag{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:var(--bg-card);border:1px solid var(--border);color:var(--ink-muted)}
+
+    /* Resource Grid */
+    .hub__resources{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-lg);margin-bottom:var(--space-2xl)}
+    @media(max-width:680px){.hub__resources{grid-template-columns:1fr}}
+
+    .resource-card{display:flex;flex-direction:column;padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px;transition:all .4s var(--ease-out);position:relative;overflow:hidden;text-decoration:none;color:var(--ink)}
+    .resource-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--rc-accent,var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease-out)}
+    .resource-card:hover{border-color:var(--rc-accent,var(--accent));transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+    .resource-card:hover::before{transform:scaleX(1)}
+
+    .resource-card__icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:var(--space-md);background:var(--rc-bg,var(--accent-glow))}
+    .resource-card__label{font-family:var(--font-mono);font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--rc-accent,var(--accent));margin-bottom:6px}
+    .resource-card__title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+    .resource-card__desc{font-size:.85rem;color:var(--ink-light);line-height:1.7;flex:1}
+    .resource-card__arrow{position:absolute;bottom:var(--space-md);right:var(--space-md);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--border);color:var(--ink-muted);font-size:.75rem;transition:all .3s}
+    .resource-card:hover .resource-card__arrow{background:var(--rc-accent,var(--accent));color:#fff;border-color:var(--rc-accent,var(--accent))}
+
+    /* Card color variants */
+    .resource-card--cours{--rc-accent:#2563A3;--rc-bg:rgba(37,99,163,.08)}
+    .resource-card--fiche{--rc-accent:#C83232;--rc-bg:rgba(200,50,50,.08)}
+    .resource-card--methode{--rc-accent:#2A8A8A;--rc-bg:rgba(42,138,138,.08)}
+    .resource-card--exercice{--rc-accent:#4B825A;--rc-bg:rgba(75,130,90,.08)}
+
+    [data-theme="dark"] .resource-card--cours{--rc-accent:#5A9FD4;--rc-bg:rgba(90,159,212,.1)}
+    [data-theme="dark"] .resource-card--fiche{--rc-accent:#E86060;--rc-bg:rgba(232,96,96,.1)}
+    [data-theme="dark"] .resource-card--methode{--rc-accent:#4ABABA;--rc-bg:rgba(74,186,186,.1)}
+    [data-theme="dark"] .resource-card--exercice{--rc-accent:#6BB87A;--rc-bg:rgba(107,184,122,.1)}
+    [data-theme="dark"] .resource-card{background:var(--bg-card);border-color:var(--border)}
+    [data-theme="dark"] .resource-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.3)}
+
+    /* Annales liees */
+    .hub__annales{margin-bottom:var(--space-2xl)}
+    .hub__section-title{font-family:var(--font-display);font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent)}
+    .annale-link{display:flex;align-items:center;gap:var(--space-md);padding:12px var(--space-md);border-radius:10px;transition:all .2s;text-decoration:none;color:var(--ink)}
+    .annale-link:hover{background:var(--accent-glow)}
+    .annale-link__year{font-family:var(--font-mono);font-size:.75rem;font-weight:600;color:var(--accent);min-width:44px}
+    .annale-link__title{font-size:.9rem;font-weight:500}
+    .annale-link__desc{font-size:.78rem;color:var(--ink-muted);margin-left:auto}
+    @media(max-width:680px){.annale-link__desc{display:none}}
+
+    /* Progression hint */
+    .hub__hint{display:flex;align-items:center;gap:var(--space-md);padding:var(--space-md) var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:12px;margin-bottom:var(--space-xl)}
+    .hub__hint-icon{font-size:1.2rem;flex-shrink:0}
+    .hub__hint-text{font-size:.85rem;color:var(--ink-light);line-height:1.6}
+    .hub__hint-text strong{color:var(--ink);font-weight:600}
+
+    /* Nav between hubs */
+    .hub__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border)}
+    .hub__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s;text-decoration:none}
+    .hub__nav-link:hover{color:var(--accent)}
+    .hub__nav-link span{font-family:var(--font-display);font-size:1.05rem;font-weight:500;color:var(--ink)}
+    .hub__nav-link:hover span{color:var(--accent)}
+    .hub__nav-link--next{text-align:right}
+  </style>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </nav>
+
+  <article class="hub">
+    <a href="../../mp.html" class="hub__back">&larr; Programme MP</a>
+
+    <!-- Header -->
+    <header class="hub__header">
+      <span class="hub__chapter">Chapitre 08</span>
+      <h1 class="hub__title">Series entieres avancees</h1>
+      <p class="hub__subtitle">Rayon de convergence, developpements en series entieres, operations sur les series entieres, resolution d'equations differentielles lineaires par series entieres.</p>
+      <div class="hub__tags">
+        <span class="hub__tag">Analyse</span>
+        <span class="hub__tag">CCINP &#11088;&#11088;</span>
+        <span class="hub__tag">Frequent</span>
+      </div>
+    </header>
+
+    <!-- Suggested order -->
+    <div class="hub__hint">
+      <span class="hub__hint-icon">&#128218;</span>
+      <p class="hub__hint-text"><strong>Parcours suggere :</strong> Commence par le cours pour maitriser les fondamentaux, puis consulte la fiche pour memoriser l'essentiel. Enchaine avec les methodes pour t'entrainer sur des exercices d'annales types.</p>
+    </div>
+
+    <!-- Resource cards -->
+    <div class="hub__resources">
+      <a href="../mp-08-series-entieres-avancees.html" class="resource-card resource-card--cours">
+        <div class="resource-card__icon">&#128214;</div>
+        <span class="resource-card__label">Cours complet</span>
+        <h2 class="resource-card__title">Series entieres avancees</h2>
+        <p class="resource-card__desc">Rayon de convergence, DSE classiques, operations sur les series entieres, resolution d'EDL par series entieres.</p>
+        <span class="resource-card__arrow">&rarr;</span>
+      </a>
+
+      <a href="../fiches/mp-08-series-entieres.html" class="resource-card resource-card--fiche">
+        <div class="resource-card__icon">&#128203;</div>
+        <span class="resource-card__label">Fiche de revision</span>
+        <h2 class="resource-card__title">L'essentiel a retenir</h2>
+        <p class="resource-card__desc">Theoremes cles, formulaire condense, methodes types et pieges classiques. Ideal avant un DS ou le concours.</p>
+        <span class="resource-card__arrow">&rarr;</span>
+      </a>
+
+      <a href="../methodes/mp-m7-series-entieres-edl.html" class="resource-card resource-card--methode">
+        <div class="resource-card__icon">&#128295;</div>
+        <span class="resource-card__label">Methodes CCINP</span>
+        <h2 class="resource-card__title">S'entrainer avec les annales</h2>
+        <p class="resource-card__desc">Methodes types illustrees par des exercices d'annales CCINP reels : determiner un rayon de convergence, resoudre une EDL par series entieres.</p>
+        <span class="resource-card__arrow">&rarr;</span>
+      </a>
+
+      <a href="../methodes/mp-m7-series-entieres-edl.html#exercices" class="resource-card resource-card--exercice">
+        <div class="resource-card__icon">&#9998;</div>
+        <span class="resource-card__label">Exercices</span>
+        <h2 class="resource-card__title">Exercices d'entrainement</h2>
+        <p class="resource-card__desc">Exercices classes par difficulte, des applications directes du cours aux problemes de concours complets.</p>
+        <span class="resource-card__arrow">&rarr;</span>
+      </a>
+    </div>
+
+    <!-- Annales liees -->
+    <section class="hub__annales">
+      <h2 class="hub__section-title">Annales CCINP liees</h2>
+      <a href="../annales/ccinp-2024-maths1.html" class="annale-link">
+        <span class="annale-link__year">2024</span>
+        <span class="annale-link__title">Maths 1</span>
+        <span class="annale-link__desc">EDL + series entieres</span>
+      </a>
+      <a href="../annales/ccinp-2022-maths2.html" class="annale-link">
+        <span class="annale-link__year">2022</span>
+        <span class="annale-link__title">Maths 2</span>
+        <span class="annale-link__desc">Exponentielle de matrice</span>
+      </a>
+    </section>
+
+    <!-- Nav prev/next -->
+    <nav class="hub__nav">
+      <a href="mp-07.html" class="hub__nav-link">
+        <small>&larr; Chapitre precedent</small>
+        <span>07. Suites et series de fonctions</span>
+      </a>
+      <a href="mp-10.html" class="hub__nav-link hub__nav-link--next">
+        <small>Chapitre suivant &rarr;</small>
+        <span>10. Integration sur un segment</span>
+      </a>
+    </nav>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">&int; LibMaths</span>
+        <p class="footer__tagline">La beaute des mathematiques, en ligne.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) { document.documentElement.removeAttribute('data-theme'); localStorage.setItem('bibmaths-theme', 'light'); }
+        else { document.documentElement.setAttribute('data-theme', 'dark'); localStorage.setItem('bibmaths-theme', 'dark'); }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BibMaths — Bibliothèque Mathématique</title>
+  <title>LibMaths — Bibliothèque Scientifique</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -23,26 +23,33 @@
 
   <!-- Navigation -->
   <nav class="nav">
-    <a href="#" class="nav__logo">
-      <span class="nav__logo-symbol">∫</span>
-      <span class="nav__logo-text">BibMaths</span>
-    </a>
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
     <div class="nav__links">
-      <!-- Lycée -->
+      <a href="index.html" class="nav__link nav__link--active">Accueil</a>
       <div class="nav__dropdown">
-        <button class="nav__link nav__link--has-sub">Lycée <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <a href="mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
         <div class="dropdown">
-          <a href="#" class="dropdown__item">Seconde</a>
-          <a href="#" class="dropdown__item">Grand Oral</a>
+          <a href="mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="mpsi.html#methodes" class="dropdown__item">Méthodes</a>
         </div>
       </div>
-
-      <!-- Math Sup (MPSI) — links to dedicated page -->
-      <a href="mpsi.html" class="nav__link">MPSI</a>
-
-      <!-- Math Spé (MP) — links to dedicated page -->
-      <a href="mp.html" class="nav__link">MP</a>
-
+      <div class="nav__dropdown">
+        <a href="mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="mp.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
     </div>
     <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
       <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -55,12 +62,9 @@
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__group">
-      <button class="mobile-menu__toggle">Lycée <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-      <div class="mobile-menu__sub">
-        <a href="#">Seconde</a>
-        <a href="#">Grand Oral</a>
-      </div>
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
     </div>
     <div class="mobile-menu__group">
       <a href="mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a>
@@ -73,7 +77,7 @@
   <!-- Hero -->
   <header class="hero">
     <div class="hero__content">
-      <p class="hero__eyebrow">Bibliothèque Mathématique</p>
+      <p class="hero__eyebrow">Bibliothèque Scientifique</p>
       <h1 class="hero__title">
         Cours & exercices de<br>
         <span class="hero__title--accent">mathématiques</span>,<br>
@@ -127,17 +131,7 @@
     </div>
 
     <div class="programmes-grid">
-      <a href="#" class="programme-card">
-        <div class="programme-card__badge">Lycée</div>
-        <div class="programme-card__icon">√</div>
-        <h3 class="programme-card__title">Lycée</h3>
-        <p class="programme-card__desc">Seconde et Grand Oral — les bases fondamentales pour construire un raisonnement solide.</p>
-        <div class="programme-card__meta">
-          <span class="programme-card__count">2 programmes</span>
-          <span class="programme-card__arrow">→</span>
-        </div>
-      </a>
-      <a href="mpsi.html" class="programme-card programme-card--featured">
+<a href="mpsi.html" class="programme-card programme-card--featured">
         <div class="programme-card__badge">Prépa 1A</div>
         <div class="programme-card__icon">∑</div>
         <h3 class="programme-card__title">MPSI</h3>
@@ -178,7 +172,7 @@
         <span class="section__number">02</span>
         <h2 class="section__title">À propos</h2>
         <p class="about-text">
-          BibMaths est une bibliothèque mathématique en ligne, conçue pour offrir un accès clair et structuré
+          LibMaths est une bibliothèque mathématique en ligne, conçue pour offrir un accès clair et structuré
           aux concepts fondamentaux des mathématiques. Notre ambition : rendre la rigueur mathématique
           accessible sans sacrifier l'élégance.
         </p>
@@ -197,7 +191,7 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <span class="footer__logo">∫ BibMaths</span>
+        <span class="footer__logo">∫ LibMaths</span>
         <p class="footer__tagline">La beauté des mathématiques, en ligne.</p>
       </div>
       <div class="footer__links">
@@ -216,7 +210,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; 2026 BibMaths — Projet open source</span>
+      <span>&copy; 2026 LibMaths — Projet open source</span>
     </div>
   </footer>
 

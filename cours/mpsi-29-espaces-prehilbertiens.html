@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espaces prehilbertiens — MPSI | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md)}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
+    .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:4000px;opacity:1}
+    .block p,.block li{font-size:.9rem;line-height:1.8}
+    .block ul{list-style:none;padding-left:var(--space-md)}
+    .block ul li::before{content:'—';color:var(--accent);margin-right:8px}
+    .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
+    .block--def .block__label{color:#2563A3}
+    .block--def ul li::before{color:#2563A3}
+    .block--thm{background:rgba(163,42,42,.06);border-left:3px solid #A32A2A}
+    .block--thm .block__label{color:#A32A2A}
+    .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
+    .block--prop .block__label{color:#7638A3}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
+    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--example .block__label{color:#4B825A}
+    .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
+    .block--remark .block__label{color:var(--accent)}
+    .block--remark p{color:var(--ink-light);font-size:.875rem}
+    .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
+    .block--cor .block__label{color:#9B59B6}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
+    [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
+    [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
+    [data-theme="dark"] .block--thm{background:rgba(163,42,42,.1);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
+    [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
+    [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
+    [data-theme="dark"] .block--proof .block__label{color:#8888A0}
+    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
+    [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
+    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../mpsi.html" class="nav__link nav__link--has-sub nav__link--active">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../mpsi.html" class="mobile-menu__page-link mobile-menu__page-link--active">MPSI — Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../mp.html" class="mobile-menu__page-link">MP — Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../mpsi.html" class="course__back">&larr; Retour au programme MPSI</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MPSI — Cours</span>
+      <span class="course__chapter">Chapitre 29</span>
+    </div>
+
+    <h1 class="course__title">Espaces prehilbertiens</h1>
+
+    <p class="course__intro">
+      Ce chapitre introduit la notion de produit scalaire sur un espace vectoriel reel, qui generalise le produit scalaire usuel de \(\mathbb{R}^n\). On definit la norme et la distance associees, on etablit les inegalites fondamentales de Cauchy-Schwarz et triangulaire, puis on etudie l'orthogonalite, les bases orthonormales (procede de Gram-Schmidt), la projection orthogonale et ses proprietes de meilleure approximation. Ces outils sont essentiels pour la geometrie euclidienne et l'analyse.
+    </p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> Produit scalaire et norme</a></li>
+        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Orthogonalite</a></li>
+        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> Bases orthonormales et Gram-Schmidt</a></li>
+        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> Supplementaire orthogonal</a></li>
+        <li class="course__toc-item"><a href="#sec5"><span class="course__toc-num">V.</span> Projection orthogonale</a></li>
+        <li class="course__toc-item"><a href="#sec6"><span class="course__toc-num">VI.</span> Produits scalaires classiques</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════ SECTION I ═══════════════ -->
+    <section class="course__section" id="sec1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Produit scalaire et norme</h2>
+
+      <p>On se place sur un \(\mathbb{R}\)-espace vectoriel \(E\). Un produit scalaire permet de mesurer des longueurs et des angles, generalisant ainsi la geometrie euclidienne du plan et de l'espace.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Definition — Produit scalaire</span>
+        <p>Soit \(E\) un \(\mathbb{R}\)-espace vectoriel. Un <strong>produit scalaire</strong> sur \(E\) est une application \(\langle \cdot, \cdot \rangle : E \times E \to \mathbb{R}\) verifiant :</p>
+        <ul>
+          <li><strong>Bilinearite :</strong> pour tout \(y \in E\), l'application \(x \mapsto \langle x, y \rangle\) est lineaire, et pour tout \(x \in E\), l'application \(y \mapsto \langle x, y \rangle\) est lineaire.</li>
+          <li><strong>Symetrie :</strong> \(\langle x, y \rangle = \langle y, x \rangle\) pour tous \(x, y \in E\).</li>
+          <li><strong>Caractere defini positif :</strong> \(\langle x, x \rangle \geq 0\) pour tout \(x \in E\), et \(\langle x, x \rangle = 0 \Leftrightarrow x = 0_E\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Definition — Espace prehilbertien, espace euclidien</span>
+        <p>Un \(\mathbb{R}\)-espace vectoriel muni d'un produit scalaire est appele <strong>espace prehilbertien reel</strong>. S'il est de plus de <strong>dimension finie</strong>, on l'appelle <strong>espace euclidien</strong>.</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Definition — Norme euclidienne et distance</span>
+        <p>Soit \((E, \langle \cdot, \cdot \rangle)\) un espace prehilbertien reel. On definit :</p>
+        <ul>
+          <li>La <strong>norme</strong> associee au produit scalaire : \(\|x\| = \sqrt{\langle x, x \rangle}\) pour tout \(x \in E\).</li>
+          <li>La <strong>distance</strong> associee : \(d(x, y) = \|x - y\|\) pour tous \(x, y \in E\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme — Inegalite de Cauchy-Schwarz</span>
+        <p>Soit \((E, \langle \cdot, \cdot \rangle)\) un espace prehilbertien reel. Pour tous \(x, y \in E\) :</p>
+        <div class="math-display">$$|\langle x, y \rangle| \leq \|x\| \cdot \|y\|$$</div>
+        <p>avec egalite si et seulement si \(x\) et \(y\) sont <strong>colineaires</strong> (i.e. la famille \((x, y)\) est liee).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Demonstration <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Demonstration</span>
+            <p>Si \(y = 0\), les deux membres valent \(0\) et l'inegalite est triviale. Supposons \(y \neq 0\). Pour tout \(t \in \mathbb{R}\), on a \(\langle x + ty, x + ty \rangle \geq 0\), soit :</p>
+            <div class="math-display">$$\|x\|^2 + 2t\langle x, y \rangle + t^2 \|y\|^2 \geq 0$$</div>
+            <p>C'est un trinome en \(t\) de signe positif ou nul, donc son discriminant est negatif ou nul :</p>
+            <div class="math-display">$$\Delta = 4\langle x, y \rangle^2 - 4\|x\|^2 \|y\|^2 \leq 0$$</div>
+            <p>On obtient \(\langle x, y \rangle^2 \leq \|x\|^2 \|y\|^2\), d'ou \(|\langle x, y \rangle| \leq \|x\| \cdot \|y\|\).</p>
+            <p>Il y a egalite si et seulement si \(\Delta = 0\), c'est-a-dire si le trinome admet une racine \(t_0\), auquel cas \(x + t_0 y = 0\), donc \(x\) et \(y\) sont colineaires.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme — Inegalite triangulaire</span>
+        <p>Soit \((E, \langle \cdot, \cdot \rangle)\) un espace prehilbertien reel. Pour tous \(x, y \in E\) :</p>
+        <div class="math-display">$$\|x + y\| \leq \|x\| + \|y\|$$</div>
+        <p>avec egalite si et seulement si \(x\) et \(y\) sont positivement colineaires (i.e. \(\exists \lambda \geq 0,\ x = \lambda y\) ou \(y = \lambda x\)).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>L'inegalite triangulaire se deduit de Cauchy-Schwarz en developpant \(\|x+y\|^2 = \|x\|^2 + 2\langle x,y\rangle + \|y\|^2 \leq \|x\|^2 + 2\|x\|\|y\| + \|y\|^2 = (\|x\|+\|y\|)^2\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION II ═══════════════ -->
+    <section class="course__section" id="sec2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Orthogonalite</h2>
+
+      <p>Le produit scalaire permet de definir une notion d'orthogonalite qui generalise la perpendicularite geometrique.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Definition — Orthogonalite</span>
+        <p>Soit \((E, \langle \cdot, \cdot \rangle)\) un espace prehilbertien reel. Deux vecteurs \(x, y \in E\) sont dits <strong>orthogonaux</strong>, note \(x \perp y\), si \(\langle x, y \rangle = 0\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Definition — Famille orthogonale, famille orthonormale</span>
+        <p>Une famille \((e_1, \ldots, e_p)\) de vecteurs de \(E\) est dite :</p>
+        <ul>
+          <li><strong>Orthogonale</strong> si \(\langle e_i, e_j \rangle = 0\) pour tous \(i \neq j\).</li>
+          <li><strong>Orthonormale</strong> (ou <strong>orthonormee</strong>) si elle est orthogonale et \(\|e_i\| = 1\) pour tout \(i\), c'est-a-dire \(\langle e_i, e_j \rangle = \delta_{ij}\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Liberte d'une famille orthogonale</span>
+        <p>Toute famille orthogonale de vecteurs <strong>non nuls</strong> est une famille <strong>libre</strong>.</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Demonstration <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Demonstration</span>
+            <p>Soit \((e_1, \ldots, e_p)\) une famille orthogonale de vecteurs non nuls. Supposons \(\lambda_1 e_1 + \cdots + \lambda_p e_p = 0\). En prenant le produit scalaire avec \(e_k\) :</p>
+            <div class="math-display">$$0 = \langle \sum_{i=1}^p \lambda_i e_i, e_k \rangle = \sum_{i=1}^p \lambda_i \langle e_i, e_k \rangle = \lambda_k \|e_k\|^2$$</div>
+            <p>Comme \(e_k \neq 0\), on a \(\|e_k\|^2 > 0\), donc \(\lambda_k = 0\). La famille est libre.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme — Theoreme de Pythagore</span>
+        <p>Soit \((E, \langle \cdot, \cdot \rangle)\) un espace prehilbertien reel. Si \(x \perp y\), alors :</p>
+        <div class="math-display">$$\|x + y\|^2 = \|x\|^2 + \|y\|^2$$</div>
+        <p>Plus generalement, si \((e_1, \ldots, e_p)\) est une famille orthogonale, \(\|\sum_{i=1}^p e_i\|^2 = \sum_{i=1}^p \|e_i\|^2\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Definition — Orthogonal d'une partie</span>
+        <p>Soit \(A \subset E\). L'<strong>orthogonal</strong> de \(A\) est l'ensemble</p>
+        <div class="math-display">$$A^\perp = \{x \in E \mid \forall a \in A,\ \langle x, a \rangle = 0\}$$</div>
+        <p>\(A^\perp\) est toujours un <strong>sous-espace vectoriel</strong> de \(E\). Si \(F\) est un sous-espace vectoriel de \(E\), on note \(F^\perp\) son orthogonal.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION III ═══════════════ -->
+    <section class="course__section" id="sec3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Bases orthonormales et Gram-Schmidt</h2>
+
+      <p>En dimension finie, tout espace euclidien admet une base orthonormale, que l'on peut construire explicitement par le procede de Gram-Schmidt.</p>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme — Existence de bases orthonormales</span>
+        <p>Tout espace euclidien (espace prehilbertien reel de dimension finie non nulle) possede une <strong>base orthonormale</strong> (BON).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Coordonnees dans une BON</span>
+        <p>Soit \(\mathcal{B} = (e_1, \ldots, e_n)\) une base orthonormale de l'espace euclidien \(E\). Pour tout \(x \in E\) :</p>
+        <div class="math-display">$$x = \sum_{i=1}^{n} \langle x, e_i \rangle \, e_i$$</div>
+        <p>Les coordonnees de \(x\) dans la BON \(\mathcal{B}\) sont donc les produits scalaires \(\langle x, e_i \rangle\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>En consequence, si \(\mathcal{B} = (e_1, \ldots, e_n)\) est une BON, alors \(\langle x, y \rangle = \sum_{i=1}^n \langle x, e_i \rangle \langle y, e_i \rangle\) et \(\|x\|^2 = \sum_{i=1}^n \langle x, e_i \rangle^2\) (identite de Parseval).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme — Procede de Gram-Schmidt</span>
+        <p>Soit \((v_1, \ldots, v_p)\) une famille libre d'un espace prehilbertien reel \(E\). Il existe une unique famille orthonormale \((e_1, \ldots, e_p)\) telle que, pour tout \(k \in \{1, \ldots, p\}\) :</p>
+        <ul>
+          <li>\(\operatorname{Vect}(e_1, \ldots, e_k) = \operatorname{Vect}(v_1, \ldots, v_k)\),</li>
+          <li>\(\langle e_k, v_k \rangle > 0\).</li>
+        </ul>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Demonstration (algorithme) <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Demonstration</span>
+            <p>On construit la famille \((e_1, \ldots, e_p)\) par recurrence. On pose \(e_1 = \frac{v_1}{\|v_1\|}\).</p>
+            <p>Supposons \((e_1, \ldots, e_{k-1})\) construite. On pose :</p>
+            <div class="math-display">$$\widetilde{e}_k = v_k - \sum_{i=1}^{k-1} \langle v_k, e_i \rangle \, e_i$$</div>
+            <p>Le vecteur \(\widetilde{e}_k\) est non nul car \(v_k \notin \operatorname{Vect}(v_1, \ldots, v_{k-1})\) (la famille est libre). De plus, pour tout \(j < k\) :</p>
+            <div class="math-display">$$\langle \widetilde{e}_k, e_j \rangle = \langle v_k, e_j \rangle - \langle v_k, e_j \rangle = 0$$</div>
+            <p>On normalise : \(e_k = \frac{\widetilde{e}_k}{\|\widetilde{e}_k\|}\). La famille \((e_1, \ldots, e_k)\) est orthonormale et engendre le meme sous-espace que \((v_1, \ldots, v_k)\). La condition \(\langle e_k, v_k \rangle > 0\) provient du choix de signe dans la normalisation.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION IV ═══════════════ -->
+    <section class="course__section" id="sec4">
+      <h2 class="course__section-title"><span class="course__section-num">IV.</span> Supplementaire orthogonal</h2>
+
+      <p>En dimension finie, tout sous-espace vectoriel admet un unique supplementaire canonique : son orthogonal.</p>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme — Decomposition en somme directe orthogonale</span>
+        <p>Soit \(E\) un espace euclidien et \(F\) un sous-espace vectoriel de \(E\). Alors :</p>
+        <div class="math-display">$$E = F \oplus F^\perp$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Demonstration <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Demonstration</span>
+            <p>Soit \((e_1, \ldots, e_r)\) une BON de \(F\) (existe par Gram-Schmidt). Pour tout \(x \in E\), posons \(x_F = \sum_{i=1}^r \langle x, e_i \rangle e_i\) et \(x_{F^\perp} = x - x_F\). Alors \(x_F \in F\) et, pour tout \(j \in \{1, \ldots, r\}\), \(\langle x_{F^\perp}, e_j \rangle = \langle x, e_j \rangle - \langle x, e_j \rangle = 0\), donc \(x_{F^\perp} \in F^\perp\). Ainsi \(E = F + F^\perp\).</p>
+            <p>Si \(x \in F \cap F^\perp\), alors \(\langle x, x \rangle = 0\), donc \(x = 0\). La somme est directe.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Dimension de l'orthogonal</span>
+        <p>Soit \(E\) un espace euclidien de dimension \(n\) et \(F\) un sous-espace vectoriel de \(E\). Alors :</p>
+        <div class="math-display">$$\dim(F^\perp) = \dim(E) - \dim(F)$$</div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Biorthogonal</span>
+        <p>Soit \(E\) un espace euclidien et \(F\) un sous-espace vectoriel de \(E\). Alors :</p>
+        <div class="math-display">$$(F^\perp)^\perp = F$$</div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Matrices symetriques et antisymetriques</span>
+        <p>Dans \(\mathcal{M}_n(\mathbb{R})\) muni du produit scalaire \(\langle A, B \rangle = \operatorname{tr}(A^\top B)\), l'espace \(\mathcal{S}_n(\mathbb{R})\) des matrices symetriques et l'espace \(\mathcal{A}_n(\mathbb{R})\) des matrices antisymetriques sont supplementaires orthogonaux :</p>
+        <div class="math-display">$$\mathcal{M}_n(\mathbb{R}) = \mathcal{S}_n(\mathbb{R}) \oplus \mathcal{A}_n(\mathbb{R}) \quad \text{et} \quad \mathcal{S}_n(\mathbb{R})^\perp = \mathcal{A}_n(\mathbb{R})$$</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION V ═══════════════ -->
+    <section class="course__section" id="sec5">
+      <h2 class="course__section-title"><span class="course__section-num">V.</span> Projection orthogonale</h2>
+
+      <p>La projection orthogonale sur un sous-espace est un outil central en geometrie euclidienne et en approximation.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Definition — Projection orthogonale</span>
+        <p>Soit \(E\) un espace euclidien, \(F\) un sous-espace vectoriel de \(E\) et \((e_1, \ldots, e_r)\) une BON de \(F\). La <strong>projection orthogonale</strong> sur \(F\) est l'application \(p_F : E \to E\) definie par :</p>
+        <div class="math-display">$$p_F(x) = \sum_{i=1}^{r} \langle x, e_i \rangle \, e_i$$</div>
+        <p>C'est le projecteur sur \(F\) parallelement a \(F^\perp\) dans la decomposition \(E = F \oplus F^\perp\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Inegalite de Bessel</span>
+        <p>Soit \((e_1, \ldots, e_r)\) une famille orthonormale (non necessairement base) dans un espace euclidien \(E\). Pour tout \(x \in E\) :</p>
+        <div class="math-display">$$\sum_{i=1}^{r} \langle x, e_i \rangle^2 \leq \|x\|^2$$</div>
+        <p>Autrement dit, \(\|p_F(x)\| \leq \|x\|\). Il y a egalite si et seulement si \(x \in F\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Definition — Distance a un sous-espace</span>
+        <p>La <strong>distance</strong> d'un vecteur \(x \in E\) au sous-espace \(F\) est :</p>
+        <div class="math-display">$$d(x, F) = \|x - p_F(x)\|$$</div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Theoreme — Meilleure approximation</span>
+        <p>Soit \(E\) un espace euclidien, \(F\) un sous-espace vectoriel de \(E\) et \(x \in E\). Le vecteur \(p_F(x)\) est l'<strong>unique</strong> element de \(F\) le plus proche de \(x\) :</p>
+        <div class="math-display">$$\forall f \in F, \quad \|x - p_F(x)\| \leq \|x - f\|$$</div>
+        <p>avec egalite si et seulement si \(f = p_F(x)\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">
+          Demonstration <svg viewBox="0 0 12 12"><path d="M2 4L6 8L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Demonstration</span>
+            <p>Soit \(f \in F\). On ecrit \(x - f = (x - p_F(x)) + (p_F(x) - f)\). Or \(x - p_F(x) \in F^\perp\) et \(p_F(x) - f \in F\), donc ces deux vecteurs sont orthogonaux. Par Pythagore :</p>
+            <div class="math-display">$$\|x - f\|^2 = \|x - p_F(x)\|^2 + \|p_F(x) - f\|^2 \geq \|x - p_F(x)\|^2$$</div>
+            <p>avec egalite si et seulement si \(\|p_F(x) - f\|^2 = 0\), i.e. \(f = p_F(x)\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION VI ═══════════════ -->
+    <section class="course__section" id="sec6">
+      <h2 class="course__section-title"><span class="course__section-num">VI.</span> Produits scalaires classiques</h2>
+
+      <p>On presente les produits scalaires les plus courants, qui servent d'exemples fondamentaux et interviennent dans de nombreuses situations concretes.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Definition — Produit scalaire canonique sur \(\mathbb{R}^n\)</span>
+        <p>Le <strong>produit scalaire canonique</strong> sur \(\mathbb{R}^n\) est defini par :</p>
+        <div class="math-display">$$\langle x, y \rangle = \sum_{i=1}^{n} x_i y_i = X^\top Y$$</div>
+        <p>ou \(X\) et \(Y\) sont les vecteurs colonnes des coordonnees de \(x\) et \(y\) dans la base canonique. La norme associee est \(\|x\| = \sqrt{x_1^2 + \cdots + x_n^2}\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Definition — Produit scalaire sur \(\mathcal{M}_{n,p}(\mathbb{R})\)</span>
+        <p>Sur l'espace vectoriel \(\mathcal{M}_{n,p}(\mathbb{R})\), on definit le produit scalaire :</p>
+        <div class="math-display">$$\langle A, B \rangle = \operatorname{tr}(A^\top B) = \sum_{i=1}^{n} \sum_{j=1}^{p} a_{ij} b_{ij}$$</div>
+        <p>La norme associee est la <strong>norme de Frobenius</strong> : \(\|A\| = \sqrt{\operatorname{tr}(A^\top A)}\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Definition — Produit scalaire integral</span>
+        <p>Sur l'espace vectoriel \(\mathscr{C}([a,b], \mathbb{R})\) des fonctions continues sur \([a,b]\), on definit :</p>
+        <div class="math-display">$$\langle f, g \rangle = \int_a^b f(t) \, g(t) \, \mathrm{d}t$$</div>
+        <p>C'est un produit scalaire (la positivite stricte decoule de la continuite : si \(f\) est continue, positive et d'integrale nulle, alors \(f = 0\)). La norme associee est \(\|f\|_2 = \sqrt{\int_a^b f(t)^2 \, \mathrm{d}t}\).</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque</span>
+        <p>Le produit scalaire integral munit \(\mathscr{C}([a,b], \mathbb{R})\) d'une structure d'espace prehilbertien (de dimension infinie). Il est a la base de la theorie de l'approximation au sens des moindres carres et de la theorie des series de Fourier.</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="mpsi-28-reduction-endomorphismes.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Reduction des endomorphismes</span>
+      </a>
+      <a href="mpsi-30-geometrie-euclidienne.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Geometrie euclidienne</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../index.html">Accueil</a>
+          <a href="../mpsi.html">MPSI</a>
+          <a href="../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths — Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
+    });
+  </script>
+</body>
+</html>

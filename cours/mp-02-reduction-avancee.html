@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réduction avancée — MP | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md)}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
+    .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .deepen{margin:var(--space-sm) 0 var(--space-lg) 0}
+    .deepen__btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--ink-muted);cursor:pointer;transition:all .3s var(--ease-out)}
+    .deepen__btn:hover{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn svg{width:12px;height:12px;transition:transform .3s var(--ease-out)}
+    .deepen__btn.active{border-color:var(--accent);color:var(--accent)}
+    .deepen__btn.active svg{transform:rotate(180deg)}
+    .deepen__content{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0}
+    .deepen__content.open{max-height:4000px;opacity:1}
+    .block p,.block li{font-size:.9rem;line-height:1.8}
+    .block ul{list-style:none;padding-left:var(--space-md)}
+    .block ul li::before{content:'—';color:var(--accent);margin-right:8px}
+    .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
+    .block--def .block__label{color:#2563A3}
+    .block--def ul li::before{color:#2563A3}
+    .block--thm{background:rgba(163,42,42,.06);border-left:3px solid #A32A2A}
+    .block--thm .block__label{color:#A32A2A}
+    .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
+    .block--prop .block__label{color:#7638A3}
+    .block--proof{background:rgba(100,100,115,.04);border-left:3px solid #64647A;padding-top:var(--space-sm);padding-bottom:var(--space-sm)}
+    .block--proof .block__label{color:#64647A;font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:.8rem}
+    .block--proof p{color:var(--ink-light);font-size:.875rem}
+    .block--proof .qed{text-align:right;color:var(--ink-muted);font-size:.9rem}
+    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--example .block__label{color:#4B825A}
+    .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
+    .block--remark .block__label{color:var(--accent)}
+    .block--remark p{color:var(--ink-light);font-size:.875rem}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
+    [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
+    [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
+    [data-theme="dark"] .block--thm{background:rgba(163,42,42,.1);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
+    [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
+    [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
+    [data-theme="dark"] .block--proof{background:rgba(100,100,115,.08);border-left-color:#8888A0}
+    [data-theme="dark"] .block--proof .block__label{color:#8888A0}
+    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
+    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mpsi.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../mp.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP — Math Spé</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../mp.html" class="course__back">&larr; Retour au programme MP</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MP — Cours</span>
+      <span class="course__chapter">Chapitre 02</span>
+    </div>
+
+    <h1 class="course__title">Réduction avancée</h1>
+
+    <p class="course__intro">
+      Ce chapitre constitue le coeur de l'algèbre linéaire en MP. On y développe la théorie de la réduction des endomorphismes et des matrices : polynômes d'endomorphismes, polynôme minimal, théorème de Cayley-Hamilton, diagonalisation, trigonalisation, nilpotence et décomposition de Dunford. Ces outils sont fondamentaux pour les systèmes différentiels, le calcul de puissances de matrices et l'analyse spectrale.
+    </p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> Polynômes d'endomorphismes</a></li>
+        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Valeurs propres et polynôme caractéristique</a></li>
+        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> Théorème de Cayley-Hamilton</a></li>
+        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> Diagonalisation</a></li>
+        <li class="course__toc-item"><a href="#sec5"><span class="course__toc-num">V.</span> Trigonalisation</a></li>
+        <li class="course__toc-item"><a href="#sec6"><span class="course__toc-num">VI.</span> Nilpotence et décomposition de Dunford</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════ SECTION I ═══════════════ -->
+    <section class="course__section" id="sec1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> Polynômes d'endomorphismes</h2>
+
+      <p>Dans tout ce chapitre, \(\mathbb{K}\) désigne \(\mathbb{R}\) ou \(\mathbb{C}\), \(E\) un \(\mathbb{K}\)-espace vectoriel et \(u \in \mathcal{L}(E)\) un endomorphisme.</p>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Polynôme d'un endomorphisme</span>
+        <p>Soit \(P = a_0 + a_1 X + \cdots + a_n X^n \in \mathbb{K}[X]\) et \(u \in \mathcal{L}(E)\). On définit :</p>
+        <div class="math-display">$$P(u) = a_0 \,\mathrm{Id}_E + a_1\, u + a_2\, u^2 + \cdots + a_n\, u^n \in \mathcal{L}(E)$$</div>
+        <p>L'application \(\Phi : \mathbb{K}[X] \to \mathcal{L}(E)\), \(P \mapsto P(u)\) est un morphisme d'algèbres. Son image \(\mathbb{K}[u] = \{P(u) \mid P \in \mathbb{K}[X]\}\) est une sous-algèbre commutative de \(\mathcal{L}(E)\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Polynôme annulateur</span>
+        <p>Un polynôme \(P \in \mathbb{K}[X]\) est dit <strong>annulateur</strong> de \(u\) si \(P(u) = 0_{\mathcal{L}(E)}\). L'ensemble des polynômes annulateurs forme un idéal de \(\mathbb{K}[X]\).</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Polynôme minimal</span>
+        <p>Si l'idéal des polynômes annulateurs est non nul, il est engendré par un unique polynôme unitaire \(\Pi_u\), appelé <strong>polynôme minimal</strong> de \(u\). Il vérifie :</p>
+        <ul>
+          <li>\(\Pi_u(u) = 0\) et \(\Pi_u\) est de degré minimal parmi les annulateurs non nuls.</li>
+          <li>\(P(u) = 0 \Longleftrightarrow \Pi_u \mid P\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Existence en dimension finie</span>
+        <p>Si \(\dim(E) = n < +\infty\), alors tout endomorphisme de \(E\) admet un polynôme minimal, de degré \(\deg(\Pi_u) \leq n^2\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>L'espace \(\mathcal{L}(E)\) est de dimension \(n^2\). La famille \((\mathrm{Id}_E, u, u^2, \ldots, u^{n^2})\) comporte \(n^2 + 1\) vecteurs et est donc liée. Il existe des scalaires non tous nuls tels que \(\sum a_k u^k = 0\), fournissant un polynôme annulateur non nul.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Structure de \(\mathbb{K}[u]\)</span>
+        <p>Si \(d = \deg(\Pi_u)\), alors \(\mathbb{K}[u]\) est de dimension \(d\) avec base \((\mathrm{Id}_E, u, \ldots, u^{d-1})\). En particulier, \(\deg(\Pi_u) = 1\) si et seulement si \(u\) est une homothétie.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Inversibilité et polynôme minimal</span>
+        <p>Soit \(u \in \mathcal{L}(E)\) admettant un polynôme minimal \(\Pi_u\). Alors :</p>
+        <div class="math-display">$$u \in \mathrm{GL}(E) \iff \Pi_u(0) \neq 0$$</div>
+        <p>De plus, si \(u\) est inversible, \(u^{-1} \in \mathbb{K}[u]\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Écrivons \(\Pi_u = a_0 + a_1 X + \cdots + a_d X^d\). Si \(a_0 \neq 0\), alors \(a_0\,\mathrm{Id}_E = -(a_1 u + \cdots + a_d u^d)\), d'où \(\mathrm{Id}_E = u \circ \bigl(-\frac{1}{a_0}(a_1\,\mathrm{Id}_E + \cdots + a_d\, u^{d-1})\bigr)\). Donc \(u\) est inversible et \(u^{-1} \in \mathbb{K}[u]\).</p>
+            <p>Réciproquement, si \(a_0 = 0\), alors \(\Pi_u = X \cdot Q\) avec \(Q\) de degré \(d - 1\). Par minimalité, \(Q(u) \neq 0\), donc \(\exists\, x : Q(u)(x) \neq 0\). Or \(u(Q(u)(x)) = 0\), donc \(u\) n'est pas injective.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course__subsection-title">Calcul de puissances de matrices</h3>
+
+      <div class="block block--example">
+        <span class="block__label">Méthode — Puissances via le polynôme minimal</span>
+        <p>Pour calculer \(A^n\), on effectue la division euclidienne \(X^n = \Pi_A \cdot Q_n + R_n\) avec \(\deg(R_n) &lt; \deg(\Pi_A)\). Alors \(A^n = R_n(A)\).</p>
+        <p><strong>Exemple :</strong> si \(\Pi_A = (X-1)(X-2)\), on écrit \(X^n = (X-1)(X-2)Q_n + a_n X + b_n\). En évaluant en \(1\) et \(2\) : \(1 = a_n + b_n\), \(2^n = 2a_n + b_n\). D'où \(a_n = 2^n - 1\), \(b_n = 2 - 2^n\) et :</p>
+        <div class="math-display">$$A^n = (2^n - 1)A + (2 - 2^n)I_n$$</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION II ═══════════════ -->
+    <section class="course__section" id="sec2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Valeurs propres et polynôme caractéristique</h2>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Spectre et espaces propres</span>
+        <p>Soit \(u \in \mathcal{L}(E)\). Un scalaire \(\lambda \in \mathbb{K}\) est une <strong>valeur propre</strong> de \(u\) s'il existe \(x \neq 0_E\) tel que \(u(x) = \lambda x\). L'ensemble des valeurs propres est le <strong>spectre</strong> \(\mathrm{Sp}(u)\). L'<strong>espace propre</strong> associé est \(E_\lambda = \ker(u - \lambda\,\mathrm{Id}_E)\).</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Indépendance des espaces propres</span>
+        <p>Les espaces propres associés à des valeurs propres distinctes sont en somme directe :</p>
+        <div class="math-display">$$\lambda_1, \ldots, \lambda_p \text{ distincts} \implies E_{\lambda_1} \oplus \cdots \oplus E_{\lambda_p}$$</div>
+        <p>En particulier, des vecteurs propres associés à des valeurs propres distinctes forment une famille libre.</p>
+      </div>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Polynôme caractéristique</span>
+        <p>Soit \(A \in \mathcal{M}_n(\mathbb{K})\). Le <strong>polynôme caractéristique</strong> de \(A\) est :</p>
+        <div class="math-display">$$\chi_A(\lambda) = \det(\lambda I_n - A)$$</div>
+        <p>C'est un polynôme unitaire de degré \(n\). On a \(\chi_A = X^n - \mathrm{Tr}(A)\,X^{n-1} + \cdots + (-1)^n \det(A)\).</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Valeurs propres et polynôme caractéristique</span>
+        <p>Les valeurs propres de \(A\) sont exactement les racines de \(\chi_A\). De plus, si \(\chi_A\) est scindé avec racines \(\lambda_1, \ldots, \lambda_n\) (comptées avec multiplicité) :</p>
+        <div class="math-display">$$\mathrm{Tr}(A) = \sum_{i=1}^n \lambda_i \qquad \text{et} \qquad \det(A) = \prod_{i=1}^n \lambda_i$$</div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Dimension des espaces propres</span>
+        <p>Si \(\lambda\) est valeur propre de \(u\) de multiplicité \(m_\lambda\) (en tant que racine de \(\chi_u\)), alors :</p>
+        <div class="math-display">$$1 \leq \dim(E_\lambda) \leq m_\lambda$$</div>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>On a \(\dim(E_\lambda) \geq 1\) car \(E_\lambda \neq \{0\}\). Sur \(E_\lambda\), l'endomorphisme induit est l'homothétie de rapport \(\lambda\), donc \(\chi_{u|_{E_\lambda}} = (X - \lambda)^{\dim E_\lambda}\). Or \(\chi_{u|_{E_\lambda}}\) divise \(\chi_u\), et le facteur \((X - \lambda)\) apparaît au plus \(m_\lambda\) fois dans \(\chi_u\). D'où \(\dim(E_\lambda) \leq m_\lambda\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Valeurs propres et polynôme minimal</span>
+        <p>\(\lambda \in \mathrm{Sp}(u) \iff \Pi_u(\lambda) = 0\). Autrement dit, le spectre est l'ensemble des racines du polynôme minimal.</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Matrices semblables</span>
+        <p>Si \(A\) et \(B\) sont semblables (\(A = PBP^{-1}\)), alors \(\chi_A = \chi_B\), \(\Pi_A = \Pi_B\), \(\mathrm{Tr}(A) = \mathrm{Tr}(B)\), \(\det(A) = \det(B)\). La réciproque est fausse : \(I_3\) et la matrice de Jordan \(J_3(1)\) ont le même polynôme caractéristique mais ne sont pas semblables.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION III ═══════════════ -->
+    <section class="course__section" id="sec3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> Théorème de Cayley-Hamilton</h2>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème de Cayley-Hamilton</span>
+        <p>Soit \(E\) un \(\mathbb{K}\)-espace vectoriel de dimension finie \(n\) et \(u \in \mathcal{L}(E)\). Alors :</p>
+        <div class="math-display">$$\chi_u(u) = 0_{\mathcal{L}(E)}$$</div>
+        <p>Le polynôme caractéristique est annulateur. En conséquence, \(\Pi_u \mid \chi_u\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Pour tout \(x \in E\), posons \(F = \mathrm{Vect}(x, u(x), u^2(x), \ldots)\). C'est un sous-espace stable par \(u\), de dimension finie \(p \leq n\). La restriction \(u_F\) est cyclique (engendrée par \(x\)), donc \(\Pi_{u_F} = \chi_{u_F}\). Or \(\chi_{u_F}\) divise \(\chi_u\) (divisibilité des polynômes caractéristiques sur les sous-espaces stables). Ainsi \(\chi_u(u)(x) = \chi_u(u_F)(x) = 0\) pour tout \(x\). Donc \(\chi_u(u) = 0\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Corollaire — Forme du polynôme minimal</span>
+        <p>Si \(\chi_A = (X - \lambda_1)^{\alpha_1} \cdots (X - \lambda_p)^{\alpha_p}\), alors :</p>
+        <div class="math-display">$$\Pi_A = (X - \lambda_1)^{\gamma_1} \cdots (X - \lambda_p)^{\gamma_p} \quad \text{avec } 1 \leq \gamma_i \leq \alpha_i$$</div>
+        <p>Le polynôme minimal a les mêmes racines que le caractéristique, avec des multiplicités comprises entre 1 et les multiplicités algébriques.</p>
+      </div>
+
+      <h3 class="course__subsection-title">Lemme des noyaux</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Décomposition des noyaux</span>
+        <p>Soit \(u \in \mathcal{L}(E)\) et \(P_1, \ldots, P_r \in \mathbb{K}[X]\) deux à deux premiers entre eux. Alors :</p>
+        <div class="math-display">$$\ker\bigl((P_1 \cdots P_r)(u)\bigr) = \ker(P_1(u)) \oplus \cdots \oplus \ker(P_r(u))$$</div>
+        <p>Chaque \(\ker(P_i(u))\) est stable par \(u\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration (cas \(r = 2\))</span>
+            <p>Soient \(P, Q\) premiers entre eux : \(\exists\, U, V \in \mathbb{K}[X]\) tels que \(PU + QV = 1\). Donc \(P(u) \circ U(u) + Q(u) \circ V(u) = \mathrm{Id}_E\).</p>
+            <p>Soit \(x \in \ker((PQ)(u))\). Posons \(y = Q(u)(V(u)(x))\) et \(z = P(u)(U(u)(x))\). Alors \(x = y + z\). On vérifie : \(P(u)(y) = P(u) \circ Q(u)(V(u)(x)) = (PQ)(u)(V(u)(x)) = 0\) car \(V(u)(x) \in \ker((PQ)(u))\) (stabilité). Donc \(y \in \ker(P(u))\). De même \(z \in \ker(Q(u))\).</p>
+            <p>Pour la somme directe : si \(x \in \ker(P(u)) \cap \ker(Q(u))\), alors \(x = P(u)(U(u)(x)) + Q(u)(V(u)(x)) = 0 + 0 = 0\).</p>
+            <p>Le cas général se traite par récurrence en regroupant \(P_1 \cdots P_{r-1}\) et \(P_r\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemples d'application</span>
+        <ul>
+          <li><strong>Projecteurs :</strong> \(p^2 = p\) donne \(X(X-1)\) annulateur, d'où \(E = \ker(p) \oplus \ker(p - \mathrm{Id})\).</li>
+          <li><strong>Symétries :</strong> \(s^2 = \mathrm{Id}\) donne \((X-1)(X+1)\) annulateur, d'où \(E = \ker(s - \mathrm{Id}) \oplus \ker(s + \mathrm{Id})\).</li>
+          <li><strong>Involutions :</strong> si \(u^2 - 5u + 6\,\mathrm{Id} = 0\), alors \(E = \ker(u - 2\,\mathrm{Id}) \oplus \ker(u - 3\,\mathrm{Id})\).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION IV ═══════════════ -->
+    <section class="course__section" id="sec4">
+      <h2 class="course__section-title"><span class="course__section-num">IV.</span> Diagonalisation</h2>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Endomorphisme diagonalisable</span>
+        <p>\(u \in \mathcal{L}(E)\) est <strong>diagonalisable</strong> s'il existe une base de \(E\) dans laquelle la matrice de \(u\) est diagonale. Une matrice \(A \in \mathcal{M}_n(\mathbb{K})\) est diagonalisable si elle est semblable à une matrice diagonale.</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Caractérisations de la diagonalisabilité</span>
+        <p>Pour \(u \in \mathcal{L}(E)\) avec \(\dim(E) = n\), les assertions suivantes sont équivalentes :</p>
+        <ul>
+          <li>\(u\) est diagonalisable.</li>
+          <li>Il existe une base de \(E\) formée de vecteurs propres de \(u\).</li>
+          <li>\(E = E_{\lambda_1} \oplus \cdots \oplus E_{\lambda_p}\) où \(\mathrm{Sp}(u) = \{\lambda_1, \ldots, \lambda_p\}\).</li>
+          <li>\(\chi_u\) est scindé et \(\forall\, \lambda \in \mathrm{Sp}(u),\ \dim(E_\lambda) = m_\lambda\).</li>
+          <li>\(\Pi_u\) est scindé à racines simples.</li>
+        </ul>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration (schéma)</span>
+            <p>\((1) \Leftrightarrow (2)\) : par définition, la matrice diagonale a pour colonnes les composantes des vecteurs propres.</p>
+            <p>\((2) \Rightarrow (3)\) : les vecteurs propres sont dans les espaces propres qui sont en somme directe.</p>
+            <p>\((3) \Rightarrow (4)\) : \(\sum \dim(E_{\lambda_i}) = n = \sum m_{\lambda_i}\) et \(\dim(E_{\lambda_i}) \leq m_{\lambda_i}\), donc égalité partout.</p>
+            <p>\((4) \Rightarrow (5)\) : le polynôme minimal \(\Pi_u = \prod(X - \lambda_i)^{\gamma_i}\) avec \(\gamma_i \geq 1\). Si \(\gamma_i \geq 2\) pour un \(i\), le lemme des noyaux donne \(\dim(\ker(u - \lambda_i\,\mathrm{Id})^{\gamma_i}) = m_{\lambda_i}\) mais \(\dim(E_{\lambda_i}) < m_{\lambda_i}\), contradiction.</p>
+            <p>\((5) \Rightarrow (1)\) : \(\Pi_u = (X - \lambda_1) \cdots (X - \lambda_p)\), par le lemme des noyaux \(E = \bigoplus E_{\lambda_i}\).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Corollaire — Racines simples</span>
+        <p>Si \(\chi_A\) est scindé à racines simples (toutes de multiplicité 1), alors \(A\) est diagonalisable.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Stabilité de la diagonalisabilité</span>
+        <p>Si \(A\) est diagonalisable :</p>
+        <ul>
+          <li>\(\forall\, k \in \mathbb{N},\ A^k\) est diagonalisable.</li>
+          <li>\(\forall\, P \in \mathbb{K}[X],\ P(A)\) est diagonalisable.</li>
+          <li>\(A^\top\) est diagonalisable.</li>
+          <li>Si \(A \in \mathrm{GL}_n(\mathbb{K})\), alors \(A^{-1}\) est diagonalisable.</li>
+        </ul>
+      </div>
+
+      <h3 class="course__subsection-title">Codiagonalisation</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Endomorphismes codiagonalisables</span>
+        <p>Deux endomorphismes \(u, v \in \mathcal{L}(E)\) sont <strong>codiagonalisables</strong> s'il existe une base de \(E\) dans laquelle les matrices de \(u\) et \(v\) sont simultanément diagonales.</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — CNS de codiagonalisation</span>
+        <p>Deux endomorphismes diagonalisables \(u\) et \(v\) sont codiagonalisables si et seulement si \(u \circ v = v \circ u\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>\((\Rightarrow)\) Les matrices diagonales commutent.</p>
+            <p>\((\Leftarrow)\) On décompose \(E = \bigoplus E_{\lambda_i}(u)\). Puisque \(uv = vu\), chaque \(E_{\lambda_i}\) est stable par \(v\). La restriction \(v|_{E_{\lambda_i}}\) hérite de la diagonalisabilité (car \(\Pi_{v|_{E_{\lambda_i}}} \mid \Pi_v\) et \(\Pi_v\) est scindé à racines simples). On diagonalise \(v\) dans chaque \(E_{\lambda_i}\) et la réunion donne une base commune.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION V ═══════════════ -->
+    <section class="course__section" id="sec5">
+      <h2 class="course__section-title"><span class="course__section-num">V.</span> Trigonalisation</h2>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Endomorphisme trigonalisable</span>
+        <p>\(u \in \mathcal{L}(E)\) est <strong>trigonalisable</strong> s'il existe une base de \(E\) dans laquelle la matrice de \(u\) est triangulaire supérieure.</p>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — CNS de trigonalisabilité</span>
+        <p>Pour \(A \in \mathcal{M}_n(\mathbb{K})\), les assertions suivantes sont équivalentes :</p>
+        <ul>
+          <li>\(A\) est trigonalisable.</li>
+          <li>\(\chi_A\) est scindé sur \(\mathbb{K}\).</li>
+          <li>\(\Pi_A\) est scindé sur \(\mathbb{K}\).</li>
+          <li>Il existe un polynôme annulateur scindé sur \(\mathbb{K}\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Corollaire — Sur \(\mathbb{C}\)</span>
+        <p>Toute matrice de \(\mathcal{M}_n(\mathbb{C})\) est trigonalisable (d'Alembert-Gauss : tout polynôme non constant de \(\mathbb{C}[X]\) est scindé).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration du théorème <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>\((1) \Rightarrow (2)\) : la matrice triangulaire a un polynôme caractéristique scindé (produit des \((X - t_{ii})\)).</p>
+            <p>\((2) \Rightarrow (3)\) : \(\Pi_A \mid \chi_A\) et un diviseur d'un polynôme scindé est scindé.</p>
+            <p>\((3) \Rightarrow (4)\) : prendre \(P = \Pi_A\).</p>
+            <p>\((4) \Rightarrow (1)\) : soit \(P = (X - \lambda_1)^{a_1} \cdots (X - \lambda_p)^{a_p}\) annulateur scindé. Par le lemme des noyaux, \(E = \bigoplus G_i\) avec \(G_i = \ker(u - \lambda_i\,\mathrm{Id})^{a_i}\). Sur chaque \(G_i\), l'endomorphisme \(u - \lambda_i\,\mathrm{Id}\) est nilpotent, donc triangularisable avec des zéros sur la diagonale. Ainsi \(u|_{G_i}\) est triangulaire avec \(\lambda_i\) sur la diagonale. En concaténant les bases, on obtient une matrice triangulaire par blocs.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple</span>
+        <p>Soit \(A = \begin{pmatrix} -2 & 1 & 1 \\ 8 & 1 & -5 \\ 4 & 3 & -3 \end{pmatrix}\). On calcule \(\chi_A = \lambda(\lambda + 2)^2\). Comme \(\dim E_{-2} = 1 \neq 2 = m_{-2}\), \(A\) n'est <strong>pas</strong> diagonalisable. Mais \(\chi_A\) est scindé sur \(\mathbb{R}\), donc \(A\) est trigonalisable.</p>
+      </div>
+
+      <h3 class="course__subsection-title">Cotrigonalisation</h3>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Cotrigonalisation sur \(\mathbb{C}\)</span>
+        <p>Si \(A, B \in \mathcal{M}_n(\mathbb{C})\) commutent (\(AB = BA\)), alors \(A\) et \(B\) sont cotrigonalisables : il existe \(P \in \mathrm{GL}_n(\mathbb{C})\) tel que \(PAP^{-1}\) et \(PBP^{-1}\) soient toutes deux triangulaires supérieures.</p>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Attention</span>
+        <p>Contrairement à la codiagonalisation, la réciproque est fausse : deux matrices cotrigonalisables ne commutent pas nécessairement.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION VI ═══════════════ -->
+    <section class="course__section" id="sec6">
+      <h2 class="course__section-title"><span class="course__section-num">VI.</span> Nilpotence et décomposition de Dunford</h2>
+
+      <h3 class="course__subsection-title">Endomorphismes nilpotents</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Nilpotence</span>
+        <p>Un endomorphisme \(u \in \mathcal{L}(E)\) est <strong>nilpotent</strong> s'il existe \(p \in \mathbb{N}^*\) tel que \(u^p = 0\). Le plus petit tel \(p\) est l'<strong>indice de nilpotence</strong>.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Propriétés des nilpotents</span>
+        <p>Soit \(u\) nilpotent d'indice \(p\) sur un espace de dimension \(n\). Alors :</p>
+        <ul>
+          <li>\(p \leq n\).</li>
+          <li>\(\chi_u = X^n\) et \(\Pi_u = X^p\).</li>
+          <li>\(\mathrm{Sp}(u) = \{0\}\).</li>
+          <li>\(\mathrm{Id}_E + u\) et \(\mathrm{Id}_E - u\) sont inversibles.</li>
+          <li>Le seul endomorphisme nilpotent diagonalisable est l'endomorphisme nul.</li>
+        </ul>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration (inversibilité) <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration</span>
+            <p>Si \(u^p = 0\), alors \((\mathrm{Id} - u)(\mathrm{Id} + u + u^2 + \cdots + u^{p-1}) = \mathrm{Id} - u^p = \mathrm{Id}\). Donc \(\mathrm{Id} - u\) est inversible d'inverse \(\sum_{k=0}^{p-1} u^k\). De même pour \(\mathrm{Id} + u\) avec la somme alternée.</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Proposition — Opérations sur les nilpotents</span>
+        <p>Soient \(u, v \in \mathcal{L}(E)\) nilpotents avec \(u \circ v = v \circ u\). Alors :</p>
+        <ul>
+          <li>\(\forall\, \lambda \in \mathbb{K},\ \lambda u\) est nilpotent.</li>
+          <li>\(u \circ v\) est nilpotent.</li>
+          <li>\(u + v\) est nilpotent (formule du binôme applicable car \(uv = vu\)).</li>
+        </ul>
+      </div>
+
+      <div class="block block--example">
+        <span class="block__label">Exemple — Dérivation</span>
+        <p>L'endomorphisme \(D : P \mapsto P'\) sur \(\mathbb{R}_n[X]\) est nilpotent d'indice \(n + 1\). En effet, \(D^{n+1} = 0\) et \(D^n(X^n) = n! \neq 0\). L'endomorphisme \(f = \mathrm{Id} - D\) est inversible, d'inverse \(\mathrm{Id} + D + D^2 + \cdots + D^n\).</p>
+      </div>
+
+      <h3 class="course__subsection-title">Sous-espaces caractéristiques</h3>
+
+      <div class="block block--def">
+        <span class="block__label">Définition — Sous-espace caractéristique</span>
+        <p>Soit \(u \in \mathcal{L}(E)\) avec \(\chi_u\) scindé : \(\chi_u = (X - \lambda_1)^{\alpha_1} \cdots (X - \lambda_p)^{\alpha_p}\). Le <strong>sous-espace caractéristique</strong> associé à \(\lambda_i\) est :</p>
+        <div class="math-display">$$F_{\lambda_i} = \ker(u - \lambda_i\,\mathrm{Id}_E)^{\alpha_i}$$</div>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème — Décomposition en sous-espaces caractéristiques</span>
+        <p>Si \(\chi_u\) est scindé, alors :</p>
+        <div class="math-display">$$E = F_{\lambda_1} \oplus \cdots \oplus F_{\lambda_p} \qquad \text{avec } \dim(F_{\lambda_i}) = \alpha_i$$</div>
+        <p>Sur chaque \(F_{\lambda_i}\), l'endomorphisme \(u - \lambda_i\,\mathrm{Id}\) est nilpotent.</p>
+      </div>
+
+      <h3 class="course__subsection-title">Décomposition de Dunford</h3>
+
+      <div class="block block--thm">
+        <span class="block__label">Théorème de Dunford</span>
+        <p>Soit \(u \in \mathcal{L}(E)\) avec \(\chi_u\) scindé. Il existe un unique couple \((d, n)\) d'endomorphismes de \(E\) tels que :</p>
+        <ul>
+          <li>\(u = d + n\)</li>
+          <li>\(d\) est diagonalisable et \(n\) est nilpotent</li>
+          <li>\(d \circ n = n \circ d\)</li>
+        </ul>
+        <p>De plus, \(d\) et \(n\) sont des polynômes en \(u\) : \(d, n \in \mathbb{K}[u]\).</p>
+      </div>
+
+      <div class="deepen">
+        <button class="deepen__btn" aria-expanded="false">Démonstration <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="deepen__content">
+          <div class="block block--proof">
+            <span class="block__label">Démonstration (existence)</span>
+            <p>Par la décomposition en sous-espaces caractéristiques, \(E = \bigoplus F_{\lambda_i}\). On définit \(d\) par \(d|_{F_{\lambda_i}} = \lambda_i\,\mathrm{Id}_{F_{\lambda_i}}\) (homothétie sur chaque sous-espace caractéristique). Alors \(d\) est diagonalisable. Posons \(n = u - d\). Sur chaque \(F_{\lambda_i}\), \(n|_{F_{\lambda_i}} = (u - \lambda_i\,\mathrm{Id})|_{F_{\lambda_i}}\) est nilpotent. Comme \(n\) est nilpotent sur chaque sous-espace d'une décomposition en somme directe, \(n\) est nilpotent.</p>
+            <p>La commutation vient du fait que \(d \in \mathbb{K}[u]\) (par le lemme d'interpolation de Lagrange sur les sous-espaces caractéristiques).</p>
+            <p class="qed">&#8718;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Remarque — Application à l'exponentielle</span>
+        <p>La décomposition de Dunford \(A = D + N\) avec \(DN = ND\) permet de calculer \(e^{tA} = e^{tD} \cdot e^{tN}\). Comme \(D\) est diagonalisable, \(e^{tD}\) se calcule directement ; comme \(N\) est nilpotent, \(e^{tN}\) est une somme finie. C'est un outil fondamental pour les systèmes différentiels.</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="mp-01-complements-algebre-lineaire.html" class="course__nav-link">
+        &larr; Précédent
+        <span>Compléments d'algèbre linéaire</span>
+      </a>
+      <a href="mp-03-formes-bilineaires-quadratiques.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Formes bilinéaires et quadratiques</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathématiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../index.html">Accueil</a>
+          <a href="../mpsi.html">MPSI</a>
+          <a href="../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communauté</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths — Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+    document.querySelectorAll('.deepen__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        btn.classList.toggle('active', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        content.classList.toggle('open', !isOpen);
+      });
+    });
+  </script>
+</body>
+</html>
