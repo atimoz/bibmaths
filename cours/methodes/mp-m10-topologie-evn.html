@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methodes — Topologie des EVN | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .badge--tier1{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;background:rgba(163,42,42,.15);color:#A32A2A;border:1px solid rgba(163,42,42,.3);padding:4px 12px;border-radius:20px}
+    .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
+    .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .block p,.block li{font-size:.9rem;line-height:1.8}
+    .block ul,.block ol{list-style:none;padding-left:var(--space-md)}
+    .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
+    .block ol{counter-reset:step}
+    .block ol li{counter-increment:step}
+    .block ol li::before{content:counter(step) '.';color:var(--accent);margin-right:8px;font-weight:600;font-family:var(--font-mono);font-size:.8rem}
+    .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
+    .block--def .block__label{color:#2563A3}
+    .block--def ul li::before{color:#2563A3}
+    .block--thm{background:rgba(163,42,42,.06);border-left:3px solid #A32A2A}
+    .block--thm .block__label{color:#A32A2A}
+    .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
+    .block--prop .block__label{color:#7638A3}
+    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--example .block__label{color:#4B825A}
+    .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
+    .block--remark .block__label{color:var(--accent)}
+    .block--remark p{color:var(--ink-light);font-size:.875rem}
+    .block--cor{background:rgba(118,56,163,.04);border-left:3px solid #9B59B6}
+    .block--cor .block__label{color:#9B59B6}
+    .block--method{background:rgba(0,128,128,.06);border-left:3px solid #2A8A8A}
+    .block--method .block__label{color:#2A8A8A}
+    .block--method ol li::before{color:#2A8A8A}
+    .block--method ul li::before{color:#2A8A8A}
+    .block--annale{background:rgba(196,135,59,.06);border-left:3px solid var(--accent);position:relative}
+    .block--annale .block__label{color:var(--accent)}
+    .annale-badge{position:absolute;top:12px;right:16px;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:12px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
+    [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
+    [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
+    [data-theme="dark"] .block--thm{background:rgba(163,42,42,.1);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
+    [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
+    [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
+    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--cor{background:rgba(118,56,163,.08);border-left-color:#BB86D6}
+    [data-theme="dark"] .block--cor .block__label{color:#BB86D6}
+    [data-theme="dark"] .block--method{background:rgba(0,128,128,.1);border-left-color:#4ABABA}
+    [data-theme="dark"] .block--method .block__label{color:#4ABABA}
+    [data-theme="dark"] .block--method ol li::before{color:#4ABABA}
+    [data-theme="dark"] .block--method ul li::before{color:#4ABABA}
+    [data-theme="dark"] .block--annale{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
+    @media(max-width:680px){.course__title{font-size:2rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#methodes" class="course__back">&larr; Retour aux methodes MP</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MP -- Methodes</span>
+    </div>
+
+    <h1 class="course__title">Topologie des EVN</h1>
+
+    <p class="course__intro">
+      Fiche de methodes avec exercices types : normes, equivalence de normes, ouverts et fermes, continuite des applications lineaires et compacite. Chaque methode est accompagnee d'un exercice d'annale ou de style concours.
+    </p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">M1.</span> Montrer qu'une application est une norme</a></li>
+        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">M2.</span> Montrer que deux normes sont/ne sont pas equivalentes</a></li>
+        <li class="course__toc-item"><a href="#m3"><span class="course__toc-num">M3.</span> Montrer qu'une partie est ouverte/fermee</a></li>
+        <li class="course__toc-item"><a href="#m4"><span class="course__toc-num">M4.</span> Montrer la continuite d'une application lineaire</a></li>
+        <li class="course__toc-item"><a href="#m5"><span class="course__toc-num">M5.</span> Utiliser la compacite</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════ M1 ═══════════════ -->
+    <section class="course__section" id="m1">
+      <h2 class="course__section-title"><span class="course__section-num">M1.</span> Montrer qu'une application est une norme</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <ol>
+          <li><strong>Separation :</strong> \(\|x\| = 0 \Longleftrightarrow x = 0\).</li>
+          <li><strong>Homogeneite :</strong> pour tout \(\lambda \in \mathbb{K}\) et tout \(x \in E\), \(\|\lambda x\| = |\lambda| \cdot \|x\|\).</li>
+          <li><strong>Inegalite triangulaire :</strong> pour tous \(x, y \in E\), \(\|x + y\| \leq \|x\| + \|y\|\).</li>
+          <li>Verifier au prealable que l'application est bien definie et a valeurs dans \(\mathbb{R}^+\).</li>
+          <li>Pour l'inegalite triangulaire, on utilise souvent Cauchy-Schwarz, Minkowski, ou la convexite.</li>
+        </ol>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Astuce</span>
+        <p>Si l'on a seulement une semi-norme (c'est-a-dire sans la separation), il suffit de verifier que \(\|x\| = 0 \Rightarrow x = 0\) pour conclure que c'est une norme.</p>
+      </div>
+
+      <div class="block block--annale">
+        <span class="annale-badge">Style CCINP</span>
+        <span class="block__label">Exercice -- Style CCINP</span>
+        <p>Sur \(E = \mathcal{C}^1([0,1], \mathbb{R})\), on definit :</p>
+        <p>$$N(f) = |f(0)| + \sup_{t \in [0,1]} |f'(t)|$$</p>
+        <ol>
+          <li>Montrer que \(N\) est une norme sur \(E\).</li>
+          <li>Montrer que \(N\) n'est pas equivalente a la norme \(\|f\|_\infty = \sup_{t \in [0,1]} |f(t)|\).</li>
+          <li>Comparer \(\|f\|_\infty\) et \(N(f)\) (montrer que \(\|f\|_\infty \leq N(f)\)).</li>
+        </ol>
+        <p><em>Indication :</em> pour la separation, si \(N(f) = 0\) alors \(f(0) = 0\) et \(f' = 0\), donc \(f\) est constante egale a \(0\). Pour la non-equivalence, considerer \(f_n(t) = t^n / n\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ M2 ═══════════════ -->
+    <section class="course__section" id="m2">
+      <h2 class="course__section-title"><span class="course__section-num">M2.</span> Montrer que deux normes sont/ne sont pas equivalentes</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <ol>
+          <li><strong>Equivalence :</strong> \(N_1 \sim N_2\) ssi il existe \(\alpha, \beta > 0\) tels que pour tout \(x \in E\), \(\alpha N_1(x) \leq N_2(x) \leq \beta N_1(x)\).</li>
+          <li><strong>Pour montrer l'equivalence :</strong> trouver explicitement les constantes \(\alpha\) et \(\beta\) par des inegalites.</li>
+          <li><strong>Pour montrer la non-equivalence :</strong> exhiber une suite \((x_n)\) telle que \(\frac{N_1(x_n)}{N_2(x_n)} \to +\infty\) ou \(\to 0\).</li>
+          <li><strong>En dimension finie :</strong> toutes les normes sont equivalentes (pas besoin de demontrer).</li>
+          <li>En dimension infinie, utiliser des suites de fonctions bien choisies (polynomes, fonctions en pic, etc.).</li>
+        </ol>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Rappel</span>
+        <p>Sur \(\mathbb{R}^n\), on a les inegalites classiques : \(\|x\|_\infty \leq \|x\|_2 \leq \sqrt{n} \|x\|_\infty\) et \(\|x\|_\infty \leq \|x\|_1 \leq n \|x\|_\infty\).</p>
+      </div>
+
+      <div class="block block--annale">
+        <span class="annale-badge">Style CCINP</span>
+        <span class="block__label">Exercice -- Style CCINP</span>
+        <p>Sur \(E = \mathcal{C}([0,1], \mathbb{R})\), on considere les normes :</p>
+        <p>$$\|f\|_1 = \int_0^1 |f(t)|\,dt \qquad \text{et} \qquad \|f\|_\infty = \sup_{t \in [0,1]} |f(t)|$$</p>
+        <ol>
+          <li>Montrer que \(\|f\|_1 \leq \|f\|_\infty\) pour tout \(f \in E\).</li>
+          <li>Montrer que les normes \(\|\cdot\|_1\) et \(\|\cdot\|_\infty\) ne sont pas equivalentes.</li>
+          <li><em>Indication :</em> considerer la suite \(f_n(t) = (1 - t)^n\) et calculer le rapport \(\|f_n\|_\infty / \|f_n\|_1\).</li>
+        </ol>
+        <p><em>Indication :</em> \(\|f_n\|_\infty = 1\) et \(\|f_n\|_1 = 1/(n+1) \to 0\), donc le rapport tend vers \(+\infty\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ M3 ═══════════════ -->
+    <section class="course__section" id="m3">
+      <h2 class="course__section-title"><span class="course__section-num">M3.</span> Montrer qu'une partie est ouverte/fermee</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <ol>
+          <li><strong>Ouvert (definition) :</strong> montrer que pour tout \(x \in U\), il existe \(r > 0\) tel que \(B(x, r) \subset U\).</li>
+          <li><strong>Ferme (sequentiel) :</strong> montrer que pour toute suite \((x_n)\) d'elements de \(F\) convergente, la limite est encore dans \(F\).</li>
+          <li><strong>Ferme (complementaire) :</strong> montrer que \(E \setminus F\) est ouvert.</li>
+          <li><strong>Image reciproque :</strong> si \(f\) est continue, \(f^{-1}(U)\) est ouvert pour tout ouvert \(U\), et \(f^{-1}(F)\) est ferme pour tout ferme \(F\).</li>
+          <li>Utiliser les operations : intersection finie d'ouverts = ouvert, union quelconque d'ouverts = ouvert, intersection quelconque de fermes = ferme.</li>
+        </ol>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Astuce</span>
+        <p>L'ensemble \(\mathrm{GL}_n(\mathbb{R})\) est ouvert dans \(\mathcal{M}_n(\mathbb{R})\) car c'est l'image reciproque de \(\mathbb{R}^*\) (ouvert) par l'application continue \(\det\).</p>
+      </div>
+
+      <div class="block block--annale">
+        <span class="annale-badge">Style CCINP</span>
+        <span class="block__label">Exercice -- Style CCINP</span>
+        <p>On munit \(\mathcal{M}_2(\mathbb{R})\) de la norme \(\|A\| = \sup_{1 \leq i,j \leq 2} |a_{ij}|\).</p>
+        <ol>
+          <li>Montrer que l'ensemble \(\mathcal{S}_2^{++}(\mathbb{R})\) des matrices symetriques definies positives de taille 2 est un ouvert de \(\mathcal{S}_2(\mathbb{R})\).</li>
+          <li>L'ensemble des matrices de rang 1 de \(\mathcal{M}_2(\mathbb{R})\) est-il ouvert ? Ferme ? Ni l'un ni l'autre ?</li>
+          <li>Montrer que l'ensemble \(\{A \in \mathcal{M}_2(\mathbb{R}) \mid \mathrm{tr}(A) = 0\}\) est un ferme.</li>
+        </ol>
+        <p><em>Indication :</em> pour 1., utiliser que les valeurs propres dependent continument de la matrice, ou que \(\det\) et \(\mathrm{tr}\) sont continues. Pour 2., montrer que l'adherence contient la matrice nulle.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ M4 ═══════════════ -->
+    <section class="course__section" id="m4">
+      <h2 class="course__section-title"><span class="course__section-num">M4.</span> Montrer la continuite d'une application lineaire</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <ol>
+          <li><strong>Critere fondamental :</strong> une application lineaire \(f : E \to F\) est continue ssi elle est bornee sur la boule unite, c'est-a-dire ssi il existe \(M > 0\) tel que \(\|f(x)\|_F \leq M \|x\|_E\) pour tout \(x \in E\).</li>
+          <li>Trouver la meilleure constante \(M\) : c'est la norme d'operateur \(\|f\| = \sup_{\|x\| = 1} \|f(x)\|\).</li>
+          <li><strong>En dimension finie :</strong> toute application lineaire est continue (pas besoin de majoration).</li>
+          <li><strong>En dimension infinie :</strong> exhiber la constante \(M\) par des inegalites (Cauchy-Schwarz, Holder, etc.).</li>
+          <li><strong>Pour la non-continuite :</strong> exhiber une suite \((x_n)\) avec \(\|x_n\| = 1\) et \(\|f(x_n)\| \to +\infty\).</li>
+        </ol>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Astuce</span>
+        <p>Pour une forme lineaire \(\varphi : E \to \mathbb{R}\), la continuite equivaut a la fermeture de \(\ker \varphi\) (un hyperplan est ferme ssi la forme lineaire associee est continue).</p>
+      </div>
+
+      <div class="block block--annale">
+        <span class="annale-badge">Style CCINP</span>
+        <span class="block__label">Exercice -- Style CCINP</span>
+        <p>On munit \(E = \mathcal{C}([0,1], \mathbb{R})\) de la norme \(\|f\|_\infty\). On definit les applications lineaires :</p>
+        <p>$$\varphi(f) = \int_0^1 t^2 f(t)\,dt \qquad \text{et} \qquad T(f)(x) = \int_0^x f(t)\,dt$$</p>
+        <ol>
+          <li>Montrer que \(\varphi : (E, \|\cdot\|_\infty) \to \mathbb{R}\) est continue et calculer \(\|\varphi\|\).</li>
+          <li>Montrer que \(T : (E, \|\cdot\|_\infty) \to (E, \|\cdot\|_\infty)\) est continue et calculer \(\|T\|\).</li>
+          <li>L'application \(\varphi\) est-elle continue pour la norme \(\|f\|_1 = \int_0^1 |f(t)|\,dt\) ?</li>
+        </ol>
+        <p><em>Indication :</em> \(|\varphi(f)| \leq \int_0^1 t^2 |f(t)|\,dt \leq \frac{1}{3}\|f\|_\infty\). L'egalite est atteinte pour \(f = 1\), donc \(\|\varphi\| = 1/3\). Pour \(T\), \(\|T(f)\|_\infty \leq \|f\|_\infty\) et l'egalite est atteinte pour \(f = 1\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ M5 ═══════════════ -->
+    <section class="course__section" id="m5">
+      <h2 class="course__section-title"><span class="course__section-num">M5.</span> Utiliser la compacite</h2>
+
+      <div class="block block--method">
+        <span class="block__label">Methode</span>
+        <ol>
+          <li><strong>Identifier un compact :</strong> en dimension finie, compact = ferme borne (Borel-Lebesgue). Exemples : \([a,b]\), sphere unite, boule fermee.</li>
+          <li><strong>Image continue d'un compact :</strong> si \(f\) est continue et \(K\) est compact, alors \(f(K)\) est compact. En particulier, \(f\) est bornee et atteint ses bornes sur \(K\).</li>
+          <li><strong>Theoreme de Heine :</strong> une fonction continue sur un compact est uniformement continue.</li>
+          <li><strong>Suite extraite (Bolzano-Weierstrass) :</strong> de toute suite d'un compact, on peut extraire une sous-suite convergente.</li>
+          <li>En dimension infinie, la boule unite fermee n'est pas compacte. Il faut des criteres specifiques (Ascoli, etc.).</li>
+        </ol>
+      </div>
+
+      <div class="block block--remark">
+        <span class="block__label">Rappel</span>
+        <p>Pour montrer qu'une fonction continue sur un compact atteint son minimum, on utilise directement le theoreme des bornes atteintes. C'est un argument tres frequent en analyse et en optimisation.</p>
+      </div>
+
+      <div class="block block--annale">
+        <span class="annale-badge">Style CCINP</span>
+        <span class="block__label">Exercice -- Style CCINP</span>
+        <p>Soit \(f : [0,1] \to \mathbb{R}\) continue telle que \(f(0) = f(1) = 0\) et \(f\) non identiquement nulle.</p>
+        <ol>
+          <li>Montrer que \(f\) atteint son maximum \(M > 0\) en un point \(c \in ]0,1[\).</li>
+          <li>En deduire que l'ensemble \(A = \{t \in [0,1] \mid f(t) \geq M/2\}\) est un compact non vide.</li>
+          <li>On pose \(g : \mathbb{R}^2 \to \mathbb{R}\) definie par \(g(x,y) = x^2 + y^2\) pour \((x,y) \in S^1 = \{(x,y) \mid x^2 + y^2 = 1\}\). Montrer que \(g\) atteint ses bornes sur \(S^1\) et les determiner.</li>
+        </ol>
+        <p><em>Indication :</em> \([0,1]\) est compact, donc \(f\) atteint son max. Comme \(f(0) = f(1) = 0\) et \(f \not\equiv 0\), le max est strictement positif et atteint a l'interieur. \(A\) est ferme (image reciproque de \([M/2, +\infty[\) par \(f\) continue) et inclus dans le compact \([0,1]\).</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <div></div>
+      <a href="#" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Fiche suivante</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>
