@@ -100,14 +100,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (activeBtn) activeBtn.classList.add('filter-btn--active');
 
       var coursGroups = document.querySelectorAll('[data-type="cours"]');
+      var fichesSection = document.querySelector('[data-type="fiches"]');
       var concoursDossier = document.querySelector('[data-type="concours"]');
 
       // Hide all sections first
       coursGroups.forEach(function(g) { g.style.display = 'none'; });
+      if (fichesSection) fichesSection.style.display = 'none';
       if (concoursDossier) concoursDossier.style.display = 'none';
 
       // Show the relevant section
-      if (filterValue === 'concours') {
+      if (filterValue === 'fiches') {
+        if (fichesSection) fichesSection.style.display = '';
+      } else if (filterValue === 'concours') {
         if (concoursDossier) concoursDossier.style.display = '';
       } else {
         // cours, exercices, or anything else → show cours

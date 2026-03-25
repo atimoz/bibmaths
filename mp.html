@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 </head>
 <body>
@@ -39,8 +39,9 @@
         <a href="mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
         <div class="dropdown">
           <a href="mp.html#cours" class="dropdown__item">Cours</a>
-          <a href="mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="mp.html#fiches" class="dropdown__item">Fiches</a>
           <a href="mp.html#concours" class="dropdown__item">Concours</a>
+          <a href="mp.html#exercices" class="dropdown__item">Exercices</a>
         </div>
       </div>
     </div>
@@ -76,6 +77,7 @@
       <p class="page-header__subtitle">Mathematiques — 16 chapitres et annales de concours.</p>
       <div class="page-header__filters" id="filters">
         <button class="filter-btn filter-btn--active" data-filter="cours">Cours</button>
+        <button class="filter-btn" data-filter="fiches">Fiches</button>
         <button class="filter-btn" data-filter="concours">Concours</button>
         <button class="filter-btn" data-filter="exercices">Exercices</button>
       </div>
@@ -207,6 +209,165 @@
       </div>
     </div>
 
+    <!-- ═══ FICHES DE RÉVISION ═══ -->
+    <div class="fiches-section" data-type="fiches" style="display:none">
+
+      <!-- ⭐⭐⭐ Essentiel -->
+      <div class="fiches-tier" data-tier="1">
+        <div class="fiches-tier__label">
+          <span class="fiches-tier__badge fiches-tier__badge--1">&#11088;&#11088;&#11088;</span>
+          <span class="fiches-tier__text">Essentiel — Tombe chaque année</span>
+        </div>
+        <div class="chapter-grid">
+          <a href="cours/fiches/mp-02-reduction-avancee.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--1">&#11088;&#11088;&#11088;</span>
+            <span class="chapter-card__num">02</span>
+            <h3 class="chapter-card__title">Réduction avancée</h3>
+            <p class="chapter-card__desc">Cayley-Hamilton, diagonalisation, Dunford, polynôme minimal.</p>
+          </a>
+          <a href="cours/fiches/mp-04-espaces-euclidiens.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--1">&#11088;&#11088;&#11088;</span>
+            <span class="chapter-card__num">04</span>
+            <h3 class="chapter-card__title">Espaces euclidiens</h3>
+            <p class="chapter-card__desc">Cauchy-Schwarz, projection orthogonale, théorème spectral.</p>
+          </a>
+          <a href="cours/fiches/mp-07-suites-series-fonctions.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--1">&#11088;&#11088;&#11088;</span>
+            <span class="chapter-card__num">07</span>
+            <h3 class="chapter-card__title">Suites et séries de fonctions</h3>
+            <p class="chapter-card__desc">CVU, CVN, théorèmes d'interversion limite-intégrale-dérivée.</p>
+          </a>
+          <a href="cours/fiches/mp-11-integrales-generalisees.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--1">&#11088;&#11088;&#11088;</span>
+            <span class="chapter-card__num">11</span>
+            <h3 class="chapter-card__title">Intégrales généralisées</h3>
+            <p class="chapter-card__desc">Gamma, Wallis, Gauss, intégrales à paramètre, comparaison série-intégrale.</p>
+          </a>
+          <a href="cours/fiches/mp-15-series-fonctions.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--1">&#11088;&#11088;&#11088;</span>
+            <span class="chapter-card__num">15</span>
+            <h3 class="chapter-card__title">Séries de fonctions</h3>
+            <p class="chapter-card__desc">CVN, CVU, continuité, intégration et dérivation terme à terme.</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- ⭐⭐ Fréquent -->
+      <div class="fiches-tier" data-tier="2">
+        <div class="fiches-tier__label">
+          <span class="fiches-tier__badge fiches-tier__badge--2">&#11088;&#11088;</span>
+          <span class="fiches-tier__text">Fréquent — Régulier aux concours</span>
+        </div>
+        <div class="chapter-grid">
+          <a href="cours/fiches/mp-08-series-entieres.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--2">&#11088;&#11088;</span>
+            <span class="chapter-card__num">08</span>
+            <h3 class="chapter-card__title">Séries entières avancées</h3>
+            <p class="chapter-card__desc">Rayon, Abel, DSE classiques, résolution d'EDL par séries.</p>
+          </a>
+          <a href="cours/fiches/mp-12-calcul-differentiel.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--2">&#11088;&#11088;</span>
+            <span class="chapter-card__num">12</span>
+            <h3 class="chapter-card__title">Calcul différentiel</h3>
+            <p class="chapter-card__desc">Gradient, hessienne, extrema, fonctions implicites.</p>
+          </a>
+          <a href="cours/fiches/mp-16-equations-differentielles.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--2">&#11088;&#11088;</span>
+            <span class="chapter-card__num">16</span>
+            <h3 class="chapter-card__title">Équations différentielles</h3>
+            <p class="chapter-card__desc">EDL1/2, systèmes X'=AX, exponentielle de matrice.</p>
+          </a>
+          <a href="cours/fiches/mp-17-calcul-differentiel.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--2">&#11088;&#11088;</span>
+            <span class="chapter-card__num">17</span>
+            <h3 class="chapter-card__title">Calcul différentiel avancé</h3>
+            <p class="chapter-card__desc">Différentiabilité, règle de la chaîne, fonctions implicites.</p>
+          </a>
+          <a href="cours/fiches/mp-18-probabilites.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--2">&#11088;&#11088;</span>
+            <span class="chapter-card__num">18</span>
+            <h3 class="chapter-card__title">Probabilités</h3>
+            <p class="chapter-card__desc">Lois discrètes et continues, convergences, loi des grands nombres.</p>
+          </a>
+          <a href="cours/fiches/mp-19-convergences-statistiques.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--2">&#11088;&#11088;</span>
+            <span class="chapter-card__num">19</span>
+            <h3 class="chapter-card__title">Convergences et statistiques</h3>
+            <p class="chapter-card__desc">Convergence en proba/loi, LFGN, TCL, Markov, Bienaymé-Tchebychev.</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- ⭐ Classique -->
+      <div class="fiches-tier" data-tier="3">
+        <div class="fiches-tier__label">
+          <span class="fiches-tier__badge fiches-tier__badge--3">&#11088;</span>
+          <span class="fiches-tier__text">Classique — Périodique aux concours</span>
+        </div>
+        <div class="chapter-grid">
+          <a href="cours/fiches/mp-01-complements-algebre-lineaire.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--3">&#11088;</span>
+            <span class="chapter-card__num">01</span>
+            <h3 class="chapter-card__title">Compléments d'algèbre linéaire</h3>
+            <p class="chapter-card__desc">Théorème du rang, dualité, hyperplans, projections.</p>
+          </a>
+          <a href="cours/fiches/mp-03-formes-bilineaires.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--3">&#11088;</span>
+            <span class="chapter-card__num">03</span>
+            <h3 class="chapter-card__title">Formes bilinéaires</h3>
+            <p class="chapter-card__desc">Formes quadratiques, signature, critère de Sylvester.</p>
+          </a>
+          <a href="cours/fiches/mp-05-endomorphismes-remarquables.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--3">&#11088;</span>
+            <span class="chapter-card__num">05</span>
+            <h3 class="chapter-card__title">Endomorphismes remarquables</h3>
+            <p class="chapter-card__desc">Autoadjoints, orthogonaux, normaux, matrices positives.</p>
+          </a>
+          <a href="cours/fiches/mp-06-topologie-evn.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--3">&#11088;</span>
+            <span class="chapter-card__num">06</span>
+            <h3 class="chapter-card__title">Topologie des EVN</h3>
+            <p class="chapter-card__desc">Normes, ouverts, fermés, compacité, connexité.</p>
+          </a>
+          <a href="cours/fiches/mp-10-integration-segment.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--3">&#11088;</span>
+            <span class="chapter-card__num">10</span>
+            <h3 class="chapter-card__title">Intégration sur un segment</h3>
+            <p class="chapter-card__desc">TFC, IPP, Taylor, sommes de Riemann.</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- ○ Complémentaire -->
+      <div class="fiches-tier" data-tier="4">
+        <div class="fiches-tier__label">
+          <span class="fiches-tier__badge fiches-tier__badge--4">&#9675;</span>
+          <span class="fiches-tier__text">Complémentaire — Moins fréquent</span>
+        </div>
+        <div class="chapter-grid">
+          <a href="cours/fiches/mp-09-espaces-metriques.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--4">&#9675;</span>
+            <span class="chapter-card__num">09</span>
+            <h3 class="chapter-card__title">Espaces métriques complets</h3>
+            <p class="chapter-card__desc">Complétude, Banach, point fixe, densité.</p>
+          </a>
+          <a href="cours/fiches/mp-13-series-fourier.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--4">&#9675;</span>
+            <span class="chapter-card__num">13</span>
+            <h3 class="chapter-card__title">Séries de Fourier</h3>
+            <p class="chapter-card__desc">Coefficients, Parseval, convergence ponctuelle et normale.</p>
+          </a>
+          <a href="cours/fiches/mp-14-familles-sommables.html" class="chapter-card chapter-card--link chapter-card--fiche">
+            <span class="fiche-badge fiche-badge--4">&#9675;</span>
+            <span class="chapter-card__num">14</span>
+            <h3 class="chapter-card__title">Familles sommables</h3>
+            <p class="chapter-card__desc">Fubini, produit de Cauchy, lien séries-sommabilité.</p>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- end fiches-section -->
+
     <!-- Concours CCINP -->
     <div class="concours-dossier" data-type="concours" style="display:none">
 
@@ -215,7 +376,7 @@
         <div class="concours-seg__track">
           <div class="concours-seg__indicator"></div>
           <button class="concours-seg__btn concours-seg__btn--active" data-target="concours-fiches">
-            Fiches<span class="concours-seg__badge">16</span>
+            Fiches<span class="concours-seg__badge">19</span>
           </button>
           <button class="concours-seg__btn" data-target="concours-methodes">
             Methodes<span class="concours-seg__badge">8</span>
@@ -429,6 +590,6 @@
     </div>
   </footer>
 
-  <script src="main.js?v=4"></script>
+  <script src="main.js?v=5"></script>
 </body>
 </html>

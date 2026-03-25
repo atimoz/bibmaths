@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr" data-site="physique">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LibPhysique — Bibliothèque Scientifique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+  <!-- KaTeX for math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+
+  <!-- Geometric background decoration -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-circle bg-circle--1" aria-hidden="true"></div>
+  <div class="bg-circle bg-circle--2" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../index.html" class="site-switcher__btn">Maths</a>
+        <a href="index.html" class="site-switcher__btn site-switcher__btn--active">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="index.html" class="nav__link nav__link--active">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="mpsi.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="mp.html#methodes" class="dropdown__item">Méthodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group">
+      <a href="mpsi.html" class="mobile-menu__page-link">MPSI — Physique Sup</a>
+    </div>
+    <div class="mobile-menu__group">
+      <a href="mp.html" class="mobile-menu__page-link">MP — Physique Spé</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero__content">
+      <p class="hero__eyebrow">Bibliothèque Scientifique</p>
+      <h1 class="hero__title">
+        Cours &amp; exercices de<br>
+        <span class="hero__title--accent">physique</span>,<br>
+        100 % gratuits.
+      </h1>
+      <p class="hero__subtitle">
+        Accédez librement à des cours et exercices — de la mécanique à l'électromagnétisme —
+        sur une plateforme claire et structurée, ouverte à tous.
+      </p>
+      <div class="hero__actions">
+        <a href="#programmes" class="btn btn--primary">Choisir mon programme</a>
+        <a href="#apropos" class="btn btn--ghost">En savoir plus</a>
+      </div>
+    </div>
+    <div class="hero__formula" aria-hidden="true">
+      <div class="hero__formula-card">
+        <span class="hero__formula-label">Équation fondamentale</span>
+        <span class="hero__formula-math" id="euler"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ticker band -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>Mécanique</span><span class="ticker__dot">·</span>
+      <span>Électromagnétisme</span><span class="ticker__dot">·</span>
+      <span>Thermodynamique</span><span class="ticker__dot">·</span>
+      <span>Optique</span><span class="ticker__dot">·</span>
+      <span>Ondes</span><span class="ticker__dot">·</span>
+      <span>Quantique</span><span class="ticker__dot">·</span>
+      <span>Relativité</span><span class="ticker__dot">·</span>
+      <span>Nucléaire</span><span class="ticker__dot">·</span>
+      <span>Mécanique</span><span class="ticker__dot">·</span>
+      <span>Électromagnétisme</span><span class="ticker__dot">·</span>
+      <span>Thermodynamique</span><span class="ticker__dot">·</span>
+      <span>Optique</span><span class="ticker__dot">·</span>
+      <span>Ondes</span><span class="ticker__dot">·</span>
+      <span>Quantique</span><span class="ticker__dot">·</span>
+      <span>Relativité</span><span class="ticker__dot">·</span>
+      <span>Nucléaire</span><span class="ticker__dot">·</span>
+    </div>
+  </div>
+
+  <!-- Programmes Section -->
+  <section class="section" id="programmes">
+    <div class="section__header">
+      <span class="section__number">01</span>
+      <h2 class="section__title">Programmes</h2>
+      <p class="section__desc">Choisissez votre niveau et accédez aux cours, exercices et méthodes correspondants.</p>
+    </div>
+
+    <div class="programmes-grid">
+<a href="mpsi.html" class="programme-card programme-card--featured">
+        <div class="programme-card__badge">Prépa 1A</div>
+        <div class="programme-card__icon">⚡</div>
+        <h3 class="programme-card__title">MPSI</h3>
+        <p class="programme-card__desc">Physique Sup — mécanique, thermodynamique, optique et électromagnétisme.</p>
+        <div class="programme-card__meta">
+          <span class="programme-card__count">Bientôt disponible</span>
+          <span class="programme-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="mp.html" class="programme-card programme-card--featured">
+        <div class="programme-card__badge">Prépa 2A</div>
+        <div class="programme-card__icon">⚡</div>
+        <h3 class="programme-card__title">MP</h3>
+        <p class="programme-card__desc">Physique Spé — électromagnétisme avancé, mécanique quantique et physique statistique.</p>
+        <div class="programme-card__meta">
+          <span class="programme-card__count">Bientôt disponible</span>
+          <span class="programme-card__arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured Formula -->
+  <section class="formula-showcase">
+    <div class="formula-showcase__inner">
+      <span class="formula-showcase__label">Formule du jour</span>
+      <div class="formula-showcase__equation" id="dailyFormula"></div>
+      <p class="formula-showcase__caption">
+        Les équations de Maxwell — fondement de l'électromagnétisme classique, unifiant électricité, magnétisme et optique.
+      </p>
+    </div>
+  </section>
+
+  <!-- À propos -->
+  <section class="section section--about" id="apropos">
+    <div class="about-layout">
+      <div class="about-content">
+        <span class="section__number">02</span>
+        <h2 class="section__title">À propos</h2>
+        <p class="about-text">
+          LibPhysique est une bibliothèque de physique en ligne, conçue pour offrir un accès clair et structuré
+          aux concepts fondamentaux de la physique. Notre ambition : rendre la rigueur scientifique
+          accessible sans sacrifier l'élégance.
+        </p>
+        <p class="about-text">
+          Ce projet est pensé pour les étudiants, les enseignants et tous les passionnés
+          qui cherchent une référence fiable et agréable à consulter.
+        </p>
+      </div>
+      <div class="about-deco" aria-hidden="true">
+        <div class="about-deco__symbol">⚡</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">⚡ LibPhysique</span>
+        <p class="footer__tagline">La beauté de la physique, en ligne.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="#programmes">Programmes</a>
+          <a href="mpsi.html">MPSI</a>
+          <a href="mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communauté</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibPhysique — Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Render hero formula: E = mc²
+      const eulerEl = document.getElementById("euler");
+      if (eulerEl && typeof katex !== "undefined") {
+        katex.render("E = mc^2", eulerEl, { displayMode: true, throwOnError: false });
+      }
+      // Render daily formula: Maxwell's equation
+      const dailyEl = document.getElementById("dailyFormula");
+      if (dailyEl && typeof katex !== "undefined") {
+        katex.render("\\nabla \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}", dailyEl, { displayMode: true, throwOnError: false });
+      }
+    });
+  </script>
+</body>
+</html>
