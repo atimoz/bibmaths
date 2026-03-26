@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="data/flashcards.js"></script>
   <style>
     /* ── Layout ── */
     .rev{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
@@ -20,18 +21,51 @@
     .rev__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-sm)}
     .rev__subtitle{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
 
+    /* ── Stats Panel ── */
+    .stats-panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:var(--space-lg);padding:20px;border-radius:16px;background:var(--bg-card);border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.04)}
+    .stat-card{text-align:center;padding:12px 8px}
+    .stat-card__value{font-family:var(--font-display);font-size:1.8rem;font-weight:600;color:var(--accent);line-height:1.2}
+    .stat-card__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-top:4px}
+    .stat-card--streak .stat-card__value{color:#FF9500}
+
+    /* ── Chapter Progress Bars ── */
+    .chapter-progress{margin-bottom:var(--space-lg)}
+    .chapter-progress__title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:10px}
+    .chapter-progress__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+    .ch-bar{display:flex;align-items:center;gap:8px}
+    .ch-bar__label{font-family:var(--font-mono);font-size:.6rem;font-weight:500;color:var(--ink-muted);min-width:48px;text-transform:uppercase;letter-spacing:.06em}
+    .ch-bar__track{flex:1;height:4px;background:var(--border);border-radius:4px;overflow:hidden}
+    .ch-bar__fill{height:100%;border-radius:4px;background:var(--accent);transition:width .6s var(--ease-out)}
+    .ch-bar__pct{font-family:var(--font-mono);font-size:.58rem;color:var(--ink-muted);min-width:28px;text-align:right}
+
     /* ── Filter chips ── */
-    .rev__filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:var(--space-lg)}
-    .chip{font-family:var(--font-body);font-size:.78rem;font-weight:500;padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--ink-muted);cursor:pointer;transition:all .25s ease;user-select:none}
+    .rev__filters{margin-bottom:var(--space-md)}
+    .rev__filter-group{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+    .rev__filter-group-label{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px}
+    .chip{font-family:var(--font-body);font-size:.78rem;font-weight:500;padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--ink-muted);cursor:pointer;transition:all .25s ease;user-select:none;white-space:nowrap}
     .chip:hover{border-color:var(--accent);color:var(--accent)}
     .chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
     [data-theme="dark"] .chip.active{color:#1a1a1a}
+    .chip--domain{font-weight:600}
+    .chip .chip__count{font-family:var(--font-mono);font-size:.6rem;margin-left:4px;opacity:.7}
+
+    /* ── Session Mode Buttons ── */
+    .rev__modes{display:flex;gap:10px;margin-bottom:var(--space-md);flex-wrap:wrap}
+    .mode-btn{font-family:var(--font-body);font-size:.82rem;font-weight:600;padding:10px 24px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-card);color:var(--ink);cursor:pointer;transition:all .3s ease;display:flex;align-items:center;gap:8px}
+    .mode-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+    .mode-btn:disabled{opacity:.4;cursor:default;transform:none}
+    .mode-btn--new{border-color:rgba(52,199,89,.3)}
+    .mode-btn--new:hover{border-color:#34C759;color:#34C759}
+    .mode-btn--review{border-color:rgba(255,149,0,.3)}
+    .mode-btn--review:hover{border-color:#FF9500;color:#FF9500}
+    .mode-btn--all{border-color:rgba(59,130,196,.3)}
+    .mode-btn--all:hover{border-color:#3B82C4;color:#3B82C4}
+    .mode-btn__badge{font-family:var(--font-mono);font-size:.6rem;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(255,149,0,.12);color:#FF9500;letter-spacing:.04em}
+    .mode-btn__badge--green{background:rgba(52,199,89,.1);color:#34C759}
+    .mode-btn__badge--blue{background:rgba(59,130,196,.1);color:#3B82C4}
 
     /* ── Controls ── */
     .rev__controls{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-xl);flex-wrap:wrap}
-    .rev__btn{font-family:var(--font-body);font-size:.85rem;font-weight:600;padding:10px 28px;border-radius:10px;border:none;cursor:pointer;transition:all .3s ease}
-    .rev__btn--start{background:var(--accent);color:#fff}
-    .rev__btn--start:hover{filter:brightness(1.1);transform:translateY(-1px)}
     .rev__counter{font-family:var(--font-mono);font-size:.8rem;color:var(--ink-muted);letter-spacing:.06em}
     .rev__progress{flex:1;min-width:120px;height:4px;background:var(--border);border-radius:4px;overflow:hidden}
     .rev__progress-bar{height:100%;background:var(--accent);border-radius:4px;transition:width .4s var(--ease-out);width:0%}
@@ -50,12 +84,21 @@
     .card__type--thm{background:rgba(180,50,50,.1);color:#B43232}
     .card__type--method{background:rgba(196,135,59,.1);color:var(--accent)}
     .card__type--prop{background:rgba(118,56,163,.08);color:#7638A3}
+    .card__type--cor{background:rgba(52,199,89,.08);color:#34C759}
+    .card__type--lem{background:rgba(255,149,0,.08);color:#FF9500}
     .card__question{font-family:var(--font-display);font-size:1.5rem;font-weight:500;line-height:1.5;color:var(--ink);margin-bottom:var(--space-md)}
     .card__hint{font-size:.82rem;color:var(--ink-muted);font-style:italic;margin-top:auto;padding-top:var(--space-md);border-top:1px solid var(--border)}
     .card__answer-label{font-family:var(--font-mono);font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--space-sm)}
     .card__answer{font-size:1rem;line-height:1.8;color:var(--ink)}
     .card__answer .math-display{text-align:center;padding:var(--space-sm) 0;overflow-x:auto}
     .card__flip-hint{position:absolute;bottom:16px;right:20px;font-size:.7rem;color:var(--ink-muted);opacity:.5;letter-spacing:.04em}
+    .card__srs-box{position:absolute;top:16px;right:20px;font-family:var(--font-mono);font-size:.55rem;font-weight:500;letter-spacing:.06em;padding:2px 8px;border-radius:8px;background:var(--border);color:var(--ink-muted)}
+    .card__srs-box--0{background:rgba(255,59,48,.08);color:#FF3B30}
+    .card__srs-box--1{background:rgba(255,149,0,.08);color:#FF9500}
+    .card__srs-box--2{background:rgba(255,204,0,.08);color:#CC9900}
+    .card__srs-box--3{background:rgba(52,199,89,.08);color:#34C759}
+    .card__srs-box--4{background:rgba(59,130,196,.08);color:#3B82C4}
+    .card__srs-box--5{background:rgba(118,56,163,.08);color:#7638A3}
 
     /* ── Nav buttons ── */
     .card-nav{display:flex;justify-content:center;gap:var(--space-md);margin-bottom:var(--space-xl)}
@@ -66,6 +109,7 @@
     .card-nav__btn--know:hover{background:rgba(52,199,89,.15)}
     .card-nav__btn--dontknow{background:rgba(255,59,48,.06);border-color:rgba(255,59,48,.25);color:#FF3B30}
     .card-nav__btn--dontknow:hover{background:rgba(255,59,48,.12)}
+    .card-nav__shortcut{font-family:var(--font-mono);font-size:.5rem;position:absolute;bottom:-18px;color:var(--ink-muted);letter-spacing:.04em;opacity:.6}
 
     /* ── Score screen ── */
     .score-screen{display:none;text-align:center;padding:var(--space-2xl) var(--space-lg)}
@@ -77,14 +121,29 @@
     .score__bar-fill--good{background:#34C759}
     .score__bar-fill--mid{background:var(--accent)}
     .score__bar-fill--bad{background:#FF3B30}
-    .score__detail{font-size:.85rem;color:var(--ink-muted);margin-bottom:var(--space-xl)}
+    .score__detail{font-size:.85rem;color:var(--ink-muted);margin-bottom:var(--space-lg)}
+    .score__wrong-list{text-align:left;max-width:600px;margin:0 auto var(--space-xl);list-style:none;padding:0}
+    .score__wrong-item{padding:12px 16px;border-radius:10px;background:var(--bg-card);border:1px solid var(--border);margin-bottom:8px;cursor:pointer;transition:all .2s}
+    .score__wrong-item:hover{border-color:var(--accent)}
+    .score__wrong-q{font-size:.88rem;color:var(--ink);line-height:1.5}
+    .score__wrong-a{font-size:.82rem;color:var(--ink-light);line-height:1.6;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);display:none}
+    .score__wrong-item.open .score__wrong-a{display:block}
+    .score__actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
     .score__retry{font-family:var(--font-body);font-size:.9rem;font-weight:600;padding:12px 32px;border-radius:10px;border:none;background:var(--accent);color:#fff;cursor:pointer;transition:all .3s}
     .score__retry:hover{filter:brightness(1.1);transform:translateY(-1px)}
+    .score__retry--errors{background:rgba(255,59,48,.1);color:#FF3B30;border:1.5px solid rgba(255,59,48,.25)}
+    .score__retry--errors:hover{background:rgba(255,59,48,.15)}
 
     /* ── Intro (no session) ── */
     .rev__intro{text-align:center;padding:var(--space-2xl) 0}
     .rev__intro-icon{font-size:4rem;margin-bottom:var(--space-lg);opacity:.2}
     .rev__intro-text{font-size:1.05rem;color:var(--ink-light);max-width:480px;margin:0 auto}
+
+    /* ── Keyboard legend ── */
+    .kbd-legend{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:var(--space-lg);opacity:.5;transition:opacity .2s}
+    .kbd-legend:hover{opacity:.8}
+    .kbd-legend__item{font-family:var(--font-mono);font-size:.6rem;color:var(--ink-muted);display:flex;align-items:center;gap:4px}
+    .kbd{display:inline-block;padding:1px 6px;border-radius:4px;border:1px solid var(--border);background:var(--bg-card);font-size:.58rem;min-width:18px;text-align:center}
 
     /* ── Dark mode ── */
     [data-theme="dark"] .card__front{background:var(--bg-card);border-color:var(--border);box-shadow:0 4px 24px rgba(0,0,0,.3)}
@@ -92,6 +151,9 @@
     [data-theme="dark"] .card__hint{border-top-color:var(--border)}
     [data-theme="dark"] .card-nav__btn{background:var(--bg-card);border-color:var(--border)}
     [data-theme="dark"] .score__bar{background:rgba(255,255,255,.08)}
+    [data-theme="dark"] .stats-panel{background:var(--bg-card);border-color:var(--border);box-shadow:0 2px 12px rgba(0,0,0,.2)}
+    [data-theme="dark"] .mode-btn{background:var(--bg-card);border-color:var(--border)}
+    [data-theme="dark"] .score__wrong-item{background:var(--bg-card);border-color:var(--border)}
 
     /* ── Responsive ── */
     @media(max-width:680px){
@@ -101,6 +163,12 @@
       .card__question{font-size:1.2rem}
       .card-nav{gap:var(--space-sm)}
       .score__number{font-size:3.5rem}
+      .stats-panel{grid-template-columns:repeat(2,1fr);padding:14px}
+      .stat-card__value{font-size:1.4rem}
+      .rev__modes{flex-direction:column}
+      .mode-btn{width:100%;justify-content:center}
+      .chapter-progress__grid{grid-template-columns:1fr}
+      .kbd-legend{display:none}
     }
   </style>
 </head>
@@ -145,34 +213,72 @@
   <main class="rev">
     <a href="mp.html" class="rev__back">&larr; Retour au programme MP</a>
     <h1 class="rev__title">Revision active</h1>
-    <p class="rev__subtitle">Flashcards generees a partir des cours MP. Choisis un ou plusieurs chapitres, puis lance une session.</p>
+    <p class="rev__subtitle">514 flashcards generees a partir des cours MP. Systeme de repetition espacee (Leitner) pour une memorisation durable.</p>
 
-    <!-- Filters -->
-    <div class="rev__filters" id="chipContainer">
-      <button class="chip active" data-ch="all">Tout le programme</button>
-      <button class="chip" data-ch="algebre">Algebre</button>
-      <button class="chip" data-ch="analyse">Analyse</button>
-      <button class="chip" data-ch="probas">Probabilites</button>
-      <button class="chip" data-ch="topologie">Topologie</button>
-      <button class="chip" data-ch="reduction">Reduction</button>
-      <button class="chip" data-ch="euclidien">Euclidiens</button>
-      <button class="chip" data-ch="series">Series</button>
-      <button class="chip" data-ch="integrales">Integrales</button>
-      <button class="chip" data-ch="edl">EDL</button>
-      <button class="chip" data-ch="calculdiff">Calcul diff.</button>
+    <!-- Stats Panel -->
+    <div class="stats-panel" id="statsPanel">
+      <div class="stat-card">
+        <div class="stat-card__value" id="statSeen">0</div>
+        <div class="stat-card__label">Vues / 514</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__value" id="statMastered">0</div>
+        <div class="stat-card__label">Maitrisees</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__value" id="statDue">0</div>
+        <div class="stat-card__label">A revoir</div>
+      </div>
+      <div class="stat-card stat-card--streak">
+        <div class="stat-card__value" id="statStreak">0j</div>
+        <div class="stat-card__label">Serie</div>
+      </div>
     </div>
 
-    <!-- Controls -->
-    <div class="rev__controls" id="controls">
-      <button class="rev__btn rev__btn--start" id="startBtn">Lancer 20 cartes</button>
+    <!-- Chapter Progress -->
+    <div class="chapter-progress" id="chapterProgress">
+      <div class="chapter-progress__title">Progression par chapitre</div>
+      <div class="chapter-progress__grid" id="chProgressGrid"></div>
+    </div>
+
+    <!-- Filters -->
+    <div class="rev__filters" id="filterContainer"></div>
+
+    <!-- Session Mode Buttons -->
+    <div class="rev__modes" id="modeButtons">
+      <button class="mode-btn mode-btn--new" id="btnModeNew">
+        Nouvelles cartes
+        <span class="mode-btn__badge mode-btn__badge--green" id="badgeNew">0</span>
+      </button>
+      <button class="mode-btn mode-btn--review" id="btnModeReview">
+        A revoir
+        <span class="mode-btn__badge" id="badgeReview">0</span>
+      </button>
+      <button class="mode-btn mode-btn--all" id="btnModeAll">
+        Toutes
+        <span class="mode-btn__badge mode-btn__badge--blue" id="badgeAll">0</span>
+      </button>
+    </div>
+
+    <!-- Controls (shown during session) -->
+    <div class="rev__controls" id="controls" style="display:none">
       <span class="rev__counter" id="counter"></span>
       <div class="rev__progress"><div class="rev__progress-bar" id="progressBar"></div></div>
+    </div>
+
+    <!-- Keyboard legend -->
+    <div class="kbd-legend" id="kbdLegend" style="display:none">
+      <span class="kbd-legend__item"><span class="kbd">Espace</span> retourner</span>
+      <span class="kbd-legend__item"><span class="kbd">1</span> je sais</span>
+      <span class="kbd-legend__item"><span class="kbd">2</span> a revoir</span>
+      <span class="kbd-legend__item"><span class="kbd">&larr;</span> precedente</span>
+      <span class="kbd-legend__item"><span class="kbd">&rarr;</span> suivante</span>
     </div>
 
     <!-- Intro -->
     <div class="rev__intro" id="introScreen">
       <div class="rev__intro-icon">&#x1D4D5;</div>
-      <p class="rev__intro-text">Selectionne un theme et clique sur <strong>Lancer</strong> pour demarrer une session de revision. Les cartes se retournent au clic.</p>
+      <p class="rev__intro-text">Selectionne un ou plusieurs chapitres, puis choisis un mode de session pour demarrer ta revision.</p>
     </div>
 
     <!-- Flashcard -->
@@ -180,6 +286,7 @@
       <div class="card" id="flashcard">
         <div class="card__face card__front">
           <div class="card__tag" id="cardTag"></div>
+          <div class="card__srs-box" id="cardSrsBox"></div>
           <div id="cardType"></div>
           <div class="card__question" id="cardQuestion"></div>
           <div class="card__hint" id="cardHint"></div>
@@ -195,10 +302,10 @@
 
     <!-- Nav -->
     <div class="card-nav" id="cardNav" style="display:none">
-      <button class="card-nav__btn card-nav__btn--dontknow" id="btnDontKnow" title="A revoir">&#x2717;</button>
-      <button class="card-nav__btn" id="btnPrev" title="Precedente">&#x2190;</button>
-      <button class="card-nav__btn" id="btnNext" title="Suivante">&#x2192;</button>
-      <button class="card-nav__btn card-nav__btn--know" id="btnKnow" title="Je sais">&#x2713;</button>
+      <button class="card-nav__btn card-nav__btn--dontknow" id="btnDontKnow" title="A revoir (2)" style="position:relative">&#x2717;<span class="card-nav__shortcut">2</span></button>
+      <button class="card-nav__btn" id="btnPrev" title="Precedente" style="position:relative">&#x2190;<span class="card-nav__shortcut">&larr;</span></button>
+      <button class="card-nav__btn" id="btnNext" title="Suivante" style="position:relative">&#x2192;<span class="card-nav__shortcut">&rarr;</span></button>
+      <button class="card-nav__btn card-nav__btn--know" id="btnKnow" title="Je sais (1)" style="position:relative">&#x2713;<span class="card-nav__shortcut">1</span></button>
     </div>
 
     <!-- Score -->
@@ -207,7 +314,11 @@
       <div class="score__label" id="scoreLabel"></div>
       <div class="score__bar"><div class="score__bar-fill" id="scoreBar"></div></div>
       <div class="score__detail" id="scoreDetail"></div>
-      <button class="score__retry" id="retryBtn">Recommencer</button>
+      <ul class="score__wrong-list" id="wrongList"></ul>
+      <div class="score__actions">
+        <button class="score__retry score__retry--errors" id="retryErrorsBtn" style="display:none">Revoir les erreurs</button>
+        <button class="score__retry" id="retryBtn">Nouvelle session</button>
+      </div>
     </div>
   </main>
 
@@ -221,84 +332,321 @@
   <script src="main.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // KaTeX
-    if (typeof renderMathInElement === 'function') {
-      renderMathInElement(document.body, {
-        delimiters: [
-          {left: '$$', right: '$$', display: true},
-          {left: '\\(', right: '\\)', display: false}
-        ],
-        throwOnError: false
+
+    // ══════════════════════════════════════════════
+    // SRS STORAGE
+    // ══════════════════════════════════════════════
+    const SRS_KEY = 'libmaths-srs';
+    const STREAK_KEY = 'libmaths-streak';
+    const BOX_INTERVALS = [0, 1, 3, 7, 14, 30];
+
+    function today() {
+      return new Date().toISOString().slice(0, 10);
+    }
+
+    function addDays(dateStr, days) {
+      const d = new Date(dateStr + 'T00:00:00');
+      d.setDate(d.getDate() + days);
+      return d.toISOString().slice(0, 10);
+    }
+
+    function loadSRS() {
+      try { return JSON.parse(localStorage.getItem(SRS_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function saveSRS(data) {
+      localStorage.setItem(SRS_KEY, JSON.stringify(data));
+    }
+
+    function getSRSEntry(srs, id) {
+      return srs[id] || { box: 0, nextReview: null, lastSeen: null, correct: 0, wrong: 0 };
+    }
+
+    function markKnow(srs, id) {
+      const entry = getSRSEntry(srs, id);
+      entry.box = Math.min(entry.box + 1, 5);
+      entry.nextReview = addDays(today(), BOX_INTERVALS[entry.box]);
+      entry.lastSeen = today();
+      entry.correct = (entry.correct || 0) + 1;
+      srs[id] = entry;
+      saveSRS(srs);
+    }
+
+    function markDontKnow(srs, id) {
+      const entry = getSRSEntry(srs, id);
+      entry.box = 1;
+      entry.nextReview = addDays(today(), 1);
+      entry.lastSeen = today();
+      entry.wrong = (entry.wrong || 0) + 1;
+      srs[id] = entry;
+      saveSRS(srs);
+    }
+
+    // ── Streak ──
+    function loadStreak() {
+      try { return JSON.parse(localStorage.getItem(STREAK_KEY)) || { count: 0, lastDate: null }; }
+      catch { return { count: 0, lastDate: null }; }
+    }
+
+    function saveStreak(data) {
+      localStorage.setItem(STREAK_KEY, JSON.stringify(data));
+    }
+
+    function updateStreak() {
+      const streak = loadStreak();
+      const t = today();
+      if (streak.lastDate === t) return streak.count;
+      const yesterday = addDays(t, -1);
+      if (streak.lastDate === yesterday) {
+        streak.count += 1;
+      } else {
+        streak.count = 1;
+      }
+      streak.lastDate = t;
+      saveStreak(streak);
+      return streak.count;
+    }
+
+    function getStreak() {
+      const streak = loadStreak();
+      const t = today();
+      if (streak.lastDate === t || streak.lastDate === addDays(t, -1)) return streak.count;
+      return 0;
+    }
+
+    // ══════════════════════════════════════════════
+    // DOMAIN GROUPS
+    // ══════════════════════════════════════════════
+    const DOMAIN_MAP = {
+      'Algebre': ['mp-01','mp-02','mp-03','mp-04','mp-05'],
+      'Analyse': ['mp-06','mp-07','mp-08','mp-09','mp-10','mp-11','mp-12','mp-13','mp-14','mp-15'],
+      'EDL & Diff': ['mp-16','mp-17'],
+      'Probabilites': ['mp-18','mp-19']
+    };
+
+    // ══════════════════════════════════════════════
+    // BUILD FILTERS
+    // ══════════════════════════════════════════════
+    const chapters = [];
+    const chapterNames = {};
+    FLASHCARDS.forEach(function(c) {
+      if (!chapterNames[c.ch]) {
+        chapterNames[c.ch] = c.chName;
+        chapters.push(c.ch);
+      }
+    });
+
+    function getDomainForCh(ch) {
+      for (const [domain, chs] of Object.entries(DOMAIN_MAP)) {
+        if (chs.includes(ch)) return domain;
+      }
+      return null;
+    }
+
+    let activeFilters = new Set(['all']);
+
+    function buildFilters() {
+      const container = document.getElementById('filterContainer');
+      container.innerHTML = '';
+
+      // Domain row
+      const domainGroup = document.createElement('div');
+      domainGroup.className = 'rev__filter-group';
+      const allChip = document.createElement('button');
+      allChip.className = 'chip chip--domain active';
+      allChip.dataset.filter = 'all';
+      allChip.textContent = 'Tout';
+      domainGroup.appendChild(allChip);
+
+      Object.keys(DOMAIN_MAP).forEach(function(domain) {
+        const chip = document.createElement('button');
+        chip.className = 'chip chip--domain';
+        chip.dataset.filter = 'domain:' + domain;
+        const count = DOMAIN_MAP[domain].reduce(function(sum, ch) {
+          return sum + FLASHCARDS.filter(function(c) { return c.ch === ch; }).length;
+        }, 0);
+        chip.innerHTML = domain + '<span class="chip__count">' + count + '</span>';
+        domainGroup.appendChild(chip);
+      });
+      container.appendChild(domainGroup);
+
+      // Chapter row
+      const chGroup = document.createElement('div');
+      chGroup.className = 'rev__filter-group';
+      chapters.forEach(function(ch) {
+        const chip = document.createElement('button');
+        chip.className = 'chip';
+        chip.dataset.filter = 'ch:' + ch;
+        const count = FLASHCARDS.filter(function(c) { return c.ch === ch; }).length;
+        const shortName = chapterNames[ch].length > 24 ? chapterNames[ch].slice(0, 22) + '...' : chapterNames[ch];
+        chip.innerHTML = shortName + '<span class="chip__count">' + count + '</span>';
+        chip.title = chapterNames[ch];
+        chGroup.appendChild(chip);
+      });
+      container.appendChild(chGroup);
+
+      // Event delegation
+      container.addEventListener('click', function(e) {
+        const chip = e.target.closest('.chip');
+        if (!chip) return;
+        const filter = chip.dataset.filter;
+
+        if (filter === 'all') {
+          activeFilters = new Set(['all']);
+          container.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+        } else if (filter.startsWith('domain:')) {
+          activeFilters.delete('all');
+          container.querySelector('[data-filter="all"]').classList.remove('active');
+          const domain = filter.split(':')[1];
+          const domainChs = DOMAIN_MAP[domain];
+
+          // Toggle domain
+          if (chip.classList.contains('active')) {
+            chip.classList.remove('active');
+            domainChs.forEach(function(ch) {
+              activeFilters.delete('ch:' + ch);
+              const chChip = container.querySelector('[data-filter="ch:' + ch + '"]');
+              if (chChip) chChip.classList.remove('active');
+            });
+          } else {
+            chip.classList.add('active');
+            domainChs.forEach(function(ch) {
+              activeFilters.add('ch:' + ch);
+              const chChip = container.querySelector('[data-filter="ch:' + ch + '"]');
+              if (chChip) chChip.classList.add('active');
+            });
+          }
+
+          if (activeFilters.size === 0) {
+            activeFilters.add('all');
+            container.querySelector('[data-filter="all"]').classList.add('active');
+          }
+        } else {
+          // Individual chapter
+          activeFilters.delete('all');
+          container.querySelector('[data-filter="all"]').classList.remove('active');
+
+          chip.classList.toggle('active');
+          if (chip.classList.contains('active')) {
+            activeFilters.add(filter);
+          } else {
+            activeFilters.delete(filter);
+          }
+
+          // Update domain chip state
+          Object.entries(DOMAIN_MAP).forEach(function([domain, chs]) {
+            const allSelected = chs.every(function(ch) { return activeFilters.has('ch:' + ch); });
+            const domainChip = container.querySelector('[data-filter="domain:' + domain + '"]');
+            if (domainChip) domainChip.classList.toggle('active', allSelected);
+          });
+
+          if (activeFilters.size === 0) {
+            activeFilters.add('all');
+            container.querySelector('[data-filter="all"]').classList.add('active');
+          }
+        }
+
+        updateModeBadges();
       });
     }
 
-    // ── FLASHCARD DATA ──
-    const CARDS = [
-      // === REDUCTION ===
-      {ch:"reduction",type:"thm",q:"Enoncer le theoreme de Cayley-Hamilton.",a:"Soit \\(A \\in M_n(\\mathbb{K})\\). Alors \\(\\chi_A(A) = 0\\). Le polynome caracteristique annule la matrice.",hint:"Lien chi_A et Pi_A ?"},
-      {ch:"reduction",type:"def",q:"Qu'est-ce que le polynome minimal \\(\\Pi_A\\) ?",a:"C'est le polynome unitaire de plus petit degre annulant \\(A\\). Il divise tout polynome annulateur, et \\(\\Pi_A \\mid \\chi_A\\).",hint:"Generateur de l'ideal annulateur"},
-      {ch:"reduction",type:"method",q:"Comment diagonaliser une matrice \\(A \\in M_3(\\mathbb{R})\\) ?",a:"1. Calculer \\(\\chi_A\\) et trouver les valeurs propres.<br>2. Pour chaque \\(\\lambda\\), calculer \\(E_\\lambda = \\text{Ker}(A - \\lambda I)\\).<br>3. Verifier \\(\\dim E_\\lambda = \\text{multiplicite}\\) pour chaque \\(\\lambda\\).<br>4. Concatener les bases : \\(P = (v_1 | v_2 | v_3)\\), alors \\(A = PDP^{-1}\\).",hint:"CNS : chi scinde + dim SEP = multiplicite"},
-      {ch:"reduction",type:"thm",q:"CNS de diagonalisabilite ?",a:"\\(A\\) est diagonalisable ssi :<br>- \\(\\chi_A\\) est scinde, ET<br>- pour chaque valeur propre \\(\\lambda\\), \\(\\dim E_\\lambda\\) = multiplicite de \\(\\lambda\\) dans \\(\\chi_A\\).<br><br>Equivalent : \\(\\Pi_A\\) est scinde a racines simples.",hint:"Deux formulations equivalentes"},
-      {ch:"reduction",type:"prop",q:"Si \\(A\\) a \\(n\\) valeurs propres distinctes, que peut-on dire ?",a:"\\(A\\) est diagonalisable. En effet, chaque sous-espace propre est de dimension au moins 1, et la somme des dimensions vaut au moins \\(n = \\dim E\\). C'est un critere suffisant (pas necessaire).",hint:"Condition suffisante classique"},
-      {ch:"reduction",type:"method",q:"Comment calculer \\(A^n\\) pour une matrice diagonalisable ?",a:"1. Diagonaliser : \\(A = PDP^{-1}\\).<br>2. Alors \\(A^n = PD^nP^{-1}\\).<br>3. \\(D^n = \\text{Diag}(\\lambda_1^n, \\ldots, \\lambda_p^n)\\).",hint:"Aussi pour exp(tA)"},
-      {ch:"reduction",type:"thm",q:"Enoncer le lemme de decomposition des noyaux.",a:"Si \\(P_1, \\ldots, P_r\\) sont premiers entre eux deux a deux et \\(P = P_1 \\cdots P_r\\), alors $$\\text{Ker}(P(u)) = \\bigoplus_{i=1}^r \\text{Ker}(P_i(u))$$",hint:"Base de la reduction"},
-      {ch:"reduction",type:"def",q:"Qu'est-ce qu'un sous-espace caracteristique ?",a:"Pour \\(\\lambda\\) valeur propre de \\(u\\) de multiplicite \\(\\alpha\\) dans \\(\\chi_u\\) : $$F_\\lambda = \\text{Ker}(u - \\lambda\\text{Id})^\\alpha$$ On a \\(E_\\lambda \\subset F_\\lambda\\) et \\(\\dim F_\\lambda = \\alpha\\).",hint:"Contient le SEP, dimension = multiplicite"},
+    function getFilteredCards() {
+      if (activeFilters.has('all')) return FLASHCARDS.slice();
+      const selectedChs = new Set();
+      activeFilters.forEach(function(f) {
+        if (f.startsWith('ch:')) selectedChs.add(f.split(':')[1]);
+      });
+      return FLASHCARDS.filter(function(c) { return selectedChs.has(c.ch); });
+    }
 
-      // === ALGEBRE ===
-      {ch:"algebre",type:"thm",q:"Enoncer le theoreme du rang.",a:"Pour \\(f \\in \\mathcal{L}(E, F)\\) avec \\(\\dim E = n\\) : $$\\dim E = \\dim \\text{Ker}(f) + \\text{rg}(f)$$",hint:"Consequence fondamentale"},
-      {ch:"algebre",type:"def",q:"Qu'est-ce qu'un hyperplan ?",a:"Un hyperplan de \\(E\\) (dim \\(n\\)) est un sous-espace de dimension \\(n-1\\). Equivalent : c'est le noyau d'une forme lineaire non nulle \\(\\varphi \\in E^*\\).",hint:"Codimension 1"},
-      {ch:"algebre",type:"prop",q:"Proprietes d'un projecteur \\(p\\) (\\(p^2 = p\\)) ?",a:"\\(E = \\text{Im}(p) \\oplus \\text{Ker}(p)\\).<br>\\(\\text{Im}(p) = \\text{Ker}(p - \\text{Id})\\).<br>\\(\\text{Ker}(p) = \\text{Im}(\\text{Id} - p)\\).<br>Spectre : \\(\\text{Sp}(p) \\subset \\{0, 1\\}\\).",hint:"p est toujours diagonalisable"},
-      {ch:"algebre",type:"method",q:"Comment montrer que \\(f\\) est un isomorphisme en dimension finie ?",a:"Si \\(\\dim E = \\dim F\\), il suffit de montrer UNE des trois :<br>- \\(f\\) injective (\\(\\text{Ker} f = \\{0\\}\\))<br>- \\(f\\) surjective (\\(\\text{Im} f = F\\))<br>- \\(f\\) bijective<br>Les trois sont equivalentes.",hint:"Grace au theoreme du rang"},
+    // ══════════════════════════════════════════════
+    // MODE BADGE COUNTS
+    // ══════════════════════════════════════════════
+    function updateModeBadges() {
+      const filtered = getFilteredCards();
+      const srs = loadSRS();
+      const t = today();
 
-      // === EUCLIDIEN ===
-      {ch:"euclidien",type:"thm",q:"Enoncer le theoreme spectral.",a:"Toute matrice symetrique reelle \\(S \\in \\mathcal{S}_n(\\mathbb{R})\\) est diagonalisable dans une base orthonormee. Ses valeurs propres sont reelles et ses sous-espaces propres sont deux a deux orthogonaux.",hint:"Fondamental pour les espaces euclidiens"},
-      {ch:"euclidien",type:"thm",q:"Enoncer l'inegalite de Cauchy-Schwarz.",a:"Pour tout \\(x, y\\) dans un espace prehilbertien : $$|\\langle x, y \\rangle| \\leq \\|x\\| \\cdot \\|y\\|$$ Egalite ssi \\((x, y)\\) est liee.",hint:"Preuve par le discriminant de t -> ||x+ty||^2"},
-      {ch:"euclidien",type:"method",q:"Comment calculer la projection orthogonale sur \\(F\\) ?",a:"Si \\((e_1, \\ldots, e_p)\\) est une BON de \\(F\\) : $$p_F(x) = \\sum_{i=1}^p \\langle x, e_i \\rangle e_i$$ Distance : \\(d(x, F) = \\|x - p_F(x)\\|\\).",hint:"Gram-Schmidt si pas de BON"},
-      {ch:"euclidien",type:"prop",q:"Proprietes de \\(F^\\perp\\) dans un espace euclidien ?",a:"\\(E = F \\oplus F^\\perp\\) (somme directe orthogonale).<br>\\(\\dim F^\\perp = \\dim E - \\dim F\\).<br>\\((F^\\perp)^\\perp = F\\).",hint:"Supplementaire canonique"},
+      let newCount = 0, reviewCount = 0;
+      filtered.forEach(function(c) {
+        const entry = srs[c.id];
+        if (!entry || entry.lastSeen === null) {
+          newCount++;
+        } else if (entry.nextReview && entry.nextReview <= t && entry.box < 5) {
+          reviewCount++;
+        }
+      });
 
-      // === SERIES ===
-      {ch:"series",type:"thm",q:"Critere de convergence normale (Weierstrass) ?",a:"Si \\(\\sum \\|f_n\\|_\\infty\\) converge (convergence normale), alors \\(\\sum f_n\\) converge uniformement et absolument.",hint:"CVN => CVU => CVS"},
-      {ch:"series",type:"method",q:"Comment montrer la CVU d'une serie de fonctions ?",a:"1. Essayer la CVN : majorer \\(\\|f_n\\|_\\infty\\) par \\(a_n\\) avec \\(\\sum a_n < \\infty\\).<br>2. Si echec : etudier le reste \\(R_n(x) = \\sum_{k>n} f_k(x)\\) et montrer \\(\\|R_n\\|_\\infty \\to 0\\).",hint:"CVN est un critere suffisant, pas necessaire"},
-      {ch:"series",type:"thm",q:"Quand peut-on deriver terme a terme une serie ?",a:"Si (H1) \\(\\sum f_n\\) CVS en au moins un point, (H2) chaque \\(f_n \\in C^1\\), et (H3) \\(\\sum f_n'\\) CVU, alors \\(\\sum f_n\\) est \\(C^1\\) et \\((\\sum f_n)' = \\sum f_n'\\).",hint:"L'hypothese cruciale est H3"},
-      {ch:"series",type:"def",q:"Rayon de convergence d'une serie entiere ?",a:"$$R = \\sup\\{|z| : (a_n z^n) \\text{ bornee}\\}$$ Pour \\(|z| < R\\) : CVA. Pour \\(|z| > R\\) : divergence grossiere. Formule de d'Alembert : \\(R = \\lim |a_n/a_{n+1}|\\).",hint:"Lemme d'Abel"},
+      document.getElementById('badgeNew').textContent = newCount;
+      document.getElementById('badgeReview').textContent = reviewCount;
+      document.getElementById('badgeAll').textContent = filtered.length;
 
-      // === INTEGRALES ===
-      {ch:"integrales",type:"thm",q:"Integrales de Riemann : convergence de \\(\\int_1^{+\\infty} \\frac{dt}{t^\\alpha}\\) ?",a:"Converge ssi \\(\\alpha > 1\\).<br>En \\(0\\) : \\(\\int_0^1 \\frac{dt}{t^\\alpha}\\) converge ssi \\(\\alpha < 1\\).",hint:"References de comparaison"},
-      {ch:"integrales",type:"method",q:"Comment montrer la convergence d'une integrale impropre ?",a:"1. Signe constant : comparaison, equivalents, regle \\(t^\\alpha f(t) \\to \\ell\\).<br>2. Signe quelconque : convergence absolue, ou IPP/Abel pour semi-convergence.<br>3. Classique : \\(\\int_1^\\infty \\frac{\\sin t}{t}dt\\) converge (IPP) mais pas absolument.",hint:"Toujours preciser le type de convergence"},
-      {ch:"integrales",type:"thm",q:"Theoreme de derivation sous le signe integral (Leibniz) ?",a:"Si \\(f(x,t)\\) est continue, \\(\\partial f/\\partial x\\) existe et est continue, et il existe \\(g(t)\\) integrable dominant \\(|\\partial f/\\partial x|\\), alors : $$F'(x) = \\int_I \\frac{\\partial f}{\\partial x}(x,t)\\,dt$$",hint:"5 etapes : existence, continuite, domination, conclusion"},
-      {ch:"integrales",type:"prop",q:"Formule de Stirling ?",a:"$$n! \\sim \\left(\\frac{n}{e}\\right)^n \\sqrt{2\\pi n}$$",hint:"Utile pour les equivalents de suites"},
+      document.getElementById('btnModeNew').disabled = newCount === 0;
+      document.getElementById('btnModeReview').disabled = reviewCount === 0;
+      document.getElementById('btnModeAll').disabled = filtered.length === 0;
+    }
 
-      // === PROBAS ===
-      {ch:"probas",type:"thm",q:"Inegalite de Bienayme-Tchebychev ?",a:"$$P(|X - E(X)| \\geq a) \\leq \\frac{V(X)}{a^2}$$",hint:"Consequence de Markov"},
-      {ch:"probas",type:"thm",q:"Loi faible des grands nombres ?",a:"Si \\(X_1, \\ldots, X_n\\) sont i.i.d. d'esperance \\(m\\) et variance \\(\\sigma^2\\), alors : $$P\\left(\\left|\\frac{S_n}{n} - m\\right| \\geq \\varepsilon\\right) \\leq \\frac{\\sigma^2}{n\\varepsilon^2} \\xrightarrow{n \\to \\infty} 0$$",hint:"Consequence directe de Bienayme-Tchebychev"},
-      {ch:"probas",type:"def",q:"Fonction generatrice \\(G_X\\) ?",a:"$$G_X(t) = E(t^X) = \\sum_{k=0}^{+\\infty} P(X=k)\\,t^k$$ Proprietes : \\(G_X(1) = 1\\), \\(E(X) = G_X'(1)\\), \\(V(X) = G_X''(1) + G_X'(1) - (G_X'(1))^2\\).",hint:"Definie sur [-1,1] au moins"},
-      {ch:"probas",type:"method",q:"Loi du max de deux VA independantes ?",a:"Si \\(X, Y\\) independantes : $$F_{\\max(X,Y)}(t) = F_X(t) \\cdot F_Y(t)$$ Car \\(P(\\max \\leq t) = P(X \\leq t) \\cap P(Y \\leq t)\\).",hint:"Pour le min : 1 - (1-F_X)(1-F_Y)"},
+    // ══════════════════════════════════════════════
+    // STATS
+    // ══════════════════════════════════════════════
+    function updateStats() {
+      const srs = loadSRS();
+      const t = today();
+      let seen = 0, mastered = 0, due = 0;
 
-      // === TOPOLOGIE ===
-      {ch:"topologie",type:"thm",q:"Theoreme du point fixe de Banach ?",a:"Si \\((E,d)\\) est un espace metrique complet et \\(f : E \\to E\\) est contractante (\\(d(f(x),f(y)) \\leq k\\,d(x,y)\\), \\(k < 1\\)), alors \\(f\\) admet un unique point fixe \\(\\ell\\), et \\(f^n(x) \\to \\ell\\) pour tout \\(x\\).",hint:"Preuve : suite de Cauchy"},
-      {ch:"topologie",type:"prop",q:"En dimension finie, toutes les normes sont... ?",a:"Equivalentes. Consequence : les notions d'ouvert, ferme, convergence, continuite, compacite sont les memes quelle que soit la norme choisie.",hint:"Specifique a la dimension finie"},
-      {ch:"topologie",type:"def",q:"Partie compacte dans un EVN de dimension finie ?",a:"\\(K\\) est compact ssi \\(K\\) est ferme et borne. Equivalemment, de toute suite d'elements de \\(K\\) on peut extraire une sous-suite convergente de limite dans \\(K\\).",hint:"Bolzano-Weierstrass"},
+      FLASHCARDS.forEach(function(c) {
+        const entry = srs[c.id];
+        if (entry && entry.lastSeen !== null) {
+          seen++;
+          if (entry.box >= 4) mastered++;
+          if (entry.nextReview && entry.nextReview <= t && entry.box < 5) due++;
+        }
+      });
 
-      // === EDL ===
-      {ch:"edl",type:"method",q:"Solutions de \\(y'' + ay' + by = 0\\) a coefficients constants ?",a:"Equation caracteristique \\(r^2 + ar + b = 0\\).<br>- \\(\\Delta > 0\\) : \\(y = \\lambda e^{r_1 x} + \\mu e^{r_2 x}\\)<br>- \\(\\Delta = 0\\) : \\(y = (\\lambda + \\mu x)e^{rx}\\)<br>- \\(\\Delta < 0\\), \\(r = \\alpha \\pm i\\omega\\) : \\(y = e^{\\alpha x}(\\lambda\\cos\\omega x + \\mu\\sin\\omega x)\\)",hint:"3 cas selon le discriminant"},
-      {ch:"edl",type:"thm",q:"Propriete fondamentale de \\(\\exp(tA)\\) ?",a:"$$\\frac{d}{dt}\\exp(tA) = A\\exp(tA) = \\exp(tA)A$$ Solution de \\(X' = AX\\) avec \\(X(0) = X_0\\) : \\(X(t) = \\exp(tA)X_0\\).<br>Attention : \\(e^{A+B} \\neq e^A e^B\\) sauf si \\(AB = BA\\).",hint:"Cas diag : exp(tD) = Diag(e^{t lambda_i})"},
-      {ch:"edl",type:"prop",q:"Formule de Liouville pour le Wronskien ?",a:"Si \\(y_1, y_2\\) sont solutions de \\(y'' + ay' + by = 0\\) : $$W(x) = W(x_0)\\exp\\left(-\\int_{x_0}^x a(t)\\,dt\\right)$$ Le Wronskien ne s'annule jamais ou est identiquement nul.",hint:"Utile pour la liberte de solutions"},
+      document.getElementById('statSeen').textContent = seen;
+      document.querySelector('#statsPanel .stat-card:first-child .stat-card__label').textContent = 'Vues / ' + FLASHCARDS.length;
+      document.getElementById('statMastered').textContent = mastered;
+      document.getElementById('statDue').textContent = due;
+      document.getElementById('statStreak').textContent = getStreak() + 'j';
 
-      // === CALCUL DIFF ===
-      {ch:"calculdiff",type:"method",q:"Comment trouver les extrema locaux d'une fonction de deux variables ?",a:"1. Calculer \\(\\nabla f = 0\\) : trouver les points critiques.<br>2. Calculer la hessienne \\(H_f\\) en chaque point critique.<br>3. Si \\(rt - s^2 > 0\\) : min (si \\(r > 0\\)) ou max (si \\(r < 0\\)).<br>4. Si \\(rt - s^2 < 0\\) : point selle.",hint:"r = d2f/dx2, s = d2f/dxdy, t = d2f/dy2"},
-      {ch:"calculdiff",type:"thm",q:"Theoreme des fonctions implicites (cas \\(F(x,y) = 0\\)) ?",a:"Si \\(F\\) est \\(C^1\\), \\(F(a,b) = 0\\) et \\(\\frac{\\partial F}{\\partial y}(a,b) \\neq 0\\), alors il existe un voisinage de \\(a\\) et une unique fonction \\(y = \\varphi(x)\\) de classe \\(C^1\\) telle que \\(F(x, \\varphi(x)) = 0\\), avec \\(\\varphi'(x) = -\\frac{\\partial F/\\partial x}{\\partial F/\\partial y}\\).",hint:"Condition : derivee partielle non nulle"}
-    ];
+      updateChapterProgress(srs);
+    }
 
-    // ── STATE ──
+    function updateChapterProgress(srs) {
+      const grid = document.getElementById('chProgressGrid');
+      grid.innerHTML = '';
+
+      chapters.forEach(function(ch) {
+        const chCards = FLASHCARDS.filter(function(c) { return c.ch === ch; });
+        const masteredCount = chCards.filter(function(c) {
+          const entry = srs[c.id];
+          return entry && entry.box >= 4;
+        }).length;
+        const pct = chCards.length > 0 ? Math.round(masteredCount / chCards.length * 100) : 0;
+
+        const bar = document.createElement('div');
+        bar.className = 'ch-bar';
+        const label = ch.replace('mp-', '');
+        bar.innerHTML = '<span class="ch-bar__label">' + label + '</span>' +
+          '<div class="ch-bar__track"><div class="ch-bar__fill" style="width:' + pct + '%"></div></div>' +
+          '<span class="ch-bar__pct">' + pct + '%</span>';
+        bar.title = chapterNames[ch] + ' — ' + masteredCount + '/' + chCards.length;
+        grid.appendChild(bar);
+      });
+    }
+
+    // ══════════════════════════════════════════════
+    // SESSION STATE
+    // ══════════════════════════════════════════════
     let deck = [];
     let idx = 0;
-    let known = 0;
-    let total = 0;
-    let activeFilters = new Set(['all']);
+    let sessionResults = []; // { card, correct: bool }
+    let sessionActive = false;
 
     // ── DOM ──
-    const chipContainer = document.getElementById('chipContainer');
-    const startBtn = document.getElementById('startBtn');
+    const controls = document.getElementById('controls');
     const counter = document.getElementById('counter');
     const progressBar = document.getElementById('progressBar');
     const introScreen = document.getElementById('introScreen');
@@ -306,79 +654,109 @@
     const cardNav = document.getElementById('cardNav');
     const flashcard = document.getElementById('flashcard');
     const scoreScreen = document.getElementById('scoreScreen');
+    const kbdLegend = document.getElementById('kbdLegend');
+    const modeButtons = document.getElementById('modeButtons');
 
-    // ── CHIPS ──
-    chipContainer.addEventListener('click', function(e) {
-      const chip = e.target.closest('.chip');
-      if (!chip) return;
-      const ch = chip.dataset.ch;
-      if (ch === 'all') {
-        activeFilters = new Set(['all']);
-        chipContainer.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-      } else {
-        activeFilters.delete('all');
-        chipContainer.querySelector('[data-ch="all"]').classList.remove('active');
-        chip.classList.toggle('active');
-        if (chip.classList.contains('active')) activeFilters.add(ch);
-        else activeFilters.delete(ch);
-        if (activeFilters.size === 0) {
-          activeFilters.add('all');
-          chipContainer.querySelector('[data-ch="all"]').classList.add('active');
-        }
-      }
-      updateCount();
-    });
-
-    function getFilteredCards() {
-      if (activeFilters.has('all')) return [...CARDS];
-      return CARDS.filter(c => activeFilters.has(c.ch));
-    }
-
-    function updateCount() {
-      const n = getFilteredCards().length;
-      startBtn.textContent = 'Lancer ' + Math.min(n, 20) + ' cartes';
-    }
-
-    // ── START ──
-    startBtn.addEventListener('click', function() {
-      const filtered = getFilteredCards();
-      // Shuffle
-      for (let i = filtered.length - 1; i > 0; i--) {
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+        const tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
       }
-      deck = filtered.slice(0, 20);
-      total = deck.length;
+      return arr;
+    }
+
+    // ══════════════════════════════════════════════
+    // START SESSION
+    // ══════════════════════════════════════════════
+    function startSession(cards) {
+      if (cards.length === 0) return;
+      deck = shuffle(cards).slice(0, 30);
       idx = 0;
-      known = 0;
+      sessionResults = [];
+      sessionActive = true;
+
       introScreen.style.display = 'none';
       scoreScreen.classList.remove('show');
+      modeButtons.style.display = 'none';
+      document.getElementById('filterContainer').style.display = 'none';
+      document.getElementById('chapterProgress').style.display = 'none';
+      controls.style.display = 'flex';
       cardScene.style.display = 'block';
       cardNav.style.display = 'flex';
+      kbdLegend.style.display = 'flex';
+
       showCard();
+    }
+
+    document.getElementById('btnModeNew').addEventListener('click', function() {
+      const filtered = getFilteredCards();
+      const srs = loadSRS();
+      const newCards = filtered.filter(function(c) {
+        const entry = srs[c.id];
+        return !entry || entry.lastSeen === null;
+      });
+      startSession(newCards);
     });
 
-    // ── SHOW CARD ──
+    document.getElementById('btnModeReview').addEventListener('click', function() {
+      const filtered = getFilteredCards();
+      const srs = loadSRS();
+      const t = today();
+      const dueCards = filtered.filter(function(c) {
+        const entry = srs[c.id];
+        return entry && entry.nextReview && entry.nextReview <= t && entry.box < 5;
+      });
+      startSession(dueCards);
+    });
+
+    document.getElementById('btnModeAll').addEventListener('click', function() {
+      startSession(getFilteredCards());
+    });
+
+    // ══════════════════════════════════════════════
+    // SHOW CARD
+    // ══════════════════════════════════════════════
     function showCard() {
       if (idx >= deck.length) { showScore(); return; }
       const c = deck[idx];
+      const srs = loadSRS();
+      const entry = getSRSEntry(srs, c.id);
+
       flashcard.classList.remove('flipped');
-      document.getElementById('cardTag').innerHTML = '<span>' + c.ch.toUpperCase() + '</span>';
+
+      document.getElementById('cardTag').innerHTML = '<span>' + (c.chName || c.ch) + '</span>';
+
       const typeEl = document.getElementById('cardType');
-      const typeMap = {def:'Definition',thm:'Theoreme',method:'Methode',prop:'Proposition'};
-      const classMap = {def:'card__type--def',thm:'card__type--thm',method:'card__type--method',prop:'card__type--prop'};
+      const typeMap = {def:'Definition',thm:'Theoreme',method:'Methode',prop:'Proposition',cor:'Corollaire',lem:'Lemme'};
+      const classMap = {def:'card__type--def',thm:'card__type--thm',method:'card__type--method',prop:'card__type--prop',cor:'card__type--cor',lem:'card__type--lem'};
       typeEl.className = 'card__type ' + (classMap[c.type] || '');
       typeEl.textContent = typeMap[c.type] || c.type;
-      document.getElementById('cardQuestion').innerHTML = c.q;
+
+      // SRS box indicator
+      const srsBox = document.getElementById('cardSrsBox');
+      const boxLabels = ['Nouvelle','Boite 1','Boite 2','Boite 3','Boite 4','Maitrisee'];
+      srsBox.textContent = boxLabels[entry.box] || 'Nouvelle';
+      srsBox.className = 'card__srs-box card__srs-box--' + entry.box;
+
+      // Render question/answer (handle \n as <br>)
+      document.getElementById('cardQuestion').innerHTML = (c.q || '').replace(/\\n/g, '<br>');
       document.getElementById('cardHint').innerHTML = c.hint ? 'Indice : ' + c.hint : '';
-      document.getElementById('cardAnswer').innerHTML = c.a;
-      counter.textContent = (idx + 1) + ' / ' + total;
-      progressBar.style.width = ((idx + 1) / total * 100) + '%';
-      // Re-render KaTeX
+      document.getElementById('cardAnswer').innerHTML = (c.a || '').replace(/\\n/g, '<br>');
+
+      counter.textContent = (idx + 1) + ' / ' + deck.length;
+      progressBar.style.width = ((idx + 1) / deck.length * 100) + '%';
+
+      renderKaTeX(cardScene);
+    }
+
+    function renderKaTeX(el) {
       if (typeof renderMathInElement === 'function') {
-        renderMathInElement(cardScene, {
-          delimiters: [{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],
+        renderMathInElement(el, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '\\(', right: '\\)', display: false}
+          ],
           throwOnError: false
         });
       }
@@ -386,54 +764,154 @@
 
     // ── FLIP ──
     flashcard.addEventListener('click', function() {
+      if (!sessionActive) return;
       flashcard.classList.toggle('flipped');
-      setTimeout(function() {
-        if (typeof renderMathInElement === 'function') {
-          renderMathInElement(cardScene, {
-            delimiters: [{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],
-            throwOnError: false
-          });
-        }
-      }, 350);
+      setTimeout(function() { renderKaTeX(cardScene); }, 350);
     });
 
-    // ── NAV ──
-    document.getElementById('btnNext').addEventListener('click', function() { idx++; showCard(); });
-    document.getElementById('btnPrev').addEventListener('click', function() { if (idx > 0) { idx--; showCard(); } });
-    document.getElementById('btnKnow').addEventListener('click', function() { known++; idx++; showCard(); });
-    document.getElementById('btnDontKnow').addEventListener('click', function() { idx++; showCard(); });
+    // ══════════════════════════════════════════════
+    // KNOW / DON'T KNOW
+    // ══════════════════════════════════════════════
+    function handleKnow() {
+      if (!sessionActive || idx >= deck.length) return;
+      const c = deck[idx];
+      const srs = loadSRS();
+      markKnow(srs, c.id);
+      sessionResults.push({ card: c, correct: true });
+      idx++;
+      showCard();
+    }
 
-    // ── SCORE ──
+    function handleDontKnow() {
+      if (!sessionActive || idx >= deck.length) return;
+      const c = deck[idx];
+      const srs = loadSRS();
+      markDontKnow(srs, c.id);
+      sessionResults.push({ card: c, correct: false });
+      idx++;
+      showCard();
+    }
+
+    function handleNext() {
+      if (!sessionActive || idx >= deck.length) return;
+      idx++;
+      showCard();
+    }
+
+    function handlePrev() {
+      if (!sessionActive || idx <= 0) return;
+      idx--;
+      showCard();
+    }
+
+    document.getElementById('btnKnow').addEventListener('click', handleKnow);
+    document.getElementById('btnDontKnow').addEventListener('click', handleDontKnow);
+    document.getElementById('btnNext').addEventListener('click', handleNext);
+    document.getElementById('btnPrev').addEventListener('click', handlePrev);
+
+    // ══════════════════════════════════════════════
+    // SCORE SCREEN
+    // ══════════════════════════════════════════════
     function showScore() {
+      sessionActive = false;
+      updateStreak();
+
       cardScene.style.display = 'none';
       cardNav.style.display = 'none';
+      controls.style.display = 'none';
+      kbdLegend.style.display = 'none';
       scoreScreen.classList.add('show');
-      const pct = Math.round(known / total * 100);
+
+      const correctCount = sessionResults.filter(function(r) { return r.correct; }).length;
+      const total = sessionResults.length;
+      const pct = total > 0 ? Math.round(correctCount / total * 100) : 0;
+
       document.getElementById('scoreNumber').textContent = pct + '%';
-      document.getElementById('scoreLabel').textContent = known + ' / ' + total + ' cartes maitrisees';
+      document.getElementById('scoreLabel').textContent = correctCount + ' / ' + total + ' cartes maitrisees';
+
       const bar = document.getElementById('scoreBar');
       bar.style.width = '0%';
       bar.className = 'score__bar-fill ' + (pct >= 70 ? 'score__bar-fill--good' : pct >= 40 ? 'score__bar-fill--mid' : 'score__bar-fill--bad');
       setTimeout(function() { bar.style.width = pct + '%'; }, 100);
-      const msg = pct >= 80 ? 'Excellent ! Tu maitrises bien ce chapitre.' : pct >= 50 ? 'Pas mal, mais revois les points faibles.' : 'Il faut retravailler ces notions.';
+
+      const msg = pct >= 80 ? 'Excellent ! Continue comme ca.' : pct >= 50 ? 'Pas mal, mais revois les points faibles.' : 'Il faut retravailler ces notions.';
       document.getElementById('scoreDetail').textContent = msg;
+
+      // Wrong cards list
+      const wrongCards = sessionResults.filter(function(r) { return !r.correct; });
+      const wrongList = document.getElementById('wrongList');
+      wrongList.innerHTML = '';
+
+      if (wrongCards.length > 0) {
+        wrongCards.forEach(function(r) {
+          const li = document.createElement('li');
+          li.className = 'score__wrong-item';
+          li.innerHTML = '<div class="score__wrong-q">' + (r.card.q || '').replace(/\\n/g, '<br>') + '</div>' +
+            '<div class="score__wrong-a">' + (r.card.a || '').replace(/\\n/g, '<br>') + '</div>';
+          li.addEventListener('click', function() {
+            li.classList.toggle('open');
+            renderKaTeX(li);
+          });
+          wrongList.appendChild(li);
+        });
+        renderKaTeX(wrongList);
+        document.getElementById('retryErrorsBtn').style.display = 'inline-block';
+      } else {
+        document.getElementById('retryErrorsBtn').style.display = 'none';
+      }
+
+      renderKaTeX(scoreScreen);
+      updateStats();
+      updateModeBadges();
     }
 
+    // Retry errors
+    document.getElementById('retryErrorsBtn').addEventListener('click', function() {
+      const wrongCards = sessionResults.filter(function(r) { return !r.correct; }).map(function(r) { return r.card; });
+      scoreScreen.classList.remove('show');
+      startSession(wrongCards);
+    });
+
+    // New session
     document.getElementById('retryBtn').addEventListener('click', function() {
       scoreScreen.classList.remove('show');
       introScreen.style.display = 'block';
-      updateCount();
+      modeButtons.style.display = 'flex';
+      document.getElementById('filterContainer').style.display = '';
+      document.getElementById('chapterProgress').style.display = '';
+      updateModeBadges();
+      updateStats();
     });
 
-    // ── KEYBOARD ──
+    // ══════════════════════════════════════════════
+    // KEYBOARD SHORTCUTS
+    // ══════════════════════════════════════════════
     document.addEventListener('keydown', function(e) {
-      if (cardScene.style.display === 'none') return;
-      if (e.key === ' ' || e.key === 'Enter') { flashcard.classList.toggle('flipped'); e.preventDefault(); }
-      if (e.key === 'ArrowRight') { idx++; showCard(); }
-      if (e.key === 'ArrowLeft' && idx > 0) { idx--; showCard(); }
+      if (!sessionActive) return;
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === ' ' || e.key === 'Enter') {
+        flashcard.classList.toggle('flipped');
+        setTimeout(function() { renderKaTeX(cardScene); }, 350);
+        e.preventDefault();
+      }
+      if (e.key === '1') { handleKnow(); e.preventDefault(); }
+      if (e.key === '2') { handleDontKnow(); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { handleNext(); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { handlePrev(); e.preventDefault(); }
     });
 
-    updateCount();
+    // ══════════════════════════════════════════════
+    // INIT
+    // ══════════════════════════════════════════════
+    buildFilters();
+    updateStats();
+    updateModeBadges();
+
+    // Initial KaTeX render for any static math
+    if (typeof renderMathInElement === 'function') {
+      renderKaTeX(document.body);
+    }
   });
   </script>
 </body>
