@@ -1,0 +1,314 @@
+[
+  {
+    "id": "mp16-def-01",
+    "a": "Un système différentiel linéaire (SDL) d'ordre 1 est une équation de la forme : $$ X'(t) = A(t)\\,X(t) + B(t) \\qquad (\\mathcal{S}) $$ où \\( A : I \\to \\mathcal{M}_n(\\mathbb{K}) \\) et \\( B : I \\to \\mathbb{K}^n \\) sont des fonctions continues, et \\( X : I \\to \\mathbb{K}^n \\) est l'inconnue. Le système est dit homogène si \\( B = 0 \\)."
+  },
+  {
+    "id": "mp16-thm-01",
+    "a": "Soient \\( A \\in \\mathcal{C}(I, \\mathcal{M}_n(\\mathbb{K})) \\) et \\( B \\in \\mathcal{C}(I, \\mathbb{K}^n) \\). Pour tout \\( t_0 \\in I \\) et tout \\( X_0 \\in \\mathbb{K}^n \\), le problème de Cauchy : $$ \\begin{cases} X'(t) = A(t)\\,X(t) + B(t) \\\\ X(t_0) = X_0 \\end{cases} $$ admet une unique solution définie sur \\( I \\) tout entier (solutions globales)."
+  },
+  {
+    "id": "mp16-thm-02",
+    "a": "L'ensemble \\( \\mathcal{S}_H \\) des solutions du système homogène \\( X' = A(t)\\,X \\) est un sous-espace vectoriel de \\( \\mathcal{C}^1(I, \\mathbb{K}^n) \\) de dimension \\( n \\). L'ensemble des solutions du système complet est : $$ \\mathcal{S} = X_p + \\mathcal{S}_H $$ où \\( X_p \\) est une solution particulière quelconque de \\( (\\mathcal{S}) \\)."
+  },
+  {
+    "id": "mp16-def-03",
+    "a": "Le wronskien d'un système de \\( n \\) solutions \\( (X_1, \\ldots, X_n) \\) est la fonction : $$ W(t) = \\det\\bigl(X_1(t), \\ldots, X_n(t)\\bigr) $$"
+  },
+  {
+    "id": "mp16-thm-03",
+    "a": "Le wronskien de \\( n \\) solutions du système homogène \\( X' = A(t)\\,X \\) vérifie : $$ W(t) = W(t_0)\\,\\exp\\!\\left(\\int_{t_0}^{t} \\mathrm{tr}\\bigl(A(s)\\bigr)\\,\\mathrm{d}s\\right) $$ En particulier, \\( W \\) est soit identiquement nul, soit ne s'annule jamais. Les solutions forment un système fondamental si et seulement si \\( W(t_0) \\neq 0 \\) pour un (donc pour tout) \\( t_0 \\in I \\)."
+  },
+  {
+    "id": "mp16-def-04",
+    "a": "Pour toute matrice \\( A \\in \\mathcal{M}_n(\\mathbb{K}) \\), on définit : $$ \\exp(A) = e^A = \\sum_{k=0}^{+\\infty} \\frac{A^k}{k!} $$ Cette série converge absolument dans \\( \\mathcal{M}_n(\\mathbb{K}) \\) pour toute matrice \\( A \\), car \\( \\left\\|\\frac{A^k}{k!}\\right\\| \\leq \\frac{\\|A\\|^k}{k!} \\)."
+  },
+  {
+    "id": "mp16-prop-02",
+    "a": "L'application \\( t \\mapsto \\exp(tA) \\) est de classe \\( \\mathcal{C}^\\infty \\) sur \\( \\mathbb{R} \\) et vérifie : $$ \\frac{\\mathrm{d}}{\\mathrm{d}t}\\exp(tA) = A\\,\\exp(tA) = \\exp(tA)\\,A $$"
+  },
+  {
+    "id": "mp16-thm-04",
+    "a": "La solution du problème de Cauchy \\( X' = AX \\), \\( X(0) = X_0 \\) est : $$ X(t) = e^{tA}\\,X_0 $$ La matrice \\( e^{tA} \\) est la matrice résolvante du système. L'espace des solutions est \\( \\mathcal{S}_H = \\{t \\mapsto e^{tA}\\,X_0 \\mid X_0 \\in \\mathbb{K}^n\\} \\)."
+  },
+  {
+    "id": "mp16-thm-05",
+    "a": "La solution du problème de Cauchy \\( X' = AX + B(t) \\), \\( X(t_0) = X_0 \\) est donnée par la formule de Duhamel : $$ X(t) = e^{(t-t_0)A}\\,X_0 + \\int_{t_0}^{t} e^{(t-s)A}\\,B(s)\\,\\mathrm{d}s $$"
+  },
+  {
+    "id": "mp16-prop-03",
+    "a": "En posant \\( X(t) = \\begin{pmatrix} y(t) \\\\ y'(t) \\\\ \\vdots \\\\ y^{(n-1)}(t) \\end{pmatrix} \\), l'équation \\( (\\mathcal{E}) \\) se ramène au système : $$ X'(t) = \\begin{pmatrix} 0 & 1 & 0 & \\cdots & 0 \\\\ 0 & 0 & 1 & \\cdots & 0 \\\\ \\vdots & & & \\ddots & \\vdots \\\\ 0 & 0 & 0 & \\cdots & 1 \\\\ -a_0 & -a_1 & -a_2 & \\cdots & -a_{n-1} \\end{pmatrix} X(t) + \\begin{pmatrix} 0 \\\\ \\vdots \\\\ 0 \\\\ b(t) \\end{pmatrix} $$ La matrice est la matrice compagnon de l'équation."
+  },
+  {
+    "id": "mp16-def-05",
+    "a": "L'équation caractéristique associée à l'équation homogène \\( y^{(n)} + a_{n-1}\\,y^{(n-1)} + \\cdots + a_0\\,y = 0 \\) (coefficients constants \\( a_i \\in \\mathbb{K} \\)) est : $$ r^n + a_{n-1}\\,r^{n-1} + \\cdots + a_1\\,r + a_0 = 0 $$"
+  },
+  {
+    "id": "mp16-thm-07",
+    "a": "Si le polynôme caractéristique admet les racines \\( r_1, \\ldots, r_p \\) de multiplicités respectives \\( m_1, \\ldots, m_p \\) (dans \\( \\mathbb{C} \\)), alors un système fondamental de solutions est constitué des fonctions : $$ t^j\\,e^{r_k t}, \\quad k = 1, \\ldots, p, \\quad j = 0, 1, \\ldots, m_k - 1 $$ La solution générale de l'équation homogène est toute combinaison linéaire de ces fonctions."
+  },
+  {
+    "id": "mp16-thm-08",
+    "a": "Le polynôme caractéristique est \\( r^2 + ar + b \\), de discriminant \\( \\Delta = a^2 - 4b \\). Trois cas : \\n- Deux racines réelles distinctes \\( r_1 \\neq r_2 \\) (si \\( \\Delta > 0 \\)) : \\( y(t) = C_1\\,e^{r_1 t} + C_2\\,e^{r_2 t} \\). \\n- Racine double \\( r_0 = -a/2 \\) (si \\( \\Delta = 0 \\)) : \\( y(t) = (C_1 + C_2\\,t)\\,e^{r_0 t} \\). \\n- Racines complexes conjuguées \\( r = \\alpha \\pm i\\beta \\) (si \\( \\Delta < 0 \\)) : \\( y(t) = e^{\\alpha t}\\bigl(C_1\\cos(\\beta t) + C_2\\sin(\\beta t)\\bigr) \\)."
+  },
+  {
+    "id": "mp16-prop-04",
+    "a": "Pour \\( y'' + ay' + by = P(t)\\,e^{\\gamma t} \\) où \\( P \\in \\mathbb{K}[t] \\) et \\( \\gamma \\in \\mathbb{K} \\), on cherche une solution particulière sous la forme : $$ y_p(t) = t^s\\,Q(t)\\,e^{\\gamma t} $$ où \\( Q \\) est un polynôme de même degré que \\( P \\), et \\( s \\) est la multiplicité de \\( \\gamma \\) comme racine du polynôme caractéristique (\\( s = 0, 1 \\) ou \\( 2 \\))."
+  },
+  {
+    "id": "mp16-prop-05",
+    "a": "Pour résoudre \\( y'' + ay' + by = P(t)\\cos(\\omega t) \\) ou \\( P(t)\\sin(\\omega t) \\) à coefficients réels, on utilise la méthode de complexification. On résout d'abord : $$ z'' + az' + bz = P(t)\\,e^{i\\omega t} $$ et on prend \\( y_p = \\mathrm{Re}(z_p) \\) ou \\( y_p = \\mathrm{Im}(z_p) \\) selon le cas."
+  },
+  {
+    "id": "mp16-prop-06",
+    "a": "Si \\( y_1 \\) est solution de \\( y'' + ay' + by = f_1(t) \\) et \\( y_2 \\) est solution de \\( y'' + ay' + by = f_2(t) \\), alors pour tous scalaires \\( \\alpha, \\beta \\) : $$ \\alpha\\,y_1 + \\beta\\,y_2 \\quad \\text{est solution de} \\quad y'' + ay' + by = \\alpha\\,f_1(t) + \\beta\\,f_2(t) $$"
+  },
+  {
+    "id": "mp16-def-06",
+    "a": "Une équation d'Euler d'ordre 2 est une équation de la forme : $$ t^2\\,y'' + \\alpha\\,t\\,y' + \\beta\\,y = f(t) $$ définie sur \\( ]0, +\\infty[ \\) (ou \\( ]-\\infty, 0[ \\)), où \\( \\alpha, \\beta \\in \\mathbb{R} \\)."
+  },
+  {
+    "id": "mp16-prop-07",
+    "a": "Le changement de variable \\( t = e^u \\) (i.e. \\( u = \\ln t \\)) et \\( z(u) = y(e^u) \\) transforme l'équation d'Euler en une équation à coefficients constants : $$ z'' + (\\alpha - 1)\\,z' + \\beta\\,z = g(u) $$ En effet, \\( t\\,y' = z' \\) et \\( t^2\\,y'' = z'' - z' \\). On résout en \\( z(u) \\) puis on revient à \\( y(t) = z(\\ln t) \\)."
+  },
+  {
+    "id": "mp17-def-01",
+    "a": "Soit \\( f : U \\to F \\) et \\( a \\in U \\). On dit que \\( f \\) est différentiable en \\( a \\) s'il existe une application linéaire \\( L \\in \\mathcal{L}(E, F) \\) telle que : $$ f(a + h) = f(a) + L(h) + o(\\|h\\|) \\quad (h \\to 0) $$ L'application linéaire \\( L \\) est alors unique et s'appelle la différentielle de \\( f \\) en \\( a \\), notée \\( \\mathrm{d}f_a \\) ou \\( Df(a) \\)."
+  },
+  {
+    "id": "mp17-def-02",
+    "a": "Soit \\( f : U \\subset \\mathbb{R}^n \\to \\mathbb{R}^p \\) et \\( a \\in U \\). La dérivée partielle de \\( f \\) par rapport à la \\( j \\)-ème variable en \\( a \\) est, si elle existe : $$ \\frac{\\partial f}{\\partial x_j}(a) = \\lim_{t \\to 0} \\frac{f(a + t\\, e_j) - f(a)}{t} $$ où \\( (e_1, \\ldots, e_n) \\) est la base canonique de \\( \\mathbb{R}^n \\). L'existence des dérivées partielles n'implique pas la différentiabilité."
+  },
+  {
+    "id": "mp17-def-03",
+    "a": "Lorsque \\( f : U \\subset \\mathbb{R}^n \\to \\mathbb{R} \\) est différentiable en \\( a \\), le gradient de \\( f \\) en \\( a \\) est le vecteur : $$ \\nabla f(a) = \\operatorname{grad} f(a) = \\left(\\frac{\\partial f}{\\partial x_1}(a), \\ldots, \\frac{\\partial f}{\\partial x_n}(a)\\right) \\in \\mathbb{R}^n $$ Il vérifie \\( \\mathrm{d}f_a(h) = \\langle \\nabla f(a), h \\rangle \\) pour le produit scalaire canonique."
+  },
+  {
+    "id": "mp17-thm-02",
+    "a": "Soient \\( f : U \\subset E \\to F \\) différentiable en \\( a \\) et \\( g : V \\subset F \\to G \\) différentiable en \\( f(a) \\), avec \\( f(U) \\subset V \\). Alors \\( g \\circ f \\) est différentiable en \\( a \\) et : $$ \\mathrm{d}(g \\circ f)_a = \\mathrm{d}g_{f(a)} \\circ \\mathrm{d}f_a $$ En termes de matrices jacobiennes : \\( J_{g \\circ f}(a) = J_g(f(a)) \\cdot J_f(a) \\)."
+  },
+  {
+    "id": "mp17-thm-03",
+    "a": "Si \\( f : U \\subset \\mathbb{R}^n \\to \\mathbb{R}^p \\) admet des dérivées partielles continues sur \\( U \\), alors \\( f \\) est différentiable en tout point de \\( U \\). Autrement dit : $$ f \\in \\mathcal{C}^1(U, \\mathbb{R}^p) \\implies f \\text{ est différentiable sur } U $$ La réciproque est fausse en général."
+  },
+  {
+    "id": "mp17-thm-04",
+    "a": "Soit \\( f : U \\subset \\mathbb{R}^n \\to \\mathbb{R} \\) de classe \\( \\mathcal{C}^2 \\). Alors pour tous \\( i, j \\in \\{1, \\ldots, n\\} \\) et tout \\( a \\in U \\) : $$ \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}(a) = \\frac{\\partial^2 f}{\\partial x_j \\partial x_i}(a) $$ Plus généralement, si \\( f \\in \\mathcal{C}^k \\), les dérivées partielles d'ordre \\( \\leq k \\) ne dépendent pas de l'ordre de dérivation."
+  },
+  {
+    "id": "mp17-def-06",
+    "a": "Soit \\( f : U \\subset \\mathbb{R}^n \\to \\mathbb{R} \\) de classe \\( \\mathcal{C}^2 \\). La matrice hessienne de \\( f \\) en \\( a \\) est la matrice symétrique (par Schwarz) : $$ H_f(a) = \\left(\\frac{\\partial^2 f}{\\partial x_i \\partial x_j}(a)\\right)_{1 \\leq i, j \\leq n} \\in \\mathcal{S}_n(\\mathbb{R}) $$"
+  },
+  {
+    "id": "mp17-thm-05",
+    "a": "Soit \\( f : U \\subset \\mathbb{R}^n \\to \\mathbb{R} \\) de classe \\( \\mathcal{C}^2 \\) et \\( a \\in U \\). Alors au voisinage de \\( a \\) : $$ f(a + h) = f(a) + \\mathrm{d}f_a(h) + \\frac{1}{2}\\,h^\\top H_f(a)\\, h + o(\\|h\\|^2) $$ où \\( h^\\top H_f(a)\\, h = \\sum_{i,j} \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}(a)\\, h_i h_j \\) est la forme quadratique associée à la hessienne."
+  },
+  {
+    "id": "mp17-prop-01",
+    "a": "Plus généralement, si \\( f \\in \\mathcal{C}^k(U, \\mathbb{R}) \\) et \\( a \\in U \\) : $$ f(a + h) = \\sum_{|\\alpha| \\leq k} \\frac{1}{\\alpha!}\\,\\partial^\\alpha f(a)\\, h^\\alpha + o(\\|h\\|^k) $$ où la somme porte sur les multi-indices \\( \\alpha = (\\alpha_1, \\ldots, \\alpha_n) \\), \\( |\\alpha| = \\alpha_1 + \\cdots + \\alpha_n \\), \\( \\alpha! = \\alpha_1! \\cdots \\alpha_n! \\), \\( h^\\alpha = h_1^{\\alpha_1} \\cdots h_n^{\\alpha_n} \\)."
+  },
+  {
+    "id": "mp17-prop-02",
+    "a": "Si \\( f : U \\to V \\) est un difféomorphisme de classe \\( \\mathcal{C}^1 \\), alors pour tout \\( a \\in U \\), la matrice jacobienne \\( J_f(a) \\) est inversible et : $$ J_{f^{-1}}(f(a)) = \\bigl(J_f(a)\\bigr)^{-1} $$ En particulier, le déterminant jacobien \\( \\det J_f(a) \\neq 0 \\) en tout point."
+  },
+  {
+    "id": "mp17-thm-06",
+    "a": "Soit \\( f : U \\subset \\mathbb{R}^n \\to \\mathbb{R}^n \\) de classe \\( \\mathcal{C}^k \\) (\\( k \\geq 1 \\)) et \\( a \\in U \\) tel que \\( J_f(a) \\) soit inversible. Alors il existe un ouvert \\( U_0 \\subset U \\) contenant \\( a \\) et un ouvert \\( V_0 \\) contenant \\( f(a) \\) tels que : $$ f_{|U_0} : U_0 \\to V_0 \\quad \\text{est un } \\mathcal{C}^k\\text{-difféomorphisme} $$ Une application de classe \\( \\mathcal{C}^k \\) dont la différentielle est inversible en un point est localement un difféomorphisme."
+  },
+  {
+    "id": "mp17-thm-08",
+    "a": "Soit \\( f : U \\subset \\mathbb{R}^n \\to \\mathbb{R} \\) différentiable en \\( a \\in U \\). Si \\( f \\) admet un extremum local en \\( a \\), alors : $$ \\mathrm{d}f_a = 0 \\quad \\Longleftrightarrow \\quad \\nabla f(a) = 0 $$ Un point \\( a \\) tel que \\( \\nabla f(a) = 0 \\) est appelé point critique (ou point stationnaire) de \\( f \\)."
+  },
+  {
+    "id": "mp17-def-10",
+    "a": "Si \\( \\gamma : I \\to \\mathbb{R}^d \\) est un arc de classe \\( \\mathcal{C}^1 \\) et \\( t_0 \\in I \\) tel que \\( \\gamma'(t_0) \\neq 0 \\), le vecteur \\( \\gamma'(t_0) \\) est appelé vecteur tangent à l'arc en \\( t_0 \\). La droite tangente en \\( \\gamma(t_0) \\) est la droite dirigée par \\( \\gamma'(t_0) \\) : $$ \\mathcal{T}_{t_0} = \\{\\gamma(t_0) + s\\,\\gamma'(t_0) : s \\in \\mathbb{R}\\} $$"
+  },
+  {
+    "id": "mp17-def-11",
+    "a": "Soit \\( \\gamma : [a, b] \\to \\mathbb{R}^d \\) un arc de classe \\( \\mathcal{C}^1 \\). La longueur de l'arc est : $$ L(\\gamma) = \\int_a^b \\|\\gamma'(t)\\|\\, \\mathrm{d}t $$ Cette intégrale est invariante par reparamétrage de classe \\( \\mathcal{C}^1 \\) préservant l'orientation."
+  },
+  {
+    "id": "mp17-def-12",
+    "a": "Soit \\( \\gamma : I \\to \\mathbb{R}^d \\) un arc régulier de classe \\( \\mathcal{C}^1 \\) et \\( t_0 \\in I \\). L'abscisse curviligne à partir de \\( t_0 \\) est la fonction : $$ s(t) = \\int_{t_0}^t \\|\\gamma'(u)\\|\\, \\mathrm{d}u $$ La fonction \\( s \\) est de classe \\( \\mathcal{C}^1 \\), strictement croissante (car \\( \\gamma'(t) \\neq 0 \\)), et permet un reparamétrage normal : \\( \\tilde{\\gamma}(s) = \\gamma(t(s)) \\) vérifie \\( \\|\\tilde{\\gamma}'(s)\\| = 1 \\)."
+  },
+  {
+    "id": "mp17-def-13",
+    "a": "Soit \\( \\gamma : I \\to \\mathbb{R}^2 \\) un arc régulier de classe \\( \\mathcal{C}^2 \\), paramétré par l'abscisse curviligne. La courbure en un point est : $$ \\kappa(s) = \\|\\tilde{\\gamma}''(s)\\| $$ Pour un paramétrage quelconque \\( \\gamma(t) = (x(t), y(t)) \\) avec \\( \\gamma'(t) \\neq 0 \\) : $$ \\kappa(t) = \\frac{|x'(t)\\, y''(t) - x''(t)\\, y'(t)|}{(x'(t)^2 + y'(t)^2)^{3/2}} $$"
+  },
+  {
+    "id": "mp17-prop-05",
+    "a": "Si la courbe est le graphe d'une fonction \\( y = f(x) \\) de classe \\( \\mathcal{C}^2 \\), on paramètre par \\( \\gamma(t) = (t, f(t)) \\) et la courbure vaut : $$ \\kappa(t) = \\frac{|f''(t)|}{(1 + f'(t)^2)^{3/2}} $$"
+  },
+  {
+    "id": "mp18-def-01",
+    "a": "Une fonction \\( f : \\mathbb{R} \\to \\mathbb{R} \\) est une densité de probabilité si : \\n- \\( f \\) est continue par morceaux et positive : \\( f(x) \\geq 0 \\) pour tout \\( x \\in \\mathbb{R} \\). \\n- \\( f \\) est intégrable et normalisée : \\( \\displaystyle\\int_{-\\infty}^{+\\infty} f(x)\\,\\mathrm{d}x = 1 \\). Une variable aléatoire \\( X \\) admet \\( f \\) pour densité si, pour tout intervalle \\( [a, b] \\) : $$ P(a \\leq X \\leq b) = \\int_a^b f(x)\\,\\mathrm{d}x $$"
+  },
+  {
+    "id": "mp18-def-02",
+    "a": "La fonction de répartition de \\( X \\) est la fonction \\( F : \\mathbb{R} \\to [0, 1] \\) définie par : $$ F(x) = P(X \\leq x) = \\int_{-\\infty}^{x} f(t)\\,\\mathrm{d}t $$ Elle vérifie \\( \\lim_{x \\to -\\infty} F(x) = 0 \\), \\( \\lim_{x \\to +\\infty} F(x) = 1 \\), et \\( F \\) est croissante et continue."
+  },
+  {
+    "id": "mp18-thm-01",
+    "a": "Si \\( X \\) admet une densité \\( f \\) continue par morceaux, alors sa fonction de répartition \\( F \\) est de classe \\( \\mathcal{C}^1 \\) en tout point de continuité de \\( f \\), et : $$ F'(x) = f(x) $$ Réciproquement, si \\( F \\) est de classe \\( \\mathcal{C}^1 \\) sauf en un nombre fini de points, alors \\( X \\) admet la densité \\( f = F' \\)."
+  },
+  {
+    "id": "mp18-prop-01",
+    "a": "Si \\( X \\) admet une densité, alors pour tout \\( x_0 \\in \\mathbb{R} \\) : $$ P(X = x_0) = 0 $$ En conséquence, \\( P(X \\leq x_0) = P(X < x_0) \\) et \\( P(a \\leq X \\leq b) = P(a < X < b) \\)."
+  },
+  {
+    "id": "mp18-def-03",
+    "a": "On dit que \\( X \\) suit la loi uniforme sur \\( [a, b] \\) si sa densité est : $$ f(x) = \\frac{1}{b - a}\\,\\mathbf{1}_{[a,b]}(x) $$ On a alors \\( \\mathbb{E}(X) = \\dfrac{a + b}{2} \\) et \\( \\mathrm{Var}(X) = \\dfrac{(b - a)^2}{12} \\)."
+  },
+  {
+    "id": "mp18-def-04",
+    "a": "Soit \\( \\lambda > 0 \\). On dit que \\( X \\) suit la loi exponentielle de paramètre \\( \\lambda \\) si sa densité est : $$ f(x) = \\lambda\\, e^{-\\lambda x}\\,\\mathbf{1}_{[0, +\\infty[}(x) $$ On a \\( \\mathbb{E}(X) = \\dfrac{1}{\\lambda} \\) et \\( \\mathrm{Var}(X) = \\dfrac{1}{\\lambda^2} \\). Sa fonction de répartition est \\( F(x) = (1 - e^{-\\lambda x})\\,\\mathbf{1}_{[0,+\\infty[}(x) \\)."
+  },
+  {
+    "id": "mp18-prop-02",
+    "a": "La loi exponentielle est la seule loi à densité sur \\( \\mathbb{R}_+ \\) vérifiant la propriété d'absence de mémoire : pour tous \\( s, t \\geq 0 \\), $$ P(X > s + t \\mid X > s) = P(X > t) $$"
+  },
+  {
+    "id": "mp18-def-05",
+    "a": "Soit \\( \\mu \\in \\mathbb{R} \\) et \\( \\sigma > 0 \\). On dit que \\( X \\) suit la loi normale de paramètres \\( \\mu \\) et \\( \\sigma^2 \\) si sa densité est : $$ f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}}\\,\\exp\\!\\left(-\\frac{(x - \\mu)^2}{2\\sigma^2}\\right) $$ On a \\( \\mathbb{E}(X) = \\mu \\) et \\( \\mathrm{Var}(X) = \\sigma^2 \\). La loi \\( \\mathcal{N}(0, 1) \\) est la loi normale centrée réduite."
+  },
+  {
+    "id": "mp18-prop-03",
+    "a": "L'intégrale de Gauss vaut : $$ \\int_{-\\infty}^{+\\infty} e^{-x^2/2}\\,\\mathrm{d}x = \\sqrt{2\\pi} $$ Ce résultat garantit que la densité de la loi normale est bien normalisée."
+  },
+  {
+    "id": "mp18-def-06",
+    "a": "On dit que \\( X \\) suit la loi de Cauchy standard si sa densité est : $$ f(x) = \\frac{1}{\\pi(1 + x^2)} $$ La loi de Cauchy n'admet pas d'espérance (l'intégrale \\( \\int |x| f(x)\\,\\mathrm{d}x \\) diverge)."
+  },
+  {
+    "id": "mp18-def-07",
+    "a": "Soit \\( a > 0 \\) et \\( \\lambda > 0 \\). On dit que \\( X \\) suit la loi Gamma de paramètres \\( a \\) et \\( \\lambda \\) si sa densité est : $$ f(x) = \\frac{\\lambda^a}{\\Gamma(a)}\\,x^{a-1}\\,e^{-\\lambda x}\\,\\mathbf{1}_{]0, +\\infty[}(x) $$ où \\( \\Gamma(a) = \\int_0^{+\\infty} t^{a-1}\\,e^{-t}\\,\\mathrm{d}t \\) est la fonction Gamma d'Euler. On a \\( \\mathbb{E}(X) = \\dfrac{a}{\\lambda} \\) et \\( \\mathrm{Var}(X) = \\dfrac{a}{\\lambda^2} \\)."
+  },
+  {
+    "id": "mp18-def-08",
+    "a": "Soit \\( X \\) une variable aléatoire admettant la densité \\( f \\). L'espérance de \\( X \\) existe si \\( \\int_{-\\infty}^{+\\infty} |x|\\,f(x)\\,\\mathrm{d}x < +\\infty \\), et vaut alors : $$ \\mathbb{E}(X) = \\int_{-\\infty}^{+\\infty} x\\,f(x)\\,\\mathrm{d}x $$"
+  },
+  {
+    "id": "mp18-thm-02",
+    "a": "Soit \\( X \\) une variable aléatoire de densité \\( f \\) et \\( g : \\mathbb{R} \\to \\mathbb{R} \\) une fonction mesurable. Alors \\( g(X) \\) admet une espérance si et seulement si \\( \\int |g(x)|\\,f(x)\\,\\mathrm{d}x < +\\infty \\), et dans ce cas : $$ \\mathbb{E}(g(X)) = \\int_{-\\infty}^{+\\infty} g(x)\\,f(x)\\,\\mathrm{d}x $$"
+  },
+  {
+    "id": "mp18-def-09",
+    "a": "Si \\( X \\) admet un moment d'ordre 2 (i.e. \\( \\mathbb{E}(X^2) < +\\infty \\)), on définit la variance : $$ \\mathrm{Var}(X) = \\mathbb{E}\\bigl((X - \\mathbb{E}(X))^2\\bigr) = \\mathbb{E}(X^2) - \\mathbb{E}(X)^2 $$ L'écart-type est \\( \\sigma(X) = \\sqrt{\\mathrm{Var}(X)} \\). La formule de Koenig-Huygens \\( \\mathrm{Var}(X) = \\mathbb{E}(X^2) - \\mathbb{E}(X)^2 \\) est fondamentale pour le calcul pratique."
+  },
+  {
+    "id": "mp18-thm-03",
+    "a": "Soit \\( X \\) une variable aléatoire positive admettant une espérance. Pour tout \\( a > 0 \\) : $$ P(X \\geq a) \\leq \\frac{\\mathbb{E}(X)}{a} $$"
+  },
+  {
+    "id": "mp18-thm-04",
+    "a": "Soit \\( X \\) une variable aléatoire admettant un moment d'ordre 2. Pour tout \\( \\varepsilon > 0 \\) : $$ P\\bigl(|X - \\mathbb{E}(X)| \\geq \\varepsilon\\bigr) \\leq \\frac{\\mathrm{Var}(X)}{\\varepsilon^2} $$"
+  },
+  {
+    "id": "mp18-def-11",
+    "a": "La fonction génératrice des moments (MGF) de \\( X \\) est définie, lorsqu'elle existe dans un voisinage de \\( 0 \\), par : $$ M_X(t) = \\mathbb{E}(e^{tX}) = \\int_{-\\infty}^{+\\infty} e^{tx}\\,f(x)\\,\\mathrm{d}x $$ On a alors \\( M_X^{(k)}(0) = \\mathbb{E}(X^k) \\) : les dérivées successives en \\( 0 \\) donnent les moments."
+  },
+  {
+    "id": "mp18-def-12",
+    "a": "Un couple \\( (X, Y) \\) de variables aléatoires réelles est dit à densité s'il existe une fonction \\( f_{(X,Y)} : \\mathbb{R}^2 \\to \\mathbb{R}_+ \\) intégrable telle que, pour tout borélien \\( B \\subset \\mathbb{R}^2 \\) : $$ P\\bigl((X, Y) \\in B\\bigr) = \\iint_B f_{(X,Y)}(x, y)\\,\\mathrm{d}x\\,\\mathrm{d}y $$ On a la normalisation \\( \\iint_{\\mathbb{R}^2} f_{(X,Y)}(x, y)\\,\\mathrm{d}x\\,\\mathrm{d}y = 1 \\)."
+  },
+  {
+    "id": "mp18-prop-04",
+    "a": "Si \\( (X, Y) \\) admet la densité conjointe \\( f_{(X,Y)} \\), alors \\( X \\) et \\( Y \\) admettent des densités (dites marginales) données par : $$ f_X(x) = \\int_{-\\infty}^{+\\infty} f_{(X,Y)}(x, y)\\,\\mathrm{d}y \\qquad \\text{et} \\qquad f_Y(y) = \\int_{-\\infty}^{+\\infty} f_{(X,Y)}(x, y)\\,\\mathrm{d}x $$"
+  },
+  {
+    "id": "mp18-thm-05",
+    "a": "Soit \\( (X, Y) \\) un couple de variables aléatoires admettant une densité conjointe \\( f_{(X,Y)} \\). Alors \\( X \\) et \\( Y \\) sont indépendantes si et seulement si : $$ f_{(X,Y)}(x, y) = f_X(x) \\cdot f_Y(y) \\qquad \\text{pour presque tout } (x, y) \\in \\mathbb{R}^2 $$"
+  },
+  {
+    "id": "mp18-def-13",
+    "a": "Si \\( X \\) et \\( Y \\) admettent un moment d'ordre 2, la covariance de \\( X \\) et \\( Y \\) est : $$ \\mathrm{Cov}(X, Y) = \\mathbb{E}\\bigl((X - \\mathbb{E}(X))(Y - \\mathbb{E}(Y))\\bigr) = \\mathbb{E}(XY) - \\mathbb{E}(X)\\,\\mathbb{E}(Y) $$ Le coefficient de corrélation linéaire est \\( \\rho(X, Y) = \\dfrac{\\mathrm{Cov}(X, Y)}{\\sigma(X)\\,\\sigma(Y)} \\). On a \\( -1 \\leq \\rho(X, Y) \\leq 1 \\)."
+  },
+  {
+    "id": "mp18-def-14",
+    "a": "Si \\( X \\) et \\( Y \\) sont deux variables aléatoires indépendantes de densités respectives \\( f_X \\) et \\( f_Y \\), alors \\( Z = X + Y \\) admet pour densité le produit de convolution : $$ f_Z(z) = (f_X * f_Y)(z) = \\int_{-\\infty}^{+\\infty} f_X(t)\\,f_Y(z - t)\\,\\mathrm{d}t $$"
+  },
+  {
+    "id": "mp18-thm-06",
+    "a": "Si \\( X \\sim \\mathcal{N}(\\mu_1, \\sigma_1^2) \\) et \\( Y \\sim \\mathcal{N}(\\mu_2, \\sigma_2^2) \\) sont indépendantes, alors : $$ X + Y \\sim \\mathcal{N}(\\mu_1 + \\mu_2,\\; \\sigma_1^2 + \\sigma_2^2) $$ Plus généralement, toute combinaison linéaire de variables normales indépendantes est normale."
+  },
+  {
+    "id": "mp18-prop-06",
+    "a": "Si \\( X_1, \\ldots, X_n \\) sont des variables aléatoires indépendantes de loi \\( \\mathcal{E}(\\lambda) \\), alors leur somme suit une loi Gamma : $$ X_1 + X_2 + \\cdots + X_n \\sim \\Gamma(n, \\lambda) $$"
+  },
+  {
+    "id": "mp18-def-15",
+    "a": "Si \\( Z_1, \\ldots, Z_n \\) sont des variables aléatoires indépendantes de loi \\( \\mathcal{N}(0, 1) \\), alors : $$ Z_1^2 + Z_2^2 + \\cdots + Z_n^2 \\sim \\chi^2(n) = \\Gamma\\!\\left(\\frac{n}{2}, \\frac{1}{2}\\right) $$ On a \\( \\mathbb{E}(\\chi^2(n)) = n \\) et \\( \\mathrm{Var}(\\chi^2(n)) = 2n \\)."
+  },
+  {
+    "id": "mp18-thm-07",
+    "a": "Soit \\( X \\) une variable aléatoire de densité \\( f_X \\) et \\( g : I \\to J \\) un \\( \\mathcal{C}^1 \\)-difféomorphisme d'un intervalle \\( I \\) sur un intervalle \\( J \\), avec \\( P(X \\in I) = 1 \\). Alors \\( Y = g(X) \\) admet pour densité : $$ f_Y(y) = f_X\\!\\bigl(g^{-1}(y)\\bigr) \\cdot \\bigl|(g^{-1})'(y)\\bigr| $$ pour \\( y \\in J \\), et \\( f_Y(y) = 0 \\) sinon."
+  },
+  {
+    "id": "mp18-thm-08",
+    "a": "Soit \\( (X, Y) \\) un couple de densité \\( f_{(X,Y)} \\) et \\( \\varphi : U \\to V \\) un \\( \\mathcal{C}^1 \\)-difféomorphisme d'un ouvert \\( U \\subset \\mathbb{R}^2 \\) sur un ouvert \\( V \\), avec \\( P((X,Y) \\in U) = 1 \\). Posons \\( (S, T) = \\varphi(X, Y) \\). Alors la densité de \\( (S, T) \\) est : $$ f_{(S,T)}(s, t) = f_{(X,Y)}\\!\\bigl(\\varphi^{-1}(s, t)\\bigr) \\cdot \\bigl|\\det J_{\\varphi^{-1}}(s, t)\\bigr| $$ où \\( J_{\\varphi^{-1}} \\) est la matrice jacobienne de \\( \\varphi^{-1} \\)."
+  },
+  {
+    "id": "mp19-def-01",
+    "a": "On dit que la suite \\( (X_n) \\) converge en probabilité vers une variable aléatoire \\( X \\), et on note \\( X_n \\xrightarrow{P} X \\), si : $$ \\forall\\, \\varepsilon > 0, \\quad \\lim_{n \\to +\\infty} P\\bigl(|X_n - X| \\geq \\varepsilon\\bigr) = 0 $$"
+  },
+  {
+    "id": "mp19-thm-01",
+    "a": "Soit \\( (X_n)_{n \\geq 1} \\) une suite de variables aléatoires mutuellement indépendantes, de même loi, admettant une espérance \\( \\mu = E(X_1) \\) et une variance \\( \\sigma^2 = V(X_1) \\). On pose \\( \\overline{X}_n = \\frac{1}{n}\\sum_{k=1}^n X_k \\). Alors : $$ \\overline{X}_n \\xrightarrow{P} \\mu $$ La moyenne empirique converge en probabilité vers l'espérance commune."
+  },
+  {
+    "id": "mp19-def-02",
+    "a": "On dit que la suite \\( (X_n) \\) converge presque sûrement vers \\( X \\), et on note \\( X_n \\xrightarrow{p.s.} X \\), si : $$ P\\Bigl(\\bigl\\{\\omega \\in \\Omega : \\lim_{n \\to +\\infty} X_n(\\omega) = X(\\omega)\\bigr\\}\\Bigr) = 1 $$ L'ensemble des \\( \\omega \\) pour lesquels la suite \\( (X_n(\\omega)) \\) ne converge pas vers \\( X(\\omega) \\) est de probabilité nulle."
+  },
+  {
+    "id": "mp19-prop-03",
+    "a": "La convergence presque sûre \\( X_n \\xrightarrow{p.s.} X \\) est équivalente à : $$ \\forall\\, \\varepsilon > 0, \\quad P\\Bigl(\\bigcap_{N=1}^{+\\infty} \\bigcup_{n \\geq N} \\{|X_n - X| \\geq \\varepsilon\\}\\Bigr) = 0 $$ Ou encore : \\( \\forall\\, \\varepsilon > 0, \\quad \\lim_{N \\to +\\infty} P\\Bigl(\\bigcup_{n \\geq N} \\{|X_n - X| \\geq \\varepsilon\\}\\Bigr) = 0 \\)."
+  },
+  {
+    "id": "mp19-thm-02",
+    "a": "Soit \\( (X_n)_{n \\geq 1} \\) une suite de variables aléatoires mutuellement indépendantes, de même loi, admettant une espérance \\( \\mu = E(X_1) \\). Alors : $$ \\overline{X}_n = \\frac{1}{n}\\sum_{k=1}^n X_k \\xrightarrow{p.s.} \\mu $$ La convergence a lieu presque sûrement, sans hypothèse sur la variance."
+  },
+  {
+    "id": "mp19-def-03",
+    "a": "On dit que la suite \\( (X_n) \\) converge en loi vers \\( X \\), et on note \\( X_n \\xrightarrow{\\mathcal{L}} X \\), si pour tout point de continuité \\( x \\) de la fonction de répartition \\( F_X \\) de \\( X \\) : $$ \\lim_{n \\to +\\infty} F_{X_n}(x) = F_X(x) $$"
+  },
+  {
+    "id": "mp19-thm-03",
+    "a": "Soit \\( (X_n)_{n \\geq 1} \\) une suite de variables aléatoires i.i.d. d'espérance \\( \\mu \\) et de variance \\( \\sigma^2 > 0 \\). Alors : $$ \\frac{\\overline{X}_n - \\mu}{\\sigma / \\sqrt{n}} = \\frac{\\sum_{k=1}^n X_k - n\\mu}{\\sigma \\sqrt{n}} \\xrightarrow{\\mathcal{L}} \\mathcal{N}(0, 1) $$ La variable centrée réduite de la moyenne empirique converge en loi vers la loi normale centrée réduite."
+  },
+  {
+    "id": "mp19-prop-07",
+    "a": "Sous les hypothèses du TCL, pour un niveau de confiance \\( 1 - \\alpha \\) : $$ P\\Bigl(\\mu \\in \\Bigl[\\overline{X}_n - z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}},\\; \\overline{X}_n + z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}\\Bigr]\\Bigr) \\xrightarrow{n \\to +\\infty} 1 - \\alpha $$ où \\( z_{\\alpha/2} \\) est le quantile d'ordre \\( 1 - \\alpha/2 \\) de la loi \\( \\mathcal{N}(0,1) \\). Par exemple, \\( z_{0.025} \\approx 1.96 \\) pour un niveau de confiance de 95%."
+  },
+  {
+    "id": "mp19-def-04",
+    "a": "Soit \\( p \\geq 1 \\). On dit que \\( (X_n) \\) converge dans \\( L^p \\) (ou converge en moyenne d'ordre \\( p \\)) vers \\( X \\) si \\( X_n, X \\in L^p \\) et : $$ \\lim_{n \\to +\\infty} E\\bigl(|X_n - X|^p\\bigr) = 0 $$ On note \\( X_n \\xrightarrow{L^p} X \\). Le cas \\( p = 2 \\) est la convergence en moyenne quadratique."
+  },
+  {
+    "id": "mp19-prop-08",
+    "a": "Si \\( X_n \\xrightarrow{L^p} X \\) pour un certain \\( p \\geq 1 \\), alors \\( X_n \\xrightarrow{P} X \\). La réciproque est fausse en général."
+  },
+  {
+    "id": "mp19-thm-04",
+    "a": "Les implications suivantes résument les liens entre les modes de convergence : $$ \\text{Convergence } L^q \\implies \\text{Convergence } L^p \\quad (q \\geq p \\geq 1) $$ $$ \\text{Convergence p.s.} \\implies \\text{Convergence en probabilité} \\implies \\text{Convergence en loi} $$ $$ \\text{Convergence } L^p \\implies \\text{Convergence en probabilité} \\implies \\text{Convergence en loi} $$ Aucune autre implication n'est vraie en général. La convergence p.s. et la convergence \\( L^p \\) ne sont pas comparables entre elles."
+  },
+  {
+    "id": "mp19-prop-10",
+    "a": "Si \\( T_n \\) est un estimateur de \\( \\theta \\) tel que : $$ \\mathrm{EQM}(T_n) = E_\\theta\\bigl[(T_n - \\theta)^2\\bigr] = V_\\theta(T_n) + b(T_n)^2 \\xrightarrow{n \\to +\\infty} 0 $$ alors \\( T_n \\) est convergent. En particulier, un estimateur sans biais dont la variance tend vers 0 est convergent."
+  },
+  {
+    "id": "mp19-def-08",
+    "a": "Soit \\( (x_1, \\ldots, x_n) \\) une réalisation de l'échantillon. La fonction de vraisemblance est : $$ L(\\theta; x_1, \\ldots, x_n) = \\prod_{k=1}^n f_\\theta(x_k) $$ L'estimateur du maximum de vraisemblance (EMV) est : $$ \\hat{\\theta}_n = \\underset{\\theta \\in \\Theta}{\\operatorname{arg\\,max}}\\; L(\\theta; X_1, \\ldots, X_n) $$ En pratique, on maximise la log-vraisemblance \\( \\ell(\\theta) = \\ln L(\\theta) = \\sum_{k=1}^n \\ln f_\\theta(X_k) \\)."
+  },
+  {
+    "id": "mp19-thm-05",
+    "a": "Soit \\( (X_1, \\ldots, X_n) \\) un échantillon i.i.d. de loi \\( \\mathcal{N}(\\mu, \\sigma^2) \\) avec \\( \\sigma^2 \\) connue. Pour tester \\( H_0 : \\mu = \\mu_0 \\) contre \\( H_1 : \\mu \\neq \\mu_0 \\) au niveau \\( \\alpha \\), on utilise la statistique : $$ Z_n = \\frac{\\overline{X}_n - \\mu_0}{\\sigma / \\sqrt{n}} $$ Sous \\( H_0 \\), \\( Z_n \\sim \\mathcal{N}(0,1) \\). On rejette \\( H_0 \\) si \\( |Z_n| > z_{\\alpha/2} \\)."
+  },
+  {
+    "id": "mp19-prop-12",
+    "a": "Si \\( \\sigma^2 \\) est inconnue, on la remplace par la variance empirique corrigée \\( S_n^2 \\). La statistique : $$ T_n = \\frac{\\overline{X}_n - \\mu_0}{S_n / \\sqrt{n}} $$ suit sous \\( H_0 \\) une loi de Student \\( t(n-1) \\). On rejette \\( H_0 \\) si \\( |T_n| > t_{\\alpha/2}(n-1) \\). Pour \\( n \\) grand, la loi de Student est proche de \\( \\mathcal{N}(0,1) \\)."
+  },
+  {
+    "id": "mp19-thm-06",
+    "a": "On observe les effectifs \\( (N_1, \\ldots, N_r) \\) dans \\( r \\) catégories, avec \\( \\sum N_i = n \\). Sous l'hypothèse \\( H_0 \\) spécifiant les probabilités théoriques \\( (p_1, \\ldots, p_r) \\), la statistique : $$ D_n = \\sum_{i=1}^{r} \\frac{(N_i - np_i)^2}{np_i} $$ converge en loi vers \\( \\chi^2(r-1) \\) quand \\( n \\to +\\infty \\) (sous \\( H_0 \\)). On rejette \\( H_0 \\) au niveau \\( \\alpha \\) si \\( D_n > \\chi^2_{1-\\alpha}(r-1) \\)."
+  }
+]

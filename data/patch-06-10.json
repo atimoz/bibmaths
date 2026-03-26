@@ -1,0 +1,246 @@
+[
+  {
+    "id": "mp06-prop-01",
+    "a": "Pour tout \\(x, y \\in E\\) : $$ \\bigl|\\, \\|x\\| - \\|y\\| \\,\\bigr| \\leq \\|x - y\\| $$"
+  },
+  {
+    "id": "mp06-def-03",
+    "a": "Deux normes \\(N_1\\) et \\(N_2\\) sur \\(E\\) sont dites équivalentes s'il existe des constantes \\(\\alpha, \\beta > 0\\) telles que : $$ \\forall\\, x \\in E, \\quad \\alpha\\, N_1(x) \\leq N_2(x) \\leq \\beta\\, N_1(x) $$ Il s'agit d'une relation d'équivalence sur l'ensemble des normes de \\(E\\)."
+  },
+  {
+    "id": "mp06-def-08",
+    "a": "Soit \\((x_n)\\) une suite d'éléments de \\((E, \\|\\cdot\\|)\\). On dit que \\((x_n)\\) converge vers \\(\\ell \\in E\\) si : $$ \\|x_n - \\ell\\| \\xrightarrow[n \\to +\\infty]{} 0 $$ Autrement dit, \\(\\forall\\, \\varepsilon > 0,\\; \\exists\\, N \\in \\mathbb{N},\\; \\forall\\, n \\geq N,\\; \\|x_n - \\ell\\| \\leq \\varepsilon\\). La limite, si elle existe, est unique."
+  },
+  {
+    "id": "mp06-prop-05",
+    "a": "Si \\(E = \\mathbb{K}^n\\) muni d'une norme quelconque, une suite \\((x_k)_{k \\geq 0}\\) converge si et seulement si chaque suite de coordonnées converge. Plus précisément, en notant \\(x_k = (x_k^{(1)}, \\ldots, x_k^{(n)})\\) : $$ x_k \\to \\ell = (\\ell_1, \\ldots, \\ell_n) \\iff \\forall\\, i,\\; x_k^{(i)} \\to \\ell_i $$"
+  },
+  {
+    "id": "mp06-def-09",
+    "a": "Une suite \\((x_n)\\) de \\(E\\) est dite de Cauchy si : $$ \\forall\\, \\varepsilon > 0,\\; \\exists\\, N \\in \\mathbb{N},\\; \\forall\\, p, q \\geq N,\\; \\|x_p - x_q\\| \\leq \\varepsilon $$"
+  },
+  {
+    "id": "mp06-def-12",
+    "a": "Soient \\((E, \\|\\cdot\\|_E)\\) et \\((F, \\|\\cdot\\|_F)\\) deux EVN. Une application \\(f : E \\to F\\) est continue en \\(a \\in E\\) si pour toute suite \\((x_n)\\) convergent vers \\(a\\) : $$ x_n \\to a \\implies f(x_n) \\to f(a) $$ Elle est continue (sur \\(E\\)) si elle est continue en tout point de \\(E\\)."
+  },
+  {
+    "id": "mp06-def-13",
+    "a": "De manière équivalente, \\(f\\) est continue en \\(a\\) si : $$ \\forall\\, \\varepsilon > 0,\\; \\exists\\, \\delta > 0,\\; \\forall\\, x \\in E,\\; \\|x - a\\|_E \\leq \\delta \\implies \\|f(x) - f(a)\\|_F \\leq \\varepsilon $$"
+  },
+  {
+    "id": "mp06-def-14",
+    "a": "Une application \\(f : E \\to F\\) est dite lipschitzienne (de rapport \\(k \\geq 0\\)) si : $$ \\forall\\, x, y \\in E, \\quad \\|f(x) - f(y)\\|_F \\leq k\\, \\|x - y\\|_E $$ Toute application lipschitzienne est (uniformément) continue."
+  },
+  {
+    "id": "mp06-def-15",
+    "a": "Soit \\(f : E \\to F\\) une application linéaire continue. On définit la norme d'opérateur (ou norme subordonnée) de \\(f\\) par : $$ \\| \\! | f | \\! \\| = \\sup_{x \\neq 0} \\frac{\\|f(x)\\|_F}{\\|x\\|_E} = \\sup_{\\|x\\|_E = 1} \\|f(x)\\|_F = \\sup_{\\|x\\|_E \\leq 1} \\|f(x)\\|_F $$ Elle vérifie \\(\\|f(x)\\|_F \\leq \\| \\! | f | \\! | \\cdot \\|x\\|_E\\) pour tout \\(x \\in E\\), et c'est la plus petite constante ayant cette propriété."
+  },
+  {
+    "id": "mp06-prop-11",
+    "a": "Si \\(f \\in \\mathcal{L}_c(E, F)\\) et \\(g \\in \\mathcal{L}_c(F, G)\\), alors : $$ \\| \\! | g \\circ f | \\! \\| \\leq \\| \\! | g | \\! | \\cdot \\| \\! | f | \\! | $$"
+  },
+  {
+    "id": "mp07-def-01",
+    "a": "La suite \\((f_n)\\) converge simplement vers \\(f : A \\to \\mathbb{R}\\) si : $$ \\forall\\, x \\in A, \\quad f_n(x) \\xrightarrow[n \\to +\\infty]{} f(x) $$ Autrement dit, pour tout \\(x \\in A\\) fixé, la suite numérique \\((f_n(x))\\) converge vers \\(f(x)\\). On note \\(f_n \\xrightarrow{\\text{CVS}} f\\)."
+  },
+  {
+    "id": "mp07-def-02",
+    "a": "La suite \\((f_n)\\) converge uniformément vers \\(f : A \\to \\mathbb{R}\\) si : $$ \\sup_{x \\in A} |f_n(x) - f(x)| \\xrightarrow[n \\to +\\infty]{} 0 $$ On note \\(\\|f_n - f\\|_\\infty = \\sup_{x \\in A} |f_n(x) - f(x)|\\) la norme de la convergence uniforme. On note \\(f_n \\xrightarrow{\\text{CVU}} f\\)."
+  },
+  {
+    "id": "mp07-thm-02",
+    "a": "Soient \\(f_n : [a, b] \\to \\mathbb{R}\\) (ou \\(\\mathbb{C}\\)) des fonctions continues par morceaux. Si \\(f_n \\xrightarrow{\\text{CVU}} f\\) sur \\([a, b]\\), alors \\(f\\) est continue par morceaux et : $$ \\int_a^b f_n(t)\\, \\mathrm{d}t \\xrightarrow[n \\to +\\infty]{} \\int_a^b f(t)\\, \\mathrm{d}t $$ Autrement dit, \\(\\displaystyle\\lim_{n \\to +\\infty} \\int_a^b f_n = \\int_a^b \\lim_{n \\to +\\infty} f_n\\)."
+  },
+  {
+    "id": "mp07-thm-03",
+    "a": "Soient \\(f_n : I \\to \\mathbb{R}\\) des fonctions de classe \\(\\mathcal{C}^1\\) sur un intervalle \\(I\\). On suppose : \\n- Il existe \\(x_0 \\in I\\) tel que \\((f_n(x_0))\\) converge. \\n- La suite \\((f_n')\\) converge uniformément vers une fonction \\(g\\) sur \\(I\\). Alors \\((f_n)\\) converge uniformément sur tout segment de \\(I\\) vers une fonction \\(f\\) de classe \\(\\mathcal{C}^1\\), et \\(f' = g\\). Autrement dit : $$ \\left(\\lim_{n \\to +\\infty} f_n\\right)' = \\lim_{n \\to +\\infty} f_n' $$"
+  },
+  {
+    "id": "mp07-thm-04",
+    "a": "Soit \\((f_n)\\) une suite de fonctions continues par morceaux sur un intervalle \\(I\\). Si \\(f_n \\to f\\) simplement et s'il existe \\(\\varphi : I \\to \\mathbb{R}_+\\) intégrable sur \\(I\\) telle que \\(|f_n(t)| \\leqslant \\varphi(t)\\) pour tout \\(n\\) et tout \\(t \\in I\\), alors \\(f\\) est intégrable sur \\(I\\) et : $$ \\int_I f_n(t)\\, \\mathrm{d}t \\xrightarrow[n \\to +\\infty]{} \\int_I f(t)\\, \\mathrm{d}t $$"
+  },
+  {
+    "id": "mp07-thm-05",
+    "a": "On a les implications suivantes : $$ \\text{CVN} \\implies \\text{CVU} \\implies \\text{CVS} $$ Les réciproques sont fausses en général."
+  },
+  {
+    "id": "mp07-thm-06",
+    "a": "Soient \\(f_n : [a, b] \\to \\mathbb{R}\\) continues par morceaux. Si la série \\(\\sum f_n\\) converge uniformément sur \\([a, b]\\), alors : $$ \\int_a^b \\left(\\sum_{n=0}^{+\\infty} f_n(t)\\right) \\mathrm{d}t = \\sum_{n=0}^{+\\infty} \\int_a^b f_n(t)\\, \\mathrm{d}t $$"
+  },
+  {
+    "id": "mp07-thm-07",
+    "a": "Soient \\(f_n : I \\to \\mathbb{R}\\) de classe \\(\\mathcal{C}^1\\) sur un intervalle \\(I\\). Si : \\n- Il existe \\(x_0 \\in I\\) tel que \\(\\sum f_n(x_0)\\) converge. \\n- La série \\(\\sum f_n'\\) converge uniformément sur tout segment de \\(I\\). Alors \\(\\sum f_n\\) converge uniformément sur tout segment de \\(I\\), sa somme \\(S\\) est de classe \\(\\mathcal{C}^1\\), et : $$ S'(x) = \\sum_{n=0}^{+\\infty} f_n'(x) $$"
+  },
+  {
+    "id": "mp07-def-04",
+    "a": "Pour \\(f : [0, 1] \\to \\mathbb{R}\\) continue et \\(n \\in \\mathbb{N}^*\\), le \\(n\\)-ième polynôme de Bernstein de \\(f\\) est : $$ B_n(f)(x) = \\sum_{k=0}^{n} f\\!\\left(\\frac{k}{n}\\right) \\binom{n}{k} x^k (1 - x)^{n-k} $$"
+  },
+  {
+    "id": "mp07-def-05",
+    "a": "Le rayon de convergence de la série entière \\(\\sum a_n z^n\\) est : $$ R = \\sup\\left\\{ r \\geqslant 0 \\mid (a_n r^n) \\text{ est bornée} \\right\\} \\in [0, +\\infty] $$ L'intervalle \\(]-R, R[\\) (ou le disque ouvert \\(D(0, R)\\) dans \\(\\mathbb{C}\\)) est appelé disque ouvert de convergence."
+  },
+  {
+    "id": "mp07-thm-11",
+    "a": "Le rayon de convergence est donné par : $$ \\frac{1}{R} = \\limsup_{n \\to +\\infty} |a_n|^{1/n} $$"
+  },
+  {
+    "id": "mp07-thm-12",
+    "a": "La série entière \\(\\sum a_n x^n\\) et la série dérivée \\(\\sum n a_n x^{n-1}\\) ont le même rayon de convergence \\(R\\). La somme \\(S(x) = \\sum_{n=0}^{+\\infty} a_n x^n\\) est de classe \\(\\mathcal{C}^\\infty\\) sur \\(]-R, R[\\) et : $$ S'(x) = \\sum_{n=1}^{+\\infty} n\\, a_n\\, x^{n-1}, \\qquad S^{(k)}(x) = \\sum_{n=k}^{+\\infty} \\frac{n!}{(n-k)!}\\, a_n\\, x^{n-k} $$ En particulier, \\(a_n = \\frac{S^{(n)}(0)}{n!}\\) (formule de Taylor)."
+  },
+  {
+    "id": "mp07-prop-06",
+    "a": "Soit \\(S(x) = \\sum_{n=0}^{+\\infty} a_n x^n\\) de rayon \\(R > 0\\). Alors pour tout \\(x \\in ]-R, R[\\) : $$ \\int_0^x S(t)\\, \\mathrm{d}t = \\sum_{n=0}^{+\\infty} \\frac{a_n}{n+1}\\, x^{n+1} $$ La série intégrée a le même rayon de convergence \\(R\\)."
+  },
+  {
+    "id": "mp07-prop-07",
+    "a": "Les développements suivants sont valables sur les intervalles indiqués : $$ e^x = \\sum_{n=0}^{+\\infty} \\frac{x^n}{n!} \\quad (x \\in \\mathbb{R}), \\qquad \\frac{1}{1-x} = \\sum_{n=0}^{+\\infty} x^n \\quad (|x| < 1) $$ $$ \\ln(1+x) = \\sum_{n=1}^{+\\infty} \\frac{(-1)^{n-1}}{n}\\, x^n \\quad (x \\in ]-1, 1]), \\qquad \\cos x = \\sum_{n=0}^{+\\infty} \\frac{(-1)^n}{(2n)!}\\, x^{2n} \\quad (x \\in \\mathbb{R}) $$ $$ \\sin x = \\sum_{n=0}^{+\\infty} \\frac{(-1)^n}{(2n+1)!}\\, x^{2n+1} \\quad (x \\in \\mathbb{R}), \\qquad (1+x)^\\alpha = \\sum_{n=0}^{+\\infty} \\binom{\\alpha}{n} x^n \\quad (|x| < 1) $$ où \\(\\binom{\\alpha}{n} = \\frac{\\alpha(\\alpha-1)\\cdots(\\alpha-n+1)}{n!}\\) est le coefficient binomial généralisé."
+  },
+  {
+    "id": "mp07-def-06",
+    "a": "Pour toute matrice \\(A \\in \\mathcal{M}_n(\\mathbb{R})\\) (ou \\(\\mathcal{M}_n(\\mathbb{C})\\)), on définit : $$ \\exp(A) = \\sum_{k=0}^{+\\infty} \\frac{A^k}{k!} $$ Cette série converge absolument pour toute norme matricielle subordonnée (car la série entière \\(\\sum \\frac{x^k}{k!}\\) a un rayon infini)."
+  },
+  {
+    "id": "mp08-def-01",
+    "a": "Une série entière est une série de fonctions de la forme \\(\\sum_{n \\geq 0} a_n z^n\\) où \\((a_n)_{n \\in \\mathbb{N}} \\subset \\mathbb{C}\\) est la suite des coefficients. Le rayon de convergence est : $$ R = \\sup\\bigl\\{r \\geq 0 \\;\\big|\\; (a_n r^n) \\text{ est bornée}\\bigr\\} \\in [0, +\\infty] $$ Le disque ouvert de convergence est \\(D(0, R) = \\{z \\in \\mathbb{C} : |z| < R\\}\\). Sur ce disque, la série converge absolument."
+  },
+  {
+    "id": "mp08-prop-01",
+    "a": "Soit \\(\\sum a_n z^n\\) une série entière de rayon \\(R > 0\\). Pour tout \\(r \\in [0, R[\\), la série converge normalement sur \\(\\overline{D}(0, r)\\). On a en particulier : $$ \\sum_{n=0}^{+\\infty} \\|a_n z^n\\|_{\\infty, \\overline{D}(0,r)} = \\sum_{n=0}^{+\\infty} |a_n| r^n < +\\infty $$"
+  },
+  {
+    "id": "mp08-thm-01",
+    "a": "Si \\(a_n \\neq 0\\) pour \\(n\\) assez grand et si la limite existe : $$ \\ell = \\lim_{n \\to +\\infty} \\left|\\frac{a_{n+1}}{a_n}\\right| \\in [0, +\\infty] $$ alors le rayon de convergence vaut \\(R = 1/\\ell\\) (avec les conventions \\(1/0 = +\\infty\\) et \\(1/+\\infty = 0\\))."
+  },
+  {
+    "id": "mp08-thm-02",
+    "a": "Le rayon de convergence de \\(\\sum a_n z^n\\) est donné par la formule : $$ \\frac{1}{R} = \\limsup_{n \\to +\\infty} |a_n|^{1/n} $$ Cette formule est toujours valable, sans hypothèse de non-nullité des coefficients."
+  },
+  {
+    "id": "mp08-thm-04",
+    "a": "Soit \\(\\sum a_n x^n\\) une série entière de rayon \\(R > 0\\). Alors : \\n- La série dérivée \\(\\sum n a_n x^{n-1}\\) a le même rayon de convergence \\(R\\). \\n- La somme \\(S\\) est de classe \\(\\mathcal{C}^\\infty\\) sur \\(]-R, R[\\) et pour tout \\(k \\in \\mathbb{N}\\) : $$ S^{(k)}(x) = \\sum_{n=k}^{+\\infty} \\frac{n!}{(n-k)!}\\, a_n \\, x^{n-k} $$ En particulier, \\(a_n = \\frac{S^{(n)}(0)}{n!}\\) pour tout \\(n \\in \\mathbb{N}\\)."
+  },
+  {
+    "id": "mp08-thm-05",
+    "a": "Soit \\(\\sum a_n x^n\\) de rayon \\(R > 0\\). Pour tout \\(x \\in ]-R, R[\\) : $$ \\int_0^x S(t)\\,\\mathrm{d}t = \\sum_{n=0}^{+\\infty} \\frac{a_n}{n+1}\\, x^{n+1} $$ La série intégrée a le même rayon de convergence \\(R\\)."
+  },
+  {
+    "id": "mp08-def-02",
+    "a": "On dit qu'une fonction \\(f\\) admet un développement en série entière (DSE) au voisinage de \\(0\\) s'il existe \\(r > 0\\) et une suite \\((a_n)\\) tels que : $$ \\forall x \\in ]-r, r[, \\quad f(x) = \\sum_{n=0}^{+\\infty} a_n x^n $$ Les coefficients sont alors nécessairement \\(a_n = f^{(n)}(0)/n!\\) et \\(f\\) est de classe \\(\\mathcal{C}^\\infty\\)."
+  },
+  {
+    "id": "mp08-thm-06",
+    "a": "Les développements suivants sont valables sur les domaines indiqués : $$ e^x = \\sum_{n=0}^{+\\infty} \\frac{x^n}{n!} \\quad (R = +\\infty) $$ $$ \\cos x = \\sum_{n=0}^{+\\infty} \\frac{(-1)^n}{(2n)!}\\, x^{2n} \\quad (R = +\\infty) $$ $$ \\sin x = \\sum_{n=0}^{+\\infty} \\frac{(-1)^n}{(2n+1)!}\\, x^{2n+1} \\quad (R = +\\infty) $$ $$ \\frac{1}{1-x} = \\sum_{n=0}^{+\\infty} x^n \\quad (R = 1) $$ $$ \\ln(1+x) = \\sum_{n=1}^{+\\infty} \\frac{(-1)^{n-1}}{n}\\, x^n \\quad (R = 1, \\text{ valable aussi en } x = 1) $$ $$ \\arctan x = \\sum_{n=0}^{+\\infty} \\frac{(-1)^n}{2n+1}\\, x^{2n+1} \\quad (R = 1, \\text{ valable aussi en } x = \\pm 1) $$"
+  },
+  {
+    "id": "mp08-thm-07",
+    "a": "Pour tout \\(\\alpha \\in \\mathbb{R}\\) et \\(|x| < 1\\) : $$ (1+x)^\\alpha = \\sum_{n=0}^{+\\infty} \\binom{\\alpha}{n} x^n \\quad \\text{où} \\quad \\binom{\\alpha}{n} = \\frac{\\alpha(\\alpha-1)\\cdots(\\alpha-n+1)}{n!} $$ Le rayon de convergence vaut \\(R = 1\\). On retrouve pour \\(\\alpha = -1\\) la série géométrique, et pour \\(\\alpha = 1/2\\) le DSE de \\(\\sqrt{1+x}\\)."
+  },
+  {
+    "id": "mp08-prop-03",
+    "a": "Soient \\(f(x) = \\sum a_n x^n\\) de rayon \\(R_a\\) et \\(g(x) = \\sum b_n x^n\\) de rayon \\(R_b\\). Alors pour \\(|x| < \\min(R_a, R_b)\\) : $$ f(x) \\cdot g(x) = \\sum_{n=0}^{+\\infty} c_n x^n \\quad \\text{avec} \\quad c_n = \\sum_{k=0}^{n} a_k b_{n-k} $$ Le rayon de convergence du produit est au moins \\(\\min(R_a, R_b)\\)."
+  },
+  {
+    "id": "mp08-def-03",
+    "a": "Soit \\(I\\) un intervalle ouvert de \\(\\mathbb{R}\\). Une fonction \\(f : I \\to \\mathbb{R}\\) (ou \\(\\mathbb{C}\\)) est dite analytique sur \\(I\\) si pour tout \\(x_0 \\in I\\), il existe \\(r > 0\\) et une suite \\((a_n)\\) tels que : $$ \\forall x \\in ]x_0 - r,\\, x_0 + r[, \\quad f(x) = \\sum_{n=0}^{+\\infty} a_n (x - x_0)^n $$ On a alors nécessairement \\(a_n = f^{(n)}(x_0)/n!\\) et le développement coïncide avec la série de Taylor de \\(f\\) en \\(x_0\\)."
+  },
+  {
+    "id": "mp08-thm-08",
+    "a": "Soit \\(f \\in \\mathcal{C}^\\infty(I)\\). La fonction \\(f\\) est développable en série entière en \\(x_0 \\in I\\) si et seulement si le reste de Taylor-Lagrange (ou Taylor avec reste intégral) tend vers \\(0\\) : $$ f(x) - \\sum_{k=0}^{n} \\frac{f^{(k)}(x_0)}{k!}(x - x_0)^k \\xrightarrow[n \\to +\\infty]{} 0 $$ Une condition suffisante classique est l'existence de \\(M, C > 0\\) tels que \\(|f^{(n)}(x)| \\leq M \\cdot C^n \\cdot n!\\) au voisinage de \\(x_0\\)."
+  },
+  {
+    "id": "mp08-def-04",
+    "a": "Soit \\((u_n)_{n \\geq 0}\\) une suite à valeurs dans \\(\\mathbb{C}\\). La série génératrice (ordinaire) de \\((u_n)\\) est la série entière : $$ G(x) = \\sum_{n=0}^{+\\infty} u_n x^n $$ Si \\(R > 0\\), la donnée de \\(G\\) sur \\(]-R, R[\\) détermine entièrement la suite \\((u_n)\\) par unicité des coefficients."
+  },
+  {
+    "id": "mp08-prop-07",
+    "a": "Soit \\((u_n)\\) une suite vérifiant une récurrence linéaire d'ordre \\(p\\) à coefficients constants : $$ u_{n+p} + c_{p-1} u_{n+p-1} + \\cdots + c_0 u_n = 0 \\quad (n \\geq 0) $$ Alors la série génératrice \\(G(x)\\) est une fraction rationnelle dont le dénominateur est le polynôme réciproque du polynôme caractéristique. Plus précisément, \\(G(x) = P(x)/Q(x)\\) où \\(\\deg P < p\\) et \\(Q(x) = 1 + c_{p-1} x + \\cdots + c_0 x^p\\)."
+  },
+  {
+    "id": "mp08-prop-08",
+    "a": "Soit \\(\\sum a_n z^n\\) une série entière de rayon \\(R > 0\\). Le domaine de convergence absolue est le disque ouvert \\(D(0, R) \\subset \\mathbb{C}\\). La somme \\(S(z) = \\sum a_n z^n\\) est continue sur \\(D(0, R)\\) et holomorphe (dérivable au sens complexe) : $$ S'(z) = \\sum_{n=1}^{+\\infty} n\\, a_n z^{n-1} \\quad \\forall z \\in D(0, R) $$ Sur le cercle \\(|z| = R\\), le comportement est délicat et dépend des coefficients."
+  },
+  {
+    "id": "mp08-thm-09",
+    "a": "Soit \\(\\sum a_n z^n\\) de rayon \\(R = 1\\). Si la série numérique \\(\\sum a_n\\) converge vers \\(S\\), alors : $$ \\lim_{x \\to 1^-} \\sum_{n=0}^{+\\infty} a_n x^n = S $$ Autrement dit, la somme de la série entière admet une limite radiale en tout point du cercle de convergence où la série numérique converge."
+  },
+  {
+    "id": "mp09-def-06",
+    "a": "Soit \\((E, d)\\) un espace métrique. Une suite \\((x_n)_{n \\in \\mathbb{N}}\\) d'éléments de \\(E\\) est dite de Cauchy si : $$ \\forall\\, \\varepsilon > 0,\\quad \\exists\\, N \\in \\mathbb{N},\\quad \\forall\\, p, q \\geqslant N,\\quad d(x_p, x_q) \\leqslant \\varepsilon $$"
+  },
+  {
+    "id": "mp09-def-08",
+    "a": "Soit \\((E, d)\\) un espace métrique. Une application \\(f : E \\to E\\) est dite contractante (ou est une contraction) s'il existe une constante \\(k \\in [0, 1[\\) telle que : $$ \\forall\\, x, y \\in E, \\quad d(f(x), f(y)) \\leqslant k\\, d(x, y) $$ La constante \\(k\\) est appelée rapport de contraction."
+  },
+  {
+    "id": "mp09-thm-03",
+    "a": "L'ensemble \\(\\mathbb{R}[X]\\) des fonctions polynomiales est dense dans \\(\\big(\\mathcal{C}([a,b], \\mathbb{R}), \\|\\cdot\\|_\\infty\\big)\\). Autrement dit, pour toute fonction \\(f\\) continue sur \\([a,b]\\) et tout \\(\\varepsilon > 0\\), il existe un polynôme \\(P\\) tel que : $$ \\sup_{t \\in [a,b]} |f(t) - P(t)| \\leqslant \\varepsilon $$"
+  },
+  {
+    "id": "mp09-def-14",
+    "a": "Soit \\(E\\) un espace vectoriel (réel). Une partie \\(C \\subset E\\) est dite convexe si pour tous \\(x, y \\in C\\) et tout \\(t \\in [0, 1]\\) : $$ (1 - t)\\, x + t\\, y \\in C $$ Autrement dit, le segment \\([x, y]\\) est entièrement contenu dans \\(C\\)."
+  },
+  {
+    "id": "mp10-def-01",
+    "a": "Soit \\([a, b]\\) un segment de \\(\\mathbb{R}\\) avec \\(a < b\\). Une subdivision de \\([a, b]\\) est une famille finie \\(\\sigma = (x_0, x_1, \\ldots, x_n)\\) telle que : $$ a = x_0 < x_1 < \\cdots < x_n = b $$ On dit que \\(\\sigma'\\) est plus fine que \\(\\sigma\\) si \\(\\sigma \\subset \\sigma'\\)."
+  },
+  {
+    "id": "mp10-def-03",
+    "a": "Soit \\(f \\in \\mathcal{E}([a,b], \\mathbb{R})\\) et \\(\\sigma = (x_0, \\ldots, x_n)\\) une subdivision adaptee a \\(f\\), avec \\(f = c_i\\) sur \\(]x_{i-1}, x_i[\\). On definit l'integrale de \\(f\\) par : $$ \\int_a^b f(t)\\, \\mathrm{d}t = \\sum_{i=1}^{n} c_i (x_i - x_{i-1}) $$ Cette definition ne depend pas du choix de la subdivision adaptee."
+  },
+  {
+    "id": "mp10-thm-01",
+    "a": "Soit \\(f : [a,b] \\to \\mathbb{R}\\) continue par morceaux. Pour tout \\(\\varepsilon > 0\\), il existe des fonctions en escalier \\(\\varphi^-\\) et \\(\\varphi^+\\) telles que : $$ \\varphi^- \\leq f \\leq \\varphi^+ \\quad \\text{et} \\quad \\int_a^b (\\varphi^+ - \\varphi^-) \\leq \\varepsilon $$ En particulier, toute fonction continue par morceaux est limite uniforme de fonctions en escalier sur tout sous-intervalle ferme evitant les points de discontinuite."
+  },
+  {
+    "id": "mp10-def-05",
+    "a": "Soit \\(f \\in \\mathcal{CM}([a,b], \\mathbb{R})\\). On definit l'integrale de \\(f\\) sur \\([a,b]\\) par : $$ \\int_a^b f(t)\\, \\mathrm{d}t = \\sup\\left\\{\\int_a^b \\varphi \\;\\middle|\\; \\varphi \\in \\mathcal{E}([a,b]),\\; \\varphi \\leq f \\right\\} $$ De maniere equivalente, c'est l'unique reel \\(I\\) tel que pour toutes fonctions en escalier \\(\\varphi^- \\leq f \\leq \\varphi^+\\), on ait \\(\\int_a^b \\varphi^- \\leq I \\leq \\int_a^b \\varphi^+\\)."
+  },
+  {
+    "id": "mp10-def-06",
+    "a": "Soit \\(f : [a, b] \\to \\mathbb{R}\\) continue par morceaux et \\(\\sigma = (x_0, \\ldots, x_n)\\) une subdivision de \\([a, b]\\). En choisissant des points \\(\\xi_i \\in [x_{i-1}, x_i]\\), la somme de Riemann associee est : $$ S(f, \\sigma, \\xi) = \\sum_{i=1}^{n} f(\\xi_i)(x_i - x_{i-1}) $$ Le pas de la subdivision est \\(\\delta(\\sigma) = \\max_{1 \\leq i \\leq n} (x_i - x_{i-1})\\)."
+  },
+  {
+    "id": "mp10-thm-02",
+    "a": "Soit \\(f : [a,b] \\to \\mathbb{R}\\) continue par morceaux. Lorsque le pas \\(\\delta(\\sigma) \\to 0\\), les sommes de Riemann convergent vers l'integrale, uniformement en le choix des points intermediaires : $$ \\forall \\varepsilon > 0,\\; \\exists \\eta > 0,\\; \\delta(\\sigma) \\leq \\eta \\implies \\left|S(f, \\sigma, \\xi) - \\int_a^b f(t)\\, \\mathrm{d}t\\right| \\leq \\varepsilon $$"
+  },
+  {
+    "id": "mp10-prop-03",
+    "a": "Soit \\(f : [a, b] \\to \\mathbb{R}\\) continue par morceaux. Pour la subdivision reguliere a \\(n\\) pas egaux, on a : $$ \\frac{b-a}{n} \\sum_{k=0}^{n-1} f\\!\\left(a + k\\,\\frac{b-a}{n}\\right) \\xrightarrow[n \\to +\\infty]{} \\int_a^b f(t)\\, \\mathrm{d}t $$"
+  },
+  {
+    "id": "mp10-thm-03",
+    "a": "Soit \\(f : [a, b] \\to \\mathbb{R}\\) continue. La fonction \\(F\\) definie par : $$ F(x) = \\int_a^x f(t)\\, \\mathrm{d}t $$ est l'unique primitive de \\(f\\) sur \\([a,b]\\) s'annulant en \\(a\\). En particulier, \\(F\\) est de classe \\(\\mathcal{C}^1\\) et \\(F'(x) = f(x)\\) pour tout \\(x \\in [a,b]\\). Plus generalement, si \\(f\\) est de classe \\(\\mathcal{C}^k\\), alors \\(F\\) est de classe \\(\\mathcal{C}^{k+1}\\)."
+  },
+  {
+    "id": "mp10-prop-05",
+    "a": "Soit \\(f : [a,b] \\to \\mathbb{R}\\) continue et \\(F\\) une primitive de \\(f\\). Alors : $$ \\int_a^b f(t)\\, \\mathrm{d}t = F(b) - F(a) = \\big[F(t)\\big]_a^b $$"
+  },
+  {
+    "id": "mp10-thm-04",
+    "a": "Soient \\(u, v : [a, b] \\to \\mathbb{R}\\) de classe \\(\\mathcal{C}^1\\). Alors : $$ \\int_a^b u(t) v'(t)\\, \\mathrm{d}t = \\big[u(t) v(t)\\big]_a^b - \\int_a^b u'(t) v(t)\\, \\mathrm{d}t $$"
+  },
+  {
+    "id": "mp10-thm-05",
+    "a": "Soit \\(\\varphi : [\\alpha, \\beta] \\to [a, b]\\) de classe \\(\\mathcal{C}^1\\) et \\(f : [a, b] \\to \\mathbb{R}\\) continue. Alors : $$ \\int_{\\varphi(\\alpha)}^{\\varphi(\\beta)} f(t)\\, \\mathrm{d}t = \\int_\\alpha^\\beta f(\\varphi(u))\\, \\varphi'(u)\\, \\mathrm{d}u $$"
+  },
+  {
+    "id": "mp10-thm-06",
+    "a": "Soit \\(f : [a, b] \\to \\mathbb{R}\\) de classe \\(\\mathcal{C}^{n+1}\\). Pour tout \\(x \\in [a, b]\\) : $$ f(x) = \\sum_{k=0}^{n} \\frac{f^{(k)}(a)}{k!}(x-a)^k + \\int_a^x \\frac{(x-t)^n}{n!} f^{(n+1)}(t)\\, \\mathrm{d}t $$"
+  },
+  {
+    "id": "mp10-thm-07",
+    "a": "Soit \\(f : [a, b] \\to \\mathbb{R}\\) de classe \\(\\mathcal{C}^{n+1}\\). Pour tout \\(x \\in [a, b]\\) : $$ \\left|f(x) - \\sum_{k=0}^{n} \\frac{f^{(k)}(a)}{k!}(x-a)^k\\right| \\leq \\frac{|x-a|^{n+1}}{(n+1)!}\\, \\sup_{t \\in [a,x]} |f^{(n+1)}(t)| $$"
+  },
+  {
+    "id": "mp10-prop-06",
+    "a": "Soit \\(f : I \\to \\mathbb{R}\\) de classe \\(\\mathcal{C}^n\\) au voisinage de \\(a\\). Alors : $$ f(x) = \\sum_{k=0}^{n} \\frac{f^{(k)}(a)}{k!}(x-a)^k + o\\big((x-a)^n\\big) $$ C'est le developpement limite de \\(f\\) a l'ordre \\(n\\) en \\(a\\)."
+  },
+  {
+    "id": "mp10-thm-08",
+    "a": "Soit \\((f_n)\\) une suite de fonctions continues par morceaux sur \\([a, b]\\) convergeant uniformement vers \\(f : [a,b] \\to \\mathbb{R}\\). Alors \\(f\\) est continue par morceaux et : $$ \\lim_{n \\to +\\infty} \\int_a^b f_n(t)\\, \\mathrm{d}t = \\int_a^b \\lim_{n \\to +\\infty} f_n(t)\\, \\mathrm{d}t = \\int_a^b f(t)\\, \\mathrm{d}t $$"
+  },
+  {
+    "id": "mp10-thm-09",
+    "a": "Soit \\((u_n)\\) une suite de fonctions continues par morceaux sur \\([a, b]\\). Si la serie \\(\\sum u_n\\) converge uniformement sur \\([a,b]\\), alors : $$ \\int_a^b \\left(\\sum_{n=0}^{+\\infty} u_n(t)\\right) \\mathrm{d}t = \\sum_{n=0}^{+\\infty} \\int_a^b u_n(t)\\, \\mathrm{d}t $$ En particulier, si la serie \\(\\sum u_n\\) est normalement convergente sur \\([a,b]\\), alors l'interversion est licite."
+  }
+]
