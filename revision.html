@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revision — Flashcards MP | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    /* ── Layout ── */
+    .rev{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .rev__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .rev__back:hover{color:var(--accent)}
+    .rev__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-sm)}
+    .rev__subtitle{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+
+    /* ── Filter chips ── */
+    .rev__filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:var(--space-lg)}
+    .chip{font-family:var(--font-body);font-size:.78rem;font-weight:500;padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--ink-muted);cursor:pointer;transition:all .25s ease;user-select:none}
+    .chip:hover{border-color:var(--accent);color:var(--accent)}
+    .chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+    [data-theme="dark"] .chip.active{color:#1a1a1a}
+
+    /* ── Controls ── */
+    .rev__controls{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-xl);flex-wrap:wrap}
+    .rev__btn{font-family:var(--font-body);font-size:.85rem;font-weight:600;padding:10px 28px;border-radius:10px;border:none;cursor:pointer;transition:all .3s ease}
+    .rev__btn--start{background:var(--accent);color:#fff}
+    .rev__btn--start:hover{filter:brightness(1.1);transform:translateY(-1px)}
+    .rev__counter{font-family:var(--font-mono);font-size:.8rem;color:var(--ink-muted);letter-spacing:.06em}
+    .rev__progress{flex:1;min-width:120px;height:4px;background:var(--border);border-radius:4px;overflow:hidden}
+    .rev__progress-bar{height:100%;background:var(--accent);border-radius:4px;transition:width .4s var(--ease-out);width:0%}
+
+    /* ── Flashcard ── */
+    .card-scene{perspective:1200px;width:100%;max-width:680px;margin:0 auto var(--space-xl);min-height:340px}
+    .card{width:100%;min-height:340px;position:relative;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,.2,.2,1);cursor:pointer}
+    .card.flipped{transform:rotateY(180deg)}
+    .card__face{position:absolute;top:0;left:0;width:100%;min-height:340px;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;padding:var(--space-xl);display:flex;flex-direction:column;justify-content:center}
+    .card__front{background:var(--bg-card);border:1.5px solid var(--border);box-shadow:0 4px 24px rgba(0,0,0,.06),0 1px 4px rgba(0,0,0,.04)}
+    .card__back{background:linear-gradient(135deg,rgba(196,135,59,.06),rgba(196,135,59,.02));border:1.5px solid rgba(196,135,59,.25);box-shadow:0 4px 24px rgba(196,135,59,.08);transform:rotateY(180deg)}
+    .card__tag{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .card__front .card__tag span{color:var(--accent)}
+    .card__type{display:inline-block;font-family:var(--font-mono);font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:12px;margin-bottom:var(--space-sm)}
+    .card__type--def{background:rgba(59,130,196,.1);color:#3B82C4}
+    .card__type--thm{background:rgba(180,50,50,.1);color:#B43232}
+    .card__type--method{background:rgba(196,135,59,.1);color:var(--accent)}
+    .card__type--prop{background:rgba(118,56,163,.08);color:#7638A3}
+    .card__question{font-family:var(--font-display);font-size:1.5rem;font-weight:500;line-height:1.5;color:var(--ink);margin-bottom:var(--space-md)}
+    .card__hint{font-size:.82rem;color:var(--ink-muted);font-style:italic;margin-top:auto;padding-top:var(--space-md);border-top:1px solid var(--border)}
+    .card__answer-label{font-family:var(--font-mono);font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--space-sm)}
+    .card__answer{font-size:1rem;line-height:1.8;color:var(--ink)}
+    .card__answer .math-display{text-align:center;padding:var(--space-sm) 0;overflow-x:auto}
+    .card__flip-hint{position:absolute;bottom:16px;right:20px;font-size:.7rem;color:var(--ink-muted);opacity:.5;letter-spacing:.04em}
+
+    /* ── Nav buttons ── */
+    .card-nav{display:flex;justify-content:center;gap:var(--space-md);margin-bottom:var(--space-xl)}
+    .card-nav__btn{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--border);background:var(--bg-card);color:var(--ink-muted);font-size:1.2rem;cursor:pointer;transition:all .25s ease;display:flex;align-items:center;justify-content:center}
+    .card-nav__btn:hover{border-color:var(--accent);color:var(--accent);transform:scale(1.05)}
+    .card-nav__btn:disabled{opacity:.3;cursor:default;transform:none}
+    .card-nav__btn--know{background:rgba(52,199,89,.08);border-color:rgba(52,199,89,.3);color:#34C759}
+    .card-nav__btn--know:hover{background:rgba(52,199,89,.15)}
+    .card-nav__btn--dontknow{background:rgba(255,59,48,.06);border-color:rgba(255,59,48,.25);color:#FF3B30}
+    .card-nav__btn--dontknow:hover{background:rgba(255,59,48,.12)}
+
+    /* ── Score screen ── */
+    .score-screen{display:none;text-align:center;padding:var(--space-2xl) var(--space-lg)}
+    .score-screen.show{display:block}
+    .score__number{font-family:var(--font-display);font-size:5rem;font-weight:700;color:var(--accent);line-height:1}
+    .score__label{font-size:1.1rem;color:var(--ink-light);margin-top:var(--space-sm);margin-bottom:var(--space-lg)}
+    .score__bar{width:100%;max-width:400px;height:8px;background:var(--border);border-radius:8px;margin:0 auto var(--space-md);overflow:hidden}
+    .score__bar-fill{height:100%;border-radius:8px;transition:width 1s var(--ease-out)}
+    .score__bar-fill--good{background:#34C759}
+    .score__bar-fill--mid{background:var(--accent)}
+    .score__bar-fill--bad{background:#FF3B30}
+    .score__detail{font-size:.85rem;color:var(--ink-muted);margin-bottom:var(--space-xl)}
+    .score__retry{font-family:var(--font-body);font-size:.9rem;font-weight:600;padding:12px 32px;border-radius:10px;border:none;background:var(--accent);color:#fff;cursor:pointer;transition:all .3s}
+    .score__retry:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+    /* ── Intro (no session) ── */
+    .rev__intro{text-align:center;padding:var(--space-2xl) 0}
+    .rev__intro-icon{font-size:4rem;margin-bottom:var(--space-lg);opacity:.2}
+    .rev__intro-text{font-size:1.05rem;color:var(--ink-light);max-width:480px;margin:0 auto}
+
+    /* ── Dark mode ── */
+    [data-theme="dark"] .card__front{background:var(--bg-card);border-color:var(--border);box-shadow:0 4px 24px rgba(0,0,0,.3)}
+    [data-theme="dark"] .card__back{background:linear-gradient(135deg,rgba(196,135,59,.08),rgba(196,135,59,.03));border-color:rgba(196,135,59,.2);box-shadow:0 4px 24px rgba(0,0,0,.4)}
+    [data-theme="dark"] .card__hint{border-top-color:var(--border)}
+    [data-theme="dark"] .card-nav__btn{background:var(--bg-card);border-color:var(--border)}
+    [data-theme="dark"] .score__bar{background:rgba(255,255,255,.08)}
+
+    /* ── Responsive ── */
+    @media(max-width:680px){
+      .rev__title{font-size:2rem}
+      .card-scene{min-height:280px}
+      .card__face{min-height:280px;padding:var(--space-lg)}
+      .card__question{font-size:1.2rem}
+      .card-nav{gap:var(--space-sm)}
+      .score__number{font-size:3.5rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="index.html" class="nav__link">Accueil</a>
+      <a href="mpsi.html" class="nav__link">MPSI</a>
+      <a href="mp.html" class="nav__link">MP</a>
+      <a href="revision.html" class="nav__link nav__link--active">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group">
+      <a href="mp.html" class="mobile-menu__page-link">MP</a>
+    </div>
+    <div class="mobile-menu__group">
+      <a href="mpsi.html" class="mobile-menu__page-link">MPSI</a>
+    </div>
+    <div class="mobile-menu__group">
+      <a href="revision.html" class="mobile-menu__page-link mobile-menu__page-link--active">Revision</a>
+    </div>
+  </div>
+
+  <main class="rev">
+    <a href="mp.html" class="rev__back">&larr; Retour au programme MP</a>
+    <h1 class="rev__title">Revision active</h1>
+    <p class="rev__subtitle">Flashcards generees a partir des cours MP. Choisis un ou plusieurs chapitres, puis lance une session.</p>
+
+    <!-- Filters -->
+    <div class="rev__filters" id="chipContainer">
+      <button class="chip active" data-ch="all">Tout le programme</button>
+      <button class="chip" data-ch="algebre">Algebre</button>
+      <button class="chip" data-ch="analyse">Analyse</button>
+      <button class="chip" data-ch="probas">Probabilites</button>
+      <button class="chip" data-ch="topologie">Topologie</button>
+      <button class="chip" data-ch="reduction">Reduction</button>
+      <button class="chip" data-ch="euclidien">Euclidiens</button>
+      <button class="chip" data-ch="series">Series</button>
+      <button class="chip" data-ch="integrales">Integrales</button>
+      <button class="chip" data-ch="edl">EDL</button>
+      <button class="chip" data-ch="calculdiff">Calcul diff.</button>
+    </div>
+
+    <!-- Controls -->
+    <div class="rev__controls" id="controls">
+      <button class="rev__btn rev__btn--start" id="startBtn">Lancer 20 cartes</button>
+      <span class="rev__counter" id="counter"></span>
+      <div class="rev__progress"><div class="rev__progress-bar" id="progressBar"></div></div>
+    </div>
+
+    <!-- Intro -->
+    <div class="rev__intro" id="introScreen">
+      <div class="rev__intro-icon">&#x1D4D5;</div>
+      <p class="rev__intro-text">Selectionne un theme et clique sur <strong>Lancer</strong> pour demarrer une session de revision. Les cartes se retournent au clic.</p>
+    </div>
+
+    <!-- Flashcard -->
+    <div class="card-scene" id="cardScene" style="display:none">
+      <div class="card" id="flashcard">
+        <div class="card__face card__front">
+          <div class="card__tag" id="cardTag"></div>
+          <div id="cardType"></div>
+          <div class="card__question" id="cardQuestion"></div>
+          <div class="card__hint" id="cardHint"></div>
+          <span class="card__flip-hint">cliquer pour retourner</span>
+        </div>
+        <div class="card__face card__back">
+          <div class="card__answer-label">Reponse</div>
+          <div class="card__answer" id="cardAnswer"></div>
+          <span class="card__flip-hint">cliquer pour revenir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <div class="card-nav" id="cardNav" style="display:none">
+      <button class="card-nav__btn card-nav__btn--dontknow" id="btnDontKnow" title="A revoir">&#x2717;</button>
+      <button class="card-nav__btn" id="btnPrev" title="Precedente">&#x2190;</button>
+      <button class="card-nav__btn" id="btnNext" title="Suivante">&#x2192;</button>
+      <button class="card-nav__btn card-nav__btn--know" id="btnKnow" title="Je sais">&#x2713;</button>
+    </div>
+
+    <!-- Score -->
+    <div class="score-screen" id="scoreScreen">
+      <div class="score__number" id="scoreNumber"></div>
+      <div class="score__label" id="scoreLabel"></div>
+      <div class="score__bar"><div class="score__bar-fill" id="scoreBar"></div></div>
+      <div class="score__detail" id="scoreDetail"></div>
+      <button class="score__retry" id="retryBtn">Recommencer</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">&copy; 2026 LibMaths</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // KaTeX
+    if (typeof renderMathInElement === 'function') {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ],
+        throwOnError: false
+      });
+    }
+
+    // ── FLASHCARD DATA ──
+    const CARDS = [
+      // === REDUCTION ===
+      {ch:"reduction",type:"thm",q:"Enoncer le theoreme de Cayley-Hamilton.",a:"Soit \\(A \\in M_n(\\mathbb{K})\\). Alors \\(\\chi_A(A) = 0\\). Le polynome caracteristique annule la matrice.",hint:"Lien chi_A et Pi_A ?"},
+      {ch:"reduction",type:"def",q:"Qu'est-ce que le polynome minimal \\(\\Pi_A\\) ?",a:"C'est le polynome unitaire de plus petit degre annulant \\(A\\). Il divise tout polynome annulateur, et \\(\\Pi_A \\mid \\chi_A\\).",hint:"Generateur de l'ideal annulateur"},
+      {ch:"reduction",type:"method",q:"Comment diagonaliser une matrice \\(A \\in M_3(\\mathbb{R})\\) ?",a:"1. Calculer \\(\\chi_A\\) et trouver les valeurs propres.<br>2. Pour chaque \\(\\lambda\\), calculer \\(E_\\lambda = \\text{Ker}(A - \\lambda I)\\).<br>3. Verifier \\(\\dim E_\\lambda = \\text{multiplicite}\\) pour chaque \\(\\lambda\\).<br>4. Concatener les bases : \\(P = (v_1 | v_2 | v_3)\\), alors \\(A = PDP^{-1}\\).",hint:"CNS : chi scinde + dim SEP = multiplicite"},
+      {ch:"reduction",type:"thm",q:"CNS de diagonalisabilite ?",a:"\\(A\\) est diagonalisable ssi :<br>- \\(\\chi_A\\) est scinde, ET<br>- pour chaque valeur propre \\(\\lambda\\), \\(\\dim E_\\lambda\\) = multiplicite de \\(\\lambda\\) dans \\(\\chi_A\\).<br><br>Equivalent : \\(\\Pi_A\\) est scinde a racines simples.",hint:"Deux formulations equivalentes"},
+      {ch:"reduction",type:"prop",q:"Si \\(A\\) a \\(n\\) valeurs propres distinctes, que peut-on dire ?",a:"\\(A\\) est diagonalisable. En effet, chaque sous-espace propre est de dimension au moins 1, et la somme des dimensions vaut au moins \\(n = \\dim E\\). C'est un critere suffisant (pas necessaire).",hint:"Condition suffisante classique"},
+      {ch:"reduction",type:"method",q:"Comment calculer \\(A^n\\) pour une matrice diagonalisable ?",a:"1. Diagonaliser : \\(A = PDP^{-1}\\).<br>2. Alors \\(A^n = PD^nP^{-1}\\).<br>3. \\(D^n = \\text{Diag}(\\lambda_1^n, \\ldots, \\lambda_p^n)\\).",hint:"Aussi pour exp(tA)"},
+      {ch:"reduction",type:"thm",q:"Enoncer le lemme de decomposition des noyaux.",a:"Si \\(P_1, \\ldots, P_r\\) sont premiers entre eux deux a deux et \\(P = P_1 \\cdots P_r\\), alors $$\\text{Ker}(P(u)) = \\bigoplus_{i=1}^r \\text{Ker}(P_i(u))$$",hint:"Base de la reduction"},
+      {ch:"reduction",type:"def",q:"Qu'est-ce qu'un sous-espace caracteristique ?",a:"Pour \\(\\lambda\\) valeur propre de \\(u\\) de multiplicite \\(\\alpha\\) dans \\(\\chi_u\\) : $$F_\\lambda = \\text{Ker}(u - \\lambda\\text{Id})^\\alpha$$ On a \\(E_\\lambda \\subset F_\\lambda\\) et \\(\\dim F_\\lambda = \\alpha\\).",hint:"Contient le SEP, dimension = multiplicite"},
+
+      // === ALGEBRE ===
+      {ch:"algebre",type:"thm",q:"Enoncer le theoreme du rang.",a:"Pour \\(f \\in \\mathcal{L}(E, F)\\) avec \\(\\dim E = n\\) : $$\\dim E = \\dim \\text{Ker}(f) + \\text{rg}(f)$$",hint:"Consequence fondamentale"},
+      {ch:"algebre",type:"def",q:"Qu'est-ce qu'un hyperplan ?",a:"Un hyperplan de \\(E\\) (dim \\(n\\)) est un sous-espace de dimension \\(n-1\\). Equivalent : c'est le noyau d'une forme lineaire non nulle \\(\\varphi \\in E^*\\).",hint:"Codimension 1"},
+      {ch:"algebre",type:"prop",q:"Proprietes d'un projecteur \\(p\\) (\\(p^2 = p\\)) ?",a:"\\(E = \\text{Im}(p) \\oplus \\text{Ker}(p)\\).<br>\\(\\text{Im}(p) = \\text{Ker}(p - \\text{Id})\\).<br>\\(\\text{Ker}(p) = \\text{Im}(\\text{Id} - p)\\).<br>Spectre : \\(\\text{Sp}(p) \\subset \\{0, 1\\}\\).",hint:"p est toujours diagonalisable"},
+      {ch:"algebre",type:"method",q:"Comment montrer que \\(f\\) est un isomorphisme en dimension finie ?",a:"Si \\(\\dim E = \\dim F\\), il suffit de montrer UNE des trois :<br>- \\(f\\) injective (\\(\\text{Ker} f = \\{0\\}\\))<br>- \\(f\\) surjective (\\(\\text{Im} f = F\\))<br>- \\(f\\) bijective<br>Les trois sont equivalentes.",hint:"Grace au theoreme du rang"},
+
+      // === EUCLIDIEN ===
+      {ch:"euclidien",type:"thm",q:"Enoncer le theoreme spectral.",a:"Toute matrice symetrique reelle \\(S \\in \\mathcal{S}_n(\\mathbb{R})\\) est diagonalisable dans une base orthonormee. Ses valeurs propres sont reelles et ses sous-espaces propres sont deux a deux orthogonaux.",hint:"Fondamental pour les espaces euclidiens"},
+      {ch:"euclidien",type:"thm",q:"Enoncer l'inegalite de Cauchy-Schwarz.",a:"Pour tout \\(x, y\\) dans un espace prehilbertien : $$|\\langle x, y \\rangle| \\leq \\|x\\| \\cdot \\|y\\|$$ Egalite ssi \\((x, y)\\) est liee.",hint:"Preuve par le discriminant de t -> ||x+ty||^2"},
+      {ch:"euclidien",type:"method",q:"Comment calculer la projection orthogonale sur \\(F\\) ?",a:"Si \\((e_1, \\ldots, e_p)\\) est une BON de \\(F\\) : $$p_F(x) = \\sum_{i=1}^p \\langle x, e_i \\rangle e_i$$ Distance : \\(d(x, F) = \\|x - p_F(x)\\|\\).",hint:"Gram-Schmidt si pas de BON"},
+      {ch:"euclidien",type:"prop",q:"Proprietes de \\(F^\\perp\\) dans un espace euclidien ?",a:"\\(E = F \\oplus F^\\perp\\) (somme directe orthogonale).<br>\\(\\dim F^\\perp = \\dim E - \\dim F\\).<br>\\((F^\\perp)^\\perp = F\\).",hint:"Supplementaire canonique"},
+
+      // === SERIES ===
+      {ch:"series",type:"thm",q:"Critere de convergence normale (Weierstrass) ?",a:"Si \\(\\sum \\|f_n\\|_\\infty\\) converge (convergence normale), alors \\(\\sum f_n\\) converge uniformement et absolument.",hint:"CVN => CVU => CVS"},
+      {ch:"series",type:"method",q:"Comment montrer la CVU d'une serie de fonctions ?",a:"1. Essayer la CVN : majorer \\(\\|f_n\\|_\\infty\\) par \\(a_n\\) avec \\(\\sum a_n < \\infty\\).<br>2. Si echec : etudier le reste \\(R_n(x) = \\sum_{k>n} f_k(x)\\) et montrer \\(\\|R_n\\|_\\infty \\to 0\\).",hint:"CVN est un critere suffisant, pas necessaire"},
+      {ch:"series",type:"thm",q:"Quand peut-on deriver terme a terme une serie ?",a:"Si (H1) \\(\\sum f_n\\) CVS en au moins un point, (H2) chaque \\(f_n \\in C^1\\), et (H3) \\(\\sum f_n'\\) CVU, alors \\(\\sum f_n\\) est \\(C^1\\) et \\((\\sum f_n)' = \\sum f_n'\\).",hint:"L'hypothese cruciale est H3"},
+      {ch:"series",type:"def",q:"Rayon de convergence d'une serie entiere ?",a:"$$R = \\sup\\{|z| : (a_n z^n) \\text{ bornee}\\}$$ Pour \\(|z| < R\\) : CVA. Pour \\(|z| > R\\) : divergence grossiere. Formule de d'Alembert : \\(R = \\lim |a_n/a_{n+1}|\\).",hint:"Lemme d'Abel"},
+
+      // === INTEGRALES ===
+      {ch:"integrales",type:"thm",q:"Integrales de Riemann : convergence de \\(\\int_1^{+\\infty} \\frac{dt}{t^\\alpha}\\) ?",a:"Converge ssi \\(\\alpha > 1\\).<br>En \\(0\\) : \\(\\int_0^1 \\frac{dt}{t^\\alpha}\\) converge ssi \\(\\alpha < 1\\).",hint:"References de comparaison"},
+      {ch:"integrales",type:"method",q:"Comment montrer la convergence d'une integrale impropre ?",a:"1. Signe constant : comparaison, equivalents, regle \\(t^\\alpha f(t) \\to \\ell\\).<br>2. Signe quelconque : convergence absolue, ou IPP/Abel pour semi-convergence.<br>3. Classique : \\(\\int_1^\\infty \\frac{\\sin t}{t}dt\\) converge (IPP) mais pas absolument.",hint:"Toujours preciser le type de convergence"},
+      {ch:"integrales",type:"thm",q:"Theoreme de derivation sous le signe integral (Leibniz) ?",a:"Si \\(f(x,t)\\) est continue, \\(\\partial f/\\partial x\\) existe et est continue, et il existe \\(g(t)\\) integrable dominant \\(|\\partial f/\\partial x|\\), alors : $$F'(x) = \\int_I \\frac{\\partial f}{\\partial x}(x,t)\\,dt$$",hint:"5 etapes : existence, continuite, domination, conclusion"},
+      {ch:"integrales",type:"prop",q:"Formule de Stirling ?",a:"$$n! \\sim \\left(\\frac{n}{e}\\right)^n \\sqrt{2\\pi n}$$",hint:"Utile pour les equivalents de suites"},
+
+      // === PROBAS ===
+      {ch:"probas",type:"thm",q:"Inegalite de Bienayme-Tchebychev ?",a:"$$P(|X - E(X)| \\geq a) \\leq \\frac{V(X)}{a^2}$$",hint:"Consequence de Markov"},
+      {ch:"probas",type:"thm",q:"Loi faible des grands nombres ?",a:"Si \\(X_1, \\ldots, X_n\\) sont i.i.d. d'esperance \\(m\\) et variance \\(\\sigma^2\\), alors : $$P\\left(\\left|\\frac{S_n}{n} - m\\right| \\geq \\varepsilon\\right) \\leq \\frac{\\sigma^2}{n\\varepsilon^2} \\xrightarrow{n \\to \\infty} 0$$",hint:"Consequence directe de Bienayme-Tchebychev"},
+      {ch:"probas",type:"def",q:"Fonction generatrice \\(G_X\\) ?",a:"$$G_X(t) = E(t^X) = \\sum_{k=0}^{+\\infty} P(X=k)\\,t^k$$ Proprietes : \\(G_X(1) = 1\\), \\(E(X) = G_X'(1)\\), \\(V(X) = G_X''(1) + G_X'(1) - (G_X'(1))^2\\).",hint:"Definie sur [-1,1] au moins"},
+      {ch:"probas",type:"method",q:"Loi du max de deux VA independantes ?",a:"Si \\(X, Y\\) independantes : $$F_{\\max(X,Y)}(t) = F_X(t) \\cdot F_Y(t)$$ Car \\(P(\\max \\leq t) = P(X \\leq t) \\cap P(Y \\leq t)\\).",hint:"Pour le min : 1 - (1-F_X)(1-F_Y)"},
+
+      // === TOPOLOGIE ===
+      {ch:"topologie",type:"thm",q:"Theoreme du point fixe de Banach ?",a:"Si \\((E,d)\\) est un espace metrique complet et \\(f : E \\to E\\) est contractante (\\(d(f(x),f(y)) \\leq k\\,d(x,y)\\), \\(k < 1\\)), alors \\(f\\) admet un unique point fixe \\(\\ell\\), et \\(f^n(x) \\to \\ell\\) pour tout \\(x\\).",hint:"Preuve : suite de Cauchy"},
+      {ch:"topologie",type:"prop",q:"En dimension finie, toutes les normes sont... ?",a:"Equivalentes. Consequence : les notions d'ouvert, ferme, convergence, continuite, compacite sont les memes quelle que soit la norme choisie.",hint:"Specifique a la dimension finie"},
+      {ch:"topologie",type:"def",q:"Partie compacte dans un EVN de dimension finie ?",a:"\\(K\\) est compact ssi \\(K\\) est ferme et borne. Equivalemment, de toute suite d'elements de \\(K\\) on peut extraire une sous-suite convergente de limite dans \\(K\\).",hint:"Bolzano-Weierstrass"},
+
+      // === EDL ===
+      {ch:"edl",type:"method",q:"Solutions de \\(y'' + ay' + by = 0\\) a coefficients constants ?",a:"Equation caracteristique \\(r^2 + ar + b = 0\\).<br>- \\(\\Delta > 0\\) : \\(y = \\lambda e^{r_1 x} + \\mu e^{r_2 x}\\)<br>- \\(\\Delta = 0\\) : \\(y = (\\lambda + \\mu x)e^{rx}\\)<br>- \\(\\Delta < 0\\), \\(r = \\alpha \\pm i\\omega\\) : \\(y = e^{\\alpha x}(\\lambda\\cos\\omega x + \\mu\\sin\\omega x)\\)",hint:"3 cas selon le discriminant"},
+      {ch:"edl",type:"thm",q:"Propriete fondamentale de \\(\\exp(tA)\\) ?",a:"$$\\frac{d}{dt}\\exp(tA) = A\\exp(tA) = \\exp(tA)A$$ Solution de \\(X' = AX\\) avec \\(X(0) = X_0\\) : \\(X(t) = \\exp(tA)X_0\\).<br>Attention : \\(e^{A+B} \\neq e^A e^B\\) sauf si \\(AB = BA\\).",hint:"Cas diag : exp(tD) = Diag(e^{t lambda_i})"},
+      {ch:"edl",type:"prop",q:"Formule de Liouville pour le Wronskien ?",a:"Si \\(y_1, y_2\\) sont solutions de \\(y'' + ay' + by = 0\\) : $$W(x) = W(x_0)\\exp\\left(-\\int_{x_0}^x a(t)\\,dt\\right)$$ Le Wronskien ne s'annule jamais ou est identiquement nul.",hint:"Utile pour la liberte de solutions"},
+
+      // === CALCUL DIFF ===
+      {ch:"calculdiff",type:"method",q:"Comment trouver les extrema locaux d'une fonction de deux variables ?",a:"1. Calculer \\(\\nabla f = 0\\) : trouver les points critiques.<br>2. Calculer la hessienne \\(H_f\\) en chaque point critique.<br>3. Si \\(rt - s^2 > 0\\) : min (si \\(r > 0\\)) ou max (si \\(r < 0\\)).<br>4. Si \\(rt - s^2 < 0\\) : point selle.",hint:"r = d2f/dx2, s = d2f/dxdy, t = d2f/dy2"},
+      {ch:"calculdiff",type:"thm",q:"Theoreme des fonctions implicites (cas \\(F(x,y) = 0\\)) ?",a:"Si \\(F\\) est \\(C^1\\), \\(F(a,b) = 0\\) et \\(\\frac{\\partial F}{\\partial y}(a,b) \\neq 0\\), alors il existe un voisinage de \\(a\\) et une unique fonction \\(y = \\varphi(x)\\) de classe \\(C^1\\) telle que \\(F(x, \\varphi(x)) = 0\\), avec \\(\\varphi'(x) = -\\frac{\\partial F/\\partial x}{\\partial F/\\partial y}\\).",hint:"Condition : derivee partielle non nulle"}
+    ];
+
+    // ── STATE ──
+    let deck = [];
+    let idx = 0;
+    let known = 0;
+    let total = 0;
+    let activeFilters = new Set(['all']);
+
+    // ── DOM ──
+    const chipContainer = document.getElementById('chipContainer');
+    const startBtn = document.getElementById('startBtn');
+    const counter = document.getElementById('counter');
+    const progressBar = document.getElementById('progressBar');
+    const introScreen = document.getElementById('introScreen');
+    const cardScene = document.getElementById('cardScene');
+    const cardNav = document.getElementById('cardNav');
+    const flashcard = document.getElementById('flashcard');
+    const scoreScreen = document.getElementById('scoreScreen');
+
+    // ── CHIPS ──
+    chipContainer.addEventListener('click', function(e) {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+      const ch = chip.dataset.ch;
+      if (ch === 'all') {
+        activeFilters = new Set(['all']);
+        chipContainer.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      } else {
+        activeFilters.delete('all');
+        chipContainer.querySelector('[data-ch="all"]').classList.remove('active');
+        chip.classList.toggle('active');
+        if (chip.classList.contains('active')) activeFilters.add(ch);
+        else activeFilters.delete(ch);
+        if (activeFilters.size === 0) {
+          activeFilters.add('all');
+          chipContainer.querySelector('[data-ch="all"]').classList.add('active');
+        }
+      }
+      updateCount();
+    });
+
+    function getFilteredCards() {
+      if (activeFilters.has('all')) return [...CARDS];
+      return CARDS.filter(c => activeFilters.has(c.ch));
+    }
+
+    function updateCount() {
+      const n = getFilteredCards().length;
+      startBtn.textContent = 'Lancer ' + Math.min(n, 20) + ' cartes';
+    }
+
+    // ── START ──
+    startBtn.addEventListener('click', function() {
+      const filtered = getFilteredCards();
+      // Shuffle
+      for (let i = filtered.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+      }
+      deck = filtered.slice(0, 20);
+      total = deck.length;
+      idx = 0;
+      known = 0;
+      introScreen.style.display = 'none';
+      scoreScreen.classList.remove('show');
+      cardScene.style.display = 'block';
+      cardNav.style.display = 'flex';
+      showCard();
+    });
+
+    // ── SHOW CARD ──
+    function showCard() {
+      if (idx >= deck.length) { showScore(); return; }
+      const c = deck[idx];
+      flashcard.classList.remove('flipped');
+      document.getElementById('cardTag').innerHTML = '<span>' + c.ch.toUpperCase() + '</span>';
+      const typeEl = document.getElementById('cardType');
+      const typeMap = {def:'Definition',thm:'Theoreme',method:'Methode',prop:'Proposition'};
+      const classMap = {def:'card__type--def',thm:'card__type--thm',method:'card__type--method',prop:'card__type--prop'};
+      typeEl.className = 'card__type ' + (classMap[c.type] || '');
+      typeEl.textContent = typeMap[c.type] || c.type;
+      document.getElementById('cardQuestion').innerHTML = c.q;
+      document.getElementById('cardHint').innerHTML = c.hint ? 'Indice : ' + c.hint : '';
+      document.getElementById('cardAnswer').innerHTML = c.a;
+      counter.textContent = (idx + 1) + ' / ' + total;
+      progressBar.style.width = ((idx + 1) / total * 100) + '%';
+      // Re-render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(cardScene, {
+          delimiters: [{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],
+          throwOnError: false
+        });
+      }
+    }
+
+    // ── FLIP ──
+    flashcard.addEventListener('click', function() {
+      flashcard.classList.toggle('flipped');
+      setTimeout(function() {
+        if (typeof renderMathInElement === 'function') {
+          renderMathInElement(cardScene, {
+            delimiters: [{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],
+            throwOnError: false
+          });
+        }
+      }, 350);
+    });
+
+    // ── NAV ──
+    document.getElementById('btnNext').addEventListener('click', function() { idx++; showCard(); });
+    document.getElementById('btnPrev').addEventListener('click', function() { if (idx > 0) { idx--; showCard(); } });
+    document.getElementById('btnKnow').addEventListener('click', function() { known++; idx++; showCard(); });
+    document.getElementById('btnDontKnow').addEventListener('click', function() { idx++; showCard(); });
+
+    // ── SCORE ──
+    function showScore() {
+      cardScene.style.display = 'none';
+      cardNav.style.display = 'none';
+      scoreScreen.classList.add('show');
+      const pct = Math.round(known / total * 100);
+      document.getElementById('scoreNumber').textContent = pct + '%';
+      document.getElementById('scoreLabel').textContent = known + ' / ' + total + ' cartes maitrisees';
+      const bar = document.getElementById('scoreBar');
+      bar.style.width = '0%';
+      bar.className = 'score__bar-fill ' + (pct >= 70 ? 'score__bar-fill--good' : pct >= 40 ? 'score__bar-fill--mid' : 'score__bar-fill--bad');
+      setTimeout(function() { bar.style.width = pct + '%'; }, 100);
+      const msg = pct >= 80 ? 'Excellent ! Tu maitrises bien ce chapitre.' : pct >= 50 ? 'Pas mal, mais revois les points faibles.' : 'Il faut retravailler ces notions.';
+      document.getElementById('scoreDetail').textContent = msg;
+    }
+
+    document.getElementById('retryBtn').addEventListener('click', function() {
+      scoreScreen.classList.remove('show');
+      introScreen.style.display = 'block';
+      updateCount();
+    });
+
+    // ── KEYBOARD ──
+    document.addEventListener('keydown', function(e) {
+      if (cardScene.style.display === 'none') return;
+      if (e.key === ' ' || e.key === 'Enter') { flashcard.classList.toggle('flipped'); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { idx++; showCard(); }
+      if (e.key === 'ArrowLeft' && idx > 0) { idx--; showCard(); }
+    });
+
+    updateCount();
+  });
+  </script>
+</body>
+</html>
