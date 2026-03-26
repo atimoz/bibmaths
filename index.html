@@ -66,8 +66,8 @@
 
     /* ── Mock fiche card (tilted) ── */
     .mock-fiche { display:flex; gap:var(--space-xl); align-items:center; }
-    .mock-fiche__visual { flex:1; position:relative; min-height:360px; }
-    .mock-fiche__card { position:absolute; width:280px; background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:var(--space-lg); box-shadow:0 20px 60px rgba(0,0,0,.08); transition:transform .6s var(--ease-out); }
+    .mock-fiche__visual { flex:1; position:relative; min-height:420px; }
+    .mock-fiche__card { position:absolute; width:320px; background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:var(--space-lg); box-shadow:0 20px 60px rgba(0,0,0,.08); transition:transform .6s var(--ease-out); }
     .mock-fiche__card--1 { top:0; left:10%; transform:rotate(-4deg); z-index:2; }
     .mock-fiche__card--2 { top:40px; left:30%; transform:rotate(3deg); z-index:1; }
     .mock-fiche__card--1.vis { transform:rotate(-2deg) translateY(-8px); }
@@ -79,7 +79,7 @@
     .mock-fiche__text { flex:1; }
 
     /* ── Mock quiz ── */
-    .mock-quiz { max-width:480px; background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:var(--space-lg); margin-top:var(--space-xl); box-shadow:0 12px 40px rgba(0,0,0,.06); }
+    .mock-quiz { max-width:100%; background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:var(--space-lg) var(--space-xl); margin-top:var(--space-xl); box-shadow:0 12px 40px rgba(0,0,0,.06); }
     .mock-quiz__q { font-size:.95rem; line-height:1.6; margin-bottom:var(--space-md); }
     .mock-quiz__btns { display:flex; gap:var(--space-sm); }
     .mock-quiz__btn { flex:1; padding:10px; border-radius:10px; font-family:var(--font-body); font-size:.85rem; font-weight:600; cursor:pointer; transition:all .2s; border:2px solid transparent; }
@@ -262,17 +262,22 @@
         <div class="mock-fiche__card mock-fiche__card--1 anim-left">
           <span class="mock-fiche__card-badge">Essentiel</span>
           <h4 class="mock-fiche__card-title">Integrales generalisees</h4>
-          <div class="mock-fiche__card-line" style="width:90%"></div>
-          <div class="mock-fiche__card-line" style="width:75%"></div>
-          <div class="mock-fiche__card-line mock-fiche__card-line--short"></div>
-          <div style="margin-top:12px;font-size:.8rem;color:var(--ink-light)">Wallis · Gamma · Fresnel · Gauss · Stirling</div>
+          <div style="margin-top:12px;font-size:.82rem;line-height:1.65;color:var(--ink)">
+            <strong style="color:var(--accent);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase">Theoreme</strong>
+            <p style="margin:6px 0">Si \(f \geq 0\) continue et \(f(t) \sim \frac{1}{t^\alpha}\) en \(+\infty\), alors \(\int_1^{+\infty} f\) converge ssi \(\alpha > 1\).</p>
+            <strong style="color:var(--accent);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase">Formulaire</strong>
+            <p style="margin:6px 0">\(\Gamma(n+1) = n!\) &nbsp;·&nbsp; \(\int_0^{+\infty} e^{-t^2} dt = \frac{\sqrt{\pi}}{2}\)</p>
+          </div>
         </div>
         <div class="mock-fiche__card mock-fiche__card--2 anim-left d3">
           <span class="mock-fiche__card-badge" style="background:rgba(210,140,40,.12);color:#D28C28">Frequent</span>
-          <h4 class="mock-fiche__card-title">Series entieres</h4>
-          <div class="mock-fiche__card-line" style="width:85%"></div>
-          <div class="mock-fiche__card-line" style="width:70%"></div>
-          <div class="mock-fiche__card-line mock-fiche__card-line--short"></div>
+          <h4 class="mock-fiche__card-title">Reduction avancee</h4>
+          <div style="margin-top:12px;font-size:.82rem;line-height:1.65;color:var(--ink)">
+            <strong style="color:var(--accent);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase">CNS Diagonalisation</strong>
+            <p style="margin:6px 0">\(\chi_u\) scinde et \(\forall \lambda,\ \dim E_\lambda = m_\lambda\)</p>
+            <strong style="color:var(--accent);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase">Cayley-Hamilton</strong>
+            <p style="margin:6px 0">\(\chi_A(A) = 0\) et \(\Pi_A \mid \chi_A\)</p>
+          </div>
         </div>
       </div>
       <div class="mock-fiche__text anim-right d2">
