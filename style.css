@@ -591,6 +591,7 @@ a {
   border-bottom: 1px solid var(--border);
   transform: translateY(-10px);
   opacity: 0;
+  pointer-events: none;
   transition: all 0.3s var(--ease-out);
   overflow-y: auto;
 }
@@ -598,6 +599,7 @@ a {
 .mobile-menu.active {
   transform: translateY(0);
   opacity: 1;
+  pointer-events: auto;
 }
 
 .mobile-menu__group {
@@ -1973,6 +1975,11 @@ a {
 
   .mobile-menu {
     display: flex;
+    pointer-events: none;
+  }
+
+  .mobile-menu.active {
+    pointer-events: auto;
   }
 
   .domains-grid {
