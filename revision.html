@@ -109,6 +109,10 @@
     .card-nav__btn--know:hover{background:rgba(52,199,89,.15)}
     .card-nav__btn--dontknow{background:rgba(255,59,48,.06);border-color:rgba(255,59,48,.25);color:#FF3B30}
     .card-nav__btn--dontknow:hover{background:rgba(255,59,48,.12)}
+    .card-nav__btn--undo{background:rgba(255,165,0,.06);border-color:rgba(255,165,0,.25);color:#F5A623}
+    .card-nav__btn--undo:hover{background:rgba(255,165,0,.12)}
+    .card-nav__btn--quit{background:rgba(120,120,120,.06);border-color:rgba(120,120,120,.25);color:#888;font-size:.9rem}
+    .card-nav__btn--quit:hover{background:rgba(120,120,120,.12)}
     .card-nav__shortcut{font-family:var(--font-mono);font-size:.5rem;position:absolute;bottom:-18px;color:var(--ink-muted);letter-spacing:.04em;opacity:.6}
 
     /* ── Score screen ── */
@@ -302,7 +306,9 @@
 
     <!-- Nav -->
     <div class="card-nav" id="cardNav" style="display:none">
+      <button class="card-nav__btn card-nav__btn--quit" id="btnQuit" title="Quitter la session" style="position:relative">&#x23F9;<span class="card-nav__shortcut">Esc</span></button>
       <button class="card-nav__btn card-nav__btn--dontknow" id="btnDontKnow" title="A revoir (2)" style="position:relative">&#x2717;<span class="card-nav__shortcut">2</span></button>
+      <button class="card-nav__btn card-nav__btn--undo" id="btnUndo" title="Devalider (3)" style="position:relative">&#x21A9;<span class="card-nav__shortcut">3</span></button>
       <button class="card-nav__btn" id="btnPrev" title="Precedente" style="position:relative">&#x2190;<span class="card-nav__shortcut">&larr;</span></button>
       <button class="card-nav__btn" id="btnNext" title="Suivante" style="position:relative">&#x2192;<span class="card-nav__shortcut">&rarr;</span></button>
       <button class="card-nav__btn card-nav__btn--know" id="btnKnow" title="Je sais (1)" style="position:relative">&#x2713;<span class="card-nav__shortcut">1</span></button>
@@ -778,6 +784,8 @@
       const srs = loadSRS();
       markKnow(srs, c.id);
       sessionResults.push({ card: c, correct: true });
+      updateStreak();
+      updateStats();
       idx++;
       showCard();
     }
@@ -788,8 +796,37 @@
       const srs = loadSRS();
       markDontKnow(srs, c.id);
       sessionResults.push({ card: c, correct: false });
+      updateStats();
       idx++;
       showCard();
+    }
+
+    function handleUndo() {
+      if (!sessionActive || idx >= deck.length) return;
+      const c = deck[idx];
+      const srs = loadSRS();
+      // Reset card to box 1 (à revoir demain)
+      const entry = getSRSEntry(srs, c.id);
+      entry.box = 1;
+      entry.nextReview = addDays(today(), 1);
+      entry.lastSeen = today();
+      srs[c.id] = entry;
+      saveSRS(srs);
+      updateStats();
+      // Visual feedback
+      flashcard.style.transition = 'transform .3s, opacity .3s';
+      flashcard.style.opacity = '0.5';
+      setTimeout(function() { flashcard.style.opacity = '1'; }, 300);
+      // Re-render box indicator
+      var srsBox = document.getElementById('cardSrsBox');
+      srsBox.textContent = 'Boite 1';
+      srsBox.className = 'card__srs-box card__srs-box--1';
+    }
+
+    function handleQuit() {
+      if (!sessionActive) return;
+      // End session early — all markKnow/markDontKnow already saved to SRS
+      showScore();
     }
 
     function handleNext() {
@@ -806,6 +843,8 @@
 
     document.getElementById('btnKnow').addEventListener('click', handleKnow);
     document.getElementById('btnDontKnow').addEventListener('click', handleDontKnow);
+    document.getElementById('btnUndo').addEventListener('click', handleUndo);
+    document.getElementById('btnQuit').addEventListener('click', handleQuit);
     document.getElementById('btnNext').addEventListener('click', handleNext);
     document.getElementById('btnPrev').addEventListener('click', handlePrev);
 
@@ -897,6 +936,8 @@
       }
       if (e.key === '1') { handleKnow(); e.preventDefault(); }
       if (e.key === '2') { handleDontKnow(); e.preventDefault(); }
+      if (e.key === '3') { handleUndo(); e.preventDefault(); }
+      if (e.key === 'Escape') { handleQuit(); e.preventDefault(); }
       if (e.key === 'ArrowRight') { handleNext(); e.preventDefault(); }
       if (e.key === 'ArrowLeft') { handlePrev(); e.preventDefault(); }
     });
