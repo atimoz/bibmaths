@@ -196,7 +196,7 @@
       <div class="annale-partie">
         <h3 class="annale-partie__title">I.1 -- Utilisation d'une serie entiere</h3>
 
-        <div class="question">
+        <div class="question" id="Q1">
           <span class="question__num">Q1.</span>
           <p>Demontrer a l'aide d'une serie entiere que :</p>
           <div class="math-display">$$I = \sum_{n=0}^{+\infty} \frac{(-1)^n}{(2n+1)\,n!}$$</div>
@@ -205,18 +205,18 @@
         <p class="annale-exercice__intro">On pose pour \(n \in \mathbb{N}\) :</p>
         <div class="math-display">$$s_n = \sum_{k=0}^{n} \frac{(-1)^k}{(2k+1)\,k!}$$</div>
 
-        <div class="question">
+        <div class="question" id="Q2">
           <span class="question__num">Q2.</span>
           <p>Justifier que pour tout \(n \in \mathbb{N}\), on a :</p>
           <div class="math-display">$$|I - s_n| \leqslant \frac{1}{(2n+3)(n+1)!}$$</div>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q3">
           <span class="question__num">Q3.</span>
           <p>Informatique : ecrire une fonction recursive <code>factorielle</code> qui prend en argument un entier naturel \(n\) et renvoie l'entier \(n!\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q4">
           <span class="question__num">Q4.</span>
           <p>Informatique : en deduire un script, qui determine un entier \(N\), tel que \(|I - s_N| \leqslant 10^{-6}\).</p>
         </div>
@@ -229,12 +229,12 @@
         <p class="annale-exercice__intro">Pour tout \(n \in \mathbb{N}^*\), on definit sur \([0, +\infty[\) la fonction \(f_n\) par :</p>
         <div class="math-display">$$f_n(x) = \left(1 - \frac{x^2}{n}\right)^n$$</div>
 
-        <div class="question">
+        <div class="question" id="Q5">
           <span class="question__num">Q5.</span>
           <p>Determiner, en detaillant, la limite simple de la suite de fonctions \((f_n)_{n \in \mathbb{N}^*}\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q6">
           <span class="question__num">Q6.</span>
           <p>Soit \(n \in \mathbb{N}^*\). Demontrer que \(\forall x \in [0,1],\, |f_n(x)| \leqslant e^{-x^2}\).</p>
           <p>En deduire que :</p>
@@ -264,7 +264,7 @@
         <p class="annale-exercice__intro">On pose :</p>
         <div class="math-display">$$L_n(f) = \sum_{i=0}^{n} f(x_i)\,l_i(X)$$</div>
 
-        <div class="question">
+        <div class="question" id="Q7">
           <span class="question__num">Q7.</span>
           <p>Demontrer que \(L_n(f)\) est un polynome interpolateur de \(f\) aux points \(x_i\), puis demontrer l'unicite d'un tel polynome.</p>
           <p>Un tel polynome est appele polynome interpolateur de Lagrange.</p>
@@ -275,13 +275,13 @@
       <div class="annale-partie">
         <h3 class="annale-partie__title">II.2 -- Calcul effectif du polynome interpolateur de Lagrange</h3>
 
-        <div class="question">
+        <div class="question" id="Q8">
           <span class="question__num">Q8.</span>
           <p>Informatique : si \(y_0, \ldots, y_n\) sont des reels, le polynome \(P = \sum_{i=0}^{n} y_i\,l_i(X)\) est l'unique polynome de \(\mathbb{R}_n[X]\) verifiant \(P(x_i) = y_i\) pour tout \(i\). Ecrire en langage Python une fonction <code>lagrange</code> qui prend en arguments <code>x</code> une liste de points d'interpolations \(x_i\), <code>y</code> une liste d'ordonnees \(y_i\) de meme longueur que <code>x</code>, <code>a</code> un reel, et qui renvoie la valeur de \(P\) en \(a\).</p>
           <p>Par exemple, si <code>x = [-1, 0, 1]</code> et <code>y = [4, 0, 4]</code>, on montre que \(P = 4X^2\) et donc \(P(3) = 36\). Ainsi, <code>lagrange(x, y, 3)</code> renverra <code>36</code>.</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q9">
           <span class="question__num">Q9.</span>
           <p>Informatique : chercher le polynome interpolateur \(P = a_0 + a_1 X + \cdots + a_n X^n\) de \(f\) aux points \(x_i\) revient aussi a resoudre le systeme lineaire suivant d'inconnues \(a_0, \ldots, a_n\) :</p>
           <div class="math-display">$$\begin{cases} P(x_0) = f(x_0) \\ \quad\vdots \\ P(x_n) = f(x_n) \end{cases} \iff V \begin{pmatrix} a_0 \\ \vdots \\ a_n \end{pmatrix} = \begin{pmatrix} f(x_0) \\ \vdots \\ f(x_n) \end{pmatrix}$$</div>
@@ -305,12 +305,12 @@
         <p class="annale-exercice__intro">On veut demontrer pour tout reel \(x \in [a,b]\), la propriete suivante notee \(\mathcal{P}_x\) :</p>
         <div class="math-display">$$\exists\, c_x \in \,]a,b[\,,\quad f(x) - L_n(f)(x) = \frac{f^{(n+1)}(c_x)}{(n+1)!}\,\pi_\sigma(x)$$</div>
 
-        <div class="question">
+        <div class="question" id="Q10">
           <span class="question__num">Q10.</span>
           <p>Resultat preliminaire : soit \(p \in \mathbb{N}^*\). Demontrer que si \(\varphi : [a,b] \to \mathbb{R}\) est une fonction \(p\)-fois derivable qui s'annule \(p+1\) fois, alors il existe \(c \in \,]a,b[\) tel que \(\varphi^{(p)}(c) = 0\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q11">
           <span class="question__num">Q11.</span>
           <p>Justifier que pour tout \(x \in \sigma\), la propriete \(\mathcal{P}_x\) est vraie.</p>
         </div>
@@ -318,28 +318,28 @@
         <p class="annale-exercice__intro">On fixe \(x\) un reel de \([a,b]\) qui n'est pas dans \(\sigma\). Soit \(\lambda\) un reel. On definit sur \([a,b]\) une application \(F\) par :</p>
         <div class="math-display">$$F(t) = f(t) - L_n(f)(t) - \lambda\,\pi_\sigma(t)$$</div>
 
-        <div class="question">
+        <div class="question" id="Q12">
           <span class="question__num">Q12.</span>
           <p>Determiner un reel \(\lambda\) de sorte que \(F(x) = 0\). On choisira alors \(\lambda\) de cette facon.</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q13">
           <span class="question__num">Q13.</span>
           <p>Demontrer que \(F\) s'annule \(n+2\) fois et en deduire que \(\mathcal{P}_x\) est vraie.</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q14">
           <span class="question__num">Q14.</span>
           <p>Justifier que la fonction \(f^{(n+1)}\) est bornee sur \([a,b]\) et en deduire un reel positif \(K\) independant de \(n\) tel que :</p>
           <div class="math-display">$$\|f - L_n(f)\|_\infty \leqslant \frac{K^{n+1}}{(n+1)!}\,\|f^{(n+1)}\|_\infty$$</div>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q15">
           <span class="question__num">Q15.</span>
           <p>En deduire que si \(f\) est la fonction sinus, la suite \((L_n(f))_{n \in \mathbb{N}}\) converge uniformement vers \(f\) sur \([0, 2\pi]\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q16">
           <span class="question__num">Q16.</span>
           <p>On definit \(f\) sur \([-1,1]\) par \(f(x) = \dfrac{1}{1+x^2}\). Demontrer a l'aide d'une serie entiere que :</p>
           <div class="math-display">$$\forall k \in \mathbb{N},\quad \|f^{(2k)}\|_\infty \geqslant (2k)!$$</div>
@@ -364,19 +364,19 @@
 
       <p class="annale-exercice__intro">Le polynome \(P_n\) s'appelle le polynome de Legendre d'indice \(n\).</p>
 
-      <div class="question">
+      <div class="question" id="Q17">
         <span class="question__num">Q17.</span>
         <p>Calculer \(P_0\) et \(P_1\).</p>
       </div>
 
-      <div class="question">
+      <div class="question" id="Q18">
         <span class="question__num">Q18.</span>
         <p>Justifier que pour \(n \geqslant 1\), le polynome \(P_n\) est orthogonal a \(\mathbb{R}_{n-1}[X]\). Demontrer que le polynome \(P_n\) est de degre \(n\).</p>
       </div>
 
       <p class="annale-exercice__intro">On prend \(n \geqslant 1\). On veut demontrer que \(P_n\) admet \(n\) racines simples dans \([-1,1]\).</p>
 
-      <div class="question">
+      <div class="question" id="Q19">
         <span class="question__num">Q19.</span>
         <p>Justifier que \(\displaystyle\int_{-1}^{1} P_n(t)\,\mathrm{d}t = 0\) et en deduire que \(P_n\) admet au moins une racine dans \([-1,1]\).</p>
       </div>
@@ -385,7 +385,7 @@
         Supposons par l'absurde que \(P_n\) admette strictement moins de \(n\) racines simples. Si \(P_n\) admet des racines \(t_1, \ldots, t_p\) de multiplicite impaire avec \(p < n\), on pose \(Q = (X - t_1) \cdots (X - t_p)\) ; sinon, on pose \(Q = 1\). On considere enfin le polynome \(H = Q\,P_n\).
       </p>
 
-      <div class="question">
+      <div class="question" id="Q20">
         <span class="question__num">Q20.</span>
         <p>Justifier que \(\displaystyle\int_{-1}^{1} H(t)\,\mathrm{d}t = 0\), puis conclure (on pourra remarquer que \(H\) est de signe constant sur \([-1,1]\)).</p>
       </div>
@@ -406,7 +406,7 @@
       </p>
       <div class="math-display">$$\int_a^b f(x)\,\mathrm{d}x = \sum_{k=0}^{N-1} \int_{x_k}^{x_{k+1}} f(x)\,\mathrm{d}x$$</div>
 
-      <div class="question">
+      <div class="question" id="Q21">
         <span class="question__num">Q21.</span>
         <p>Justifier que :</p>
         <div class="math-display">$$\int_{x_k}^{x_{k+1}} f(x)\,\mathrm{d}x = \frac{x_{k+1} - x_k}{2} \int_{-1}^{1} g(t)\,\mathrm{d}t \quad \text{avec} \quad g(t) = f\!\left(x_k + (t+1)\,\frac{x_{k+1} - x_k}{2}\right)$$</div>
@@ -425,13 +425,13 @@
 
       <p class="annale-exercice__intro">on dit que \(J\) est une methode de quadrature associee aux points \(t_0, \ldots, t_n\) et aux poids \(\alpha_0, \ldots, \alpha_n\).</p>
 
-      <div class="question">
+      <div class="question" id="Q22">
         <span class="question__num">Q22.</span>
         <p>Justifier que pour tout polynome \(P \in \mathbb{R}_n[X]\), on a \(J(P) = \displaystyle\int_{-1}^{1} P(t)\,\mathrm{d}t\).</p>
         <p>On dit que la methode de quadrature \(J\) est d'ordre au moins \(n\) car la formule approchee est exacte pour les polynomes de degre inferieur ou egal a \(n\).</p>
       </div>
 
-      <div class="question">
+      <div class="question" id="Q23">
         <span class="question__num">Q23.</span>
         <p>Exemple : on prend \(n = 1\), \(t_0 = -1\) et \(t_1 = 1\). Determiner \(\alpha_0\) et \(\alpha_1\). Expliquer a l'aide d'un graphique en prenant \(g\) positive pourquoi, dans ce cas, la methode \(J\) s'appelle la &laquo; methode des trapezes &raquo;.</p>
       </div>
@@ -447,12 +447,12 @@
         <p class="annale-exercice__intro">Soit \(P \in \mathbb{R}_{2n+1}[X]\). On fait la division euclidienne de \(P\) par \(P_{n+1}\), on note respectivement \(Q\) le quotient et \(R\) le reste de cette division :</p>
         <div class="math-display">$$P = Q\,P_{n+1} + R$$</div>
 
-        <div class="question">
+        <div class="question" id="Q24">
           <span class="question__num">Q24.</span>
           <p>Demontrer que \(J(Q\,P_{n+1}) = \displaystyle\int_{-1}^{1} Q(t)\,P_{n+1}(t)\,\mathrm{d}t\), puis conclure que \(J(P) = \displaystyle\int_{-1}^{1} P(t)\,\mathrm{d}t\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q25">
           <span class="question__num">Q25.</span>
           <p>Demontrer que les poids \(\alpha_0, \ldots, \alpha_n\) associes a la quadrature de Gauss sont strictement positifs et calculer leur somme.</p>
         </div>

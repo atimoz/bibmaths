@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'X-ENS': 'X-ENS'
   };
 
-  function getExerciceUrl(banque, epreuve, partie) {
+  function getExerciceUrl(banque, epreuve, partie, questions) {
     if (!banque || !epreuve) return null;
     var match = epreuve.match(/maths\s*(\d)\s+(\d{4})/i);
     if (!match) return null;
@@ -497,16 +497,29 @@ document.addEventListener('DOMContentLoaded', () => {
     var slug = BANQUE_TO_SLUG[banque];
     if (!slug) return null;
 
+    // Extract first question number (e.g., "5 q. : Q8, Q9, Q10" -> "Q8")
+    var firstQ = null;
+    if (questions) {
+      var qMatch = questions.match(/Q(\d+)/);
+      if (qMatch) firstQ = 'Q' + qMatch[1];
+    }
+
     // CCINP: link to exercice.html (enonce + correction revealable)
     if (banque === 'CCINP' && CCINP_HTML_YEARS.indexOf(year) !== -1) {
       var sectionId = guessSectionId(partie);
-      return 'cours/annales/exercice.html?banque=ccinp&annee=' + year + '&epreuve=maths' + mnum + '&section=' + sectionId;
+      var url = 'cours/annales/exercice.html?banque=ccinp&annee=' + year + '&epreuve=maths' + mnum + '&section=' + sectionId;
+      if (firstQ) url += '#' + firstQ;
+      return url;
     }
 
-    // All banques: link to full annale HTML page + anchor to the right section
+    // All banques: link to full annale HTML page + anchor to first question
     var htmlPath = 'cours/annales/' + slug + '-' + year + '-maths' + mnum + '.html';
-    var anchor = findSectionAnchor(slug, year, mnum, partie);
-    if (anchor) htmlPath += '#' + anchor;
+    if (firstQ) {
+      htmlPath += '#' + firstQ;
+    } else {
+      var anchor = findSectionAnchor(slug, year, mnum, partie);
+      if (anchor) htmlPath += '#' + anchor;
+    }
     return htmlPath;
   }
 
@@ -597,7 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var bCode = ref.banque === 'CCINP' ? 'c' : ref.banque === 'Centrale-Supelec' || ref.banque.indexOf('Centrale') !== -1 ? 'cs' : ref.banque === 'Mines-Ponts' || ref.banque.indexOf('Mines') !== -1 ? 'm' : 'x';
       var dCode = ref.difficulte ? ref.difficulte[0].toLowerCase() : 's';
       var bLabel = ref.banque || '';
-      var annaleUrl = getExerciceUrl(ref.banque, ref.epreuve, ref.partie);
+      var annaleUrl = getExerciceUrl(ref.banque, ref.epreuve, ref.partie, ref.questions);
 
       html += '<div class="exo-ref">' +
         '<div class="exo-ref__header">' +

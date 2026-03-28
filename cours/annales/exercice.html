@@ -132,6 +132,23 @@
 
       container.innerHTML = html;
 
+      // Add IDs to question divs for anchor navigation
+      container.querySelectorAll('.question').forEach(function(q) {
+        var numEl = q.querySelector('.question__num');
+        if (numEl) {
+          var m = numEl.textContent.match(/Q(\d+)/);
+          if (m) q.id = 'Q' + m[1];
+        }
+      });
+
+      // Scroll to hash anchor (e.g., #Q8) after rendering
+      if (window.location.hash) {
+        setTimeout(function() {
+          var target = document.querySelector(window.location.hash);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      }
+
       // Render KaTeX
       if (window.renderMathInElement) {
         renderMathInElement(container, {

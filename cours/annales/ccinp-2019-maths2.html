@@ -182,17 +182,17 @@
         On definit la valuation \(p\)-adique pour \(p\) nombre premier et \(n\) entier naturel non nul. Si \(p\) divise \(n\), on note \(v_p(n)\) le plus grand entier \(k\) tel que \(p^k\) divise \(n\). Si \(p\) ne divise pas \(n\), on pose \(v_p(n) = 0\). L'entier \(v_p(n)\) s'appelle la valuation \(p\)-adique de \(n\).
       </p>
 
-      <div class="question">
+      <div class="question" id="Q1">
         <span class="question__num">Q1.</span>
         <p>Ecrire une fonction booleenne <code>estPremier(n)</code> qui prend en argument un entier naturel non nul \(n\) et qui renvoie le booleen <code>True</code> si \(n\) est premier et le booleen <code>False</code> sinon. On pourra utiliser le critere suivant : un entier \(n \geq 2\) qui n'est divisible par aucun entier \(d \geq 2\) tel que \(d^2 \leq n\), est premier.</p>
       </div>
 
-      <div class="question">
+      <div class="question" id="Q2">
         <span class="question__num">Q2.</span>
         <p>En deduire une fonction <code>liste_premiers(n)</code> qui prend en argument un entier naturel non nul \(n\) et renvoie la liste des nombres premiers inferieurs ou egaux a \(n\).</p>
       </div>
 
-      <div class="question">
+      <div class="question" id="Q3">
         <span class="question__num">Q3.</span>
         <p>Pour calculer la valuation 2-adique de 40, on peut utiliser la methode suivante :</p>
         <ul>
@@ -205,12 +205,12 @@
         <p>Ecrire une fonction <code>valuation_p_adique(n, p)</code> non recursive qui implemente cet algorithme. Elle prend en arguments un entier naturel \(n\) non nul et un nombre premier \(p\) et renvoie la valuation \(p\)-adique de \(n\). Par exemple, puisque \(40 = 2^3 \times 5\), <code>valuation_p_adique(40, 2)</code> renvoie 3, <code>valuation_p_adique(40, 5)</code> renvoie 1 et <code>valuation_p_adique(40, 7)</code> renvoie 0.</p>
       </div>
 
-      <div class="question">
+      <div class="question" id="Q4">
         <span class="question__num">Q4.</span>
         <p>Ecrire une deuxieme fonction cette fois-ci recursive, <code>val(n, p)</code> qui renvoie la valuation \(p\)-adique de \(n\).</p>
       </div>
 
-      <div class="question">
+      <div class="question" id="Q5">
         <span class="question__num">Q5.</span>
         <p>En deduire une fonction <code>decomposition_facteurs_premiers(n)</code> qui calcule la decomposition en facteurs premiers d'un entier \(n \geq 2\). Cette fonction doit renvoyer la liste des couples \((p, v_p(n))\) pour tous les nombres premiers \(p\) qui divisent \(n\). Par exemple, <code>decomposition_facteurs_premiers(40)</code> renvoie la liste <code>[[2, 3], [5, 1]]</code>.</p>
       </div>
@@ -224,12 +224,12 @@
         Soit \(E\) un espace euclidien muni d'un produit scalaire note \(\langle\,,\,\rangle\). On note \(\|x\|^2 = \langle x, x \rangle\).
       </p>
 
-      <div class="question">
+      <div class="question" id="Q6">
         <span class="question__num">Q6.</span>
         <p>Un endomorphisme \(u\) de \(E\) verifiant, pour tout vecteur \(x \in E\), \(\langle u(x), x \rangle = 0\), est-il necessairement l'endomorphisme nul ?</p>
       </div>
 
-      <div class="question">
+      <div class="question" id="Q7">
         <span class="question__num">Q7.</span>
         <p>Etant donne un endomorphisme \(u\) de \(E\), on admet qu'il existe un unique endomorphisme \(v\) de \(E\) verifiant : \(\forall (x, y) \in E^2,\, \langle u(x), y \rangle = \langle x, v(y) \rangle\).</p>
         <p>Demontrer l'equivalence des trois proprietes suivantes :</p>
@@ -254,12 +254,12 @@
       <div class="annale-partie">
         <h3 class="annale-partie__title">Partie I -- Etude de quelques exemples</h3>
 
-        <div class="question">
+        <div class="question" id="Q8">
           <span class="question__num">Q8.</span>
           <p>Justifier que deux matrices de \(\mathcal{M}_n(\mathbb{R})\) qui sont semblables ont la meme trace, le meme rang, le meme determinant et le meme polynome caracteristique.</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q9">
           <span class="question__num">Q9.</span>
           <p>On donne deux matrices :</p>
           <div class="math-display">$$A = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 0 \\ 0 & 0 & 2 \end{pmatrix} \quad \text{et} \quad B = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & 2 \end{pmatrix}$$</div>
@@ -277,24 +277,24 @@
           <p>deuxieme methode : en prouvant que le polynome \(X^3 - 3X - 1\) admet trois racines reelles distinctes (que l'on ne cherchera pas a determiner) notees \(\alpha, \beta\) et \(\gamma\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q11">
           <span class="question__num">Q11.</span>
           <p>Demontrer que toute matrice \(A \in \mathcal{M}_n(\mathbb{R})\) de rang 1 est semblable a une matrice :</p>
           <div class="math-display">$$U = \begin{pmatrix} 0 & 0 & \cdots & 0 & a_1 \\ \vdots & \vdots & \ddots & \vdots & a_2 \\ \vdots & \vdots & & \vdots & \vdots \\ 0 & 0 & \cdots & 0 & a_n \end{pmatrix} \in \mathcal{M}_n(\mathbb{R})$$</div>
           <p>On pourra utiliser l'endomorphisme \(u\) canoniquement associe a la matrice \(A\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q12">
           <span class="question__num">Q12.</span>
           <p>Application : soit \(E\) un espace vectoriel de dimension \(n \geq 2\) et \(u\) un endomorphisme de \(E\) de rang 1 verifiant \(u \circ u \neq 0\), demontrer que \(u\) est diagonalisable. On pourra calculer \(U^2\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q13">
           <span class="question__num">Q13.</span>
           <p>Demontrer qu'une matrice symetrique a coefficients complexes n'est pas necessairement diagonalisable.</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q14">
           <span class="question__num">Q14.</span>
           <p>On donne une matrice</p>
           <div class="math-display">$$A = \begin{pmatrix} \alpha & \beta & \alpha & \beta \\ \beta & \alpha & \beta & \alpha \\ \alpha & \beta & \alpha & \beta \\ \beta & \alpha & \beta & \alpha \end{pmatrix}$$</div>
@@ -305,7 +305,7 @@
           <p>Dans cette question, il est deconseille de calculer le polynome caracteristique de la matrice \(A\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q15">
           <span class="question__num">Q15.</span>
           <p>Demontrer que quels que soient les reels non nuls \(a, b\) et le reel \(\lambda\), les matrices \(A = \begin{pmatrix} \lambda & a \\ 0 & \lambda \end{pmatrix}\) et \(B = \begin{pmatrix} \lambda & b \\ 0 & \lambda \end{pmatrix}\) sont semblables.</p>
         </div>
@@ -322,22 +322,22 @@
           Soient \(A\) et \(B\) deux matrices de \(\mathcal{M}_n(\mathbb{R})\) semblables dans \(\mathcal{M}_n(\mathbb{C})\), il existe une matrice \(P\) inversible a coefficients complexes telle que \(B = P^{-1}AP\). Ecrivons \(P = R + iS\) ou \(R\) et \(S\) sont deux matrices a coefficients reels.
         </p>
 
-        <div class="question">
+        <div class="question" id="Q16">
           <span class="question__num">Q16.</span>
           <p>Demontrer que \(RB = AR\) et \(SB = AS\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q17">
           <span class="question__num">Q17.</span>
           <p>Justifier que la fonction \(x \mapsto \det(R + xS)\) est une fonction polynomiale non identiquement nulle et en deduire qu'il existe un reel \(x\) tel que la matrice \(R + xS\) soit inversible.</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q18">
           <span class="question__num">Q18.</span>
           <p>Conclure que les matrices \(A\) et \(B\) sont semblables dans \(\mathcal{M}_n(\mathbb{R})\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q19">
           <span class="question__num">Q19.</span>
           <p>Application : demontrer que toute matrice \(A\) de \(\mathcal{M}_3(\mathbb{R})\) de polynome caracteristique \(X^3 + X\) est semblable a la matrice \(B = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & -1 & 0 \end{pmatrix}\).</p>
         </div>
@@ -351,13 +351,13 @@
           On s'interesse dans cette question a la proposition \(P_n\) : &laquo; Deux matrices de \(\mathcal{M}_n(\mathbb{R})\) ayant a la fois le meme polynome caracteristique et le meme polynome minimal sont semblables dans \(\mathcal{M}_n(\mathbb{R})\) &raquo;.
         </p>
 
-        <div class="question">
+        <div class="question" id="Q20">
           <span class="question__num">Q20.</span>
           <p>En etudiant les differentes valeurs possibles pour le polynome caracteristique et le meme polynome minimal, demontrer que la proposition \(P_n\) est vraie pour \(n = 2\).</p>
           <p>On admet qu'elle l'est egalement pour \(n = 3\).</p>
         </div>
 
-        <div class="question">
+        <div class="question" id="Q21">
           <span class="question__num">Q21.</span>
           <p>Demontrer que la proposition \(P_n\) est fausse pour \(n = 4\). On pourra fournir deux matrices composees uniquement de 0 et de 1.</p>
         </div>
