@@ -20,13 +20,53 @@
     .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
     .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
     .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
-    .course ol,.course ul{margin-bottom:var(--space-md);padding-left:var(--space-lg)}
-    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:6px}
-    .course ol ol{margin-top:6px;margin-bottom:6px}
-    .course ol ol li{margin-bottom:4px}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
-    @media(max-width:680px){.course__title{font-size:2rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}}
+
+    /* Annale-specific styles */
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
+    .question ol li{margin-bottom:4px}
+
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+
+    @media(max-width:680px){
+      .course__title{font-size:2rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
   </style>
 </head>
 <body>
@@ -81,7 +121,7 @@
 
   <article class="course">
 
-    <a href="../../mp.html" class="course__back">&larr; Retour aux annales MP</a>
+    <a href="../../mp.html#concours" class="course__back">&larr; Retour aux annales</a>
 
     <div class="course__meta">
       <span class="course__badge">CCINP 2025</span>
@@ -93,171 +133,226 @@
       Epreuve de mathematiques 1, filiere MP/MPI. Deux exercices et un probleme portant sur le theoreme de comparaison serie-integrale.
     </p>
 
+    <!-- Informations de l'epreuve -->
     <div class="annale-info">
-      <span class="annale-info__item"><strong>Concours :</strong> CCINP</span>
-      <span class="annale-info__item"><strong>Filiere :</strong> MP / MPI</span>
-      <span class="annale-info__item"><strong>Annee :</strong> 2025</span>
-      <span class="annale-info__item"><strong>Duree :</strong> 4h</span>
-      <span class="annale-info__item"><strong>Epreuve :</strong> Mathematiques 1</span>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">CCINP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP / MPI</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2025</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Duree</span>
+        <span class="annale-info__value">4h</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Mathematiques 1</span>
+      </div>
     </div>
 
+    <!-- Sommaire -->
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#exo1"><span class="course__toc-num">01.</span> Exercice 1 -- Applications de classe C1</a></li>
+        <li class="course__toc-item"><a href="#exo2"><span class="course__toc-num">02.</span> Exercice 2 -- Minimum d'une fonction de deux variables</a></li>
+        <li class="course__toc-item"><a href="#pb"><span class="course__toc-num">03.</span> Probleme -- Theoreme de comparaison avec une integrale</a></li>
+      </ol>
+    </nav>
+
     <!-- ═══════════════ Exercice 1 ═══════════════ -->
-    <section class="annale-exercice" id="exercice1">
+    <div class="annale-exercice" id="exo1">
       <h2 class="annale-exercice__title">Exercice 1</h2>
 
-      <p><strong>Q1.</strong> Soit une application \(f : ]-1,1[ \to \mathbb{R}^2\) de classe \(\mathcal{C}^1\).
-      Justifier que \(f'(]-1,1[)\) est une partie connexe par arcs de \(\mathbb{R}^2\).</p>
-
-      <p><strong>Q2.</strong> On considere l'application \(f : ]-1,1[ \to \mathbb{R}^2\) definie par :</p>
-
-      <div class="math-display">
-        $$f(t) = \begin{cases} (0,0) & \text{si } t \in ]-1,0] \\ \displaystyle\left(t^2 \sin\frac{1}{t},\; t^2 \cos\frac{1}{t}\right) & \text{si } t \in ]0,1[ \end{cases}$$
+      <div class="question">
+        <span class="question__num">Q1.</span>
+        <p>Soit une application \(f : ]-1,1[ \to \mathbb{R}^2\) de classe \(\mathcal{C}^1\).
+        Justifier que \(f'(]-1,1[)\) est une partie connexe par arcs de \(\mathbb{R}^2\).</p>
       </div>
 
-      <p>On note pour tout \((x,y) \in \mathbb{R}^2\), \(\|(x,y)\|_2 = \sqrt{x^2 + y^2}\).</p>
-
-      <ol type="a">
-        <li>Demontrer que \(f\) est derivable en \(0\) puis sur l'intervalle \(]-1,1[\).
-        Preciser le vecteur \(f'(t)\) pour tout \(t \in ]-1,0]\) et pour tout \(t \in ]0,1[\).</li>
-        <li>Demontrer que \(\forall t \in ]0,1[,\; \|f'(t)\|_2 \geq 1\) et en deduire que \(f'(]-1,1[)\) n'est pas connexe par arcs de \(\mathbb{R}^2\).<br>
-        <em>On pourra tracer la boule unite de \(\mathbb{R}^2\) pour la norme \(\|\cdot\|_2\) et on acceptera un dessin pertinent comme preuve.</em></li>
-      </ol>
-    </section>
+      <div class="question">
+        <span class="question__num">Q2.</span>
+        <p>On considere l'application \(f : ]-1,1[ \to \mathbb{R}^2\) definie par :</p>
+        <div class="math-display">
+          $$f(t) = \begin{cases} (0,0) & \text{si } t \in ]-1,0] \\ \displaystyle\left(t^2 \sin\frac{1}{t},\; t^2 \cos\frac{1}{t}\right) & \text{si } t \in ]0,1[ \end{cases}$$
+        </div>
+        <p>On note pour tout \((x,y) \in \mathbb{R}^2\), \(\|(x,y)\|_2 = \sqrt{x^2 + y^2}\).</p>
+        <ol type="a">
+          <li>Demontrer que \(f\) est derivable en \(0\) puis sur l'intervalle \(]-1,1[\).
+          Preciser le vecteur \(f'(t)\) pour tout \(t \in ]-1,0]\) et pour tout \(t \in ]0,1[\).</li>
+          <li>Demontrer que \(\forall t \in ]0,1[,\; \|f'(t)\|_2 \geq 1\) et en deduire que \(f'(]-1,1[)\) n'est pas connexe par arcs de \(\mathbb{R}^2\).<br>
+          <em>On pourra tracer la boule unite de \(\mathbb{R}^2\) pour la norme \(\|\cdot\|_2\) et on acceptera un dessin pertinent comme preuve.</em></li>
+        </ol>
+      </div>
+    </div>
 
     <!-- ═══════════════ Exercice 2 ═══════════════ -->
-    <section class="annale-exercice" id="exercice2">
+    <div class="annale-exercice" id="exo2">
       <h2 class="annale-exercice__title">Exercice 2</h2>
 
-      <p>On pose pour tout \((x,y) \in \mathbb{R}^2\),</p>
+      <p class="annale-exercice__intro">On pose pour tout \((x,y) \in \mathbb{R}^2\),</p>
       <div class="math-display">
         $$f(x,y) = (2 - x - y)^2 + (1 - x)^2 + (1 - 2x - y)^2.$$
       </div>
-      <p>On se propose de determiner le reel \(\displaystyle\min_{(x,y) \in \mathbb{R}^2} f(x,y)\) par deux methodes differentes.</p>
+      <p class="annale-exercice__intro">On se propose de determiner le reel \(\displaystyle\min_{(x,y) \in \mathbb{R}^2} f(x,y)\) par deux methodes differentes.</p>
 
-      <p><strong>Q3. Premiere methode</strong></p>
-      <p>Determiner le seul point critique de la fonction \(f\) sur \(\mathbb{R}^2\). Demontrer a l'aide d'une matrice Hessienne que \(f\) admet en ce point un minimum local.</p>
-      <p>En admettant que ce minimum est global, donner la valeur du \(\displaystyle\min_{(x,y) \in \mathbb{R}^2} f(x,y)\).</p>
+      <div class="question">
+        <span class="question__num">Q3.</span>
+        <p><strong>Premiere methode.</strong></p>
+        <p>Determiner le seul point critique de la fonction \(f\) sur \(\mathbb{R}^2\). Demontrer a l'aide d'une matrice Hessienne que \(f\) admet en ce point un minimum local.</p>
+        <p>En admettant que ce minimum est global, donner la valeur du \(\displaystyle\min_{(x,y) \in \mathbb{R}^2} f(x,y)\).</p>
+      </div>
 
-      <p><strong>Q4. Deuxieme methode</strong></p>
-      <p>Sur l'espace vectoriel euclidien \(\mathbb{R}^3\), on note le produit scalaire canonique par \(\langle \cdot | \cdot \rangle\) et sa norme associee par \(\|(x,y,z)\| = \sqrt{x^2 + y^2 + z^2}\).</p>
-      <p>On note \(a = (2,1,1)\), \(u = (1,1,2)\), \(v = (1,0,1)\) et \(F = \mathrm{Vect}\{u,v\}\).</p>
-      <p>On note \(b \in F\) le projete orthogonal du vecteur \(a\) sur le sous-espace vectoriel \(F\).</p>
-      <p>Justifier que \(\langle a - b \mid u \rangle = \langle a - b \mid v \rangle = 0\) et en deduire le vecteur \(b\).</p>
-      <p>Determiner la valeur de \(\displaystyle\min_{(x,y) \in \mathbb{R}^2} f(x,y)\).</p>
-    </section>
+      <div class="question">
+        <span class="question__num">Q4.</span>
+        <p><strong>Deuxieme methode.</strong></p>
+        <p>Sur l'espace vectoriel euclidien \(\mathbb{R}^3\), on note le produit scalaire canonique par \(\langle \cdot | \cdot \rangle\) et sa norme associee par \(\|(x,y,z)\| = \sqrt{x^2 + y^2 + z^2}\).</p>
+        <p>On note \(a = (2,1,1)\), \(u = (1,1,2)\), \(v = (1,0,1)\) et \(F = \mathrm{Vect}\{u,v\}\).</p>
+        <p>On note \(b \in F\) le projete orthogonal du vecteur \(a\) sur le sous-espace vectoriel \(F\).</p>
+        <p>Justifier que \(\langle a - b \mid u \rangle = \langle a - b \mid v \rangle = 0\) et en deduire le vecteur \(b\).</p>
+        <p>Determiner la valeur de \(\displaystyle\min_{(x,y) \in \mathbb{R}^2} f(x,y)\).</p>
+      </div>
+    </div>
 
     <!-- ═══════════════ Probleme ═══════════════ -->
-    <section class="annale-exercice" id="probleme">
+    <div class="annale-exercice" id="pb">
       <h2 class="annale-exercice__title">Probleme : Autour du theoreme de comparaison avec une integrale</h2>
 
-      <p>Dans ce probleme, on se propose de demontrer le theoreme de comparaison avec une integrale, puis de traiter des exemples et des applications. On terminera par deux contre-exemples.</p>
+      <p class="annale-exercice__intro">Dans ce probleme, on se propose de demontrer le theoreme de comparaison avec une integrale, puis de traiter des exemples et des applications. On terminera par deux contre-exemples.</p>
 
       <!-- Partie I -->
-      <div class="annale-partie" id="partie1">
+      <div class="annale-partie">
         <h3 class="annale-partie__title">Partie I -- Theoreme de comparaison avec une integrale</h3>
 
-        <p>Dans cette partie, \(f\) est une fonction continue, positive et decroissante sur \(\mathbb{R}_+\).</p>
-        <p>On pose, pour tout entier naturel \(n\),</p>
+        <p class="annale-exercice__intro">Dans cette partie, \(f\) est une fonction continue, positive et decroissante sur \(\mathbb{R}_+\).</p>
+        <p class="annale-exercice__intro">On pose, pour tout entier naturel \(n\),</p>
         <div class="math-display">
           $$S_n = \sum_{k=0}^{n} f(k), \qquad J_n = \int_0^n f(t)\,dt$$
         </div>
-        <p>et pour tout entier \(k\) non nul,</p>
+        <p class="annale-exercice__intro">et pour tout entier \(k\) non nul,</p>
         <div class="math-display">
           $$I_k = \int_{k-1}^{k} f(t)\,dt.$$
         </div>
 
-        <p><strong>Q5.</strong> Preciser la monotonie des suites \((S_n)\) et \((J_n)\), puis demontrer que pour tout entier \(k\) non nul,</p>
-        <div class="math-display">
-          $$f(k) \leq \int_{k-1}^{k} f(t)\,dt \leq f(k-1).$$
+        <div class="question">
+          <span class="question__num">Q5.</span>
+          <p>Preciser la monotonie des suites \((S_n)\) et \((J_n)\), puis demontrer que pour tout entier \(k\) non nul,</p>
+          <div class="math-display">
+            $$f(k) \leq \int_{k-1}^{k} f(t)\,dt \leq f(k-1).$$
+          </div>
         </div>
 
-        <p><strong>Q6.</strong> Demontrer que pour tout entier \(n\) non nul, \(S_n - f(0) \leq J_n \leq S_{n-1}\).</p>
+        <div class="question">
+          <span class="question__num">Q6.</span>
+          <p>Demontrer que pour tout entier \(n\) non nul, \(S_n - f(0) \leq J_n \leq S_{n-1}\).</p>
+        </div>
 
-        <p><strong>Q7.</strong> Demontrer enfin les deux resultats :</p>
-        <ol>
-          <li>\(f\) est integrable sur \(\mathbb{R}_+\) si et seulement si la serie \(\displaystyle\sum f(n)\) converge.</li>
-          <li>La serie \(\displaystyle\sum_{n \geq 1} \left[\int_{n-1}^{n} f(t)\,dt - f(n)\right]\) converge.</li>
-        </ol>
+        <div class="question">
+          <span class="question__num">Q7.</span>
+          <p>Demontrer enfin les deux resultats :</p>
+          <ol>
+            <li>\(f\) est integrable sur \(\mathbb{R}_+\) si et seulement si la serie \(\displaystyle\sum f(n)\) converge.</li>
+            <li>La serie \(\displaystyle\sum_{n \geq 1} \left[\int_{n-1}^{n} f(t)\,dt - f(n)\right]\) converge.</li>
+          </ol>
+        </div>
       </div>
 
       <!-- Q8 -->
-      <div class="annale-partie" id="q8">
+      <div class="annale-partie">
         <h3 class="annale-partie__title">Q8. Un exemple</h3>
 
-        <p>On pose pour \(\alpha > 0\) et \(x \in [2, +\infty[\), \(\displaystyle f(x) = \frac{1}{x(\ln x)^\alpha}\).</p>
-        <ol type="a">
-          <li>Etudier la monotonie de la fonction \(f\), calculer \(\displaystyle\int_2^x f(t)\,dt\) et en deduire la nature de la serie \(\displaystyle\sum_{n \geq 2} \frac{1}{n(\ln n)^\alpha}\).</li>
-          <li>Dans le cas ou \(\alpha = 2\), determiner en fonction de \(\ln 2\), un encadrement de \(\displaystyle\sum_{n=2}^{+\infty} \frac{1}{n(\ln n)^2}\).</li>
-        </ol>
+        <div class="question">
+          <span class="question__num">Q8.</span>
+          <p>On pose pour \(\alpha > 0\) et \(x \in [2, +\infty[\), \(\displaystyle f(x) = \frac{1}{x(\ln x)^\alpha}\).</p>
+          <ol type="a">
+            <li>Etudier la monotonie de la fonction \(f\), calculer \(\displaystyle\int_2^x f(t)\,dt\) et en deduire la nature de la serie \(\displaystyle\sum_{n \geq 2} \frac{1}{n(\ln n)^\alpha}\).</li>
+            <li>Dans le cas ou \(\alpha = 2\), determiner en fonction de \(\ln 2\), un encadrement de \(\displaystyle\sum_{n=2}^{+\infty} \frac{1}{n(\ln n)^2}\).</li>
+          </ol>
+        </div>
       </div>
 
       <!-- Q9 -->
-      <div class="annale-partie" id="q9">
+      <div class="annale-partie">
         <h3 class="annale-partie__title">Q9. Une application</h3>
 
-        <p>On pose pour \(n\) entier naturel non nul, \(\displaystyle T_n = \sum_{k=1}^{n} \frac{1}{k} - \ln n\).</p>
-        <ol type="a">
-          <li>En utilisant le resultat (2) de la question Q7, etablir que la suite \((T_n)\) converge. On notera \(\gamma\) sa limite (constante d'Euler).</li>
-          <li>Justifier que, au voisinage de \(+\infty\), \(\displaystyle\sum_{k=1}^{n} \frac{1}{k} = \ln n + \gamma + o(1)\) et en deduire un equivalent au voisinage de \(+\infty\) de \(\displaystyle\sum_{k=1}^{n} \frac{1}{k}\).</li>
-        </ol>
+        <div class="question">
+          <span class="question__num">Q9.</span>
+          <p>On pose pour \(n\) entier naturel non nul, \(\displaystyle T_n = \sum_{k=1}^{n} \frac{1}{k} - \ln n\).</p>
+          <ol type="a">
+            <li>En utilisant le resultat (2) de la question Q7, etablir que la suite \((T_n)\) converge. On notera \(\gamma\) sa limite (constante d'Euler).</li>
+            <li>Justifier que, au voisinage de \(+\infty\), \(\displaystyle\sum_{k=1}^{n} \frac{1}{k} = \ln n + \gamma + o(1)\) et en deduire un equivalent au voisinage de \(+\infty\) de \(\displaystyle\sum_{k=1}^{n} \frac{1}{k}\).</li>
+          </ol>
+        </div>
       </div>
 
       <!-- Q10 -->
-      <div class="annale-partie" id="q10">
+      <div class="annale-partie">
         <h3 class="annale-partie__title">Q10. Une application sur une serie de fonctions</h3>
 
-        <p>On considere la serie de fonctions \(\displaystyle\sum_{n \geq 1} g_n\) ou pour tout \(x \in ]0,+\infty[\),  \(\displaystyle g_n(x) = \frac{x}{n^2 + x^2}\).</p>
-
-        <ol type="a">
-          <li>Etudier la convergence normale de cette serie de fonctions sur \(]0,+\infty[\).</li>
-          <li>On pose pour \(x\) fixe non nul, \(\displaystyle f(t) = \frac{x}{t^2 + x^2}\).<br>
-          Etablir que, pour \(n\) entier non nul,
-          <div class="math-display">
-            $$\int_1^{n+1} f(t)\,dt \leq \sum_{k=1}^{n} f(k) \leq \int_0^{n} f(t)\,dt.$$
-          </div>
-          </li>
-          <li>En deduire que, pour tout \(x\) non nul,
-          <div class="math-display">
-            $$\frac{\pi}{2} - \arctan\frac{1}{x} \leq \sum_{n=1}^{+\infty} g_n(x) \leq \frac{\pi}{2}.$$
-          </div>
-          </li>
-          <li>Determiner \(\displaystyle\lim_{x \to +\infty} \sum_{n=1}^{+\infty} g_n(x)\).<br>
-          La serie de fonctions \(\displaystyle\sum_{n \geq 1} g_n\) converge-t-elle uniformement sur \(]0,+\infty[\) ?</li>
-        </ol>
+        <div class="question">
+          <span class="question__num">Q10.</span>
+          <p>On considere la serie de fonctions \(\displaystyle\sum_{n \geq 1} g_n\) ou pour tout \(x \in ]0,+\infty[\),  \(\displaystyle g_n(x) = \frac{x}{n^2 + x^2}\).</p>
+          <ol type="a">
+            <li>Etudier la convergence normale de cette serie de fonctions sur \(]0,+\infty[\).</li>
+            <li>On pose pour \(x\) fixe non nul, \(\displaystyle f(t) = \frac{x}{t^2 + x^2}\).<br>
+            Etablir que, pour \(n\) entier non nul,
+            <div class="math-display">
+              $$\int_1^{n+1} f(t)\,dt \leq \sum_{k=1}^{n} f(k) \leq \int_0^{n} f(t)\,dt.$$
+            </div>
+            </li>
+            <li>En deduire que, pour tout \(x\) non nul,
+            <div class="math-display">
+              $$\frac{\pi}{2} - \arctan\frac{1}{x} \leq \sum_{n=1}^{+\infty} g_n(x) \leq \frac{\pi}{2}.$$
+            </div>
+            </li>
+            <li>Determiner \(\displaystyle\lim_{x \to +\infty} \sum_{n=1}^{+\infty} g_n(x)\).<br>
+            La serie de fonctions \(\displaystyle\sum_{n \geq 1} g_n\) converge-t-elle uniformement sur \(]0,+\infty[\) ?</li>
+          </ol>
+        </div>
       </div>
 
       <!-- Partie II -->
-      <div class="annale-partie" id="partie2">
+      <div class="annale-partie">
         <h3 class="annale-partie__title">Partie II -- Contre-exemples</h3>
 
-        <p><strong>Q11.</strong> On pose pour \(x \in [1,+\infty[\), \(f(x) = |\sin(2\pi x)|\).</p>
-        <ol type="a">
-          <li>Calculer pour \(n\) entier naturel non nul, \(\displaystyle\int_n^{n+1} f(t)\,dt\).<br>
-          <em>On pourra remarquer que \(\displaystyle\int_n^{n+1} f(t)\,dt = \int_n^{n+\frac{1}{2}} f(t)\,dt + \int_{n+\frac{1}{2}}^{n+1} f(t)\,dt\).</em></li>
-          <li>On note \(\lfloor x \rfloor\) la partie entiere du reel \(x\).<br>
-          Etablir que pour \(x \in [1,+\infty[\),
-          <div class="math-display">
-            $$\int_1^x |\sin(2\pi t)|\,dt \geq \frac{2}{\pi}(\lfloor x \rfloor - 1).$$
-          </div>
-          La fonction \(f\) est-elle integrable sur \([1,+\infty[\) ? Que dire de la nature de la serie \(\displaystyle\sum_{n \geq 1} f(n)\) ?</li>
-        </ol>
+        <div class="question">
+          <span class="question__num">Q11.</span>
+          <p>On pose pour \(x \in [1,+\infty[\), \(f(x) = |\sin(2\pi x)|\).</p>
+          <ol type="a">
+            <li>Calculer pour \(n\) entier naturel non nul, \(\displaystyle\int_n^{n+1} f(t)\,dt\).<br>
+            <em>On pourra remarquer que \(\displaystyle\int_n^{n+1} f(t)\,dt = \int_n^{n+\frac{1}{2}} f(t)\,dt + \int_{n+\frac{1}{2}}^{n+1} f(t)\,dt\).</em></li>
+            <li>On note \(\lfloor x \rfloor\) la partie entiere du reel \(x\).<br>
+            Etablir que pour \(x \in [1,+\infty[\),
+            <div class="math-display">
+              $$\int_1^x |\sin(2\pi t)|\,dt \geq \frac{2}{\pi}(\lfloor x \rfloor - 1).$$
+            </div>
+            La fonction \(f\) est-elle integrable sur \([1,+\infty[\) ? Que dire de la nature de la serie \(\displaystyle\sum_{n \geq 1} f(n)\) ?</li>
+          </ol>
+        </div>
 
-        <p><strong>Q12.</strong> On se propose de construire un contre-exemple d'une fonction \(f\) continue, positive et integrable sur \([1,+\infty[\) telle que \(\displaystyle\sum_{n \geq 1} f(n)\) diverge.</p>
-
-        <p>Pour tout entier \(n\) non nul, trouver un reel \(a_n\) de sorte que le triangle de base \([n - a_n,\, n + a_n]\) et de hauteur \(1\) ait une aire egale a \(\dfrac{1}{n^2}\).</p>
-
-        <p>Dessiner l'allure d'une courbe de fonction \(f\) definie et continue sur \([1,+\infty[\) de la maniere suivante : chaque entier naturel \(n\) non nul a pour image \(1\) et autour de chaque \(n\) (sur chaque intervalle \([n - a_n,\, n + a_n]\)) tracer l'allure du triangle de base \([n - a_n,\, n + a_n]\) et de hauteur \(1\). Enfin, la fonction est nulle en dehors de tous les intervalles \([n - a_n,\, n + a_n]\).</p>
-
-        <p>Demontrer que cette fonction \(f\) fournit un contre-exemple.</p>
+        <div class="question">
+          <span class="question__num">Q12.</span>
+          <p>On se propose de construire un contre-exemple d'une fonction \(f\) continue, positive et integrable sur \([1,+\infty[\) telle que \(\displaystyle\sum_{n \geq 1} f(n)\) diverge.</p>
+          <p>Pour tout entier \(n\) non nul, trouver un reel \(a_n\) de sorte que le triangle de base \([n - a_n,\, n + a_n]\) et de hauteur \(1\) ait une aire egale a \(\dfrac{1}{n^2}\).</p>
+          <p>Dessiner l'allure d'une courbe de fonction \(f\) definie et continue sur \([1,+\infty[\) de la maniere suivante : chaque entier naturel \(n\) non nul a pour image \(1\) et autour de chaque \(n\) (sur chaque intervalle \([n - a_n,\, n + a_n]\)) tracer l'allure du triangle de base \([n - a_n,\, n + a_n]\) et de hauteur \(1\). Enfin, la fonction est nulle en dehors de tous les intervalles \([n - a_n,\, n + a_n]\).</p>
+          <p>Demontrer que cette fonction \(f\) fournit un contre-exemple.</p>
+        </div>
       </div>
-    </section>
+    </div>
 
     <!-- Navigation -->
-    <nav class="course__nav" style="display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)">
+    <nav class="course__nav">
       <div></div>
-      <a href="ccinp-2025-maths2.html" class="course__nav-link" style="display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);text-align:right;transition:color .3s">
+      <a href="ccinp-2025-maths2.html" class="course__nav-link course__nav-link--next">
         Suivant &rarr;
-        <span style="font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)">CCINP 2025 -- Maths 2</span>
+        <span>CCINP 2025 -- Maths 2</span>
       </a>
     </nav>
 
