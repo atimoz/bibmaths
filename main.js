@@ -379,26 +379,29 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Map banque + epreuve to annale page URL (returns null if no annale exists)
-  var ANNALE_PAGES = {};
-  ['2020','2021','2022','2023','2024','2025'].forEach(function(y) {
-    ['1','2'].forEach(function(m) {
-      ANNALE_PAGES['ccinp-maths ' + m + ' ' + y] = 'cours/annales/ccinp-' + y + '-maths' + m + '.html';
-    });
-  });
+  // Map banque + epreuve to exercice.html page with params
+  var ANNALE_YEARS = ['2020','2021','2022','2023','2024','2025'];
 
-  function getAnnaleUrl(banque, epreuve) {
-    if (!banque || !epreuve) return null;
-    var key = banque.toLowerCase().replace(/[^a-z]/g,'') + '-' + epreuve.toLowerCase().trim();
-    // Try exact match first
-    if (ANNALE_PAGES[key]) return ANNALE_PAGES[key];
-    // Try fuzzy: extract "maths N YYYY" from epreuve
+  function getExerciceUrl(banque, epreuve, partie) {
+    if (!banque || !epreuve || banque !== 'CCINP') return null;
     var match = epreuve.match(/maths\s*(\d)\s+(\d{4})/i);
-    if (match && banque === 'CCINP') {
-      var fuzzyKey = 'ccinp-maths ' + match[1] + ' ' + match[2];
-      if (ANNALE_PAGES[fuzzyKey]) return ANNALE_PAGES[fuzzyKey];
-    }
-    return null;
+    if (!match) return null;
+    var mnum = match[1];
+    var year = match[2];
+    if (ANNALE_YEARS.indexOf(year) === -1) return null;
+
+    // Determine section ID from partie field
+    var sectionId = guessSectionId(partie);
+    return 'cours/annales/exercice.html?banque=ccinp&annee=' + year + '&epreuve=maths' + mnum + '&section=' + sectionId;
+  }
+
+  function guessSectionId(partie) {
+    if (!partie) return 'pb';
+    var p = partie.toLowerCase();
+    if (p.indexOf('exercice 1') !== -1 || p.indexOf('exercice i') !== -1) return 'exo1';
+    if (p.indexOf('exercice 2') !== -1 || p.indexOf('exercice ii') !== -1) return 'exo2';
+    if (p.indexOf('exercice') !== -1) return 'exo1';
+    return 'pb'; // probleme by default
   }
 
   function renderExoRefs(container, refs) {
@@ -407,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var bCode = ref.banque === 'CCINP' ? 'c' : ref.banque === 'Centrale-Supelec' || ref.banque.indexOf('Centrale') !== -1 ? 'cs' : ref.banque === 'Mines-Ponts' || ref.banque.indexOf('Mines') !== -1 ? 'm' : 'x';
       var dCode = ref.difficulte ? ref.difficulte[0].toLowerCase() : 's';
       var bLabel = ref.banque || '';
-      var annaleUrl = getAnnaleUrl(ref.banque, ref.epreuve);
+      var annaleUrl = getExerciceUrl(ref.banque, ref.epreuve, ref.partie);
 
       html += '<div class="exo-ref">' +
         '<div class="exo-ref__header">' +
