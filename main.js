@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var fichesSection = document.querySelector('[data-type="fiches"]');
       var methodesSection = document.querySelector('[data-type="methodes"]');
       var concoursDossier = document.querySelector('[data-type="concours"]');
+      var annalesSection = document.querySelector('[data-type="annales"]');
       var statsSection = document.querySelector('[data-type="statistiques"]');
 
       // Hide all sections first
@@ -110,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (fichesSection) fichesSection.style.display = 'none';
       if (methodesSection) methodesSection.style.display = 'none';
       if (concoursDossier) concoursDossier.style.display = 'none';
+      if (annalesSection) annalesSection.style.display = 'none';
       if (statsSection) statsSection.style.display = 'none';
 
       // Show the relevant section
@@ -119,6 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (methodesSection) methodesSection.style.display = '';
       } else if (filterValue === 'concours') {
         if (concoursDossier) { concoursDossier.style.display = ''; initExercices(); }
+      } else if (filterValue === 'annales') {
+        if (annalesSection) annalesSection.style.display = '';
       } else if (filterValue === 'statistiques') {
         if (statsSection) { statsSection.style.display = ''; initStats(); }
       } else {
