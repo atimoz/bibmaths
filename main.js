@@ -666,6 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var p = partie.toLowerCase();
     if (p.indexOf('exercice 1') !== -1 || p.indexOf('exercice i') !== -1) return 'exo1';
     if (p.indexOf('exercice 2') !== -1 || p.indexOf('exercice ii') !== -1) return 'exo2';
+    if (/^exercice$/i.test(p.trim())) return 'exo'; // bare "Exercice" without number
     if (p.indexOf('exercice') !== -1) return 'exo1';
     return 'pb'; // probleme by default
   }
