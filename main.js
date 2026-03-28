@@ -381,12 +381,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Map banque + epreuve to subject URL (exercice.html for CCINP with HTML, annale page for others)
   var CCINP_HTML_YEARS = ['2017','2018','2019','2020','2021','2022','2023','2024','2025'];
-  var BANQUE_TO_PREFIX = {
+  var BANQUE_TO_SLUG = {
     'CCINP': 'ccinp',
-    'Centrale-Supélec': 'centrale-supelec',
-    'Centrale-Supelec': 'centrale-supelec',
-    'Mines-Ponts': 'mines-ponts',
-    'X-ENS': 'x-ens'
+    'Centrale-Supélec': 'centrale',
+    'Centrale-Supelec': 'centrale',
+    'Mines-Ponts': 'mines',
+    'X-ENS': 'xens'
   };
   var BANQUE_TO_PDF = {
     'CCINP': 'CCINP',
@@ -402,24 +402,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!match) return null;
     var mnum = match[1];
     var year = match[2];
-    var prefix = BANQUE_TO_PREFIX[banque];
-    if (!prefix) return null;
+    var slug = BANQUE_TO_SLUG[banque];
+    if (!slug) return null;
 
-    // CCINP with HTML pages (2017-2025)
+    // CCINP: link to exercice.html (enonce + correction revealable)
     if (banque === 'CCINP' && CCINP_HTML_YEARS.indexOf(year) !== -1) {
       var sectionId = guessSectionId(partie);
       return 'cours/annales/exercice.html?banque=ccinp&annee=' + year + '&epreuve=maths' + mnum + '&section=' + sectionId;
     }
 
-    // All others: link to full annale HTML page if it exists, else PDF
-    var htmlSlug = prefix + '-' + year + '-maths' + mnum;
-    // Check if we have an HTML annale page (will be built over time)
-    // For now, all non-CCINP go to PDF
-    var pdfPrefix = BANQUE_TO_PDF[banque];
-    if (pdfPrefix) {
-      return 'cours/annales/pdf/' + pdfPrefix + '_Maths_' + mnum + '_' + year + '.pdf';
-    }
-    return null;
+    // All banques: link to full annale HTML page
+    var htmlPath = 'cours/annales/' + slug + '-' + year + '-maths' + mnum + '.html';
+    return htmlPath;
   }
 
   function guessSectionId(partie) {

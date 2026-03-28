@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mines-Ponts 2017 — Maths 2 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    @media(max-width:680px){.course__title{font-size:2rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.annale-exercice{padding:var(--space-md)}.annale-info{flex-direction:column;gap:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav"><div class="site-switcher"><span class="site-switcher__brand">Lib</span><div class="site-switcher__toggle"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a><a href="../../physique/index.html" class="site-switcher__btn">Physique</a></div></div><div class="nav__links"><a href="../../index.html" class="nav__link">Accueil</a><div class="nav__dropdown"><a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mpsi.html#cours" class="dropdown__item">Cours</a><a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a><a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a><a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a></div></div><div class="nav__dropdown"><a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mp.html#cours" class="dropdown__item">Cours</a><a href="../../mp.html#exercices" class="dropdown__item">Exercices</a><a href="../../mp.html#fiches" class="dropdown__item">Fiches</a><a href="../../mp.html#methodes" class="dropdown__item">Methodes</a></div></div></div><button class="theme-toggle" id="themeToggle" aria-label="Changer de theme"><svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button><button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button></nav>
+
+  <div class="mobile-menu" id="mobileMenu"><div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a><a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a></div><div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div><div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div></div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MINES-PONTS 2017</span>
+    </div>
+
+    <h1 class="course__title">Mines-Ponts 2017 -- Mathematiques 2</h1>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 2, filiere MP. Le sujet porte sur les sous-groupes compacts du groupe lineaire, avec des applications au theoreme du point fixe de Markov-Kakutani et a la structure des sous-groupes compacts de \(GL_n(\mathbb{R})\).
+    </p>
+
+    <div class="annale-info">
+      <div class="annale-info__item"><span class="annale-info__label">Concours</span><span class="annale-info__value">Mines-Ponts</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Filiere</span><span class="annale-info__value">MP</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Epreuve</span><span class="annale-info__value">Mathematiques 2</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Annee</span><span class="annale-info__value">2017</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Themes</span><span class="annale-info__value">Matrices symetriques definies positives, convexite, compacite, point fixe de Markov-Kakutani, groupe orthogonal</span></div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#partA"><span class="course__toc-num">A.</span> Preliminaires sur les matrices symetriques</a></li>
+        <li class="course__toc-item"><a href="#partB"><span class="course__toc-num">B.</span> Autres preliminaires</a></li>
+        <li class="course__toc-item"><a href="#partC"><span class="course__toc-num">C.</span> Quelques proprietes de la compacite</a></li>
+        <li class="course__toc-item"><a href="#partD"><span class="course__toc-num">D.</span> Theoreme du point fixe de Markov-Kakutani</a></li>
+        <li class="course__toc-item"><a href="#partE"><span class="course__toc-num">E.</span> Sous-groupes compacts de \(GL_n(\mathbb{R})\)</a></li>
+      </ol>
+    </nav>
+
+    <!-- ENONCE -->
+    <div class="annale-exercice">
+      <h2 class="annale-exercice__title">Enonce</h2>
+      <p class="annale-exercice__intro">
+        Soit \(E\) un espace vectoriel euclidien de dimension \(n > 0\) dont le produit scalaire est note \(\langle\,\cdot\,,\,\cdot\,\rangle\) et la norme euclidienne associee est notee \(\|\cdot\|\). On note \(L(E)\) l'espace vectoriel des endomorphismes de \(E\) et \(GL(E)\) le groupe des automorphismes de \(E\). Pour tout endomorphisme \(u\) de \(E\), on note \(u^i\) l'endomorphisme \(u \circ u \circ \cdots \circ u\) (\(i\) fois) avec la convention \(u^0 = \mathrm{Id}_E\) (identite). L'ensemble vide est note \(\varnothing\).
+      </p>
+      <p class="annale-exercice__intro">
+        On rappelle qu'un sous-ensemble \(C\) de \(E\) est convexe si pour tous \(x, y\) dans \(C\) et tout \(\lambda \in [0, 1]\), on a \(\lambda x + (1 - \lambda)y \in C\). De plus, pour toute famille \(a_1, \ldots, a_p\) d'elements de \(C\) convexe et tous nombres reels positifs ou nuls \(\lambda_1, \ldots, \lambda_p\) dont la somme egale 1, on a \(\sum_{i=1}^{p} \lambda_i a_i \in C\).
+      </p>
+      <p class="annale-exercice__intro">
+        Si \(F\) est un sous-ensemble quelconque de \(E\), on appelle enveloppe convexe de \(F\), et on note \(\mathrm{Conv}(F)\), le plus petit sous-ensemble convexe de \(E\) (au sens de l'inclusion) contenant \(F\). On note \(\mathcal{H}\) l'ensemble des \((\lambda_1, \ldots, \lambda_{n+1}) \in (\mathbb{R}^+)^{n+1}\) tels que \(\sum_{i=1}^{n+1} \lambda_i = 1\) et on admet que \(\mathrm{Conv}(F)\) est l'ensemble des combinaisons lineaires \(\sum_{i=1}^{n+1} \lambda_i x_i\) ou \(x_1, \ldots, x_{n+1} \in F\) et \((\lambda_1, \ldots, \lambda_{n+1}) \in \mathcal{H}\).
+      </p>
+      <p class="annale-exercice__intro">
+        L'espace vectoriel des matrices a coefficients reels ayant \(n\) lignes et \(m\) colonnes est note \(M_{n,m}(\mathbb{R})\). On notera en particulier \(M_n(\mathbb{R}) = M_{n,n}(\mathbb{R})\). La matrice transposee d'une matrice \(A\) a coefficients reels est notee \(A^T\). La trace de \(A \in M_n(\mathbb{R})\) est notee \(\mathrm{Tr}(A)\).
+      </p>
+      <p class="annale-exercice__intro">
+        On note \(GL_n(\mathbb{R})\) le groupe lineaire des matrices de \(M_n(\mathbb{R})\) inversibles et \(O_n(\mathbb{R})\) le groupe orthogonal d'ordre \(n\).
+      </p>
+      <p class="annale-exercice__intro">Les parties A, B et C sont independantes.</p>
+    </div>
+
+    <!-- PARTIE A -->
+    <div class="annale-exercice" id="partA">
+      <h2 class="annale-exercice__title">Partie A -- Preliminaires sur les matrices symetriques</h2>
+
+      <p class="annale-exercice__intro">
+        On note \(S_n(\mathbb{R})\) le sous-espace vectoriel de \(M_n(\mathbb{R})\) forme des matrices symetriques. Une matrice \(S \in S_n(\mathbb{R})\) est dite definie positive si et seulement si pour tout \(X \in M_{n,1}(\mathbb{R})\) non nul, on a \(X^T S X > 0\). On note \(S_n^{++}(\mathbb{R})\) l'ensemble des matrices symetriques definies positives.
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q1.</span>
+        <p>Montrer qu'une matrice symetrique \(S \in S_n(\mathbb{R})\) est definie positive si et seulement si son spectre est contenu dans \(\mathbb{R}^{*+}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q2.</span>
+        <p>En deduire que pour tout \(S \in S_n^{++}(\mathbb{R})\), il existe \(R \in GL_n(\mathbb{R})\) tel que \(S = R^T R\). Reciproquement montrer que pour tout \(R \in GL_n(\mathbb{R})\), \(R^T R \in S_n^{++}(\mathbb{R})\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q3.</span>
+        <p>Montrer que l'ensemble \(S_n^{++}(\mathbb{R})\) est convexe.</p>
+      </div>
+    </div>
+
+    <!-- PARTIE B -->
+    <div class="annale-exercice" id="partB">
+      <h2 class="annale-exercice__title">Partie B -- Autres preliminaires</h2>
+
+      <p class="annale-exercice__intro">Les trois questions de cette partie sont mutuellement independantes.</p>
+
+      <div class="question">
+        <span class="question__num">Q4.</span>
+        <p>Soit \(K\) un sous-ensemble compact de \(E\) et \(\mathrm{Conv}(K)\) son enveloppe convexe. On rappelle que \(\mathcal{H}\) est l'ensemble des \((\lambda_1, \ldots, \lambda_{n+1}) \in (\mathbb{R}^+)^{n+1}\) tels que \(\sum_{i=1}^{n+1} \lambda_i = 1\). Definir une application \(\phi\) de \(\mathbb{R}^{n+1} \times E^{n+1}\) dans \(E\) telle que \(\mathrm{Conv}(K) = \phi(\mathcal{H} \times K^{n+1})\). En deduire que \(\mathrm{Conv}(K)\) est un sous-ensemble compact de \(E\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q5.</span>
+        <p>On designe par \(g\) un endomorphisme de \(E\) tel que pour tous \(x, y\) dans \(E\), \(\langle x, y \rangle = 0\) implique \(\langle g(x), g(y) \rangle = 0\). Montrer qu'il existe un nombre reel positif \(k\) tel que pour tout \(x \in E\), \(\|g(x)\| = k\|x\|\). (On pourra utiliser une base orthonormee \((e_1, e_2, \ldots, e_n)\) de \(E\) et considerer les vecteurs \(e_1 + e_i\) et \(e_1 - e_i\) pour \(i \in \{2, \ldots, n\}\).)</p>
+        <p>En deduire que \(g\) est la composee d'une homothetie et d'un endomorphisme orthogonal.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q6.</span>
+        <p>On se place dans l'espace vectoriel euclidien \(M_n(\mathbb{R})\) muni du produit scalaire defini par \(\langle A, B \rangle = \mathrm{Tr}(A^T B)\). (On ne demande pas de verifier que c'est bien un produit scalaire.) Montrer que le groupe orthogonal \(O_n(\mathbb{R})\) est un sous-groupe compact du groupe lineaire \(GL_n(\mathbb{R})\).</p>
+      </div>
+    </div>
+
+    <!-- PARTIE C -->
+    <div class="annale-exercice" id="partC">
+      <h2 class="annale-exercice__title">Partie C -- Quelques proprietes de la compacite</h2>
+
+      <p class="annale-exercice__intro">
+        Soit \((x_n)_{n \in \mathbb{N}}\) une suite d'elements de \(E\) pour laquelle il existe un reel \(\varepsilon > 0\) tel que pour tous entiers naturels \(n \neq p\), on ait \(\|x_n - x_p\| \geqslant \varepsilon\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q7.</span>
+        <p>Montrer que cette suite n'admet aucune suite extraite convergente.</p>
+      </div>
+
+      <p class="annale-exercice__intro">Soit \(K\) un sous-ensemble compact de \(E\). On note \(B(x, r)\) la boule ouverte de centre \(x \in E\) et de rayon \(r\).</p>
+
+      <div class="question">
+        <span class="question__num">Q8.</span>
+        <p>Montrer que pour tout reel \(\varepsilon > 0\), il existe un entier \(p > 0\) et \(x_1, \ldots, x_p\) elements de \(E\) tels que \(K \subseteq \displaystyle\bigcup_{i=1}^{p} B(x_i, \varepsilon)\). (On pourra raisonner par l'absurde.)</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        On considere une famille \((\Omega_i)_{i \in I}\) de sous-ensembles ouverts de \(E\), \(I\) etant un ensemble quelconque, telle que \(K \subseteq \displaystyle\bigcup_{i \in I} \Omega_i\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q9.</span>
+        <p>Montrer qu'il existe un reel \(\alpha > 0\) tel que pour tout \(x \in K\), il existe \(i \in I\) tel que \(B(x, \alpha)\) soit contenue dans l'ouvert \(\Omega_i\). (On pourra raisonner par l'absurde pour construire une suite d'elements de \(K\) n'ayant aucune suite extraite convergente.) En deduire qu'il existe une sous-famille finie \((\Omega_{i_1}, \ldots, \Omega_{i_p})\) de la famille \((\Omega_i)_{i \in I}\) telle que \(K \subseteq \displaystyle\bigcup_{k=1}^{p} \Omega_{i_k}\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">Soit \((F_i)_{i \in I}\) une famille de fermes contenus dans \(K\) et d'intersection vide : \(\displaystyle\bigcap_{i \in I} F_i = \varnothing\).</p>
+
+      <div class="question">
+        <span class="question__num">Q10.</span>
+        <p>Montrer qu'il existe une sous-famille finie \((F_{i_1}, \ldots, F_{i_p})\) de la famille \((F_i)_{i \in I}\) telle que \(\displaystyle\bigcap_{k=1}^{p} F_{i_k} = \varnothing\).</p>
+      </div>
+    </div>
+
+    <!-- PARTIE D -->
+    <div class="annale-exercice" id="partD">
+      <h2 class="annale-exercice__title">Partie D -- Theoreme du point fixe de Markov-Kakutani</h2>
+
+      <p class="annale-exercice__intro">
+        Soit \(G\) un sous-groupe compact de \(GL(E)\) et \(K\) un sous-ensemble non vide, compact et convexe de \(E\). Pour tout \(x \in E\), on pose \(N_G(x) = \sup_{u \in G} \|u(x)\|\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q11.</span>
+        <p>Montrer que \(N_G\) est bien definie, et que c'est une norme sur \(E\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q12.</span>
+        <p>Montrer en outre que \(N_G\) verifie les deux proprietes suivantes :</p>
+        <p>- pour tous \(u \in G\) et \(x \in E\), \(N_G(u(x)) = N_G(x)\) ;</p>
+        <p>- pour tous \(x, y\) dans \(E\) avec \(x\) non nul, \(N_G(x + y) = N_G(x) + N_G(y)\) si et seulement si \(\lambda x = y\) ou \(\lambda \in \mathbb{R}^+\).</p>
+        <p>Pour la deuxieme propriete on pourra utiliser le fait que si \(x \in E\), l'application qui a \(u \in G\) associe \(\|u(x)\|\) est continue.</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        On considere un element \(u\) de \(L(E)\) et on suppose que \(K\) est stable par \(u\), c'est-a-dire que \(u(K)\) est inclus dans \(K\). Pour tout \(x \in K\) et \(n \in \mathbb{N}^*\), on pose \(x_n = \frac{1}{n}\sum_{i=0}^{n-1} u^i(x)\). Enfin, on appelle diametre de \(K\) le nombre reel \(\delta(K) = \sup_{x,y \in K} \|x - y\|\) qui est bien defini car \(K\) est borne.
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q13.</span>
+        <p>Montrer que la suite \((x_n)_{n \in \mathbb{N}^*}\) est a valeurs dans \(K\) et en deduire qu'il en existe une suite extraite convergente vers un element \(a\) de \(K\). Montrer par ailleurs que pour tout \(n \in \mathbb{N}^*\), \(\|u(x_n) - x_n\| \leqslant \frac{\delta(K)}{n}\). En deduire que l'element \(a\) de \(K\) est un point fixe de \(u\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        On suppose maintenant que le compact non vide convexe \(K\) est stable par tous les elements de \(G\). Soit \(r\) un entier \(\geqslant 1\), \(u_1, u_2, \ldots, u_r\), des elements de \(G\) et \(u = \frac{1}{r}\sum_{i=1}^{r} u_i\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q14.</span>
+        <p>Montrer que \(K\) est stable par \(u\) et en deduire l'existence d'un element \(a \in K\) tel que \(u(a) = a\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q15.</span>
+        <p>Montrer que \(N_G\!\left(\frac{1}{r}\sum_{i=1}^{r} u_i(a)\right) = \frac{1}{r}\sum_{i=1}^{r} N_G(u_i(a))\). En deduire que pour tout \(j \in \{1, \ldots, r\}\), on a \(N_G\!\left(u_j(a) + \sum_{i \neq j}^{r} u_i(a)\right) = N_G(u_j(a)) + N_G\!\left(\sum_{i \neq j} u_i(a)\right)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q16.</span>
+        <p>En deduire, pour tout \(j \in \{1, \ldots, r\}\), l'existence d'un nombre reel \(\lambda_j \geqslant 0\) tel que \(u_j(a) = \frac{\lambda_j + 1}{r}\,u_j(a)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q17.</span>
+        <p>Deduire de la question precedente que \(a\) est un point fixe de tous les endomorphismes \(u_i\) ou \(i \in \{1, \ldots, r\}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q18.</span>
+        <p>En utilisant le resultat de la question 10, montrer qu'il existe \(a \in K\) tel que pour tout \(u \in G\), \(u(a) = a\).</p>
+      </div>
+    </div>
+
+    <!-- PARTIE E -->
+    <div class="annale-exercice" id="partE">
+      <h2 class="annale-exercice__title">Partie E -- Sous-groupes compacts de \(GL_n(\mathbb{R})\)</h2>
+
+      <p class="annale-exercice__intro">
+        On se place a nouveau dans l'espace vectoriel euclidien \(M_n(\mathbb{R})\) muni du produit scalaire defini par \(\langle A, B \rangle = \mathrm{Tr}(A^T B)\). On rappelle que \(GL_n(\mathbb{R})\) designe le groupe lineaire et \(O_n(\mathbb{R})\) le groupe orthogonal d'ordre \(n\).
+      </p>
+      <p class="annale-exercice__intro">
+        Soit \(G\) un sous-groupe compact de \(GL_n(\mathbb{R})\). Si \(A \in G\), on definit l'application \(\rho_A\) de \(M_n(\mathbb{R})\) dans lui-meme par la formule \(\rho_A(M) = A^T M A\). On verifie facilement, et on l'admet, que pour tout \(M \in M_n(\mathbb{R})\), l'application qui a \(A \in G\) associe \(\rho_A(M)\) est continue.
+      </p>
+      <p class="annale-exercice__intro">
+        On note \(H = \{\rho_A \mid A \in G\}\), \(\Delta = \{A^T A \mid A \in G\}\) et \(K = \mathrm{Conv}(\Delta)\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q19.</span>
+        <p>Montrer que \(\rho_A \in GL(M_n(\mathbb{R}))\) et que \(H\) est un sous-groupe compact de \(GL(M_n(\mathbb{R}))\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q20.</span>
+        <p>Montrer que \(\Delta\) est un compact contenu dans \(S_n^{++}(\mathbb{R})\) et que \(K\) est un sous-ensemble compact de \(S_n^{++}(\mathbb{R})\) qui est stable par tous les elements de \(H\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q21.</span>
+        <p>Montrer qu'il existe \(M \in K\) tel que pour tout \(A \in G\), \(\rho_A(M) = M\). En deduire l'existence de \(N \in GL_n(\mathbb{R})\) tel que pour tout \(A \in G\), \(NAN^{-1} \in O_n(\mathbb{R})\). En deduire enfin qu'il existe un sous-groupe \(G_1\) de \(O_n(\mathbb{R})\) tel que \(G = N^{-1}G_1 N = \{N^{-1}BN \mid B \in G_1\}\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        Soit \(K\) un sous-groupe compact de \(GL_n(\mathbb{R})\) contenant \(O_n(\mathbb{R})\), et \(N \in GL_n(\mathbb{R})\) tel que \(NKN^{-1} \subseteq O_n(\mathbb{R})\). On designe par \(g\) l'automorphisme de \(\mathbb{R}^n\) de matrice \(N\) dans la base canonique de \(\mathbb{R}^n\), par \(P\) un hyperplan de \(\mathbb{R}^n\) et par \(\sigma_P\) la symetrie orthogonale par rapport a \(P\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q22.</span>
+        <p>Montrer que \(g \circ \sigma_P \circ g^{-1}\) est une symetrie, puis que c'est un endomorphisme orthogonal de \(\mathbb{R}^n\). En deduire que \(g \circ \sigma_P \circ g^{-1} = \sigma_{g(P)}\). Montrer que \(g\) conserve l'orthogonalite et en deduire \(K\).</p>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="mines-2017-maths1.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Mines-Ponts 2017 -- Maths 1</span>
+      </a>
+      <a href="../../mp.html#annales" class="course__nav-link course__nav-link--next">
+        Retour &rarr;
+        <span>Annales MP</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <footer class="footer"><div class="footer__inner"><div class="footer__brand"><span class="footer__logo">Lib<em>Maths</em></span><p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p></div><div class="footer__links"><div class="footer__col"><h4 class="footer__col-title">Navigation</h4><a href="../../index.html">Accueil</a><a href="../../mpsi.html">MPSI</a><a href="../../mp.html">MP</a></div><div class="footer__col"><h4 class="footer__col-title">Communaute</h4><a href="#">Contribuer</a><a href="#">GitHub</a><a href="#">Contact</a></div></div></div><div class="footer__bottom"><span>&copy; 2026 LibMaths -- Projet open source</span></div></footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [{ left: '$$', right: '$$', display: true },{ left: '\\(', right: '\\)', display: false }],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [{ left: '$$', right: '$$', display: true },{ left: '\\(', right: '\\)', display: false }],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mines-Ponts 2020 — Maths 1 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    @media(max-width:680px){.course__title{font-size:2rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.annale-exercice{padding:var(--space-md)}.annale-info{flex-direction:column;gap:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher"><span class="site-switcher__brand">Lib</span><div class="site-switcher__toggle"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a><a href="../../physique/index.html" class="site-switcher__btn">Physique</a></div></div>
+    <div class="nav__links"><a href="../../index.html" class="nav__link">Accueil</a><div class="nav__dropdown"><a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mpsi.html#cours" class="dropdown__item">Cours</a><a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a><a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a><a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a></div></div><div class="nav__dropdown"><a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mp.html#cours" class="dropdown__item">Cours</a><a href="../../mp.html#exercices" class="dropdown__item">Exercices</a><a href="../../mp.html#fiches" class="dropdown__item">Fiches</a><a href="../../mp.html#methodes" class="dropdown__item">Methodes</a></div></div></div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme"><svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu"><div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a><a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a></div><div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div><div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div></div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta"><span class="course__badge">MINES-PONTS 2020</span></div>
+
+    <h1 class="course__title">Mines-Ponts 2020 -- Mathematiques 1</h1>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 1, filiere MP. Le sujet porte sur le theoreme de Gerstenhaber (1958) concernant les sous-espaces vectoriels nilpotents de l'algebre des endomorphismes. Il fait intervenir l'algebre lineaire, les endomorphismes nilpotents et les espaces euclidiens.
+    </p>
+
+    <div class="annale-info">
+      <div class="annale-info__item"><span class="annale-info__label">Concours</span><span class="annale-info__value">Mines-Ponts</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Filiere</span><span class="annale-info__value">MP</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Epreuve</span><span class="annale-info__value">Mathematiques 1</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Annee</span><span class="annale-info__value">2020</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Themes</span><span class="annale-info__value">Endomorphismes nilpotents, matrices triangulaires, espaces euclidiens, theoreme de Gerstenhaber</span></div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#partI"><span class="course__toc-num">I.</span> Generalites sur les endomorphismes nilpotents</a></li>
+        <li class="course__toc-item"><a href="#partII"><span class="course__toc-num">II.</span> Endomorphismes de rang 1 d'un espace euclidien</a></li>
+        <li class="course__toc-item"><a href="#partIII"><span class="course__toc-num">III.</span> Deux lemmes</a></li>
+        <li class="course__toc-item"><a href="#partIV"><span class="course__toc-num">IV.</span> Demonstration du theoreme de Gerstenhaber</a></li>
+      </ol>
+    </nav>
+
+    <!-- Preambule -->
+    <div class="annale-exercice" id="preambule">
+      <h2 class="annale-exercice__title">Preambule</h2>
+      <p class="annale-exercice__intro">Dans tout le sujet, on considere des \(\mathbf{R}\)-espaces vectoriels de dimension finie. Soit \(E\) un tel espace vectoriel et \(u\) un endomorphisme de \(E\). On dit que \(u\) est <strong>nilpotent</strong> lorsqu'il existe un entier \(p \geq 0\) tel que \(u^p = 0\) ; le plus petit de ces entiers est alors note \(\nu(u)\) et appele <strong>nilindice</strong> de \(u\), et l'on remarquera qu'alors \(u^k = 0\) pour tout entier \(k \geq \nu(u)\). On rappelle que \(u^0 = \mathrm{id}_E\). L'ensemble des endomorphismes nilpotents de \(E\) est note \(\mathcal{N}(E)\).</p>
+      <p class="annale-exercice__intro">Un sous-espace vectoriel \(\mathcal{V}\) de \(\mathcal{L}(E)\) est dit <strong>nilpotent</strong> lorsque tous ses elements sont nilpotents, autrement dit lorsque \(\mathcal{V} \subset \mathcal{N}(E)\).</p>
+      <p class="annale-exercice__intro">Une matrice triangulaire superieure est dite <strong>stricte</strong> lorsque tous ses coefficients diagonaux sont nuls. On note \(\mathrm{T}_{n}^{++}(\mathbf{R})\) l'ensemble des matrices triangulaires superieures strictes de \(\mathrm{M}_n(\mathbf{R})\).</p>
+      <p class="annale-exercice__intro"><strong>Theoreme de Gerstenhaber.</strong> Soit \(E\) un \(\mathbf{R}\)-espace vectoriel de dimension \(n > 0\), et \(\mathcal{V}\) un sous-espace vectoriel nilpotent de \(\mathcal{L}(E)\). Alors, \(\dim \mathcal{V} \leq \frac{n(n-1)}{2}\). Si en outre \(\dim \mathcal{V} = \frac{n(n-1)}{2}\), alors il existe une base de \(E\) dans laquelle tout element de \(\mathcal{V}\) est represente par une matrice triangulaire superieure stricte.</p>
+    </div>
+
+    <!-- Partie I -->
+    <div class="annale-exercice" id="partI">
+      <h2 class="annale-exercice__title">Partie I -- Generalites sur les endomorphismes nilpotents</h2>
+
+      <p class="annale-exercice__intro">Dans toute cette partie, on fixe un espace vectoriel reel \(E\) de dimension \(n > 0\).</p>
+
+      <div class="question">
+        <span class="question__num">Q1.</span>
+        <p>Soit \(u \in \mathcal{N}(E)\). Montrer que \(\operatorname{tr} u^k = 0\) pour tout \(k \in \mathbb{N}^*\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q2.</span>
+        <p>On fixe une base \(\mathbf{B}\) de \(E\). On note \(\mathcal{N}_{\mathbf{B}}\) l'ensemble des endomorphismes de \(E\) dont la matrice dans \(\mathbf{B}\) est triangulaire superieure stricte. Justifier que \(\mathcal{N}_{\mathbf{B}}\) est un sous-espace vectoriel nilpotent de \(\mathcal{L}(E)\) et que sa dimension vaut \(\frac{n(n-1)}{2}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q3.</span>
+        <p>Soit \(\mathbf{B}\) une base de \(E\). Montrer que</p>
+        <div class="math-display">$$\{\nu(u) \mid u \in \mathcal{N}_{\mathbf{B}}\} = \{\nu(u) \mid u \in \mathcal{N}(E)\} = [\![1,n]\!].$$</div>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q4.</span>
+        <p>Soit \(u \in \mathcal{L}(E)\). On se donne deux vecteurs \(x\) et \(y\) de \(E\), ainsi que deux entiers \(p \geq q \geq 1\) tels que \(u^p(x) = u^q(y) = 0\) et \(u^{p-1}(x) \neq 0\). Montrer que la famille \((x, u(x), \ldots, u^{p-1}(x))\) est libre, et que si \((u^{p-1}(x), u^{q-1}(y))\) est libre alors \((x, u(x), \ldots, u^{p-1}(x), y, u(y), \ldots, u^{q-1}(y))\) est libre.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q5.</span>
+        <p>Soit \(u \in \mathcal{N}(E)\), de nilindice \(p\). Deduire de la question precedente que si \(p \geq n - 1\) et \(p \geq 2\) alors \(\operatorname{Im} u^{p-1} = \operatorname{Im} u \cap \ker u\) et \(\operatorname{Im} u^{p-1}\) est de dimension 1.</p>
+      </div>
+    </div>
+
+    <!-- Partie II -->
+    <div class="annale-exercice" id="partII">
+      <h2 class="annale-exercice__title">Partie II -- Endomorphismes de rang 1 d'un espace euclidien</h2>
+
+      <p class="annale-exercice__intro">On considere ici un espace vectoriel euclidien \((E, (\,\cdot\,|\,\cdot\,))\). Etant donne \(a \in E\) et \(x \in E\), on notera \(a \otimes x\) l'application de \(E\) dans lui-meme definie par :</p>
+      <div class="math-display">$$\forall z \in E, \quad (a \otimes x)(z) = (a \mid z) \cdot x.$$</div>
+
+      <div class="question">
+        <span class="question__num">Q6.</span>
+        <p>On fixe \(x \in E \setminus \{0\}\). Montrer que l'application \(a \in E \to a \otimes x\) est lineaire et constitue une bijection de \(E\) sur \(\{u \in \mathcal{L}(E) : \operatorname{Im} u \subset \operatorname{Vect}(x)\}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q7.</span>
+        <p>Soit \(a \in E\) et \(x \in E \setminus \{0\}\). Montrer que \(\operatorname{tr}(a \otimes x) = (a \mid x)\).</p>
+      </div>
+    </div>
+
+    <!-- Partie III -->
+    <div class="annale-exercice" id="partIII">
+      <h2 class="annale-exercice__title">Partie III -- Deux lemmes</h2>
+
+      <p class="annale-exercice__intro">On considere ici un \(\mathbf{R}\)-espace vectoriel \(E\) de dimension \(n > 0\). Soit \(\mathcal{V}\) un sous-espace vectoriel nilpotent de \(\mathcal{L}(E)\) contenant un element non nul. On note</p>
+      <div class="math-display">$$p := \max_{u \in \mathcal{V}} \nu(u),$$</div>
+      <p class="annale-exercice__intro">appele <strong>nilindice generique</strong> de \(\mathcal{V}\) (cet entier est bien defini grace a la question 3). On notera que \(p \geq 2\). On introduit le sous-ensemble \(\mathcal{V}^\bullet\) de \(E\) forme des vecteurs appartenant a au moins un des ensembles \(\operatorname{Im} u^{p-1}\) pour \(u\) dans \(\mathcal{V}\) ; on introduit de plus le sous-espace vectoriel engendre</p>
+      <div class="math-display">$$K(\mathcal{V}) := \operatorname{Vect}(\mathcal{V}^\bullet).$$</div>
+      <p class="annale-exercice__intro">Enfin, etant donne \(x \in E\), on pose \(\mathcal{V}x := \{v(x) \mid v \in \mathcal{V}\}\).</p>
+      <p class="annale-exercice__intro">L'objectif de cette partie est d'etablir les deux resultats suivants :</p>
+      <p class="annale-exercice__intro"><strong>Lemme A.</strong> Soit \(u\) et \(v\) dans \(\mathcal{V}\). Alors \(\operatorname{tr}(u^k v) = 0\) pour tout entier naturel \(k\).</p>
+      <p class="annale-exercice__intro"><strong>Lemme B.</strong> Soit \(x\) dans \(\mathcal{V}^\bullet \setminus \{0\}\). Si \(K(\mathcal{V}) \subset \operatorname{Vect}(x) + \mathcal{V}x\), alors \(v(x) = 0\) pour tout \(v\) dans \(\mathcal{V}\).</p>
+      <p class="annale-exercice__intro">Dans les questions 8 a 11, on se donne deux elements arbitraires \(u\) et \(v\) de \(\mathcal{V}\).</p>
+
+      <div class="question">
+        <span class="question__num">Q8.</span>
+        <p>Soit \(k \in \mathbb{N}^*\). Montrer qu'il existe une unique famille \(\left(f_0^{(k)}, \ldots, f_k^{(k)}\right)\) d'endomorphismes de \(E\) telle que</p>
+        <div class="math-display">$$\forall t \in \mathbf{R},\, (u + tv)^k = \sum_{i=0}^{k} t^i\,f_i^{(k)}.$$</div>
+        <p>Montrer en particulier que \(f_0^{(k)} = u^k\) et \(f_1^{(k)} = \displaystyle\sum_{i=0}^{k-1} u^i v u^{k-1-i}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q9.</span>
+        <p>Montrer que \(\displaystyle\sum_{i=0}^{p-1} u^i v u^{p-1-i} = 0\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q10.</span>
+        <p>Etant donne \(k \in \mathbb{N}\), donner une expression simplifiee de \(\operatorname{tr}\!\left(f_1^{(k+1)}\right)\), et en deduire la validite du lemme A.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q11.</span>
+        <p>Soit \(y \in E\). Demontrer que \(f_1^{(p-1)}(y) \in K(\mathcal{V})\). A l'aide d'une relation entre \(u\!\left(f_1^{(p-1)}(y)\right)\) et \(v\!\left(u^{p-1}(y)\right)\), en deduire que \(v(x) \in \operatorname{Im} u^{p-1}\) pour tout \(x \in \operatorname{Im} u^{p-1}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q12.</span>
+        <p>Soit \(x \in \mathcal{V}^\bullet \setminus \{0\}\) tel que \(K(\mathcal{V}) \subset \operatorname{Vect}(x) + \mathcal{V}x\). On choisit \(u \in \mathcal{V}\) tel que \(x \in \operatorname{Im} u^{p-1}\). Etant donne \(y \in K(\mathcal{V})\), montrer que pour tout \(k \in \mathbb{N}\) il existe \(y_k \in K(\mathcal{V})\) et \(\lambda_k \in \mathbf{R}\) tels que \(y = \lambda_k x + u^k(y_k)\). En deduire que \(K(\mathcal{V}) \subset \operatorname{Vect}(x)\) puis que \(v(x) = 0\) pour tout \(v \in \mathcal{V}\).</p>
+      </div>
+    </div>
+
+    <!-- Partie IV -->
+    <div class="annale-exercice" id="partIV">
+      <h2 class="annale-exercice__title">Partie IV -- Demonstration du theoreme de Gerstenhaber</h2>
+
+      <p class="annale-exercice__intro">Dans cette ultime partie, nous demontrons le theoreme de Gerstenhaber par recurrence sur l'entier \(n\). On se donne un entier naturel \(n \geq 2\) et on suppose que pour tout espace vectoriel reel \(E'\) de dimension \(n-1\) et tout sous-espace vectoriel nilpotent \(\mathcal{V}'\) de \(\mathcal{L}(E')\), on a \(\dim \mathcal{V}' \leq \frac{(n-1)(n-2)}{2}\), et si en outre \(\dim \mathcal{V}' = \frac{(n-1)(n-2)}{2}\) alors il existe une base de \(E'\) dans laquelle tout element de \(\mathcal{V}'\) est represente par une matrice triangulaire superieure stricte.</p>
+      <p class="annale-exercice__intro">On fixe un espace vectoriel reel \(E\) de dimension \(n\), ainsi qu'un sous-espace vectoriel nilpotent \(\mathcal{V}\) de \(\mathcal{L}(E)\). On munit \(E\) d'un produit scalaire \((\,\cdot\,|\,\cdot\,)\), ce qui en fait un espace euclidien. On considere, dans un premier temps, un vecteur arbitraire \(x\) de \(E \setminus \{0\}\). On pose,</p>
+      <div class="math-display">$$H := \operatorname{Vect}(x)^\perp, \quad \mathcal{V}x := \{v(x) \mid v \in \mathcal{V}\} \quad \text{et} \quad \mathcal{W} := \{v \in \mathcal{V} : v(x) = 0\}.$$</div>
+      <p class="annale-exercice__intro">On note \(\pi\) la projection orthogonale de \(E\) sur \(H\). Pour \(u \in \mathcal{W}\), on note \(\bar{u}\) l'endomorphisme de \(H\) defini par \(\forall z \in H,\ \bar{u}(z) = \pi(u(z))\). On considere enfin les ensembles</p>
+      <div class="math-display">$$\overline{\mathcal{V}} := \{\bar{u} \mid u \in \mathcal{W}\} \quad \text{et} \quad \mathcal{Z} := \{u \in \mathcal{W} : \bar{u} = 0\}.$$</div>
+
+      <div class="question">
+        <span class="question__num">Q13.</span>
+        <p>Montrer que \(\mathcal{V}x\), \(\mathcal{W}\), \(\overline{\mathcal{V}}\) et \(\mathcal{Z}\) sont des sous-espaces vectoriels respectifs de \(E\), \(\mathcal{V}\), \(\mathcal{L}(H)\) et \(\mathcal{V}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q14.</span>
+        <p>Montrer que</p>
+        <div class="math-display">$$\dim \mathcal{V} = \dim(\mathcal{V}x) + \dim \mathcal{Z} + \dim \overline{\mathcal{V}}.$$</div>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q15.</span>
+        <p>Montrer qu'il existe un sous-espace vectoriel \(L\) de \(E\) tel que</p>
+        <div class="math-display">$$\mathcal{Z} = \{a \otimes x \mid a \in L\} \quad \text{et} \quad \dim L = \dim \mathcal{Z},$$</div>
+        <p>et montrer qu'alors \(x \in L^\perp\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q16.</span>
+        <p>En considerant \(u \in \mathcal{V}\) et \(a \in L\), deduire du lemme A que \(\mathcal{V}x \subset L^\perp\), et que plus generalement \(u^k(x) \in L^\perp\) pour tout \(k \in \mathbb{N}\) et tout \(u \in \mathcal{V}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q17.</span>
+        <p>Justifier que \(\lambda x \notin \mathcal{V}x\) pour tout \(\lambda \in \mathbf{R}^*\), et deduire alors des deux questions precedentes que</p>
+        <div class="math-display">$$\dim \mathcal{V}x + \dim L \leq n - 1.$$</div>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q18.</span>
+        <p>Soit \(u \in \mathcal{W}\). Montrer que \((\bar{u})^k(z) = \pi\!\left(u^k(z)\right)\) pour tout \(k \in \mathbb{N}\) et tout \(z \in H\). En deduire que \(\overline{\mathcal{V}}\) est un sous-espace vectoriel nilpotent de \(\mathcal{L}(H)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q19.</span>
+        <p>Demontrer que</p>
+        <div class="math-display">$$\dim \mathcal{V} \leq \frac{n(n-1)}{2}.$$</div>
+      </div>
+
+      <p class="annale-exercice__intro">Dans toute la suite du probleme, on suppose que \(\dim \mathcal{V} = \frac{n(n-1)}{2}\).</p>
+
+      <div class="question">
+        <span class="question__num">Q20.</span>
+        <p>Demontrer que</p>
+        <div class="math-display">$$\dim \overline{\mathcal{V}} = \frac{(n-1)(n-2)}{2}, \quad \dim(\operatorname{Vect}(x) \oplus \mathcal{V}x) + \dim L = n$$</div>
+        <p>et</p>
+        <div class="math-display">$$L^\perp = \operatorname{Vect}(x) \oplus \mathcal{V}x.$$</div>
+        <p>En deduire que \(\operatorname{Vect}(x) \oplus \mathcal{V}x\) contient \(v^k(x)\) pour tout \(v \in \mathcal{V}\) et tout \(k \in \mathbb{N}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q21.</span>
+        <p>En appliquant l'hypothese de recurrence, montrer que le nilindice generique de \(\mathcal{V}\) est superieur ou egal a \(n - 1\), et que si en outre \(\mathcal{V}x = \{0\}\) alors il existe une base de \(E\) dans laquelle tout element de \(\mathcal{V}\) est represente par une matrice triangulaire superieure stricte.</p>
+      </div>
+
+      <p class="annale-exercice__intro">Compte tenu du resultat de la question 21, il nous reste plus qu'a etablir que l'on peut choisir le vecteur \(x\) de telle sorte que \(\mathcal{V}x = \{0\}\).</p>
+      <p class="annale-exercice__intro">On choisit \(x\) dans \(\mathcal{V}^\bullet \setminus \{0\}\). On note \(p\) le nilindice generique de \(\mathcal{V}\), et l'on fixe \(u \in \mathcal{V}\) tel que \(x \in \operatorname{Im} u^{p-1}\). On rappelle que \(p \geq n - 1\) d'apres la question 21.</p>
+
+      <div class="question">
+        <span class="question__num">Q22.</span>
+        <p>Soit \(v \in \mathcal{V}\) tel que \(v(x) \neq 0\). Montrer que \(\operatorname{Im} v^{p-1} \subset \operatorname{Vect}(x) \oplus \mathcal{V}x\). On pourra utiliser les resultats des questions 5 et 20.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q23.</span>
+        <p>On suppose qu'il existe \(v_0\) dans \(\mathcal{V}\) tel que \(v_0(x) \neq 0\). Soit \(v \in \mathcal{V}\). En considerant \(v + tv_0\) pour \(t\) reel, montrer que \(\operatorname{Im} v^{p-1} \subset \operatorname{Vect}(x) \oplus \mathcal{V}x\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q24.</span>
+        <p>Conclure.</p>
+      </div>
+    </div>
+
+    <nav class="course__nav">
+      <a href="../../mp.html#annales" class="course__nav-link">&larr; Retour<span>Annales MP</span></a>
+      <a href="mines-2020-maths2.html" class="course__nav-link course__nav-link--next">Suivant &rarr;<span>Mines-Ponts 2020 -- Maths 2</span></a>
+    </nav>
+
+  </article>
+
+  <footer class="footer"><div class="footer__inner"><div class="footer__brand"><span class="footer__logo">Lib<em>Maths</em></span><p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p></div><div class="footer__links"><div class="footer__col"><h4 class="footer__col-title">Navigation</h4><a href="../../index.html">Accueil</a><a href="../../mpsi.html">MPSI</a><a href="../../mp.html">MP</a></div><div class="footer__col"><h4 class="footer__col-title">Communaute</h4><a href="#">Contribuer</a><a href="#">GitHub</a><a href="#">Contact</a></div></div></div><div class="footer__bottom"><span>&copy; 2026 LibMaths -- Projet open source</span></div></footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), { delimiters: [{ left: '$$', right: '$$', display: true },{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+      } else {
+        const interval = setInterval(() => { if (window.renderMathInElement) { clearInterval(interval); renderMathInElement(document.querySelector('.course'), { delimiters: [{ left: '$$', right: '$$', display: true },{ left: '\\(', right: '\\)', display: false }], throwOnError: false }); } }, 100);
+      }
+    });
+  </script>
+</body>
+</html>
