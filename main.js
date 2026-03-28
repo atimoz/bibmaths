@@ -350,12 +350,35 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // Map banque + epreuve to annale page URL (returns null if no annale exists)
+  var ANNALE_PAGES = {};
+  ['2020','2021','2022','2023','2024','2025'].forEach(function(y) {
+    ['1','2'].forEach(function(m) {
+      ANNALE_PAGES['ccinp-maths ' + m + ' ' + y] = 'cours/annales/ccinp-' + y + '-maths' + m + '.html';
+    });
+  });
+
+  function getAnnaleUrl(banque, epreuve) {
+    if (!banque || !epreuve) return null;
+    var key = banque.toLowerCase().replace(/[^a-z]/g,'') + '-' + epreuve.toLowerCase().trim();
+    // Try exact match first
+    if (ANNALE_PAGES[key]) return ANNALE_PAGES[key];
+    // Try fuzzy: extract "maths N YYYY" from epreuve
+    var match = epreuve.match(/maths\s*(\d)\s+(\d{4})/i);
+    if (match && banque === 'CCINP') {
+      var fuzzyKey = 'ccinp-maths ' + match[1] + ' ' + match[2];
+      if (ANNALE_PAGES[fuzzyKey]) return ANNALE_PAGES[fuzzyKey];
+    }
+    return null;
+  }
+
   function renderExoRefs(container, refs) {
     var html = '<p class="exo-count">' + refs.length + ' references</p>';
     refs.forEach(function(ref) {
       var bCode = ref.banque === 'CCINP' ? 'c' : ref.banque === 'Centrale-Supelec' || ref.banque.indexOf('Centrale') !== -1 ? 'cs' : ref.banque === 'Mines-Ponts' || ref.banque.indexOf('Mines') !== -1 ? 'm' : 'x';
       var dCode = ref.difficulte ? ref.difficulte[0].toLowerCase() : 's';
       var bLabel = ref.banque || '';
+      var annaleUrl = getAnnaleUrl(ref.banque, ref.epreuve);
 
       html += '<div class="exo-ref">' +
         '<div class="exo-ref__header">' +
@@ -370,17 +393,24 @@ document.addEventListener('DOMContentLoaded', () => {
         html += '<p class="exo-ref__intitule">' + escHtml(ref.intitule) + '</p>';
       }
 
+      // Action buttons row
+      html += '<div class="exo-ref__actions">';
+      if (annaleUrl) {
+        html += '<a href="' + annaleUrl + '" class="exo-ref__link">Voir le sujet</a>';
+      }
       if (ref.corrections && ref.corrections.length > 0) {
-        html += '<div class="exo-ref__corrections">' +
-          '<button class="exo-ref__toggle">Voir la correction</button>' +
-          '<div class="exo-ref__body" style="display:none">';
+        html += '<button class="exo-ref__toggle">Voir la correction</button>';
+      }
+      html += '</div>';
+
+      if (ref.corrections && ref.corrections.length > 0) {
+        html += '<div class="exo-ref__body" style="display:none">';
         ref.corrections.forEach(function(c) {
           html += '<div><span class="exo-ref__q-label">' + escHtml(c.question) + '</span>';
-          // Convert markdown-ish correction to HTML
           var corrHtml = formatCorrection(c.correction || '');
           html += corrHtml + '</div>';
         });
-        html += '</div></div>';
+        html += '</div>';
       }
       html += '</div>';
     });
@@ -390,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Correction toggle handlers
     container.querySelectorAll('.exo-ref__toggle').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        var body = btn.nextElementSibling;
+        var body = btn.closest('.exo-ref').querySelector('.exo-ref__body');
         if (body.style.display === 'none') {
           body.style.display = '';
           btn.textContent = 'Masquer la correction';
