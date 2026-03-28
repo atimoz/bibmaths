@@ -12,6 +12,69 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ---- Question filter for annale pages (?q=Q8,Q9,Q10) ----
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var qParam = params.get('q');
+    if (!qParam) return;
+
+    var wanted = {};
+    qParam.split(',').forEach(function(q) { wanted[q.trim()] = true; });
+    var wantedKeys = Object.keys(wanted);
+    if (wantedKeys.length === 0) return;
+
+    // Find which annale-exercice sections contain wanted questions
+    var sectionsWithQuestions = new Set();
+    document.querySelectorAll('.question[id]').forEach(function(q) {
+      if (wanted[q.id]) {
+        // Find parent annale-exercice section
+        var section = q.closest('.annale-exercice');
+        if (section) sectionsWithQuestions.add(section);
+      }
+    });
+
+    // Hide all annale-exercice sections that have no wanted questions
+    document.querySelectorAll('.annale-exercice').forEach(function(section) {
+      if (!sectionsWithQuestions.has(section)) {
+        section.style.display = 'none';
+      }
+    });
+
+    // Inside visible sections, dim/hide non-wanted questions
+    sectionsWithQuestions.forEach(function(section) {
+      section.querySelectorAll('.question[id]').forEach(function(q) {
+        if (!wanted[q.id]) {
+          q.style.display = 'none';
+        }
+      });
+    });
+
+    // Hide TOC, intro, info box and nav if filtering
+    var toc = document.querySelector('.course__toc');
+    if (toc) toc.style.display = 'none';
+    var intro = document.querySelector('.course__intro');
+    if (intro) intro.style.display = 'none';
+    var nav = document.querySelector('.course__nav');
+    if (nav) nav.style.display = 'none';
+
+    // Add a banner showing filter is active
+    var article = document.querySelector('.course') || document.querySelector('article');
+    if (article) {
+      var banner = document.createElement('div');
+      banner.className = 'question-filter-banner';
+      banner.innerHTML = '<span class="question-filter-banner__label">Questions filtrees</span>' +
+        '<span class="question-filter-banner__list">' + wantedKeys.join(', ') + '</span>' +
+        '<a href="' + window.location.pathname + window.location.hash + '" class="question-filter-banner__show-all">Voir le sujet complet</a>';
+      // Insert after back link or at start
+      var backLink = article.querySelector('.course__back');
+      if (backLink) {
+        backLink.parentNode.insertBefore(banner, backLink.nextSibling);
+      } else {
+        article.insertBefore(banner, article.firstChild);
+      }
+    }
+  })();
+
   // ---- Theme toggle button ----
   const themeToggle = document.getElementById('themeToggle');
   if (themeToggle) {
@@ -497,12 +560,14 @@ document.addEventListener('DOMContentLoaded', () => {
     var slug = BANQUE_TO_SLUG[banque];
     if (!slug) return null;
 
-    // Extract first question number (e.g., "5 q. : Q8, Q9, Q10" -> "Q8")
-    var firstQ = null;
+    // Extract all question numbers (e.g., "5 q. : Q8, Q9, Q10, Q11, Q12" -> ["Q8","Q9","Q10","Q11","Q12"])
+    var qList = [];
     if (questions) {
-      var qMatch = questions.match(/Q(\d+)/);
-      if (qMatch) firstQ = 'Q' + qMatch[1];
+      var qMatches = questions.match(/Q\d+/g);
+      if (qMatches) qList = qMatches;
     }
+    var qParam = qList.length > 0 ? 'q=' + qList.join(',') : '';
+    var firstQ = qList.length > 0 ? qList[0] : null;
 
     // CCINP: link to exercice.html (enonce + correction revealable)
     if (banque === 'CCINP' && CCINP_HTML_YEARS.indexOf(year) !== -1) {
@@ -512,10 +577,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return url;
     }
 
-    // All banques: link to full annale HTML page + anchor to first question
+    // All banques: link to full annale HTML page with question filter + anchor
     var htmlPath = 'cours/annales/' + slug + '-' + year + '-maths' + mnum + '.html';
-    if (firstQ) {
-      htmlPath += '#' + firstQ;
+    if (qParam) {
+      htmlPath += '?' + qParam;
+      if (firstQ) htmlPath += '#' + firstQ;
     } else {
       var anchor = findSectionAnchor(slug, year, mnum, partie);
       if (anchor) htmlPath += '#' + anchor;
