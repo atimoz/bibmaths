@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centrale-Supelec 2024 — Maths 1 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    @media(max-width:680px){
+      .course__title{font-size:2rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">CENTRALE-SUPELEC 2024</span>
+    </div>
+
+    <h1 class="course__title">Centrale-Supelec 2024 -- Mathematiques 1</h1>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 1, filiere MP. 29 questions. On s'interesse a l'inegalite de Carleman : si \((a_k)_{k \in \mathbb{N}^*}\) est une suite de reels strictement positifs telle que \(\sum a_n\) converge, alors la serie de terme general \(\left(\prod_{k=1}^{n} a_k\right)^{1/n}\) converge et \(\sum_{n=1}^{+\infty}\left(\prod_{k=1}^{n} a_k\right)^{1/n} \leqslant e\sum_{n=1}^{+\infty} a_n\).
+    </p>
+
+    <!-- Informations -->
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">Centrale-Supelec</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Mathematiques 1</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2024</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Inegalite de Knopp, inegalite arithmetico-geometrique, inegalite de Carleman, inegalite de Carleman-Yang</span>
+      </div>
+    </div>
+
+    <!-- Sommaire -->
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#partieI"><span class="course__toc-num">I.</span> Inegalite de Knopp</a></li>
+        <li class="course__toc-item"><a href="#partieII"><span class="course__toc-num">II.</span> Inegalite de Carleman</a></li>
+        <li class="course__toc-item"><a href="#partieIII"><span class="course__toc-num">III.</span> Inegalite de Carleman-Yang</a></li>
+      </ol>
+    </nav>
+
+    <!-- =============== PARTIE I =============== -->
+    <div class="annale-exercice" id="partieI">
+      <h2 class="annale-exercice__title">Partie I -- Inegalite de Knopp</h2>
+
+      <p class="annale-exercice__intro">Dans cette partie, on demontre l'inegalite de Knopp, souvent presentee comme analogue continu de l'inegalite de Carleman (on justifie cette appellation en fin de partie).</p>
+
+      <!-- I.A -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">I.A -- Deux inegalites integrales</h3>
+
+        <p class="annale-exercice__intro"><em>I.A.1 -- Inegalite integrale de Jensen</em></p>
+
+        <div class="question">
+          <span class="question__num">Q1.</span>
+          <p>Soit \(f : [a,b] \to \mathbb{R}\) une fonction continue par morceaux a valeurs dans un intervalle \(J\). Soit \(\varphi\) une fonction continue et convexe sur \(J\). Demontrer que</p>
+          <div class="math-display">$$\varphi\!\left(\frac{1}{b-a}\int_a^b f(t)\,\mathrm{d}t\right) \leqslant \frac{1}{b-a}\int_a^b \varphi \circ f(t)\,\mathrm{d}t.$$</div>
+          <p>On pourra utiliser les sommes de Riemann.</p>
+        </div>
+
+        <p class="annale-exercice__intro" style="margin-top:var(--space-lg)"><em>I.A.2 -- Une autre inegalite integrale</em></p>
+        <p class="annale-exercice__intro">Soit \(f : \mathbb{R}_+ \to \mathbb{R}\), une fonction continue par morceaux, strictement positive et integrable. Pour tout \(x > 0\), on pose</p>
+        <div class="math-display">$$g(x) = \frac{1}{x}\int_0^x tf(t)\,\mathrm{d}t \quad \text{et} \quad h(x) = \frac{1}{x}g(x) = \frac{1}{x^2}\int_0^x tf(t)\,\mathrm{d}t.$$</div>
+
+        <div class="question">
+          <span class="question__num">Q2.</span>
+          <p>Determiner la limite de \(g(x)\) lorsque \(x\) tend vers \(0\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q3.</span>
+          <p>Determiner la limite de \(g(x)\) lorsque \(x\) tend vers \(+\infty\).</p>
+          <p>Notant \(\mathbf{1}_{[0,x]}\) la fonction indicatrice de \([0, x]\), on pourra remarquer que \(g(x) = \displaystyle\int_0^{+\infty} \frac{1}{x}tf(t)\mathbf{1}_{[0,x]}(t)\,\mathrm{d}t\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q4.</span>
+          <p>En deduire que l'integrale \(\displaystyle\int_0^{+\infty} h(x)\,\mathrm{d}x\) converge et que</p>
+          <div class="math-display">$$\int_0^{+\infty} f(x)\,\mathrm{d}x = \int_0^{+\infty} h(x)\,\mathrm{d}x.$$</div>
+          <p>On pourra utiliser une integration par parties.</p>
+        </div>
+      </div>
+
+      <!-- I.B -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">I.B -- Demonstration de l'inegalite de Knopp</h3>
+
+        <p class="annale-exercice__intro">Soit \(f\) une fonction continue par morceaux, strictement positive, integrable sur \(\mathbb{R}_+\).</p>
+
+        <div class="question">
+          <span class="question__num">Q5.</span>
+          <p>Demontrer que, pour tout \(x > 0\),</p>
+          <div class="math-display">$$\exp\!\left(\frac{1}{x}\int_0^x \ln(f(t))\,\mathrm{d}t\right) \leqslant \frac{e}{x^2}\int_0^x tf(t)\,\mathrm{d}t.$$</div>
+          <p>On pourra remarquer que \(\ln(f(t)) = \ln(tf(t)) - \ln(t)\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q6.</span>
+          <p>En deduire que \(x \mapsto \exp\!\left(\dfrac{1}{x}\displaystyle\int_0^x \ln(f(t))\,\mathrm{d}t\right)\) est integrable sur \(\mathbb{R}_+^*\) et que</p>
+          <div class="math-display">$$\int_0^{+\infty} \exp\!\left(\frac{1}{x}\int_0^x \ln(f(t))\,\mathrm{d}t\right)\mathrm{d}x \leqslant e\int_0^{+\infty} f(x)\,\mathrm{d}x.$$</div>
+        </div>
+      </div>
+
+      <!-- I.C -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">I.C -- Application a l'inegalite de Carleman</h3>
+
+        <p class="annale-exercice__intro">On suppose dans cette sous-partie que \((a_n)_{n \in \mathbb{N}^*}\) est une suite decroissante de reels strictement positifs. On note \(f\) la fonction en escalier qui, pour tout \(k \in \mathbb{N}^*\), est egale a \(a_k\) sur l'intervalle \([k-1, k[\).</p>
+
+        <div class="question">
+          <span class="question__num">Q7.</span>
+          <p>Soit \(k\) dans \(\mathbb{N}^*\). Demontrer que la fonction \(v_k\) definie sur \([k-1, k]\) par</p>
+          <div class="math-display">$$\begin{cases} v_k(x) = \dfrac{1}{x}\displaystyle\sum_{i=1}^{k-1}\ln(a_i) + \dfrac{1}{x}(x - k + 1)\ln(a_k) & \text{si } k \geqslant 2 \\ v_1(x) = \ln(a_1) \end{cases}$$</div>
+          <p>est minimale pour \(x = k\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q8.</span>
+          <p>Demontrer que, pour tout \(k\) dans \(\mathbb{N}^*\),</p>
+          <div class="math-display">$$\int_{k-1}^{k} \exp\!\left(\frac{1}{x}\int_0^x \ln(f(t))\,\mathrm{d}t\right)\mathrm{d}x \geqslant \exp\!\left(\frac{1}{k}\sum_{i=1}^{k}\ln(a_i)\right).$$</div>
+          <p>On pourra utiliser la question precedente.</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q9.</span>
+          <p>En deduire l'inegalite de Carleman dans le cas ou \((a_n)_{n \in \mathbb{N}^*}\) est une suite decroissante.</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q10.</span>
+          <p>Expliquer comment on peut retirer l'hypothese de decroissance.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============== PARTIE II =============== -->
+    <div class="annale-exercice" id="partieII">
+      <h2 class="annale-exercice__title">Partie II -- Inegalite de Carleman</h2>
+
+      <p class="annale-exercice__intro">On demontre dans cette partie l'inegalite de Carleman d'une maniere independante de la partie I.</p>
+
+      <!-- II.A -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">II.A -- Inegalite arithmetico-geometrique</h3>
+
+        <p class="annale-exercice__intro">Soit \(s > 0\). On definit les fonctions \(f\) et \(g_s\) sur \(\overline{U_n}\) en posant, pour tout \(x = (x_1, \ldots, x_n) \in \overline{U_n}\),</p>
+        <div class="math-display">$$f(x) = \prod_{k=1}^{n} x_k \quad \text{et} \quad g_s(x) = \left(\sum_{k=1}^{n} x_k\right) - s.$$</div>
+        <p class="annale-exercice__intro">On note \(X_s\) le sous-ensemble de \(\overline{U_n}\) constitue des zeros de \(g_s\) : \(X_s = \{x \in \overline{U_n} \mid g_s(x) = 0\}\).</p>
+
+        <div class="question">
+          <span class="question__num">Q11.</span>
+          <p>On admet que \(f\) et \(g_s\) sont de classe \(\mathcal{C}^1\) sur \(U_n\). Donner l'expression de leur gradient en un point \(x = (x_1, \ldots, x_n)\) de \(U_n\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q12.</span>
+          <p>Demontrer que la restriction de \(f\) a \(X_s\) admet un maximum sur \(X_s\) et que ce maximum est en fait atteint sur \(X_s \cap U_n\).</p>
+          <p>On pourra verifier que \(f\) est strictement positive en certains points de \(X_s \cap U_n\).</p>
+        </div>
+
+        <p class="annale-exercice__intro" style="margin-top:var(--space-lg)">On note \(a = (a_1, \ldots, a_n)\) un element de \(X_s \cap U_n\) en lequel la restriction de \(f\) a \(X_s\) atteint son maximum.</p>
+
+        <div class="question">
+          <span class="question__num">Q13.</span>
+          <p>Demontrer qu'il existe un reel \(\lambda > 0\) tel que, pour tout \(k\) dans \([\![1,n]\!]\), \(a_k = \dfrac{f(a)}{\lambda}\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q14.</span>
+          <p>Demontrer alors que, pour tout \((x_1, \ldots, x_n) \in U_n \cap X_s\), \(\left(\displaystyle\prod_{i=1}^{n} x_i\right)^{1/n} \leqslant \dfrac{1}{n}\displaystyle\sum_{i=1}^{n} x_i\) et en deduire l'inegalite arithmetico-geometrique</p>
+          <div class="math-display">$$\forall\,(x_1, \ldots, x_n) \in (\mathbb{R}_+)^n, \quad \left(\prod_{i=1}^{n} x_i\right)^{1/n} \leqslant \frac{1}{n}\sum_{i=1}^{n} x_i.$$</div>
+        </div>
+      </div>
+
+      <!-- II.B -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">II.B -- Demonstration de l'inegalite de Carleman</h3>
+
+        <p class="annale-exercice__intro">On considere l'application \(F_n\) de \(\overline{U_n}\) dans \(\mathbb{R}\), definie par</p>
+        <div class="math-display">$$\forall(x_1, \ldots, x_n) \in \overline{U_n}, \quad F_n(x_1, \ldots, x_n) = x_1 + (x_1 x_2)^{1/2} + (x_1 x_2 x_3)^{1/3} + \cdots + (x_1 \cdots x_n)^{1/n}.$$</div>
+        <p class="annale-exercice__intro">On note \(h_n\) l'application de \(\overline{U_n}\) dans \(\mathbb{R}\), definie par</p>
+        <div class="math-display">$$\forall(x_1, \ldots, x_n) \in \overline{U_n}, \quad h_n(x_1, \ldots, x_n) = x_1 + \cdots + x_n - 1.$$</div>
+        <p class="annale-exercice__intro">On admet que \(F_n\) et \(h_n\) sont toutes deux de classe \(\mathcal{C}^1\) sur \(U_n\).</p>
+        <p class="annale-exercice__intro">On note \(H_n\) l'ensemble \(H_n = \{(x_1, \ldots, x_n) \in \mathbb{R}^n \mid x_1 + \cdots + x_n = 1\}\).</p>
+
+        <div class="question">
+          <span class="question__num">Q15.</span>
+          <p>Determiner le gradient de \(F_n\) et le gradient de \(h_n\) en tout point de \(U_n\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q16.</span>
+          <p>Demontrer que la restriction de \(F_n\) a \(\overline{U_n} \cap H_n\) admet un maximum.</p>
+          <p>On admet que le maximum de \(F_n\) est en fait atteint sur \(U_n \cap H_n\).</p>
+        </div>
+
+        <p class="annale-exercice__intro" style="margin-top:var(--space-lg)">On note \(M_n\) le maximum de \(F_n\) sur \(\overline{U_n} \cap H_n\) et on note \((a_1, \ldots, a_n)\) un point de \(U_n \cap H_n\) en lequel il est atteint. Pour \(k\) entre 1 et \(n\), on note \(\gamma_k = (a_1 a_2 \cdots a_k)^{1/k}\).</p>
+
+        <div class="question">
+          <span class="question__num">Q17.</span>
+          <p>Demontrer qu'il existe un reel \(\lambda > 0\) tel que</p>
+          <div class="math-display">$$\begin{cases} \gamma_1 + \dfrac{\gamma_2}{2} + \cdots + \dfrac{\gamma_n}{n} = \lambda a_1 \\[6pt] \dfrac{\gamma_2}{2} + \cdots + \dfrac{\gamma_n}{n} = \lambda a_2 \\[6pt] \qquad \vdots \\[6pt] \dfrac{\gamma_n}{n} = \lambda a_n \\[6pt] a_1 + a_2 + \cdots + a_n = 1 \end{cases}$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q18.</span>
+          <p>En deduire que :<br>a) \(\lambda = \gamma_1 + \gamma_2 + \cdots + \gamma_n = M_n\) ;<br>b) pour tout \(k\) dans \([\![1, n]\!]\), \(\gamma_k = \lambda\omega_k a_k\), ou</p>
+          <div class="math-display">$$\begin{cases} \omega_k = k\!\left(1 - \dfrac{a_{k+1}}{a_k}\right) & \text{si } k \in [\![1, n-1]\!] \\[6pt] \omega_n = n \end{cases}$$</div>
+        </div>
+
+        <p class="annale-exercice__intro" style="margin-top:var(--space-lg)">L'objectif des trois questions suivantes est de demontrer que \(\lambda \leqslant e\). On suppose par l'absurde que \(\lambda > e\).</p>
+
+        <div class="question">
+          <span class="question__num">Q19.</span>
+          <p>Verifier que, pour tout \(k\) dans \(\mathbb{N}\), \(\dfrac{1}{e} \leqslant \left(\dfrac{k+1}{k+2}\right)^{k+1}.\)</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q20.</span>
+          <p>Demontrer que \(\omega_1 \leqslant \dfrac{1}{e}\) et que, pour tout \(k\) dans \([\![1, n]\!]\), \(\omega_k \leqslant \dfrac{k}{k+1}\).</p>
+          <p>On pourra demontrer, pour \(k \in [\![1, n-1]\!]\), que \(\omega_{k+1}^{k+1} = \dfrac{1}{\lambda}\omega_k^k\!\left(1 - \dfrac{\omega_k}{k}\right)^{-k}.\)</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q21.</span>
+          <p>Aboutir a une contradiction sur \(\omega_n\). En deduire que, pour tout \(n\) dans \(\mathbb{N}^*\), pour tout \((x_1, \ldots, x_n) \in (\mathbb{R}_+^*)^n\) tels que \(x_1 + \cdots + x_n = 1\),</p>
+          <div class="math-display">$$\sum_{k=1}^{n}(x_1 x_2 \cdots x_k)^{1/k} \leqslant e.$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q22.</span>
+          <p>En deduire l'inegalite de Carleman.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============== PARTIE III =============== -->
+    <div class="annale-exercice" id="partieIII">
+      <h2 class="annale-exercice__title">Partie III -- Inegalite de Carleman-Yang</h2>
+
+      <p class="annale-exercice__intro">Le but de cette derniere partie est d'etablir l'inegalite de Carleman-Yang, qui est un raffinement de l'inegalite de Carleman.</p>
+
+      <!-- III.A -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">III.A -- Un developpement en serie entiere</h3>
+
+        <p class="annale-exercice__intro">Soit \(\varphi\) la fonction definie par</p>
+        <div class="math-display">$$\forall t \in\, ]-1,1[\setminus\{0\}, \quad \varphi(t) = (1 - t)^{1 - 1/t}.$$</div>
+        <p class="annale-exercice__intro">On definit aussi la suite \((b_n)_{n \in \mathbb{N}}\) par</p>
+        <div class="math-display">$$\begin{cases} b_0 = -1 \\[4pt] \forall n \in \mathbb{N}^*, \quad b_n = -\dfrac{1}{n}\displaystyle\sum_{k=1}^{n}\frac{1}{k+1}b_{n-k} \end{cases}$$</div>
+
+        <div class="question">
+          <span class="question__num">Q23.</span>
+          <p>Justifier que \(\varphi\) est prolongeable par continuite en \(0\) et preciser la valeur de son prolongement en \(0\). On notera toujours \(\varphi\) ce prolongement.</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q24.</span>
+          <p>Demontrer que, pour tout \(n\) dans \(\mathbb{N}^*\), \(|b_n| \leqslant 1\). En deduire une inegalite sur le rayon de convergence de la serie entiere \(\displaystyle\sum_{k \geqslant 0} b_k t^k\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q25.</span>
+          <p>Demontrer que, pour tout \(t\) dans \(]-1, 1[\), \(\varphi'(t) = \varphi(t)\psi(t)\), ou</p>
+          <div class="math-display">$$\forall t \in\, ]-1,1\,[, \quad \psi(t) = -\sum_{n=0}^{+\infty}\frac{1}{n+2}t^n$$</div>
+          <p>puis que, pour tout \(n\) dans \(\mathbb{N}^*\),</p>
+          <div class="math-display">$$\varphi^{(n)}(0) = -\sum_{k=0}^{n-1}\frac{k!}{k+2}\binom{n-1}{k}\varphi^{(n-k-1)}(0).$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q26.</span>
+          <p>Conclure alors que</p>
+          <div class="math-display">$$\forall t \in\, ]-1,1\,[, \quad \varphi(t) = e\!\left(1 - \sum_{k=1}^{+\infty} b_k t^k\right).$$</div>
+        </div>
+      </div>
+
+      <!-- III.B -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">III.B -- Demonstration de l'inegalite de Carleman-Yang</h3>
+
+        <p class="annale-exercice__intro">Soit \((a_n)_{n \in \mathbb{N}^*}\) et \((c_n)_{n \in \mathbb{N}^*}\) deux suites de reels strictement positifs.</p>
+
+        <div class="question">
+          <span class="question__num">Q27.</span>
+          <p>Demontrer que</p>
+          <div class="math-display">$$\sum_{n=1}^{+\infty}\left(\prod_{k=1}^{n} a_k\right)^{1/n} \leqslant \sum_{k=1}^{+\infty} c_k a_k \sum_{n \geqslant k}^{} \frac{1}{n}\left(\prod_{i=1}^{n} c_i\right)^{-1/n}.$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q28.</span>
+          <p>En considerant \(c_n = \dfrac{(n+1)^n}{n^{n-1}}\), en deduire l'inegalite de Carleman-Yang :</p>
+          <div class="math-display">$$\sum_{n=1}^{+\infty}\left(\prod_{k=1}^{n} a_k\right)^{1/n} \leqslant e\sum_{n=1}^{+\infty}\left(1 - \sum_{k=1}^{+\infty}\frac{b_k}{(n+1)^k}\right)a_n.$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q29.</span>
+          <p>Demontrer que, pour tout \(n\) dans \(\mathbb{N}^*\), \(b_n \geqslant 0\). En quoi l'inegalite precedente est-elle un raffinement de l'inegalite de Carleman ?</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="../../mp.html#annales" class="course__nav-link">
+        &larr; Retour
+        <span>Annales MP</span>
+      </a>
+      <a href="centrale-2024-maths2.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Centrale 2024 -- Maths 2</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

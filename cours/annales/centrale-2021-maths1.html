@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centrale-Supelec 2021 — Maths 1 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+
+    /* Annale-specific styles */
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
+    .question ol li{margin-bottom:4px}
+
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+
+    @media(max-width:680px){
+      .course__title{font-size:2rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">CENTRALE-SUPELEC 2021</span>
+    </div>
+
+    <h1 class="course__title">Centrale-Supelec 2021 -- Mathematiques 1</h1>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 1, filiere MP. Duree : 4 heures. Le sujet porte sur la loi du demi-cercle de Wigner : inegalite de Hoffman-Wielandt, denombrement des mots bien parentheses (nombres de Catalan), loi du demi-cercle dans le cas uniformement borne puis dans le cas general. Themes : matrices symetriques reelles, probabilites discretes, series entieres, combinatoire.
+    </p>
+
+    <!-- Informations de l'epreuve -->
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">Centrale-Supelec</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Mathematiques 1</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Duree</span>
+        <span class="annale-info__value">4 heures</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Matrices symetriques, probabilites, series entieres, combinatoire, loi du demi-cercle</span>
+      </div>
+    </div>
+
+    <!-- Sommaire -->
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#partie1"><span class="course__toc-num">I.</span> Inegalite de Hoffman-Wielandt</a></li>
+        <li class="course__toc-item"><a href="#partie2"><span class="course__toc-num">II.</span> Denombrement des mots bien parentheses</a></li>
+        <li class="course__toc-item"><a href="#partie3"><span class="course__toc-num">III.</span> Loi du demi-cercle, cas uniformement borne</a></li>
+        <li class="course__toc-item"><a href="#partie4"><span class="course__toc-num">IV.</span> Loi du demi-cercle, cas general</a></li>
+      </ol>
+    </nav>
+
+    <!-- =============== NOTATIONS =============== -->
+    <div class="annale-exercice">
+      <h2 class="annale-exercice__title">Notations et definitions</h2>
+
+      <p class="annale-exercice__intro">
+        Pour tous entiers naturels \(p\) et \(q\) tels que \(p \leqslant q\), on note \([\![p, q]\!]\) l'ensemble \(\{i \in \mathbb{N} \mid p \leqslant i \leqslant q\}\).
+      </p>
+      <p class="annale-exercice__intro">
+        Pour tout entier naturel \(n\) tel que \(n \geqslant 1\), on note \(\mathcal{M}_n(\mathbb{R})\) l'ensemble des matrices a \(n\) lignes et \(n\) colonnes a coefficients reels, \(\mathcal{S}_n(\mathbb{R})\) l'ensemble des matrices symetriques et a coefficients reels de taille \(n\) et \(\mathcal{O}_n(\mathbb{R})\) l'ensemble des matrices reelles orthogonales de taille \(n\).
+      </p>
+      <p class="annale-exercice__intro">
+        Pour toute matrice symetrique reelle \(M \in \mathcal{S}_n(\mathbb{R})\), on note \(\lambda_1(M) \geqslant \lambda_2(M) \geqslant \cdots \geqslant \lambda_n(M)\) ses valeurs propres rangees dans l'ordre decroissant.
+      </p>
+      <p class="annale-exercice__intro">
+        On note \(M^\top\) la transposee d'une matrice \(M\).
+      </p>
+      <p class="annale-exercice__intro">
+        Pour tout \((i, j) \in [\![1, n]\!]^2\), on note \(E_{ij}\) la matrice de la base canonique de \(\mathcal{M}_n(\mathbb{R})\) dont tous les coefficients sont nuls sauf celui situe sur la \(i\)-eme ligne et la \(j\)-ieme colonne qui vaut 1.
+      </p>
+      <p class="annale-exercice__intro">
+        Pour toute matrice \(M \in \mathcal{M}_n(\mathbb{R})\), on note \(\|M\|_F = \sqrt{\mathrm{tr}(MM^\top)}\) sa norme euclidienne canonique.
+      </p>
+      <p class="annale-exercice__intro">
+        Dans tout le probleme, on note \((\Omega, \mathcal{A}, \mathbb{P})\) un espace probabilise. Toutes les variables aleatoires considerees sont definies sur \(\Omega\).
+      </p>
+      <p class="annale-exercice__intro">
+        Etant donnee une variable aleatoire discrete \(X\) a valeurs reelles admettant une esperance, on note \(\mathbb{E}(X)\) son esperance. Si \(X\) admet une variance, on note \(\mathbb{V}(X)\) sa variance.
+      </p>
+      <p class="annale-exercice__intro">
+        On considere \((X_{ij})_{(i,j) \in (\mathbb{N}^*)^2}\) une famille de variables aleatoires discretes reelles telles que :
+      </p>
+      <ul>
+        <li>pour tout \((i, j) \in (\mathbb{N}^*)^2\), \(X_{ij} = X_{ji}\) ;</li>
+        <li>les variables aleatoires \(X_{ij}\) sont de meme loi, d'esperance nulle et de variance 1 ;</li>
+        <li>pour \(n \geqslant 1\), les variables aleatoires \(X_{ij}\), pour \(1 \leqslant i \leqslant j \leqslant n\), sont mutuellement independantes.</li>
+      </ul>
+      <p class="annale-exercice__intro">
+        Pour tout \(n \in \mathbb{N}^*\) et pour tout \(\omega \in \Omega\), on note \(M_n(\omega)\) la matrice \((X_{ij}(\omega))_{1 \leqslant i,j \leqslant n} \in \mathcal{M}_n(\mathbb{R})\).
+      </p>
+      <p class="annale-exercice__intro">
+        Pour tout \(\omega \in \Omega\), on note \(\Lambda_{1,n}(\omega) \geqslant \cdots \geqslant \Lambda_{n,n}(\omega)\) les valeurs propres de \(\frac{1}{\sqrt{n}} M_n(\omega)\).
+      </p>
+      <p class="annale-exercice__intro">
+        On definit ainsi, pour \(n \in \mathbb{N}^*\) et \(i \in [\![1, n]\!]\), des variables aleatoires reelles discretes \(\Lambda_{i,n}\) sur \((\Omega, \mathcal{A}, \mathbb{P})\).
+      </p>
+      <p class="annale-exercice__intro">
+        On se propose de montrer le resultat suivant :
+      </p>
+      <p class="annale-exercice__intro"><strong>Loi du demi-cercle.</strong> Pour toute fonction \(f : \mathbb{R} \to \mathbb{R}\), continue et bornee,</p>
+      <div class="math-display">$$\mathbb{E}\!\left(\frac{1}{n}\sum_{i=1}^{n} f(\Lambda_{i,n})\right) \xrightarrow[n \to +\infty]{} \frac{1}{2\pi}\int_{-2}^{2} f(x)\sqrt{4 - x^2}\,\mathrm{d}x.$$</div>
+    </div>
+
+    <!-- =============== PARTIE I =============== -->
+    <div class="annale-exercice" id="partie1">
+      <h2 class="annale-exercice__title">Partie I -- Inegalite de Hoffman-Wielandt</h2>
+
+      <!-- I.A -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">I.A</h3>
+
+        <p class="annale-exercice__intro">Soient \(A\) et \(B\) deux matrices de \(\mathcal{S}_n(\mathbb{R})\).</p>
+
+        <div class="question">
+          <span class="question__num">Q1.</span>
+          <p>Montrer que, pour tout \(M\) dans \(\mathcal{M}_n(\mathbb{R})\) et pour tous \(P\) et \(Q\) dans \(\mathcal{O}_n(\mathbb{R})\), on a \(\|PMQ\|_F = \|M\|_F\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q2.</span>
+          <p>On note \(D_A = \mathrm{diag}(\lambda_1(A), \ldots, \lambda_n(A))\) et \(D_B = \mathrm{diag}(\lambda_1(B), \ldots, \lambda_n(B))\). Montrer qu'il existe une matrice orthogonale \(P = (p_{i,j})_{1 \leqslant i,j \leqslant n}\) telle que \(\|A - B\|_F^2 = \|D_A P - P D_B\|_F^2\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q3.</span>
+          <p>Montrer que</p>
+          <div class="math-display">$$\|A - B\|_F^2 = \sum_{1 \leqslant i,j \leqslant n} p_{i,j}^2 (\lambda_i(A) - \lambda_j(B))^2.$$</div>
+        </div>
+      </div>
+
+      <!-- I.B -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">I.B</h3>
+
+        <p class="annale-exercice__intro">On note \(\mathcal{B}_n(\mathbb{R})\) l'ensemble des matrices bistochastiques de \(\mathcal{M}_n(\mathbb{R})\), c'est-a-dire l'ensemble des matrices \(M = (m_{i,j})_{1 \leqslant i,j \leqslant n}\) dont tous les coefficients sont positifs ou nuls et tels que</p>
+        <div class="math-display">$$\sum_{j=1}^{n} m_{i,j} = \sum_{j=1}^{n} m_{j,i} = 1$$</div>
+        <p class="annale-exercice__intro">pour tout \(i \in [\![1, n]\!]\).</p>
+        <p class="annale-exercice__intro">On note \(f : \begin{vmatrix} \mathcal{M}_n(\mathbb{R}) & \to & \mathbb{R} \\ M & \mapsto & \displaystyle\sum_{1 \leqslant i,j \leqslant n} m_{i,j}(\lambda_i(A) - \lambda_j(B))^2 \end{vmatrix}\)</p>
+
+        <div class="question">
+          <span class="question__num">Q4.</span>
+          <p>Justifier que \(f\) admet un minimum sur \(\mathcal{B}_n(\mathbb{R})\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q5.</span>
+          <p>Soit \((i, j, k) \in [\![1, n]\!]^3\) tel que \(j \geqslant i\) et \(k \geqslant i\). Montrer que, pour \(M \in \mathcal{M}_n(\mathbb{R})\) et pour \(x \in \mathbb{R}^+\),</p>
+          <div class="math-display">$$f(M + xE_{ii} + xE_{jk} - xE_{ik} - xE_{ji}) - f(M) = 2x(\lambda_i(A) - \lambda_j(A))(\lambda_k(B) - \lambda_i(B)) \leqslant 0$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q6.</span>
+          <p>Soient \(n \geqslant 2\) et \(M = (m_{i,j})_{1 \leqslant i,j \leqslant n} \in \mathcal{B}_n(\mathbb{R})\) une matrice differente de l'identite. On note \(i\) le plus petit entier appartenant a \([\![1, n]\!]\) tel que \(m_{i,i} \neq 1\). Montrer qu'il existe une matrice \(M' = (m'_{i,j})_{1 \leqslant i,j \leqslant n} \in \mathcal{B}_n(\mathbb{R})\) telle que \(f(M') \leqslant f(M)\) et \(m'_{j,j} = 1\) pour tout \(j \in [\![1, i]\!]\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q7.</span>
+          <p>En deduire que</p>
+          <div class="math-display">$$\min\{f(M) \mid M \in \mathcal{B}_n(\mathbb{R})\} = f(I_n).$$</div>
+        </div>
+      </div>
+
+      <!-- I.C -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">I.C</h3>
+
+        <div class="question">
+          <span class="question__num">Q8.</span>
+          <p>En deduire que</p>
+          <div class="math-display">$$\forall (A, B) \in \mathcal{S}_n(\mathbb{R})^2, \quad \sum_{i=1}^{n} (\lambda_i(A) - \lambda_i(B))^2 \leqslant \|A - B\|_F^2.$$</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============== PARTIE II =============== -->
+    <div class="annale-exercice" id="partie2">
+      <h2 class="annale-exercice__title">Partie II -- Denombrement des mots bien parentheses</h2>
+
+      <p class="annale-exercice__intro">
+        Dans cette partie, on s'interesse a des chaines de caracteres constituees uniquement des deux caracteres parenthese ouvrante et parenthese fermante. On dit qu'un mot est *bien parenthese* s'il commence par une parenthese ouvrante et qu'a toute parenthese ouvrante est associee une (unique) parenthese fermante *qui lui est posterieure*.
+      </p>
+      <p class="annale-exercice__intro">Par exemple le mot \(\texttt{()(())}\) est bien parenthese. En revanche, le mot \(\texttt{())(}\texttt{)}\) n'est pas bien parenthese.</p>
+      <p class="annale-exercice__intro">
+        Un mot bien parenthese est ainsi forcement constitue d'un nombre pair de caracteres, chaque parenthese qui s'ouvre doit se refermer.
+      </p>
+      <p class="annale-exercice__intro">
+        Pour tout entier \(n \geqslant 1\), on note \(C_n\) le nombre de mots bien parentheses de longueur \(2n\). On pose par commodite \(C_0 = 1\).
+      </p>
+
+      <!-- II.A -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">II.A</h3>
+
+        <div class="question">
+          <span class="question__num">Q9.</span>
+          <p>En enumerant les differents mots bien parentheses de longueur 2, 4 et 6, montrer que \(C_1 = 1\), \(C_2 = 2\) et determiner \(C_3\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q10.</span>
+          <p>Montrer que, pour tout entier naturel \(n\), \(C_n \leqslant 2^{2n}\). Que peut-on en deduire pour le rayon de convergence de la serie entiere \(\sum C_k x^k\) ?</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q11.</span>
+          <p>Montrer par un raisonnement combinatoire que, pour tout entier \(k \geqslant 1\),</p>
+          <div class="math-display">$$C_k = \sum_{i=0}^{k-1} C_i C_{k-i-1}.$$</div>
+        </div>
+
+        <p class="annale-exercice__intro">On peut remarquer qu'un mot bien parenthese est forcement de la forme \((m)m'\) avec \(m\) et \(m'\) deux mots bien parentheses, eventuellement vides.</p>
+      </div>
+
+      <!-- II.B -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">II.B</h3>
+
+        <p class="annale-exercice__intro">Pour tout \(x \in \left]-\frac{1}{4}, \frac{1}{4}\right[\), on pose \(F(x) = \displaystyle\sum_{k=0}^{+\infty} C_k x^k\).</p>
+
+        <div class="question">
+          <span class="question__num">Q12.</span>
+          <p>Montrer que, pour tout \(x \in \left]-\frac{1}{4}, \frac{1}{4}\right[\), \(F(x) = 1 + x(F(x))^2\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q13.</span>
+          <p>Montrer que la fonction \(f : \left]-\frac{1}{4}, \frac{1}{4}\right[ \to \mathbb{R},\ x \mapsto 2xF(x) - 1\) ne s'annule pas.</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q14.</span>
+          <p>Determiner, pour tout \(x \in \left]-\frac{1}{4}, \frac{1}{4}\right[\), une expression de \(F(x)\) en fonction de \(x\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q15.</span>
+          <p>Determiner le developpement en serie entiere de la fonction \(u \mapsto \sqrt{1 - u}\). On ecrira les coefficients sous la forme d'un quotient de factorielles et de puissances de 2.</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q16.</span>
+          <p>Montrer que, pour tout entier naturel \(n\),</p>
+          <div class="math-display">$$C_n = \frac{(2n)!}{(n+1)!\,n!}.$$</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============== PARTIE III =============== -->
+    <div class="annale-exercice" id="partie3">
+      <h2 class="annale-exercice__title">Partie III -- Loi du demi-cercle, cas uniformement borne</h2>
+
+      <p class="annale-exercice__intro">On suppose, uniquement dans cette partie, que les variables aleatoires \(X_{ij}\) sont uniformement bornees :</p>
+      <div class="math-display">$$\exists K \in \mathbb{R} \quad \forall (i, j) \in (\mathbb{N}^*)^2 \quad |X_{ij}| \leqslant K.$$</div>
+
+      <!-- III.A -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">III.A</h3>
+
+        <p class="annale-exercice__intro">Pour tout entier naturel \(k\), on pose</p>
+        <div class="math-display">$$m_k = \frac{1}{2\pi}\int_{-2}^{2} x^k \sqrt{4 - x^2}\,\mathrm{d}x.$$</div>
+
+        <div class="question">
+          <span class="question__num">Q17.</span>
+          <p>Pour \(k \in \mathbb{N}\), que vaut \(m_{2k+1}\) ?</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q18.</span>
+          <p>En utilisant le changement de variable \(x = 2\sin t\), calculer \(m_0\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q19.</span>
+          <p>A l'aide d'une integration par parties, montrer que, pour tout entier naturel \(k\),</p>
+          <div class="math-display">$$m_{2k+2} = \frac{2(2k+1)}{k+2}\,m_{2k}.$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q20.</span>
+          <p>En deduire que</p>
+          <div class="math-display">$$m_k = \begin{cases} C_{k/2} & \text{si } k \text{ est pair,} \\ 0 & \text{si } k \text{ est impair.} \end{cases}$$</div>
+        </div>
+      </div>
+
+      <!-- III.B -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">III.B</h3>
+
+        <p class="annale-exercice__intro">Soit \(k\) un entier naturel. On se propose de montrer que</p>
+        <div class="math-display">$$\lim_{n \to +\infty} \mathbb{E}\!\left(\frac{1}{n}\sum_{i=1}^{n} \Lambda_{i,n}^k\right) = m_k,$$</div>
+        <p class="annale-exercice__intro">ou \(\Lambda_{i,n}^k = (\Lambda_{i,n})^k\) est la puissance \(k\)-ieme de \(\Lambda_{i,n}\).</p>
+
+        <div class="question">
+          <span class="question__num">Q21.</span>
+          <p>Justifier que la variable aleatoire \(\displaystyle\sum_{i=1}^{n} \Lambda_{i,n}^k\) admet une esperance et que</p>
+          <div class="math-display">$$\mathbb{E}\!\left(\frac{1}{n}\sum_{i=1}^{n} \Lambda_{i,n}^k\right) = \frac{1}{n^{1+k/2}}\mathbb{E}\!\left(\mathrm{tr}(M_n^k)\right) = \frac{1}{n^{1+k/2}} \sum_{(i_1, \ldots, i_k) \in [\![1,n]\!]^k} \mathbb{E}(X_{i_1 i_2} X_{i_2 i_3} \cdots X_{i_{k-1} i_k} X_{i_k i_1}).$$</div>
+        </div>
+
+        <p class="annale-exercice__intro">On appelle <em>cycle</em> de longueur \(k\) a valeurs dans \([\![1, n]\!]\), tout \((k+1)\)-uplet \(\vec{\imath} = (i_1, i_2, \ldots, i_k, i_1)\) d'elements de \([\![1, n]\!]\). Les elements \(i_1, \ldots, i_k\) sont appeles <em>sommets</em> du cycle \(\vec{\imath}\). On dit aussi que le cycle <em>passe</em> par ces sommets. On note \(|\vec{\imath}|\) le nombre de sommets distincts du cycle \(\vec{\imath}\).</p>
+        <p class="annale-exercice__intro">On appelle <em>aretes</em> du cycle \((i_1, i_2, \ldots, i_k, i_1)\) les couples non ordonnes (l'ordre des deux elements de chaque couple n'est pas significatif) \(\{i_1, i_2\}, \{i_2, i_3\}, \ldots, \{i_k, i_1\}\).</p>
+
+        <div class="question">
+          <span class="question__num">Q22.</span>
+          <p>Montrer que le nombre de cycles de longueur \(k\) dans \([\![1, n]\!]\) passant par \(\ell\) sommets distincts est inferieur ou egal a \(n^\ell \ell^k\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q23.</span>
+          <p>En deduire que</p>
+          <div class="math-display">$$\frac{1}{n^{1+k/2}} \sum_{\substack{\vec{\imath} \in [\![1,n]\!]^k \\ |\vec{\imath}| \leqslant (k+1)/2}} \left|\mathbb{E}(X_{i_1 i_2} X_{i_2 i_3} \cdots X_{i_{k-1} i_k} X_{i_k i_1})\right| \xrightarrow[n \to +\infty]{} 0.$$</div>
+        </div>
+
+        <p class="annale-exercice__intro">On classe les cycles de longueur \(k\) en trois sous-ensembles :</p>
+        <ul>
+          <li>l'ensemble \(\mathcal{A}_k\), constitue des cycles ou au moins une arete n'apparait qu'une fois ;</li>
+          <li>l'ensemble \(\mathcal{B}_k\), constitue des cycles ou toutes les aretes apparaissent exactement deux fois ;</li>
+          <li>l'ensemble \(\mathcal{C}_k\), constitue des cycles ou toutes les aretes apparaissent au moins deux fois et il en existe au moins une qui apparait au moins trois fois.</li>
+        </ul>
+
+        <div class="question">
+          <span class="question__num">Q24.</span>
+          <p>Montrer que, si le cycle \((i_1, i_2, \ldots, i_k, i_1)\) appartient a \(\mathcal{A}_k\), alors</p>
+          <div class="math-display">$$\mathbb{E}(X_{i_1 i_2} X_{i_2 i_3} \cdots X_{i_{k-1} i_k} X_{i_k i_1}) = 0.$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q25.</span>
+          <p>Montrer que, pour tout cycle \(\vec{\imath}\) appartenant a \(\mathcal{C}_k\), \(|\vec{\imath}| \leqslant \frac{k+1}{2}\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q26.</span>
+          <p>Que peut-on dire de \(\mathcal{B}_k\) si \(k\) est impair ? En deduire que \(\displaystyle\lim_{n \to +\infty} \mathbb{E}\!\left(\frac{1}{n}\sum_{i=1}^{n} \Lambda_{i,n}^k\right) = 0\) dans ce cas.</p>
+        </div>
+
+        <p class="annale-exercice__intro">On suppose dans la suite que \(k\) est pair et que \(\vec{\imath} \in \mathcal{B}_k\) est un cycle passant par \(\frac{k}{2} + 1\) sommets distincts. Autrement dit \(|\vec{\imath}| = \frac{k}{2} + 1\).</p>
+        <p class="annale-exercice__intro">On parcourt les aretes de \(\vec{\imath}\) dans l'ordre. A chaque arete de \(\vec{\imath}\) on associe une parenthese ouvrante si cette arete apparait pour la premiere fois et une parenthese fermante si elle apparait pour la deuxieme fois.</p>
+
+        <div class="question">
+          <span class="question__num">Q27.</span>
+          <p>Justifier que l'on obtient ainsi un mot bien parenthese de longueur \(k\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q28.</span>
+          <p>Denombrer les cycles \(\vec{\imath}\) qui correspondent a un mot bien parenthese fixe.</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q29.</span>
+          <p>Deduire de ce qui precede que</p>
+          <div class="math-display">$$\lim_{n \to +\infty} \mathbb{E}\!\left(\frac{1}{n}\sum_{i=1}^{n} \Lambda_{i,n}^k\right) = C_{k/2}.$$</div>
+        </div>
+      </div>
+
+      <!-- III.C -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">III.C</h3>
+
+        <div class="question">
+          <span class="question__num">Q30.</span>
+          <p>En deduire que, pour tout polynome \(P \in \mathbb{R}[X]\),</p>
+          <div class="math-display">$$\lim_{n \to +\infty} \mathbb{E}\!\left(\frac{1}{n}\sum_{i=1}^{n} P(\Lambda_{i,n})\right) = \frac{1}{2\pi}\int_{-2}^{2} P(x)\sqrt{4 - x^2}\,\mathrm{d}x.$$</div>
+        </div>
+      </div>
+
+      <!-- III.D -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">III.D</h3>
+
+        <p class="annale-exercice__intro">Soit \(A > 2\).</p>
+
+        <div class="question">
+          <span class="question__num">Q31.</span>
+          <p>Montrer que, pour tout \((p, q) \in \mathbb{N}^2\),</p>
+          <div class="math-display">$$\mathbb{E}\!\left(\sum_{\substack{1 \leqslant i \leqslant n \\ |\Lambda_{i,n}| \geqslant A}} |\Lambda_{i,n}|^p\right) \leqslant \frac{1}{A^{p+2q}}\,\mathbb{E}\!\left(\sum_{i=1}^{n} |\Lambda_{i,n}|^{2(p+q)}\right).$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q32.</span>
+          <p>Montrer que</p>
+          <div class="math-display">$$\lim_{n \to +\infty} \frac{1}{n}\,\mathbb{E}\!\left(\sum_{\substack{1 \leqslant i \leqslant n \\ |\Lambda_{i,n}| \geqslant A}} |\Lambda_{i,n}|^p\right) = 0.$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q33.</span>
+          <p>Soient \(f\) une fonction continue et bornee de \(\mathbb{R}\) dans \(\mathbb{R}\) et \(P\) un polynome de degre \(p\). Justifier qu'il existe une constante \(K\) telle que</p>
+          <div class="math-display">$$\forall x \in \mathbb{R} \setminus ]-A, A[, \quad |f(x) - P(x)| \leqslant K|x|^p.$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q34.</span>
+          <p>En deduire que</p>
+          <div class="math-display">$$\lim_{n \to +\infty} \frac{1}{n}\,\mathbb{E}\!\left(\sum_{\substack{1 \leqslant i \leqslant n \\ |\Lambda_{i,n}| \geqslant A}} |f - P|(\Lambda_{i,n})\right) = 0.$$</div>
+        </div>
+      </div>
+
+      <!-- III.E -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">III.E</h3>
+
+        <div class="question">
+          <span class="question__num">Q35.</span>
+          <p>Soit \(f\) une fonction continue et bornee de \(\mathbb{R}\) dans \(\mathbb{R}\). Montrer que</p>
+          <div class="math-display">$$\lim_{n \to +\infty} \mathbb{E}\!\left(\frac{1}{n}\sum_{i=1}^{n} f(\Lambda_{i,n})\right) = \frac{1}{2\pi}\int_{-2}^{2} f(x)\sqrt{4 - x^2}\,\mathrm{d}x.$$</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============== PARTIE IV =============== -->
+    <div class="annale-exercice" id="partie4">
+      <h2 class="annale-exercice__title">Partie IV -- Loi du demi-cercle, cas general</h2>
+
+      <p class="annale-exercice__intro">On revient au cas general. On note \(\mathbb{1}_\mathcal{A}\) la variable aleatoire indicatrice d'un evenement \(\mathcal{A}\).</p>
+      <p class="annale-exercice__intro">Pour tout \((i, j) \in (\mathbb{N}^*)^2\) et pour tout \(C > 0\), on pose</p>
+      <div class="math-display">$$\sigma_{ij}(C) = \sqrt{\mathbb{V}(X_{ij}\mathbb{1}_{|X_{ij}| \leqslant C})}.$$</div>
+      <p class="annale-exercice__intro">Si \(\sigma_{ij}(C) \neq 0\), on pose</p>
+      <div class="math-display">$$\widehat{X}_{ij}(C) = \frac{1}{\sigma_{ij}(C)}\left(X_{ij}\mathbb{1}_{|X_{ij}| \leqslant C} - \mathbb{E}(X_{ij}\mathbb{1}_{|X_{ij}| \leqslant C})\right).$$</div>
+
+      <!-- IV.A -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">IV.A</h3>
+
+        <div class="question">
+          <span class="question__num">Q36.</span>
+          <p>Soit \(X\) une variable aleatoire discrete d'esperance finie. Montrer que</p>
+          <div class="math-display">$$\mathbb{E}(X\mathbb{1}_{|X| \leqslant C}) \xrightarrow[C \to +\infty]{} \mathbb{E}(X).$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q37.</span>
+          <p>En deduire que</p>
+          <div class="math-display">$$\lim_{C \to +\infty} \sigma_{ij}(C) = 1.$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q38.</span>
+          <p>Justifier que, pour \(C\) assez grand, les variables \(\widehat{X}_{ij}(C)\) sont bien definies et qu'elles sont alors bornees, centrees, de variance 1 et qu'elles sont mutuellement independantes pour \(1 \leqslant i \leqslant j\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q39.</span>
+          <p>Montrer que</p>
+          <div class="math-display">$$X_{ij} - \widehat{X}_{ij}(C) = \left(1 - \frac{1}{\sigma_{ij}(C)}\right)X_{ij} + \frac{1}{\sigma_{ij}(C)}\left(X_{ij}\mathbb{1}_{|X_{ij}| > C} - \mathbb{E}\!\left(X_{ij}\mathbb{1}_{|X_{ij}| > C}\right)\right).$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q40.</span>
+          <p>Montrer que</p>
+          <div class="math-display">$$\lim_{C \to +\infty} \mathbb{E}\!\left((X_{ij} - \widehat{X}_{ij}(C))^2\right) = 0.$$</div>
+        </div>
+      </div>
+
+      <!-- IV.B -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">IV.B</h3>
+
+        <p class="annale-exercice__intro">Pour tout entier \(n\) tel que \(n \geqslant 1\), on note \(\widehat{M}_n(C) = (\widehat{X}_{ij}(C))_{1 \leqslant i,j \leqslant n}\). Pour tout \(\omega \in \Omega\), on note \(\widehat{\Lambda}_{1,n}(\omega) \geqslant \ldots \geqslant \widehat{\Lambda}_{n,n}(\omega)\) les valeurs propres de \(\frac{1}{\sqrt{n}}\widehat{M}_n(C)(\omega)\) rangees dans l'ordre decroissant.</p>
+        <p class="annale-exercice__intro">On obtient ainsi des variables aleatoires reelles discretes \(\widehat{\Lambda}_{1,n}, \ldots, \widehat{\Lambda}_{n,n}\) sur \((\Omega, \mathcal{A}, \mathbb{P})\).</p>
+        <p class="annale-exercice__intro">Soit \(f : \mathbb{R} \to \mathbb{R}\) une fonction \(K\)-lipschitzienne.</p>
+
+        <div class="question">
+          <span class="question__num">Q41.</span>
+          <p>Montrer que</p>
+          <div class="math-display">$$\left|\mathbb{E}\!\left(\frac{1}{n}\sum_{i=1}^{n} f(\Lambda_{i,n})\right) - \mathbb{E}\!\left(\frac{1}{n}\sum_{i=1}^{n} f(\widehat{\Lambda}_{i,n})\right)\right| \leqslant \frac{K}{n}\,\mathbb{E}\!\left(\|M_n - \widehat{M}_n(C)\|_F\right).$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q42.</span>
+          <p>On suppose de plus \(f\) bornee. Montrer</p>
+          <div class="math-display">$$\mathbb{E}\!\left(\frac{1}{n}\sum_{i=1}^{n} f(\Lambda_{i,n})\right) \xrightarrow[n \to +\infty]{} \frac{1}{2\pi}\int_{-2}^{2} f(x)\sqrt{4 - x^2}\,\mathrm{d}x.$$</div>
+        </div>
+      </div>
+
+      <!-- IV.C -->
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">IV.C</h3>
+
+        <div class="question">
+          <span class="question__num">Q43.</span>
+          <p>Montrer la loi du demi-cercle dans le cas general.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="../../mp.html#annales" class="course__nav-link">
+        &larr; Retour
+        <span>Annales MP</span>
+      </a>
+      <a href="centrale-2021-maths2.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Centrale-Supelec 2021 -- Maths 2</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

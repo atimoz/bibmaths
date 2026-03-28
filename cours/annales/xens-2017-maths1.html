@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X-ENS 2017 — Maths 1 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
+    .question ol li{margin-bottom:4px}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    @media(max-width:680px){
+      .course__title{font-size:2rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">X-ENS 2017</span>
+    </div>
+
+    <h1 class="course__title">X-ENS 2017 -- Mathematiques 1</h1>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 1 du concours X-ENS 2017, filiere MP. Le sujet porte sur les formes symplectiques, les bases symplectiques, la reduction simultanee et les structures complexes domptees. Il comporte 26 questions reparties en quatre parties.
+    </p>
+
+    <!-- Informations de l'epreuve -->
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">X-ENS</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Mathematiques 1</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2017</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Formes symplectiques, bases symplectiques, reduction simultanee, structures complexes</span>
+      </div>
+    </div>
+
+    <!-- Sommaire -->
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#partie1"><span class="course__toc-num">01.</span> Partie I -- Bases symplectiques</a></li>
+        <li class="course__toc-item"><a href="#partie2"><span class="course__toc-num">02.</span> Partie II -- Deux outils sur les polynomes</a></li>
+        <li class="course__toc-item"><a href="#partie3"><span class="course__toc-num">03.</span> Partie III -- Reduction simultanee</a></li>
+        <li class="course__toc-item"><a href="#partie4"><span class="course__toc-num">04.</span> Partie IV -- Structures complexes domptees simultanement</a></li>
+      </ol>
+    </nav>
+
+    <!-- =============== ENONCE INTRO =============== -->
+    <div class="annale-exercice" id="enonce-intro">
+      <h2 class="annale-exercice__title">Notations et hypotheses</h2>
+
+      <p class="annale-exercice__intro">Dans tout le probleme :</p>
+      <p class="annale-exercice__intro">- \(E\) est un \(\mathbb{R}\)-espace vectoriel de dimension finie \(n \in \mathbb{N}^*\),</p>
+      <p class="annale-exercice__intro">- \(\operatorname{Id}\) est l'application identite sur \(E\) : \(\operatorname{Id}(x) = x\) pour tout \(x \in E\),</p>
+      <p class="annale-exercice__intro">- \(\mathrm{L}(E)\) est l'algebre des endomorphismes de \(E\),</p>
+      <p class="annale-exercice__intro">- \(\mathrm{GL}(E)\) est le groupe des automorphismes de \(E\),</p>
+      <p class="annale-exercice__intro">- \(E^* = \mathrm{L}(E, \mathbb{R})\) est l'espace vectoriel des formes lineaires sur \(E\),</p>
+      <p class="annale-exercice__intro">- \(\mathrm{A}(E)\) est l'espace vectoriel des applications \(\omega : E \times E \to \mathbb{R}\) qui sont bilineaires et antisymetriques, c'est-a-dire qui verifient, quel que soit \((x, y, z) \in E^3\) et quel que soit \(\lambda \in \mathbb{R}\),</p>
+      <div class="math-display">$$\omega(\lambda x + y, z) = \lambda\omega(x, z) + \omega(y, z), \quad \omega(x, \lambda y + z) = \lambda\omega(x, y) + \omega(x, z)$$</div>
+      <div class="math-display">$$\omega(x, y) = -\omega(y, x)$$</div>
+
+      <p class="annale-exercice__intro">
+        Pour tout \(\omega \in \mathrm{A}(E)\) et \(x \in E\), on note \(\omega(x, \cdot)\) la forme lineaire definie par
+      </p>
+      <div class="math-display">$$\omega(x, \cdot) : E \to \mathbb{R}, \quad y \mapsto \omega(x, y)$$</div>
+
+      <p class="annale-exercice__intro">
+        Pour tout \(\omega \in \mathrm{A}(E)\), on note \(\varphi_\omega\) l'application lineaire definie par
+      </p>
+      <div class="math-display">$$\varphi_\omega : E \to E^*, \quad x \mapsto \omega(x, \cdot)$$</div>
+
+      <p class="annale-exercice__intro">
+        Un element \(\omega\) de \(\mathrm{A}(E)\) est appele forme symplectique sur \(E\) si \(\varphi_\omega\) est un isomorphisme de \(E\) sur \(E^*\).
+      </p>
+      <p class="annale-exercice__intro">
+        Un element \(J\) de \(\mathrm{L}(E)\) est appele structure complexe sur \(E\) s'il verifie \(J^2 = -\operatorname{Id}\).
+      </p>
+      <p class="annale-exercice__intro">
+        On dit qu'une forme symplectique \(\omega\) sur \(E\) dompte une structure complexe \(J\) si \(\omega(x, J(x)) > 0\) pour tout \(x \in E \setminus \{0\}\).
+      </p>
+      <p class="annale-exercice__intro">On note :</p>
+      <p class="annale-exercice__intro">- \(\mathcal{M}_n(\mathbb{R})\) l'algebre des matrices carrees de taille \(n\) a coefficients reels,</p>
+      <p class="annale-exercice__intro">- \(GL_n(\mathbb{R})\) le groupe des matrices inversibles de taille \(n\) a coefficients reels,</p>
+      <p class="annale-exercice__intro">- \(I_n\) la matrice unite de taille \(n\),</p>
+      <p class="annale-exercice__intro">- lorsque \(n\) est pair, \(J_n\) la matrice carree de taille \(n\) definie par blocs</p>
+      <div class="math-display">$$J_n = \begin{pmatrix} 0 & -I_{\frac{n}{2}} \\ I_{\frac{n}{2}} & 0 \end{pmatrix}$$</div>
+      <p class="annale-exercice__intro">- \(\det\) l'application determinant sur \(\mathcal{M}_n(\mathbb{R})\),</p>
+      <p class="annale-exercice__intro">- \({}^t\!M\) la transposee de la matrice \(M\).</p>
+      <p class="annale-exercice__intro">On identifie tout element de \(\mathcal{M}_1(\mathbb{R})\) a un nombre reel.</p>
+      <p class="annale-exercice__intro">La partie I est utilisee dans les parties III et IV. Les parties II et III, independantes entre elles, sont utilisees dans la partie IV.</p>
+    </div>
+
+    <!-- =============== PARTIE I =============== -->
+    <div class="annale-exercice" id="partie1">
+      <h2 class="annale-exercice__title">Partie I -- Bases symplectiques</h2>
+
+      <div class="question">
+        <span class="question__num">Q1.</span>
+        <p>Montrer que la dimension de l'espace vectoriel \(E^*\) vaut \(n\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q2.</span>
+        <p>Montrer que \(\omega(x, x) = 0\) pour tout \(\omega \in \mathrm{A}(E)\) et pour tout \(x \in E\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">3. Soit \(\omega \in \mathrm{A}(E)\) et \(\mathcal{B} = (b_1, \ldots, b_n)\) une base de \(E\).</p>
+
+      <div class="question">
+        <span class="question__num">Q3a.</span>
+        <p>Montrer qu'il existe une unique matrice \(M \in \mathcal{M}_n(\mathbb{R})\), dont on precisera les coefficients, telle que pour tout \((x, y) \in E^2\), \(\omega(x, y) = {}^t\!X M Y\). On notera alors \(M = \operatorname{Mat}_\mathcal{B}(\omega)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q3b.</span>
+        <p>Montrer que \(M\) est antisymetrique, c'est-a-dire que \({}^t\!M = -M\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q3c.</span>
+        <p>Montrer que l'espace vectoriel \(\mathrm{A}(E)\) est de dimension 1 lorsque \(E\) est de dimension 2.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q3d.</span>
+        <p>Montrer l'equivalence entre les trois enonces : \((\mathcal{E}_1)\) : \(\omega\) est une forme symplectique sur \(E\) ; \((\mathcal{E}_2)\) : pour tout \(x \in E \setminus \{0\}\), il existe \(y \in E\) tel que \(\omega(x, y) \neq 0\) ; \((\mathcal{E}_3)\) : \(\operatorname{Mat}_\mathcal{B}(\omega)\) est inversible.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q4.</span>
+        <p>Montrer que, s'il existe une forme symplectique sur \(E\), alors \(E\) est de dimension paire.</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        Dorenavant, jusqu'a la fin du probleme, \(n\) est un entier pair \(\geqslant 2\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q5.</span>
+        <p>Montrer que l'application \(\omega_0 : (X, Y) \mapsto {}^t\!X J_n Y\) est une forme symplectique sur \(\mathbb{R}^n\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        Jusqu'a la fin de cette partie, on fixe une forme symplectique \(\omega\) sur \(E\). Le but des questions 6 a 9 est de montrer qu'il existe une base \(\mathcal{B}\) de \(E\) telle que \(\operatorname{Mat}_\mathcal{B}(\omega) = J_n\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q6.</span>
+        <p>Traiter le cas ou \(E\) est de dimension 2.</p>
+      </div>
+
+      <p class="annale-exercice__intro">7. Soit \(F\) un sous-espace vectoriel de \(E\).</p>
+
+      <div class="question">
+        <span class="question__num">Q7a.</span>
+        <p>Montrer que, pour toute forme lineaire \(u : F \to \mathbb{R}\), il existe une forme lineaire \(\tilde{u} : E \to \mathbb{R}\) dont la restriction a \(F\) coincide avec \(u\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        On note \(F^\omega\) le sous-espace vectoriel de \(E\) defini par
+      </p>
+      <div class="math-display">$$F^\omega = \{x \in E : \forall y \in F, \omega(x, y) = 0\}$$</div>
+      <p class="annale-exercice__intro">
+        et \(\psi_F\) l'application lineaire definie par
+      </p>
+      <div class="math-display">$$\psi_F : E \to F^*, \quad x \mapsto \varphi_\omega(x)|_F$$</div>
+      <p class="annale-exercice__intro">
+        ou \(\varphi_\omega(x)|_F\) est la restriction de \(\varphi_\omega(x)\) a \(F\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q7b.</span>
+        <p>Montrer que la restriction de \(\omega\) a \(F \times F\) est une forme symplectique sur \(F\) si et seulement si \(F \cap F^\omega = \{0\}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q7c.</span>
+        <p>Quels sont le noyau et l'image de \(\psi_F\) ?</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q7d.</span>
+        <p>Montrer que \(\dim(F) + \dim(F^\omega) = \dim(E)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q7e.</span>
+        <p>Montrer que, si la restriction de \(\omega\) a \(F \times F\) est une forme symplectique sur \(F\), alors \(E = F \oplus F^\omega\) et la restriction de \(\omega\) a \(F^\omega \times F^\omega\) est une forme symplectique sur \(F^\omega\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q8.</span>
+        <p>Montrer par recurrence qu'il existe une base \(\tilde{\mathcal{B}}\) de \(E\) telle que \(\operatorname{Mat}_{\tilde{\mathcal{B}}}(\omega) = \operatorname{diag}(J_2, \ldots, J_2)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q9.</span>
+        <p>Conclure. En deduire que \(\omega\) dompte au moins une structure complexe sur \(E\).</p>
+      </div>
+    </div>
+
+    <!-- =============== PARTIE II =============== -->
+    <div class="annale-exercice" id="partie2">
+      <h2 class="annale-exercice__title">Partie II -- Deux outils sur les polynomes</h2>
+
+      <div class="question">
+        <span class="question__num">Q10.</span>
+        <p>Soit \(P, Q \in \mathbb{R}[X]\) des polynomes non nuls de degres respectifs \(p\) et \(q\) strictement positifs. Montrer que l'application lineaire \(L_{P,Q}\) definie par</p>
+        <div class="math-display">$$L_{P,Q} : \mathbb{R}_{q-1}[X] \times \mathbb{R}_{p-1}[X] \to \mathbb{R}_{p+q-1}[X], \quad (V, W) \mapsto VP + WQ$$</div>
+        <p>est un isomorphisme si et seulement si \(P\) et \(Q\) sont premiers entre eux dans \(\mathbb{R}[X]\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q11.</span>
+        <p>Soit \(d \in \mathbb{N}^*\). Construire une application \(r : \mathbb{R}_d[X] \to \mathbb{R}\), \(P \mapsto r(P)\), polynomiale en les coefficients de \(P\), telle que, si \(r(P)\) est non nul, alors les racines de \(P\) dans \(\mathbb{C}\) sont simples.</p>
+        <p>Indication : On pourra utiliser la question precedente.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q12.</span>
+        <p>Soit \(d \in \mathbb{N}^*\) et \(f\) une fonction polynomiale sur \(\mathbb{R}^d\). On suppose que la fonction \(f\) est non nulle. Montrer que \(f^{-1}(\mathbb{R} \setminus \{0\})\) est dense dans \(\mathbb{R}^d\).</p>
+        <p>Indication : On pourra utiliser le fait qu'un polynome non nul a une variable n'a qu'un nombre fini de racines.</p>
+      </div>
+    </div>
+
+    <!-- =============== PARTIE III =============== -->
+    <div class="annale-exercice" id="partie3">
+      <h2 class="annale-exercice__title">Partie III -- Reduction simultanee</h2>
+
+      <div class="question">
+        <span class="question__num">Q13.</span>
+        <p>Montrer qu'il existe un unique \(u \in \mathrm{GL}(E)\) tel que \(\omega_1(x, y) = \omega(u(x), y)\) pour tout \((x, y) \in E^2\). Montrer alors que \(u\) appartient a \(\mathcal{S}\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        Dans les questions 14 a 19, on suppose que \(E\) est de dimension 4.
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q14a.</span>
+        <p>Quelle relation y a-t-il entre les matrices \(J_4\) et \(U\) ?</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q14b.</span>
+        <p>Montrer qu'il existe \(N \in \mathcal{M}_2(\mathbb{R})\) et \(\alpha, \beta \in \mathbb{R}\) tels que \(U = \begin{pmatrix} N & \alpha J_2 \\ \beta J_2 & {}^t\!N \end{pmatrix}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q14c.</span>
+        <p>Determiner les coefficients du polynome \(T(X) = \det(N - XI_2) + \alpha\beta\) et montrer que \(T\) est un polynome annulateur de \(U\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        Dans les questions 15 a 19, on suppose que \(u\) n'admet aucune valeur propre reelle.
+      </p>
+      <p class="annale-exercice__intro">
+        Le but des questions 15 a 19 est de montrer qu'il existe une base \(\tilde{\mathcal{B}}\) de \(E\), \(r > 0\) et \(\theta \in \mathbb{R} \setminus \pi\mathbb{Z}\) tels que
+      </p>
+      <div class="math-display">$$\operatorname{Mat}_{\tilde{\mathcal{B}}}(\omega) = J_4 \quad \text{et} \quad \operatorname{Mat}_{\tilde{\mathcal{B}}}(\omega_1) = r \begin{pmatrix} 0 & -R_{-\theta} \\ R_\theta & 0 \end{pmatrix}$$</div>
+      <p class="annale-exercice__intro">
+        ou \(R_\theta = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q15.</span>
+        <p>Montrer que \(U\) est diagonalisable sur \(\mathbb{C}\). En deduire qu'il existe \(\lambda \in \mathbb{C} \setminus \mathbb{R}\) et des vecteurs \(Z\) et \(Y\) de \(\mathbb{C}^4\) lineairement independants tels que \(UZ = \lambda Z\) et \(UY = \lambda Y\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q16.</span>
+        <p>Soient \(Z_1, Z_2, Y_1, Y_2\) des vecteurs de \(\mathbb{R}^4\) tels que \(Z = Z_1 + iZ_2\) et \(Y = Y_1 + iY_2\). Soient \((z_1, z_2, y_1, y_2) \in E^4\) de coordonnees respectives \(Z_1, Z_2, Y_1, Y_2\) dans la base \(\mathcal{B}\). Montrer que \(\tilde{\mathcal{B}} := (z_1, z_2, y_1, -y_2)\) est une base de \(E\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q17.</span>
+        <p>Montrer que \(\omega(z_1, z_2) = \omega(y_1, y_2) = 0\), \(\omega(z_1, y_1) = -\omega(z_2, y_2)\), \(\omega(z_1, y_2) = \omega(z_2, y_1)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q18.</span>
+        <p>Montrer que, quitte a remplacer \(Y\) par \(\xi Y\) avec \(\xi \in \mathbb{C} \setminus \{0\}\) bien choisi, on a \(\omega(z_1, y_1) = -1\) et \(\omega(z_1, z_2) = 0\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q19.</span>
+        <p>Montrer qu'il existe \(r > 0\) et \(\theta \in \mathbb{R} \setminus \pi\mathbb{Z}\) tels que</p>
+        <div class="math-display">$$\operatorname{Mat}_{\tilde{\mathcal{B}}}(u) = r \begin{pmatrix} R_\theta & 0 \\ 0 & R_{-\theta} \end{pmatrix}$$</div>
+        <p>et conclure.</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        Jusqu'a la fin de cette partie, on ne fait plus d'hypothese sur la dimension de \(E\) ni sur l'endomorphisme \(u\). On considere un polynome \(P \in \mathbb{R}[X]\) annulateur de \(u\) et une decomposition \(P = P_1 \cdots P_r\), ou \(r \in \mathbb{N}^*\) et \(P_1, \ldots, P_r\) sont des polynomes premiers entre eux deux a deux dans \(\mathbb{R}[X]\). On note \(F_j = \ker[P_j(u)]\) pour \(j = 1, \ldots, r\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q20.</span>
+        <p>Montrer que \(E = F_1 \oplus \cdots \oplus F_r\), et que \(F_j\) est stable par \(u\) pour \(j = 1, \ldots, r\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q21.</span>
+        <p>Montrer que, pour tous \(j \neq k\), on a \(F_k \subset F_j^\omega\) et \(F_k \subset F_j^{\omega_1}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q22.</span>
+        <p>En deduire que, pour tout \(j\), les restrictions de \(\omega\) et \(\omega_1\) a \(F_j \times F_j\) sont des formes symplectiques sur \(F_j\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q23.</span>
+        <p>On suppose que le polynome caracteristique de \(u\) est a racines au plus doubles dans \(\mathbb{C}\). Montrer que \(E\) est la somme directe de sous-espaces de dimension 2 ou 4, deux a deux orthogonaux pour \(\omega\) et \(\omega_1\), et sur lesquels les restrictions de \(\omega\) et \(\omega_1\) sont des formes symplectiques.</p>
+      </div>
+    </div>
+
+    <!-- =============== PARTIE IV =============== -->
+    <div class="annale-exercice" id="partie4">
+      <h2 class="annale-exercice__title">Partie IV -- Structures complexes domptees simultanement</h2>
+
+      <div class="question">
+        <span class="question__num">Q24.</span>
+        <p>Soit \(u\) l'automorphisme de \(E\) defini en question 13. On suppose que \((\mathcal{F}_2)\) est satisfaite et que le polynome caracteristique de \(u\) est a racines au plus doubles dans \(\mathbb{C}\). Montrer que \((\mathcal{F}_1)\) est satisfaite.</p>
+        <p>Indication : On pourra demontrer puis utiliser le fait que, pour tout \(\theta \in \mathbb{R} \setminus \pi\mathbb{Z}\), il existe \(\phi \in \mathbb{R}\) tel que, pour tout \(X \in \mathbb{R}^2 \setminus \{0\}\), \({}^t\!X R_\phi X > 0\) et \({}^t\!X R_{\theta+\phi} X > 0\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q25.</span>
+        <p>Soit \(\mathcal{S}\) l'ensemble defini en question 13. Montrer que l'ensemble des elements de \(\mathcal{S}\), dont le polynome caracteristique \(P\) est a racines au plus doubles dans \(\mathbb{C}\), est dense dans \(\mathcal{S}\).</p>
+        <p>Indication : On pourra utiliser \(r(P')\) ou l'application \(r\) est definie en question 11.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q26.</span>
+        <p>Que peut-on conclure ?</p>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="../../mp.html#annales" class="course__nav-link">
+        &larr; Retour
+        <span>Annales MP</span>
+      </a>
+      <a href="xens-2017-maths2.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>X-ENS 2017 -- Maths 2</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

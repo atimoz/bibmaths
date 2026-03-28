@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mines-Ponts 2018 — Maths 2 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    @media(max-width:680px){
+      .course__title{font-size:2rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher"><span class="site-switcher__brand">Lib</span><div class="site-switcher__toggle"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a><a href="../../physique/index.html" class="site-switcher__btn">Physique</a></div></div>
+    <div class="nav__links"><a href="../../index.html" class="nav__link">Accueil</a><div class="nav__dropdown"><a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mpsi.html#cours" class="dropdown__item">Cours</a><a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a><a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a><a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a></div></div><div class="nav__dropdown"><a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mp.html#cours" class="dropdown__item">Cours</a><a href="../../mp.html#exercices" class="dropdown__item">Exercices</a><a href="../../mp.html#fiches" class="dropdown__item">Fiches</a><a href="../../mp.html#methodes" class="dropdown__item">Methodes</a></div></div></div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme"><svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a><a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a></div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MINES-PONTS 2018</span>
+    </div>
+
+    <h1 class="course__title">Mines-Ponts 2018 -- Mathematiques 2</h1>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 2, filiere MP. Le sujet porte sur les racines carrees de matrices complexes : existence et calcul numerique par l'algorithme de Newton, convergence et stabilite.
+    </p>
+
+    <div class="annale-info">
+      <div class="annale-info__item"><span class="annale-info__label">Concours</span><span class="annale-info__value">Mines-Ponts</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Filiere</span><span class="annale-info__value">MP</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Epreuve</span><span class="annale-info__value">Mathematiques 2</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Annee</span><span class="annale-info__value">2018</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Themes</span><span class="annale-info__value">Racines carrees de matrices, algorithme de Newton, convergence quadratique, stabilite, conditionnement</span></div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#partA"><span class="course__toc-num">A.</span> Quelques exemples</a></li>
+        <li class="course__toc-item"><a href="#partB"><span class="course__toc-num">B.</span> Existence et calcul d'une racine carree</a></li>
+        <li class="course__toc-item"><a href="#partC"><span class="course__toc-num">C.</span> Algorithme de Newton</a></li>
+        <li class="course__toc-item"><a href="#partD"><span class="course__toc-num">D.</span> Forme equivalente</a></li>
+        <li class="course__toc-item"><a href="#partE"><span class="course__toc-num">E.</span> Stabilite</a></li>
+      </ol>
+    </nav>
+
+    <!-- ENONCE -->
+    <div class="annale-exercice">
+      <h2 class="annale-exercice__title">Enonce</h2>
+      <p class="annale-exercice__intro">
+        Dans ce probleme, on etudie l'existence de racines carrees d'une matrice complexe, puis on introduit l'algorithme de Newton pour calculer numeriquement l'une de ces racines carrees, avec des considerations sur la convergence et la stabilite de l'algorithme.
+      </p>
+      <p class="annale-exercice__intro">
+        Soit \(n\) un entier superieur ou egal a 2. On note \(\mathscr{M}_n(\mathbb{C})\) l'ensemble des matrices carrees d'ordre \(n\) a coefficients complexes. La matrice identite de \(\mathscr{M}_n(\mathbb{C})\) est notee \(I_n\). On appelle racine carree de \(A \in \mathscr{M}_n(\mathbb{C})\) toute matrice \(X \in \mathscr{M}_n(\mathbb{C})\) solution de l'equation \(X^2 = A\).
+      </p>
+      <p class="annale-exercice__intro">
+        On note \(\widetilde{\mathbb{C}}\) l'ensemble des nombres complexes non nuls qui ne sont pas des nombres reels negatifs.
+      </p>
+    </div>
+
+    <!-- PARTIE A -->
+    <div class="annale-exercice" id="partA">
+      <h2 class="annale-exercice__title">Partie A -- Quelques exemples</h2>
+
+      <div class="question">
+        <span class="question__num">Q1.</span>
+        <p>Montrer que la matrice \(A = I_2\) admet une infinite de racines carrees (on pourra utiliser la notion de symetrie). Lesquelles sont des polynomes en \(A\) ?</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q2.</span>
+        <p>Montrer que \(A = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}\) admet une infinite de racines carrees et qu'aucune d'entre elles n'est un polynome en \(A\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        Dans la question suivante, \(A \in \mathscr{M}_n(\mathbb{R})\) est une matrice symetrique reelle qui est definie positive, c'est-a-dire que ses valeurs propres sont strictement positives.
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q3.</span>
+        <p>Montrer que \(A\) admet une unique racine carree symetrique reelle definie positive. (On pourra montrer que deux racines carrees de ce type possedent les memes valeurs et sous-espaces propres.)</p>
+      </div>
+    </div>
+
+    <!-- PARTIE B -->
+    <div class="annale-exercice" id="partB">
+      <h2 class="annale-exercice__title">Partie B -- Existence et calcul d'une racine carree</h2>
+
+      <p class="annale-exercice__intro">Dans cette partie \(A \in \mathscr{M}_n(\mathbb{C})\) designe une matrice inversible quelconque.</p>
+
+      <div class="question">
+        <span class="question__num">Q4.</span>
+        <p>Soit \(T = (t_{i,j})_{1 \leqslant i,j \leqslant n}\) et \(U = (u_{i,j})_{1 \leqslant i,j \leqslant n} \in \mathscr{M}_n(\mathbb{C})\) deux matrices complexes triangulaires superieures. On suppose que \(T\) est inversible. Montrer que l'equation \(U^2 = T\) est equivalente au systeme d'equations suivant :</p>
+        <div class="math-display">$$\begin{cases} u_{i,i}^2 = t_{i,i} & (1 \leqslant i \leqslant n) \\ (u_{i,i} + u_{j,j})\,u_{i,j} = t_{i,j} - \displaystyle\sum_{k=i+1}^{j-1} u_{i,k}\,u_{k,j} & (1 \leqslant i < j \leqslant n) \end{cases}$$</div>
+        <p>Montrer que \(T\) etant donnee, on peut resoudre ce systeme en choisissant une solution \(U\) telle que \(u_{i,i} + u_{j,j} \neq 0\) pour tous \(i, j \in \{1, 2, \ldots, n\}\). (On pourra considerer les parties reelles et imaginaires des \(u_{i,i}\).)</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q5.</span>
+        <p>En deduire que \(A\) admet une racine carree. Si en outre, les valeurs propres de \(A\) appartiennent a \(\widetilde{\mathbb{C}}\), montrer que \(A\) admet une racine carree dont les valeurs propres sont de partie reelle strictement positive.</p>
+        <p>On admet qu'une telle racine carree est unique et on la notera \(\sqrt{A}\) dans toute la suite du probleme.</p>
+      </div>
+    </div>
+
+    <!-- PARTIE C -->
+    <div class="annale-exercice" id="partC">
+      <h2 class="annale-exercice__title">Partie C -- Algorithme de Newton</h2>
+
+      <p class="annale-exercice__intro">
+        Pour tout \(A = (a_{i,j})_{1 \leqslant i,j \leqslant n} \in \mathscr{M}_n(\mathbb{C})\) on pose
+      </p>
+      <div class="math-display">$$\|A\| = \sqrt{\sum_{i=1}^{n}\sum_{j=1}^{n} |a_{i,j}|^2}$$</div>
+      <p class="annale-exercice__intro">
+        et on admet que \(\|\cdot\|\) definit une norme sur \(\mathscr{M}_n(\mathbb{C})\). On note \(B(X, r)\) et \(\overline{B}(X, r)\) les boules, respectivement ouverte et fermee, de centre \(X \in \mathscr{M}_n(\mathbb{C})\) et de rayon \(r\).
+      </p>
+      <p class="annale-exercice__intro">Soit \(A\) et \(B\) deux matrices quelconques de \(\mathscr{M}_n(\mathbb{C})\).</p>
+
+      <div class="question">
+        <span class="question__num">Q6.</span>
+        <p>Montrer que \(\|AB\| \leqslant \|A\|\,\|B\|\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">On note \(m_A\) le polynome minimal de \(A\).</p>
+
+      <div class="question">
+        <span class="question__num">Q7.</span>
+        <p>Montrer que la matrice \(m_A(B)\) est inversible si et seulement si \(A\) et \(B\) n'ont aucune valeur propre commune. En deduire que s'il existe une matrice \(M \in \mathscr{M}_n(\mathbb{C})\) non nulle telle que \(AM = MB\), alors \(A\) et \(B\) ont au moins une valeur propre commune.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q8.</span>
+        <p>Reciproquement, si \(A\) et \(B\) ont au moins une valeur propre commune, montrer qu'il existe une matrice \(M \in \mathscr{M}_n(\mathbb{C})\) non nulle telle que \(AM = MB\). (On pourra considerer une matrice de la forme \(XY^T\) ou \(X\) et \(Y\) sont deux matrices colonnes bien choisies.)</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        Soit \(F : \mathscr{M}_n(\mathbb{C}) \to \mathscr{M}_n(\mathbb{C})\) l'application definie par la formule \(F(X) = X^2 - A\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q9.</span>
+        <p>Montrer que la differentielle \(\mathrm{d}F_X\) de \(F\) en \(X \in \mathscr{M}_n(\mathbb{C})\) est donnee par</p>
+        <div class="math-display">$$\forall H \in \mathscr{M}_n(\mathbb{C}), \quad \mathrm{d}F_X(H) = XH + HX.$$</div>
+        <p>Deduire des deux questions precedentes une condition necessaire et suffisante pour que \(\mathrm{d}F_X\) soit inversible. Montrer que cette condition implique que \(X\) est inversible.</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        Dans toute la suite du probleme, \(A\) designe une matrice inversible de \(\mathscr{M}_n(\mathbb{C})\) dont les valeurs propres appartiennent a \(\widetilde{\mathbb{C}}\). On pose \(X^* = \sqrt{A}\) (la matrice \(\sqrt{A}\) a ete definie a la question 5).
+      </p>
+      <p class="annale-exercice__intro">
+        On definit, sous reserve d'existence, une suite \((X_k)_{k \in \mathbb{N}}\) d'elements de \(\mathscr{M}_n(\mathbb{C})\) par :
+      </p>
+      <div class="math-display">$$\text{(N)} \quad \begin{cases} X_0 \in \mathscr{M}_n(\mathbb{C}) \\ \forall k \in \mathbb{N}, \quad X_{k+1} = X_k - (\mathrm{d}F_{X_k})^{-1}(F(X_k)). \end{cases}$$</div>
+
+      <p class="annale-exercice__intro">Dans les questions suivantes, on etudie l'existence et la convergence de la suite \((X_k)_{k \in \mathbb{N}}\).</p>
+
+      <div class="question">
+        <span class="question__num">Q10.</span>
+        <p>Montrer que \(\mathrm{d}F_{X^*}\) est inversible et qu'il existe \(r > 0\) tel que \(\mathrm{d}F_X\) soit inversible pour tout \(X \in \overline{B}(X^*, r)\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">Pour tout \(Y \in \overline{B}(X^*, r)\) on pose \(G(Y) = Y - (\mathrm{d}F_Y)^{-1}(F(Y))\).</p>
+
+      <div class="question">
+        <span class="question__num">Q11.</span>
+        <p>Calculer \(G(X^*)\) et montrer que pour tout \(H \in B(0, r)\),</p>
+        <div class="math-display">$$G(X^* + H) - G(X^*) = (\mathrm{d}F_{X^*+H})^{-1}(H^2)$$</div>
+        <p>ou</p>
+        <div class="math-display">$$(\mathrm{d}F_{X^*+H})^{-1} = (Id + (\mathrm{d}F_{X^*})^{-1} \circ \mathrm{d}F_H)^{-1} \circ (\mathrm{d}F_{X^*})^{-1}.$$</div>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q12.</span>
+        <p>En deduire qu'il existe une constante \(C > 0\) telle que pour tout \(X\) de \(B(X^*, r)\), \(\|G(X) - X^*\| \leqslant C\|X - X^*\|^2\). (On pourra utiliser le resultat de la question 6.)</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q13.</span>
+        <p>Montrer qu'il existe \(\rho > 0\) tel que pour tout \(X_0 \in B(X^*, \rho)\) la suite \((X_k)_{k \in \mathbb{N}}\) soit bien definie et verifie, pour tout \(k \in \mathbb{N}\),</p>
+        <div class="math-display">$$\|X_k - X^*\| \leqslant \frac{(\rho\sqrt{C})^{2^k}}{C}$$</div>
+        <p>Que peut-on en conclure ?</p>
+      </div>
+    </div>
+
+    <!-- PARTIE D -->
+    <div class="annale-exercice" id="partD">
+      <h2 class="annale-exercice__title">Partie D -- Forme equivalente</h2>
+
+      <p class="annale-exercice__intro">
+        Dans cette partie, on etudie deux algorithmes equivalents a celui de Newton. On rappelle que \(A\) designe une matrice inversible de \(\mathscr{M}_n(\mathbb{C})\) dont les valeurs propres appartiennent a \(\widetilde{\mathbb{C}}\). Soit \(U_0\) et \(V_0\) deux matrices de \(\mathscr{M}_n(\mathbb{C})\). Sous reserve d'existence, on note \((U_k)_{k \in \mathbb{N}}\) la suite de matrices de \(\mathscr{M}_n(\mathbb{C})\) definie par
+      </p>
+      <div class="math-display">$$\text{(I)} \quad \begin{cases} U_0 \in \mathscr{M}_n(\mathbb{C}) \\ U_{k+1} = U_k + H_k \text{ ou } H_k \in \mathscr{M}_n(\mathbb{C}) \text{ verifie} \\ U_k H_k + H_k U_k = A - U_k^2 \quad \text{pour tout } k \geqslant 0 \end{cases}$$</div>
+      <p class="annale-exercice__intro">et \((V_k)_{k \in \mathbb{N}}\) la suite de matrices de \(\mathscr{M}_n(\mathbb{C})\) definie par</p>
+      <div class="math-display">$$\text{(II)} \quad \begin{cases} V_0 \in \mathscr{M}_n(\mathbb{C}) \\ V_{k+1} = \frac{1}{2}\left(V_k + V_k^{-1}A\right) \quad \text{pour tout } k \geqslant 0. \end{cases}$$</div>
+
+      <div class="question">
+        <span class="question__num">Q14.</span>
+        <p>Si la suite \((X_k)_{k \in \mathbb{N}}\) est bien definie par (N) et \(U_0 = X_0\), montrer que la suite \((U_k)_{k \in \mathbb{N}}\) est bien definie par (I) et egale a \((X_k)_{k \in \mathbb{N}}\). Reciproquement si la suite \((U_k)_{k \in \mathbb{N}}\) est bien definie par (I) et \(X_0 = U_0\), montrer que la suite \((X_k)_{k \in \mathbb{N}}\) est bien definie par (N) et egale a \((U_k)_{k \in \mathbb{N}}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q15.</span>
+        <p>On suppose que \(U_0 = V_0\) commute avec \(A\). Montrer que la suite \((V_k)_{k \in \mathbb{N}}\) est bien definie par (II) et que pour tout \(k \in \mathbb{N}\), \(U_k = V_k\) commute avec \(A\). (On pourra d'abord montrer que \(U_k\) est inversible pour tout \(k \in \mathbb{N}\) et considerer la matrice \(G_k = \frac{1}{2}(U_k^{-1}A - U_k)\).)</p>
+      </div>
+
+      <p class="annale-exercice__intro">
+        On rappelle qu'une matrice symetrique reelle est definie positive si ses valeurs propres sont strictement positives, et qu'une telle matrice admet une unique racine carree definie positive (question 3).
+      </p>
+      <p class="annale-exercice__intro">
+        Dans la suite du probleme, \(A\) designe une matrice symetrique reelle definie positive. On considere la suite \((V_k)_{k \in \mathbb{N}}\) definie par la relation (II) avec \(V_0 = \mu I_n\) et \(\mu > 0\). On fixe une matrice orthogonale \(P\) de sorte que \(A = PDP^T\) ou \(D\) est une matrice diagonale dont les elements diagonaux sont les valeurs propres \(\lambda_1, \ldots, \lambda_n\) de \(A\), ordonnees par ordre croissant. On note \(e_1, \ldots, e_n\) les vecteurs propres correspondants.
+      </p>
+      <p class="annale-exercice__intro">Soit \(k \in \mathbb{N}\) et \(\ell \in \{1, \ldots, n\}\) quelconques.</p>
+
+      <div class="question">
+        <span class="question__num">Q16.</span>
+        <p>Montrer que \(V_k\) est symetrique reelle definie positive de memes vecteurs propres \(e_1, \ldots, e_n\) que \(A\) dont on notera \(\lambda_{k,1}, \ldots, \lambda_{k,n}\) les valeurs propres correspondantes. Trouver une relation entre \(\lambda_{k+1,\ell}\) et \(\lambda_{k,\ell}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q17.</span>
+        <p>Montrer que</p>
+        <div class="math-display">$$\frac{\lambda_{k+1,\ell} - \sqrt{\lambda_\ell}}{\lambda_{k+1,\ell} + \sqrt{\lambda_\ell}} = \left(\frac{\mu - \sqrt{\lambda_\ell}}{\mu + \sqrt{\lambda_\ell}}\right)^{2^{k+1}}$$</div>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q18.</span>
+        <p>Determiner la limite de la suite \((V_k)_{k \in \mathbb{N}}\).</p>
+      </div>
+    </div>
+
+    <!-- PARTIE E -->
+    <div class="annale-exercice" id="partE">
+      <h2 class="annale-exercice__title">Partie E -- Stabilite</h2>
+
+      <p class="annale-exercice__intro">
+        On considere la suite \((V_k)_{k \in \mathbb{N}}\) definie par la relation (II) avec \(V_0 = \sqrt{A}\). Soit \(\varepsilon > 0\) et \(i, j\) deux indices distincts de \(\{1, \ldots, n\}\). On note \(C_1, \ldots, C_n\) les colonnes de la matrice orthogonale \(P\) definie dans la partie precedente et on pose \(\Delta = \varepsilon C_i C_j^T\).
+      </p>
+      <p class="annale-exercice__intro">
+        Soit \(\widehat{V}_0 = V_0 + \Delta\). La matrice \(\widehat{V}_1\) est calculee par la relation (II) a partir de \(\widehat{V}_0\) et on pose \(\Delta_1 = \widehat{V}_1 - V_1\). Ensuite \(\widehat{V}_2\) est calcule a partir de \(\widehat{V}_1\) par la relation (II), puis \(\widehat{V}_3, \widehat{V}_4, \ldots\) de la meme maniere.
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q19.</span>
+        <p>Montrer les relations suivantes :</p>
+        <div class="math-display">$$\begin{cases} (V_0 + \Delta)^{-1} = V_0^{-1} - V_0^{-1}\Delta V_0^{-1} \\ \Delta_1 = \frac{1}{2}(\Delta - V_0^{-1}\Delta V_0^{-1}A) \end{cases}$$</div>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q20.</span>
+        <p>Determiner la valeur de \(\eta \in \mathbb{R}\) telle que pour tout \(k \in \mathbb{N}\),</p>
+        <div class="math-display">$$\widehat{V}_k = \sqrt{A} + \eta^k \Delta$$</div>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q21.</span>
+        <p>On appelle conditionnement de \(A\) le rapport entre sa plus grande valeur propre et sa plus petite. Que doit verifier le conditionnement de \(A\) pour que la suite \(\left(\widehat{V}_k\right)_{k \geqslant 0}\) converge ?</p>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="mines-2018-maths1.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Mines-Ponts 2018 -- Maths 1</span>
+      </a>
+      <a href="../../mp.html#annales" class="course__nav-link course__nav-link--next">
+        Retour &rarr;
+        <span>Annales MP</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <footer class="footer"><div class="footer__inner"><div class="footer__brand"><span class="footer__logo">Lib<em>Maths</em></span><p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p></div><div class="footer__links"><div class="footer__col"><h4 class="footer__col-title">Navigation</h4><a href="../../index.html">Accueil</a><a href="../../mpsi.html">MPSI</a><a href="../../mp.html">MP</a></div><div class="footer__col"><h4 class="footer__col-title">Communaute</h4><a href="#">Contribuer</a><a href="#">GitHub</a><a href="#">Contact</a></div></div></div><div class="footer__bottom"><span>&copy; 2026 LibMaths -- Projet open source</span></div></footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [{ left: '$$', right: '$$', display: true },{ left: '\\(', right: '\\)', display: false }],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [{ left: '$$', right: '$$', display: true },{ left: '\\(', right: '\\)', display: false }],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

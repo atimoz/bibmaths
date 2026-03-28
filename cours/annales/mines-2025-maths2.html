@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mines-Ponts 2025 -- Maths 2 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
+    .question ol li{margin-bottom:4px}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    @media(max-width:680px){
+      .course__title{font-size:2rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MINES-PONTS 2025</span>
+    </div>
+
+    <h1 class="course__title">Mines-Ponts 2025 -- Mathematiques 2</h1>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 2, filiere MP. Le sujet porte sur le critere de Schur-Cohn : on etudie les racines d'un polynome dans l'intervalle \(]-1,1[\) via une matrice associee \(J(p)\), en utilisant le polynome reciproque, la liberte de familles de polynomes, et les formes quadratiques.
+    </p>
+
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">Mines-Ponts</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Mathematiques 2</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2025</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Polynomes, matrices symetriques, formes quadratiques, critere de Schur-Cohn</span>
+      </div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#partieA"><span class="course__toc-num">A.</span> Proprietes du polynome \(p_0\) et stabilite des racines</a></li>
+        <li class="course__toc-item"><a href="#partieB"><span class="course__toc-num">B.</span> Liberte d'une famille de polynomes</a></li>
+        <li class="course__toc-item"><a href="#partieC"><span class="course__toc-num">C.</span> Expression de la matrice \(J(p)\)</a></li>
+        <li class="course__toc-item"><a href="#partieD"><span class="course__toc-num">D.</span> Cas ou \(J(p)\) est inversible : critere de Schur-Cohn</a></li>
+        <li class="course__toc-item"><a href="#partieE"><span class="course__toc-num">E.</span> Condition necessaire et suffisante d'inversibilite</a></li>
+        <li class="course__toc-item"><a href="#partieF"><span class="course__toc-num">F.</span> Un cas particulier</a></li>
+        <li class="course__toc-item"><a href="#partieG"><span class="course__toc-num">G.</span> Methode generale</a></li>
+      </ol>
+    </nav>
+
+    <!-- PREAMBULE -->
+    <div class="annale-exercice" id="preambule">
+      <h2 class="annale-exercice__title">Notations</h2>
+
+      <p class="annale-exercice__intro">Dans tout le probleme :</p>
+      <ul>
+        <li>\(n\) designe un entier naturel non nul et l'ensemble \(\{1, 2, \ldots, n\}\) est note \([\![1, n]\!]\).</li>
+        <li>\(\mathcal{M}_n(\mathbf{R})\) (resp. \(\mathcal{S}_n(\mathbf{R})\), resp. \(\mathcal{D}_n(\mathbf{R})\), resp. \(GL_n(\mathbf{R})\)) designe l'ensemble des matrices carrees (resp. symetriques, resp. diagonales, resp. inversibles) reelles de taille \(n\), et on confond un element de \(\mathcal{M}_1(\mathbf{R})\) avec son unique coefficient.</li>
+        <li>Si \(M \in \mathcal{M}_n(\mathbf{R})\), on note \(M^\top\) sa transposee et pour tout \((i, j) \in [\![1, n]\!]^2\), on note \(M_{i,j}\) le coefficient de \(M\) situe a la \(i\)-eme ligne et la \(j\)-eme colonne.</li>
+        <li>On note \(\pi(M)\) le nombre de valeurs propres reelles strictement positives de \(M\) comptees avec leur multiplicite, ainsi par exemple \(\pi(I_n) = n\).</li>
+        <li>Si \((u_1, \ldots, u_n) \in \mathbf{R}^n\), on note \(\mathrm{Diag}(u_1, \ldots, u_n)\) la matrice \(D \in \mathcal{D}_n(\mathbf{R})\) telle que \(D_{i,i} = u_i\) pour tout \(i \in [\![1, n]\!]\).</li>
+        <li>Si \(f\) et \(g\) sont deux polynomes non simultanement nuls, on note \(f \wedge g\) leur PGCD.</li>
+        <li>On note \(\sigma(f)\) le nombre de racines reelles de \(f\) appartenant a l'intervalle \(]-1,1[\), comptees avec leur multiplicite.</li>
+        <li>On dit que le reel \(\alpha\) est une racine stable de \(f\) si \(\alpha \neq 0\) et \(f(\alpha) = f(\alpha^{-1}) = 0\).</li>
+        <li>Si \(f\) est un polynome de degre \(m \in \mathbf{N}\) et s'ecrit \(f = a_m X^m + a_{m-1} X^{m-1} + \cdots + a_1 X + a_0 = \sum_{k=0}^{m} a_k X^k\), on note \(f_0\) son polynome reciproque, defini par \(f_0 = a_0 X^m + a_1 X^{m-1} + \cdots + a_{m-1} X + a_m = \sum_{k=0}^{m} a_{m-k} X^k\).</li>
+        <li>On note \(U = (1 \quad 0 \quad \cdots \quad 0)^\top\) la matrice colonne de taille \(n\) dont le premier coefficient est egal a 1 et les autres a 0.</li>
+        <li>On note \(S\) la matrice de \(\mathcal{M}_n(\mathbf{R})\) dont tous les coefficients sont nuls sauf les \(n-1\) coefficients situes juste au-dessus de la diagonale, egaux a 1 : \(\forall (i, j) \in [\![1, n]\!]^2\), \(S_{i,j} = \delta_{i+1,j}\) (symbole de Kronecker).</li>
+        <li>Pour tout polynome reel \(f\), on definit la matrice \(J(f) \in \mathcal{S}_n(\mathbf{R})\) par \(J(f) = f_0(S)^\top f_0(S) - f(S)^\top f(S)\).</li>
+      </ul>
+
+      <p class="annale-exercice__intro">Dans ce probleme \(p\) designe un polynome a coefficients reels, scinde sur \(\mathbf{R}\), de degre \(n\),</p>
+      <div class="math-display">$$p = a_n X^n + a_{n-1} X^{n-1} + \cdots + a_1 X + a_0 = \sum_{k=0}^{n} a_k X^k, \quad a_n \neq 0,$$</div>
+      <p class="annale-exercice__intro">et on note \(\alpha_1 \leqslant \cdots \leqslant \alpha_n\) ses racines toutes reelles, comptees avec leurs multiplicites.</p>
+      <p class="annale-exercice__intro">L'objectif du probleme est d'etablir l'egalite \(\sigma(p) = \pi(J(p))\) (critere de Schur-Cohn) dans le cas ou \(J(p)\) est inversible, puis de proposer une demarche generale permettant de compter les racines de \(p\) dans \(]-1,1[\), lorsque la matrice \(J(p)\) n'est pas inversible.</p>
+    </div>
+
+    <!-- PARTIE A -->
+    <div class="annale-exercice" id="partieA">
+      <h2 class="annale-exercice__title">Partie A -- Proprietes du polynome \(p_0\) et stabilite des racines</h2>
+
+      <div class="question">
+        <span class="question__num">Q1.</span>
+        <p>Montrer que \(p_0\), le polynome reciproque de \(p\), verifie \(\forall x \in \mathbb{R}^*\), \(p_0(x) = x^n p(1/x)\) et en deduire que \(p_0 = a_n \prod_{j=1}^{n} (1 - \alpha_j X)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q2.</span>
+        <p>Montrer que \(p \wedge p_0 = 1\) si et seulement si \(p\) ne possede pas de racine stable.</p>
+      </div>
+
+      <p class="annale-exercice__intro" style="margin-top:var(--space-lg)">Jusqu'a la fin de la partie A, on suppose que toutes les racines de \(p\) sont stables et d'ordre de multiplicite 1.</p>
+
+      <div class="question">
+        <span class="question__num">Q3.</span>
+        <p>Justifier qu'il existe \(\lambda \in \{-1, 1\}\) tel que \(p = \lambda p_0\).</p>
+      </div>
+
+      <p class="annale-exercice__intro" style="margin-top:var(--space-lg)">Soit \(h\) le polynome de degre \(n\) defini par \(h(X) = Xp'\), ou \(p'\) est le polynome derive de \(p\). On note \(h_0\) et \((p')_0\) les polynomes reciproques respectifs de \(h\) et \(p'\).</p>
+
+      <div class="question">
+        <span class="question__num">Q4.</span>
+        <p>Montrer que \(h = np - \lambda (p')_0\), puis que \(h_0 = \lambda(np - Xp')\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q5.</span>
+        <p>Verifier que \(p'\) est scinde sur \(\mathbb{R}\) puis montrer que \(h \wedge h_0 = 1\) et en deduire que \(p'\) n'admet pas de racine stable.</p>
+      </div>
+    </div>
+
+    <!-- PARTIE B -->
+    <div class="annale-exercice" id="partieB">
+      <h2 class="annale-exercice__title">Partie B -- Liberte d'une famille de polynomes</h2>
+
+      <p class="annale-exercice__intro">Pour tout entier \(j \in [\![1, n]\!]\), on note \(f_j\) le polynome</p>
+      <div class="math-display">$$f_j = a_n(1 - \alpha_n X) \cdots (1 - \alpha_{j+1} X)(X - \alpha_{j-1}) \cdots (X - \alpha_1) = a_n \prod_{k=j+1}^{n} (1 - \alpha_k X) \prod_{k=1}^{j-1} (X - \alpha_k)$$</div>
+      <p class="annale-exercice__intro">avec, selon les conventions habituelles, \(\prod_{k=n+1}^{n}(1 - \alpha_k X) = \prod_{k=1}^{0}(X - \alpha_k) = 1\).</p>
+
+      <div class="question">
+        <span class="question__num">Q6.</span>
+        <p>Montrer que s'il existe deux entiers \(i, k\) tels que \(1 \leqslant i < k \leqslant n\) et \(\alpha_i \alpha_k = 1\), alors \(\alpha_i\) est racine de chaque polynome \(f_j\), ou \(j \in [\![1, n]\!]\), et que la famille \((f_1, \ldots, f_n)\) est liee.</p>
+      </div>
+
+      <p class="annale-exercice__intro" style="margin-top:var(--space-lg)">Jusqu'a la fin de la partie B, on suppose qu'aucune racine de \(p\) n'est stable.</p>
+
+      <p class="annale-exercice__intro">On note \(E\) le sous-espace vectoriel des fractions rationnelles a coefficients reels dont les eventuels poles sont des inverses de racines de \(p\). Pour tout \(j \in [\![1, n]\!]\), on definit la fraction rationnelle \(g_j \in E\) par</p>
+      <div class="math-display">$$g_j = \frac{f_j}{\prod_{i=1}^{n}(1 - \alpha_i X)}$$</div>
+      <p class="annale-exercice__intro">et l'application \(P_j\), qui a une fraction rationnelle \(f \in E\) associe la fraction rationnelle</p>
+      <div class="math-display">$$P_j(f) = \frac{(1 - \alpha_j X)f - (1 - \alpha_j^2)f(\alpha_j)}{X - \alpha_j}.$$</div>
+
+      <div class="question">
+        <span class="question__num">Q7.</span>
+        <p>Montrer que pour tout \(j \in [\![1, n]\!]\), l'application \(P_j\) est un endomorphisme de \(E\) et determiner son noyau.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q8.</span>
+        <p>Pour tout \(j \in [\![1, n]\!]\) et tout \(g \in E\), calculer \(P_j\left(\dfrac{(X - \alpha_j)g}{1 - \alpha_j X}\right)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q9.</span>
+        <p>En deduire que la famille \((f_1, \ldots, f_n)\) est libre.</p>
+      </div>
+    </div>
+
+    <!-- PARTIE C -->
+    <div class="annale-exercice" id="partieC">
+      <h2 class="annale-exercice__title">Partie C -- Expression de la matrice \(J(p)\)</h2>
+
+      <div class="question">
+        <span class="question__num">Q10.</span>
+        <p>Montrer que la famille \(((S^\top)^i U)_{0 \leqslant i \leqslant n-1}\) est une base de \(\mathcal{M}_{n,1}(\mathbf{R})\).</p>
+      </div>
+
+      <p class="annale-exercice__intro" style="margin-top:var(--space-lg)">Pour tout entier \(j \in [\![1, n]\!]\), on definit les matrices</p>
+      <div class="math-display">$$B_j = S - \alpha_j I_n \quad \text{et} \quad C_j = I_n - \alpha_j S.$$</div>
+
+      <div class="question">
+        <span class="question__num">Q11.</span>
+        <p>Demontrer que</p>
+        <div class="math-display">$$J(p) = \sum_{j=1}^{n} f_j(S)^\top (C_j^\top C_j - B_j^\top B_j) f_j(S).$$</div>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q12.</span>
+        <p>Soit \(j \in [\![1, n]\!]\). Montrer que \(C_j^\top C_j - B_j^\top B_j = (1 - \alpha_j^2) U U^\top\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q13.</span>
+        <p>On note \(D = \mathrm{Diag}((1 - \alpha_j^2)_{1 \leqslant j \leqslant n})\) et \(V \in \mathcal{M}_n(\mathbf{R})\) la matrice telle que pour tout \(j \in [\![1, n]\!]\), la \(j\)-eme colonne de \(V\) est \(V_j = f_j(S^\top) U\). Montrer que \(J(p) = V D V^\top\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q14.</span>
+        <p>En deduire, a l'aide de la question 6, que si \(p\) possede une racine stable alors \(J(p)\) n'est pas inversible.</p>
+      </div>
+    </div>
+
+    <!-- PARTIE D -->
+    <div class="annale-exercice" id="partieD">
+      <h2 class="annale-exercice__title">Partie D -- Cas ou \(J(p)\) est inversible : critere de Schur-Cohn</h2>
+
+      <p class="annale-exercice__intro">On rappelle que si \(M \in \mathcal{M}_n(\mathbf{R})\) alors \(\pi(M)\) designe le cardinal de l'ensemble de ses valeurs propres strictement positives, comptees avec leurs multiplicites.</p>
+      <p class="annale-exercice__intro">On munit \(\mathcal{M}_{n,1}(\mathbf{R})\) de sa structure euclidienne canonique. On dit qu'un sous-espace vectoriel \(F\) de \(\mathcal{M}_{n,1}(\mathbf{R})\) verifie la condition \((C_M)\) quand</p>
+      <div class="math-display">$$\forall X \in F \setminus \{0_{n,1}\} \quad X^\top M X > 0.$$</div>
+      <p class="annale-exercice__intro">On note \(d(M)\) la dimension maximale d'un sous-espace vectoriel \(F\) de \(\mathcal{M}_{n,1}(\mathbf{R})\) verifiant la condition \((C_M)\), c'est-a-dire :</p>
+      <div class="math-display">$$d(M) = \max\{\dim F \mid F \text{ s.e.v de } \mathcal{M}_{n,1}(\mathbf{R}) \text{ verifiant } (C_M)\}.$$</div>
+
+      <div class="question">
+        <span class="question__num">Q15.</span>
+        <p>Soit deux matrices \(A, B \in \mathcal{M}_n(\mathbf{R})\) telles qu'il existe une matrice \(P \in GL_n(\mathbf{R})\) verifiant \(A = P^\top B P\). Montrer que \(d(B) \geqslant d(A)\) puis que \(d(B) = d(A)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q16.</span>
+        <p>Pour toute matrice \(M \in \mathcal{S}_n(\mathbf{R})\), construire un sous-espace vectoriel \(F_M\) de \(\mathcal{M}_{n,1}(\mathbf{R})\) de dimension \(\pi(M)\) verifiant la condition \((C_M)\). On a donc \(d(M) \geqslant \pi(M)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q17.</span>
+        <p>On veut montrer que pour toute matrice \(M \in \mathcal{S}_n(\mathbf{R})\) on a \(\pi(M) = d(M)\). Par l'absurde, en supposant l'existence d'un sous-espace vectoriel \(G\) de \(\mathcal{M}_{n,1}(\mathbf{R})\) de dimension \(\dim G > \pi(M)\) verifiant la condition \((C_M)\), montrer \(\dim(F_M^\perp \cap G) \geqslant 1\), en deduire une contradiction et conclure.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q18.</span>
+        <p>Demontrer le critere de Schur-Cohn : Si \(J(p)\) est inversible alors \(p\) ne possede aucune racine stable et \(\sigma(p) = \pi(J(p))\).</p>
+      </div>
+    </div>
+
+    <!-- PARTIE E -->
+    <div class="annale-exercice" id="partieE">
+      <h2 class="annale-exercice__title">Partie E -- Condition necessaire et suffisante d'inversibilite</h2>
+
+      <div class="question">
+        <span class="question__num">Q19.</span>
+        <p>Montrer, a l'aide des questions 9 et 13, que si \(p\) n'admet pas de racine stable et si \(J(p)\) n'est pas inversible alors il existe un polynome \(q\) non nul a coefficients reels de degre au plus \(n - 1\) tel que \(q(S^\top) U = 0_{n,1}\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q20.</span>
+        <p>En deduire que la matrice \(J(p)\) est inversible si et seulement si \(p\) n'admet aucune racine stable.</p>
+      </div>
+    </div>
+
+    <!-- PARTIE F -->
+    <div class="annale-exercice" id="partieF">
+      <h2 class="annale-exercice__title">Partie F -- Un cas particulier</h2>
+
+      <p class="annale-exercice__intro">On suppose dans cette partie, comme on l'a fait aux questions 3 a 5, que toutes les racines de \(p\) sont stables et de multiplicite 1 et on note \(h = Xp'\) (ou \(p'\) est le polynome derive de \(p\)) et \(h_0\) le polynome reciproque de \(h\). On rappelle que, d'apres la question 3, il existe un reel \(\lambda \in \{-1, 1\}\) tel que \(p = \lambda p_0\).</p>
+
+      <div class="question">
+        <span class="question__num">Q21.</span>
+        <p>Montrer que \(J(h)\) est inversible.</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q22.</span>
+        <p>Montrer qu'il existe un reel \(\eta > 0\) tel que pour tout \(r \in\, ]1 - \eta, 1[\), le polynome \(p(rX)\) est scinde, admet exactement \(\sigma(p)\) racines a l'interieur de l'intervalle \(]-1, 1[\) et ne possede aucune racine stable.</p>
+      </div>
+
+      <p class="annale-exercice__intro" style="margin-top:var(--space-lg)">Pour tout reel \(r > 0\), on note \(F(r) = J(p(rX))\).</p>
+
+      <div class="question">
+        <span class="question__num">Q23.</span>
+        <p>Montrer que \(\displaystyle\lim_{r \to 1^-} \pi\left(\frac{n}{2(r-1)} F(r)\right) = n - \sigma(p)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q24.</span>
+        <p>Justifier que l'application \(F : \mathbf{R}_+^* \to \mathcal{S}_n(\mathbf{R})\) est derivable et que \(F'(1) = 2n(p(S))^\top p(S) - 2S^\top (p'(S))^\top p(S) - 2(p(S))^\top p'(S) S\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q25.</span>
+        <p>En deduire, a l'aide des resultats de la question 4, que \(\dfrac{n}{2(r-1)} F(r) \underset{r \to 1}{\to} J(h) + o(1)\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q26.</span>
+        <p>En deduire que \(\sigma(p) = n - 1 - \pi(J(p'))\).</p>
+      </div>
+    </div>
+
+    <!-- PARTIE G -->
+    <div class="annale-exercice" id="partieG">
+      <h2 class="annale-exercice__title">Partie G -- Methode generale</h2>
+
+      <p class="annale-exercice__intro">On se place dans le cas general, sans disposer d'information sur la stabilite et la multiplicite des racines de \(p\), et on cherche a calculer \(\sigma(p)\).</p>
+      <p class="annale-exercice__intro">On construit les deux polynomes \(f\) et \(g\) verifiant \(f = p \wedge p_0\) et \(p = fg\).</p>
+
+      <div class="question">
+        <span class="question__num">Q27.</span>
+        <p>Montrer que \(\sigma(g) = \pi(J(g))\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q28.</span>
+        <p>Proposer une methode permettant de construire un nombre fini (eventuellement nul) de polynomes \(g_1, \ldots, g_\ell\), dont les racines sont stables et de multiplicite 1, tels que \(f = g_1 g_2 \cdots g_\ell\). Exprimer \(\sigma(p)\) a l'aide de \(n\), \(\deg g\), \(\pi(J(g))\), \(\ell\), ainsi que \(\pi(J(g_1')), \ldots, \pi(J(g_\ell'))\).</p>
+      </div>
+    </div>
+
+    <nav class="course__nav">
+      <a href="mines-2025-maths1.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Mines-Ponts 2025 -- Maths 1</span>
+      </a>
+      <a href="mines-2024-maths1.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Mines-Ponts 2024 -- Maths 1</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mines-Ponts 2019 — Maths 1 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
+    .question ol li{margin-bottom:4px}
+
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+
+    @media(max-width:680px){
+      .course__title{font-size:2rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">MINES-PONTS 2019</span>
+    </div>
+
+    <h1 class="course__title">Mines-Ponts 2019 -- Mathematiques 1</h1>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 1, filiere MP. Le sujet porte sur l'etude asymptotique de series entieres, avec une demonstration probabiliste utilisant la loi de Poisson, et une application a l'equation d'Airy.
+    </p>
+
+    <!-- Informations de l'epreuve -->
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">Mines-Ponts</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Mathematiques 1</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2019</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Series entieres, probabilites (loi de Poisson), equation d'Airy, formule de Stirling</span>
+      </div>
+    </div>
+
+    <!-- Sommaire -->
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#prelim"><span class="course__toc-num">00.</span> Question preliminaire</a></li>
+        <li class="course__toc-item"><a href="#partA"><span class="course__toc-num">A.</span> Equivalence entre \((H_{R,p})\) et \((H_{R,1})\) lorsque \(R > 0\)</a></li>
+        <li class="course__toc-item"><a href="#partB"><span class="course__toc-num">B.</span> Une demonstration probabiliste</a></li>
+        <li class="course__toc-item"><a href="#transition"><span class="course__toc-num">T.</span> Transition</a></li>
+        <li class="course__toc-item"><a href="#partC"><span class="course__toc-num">C.</span> Application a l'equation d'Airy</a></li>
+      </ol>
+    </nav>
+
+    <!-- =============== INTRODUCTION =============== -->
+    <div class="annale-exercice" id="prelim">
+      <h2 class="annale-exercice__title">Enonce</h2>
+
+      <p class="annale-exercice__intro">
+        Soit \(p\) un entier naturel non nul et \(r\) un nombre reel. On considere la fonction definie sur \(\mathbb{C}\) par la serie entiere
+      </p>
+      <div class="math-display">$$S_{r,p}(x) = \sum_{n=1}^{+\infty} \frac{(pn)^r}{(pn)!}\,x^{pn}.$$</div>
+      <p class="annale-exercice__intro">
+        L'objectif, dans les parties A et B du probleme, est d'etablir l'equivalence suivante quand \(x \to +\infty\) :
+      </p>
+      <div class="math-display">$$S_{r,p}(x) \underset{x \to +\infty}{\sim} \frac{x^r e^x}{p}. \qquad (H_{r,p})$$</div>
+      <p class="annale-exercice__intro">
+        Cet enonce est note \((H_{r,p})\). Dans la partie C, on applique ce resultat a l'etude asymptotique d'une solution particuliere de l'equation d'Airy.
+      </p>
+
+      <h3 class="annale-partie__title">Question preliminaire</h3>
+
+      <div class="question">
+        <span class="question__num">Q1.</span>
+        <p>Justifier que la serie entiere \(\displaystyle\sum_{n \geqslant 1} \frac{(pn)^r}{(pn)!}\,z^n\) a pour rayon de convergence \(+\infty\). Qu'en est-il de la serie entiere \(\displaystyle\sum_{n \geqslant 1} \frac{(pn)^r}{(pn)!}\,z^{pn}\) ?</p>
+      </div>
+    </div>
+
+    <!-- =============== PARTIE A =============== -->
+    <div class="annale-exercice" id="partA">
+      <h2 class="annale-exercice__title">Partie A -- Equivalence entre \((H_{R,p})\) et \((H_{R,1})\) lorsque \(R > 0\)</h2>
+
+      <p class="annale-exercice__intro">
+        On suppose dans cette partie que \(p \geqslant 2\) et \(r > 0\), et on se propose de montrer que les enonces \((H_{r,p})\) et \((H_{r,1})\) sont equivalents. Pour tous \(n \in \mathbb{N}\) et \(x \in \mathbb{R}_+^*\), on pose
+      </p>
+      <div class="math-display">$$u_n(x) = \frac{n^r}{n!}\,x^n.$$</div>
+
+      <div class="question">
+        <span class="question__num">Q2.</span>
+        <p>Pour \(x > 0\) fixe, etudier le signe de la fonction</p>
+        <div class="math-display">$$\varphi_x : t \in [1, +\infty[ \;\mapsto\; t^{1-r}(t-1)^r - x$$</div>
+        <p>En deduire que \(\varphi_x\) s'annule en un unique element de \([1, +\infty[\) que l'on note \(t_x\). Montrer que la suite finie \((u_n(x))_{0 \leqslant n \leqslant \lfloor t_x \rfloor}\) est croissante et que la suite infinie \((u_n(x))_{n \geqslant \lfloor t_x \rfloor}\) est decroissante, ou \(\lfloor x \rfloor\) designe la partie entiere du nombre reel \(x\).</p>
+        <p>L'ensemble \(\{u_n(x) ; n \in \mathbb{N}\}\) admet donc un maximum egal a \(u_{\lfloor t_x \rfloor}(x)\). Dans la suite de cette partie, ce maximum sera note \(M_x\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q3.</span>
+        <p>Pour \(\alpha \in \mathbb{R}\), determiner la limite de \(\varphi_x(x + \alpha)\) quand \(x\) tend vers \(+\infty\). En deduire que \(t_x - x - r\) tend vers zero lorsque \(x \to +\infty\). (On pourra s'aider de la definition d'une limite.)</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q4.</span>
+        <p>Montrer que pour tout entier relatif \(k\), \(u_{\lfloor x \rfloor + k}(x) \sim u_{\lfloor x \rfloor}(x)\) lorsque \(x \to +\infty\). En deduire que pour tout \(n \in \mathbb{N}\) et pour tout \(x\) au voisinage de \(+\infty\),</p>
+        <div class="math-display">$$\sum_{i=\lfloor x \rfloor - n}^{\lfloor x \rfloor} u_i(x) \geqslant n\,u_{\lfloor x \rfloor}(x).$$</div>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q5.</span>
+        <p>En deduire que pour tout entier relatif \(k\),</p>
+        <div class="math-display">$$u_{\lfloor x \rfloor + k}(x) = o\!\left(x^r e^x\right)$$</div>
+        <p>quand \(x \to +\infty\). Montrer alors que</p>
+        <div class="math-display">$$M_x = o\!\left(x^r e^x\right)$$</div>
+        <p>(On pourra d'abord demontrer que, pour \(x\) assez grand, \(M_x = u_{\lfloor x \rfloor + i}(x)\) pour un entier \(i\) compris entre \(|r| - 1\) et \(|r| + 2\).)</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q6.</span>
+        <p>Soit \(z\) un nombre complexe tel que \(|z| = 1\) et \(z \neq 1\). Pour tout entier naturel \(n\) non nul, on pose</p>
+        <div class="math-display">$$D_n = \sum_{k=0}^{n-1} z^k$$</div>
+        <p>Pour tout nombre reel \(x > 0\), comparer \(S_{r,1}(zx)\) a la somme</p>
+        <div class="math-display">$$\sum_{n=1}^{+\infty} D_n\left(u_{n-1}(x) - u_n(x)\right)$$</div>
+        <p>En deduire que pour \(x\) au voisinage de \(+\infty\), \(|S_{r,1}(zx)| \leqslant \dfrac{4M_x}{|1-z|}\) et conclure que lorsque \(x \to +\infty\),</p>
+        <div class="math-display">$$S_{r,1}(zx) = o\!\left(x^r e^x\right)$$</div>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q7.</span>
+        <p>On pose \(\zeta = \exp\!\left(\dfrac{2i\pi}{p}\right)\). Pour tout reel \(x\), montrer que</p>
+        <div class="math-display">$$\sum_{k=0}^{p-1} S_{r,1}\!\left(\zeta^k x\right) = p\,S_{r,p}(x)$$</div>
+        <p>et en deduire que les enonces \((H_{r,p})\) et \((H_{r,1})\) sont equivalents.</p>
+      </div>
+    </div>
+
+    <!-- =============== PARTIE B =============== -->
+    <div class="annale-exercice" id="partB">
+      <h2 class="annale-exercice__title">Partie B -- Une demonstration probabiliste</h2>
+
+      <p class="annale-exercice__intro">
+        On admet dans cette partie qu'il existe, sur un certain espace probabilise \((\Omega, \mathcal{A}, \mathbb{P})\), une famille \((X_x)_{x \in \mathbb{R}_+^*}\) de variables aleatoires a valeurs dans \(\mathbb{N}\) telle que \(X_x\) suive la loi de Poisson de parametre \(x\) pour tout reel \(x > 0\). On fixe de telles donnees dans l'integralite de cette partie.
+      </p>
+      <p class="annale-exercice__intro">
+        Soit un reel \(r > 0\). On pose
+      </p>
+      <div class="math-display">$$Z_x = \frac{X_x}{x}$$</div>
+      <p class="annale-exercice__intro">
+        et on se propose de demontrer que \(\mathbb{E}(Z_x^r) \to 1\) lorsque \(x \to +\infty\).
+      </p>
+
+      <div class="question">
+        <span class="question__num">Q8.</span>
+        <p>Pour tout reel \(\alpha > 0\), montrer que \(\mathbb{P}\!\left(|X_x - x| > \alpha x^{2/3}\right) \to 0\) quand \(x \to +\infty\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q9.</span>
+        <p>Montrer que, pour tout reel \(x > 1\), les variables aleatoires</p>
+        <div class="math-display">$$A_x = \mathbf{1}_{(Z_x < 1 - x^{-1/3})}\,Z_x^r \quad \text{et} \quad B_x = \mathbf{1}_{(|Z_x - 1| \leqslant x^{-1/3})}\,Z_x^r$$</div>
+        <p>sont d'esperance finie et trouver les limites de \(\mathbb{E}(A_x)\) et de \(\mathbb{E}(B_x)\) lorsque \(x \to +\infty\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">Soit \(N\) un entier naturel strictement positif.</p>
+
+      <div class="question">
+        <span class="question__num">Q10.</span>
+        <p>Montrer que pour tout reel \(x > 0\), la variable aleatoire</p>
+        <div class="math-display">$$Y_{N,x} = \mathbf{1}_{(X_x > x + x^{2/3})} \prod_{k=0}^{N-1}(X_x - k)$$</div>
+        <p>est d'esperance finie et que</p>
+        <div class="math-display">$$x^N \mathbb{P}\!\left(X_x > x + x^{2/3} - N\right) = \mathbb{E}(Y_{N,x})$$</div>
+        <p>Deduire alors de la question 8 que \(\mathbb{E}(Y_{N,x}) = o\!\left(x^N\right)\) quand \(x \to +\infty\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q11.</span>
+        <p>Montrer qu'il existe des reels \(a_1, \ldots, a_N\) tels que pour tout reel \(x > 0\),</p>
+        <div class="math-display">$$\mathbf{1}_{(X_x > x + x^{2/3})}\,X_x^N = \sum_{k=1}^{N} a_k Y_{k,x}$$</div>
+        <p>et en deduire la limite de \(\mathbb{E}\!\left(\mathbf{1}_{(Z_x > 1 + x^{-1/3})}\,Z_x^N\right)\) lorsque \(x \to +\infty\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q12.</span>
+        <p>Demontrer que \(\mathbb{E}\!\left(\mathbf{1}_{(Z_x > 1 + x^{-1/3})}\,Z_x^r\right) \to 0\) quand \(x \to +\infty\). En deduire que \(\mathbb{E}(Z_x^r) \to 1\) quand \(x \to +\infty\) et conclure a la validite de l'enonce \(H_{r,1}\).</p>
+      </div>
+    </div>
+
+    <!-- =============== TRANSITION =============== -->
+    <div class="annale-exercice" id="transition">
+      <h2 class="annale-exercice__title">Transition</h2>
+
+      <p class="annale-exercice__intro">
+        En combinant les resultats des deux parties precedentes, nous concluons a la validite de \((H_{r,p})\) pour tout entier naturel \(p > 0\) et tout reel \(r > 0\). Dans la suite du sujet, nous aurons besoin du resultat classique suivant, que nous admettrons :
+      </p>
+      <p class="annale-exercice__intro">
+        <strong>Lemme de comparaison asymptotique des series entieres.</strong> Soit \((a_n)_{n \in \mathbb{N}}\) et \((b_n)_{n \in \mathbb{N}}\) deux suites a termes reels. On suppose que :
+      </p>
+      <p class="annale-exercice__intro">(i) la serie entiere \(\sum b_n z^n\) a pour rayon de convergence \(+\infty\) ;</p>
+      <p class="annale-exercice__intro">(ii) les suites \((a_n)_{n \in \mathbb{N}}\) et \((b_n)_{n \in \mathbb{N}}\) sont equivalentes ;</p>
+      <p class="annale-exercice__intro">(iii) il existe un rang \(n_0 \in \mathbb{N}\) tel que pour tout \(n \geqslant n_0\), on a \(b_n > 0\).</p>
+      <p class="annale-exercice__intro">Alors la serie entiere \(\sum a_n z^n\) a pour rayon de convergence \(+\infty\) et</p>
+      <div class="math-display">$$\sum_{n=0}^{+\infty} a_n x^n \underset{x \to +\infty}{\sim} \sum_{n=0}^{+\infty} b_n x^n.$$</div>
+
+      <p class="annale-exercice__intro">Soit un entier naturel \(p > 0\) et un nombre reel \(r\).</p>
+
+      <div class="question">
+        <span class="question__num">Q13.</span>
+        <p>En remarquant que pour tout reel \(x > 0\),</p>
+        <div class="math-display">$$S_{r,p}(x) = x^p \sum_{n=0}^{+\infty} \frac{(p(n+1))^r}{(p(n+1))!}\,x^{np}$$</div>
+        <p>deduire du lemme de comparaison asymptotique des series entieres que</p>
+        <div class="math-display">$$S_{r,p}(x) \underset{x \to +\infty}{\sim} x^p\,S_{r-p,p}(x)$$</div>
+        <p>En deduire que \((H_{r,p})\) implique \((H_{r-p,p})\) et conclure a la validite de \((H_{r,p})\).</p>
+      </div>
+    </div>
+
+    <!-- =============== PARTIE C =============== -->
+    <div class="annale-exercice" id="partC">
+      <h2 class="annale-exercice__title">Partie C -- Application a l'equation d'Airy</h2>
+
+      <p class="annale-exercice__intro">
+        L'equation differentielle d'Airy (Ai) est definie par
+      </p>
+      <div class="math-display">$$x''(t) = t\,x(t). \qquad (\text{Ai})$$</div>
+
+      <div class="question">
+        <span class="question__num">Q14.</span>
+        <p>Question preliminaire. Soit un reel \(x > 0\). Pour tout entier \(n > 0\), on pose \(v_n = \displaystyle\sum_{k=1}^{n} \ln k + x \ln n - \sum_{k=0}^{n} \ln(x + k)\). Etablir la convergence de la serie \(\sum (v_n - v_{n-1})\), et en deduire l'existence d'un reel \(\Gamma(x) > 0\) verifiant la formule d'Euler :</p>
+        <div class="math-display">$$\prod_{k=0}^{n}(x+k) \underset{n \to +\infty}{\sim} \frac{n^x\,n!}{\Gamma(x)}$$</div>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q15.</span>
+        <p>Justifier qu'il existe une unique solution \(f\) de (Ai) sur \(\mathbb{R}\) verifiant \(f(0) = 1\) et \(f'(0) = 0\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q16.</span>
+        <p>Expliciter une suite \((a_n)_{n \in \mathbb{N}}\) telle que pour tout reel \(t\), \(f(t) = \displaystyle\sum_{n=0}^{+\infty} a_n t^n\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q17.</span>
+        <p>Demontrer que \(a_{3n} \sim \dfrac{\Gamma\!\left(\frac{2}{3}\right) n^{1/3}}{9^n (n!)^2}\) puis que \(a_{3n} \sim n^{-1/6}\,\dfrac{\Gamma\!\left(\frac{2}{3}\right)}{\sqrt{\pi}} \cdot \left(\dfrac{2}{3}\right)^{2n} \cdot \dfrac{1}{(2n)!}\) lorsque \(n \to +\infty\).</p>
+      </div>
+
+      <div class="question">
+        <span class="question__num">Q18.</span>
+        <p>En deduire une constante \(C\), que l'on exprimera a l'aide de \(\Gamma\!\left(\frac{2}{3}\right)\), telle que</p>
+        <div class="math-display">$$f(t) \underset{t \to +\infty}{\sim} C\,t^{-1/4}\exp\!\left(\frac{2}{3}\,t^{3/2}\right)$$</div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="../../mp.html#annales" class="course__nav-link">
+        &larr; Retour
+        <span>Annales MP</span>
+      </a>
+      <a href="mines-2019-maths2.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Mines-Ponts 2019 -- Maths 2</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>
