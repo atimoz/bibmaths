@@ -1,0 +1,296 @@
+{
+  "exams": {
+    "ccinp-m1-2025": {
+      "label": "CCINP Maths 1 — 2025",
+      "short": "M1 2025",
+      "questions": 12,
+      "parties": 4,
+      "themes": "Integrales impropres, Fonctions de deux variables, Bertrand",
+      "structure": ["Exercice I (2 q.)", "Exercice II (2 q.)", "Probleme - Partie I", "Probleme - Partie II"],
+      "difficulte": {"standard": 8, "intermediaire": 3, "avance": 1},
+      "methode": {"classique": 4, "tunnel": 5, "pavlov": 1, "courspur": 2},
+      "arc": [
+        {"q":"Q1","d":"S","m":"tunnel"},{"q":"Q2","d":"S","m":"classique"},
+        {"q":"Q3","d":"I","m":"tunnel"},{"q":"Q4","d":"I","m":"tunnel"},
+        {"q":"Q5","d":"S","m":"classique"},{"q":"Q6","d":"S","m":"pavlov"},
+        {"q":"Q7","d":"I","m":"tunnel"},{"q":"Q8","d":"S","m":"tunnel"},
+        {"q":"Q9","d":"S","m":"courspur"},{"q":"Q10","d":"S","m":"classique"},
+        {"q":"Q11","d":"S","m":"classique"},{"q":"Q12","d":"A","m":"courspur"}
+      ],
+      "parties_detail": [
+        {"nom":"Exercice I","standard":1,"intermediaire":1,"avance":0},
+        {"nom":"Exercice II","standard":1,"intermediaire":1,"avance":0},
+        {"nom":"Probleme - Partie I","standard":4,"intermediaire":1,"avance":0},
+        {"nom":"Probleme - Partie II","standard":2,"intermediaire":0,"avance":1}
+      ],
+      "pavlov": [
+        {"q":"Q6","titre":"Sommer un encadrement integral terme a terme","desc":"On somme f(k) <= I_k <= f(k-1) pour k=1,...,n. A gauche S_n - f(0), au milieu J_n, a droite S_{n-1}."}
+      ],
+      "tunnels": [
+        {"q":"Q3","titre":"Point critique + hessienne definie positive => minimum","desc":"On developpe f, on resout nabla f = 0, puis on verifie det(H_f) > 0 et tr(H_f) > 0 au point critique."},
+        {"q":"Q4","titre":"Minimum de ||a - xu - yv||^2 = projection orthogonale sur Vect(u,v)","desc":"On reconnait que minimiser f(x,y) = ||a - xu - yv||^2 revient a projeter a sur F = Vect(u,v)."},
+        {"q":"Q7","titre":"Comparaison serie-integrale par monotonie bornee","desc":"Si f est positive decroissante continue, sum f(n) et int f ont meme nature."},
+        {"q":"Q8","titre":"Serie de Bertrand par changement de variable u = ln t","desc":"On pose u = ln t pour transformer l'integrale, puis on discute selon alpha > 1, = 1 ou < 1."},
+        {"q":"Q9","titre":"Constante d'Euler par comparaison serie-integrale avec 1/t","desc":"On applique Q7 a f(t) = 1/t : la serie sum(ln n - ln(n-1) - 1/n) converge, d'ou H_n - ln n -> gamma."}
+      ],
+      "classiques": [
+        {"q":"Q2","titre":"Critere de comparaison integrale","desc":"Comparaison au voisinage des singularites pour determiner la convergence."},
+        {"q":"Q5","titre":"Integrale de Bertrand classique","desc":"Calcul direct par changement de variable et integration par parties."},
+        {"q":"Q10","titre":"EDL1 par variation de la constante","desc":"On resout l'homogene, puis variation de la constante + condition a l'infini."},
+        {"q":"Q11","titre":"Limite d'une integrale a parametre par TCD","desc":"Domination par une fonction integrable independante de x, puis TCD."}
+      ]
+    },
+    "ccinp-m2-2025": {
+      "label": "CCINP Maths 2 — 2025",
+      "short": "M2 2025",
+      "questions": 25,
+      "parties": 4,
+      "themes": "Matrices de rang 1, Exemples, Resultats generaux",
+      "structure": ["Exercice 1 (6 q.)", "Exercice 2 (6 q.)", "Probleme - Partie I", "Probleme - Partie II"],
+      "difficulte": {"standard": 14, "intermediaire": 10, "avance": 1},
+      "methode": {"classique": 8, "tunnel": 7, "pavlov": 8, "courspur": 2},
+      "arc": [
+        {"q":"Q1","d":"S","m":"pavlov"},{"q":"Q2","d":"S","m":"pavlov"},
+        {"q":"Q3","d":"S","m":"pavlov"},{"q":"Q4","d":"S","m":"courspur"},
+        {"q":"Q5","d":"S","m":"pavlov"},{"q":"Q6","d":"S","m":"tunnel"},
+        {"q":"Q7","d":"S","m":"pavlov"},{"q":"Q8","d":"S","m":"classique"},
+        {"q":"Q9","d":"S","m":"pavlov"},{"q":"Q10","d":"S","m":"tunnel"},
+        {"q":"Q11","d":"S","m":"pavlov"},{"q":"Q12","d":"I","m":"classique"},
+        {"q":"Q13","d":"S","m":"classique"},{"q":"Q14","d":"S","m":"pavlov"},
+        {"q":"Q15","d":"I","m":"classique"},{"q":"Q16","d":"I","m":"classique"},
+        {"q":"Q17","d":"S","m":"classique"},{"q":"Q18","d":"S","m":"classique"},
+        {"q":"Q19","d":"S","m":"tunnel"},{"q":"Q20","d":"I","m":"classique"},
+        {"q":"Q21","d":"I","m":"tunnel"},{"q":"Q22","d":"S","m":"courspur"},
+        {"q":"Q23","d":"I","m":"tunnel"},{"q":"Q24","d":"I","m":"tunnel"},
+        {"q":"Q25","d":"I","m":"tunnel"}
+      ],
+      "parties_detail": [
+        {"nom":"Exercice 1","standard":6,"intermediaire":0,"avance":0},
+        {"nom":"Exercice 2","standard":4,"intermediaire":2,"avance":0},
+        {"nom":"Probleme - Partie I","standard":4,"intermediaire":2,"avance":0},
+        {"nom":"Probleme - Partie II","standard":0,"intermediaire":6,"avance":1}
+      ],
+      "pavlov": [
+        {"q":"Q1","titre":"Parcours d'un dictionnaire pour calculer un maximum","desc":"On parcourt les listes d'adjacence d[s] pour chaque sommet s et on calcule max(len(d[s]))."},
+        {"q":"Q2","titre":"Graphe inverse par inversion des aretes","desc":"On initialise un dictionnaire avec des listes vides, puis pour chaque arete (s,v), on ajoute s a la liste de v."},
+        {"q":"Q3","titre":"Verification d'une propriete sur toutes les aretes d'un graphe","desc":"On parcourt toutes les aretes (s,v) et on teste la condition."},
+        {"q":"Q5","titre":"Requete SQL avec MAX","desc":"SELECT MAX(colonne) FROM table."},
+        {"q":"Q7","titre":"Degre et coefficient dominant par recurrence","desc":"Dans P_{n+2} = 2XP_{n+1} - P_n, le terme 2XP_{n+1} domine."},
+        {"q":"Q9","titre":"Convergence d'integrale impropre par comparaison","desc":"Au voisinage de t=1, 1/sqrt(1-t^2) ~ 1/sqrt(2(1-t)). L'integrale converge."},
+        {"q":"Q11","titre":"Orthogonalite trigo par linearisation","desc":"On utilise cos a cos b = 1/2(cos(a-b) + cos(a+b)). L'integrale est 0 si n != m."},
+        {"q":"Q14","titre":"Tr(M) = sum X_i^2 pour des Bernoulli","desc":"Pour X_i ~ B(p), X_i^2 = X_i. Donc Tr(M) = sum X_i ~ B(n,p)."}
+      ],
+      "tunnels": [
+        {"q":"Q6","titre":"SQL : JOIN + GROUP BY + HAVING + ORDER BY","desc":"Enchainement structure : SELECT ... FROM ... JOIN ... ON ... GROUP BY ... HAVING ... ORDER BY ..."},
+        {"q":"Q10","titre":"Verification des 4 axiomes du produit scalaire","desc":"Bilinearite, symetrie, positivite, definie."},
+        {"q":"Q19","titre":"Matrice de rang 1 = produit colonne x ligne : A = CL","desc":"Si rg(A) = 1, toutes les colonnes sont proportionnelles a un vecteur C."},
+        {"q":"Q21","titre":"chi_A = X^{n-1}(X - Tr(A)) et mu_A | chi_A","desc":"rg = 1 => 0 est v.p. de multiplicite n-1. La seule autre v.p. est Tr(A)."},
+        {"q":"Q23","titre":"Nilpotent de rang 1 : Im(u) subset ker(u), u^2 = 0","desc":"dim(Im(u)) = 1 et Im(u) inter ker(u) != {0} forcent Im(u) subset ker(u)."},
+        {"q":"Q24","titre":"Rang 1 et Tr != 0 : diagonalisable, E = ker(u) + Im(u)","desc":"Im(u) inter ker(u) = {0} et dimensions complementaires donnent la somme directe."},
+        {"q":"Q25","titre":"Classification rang 1 : semblables <=> meme trace","desc":"Deux formes canoniques : nilpotente (Tr = 0) ou diag(a,0,...,0) (Tr = a != 0)."}
+      ],
+      "classiques": [
+        {"q":"Q12","titre":"BON de Tchebychev par changement de variable t = cos theta","desc":"Le changement t = cos theta transforme l'integrale en cos(n theta) cos(m theta) d theta."},
+        {"q":"Q15","titre":"M^2 = Tr(M) . M via U^T U = Tr(M) scalaire","desc":"M^2 = (UU^T)(UU^T) = U(U^T U)U^T = Tr(M) . M."},
+        {"q":"Q16","titre":"Adaptation avec loi de Poisson : sum X_i^2 = 1 impose un seul X_i = 1","desc":"Tr(M) = 1 impose sum X_i^2 = 1, soit exactement un X_i = 1."},
+        {"q":"Q20","titre":"A^2 = Tr(A) . A par cyclicite de la trace","desc":"A^2 = (CL)(CL) = C(LC)L = (LC) . CL = Tr(A) . A."}
+      ]
+    },
+    "ccinp-m1-2024": {
+      "label": "CCINP Maths 1 — 2024",
+      "short": "M1 2024",
+      "questions": 18,
+      "parties": 5,
+      "themes": "VA discretes, EDL, Wallis, somme 1/n^2",
+      "structure": ["Exercice I (3 q.)", "Exercice II (4 q.)", "Probleme (1 q.)", "Probleme - Partie I", "Probleme - Partie II"],
+      "difficulte": {"standard": 10, "intermediaire": 8, "avance": 0},
+      "methode": {"classique": 9, "tunnel": 7, "pavlov": 0, "courspur": 2},
+      "arc": [
+        {"q":"Q1","d":"I","m":"tunnel"},{"q":"Q2","d":"S","m":"classique"},
+        {"q":"Q3","d":"I","m":"classique"},{"q":"Q4","d":"S","m":"courspur"},
+        {"q":"Q5","d":"I","m":"tunnel"},{"q":"Q6","d":"S","m":"courspur"},
+        {"q":"Q7","d":"I","m":"classique"},{"q":"Q8","d":"S","m":"classique"},
+        {"q":"Q9","d":"S","m":"tunnel"},{"q":"Q10","d":"S","m":"tunnel"},
+        {"q":"Q11","d":"S","m":"classique"},{"q":"Q12","d":"S","m":"tunnel"},
+        {"q":"Q13","d":"I","m":"classique"},{"q":"Q14","d":"I","m":"classique"},
+        {"q":"Q15","d":"S","m":"tunnel"},{"q":"Q16","d":"S","m":"tunnel"},
+        {"q":"Q17","d":"I","m":"classique"},{"q":"Q18","d":"I","m":"classique"}
+      ],
+      "parties_detail": [
+        {"nom":"Exercice I","standard":1,"intermediaire":2,"avance":0},
+        {"nom":"Exercice II","standard":2,"intermediaire":2,"avance":0},
+        {"nom":"Probleme","standard":1,"intermediaire":0,"avance":0},
+        {"nom":"Probleme - Partie I","standard":4,"intermediaire":1,"avance":0},
+        {"nom":"Probleme - Partie II","standard":2,"intermediaire":3,"avance":0}
+      ],
+      "pavlov": [],
+      "tunnels": [
+        {"q":"Q1","titre":"Esperance par la queue de distribution E(X) = sum P(X > k)","desc":"On telescopie P(X=k) = P(X>k-1) - P(X>k), puis sommation par parties (Abel)."},
+        {"q":"Q5","titre":"DSE par substitution dans une ED + identification des coefficients","desc":"On pose f(x) = sum a_n x^n, on substitue dans l'ED et on identifie les coefficients pour obtenir une relation de recurrence."},
+        {"q":"Q9","titre":"Integrales de Wallis par IPP et recurrence","desc":"On derive (sin x)^{n+2} cos x pour obtenir la relation (n+2)W_{n+2} = (n+1)W_n."},
+        {"q":"Q10","titre":"DSE de arcsin par binome generalise + integration","desc":"On part de (1-u)^{-1/2} = sum C(1/2,n)(-u)^n, on substitue u = x^2, puis on integre terme a terme."},
+        {"q":"Q12","titre":"Interversion sum/int par positivite (Fubini-Tonelli)","desc":"Quand la serie est a termes positifs, l'interversion somme-integrale est immediate."},
+        {"q":"Q15","titre":"Continuite d'une integrale a parametre par domination","desc":"On domine |phi(x,t)| par une fonction integrable independante de x."},
+        {"q":"Q16","titre":"Derivation sous int : Leibniz avec domination locale","desc":"On calcule d_x phi, on verifie qu'elle est continue en (x,t) et dominee par une fonction integrable."}
+      ],
+      "classiques": [
+        {"q":"Q3","titre":"Somme de Riemann pour obtenir un equivalent de E(X)","desc":"Des qu'une somme a la forme 1/n sum f(k/n), c'est une somme de Riemann qui converge vers int f(t)dt."},
+        {"q":"Q7","titre":"Prolongement C^2 en un point singulier pour reduire la dimension","desc":"Quand une ED a un point singulier (coefficient en 1/x^2), seules certaines solutions se prolongent en C^2."},
+        {"q":"Q13","titre":"Simplification miraculeuse vers sum 1/(2n+1)^2 = pi^2/8","desc":"En substituant la formule de Wallis dans la serie, les coefficients se simplifient."},
+        {"q":"Q14","titre":"DSE + interversion pour calculer int_0^1 ln x/(x^2-1) dx","desc":"On developpe 1/(x^2-1) = -sum x^{2n}, on multiplie par ln x et on integre terme a terme."},
+        {"q":"Q17","titre":"Fractions partielles en u = t^2 pour simplifier f'(x)","desc":"On decompose t/((1+t^2)(1+x^2t^2)) en elements simples en posant u = t^2."},
+        {"q":"Q18","titre":"Synthese : zeta(2) par TFA et identification","desc":"On calcule f(1) par changement de variable, puis on utilise le TFA."}
+      ]
+    },
+    "ccinp-m2-2024": {
+      "label": "CCINP Maths 2 — 2024",
+      "short": "M2 2024",
+      "questions": 22,
+      "parties": 6,
+      "themes": "Caracterisation spectrale, Critere en dimension 2, Critere de Sylvester",
+      "structure": ["Exercice 1 (2 q.)", "Exercice 2 (5 q.)", "Probleme (1 q.)", "Probleme - Caract. spectrale", "Probleme - Dimension 2", "Probleme - Sylvester"],
+      "difficulte": {"standard": 11, "intermediaire": 9, "avance": 2},
+      "methode": {"classique": 13, "tunnel": 4, "pavlov": 3, "courspur": 2},
+      "arc": [
+        {"q":"Q1","d":"S","m":"tunnel"},{"q":"Q2","d":"I","m":"classique"},
+        {"q":"Q3","d":"S","m":"pavlov"},{"q":"Q4","d":"S","m":"pavlov"},
+        {"q":"Q5","d":"I","m":"classique"},{"q":"Q6","d":"I","m":"classique"},
+        {"q":"Q7","d":"I","m":"classique"},{"q":"Q8","d":"S","m":"classique"},
+        {"q":"Q9","d":"I","m":"courspur"},{"q":"Q10","d":"I","m":"classique"},
+        {"q":"Q11","d":"S","m":"courspur"},{"q":"Q12","d":"S","m":"classique"},
+        {"q":"Q13","d":"S","m":"classique"},{"q":"Q14","d":"I","m":"classique"},
+        {"q":"Q15","d":"S","m":"pavlov"},{"q":"Q16","d":"S","m":"classique"},
+        {"q":"Q17","d":"A","m":"classique"},{"q":"Q18","d":"I","m":"classique"},
+        {"q":"Q19","d":"S","m":"tunnel"},{"q":"Q20","d":"I","m":"tunnel"},
+        {"q":"Q21","d":"I","m":"classique"},{"q":"Q22","d":"A","m":"tunnel"}
+      ],
+      "parties_detail": [
+        {"nom":"Exercice 1","standard":1,"intermediaire":1,"avance":0},
+        {"nom":"Exercice 2","standard":3,"intermediaire":2,"avance":0},
+        {"nom":"Probleme","standard":1,"intermediaire":0,"avance":0},
+        {"nom":"Caract. spectrale","standard":1,"intermediaire":1,"avance":0},
+        {"nom":"Dimension 2","standard":2,"intermediaire":2,"avance":0},
+        {"nom":"Sylvester","standard":3,"intermediaire":3,"avance":2}
+      ],
+      "pavlov": [
+        {"q":"Q3","titre":"Image par une permutation : s[i], transposition : [0,1,3,2]","desc":"L'image de k par sigma est s[k]. La transposition (2 3) fixe 0,1 et echange 2,3 : [0,1,3,2]."},
+        {"q":"Q4","titre":"Composition de permutations : [s1[s2[i]] for i in range(n)]","desc":"(sigma_1 o sigma_2)(i) = sigma_1(sigma_2(i)) se traduit par s1[s2[i]] en Python."},
+        {"q":"Q15","titre":"Completer X_k par des zeros pour relier X_k^T M_k X_k a X^T MX","desc":"On pose X = (x_1,...,x_k,0,...,0)^T. Alors X^T MX = X_k^T M_k X_k car les termes avec x_i = 0 disparaissent."}
+      ],
+      "tunnels": [
+        {"q":"Q1","titre":"Diagonalisation 3x3 : chi_A, sous-espaces propres, matrice P","desc":"On calcule chi_A, on trouve les valeurs propres, puis les sous-espaces propres ker(A - lambda I)."},
+        {"q":"Q19","titre":"Sylvester parametre : det(C(x)) = 1 - 2x^2 > 0","desc":"On calcule les mineurs : Delta_1 = 2 > 0, Delta_2 = 1 > 0, Delta_3 = 1 - 2x^2."},
+        {"q":"Q20","titre":"Verifier Sylvester sur une matrice 5x5 numerique","desc":"On calcule les mineurs principaux Delta_1,...,Delta_5 successivement."},
+        {"q":"Q22","titre":"Matrice tridiagonale : recurrence Delta_k = sqrt(3) Delta_{k-1} - Delta_{k-2}","desc":"L'equation caracteristique a pour racines e^{i pi/6}. Donc Delta_k > 0 ssi k <= 4."}
+      ],
+      "classiques": [
+        {"q":"Q2","titre":"Systeme recurrent X_{n+1} = AX_n decouple par diagonalisation","desc":"En posant Y_n = P^{-1}X_n, le systeme devient Y_{n+1} = DY_n. La convergence depend de |lambda_i| <= 1."},
+        {"q":"Q6","titre":"Test de sous-groupe : identite in G, stabilite par o et par inverse","desc":"On verifie les trois axiomes : id in G, sigma in G => sigma^{-1} in G, sigma_1 o sigma_2 in G."},
+        {"q":"Q7","titre":"Groupe cyclique <sigma> par iteration jusqu'a l'identite","desc":"On calcule sigma, sigma^2, sigma^3,... On s'arrete quand on retrouve id."},
+        {"q":"Q10","titre":"TVI pour localiser 3 racines reelles distinctes de chi_B","desc":"On evalue P en quelques points pour detecter les changements de signe."},
+        {"q":"Q14","titre":"Extremum de f(x,y) = x + y + 1/(xy) par hessienne","desc":"Points critiques : nabla f = 0 donne x = y = 1. La hessienne est definie positive."},
+        {"q":"Q17","titre":"Completion de Schur : Q^T MQ = diag(M_{n-1}, beta) avec beta > 0","desc":"Comme M_{n-1} est def. pos. inversible, on pose Q pour eliminer les termes croises."},
+        {"q":"Q18","titre":"Recurrence : Sylvester => def. pos. via completion de Schur","desc":"Par HR, M_{n-1} def. pos. Par Q17, Q^T MQ = diag(M_{n-1}, beta) avec beta > 0."},
+        {"q":"Q21","titre":"Forme quadratique -> matrice -> Sylvester","desc":"On identifie la matrice M de la forme quadratique (coefficients diagonaux directs, croises divises par 2)."}
+      ]
+    },
+    "ccinp-m1-2023": {
+      "label": "CCINP Maths 1 — 2023",
+      "short": "M1 2023",
+      "questions": 24,
+      "parties": 5,
+      "themes": "Calcul d'integrale, Fonction Gamma, Formule des complements",
+      "structure": ["Exercice I (5 q.)", "Exercice II (3 q.)", "Probleme - Partie I", "Probleme - Partie II", "Probleme - Partie III"],
+      "difficulte": {"standard": 17, "intermediaire": 7, "avance": 0},
+      "methode": {"classique": 11, "tunnel": 11, "pavlov": 1, "courspur": 1},
+      "arc": [
+        {"q":"Q1","d":"S","m":"tunnel"},{"q":"Q2","d":"S","m":"tunnel"},
+        {"q":"Q3","d":"I","m":"classique"},{"q":"Q4","d":"S","m":"pavlov"},
+        {"q":"Q5","d":"S","m":"tunnel"},{"q":"Q6","d":"S","m":"tunnel"},
+        {"q":"Q7","d":"S","m":"tunnel"},{"q":"Q8","d":"S","m":"tunnel"},
+        {"q":"Q9","d":"S","m":"classique"},{"q":"Q10","d":"S","m":"classique"},
+        {"q":"Q11","d":"S","m":"classique"},{"q":"Q12","d":"S","m":"tunnel"},
+        {"q":"Q13","d":"I","m":"classique"},{"q":"Q14","d":"I","m":"classique"},
+        {"q":"Q15","d":"S","m":"tunnel"},{"q":"Q16","d":"S","m":"tunnel"},
+        {"q":"Q17","d":"S","m":"tunnel"},{"q":"Q18","d":"S","m":"tunnel"},
+        {"q":"Q19","d":"S","m":"classique"},{"q":"Q20","d":"I","m":"classique"},
+        {"q":"Q21","d":"I","m":"tunnel"},{"q":"Q22","d":"S","m":"courspur"},
+        {"q":"Q23","d":"I","m":"classique"},{"q":"Q24","d":"I","m":"classique"}
+      ],
+      "parties_detail": [
+        {"nom":"Exercice I","standard":3,"intermediaire":2,"avance":0},
+        {"nom":"Exercice II","standard":3,"intermediaire":0,"avance":0},
+        {"nom":"Probleme - Partie I","standard":4,"intermediaire":2,"avance":0},
+        {"nom":"Probleme - Partie II","standard":4,"intermediaire":1,"avance":0},
+        {"nom":"Probleme - Partie III","standard":3,"intermediaire":2,"avance":0}
+      ],
+      "pavlov": [
+        {"q":"Q4","titre":"SELECT ... WHERE pour filtrer une table SQL","desc":"Requete de selection basique : SELECT colonne FROM table WHERE condition."}
+      ],
+      "tunnels": [
+        {"q":"Q1","titre":"Triple boucle pour le produit matriciel","desc":"Des qu'on demande d'implementer C = AB, on pose C_{ij} = sum_k A_{ik} B_{kj} et on ecrit trois boucles imbriquees."},
+        {"q":"Q2","titre":"Symetrie de la matrice d'adjacence <=> graphe non oriente","desc":"On verifie si A[i][j] = A[j][i] pour tout couple i < j."},
+        {"q":"Q5","titre":"JOIN ... ON pour relier deux tables SQL","desc":"Des que l'information est repartie sur deux tables, on effectue une jointure."},
+        {"q":"Q6","titre":"TVI + variations strictes => unicite du zero","desc":"On etudie g(x) = f(x) - z : calculer g', verifier un changement de signe, conclure par le TVI."},
+        {"q":"Q7","titre":"Point critique : resoudre nabla f = 0","desc":"On calcule les derivees partielles, on resout le systeme d_x f = 0, d_y f = 0."},
+        {"q":"Q8","titre":"Hessienne definie positive => minimum local","desc":"Au point critique, on ecrit la matrice hessienne et on verifie det(H_f) > 0 et tr(H_f) > 0."},
+        {"q":"Q12","titre":"TCD pour intervertir sum et int","desc":"On majore la somme partielle par un dominant integrable grace au caractere alterne."},
+        {"q":"Q16","titre":"Continuite sous int : verifier continuite + domination","desc":"On verifie (1) phi continue en (x,t), (2) |phi(x,t)| <= g(t) avec g integrable."},
+        {"q":"Q17","titre":"Derivation sous int : meme schema avec d_x phi","desc":"On calcule d_x phi, on verifie continuite en (x,t) et domination par une fonction integrable."},
+        {"q":"Q18","titre":"Limite en +inf d'une integrale a parametre par TCD","desc":"Quand x -> +inf, l'integrande tend vers 0 point par point. On domine et on applique le TCD."},
+        {"q":"Q21","titre":"EDL1 par variation de la constante + condition a l'infini","desc":"On resout l'homogene (Ce^x), on trouve une solution particuliere par variation de la constante."}
+      ],
+      "classiques": [
+        {"q":"Q3","titre":"Distance par puissances successives de A","desc":"On calcule A^p pour p = 1, 2, ... jusqu'a ce que le coefficient (i,j) soit non nul."},
+        {"q":"Q13","titre":"Regrouper I(alpha) + I(1-alpha) pour reconnaitre une formule admise","desc":"On met au meme denominateur pour faire apparaitre 2n+1/((n+alpha)(n+1-alpha))."},
+        {"q":"Q14","titre":"Synthese : relier la serie a pi/sin(alpha pi)","desc":"On identifie I(alpha) + I(alpha) avec la formule admise evaluee en x = pi."},
+        {"q":"Q23","titre":"Formule des complements par identification integrale","desc":"On reconnait int_0^{+inf} t^{(1-alpha)-1} e^{-t} dt = Gamma(1-alpha), puis on combine avec Q14."}
+      ]
+    },
+    "ccinp-m2-2023": {
+      "label": "CCINP Maths 2 — 2023",
+      "short": "M2 2023",
+      "questions": 20,
+      "parties": 4,
+      "themes": "Prehilbertiens, Decomposition spectrale, Polynomes d'endomorphismes",
+      "structure": ["Exercice 1 (3 q.)", "Exercice 2 (2 q.)", "Probleme - Partie I", "Probleme - Partie II"],
+      "difficulte": {"standard": 10, "intermediaire": 9, "avance": 1},
+      "methode": {"classique": 15, "tunnel": 0, "pavlov": 1, "courspur": 4},
+      "arc": [
+        {"q":"Q1","d":"S","m":"courspur"},{"q":"Q2","d":"S","m":"classique"},
+        {"q":"Q3","d":"S","m":"classique"},{"q":"Q4","d":"S","m":"classique"},
+        {"q":"Q5","d":"I","m":"classique"},{"q":"Q6","d":"S","m":"pavlov"},
+        {"q":"Q7","d":"I","m":"classique"},{"q":"Q8","d":"S","m":"courspur"},
+        {"q":"Q9","d":"I","m":"classique"},{"q":"Q10","d":"S","m":"courspur"},
+        {"q":"Q11","d":"I","m":"classique"},{"q":"Q12","d":"I","m":"classique"},
+        {"q":"Q13","d":"S","m":"courspur"},{"q":"Q14","d":"I","m":"classique"},
+        {"q":"Q15","d":"I","m":"classique"},{"q":"Q16","d":"S","m":"classique"},
+        {"q":"Q17","d":"I","m":"classique"},{"q":"Q18","d":"I","m":"classique"},
+        {"q":"Q19","d":"I","m":"classique"},{"q":"Q20","d":"A","m":"classique"}
+      ],
+      "parties_detail": [
+        {"nom":"Exercice 1","standard":3,"intermediaire":0,"avance":0},
+        {"nom":"Exercice 2","standard":1,"intermediaire":1,"avance":0},
+        {"nom":"Probleme - Partie I","standard":4,"intermediaire":3,"avance":0},
+        {"nom":"Probleme - Partie II","standard":2,"intermediaire":5,"avance":1}
+      ],
+      "pavlov": [
+        {"q":"Q6","titre":"Diag. d'une matrice symetrique + verification Pi^2 = Pi, sum lambda_i Pi = A","desc":"Matrice symetrique reelle => diagonalisable. Les projecteurs spectraux verifient Pi^2 = Pi."}
+      ],
+      "tunnels": [],
+      "classiques": [
+        {"q":"Q5","titre":"Loi de Z = sup(X,Y) par la fonction de repartition","desc":"On utilise P(Z <= m) = P(X <= m)P(Y <= m) (independance)."},
+        {"q":"Q7","titre":"Lemme des noyaux : Bezout donne la somme directe","desc":"De UP + VQ = 1 (Bezout), U(u)P(u) + V(u)Q(u) = id."},
+        {"q":"Q9","titre":"Projecteurs spectraux : p_i p_j = 0, sum p_i = id, p_i^2 = p_i","desc":"Pour i != j, Q_i Q_j est divisible par pi_u, donc p_i p_j = 0."},
+        {"q":"Q11","titre":"E = oplus Im p_i par orthogonalite des projecteurs","desc":"De sum p_i = id : tout x se decompose. De p_i p_j = 0 : somme directe."},
+        {"q":"Q12","titre":"Im p_i = N_i par inclusion + argument de dimension","desc":"P^{lambda_i}(u) o p_i = pi_u, donc Im p_i subset N_i."},
+        {"q":"Q14","titre":"Projecteurs spectraux par DEF de 1/pi_u (residus)","desc":"La DEF 1/pi_u = sum Q_i/(X-lambda_i) donne 1 = sum Q_i(lambda_i)/Q_i(lambda_i)."},
+        {"q":"Q15","titre":"Decomposition spectrale u = sum lambda_i p_i par Lagrange","desc":"Le polynome X s'interpole aux points lambda_i."},
+        {"q":"Q17","titre":"dim C[v] = deg(pi_u) par isomorphisme C[X]/(pi_u)","desc":"L'application P -> P(v) a pour noyau (pi_u). Par le theoreme d'isomorphisme."},
+        {"q":"Q18","titre":"(p_1,...,p_m) base de C[u] si u diagonalisable","desc":"dim C[u] = m et les p_i sont libres."},
+        {"q":"Q19","titre":"Non diagonalisable => (p_i) n'est pas une base de C[u]","desc":"Si u non diag., deg pi_u > m donc dim C[u] > m."},
+        {"q":"Q20","titre":"u^q = sum lambda_i^q f_i pour tout q => u diagonalisable","desc":"Pour P = prod(X - lambda_i) : P(u) = sum P(lambda_i) f_i = 0 car chaque P(lambda_i) = 0."}
+      ]
+    }
+  }
+}

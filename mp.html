@@ -8,8 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=8">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 </head>
 <body>
 
@@ -42,7 +44,7 @@
           <a href="mp.html#fiches" class="dropdown__item">Fiches</a>
           <a href="mp.html#methodes" class="dropdown__item">Méthodes</a>
           <a href="mp.html#concours" class="dropdown__item">Concours</a>
-          <a href="mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="mp.html#statistiques" class="dropdown__item">Statistiques</a>
         </div>
       </div>
     </div>
@@ -81,7 +83,7 @@
         <button class="filter-btn" data-filter="fiches">Fiches</button>
         <button class="filter-btn" data-filter="methodes">Méthodes</button>
         <button class="filter-btn" data-filter="concours">Concours</button>
-        <button class="filter-btn" data-filter="exercices">Exercices</button>
+        <button class="filter-btn" data-filter="statistiques">Statistiques</button>
         <a href="revision.html" class="filter-btn" style="text-decoration:none;text-align:center">Revision</a>
       </div>
     </div>
@@ -336,198 +338,39 @@
 
     </div><!-- end fiches-section -->
 
-    <!-- Concours CCINP -->
+    <!-- Concours — Exercices par chapitre (dynamique) -->
     <div class="concours-dossier" data-type="concours" style="display:none">
 
-      <!-- Segmented control -->
-      <div class="concours-seg">
-        <div class="concours-seg__track">
-          <div class="concours-seg__indicator"></div>
-          <button class="concours-seg__btn concours-seg__btn--active" data-target="concours-fiches">
-            Fiches<span class="concours-seg__badge">19</span>
-          </button>
-          <button class="concours-seg__btn" data-target="concours-methodes">
-            Methodes<span class="concours-seg__badge">8</span>
-          </button>
-          <button class="concours-seg__btn" data-target="concours-annales">
-            Annales<span class="concours-seg__badge">12</span>
-          </button>
+      <!-- Vue 1: Grille des chapitres -->
+      <div id="exoHome">
+        <div class="concours-panel__header">
+          <h2 class="concours-panel__title">Exercices de concours</h2>
+          <p class="concours-panel__desc">986 references classees par chapitre du programme MP. Clique sur un chapitre pour voir les exercices et corrections.</p>
+        </div>
+        <div id="exoChapters">
+          <p style="text-align:center;padding:var(--space-xl);color:var(--ink-muted)">Chargement...</p>
         </div>
       </div>
 
-      <!-- PANEL: Fiches -->
-      <div class="concours-panel" id="concours-fiches">
-      <div class="concours-panel__header">
-        <h2 class="concours-panel__title">Fiches CCINP</h2>
-        <p class="concours-panel__desc">Fiches de revision condensees, organisees par priorite au concours CCINP.</p>
+      <!-- Vue 2: Detail d'un chapitre -->
+      <div id="exoDetail" style="display:none">
+        <button class="exo-detail__back" id="exoBack">&larr; Retour aux chapitres</button>
+        <h2 class="exo-detail__title" id="exoDetailTitle"></h2>
+        <p class="exo-detail__subtitle" id="exoDetailSubtitle"></p>
+        <div class="exo-detail__refs" id="exoDetailRefs"></div>
       </div>
-
-      <!-- &#11088;&#11088;&#11088; -->
-      <div class="fiches-tier" data-tier="1">
-        <div class="fiches-tier__label">
-          <span class="fiches-tier__badge fiches-tier__badge--1">&#11088;&#11088;&#11088;</span>
-          <span class="fiches-tier__text">Tombe chaque annee</span>
-        </div>
-        <div class="chapter-grid">
-          <a href="cours/fiches/mp-02-reduction-avancee.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--1">&#11088;&#11088;&#11088;</span>
-            <span class="chapter-card__num">02</span>
-            <h3 class="chapter-card__title">Reduction avancee</h3>
-            <p class="chapter-card__desc">Cayley-Hamilton, diagonalisation, Dunford, polynome minimal.</p>
-          </a>
-          <a href="cours/fiches/mp-04-espaces-euclidiens.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--1">&#11088;&#11088;&#11088;</span>
-            <span class="chapter-card__num">04</span>
-            <h3 class="chapter-card__title">Espaces euclidiens</h3>
-            <p class="chapter-card__desc">Cauchy-Schwarz, projection orthogonale, theoreme spectral.</p>
-          </a>
-          <a href="cours/fiches/mp-07-suites-series-fonctions.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--1">&#11088;&#11088;&#11088;</span>
-            <span class="chapter-card__num">07</span>
-            <h3 class="chapter-card__title">Suites et series de fonctions</h3>
-            <p class="chapter-card__desc">CVU, CVN, theoremes d'interversion limite-integrale-derivee.</p>
-          </a>
-          <a href="cours/fiches/mp-11-integrales-generalisees.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--1">&#11088;&#11088;&#11088;</span>
-            <span class="chapter-card__num">11</span>
-            <h3 class="chapter-card__title">Integrales generalisees</h3>
-            <p class="chapter-card__desc">Gamma, Wallis, Gauss, integrales a parametre, comparaison serie-integrale.</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- &#11088;&#11088; -->
-      <div class="fiches-tier" data-tier="2">
-        <div class="fiches-tier__label">
-          <span class="fiches-tier__badge fiches-tier__badge--2">&#11088;&#11088;</span>
-          <span class="fiches-tier__text">Frequent</span>
-        </div>
-        <div class="chapter-grid">
-          <a href="cours/fiches/mp-08-series-entieres.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--2">&#11088;&#11088;</span>
-            <span class="chapter-card__num">08</span>
-            <h3 class="chapter-card__title">Series entieres avancees</h3>
-            <p class="chapter-card__desc">Rayon, Abel, DSE classiques, resolution d'EDL par series.</p>
-          </a>
-          <a href="cours/fiches/mp-12-calcul-differentiel.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--2">&#11088;&#11088;</span>
-            <span class="chapter-card__num">12</span>
-            <h3 class="chapter-card__title">Calcul differentiel</h3>
-            <p class="chapter-card__desc">Gradient, hessienne, extrema, fonctions implicites.</p>
-          </a>
-          <a href="cours/fiches/mp-16-equations-differentielles.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--2">&#11088;&#11088;</span>
-            <span class="chapter-card__num">16</span>
-            <h3 class="chapter-card__title">Equations differentielles</h3>
-            <p class="chapter-card__desc">EDL1/2, systemes X'=AX, exponentielle de matrice.</p>
-          </a>
-          <a href="cours/fiches/mp-18-probabilites.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--2">&#11088;&#11088;</span>
-            <span class="chapter-card__num">18</span>
-            <h3 class="chapter-card__title">Probabilites</h3>
-            <p class="chapter-card__desc">Lois discretes et continues, convergences, loi des grands nombres.</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- &#11088; -->
-      <div class="fiches-tier" data-tier="3">
-        <div class="fiches-tier__label">
-          <span class="fiches-tier__badge fiches-tier__badge--3">&#11088;</span>
-          <span class="fiches-tier__text">Classique</span>
-        </div>
-        <div class="chapter-grid">
-          <a href="cours/fiches/mp-01-complements-algebre-lineaire.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--3">&#11088;</span>
-            <span class="chapter-card__num">01</span>
-            <h3 class="chapter-card__title">Complements d'algebre lineaire</h3>
-            <p class="chapter-card__desc">Theoreme du rang, dualite, hyperplans, projections.</p>
-          </a>
-          <a href="cours/fiches/mp-03-formes-bilineaires.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--3">&#11088;</span>
-            <span class="chapter-card__num">03</span>
-            <h3 class="chapter-card__title">Formes bilineaires</h3>
-            <p class="chapter-card__desc">Formes quadratiques, signature, critere de Sylvester.</p>
-          </a>
-          <a href="cours/fiches/mp-05-endomorphismes-remarquables.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--3">&#11088;</span>
-            <span class="chapter-card__num">05</span>
-            <h3 class="chapter-card__title">Endomorphismes remarquables</h3>
-            <p class="chapter-card__desc">Autoadjoints, orthogonaux, normaux, matrices positives.</p>
-          </a>
-          <a href="cours/fiches/mp-06-topologie-evn.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--3">&#11088;</span>
-            <span class="chapter-card__num">06</span>
-            <h3 class="chapter-card__title">Topologie des EVN</h3>
-            <p class="chapter-card__desc">Normes, ouverts, fermes, compacite, connexite.</p>
-          </a>
-          <a href="cours/fiches/mp-10-integration-segment.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--3">&#11088;</span>
-            <span class="chapter-card__num">10</span>
-            <h3 class="chapter-card__title">Integration sur un segment</h3>
-            <p class="chapter-card__desc">TFC, IPP, Taylor, sommes de Riemann.</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- &#9675; -->
-      <div class="fiches-tier" data-tier="4">
-        <div class="fiches-tier__label">
-          <span class="fiches-tier__badge fiches-tier__badge--4">&#9675;</span>
-          <span class="fiches-tier__text">Complementaire</span>
-        </div>
-        <div class="chapter-grid">
-          <a href="cours/fiches/mp-14-familles-sommables.html" class="chapter-card chapter-card--link chapter-card--fiche">
-            <span class="fiche-badge fiche-badge--4">&#9675;</span>
-            <span class="chapter-card__num">14</span>
-            <h3 class="chapter-card__title">Familles sommables</h3>
-            <p class="chapter-card__desc">Fubini, produit de Cauchy, lien series-sommabilite.</p>
-          </a>
-        </div>
-      </div>
-      </div><!-- end concours-panel fiches -->
-
-      <!-- PANEL: Methodes -->
-      <div class="concours-panel" id="concours-methodes" style="display:none">
-      <div class="concours-panel__header">
-        <h2 class="concours-panel__title">Methodes CCINP</h2>
-        <p class="concours-panel__desc">Methodes types illustrees par des exercices d'annales CCINP. Chaque methode est suivie d'un exercice reel pour s'entrainer.</p>
-      </div>
-      <div class="chapter-grid">
-        <a href="cours/methodes/mp-m1-integrales-generalisees.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M1</span><h3 class="chapter-card__title">Integrales generalisees</h3><p class="chapter-card__desc">Convergence, Leibniz, Gamma, Wallis, Gauss.</p></a>
-        <a href="cours/methodes/mp-m2-reduction-diagonalisation.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M2</span><h3 class="chapter-card__title">Reduction & diagonalisation</h3><p class="chapter-card__desc">Diagonaliser 3x3, A^n, exp(tA), polynome minimal.</p></a>
-        <a href="cours/methodes/mp-m3-series-fonctions-cvu.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M3</span><h3 class="chapter-card__title">Series de fonctions & CVU</h3><p class="chapter-card__desc">CVU/CVN, interversion integrale/somme.</p></a>
-        <a href="cours/methodes/mp-m4-espaces-euclidiens.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M4</span><h3 class="chapter-card__title">Espaces euclidiens</h3><p class="chapter-card__desc">Projection orthogonale, distance, Gram-Schmidt.</p></a>
-        <a href="cours/methodes/mp-m5-calcul-differentiel.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M5</span><h3 class="chapter-card__title">Calcul differentiel</h3><p class="chapter-card__desc">Points critiques, hessienne, optimisation.</p></a>
-        <a href="cours/methodes/mp-m6-probabilites.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M6</span><h3 class="chapter-card__title">Probabilites</h3><p class="chapter-card__desc">Loi du max/min, transfert, generatrices.</p></a>
-        <a href="cours/methodes/mp-m7-series-entieres-edl.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M7</span><h3 class="chapter-card__title">Series entieres & EDL</h3><p class="chapter-card__desc">Rayon, DSE, resolution d'EDL par series.</p></a>
-        <a href="cours/methodes/mp-m8-matrices-bilineaire.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M8</span><h3 class="chapter-card__title">Matrices & bilineaire</h3><p class="chapter-card__desc">Sylvester, definie positive, decomposition polaire.</p></a>
-      </div>
-      </div><!-- end concours-panel methodes -->
-
-      <!-- PANEL: Annales -->
-      <div class="concours-panel" id="concours-annales" style="display:none">
-      <div class="concours-panel__header">
-        <h2 class="concours-panel__title">Annales CCINP MP</h2>
-        <p class="concours-panel__desc">Sujets complets des epreuves ecrites CCINP MP, de 2020 a 2025.</p>
-      </div>
-      <div class="chapter-grid">
-        <a href="cours/annales/ccinp-2025-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2025</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Fonctions vectorielles, optimisation, Bertrand.</p></a>
-        <a href="cours/annales/ccinp-2025-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2025</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Tchebychev, matrices rang 1, similitude.</p></a>
-        <a href="cours/annales/ccinp-2024-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">VA discretes, EDL, Wallis, somme 1/n^2.</p></a>
-        <a href="cours/annales/ccinp-2024-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Diagonalisation 3x3, Sylvester, groupe symetrique.</p></a>
-        <a href="cours/annales/ccinp-2023-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Extremum, fonction Gamma, integrale gaussienne.</p></a>
-        <a href="cours/annales/ccinp-2023-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Prehilbertiens, loi du max, decomposition spectrale.</p></a>
-        <a href="cours/annales/ccinp-2022-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2022</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Probabilites, Fresnel, series de fonctions.</p></a>
-        <a href="cours/annales/ccinp-2022-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2022</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Vandermonde, exponentielle de matrices.</p></a>
-        <a href="cours/annales/ccinp-2021-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2021</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Somme pi^2/8, optimisation, fonction zeta.</p></a>
-        <a href="cours/annales/ccinp-2021-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2021</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Orthogonal, decomposition de Dunford.</p></a>
-        <a href="cours/annales/ccinp-2020-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2020</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Ecriture ternaire, series, suites de fonctions.</p></a>
-        <a href="cours/annales/ccinp-2020-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2020</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Puissances de matrices, GL_n, similitudes.</p></a>
-      </div>
-      </div><!-- end concours-panel annales -->
 
     </div><!-- end concours-dossier -->
+
+    <!-- Statistiques CCINP -->
+    <div class="stats-section" data-type="statistiques" style="display:none">
+      <div class="stats-header">
+        <h2 class="stats-header__title">Statistiques CCINP</h2>
+        <p class="stats-header__subtitle">Analyse question par question des epreuves ecrites.</p>
+      </div>
+      <div class="stats-picker" id="statsPicker"></div>
+      <div id="statsDashboard"></div>
+    </div>
 
     <!-- ===== METHODES SECTION ===== -->
     <div data-type="methodes" style="display:none">
@@ -606,6 +449,6 @@
     </div>
   </footer>
 
-  <script src="main.js?v=6"></script>
+  <script src="main.js?v=8"></script>
 </body>
 </html>
