@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCINP 2017 — Maths 2 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-display);font-size:2.8rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+
+    /* Annale-specific styles */
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
+    .question ol li{margin-bottom:4px}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    @media(max-width:680px){
+      .course__title{font-size:2rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">CCINP 2017</span>
+    </div>
+
+    <h1 class="course__title">CCINP 2017 -- Mathematiques 2</h1>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 2, filiere MP. Duree : 4 heures. Le sujet est constitue d'un seul probleme qui traite de matrices stochastiques dans un contexte probabiliste de chaine de Markov : spectre d'une matrice stochastique, iterees, probabilite invariante et calcul effectif par ordinateur.
+    </p>
+
+    <!-- Informations de l'epreuve -->
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">CCINP 2017</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Mathematiques 2</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Duree</span>
+        <span class="annale-info__value">4 heures</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Matrices stochastiques, chaines de Markov, spectre, probabilite invariante, Python</span>
+      </div>
+    </div>
+
+    <!-- Sommaire -->
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#pb"><span class="course__toc-num">00.</span> Notations et definitions</a></li>
+        <li class="course__toc-item"><a href="#p1"><span class="course__toc-num">01.</span> Partie I -- Un exemple de chaine de Markov</a></li>
+        <li class="course__toc-item"><a href="#p2"><span class="course__toc-num">02.</span> Partie II -- Spectre d'une matrice stochastique</a></li>
+        <li class="course__toc-item"><a href="#p3"><span class="course__toc-num">03.</span> Partie III -- Iterees d'une matrice stochastique</a></li>
+        <li class="course__toc-item"><a href="#p4"><span class="course__toc-num">04.</span> Partie IV -- Probabilite invariante par une matrice stochastique</a></li>
+        <li class="course__toc-item"><a href="#p5"><span class="course__toc-num">05.</span> Partie V -- Informatique : calcul effectif de la probabilite invariante</a></li>
+      </ol>
+    </nav>
+
+    <!-- =============== PROBLEME =============== -->
+    <div class="annale-exercice" id="pb">
+      <h2 class="annale-exercice__title">Probleme -- Matrices stochastiques</h2>
+
+      <p class="annale-exercice__intro">
+        Dans tout le sujet, \(\mathbb{K}\) designe les corps \(\mathbb{R}\) ou \(\mathbb{C}\), \(p\) designe un entier superieur ou egal a 2. On note \(\mathcal{M}_p(\mathbb{K})\) le \(\mathbb{K}\)-espace vectoriel des matrices carrees de taille \(p\) a coefficients dans \(\mathbb{K}\).
+      </p>
+      <p class="annale-exercice__intro">
+        On note \(I_p\) la matrice unite de \(\mathcal{M}_p(\mathbb{K})\).
+      </p>
+      <p class="annale-exercice__intro">
+        Si \(x = (x_1, \ldots, x_p)\) est un vecteur de \(\mathbb{K}^p\), on note \(\|x\|_\infty\) sa norme &laquo; infinie &raquo; definie par :
+      </p>
+      <div class="math-display">$$\|x\|_\infty = \max\{|x_i| \mid i \in [\![1, p]\!]\}.$$</div>
+      <p class="annale-exercice__intro">
+        On dit que \(x\) est un vecteur stochastique si ses coordonnees sont positives ou nulles et leur somme vaut 1 :
+      </p>
+      <div class="math-display">$$\forall i \in [\![1, p]\!],\; x_i \geqslant 0 \quad \text{et} \quad \sum_{i=1}^{p} x_i = 1.$$</div>
+      <p class="annale-exercice__intro">
+        Une matrice \(A = (a_{i,j})\) de \(\mathcal{M}_p(\mathbb{R})\) est dite stochastique si ses coefficients sont positifs ou nuls et si la somme des coefficients de chacune de ses lignes vaut 1, c'est-a-dire si :
+      </p>
+      <div class="math-display">$$\forall (i, j) \in [\![1, p]\!]^2,\; a_{i,j} \geqslant 0 \quad \text{et} \quad \forall i \in [\![1, p]\!],\; \sum_{j=1}^{p} a_{i,j} = 1.$$</div>
+      <p class="annale-exercice__intro">
+        Une matrice \(A\) est dite strictement positive si tous ses coefficients sont strictement positifs. On note alors \(A > 0\).
+      </p>
+      <p class="annale-exercice__intro">
+        Si \(b_1, b_2, \ldots, b_k\) sont des nombres complexes (respectivement des matrices carrees), on note \(\operatorname{diag}(b_1, b_2, \ldots, b_k)\) la matrice diagonale (respectivement diagonale par blocs) dont les coefficients diagonaux (respectivement blocs diagonaux) sont \(b_1, b_2, \ldots, b_k\).
+      </p>
+      <p class="annale-exercice__intro">
+        Le sujet est constitue d'un seul probleme qui traite de matrices stochastiques dans un contexte probabiliste de chaine de Markov. On etudie le spectre d'une matrice stochastique \(A\) (partie II) et la suite des iterees de \(A\) (partie III). On introduit aussi la notion de probabilite invariante par \(A\) (partie IV), suivie de son calcul effectif par ordinateur (partie V).
+      </p>
+      <p class="annale-exercice__intro">
+        La partie I est independante des autres parties. La partie IV utilise les deux resultats demontres dans les parties II et III. La partie V est une partie informatique liee a la partie IV, mais qui peut etre traitee de maniere independante.
+      </p>
+
+      <!-- =============== PARTIE I =============== -->
+      <div class="annale-partie" id="p1">
+        <h3 class="annale-partie__title">Partie I -- Un exemple de chaine de Markov</h3>
+
+        <p class="annale-exercice__intro">
+          Une particule possede deux etats possibles numerotes 1 et 2 et peut passer de son etat a l'etat 1 ou 2 de facon aleatoire. On considere un espace probabilise \((\Omega, \mathcal{F}, P)\) sur lequel on definit pour tout \(n \in \mathbb{N}\), la variable aleatoire \(X_n\) egale a l'etat de la particule au temps \(n\). L'etat de la particule au temps \(n + 1\) depend uniquement de son etat au temps \(n\) selon les regles suivantes :
+        </p>
+        <p class="annale-exercice__intro">
+          - si au temps \(n\) la particule est dans l'etat 1, au temps \(n + 1\) elle passe a l'etat 2 avec une probabilite \(\frac{1}{2}\).
+        </p>
+        <p class="annale-exercice__intro">
+          - si au temps \(n\) la particule est dans l'etat 2, au temps \(n + 1\), elle passe a l'etat 1 avec une probabilite \(\frac{1}{4}\).
+        </p>
+        <p class="annale-exercice__intro">
+          On suppose que \(P(X_0 = 1) = P(X_0 = 2) = \frac{1}{2}\).
+        </p>
+
+        <div class="question">
+          <span class="question__num">Q1.</span>
+          <p>Determiner en justifiant la loi de \(X_1\).</p>
+        </div>
+
+        <p class="annale-exercice__intro">
+          On pose \(\mu_n = (P(X_n = 1), P(X_n = 2))\) le vecteur ligne de \(\mathbb{R}^2\) caracterisant la loi de \(X_n\).
+        </p>
+
+        <div class="question">
+          <span class="question__num">Q2.</span>
+          <p>Justifier la relation matricielle suivante :</p>
+          <div class="math-display">$$\forall n \in \mathbb{N},\; \mu_{n+1} = \mu_n A \quad \text{avec} \quad A = \begin{pmatrix} \frac{1}{2} & \frac{1}{2} \\ \frac{1}{4} & \frac{3}{4} \end{pmatrix}.$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q3.</span>
+          <p>En deduire, a l'aide de la calculatrice, la loi de \(X_5\) (on demande les resultats arrondis au centieme).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q4.</span>
+          <p>Temps de premier acces a l'etat 1 : on note \(T\) la variable aleatoire egale au plus petit entier \(n \in \mathbb{N}\) tel que \(X_n = 1\). Determiner \(P(T = 1)\), puis \(P(T = k)\) pour tout entier \(k \geqslant 2\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q5.</span>
+          <p>Justifier que \(A\) est diagonalisable, puis donner, sans detailler les calculs, une matrice \(Q\) inversible a coefficients entiers telle que</p>
+          <div class="math-display">$$A = Q\,\operatorname{diag}\!\left(1,\; \frac{1}{4}\right) Q^{-1}.$$</div>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q6.</span>
+          <p>Justifier que les applications \(M \mapsto QMQ^{-1}\) et \(M \mapsto \mu_0 M\) definies sur \(\mathcal{M}_2(\mathbb{R})\) sont continues.</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q7.</span>
+          <p>En deduire la convergence de la suite de matrices \((A^n)_{n \in \mathbb{N}}\), puis de la suite de vecteurs lignes \((\mu_n)_{n \in \mathbb{N}}\). Preciser les coefficients du vecteur ligne obtenu comme limite.</p>
+        </div>
+      </div>
+
+      <!-- =============== PARTIE II =============== -->
+      <div class="annale-partie" id="p2">
+        <h3 class="annale-partie__title">Partie II -- Spectre d'une matrice stochastique</h3>
+
+        <p class="annale-exercice__intro">
+          Soit \(A\) une matrice stochastique de \(\mathcal{M}_p(\mathbb{R})\).
+        </p>
+        <p class="annale-exercice__intro">
+          La suite de variables aleatoires \((X_n)_{n \in \mathbb{N}}\) est un cas particulier de variables aleatoires dont l'etat a l'instant \(n + 1\) ne depend que de son etat a l'instant \(n\) et pas des precedents. On dit alors que \((X_n)_{n \in \mathbb{N}}\) est une chaine de Markov. Plus generalement si \((X_n)_{n \in \mathbb{N}}\) est une chaine de Markov prenant ses valeurs dans \([\![1, p]\!]\), la loi des variables \(X_n\) est entierement determinee par la donnee de la loi de \(X_0\) et d'une matrice stochastique \(A\) de \(\mathcal{M}_p(\mathbb{R})\).
+        </p>
+        <p class="annale-exercice__intro">
+          Si on pose maintenant \(\mu_n = (P(X_n = 1), P(X_n = 2), \ldots, P(X_n = p))\), l'etude du comportement de la loi de \(X_n\) lorsque \(n\) est grand, se ramene alors a l'etude de la convergence de la suite \((\mu_n)_{n \in \mathbb{N}}\) verifiant la relation de recurrence \(\mu_{n+1} = \mu_n A\). Cela conduit a l'etude de la suite de matrices \((A^n)_{n \in \mathbb{N}}\). C'est l'objet des parties suivantes.
+        </p>
+
+        <div class="question">
+          <span class="question__num">Q8.</span>
+          <p>Justifier que 1 est valeur propre de \(A\) (on pourra considerer le vecteur colonne de \(\mathbb{R}^p\) dont toutes les coordonnees valent 1).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q9.</span>
+          <p>Soit \(x\) un vecteur colonne de \(\mathbb{C}^p\). Demontrer que \(\|Ax\|_\infty \leqslant \|x\|_\infty\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q10.</span>
+          <p>En deduire que si \(\lambda \in \mathbb{C}\) est une valeur propre de \(A\), on a \(|\lambda| \leqslant 1\).</p>
+        </div>
+
+        <div class="annale-partie">
+          <h3 class="annale-partie__title" style="font-style:italic;font-size:1.1rem">Partie II - Localisation des valeurs propres</h3>
+
+          <p class="annale-exercice__intro">
+            Soit \(\lambda \in \mathbb{C}\) une valeur propre de \(A\).
+          </p>
+
+          <div class="question">
+            <span class="question__num">Q11.</span>
+            <p>Justifier l'existence d'un vecteur colonne \(x = (x_1, \ldots, x_p)\) de \(\mathbb{C}^p\) tel que \(\|x\|_\infty = 1\) et \(Ax = \lambda x\).</p>
+          </div>
+
+          <div class="question">
+            <span class="question__num">Q12.</span>
+            <p>Soit \(i \in [\![1, p]\!]\) tel que \(|x_i| = 1\). Demontrer que :</p>
+            <div class="math-display">$$|\lambda - a_{i,i}| \leqslant 1 - a_{i,i}.$$</div>
+          </div>
+        </div>
+
+        <div class="annale-partie">
+          <h3 class="annale-partie__title" style="font-style:italic;font-size:1.1rem">Partie II - Etude d'un exemple</h3>
+
+          <div class="question">
+            <span class="question__num">Q13.</span>
+            <p>Dans cette question uniquement, on prend :</p>
+            <div class="math-display">$$A = \begin{pmatrix} \frac{1}{2} & \frac{1}{4} & \frac{1}{4} \\ \frac{1}{6} & \frac{1}{6} & \frac{4}{6} \\ \frac{1}{3} & \frac{1}{3} & \frac{1}{3} \end{pmatrix}.$$</div>
+            <p>Deduire de la question precedente que les valeurs propres de \(A\) sont contenues dans la reunion de trois disques, que l'on representera en precisant leurs centres et leurs rayons.</p>
+          </div>
+        </div>
+
+        <div class="annale-partie">
+          <h3 class="annale-partie__title" style="font-style:italic;font-size:1.1rem">Partie II - Cas des matrices stochastiques strictement positives</h3>
+
+          <p class="annale-exercice__intro">
+            On constate en particulier sur l'exemple que 1 est la seule valeur propre de \(A\) de module 1. On admettra, dans la suite du probleme, que cette propriete reste vraie pour toute matrice stochastique <strong>strictement positive</strong>.
+          </p>
+
+          <div class="question">
+            <span class="question__num">Q14.</span>
+            <p>On suppose en plus pour cette question et la question suivante que la matrice \(A\) est strictement positive. On pose \(B = A - I_p\) et on note \(B'\) la matrice de \(\mathcal{M}_{p-1}(\mathbb{R})\) obtenue en supprimant la derniere colonne et la derniere ligne de \(B\).</p>
+            <p>Soit \(\lambda \in \mathbb{C}\) une valeur propre de \(B'\).</p>
+            <p>On admet qu'il existe un entier \(i \in [\![1, p - 1]\!]\) tel que :</p>
+            <div class="math-display">$$|\lambda - (a_{i,i} - 1)| \leqslant 1 - a_{i,i} - a_{i,p}$$</div>
+            <p>La demonstration (non demandee) de cette inegalite est similaire a celle de la question Q12. Deduire de cette inegalite que \(B'\) est inversible.</p>
+          </div>
+
+          <div class="question">
+            <span class="question__num">Q15.</span>
+            <p>En deduire que \(\dim \operatorname{Ker}(A - I_p) = 1\).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============== PARTIE III =============== -->
+      <div class="annale-partie" id="p3">
+        <h3 class="annale-partie__title">Partie III -- Iterees d'une matrice stochastique</h3>
+
+        <p class="annale-exercice__intro">
+          On demontre dans cette partie la proposition suivante :
+        </p>
+        <p class="annale-exercice__intro">
+          <strong>Proposition 2.</strong> Pour toute matrice \(A \in \mathcal{M}_p(\mathbb{R})\), stochastique et strictement positive, la suite \((A^n)_{n \in \mathbb{N}}\) converge dans \(\mathcal{M}_p(\mathbb{R})\).
+        </p>
+
+        <div class="annale-partie">
+          <h3 class="annale-partie__title" style="font-style:italic;font-size:1.1rem">Partie III - Un contre-exemple</h3>
+
+          <p class="annale-exercice__intro">
+            On admet sans demonstration que 1 est racine simple du polynome caracteristique de \(A\). On dit alors que 1 est une valeur propre simple de \(A\). Nous pouvons resumer les resultats de cette partie par la <strong>Proposition 1</strong> ci-dessous.
+          </p>
+          <p class="annale-exercice__intro">
+            <strong>Proposition 1.</strong> Soit \(A\) une matrice stochastique de \(\mathcal{M}_p(\mathbb{R})\) strictement positive. Alors 1 est valeur propre simple et les autres valeurs propres ont un module strictement inferieur a 1.
+          </p>
+
+          <div class="question">
+            <span class="question__num">Q16.</span>
+            <p>On considere \(s\) la symetrie orthogonale de \(\mathbb{R}^2\) par rapport a la droite d'equation \(y = x\). Donner, sans justification, la matrice \(B\) de \(s\) dans la base canonique de \(\mathbb{R}^2\).</p>
+          </div>
+
+          <div class="question">
+            <span class="question__num">Q17.</span>
+            <p>La Proposition 2 reste-t-elle vraie si la matrice stochastique n'est pas strictement positive ?</p>
+          </div>
+        </div>
+
+        <div class="annale-partie">
+          <h3 class="annale-partie__title" style="font-style:italic;font-size:1.1rem">Partie III - Resultat preliminaire</h3>
+
+          <p class="annale-exercice__intro">
+            Soit \(\lambda\) un nombre complexe avec \(|\lambda| < 1\) et \(N\) une matrice nilpotente de \(\mathcal{M}_p(\mathbb{C})\).
+          </p>
+
+          <div class="question">
+            <span class="question__num">Q18.</span>
+            <p>Demontrer que \(N^p = 0\).</p>
+          </div>
+
+          <div class="question">
+            <span class="question__num">Q19.</span>
+            <p>Soit \(k \in \mathbb{N}\). Justifier que pour \(n\) au voisinage de \(+\infty\), \(\displaystyle\binom{n}{k}\) est equivalent a \(\dfrac{n^k}{k!}\). En deduire la limite lorsque \(n\) tend vers \(+\infty\) de \(\displaystyle\binom{n}{k}\lambda^{n-k}\).</p>
+          </div>
+
+          <div class="question">
+            <span class="question__num">Q20.</span>
+            <p>En deduire que la suite de matrices \(\left((\lambda I_p + N)^n\right)_{n \in \mathbb{N}}\) converge vers la matrice nulle.</p>
+          </div>
+        </div>
+
+        <div class="annale-partie">
+          <h3 class="annale-partie__title" style="font-style:italic;font-size:1.1rem">Partie III - Convergence d'une suite de matrices</h3>
+
+          <p class="annale-exercice__intro">
+            Soit \(A\) une matrice stochastique et strictement positive de \(\mathcal{M}_p(\mathbb{R})\). On sait, d'apres la <strong>Proposition 1</strong>, que 1 est valeur propre simple de \(A\). Si \(\lambda_1, \ldots, \lambda_r\) sont les autres valeurs propres complexes de \(A\), un theoreme du cours montre que \(A\) est semblable sur \(\mathbb{C}\) a une matrice diagonale par blocs du type
+          </p>
+          <div class="math-display">$$\operatorname{diag}(1,\; \lambda_1 I_{p_1} + N_1,\; \ldots,\; \lambda_r I_{p_r} + N_r),$$</div>
+          <p class="annale-exercice__intro">
+            avec \(p_1, \ldots, p_r\) des entiers et \(N_1, \ldots, N_r\) des matrices nilpotentes a coefficients complexes.
+          </p>
+
+          <div class="question">
+            <span class="question__num">Q21.</span>
+            <p>Deduire des questions Q18 a Q20 que la suite \((A^n)_{n \in \mathbb{N}}\) converge.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============== PARTIE IV =============== -->
+      <div class="annale-partie" id="p4">
+        <h3 class="annale-partie__title">Partie IV -- Probabilite invariante par une matrice stochastique</h3>
+
+        <p class="annale-exercice__intro">
+          <strong>Definition.</strong> Soit \(A \in \mathcal{M}_p(\mathbb{R})\) une matrice stochastique. On dit que \(A\) admet une probabilite invariante s'il existe un vecteur ligne stochastique \(\mu \in \mathbb{R}^p\) tel que \(\mu A = \mu\) (on dit alors que \(\mu\) est une probabilite invariante par \(A\)).
+        </p>
+        <p class="annale-exercice__intro">
+          Le but de cette partie est de demontrer la propriete enoncee dans la <strong>Proposition 3</strong> ci-dessous.
+        </p>
+        <p class="annale-exercice__intro">
+          <strong>Proposition 3.</strong> Soient \(A \in \mathcal{M}_p(\mathbb{R})\) une matrice stochastique strictement positive et \(\mu_0 \in \mathbb{R}^p\) un vecteur ligne stochastique. On note \((\mu_n)_{n \in \mathbb{N}}\) la suite de vecteurs lignes de \(\mathbb{R}^p\) definie par la relation : \(\forall n \in \mathbb{N},\; \mu_{n+1} = \mu_n A\). Alors, la suite \((\mu_n)_{n \in \mathbb{N}}\) converge vers un vecteur stochastique \(\mu_\infty\) verifiant \(\mu_\infty = \mu_\infty A\). De plus, le vecteur \(\mu_\infty\) est l'unique probabilite invariante par \(A\) (il ne depend donc pas du choix de \(\mu_0\)).
+        </p>
+        <p class="annale-exercice__intro">
+          Soient \(A \in \mathcal{M}_p(\mathbb{R})\) une matrice stochastique strictement positive et \((\mu_n)_{n \in \mathbb{N}}\) la suite definie ci-dessus.
+        </p>
+
+        <div class="question">
+          <span class="question__num">Q22.</span>
+          <p>Demontrer que l'ensemble des vecteurs stochastiques de \(\mathbb{R}^n\) est une partie fermee de \(\mathbb{R}^n\).</p>
+        </div>
+
+        <div class="annale-partie">
+          <h3 class="annale-partie__title" style="font-style:italic;font-size:1.1rem">Partie IV - Convergence de la suite</h3>
+
+          <div class="question">
+            <span class="question__num">Q23.</span>
+            <p>Demontrer que la suite \((\mu_n)_{n \in \mathbb{N}}\) converge vers un vecteur \(\mu_\infty\) verifiant \(\mu_\infty = \mu_\infty A\).</p>
+          </div>
+
+          <div class="question">
+            <span class="question__num">Q24.</span>
+            <p>Soit \(\mu = (m_1, \ldots, m_p)\) un vecteur ligne stochastique. Demontrer que \(\mu A\) est encore un vecteur stochastique.</p>
+          </div>
+
+          <div class="question">
+            <span class="question__num">Q25.</span>
+            <p>En deduire que \(\mu_\infty\) est une probabilite invariante par \(A\).</p>
+          </div>
+        </div>
+
+        <div class="annale-partie">
+          <h3 class="annale-partie__title" style="font-style:italic;font-size:1.1rem">Partie IV - Unicite de la probabilite invariante</h3>
+
+          <div class="question">
+            <span class="question__num">Q26.</span>
+            <p>Lien avec le spectre de la transposee de \(A\) : soit \(\mu \in \mathbb{R}^p\) un vecteur ligne stochastique. Justifier que \(\mu\) est une probabilite invariante pour \(A\), si et seulement si le vecteur colonne \({}^t\!\mu\) est un vecteur propre de \({}^t\!A\) associe a la valeur propre 1.</p>
+          </div>
+
+          <div class="question">
+            <span class="question__num">Q27.</span>
+            <p>Justifier, en utilisant la question Q15, que \(\dim \operatorname{Ker}\!\left({}^t\!A - I_p\right) = 1\).</p>
+          </div>
+
+          <div class="question">
+            <span class="question__num">Q28.</span>
+            <p>En deduire que \(A\) admet une unique probabilite invariante.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============== PARTIE V =============== -->
+      <div class="annale-partie" id="p5">
+        <h3 class="annale-partie__title">Partie V -- Informatique : calcul effectif de la probabilite invariante d'une matrice stochastique strictement positive</h3>
+
+        <p class="annale-exercice__intro">
+          Si \(A\) est une matrice stochastique strictement positive, on a etabli dans la partie precedente la convergence de la suite \((\mu_n)_{n \in \mathbb{N}}\) associee a la matrice \(A\). Ceci fournit un algorithme de calcul de la probabilite invariante par \(A\). On en propose une implementation en langage Python. On sera tres attentif a la redaction et notamment a l'indentation du code.
+        </p>
+        <p class="annale-exercice__intro">
+          Un vecteur \(x\) de \(\mathbb{R}^p\) sera represente en Python par une liste de flottants. Par exemple, le vecteur \(x = (1, 2, 3)\) de \(\mathbb{R}^3\) sera represente par la liste \([1, 2, 3]\). De meme, une matrice \(A\) sera representee par une liste dont les elements sont les lignes de la matrice. Par exemple, la matrice \(A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix}\) sera representee par la liste \([[1, 2, 3], [4, 5, 6]]\).
+        </p>
+
+        <div class="question">
+          <span class="question__num">Q29.</span>
+          <p>On execute le script suivant : <code>A = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]</code> qui represente la matrice</p>
+          <div class="math-display">$$A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \\ 10 & 11 & 12 \end{pmatrix}.$$</div>
+          <p>Donner les valeurs renvoyees lorsque l'on execute <code>len(A)</code>, <code>A[1]</code> et <code>A[2][1]</code>.</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q30.</span>
+          <p>Ecrire une fonction <code>difference</code> qui prend en arguments deux vecteurs \(x\) et \(y\) de meme taille et renvoie le vecteur \(x - y\). Par exemple si \(x = (5, 2)\) et \(y = (3, 7)\), <code>difference(x, y)</code> renverra \([2, -5]\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q31.</span>
+          <p>Ecrire une fonction <code>norme</code> qui prend en arguments un vecteur \(x = (x_1, \ldots, x_p)\) et renvoie sa norme infinie \(\|x\|_\infty = \max\{|x_i| \mid i \in [\![1, p]\!]\}\) (on pourra utiliser librement <code>abs</code> qui renvoie la valeur absolue d'un nombre, mais on s'interdit l'utilisation de la fonction <code>max</code> deja implementee en Python).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q32.</span>
+          <p>Ecrire une fonction <code>itere</code> qui prend en arguments un vecteur ligne \(x\) et une matrice \(A\) carree de meme taille que \(x\) et qui renvoie le vecteur \(xA\). Par exemple si \(x = (1, 1)\) et \(A = \begin{pmatrix} 1 & 2 \\ 4 & 5 \end{pmatrix}\), on a \(xA = (5, 7)\) et donc <code>itere(x, A)</code> renverra \([5, 7]\).</p>
+        </div>
+
+        <div class="question">
+          <span class="question__num">Q33.</span>
+          <p>On a vu, dans la Partie IV, que si \(A\) est une matrice strictement positive, la suite de vecteurs lignes de \(\mathbb{R}^p\) associee \((\mu_n)_{n \in \mathbb{N}}\) definie par la relation : \(\forall n \in \mathbb{N},\; \mu_{n+1} = \mu_n A\) convergeait vers un vecteur \(\mu_\infty\) independant du choix de \(\mu_0\) vecteur stochastique.</p>
+          <p>Ecrire une fonction <code>probaInvariante</code> qui prend en arguments une matrice stochastique strictement positive \(A\) de \(\mathcal{M}_p(\mathbb{R})\) et un reel \(\varepsilon > 0\) et qui renvoie le premier terme \(\mu_k\) de la suite \((\mu_n)_{n \in \mathbb{N}}\) avec \(\mu_0 = \left(\frac{1}{p}, \frac{1}{p}, \ldots, \frac{1}{p}\right)\) tel que \(\|\mu_k - \mu_{k-1}\|_\infty \leqslant \varepsilon\). On ne demandera pas a l'algorithme de verifier que la matrice passee en argument est bien stochastique et strictement positive.</p>
+          <p>Par exemple, si \(A = \begin{pmatrix} \frac{1}{2} & \frac{1}{2} \\ \frac{1}{4} & \frac{3}{4} \end{pmatrix}\) et \(\varepsilon = 10^{-6}\),</p>
+          <p><code>probaInvariante(A, eps)</code> renverra <code>[0.33333396911621094, 0.6666660308837891]</code>.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <nav class="course__nav">
+      <a href="ccinp-2017-maths1.html" class="course__nav-link">
+        &larr; Precedent
+        <span>CCINP 2017 -- Maths 1</span>
+      </a>
+      <a href="ccinp-2016-maths1.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>CCINP 2016 -- Maths 1</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

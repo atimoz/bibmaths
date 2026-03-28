@@ -379,20 +379,47 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Map banque + epreuve to exercice.html page with params
-  var ANNALE_YEARS = ['2020','2021','2022','2023','2024','2025'];
+  // Map banque + epreuve to subject URL (exercice.html for CCINP with HTML, annale page for others)
+  var CCINP_HTML_YEARS = ['2017','2018','2019','2020','2021','2022','2023','2024','2025'];
+  var BANQUE_TO_PREFIX = {
+    'CCINP': 'ccinp',
+    'Centrale-Supélec': 'centrale-supelec',
+    'Centrale-Supelec': 'centrale-supelec',
+    'Mines-Ponts': 'mines-ponts',
+    'X-ENS': 'x-ens'
+  };
+  var BANQUE_TO_PDF = {
+    'CCINP': 'CCINP',
+    'Centrale-Supélec': 'Centrale-Supelec',
+    'Centrale-Supelec': 'Centrale-Supelec',
+    'Mines-Ponts': 'Mines-Ponts',
+    'X-ENS': 'X-ENS'
+  };
 
   function getExerciceUrl(banque, epreuve, partie) {
-    if (!banque || !epreuve || banque !== 'CCINP') return null;
+    if (!banque || !epreuve) return null;
     var match = epreuve.match(/maths\s*(\d)\s+(\d{4})/i);
     if (!match) return null;
     var mnum = match[1];
     var year = match[2];
-    if (ANNALE_YEARS.indexOf(year) === -1) return null;
+    var prefix = BANQUE_TO_PREFIX[banque];
+    if (!prefix) return null;
 
-    // Determine section ID from partie field
-    var sectionId = guessSectionId(partie);
-    return 'cours/annales/exercice.html?banque=ccinp&annee=' + year + '&epreuve=maths' + mnum + '&section=' + sectionId;
+    // CCINP with HTML pages (2017-2025)
+    if (banque === 'CCINP' && CCINP_HTML_YEARS.indexOf(year) !== -1) {
+      var sectionId = guessSectionId(partie);
+      return 'cours/annales/exercice.html?banque=ccinp&annee=' + year + '&epreuve=maths' + mnum + '&section=' + sectionId;
+    }
+
+    // All others: link to full annale HTML page if it exists, else PDF
+    var htmlSlug = prefix + '-' + year + '-maths' + mnum;
+    // Check if we have an HTML annale page (will be built over time)
+    // For now, all non-CCINP go to PDF
+    var pdfPrefix = BANQUE_TO_PDF[banque];
+    if (pdfPrefix) {
+      return 'cours/annales/pdf/' + pdfPrefix + '_Maths_' + mnum + '_' + year + '.pdf';
+    }
+    return null;
   }
 
   function guessSectionId(partie) {
@@ -428,7 +455,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Action buttons row
       html += '<div class="exo-ref__actions">';
       if (annaleUrl) {
-        html += '<a href="' + annaleUrl + '" class="exo-ref__link">Voir le sujet</a>';
+        var isPdf = annaleUrl.indexOf('.pdf') !== -1;
+        html += '<a href="' + annaleUrl + '" class="exo-ref__link"' + (isPdf ? ' target="_blank"' : '') + '>' + (isPdf ? 'Sujet (PDF)' : 'Voir le sujet') + '</a>';
       }
       if (ref.corrections && ref.corrections.length > 0) {
         html += '<button class="exo-ref__toggle">Voir la correction</button>';
