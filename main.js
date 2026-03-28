@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (filterValue === 'concours') {
         if (concoursDossier) { concoursDossier.style.display = ''; initExercices(); }
       } else if (filterValue === 'annales') {
-        if (annalesSection) annalesSection.style.display = '';
+        if (annalesSection) { annalesSection.style.display = ''; initAnnaleFilters(); }
       } else if (filterValue === 'statistiques') {
         if (statsSection) { statsSection.style.display = ''; initStats(); }
       } else {
@@ -255,6 +255,31 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // ============================================================
+  //  ANNALES — Filtre par banque
+  // ============================================================
+  var _annaleFiltersInited = false;
+  function initAnnaleFilters() {
+    if (_annaleFiltersInited) return;
+    _annaleFiltersInited = true;
+    var filterContainer = document.getElementById('annaleFilters');
+    if (!filterContainer) return;
+    filterContainer.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-abq]');
+      if (!btn) return;
+      filterContainer.querySelectorAll('.chip').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var bq = btn.dataset.abq;
+      document.querySelectorAll('.annale-banque').forEach(function(section) {
+        if (bq === 'all' || section.dataset.banque === bq) {
+          section.style.display = '';
+        } else {
+          section.style.display = 'none';
+        }
+      });
+    });
+  }
 
   // ============================================================
   //  EXERCICES — Chapitres → References avec corrections
