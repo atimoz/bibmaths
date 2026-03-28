@@ -286,16 +286,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================================
   var _exoData = null;
   var _exoInited = false;
+  var _annaleSections = null;
 
   function initExercices() {
     if (_exoInited) return;
     _exoInited = true;
-    fetch('data/exercices.json')
-      .then(function(r) { return r.json(); })
-      .then(function(data) { _exoData = data; renderExoHome(); })
-      .catch(function(e) {
-        document.getElementById('exoChapters').innerHTML = '<p style="color:var(--ink-muted);text-align:center">Erreur de chargement.</p>';
-      });
+    Promise.all([
+      fetch('data/exercices.json').then(function(r) { return r.json(); }),
+      fetch('data/annale-sections.json').then(function(r) { return r.json(); }).catch(function() { return {}; })
+    ]).then(function(results) {
+      _exoData = results[0];
+      _annaleSections = results[1];
+      renderExoHome();
+    }).catch(function(e) {
+      document.getElementById('exoChapters').innerHTML = '<p style="color:var(--ink-muted);text-align:center">Erreur de chargement.</p>';
+    });
   }
 
   var BANQUE_MAP = { C: 'CCINP', CS: 'Centrale-Supelec', M: 'Mines-Ponts', X: 'X-ENS' };
@@ -370,13 +375,100 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch corrections for this chapter
     fetch('data/corrections/' + chapterId + '.json')
       .then(function(r) { return r.json(); })
-      .then(function(refs) { renderExoRefs(refsContainer, refs); })
+      .then(function(refs) {
+        _currentChapterRefs = refs;
+        renderBanqueFilter(refsContainer, refs);
+      })
       .catch(function() {
-        // Fallback: show refs without corrections
-        renderExoRefsLight(refsContainer, ch.refs);
+        _currentChapterRefs = ch.refs;
+        renderBanqueFilterLight(refsContainer, ch.refs);
       });
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  var _currentChapterRefs = null;
+  var _currentBanqueFilter = 'all';
+
+  function renderBanqueFilter(container, refs) {
+    // Collect unique banques from refs
+    var banques = [];
+    var seen = {};
+    refs.forEach(function(ref) {
+      var b = ref.banque || '';
+      if (b && !seen[b]) { seen[b] = true; banques.push(b); }
+    });
+
+    var BANQUE_ORDER = { 'CCINP': 0, 'Centrale-Supelec': 1, 'Centrale-Supélec': 1, 'Mines-Ponts': 2, 'X-ENS': 3 };
+    banques.sort(function(a, b) { return (BANQUE_ORDER[a] || 99) - (BANQUE_ORDER[b] || 99); });
+
+    var filterHtml = '';
+    if (banques.length > 1) {
+      filterHtml = '<div class="exo-banque-filter">';
+      filterHtml += '<button class="exo-banque-chip exo-banque-chip--active" data-banque="all">Tous <span class="exo-banque-chip__count">' + refs.length + '</span></button>';
+      banques.forEach(function(b) {
+        var bCode = b === 'CCINP' ? 'c' : (b.indexOf('Centrale') !== -1 ? 'cs' : (b.indexOf('Mines') !== -1 ? 'm' : 'x'));
+        var count = refs.filter(function(r) { return r.banque === b; }).length;
+        filterHtml += '<button class="exo-banque-chip exo-banque-chip--' + bCode + '" data-banque="' + b + '">' + b + ' <span class="exo-banque-chip__count">' + count + '</span></button>';
+      });
+      filterHtml += '</div>';
+    }
+
+    container.innerHTML = filterHtml + '<div class="exo-detail__list"></div>';
+    var listEl = container.querySelector('.exo-detail__list');
+    renderExoRefs(listEl, refs);
+    _currentBanqueFilter = 'all';
+
+    // Filter click handlers
+    container.querySelectorAll('.exo-banque-chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        container.querySelectorAll('.exo-banque-chip').forEach(function(c) { c.classList.remove('exo-banque-chip--active'); });
+        chip.classList.add('exo-banque-chip--active');
+        var filter = chip.dataset.banque;
+        _currentBanqueFilter = filter;
+        var filtered = filter === 'all' ? refs : refs.filter(function(r) { return r.banque === filter; });
+        renderExoRefs(listEl, filtered);
+      });
+    });
+  }
+
+  function renderBanqueFilterLight(container, refs) {
+    // Collect unique banques from light refs
+    var banques = [];
+    var seen = {};
+    refs.forEach(function(ref) {
+      var bFull = BANQUE_MAP[ref.b] || ref.b || '';
+      if (bFull && !seen[bFull]) { seen[bFull] = true; banques.push(bFull); }
+    });
+
+    var BANQUE_ORDER = { 'CCINP': 0, 'Centrale-Supelec': 1, 'Centrale-Supélec': 1, 'Mines-Ponts': 2, 'X-ENS': 3 };
+    banques.sort(function(a, b) { return (BANQUE_ORDER[a] || 99) - (BANQUE_ORDER[b] || 99); });
+
+    var filterHtml = '';
+    if (banques.length > 1) {
+      filterHtml = '<div class="exo-banque-filter">';
+      filterHtml += '<button class="exo-banque-chip exo-banque-chip--active" data-banque="all">Tous <span class="exo-banque-chip__count">' + refs.length + '</span></button>';
+      banques.forEach(function(b) {
+        var bCode = b === 'CCINP' ? 'c' : (b.indexOf('Centrale') !== -1 ? 'cs' : (b.indexOf('Mines') !== -1 ? 'm' : 'x'));
+        var count = refs.filter(function(r) { return (BANQUE_MAP[r.b] || r.b) === b; }).length;
+        filterHtml += '<button class="exo-banque-chip exo-banque-chip--' + bCode + '" data-banque="' + b + '">' + b + ' <span class="exo-banque-chip__count">' + count + '</span></button>';
+      });
+      filterHtml += '</div>';
+    }
+
+    container.innerHTML = filterHtml + '<div class="exo-detail__list"></div>';
+    var listEl = container.querySelector('.exo-detail__list');
+    renderExoRefsLight(listEl, refs);
+
+    container.querySelectorAll('.exo-banque-chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        container.querySelectorAll('.exo-banque-chip').forEach(function(c) { c.classList.remove('exo-banque-chip--active'); });
+        chip.classList.add('exo-banque-chip--active');
+        var filter = chip.dataset.banque;
+        var filtered = filter === 'all' ? refs : refs.filter(function(r) { return (BANQUE_MAP[r.b] || r.b) === filter; });
+        renderExoRefsLight(listEl, filtered);
+      });
+    });
   }
 
   // Map banque + epreuve to subject URL (exercice.html for CCINP with HTML, annale page for others)
@@ -411,9 +503,83 @@ document.addEventListener('DOMContentLoaded', () => {
       return 'cours/annales/exercice.html?banque=ccinp&annee=' + year + '&epreuve=maths' + mnum + '&section=' + sectionId;
     }
 
-    // All banques: link to full annale HTML page
+    // All banques: link to full annale HTML page + anchor to the right section
     var htmlPath = 'cours/annales/' + slug + '-' + year + '-maths' + mnum + '.html';
+    var anchor = findSectionAnchor(slug, year, mnum, partie);
+    if (anchor) htmlPath += '#' + anchor;
     return htmlPath;
+  }
+
+  function findSectionAnchor(slug, year, mnum, partie) {
+    if (!partie || !_annaleSections) return null;
+    var key = slug + '-' + year + '-maths' + mnum;
+    var sections = _annaleSections[key];
+    if (!sections || !sections.length) return null;
+
+    var pLower = partie.toLowerCase().trim();
+    var pNorm = pLower.replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/[ùû]/g, 'u').replace(/[îï]/g, 'i').replace(/[ôö]/g, 'o');
+
+    // Direct title match (case-insensitive, accent-insensitive)
+    for (var i = 0; i < sections.length; i++) {
+      var title = sections[i][1].toLowerCase();
+      var tNorm = title.replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/[ùû]/g, 'u').replace(/[îï]/g, 'i').replace(/[ôö]/g, 'o');
+      if (tNorm === pNorm || tNorm.indexOf(pNorm) !== -1 || pNorm.indexOf(tNorm) !== -1) {
+        return sections[i][0];
+      }
+    }
+
+    // Pattern-based matching
+    // "Partie A" -> partieA or partA
+    var partieMatch = pLower.match(/^partie\s+([a-z]|[ivx]+|\d+)$/i);
+    if (partieMatch) {
+      var suffix = partieMatch[1].toUpperCase();
+      var candidates = ['partie' + suffix, 'part' + suffix, 'p' + suffix.toLowerCase()];
+      for (var j = 0; j < candidates.length; j++) {
+        for (var k = 0; k < sections.length; k++) {
+          if (sections[k][0].toLowerCase() === candidates[j].toLowerCase()) return sections[k][0];
+        }
+      }
+    }
+
+    // "Exercice 1/2/I/II" -> exo1, exo2
+    var exoMatch = pLower.match(/^exercice\s+(1|2|i{1,2})$/i);
+    if (exoMatch) {
+      var exoNum = exoMatch[1];
+      if (exoNum.toLowerCase() === 'i') exoNum = '1';
+      if (exoNum.toLowerCase() === 'ii') exoNum = '2';
+      var eid = 'exo' + exoNum;
+      for (var m = 0; m < sections.length; m++) {
+        if (sections[m][0] === eid) return sections[m][0];
+      }
+    }
+
+    // Sub-section pattern: "I.A", "II.B", "I.A.1" etc — find the top-level section
+    var subMatch = pLower.match(/^([ivx]+|\d+)\./i);
+    if (subMatch) {
+      var roman = subMatch[1].toUpperCase();
+      var numMap = { 'I': '1', 'II': '2', 'III': '3', 'IV': '4', 'V': '5' };
+      var num = numMap[roman] || roman;
+      var prefixes = ['partie' + roman, 'partie' + num, 'part' + roman, 'part' + num, 'p' + num, 'exo' + num];
+      for (var pi = 0; pi < prefixes.length; pi++) {
+        for (var si = 0; si < sections.length; si++) {
+          if (sections[si][0].toLowerCase() === prefixes[pi].toLowerCase()) return sections[si][0];
+        }
+      }
+    }
+
+    // Named sections (Mines-Ponts style): fuzzy match on title keywords
+    var keywords = pNorm;
+    for (var fi = 0; fi < sections.length; fi++) {
+      var sTitle = sections[fi][1].toLowerCase().replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/[ùû]/g, 'u').replace(/[îï]/g, 'i').replace(/[ôö]/g, 'o');
+      // Check significant word overlap
+      var partieWords = keywords.split(/\s+/).filter(function(w) { return w.length > 3; });
+      if (partieWords.length > 0) {
+        var matchCount = partieWords.filter(function(w) { return sTitle.indexOf(w) !== -1; }).length;
+        if (matchCount >= Math.ceil(partieWords.length * 0.6)) return sections[fi][0];
+      }
+    }
+
+    return null;
   }
 
   function guessSectionId(partie) {
