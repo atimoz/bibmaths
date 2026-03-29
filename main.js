@@ -764,6 +764,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     container.innerHTML = html;
 
+    // Render KaTeX on intitulés
+    if (window.renderMathInElement) {
+      container.querySelectorAll('.exo-ref__intitule').forEach(function(el) {
+        renderMathInElement(el, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      });
+    }
+
     // Correction toggle handlers
     container.querySelectorAll('.exo-ref__toggle').forEach(function(btn) {
       btn.addEventListener('click', function() {
