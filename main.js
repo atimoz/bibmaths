@@ -174,10 +174,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (filterBtns.length > 0) {
     function applyFilter(filterValue) {
+      // Lock scroll position: fix the body so nothing can move it
       var scrollY = window.scrollY;
-      var html = document.documentElement;
-      html.style.overflow = 'hidden';
-      html.style.height = '100%';
+      var body = document.body;
+      body.style.position = 'fixed';
+      body.style.top = '-' + scrollY + 'px';
+      body.style.left = '0';
+      body.style.right = '0';
 
       filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
       const activeBtn = document.querySelector('.filter-btn[data-filter="' + filterValue + '"]');
@@ -215,8 +218,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       history.replaceState(null, '', '#' + filterValue);
-      html.style.overflow = '';
-      html.style.height = '';
+
+      // Unlock scroll position
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
       window.scrollTo({ top: scrollY, behavior: 'instant' });
     }
 
