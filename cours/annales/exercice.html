@@ -141,6 +141,55 @@
         }
       });
 
+      // Question filter: only show requested questions (?q=Q6,Q22)
+      var qFilter = params.get('q');
+      if (qFilter) {
+        var wanted = {};
+        qFilter.split(',').forEach(function(q) { wanted[q.trim()] = true; });
+        var wantedKeys = Object.keys(wanted);
+
+        function isWanted(qId) {
+          if (wanted[qId]) return true;
+          for (var k in wanted) {
+            var kBase = k.replace(/[a-z]+$/i, '');
+            if (kBase === qId) return true;
+            var qBase = qId.replace(/[a-z]+$/i, '');
+            if (qBase === k) return true;
+          }
+          return false;
+        }
+
+        if (wantedKeys.length > 0) {
+          // Hide questions that are not in the filter
+          container.querySelectorAll('.question[id]').forEach(function(q) {
+            if (!isWanted(q.id)) {
+              q.style.display = 'none';
+            }
+          });
+
+          // Hide partie titles that have no visible questions
+          container.querySelectorAll('.annale-partie').forEach(function(partie) {
+            var visibleQs = partie.querySelectorAll('.question[id]');
+            var hasVisible = false;
+            visibleQs.forEach(function(q) { if (q.style.display !== 'none') hasVisible = true; });
+            if (!hasVisible) partie.style.display = 'none';
+          });
+
+          // Add a filter banner
+          var backBtn = container.querySelector('.course__back');
+          var bannerDiv = document.createElement('div');
+          bannerDiv.className = 'question-filter-banner';
+          bannerDiv.innerHTML = '<span class="question-filter-banner__label">Questions filtrees</span>' +
+            '<span class="question-filter-banner__list">' + wantedKeys.join(', ') + '</span>' +
+            '<a href="' + window.location.pathname + '?banque=' + banque + '&annee=' + annee + '&epreuve=' + epreuve + '&section=' + section + '" class="question-filter-banner__show-all">Voir le sujet complet</a>';
+          if (backBtn) {
+            backBtn.parentNode.insertBefore(bannerDiv, backBtn.nextSibling);
+          } else {
+            container.insertBefore(bannerDiv, container.firstChild);
+          }
+        }
+      }
+
       // Scroll to hash anchor (e.g., #Q8) after rendering
       if (window.location.hash) {
         setTimeout(function() {

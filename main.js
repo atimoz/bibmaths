@@ -23,10 +23,26 @@ document.addEventListener('DOMContentLoaded', () => {
     var wantedKeys = Object.keys(wanted);
     if (wantedKeys.length === 0) return;
 
+    // Match helper: checks if a question ID matches any wanted key
+    // Handles sub-question matching: Q15a -> matches Q15, Q15 -> matches Q15a
+    function isWanted(qId) {
+      if (wanted[qId]) return true;
+      // Check if any wanted key is a parent of this ID (e.g., wanted Q15a, HTML has Q15)
+      for (var k in wanted) {
+        // wanted Q15a matches HTML Q15 (sub-question inside parent)
+        var kBase = k.replace(/[a-z]+$/i, '');
+        if (kBase === qId) return true;
+        // wanted Q15 matches HTML Q15a
+        var qBase = qId.replace(/[a-z]+$/i, '');
+        if (qBase === k) return true;
+      }
+      return false;
+    }
+
     // Find which annale-exercice sections contain wanted questions
     var sectionsWithQuestions = new Set();
     document.querySelectorAll('.question[id]').forEach(function(q) {
-      if (wanted[q.id]) {
+      if (isWanted(q.id)) {
         // Find parent annale-exercice section
         var section = q.closest('.annale-exercice');
         if (section) sectionsWithQuestions.add(section);
@@ -43,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inside visible sections, dim/hide non-wanted questions
     sectionsWithQuestions.forEach(function(section) {
       section.querySelectorAll('.question[id]').forEach(function(q) {
-        if (!wanted[q.id]) {
+        if (!isWanted(q.id)) {
           q.style.display = 'none';
         }
       });
@@ -560,11 +576,24 @@ document.addEventListener('DOMContentLoaded', () => {
     var slug = BANQUE_TO_SLUG[banque];
     if (!slug) return null;
 
-    // Extract all question numbers (e.g., "5 q. : Q8, Q9, Q10, Q11, Q12" -> ["Q8","Q9","Q10","Q11","Q12"])
+    // Extract all question numbers (e.g., "5 q. : Q8, Q9, Q10" or "2 q. : 13, 14" or "1 q. : 15a")
     var qList = [];
     if (questions) {
+      // First try Q-prefixed format (CCINP style): Q8, Q9, Q10
       var qMatches = questions.match(/Q\d+/g);
-      if (qMatches) qList = qMatches;
+      if (qMatches) {
+        qList = qMatches;
+      } else {
+        // Try bare numbers/ids after ": " (Mines/Centrale/X-ENS style): 13, 14 or 15a or III.A.3
+        var afterColon = questions.match(/:\s*(.+)$/);
+        if (afterColon) {
+          var parts = afterColon[1].split(',');
+          parts.forEach(function(p) {
+            var t = p.trim();
+            if (t && (/^\d/.test(t) || /^[IVX]+\./i.test(t))) qList.push('Q' + t);
+          });
+        }
+      }
     }
     var qParam = qList.length > 0 ? 'q=' + qList.join(',') : '';
     var firstQ = qList.length > 0 ? qList[0] : null;
@@ -573,6 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (banque === 'CCINP' && CCINP_HTML_YEARS.indexOf(year) !== -1) {
       var sectionId = guessSectionId(partie);
       var url = 'cours/annales/exercice.html?banque=ccinp&annee=' + year + '&epreuve=maths' + mnum + '&section=' + sectionId;
+      if (qParam) url += '&' + qParam;
       if (firstQ) url += '#' + firstQ;
       return url;
     }
