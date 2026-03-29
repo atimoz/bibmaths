@@ -22,7 +22,7 @@
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     .course ol,.course ul{margin-bottom:var(--space-md);padding-left:var(--space-lg)}
     .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:6px}
-    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:hidden}
     .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
     .annale-exercice__title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
     .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
@@ -40,10 +40,13 @@
     .correction-reveal__content{display:none;margin-top:var(--space-xl)}
     .correction-reveal__content.visible{display:block;animation:fadeUp .5s var(--ease-out)}
     @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-    .corr-item{margin-bottom:var(--space-lg);padding:var(--space-md);background:rgba(196,135,59,.04);border-left:3px solid var(--accent);border-radius:0 8px 8px 0}
-    .corr-item__q{font-family:var(--font-mono);font-size:.75rem;font-weight:700;color:var(--accent);margin-bottom:6px}
-    .corr-item__body{font-size:.9rem;line-height:1.75;color:var(--ink-light)}
-    .corr-item__body p{margin-bottom:var(--space-sm);font-size:.9rem}
+    .corr-item{margin-bottom:var(--space-xl);padding:var(--space-lg);background:rgba(196,135,59,.04);border-left:3px solid var(--accent);border-radius:0 8px 8px 0}
+    .corr-item__q{font-family:var(--font-mono);font-size:.75rem;font-weight:700;color:var(--accent);margin-bottom:var(--space-md)}
+    .corr-item__body{font-size:.95rem;line-height:1.85;color:var(--ink-light)}
+    .corr-item__body p{margin-bottom:var(--space-md);font-size:.95rem}
+    .corr-item__body p:last-child{margin-bottom:0}
+    .corr-item__body strong{color:var(--accent);font-weight:600}
+    .corr-item__body .math-display,.corr-item__body .katex-display{margin:var(--space-md) 0;overflow-x:hidden}
     .corr-item__body pre{background:rgba(0,0,0,.04);padding:var(--space-md);border-radius:8px;overflow-x:auto;margin-bottom:var(--space-md)}
     .corr-item__body code{font-family:var(--font-mono);font-size:.8rem}
     [data-theme="dark"] .corr-item{background:rgba(212,160,75,.06)}
@@ -190,38 +193,30 @@
         }
       }
 
-      // Scroll to hash anchor (e.g., #Q8) after rendering
-      if (window.location.hash) {
-        setTimeout(function() {
+      // Helper: jump to hash anchor instantly
+      function jumpToHash() {
+        if (window.location.hash) {
           var target = document.querySelector(window.location.hash);
-          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 300);
+          if (target) target.scrollIntoView({ block: 'start', behavior: 'instant' });
+        }
       }
 
-      // Render KaTeX
+      // Render KaTeX, then jump to anchor
+      var katexDelimiters = [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\[', right: '\\]', display: true},
+        {left: '\\(', right: '\\)', display: false}
+      ];
       if (window.renderMathInElement) {
-        renderMathInElement(container, {
-          delimiters: [
-            {left: '$$', right: '$$', display: true},
-            {left: '$', right: '$', display: false},
-            {left: '\\[', right: '\\]', display: true},
-            {left: '\\(', right: '\\)', display: false}
-          ],
-          throwOnError: false
-        });
+        renderMathInElement(container, { delimiters: katexDelimiters, throwOnError: false });
+        jumpToHash();
       } else {
         var iv = setInterval(function() {
           if (window.renderMathInElement) {
             clearInterval(iv);
-            renderMathInElement(container, {
-              delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '$', right: '$', display: false},
-                {left: '\\[', right: '\\]', display: true},
-                {left: '\\(', right: '\\)', display: false}
-              ],
-              throwOnError: false
-            });
+            renderMathInElement(container, { delimiters: katexDelimiters, throwOnError: false });
+            jumpToHash();
           }
         }, 100);
       }
@@ -305,11 +300,21 @@
         Promise.all(promises).then(function(allCorrs) {
           var html = '';
           var found = 0;
+
+          // If question filter is active, only show corrections for visible questions
+          var wantedCorr = null;
+          var qFilter = params.get('q');
+          if (qFilter) {
+            wantedCorr = {};
+            qFilter.split(',').forEach(function(q) { wantedCorr[q.trim()] = true; });
+          }
+
           allCorrs.forEach(function(corrList) {
             corrList.forEach(function(ref) {
               if (ref.banque === 'CCINP' && ref.epreuve === epreuveStr) {
-                // Check if this ref's partie matches our section
                 ref.corrections.forEach(function(c) {
+                  // Skip corrections not matching the question filter
+                  if (wantedCorr && !wantedCorr[c.question]) return;
                   html += '<div class="corr-item">';
                   html += '<div class="corr-item__q">' + escHtml(c.question) + ' — ' + escHtml(ref.partie || '') + '</div>';
                   html += '<div class="corr-item__body">' + formatCorr(c.correction || '') + '</div>';
@@ -335,12 +340,63 @@
   }
 
   function formatCorr(text) {
+    // Extract code blocks first to protect them
+    var codeBlocks = [];
     text = text.replace(/```(\w*)\n?([\s\S]*?)```/g, function(m, lang, code) {
-      return '<pre><code>' + escHtml(code.trim()) + '</code></pre>';
+      codeBlocks.push('<pre><code>' + escHtml(code.trim()) + '</code></pre>');
+      return '\x00CODE' + (codeBlocks.length - 1) + '\x00';
     });
+
+    // Bold markers: **text** -> <strong>
+    text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+
+    // Inline code
     text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
-    var parts = text.split(/\n\n+/);
-    return parts.map(function(p) { return '<p>' + p.replace(/\n/g, '<br>') + '</p>'; }).join('');
+
+    // Promote long inline math to display math
+    // Match $...$ (not $$) containing heavy operators and long enough
+    // Also capture trailing punctuation to avoid orphan dots
+    text = text.replace(/(?<!\$)\$(?!\$)((?:[^$]|\\\$)+?)\$(?!\$)([.,;]?)/g, function(m, inner, punct) {
+      if (inner.length > 50 && /\\(sum|prod|frac|int|lim|begin|underset|overset)/.test(inner)) {
+        return '$$' + inner + (punct || '') + '$$';
+      }
+      return m;
+    });
+
+    // Split on double newlines first
+    var blocks = text.split(/\n\n+/);
+    var html = '';
+
+    blocks.forEach(function(block) {
+      block = block.trim();
+      if (!block) return;
+
+      // Restore code blocks
+      if (block.indexOf('\x00CODE') !== -1) {
+        block = block.replace(/\x00CODE(\d+)\x00/g, function(m, i) { return codeBlocks[parseInt(i)]; });
+        html += block;
+        return;
+      }
+
+      // Split long single-paragraph blocks into sentences
+      // Split on ". " followed by uppercase letter (new sentence/step)
+      var sentences = block.split(/(?<=\.)\s+(?=[A-ZÀ-ÜÉÈ])/);
+
+      if (sentences.length <= 1) {
+        html += '<p>' + block.replace(/\n/g, '<br>') + '</p>';
+      } else {
+        sentences.forEach(function(s) {
+          s = s.trim();
+          // Skip orphan punctuation (e.g. lone "." after display math)
+          if (s && !/^[.,;:!?]$/.test(s)) html += '<p>' + s + '</p>';
+        });
+      }
+    });
+
+    // Restore any remaining code blocks
+    html = html.replace(/\x00CODE(\d+)\x00/g, function(m, i) { return codeBlocks[parseInt(i)]; });
+
+    return html;
   }
 
   function escHtml(s) {

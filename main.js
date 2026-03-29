@@ -174,6 +174,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (filterBtns.length > 0) {
     function applyFilter(filterValue) {
+      var scrollY = window.scrollY;
+      var html = document.documentElement;
+      html.style.overflow = 'hidden';
+      html.style.height = '100%';
+
       filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
       const activeBtn = document.querySelector('.filter-btn[data-filter="' + filterValue + '"]');
       if (activeBtn) activeBtn.classList.add('filter-btn--active');
@@ -210,6 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       history.replaceState(null, '', '#' + filterValue);
+      html.style.overflow = '';
+      html.style.height = '';
+      window.scrollTo({ top: scrollY, behavior: 'instant' });
     }
 
     filterBtns.forEach(btn => {
@@ -327,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          target.scrollIntoView({ block: 'start', behavior: 'instant' });
         }
       } catch (err) {
         // invalid selector, let browser handle normally
@@ -366,16 +374,19 @@ document.addEventListener('DOMContentLoaded', () => {
   var _exoData = null;
   var _exoInited = false;
   var _annaleSections = null;
+  var _questionSections = null;
 
   function initExercices() {
     if (_exoInited) return;
     _exoInited = true;
     Promise.all([
       fetch('data/exercices.json').then(function(r) { return r.json(); }),
-      fetch('data/annale-sections.json').then(function(r) { return r.json(); }).catch(function() { return {}; })
+      fetch('data/annale-sections.json').then(function(r) { return r.json(); }).catch(function() { return {}; }),
+      fetch('data/question-sections.json').then(function(r) { return r.json(); }).catch(function() { return {}; })
     ]).then(function(results) {
       _exoData = results[0];
       _annaleSections = results[1];
+      _questionSections = results[2];
       renderExoHome();
     }).catch(function(e) {
       document.getElementById('exoChapters').innerHTML = '<p style="color:var(--ink-muted);text-align:center">Erreur de chargement.</p>';
@@ -600,7 +611,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // CCINP: link to exercice.html (enonce + correction revealable)
     if (banque === 'CCINP' && CCINP_HTML_YEARS.indexOf(year) !== -1) {
-      var sectionId = guessSectionId(partie);
+      // Use question-sections index to find correct section, fallback to guessSectionId
+      var sectionId = null;
+      var annaleKey = 'ccinp-' + year + '-maths' + mnum;
+      if (firstQ && _questionSections && _questionSections[annaleKey]) {
+        sectionId = _questionSections[annaleKey][firstQ];
+      }
+      if (!sectionId) sectionId = guessSectionId(partie);
       var url = 'cours/annales/exercice.html?banque=ccinp&annee=' + year + '&epreuve=maths' + mnum + '&section=' + sectionId;
       if (qParam) url += '&' + qParam;
       if (firstQ) url += '#' + firstQ;
@@ -796,15 +813,61 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function formatCorrection(text) {
-    // Handle code blocks
+    // Extract code blocks first to protect them
+    var codeBlocks = [];
     text = text.replace(/```(\w*)\n?([\s\S]*?)```/g, function(m, lang, code) {
-      return '<pre><code>' + escHtml(code.trim()) + '</code></pre>';
+      codeBlocks.push('<pre><code>' + escHtml(code.trim()) + '</code></pre>');
+      return '\x00CODE' + (codeBlocks.length - 1) + '\x00';
     });
-    // Handle inline code
+
+    // Bold markers: **text** -> <strong>
+    text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+
+    // Inline code
     text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
-    // Handle paragraphs (double newline)
-    var parts = text.split(/\n\n+/);
-    return parts.map(function(p) { return '<p>' + p.replace(/\n/g, '<br>') + '</p>'; }).join('');
+
+    // Promote long inline math to display math
+    // Also capture trailing punctuation to avoid orphan dots
+    text = text.replace(/(?<!\$)\$(?!\$)((?:[^$]|\\\$)+?)\$(?!\$)([.,;]?)/g, function(m, inner, punct) {
+      if (inner.length > 50 && /\\(sum|prod|frac|int|lim|begin|underset|overset)/.test(inner)) {
+        return '$$' + inner + (punct || '') + '$$';
+      }
+      return m;
+    });
+
+    // Split on double newlines first
+    var blocks = text.split(/\n\n+/);
+    var html = '';
+
+    blocks.forEach(function(block) {
+      block = block.trim();
+      if (!block) return;
+
+      // Restore code blocks
+      if (block.indexOf('\x00CODE') !== -1) {
+        block = block.replace(/\x00CODE(\d+)\x00/g, function(m, i) { return codeBlocks[parseInt(i)]; });
+        html += block;
+        return;
+      }
+
+      // Split long single-paragraph blocks into sentences
+      var sentences = block.split(/(?<=\.)\s+(?=[A-ZÀ-ÜÉÈ])/);
+
+      if (sentences.length <= 1) {
+        html += '<p>' + block.replace(/\n/g, '<br>') + '</p>';
+      } else {
+        sentences.forEach(function(s) {
+          s = s.trim();
+          // Skip orphan punctuation (e.g. lone "." after display math)
+          if (s && !/^[.,;:!?]$/.test(s)) html += '<p>' + s + '</p>';
+        });
+      }
+    });
+
+    // Restore any remaining code blocks
+    html = html.replace(/\x00CODE(\d+)\x00/g, function(m, i) { return codeBlocks[parseInt(i)]; });
+
+    return html;
   }
 
   function escHtml(s) {
@@ -828,6 +891,17 @@ document.addEventListener('DOMContentLoaded', () => {
   var _statsData = null;
   var _statsInited = false;
   var _statsActiveExam = null;
+
+  function statsQuestionUrl(examKey, q) {
+    // examKey: "ccinp-m1-2025" → year=2025, mnum=1
+    var m = examKey.match(/^ccinp-m(\d)-(\d{4})$/);
+    if (!m) return null;
+    var mnum = m[1];
+    var year = m[2];
+    var annaleKey = 'ccinp-' + year + '-maths' + mnum;
+    var sectionId = (_questionSections && _questionSections[annaleKey] && _questionSections[annaleKey][q]) || 'exo1';
+    return 'cours/annales/exercice.html?banque=ccinp&annee=' + year + '&epreuve=maths' + mnum + '&section=' + sectionId + '&q=' + q + '#' + q;
+  }
 
   function initStats() {
     if (_statsInited) return;
@@ -948,7 +1022,8 @@ document.addEventListener('DOMContentLoaded', () => {
       html += '<div class="stats-arc__dots">';
       ex.arc.forEach(function(a) {
         var cls = a.d === 'S' ? 's' : a.d === 'I' ? 'i' : 'a';
-        html += '<div class="stats-arc__dot stats-arc__dot--' + cls + '">' + a.q.replace('Q', '') + '</div>';
+        var dotUrl = statsQuestionUrl(examKey, a.q);
+        html += dotUrl ? '<a href="' + dotUrl + '" class="stats-arc__dot stats-arc__dot--' + cls + '">' + a.q.replace('Q', '') + '</a>' : '<div class="stats-arc__dot stats-arc__dot--' + cls + '">' + a.q.replace('Q', '') + '</div>';
       });
       html += '</div>';
       html += '<div class="stats-arc__legend">';
@@ -967,7 +1042,8 @@ document.addEventListener('DOMContentLoaded', () => {
       html += '<p class="stats-col__count">' + (ex.pavlov ? ex.pavlov.length : 0) + ' automatisme' + (ex.pavlov && ex.pavlov.length > 1 ? 's' : '') + '</p>';
       html += '<div class="stats-col__items">';
       if (ex.pavlov) ex.pavlov.forEach(function(item) {
-        html += '<div class="stats-item"><span class="stats-item__q">' + item.q + '</span><div class="stats-item__content"><div class="stats-item__title">' + escHtml(item.titre) + '</div><div class="stats-item__desc">' + escHtml(item.desc) + '</div></div></div>';
+        var qUrl = statsQuestionUrl(examKey, item.q);
+        html += '<div class="stats-item">' + (qUrl ? '<a href="' + qUrl + '" class="stats-item__q">' : '<span class="stats-item__q">') + item.q + (qUrl ? '</a>' : '</span>') + '<div class="stats-item__content"><div class="stats-item__title">' + escHtml(item.titre) + '</div><div class="stats-item__desc">' + escHtml(item.desc) + '</div></div></div>';
       });
       html += '</div></div>';
 
@@ -976,7 +1052,8 @@ document.addEventListener('DOMContentLoaded', () => {
       html += '<p class="stats-col__count">' + (ex.tunnels ? ex.tunnels.length : 0) + ' sequence' + (ex.tunnels && ex.tunnels.length > 1 ? 's' : '') + ' guidee' + (ex.tunnels && ex.tunnels.length > 1 ? 's' : '') + '</p>';
       html += '<div class="stats-col__items">';
       if (ex.tunnels) ex.tunnels.forEach(function(item) {
-        html += '<div class="stats-item"><span class="stats-item__q">' + item.q + '</span><div class="stats-item__content"><div class="stats-item__title">' + escHtml(item.titre) + '</div><div class="stats-item__desc">' + escHtml(item.desc) + '</div></div></div>';
+        var qUrl = statsQuestionUrl(examKey, item.q);
+        html += '<div class="stats-item">' + (qUrl ? '<a href="' + qUrl + '" class="stats-item__q">' : '<span class="stats-item__q">') + item.q + (qUrl ? '</a>' : '</span>') + '<div class="stats-item__content"><div class="stats-item__title">' + escHtml(item.titre) + '</div><div class="stats-item__desc">' + escHtml(item.desc) + '</div></div></div>';
       });
       html += '</div></div>';
       html += '</div>';
@@ -988,7 +1065,8 @@ document.addEventListener('DOMContentLoaded', () => {
       html += '<p class="stats-methodes__count">' + ex.classiques.length + ' question' + (ex.classiques.length > 1 ? 's' : '') + ' Intermediaire & Avance</p>';
       html += '<div class="stats-methodes__grid">';
       ex.classiques.forEach(function(item) {
-        html += '<div class="stats-item"><span class="stats-item__q">' + item.q + '</span><div class="stats-item__content"><div class="stats-item__title">' + escHtml(item.titre) + '</div><div class="stats-item__desc">' + escHtml(item.desc) + '</div></div></div>';
+        var qUrl = statsQuestionUrl(examKey, item.q);
+        html += '<div class="stats-item">' + (qUrl ? '<a href="' + qUrl + '" class="stats-item__q">' : '<span class="stats-item__q">') + item.q + (qUrl ? '</a>' : '</span>') + '<div class="stats-item__content"><div class="stats-item__title">' + escHtml(item.titre) + '</div><div class="stats-item__desc">' + escHtml(item.desc) + '</div></div></div>';
       });
       html += '</div></div>';
     }

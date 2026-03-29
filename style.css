@@ -291,7 +291,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -2323,9 +2323,8 @@ a {
 
   /* -- KaTeX overflow -- */
   .katex-display {
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
     padding: 4px 0;
   }
 
@@ -2338,6 +2337,12 @@ a {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+}
+
+/* -- KaTeX display: no scroll anywhere -- */
+.katex-display {
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
 }
 
 /* ============================================================
@@ -2589,12 +2594,27 @@ a {
   padding-top: var(--space-md);
   border-top: 1px solid var(--border);
   font-size: 0.85rem;
-  line-height: 1.7;
+  line-height: 1.85;
   color: var(--ink-light);
 }
 
 .exo-ref__body p {
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.exo-ref__body p:last-child {
+  margin-bottom: 0;
+}
+
+.exo-ref__body strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.exo-ref__body .math-display,
+.exo-ref__body .katex-display {
+  margin: var(--space-md) 0;
+  overflow-x: hidden;
 }
 
 .exo-ref__body code,
@@ -3032,6 +3052,11 @@ a {
   font-weight: 600;
   color: white;
   flex-shrink: 0;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+a.stats-arc__dot:hover {
+  transform: scale(1.2);
 }
 
 .stats-arc__dot--s {
@@ -3120,6 +3145,10 @@ a {
   color: var(--accent);
   min-width: 28px;
   padding-top: 2px;
+  text-decoration: none;
+}
+a.stats-item__q:hover {
+  text-decoration: underline;
 }
 
 .stats-item__content {
