@@ -13,17 +13,6 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <style>
-    /* ── Apple-style scroll animations ── */
-    .anim { opacity:0; transform:translateY(60px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
-    .anim.vis { opacity:1; transform:translateY(0); }
-    .anim-left { opacity:0; transform:translateX(-80px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
-    .anim-left.vis { opacity:1; transform:translateX(0); }
-    .anim-right { opacity:0; transform:translateX(80px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
-    .anim-right.vis { opacity:1; transform:translateX(0); }
-    .anim-scale { opacity:0; transform:scale(.85); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
-    .anim-scale.vis { opacity:1; transform:scale(1); }
-    .d1 { transition-delay:.1s } .d2 { transition-delay:.2s } .d3 { transition-delay:.3s } .d4 { transition-delay:.4s } .d5 { transition-delay:.5s }
-
     /* ── Immersive hero ── */
     .imm-hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:var(--nav-h) var(--space-lg) var(--space-2xl); position:relative; overflow:hidden; }
     .imm-hero__bg { position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 40%, rgba(196,135,59,.08) 0%, transparent 70%); pointer-events:none; }
@@ -70,8 +59,8 @@
     .mock-fiche__card { position:absolute; width:320px; background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:var(--space-lg); box-shadow:0 20px 60px rgba(0,0,0,.08); transition:transform .6s var(--ease-out); }
     .mock-fiche__card--1 { top:0; left:10%; transform:rotate(-4deg); z-index:2; }
     .mock-fiche__card--2 { top:40px; left:30%; transform:rotate(3deg); z-index:1; }
-    .mock-fiche__card--1.vis { transform:rotate(-2deg) translateY(-8px); }
-    .mock-fiche__card--2.vis { transform:rotate(1deg) translateY(4px); }
+    .mock-fiche__card--1 { transform:rotate(-2deg) translateY(-8px); }
+    .mock-fiche__card--2 { transform:rotate(1deg) translateY(4px); }
     .mock-fiche__card-badge { font-family:var(--font-mono); font-size:.55rem; letter-spacing:.1em; text-transform:uppercase; padding:3px 8px; border-radius:4px; background:rgba(200,50,50,.12); color:#C83232; display:inline-block; margin-bottom:var(--space-sm); }
     .mock-fiche__card-title { font-family:var(--font-display); font-size:1.1rem; font-weight:600; margin-bottom:6px; }
     .mock-fiche__card-line { height:8px; border-radius:4px; background:rgba(0,0,0,.05); margin-bottom:6px; }
@@ -148,6 +137,9 @@
         </div>
       </div>
       <a href="entrainement.html" class="nav__link">Entraînement</a>
+      <a href="revision.html" class="nav__link">Révision</a>
+      <a href="e3a.html" class="nav__link">E3A-Polytech</a>
+      <a href="parcours.html" class="nav__link">Mon Parcours</a>
     </div>
     <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
       <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -177,14 +169,14 @@
        ════════════════════════════════════════════ -->
   <header class="imm-hero">
     <div class="imm-hero__bg"></div>
-    <p class="imm-hero__eyebrow anim d1">Bibliotheque Scientifique</p>
-    <h1 class="imm-hero__title anim d2">
+    <p class="imm-hero__eyebrow">Bibliotheque Scientifique</p>
+    <h1 class="imm-hero__title">
       Cours & exercices de<br><em>mathematiques</em>,<br>100 % gratuits.
     </h1>
-    <p class="imm-hero__sub anim d3">
+    <p class="imm-hero__sub">
       De l'algebre a la topologie — des cours structures, des fiches de revision, des methodes d'entrainement et des annales de concours.
     </p>
-    <div class="imm-hero__cta anim d4">
+    <div class="imm-hero__cta">
       <a href="mpsi.html" class="btn btn--primary">MPSI — Math Sup</a>
       <a href="mp.html" class="btn btn--ghost">MP — Math Spe</a>
     </div>
@@ -199,23 +191,23 @@
        ════════════════════════════════════════════ -->
   <div class="counter-band">
     <div class="counter-grid">
-      <div class="counter-item anim d1">
+      <div class="counter-item">
         <span class="counter-num" data-target="52">0</span>
         <span class="counter-label">Cours</span>
       </div>
-      <div class="counter-item anim d2">
+      <div class="counter-item">
         <span class="counter-num" data-target="19">0</span>
         <span class="counter-label">Fiches</span>
       </div>
-      <div class="counter-item anim d3">
+      <div class="counter-item">
         <span class="counter-num" data-target="190">0</span>
         <span class="counter-label">Quiz</span>
       </div>
-      <div class="counter-item anim d4">
+      <div class="counter-item">
         <span class="counter-num" data-target="128">0</span>
         <span class="counter-label">Exercices corriges</span>
       </div>
-      <div class="counter-item anim d5">
+      <div class="counter-item">
         <span class="counter-num" data-target="12">0</span>
         <span class="counter-label">Annales CCINP</span>
       </div>
@@ -226,26 +218,26 @@
        SECTION 3 — Cours showcase
        ════════════════════════════════════════════ -->
   <section class="showcase">
-    <div class="anim">
+    <div>
       <p class="showcase__label">01 — Cours</p>
       <h2 class="showcase__title">52 cours structures, de la MPSI a la MP.</h2>
       <p class="showcase__desc">Chaque chapitre suit le programme officiel avec definitions, theoremes, demonstrations depliables et exemples resolus.</p>
       <a href="mp.html" class="showcase__cta">Explorer les cours <span class="showcase__cta-arrow">→</span></a>
     </div>
     <div class="float-cards">
-      <a href="cours/mp-02-reduction-avancee.html" class="float-card anim-scale d1">
+      <a href="cours/mp-02-reduction-avancee.html" class="float-card">
         <div class="float-card__icon">⊕</div>
         <h3 class="float-card__title">Reduction avancee</h3>
         <p class="float-card__desc">Diagonalisation, trigonalisation, Cayley-Hamilton, Dunford.</p>
         <span class="float-card__tag">MP — Chapitre 02</span>
       </a>
-      <a href="cours/mp-11-integrales-generalisees.html" class="float-card anim-scale d2">
+      <a href="cours/mp-11-integrales-generalisees.html" class="float-card">
         <div class="float-card__icon">∫</div>
         <h3 class="float-card__title">Integrales generalisees</h3>
         <p class="float-card__desc">Convergence, Wallis, Gamma, Leibniz, series-integrales.</p>
         <span class="float-card__tag">MP — Chapitre 11</span>
       </a>
-      <a href="cours/mp-04-espaces-euclidiens.html" class="float-card anim-scale d3">
+      <a href="cours/mp-04-espaces-euclidiens.html" class="float-card">
         <div class="float-card__icon">⟂</div>
         <h3 class="float-card__title">Espaces euclidiens</h3>
         <p class="float-card__desc">Produit scalaire, Gram-Schmidt, theoreme spectral.</p>
@@ -260,7 +252,7 @@
   <section class="showcase" style="border-top:1px solid var(--border);padding-top:var(--space-3xl)">
     <div class="mock-fiche">
       <div class="mock-fiche__visual">
-        <div class="mock-fiche__card mock-fiche__card--1 anim-left">
+        <div class="mock-fiche__card mock-fiche__card--1">
           <span class="mock-fiche__card-badge">Essentiel</span>
           <h4 class="mock-fiche__card-title">Integrales generalisees</h4>
           <div style="margin-top:12px;font-size:.82rem;line-height:1.65;color:var(--ink)">
@@ -270,7 +262,7 @@
             <p style="margin:6px 0">\(\Gamma(n+1) = n!\) &nbsp;·&nbsp; \(\int_0^{+\infty} e^{-t^2} dt = \frac{\sqrt{\pi}}{2}\)</p>
           </div>
         </div>
-        <div class="mock-fiche__card mock-fiche__card--2 anim-left d3">
+        <div class="mock-fiche__card mock-fiche__card--2">
           <span class="mock-fiche__card-badge" style="background:rgba(210,140,40,.12);color:#D28C28">Frequent</span>
           <h4 class="mock-fiche__card-title">Reduction avancee</h4>
           <div style="margin-top:12px;font-size:.82rem;line-height:1.65;color:var(--ink)">
@@ -281,7 +273,7 @@
           </div>
         </div>
       </div>
-      <div class="mock-fiche__text anim-right d2">
+      <div class="mock-fiche__text">
         <p class="showcase__label">02 — Fiches de revision</p>
         <h2 class="showcase__title">19 fiches classees par priorite CCINP.</h2>
         <p class="showcase__desc">Chaque fiche condense l'essentiel : definitions cles, theoremes (sans preuve), formulaire, methodes types et pieges classiques.</p>
@@ -294,13 +286,13 @@
        SECTION 5 — Methodes + Quiz
        ════════════════════════════════════════════ -->
   <section class="showcase" style="border-top:1px solid var(--border);padding-top:var(--space-3xl)">
-    <div class="anim">
+    <div>
       <p class="showcase__label">03 — Methodes & Quiz</p>
       <h2 class="showcase__title">95 methodes, 190 quiz interactifs, 128 exercices corriges.</h2>
       <p class="showcase__desc">Au format Monier : methode expliquee, exemple resolu, Vrai/Faux interactif avec feedback instantane, puis exercices avec corrections depliables.</p>
       <a href="mp.html" class="showcase__cta">S'entrainer <span class="showcase__cta-arrow">→</span></a>
     </div>
-    <div class="mock-quiz anim-scale d2">
+    <div class="mock-quiz">
       <p class="mock-quiz__q"><strong>Vrai ou Faux ?</strong> Si \(f\) est continue et positive sur \([1,+\infty[\) avec \(f(t) \to 0\), alors \(\displaystyle\int_1^{+\infty} f(t)\,dt\) converge.</p>
       <div class="mock-quiz__btns">
         <button class="mock-quiz__btn mock-quiz__btn--v" onclick="this.parentElement.nextElementSibling.style.display='block';this.closest('.mock-quiz').style.borderColor='rgba(180,50,50,.3)'">Vrai</button>
@@ -314,12 +306,12 @@
        SECTION 6 — Annales timeline
        ════════════════════════════════════════════ -->
   <section class="showcase" style="border-top:1px solid var(--border);padding-top:var(--space-3xl)">
-    <div class="anim">
+    <div>
       <p class="showcase__label">04 — Annales CCINP</p>
       <h2 class="showcase__title">6 annees d'epreuves, retranscrites et classees.</h2>
       <p class="showcase__desc">Les sujets officiels CCINP MP 2020-2025, Maths 1 & 2, avec mise en page soignee et formules rendues.</p>
     </div>
-    <div class="timeline anim d2">
+    <div class="timeline">
       <a href="cours/annales/ccinp-2025-maths1.html" class="timeline__item"><span class="timeline__year">2025</span><span class="timeline__label">Maths 1 & 2</span></a>
       <a href="cours/annales/ccinp-2024-maths1.html" class="timeline__item"><span class="timeline__year">2024</span><span class="timeline__label">Maths 1 & 2</span></a>
       <a href="cours/annales/ccinp-2023-maths1.html" class="timeline__item"><span class="timeline__year">2023</span><span class="timeline__label">Maths 1 & 2</span></a>
@@ -333,12 +325,12 @@
        SECTION 7 — Programmes CTA
        ════════════════════════════════════════════ -->
   <section class="showcase" id="programmes" style="border-top:1px solid var(--border);padding-top:var(--space-3xl);padding-bottom:var(--space-3xl)">
-    <div class="anim" style="text-align:center;max-width:600px;margin:0 auto">
+    <div  style="text-align:center;max-width:600px;margin:0 auto">
       <p class="showcase__label" style="text-align:center">05 — Programmes</p>
       <h2 class="showcase__title" style="text-align:center;margin:0 auto var(--space-md)">Choisissez votre niveau.</h2>
     </div>
     <div class="programmes-grid" style="margin-top:var(--space-xl)">
-      <a href="mpsi.html" class="programme-card programme-card--featured anim-left d1">
+      <a href="mpsi.html" class="programme-card programme-card--featured">
         <div class="programme-card__badge">Prepa 1A</div>
         <div class="programme-card__icon">∑</div>
         <h3 class="programme-card__title">MPSI</h3>
@@ -348,7 +340,7 @@
           <span class="programme-card__arrow">→</span>
         </div>
       </a>
-      <a href="mp.html" class="programme-card programme-card--featured anim-right d2">
+      <a href="mp.html" class="programme-card programme-card--featured">
         <div class="programme-card__badge">Prepa 2A</div>
         <div class="programme-card__icon">∫</div>
         <h3 class="programme-card__title">MP</h3>
@@ -388,12 +380,6 @@
 
   <script src="main.js"></script>
   <script>
-    /* ── Scroll-triggered animations via IntersectionObserver ── */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); observer.unobserve(e.target); } });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.anim,.anim-left,.anim-right,.anim-scale').forEach(el => observer.observe(el));
-
     /* ── Counter animation ── */
     const counterObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {

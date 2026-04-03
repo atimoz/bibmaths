@@ -1,1 +1,900 @@
-[{"banque":"CCINP","epreuve":"Maths 1 2018","partie":"II.2","questions":"1 q. : Q9","difficulte":"Standard","intitule":"Matrice de Vandermonde et complexité du pivot de Gauss","corrections":[{"question":"Q9","correction":"On a $P(x_i) = \\sum_{j=0}^n a_j x_i^j$ pour tout $i \\in [\\![0,n]\\!]$. Le système s'écrit $V \\cdot A = F$ où $V = (x_i^j)_{0 \\leq i,j \\leq n}$ est la matrice de Vandermonde. Explicitement :\n$$V = \\begin{pmatrix} 1 & x_0 & x_0^2 & \\cdots & x_0^n \\\\ 1 & x_1 & x_1^2 & \\cdots & x_1^n \\\\ \\vdots & & & & \\vdots \\\\ 1 & x_n & x_n^2 & \\cdots & x_n^n \\end{pmatrix}.$$\nSon déterminant est $\\det V = \\prod_{0 \\leq i < j \\leq n} (x_j - x_i) \\neq 0$ car les $x_i$ sont deux à deux distincts. La résolution par pivot de Gauss a une complexité $O(n^3)$."}]},{"banque":"CCINP","epreuve":"Maths 1 2023","partie":"Exercice I","questions":"5 q. : Q1, Q2, Q3, Q4, Q5","difficulte":"Standard／Intermédiaire","intitule":"Produit matriciel par triple boucle en Python ; Test de symétrie d'une matrice d'adjacence ; Distance dans un graphe par puissances successives de la matrice d'adjacence ; Requête SQL avec clause WHERE ; Requête SQL avec jointure entre deux tables","corrections":[{"question":"Q1","correction":"def produit(A, B):\n    n = len(A)\n    C = [[0]*n for _ in range(n)]\n    for i in range(n):\n        for j in range(n):\n            for k in range(n):\n                C[i][j] += A[i][k] * B[k][j]\n    return C"},{"question":"Q2","correction":"def oriente(A):\n    n = len(A)\n    for i in range(n):\n        for j in range(i+1, n):\n            if A[i][j] != A[j][i]:\n                return True\n    return False"},{"question":"Q3","correction":"def distance(A, i, j):\n    n = len(A)\n    P = [[1 if k == l else 0 for l in range(n)] for k in range(n)]  # identité\n    for p in range(1, n+1):\n        P = produit(P, A)\n        if P[i][j] != 0:\n            return p"},{"question":"Q4","correction":"SELECT id FROM CLIENTS WHERE ville = 'Toulouse';"},{"question":"Q5","correction":"SELECT CLIENTS.email FROM CLIENTS JOIN PARTENAIRES ON CLIENTS.id = PARTENAIRES.id_client WHERE PARTENAIRES.partenaire = 'SCEI';"}]},{"banque":"CCINP","epreuve":"Maths 2 2017","partie":"Partie I","questions":"1 q. : Q3","difficulte":"Standard","intitule":"Calcul de $\\mu_5=\\mu_0 A^5$ à la calculatrice","corrections":[{"question":"Q3","correction":"On calcule $A^5$ à la calculatrice puis $\\mu_5 = \\mu_0 A^5$, ce qui donne numériquement la loi de $X_5$ arrondie au centième."}]},{"banque":"CCINP","epreuve":"Maths 2 2017","partie":"Partie IV - Convergence de la suite","questions":"1 q. : Q24","difficulte":"Standard","intitule":"Stabilité de l'ensemble des vecteurs stochastiques par multiplication par $A$","corrections":[{"question":"Q24","correction":"$(\\mu A)_j = \\sum_i m_i a_{ij} \\geq 0$ et $\\sum_j (\\mu A)_j = \\sum_i m_i \\sum_j a_{ij} = \\sum_i m_i = 1$ par interversion et stochasticité. Donc $\\mu A$ est stochastique."}]},{"banque":"CCINP","epreuve":"Maths 2 2017","partie":"Partie V","questions":"5 q. : Q29, Q30, Q31, Q32, Q33","difficulte":"Standard","intitule":"Manipulation de listes Python (indexation, len) ; Fonction Python de différence de deux vecteurs ; Fonction Python de norme infinie sans max() ; Produit vecteur ligne $\\times$ matrice en Python ; Calcul itératif de la probabilité invariante par convergence de $\\mu_n$","corrections":[{"question":"Q29","correction":"`len(A)=4` donne le nombre de lignes, `A[1]=[4,5,6]` est la deuxième ligne (indexation à partir de 0), `A[2][1]=8` est l'élément ligne 3, colonne 2."},{"question":"Q30","correction":"On renvoie `[x[i]-y[i] for i in range(len(x))]`, soustraction composante par composante des deux vecteurs."},{"question":"Q31","correction":"On initialise `m = abs(x[0])` puis on parcourt les éléments en mettant à jour `m = abs(x[i])` si `abs(x[i]) > m`. On renvoie `m`, le maximum des valeurs absolues."},{"question":"Q32","correction":"On implémente $(xA)_j = \\sum_i x[i] \\cdot A[i][j]$ par une double boucle : pour chaque colonne $j$, on somme sur les lignes $i$."},{"question":"Q33","correction":"On initialise $\\mu_0 = [1/p,\\ldots,1/p]$ et on itère $\\mu_{k+1} = \\mu_k A$ (via `itere`) tant que $\\|\\mu_{k+1}-\\mu_k\\|_\\infty > \\varepsilon$ (via `norme` et `difference`). Boucle `while` avec critère d'arrêt."}]},{"banque":"CCINP","epreuve":"Maths 2 2018","partie":"Problème - Un exemple où la matrice $\\left(\\begin{array}{ll}a & b \\\\ c & d\\end{array}\\right)$ est diagonalisable sur $\\mathbb{R}$","questions":"2 q. : Q10, Q11","difficulte":"Intermédiaire","intitule":"Similitude par blocs : réduction de $\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}$ en $\\begin{pmatrix}A&0\\\\0&2A\\end{pmatrix}$ ; Double conjugaison : réduction complète de $\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}$ quand $A$ est diagonalisable","corrections":[{"question":"Q10","correction":"On pose $Q=\\begin{pmatrix}2I_n&I_n\\\\-3I_n&-I_n\\end{pmatrix}$ (en remplaçant dans $P$ de Q9 les scalaires par des blocs $\\alpha I_n,\\beta I_n,\\gamma I_n,\\delta I_n$). $Q$ est inversible car $(\\alpha\\delta-\\beta\\gamma)I_n=((-2)-(-3))I_n=I_n$ est inversible. On a $Q^{-1}=\\begin{pmatrix}-\\delta I_n&\\beta I_n\\\\\\gamma I_n&-\\alpha I_n\\end{pmatrix}\\cdot\\frac{1}{\\alpha\\delta-\\beta\\gamma}=\\begin{pmatrix}I_n&I_n\\\\-3I_n&-2I_n\\end{pmatrix}$. La matrice par blocs $\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}$ s'écrit $\\begin{pmatrix}4&2\\\\-3&-1\\end{pmatrix}\\otimes A$ au sens où le produit par blocs fonctionne exactement comme le produit scalaire. On calcule $Q^{-1}\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}Q$ en utilisant que $A$ commute avec $\\alpha I_n,\\beta I_n,\\ldots$ Le calcul reproduit celui de $P^{-1}VP=D$, donnant $\\begin{pmatrix}A&0\\\\0&2A\\end{pmatrix}=B$."},{"question":"Q11","correction":"On calcule par blocs : $\\begin{pmatrix}R^{-1}&0\\\\0&R^{-1}\\end{pmatrix}\\begin{pmatrix}A&0\\\\0&2A\\end{pmatrix}\\begin{pmatrix}R&0\\\\0&R\\end{pmatrix}=\\begin{pmatrix}R^{-1}AR&0\\\\0&2R^{-1}AR\\end{pmatrix}=\\begin{pmatrix}\\Delta&0\\\\0&2\\Delta\\end{pmatrix}$. Or $B=Q^{-1}\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}Q$ (Q10), donc $\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}=QBQ^{-1}=Q\\begin{pmatrix}R&0\\\\0&R\\end{pmatrix}\\begin{pmatrix}\\Delta&0\\\\0&2\\Delta\\end{pmatrix}\\begin{pmatrix}R^{-1}&0\\\\0&R^{-1}\\end{pmatrix}Q^{-1}$. La matrice $\\begin{pmatrix}\\Delta&0\\\\0&2\\Delta\\end{pmatrix}$ est diagonale (car $\\Delta$ l'est), donc la matrice par blocs est semblable à une matrice diagonale, et elle est diagonalisable."}]},{"banque":"CCINP","epreuve":"Maths 2 2018","partie":"Problème - Un exemple où la matrice $\\left(\\begin{array}{ll}a & b \\\\ c & d\\end{array}\\right)$ est trigonalisable sur $\\mathbb{R}$","questions":"1 q. : Q14","difficulte":"Intermédiaire","intitule":"Similitude par blocs : $\\begin{pmatrix}3A&-2A\\\\2A&-A\\end{pmatrix}\\sim\\begin{pmatrix}A&-2A\\\\0&A\\end{pmatrix}$","corrections":[{"question":"Q14","correction":"On pose $Q=\\begin{pmatrix}I_n&I_n\\\\I_n&0\\end{pmatrix}$ à partir de $P=\\begin{pmatrix}1&1\\\\1&0\\end{pmatrix}$ de Q13. $\\det P=0-1=-1\\neq 0$ donc $Q$ est inversible. $Q^{-1}=\\begin{pmatrix}0&I_n\\\\I_n&-I_n\\end{pmatrix}$. On calcule $Q^{-1}\\begin{pmatrix}3A&-2A\\\\2A&-A\\end{pmatrix}Q$ par blocs. Le produit reproduit le calcul $P^{-1}EP=\\begin{pmatrix}1&-2\\\\0&1\\end{pmatrix}$ avec les scalaires remplacés par $A$, $-2A$, $0$, $A$. On obtient $Q^{-1}\\begin{pmatrix}3A&-2A\\\\2A&-A\\end{pmatrix}Q=\\begin{pmatrix}A&-2A\\\\0&A\\end{pmatrix}=F$."}]},{"banque":"CCINP","epreuve":"Maths 2 2019","partie":"Problème - Partie I","questions":"1 q. : Q15","difficulte":"Standard","intitule":"Similitude de $\\begin{pmatrix}\\lambda&a\\\\0&\\lambda\\end{pmatrix}$ et $\\begin{pmatrix}\\lambda&b\\\\0&\\lambda\\end{pmatrix}$ pour $a,b$ non nuls","corrections":[{"question":"Q15","correction":"On pose $P = \\begin{pmatrix}1 & 0 \\\\ 0 & b/a\\end{pmatrix}$, inversible car $a, b \\neq 0$, et $P^{-1} = \\begin{pmatrix}1 & 0 \\\\ 0 & a/b\\end{pmatrix}$. On calcule $P^{-1}AP = \\begin{pmatrix}1&0\\\\0&a/b\\end{pmatrix}\\begin{pmatrix}\\lambda&a\\\\0&\\lambda\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&b/a\\end{pmatrix} = \\begin{pmatrix}\\lambda&a\\\\0&\\lambda a/b\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&b/a\\end{pmatrix} = \\begin{pmatrix}\\lambda & b\\\\0&\\lambda\\end{pmatrix} = B$. Donc $A$ et $B$ sont semblables."}]},{"banque":"CCINP","epreuve":"Maths 2 2019","partie":"Problème - Partie II","questions":"2 q. : Q16, Q18","difficulte":"Standard","intitule":"Décomposition $P=R+iS$ avec $PA=BP$ implique $RA=BR$ et $SA=BS$ ; Conclusion : similitude sur $\\mathbb{C}$ implique similitude sur $\\mathbb{R}$","corrections":[{"question":"Q16","correction":"De $B = P^{-1}AP$, on tire $PB = AP$, soit $(R + iS)B = A(R + iS)$. En développant : $RB + iSB = AR + iAS$. Comme $A$ et $B$ sont à coefficients réels, $RB$, $AR$, $SB$ et $AS$ sont à coefficients réels. Par identification des parties réelle et imaginaire : $RB = AR$ et $SB = AS$."},{"question":"Q18","correction":"Par Q17, il existe $x_0 \\in \\mathbb{R}$ tel que $Q = R + x_0 S \\in GL_n(\\mathbb{R})$. Par Q16, $RB = AR$ et $SB = AS$, donc $QB = (R + x_0 S)B = RB + x_0 SB = AR + x_0 AS = A(R + x_0 S) = AQ$. Ainsi $B = Q^{-1}AQ$ avec $Q \\in GL_n(\\mathbb{R})$ : $A$ et $B$ sont semblables dans $\\mathcal{M}_n(\\mathbb{R})$."}]},{"banque":"CCINP","epreuve":"Maths 2 2020","partie":"Exercice I","questions":"1 q. : Q3","difficulte":"Standard","intitule":"Calcul de $A^n=PD^nP^{-1}$ coefficient par coefficient","corrections":[{"question":"Q3","correction":"$A^n = PD^nP^{-1}$ avec $D^n = \\mathrm{diag}(4^n, 1, 1)$. On a $A = I_3 + J$ et $A^n = (I_3 + J)^n$. Comme $J^2 = 3J$, par récurrence ou via la diagonalisation : $A^n = I_3 + \\frac{4^n - 1}{3}J$. Ainsi les coefficients diagonaux valent $\\frac{4^n + 2}{3}$ et les coefficients hors diagonale valent $\\frac{4^n - 1}{3}$."}]},{"banque":"CCINP","epreuve":"Maths 2 2025","partie":"Problème - Partie I","questions":"1 q. : Q15","difficulte":"Intermédiaire","intitule":"Calcul matriciel et caractérisation d'un projecteur","corrections":[{"question":"Q15","correction":"$M^2 = (UU^T)(UU^T) = U(U^TU)U^T$.\n\nOr $U^TU = \\begin{pmatrix} X_1 & X_2 & \\cdots & X_n \\end{pmatrix} \\begin{pmatrix} X_1 \\\\ X_2 \\\\ \\vdots \\\\ X_n \\end{pmatrix} = \\sum_{i=1}^n X_i^2 = \\sum_{i=1}^n X_i = \\text{Tr}(M)$\n\n(en utilisant $X_i^2 = X_i$ comme en Q14). C'est un **scalaire**, donc :\n$M^2 = \\text{Tr}(M) \\cdot UU^T = \\text{Tr}(M) \\cdot M$.\n\n$M$ est une matrice de projection (projecteur) si et seulement si $M^2 = M$, soit $\\text{Tr}(M) \\cdot M = M$, c'est-à-dire $(\\text{Tr}(M) - 1) \\cdot M = 0$.\n\nDeux cas :\n- Si $M = 0$ (i.e. $U = 0$) : $M^2 = 0 = M$, donc $M$ est un projecteur.\n- Si $M \\neq 0$ (i.e. $U \\neq 0$) : $(\\text{Tr}(M) - 1)M = 0$ avec $M \\neq 0$ implique $\\text{Tr}(M) = 1$.\n\nDonc : $M$ est un projecteur $\\Leftrightarrow M = 0$ ou $\\text{Tr}(M) = 1$ $\\Leftrightarrow \\text{Tr}(M) \\in \\{0, 1\\}$.\n\n$P(M \\text{ projecteur}) = P(\\text{Tr}(M) = 0) + P(\\text{Tr}(M) = 1)$.\n\nOr $\\text{Tr}(M) \\sim \\mathcal{B}(n, p)$ (Q14), donc :\n$P(\\text{Tr}(M) = 0) = (1-p)^n$ et $P(\\text{Tr}(M) = 1) = np(1-p)^{n-1}$.\n\nD'où $P(M \\text{ projecteur}) = (1-p)^n + np(1-p)^{n-1} = (1-p)^{n-1}(1-p+np) = (1-p)^{n-1}(1+(n-1)p)$."}]},{"banque":"CCINP","epreuve":"Maths 2 2025","partie":"Problème - Partie II","questions":"2 q. : Q19, Q20","difficulte":"Standard／Intermédiaire","intitule":"Décomposition d'une matrice de rang 1 en produit colonne-ligne ; Calcul de $A^2$ via la décomposition $A = CL$ et identification de la trace","corrections":[{"question":"Q19","correction":"$\\text{rg}(A) = 1$ donc $\\text{Im}(A) = \\text{Vect}(C)$ (car $C$ est une colonne non nulle de $A$, donc $C \\in \\text{Im}(A)$, et $\\dim(\\text{Im}(A)) = 1$).\n\nToute colonne de $A$ appartient à $\\text{Im}(A) = \\text{Vect}(C)$. Notons $A_1, A_2, \\ldots, A_n$ les colonnes de $A$. Pour tout $j \\in \\{1, \\ldots, n\\}$, il existe $l_j \\in \\mathbb{R}$ tel que $A_j = l_j C$.\n\nPosons $L = (l_1, l_2, \\ldots, l_n) \\in M_{1,n}(\\mathbb{R})$. Alors pour tout $j$, la $j$-ème colonne de $CL$ est $Cl_j = l_jC = A_j$. Donc $A = CL$.\n\n$L$ est non nulle car $A \\neq 0$ (puisque $\\text{rg}(A) = 1$) : si $L = 0$, on aurait $A = C \\cdot 0 = 0$, contradiction."},{"question":"Q20","correction":"$LC \\in M_{1,1}(\\mathbb{R})$ est un scalaire. Calculons-le :\n$LC = \\sum_{i=1}^n l_i c_i$ où $C = (c_1, \\ldots, c_n)^T$ et $L = (l_1, \\ldots, l_n)$.\n\nPar ailleurs, $\\text{Tr}(A) = \\text{Tr}(CL)$. Or, par la propriété de cyclicité de la trace : $\\text{Tr}(CL) = \\text{Tr}(LC)$.\n\nComme $LC$ est une matrice $1 \\times 1$, $\\text{Tr}(LC) = LC$. Donc $LC = \\text{Tr}(A)$.\n\nCalculons $A^2$ :\n$A^2 = (CL)(CL) = C(LC)L = \\text{Tr}(A) \\cdot CL = \\text{Tr}(A) \\cdot A$.\n\nDonc $A^2 = \\text{Tr}(A) A$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2017","partie":"II.A","questions":"3 q. : II.A.1, II.A.2-3, II.A.6-7","difficulte":"Standard／Intermédiaire","intitule":"$A$ singulière $\\Leftrightarrow$ $A$ est $E_n$-singulière : $\\ker A\\neq\\{0\\}$ ; $A$ est $H$-singulière $\\Leftrightarrow$ $\\exists X\\in H\\setminus\\{0\\}, AX=\\lambda N$ $\\Leftrightarrow$ $A_N$ singulière ; $(A^{-1})_s$ singulière ⟹ $\\exists N, N^\\top A^{-1}N=0$ ⟹ $A$ est $H$-singulière; idem pour $A_s$","corrections":[{"question":"II.A.1","correction":"On montre que $A$ est singulière si et seulement si $A$ est $E_n$-singulière, où $E_n = \\mathbb{R}^n$. En effet, $A$ est singulière $\\Leftrightarrow$ $\\ker A \\neq \\{0\\}$ $\\Leftrightarrow$ $\\exists X \\in \\mathbb{R}^n \\setminus \\{0\\},\\; AX = 0$ $\\Leftrightarrow$ $\\exists X \\in \\mathbb{R}^n \\setminus \\{0\\},\\; \\forall Z \\in \\mathbb{R}^n,\\; Z^\\top A X = 0$. Le sens $\\Rightarrow$ est immédiat car $AX=0$ entraîne $Z^\\top(AX)=0$ pour tout $Z$. Pour le sens $\\Leftarrow$, si $\\forall Z,\\; Z^\\top(AX)=0$, on choisit $Z = AX$ et on obtient $\\|AX\\|^2 = 0$ donc $AX = 0$."},{"question":"II.A.2-3","correction":"Soit $H$ un hyperplan de $\\mathbb{R}^n$ et $N$ un vecteur normal à $H$, de sorte que $H = \\{X \\in \\mathbb{R}^n : N^\\top X = 0\\}$. Alors $A$ est $H$-singulière $\\Leftrightarrow$ $\\exists X \\in H \\setminus \\{0\\},\\; AX \\in H^\\perp = \\mathrm{Vect}(N)$, i.e. $AX = \\lambda N$ pour un certain $\\lambda \\in \\mathbb{R}$. On introduit la matrice augmentée $A_N = \\begin{pmatrix} A & N \\\\ N^\\top & 0 \\end{pmatrix} \\in M_{n+1}(\\mathbb{R})$. Si $A$ est $H$-singulière, il existe $X \\neq 0$ dans $H$ tel que $AX = \\lambda N$. Alors $A_N \\begin{pmatrix} X \\\\ -\\lambda \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$ avec $(X, -\\lambda) \\neq 0$, donc $A_N$ est singulière. Réciproquement, si $A_N$ est singulière, il existe $(X, \\mu) \\neq 0$ tel que $AX + \\mu N = 0$ et $N^\\top X = 0$. Si $X = 0$ alors $\\mu N = 0$ donc $\\mu = 0$, contradiction. Donc $X \\neq 0$ et $A$ est $H$-singulière."},{"question":"II.A.6-7","correction":"Supposons $(A^{-1})_s$ singulière : il existe $N \\neq 0$ tel que $(A^{-1})_s N = 0$. Alors $N^\\top (A^{-1})_s N = 0$. Or $N^\\top (A^{-1})_s N = \\frac{1}{2}(N^\\top A^{-1} N + N^\\top (A^\\top)^{-1} N)$. Comme $N^\\top A^{-1} N$ est un scalaire égal à sa transposée $(A^{-1}N)^\\top N = N^\\top (A^\\top)^{-1} N$, on obtient $N^\\top (A^{-1})_s N = N^\\top A^{-1} N = 0$. Par II.A.4-5, $A$ est $H$-singulière pour $H = (\\mathrm{Vect}(N))^\\perp$. Supposons maintenant $A_s$ singulière. Par I.B.4, $(\\det A)^2 \\det((A^{-1})_s) = \\det(A_s) = 0$. Si $A$ est inversible, $\\det(A) \\neq 0$ donc $\\det((A^{-1})_s) = 0$, et on conclut par le cas précédent. Si $A$ est singulière, $A$ est $E_n$-singulière par II.A.1, donc a fortiori $H$-singulière pour tout hyperplan $H$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2017","partie":"II.C","questions":"1 q. : II.C.1-2","difficulte":"Intermédiaire","intitule":"$F$ de dim $n-2$ : $A$ $F$-sing $\\Leftrightarrow$ $AX\\in F^\\perp=\\mathrm{Vect}(N_1,N_2)$ $\\Leftrightarrow$ $A_N$ singulière","corrections":[{"question":"II.C.1-2","correction":"Soit $F$ un sous-espace de dimension $n-2$, et $F^\\perp = \\mathrm{Vect}(N_1, N_2)$ avec $(N_1, N_2)$ base de $F^\\perp$. On pose $N = (N_1 \\mid N_2) \\in M_{n,2}(\\mathbb{R})$. Alors $X \\in F \\Leftrightarrow N^\\top X = 0$. $A$ est $F$-singulière $\\Leftrightarrow$ $\\exists X \\in F \\setminus \\{0\\},\\; AX \\in F^\\perp = \\mathrm{Im}(N)$, i.e. $AX = N\\lambda$ pour un certain $\\lambda \\in \\mathbb{R}^2$. On introduit $A_N = \\begin{pmatrix} A & N \\\\ N^\\top & 0_{2 \\times 2} \\end{pmatrix} \\in M_{n+2}(\\mathbb{R})$. Par le même raisonnement que II.A.2-3, $A$ est $F$-singulière si et seulement si $A_N$ est singulière. En effet, si $AX = N\\lambda$ et $N^\\top X = 0$ avec $X \\neq 0$, alors $A_N \\begin{pmatrix} X \\\\ -\\lambda \\end{pmatrix} = 0$. Réciproquement, si $(X, \\mu) \\neq 0$ est dans $\\ker A_N$, on a $X \\in F$ et $AX = -N\\mu$; si $X = 0$ alors $N\\mu = 0$, et comme $N$ est de rang 2, $\\mu = 0$, contradiction."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2020","partie":"I.D","questions":"1 q. : Q15","difficulte":"Intermédiaire","intitule":"Factorisation matricielle $M = M' D^\\top$","corrections":[{"question":"Q15","correction":"Le coefficient $(i,j)$ de $M'D^\\top$ est $\\sum_{k=1}^{n} m'_{ik} (D^\\top)_{kj} = \\sum_{k=1}^{n} m'_{ik} d_{jk}$. Or $m'_{ik} \\neq 0$ ssi $k | i$ (et vaut $g(k)$), et $d_{jk} \\neq 0$ ssi $k | j$ (et vaut $1$). Donc $(M'D^\\top)_{ij} = \\sum_{k | i, k | j} g(k) = \\sum_{k | (i \\wedge j)} g(k)$. Comme $g = f * \\mu$, on a $f = g * \\mathbf{1}$ (car $\\mu$ est l'inverse de $\\mathbf{1}$ pour $*$, Q12), donc $f(m) = \\sum_{d|m} g(d)$ pour tout $m$. Ainsi $\\sum_{k|(i \\wedge j)} g(k) = f(i \\wedge j) = m_{ij}$. D'où $M = M'D^\\top$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2020","partie":"II.A","questions":"1 q. : Q27","difficulte":"Intermédiaire","intitule":"Inversion matricielle pour retrouver le type cyclique","corrections":[{"question":"Q27","correction":"Calculons $(T_\\sigma D)_q$ pour $q \\in \\llbracket 1, n \\rrbracket$. $(T_\\sigma D)_q = \\sum_{\\ell=1}^{n} c_\\ell(\\sigma) d_{\\ell q}$. Or $d_{\\ell q} = 1$ si $q | \\ell$ et $0$ sinon. Donc $(T_\\sigma D)_q = \\sum_{\\ell=1, q|\\ell}^{n} c_\\ell(\\sigma)$. Par Q26, si $P_\\sigma$ et $P_\\tau$ semblables : $T_\\sigma D = T_\\tau D$. La matrice $D$ est triangulaire inférieure avec $d_{ii} = 1$ (car $i | i$), donc $\\det D = 1$ et $D$ est inversible. En multipliant à droite par $D^{-1}$ : $T_\\sigma = T_\\tau$. Par Q23, $\\sigma$ et $\\tau$ sont conjuguées. Réciproquement, Q20 montre que la conjugaison implique la similitude. Ceci démontre (S)."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2020","partie":"II.B","questions":"1 q. : Q28","difficulte":"Standard","intitule":"Caractérisation matricielle d'un endomorphisme de permutation","corrections":[{"question":"Q28","correction":"$u$ est un endomorphisme de permutation ssi il existe une base $(e_1, \\ldots, e_n)$ et $\\sigma \\in \\mathfrak{S}_n$ tels que $u(e_j) = e_{\\sigma(j)}$ pour tout $j$. La matrice de $u$ dans cette base a pour coefficient $(i,j)$ : $\\mathbf{1}_{i = \\sigma(j)}$, qui est exactement la matrice de permutation $P_\\sigma$. Réciproquement, si la matrice de $u$ dans une base $(e_1, \\ldots, e_n)$ est $P_\\sigma$, alors $u(e_j) = \\sum_i (P_\\sigma)_{ij} e_i = e_{\\sigma(j)}$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2020","partie":"Partie III","questions":"1 q. : Q37","difficulte":"Intermédiaire","intitule":"Factorisation du polynôme caractéristique de $H_n$ par produit matriciel","corrections":[{"question":"Q37","correction":"Calculons $P = B_n(\\lambda)(\\lambda I_n - H_n)$. Pour $i > 1$ : la ligne $i$ de $B_n$ est celle de $I_n$, donc $P_{ij} = (\\lambda I_n - H_n)_{ij}$.\n\nPour $i = 1, j = 1$ : $P_{11} = \\sum_k b_{1k}(\\lambda \\delta_{k1} - h_{k1}) = \\mathbf{b}(1)(\\lambda - 1) + \\sum_{k=2}^n \\mathbf{b}(k)(0 - 1) = (\\lambda - 1) - \\sum_{k=2}^n \\mathbf{b}(k)$.\n\nPour $i = 1, j > 1$ : $P_{1j} = \\sum_k b_{1k}(\\lambda \\delta_{kj} - h_{kj}) = \\mathbf{b}(j) \\lambda - \\sum_k \\mathbf{b}(k) h_{kj} = \\mathbf{b}(j) \\lambda - \\sum_{k|j} \\mathbf{b}(k)$. Or $\\sum_{k|j} \\mathbf{b}(k) = \\mathbf{b}(j) + \\sum_{k|j, k \\neq j} \\mathbf{b}(k) = \\mathbf{b}(j) + (\\lambda - 1)\\mathbf{b}(j) = \\lambda \\mathbf{b}(j)$ par définition de $\\mathbf{b}$. Donc $P_{1j} = 0$.\n\nAinsi $P$ est triangulaire inférieure (pour $i > 1$, c'est $\\lambda I_n - H_n$ qui a des zéros appropriés), et le produit des diag. donne le déterminant. En fait $\\det P = P_{11} \\prod_{j=2}^n (\\lambda - 1) = ((\\lambda-1) - \\sum_{j=2}^n \\mathbf{b}(j))(\\lambda - 1)^{n-1}$. Comme $\\det B_n(\\lambda) = 1$ (triangulaire, diag. $1$) : $\\chi_n(\\lambda) = (\\lambda - 1)^n - (\\lambda - 1)^{n-1} \\sum_{j=2}^n \\mathbf{b}(j)$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2021","partie":"I.A","questions":"1 q. : Q3","difficulte":"Standard","intitule":"Développement de $\\|D_A P - P D_B\\|_F^2$ coefficient par coefficient","corrections":[{"question":"Q3","correction":"Le coefficient $(i,j)$ de $D_A P - P D_B$ est $(D_A P)_{ij} - (P D_B)_{ij} = \\lambda_i(A) p_{ij} - p_{ij} \\lambda_j(B) = p_{ij}(\\lambda_i(A) - \\lambda_j(B))$. Or $\\|D_A P - P D_B\\|_F^2 = \\sum_{1 \\leq i,j \\leq n} ((D_A P - P D_B)_{ij})^2 = \\sum_{1 \\leq i,j \\leq n} p_{ij}^2 (\\lambda_i(A) - \\lambda_j(B))^2$. Combiné avec Q2 : $\\|A-B\\|_F^2 = \\sum_{1 \\leq i,j \\leq n} p_{ij}^2 (\\lambda_i(A) - \\lambda_j(B))^2$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2021","partie":"I.B","questions":"3 q. : Q5, Q6, Q7","difficulte":"Intermédiaire／Avancé","intitule":"Perturbation bistochastique d'une matrice et calcul de variation de $f$ ; Construction itérative d'une matrice bistochastique plus proche de l'identité ; Récurrence sur $n$ pour montrer que $I_n$ minimise $f$ sur $\\mathcal{B}_n(\\mathbb{R})$","corrections":[{"question":"Q5","correction":"On développe $f(M')$ où $M' = M + x(E_{ii} + E_{jk} - E_{ik} - E_{ji})$. On a $f(M') - f(M) = \\sum_{a,b} (m'_{ab} - m_{ab})(\\lambda_a(A) - \\lambda_b(B))^2 = x[(\\lambda_i(A)-\\lambda_i(B))^2 + (\\lambda_j(A)-\\lambda_k(B))^2 - (\\lambda_i(A)-\\lambda_k(B))^2 - (\\lambda_j(A)-\\lambda_i(B))^2]$. En développant et simplifiant : $= 2x(\\lambda_i(A)-\\lambda_j(A))(\\lambda_k(B)-\\lambda_i(B))$. Puisque $j \\geq i$, $\\lambda_i(A) \\geq \\lambda_j(A)$ et puisque $k \\geq i$, $\\lambda_i(B) \\geq \\lambda_k(B)$, donc le premier facteur est $\\geq 0$ et le second $\\leq 0$. Avec $x \\geq 0$, le produit est $\\leq 0$."},{"question":"Q6","correction":"Soit $i$ le plus petit entier tel que $m_{ii} \\neq 1$. Comme $m_{jj}=1$ pour $j < i$ et $M$ bistochastique, $m_{ij}=m_{ji}=0$ pour $j < i$. De $\\sum_{j=1}^n m_{ij}=1$ et $m_{ii}<1$, il existe $k > i$ avec $m_{ik}>0$. De $\\sum_{j=1}^n m_{ji}=1$ et $m_{ii}<1$, il existe $j > i$ avec $m_{ji}>0$. On pose $x = \\min(m_{ik}, m_{ji}) > 0$ et $M' = M + x(E_{ii}+E_{jk}-E_{ik}-E_{ji})$. On vérifie que $M' \\in \\mathcal{B}_n(\\mathbb{R})$ (les sommes lignes/colonnes sont inchangées, les coefficients restent $\\geq 0$). Par Q5, $f(M') \\leq f(M)$. De plus, soit $m'_{ik}=0$ soit $m'_{ji}=0$, et $m'_{ii}=m_{ii}+x > m_{ii}$. En itérant ce processus (nombre fini de fois car on annule un coefficient ou on complète un diagonal), on atteint $m'_{jj}=1$ pour tout $j \\leq i$."},{"question":"Q7","correction":"Soit $M \\in \\mathcal{B}_n(\\mathbb{R})$. Si $M = I_n$, c'est terminé. Sinon, par Q6, il existe $M' \\in \\mathcal{B}_n(\\mathbb{R})$ avec $f(M') \\leq f(M)$ et un coefficient diagonal de plus égal à 1. En itérant, on finit par obtenir une matrice bistochastique dont tous les coefficients diagonaux valent 1, c'est-à-dire $I_n$ (car une matrice bistochastique avec $m_{ii}=1$ pour tout $i$ est nécessairement $I_n$, les autres coefficients étant nuls). Donc $f(I_n) \\leq f(M)$ pour tout $M \\in \\mathcal{B}_n(\\mathbb{R})$, i.e. $\\min\\{f(M) \\mid M \\in \\mathcal{B}_n(\\mathbb{R})\\} = f(I_n)$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2022","partie":"II.B","questions":"2 q. : Q10, Q11","difficulte":"Standard","intitule":"Expression matricielle d'une forme bilinéaire ; Déduire antisymétrie et inversibilité de la matrice associée","corrections":[{"question":"Q10","correction":"Soient $x = \\sum_{i=1}^n x_i e_i$ et $y = \\sum_{j=1}^n y_j e_j$. Par bilinéarité : $\\omega(x,y) = \\sum_{i=1}^n \\sum_{j=1}^n x_i y_j \\omega(e_i, e_j) = \\sum_{i,j} x_i \\Omega_{ij} y_j = X^\\top \\Omega Y$."},{"question":"Q11","correction":"**Antisymétrie** : $\\omega(x,y) = -\\omega(y,x)$ donne $X^\\top \\Omega Y = -Y^\\top \\Omega X = -X^\\top \\Omega^\\top Y$ pour tous $X, Y$. Par Q1, $\\Omega = -\\Omega^\\top$. **Inversibilité** : supposons $\\Omega X = 0$ pour un certain $X$. Alors pour tout $Y$, $Y^\\top \\Omega X = 0$, soit $\\omega(y, x) = 0$ pour tout $y \\in \\mathbb{R}^n$. Par non-dégénérescence, $x = 0$, donc $X = 0$. Ainsi $\\ker \\Omega = \\{0\\}$ et $\\Omega$ est inversible."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2022","partie":"II.C","questions":"2 q. : Q15, Q17","difficulte":"Standard","intitule":"Traduction matricielle de la condition symplectique ; Caractérisation par blocs d'une matrice symplectique","corrections":[{"question":"Q15","correction":"Pour tous $x, y \\in \\mathbb{R}^n$ de colonnes $X, Y$ : $b_s(u(x), u(y)) = (MX)^\\top J (MY) = X^\\top M^\\top J M Y$. Et $b_s(x,y) = X^\\top J Y$. Donc $u$ symplectique $\\iff$ $\\forall X, Y, X^\\top (M^\\top J M) Y = X^\\top J Y$ $\\iff$ $M^\\top J M = J$ (par Q1)."},{"question":"Q17","correction":"$M^\\top = \\begin{pmatrix} A^\\top & C^\\top \\\\ B^\\top & D^\\top \\end{pmatrix}$. $M^\\top J = \\begin{pmatrix} A^\\top & C^\\top \\\\ B^\\top & D^\\top \\end{pmatrix} \\begin{pmatrix} 0 & -I_m \\\\ I_m & 0 \\end{pmatrix} = \\begin{pmatrix} C^\\top & -A^\\top \\\\ D^\\top & -B^\\top \\end{pmatrix}$. Puis $M^\\top J M = \\begin{pmatrix} C^\\top A - A^\\top C & C^\\top B - A^\\top D \\\\ D^\\top A - B^\\top C & D^\\top B - B^\\top D \\end{pmatrix}$. On identifie avec $J = \\begin{pmatrix} 0 & -I_m \\\\ I_m & 0 \\end{pmatrix}$ : bloc $(1,1)$ : $C^\\top A - A^\\top C = 0$, soit $A^\\top C$ symétrique. Bloc $(2,2)$ : $D^\\top B - B^\\top D = 0$, soit $B^\\top D$ symétrique. Bloc $(2,1)$ : $D^\\top A - B^\\top C = I_m$, soit $A^\\top D - C^\\top B = I_m$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2022","partie":"III.A","questions":"1 q. : Q18","difficulte":"Standard","intitule":"Sp₂(ℝ) = SL₂(ℝ) par calcul direct en dimension 2","corrections":[{"question":"Q18","correction":"Soit $M = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$. On a $J = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$. $M^\\top J M = \\begin{pmatrix} a & c \\\\ b & d \\end{pmatrix} \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = \\begin{pmatrix} a & c \\\\ b & d \\end{pmatrix} \\begin{pmatrix} -c & -d \\\\ a & b \\end{pmatrix} = \\begin{pmatrix} -ac+ca & -ad+cb \\\\ -bc+da & -bd+db \\end{pmatrix} = \\begin{pmatrix} 0 & cb-ad \\\\ da-bc & 0 \\end{pmatrix}$. Donc $M^\\top J M = J \\iff ad - bc = 1 \\iff \\det(M) = 1$. Réciproquement, si $\\det(M) = 1$, le même calcul donne $M^\\top J M = J$. Donc $Sp_2(\\mathbb{R}) = SL_2(\\mathbb{R})$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2022","partie":"III.B","questions":"1 q. : Q19","difficulte":"Standard","intitule":"Caractérisation du commutant de J par blocs","corrections":[{"question":"Q19","correction":"Posons $M = \\begin{pmatrix} P & Q \\\\ R & S \\end{pmatrix}$. $JM = \\begin{pmatrix} 0 & -I_m \\\\ I_m & 0 \\end{pmatrix} \\begin{pmatrix} P & Q \\\\ R & S \\end{pmatrix} = \\begin{pmatrix} -R & -S \\\\ P & Q \\end{pmatrix}$. $MJ = \\begin{pmatrix} P & Q \\\\ R & S \\end{pmatrix} \\begin{pmatrix} 0 & -I_m \\\\ I_m & 0 \\end{pmatrix} = \\begin{pmatrix} Q & -P \\\\ S & -R \\end{pmatrix}$. $JM = MJ \\iff \\begin{cases} -R = Q \\\\ -S = -P \\\\ P = S \\\\ Q = -R \\end{cases} \\iff R = -Q \\text{ et } S = P$. En posant $U = P$ et $V = R$, on obtient $M = \\begin{pmatrix} U & -V \\\\ V & U \\end{pmatrix}$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2025","partie":"Partie A.IV","questions":"3 q. : 8, 9, 10","difficulte":"Standard","intitule":"Vérification par calcul direct d'une matrice d'adjacence ; Construction d'une matrice d'adjacence en Python (numpy) ; Puissance d'une matrice de permutation circulaire par récurrence","corrections":[{"question":"8","correction":"La matrice $C_{9,1}$ a un $1$ en position $(i, i+1 \\bmod 9)$ pour $i \\in \\{0,\\ldots,8\\}$ (indices modulo 9), et $0$ ailleurs. La matrice $C_{9,8} = C_{9,-1 \\bmod 9}$ a un $1$ en position $(i, i-1 \\bmod 9)$. Leur somme $J_9^{(1)} = C_{9,1} + C_{9,8}$ a donc des $1$ exactement en positions $(i, i \\pm 1 \\bmod 9)$. C'est précisément la matrice d'adjacence du graphe cyclique à 9 sommets $\\mathbb{Z}/9\\mathbb{Z}$, où chaque sommet $i$ est relié à $i-1$ et $i+1$ (modulo 9)."},{"question":"9","correction":"```python\nimport numpy as np\n\ndef mat_adj(graphe):\n    n = len(graphe)\n    sommets = sorted(graphe.keys())\n    index = {s: i for i, s in enumerate(sommets)}\n    A = np.zeros((n, n), dtype=int)\n    for s in sommets:\n        for v in graphe[s]:\n            A[index[s]][index[v]] = 1\n    return A\n```\nOn crée une matrice $n \\times n$ nulle, puis pour chaque sommet $s$ et chaque voisin $v$ de $s$, on met $A[s][v] = 1$."},{"question":"10","correction":"Par récurrence sur $k \\geq 0$. Pour $k = 0$ : $C_{n,1}^0 = I_n = C_{n,0}$ (permutation de $0$ positions = identité). Supposons $C_{n,1}^k = C_{n,k}$. Alors $C_{n,1}^{k+1} = C_{n,k} \\cdot C_{n,1}$. Le coefficient $(i,j)$ de $C_{n,k}$ vaut $1$ si $j \\equiv i + k \\pmod{n}$ et $0$ sinon. Le produit $C_{n,k} \\cdot C_{n,1}$ a son coefficient $(i,j)$ égal à $\\sum_l (C_{n,k})_{i,l}(C_{n,1})_{l,j} = (C_{n,1})_{i+k \\bmod n, j} = \\mathbf{1}_{j \\equiv i+k+1 \\pmod{n}}$. C'est exactement $C_{n,k+1}$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2025","partie":"Partie A.V","questions":"2 q. : 14, 16","difficulte":"Intermédiaire／Standard","intitule":"Compatibilité du produit de Kronecker avec le produit matriciel (produit par blocs) ; Vérification d'une matrice d'adjacence d'un graphe grille par calcul explicite du Kronecker","corrections":[{"question":"14","correction":"Le bloc $(i,j)$ de $A \\otimes B$ est $a_{ij}B$ et celui de $A' \\otimes B'$ est $a'_{ij}B'$. Le bloc $(i,j)$ du produit $(A \\otimes B)(A' \\otimes B')$ est $\\sum_{k=1}^{v} (a_{ik} B)(a'_{kj} B') = \\sum_{k=1}^{v} a_{ik} a'_{kj} BB' = \\left(\\sum_{k=1}^{v} a_{ik} a'_{kj}\\right) BB' = (AA')_{ij} \\cdot BB'$. C'est exactement le bloc $(i,j)$ de $(AA') \\otimes (BB')$. D'où l'égalité."},{"question":"16","correction":"Pour $n=3$, $J_3^{(1)}$ est la matrice d'adjacence du cycle $\\mathbb{Z}/3\\mathbb{Z}$ : $J_3^{(1)} = \\begin{pmatrix} 0 & 1 & 1 \\\\ 1 & 0 & 1 \\\\ 1 & 1 & 0 \\end{pmatrix}$. La matrice $I_3 \\otimes J_3^{(1)}$ est diagonale par blocs $3 \\times 3$ avec des copies de $J_3^{(1)}$ sur la diagonale, ce qui encode les arêtes horizontales $(i,j) \\sim (i, j \\pm 1)$. La matrice $J_3^{(1)} \\otimes I_3$ encode les arêtes verticales $(i,j) \\sim (i \\pm 1, j)$. Leur somme $J_9^{(2)}$ est donc la matrice d'adjacence du tore $3 \\times 3$ : chaque sommet $(i,j)$ est relié à exactement 4 voisins $(i \\pm 1, j)$ et $(i, j \\pm 1)$ modulo 3."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2025","partie":"Partie B.II","questions":"2 q. : 20, 21","difficulte":"Standard／Avancé","intitule":"Expression des coefficients d'une puissance de matrice par sommation sur les chemins ; Expression de la fonction de partition comme trace d'une matrice de transfert","corrections":[{"question":"20","correction":"Récurrence sur $p \\geq 1$. Pour $p=1$ : $(M^1)_{i,j} = M_{i,j}$ (somme vide sur les indices intermédiaires, convention). Supposons le résultat vrai au rang $p$. Alors $(M^{p+1})_{i,j} = \\sum_{k=1}^d (M^p)_{i,k} M_{k,j} = \\sum_{k=1}^d \\left(\\sum_{(k_1,\\ldots,k_{p-1})} M_{i,k_1} \\cdots M_{k_{p-1},k}\\right) M_{k,j} = \\sum_{(k_1,\\ldots,k_p)} M_{i,k_1} M_{k_1,k_2} \\cdots M_{k_p,j}$, ce qui est bien la formule au rang $p+1$ (avec $p$ indices intermédiaires $k_1, \\ldots, k_p$)."},{"question":"21","correction":"D'après Q19, $Z_n(h) = \\sum_{x \\in \\Lambda_n} \\prod_{i=1}^n e^{\\beta x_i x_{i+1} + hx_i}$. Posons $A_{a,b} = e^{\\beta ab + ha}$ pour $a, b \\in \\{-1,1\\}$. On vérifie : $A_{-1,-1} = e^{\\beta-h}$, $A_{-1,1} = e^{-\\beta-h}$, $A_{1,-1} = e^{-\\beta+h}$, $A_{1,1} = e^{\\beta+h}$. Si on ordonne les lignes/colonnes comme $(-1, 1)$ : $A = \\begin{pmatrix} e^{\\beta-h} & e^{-\\beta-h} \\\\ e^{-\\beta+h} & e^{\\beta+h} \\end{pmatrix}$. Alors $\\prod_{i=1}^n e^{\\beta x_i x_{i+1} + hx_i} = \\prod_{i=1}^n A_{x_i, x_{i+1}} = A_{x_1,x_2} A_{x_2,x_3} \\cdots A_{x_n,x_1}$. D'après Q20 avec $d=2$, $\\sum_{x_2,\\ldots,x_n \\in \\{-1,1\\}} A_{x_1,x_2} A_{x_2,x_3} \\cdots A_{x_n,x_1} = (A^n)_{x_1,x_1}$. Donc $Z_n(h) = \\sum_{x_1 \\in \\{-1,1\\}} (A^n)_{x_1,x_1} = \\mathrm{tr}(A^n)$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2020","partie":"Partie II","questions":"1 q. : 7","difficulte":"Standard","intitule":"tr(a tensor x) = (a|x)","corrections":[{"question":"7","correction":"Soit $(e_1, \\ldots, e_n)$ une base orthonormée de $E$. La matrice de $a \\otimes x$ dans cette base a pour coefficient $(i,j)$ : $(a \\otimes x)(e_j) \\cdot e_i = (a \\mid e_j)(x \\mid e_i)$. La trace est la somme des coefficients diagonaux : $\\operatorname{tr}(a \\otimes x) = \\sum_{i=1}^n (a \\mid e_i)(x \\mid e_i) = \\sum_{i=1}^n (a \\mid e_i)(e_i \\mid x) = (a \\mid x)$ par l'identité de Parseval."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2020","partie":"Partie III","questions":"1 q. : 10","difficulte":"Intermédiaire","intitule":"Lemme A: tr(u^k v) = 0 via cyclicité","corrections":[{"question":"10","correction":"On a $f_1^{(k+1)} = \\sum_{i=0}^{k} u^i v u^{k-i}$ (question 8 avec $k+1$). Par la cyclicité de la trace : $\\operatorname{tr}(u^i v u^{k-i}) = \\operatorname{tr}(u^{k-i} u^i v) = \\operatorname{tr}(u^k v)$. Donc $\\operatorname{tr}(f_1^{(k+1)}) = (k+1) \\operatorname{tr}(u^k v)$.\\n\\nD'autre part, $u + tv \\in \\mathcal{V}$ pour tout $t$, donc $u+tv$ est nilpotent. Par la question 1, $\\operatorname{tr}((u+tv)^{k+1}) = 0$ pour tout $t$ et tout $k \\in \\mathbb{N}$. Or $\\operatorname{tr}((u+tv)^{k+1}) = \\sum_{i=0}^{k+1} t^i \\operatorname{tr}(f_i^{(k+1)})$. Le coefficient de $t$ est $\\operatorname{tr}(f_1^{(k+1)}) = 0$.\\n\\nOn en déduit $(k+1) \\operatorname{tr}(u^k v) = 0$, soit $\\operatorname{tr}(u^k v) = 0$ pour tout $k \\in \\mathbb{N}$. C'est le lemme A."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2018","partie":"Partie A","questions":"1 q. : 1","difficulte":"Standard","intitule":"Exhiber une infinité de racines carrées de $I_2$ par symétrie et identifier les polynômes en $A$","corrections":[{"question":"1","correction":"On cherche $X = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ telle que $X^2 = I_2$. Cela donne $a^2+bc=1$, $b(a+d)=0$, $c(a+d)=0$, $d^2+bc=1$. Des deux dernières, soit $a+d=0$, soit $b=c=0$. Si $b=c=0$ : $a^2=d^2=1$, donc $X \\in \\{\\pm I_2\\}$. Si $a+d=0$ : $d=-a$ et $a^2+bc=1$, ce qui donne une infinité de solutions car on peut choisir $a$ et $b$ librement (avec $b \\neq 0$) puis $c=(1-a^2)/b$. Par exemple $X_\\theta = \\begin{pmatrix} \\cos\\theta & \\sin\\theta \\\\ \\sin\\theta & -\\cos\\theta \\end{pmatrix}$ pour $\\theta \\in [0,2\\pi[$. Les polynômes en $A = I_2$ sont de la forme $P(I_2) = P(1)I_2$ qui est une matrice scalaire. Les seules matrices scalaires $\\lambda I_2$ vérifiant $(\\lambda I_2)^2 = I_2$ sont $\\lambda = \\pm 1$. Les racines carrées polynômes en $A$ sont donc $I_2$ et $-I_2$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2018","partie":"Partie B","questions":"1 q. : 4","difficulte":"Intermédiaire","intitule":"Résolution de $U^2 = T$ pour matrices triangulaires supérieures par identification coefficients","corrections":[{"question":"4","correction":"Écrivons $U^2 = T$ coefficient par coefficient. Comme $T$ et $U$ sont triangulaires supérieures, $(U^2)_{i,j} = \\sum_{k=1}^n u_{i,k}u_{k,j}$. Pour $i > j$, les deux sont nulles (produit de triangulaires sup). Pour $i = j$ : $(U^2)_{i,i} = \\sum_{k=1}^n u_{i,k}u_{k,i}$. Comme $U$ est triangulaire supérieure, $u_{i,k} = 0$ si $k < i$ et $u_{k,i} = 0$ si $k > i$, donc $(U^2)_{i,i} = u_{i,i}^2 = t_{i,i}$. Pour $i < j$ : $(U^2)_{i,j} = \\sum_{k=i}^{j} u_{i,k}u_{k,j} = u_{i,i}u_{i,j} + u_{i,j}u_{j,j} + \\sum_{k=i+1}^{j-1} u_{i,k}u_{k,j} = (u_{i,i}+u_{j,j})u_{i,j} + \\sum_{k=i+1}^{j-1} u_{i,k}u_{k,j}$. D'où $(u_{i,i}+u_{j,j})u_{i,j} = t_{i,j} - \\sum_{k=i+1}^{j-1} u_{i,k}u_{k,j}$. **Résolution** : $T$ inversible implique $t_{i,i} \\neq 0$ pour tout $i$. On choisit $u_{i,i} \\in \\widetilde{\\mathbb{C}}$ racine carrée de $t_{i,i}$ (partie réelle $> 0$ si $t_{i,i} \\notin \\mathbb{R}_-^*$, ou $i\\sqrt{|t_{i,i}|}$ sinon). Pour garantir $u_{i,i}+u_{j,j} \\neq 0$ : si $u_{i,i}$ et $u_{j,j}$ sont de partie réelle strictement positive, leur somme aussi. On peut choisir toutes les racines carrées diagonales de partie réelle $> 0$ (possible car $t_{i,i} \\in \\widetilde{\\mathbb{C}}$, i.e. $t_{i,i} \\notin \\mathbb{R}_-$). Alors $u_{i,i}+u_{j,j} \\neq 0$ pour tous $i,j$. On résout ensuite colonne par colonne : pour $j$ fixé, on calcule $u_{i,j}$ pour $i = j-1, j-2, \\ldots, 1$ successivement par la formule $u_{i,j} = \\frac{t_{i,j} - \\sum_{k=i+1}^{j-1} u_{i,k}u_{k,j}}{u_{i,i}+u_{j,j}}$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2018","partie":"Partie D","questions":"2 q. : 14, 15","difficulte":"Standard／Intermédiaire","intitule":"Équivalence entre les suites $(X_k)_{k \\in \\mathbb{N}}$ (Newton) et $(U_k)_{k \\in \\mathbb{N}}$ (itération I) ; Commutation de $V_k$ avec $A$ et lien entre suites (II) et (I)","corrections":[{"question":"14","correction":"**Sens direct** : Si $(X_k)$ est définie par (N) avec $U_0 = X_0$, posons $H_k = X_{k+1} - X_k$. On a $X_{k+1} = X_k - (\\mathrm{d}F_{X_k})^{-1}(F(X_k))$, donc $H_k = -(\\mathrm{d}F_{X_k})^{-1}(F(X_k))$, i.e. $\\mathrm{d}F_{X_k}(H_k) = -F(X_k)$, soit $X_kH_k + H_kX_k = -(X_k^2 - A) = A - X_k^2$. En posant $U_k = X_k$ : $U_{k+1} = U_k + H_k$ et $U_kH_k + H_kU_k = A - U_k^2$, ce qui est exactement (I). **Sens réciproque** : Si $(U_k)$ est définie par (I) avec $X_0 = U_0$, on a $H_k$ vérifiant $U_kH_k + H_kU_k = A - U_k^2$, i.e. $\\mathrm{d}F_{U_k}(H_k) = -F(U_k)$, soit $H_k = -(\\mathrm{d}F_{U_k})^{-1}(F(U_k))$. Donc $U_{k+1} = U_k + H_k = U_k - (\\mathrm{d}F_{U_k})^{-1}(F(U_k))$, qui est (N) en posant $X_k = U_k$."},{"question":"15","correction":"**$V_k$ commute avec $A$** : Par récurrence. $V_0 = \\mu I_n$ commute avec $A$. Si $V_k$ commute avec $A$ et $V_k$ est inversible, alors $V_k^{-1}$ commute avec $A$ et $V_{k+1} = \\frac{1}{2}(V_k + V_k^{-1}A)$ commute avec $A$. **$U_k$ inversible** : Par récurrence. $U_0 = V_0 = \\mu I_n$ est inversible ($\\mu > 0$). Si $U_k$ est inversible, $H_k$ est défini par $U_kH_k + H_kU_k = A - U_k^2$. On montre que $U_{k+1} = U_k + H_k$ est inversible. Posons $G_k = \\frac{1}{2}(U_k^{-1}A - U_k)$. Vérifions que $G_k$ satisfait la condition de (I) : $U_kG_k + G_kU_k = U_k \\cdot \\frac{1}{2}(U_k^{-1}A - U_k) + \\frac{1}{2}(U_k^{-1}A - U_k) \\cdot U_k = \\frac{1}{2}(A - U_k^2) + \\frac{1}{2}(U_k^{-1}AU_k - U_k^2)$. Comme $U_k$ commute avec $A$ (par récurrence, car $U_0$ commute et $H_k$ s'exprime en termes de $U_k$ et $A$), $U_k^{-1}AU_k = A$. Donc $U_kG_k + G_kU_k = A - U_k^2$. Par unicité de $H_k$ (car $\\mathrm{d}F_{U_k}$ est inversible), $H_k = G_k$. Ainsi $U_{k+1} = U_k + G_k = U_k + \\frac{1}{2}(U_k^{-1}A - U_k) = \\frac{1}{2}(U_k + U_k^{-1}A) = V_{k+1}$. La récurrence est bouclée."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2018","partie":"Partie E","questions":"1 q. : 19","difficulte":"Intermédiaire","intitule":"Calcul de $(V_0+\\Delta)^{-1}$ et de $\\Delta_1$ en termes de $V_0$ et $\\Delta$","corrections":[{"question":"19","correction":"On a $\\widehat{V}_0 = V_0 + \\Delta$ avec $V_0 = \\sqrt{A}$ et $\\Delta = \\varepsilon C_i C_j^T$. **Observation clé** : $\\Delta^2 = \\varepsilon^2 C_i C_j^T C_i C_j^T = \\varepsilon^2 (C_j^T C_i) C_i C_j^T = 0$ car $C_j^T C_i = e_j^T P^T P e_i = \\delta_{i,j} = 0$ ($i \\neq j$). **Première relation** : $(V_0 + \\Delta)^{-1} = (V_0(I_n + V_0^{-1}\\Delta))^{-1} = (I_n + V_0^{-1}\\Delta)^{-1}V_0^{-1}$. Posons $M = V_0^{-1}\\Delta$. On a $M^2 = V_0^{-1}\\Delta V_0^{-1}\\Delta$. Dans la base propre de $A$, $P^T M P = D^{-1/2}(\\varepsilon E_{i,j})$ et $(P^T M P)^2 \\propto E_{i,j}^2 = 0$ (car $i \\neq j$). Donc $M^2 = 0$ et la série de Neumann se réduit à $(I_n + M)^{-1} = I_n - M$ (identité exacte). D'où $(V_0+\\Delta)^{-1} = (I_n - V_0^{-1}\\Delta)V_0^{-1} = V_0^{-1} - V_0^{-1}\\Delta V_0^{-1}$. **Seconde relation** : $V_1 = \\frac{1}{2}(V_0 + V_0^{-1}A) = \\sqrt{A}$ (point fixe de (II)). $\\widehat{V}_1 = \\frac{1}{2}((V_0+\\Delta) + (V_0^{-1} - V_0^{-1}\\Delta V_0^{-1})A) = \\frac{1}{2}(V_0 + \\Delta + V_0^{-1}A - V_0^{-1}\\Delta V_0^{-1}A)$. Donc $\\Delta_1 = \\widehat{V}_1 - V_1 = \\frac{1}{2}(\\Delta - V_0^{-1}\\Delta V_0^{-1}A)$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2021","partie":"Matrices de permutations","questions":"3 q. : 1, 3, 4","difficulte":"Standard／Intermédiaire","intitule":"Morphisme de groupes : $\\omega(\\sigma \\circ \\sigma') = \\omega(\\sigma)\\omega(\\sigma')$ ; Conjugaison d'une matrice diagonale par une matrice de permutation ; Équivalence entre réarrangement des coefficients diagonaux et conjugaison par une matrice de permutation","corrections":[{"question":"1","correction":"Soient $\\sigma, \\sigma' \\in B_n$. Pour tout $(i,j) \\in [\\![1,n]\\!]^2$, on calcule $[\\omega(\\sigma)\\omega(\\sigma')]_{i,j} = \\sum_{k=1}^n [\\omega(\\sigma)]_{i,k} [\\omega(\\sigma')]_{k,j} = \\sum_{k=1}^n \\delta_{i,\\sigma(k)} \\delta_{k,\\sigma'(j)}$. Dans cette somme, $\\delta_{k,\\sigma'(j)} = 1$ uniquement pour $k = \\sigma'(j)$, donc la somme vaut $\\delta_{i,\\sigma(\\sigma'(j))}$. Or $[\\omega(\\sigma \\circ \\sigma')]_{i,j} = \\delta_{i,(\\sigma \\circ \\sigma')(j)} = \\delta_{i,\\sigma(\\sigma'(j))}$. Donc $\\omega(\\sigma)\\omega(\\sigma') = \\omega(\\sigma \\circ \\sigma')$."},{"question":"3","correction":"Pour tout $(i,j) \\in [\\![1,n]\\!]^2$, on calcule le coefficient $(i,j)$ du membre de gauche : $[\\mathrm{Diag}((d_i)) \\cdot \\omega(\\sigma)]_{i,j} = \\sum_{k=1}^n d_i \\delta_{i,k} \\delta_{k,\\sigma(j)} = d_i \\delta_{i,\\sigma(j)}$. Pour le membre de droite : $[\\omega(\\sigma) \\cdot \\mathrm{Diag}((d_{\\sigma(i)}))]_{i,j} = \\sum_{k=1}^n \\delta_{i,\\sigma(k)} d_{\\sigma(k)} \\delta_{k,j} = \\delta_{i,\\sigma(j)} d_{\\sigma(j)}$. Or $\\delta_{i,\\sigma(j)} \\neq 0 \\implies i = \\sigma(j)$, et dans ce cas $d_i = d_{\\sigma(j)}$. Donc les deux expressions coïncident et l'égalité est vérifiée."},{"question":"4","correction":"**(ii) $\\Rightarrow$ (i)** : Soit $M = \\omega(\\sigma) \\in \\omega(B_n)$ tel que $D' = {}^t\\!M D M$. Par la Q2, ${}^t\\!M = M^{-1} = \\omega(\\sigma^{-1})$. Donc $D' = \\omega(\\sigma^{-1}) D \\omega(\\sigma)$. En utilisant la Q3 (avec $\\sigma^{-1}$ au lieu de $\\sigma$), on obtient que les coefficients diagonaux de $D'$ sont les $(d_{\\sigma^{-1}(\\sigma(i))})$ permutés, c'est-à-dire un réarrangement des $d_i$, avec conservation du nombre d'occurrences puisque $\\sigma$ est une bijection. **(i) $\\Rightarrow$ (ii)** : Si $D$ et $D'$ ont les mêmes coefficients diagonaux avec les mêmes occurrences, il existe $\\sigma \\in B_n$ telle que $d'_i = d_{\\sigma(i)}$ pour tout $i$. En posant $M = \\omega(\\sigma)$, la Q3 donne $D \\omega(\\sigma) = \\omega(\\sigma) \\mathrm{Diag}((d_{\\sigma(i)})) = \\omega(\\sigma) D'$. Donc $D' = \\omega(\\sigma)^{-1} D \\omega(\\sigma) = {}^t\\!\\omega(\\sigma) D \\omega(\\sigma) = {}^t\\!M D M$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2022","partie":"Partie 3","questions":"2 q. : 12, 13","difficulte":"Intermédiaire","intitule":"Montrer que $t \\mapsto e^{tA}Be^{-tA}$ est à valeurs dans $\\mathcal{A}_G$ ; Stabilité de $\\mathcal{A}_G$ par crochet de Lie via dérivation de $e^{tA}Be^{-tA}$","corrections":[{"question":"12","correction":"Soit $t \\in \\mathbb{R}$ fixé. Posons $u(t) = e^{tA}Be^{-tA}$. Il faut montrer que $u(t) \\in \\mathcal{A}_G$, c'est-à-dire que pour tout $s \\in \\mathbb{R}$, $e^{su(t)} \\in G$. Or $u(t) = e^{tA}Be^{-tA} = PBP^{-1}$ avec $P = e^{tA}$. Par la propriété admise dans le sujet (similitude et exponentielle), $e^{su(t)} = e^{sPBP^{-1}} = Pe^{sB}P^{-1} = e^{tA}e^{sB}e^{-tA}$. Puisque $A \\in \\mathcal{A}_G$, $e^{tA} \\in G$ pour tout $t$, donc $e^{tA} \\in G$ et $e^{-tA} = (e^{tA})^{-1} \\in G$. Puisque $B \\in \\mathcal{A}_G$, $e^{sB} \\in G$. Comme $G$ est un sous-groupe, $e^{tA}e^{sB}e^{-tA} \\in G$. Ceci étant vrai pour tout $s \\in \\mathbb{R}$, on a $u(t) \\in \\mathcal{A}_G$."},{"question":"13","correction":"Par Q12, pour tous $A, B \\in \\mathcal{A}_G$ et tout $t \\in \\mathbb{R}$, $u(t) = e^{tA}Be^{-tA} \\in \\mathcal{A}_G$. Calculons $u'(0)$. On a $u(t) = e^{tA}Be^{-tA}$, donc $u'(t) = Ae^{tA}Be^{-tA} + e^{tA}B(-A)e^{-tA} = Ae^{tA}Be^{-tA} - e^{tA}BAe^{-tA}$. En $t = 0$ : $u'(0) = AB - BA = [A,B]$. Or $u(0) = B \\in \\mathcal{A}_G$ et $u(t) \\in \\mathcal{A}_G$ pour tout $t$. Donc $\\frac{u(t)-u(0)}{t} = \\frac{u(t) - B}{t} \\in \\mathcal{A}_G$ pour tout $t \\neq 0$ (car $\\mathcal{A}_G$ est un sev par Q11, donc stable par combinaison linéaire). En passant à la limite $t \\to 0$, comme $\\mathcal{A}_G$ est un sous-espace vectoriel de dimension finie, il est fermé (tout sev de dimension finie est fermé dans un evn). Donc $[A,B] = u'(0) = \\lim_{t \\to 0}\\frac{u(t)-B}{t} \\in \\mathcal{A}_G$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2024","partie":"Partie I","questions":"1 q. : 3","difficulte":"Intermédiaire","intitule":"Rang d'une matrice symétrique non nulle à diagonale nulle","corrections":[{"question":"3","correction":"Un graphe non vide possède au moins une arête, donc $M_{G,\\sigma} \\neq 0$ et $\\operatorname{rg}(M_{G,\\sigma}) \\geq 1$. Supposons par l'absurde que $\\operatorname{rg}(M_{G,\\sigma}) = 1$. Alors il existe des vecteurs colonnes $U, V \\in \\mathbb{R}^n$ non nuls tels que $M_{G,\\sigma} = U V^T$. Comme $M_{G,\\sigma}$ est symétrique, $UV^T = VU^T$. Cela implique que $U$ et $V$ sont colinéaires : $V = \\lambda U$ pour un $\\lambda \\neq 0$. Donc $M_{G,\\sigma} = \\lambda U U^T$. Alors $(M_{G,\\sigma})_{i,i} = \\lambda u_i^2$ pour tout $i$. Or les termes diagonaux de $M_{G,\\sigma}$ sont tous nuls (pas de boucle dans un graphe). Donc $\\lambda u_i^2 = 0$ pour tout $i$. Comme $\\lambda \\neq 0$, on a $u_i = 0$ pour tout $i$, donc $U = 0$, contradiction. Ainsi $\\operatorname{rg}(M_{G,\\sigma}) \\geq 2$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2025","partie":"Partie C","questions":"4 q. : 10, 12, 13, 14","difficulte":"Standard／Intermédiaire","intitule":"Identification des vecteurs colonnes de la base canonique via puissances d'une matrice shift ; Calcul matriciel avec la matrice shift et exploitation de $S^\\top S$ ; Réécriture d'une somme de termes de rang 1 en produit $VDV^\\top$ ; Non-inversibilité via famille liée et déterminant nul de $V$ ou $D$","corrections":[{"question":"10","correction":"La matrice $S \\in \\mathcal{M}_n(\\mathbb{R})$ est définie par $S_{i,j} = \\delta_{i+1,j}$. Sa transposée vérifie $(S^\\top)_{i,j} = S_{j,i} = \\delta_{j+1,i} = \\delta_{i,j+1}$. Ainsi $S^\\top$ a des 1 juste en-dessous de la diagonale.\n\nOn a $U = e_1$ (premier vecteur canonique). Calculons $(S^\\top)^k U$ pour $0 \\leq k \\leq n-1$.\n\nLe coefficient $i$ de $S^\\top e_j$ est $(S^\\top e_j)_i = \\sum_{\\ell} (S^\\top)_{i,\\ell} (e_j)_\\ell = (S^\\top)_{i,j} = \\delta_{i,j+1}$, qui vaut 1 si $i = j+1$ et 0 sinon. Donc $S^\\top e_j = e_{j+1}$ pour $1 \\leq j \\leq n-1$.\n\nPar récurrence immédiate : $(S^\\top)^k U = (S^\\top)^k e_1 = e_{k+1}$ pour $0 \\leq k \\leq n-1$.\n\nAinsi $((S^\\top)^i U)_{0 \\leq i \\leq n-1} = (e_1, e_2, \\ldots, e_n)$, qui est la base canonique de $\\mathcal{M}_{n,1}(\\mathbb{R})$. C'est donc bien une base."},{"question":"12","correction":"Développons chaque produit :\n\n$C_j^\\top C_j = (I_n - \\alpha_j S)^\\top(I_n - \\alpha_j S) = (I_n - \\alpha_j S^\\top)(I_n - \\alpha_j S) = I_n - \\alpha_j S^\\top - \\alpha_j S + \\alpha_j^2 S^\\top S$.\n\n$B_j^\\top B_j = (S - \\alpha_j I_n)^\\top(S - \\alpha_j I_n) = (S^\\top - \\alpha_j I_n)(S - \\alpha_j I_n) = S^\\top S - \\alpha_j S^\\top - \\alpha_j S + \\alpha_j^2 I_n$.\n\nDonc $C_j^\\top C_j - B_j^\\top B_j = (I_n - \\alpha_j^2 I_n) - (S^\\top S - \\alpha_j^2 S^\\top S) = (1-\\alpha_j^2)(I_n - S^\\top S)$.\n\nCalculons $S^\\top S$. On a $(S^\\top S)_{i,j} = \\sum_{k=1}^n (S^\\top)_{i,k} S_{k,j} = \\sum_{k=1}^n S_{k,i} S_{k,j} = \\sum_{k=1}^n \\delta_{k+1,i} \\delta_{k+1,j}$. Ce produit vaut 1 si $i = j$ et $i \\geq 2$ (car $k = i-1 \\geq 1$), et 0 si $i = 1$ ou $i \\neq j$.\n\nDonc $S^\\top S = \\text{Diag}(0, 1, 1, \\ldots, 1)$ et $I_n - S^\\top S = \\text{Diag}(1, 0, 0, \\ldots, 0) = e_1 e_1^\\top = UU^\\top$.\n\nFinalement : $C_j^\\top C_j - B_j^\\top B_j = (1-\\alpha_j^2) UU^\\top$."},{"question":"13","correction":"D'après Q11 et Q12 :\n$$J(p) = \\sum_{j=1}^n f_j(S)^\\top (1-\\alpha_j^2) UU^\\top f_j(S) = \\sum_{j=1}^n (1-\\alpha_j^2) \\left(f_j(S)^\\top U\\right)\\left(f_j(S)^\\top U\\right)^\\top.$$\n\nOr $f_j(S)^\\top U = f_j(S^\\top) U$ (car la transposée d'un polynôme en $S$ est le même polynôme en $S^\\top$, puisque $(S^k)^\\top = (S^\\top)^k$). C'est exactement $V_j$, la $j$-ème colonne de $V$.\n\nDonc $J(p) = \\sum_{j=1}^n (1-\\alpha_j^2) V_j V_j^\\top$.\n\nOr, par la formule du produit matriciel par colonnes : $(VDV^\\top)_{i,k} = \\sum_{j=1}^n D_{j,j} V_{i,j} V_{k,j} = \\sum_{j=1}^n (1-\\alpha_j^2)(V_j)_i (V_j)_k = \\sum_{j=1}^n (1-\\alpha_j^2)(V_j V_j^\\top)_{i,k}$.\n\nAinsi $J(p) = VDV^\\top$."},{"question":"14","correction":"Supposons que $p$ possède une racine stable $\\alpha$, c'est-à-dire $\\alpha \\neq 0$ et $p(\\alpha) = p(1/\\alpha) = 0$. D'après Q13, $J(p) = VDV^\\top$, donc $\\det(J(p)) = (\\det V)^2 \\det D$.\n\n**Cas 1 : $\\alpha = 1/\\alpha$, i.e. $\\alpha^2 = 1$ ($\\alpha = \\pm 1$).** Alors $\\alpha$ est l'une des racines $\\alpha_j$, et $1 - \\alpha_j^2 = 0$. La matrice $D = \\text{Diag}((1-\\alpha_j^2))$ a un coefficient diagonal nul, donc $\\det D = 0$ et $\\det(J(p)) = 0$.\n\n**Cas 2 : $\\alpha \\neq 1/\\alpha$.** Alors il existe $i < k$ tels que $\\alpha_i = \\alpha$ et $\\alpha_k = 1/\\alpha$ (ou l'inverse), donc $\\alpha_i \\alpha_k = 1$. Par Q6, la famille $(f_1, \\ldots, f_n)$ est liée. L'application $\\varphi : \\mathbb{R}_{n-1}[X] \\to \\mathcal{M}_{n,1}(\\mathbb{R})$ définie par $\\varphi(q) = q(S^\\top) U$ est linéaire. D'après Q10, les $(S^\\top)^i U$ pour $0 \\leq i \\leq n-1$ forment une base, donc $\\varphi$ est un isomorphisme de $\\mathbb{R}_{n-1}[X]$ sur $\\mathcal{M}_{n,1}(\\mathbb{R})$. En particulier, $\\varphi$ conserve la liberté/liaison. Comme $(f_1, \\ldots, f_n)$ est liée, $(V_1, \\ldots, V_n) = (\\varphi(f_1), \\ldots, \\varphi(f_n))$ est liée. Donc $V$ n'est pas inversible, $\\det V = 0$ et $\\det(J(p)) = 0$.\n\nDans les deux cas, $J(p)$ n'est pas inversible."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2025","partie":"Partie E","questions":"1 q. : 20","difficulte":"Standard","intitule":"Équivalence par double implication (Q14 et Q19+Q10)","corrections":[{"question":"20","correction":"**Sens $\\Rightarrow$ : $J(p)$ inversible $\\Rightarrow$ $p$ sans racine stable.** C'est la contraposée de Q14 : si $p$ possède une racine stable, alors $J(p)$ n'est pas inversible.\n\n**Sens $\\Leftarrow$ : $p$ sans racine stable $\\Rightarrow$ $J(p)$ inversible.** Par l'absurde, supposons que $p$ n'a pas de racine stable et que $J(p)$ n'est pas inversible. D'après Q19, il existe un polynôme $q \\neq 0$ de degré $\\leq n-1$ tel que $q(S^\\top)U = 0_{n,1}$.\n\nÉcrivons $q = \\sum_{k=0}^{n-1} c_k X^k$ avec au moins un $c_k \\neq 0$. Alors :\n$$q(S^\\top)U = \\sum_{k=0}^{n-1} c_k (S^\\top)^k U = 0_{n,1}.$$\n\nOr d'après Q10, la famille $((S^\\top)^k U)_{0 \\leq k \\leq n-1}$ est une base de $\\mathcal{M}_{n,1}(\\mathbb{R})$. Une combinaison linéaire nulle d'une base ne peut avoir que des coefficients nuls : $c_k = 0$ pour tout $k$, donc $q = 0$. Contradiction avec $q \\neq 0$.\n\nConclusion : si $p$ n'a pas de racine stable, $J(p)$ est inversible."}]},{"banque":"X-ENS","epreuve":"Maths 1 2017","partie":"Partie III","questions":"3 q. : 14a, 14b, 14c","difficulte":"Standard／Intermédiaire／Avancé","intitule":"Traduire $u \\in \\mathcal{S}$ en relation $J_4 U = {}^tU J_4$ ; Résoudre le système $J_4U = {}^tUJ_4$ par blocs $2\\times2$ ; Calculer $U^2$ par blocs et vérifier $T(U) = 0$ via Cayley-Hamilton en dimension 2","corrections":[{"question":"14a","correction":"La relation $\\omega(x,u(y)) = \\omega(u(x),y)$ se traduit en coordonnées par ${}^tXJ_4UY = {}^t(UX)J_4Y = {}^tX{}^tUJ_4Y$ pour tout $X,Y$. On en déduit $J_4U = {}^tUJ_4$."},{"question":"14b","correction":"Notons $U=(a_{ij})$. L'équation $J_4U={}^tUJ_4$ impose les contraintes suivantes : $a_{1,3}=a_{3,1}=a_{4,2}=a_{2,4}=0$, $a_{1,1}=a_{3,3}$, $a_{2,2}=a_{4,4}$, $a_{1,2}=a_{4,3}$, $a_{2,1}=a_{3,4}$, $a_{3,2}=-a_{4,1}$, $a_{1,4}=-a_{2,3}$. En posant $N=\\begin{pmatrix}a_{1,1}&a_{1,2}\\\\a_{2,1}&a_{2,2}\\end{pmatrix}$, $\\alpha=a_{2,3}$, $\\beta=a_{4,1}$, on retrouve la forme annoncée."},{"question":"14c","correction":"Posons $T(X) = X^2-\\mathrm{tr}(N)X+(\\det(N)+\\alpha\\beta)$. On vérifie l'identité $J_2N+{}^tNJ_2 = \\mathrm{tr}(N)J_2$. Un calcul par blocs donne $U^2 = \\begin{pmatrix}N^2-\\alpha\\beta I_2 & \\alpha\\mathrm{tr}(N)J_2 \\\\ \\beta\\mathrm{tr}(N)J_2 & ({}^tN)^2-\\alpha\\beta I_2\\end{pmatrix}$. L'identité de Cayley-Hamilton appliquée à $N$ ($N^2 = \\mathrm{tr}(N)N - \\det(N)I_2$) permet de conclure $T(U) = U^2 - \\mathrm{tr}(N)U + (\\det(N)+\\alpha\\beta)I_4 = O_4$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2018","partie":"Préliminaire","questions":"1 q. : 1","difficulte":"Standard","intitule":"Expression du produit scalaire de Frobenius en coefficients","corrections":[{"question":"1","correction":"Rappelons que $\\langle A, B \\rangle_F = \\operatorname{tr}(A^T B)$. Le coefficient $(i,j)$ de $A^T B$ s'écrit $\\sum_{l=1}^{n} a_{l,i} b_{l,j}$. En prenant la trace, on obtient $\\operatorname{tr}(A^T B) = \\sum_{i=1}^{p} \\sum_{l=1}^{n} a_{l,i} b_{l,i} = \\sum_{i=1}^{n} \\sum_{j=1}^{p} a_{i,j} b_{i,j}$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2018","partie":"Partie I","questions":"1 q. : 7","difficulte":"Standard","intitule":"Déduction de la SVD $A = U\\Sigma V^T$","corrections":[{"question":"7","correction":"On écrit $U\\Sigma V^T = U\\Sigma D^T U^T A = UU^T A$. Or $UU^T$ est le projecteur orthogonal sur $\\operatorname{Im}(U) = \\operatorname{Im}(S) = \\operatorname{Im}(A)$, donc $UU^T A = A$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2018","partie":"Partie IV","questions":"1 q. : 13","difficulte":"Intermédiaire","intitule":"Rang constant au voisinage et calcul de $\\gamma'(0)$","corrections":[{"question":"13","correction":"(a) $U^T U = I_k$ garantit $\\operatorname{rg}(U) = k$, et une sous-matrice $k \\times k$ est inversible. Par continuité du déterminant, elle reste inversible pour $|t|$ assez petit, donc $\\operatorname{rg}(U + t\\bar{U}) \\geq k$. Comme le rang ne peut dépasser $k$, il est constant égal à $k$. Même argument pour $\\Sigma$ et $V$.\n\n(b) Au voisinage de $0$, les trois facteurs sont de rang $k$ et $\\Sigma + t\\bar{\\Sigma}$ est inversible, donc $\\operatorname{rg}(\\gamma(t)) = k$.\n\n(c) $\\gamma$ est polynomiale en $t$, donc $C^\\infty$. La règle de Leibniz donne $\\gamma'(0) = \\bar{U}\\Sigma V^T + U\\bar{\\Sigma}V^T + U\\Sigma\\bar{V}^T$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2020","partie":"Partie I","questions":"3 q. : 3a, 3b, 3c","difficulte":"Intermédiaire／Avancé","intitule":"Poser $B=\\begin{pmatrix}A&I_n\\\\I_n&-A\\end{pmatrix}$ et vérifier par produit par blocs ; Construction récursive de $\\mathscr{B}_n$ par $J(A)=\\mathrm{diag}(A,A)$ et $K(A)=\\begin{pmatrix}A&I\\\\I&-A\\end{pmatrix}$, puis récurrence ; Écrire $q_i=r_i/s_i$, appliquer Q3b avec $h=\\max(r_i,s_i)$, puis poser $M_i=A_{r_i}A_{s_i}^{-1}$","corrections":[{"question":"3a","correction":"On pose $B = \\begin{pmatrix}A & I_n \\\\ I_n & -A\\end{pmatrix}$. Un calcul par blocs montre que $B$ commute avec $\\begin{pmatrix}A & 0 \\\\ 0 & A\\end{pmatrix}$. De plus $B^2 = \\begin{pmatrix}A^2 + I_n & 0 \\\\ 0 & I_n + A^2\\end{pmatrix} = (q+1)I_{2n}$. La matrice $B$ est symétrique et à coefficients rationnels."},{"question":"3b","correction":"On définit $J(A) = \\begin{pmatrix}A & 0 \\\\ 0 & A\\end{pmatrix}$ et $K(A) = \\begin{pmatrix}A & I \\\\ I & -A\\end{pmatrix}$. On pose $\\mathscr{B}_1 = ([1])$ et $\\mathscr{B}_{n+1} = (J(A_1), \\ldots, J(A_m), K(A_m))$ si $\\mathscr{B}_n = (A_1, \\ldots, A_m)$. Par récurrence, les matrices de $\\mathscr{B}_d$ appartiennent à $S_{2^{d-1}}(\\mathbb{Q})$, commutent deux à deux, et vérifient $M_k^2 = k I_{2^{d-1}}$ pour $k \\in \\{1, \\ldots, d\\}$."},{"question":"3c","correction":"On écrit $q_i = r_i/s_i$ et pose $h = \\max(r_i, s_i)$. D'après Q3b, il existe des matrices $A_1, \\ldots, A_h \\in S_{2^{h-1}}(\\mathbb{Q})$ commutant deux à deux avec $A_k^2 = k I$. Chaque $A_k$ est inversible et $(A_k^{-1})^2 = \\frac{1}{k} I$, avec $A_k^{-1} \\in S_{2^{h-1}}(\\mathbb{Q})$. En posant $M_i = A_{r_i} A_{s_i}^{-1} \\in S(\\mathbb{Q})$, on obtient $M_i^2 = A_{r_i}^2 (A_{s_i}^{-1})^2 = \\frac{r_i}{s_i} I = q_i I$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2020","partie":"Partie IV","questions":"3 q. : 17a, 17b, 18","difficulte":"Intermédiaire／Avancé","intitule":"Calculer $(SM)_{ij}=t(z^{i+j+1})$ par la $\\mathbb{Q}$-linéarité de $t$ et $Z(z)=0$, constater la symétrie en $i,j$ ; Écrire $SM=P^TDP M=R^TRM$ via $R=\\mathrm{Diag}(\\sqrt{q_i})P$, puis $RMR^{-1}=(R^T)^{-1}(SM)R^{-1}$ est symétrique car $SM$ l'est ; Remplacer $\\sqrt{q_i}$ par des matrices $M_i\\in S_n(\\mathbb{Q})$ avec $M_i^2=q_iI_n$ (Q3c), construire $U=HP'$ par blocs, et montrer $UM'U^{-1}\\in S_{nd}(\\mathbb{Q})$ est VP $z$","corrections":[{"question":"17a","correction":"Pour $j \\in \\{1, \\ldots, d-1\\}$ : $(SM)_{ij} = S_{i,j+1} = t(z^{i+j+1})$. Pour $j = d$ : $(SM)_{id} = \\sum_{k=1}^d S_{ik} a_{k-1} = t\\left(z^{i+1} \\sum_{k=0}^{d-1} a_k z^k\\right) = t(z^{i+1} \\cdot z^d) = t(z^{i+d+1})$ (car $Z(z) = 0$ implique $\\sum a_k z^k = z^d$). Dans les deux cas $(SM)_{ij} = t(z^{i+j+1})$, qui est symétrique en $(i, j)$."},{"question":"17b","correction":"On dispose de $S = P^T D P$, donc $SM = P^T D P M = R^T R M$ avec $R = \\mathrm{Diag}(\\sqrt{q_i}) P$ (car $D = \\mathrm{Diag}(\\sqrt{q_i})^2$). Alors $R M R^{-1} = (R^T)^{-1}(SM)R^{-1} = (R^{-1})^T(SM)R^{-1}$. Comme $SM$ est symétrique, $(RMR^{-1})^T = (R^{-1})^T(SM)^T R^{-1} = (R^{-1})^T(SM)R^{-1} = RMR^{-1}$."},{"question":"18","correction":"D'après Q3c, il existe $n$ et $M_1, \\ldots, M_d \\in S_n(\\mathbb{Q})$ commutant deux à deux avec $M_i^2 = q_i I_n$. On note $A'$ la matrice par blocs obtenue en remplaçant chaque coefficient $a_{ij}$ de $A$ par $a_{ij} I_n$. Soit $H = \\mathrm{Diag}(M_1, \\ldots, M_d) \\in S_{nd}(\\mathbb{Q})$, inversible. En posant $U = H P'$ (où $P'$ est la version par blocs de $P$), on obtient $U M' U^{-1} = (U^{-1})^T (SM)' U^{-1} \\in S_{nd}(\\mathbb{Q})$ car $(SM)'$ est symétrique à coefficients rationnels. Comme $z$ est valeur propre de $M$, c'est aussi une valeur propre de $M'$ et de $U M' U^{-1}$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2021","partie":"Partie 1","questions":"4 q. : I1, I2, I3, I4","difficulte":"Standard","intitule":"Par P2, $g$ est diagonalisable avec VP de module 1, donc $|\\mathrm{Tr}(g)|=|\\lambda_1+\\lambda_2|\\leq|\\lambda_1|+|\\lambda_2|=2$ ; VP réelles de module 1 valent $\\pm1$, donc $g^2=I_2$, donc $d|2$ ; VP conjuguées $e^{\\pm i\\theta}$, trace $2\\cos\\theta\\in\\mathbb{Z}$ et $|2\\cos\\theta|\\leq2$, donc trace $\\in\\{-1,0,1\\}$, ce qui donne trois polynômes ; Combiner I2 ($d\\in\\{1,2\\}$ si VP réelles) et I3 ($\\chi_g=X^2+1\\Rightarrow d=4$, $X^2+X+1\\Rightarrow d=3$, $X^2-X+1\\Rightarrow d=6$)","corrections":[{"question":"I1","correction":"D'après P2, $g$ est diagonalisable à valeurs propres $\\lambda_1, \\lambda_2$ de module 1. Donc $|\\mathrm{Tr}(g)| = |\\lambda_1 + \\lambda_2| \\leq |\\lambda_1| + |\\lambda_2| = 2$."},{"question":"I2","correction":"Les valeurs propres réelles de module 1 valent $\\pm 1$. On a alors $g^2 = I_2$, donc $d \\mid 2$, soit $d \\in \\{1, 2\\}$."},{"question":"I3","correction":"Les valeurs propres sont $e^{i\\theta}$ et $e^{-i\\theta}$ avec $\\theta \\notin \\pi\\mathbb{Z}$. La trace $2\\cos\\theta \\in \\mathbb{Z}$ vérifie $|2\\cos\\theta| < 2$ (valeurs propres non réelles). Donc la trace appartient à $\\{-1, 0, 1\\}$, ce qui donne $\\chi_g \\in \\{X^2+1, X^2+X+1, X^2-X+1\\}$."},{"question":"I4","correction":"Si les valeurs propres sont réelles : $d \\in \\{1, 2\\}$. Sinon, $g \\sim \\mathrm{diag}(\\lambda, \\bar\\lambda)$ avec $\\lambda \\in \\{i, j, -j\\}$ d'ordres 4, 3, 6 respectivement. Donc $d \\in \\{1, 2, 3, 4, 6\\}$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2021","partie":"Partie 3","questions":"6 q. : III4c, III5, III6, III7b, III9, III10","difficulte":"Standard／Avancé／Intermédiaire","intitule":"Identifier le coefficient de $X^{(n-1)\\ell}$ dans $\\chi_{M^\\ell}(X^\\ell)-\\chi_M(X)^\\ell\\in\\ell\\mathbb{Z}[X]$ ; L'ordre de $g$ divise $p^r$, donc $g^{p^k}=I_n$ pour $k$ assez grand ; appliquer III4c répétitivement pour remonter de $\\mathrm{Tr}(I_n)=n$ à $\\mathrm{Tr}(g)$ ; $\\mathrm{Tr}(g^\\ell)\\equiv\\mathrm{Tr}(g)\\pmod{\\ell}$ (III4c) et $|\\mathrm{Tr}(g^\\ell)-\\mathrm{Tr}(g)|\\leq2n<\\ell$, donc égalité ; $g^k=g^m$ (car $g^{p^r}=I$), et $m=\\ell_1\\cdots\\ell_q$ avec $\\ell_i>2n$ premiers ; appliquer III6 itérativement ; Sommer $\\mathrm{Tr}(g^k)=\\mathrm{Tr}(g)$ sur $k\\in J_r$ (III7b), exprimer $\\sum_{k\\in J_r}\\lambda_i^k$ via III8b et identifier ; De III9 et III5 : $\\mathrm{Tr}(g)=n_0-n_1/(p-1)$, $p|(n-\\mathrm{Tr}(g))$, et $0\\leq(n-\\mathrm{Tr}(g))/p\\leq a$","corrections":[{"question":"III4c","correction":"On a $\\chi_M(X) = X^n - \\mathrm{Tr}(M)X^{n-1} + \\cdots$ et $\\chi_{M^\\ell}(X^\\ell) = X^{\\ell n} - \\mathrm{Tr}(M^\\ell)X^{\\ell(n-1)} + \\cdots$. Le coefficient de $X^{(n-1)\\ell}$ dans $\\chi_{M^\\ell}(X^\\ell) - \\chi_M(X)^\\ell$ vaut $-\\mathrm{Tr}(M^\\ell) - (-\\mathrm{Tr}(M)) \\equiv 0 \\pmod{\\ell}$ d'après III4b."},{"question":"III5","correction":"L'ordre de $g$ divise $p^r$, donc il existe $k$ tel que $g^{p^k} = I_n$. En appliquant III4c récursivement, $\\mathrm{Tr}(g^{p^k}) \\equiv \\mathrm{Tr}(g) \\pmod{p}$. Or $\\mathrm{Tr}(I_n) = n$. Donc $\\mathrm{Tr}(g) \\equiv n \\pmod{p}$."},{"question":"III6","correction":"D'après III4c, $\\mathrm{Tr}(g^\\ell) \\equiv \\mathrm{Tr}(g) \\pmod{\\ell}$. Les valeurs propres de $g^\\ell$ sont de module 1, donc $|\\mathrm{Tr}(g^\\ell)| \\leq n$ et $|\\mathrm{Tr}(g)| \\leq n$. Ainsi $|\\mathrm{Tr}(g^\\ell) - \\mathrm{Tr}(g)| \\leq 2n < \\ell$, et la différence, multiple de $\\ell$, est nulle."},{"question":"III7b","correction":"L'ordre de $g$ divise $p^r$, donc $g^{p^r} = I$ et $g^k = g^m$. D'après III7a, $m = \\ell_1 \\cdots \\ell_q$ avec $\\ell_i > 2n$ premiers. En appliquant III6 itérativement : $\\mathrm{Tr}(g^m) = \\mathrm{Tr}(g^{\\ell_1 \\cdots \\ell_{q-1}}) = \\cdots = \\mathrm{Tr}(g)$."},{"question":"III9","correction":"D'après III7b, $\\mathrm{Tr}(g^k) = \\mathrm{Tr}(g)$ pour $k \\in J_r$, donc $|J_r| \\mathrm{Tr}(g) = \\sum_{k \\in J_r} \\sum_i \\lambda_i^k = \\sum_i \\sum_{k \\in J_r} \\lambda_i^k$. D'après III8b, la contribution d'une valeur propre $\\lambda_i$ est $p^{r-1}(p-1)$ si $\\lambda_i = 1$, $-p^{r-1}$ si son ordre est $p$, $0$ sinon. Avec $|J_r| = p^{r-1}(p-1)$ : $\\mathrm{Tr}(g) = n_0 - \\frac{n_1}{p-1}$."},{"question":"III10","correction":"D'après III5, $p \\mid (n - \\mathrm{Tr}(g))$. D'après III9, $\\mathrm{Tr}(g) = n_0 - n_1/(p-1) \\in [-n/(p-1), n]$. Donc $0 \\leq (n - \\mathrm{Tr}(g))/p \\leq n/(p(1-1/p)) \\leq n/(p-1)$. Comme $(n - \\mathrm{Tr}(g))/p = v \\in \\mathbb{Z}$, on a $v \\in \\{0, \\ldots, \\lfloor n/(p-1) \\rfloor\\} = \\{0, \\ldots, a\\}$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2021","partie":"Partie 4","questions":"1 q. : IV2","difficulte":"Standard","intitule":"(i) Trace bloc-diagonale ; (ii) produit par blocs ; (iii) appliquer (ii) avec $g',h'=g^{-1},h^{-1}$","corrections":[{"question":"IV2","correction":"(i) $\\mathrm{Tr}(g \\otimes h) = \\sum_i g_{ii} \\mathrm{Tr}(h) = \\mathrm{Tr}(g)\\mathrm{Tr}(h)$. (ii) Le bloc $(i,j)$ de $(g \\otimes h)(g' \\otimes h')$ est $\\sum_k g_{ik} h \\cdot g'_{kj} h' = (gg')_{ij} hh'$. (iii) De (ii), $(g \\otimes h)(g^{-1} \\otimes h^{-1}) = I_n \\otimes I_k = I_{nk}$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2024","partie":"Première partie","questions":"2 q. : 5c, 5d","difficulte":"Intermédiaire／Standard","intitule":"Inversion de la matrice de Pascal par le changement de base inverse (binome avec signes alternes) ; Formule d'inversion de Mobius (cas binomial) par application de $M^{-1}$ au vecteur $u = Mv$","corrections":[]},{"banque":"X-ENS","epreuve":"Maths 2 2023","partie":"Partie III","questions":"1 q. : 21","difficulte":"Intermédiaire","intitule":"Inversibilité analytique de $Q$ via le déterminant non nul en $t=0$ et la question 6","corrections":[]}]
+[
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2018",
+    "partie": "II.2",
+    "questions": "1 q. : Q9",
+    "difficulte": "Standard",
+    "intitule": "Matrice de Vandermonde et complexité du pivot de Gauss",
+    "corrections": [
+      {
+        "question": "Q9",
+        "correction": "On a $P(x_i) = \\sum_{j=0}^n a_j x_i^j$ pour tout $i \\in [\\![0,n]\\!]$. Le système s'écrit $V \\cdot A = F$ où $V = (x_i^j)_{0 \\leq i,j \\leq n}$ est la matrice de Vandermonde. Explicitement :\n$$V = \\begin{pmatrix} 1 & x_0 & x_0^2 & \\cdots & x_0^n \\\\ 1 & x_1 & x_1^2 & \\cdots & x_1^n \\\\ \\vdots & & & & \\vdots \\\\ 1 & x_n & x_n^2 & \\cdots & x_n^n \\end{pmatrix}.$$\nSon déterminant est $\\det V = \\prod_{0 \\leq i < j \\leq n} (x_j - x_i) \\neq 0$ car les $x_i$ sont deux à deux distincts. La résolution par pivot de Gauss a une complexité $O(n^3)$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2023",
+    "partie": "Exercice I",
+    "questions": "5 q. : Q1, Q2, Q3, Q4, Q5",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Produit matriciel par triple boucle en Python ; Test de symétrie d'une matrice d'adjacence ; Distance dans un graphe par puissances successives de la matrice d'adjacence ; Requête SQL avec clause WHERE ; Requête SQL avec jointure entre deux tables",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "def produit(A, B):\n    n = len(A)\n    C = [[0]*n for _ in range(n)]\n    for i in range(n):\n        for j in range(n):\n            for k in range(n):\n                C[i][j] += A[i][k] * B[k][j]\n    return C"
+      },
+      {
+        "question": "Q2",
+        "correction": "def oriente(A):\n    n = len(A)\n    for i in range(n):\n        for j in range(i+1, n):\n            if A[i][j] != A[j][i]:\n                return True\n    return False"
+      },
+      {
+        "question": "Q3",
+        "correction": "def distance(A, i, j):\n    n = len(A)\n    P = [[1 if k == l else 0 for l in range(n)] for k in range(n)]  # identité\n    for p in range(1, n+1):\n        P = produit(P, A)\n        if P[i][j] != 0:\n            return p"
+      },
+      {
+        "question": "Q4",
+        "correction": "SELECT id FROM CLIENTS WHERE ville = 'Toulouse';"
+      },
+      {
+        "question": "Q5",
+        "correction": "SELECT CLIENTS.email FROM CLIENTS JOIN PARTENAIRES ON CLIENTS.id = PARTENAIRES.id_client WHERE PARTENAIRES.partenaire = 'SCEI';"
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2017",
+    "partie": "Partie I",
+    "questions": "1 q. : Q3",
+    "difficulte": "Standard",
+    "intitule": "Calcul de $\\mu_5=\\mu_0 A^5$ à la calculatrice",
+    "corrections": [
+      {
+        "question": "Q3",
+        "correction": "On calcule $A^5$ à la calculatrice puis $\\mu_5 = \\mu_0 A^5$, ce qui donne numériquement la loi de $X_5$ arrondie au centième."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2017",
+    "partie": "Partie IV - Convergence de la suite",
+    "questions": "1 q. : Q24",
+    "difficulte": "Standard",
+    "intitule": "Stabilité de l'ensemble des vecteurs stochastiques par multiplication par $A$",
+    "corrections": [
+      {
+        "question": "Q24",
+        "correction": "$(\\mu A)_j = \\sum_i m_i a_{ij} \\geq 0$ et $\\sum_j (\\mu A)_j = \\sum_i m_i \\sum_j a_{ij} = \\sum_i m_i = 1$ par interversion et stochasticité. Donc $\\mu A$ est stochastique."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2017",
+    "partie": "Partie V",
+    "questions": "5 q. : Q29, Q30, Q31, Q32, Q33",
+    "difficulte": "Standard",
+    "intitule": "Manipulation de listes Python (indexation, len) ; Fonction Python de différence de deux vecteurs ; Fonction Python de norme infinie sans max() ; Produit vecteur ligne $\\times$ matrice en Python ; Calcul itératif de la probabilité invariante par convergence de $\\mu_n$",
+    "corrections": [
+      {
+        "question": "Q29",
+        "correction": "`len(A)=4` donne le nombre de lignes, `A[1]=[4,5,6]` est la deuxième ligne (indexation à partir de 0), `A[2][1]=8` est l'élément ligne 3, colonne 2."
+      },
+      {
+        "question": "Q30",
+        "correction": "On renvoie `[x[i]-y[i] for i in range(len(x))]`, soustraction composante par composante des deux vecteurs."
+      },
+      {
+        "question": "Q31",
+        "correction": "On initialise `m = abs(x[0])` puis on parcourt les éléments en mettant à jour `m = abs(x[i])` si `abs(x[i]) > m`. On renvoie `m`, le maximum des valeurs absolues."
+      },
+      {
+        "question": "Q32",
+        "correction": "On implémente $(xA)_j = \\sum_i x[i] \\cdot A[i][j]$ par une double boucle : pour chaque colonne $j$, on somme sur les lignes $i$."
+      },
+      {
+        "question": "Q33",
+        "correction": "On initialise $\\mu_0 = [1/p,\\ldots,1/p]$ et on itère $\\mu_{k+1} = \\mu_k A$ (via `itere`) tant que $\\|\\mu_{k+1}-\\mu_k\\|_\\infty > \\varepsilon$ (via `norme` et `difference`). Boucle `while` avec critère d'arrêt."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2018",
+    "partie": "Problème - Un exemple où la matrice $\\left(\\begin{array}{ll}a & b \\\\ c & d\\end{array}\\right)$ est diagonalisable sur $\\mathbb{R}$",
+    "questions": "2 q. : Q10, Q11",
+    "difficulte": "Intermédiaire",
+    "intitule": "Similitude par blocs : réduction de $\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}$ en $\\begin{pmatrix}A&0\\\\0&2A\\end{pmatrix}$ ; Double conjugaison : réduction complète de $\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}$ quand $A$ est diagonalisable",
+    "corrections": [
+      {
+        "question": "Q10",
+        "correction": "On pose $Q=\\begin{pmatrix}2I_n&I_n\\\\-3I_n&-I_n\\end{pmatrix}$ (en remplaçant dans $P$ de Q9 les scalaires par des blocs $\\alpha I_n,\\beta I_n,\\gamma I_n,\\delta I_n$). $Q$ est inversible car $(\\alpha\\delta-\\beta\\gamma)I_n=((-2)-(-3))I_n=I_n$ est inversible. On a $Q^{-1}=\\begin{pmatrix}-\\delta I_n&\\beta I_n\\\\\\gamma I_n&-\\alpha I_n\\end{pmatrix}\\cdot\\frac{1}{\\alpha\\delta-\\beta\\gamma}=\\begin{pmatrix}I_n&I_n\\\\-3I_n&-2I_n\\end{pmatrix}$. La matrice par blocs $\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}$ s'écrit $\\begin{pmatrix}4&2\\\\-3&-1\\end{pmatrix}\\otimes A$ au sens où le produit par blocs fonctionne exactement comme le produit scalaire. On calcule $Q^{-1}\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}Q$ en utilisant que $A$ commute avec $\\alpha I_n,\\beta I_n,\\ldots$ Le calcul reproduit celui de $P^{-1}VP=D$, donnant $\\begin{pmatrix}A&0\\\\0&2A\\end{pmatrix}=B$."
+      },
+      {
+        "question": "Q11",
+        "correction": "On calcule par blocs : $\\begin{pmatrix}R^{-1}&0\\\\0&R^{-1}\\end{pmatrix}\\begin{pmatrix}A&0\\\\0&2A\\end{pmatrix}\\begin{pmatrix}R&0\\\\0&R\\end{pmatrix}=\\begin{pmatrix}R^{-1}AR&0\\\\0&2R^{-1}AR\\end{pmatrix}=\\begin{pmatrix}\\Delta&0\\\\0&2\\Delta\\end{pmatrix}$. Or $B=Q^{-1}\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}Q$ (Q10), donc $\\begin{pmatrix}4A&2A\\\\-3A&-A\\end{pmatrix}=QBQ^{-1}=Q\\begin{pmatrix}R&0\\\\0&R\\end{pmatrix}\\begin{pmatrix}\\Delta&0\\\\0&2\\Delta\\end{pmatrix}\\begin{pmatrix}R^{-1}&0\\\\0&R^{-1}\\end{pmatrix}Q^{-1}$. La matrice $\\begin{pmatrix}\\Delta&0\\\\0&2\\Delta\\end{pmatrix}$ est diagonale (car $\\Delta$ l'est), donc la matrice par blocs est semblable à une matrice diagonale, et elle est diagonalisable."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2018",
+    "partie": "Problème - Un exemple où la matrice $\\left(\\begin{array}{ll}a & b \\\\ c & d\\end{array}\\right)$ est trigonalisable sur $\\mathbb{R}$",
+    "questions": "1 q. : Q14",
+    "difficulte": "Intermédiaire",
+    "intitule": "Similitude par blocs : $\\begin{pmatrix}3A&-2A\\\\2A&-A\\end{pmatrix}\\sim\\begin{pmatrix}A&-2A\\\\0&A\\end{pmatrix}$",
+    "corrections": [
+      {
+        "question": "Q14",
+        "correction": "On pose $Q=\\begin{pmatrix}I_n&I_n\\\\I_n&0\\end{pmatrix}$ à partir de $P=\\begin{pmatrix}1&1\\\\1&0\\end{pmatrix}$ de Q13. $\\det P=0-1=-1\\neq 0$ donc $Q$ est inversible. $Q^{-1}=\\begin{pmatrix}0&I_n\\\\I_n&-I_n\\end{pmatrix}$. On calcule $Q^{-1}\\begin{pmatrix}3A&-2A\\\\2A&-A\\end{pmatrix}Q$ par blocs. Le produit reproduit le calcul $P^{-1}EP=\\begin{pmatrix}1&-2\\\\0&1\\end{pmatrix}$ avec les scalaires remplacés par $A$, $-2A$, $0$, $A$. On obtient $Q^{-1}\\begin{pmatrix}3A&-2A\\\\2A&-A\\end{pmatrix}Q=\\begin{pmatrix}A&-2A\\\\0&A\\end{pmatrix}=F$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2019",
+    "partie": "Problème - Partie I",
+    "questions": "1 q. : Q15",
+    "difficulte": "Standard",
+    "intitule": "Similitude de $\\begin{pmatrix}\\lambda&a\\\\0&\\lambda\\end{pmatrix}$ et $\\begin{pmatrix}\\lambda&b\\\\0&\\lambda\\end{pmatrix}$ pour $a,b$ non nuls",
+    "corrections": [
+      {
+        "question": "Q15",
+        "correction": "On pose $P = \\begin{pmatrix}1 & 0 \\\\ 0 & b/a\\end{pmatrix}$, inversible car $a, b \\neq 0$, et $P^{-1} = \\begin{pmatrix}1 & 0 \\\\ 0 & a/b\\end{pmatrix}$. On calcule $P^{-1}AP = \\begin{pmatrix}1&0\\\\0&a/b\\end{pmatrix}\\begin{pmatrix}\\lambda&a\\\\0&\\lambda\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&b/a\\end{pmatrix} = \\begin{pmatrix}\\lambda&a\\\\0&\\lambda a/b\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&b/a\\end{pmatrix} = \\begin{pmatrix}\\lambda & b\\\\0&\\lambda\\end{pmatrix} = B$. Donc $A$ et $B$ sont semblables."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2019",
+    "partie": "Problème - Partie II",
+    "questions": "2 q. : Q16, Q18",
+    "difficulte": "Standard",
+    "intitule": "Décomposition $P=R+iS$ avec $PA=BP$ implique $RA=BR$ et $SA=BS$ ; Conclusion : similitude sur $\\mathbb{C}$ implique similitude sur $\\mathbb{R}$",
+    "corrections": [
+      {
+        "question": "Q16",
+        "correction": "De $B = P^{-1}AP$, on tire $PB = AP$, soit $(R + iS)B = A(R + iS)$. En développant : $RB + iSB = AR + iAS$. Comme $A$ et $B$ sont à coefficients réels, $RB$, $AR$, $SB$ et $AS$ sont à coefficients réels. Par identification des parties réelle et imaginaire : $RB = AR$ et $SB = AS$."
+      },
+      {
+        "question": "Q18",
+        "correction": "Par Q17, il existe $x_0 \\in \\mathbb{R}$ tel que $Q = R + x_0 S \\in GL_n(\\mathbb{R})$. Par Q16, $RB = AR$ et $SB = AS$, donc $QB = (R + x_0 S)B = RB + x_0 SB = AR + x_0 AS = A(R + x_0 S) = AQ$. Ainsi $B = Q^{-1}AQ$ avec $Q \\in GL_n(\\mathbb{R})$ : $A$ et $B$ sont semblables dans $\\mathcal{M}_n(\\mathbb{R})$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2020",
+    "partie": "Exercice I",
+    "questions": "1 q. : Q3",
+    "difficulte": "Standard",
+    "intitule": "Calcul de $A^n=PD^nP^{-1}$ coefficient par coefficient",
+    "corrections": [
+      {
+        "question": "Q3",
+        "correction": "$A^n = PD^nP^{-1}$ avec $D^n = \\mathrm{diag}(4^n, 1, 1)$. On a $A = I_3 + J$ et $A^n = (I_3 + J)^n$. Comme $J^2 = 3J$, par récurrence ou via la diagonalisation : $A^n = I_3 + \\frac{4^n - 1}{3}J$. Ainsi les coefficients diagonaux valent $\\frac{4^n + 2}{3}$ et les coefficients hors diagonale valent $\\frac{4^n - 1}{3}$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2025",
+    "partie": "Problème - Partie I",
+    "questions": "1 q. : Q15",
+    "difficulte": "Intermédiaire",
+    "intitule": "Calcul matriciel et caractérisation d'un projecteur",
+    "corrections": [
+      {
+        "question": "Q15",
+        "correction": "$M^2 = (UU^T)(UU^T) = U(U^TU)U^T$.\n\nOr $U^TU = \\begin{pmatrix} X_1 & X_2 & \\cdots & X_n \\end{pmatrix} \\begin{pmatrix} X_1 \\\\ X_2 \\\\ \\vdots \\\\ X_n \\end{pmatrix} = \\sum_{i=1}^n X_i^2 = \\sum_{i=1}^n X_i = \\text{Tr}(M)$\n\n(en utilisant $X_i^2 = X_i$ comme en Q14). C'est un **scalaire**, donc :\n$M^2 = \\text{Tr}(M) \\cdot UU^T = \\text{Tr}(M) \\cdot M$.\n\n$M$ est une matrice de projection (projecteur) si et seulement si $M^2 = M$, soit $\\text{Tr}(M) \\cdot M = M$, c'est-à-dire $(\\text{Tr}(M) - 1) \\cdot M = 0$.\n\nDeux cas :\n- Si $M = 0$ (i.e. $U = 0$) : $M^2 = 0 = M$, donc $M$ est un projecteur.\n- Si $M \\neq 0$ (i.e. $U \\neq 0$) : $(\\text{Tr}(M) - 1)M = 0$ avec $M \\neq 0$ implique $\\text{Tr}(M) = 1$.\n\nDonc : $M$ est un projecteur $\\Leftrightarrow M = 0$ ou $\\text{Tr}(M) = 1$ $\\Leftrightarrow \\text{Tr}(M) \\in \\{0, 1\\}$.\n\n$P(M \\text{ projecteur}) = P(\\text{Tr}(M) = 0) + P(\\text{Tr}(M) = 1)$.\n\nOr $\\text{Tr}(M) \\sim \\mathcal{B}(n, p)$ (Q14), donc :\n$P(\\text{Tr}(M) = 0) = (1-p)^n$ et $P(\\text{Tr}(M) = 1) = np(1-p)^{n-1}$.\n\nD'où $P(M \\text{ projecteur}) = (1-p)^n + np(1-p)^{n-1} = (1-p)^{n-1}(1-p+np) = (1-p)^{n-1}(1+(n-1)p)$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2025",
+    "partie": "Problème - Partie II",
+    "questions": "2 q. : Q19, Q20",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Décomposition d'une matrice de rang 1 en produit colonne-ligne ; Calcul de $A^2$ via la décomposition $A = CL$ et identification de la trace",
+    "corrections": [
+      {
+        "question": "Q19",
+        "correction": "$\\text{rg}(A) = 1$ donc $\\text{Im}(A) = \\text{Vect}(C)$ (car $C$ est une colonne non nulle de $A$, donc $C \\in \\text{Im}(A)$, et $\\dim(\\text{Im}(A)) = 1$).\n\nToute colonne de $A$ appartient à $\\text{Im}(A) = \\text{Vect}(C)$. Notons $A_1, A_2, \\ldots, A_n$ les colonnes de $A$. Pour tout $j \\in \\{1, \\ldots, n\\}$, il existe $l_j \\in \\mathbb{R}$ tel que $A_j = l_j C$.\n\nPosons $L = (l_1, l_2, \\ldots, l_n) \\in M_{1,n}(\\mathbb{R})$. Alors pour tout $j$, la $j$-ème colonne de $CL$ est $Cl_j = l_jC = A_j$. Donc $A = CL$.\n\n$L$ est non nulle car $A \\neq 0$ (puisque $\\text{rg}(A) = 1$) : si $L = 0$, on aurait $A = C \\cdot 0 = 0$, contradiction."
+      },
+      {
+        "question": "Q20",
+        "correction": "$LC \\in M_{1,1}(\\mathbb{R})$ est un scalaire. Calculons-le :\n$LC = \\sum_{i=1}^n l_i c_i$ où $C = (c_1, \\ldots, c_n)^T$ et $L = (l_1, \\ldots, l_n)$.\n\nPar ailleurs, $\\text{Tr}(A) = \\text{Tr}(CL)$. Or, par la propriété de cyclicité de la trace : $\\text{Tr}(CL) = \\text{Tr}(LC)$.\n\nComme $LC$ est une matrice $1 \\times 1$, $\\text{Tr}(LC) = LC$. Donc $LC = \\text{Tr}(A)$.\n\nCalculons $A^2$ :\n$A^2 = (CL)(CL) = C(LC)L = \\text{Tr}(A) \\cdot CL = \\text{Tr}(A) \\cdot A$.\n\nDonc $A^2 = \\text{Tr}(A) A$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2017",
+    "partie": "II.A",
+    "questions": "3 q. : II.A.1, II.A.2-3, II.A.6-7",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "$A$ singulière $\\Leftrightarrow$ $A$ est $E_n$-singulière : $\\ker A\\neq\\{0\\}$ ; $A$ est $H$-singulière $\\Leftrightarrow$ $\\exists X\\in H\\setminus\\{0\\}, AX=\\lambda N$ $\\Leftrightarrow$ $A_N$ singulière ; $(A^{-1})_s$ singulière ⟹ $\\exists N, N^\\top A^{-1}N=0$ ⟹ $A$ est $H$-singulière; idem pour $A_s$",
+    "corrections": [
+      {
+        "question": "II.A.1",
+        "correction": "On montre que $A$ est singulière si et seulement si $A$ est $E_n$-singulière, où $E_n = \\mathbb{R}^n$. En effet, $A$ est singulière $\\Leftrightarrow$ $\\ker A \\neq \\{0\\}$ $\\Leftrightarrow$ $\\exists X \\in \\mathbb{R}^n \\setminus \\{0\\},\\; AX = 0$ $\\Leftrightarrow$ $\\exists X \\in \\mathbb{R}^n \\setminus \\{0\\},\\; \\forall Z \\in \\mathbb{R}^n,\\; Z^\\top A X = 0$. Le sens $\\Rightarrow$ est immédiat car $AX=0$ entraîne $Z^\\top(AX)=0$ pour tout $Z$. Pour le sens $\\Leftarrow$, si $\\forall Z,\\; Z^\\top(AX)=0$, on choisit $Z = AX$ et on obtient $\\|AX\\|^2 = 0$ donc $AX = 0$."
+      },
+      {
+        "question": "II.A.2-3",
+        "correction": "Soit $H$ un hyperplan de $\\mathbb{R}^n$ et $N$ un vecteur normal à $H$, de sorte que $H = \\{X \\in \\mathbb{R}^n : N^\\top X = 0\\}$. Alors $A$ est $H$-singulière $\\Leftrightarrow$ $\\exists X \\in H \\setminus \\{0\\},\\; AX \\in H^\\perp = \\mathrm{Vect}(N)$, i.e. $AX = \\lambda N$ pour un certain $\\lambda \\in \\mathbb{R}$. On introduit la matrice augmentée $A_N = \\begin{pmatrix} A & N \\\\ N^\\top & 0 \\end{pmatrix} \\in M_{n+1}(\\mathbb{R})$. Si $A$ est $H$-singulière, il existe $X \\neq 0$ dans $H$ tel que $AX = \\lambda N$. Alors $A_N \\begin{pmatrix} X \\\\ -\\lambda \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$ avec $(X, -\\lambda) \\neq 0$, donc $A_N$ est singulière. Réciproquement, si $A_N$ est singulière, il existe $(X, \\mu) \\neq 0$ tel que $AX + \\mu N = 0$ et $N^\\top X = 0$. Si $X = 0$ alors $\\mu N = 0$ donc $\\mu = 0$, contradiction. Donc $X \\neq 0$ et $A$ est $H$-singulière."
+      },
+      {
+        "question": "II.A.6-7",
+        "correction": "Supposons $(A^{-1})_s$ singulière : il existe $N \\neq 0$ tel que $(A^{-1})_s N = 0$. Alors $N^\\top (A^{-1})_s N = 0$. Or $N^\\top (A^{-1})_s N = \\frac{1}{2}(N^\\top A^{-1} N + N^\\top (A^\\top)^{-1} N)$. Comme $N^\\top A^{-1} N$ est un scalaire égal à sa transposée $(A^{-1}N)^\\top N = N^\\top (A^\\top)^{-1} N$, on obtient $N^\\top (A^{-1})_s N = N^\\top A^{-1} N = 0$. Par II.A.4-5, $A$ est $H$-singulière pour $H = (\\mathrm{Vect}(N))^\\perp$. Supposons maintenant $A_s$ singulière. Par I.B.4, $(\\det A)^2 \\det((A^{-1})_s) = \\det(A_s) = 0$. Si $A$ est inversible, $\\det(A) \\neq 0$ donc $\\det((A^{-1})_s) = 0$, et on conclut par le cas précédent. Si $A$ est singulière, $A$ est $E_n$-singulière par II.A.1, donc a fortiori $H$-singulière pour tout hyperplan $H$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2017",
+    "partie": "II.C",
+    "questions": "1 q. : II.C.1-2",
+    "difficulte": "Intermédiaire",
+    "intitule": "$F$ de dim $n-2$ : $A$ $F$-sing $\\Leftrightarrow$ $AX\\in F^\\perp=\\mathrm{Vect}(N_1,N_2)$ $\\Leftrightarrow$ $A_N$ singulière",
+    "corrections": [
+      {
+        "question": "II.C.1-2",
+        "correction": "Soit $F$ un sous-espace de dimension $n-2$, et $F^\\perp = \\mathrm{Vect}(N_1, N_2)$ avec $(N_1, N_2)$ base de $F^\\perp$. On pose $N = (N_1 \\mid N_2) \\in M_{n,2}(\\mathbb{R})$. Alors $X \\in F \\Leftrightarrow N^\\top X = 0$. $A$ est $F$-singulière $\\Leftrightarrow$ $\\exists X \\in F \\setminus \\{0\\},\\; AX \\in F^\\perp = \\mathrm{Im}(N)$, i.e. $AX = N\\lambda$ pour un certain $\\lambda \\in \\mathbb{R}^2$. On introduit $A_N = \\begin{pmatrix} A & N \\\\ N^\\top & 0_{2 \\times 2} \\end{pmatrix} \\in M_{n+2}(\\mathbb{R})$. Par le même raisonnement que II.A.2-3, $A$ est $F$-singulière si et seulement si $A_N$ est singulière. En effet, si $AX = N\\lambda$ et $N^\\top X = 0$ avec $X \\neq 0$, alors $A_N \\begin{pmatrix} X \\\\ -\\lambda \\end{pmatrix} = 0$. Réciproquement, si $(X, \\mu) \\neq 0$ est dans $\\ker A_N$, on a $X \\in F$ et $AX = -N\\mu$; si $X = 0$ alors $N\\mu = 0$, et comme $N$ est de rang 2, $\\mu = 0$, contradiction."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2020",
+    "partie": "I.D",
+    "questions": "1 q. : Q15",
+    "difficulte": "Intermédiaire",
+    "intitule": "Factorisation matricielle $M = M' D^\\top$",
+    "corrections": [
+      {
+        "question": "Q15",
+        "correction": "Le coefficient $(i,j)$ de $M'D^\\top$ est $\\sum_{k=1}^{n} m'_{ik} (D^\\top)_{kj} = \\sum_{k=1}^{n} m'_{ik} d_{jk}$. Or $m'_{ik} \\neq 0$ ssi $k | i$ (et vaut $g(k)$), et $d_{jk} \\neq 0$ ssi $k | j$ (et vaut $1$). Donc $(M'D^\\top)_{ij} = \\sum_{k | i, k | j} g(k) = \\sum_{k | (i \\wedge j)} g(k)$. Comme $g = f * \\mu$, on a $f = g * \\mathbf{1}$ (car $\\mu$ est l'inverse de $\\mathbf{1}$ pour $*$, Q12), donc $f(m) = \\sum_{d|m} g(d)$ pour tout $m$. Ainsi $\\sum_{k|(i \\wedge j)} g(k) = f(i \\wedge j) = m_{ij}$. D'où $M = M'D^\\top$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2020",
+    "partie": "II.A",
+    "questions": "1 q. : Q27",
+    "difficulte": "Intermédiaire",
+    "intitule": "Inversion matricielle pour retrouver le type cyclique",
+    "corrections": [
+      {
+        "question": "Q27",
+        "correction": "Calculons $(T_\\sigma D)_q$ pour $q \\in \\llbracket 1, n \\rrbracket$. $(T_\\sigma D)_q = \\sum_{\\ell=1}^{n} c_\\ell(\\sigma) d_{\\ell q}$. Or $d_{\\ell q} = 1$ si $q | \\ell$ et $0$ sinon. Donc $(T_\\sigma D)_q = \\sum_{\\ell=1, q|\\ell}^{n} c_\\ell(\\sigma)$. Par Q26, si $P_\\sigma$ et $P_\\tau$ semblables : $T_\\sigma D = T_\\tau D$. La matrice $D$ est triangulaire inférieure avec $d_{ii} = 1$ (car $i | i$), donc $\\det D = 1$ et $D$ est inversible. En multipliant à droite par $D^{-1}$ : $T_\\sigma = T_\\tau$. Par Q23, $\\sigma$ et $\\tau$ sont conjuguées. Réciproquement, Q20 montre que la conjugaison implique la similitude. Ceci démontre (S)."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2020",
+    "partie": "II.B",
+    "questions": "1 q. : Q28",
+    "difficulte": "Standard",
+    "intitule": "Caractérisation matricielle d'un endomorphisme de permutation",
+    "corrections": [
+      {
+        "question": "Q28",
+        "correction": "$u$ est un endomorphisme de permutation ssi il existe une base $(e_1, \\ldots, e_n)$ et $\\sigma \\in \\mathfrak{S}_n$ tels que $u(e_j) = e_{\\sigma(j)}$ pour tout $j$. La matrice de $u$ dans cette base a pour coefficient $(i,j)$ : $\\mathbf{1}_{i = \\sigma(j)}$, qui est exactement la matrice de permutation $P_\\sigma$. Réciproquement, si la matrice de $u$ dans une base $(e_1, \\ldots, e_n)$ est $P_\\sigma$, alors $u(e_j) = \\sum_i (P_\\sigma)_{ij} e_i = e_{\\sigma(j)}$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2020",
+    "partie": "Partie III",
+    "questions": "1 q. : Q37",
+    "difficulte": "Intermédiaire",
+    "intitule": "Factorisation du polynôme caractéristique de $H_n$ par produit matriciel",
+    "corrections": [
+      {
+        "question": "Q37",
+        "correction": "Calculons $P = B_n(\\lambda)(\\lambda I_n - H_n)$. Pour $i > 1$ : la ligne $i$ de $B_n$ est celle de $I_n$, donc $P_{ij} = (\\lambda I_n - H_n)_{ij}$.\n\nPour $i = 1, j = 1$ : $P_{11} = \\sum_k b_{1k}(\\lambda \\delta_{k1} - h_{k1}) = \\mathbf{b}(1)(\\lambda - 1) + \\sum_{k=2}^n \\mathbf{b}(k)(0 - 1) = (\\lambda - 1) - \\sum_{k=2}^n \\mathbf{b}(k)$.\n\nPour $i = 1, j > 1$ : $P_{1j} = \\sum_k b_{1k}(\\lambda \\delta_{kj} - h_{kj}) = \\mathbf{b}(j) \\lambda - \\sum_k \\mathbf{b}(k) h_{kj} = \\mathbf{b}(j) \\lambda - \\sum_{k|j} \\mathbf{b}(k)$. Or $\\sum_{k|j} \\mathbf{b}(k) = \\mathbf{b}(j) + \\sum_{k|j, k \\neq j} \\mathbf{b}(k) = \\mathbf{b}(j) + (\\lambda - 1)\\mathbf{b}(j) = \\lambda \\mathbf{b}(j)$ par définition de $\\mathbf{b}$. Donc $P_{1j} = 0$.\n\nAinsi $P$ est triangulaire inférieure (pour $i > 1$, c'est $\\lambda I_n - H_n$ qui a des zéros appropriés), et le produit des diag. donne le déterminant. En fait $\\det P = P_{11} \\prod_{j=2}^n (\\lambda - 1) = ((\\lambda-1) - \\sum_{j=2}^n \\mathbf{b}(j))(\\lambda - 1)^{n-1}$. Comme $\\det B_n(\\lambda) = 1$ (triangulaire, diag. $1$) : $\\chi_n(\\lambda) = (\\lambda - 1)^n - (\\lambda - 1)^{n-1} \\sum_{j=2}^n \\mathbf{b}(j)$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2021",
+    "partie": "I.A",
+    "questions": "1 q. : Q3",
+    "difficulte": "Standard",
+    "intitule": "Développement de $\\|D_A P - P D_B\\|_F^2$ coefficient par coefficient",
+    "corrections": [
+      {
+        "question": "Q3",
+        "correction": "Le coefficient $(i,j)$ de $D_A P - P D_B$ est $(D_A P)_{ij} - (P D_B)_{ij} = \\lambda_i(A) p_{ij} - p_{ij} \\lambda_j(B) = p_{ij}(\\lambda_i(A) - \\lambda_j(B))$. Or $\\|D_A P - P D_B\\|_F^2 = \\sum_{1 \\leq i,j \\leq n} ((D_A P - P D_B)_{ij})^2 = \\sum_{1 \\leq i,j \\leq n} p_{ij}^2 (\\lambda_i(A) - \\lambda_j(B))^2$. Combiné avec Q2 : $\\|A-B\\|_F^2 = \\sum_{1 \\leq i,j \\leq n} p_{ij}^2 (\\lambda_i(A) - \\lambda_j(B))^2$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2021",
+    "partie": "I.B",
+    "questions": "3 q. : Q5, Q6, Q7",
+    "difficulte": "Intermédiaire／Avancé",
+    "intitule": "Perturbation bistochastique d'une matrice et calcul de variation de $f$ ; Construction itérative d'une matrice bistochastique plus proche de l'identité ; Récurrence sur $n$ pour montrer que $I_n$ minimise $f$ sur $\\mathcal{B}_n(\\mathbb{R})$",
+    "corrections": [
+      {
+        "question": "Q5",
+        "correction": "On développe $f(M')$ où $M' = M + x(E_{ii} + E_{jk} - E_{ik} - E_{ji})$. On a $f(M') - f(M) = \\sum_{a,b} (m'_{ab} - m_{ab})(\\lambda_a(A) - \\lambda_b(B))^2 = x[(\\lambda_i(A)-\\lambda_i(B))^2 + (\\lambda_j(A)-\\lambda_k(B))^2 - (\\lambda_i(A)-\\lambda_k(B))^2 - (\\lambda_j(A)-\\lambda_i(B))^2]$. En développant et simplifiant : $= 2x(\\lambda_i(A)-\\lambda_j(A))(\\lambda_k(B)-\\lambda_i(B))$. Puisque $j \\geq i$, $\\lambda_i(A) \\geq \\lambda_j(A)$ et puisque $k \\geq i$, $\\lambda_i(B) \\geq \\lambda_k(B)$, donc le premier facteur est $\\geq 0$ et le second $\\leq 0$. Avec $x \\geq 0$, le produit est $\\leq 0$."
+      },
+      {
+        "question": "Q6",
+        "correction": "Soit $i$ le plus petit entier tel que $m_{ii} \\neq 1$. Comme $m_{jj}=1$ pour $j < i$ et $M$ bistochastique, $m_{ij}=m_{ji}=0$ pour $j < i$. De $\\sum_{j=1}^n m_{ij}=1$ et $m_{ii}<1$, il existe $k > i$ avec $m_{ik}>0$. De $\\sum_{j=1}^n m_{ji}=1$ et $m_{ii}<1$, il existe $j > i$ avec $m_{ji}>0$. On pose $x = \\min(m_{ik}, m_{ji}) > 0$ et $M' = M + x(E_{ii}+E_{jk}-E_{ik}-E_{ji})$. On vérifie que $M' \\in \\mathcal{B}_n(\\mathbb{R})$ (les sommes lignes/colonnes sont inchangées, les coefficients restent $\\geq 0$). Par Q5, $f(M') \\leq f(M)$. De plus, soit $m'_{ik}=0$ soit $m'_{ji}=0$, et $m'_{ii}=m_{ii}+x > m_{ii}$. En itérant ce processus (nombre fini de fois car on annule un coefficient ou on complète un diagonal), on atteint $m'_{jj}=1$ pour tout $j \\leq i$."
+      },
+      {
+        "question": "Q7",
+        "correction": "Soit $M \\in \\mathcal{B}_n(\\mathbb{R})$. Si $M = I_n$, c'est terminé. Sinon, par Q6, il existe $M' \\in \\mathcal{B}_n(\\mathbb{R})$ avec $f(M') \\leq f(M)$ et un coefficient diagonal de plus égal à 1. En itérant, on finit par obtenir une matrice bistochastique dont tous les coefficients diagonaux valent 1, c'est-à-dire $I_n$ (car une matrice bistochastique avec $m_{ii}=1$ pour tout $i$ est nécessairement $I_n$, les autres coefficients étant nuls). Donc $f(I_n) \\leq f(M)$ pour tout $M \\in \\mathcal{B}_n(\\mathbb{R})$, i.e. $\\min\\{f(M) \\mid M \\in \\mathcal{B}_n(\\mathbb{R})\\} = f(I_n)$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2022",
+    "partie": "II.B",
+    "questions": "2 q. : Q10, Q11",
+    "difficulte": "Standard",
+    "intitule": "Expression matricielle d'une forme bilinéaire ; Déduire antisymétrie et inversibilité de la matrice associée",
+    "corrections": [
+      {
+        "question": "Q10",
+        "correction": "Soient $x = \\sum_{i=1}^n x_i e_i$ et $y = \\sum_{j=1}^n y_j e_j$. Par bilinéarité : $\\omega(x,y) = \\sum_{i=1}^n \\sum_{j=1}^n x_i y_j \\omega(e_i, e_j) = \\sum_{i,j} x_i \\Omega_{ij} y_j = X^\\top \\Omega Y$."
+      },
+      {
+        "question": "Q11",
+        "correction": "**Antisymétrie** : $\\omega(x,y) = -\\omega(y,x)$ donne $X^\\top \\Omega Y = -Y^\\top \\Omega X = -X^\\top \\Omega^\\top Y$ pour tous $X, Y$. Par Q1, $\\Omega = -\\Omega^\\top$. **Inversibilité** : supposons $\\Omega X = 0$ pour un certain $X$. Alors pour tout $Y$, $Y^\\top \\Omega X = 0$, soit $\\omega(y, x) = 0$ pour tout $y \\in \\mathbb{R}^n$. Par non-dégénérescence, $x = 0$, donc $X = 0$. Ainsi $\\ker \\Omega = \\{0\\}$ et $\\Omega$ est inversible."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2022",
+    "partie": "II.C",
+    "questions": "2 q. : Q15, Q17",
+    "difficulte": "Standard",
+    "intitule": "Traduction matricielle de la condition symplectique ; Caractérisation par blocs d'une matrice symplectique",
+    "corrections": [
+      {
+        "question": "Q15",
+        "correction": "Pour tous $x, y \\in \\mathbb{R}^n$ de colonnes $X, Y$ : $b_s(u(x), u(y)) = (MX)^\\top J (MY) = X^\\top M^\\top J M Y$. Et $b_s(x,y) = X^\\top J Y$. Donc $u$ symplectique $\\iff$ $\\forall X, Y, X^\\top (M^\\top J M) Y = X^\\top J Y$ $\\iff$ $M^\\top J M = J$ (par Q1)."
+      },
+      {
+        "question": "Q17",
+        "correction": "$M^\\top = \\begin{pmatrix} A^\\top & C^\\top \\\\ B^\\top & D^\\top \\end{pmatrix}$. $M^\\top J = \\begin{pmatrix} A^\\top & C^\\top \\\\ B^\\top & D^\\top \\end{pmatrix} \\begin{pmatrix} 0 & -I_m \\\\ I_m & 0 \\end{pmatrix} = \\begin{pmatrix} C^\\top & -A^\\top \\\\ D^\\top & -B^\\top \\end{pmatrix}$. Puis $M^\\top J M = \\begin{pmatrix} C^\\top A - A^\\top C & C^\\top B - A^\\top D \\\\ D^\\top A - B^\\top C & D^\\top B - B^\\top D \\end{pmatrix}$. On identifie avec $J = \\begin{pmatrix} 0 & -I_m \\\\ I_m & 0 \\end{pmatrix}$ : bloc $(1,1)$ : $C^\\top A - A^\\top C = 0$, soit $A^\\top C$ symétrique. Bloc $(2,2)$ : $D^\\top B - B^\\top D = 0$, soit $B^\\top D$ symétrique. Bloc $(2,1)$ : $D^\\top A - B^\\top C = I_m$, soit $A^\\top D - C^\\top B = I_m$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2022",
+    "partie": "III.A",
+    "questions": "1 q. : Q18",
+    "difficulte": "Standard",
+    "intitule": "Sp₂(ℝ) = SL₂(ℝ) par calcul direct en dimension 2",
+    "corrections": [
+      {
+        "question": "Q18",
+        "correction": "Soit $M = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$. On a $J = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$. $M^\\top J M = \\begin{pmatrix} a & c \\\\ b & d \\end{pmatrix} \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = \\begin{pmatrix} a & c \\\\ b & d \\end{pmatrix} \\begin{pmatrix} -c & -d \\\\ a & b \\end{pmatrix} = \\begin{pmatrix} -ac+ca & -ad+cb \\\\ -bc+da & -bd+db \\end{pmatrix} = \\begin{pmatrix} 0 & cb-ad \\\\ da-bc & 0 \\end{pmatrix}$. Donc $M^\\top J M = J \\iff ad - bc = 1 \\iff \\det(M) = 1$. Réciproquement, si $\\det(M) = 1$, le même calcul donne $M^\\top J M = J$. Donc $Sp_2(\\mathbb{R}) = SL_2(\\mathbb{R})$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2022",
+    "partie": "III.B",
+    "questions": "1 q. : Q19",
+    "difficulte": "Standard",
+    "intitule": "Caractérisation du commutant de J par blocs",
+    "corrections": [
+      {
+        "question": "Q19",
+        "correction": "Posons $M = \\begin{pmatrix} P & Q \\\\ R & S \\end{pmatrix}$. $JM = \\begin{pmatrix} 0 & -I_m \\\\ I_m & 0 \\end{pmatrix} \\begin{pmatrix} P & Q \\\\ R & S \\end{pmatrix} = \\begin{pmatrix} -R & -S \\\\ P & Q \\end{pmatrix}$. $MJ = \\begin{pmatrix} P & Q \\\\ R & S \\end{pmatrix} \\begin{pmatrix} 0 & -I_m \\\\ I_m & 0 \\end{pmatrix} = \\begin{pmatrix} Q & -P \\\\ S & -R \\end{pmatrix}$. $JM = MJ \\iff \\begin{cases} -R = Q \\\\ -S = -P \\\\ P = S \\\\ Q = -R \\end{cases} \\iff R = -Q \\text{ et } S = P$. En posant $U = P$ et $V = R$, on obtient $M = \\begin{pmatrix} U & -V \\\\ V & U \\end{pmatrix}$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2025",
+    "partie": "Partie A.IV",
+    "questions": "3 q. : 8, 9, 10",
+    "difficulte": "Standard",
+    "intitule": "Vérification par calcul direct d'une matrice d'adjacence ; Construction d'une matrice d'adjacence en Python (numpy) ; Puissance d'une matrice de permutation circulaire par récurrence",
+    "corrections": [
+      {
+        "question": "8",
+        "correction": "La matrice $C_{9,1}$ a un $1$ en position $(i, i+1 \\bmod 9)$ pour $i \\in \\{0,\\ldots,8\\}$ (indices modulo 9), et $0$ ailleurs. La matrice $C_{9,8} = C_{9,-1 \\bmod 9}$ a un $1$ en position $(i, i-1 \\bmod 9)$. Leur somme $J_9^{(1)} = C_{9,1} + C_{9,8}$ a donc des $1$ exactement en positions $(i, i \\pm 1 \\bmod 9)$. C'est précisément la matrice d'adjacence du graphe cyclique à 9 sommets $\\mathbb{Z}/9\\mathbb{Z}$, où chaque sommet $i$ est relié à $i-1$ et $i+1$ (modulo 9)."
+      },
+      {
+        "question": "9",
+        "correction": "```python\nimport numpy as np\n\ndef mat_adj(graphe):\n    n = len(graphe)\n    sommets = sorted(graphe.keys())\n    index = {s: i for i, s in enumerate(sommets)}\n    A = np.zeros((n, n), dtype=int)\n    for s in sommets:\n        for v in graphe[s]:\n            A[index[s]][index[v]] = 1\n    return A\n```\nOn crée une matrice $n \\times n$ nulle, puis pour chaque sommet $s$ et chaque voisin $v$ de $s$, on met $A[s][v] = 1$."
+      },
+      {
+        "question": "10",
+        "correction": "Par récurrence sur $k \\geq 0$. Pour $k = 0$ : $C_{n,1}^0 = I_n = C_{n,0}$ (permutation de $0$ positions = identité). Supposons $C_{n,1}^k = C_{n,k}$. Alors $C_{n,1}^{k+1} = C_{n,k} \\cdot C_{n,1}$. Le coefficient $(i,j)$ de $C_{n,k}$ vaut $1$ si $j \\equiv i + k \\pmod{n}$ et $0$ sinon. Le produit $C_{n,k} \\cdot C_{n,1}$ a son coefficient $(i,j)$ égal à $\\sum_l (C_{n,k})_{i,l}(C_{n,1})_{l,j} = (C_{n,1})_{i+k \\bmod n, j} = \\mathbf{1}_{j \\equiv i+k+1 \\pmod{n}}$. C'est exactement $C_{n,k+1}$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2025",
+    "partie": "Partie A.V",
+    "questions": "2 q. : 14, 16",
+    "difficulte": "Intermédiaire／Standard",
+    "intitule": "Compatibilité du produit de Kronecker avec le produit matriciel (produit par blocs) ; Vérification d'une matrice d'adjacence d'un graphe grille par calcul explicite du Kronecker",
+    "corrections": [
+      {
+        "question": "14",
+        "correction": "Le bloc $(i,j)$ de $A \\otimes B$ est $a_{ij}B$ et celui de $A' \\otimes B'$ est $a'_{ij}B'$. Le bloc $(i,j)$ du produit $(A \\otimes B)(A' \\otimes B')$ est $\\sum_{k=1}^{v} (a_{ik} B)(a'_{kj} B') = \\sum_{k=1}^{v} a_{ik} a'_{kj} BB' = \\left(\\sum_{k=1}^{v} a_{ik} a'_{kj}\\right) BB' = (AA')_{ij} \\cdot BB'$. C'est exactement le bloc $(i,j)$ de $(AA') \\otimes (BB')$. D'où l'égalité."
+      },
+      {
+        "question": "16",
+        "correction": "Pour $n=3$, $J_3^{(1)}$ est la matrice d'adjacence du cycle $\\mathbb{Z}/3\\mathbb{Z}$ : $J_3^{(1)} = \\begin{pmatrix} 0 & 1 & 1 \\\\ 1 & 0 & 1 \\\\ 1 & 1 & 0 \\end{pmatrix}$. La matrice $I_3 \\otimes J_3^{(1)}$ est diagonale par blocs $3 \\times 3$ avec des copies de $J_3^{(1)}$ sur la diagonale, ce qui encode les arêtes horizontales $(i,j) \\sim (i, j \\pm 1)$. La matrice $J_3^{(1)} \\otimes I_3$ encode les arêtes verticales $(i,j) \\sim (i \\pm 1, j)$. Leur somme $J_9^{(2)}$ est donc la matrice d'adjacence du tore $3 \\times 3$ : chaque sommet $(i,j)$ est relié à exactement 4 voisins $(i \\pm 1, j)$ et $(i, j \\pm 1)$ modulo 3."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2025",
+    "partie": "Partie B.II",
+    "questions": "2 q. : 20, 21",
+    "difficulte": "Standard／Avancé",
+    "intitule": "Expression des coefficients d'une puissance de matrice par sommation sur les chemins ; Expression de la fonction de partition comme trace d'une matrice de transfert",
+    "corrections": [
+      {
+        "question": "20",
+        "correction": "Récurrence sur $p \\geq 1$. Pour $p=1$ : $(M^1)_{i,j} = M_{i,j}$ (somme vide sur les indices intermédiaires, convention). Supposons le résultat vrai au rang $p$. Alors $(M^{p+1})_{i,j} = \\sum_{k=1}^d (M^p)_{i,k} M_{k,j} = \\sum_{k=1}^d \\left(\\sum_{(k_1,\\ldots,k_{p-1})} M_{i,k_1} \\cdots M_{k_{p-1},k}\\right) M_{k,j} = \\sum_{(k_1,\\ldots,k_p)} M_{i,k_1} M_{k_1,k_2} \\cdots M_{k_p,j}$, ce qui est bien la formule au rang $p+1$ (avec $p$ indices intermédiaires $k_1, \\ldots, k_p$)."
+      },
+      {
+        "question": "21",
+        "correction": "D'après Q19, $Z_n(h) = \\sum_{x \\in \\Lambda_n} \\prod_{i=1}^n e^{\\beta x_i x_{i+1} + hx_i}$. Posons $A_{a,b} = e^{\\beta ab + ha}$ pour $a, b \\in \\{-1,1\\}$. On vérifie : $A_{-1,-1} = e^{\\beta-h}$, $A_{-1,1} = e^{-\\beta-h}$, $A_{1,-1} = e^{-\\beta+h}$, $A_{1,1} = e^{\\beta+h}$. Si on ordonne les lignes/colonnes comme $(-1, 1)$ : $A = \\begin{pmatrix} e^{\\beta-h} & e^{-\\beta-h} \\\\ e^{-\\beta+h} & e^{\\beta+h} \\end{pmatrix}$. Alors $\\prod_{i=1}^n e^{\\beta x_i x_{i+1} + hx_i} = \\prod_{i=1}^n A_{x_i, x_{i+1}} = A_{x_1,x_2} A_{x_2,x_3} \\cdots A_{x_n,x_1}$. D'après Q20 avec $d=2$, $\\sum_{x_2,\\ldots,x_n \\in \\{-1,1\\}} A_{x_1,x_2} A_{x_2,x_3} \\cdots A_{x_n,x_1} = (A^n)_{x_1,x_1}$. Donc $Z_n(h) = \\sum_{x_1 \\in \\{-1,1\\}} (A^n)_{x_1,x_1} = \\mathrm{tr}(A^n)$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2020",
+    "partie": "Partie II",
+    "questions": "1 q. : 7",
+    "difficulte": "Standard",
+    "intitule": "tr(a tensor x) = (a|x)",
+    "corrections": [
+      {
+        "question": "7",
+        "correction": "Soit $(e_1, \\ldots, e_n)$ une base orthonormée de $E$. La matrice de $a \\otimes x$ dans cette base a pour coefficient $(i,j)$ : $(a \\otimes x)(e_j) \\cdot e_i = (a \\mid e_j)(x \\mid e_i)$. La trace est la somme des coefficients diagonaux : $\\operatorname{tr}(a \\otimes x) = \\sum_{i=1}^n (a \\mid e_i)(x \\mid e_i) = \\sum_{i=1}^n (a \\mid e_i)(e_i \\mid x) = (a \\mid x)$ par l'identité de Parseval."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2020",
+    "partie": "Partie III",
+    "questions": "1 q. : 10",
+    "difficulte": "Intermédiaire",
+    "intitule": "Lemme A: tr(u^k v) = 0 via cyclicité",
+    "corrections": [
+      {
+        "question": "10",
+        "correction": "On a $f_1^{(k+1)} = \\sum_{i=0}^{k} u^i v u^{k-i}$ (question 8 avec $k+1$). Par la cyclicité de la trace : $\\operatorname{tr}(u^i v u^{k-i}) = \\operatorname{tr}(u^{k-i} u^i v) = \\operatorname{tr}(u^k v)$. Donc $\\operatorname{tr}(f_1^{(k+1)}) = (k+1) \\operatorname{tr}(u^k v)$.\\n\\nD'autre part, $u + tv \\in \\mathcal{V}$ pour tout $t$, donc $u+tv$ est nilpotent. Par la question 1, $\\operatorname{tr}((u+tv)^{k+1}) = 0$ pour tout $t$ et tout $k \\in \\mathbb{N}$. Or $\\operatorname{tr}((u+tv)^{k+1}) = \\sum_{i=0}^{k+1} t^i \\operatorname{tr}(f_i^{(k+1)})$. Le coefficient de $t$ est $\\operatorname{tr}(f_1^{(k+1)}) = 0$.\\n\\nOn en déduit $(k+1) \\operatorname{tr}(u^k v) = 0$, soit $\\operatorname{tr}(u^k v) = 0$ pour tout $k \\in \\mathbb{N}$. C'est le lemme A."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2018",
+    "partie": "Partie A",
+    "questions": "1 q. : 1",
+    "difficulte": "Standard",
+    "intitule": "Exhiber une infinité de racines carrées de $I_2$ par symétrie et identifier les polynômes en $A$",
+    "corrections": [
+      {
+        "question": "1",
+        "correction": "On cherche $X = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ telle que $X^2 = I_2$. Cela donne $a^2+bc=1$, $b(a+d)=0$, $c(a+d)=0$, $d^2+bc=1$. Des deux dernières, soit $a+d=0$, soit $b=c=0$. Si $b=c=0$ : $a^2=d^2=1$, donc $X \\in \\{\\pm I_2\\}$. Si $a+d=0$ : $d=-a$ et $a^2+bc=1$, ce qui donne une infinité de solutions car on peut choisir $a$ et $b$ librement (avec $b \\neq 0$) puis $c=(1-a^2)/b$. Par exemple $X_\\theta = \\begin{pmatrix} \\cos\\theta & \\sin\\theta \\\\ \\sin\\theta & -\\cos\\theta \\end{pmatrix}$ pour $\\theta \\in [0,2\\pi[$. Les polynômes en $A = I_2$ sont de la forme $P(I_2) = P(1)I_2$ qui est une matrice scalaire. Les seules matrices scalaires $\\lambda I_2$ vérifiant $(\\lambda I_2)^2 = I_2$ sont $\\lambda = \\pm 1$. Les racines carrées polynômes en $A$ sont donc $I_2$ et $-I_2$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2018",
+    "partie": "Partie B",
+    "questions": "1 q. : 4",
+    "difficulte": "Intermédiaire",
+    "intitule": "Résolution de $U^2 = T$ pour matrices triangulaires supérieures par identification coefficients",
+    "corrections": [
+      {
+        "question": "4",
+        "correction": "Écrivons $U^2 = T$ coefficient par coefficient. Comme $T$ et $U$ sont triangulaires supérieures, $(U^2)_{i,j} = \\sum_{k=1}^n u_{i,k}u_{k,j}$. Pour $i > j$, les deux sont nulles (produit de triangulaires sup). Pour $i = j$ : $(U^2)_{i,i} = \\sum_{k=1}^n u_{i,k}u_{k,i}$. Comme $U$ est triangulaire supérieure, $u_{i,k} = 0$ si $k < i$ et $u_{k,i} = 0$ si $k > i$, donc $(U^2)_{i,i} = u_{i,i}^2 = t_{i,i}$. Pour $i < j$ : $(U^2)_{i,j} = \\sum_{k=i}^{j} u_{i,k}u_{k,j} = u_{i,i}u_{i,j} + u_{i,j}u_{j,j} + \\sum_{k=i+1}^{j-1} u_{i,k}u_{k,j} = (u_{i,i}+u_{j,j})u_{i,j} + \\sum_{k=i+1}^{j-1} u_{i,k}u_{k,j}$. D'où $(u_{i,i}+u_{j,j})u_{i,j} = t_{i,j} - \\sum_{k=i+1}^{j-1} u_{i,k}u_{k,j}$. **Résolution** : $T$ inversible implique $t_{i,i} \\neq 0$ pour tout $i$. On choisit $u_{i,i} \\in \\widetilde{\\mathbb{C}}$ racine carrée de $t_{i,i}$ (partie réelle $> 0$ si $t_{i,i} \\notin \\mathbb{R}_-^*$, ou $i\\sqrt{|t_{i,i}|}$ sinon). Pour garantir $u_{i,i}+u_{j,j} \\neq 0$ : si $u_{i,i}$ et $u_{j,j}$ sont de partie réelle strictement positive, leur somme aussi. On peut choisir toutes les racines carrées diagonales de partie réelle $> 0$ (possible car $t_{i,i} \\in \\widetilde{\\mathbb{C}}$, i.e. $t_{i,i} \\notin \\mathbb{R}_-$). Alors $u_{i,i}+u_{j,j} \\neq 0$ pour tous $i,j$. On résout ensuite colonne par colonne : pour $j$ fixé, on calcule $u_{i,j}$ pour $i = j-1, j-2, \\ldots, 1$ successivement par la formule $u_{i,j} = \\frac{t_{i,j} - \\sum_{k=i+1}^{j-1} u_{i,k}u_{k,j}}{u_{i,i}+u_{j,j}}$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2018",
+    "partie": "Partie D",
+    "questions": "2 q. : 14, 15",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Équivalence entre les suites $(X_k)_{k \\in \\mathbb{N}}$ (Newton) et $(U_k)_{k \\in \\mathbb{N}}$ (itération I) ; Commutation de $V_k$ avec $A$ et lien entre suites (II) et (I)",
+    "corrections": [
+      {
+        "question": "14",
+        "correction": "**Sens direct** : Si $(X_k)$ est définie par (N) avec $U_0 = X_0$, posons $H_k = X_{k+1} - X_k$. On a $X_{k+1} = X_k - (\\mathrm{d}F_{X_k})^{-1}(F(X_k))$, donc $H_k = -(\\mathrm{d}F_{X_k})^{-1}(F(X_k))$, i.e. $\\mathrm{d}F_{X_k}(H_k) = -F(X_k)$, soit $X_kH_k + H_kX_k = -(X_k^2 - A) = A - X_k^2$. En posant $U_k = X_k$ : $U_{k+1} = U_k + H_k$ et $U_kH_k + H_kU_k = A - U_k^2$, ce qui est exactement (I). **Sens réciproque** : Si $(U_k)$ est définie par (I) avec $X_0 = U_0$, on a $H_k$ vérifiant $U_kH_k + H_kU_k = A - U_k^2$, i.e. $\\mathrm{d}F_{U_k}(H_k) = -F(U_k)$, soit $H_k = -(\\mathrm{d}F_{U_k})^{-1}(F(U_k))$. Donc $U_{k+1} = U_k + H_k = U_k - (\\mathrm{d}F_{U_k})^{-1}(F(U_k))$, qui est (N) en posant $X_k = U_k$."
+      },
+      {
+        "question": "15",
+        "correction": "**$V_k$ commute avec $A$** : Par récurrence. $V_0 = \\mu I_n$ commute avec $A$. Si $V_k$ commute avec $A$ et $V_k$ est inversible, alors $V_k^{-1}$ commute avec $A$ et $V_{k+1} = \\frac{1}{2}(V_k + V_k^{-1}A)$ commute avec $A$. **$U_k$ inversible** : Par récurrence. $U_0 = V_0 = \\mu I_n$ est inversible ($\\mu > 0$). Si $U_k$ est inversible, $H_k$ est défini par $U_kH_k + H_kU_k = A - U_k^2$. On montre que $U_{k+1} = U_k + H_k$ est inversible. Posons $G_k = \\frac{1}{2}(U_k^{-1}A - U_k)$. Vérifions que $G_k$ satisfait la condition de (I) : $U_kG_k + G_kU_k = U_k \\cdot \\frac{1}{2}(U_k^{-1}A - U_k) + \\frac{1}{2}(U_k^{-1}A - U_k) \\cdot U_k = \\frac{1}{2}(A - U_k^2) + \\frac{1}{2}(U_k^{-1}AU_k - U_k^2)$. Comme $U_k$ commute avec $A$ (par récurrence, car $U_0$ commute et $H_k$ s'exprime en termes de $U_k$ et $A$), $U_k^{-1}AU_k = A$. Donc $U_kG_k + G_kU_k = A - U_k^2$. Par unicité de $H_k$ (car $\\mathrm{d}F_{U_k}$ est inversible), $H_k = G_k$. Ainsi $U_{k+1} = U_k + G_k = U_k + \\frac{1}{2}(U_k^{-1}A - U_k) = \\frac{1}{2}(U_k + U_k^{-1}A) = V_{k+1}$. La récurrence est bouclée."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2018",
+    "partie": "Partie E",
+    "questions": "1 q. : 19",
+    "difficulte": "Intermédiaire",
+    "intitule": "Calcul de $(V_0+\\Delta)^{-1}$ et de $\\Delta_1$ en termes de $V_0$ et $\\Delta$",
+    "corrections": [
+      {
+        "question": "19",
+        "correction": "On a $\\widehat{V}_0 = V_0 + \\Delta$ avec $V_0 = \\sqrt{A}$ et $\\Delta = \\varepsilon C_i C_j^T$. **Observation clé** : $\\Delta^2 = \\varepsilon^2 C_i C_j^T C_i C_j^T = \\varepsilon^2 (C_j^T C_i) C_i C_j^T = 0$ car $C_j^T C_i = e_j^T P^T P e_i = \\delta_{i,j} = 0$ ($i \\neq j$). **Première relation** : $(V_0 + \\Delta)^{-1} = (V_0(I_n + V_0^{-1}\\Delta))^{-1} = (I_n + V_0^{-1}\\Delta)^{-1}V_0^{-1}$. Posons $M = V_0^{-1}\\Delta$. On a $M^2 = V_0^{-1}\\Delta V_0^{-1}\\Delta$. Dans la base propre de $A$, $P^T M P = D^{-1/2}(\\varepsilon E_{i,j})$ et $(P^T M P)^2 \\propto E_{i,j}^2 = 0$ (car $i \\neq j$). Donc $M^2 = 0$ et la série de Neumann se réduit à $(I_n + M)^{-1} = I_n - M$ (identité exacte). D'où $(V_0+\\Delta)^{-1} = (I_n - V_0^{-1}\\Delta)V_0^{-1} = V_0^{-1} - V_0^{-1}\\Delta V_0^{-1}$. **Seconde relation** : $V_1 = \\frac{1}{2}(V_0 + V_0^{-1}A) = \\sqrt{A}$ (point fixe de (II)). $\\widehat{V}_1 = \\frac{1}{2}((V_0+\\Delta) + (V_0^{-1} - V_0^{-1}\\Delta V_0^{-1})A) = \\frac{1}{2}(V_0 + \\Delta + V_0^{-1}A - V_0^{-1}\\Delta V_0^{-1}A)$. Donc $\\Delta_1 = \\widehat{V}_1 - V_1 = \\frac{1}{2}(\\Delta - V_0^{-1}\\Delta V_0^{-1}A)$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2021",
+    "partie": "Matrices de permutations",
+    "questions": "3 q. : 1, 3, 4",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Morphisme de groupes : $\\omega(\\sigma \\circ \\sigma') = \\omega(\\sigma)\\omega(\\sigma')$ ; Conjugaison d'une matrice diagonale par une matrice de permutation ; Équivalence entre réarrangement des coefficients diagonaux et conjugaison par une matrice de permutation",
+    "corrections": [
+      {
+        "question": "1",
+        "correction": "Soient $\\sigma, \\sigma' \\in B_n$. Pour tout $(i,j) \\in [\\![1,n]\\!]^2$, on calcule $[\\omega(\\sigma)\\omega(\\sigma')]_{i,j} = \\sum_{k=1}^n [\\omega(\\sigma)]_{i,k} [\\omega(\\sigma')]_{k,j} = \\sum_{k=1}^n \\delta_{i,\\sigma(k)} \\delta_{k,\\sigma'(j)}$. Dans cette somme, $\\delta_{k,\\sigma'(j)} = 1$ uniquement pour $k = \\sigma'(j)$, donc la somme vaut $\\delta_{i,\\sigma(\\sigma'(j))}$. Or $[\\omega(\\sigma \\circ \\sigma')]_{i,j} = \\delta_{i,(\\sigma \\circ \\sigma')(j)} = \\delta_{i,\\sigma(\\sigma'(j))}$. Donc $\\omega(\\sigma)\\omega(\\sigma') = \\omega(\\sigma \\circ \\sigma')$."
+      },
+      {
+        "question": "3",
+        "correction": "Pour tout $(i,j) \\in [\\![1,n]\\!]^2$, on calcule le coefficient $(i,j)$ du membre de gauche : $[\\mathrm{Diag}((d_i)) \\cdot \\omega(\\sigma)]_{i,j} = \\sum_{k=1}^n d_i \\delta_{i,k} \\delta_{k,\\sigma(j)} = d_i \\delta_{i,\\sigma(j)}$. Pour le membre de droite : $[\\omega(\\sigma) \\cdot \\mathrm{Diag}((d_{\\sigma(i)}))]_{i,j} = \\sum_{k=1}^n \\delta_{i,\\sigma(k)} d_{\\sigma(k)} \\delta_{k,j} = \\delta_{i,\\sigma(j)} d_{\\sigma(j)}$. Or $\\delta_{i,\\sigma(j)} \\neq 0 \\implies i = \\sigma(j)$, et dans ce cas $d_i = d_{\\sigma(j)}$. Donc les deux expressions coïncident et l'égalité est vérifiée."
+      },
+      {
+        "question": "4",
+        "correction": "**(ii) $\\Rightarrow$ (i)** : Soit $M = \\omega(\\sigma) \\in \\omega(B_n)$ tel que $D' = {}^t\\!M D M$. Par la Q2, ${}^t\\!M = M^{-1} = \\omega(\\sigma^{-1})$. Donc $D' = \\omega(\\sigma^{-1}) D \\omega(\\sigma)$. En utilisant la Q3 (avec $\\sigma^{-1}$ au lieu de $\\sigma$), on obtient que les coefficients diagonaux de $D'$ sont les $(d_{\\sigma^{-1}(\\sigma(i))})$ permutés, c'est-à-dire un réarrangement des $d_i$, avec conservation du nombre d'occurrences puisque $\\sigma$ est une bijection. **(i) $\\Rightarrow$ (ii)** : Si $D$ et $D'$ ont les mêmes coefficients diagonaux avec les mêmes occurrences, il existe $\\sigma \\in B_n$ telle que $d'_i = d_{\\sigma(i)}$ pour tout $i$. En posant $M = \\omega(\\sigma)$, la Q3 donne $D \\omega(\\sigma) = \\omega(\\sigma) \\mathrm{Diag}((d_{\\sigma(i)})) = \\omega(\\sigma) D'$. Donc $D' = \\omega(\\sigma)^{-1} D \\omega(\\sigma) = {}^t\\!\\omega(\\sigma) D \\omega(\\sigma) = {}^t\\!M D M$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2022",
+    "partie": "Partie 3",
+    "questions": "2 q. : 12, 13",
+    "difficulte": "Intermédiaire",
+    "intitule": "Montrer que $t \\mapsto e^{tA}Be^{-tA}$ est à valeurs dans $\\mathcal{A}_G$ ; Stabilité de $\\mathcal{A}_G$ par crochet de Lie via dérivation de $e^{tA}Be^{-tA}$",
+    "corrections": [
+      {
+        "question": "12",
+        "correction": "Soit $t \\in \\mathbb{R}$ fixé. Posons $u(t) = e^{tA}Be^{-tA}$. Il faut montrer que $u(t) \\in \\mathcal{A}_G$, c'est-à-dire que pour tout $s \\in \\mathbb{R}$, $e^{su(t)} \\in G$. Or $u(t) = e^{tA}Be^{-tA} = PBP^{-1}$ avec $P = e^{tA}$. Par la propriété admise dans le sujet (similitude et exponentielle), $e^{su(t)} = e^{sPBP^{-1}} = Pe^{sB}P^{-1} = e^{tA}e^{sB}e^{-tA}$. Puisque $A \\in \\mathcal{A}_G$, $e^{tA} \\in G$ pour tout $t$, donc $e^{tA} \\in G$ et $e^{-tA} = (e^{tA})^{-1} \\in G$. Puisque $B \\in \\mathcal{A}_G$, $e^{sB} \\in G$. Comme $G$ est un sous-groupe, $e^{tA}e^{sB}e^{-tA} \\in G$. Ceci étant vrai pour tout $s \\in \\mathbb{R}$, on a $u(t) \\in \\mathcal{A}_G$."
+      },
+      {
+        "question": "13",
+        "correction": "Par Q12, pour tous $A, B \\in \\mathcal{A}_G$ et tout $t \\in \\mathbb{R}$, $u(t) = e^{tA}Be^{-tA} \\in \\mathcal{A}_G$. Calculons $u'(0)$. On a $u(t) = e^{tA}Be^{-tA}$, donc $u'(t) = Ae^{tA}Be^{-tA} + e^{tA}B(-A)e^{-tA} = Ae^{tA}Be^{-tA} - e^{tA}BAe^{-tA}$. En $t = 0$ : $u'(0) = AB - BA = [A,B]$. Or $u(0) = B \\in \\mathcal{A}_G$ et $u(t) \\in \\mathcal{A}_G$ pour tout $t$. Donc $\\frac{u(t)-u(0)}{t} = \\frac{u(t) - B}{t} \\in \\mathcal{A}_G$ pour tout $t \\neq 0$ (car $\\mathcal{A}_G$ est un sev par Q11, donc stable par combinaison linéaire). En passant à la limite $t \\to 0$, comme $\\mathcal{A}_G$ est un sous-espace vectoriel de dimension finie, il est fermé (tout sev de dimension finie est fermé dans un evn). Donc $[A,B] = u'(0) = \\lim_{t \\to 0}\\frac{u(t)-B}{t} \\in \\mathcal{A}_G$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2024",
+    "partie": "Partie I",
+    "questions": "1 q. : 3",
+    "difficulte": "Intermédiaire",
+    "intitule": "Rang d'une matrice symétrique non nulle à diagonale nulle",
+    "corrections": [
+      {
+        "question": "3",
+        "correction": "Un graphe non vide possède au moins une arête, donc $M_{G,\\sigma} \\neq 0$ et $\\operatorname{rg}(M_{G,\\sigma}) \\geq 1$. Supposons par l'absurde que $\\operatorname{rg}(M_{G,\\sigma}) = 1$. Alors il existe des vecteurs colonnes $U, V \\in \\mathbb{R}^n$ non nuls tels que $M_{G,\\sigma} = U V^T$. Comme $M_{G,\\sigma}$ est symétrique, $UV^T = VU^T$. Cela implique que $U$ et $V$ sont colinéaires : $V = \\lambda U$ pour un $\\lambda \\neq 0$. Donc $M_{G,\\sigma} = \\lambda U U^T$. Alors $(M_{G,\\sigma})_{i,i} = \\lambda u_i^2$ pour tout $i$. Or les termes diagonaux de $M_{G,\\sigma}$ sont tous nuls (pas de boucle dans un graphe). Donc $\\lambda u_i^2 = 0$ pour tout $i$. Comme $\\lambda \\neq 0$, on a $u_i = 0$ pour tout $i$, donc $U = 0$, contradiction. Ainsi $\\operatorname{rg}(M_{G,\\sigma}) \\geq 2$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2025",
+    "partie": "Partie C",
+    "questions": "4 q. : 10, 12, 13, 14",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Identification des vecteurs colonnes de la base canonique via puissances d'une matrice shift ; Calcul matriciel avec la matrice shift et exploitation de $S^\\top S$ ; Réécriture d'une somme de termes de rang 1 en produit $VDV^\\top$ ; Non-inversibilité via famille liée et déterminant nul de $V$ ou $D$",
+    "corrections": [
+      {
+        "question": "10",
+        "correction": "La matrice $S \\in \\mathcal{M}_n(\\mathbb{R})$ est définie par $S_{i,j} = \\delta_{i+1,j}$. Sa transposée vérifie $(S^\\top)_{i,j} = S_{j,i} = \\delta_{j+1,i} = \\delta_{i,j+1}$. Ainsi $S^\\top$ a des 1 juste en-dessous de la diagonale.\n\nOn a $U = e_1$ (premier vecteur canonique). Calculons $(S^\\top)^k U$ pour $0 \\leq k \\leq n-1$.\n\nLe coefficient $i$ de $S^\\top e_j$ est $(S^\\top e_j)_i = \\sum_{\\ell} (S^\\top)_{i,\\ell} (e_j)_\\ell = (S^\\top)_{i,j} = \\delta_{i,j+1}$, qui vaut 1 si $i = j+1$ et 0 sinon. Donc $S^\\top e_j = e_{j+1}$ pour $1 \\leq j \\leq n-1$.\n\nPar récurrence immédiate : $(S^\\top)^k U = (S^\\top)^k e_1 = e_{k+1}$ pour $0 \\leq k \\leq n-1$.\n\nAinsi $((S^\\top)^i U)_{0 \\leq i \\leq n-1} = (e_1, e_2, \\ldots, e_n)$, qui est la base canonique de $\\mathcal{M}_{n,1}(\\mathbb{R})$. C'est donc bien une base."
+      },
+      {
+        "question": "12",
+        "correction": "Développons chaque produit :\n\n$C_j^\\top C_j = (I_n - \\alpha_j S)^\\top(I_n - \\alpha_j S) = (I_n - \\alpha_j S^\\top)(I_n - \\alpha_j S) = I_n - \\alpha_j S^\\top - \\alpha_j S + \\alpha_j^2 S^\\top S$.\n\n$B_j^\\top B_j = (S - \\alpha_j I_n)^\\top(S - \\alpha_j I_n) = (S^\\top - \\alpha_j I_n)(S - \\alpha_j I_n) = S^\\top S - \\alpha_j S^\\top - \\alpha_j S + \\alpha_j^2 I_n$.\n\nDonc $C_j^\\top C_j - B_j^\\top B_j = (I_n - \\alpha_j^2 I_n) - (S^\\top S - \\alpha_j^2 S^\\top S) = (1-\\alpha_j^2)(I_n - S^\\top S)$.\n\nCalculons $S^\\top S$. On a $(S^\\top S)_{i,j} = \\sum_{k=1}^n (S^\\top)_{i,k} S_{k,j} = \\sum_{k=1}^n S_{k,i} S_{k,j} = \\sum_{k=1}^n \\delta_{k+1,i} \\delta_{k+1,j}$. Ce produit vaut 1 si $i = j$ et $i \\geq 2$ (car $k = i-1 \\geq 1$), et 0 si $i = 1$ ou $i \\neq j$.\n\nDonc $S^\\top S = \\text{Diag}(0, 1, 1, \\ldots, 1)$ et $I_n - S^\\top S = \\text{Diag}(1, 0, 0, \\ldots, 0) = e_1 e_1^\\top = UU^\\top$.\n\nFinalement : $C_j^\\top C_j - B_j^\\top B_j = (1-\\alpha_j^2) UU^\\top$."
+      },
+      {
+        "question": "13",
+        "correction": "D'après Q11 et Q12 :\n$$J(p) = \\sum_{j=1}^n f_j(S)^\\top (1-\\alpha_j^2) UU^\\top f_j(S) = \\sum_{j=1}^n (1-\\alpha_j^2) \\left(f_j(S)^\\top U\\right)\\left(f_j(S)^\\top U\\right)^\\top.$$\n\nOr $f_j(S)^\\top U = f_j(S^\\top) U$ (car la transposée d'un polynôme en $S$ est le même polynôme en $S^\\top$, puisque $(S^k)^\\top = (S^\\top)^k$). C'est exactement $V_j$, la $j$-ème colonne de $V$.\n\nDonc $J(p) = \\sum_{j=1}^n (1-\\alpha_j^2) V_j V_j^\\top$.\n\nOr, par la formule du produit matriciel par colonnes : $(VDV^\\top)_{i,k} = \\sum_{j=1}^n D_{j,j} V_{i,j} V_{k,j} = \\sum_{j=1}^n (1-\\alpha_j^2)(V_j)_i (V_j)_k = \\sum_{j=1}^n (1-\\alpha_j^2)(V_j V_j^\\top)_{i,k}$.\n\nAinsi $J(p) = VDV^\\top$."
+      },
+      {
+        "question": "14",
+        "correction": "Supposons que $p$ possède une racine stable $\\alpha$, c'est-à-dire $\\alpha \\neq 0$ et $p(\\alpha) = p(1/\\alpha) = 0$. D'après Q13, $J(p) = VDV^\\top$, donc $\\det(J(p)) = (\\det V)^2 \\det D$.\n\n**Cas 1 : $\\alpha = 1/\\alpha$, i.e. $\\alpha^2 = 1$ ($\\alpha = \\pm 1$).** Alors $\\alpha$ est l'une des racines $\\alpha_j$, et $1 - \\alpha_j^2 = 0$. La matrice $D = \\text{Diag}((1-\\alpha_j^2))$ a un coefficient diagonal nul, donc $\\det D = 0$ et $\\det(J(p)) = 0$.\n\n**Cas 2 : $\\alpha \\neq 1/\\alpha$.** Alors il existe $i < k$ tels que $\\alpha_i = \\alpha$ et $\\alpha_k = 1/\\alpha$ (ou l'inverse), donc $\\alpha_i \\alpha_k = 1$. Par Q6, la famille $(f_1, \\ldots, f_n)$ est liée. L'application $\\varphi : \\mathbb{R}_{n-1}[X] \\to \\mathcal{M}_{n,1}(\\mathbb{R})$ définie par $\\varphi(q) = q(S^\\top) U$ est linéaire. D'après Q10, les $(S^\\top)^i U$ pour $0 \\leq i \\leq n-1$ forment une base, donc $\\varphi$ est un isomorphisme de $\\mathbb{R}_{n-1}[X]$ sur $\\mathcal{M}_{n,1}(\\mathbb{R})$. En particulier, $\\varphi$ conserve la liberté/liaison. Comme $(f_1, \\ldots, f_n)$ est liée, $(V_1, \\ldots, V_n) = (\\varphi(f_1), \\ldots, \\varphi(f_n))$ est liée. Donc $V$ n'est pas inversible, $\\det V = 0$ et $\\det(J(p)) = 0$.\n\nDans les deux cas, $J(p)$ n'est pas inversible."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2025",
+    "partie": "Partie E",
+    "questions": "1 q. : 20",
+    "difficulte": "Standard",
+    "intitule": "Équivalence par double implication (Q14 et Q19+Q10)",
+    "corrections": [
+      {
+        "question": "20",
+        "correction": "**Sens $\\Rightarrow$ : $J(p)$ inversible $\\Rightarrow$ $p$ sans racine stable.** C'est la contraposée de Q14 : si $p$ possède une racine stable, alors $J(p)$ n'est pas inversible.\n\n**Sens $\\Leftarrow$ : $p$ sans racine stable $\\Rightarrow$ $J(p)$ inversible.** Par l'absurde, supposons que $p$ n'a pas de racine stable et que $J(p)$ n'est pas inversible. D'après Q19, il existe un polynôme $q \\neq 0$ de degré $\\leq n-1$ tel que $q(S^\\top)U = 0_{n,1}$.\n\nÉcrivons $q = \\sum_{k=0}^{n-1} c_k X^k$ avec au moins un $c_k \\neq 0$. Alors :\n$$q(S^\\top)U = \\sum_{k=0}^{n-1} c_k (S^\\top)^k U = 0_{n,1}.$$\n\nOr d'après Q10, la famille $((S^\\top)^k U)_{0 \\leq k \\leq n-1}$ est une base de $\\mathcal{M}_{n,1}(\\mathbb{R})$. Une combinaison linéaire nulle d'une base ne peut avoir que des coefficients nuls : $c_k = 0$ pour tout $k$, donc $q = 0$. Contradiction avec $q \\neq 0$.\n\nConclusion : si $p$ n'a pas de racine stable, $J(p)$ est inversible."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2017",
+    "partie": "Partie III",
+    "questions": "3 q. : 14a, 14b, 14c",
+    "difficulte": "Standard／Intermédiaire／Avancé",
+    "intitule": "Traduire $u \\in \\mathcal{S}$ en relation $J_4 U = {}^tU J_4$ ; Résoudre le système $J_4U = {}^tUJ_4$ par blocs $2\\times2$ ; Calculer $U^2$ par blocs et vérifier $T(U) = 0$ via Cayley-Hamilton en dimension 2",
+    "corrections": [
+      {
+        "question": "14a",
+        "correction": "La relation $\\omega(x,u(y)) = \\omega(u(x),y)$ se traduit en coordonnées par ${}^tXJ_4UY = {}^t(UX)J_4Y = {}^tX{}^tUJ_4Y$ pour tout $X,Y$. On en déduit $J_4U = {}^tUJ_4$."
+      },
+      {
+        "question": "14b",
+        "correction": "Notons $U=(a_{ij})$. L'équation $J_4U={}^tUJ_4$ impose les contraintes suivantes : $a_{1,3}=a_{3,1}=a_{4,2}=a_{2,4}=0$, $a_{1,1}=a_{3,3}$, $a_{2,2}=a_{4,4}$, $a_{1,2}=a_{4,3}$, $a_{2,1}=a_{3,4}$, $a_{3,2}=-a_{4,1}$, $a_{1,4}=-a_{2,3}$. En posant $N=\\begin{pmatrix}a_{1,1}&a_{1,2}\\\\a_{2,1}&a_{2,2}\\end{pmatrix}$, $\\alpha=a_{2,3}$, $\\beta=a_{4,1}$, on retrouve la forme annoncée."
+      },
+      {
+        "question": "14c",
+        "correction": "Posons $T(X) = X^2-\\mathrm{tr}(N)X+(\\det(N)+\\alpha\\beta)$. On vérifie l'identité $J_2N+{}^tNJ_2 = \\mathrm{tr}(N)J_2$. Un calcul par blocs donne $U^2 = \\begin{pmatrix}N^2-\\alpha\\beta I_2 & \\alpha\\mathrm{tr}(N)J_2 \\\\ \\beta\\mathrm{tr}(N)J_2 & ({}^tN)^2-\\alpha\\beta I_2\\end{pmatrix}$. L'identité de Cayley-Hamilton appliquée à $N$ ($N^2 = \\mathrm{tr}(N)N - \\det(N)I_2$) permet de conclure $T(U) = U^2 - \\mathrm{tr}(N)U + (\\det(N)+\\alpha\\beta)I_4 = O_4$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2018",
+    "partie": "Préliminaire",
+    "questions": "1 q. : 1",
+    "difficulte": "Standard",
+    "intitule": "Expression du produit scalaire de Frobenius en coefficients",
+    "corrections": [
+      {
+        "question": "1",
+        "correction": "Rappelons que $\\langle A, B \\rangle_F = \\operatorname{tr}(A^T B)$. Le coefficient $(i,j)$ de $A^T B$ s'écrit $\\sum_{l=1}^{n} a_{l,i} b_{l,j}$. En prenant la trace, on obtient $\\operatorname{tr}(A^T B) = \\sum_{i=1}^{p} \\sum_{l=1}^{n} a_{l,i} b_{l,i} = \\sum_{i=1}^{n} \\sum_{j=1}^{p} a_{i,j} b_{i,j}$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2018",
+    "partie": "Partie I",
+    "questions": "1 q. : 7",
+    "difficulte": "Standard",
+    "intitule": "Déduction de la SVD $A = U\\Sigma V^T$",
+    "corrections": [
+      {
+        "question": "7",
+        "correction": "On écrit $U\\Sigma V^T = U\\Sigma D^T U^T A = UU^T A$. Or $UU^T$ est le projecteur orthogonal sur $\\operatorname{Im}(U) = \\operatorname{Im}(S) = \\operatorname{Im}(A)$, donc $UU^T A = A$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2018",
+    "partie": "Partie IV",
+    "questions": "1 q. : 13",
+    "difficulte": "Intermédiaire",
+    "intitule": "Rang constant au voisinage et calcul de $\\gamma'(0)$",
+    "corrections": [
+      {
+        "question": "13",
+        "correction": "(a) $U^T U = I_k$ garantit $\\operatorname{rg}(U) = k$, et une sous-matrice $k \\times k$ est inversible. Par continuité du déterminant, elle reste inversible pour $|t|$ assez petit, donc $\\operatorname{rg}(U + t\\bar{U}) \\geq k$. Comme le rang ne peut dépasser $k$, il est constant égal à $k$. Même argument pour $\\Sigma$ et $V$.\n\n(b) Au voisinage de $0$, les trois facteurs sont de rang $k$ et $\\Sigma + t\\bar{\\Sigma}$ est inversible, donc $\\operatorname{rg}(\\gamma(t)) = k$.\n\n(c) $\\gamma$ est polynomiale en $t$, donc $C^\\infty$. La règle de Leibniz donne $\\gamma'(0) = \\bar{U}\\Sigma V^T + U\\bar{\\Sigma}V^T + U\\Sigma\\bar{V}^T$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2020",
+    "partie": "Partie I",
+    "questions": "3 q. : 3a, 3b, 3c",
+    "difficulte": "Intermédiaire／Avancé",
+    "intitule": "Poser $B=\\begin{pmatrix}A&I_n\\\\I_n&-A\\end{pmatrix}$ et vérifier par produit par blocs ; Construction récursive de $\\mathscr{B}_n$ par $J(A)=\\mathrm{diag}(A,A)$ et $K(A)=\\begin{pmatrix}A&I\\\\I&-A\\end{pmatrix}$, puis récurrence ; Écrire $q_i=r_i/s_i$, appliquer Q3b avec $h=\\max(r_i,s_i)$, puis poser $M_i=A_{r_i}A_{s_i}^{-1}$",
+    "corrections": [
+      {
+        "question": "3a",
+        "correction": "On pose $B = \\begin{pmatrix}A & I_n \\\\ I_n & -A\\end{pmatrix}$. Un calcul par blocs montre que $B$ commute avec $\\begin{pmatrix}A & 0 \\\\ 0 & A\\end{pmatrix}$. De plus $B^2 = \\begin{pmatrix}A^2 + I_n & 0 \\\\ 0 & I_n + A^2\\end{pmatrix} = (q+1)I_{2n}$. La matrice $B$ est symétrique et à coefficients rationnels."
+      },
+      {
+        "question": "3b",
+        "correction": "On définit $J(A) = \\begin{pmatrix}A & 0 \\\\ 0 & A\\end{pmatrix}$ et $K(A) = \\begin{pmatrix}A & I \\\\ I & -A\\end{pmatrix}$. On pose $\\mathscr{B}_1 = ([1])$ et $\\mathscr{B}_{n+1} = (J(A_1), \\ldots, J(A_m), K(A_m))$ si $\\mathscr{B}_n = (A_1, \\ldots, A_m)$. Par récurrence, les matrices de $\\mathscr{B}_d$ appartiennent à $S_{2^{d-1}}(\\mathbb{Q})$, commutent deux à deux, et vérifient $M_k^2 = k I_{2^{d-1}}$ pour $k \\in \\{1, \\ldots, d\\}$."
+      },
+      {
+        "question": "3c",
+        "correction": "On écrit $q_i = r_i/s_i$ et pose $h = \\max(r_i, s_i)$. D'après Q3b, il existe des matrices $A_1, \\ldots, A_h \\in S_{2^{h-1}}(\\mathbb{Q})$ commutant deux à deux avec $A_k^2 = k I$. Chaque $A_k$ est inversible et $(A_k^{-1})^2 = \\frac{1}{k} I$, avec $A_k^{-1} \\in S_{2^{h-1}}(\\mathbb{Q})$. En posant $M_i = A_{r_i} A_{s_i}^{-1} \\in S(\\mathbb{Q})$, on obtient $M_i^2 = A_{r_i}^2 (A_{s_i}^{-1})^2 = \\frac{r_i}{s_i} I = q_i I$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2020",
+    "partie": "Partie IV",
+    "questions": "3 q. : 17a, 17b, 18",
+    "difficulte": "Intermédiaire／Avancé",
+    "intitule": "Calculer $(SM)_{ij}=t(z^{i+j+1})$ par la $\\mathbb{Q}$-linéarité de $t$ et $Z(z)=0$, constater la symétrie en $i,j$ ; Écrire $SM=P^TDP M=R^TRM$ via $R=\\mathrm{Diag}(\\sqrt{q_i})P$, puis $RMR^{-1}=(R^T)^{-1}(SM)R^{-1}$ est symétrique car $SM$ l'est ; Remplacer $\\sqrt{q_i}$ par des matrices $M_i\\in S_n(\\mathbb{Q})$ avec $M_i^2=q_iI_n$ (Q3c), construire $U=HP'$ par blocs, et montrer $UM'U^{-1}\\in S_{nd}(\\mathbb{Q})$ est VP $z$",
+    "corrections": [
+      {
+        "question": "17a",
+        "correction": "Pour $j \\in \\{1, \\ldots, d-1\\}$ : $(SM)_{ij} = S_{i,j+1} = t(z^{i+j+1})$. Pour $j = d$ : $(SM)_{id} = \\sum_{k=1}^d S_{ik} a_{k-1} = t\\left(z^{i+1} \\sum_{k=0}^{d-1} a_k z^k\\right) = t(z^{i+1} \\cdot z^d) = t(z^{i+d+1})$ (car $Z(z) = 0$ implique $\\sum a_k z^k = z^d$). Dans les deux cas $(SM)_{ij} = t(z^{i+j+1})$, qui est symétrique en $(i, j)$."
+      },
+      {
+        "question": "17b",
+        "correction": "On dispose de $S = P^T D P$, donc $SM = P^T D P M = R^T R M$ avec $R = \\mathrm{Diag}(\\sqrt{q_i}) P$ (car $D = \\mathrm{Diag}(\\sqrt{q_i})^2$). Alors $R M R^{-1} = (R^T)^{-1}(SM)R^{-1} = (R^{-1})^T(SM)R^{-1}$. Comme $SM$ est symétrique, $(RMR^{-1})^T = (R^{-1})^T(SM)^T R^{-1} = (R^{-1})^T(SM)R^{-1} = RMR^{-1}$."
+      },
+      {
+        "question": "18",
+        "correction": "D'après Q3c, il existe $n$ et $M_1, \\ldots, M_d \\in S_n(\\mathbb{Q})$ commutant deux à deux avec $M_i^2 = q_i I_n$. On note $A'$ la matrice par blocs obtenue en remplaçant chaque coefficient $a_{ij}$ de $A$ par $a_{ij} I_n$. Soit $H = \\mathrm{Diag}(M_1, \\ldots, M_d) \\in S_{nd}(\\mathbb{Q})$, inversible. En posant $U = H P'$ (où $P'$ est la version par blocs de $P$), on obtient $U M' U^{-1} = (U^{-1})^T (SM)' U^{-1} \\in S_{nd}(\\mathbb{Q})$ car $(SM)'$ est symétrique à coefficients rationnels. Comme $z$ est valeur propre de $M$, c'est aussi une valeur propre de $M'$ et de $U M' U^{-1}$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2021",
+    "partie": "Partie 1",
+    "questions": "4 q. : I1, I2, I3, I4",
+    "difficulte": "Standard",
+    "intitule": "Par P2, $g$ est diagonalisable avec VP de module 1, donc $|\\mathrm{Tr}(g)|=|\\lambda_1+\\lambda_2|\\leq|\\lambda_1|+|\\lambda_2|=2$ ; VP réelles de module 1 valent $\\pm1$, donc $g^2=I_2$, donc $d|2$ ; VP conjuguées $e^{\\pm i\\theta}$, trace $2\\cos\\theta\\in\\mathbb{Z}$ et $|2\\cos\\theta|\\leq2$, donc trace $\\in\\{-1,0,1\\}$, ce qui donne trois polynômes ; Combiner I2 ($d\\in\\{1,2\\}$ si VP réelles) et I3 ($\\chi_g=X^2+1\\Rightarrow d=4$, $X^2+X+1\\Rightarrow d=3$, $X^2-X+1\\Rightarrow d=6$)",
+    "corrections": [
+      {
+        "question": "I1",
+        "correction": "D'après P2, $g$ est diagonalisable à valeurs propres $\\lambda_1, \\lambda_2$ de module 1. Donc $|\\mathrm{Tr}(g)| = |\\lambda_1 + \\lambda_2| \\leq |\\lambda_1| + |\\lambda_2| = 2$."
+      },
+      {
+        "question": "I2",
+        "correction": "Les valeurs propres réelles de module 1 valent $\\pm 1$. On a alors $g^2 = I_2$, donc $d \\mid 2$, soit $d \\in \\{1, 2\\}$."
+      },
+      {
+        "question": "I3",
+        "correction": "Les valeurs propres sont $e^{i\\theta}$ et $e^{-i\\theta}$ avec $\\theta \\notin \\pi\\mathbb{Z}$. La trace $2\\cos\\theta \\in \\mathbb{Z}$ vérifie $|2\\cos\\theta| < 2$ (valeurs propres non réelles). Donc la trace appartient à $\\{-1, 0, 1\\}$, ce qui donne $\\chi_g \\in \\{X^2+1, X^2+X+1, X^2-X+1\\}$."
+      },
+      {
+        "question": "I4",
+        "correction": "Si les valeurs propres sont réelles : $d \\in \\{1, 2\\}$. Sinon, $g \\sim \\mathrm{diag}(\\lambda, \\bar\\lambda)$ avec $\\lambda \\in \\{i, j, -j\\}$ d'ordres 4, 3, 6 respectivement. Donc $d \\in \\{1, 2, 3, 4, 6\\}$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2021",
+    "partie": "Partie 3",
+    "questions": "6 q. : III4c, III5, III6, III7b, III9, III10",
+    "difficulte": "Standard／Avancé／Intermédiaire",
+    "intitule": "Identifier le coefficient de $X^{(n-1)\\ell}$ dans $\\chi_{M^\\ell}(X^\\ell)-\\chi_M(X)^\\ell\\in\\ell\\mathbb{Z}[X]$ ; L'ordre de $g$ divise $p^r$, donc $g^{p^k}=I_n$ pour $k$ assez grand ; appliquer III4c répétitivement pour remonter de $\\mathrm{Tr}(I_n)=n$ à $\\mathrm{Tr}(g)$ ; $\\mathrm{Tr}(g^\\ell)\\equiv\\mathrm{Tr}(g)\\pmod{\\ell}$ (III4c) et $|\\mathrm{Tr}(g^\\ell)-\\mathrm{Tr}(g)|\\leq2n<\\ell$, donc égalité ; $g^k=g^m$ (car $g^{p^r}=I$), et $m=\\ell_1\\cdots\\ell_q$ avec $\\ell_i>2n$ premiers ; appliquer III6 itérativement ; Sommer $\\mathrm{Tr}(g^k)=\\mathrm{Tr}(g)$ sur $k\\in J_r$ (III7b), exprimer $\\sum_{k\\in J_r}\\lambda_i^k$ via III8b et identifier ; De III9 et III5 : $\\mathrm{Tr}(g)=n_0-n_1/(p-1)$, $p|(n-\\mathrm{Tr}(g))$, et $0\\leq(n-\\mathrm{Tr}(g))/p\\leq a$",
+    "corrections": [
+      {
+        "question": "III4c",
+        "correction": "On a $\\chi_M(X) = X^n - \\mathrm{Tr}(M)X^{n-1} + \\cdots$ et $\\chi_{M^\\ell}(X^\\ell) = X^{\\ell n} - \\mathrm{Tr}(M^\\ell)X^{\\ell(n-1)} + \\cdots$. Le coefficient de $X^{(n-1)\\ell}$ dans $\\chi_{M^\\ell}(X^\\ell) - \\chi_M(X)^\\ell$ vaut $-\\mathrm{Tr}(M^\\ell) - (-\\mathrm{Tr}(M)) \\equiv 0 \\pmod{\\ell}$ d'après III4b."
+      },
+      {
+        "question": "III5",
+        "correction": "L'ordre de $g$ divise $p^r$, donc il existe $k$ tel que $g^{p^k} = I_n$. En appliquant III4c récursivement, $\\mathrm{Tr}(g^{p^k}) \\equiv \\mathrm{Tr}(g) \\pmod{p}$. Or $\\mathrm{Tr}(I_n) = n$. Donc $\\mathrm{Tr}(g) \\equiv n \\pmod{p}$."
+      },
+      {
+        "question": "III6",
+        "correction": "D'après III4c, $\\mathrm{Tr}(g^\\ell) \\equiv \\mathrm{Tr}(g) \\pmod{\\ell}$. Les valeurs propres de $g^\\ell$ sont de module 1, donc $|\\mathrm{Tr}(g^\\ell)| \\leq n$ et $|\\mathrm{Tr}(g)| \\leq n$. Ainsi $|\\mathrm{Tr}(g^\\ell) - \\mathrm{Tr}(g)| \\leq 2n < \\ell$, et la différence, multiple de $\\ell$, est nulle."
+      },
+      {
+        "question": "III7b",
+        "correction": "L'ordre de $g$ divise $p^r$, donc $g^{p^r} = I$ et $g^k = g^m$. D'après III7a, $m = \\ell_1 \\cdots \\ell_q$ avec $\\ell_i > 2n$ premiers. En appliquant III6 itérativement : $\\mathrm{Tr}(g^m) = \\mathrm{Tr}(g^{\\ell_1 \\cdots \\ell_{q-1}}) = \\cdots = \\mathrm{Tr}(g)$."
+      },
+      {
+        "question": "III9",
+        "correction": "D'après III7b, $\\mathrm{Tr}(g^k) = \\mathrm{Tr}(g)$ pour $k \\in J_r$, donc $|J_r| \\mathrm{Tr}(g) = \\sum_{k \\in J_r} \\sum_i \\lambda_i^k = \\sum_i \\sum_{k \\in J_r} \\lambda_i^k$. D'après III8b, la contribution d'une valeur propre $\\lambda_i$ est $p^{r-1}(p-1)$ si $\\lambda_i = 1$, $-p^{r-1}$ si son ordre est $p$, $0$ sinon. Avec $|J_r| = p^{r-1}(p-1)$ : $\\mathrm{Tr}(g) = n_0 - \\frac{n_1}{p-1}$."
+      },
+      {
+        "question": "III10",
+        "correction": "D'après III5, $p \\mid (n - \\mathrm{Tr}(g))$. D'après III9, $\\mathrm{Tr}(g) = n_0 - n_1/(p-1) \\in [-n/(p-1), n]$. Donc $0 \\leq (n - \\mathrm{Tr}(g))/p \\leq n/(p(1-1/p)) \\leq n/(p-1)$. Comme $(n - \\mathrm{Tr}(g))/p = v \\in \\mathbb{Z}$, on a $v \\in \\{0, \\ldots, \\lfloor n/(p-1) \\rfloor\\} = \\{0, \\ldots, a\\}$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2021",
+    "partie": "Partie 4",
+    "questions": "1 q. : IV2",
+    "difficulte": "Standard",
+    "intitule": "(i) Trace bloc-diagonale ; (ii) produit par blocs ; (iii) appliquer (ii) avec $g',h'=g^{-1},h^{-1}$",
+    "corrections": [
+      {
+        "question": "IV2",
+        "correction": "(i) $\\mathrm{Tr}(g \\otimes h) = \\sum_i g_{ii} \\mathrm{Tr}(h) = \\mathrm{Tr}(g)\\mathrm{Tr}(h)$. (ii) Le bloc $(i,j)$ de $(g \\otimes h)(g' \\otimes h')$ est $\\sum_k g_{ik} h \\cdot g'_{kj} h' = (gg')_{ij} hh'$. (iii) De (ii), $(g \\otimes h)(g^{-1} \\otimes h^{-1}) = I_n \\otimes I_k = I_{nk}$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2024",
+    "partie": "Première partie",
+    "questions": "2 q. : 5c, 5d",
+    "difficulte": "Intermédiaire／Standard",
+    "intitule": "Inversion de la matrice de Pascal par le changement de base inverse (binome avec signes alternes) ; Formule d'inversion de Mobius (cas binomial) par application de $M^{-1}$ au vecteur $u = Mv$",
+    "corrections": []
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 2 2023",
+    "partie": "Partie III",
+    "questions": "1 q. : 21",
+    "difficulte": "Intermédiaire",
+    "intitule": "Inversibilité analytique de $Q$ via le déterminant non nul en $t=0$ et la question 6",
+    "corrections": []
+  },
+  {
+    "banque": "E3A-Polytech",
+    "epreuve": "Maths 1 2024",
+    "partie": "Exercice 3",
+    "questions": "2 q. : Q2, Q5",
+    "difficulte": "Intermédiaire",
+    "intitule": "Relation $A^T = 3A^2 - A - I$ ; calcul de puissances $A^k$ par interpolation de Lagrange sur le spectre",
+    "corrections": [
+      {
+        "question": "Q2",
+        "correction": "De $A^T = 3A^2 - A - I$, on tire $A^T A = A(3A^2 - A - I) = 3A^3 - A^2 - A$. Si $A$ est inversible, $A^{-1} = A^T / \\det(A)$ (non, plus directement) : $A^T = 3A^2 - A - I$ donne, si $\\lambda$ est VP de $A$, que $\\bar{\\lambda}$ est VP de $A^T$, donc $\\bar{\\lambda} = 3\\lambda^2 - \\lambda - 1$. Pour $\\lambda$ réel : $\\lambda = 3\\lambda^2 - \\lambda - 1$, soit $3\\lambda^2 - 2\\lambda - 1 = 0$, d'où $\\lambda = 1$ ou $\\lambda = -1/3$."
+      },
+      {
+        "question": "Q5",
+        "correction": "Connaissant $\\mathrm{Sp}(A) = \\{1, -1/3\\}$, le polynôme $P$ tel que $A^k = P(A)$ est obtenu par interpolation de Lagrange sur le spectre : $P(\\lambda) = \\lambda^k$, donc $P(X) = \\frac{X - (-1/3)}{1 - (-1/3)} \\cdot 1^k + \\frac{X - 1}{-1/3 - 1} \\cdot (-1/3)^k = \\frac{3(X + 1/3)}{4} + \\frac{(-1/3)^k (X-1)}{-4/3}$. En simplifiant : $A^k = \\frac{3}{4}(A + \\frac{1}{3}I) + \\frac{3(-1/3)^k}{4}(I - A)$."
+      }
+    ]
+  },
+  {
+    "banque": "E3A-Polytech",
+    "epreuve": "Maths 1 2023",
+    "partie": "Exercice 4",
+    "questions": "2 q. : Q1, Q3",
+    "difficulte": "Standard",
+    "intitule": "Matrices aléatoires ; espérance de la trace et du déterminant",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "$\\mathrm{tr}(A) = \\sum_{i=1}^n a_{ii}$. Par linéarité de l'espérance : $E[\\mathrm{tr}(A)] = \\sum_{i=1}^n E[a_{ii}]$. Si les $a_{ii}$ sont i.i.d. de loi $\\mu$, $E[\\mathrm{tr}(A)] = n \\cdot E[a_{11}]$. La trace est une forme linéaire sur $\\mathcal{M}_n(\\mathbb{R})$, ce qui facilite le calcul de son espérance."
+      },
+      {
+        "question": "Q3",
+        "correction": "$\\det(A) = \\sum_{\\sigma \\in \\mathfrak{S}_n} \\varepsilon(\\sigma) \\prod_{i=1}^n a_{i,\\sigma(i)}$. Si les coefficients sont indépendants : $E[\\det(A)] = \\sum_{\\sigma} \\varepsilon(\\sigma) \\prod_{i=1}^n E[a_{i,\\sigma(i)}]$. Si les $a_{ij}$ sont i.i.d. de même loi avec $E[a_{ij}] = m$ : $E[\\det(A)] = \\sum_{\\sigma} \\varepsilon(\\sigma) m^n = m^n \\sum_{\\sigma} \\varepsilon(\\sigma) = 0$ pour $n \\geq 2$ (car $\\sum \\varepsilon(\\sigma) = 0$)."
+      }
+    ]
+  },
+  {
+    "banque": "E3A-Polytech",
+    "epreuve": "Maths 1 2022",
+    "partie": "Exercice 4",
+    "questions": "2 q. : Q1, Q4",
+    "difficulte": "Standard",
+    "intitule": "Matrices circulantes ; matrice de permutation $F$ et diagonalisation par la DFT",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "Une matrice circulante est de la forme $C = \\sum_{k=0}^{n-1} c_k F^k$ où $F$ est la matrice de permutation circulaire ($F_{i,j} = \\delta_{i, j+1 \\mod n}$). $F$ vérifie $F^n = I_n$, donc $\\mathrm{Sp}(F) \\subset \\{\\omega^k \\mid k = 0, \\ldots, n-1\\}$ avec $\\omega = e^{2i\\pi/n}$. Le vecteur $v_k = (1, \\omega^k, \\omega^{2k}, \\ldots, \\omega^{(n-1)k})^T / \\sqrt{n}$ est vecteur propre de $F$ pour $\\omega^k$."
+      },
+      {
+        "question": "Q4",
+        "correction": "Puisque $C = \\sum c_j F^j$ et $F$ est diagonalisée par la matrice de Fourier $\\Omega$ ($\\Omega_{j,k} = \\omega^{jk}/\\sqrt{n}$), on a $C = \\Omega^* \\mathrm{diag}(\\hat{c}_0, \\ldots, \\hat{c}_{n-1}) \\Omega$ où $\\hat{c}_k = \\sum_{j=0}^{n-1} c_j \\omega^{jk}$ est la DFT de $(c_0, \\ldots, c_{n-1})$. Toutes les matrices circulantes commutent car elles sont simultanément diagonalisées par $\\Omega$."
+      }
+    ]
+  }
+]

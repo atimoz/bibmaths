@@ -244,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const h = window.location.hash.replace('#', '');
       if (h && document.querySelector('.filter-btn[data-filter="' + h + '"]')) {
         applyFilter(h);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
 
@@ -258,7 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
           if (filterVal && document.querySelector('.filter-btn[data-filter="' + filterVal + '"]')) {
             e.preventDefault();
             applyFilter(filterVal);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
           }
         }
       });
@@ -290,35 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
-  // ---- Scroll reveal ----
-  const revealElements = document.querySelectorAll(
-    '.domain-card, .programme-card, .resource-card, .tool-card, .section__header, .formula-showcase__inner, .about-layout, .chapter-card, .chapter-group__title, .semester-label'
-  );
-
-  revealElements.forEach(el => el.classList.add('reveal'));
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        // Stagger siblings
-        const siblings = entry.target.parentElement.querySelectorAll('.reveal');
-        const index = Array.from(siblings).indexOf(entry.target);
-        const delay = Math.min(index * 80, 400);
-
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, delay);
-
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -60px 0px'
-  });
-
-  revealElements.forEach(el => observer.observe(el));
 
   // ---- Nav scroll effect ----
   const nav = document.querySelector('.nav');
@@ -362,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filterContainer.addEventListener('click', function(e) {
       var btn = e.target.closest('[data-abq]');
       if (!btn) return;
-      filterContainer.querySelectorAll('.chip').forEach(function(b) { b.classList.remove('active'); });
+      filterContainer.querySelectorAll('.chip, .annale-tab').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       var bq = btn.dataset.abq;
       document.querySelectorAll('.annale-banque').forEach(function(section) {
@@ -400,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  var BANQUE_MAP = { C: 'CCINP', CS: 'Centrale-Supelec', M: 'Mines-Ponts', X: 'X-ENS' };
+  var BANQUE_MAP = { C: 'CCINP', CS: 'Centrale-Supelec', M: 'Mines-Ponts', X: 'X-ENS', E: 'E3A-Polytech' };
   var DIFF_MAP = { S: 'Standard', I: 'Intermediaire', A: 'Avance' };
   var THEME_NAMES = { Fon: 'Fondements', Ana: 'Analyse', Alg: 'Algebre', Pro: 'Probabilites', Fondements: 'Fondements', Analyse: 'Analyse', Algebre: 'Algebre', Probabilites: 'Probabilites' };
   var THEME_ORDER_RAW = { Fon: 0, Ana: 1, Alg: 2, Pro: 3, Fondements: 0, Analyse: 1, Algebre: 2, Probabilites: 3 };
@@ -496,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (b && !seen[b]) { seen[b] = true; banques.push(b); }
     });
 
-    var BANQUE_ORDER = { 'CCINP': 0, 'Centrale-Supelec': 1, 'Centrale-Supélec': 1, 'Mines-Ponts': 2, 'X-ENS': 3 };
+    var BANQUE_ORDER = { 'CCINP': 0, 'Centrale-Supelec': 1, 'Centrale-Supélec': 1, 'Mines-Ponts': 2, 'X-ENS': 3, 'E3A-Polytech': 4 };
     banques.sort(function(a, b) { return (BANQUE_ORDER[a] || 99) - (BANQUE_ORDER[b] || 99); });
 
     var filterHtml = '';
@@ -504,7 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
       filterHtml = '<div class="exo-banque-filter">';
       filterHtml += '<button class="exo-banque-chip exo-banque-chip--active" data-banque="all">Tous <span class="exo-banque-chip__count">' + refs.length + '</span></button>';
       banques.forEach(function(b) {
-        var bCode = b === 'CCINP' ? 'c' : (b.indexOf('Centrale') !== -1 ? 'cs' : (b.indexOf('Mines') !== -1 ? 'm' : 'x'));
+        var bCode = b === 'CCINP' ? 'c' : (b.indexOf('Centrale') !== -1 ? 'cs' : (b.indexOf('Mines') !== -1 ? 'm' : (b === 'E3A-Polytech' ? 'e' : 'x')));
         var count = refs.filter(function(r) { return r.banque === b; }).length;
         filterHtml += '<button class="exo-banque-chip exo-banque-chip--' + bCode + '" data-banque="' + b + '">' + b + ' <span class="exo-banque-chip__count">' + count + '</span></button>';
       });
@@ -538,7 +507,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bFull && !seen[bFull]) { seen[bFull] = true; banques.push(bFull); }
     });
 
-    var BANQUE_ORDER = { 'CCINP': 0, 'Centrale-Supelec': 1, 'Centrale-Supélec': 1, 'Mines-Ponts': 2, 'X-ENS': 3 };
+    var BANQUE_ORDER = { 'CCINP': 0, 'Centrale-Supelec': 1, 'Centrale-Supélec': 1, 'Mines-Ponts': 2, 'X-ENS': 3, 'E3A-Polytech': 4 };
     banques.sort(function(a, b) { return (BANQUE_ORDER[a] || 99) - (BANQUE_ORDER[b] || 99); });
 
     var filterHtml = '';
@@ -546,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
       filterHtml = '<div class="exo-banque-filter">';
       filterHtml += '<button class="exo-banque-chip exo-banque-chip--active" data-banque="all">Tous <span class="exo-banque-chip__count">' + refs.length + '</span></button>';
       banques.forEach(function(b) {
-        var bCode = b === 'CCINP' ? 'c' : (b.indexOf('Centrale') !== -1 ? 'cs' : (b.indexOf('Mines') !== -1 ? 'm' : 'x'));
+        var bCode = b === 'CCINP' ? 'c' : (b.indexOf('Centrale') !== -1 ? 'cs' : (b.indexOf('Mines') !== -1 ? 'm' : (b === 'E3A-Polytech' ? 'e' : 'x')));
         var count = refs.filter(function(r) { return (BANQUE_MAP[r.b] || r.b) === b; }).length;
         filterHtml += '<button class="exo-banque-chip exo-banque-chip--' + bCode + '" data-banque="' + b + '">' + b + ' <span class="exo-banque-chip__count">' + count + '</span></button>';
       });
@@ -575,14 +544,16 @@ document.addEventListener('DOMContentLoaded', () => {
     'Centrale-Supélec': 'centrale',
     'Centrale-Supelec': 'centrale',
     'Mines-Ponts': 'mines',
-    'X-ENS': 'xens'
+    'X-ENS': 'xens',
+    'E3A-Polytech': 'e3a'
   };
   var BANQUE_TO_PDF = {
     'CCINP': 'CCINP',
     'Centrale-Supélec': 'Centrale-Supelec',
     'Centrale-Supelec': 'Centrale-Supelec',
     'Mines-Ponts': 'Mines-Ponts',
-    'X-ENS': 'X-ENS'
+    'X-ENS': 'X-ENS',
+    'E3A-Polytech': 'E3A-Polytech'
   };
 
   function getExerciceUrl(banque, epreuve, partie, questions) {
@@ -728,7 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderExoRefs(container, refs) {
     var html = '<p class="exo-count">' + refs.length + ' references</p>';
     refs.forEach(function(ref) {
-      var bCode = ref.banque === 'CCINP' ? 'c' : ref.banque === 'Centrale-Supelec' || ref.banque.indexOf('Centrale') !== -1 ? 'cs' : ref.banque === 'Mines-Ponts' || ref.banque.indexOf('Mines') !== -1 ? 'm' : 'x';
+      var bCode = ref.banque === 'CCINP' ? 'c' : ref.banque === 'Centrale-Supelec' || ref.banque.indexOf('Centrale') !== -1 ? 'cs' : ref.banque === 'Mines-Ponts' || ref.banque.indexOf('Mines') !== -1 ? 'm' : ref.banque === 'E3A-Polytech' ? 'e' : 'x';
       var dCode = ref.difficulte ? ref.difficulte[0].toLowerCase() : 's';
       var bLabel = ref.banque || '';
       var annaleUrl = getExerciceUrl(ref.banque, ref.epreuve, ref.partie, ref.questions);
@@ -820,7 +791,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var bFull = BANQUE_MAP[ref.b] || ref.b;
       var dFull = DIFF_MAP[ref.d] || ref.d;
       var dCode = (ref.d || 's').toLowerCase();
-      var bCode = ref.b === 'C' ? 'c' : ref.b === 'CS' ? 'cs' : ref.b === 'M' ? 'm' : 'x';
+      var bCode = ref.b === 'C' ? 'c' : ref.b === 'CS' ? 'cs' : ref.b === 'M' ? 'm' : ref.b === 'E' ? 'e' : 'x';
 
       html += '<div class="exo-ref">' +
         '<div class="exo-ref__header">' +

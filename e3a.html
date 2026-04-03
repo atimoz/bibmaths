@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E3A-Polytech MP | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+/* ---- E3A accent override ---- */
+.e3a-accent { --accent: #E91E63; --accent-light: #F48FB1; --accent-glow: rgba(233,30,99,0.12); }
+
+.e3a-accent .filter-btn:hover {
+  border-color: #E91E63;
+  color: #E91E63;
+  background: rgba(233,30,99,0.05);
+}
+.e3a-accent .filter-btn--active {
+  background: #E91E63;
+  color: #fff;
+  border-color: #E91E63;
+}
+.e3a-accent .filter-btn--active:hover {
+  background: #D81B60;
+  border-color: #D81B60;
+  color: #fff;
+}
+[data-theme="dark"] .e3a-accent .filter-btn--active {
+  color: #fff;
+}
+
+/* ---- Annales cards ---- */
+.annales-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  max-width: var(--max-w);
+  margin: 0 auto var(--space-xl);
+  padding: 0 var(--space-lg);
+}
+@media (max-width: 900px) { .annales-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .annales-grid { grid-template-columns: 1fr; } }
+
+.annale-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid #E91E63;
+  border-radius: 12px;
+  padding: var(--space-lg);
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
+}
+.annale-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(233,30,99,0.08);
+}
+.annale-card__year {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #E91E63;
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+.annale-card__theme {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: var(--space-sm);
+}
+.annale-card__meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-md);
+}
+.annale-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: var(--space-md);
+}
+.annale-chip {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(233,30,99,0.08);
+  color: #E91E63;
+  font-weight: 500;
+}
+[data-theme="dark"] .annale-chip {
+  background: rgba(233,30,99,0.15);
+  color: #F48FB1;
+}
+.annale-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.annale-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.annale-btn--enonce {
+  background: #E91E63;
+  color: #fff;
+  border-color: #E91E63;
+}
+.annale-btn--enonce:hover { background: #D81B60; }
+.annale-btn--correction {
+  background: transparent;
+  color: #E91E63;
+  border-color: #E91E63;
+}
+.annale-btn--correction:hover {
+  background: rgba(233,30,99,0.08);
+}
+.annale-btn--disabled {
+  background: transparent;
+  color: var(--ink-muted);
+  border-color: var(--border);
+  cursor: default;
+  opacity: 0.6;
+}
+
+/* ---- Frequency bars ---- */
+.freq-section {
+  max-width: 720px;
+  margin: 0 auto var(--space-xl);
+  padding: 0 var(--space-lg);
+}
+.freq-section__title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+.freq-bar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+.freq-bar-row__label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink);
+  min-width: 140px;
+  text-align: right;
+}
+.freq-bar-row__track {
+  flex: 1;
+  height: 24px;
+  background: var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.freq-bar-row__fill {
+  height: 100%;
+  background: linear-gradient(135deg, #E91E63, #F48FB1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #fff;
+  transition: width 0.6s var(--ease-out);
+}
+
+/* ---- Course resume blocks ---- */
+.resume-container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+.course__section {
+  margin-bottom: var(--space-xl);
+}
+.course__section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+.course__section-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.course__badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #E91E63;
+  color: #fff;
+  white-space: nowrap;
+}
+.block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+.block__label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-xs);
+}
+.block__content {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--ink);
+  line-height: 1.7;
+}
+.block--def { border-left: 4px solid #4A90D9; }
+.block--def .block__label { color: #4A90D9; }
+.block--thm { border-left: 4px solid #E91E63; }
+.block--thm .block__label { color: #E91E63; }
+.block--prop { border-left: 4px solid #4CAF50; }
+.block--prop .block__label { color: #4CAF50; }
+.block--method { border-left: 4px solid #FF9800; }
+.block--method .block__label { color: #FF9800; }
+.block--formula { border-left: 4px solid #9C27B0; }
+.block--formula .block__label { color: #9C27B0; }
+.block__exos {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+.block__exos a {
+  color: #E91E63;
+  text-decoration: none;
+  font-weight: 500;
+}
+.block__exos a:hover { text-decoration: underline; }
+
+/* ---- Flashcards ---- */
+.fc-container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+.fc-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+}
+.fc-chip {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.fc-chip:hover { border-color: #E91E63; color: #E91E63; }
+.fc-chip--active { background: #E91E63; color: #fff; border-color: #E91E63; }
+.fc-stats {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-lg);
+}
+.fc-card-wrapper {
+  perspective: 800px;
+  max-width: 540px;
+  margin: 0 auto var(--space-lg);
+  min-height: 260px;
+}
+.fc-card {
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease-out);
+}
+.fc-card.flipped { transform: rotateY(180deg); }
+.fc-card__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+}
+.fc-card__face--back {
+  transform: rotateY(180deg);
+  border-left: 4px solid #E91E63;
+}
+.fc-card__question {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.fc-card__answer {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.7;
+}
+.fc-card__hint {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink-muted);
+  margin-top: var(--space-md);
+}
+.fc-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+}
+.fc-btn {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 10px 28px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.fc-btn--know { background: #4CAF50; color: #fff; border-color: #4CAF50; }
+.fc-btn--know:hover { background: #43a047; }
+.fc-btn--review { background: transparent; color: #E91E63; border-color: #E91E63; }
+.fc-btn--review:hover { background: rgba(233,30,99,0.08); }
+
+/* ---- Quiz ---- */
+.quiz-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+.quiz-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+.quiz-progress__bar {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.quiz-progress__fill {
+  height: 100%;
+  background: #E91E63;
+  border-radius: 3px;
+  transition: width 0.3s var(--ease-out);
+}
+.quiz-progress__text {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+.quiz-score {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-md);
+}
+.quiz-question {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  min-height: 60px;
+}
+.quiz-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: var(--space-lg);
+}
+.quiz-choice {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  padding: 14px 20px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+.quiz-choice:hover:not(.quiz-choice--answered) {
+  border-color: #E91E63;
+  background: rgba(233,30,99,0.04);
+}
+.quiz-choice--correct {
+  border-color: #4CAF50 !important;
+  background: rgba(76,175,80,0.08) !important;
+  color: #2E7D32 !important;
+}
+.quiz-choice--wrong {
+  border-color: #f44336 !important;
+  background: rgba(244,67,54,0.08) !important;
+  color: #C62828 !important;
+}
+[data-theme="dark"] .quiz-choice--correct { color: #81C784 !important; }
+[data-theme="dark"] .quiz-choice--wrong { color: #EF9A9A !important; }
+.quiz-choice--answered { cursor: default; }
+.quiz-explanation {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid #4CAF50;
+  border-radius: 10px;
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink);
+  line-height: 1.6;
+  display: none;
+}
+.quiz-next {
+  display: none;
+  margin: 0 auto var(--space-lg);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 32px;
+  border-radius: 10px;
+  background: #E91E63;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.quiz-next:hover { background: #D81B60; }
+.quiz-end {
+  text-align: center;
+  padding: var(--space-xl);
+  display: none;
+}
+.quiz-end__score {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #E91E63;
+}
+.quiz-end__label {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  margin-top: var(--space-sm);
+}
+.quiz-restart {
+  margin-top: var(--space-lg);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 32px;
+  border-radius: 10px;
+  background: #E91E63;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.quiz-restart:hover { background: #D81B60; }
+
+/* ---- Section title inside tabs ---- */
+.tab-section-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-align: center;
+  margin: var(--space-xl) 0 var(--space-lg);
+}
+.tab-empty {
+  text-align: center;
+  padding: var(--space-xl);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+</style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="mp.html#methodes" class="dropdown__item">Methodes</a>
+          <a href="mp.html#concours" class="dropdown__item">Concours</a>
+          <a href="mp.html#annales" class="dropdown__item">Annales</a>
+        </div>
+      </div>
+      <a href="e3a.html" class="nav__link nav__link--active">E3A</a>
+      <a href="entrainement.html" class="nav__link">Entrainement</a>
+      <a href="revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group">
+      <a href="mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a>
+    </div>
+    <div class="mobile-menu__group">
+      <a href="mp.html" class="mobile-menu__page-link">MP — Math Spe</a>
+    </div>
+    <div class="mobile-menu__group">
+      <a href="e3a.html" class="mobile-menu__page-link mobile-menu__page-link--active">E3A-Polytech MP</a>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <header class="page-header e3a-accent">
+    <div class="page-header__inner">
+      <a href="mp.html" class="page-header__back">&larr; MP</a>
+      <p class="page-header__eyebrow">Concours</p>
+      <h1 class="page-header__title">E3A-Polytech MP</h1>
+      <p class="page-header__subtitle">Annales, cours cibles, flashcards et quiz pour preparer E3A</p>
+      <div class="page-header__filters" id="filters">
+        <button class="filter-btn filter-btn--active" data-filter="annales">Annales</button>
+        <button class="filter-btn" data-filter="resumes">Resumes</button>
+        <button class="filter-btn" data-filter="flashcards">Flashcards</button>
+        <button class="filter-btn" data-filter="quiz">Quiz</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="program e3a-accent">
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONGLET 1 : ANNALES                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-type="annales">
+
+      <div class="annales-grid">
+
+        <!-- 2025 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2025</div>
+          <div class="annale-card__theme">Optimisation, DFT, Bessel</div>
+          <div class="annale-card__meta">3 exercices</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Calcul diff</span>
+            <span class="annale-chip">Series entieres</span>
+            <span class="annale-chip">Integrales</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="cours/annales/e3a-2025-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="cours/annales/e3a-2025-correction.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <!-- 2024 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2024</div>
+          <div class="annale-card__theme">Geometrique, cos(n)/n, A^T=3A^2-A-I, Convolution</div>
+          <div class="annale-card__meta">4 exercices</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Probabilites</span>
+            <span class="annale-chip">Series entieres</span>
+            <span class="annale-chip">Reduction</span>
+            <span class="annale-chip">Integrales</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="cours/annales/e3a-2024-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="cours/annales/e3a-2024-correction.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <!-- 2023 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2023</div>
+          <div class="annale-card__theme">Endo R_n[X], Gamma, Operateur integral, Matrices aleatoires</div>
+          <div class="annale-card__meta">4 exercices</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Reduction</span>
+            <span class="annale-chip">Integrales</span>
+            <span class="annale-chip">Probabilites</span>
+            <span class="annale-chip">Algebre lineaire</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="cours/annales/e3a-2023-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="cours/annales/e3a-2023-correction.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <!-- 2022 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2022</div>
+          <div class="annale-card__theme">Gamma/Gauss, Max urnes, Cauchy-Schwarz, Circulantes</div>
+          <div class="annale-card__meta">4 exercices</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Integrales</span>
+            <span class="annale-chip">Probabilites</span>
+            <span class="annale-chip">Euclidiens</span>
+            <span class="annale-chip">Reduction</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="cours/annales/e3a-2022-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <span class="annale-btn annale-btn--disabled">Pas encore</span>
+          </div>
+        </div>
+
+        <!-- 2021 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2021</div>
+          <div class="annale-card__theme">Series fonctions, Endo symetrique, Generatrices, Forme lineaire</div>
+          <div class="annale-card__meta">4 exercices</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Series</span>
+            <span class="annale-chip">Euclidiens</span>
+            <span class="annale-chip">Probabilites</span>
+            <span class="annale-chip">Algebre lineaire</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="cours/annales/e3a-2021-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <span class="annale-btn annale-btn--disabled">Pas encore</span>
+          </div>
+        </div>
+
+        <!-- 2020 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2020</div>
+          <div class="annale-card__theme">Geometrique, Prod ch, Suites Z, R_n[X], Cesaro</div>
+          <div class="annale-card__meta">5 exercices</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Probabilites</span>
+            <span class="annale-chip">Series entieres</span>
+            <span class="annale-chip">Suites</span>
+            <span class="annale-chip">Reduction</span>
+            <span class="annale-chip">Euclidiens</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="cours/annales/e3a-2020-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="cours/annales/e3a-2020-correction.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Themes les plus frequents -->
+      <div class="freq-section">
+        <h2 class="freq-section__title">Themes les plus frequents</h2>
+
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">Reduction</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:100%">7</div>
+          </div>
+        </div>
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">Series entieres</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:71%">5</div>
+          </div>
+        </div>
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">Probabilites</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:71%">5</div>
+          </div>
+        </div>
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">Integrales</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:71%">5</div>
+          </div>
+        </div>
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">Espaces euclidiens</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:57%">4</div>
+          </div>
+        </div>
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">Calcul diff</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:29%">2</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end annales -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONGLET 2 : RESUMES DE COURS                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-type="resumes" style="display:none">
+      <div class="resume-container">
+
+        <!-- 1. Reduction -->
+        <div class="course__section">
+          <div class="course__section-header">
+            <h2 class="course__section-title">1. Reduction d'endomorphismes</h2>
+            <span class="course__badge">Tombe chaque annee</span>
+          </div>
+
+          <div class="block block--def">
+            <div class="block__label">Definition</div>
+            <div class="block__content">
+              <strong>Valeur propre, vecteur propre, sous-espace propre.</strong><br>
+              Soit \(f \in \mathcal{L}(E)\). On dit que \(\lambda \in \mathbb{K}\) est <em>valeur propre</em> de \(f\) s'il existe \(x \neq 0\) tel que \(f(x) = \lambda x\). Le sous-espace propre associe est \(E_\lambda = \ker(f - \lambda \mathrm{Id})\).
+            </div>
+          </div>
+
+          <div class="block block--thm">
+            <div class="block__label">Theoreme</div>
+            <div class="block__content">
+              <strong>Polynome annulateur et diagonalisabilite.</strong><br>
+              Si \(P\) est un polynome annulateur de \(f\) (i.e. \(P(f) = 0\)) et si \(P\) est scinde a racines simples sur \(\mathbb{K}\), alors \(f\) est diagonalisable.
+            </div>
+          </div>
+
+          <div class="block block--thm">
+            <div class="block__label">Theoreme spectral</div>
+            <div class="block__content">
+              Toute matrice symetrique reelle \(A \in \mathcal{S}_n(\mathbb{R})\) est diagonalisable dans une base orthonormee. Il existe \(P \in \mathcal{O}_n(\mathbb{R})\) et \(D\) diagonale tels que \(A = PDP^T\).
+            </div>
+          </div>
+
+          <div class="block block--formula">
+            <div class="block__label">Formule</div>
+            <div class="block__content">
+              <strong>\(A^n\) par interpolation de Lagrange</strong> quand \(P(A) = 0\).<br>
+              Si \(\chi_A(\lambda) = \prod_{i=1}^{p}(\lambda - \lambda_i)\) avec racines distinctes, alors \(A^n = \sum_{i=1}^{p} \lambda_i^n \prod_{j \neq i} \frac{A - \lambda_j I}{\lambda_i - \lambda_j}\).
+            </div>
+          </div>
+
+          <div class="block block--method">
+            <div class="block__label">Methode</div>
+            <div class="block__content">
+              Pour diagonaliser, toujours chercher d'abord un polynome annulateur. Si \(\chi_A\) est scinde a racines simples, c'est termine. Sinon, calculer les sous-espaces propres et verifier que \(\dim E_{\lambda_1} + \cdots + \dim E_{\lambda_p} = n\).
+            </div>
+          </div>
+
+          <div class="block__exos">
+            Exercices E3A associes :
+            <a href="cours/annales/e3a-2025-maths1.html">2025 exo 2</a> &middot;
+            <a href="cours/annales/e3a-2024-maths1.html">2024 exo 3</a> &middot;
+            <a href="cours/annales/e3a-2023-maths1.html">2023 exo 1</a> &middot;
+            <a href="cours/annales/e3a-2022-maths1.html">2022 exo 3-4</a>
+          </div>
+
+          <div id="flashcards-reduction"></div>
+          <div id="quiz-reduction"></div>
+        </div>
+
+        <!-- 2. Series entieres -->
+        <div class="course__section">
+          <div class="course__section-header">
+            <h2 class="course__section-title">2. Series entieres</h2>
+            <span class="course__badge">Quasi chaque annee</span>
+          </div>
+
+          <div class="block block--def">
+            <div class="block__label">Definition</div>
+            <div class="block__content">
+              <strong>Rayon de convergence \(R\).</strong><br>
+              Formule d'Alembert : \(R = \lim \left|\frac{a_n}{a_{n+1}}\right|\) (quand la limite existe).<br>
+              Formule d'Hadamard : \(\frac{1}{R} = \limsup |a_n|^{1/n}\).
+            </div>
+          </div>
+
+          <div class="block block--prop">
+            <div class="block__label">Propriete &mdash; DSE classiques</div>
+            <div class="block__content">
+              \(e^x = \sum \frac{x^n}{n!}\), \(\sin x = \sum (-1)^n \frac{x^{2n+1}}{(2n+1)!}\), \(\cos x = \sum (-1)^n \frac{x^{2n}}{(2n)!}\),<br>
+              \(\ln(1+x) = \sum (-1)^{n+1}\frac{x^n}{n}\), \((1+x)^\alpha = \sum \binom{\alpha}{n} x^n\), \(\mathrm{sh}\,x\), \(\mathrm{ch}\,x\).
+            </div>
+          </div>
+
+          <div class="block block--thm">
+            <div class="block__label">Theoreme</div>
+            <div class="block__content">
+              <strong>Derivation / integration terme a terme.</strong><br>
+              Sur \(]-R, R[\), la serie entiere \(\sum a_n x^n\) est \(\mathcal{C}^\infty\) et on peut deriver et integrer terme a terme. Le rayon de convergence est conserve.
+            </div>
+          </div>
+
+          <div class="block block--method">
+            <div class="block__label">Methode</div>
+            <div class="block__content">
+              Pour trouver la somme d'une serie entiere : deriver ou integrer pour reconnaitre une fonction connue. Penser aussi a multiplier par \(x\) ou diviser par \(x\) avant de deriver.
+            </div>
+          </div>
+
+          <div class="block__exos">
+            Exercices E3A :
+            <a href="cours/annales/e3a-2025-maths1.html">2025 exo 3</a> &middot;
+            <a href="cours/annales/e3a-2024-maths1.html">2024 exo 2</a> &middot;
+            <a href="cours/annales/e3a-2022-maths1.html">2022 exo 1</a>
+          </div>
+
+          <div id="flashcards-series"></div>
+          <div id="quiz-series"></div>
+        </div>
+
+        <!-- 3. Integrales impropres & a parametre -->
+        <div class="course__section">
+          <div class="course__section-header">
+            <h2 class="course__section-title">3. Integrales impropres &amp; a parametre</h2>
+          </div>
+
+          <div class="block block--prop">
+            <div class="block__label">Propriete</div>
+            <div class="block__content">
+              <strong>Criteres de convergence.</strong><br>
+              Comparaison : si \(0 \leq f(t) \leq g(t)\) et \(\int g\) converge, alors \(\int f\) converge.<br>
+              Equivalent : si \(f \sim g\) en \(+\infty\), meme nature.
+            </div>
+          </div>
+
+          <div class="block block--def">
+            <div class="block__label">Definition</div>
+            <div class="block__content">
+              <strong>Fonction Gamma.</strong><br>
+              \(\Gamma(x) = \int_0^{+\infty} t^{x-1} e^{-t}\, dt\) pour \(x > 0\). Relation fonctionnelle : \(\Gamma(n+1) = n!\) pour \(n \in \mathbb{N}\).
+            </div>
+          </div>
+
+          <div class="block block--thm">
+            <div class="block__label">Theoreme</div>
+            <div class="block__content">
+              <strong>Convergence dominee.</strong><br>
+              Si \(f_n \to f\) pp et \(|f_n| \leq g\) integrable, alors \(\int f_n \to \int f\).
+            </div>
+          </div>
+
+          <div class="block block--thm">
+            <div class="block__label">Theoreme</div>
+            <div class="block__content">
+              <strong>Derivation sous le signe integral (Leibniz).</strong><br>
+              Sous hypotheses de domination, \(\frac{d}{dx}\int_a^b f(x,t)\,dt = \int_a^b \frac{\partial f}{\partial x}(x,t)\,dt\).
+            </div>
+          </div>
+
+          <div class="block__exos">
+            Exercices E3A :
+            <a href="cours/annales/e3a-2023-maths1.html">2023 exo 2</a> &middot;
+            <a href="cours/annales/e3a-2022-maths1.html">2022 exo 1</a>
+          </div>
+
+          <div id="flashcards-integrales"></div>
+          <div id="quiz-integrales"></div>
+        </div>
+
+        <!-- 4. Probabilites discretes -->
+        <div class="course__section">
+          <div class="course__section-header">
+            <h2 class="course__section-title">4. Probabilites discretes</h2>
+            <span class="course__badge">8 annees sur 9</span>
+          </div>
+
+          <div class="block block--def">
+            <div class="block__label">Definition</div>
+            <div class="block__content">
+              <strong>Lois classiques.</strong><br>
+              Bernoulli \(\mathcal{B}(p)\) : \(P(X=1)=p\).<br>
+              Binomiale \(\mathcal{B}(n,p)\) : \(P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\).<br>
+              Poisson \(\mathcal{P}(\lambda)\) : \(P(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}\).<br>
+              Geometrique \(\mathcal{G}(p)\) : \(P(X=k)=p(1-p)^{k-1}\).
+            </div>
+          </div>
+
+          <div class="block block--prop">
+            <div class="block__label">Propriete</div>
+            <div class="block__content">
+              <strong>Esperance et variance.</strong><br>
+              \(\mathcal{B}(p)\) : \(E=p,\; V=p(1-p)\).<br>
+              \(\mathcal{B}(n,p)\) : \(E=np,\; V=np(1-p)\).<br>
+              \(\mathcal{P}(\lambda)\) : \(E=\lambda,\; V=\lambda\).<br>
+              \(\mathcal{G}(p)\) : \(E=1/p,\; V=(1-p)/p^2\).
+            </div>
+          </div>
+
+          <div class="block block--def">
+            <div class="block__label">Definition</div>
+            <div class="block__content">
+              <strong>Fonction generatrice.</strong><br>
+              \(G_X(t) = E(t^X) = \sum_{k \geq 0} P(X=k)\, t^k\). Rayon de convergence \(\geq 1\). Permet de retrouver \(E(X) = G'_X(1)\) et la loi de \(X+Y\) par produit de generatrices.
+            </div>
+          </div>
+
+          <div class="block block--thm">
+            <div class="block__label">Theoreme</div>
+            <div class="block__content">
+              <strong>Convolution.</strong><br>
+              Si \(X\) et \(Y\) sont independantes et a valeurs dans \(\mathbb{N}\), \(P(X+Y=n) = \sum_{k=0}^{n} P(X=k)P(Y=n-k)\).
+            </div>
+          </div>
+
+          <div class="block__exos">
+            Exercices E3A :
+            <a href="cours/annales/e3a-2024-maths1.html">2024 exo 1</a> &middot;
+            <a href="cours/annales/e3a-2023-maths1.html">2023 exo 4</a> &middot;
+            <a href="cours/annales/e3a-2022-maths1.html">2022 exo 2</a> &middot;
+            <a href="cours/annales/e3a-2021-maths1.html">2021 exo 3</a> &middot;
+            <a href="cours/annales/e3a-2020-maths1.html">2020 exo 1</a>
+          </div>
+
+          <div id="flashcards-probas"></div>
+          <div id="quiz-probas"></div>
+        </div>
+
+        <!-- 5. Espaces euclidiens -->
+        <div class="course__section">
+          <div class="course__section-header">
+            <h2 class="course__section-title">5. Espaces euclidiens</h2>
+          </div>
+
+          <div class="block block--def">
+            <div class="block__label">Definition</div>
+            <div class="block__content">
+              <strong>Produit scalaire, norme, Cauchy-Schwarz.</strong><br>
+              Un produit scalaire est une forme bilineaire symetrique definie positive. Inegalite de Cauchy-Schwarz : \(|\langle x, y \rangle| \leq \|x\| \cdot \|y\|\), egalite ssi \(x\) et \(y\) sont colineaires.
+            </div>
+          </div>
+
+          <div class="block block--prop">
+            <div class="block__label">Propriete</div>
+            <div class="block__content">
+              <strong>Projection orthogonale et Gram-Schmidt.</strong><br>
+              Tout sous-espace \(F\) de dimension finie admet un supplementaire orthogonal : \(E = F \oplus F^\perp\). Le procede de Gram-Schmidt construit une BON a partir d'une base quelconque.
+            </div>
+          </div>
+
+          <div class="block block--prop">
+            <div class="block__label">Propriete</div>
+            <div class="block__content">
+              <strong>Distance a un sous-espace.</strong><br>
+              \(d(x, F) = \|x - p_F(x)\|\) ou \(p_F(x)\) est la projection orthogonale de \(x\) sur \(F\).
+            </div>
+          </div>
+
+          <div class="block__exos">
+            Exercices E3A :
+            <a href="cours/annales/e3a-2025-maths1.html">2025 exo 1</a> &middot;
+            <a href="cours/annales/e3a-2022-maths1.html">2022 exo 3</a> &middot;
+            <a href="cours/annales/e3a-2020-maths1.html">2020 exo 4</a>
+          </div>
+
+          <div id="flashcards-euclidiens"></div>
+          <div id="quiz-euclidiens"></div>
+        </div>
+
+        <!-- 6. Calcul differentiel & optimisation -->
+        <div class="course__section">
+          <div class="course__section-header">
+            <h2 class="course__section-title">6. Calcul differentiel &amp; optimisation</h2>
+          </div>
+
+          <div class="block block--def">
+            <div class="block__label">Definition</div>
+            <div class="block__content">
+              <strong>Gradient, matrice hessienne.</strong><br>
+              Le gradient de \(f : \mathbb{R}^n \to \mathbb{R}\) differentiable en \(a\) est \(\nabla f(a) = \left(\frac{\partial f}{\partial x_i}(a)\right)\). La matrice hessienne est \(H_f(a) = \left(\frac{\partial^2 f}{\partial x_i \partial x_j}(a)\right)\).
+            </div>
+          </div>
+
+          <div class="block block--thm">
+            <div class="block__label">Theoreme</div>
+            <div class="block__content">
+              <strong>Extrema sous contrainte (Lagrange).</strong><br>
+              Pour trouver les extrema de \(f\) sous la contrainte \(g(x) = 0\), on cherche les points ou \(\nabla f = \lambda \nabla g\) (multiplicateur de Lagrange). La nature est determinee par la hessienne bordee.
+            </div>
+          </div>
+
+          <div class="block__exos">
+            Exercices E3A :
+            <a href="cours/annales/e3a-2025-maths1.html">2025 exo 1</a>
+          </div>
+
+          <div id="flashcards-calcdiff"></div>
+          <div id="quiz-calcdiff"></div>
+        </div>
+
+      </div>
+    </div><!-- end resumes -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONGLET 3 : FLASHCARDS                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-type="flashcards" style="display:none">
+      <div class="fc-container">
+
+        <div class="fc-filters" id="fcFilters">
+          <button class="fc-chip fc-chip--active" data-fc-theme="all">Tout</button>
+          <button class="fc-chip" data-fc-theme="reduction">Reduction</button>
+          <button class="fc-chip" data-fc-theme="series">Series entieres</button>
+          <button class="fc-chip" data-fc-theme="integrales">Integrales</button>
+          <button class="fc-chip" data-fc-theme="probas">Probabilites</button>
+          <button class="fc-chip" data-fc-theme="euclidiens">Euclidiens</button>
+          <button class="fc-chip" data-fc-theme="calcdiff">Calcul diff</button>
+        </div>
+
+        <div class="fc-stats" id="fcStats">Carte 1 / -- &mdash; Je sais : 0 &middot; A revoir : 0</div>
+
+        <div class="fc-card-wrapper">
+          <div class="fc-card" id="fcCard">
+            <div class="fc-card__face fc-card__face--front">
+              <div class="fc-card__question" id="fcQuestion">Chargement des flashcards...</div>
+              <div class="fc-card__hint">Cliquer pour retourner</div>
+            </div>
+            <div class="fc-card__face fc-card__face--back">
+              <div class="fc-card__answer" id="fcAnswer"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fc-actions" id="fcActions" style="display:none">
+          <button class="fc-btn fc-btn--know" id="fcKnow">Je sais</button>
+          <button class="fc-btn fc-btn--review" id="fcReview">A revoir</button>
+        </div>
+
+        <div class="tab-empty" id="fcEmpty" style="display:none">
+          Aucune flashcard pour ce theme. Selectionnez un autre filtre.
+        </div>
+
+      </div>
+    </div><!-- end flashcards -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONGLET 4 : QUIZ                            -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-type="quiz" style="display:none">
+      <div class="quiz-container">
+
+        <div class="fc-filters" id="quizFilters">
+          <button class="fc-chip fc-chip--active" data-quiz-theme="all">Tout</button>
+          <button class="fc-chip" data-quiz-theme="reduction">Reduction</button>
+          <button class="fc-chip" data-quiz-theme="series">Series entieres</button>
+          <button class="fc-chip" data-quiz-theme="integrales">Integrales</button>
+          <button class="fc-chip" data-quiz-theme="probas">Probabilites</button>
+          <button class="fc-chip" data-quiz-theme="euclidiens">Euclidiens</button>
+          <button class="fc-chip" data-quiz-theme="calcdiff">Calcul diff</button>
+        </div>
+
+        <div class="quiz-progress">
+          <div class="quiz-progress__bar">
+            <div class="quiz-progress__fill" id="quizProgressFill" style="width:0%"></div>
+          </div>
+          <span class="quiz-progress__text" id="quizProgressText">0 / --</span>
+        </div>
+
+        <div class="quiz-score" id="quizScore">Score : 0 / 0</div>
+
+        <div id="quizArea">
+          <div class="quiz-question" id="quizQuestion">Chargement du quiz...</div>
+          <div class="quiz-choices" id="quizChoices"></div>
+          <div class="quiz-explanation" id="quizExplanation"></div>
+          <button class="quiz-next" id="quizNext">Question suivante</button>
+        </div>
+
+        <div class="quiz-end" id="quizEnd">
+          <div class="quiz-end__score" id="quizFinalScore"></div>
+          <div class="quiz-end__label">Bravo ! Quiz termine.</div>
+          <button class="quiz-restart" id="quizRestart">Recommencer</button>
+        </div>
+
+      </div>
+    </div><!-- end quiz -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">&int; LibMaths</span>
+        <p class="footer__tagline">La beaute des mathematiques, en ligne.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="index.html">Accueil</a>
+          <a href="mpsi.html">MPSI</a>
+          <a href="mp.html">MP</a>
+          <a href="e3a.html">E3A-Polytech</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths &mdash; Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="main.js?v=10"></script>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- E3A Inline JS: Tabs, Flashcards, Quiz      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <script>
+  (function(){
+    'use strict';
+
+    /* ---- Tab filtering (same system as mp.html) ---- */
+    const filters = document.getElementById('filters');
+    if (filters) {
+      filters.addEventListener('click', function(e) {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+        const filterVal = btn.dataset.filter;
+
+        filters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-btn--active'));
+        btn.classList.add('filter-btn--active');
+
+        document.querySelectorAll('main > [data-type]').forEach(section => {
+          section.style.display = section.dataset.type === filterVal ? '' : 'none';
+        });
+
+        /* Lazy-init flashcards / quiz on first activation */
+        if (filterVal === 'flashcards' && !window.__fcInit) {
+          window.__fcInit = true;
+          if (typeof initE3AFlashcards === 'function') initE3AFlashcards();
+        }
+        if (filterVal === 'quiz' && !window.__quizInit) {
+          window.__quizInit = true;
+          if (typeof initE3AQuiz === 'function') initE3AQuiz();
+        }
+      });
+    }
+
+    /* ═══════════════════════════════════════════════ */
+    /*  FLASHCARDS ENGINE (inline)                    */
+    /* ═══════════════════════════════════════════════ */
+
+    /* Default built-in flashcards (overridden if data/e3a-flashcards.js loaded) */
+    window.E3A_FLASHCARDS = window.E3A_FLASHCARDS || [
+      { theme:'reduction', q:'Condition suffisante de diagonalisabilite via polynome annulateur ?', a:'Si P annulateur de f est scinde a racines simples, alors f est diagonalisable.' },
+      { theme:'reduction', q:'Theoreme spectral pour les matrices symetriques reelles ?', a:'Toute matrice symetrique reelle est diagonalisable dans une base orthonormee (BON). A = PDP^T avec P orthogonale.' },
+      { theme:'reduction', q:'Comment calculer A^n quand on connait un polynome annulateur ?', a:'Interpolation de Lagrange : decomposer x^n modulo le polynome annulateur.' },
+      { theme:'series', q:'Formule d\'Hadamard pour le rayon de convergence ?', a:'1/R = lim sup |a_n|^{1/n}' },
+      { theme:'series', q:'DSE de ln(1+x) ?', a:'ln(1+x) = sum_{n>=1} (-1)^{n+1} x^n/n, R=1, CVS en x=1.' },
+      { theme:'series', q:'Peut-on deriver terme a terme une serie entiere ?', a:'Oui, sur l\'intervalle ouvert ]-R,R[. Le rayon est conserve.' },
+      { theme:'integrales', q:'Relation fonctionnelle de Gamma ?', a:'Gamma(x+1) = x * Gamma(x). En particulier Gamma(n+1) = n! pour n entier.' },
+      { theme:'integrales', q:'Enonce du theoreme de convergence dominee ?', a:'Si f_n -> f pp et |f_n| <= g integrable, alors int f_n -> int f.' },
+      { theme:'integrales', q:'Quand peut-on deriver sous le signe integral ?', a:'Si f(x,t) est C1 en x et si la derivee partielle est dominee par une fonction integrable independante de x.' },
+      { theme:'probas', q:'E(X) et V(X) pour X ~ Poisson(lambda) ?', a:'E(X) = lambda, V(X) = lambda.' },
+      { theme:'probas', q:'Fonction generatrice G_X(t) = ?', a:'G_X(t) = E(t^X) = sum P(X=k) t^k. On retrouve E(X) = G\'(1).' },
+      { theme:'probas', q:'Formule de convolution pour X+Y (independantes, a valeurs dans N) ?', a:'P(X+Y=n) = sum_{k=0}^{n} P(X=k) P(Y=n-k).' },
+      { theme:'probas', q:'E(X) pour X ~ Geometrique(p) ?', a:'E(X) = 1/p, V(X) = (1-p)/p^2.' },
+      { theme:'euclidiens', q:'Inegalite de Cauchy-Schwarz ?', a:'|<x,y>| <= ||x|| . ||y||, egalite ssi x et y sont colineaires.' },
+      { theme:'euclidiens', q:'Distance d(x, F) d\'un vecteur a un sous-espace ?', a:'d(x,F) = ||x - p_F(x)|| ou p_F(x) est la projection orthogonale sur F.' },
+      { theme:'calcdiff', q:'Condition necessaire d\'extremum local pour f : R^n -> R ?', a:'grad f(a) = 0 (point critique). La nature est determinee par la hessienne.' },
+      { theme:'calcdiff', q:'Methode des multiplicateurs de Lagrange ?', a:'Pour extrema de f sous g=0 : chercher les points ou grad f = lambda * grad g.' }
+    ];
+
+    window.initE3AFlashcards = function() {
+      const cards = window.E3A_FLASHCARDS;
+      let filtered = [...cards];
+      let idx = 0, known = 0, review = 0;
+
+      const cardEl = document.getElementById('fcCard');
+      const qEl = document.getElementById('fcQuestion');
+      const aEl = document.getElementById('fcAnswer');
+      const statsEl = document.getElementById('fcStats');
+      const actionsEl = document.getElementById('fcActions');
+      const emptyEl = document.getElementById('fcEmpty');
+      const filtersEl = document.getElementById('fcFilters');
+
+      function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      function show() {
+        if (filtered.length === 0) {
+          cardEl.parentElement.style.display = 'none';
+          actionsEl.style.display = 'none';
+          emptyEl.style.display = '';
+          statsEl.textContent = '';
+          return;
+        }
+        cardEl.parentElement.style.display = '';
+        emptyEl.style.display = 'none';
+        actionsEl.style.display = 'flex';
+        cardEl.classList.remove('flipped');
+        qEl.textContent = filtered[idx].q;
+        aEl.textContent = filtered[idx].a;
+        statsEl.textContent = 'Carte ' + (idx+1) + ' / ' + filtered.length + ' — Je sais : ' + known + ' · A revoir : ' + review;
+        /* Re-render KaTeX if available */
+        if (window.renderMathInElement) {
+          renderMathInElement(qEl, {delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});
+          renderMathInElement(aEl, {delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});
+        }
+      }
+
+      function next() {
+        idx = (idx + 1) % filtered.length;
+        show();
+      }
+
+      cardEl.addEventListener('click', () => cardEl.classList.toggle('flipped'));
+
+      document.getElementById('fcKnow').addEventListener('click', () => { known++; next(); });
+      document.getElementById('fcReview').addEventListener('click', () => { review++; next(); });
+
+      filtersEl.addEventListener('click', (e) => {
+        const chip = e.target.closest('.fc-chip');
+        if (!chip) return;
+        filtersEl.querySelectorAll('.fc-chip').forEach(c => c.classList.remove('fc-chip--active'));
+        chip.classList.add('fc-chip--active');
+        const theme = chip.dataset.fcTheme;
+        filtered = theme === 'all' ? [...cards] : cards.filter(c => c.theme === theme);
+        shuffle(filtered);
+        idx = 0; known = 0; review = 0;
+        show();
+      });
+
+      shuffle(filtered);
+      show();
+    };
+
+    /* ═══════════════════════════════════════════════ */
+    /*  QUIZ ENGINE (inline)                          */
+    /* ═══════════════════════════════════════════════ */
+
+    window.E3A_QUIZ = window.E3A_QUIZ || [
+      { theme:'reduction', q:'Un polynome annulateur scinde a racines simples implique :', choices:['f est diagonalisable','f est inversible','f est nilpotent','f est symetrique'], correct:0, expl:'Si P annulateur est scinde a racines simples, les sous-espaces propres recouvrent E.' },
+      { theme:'reduction', q:'Le theoreme spectral s\'applique a :', choices:['Toute matrice carree','Les matrices symetriques reelles','Les matrices nilpotentes','Les matrices triangulaires'], correct:1, expl:'Le theoreme spectral concerne les matrices symetriques reelles : diagonalisables en BON.' },
+      { theme:'series', q:'Le rayon de convergence de sum x^n/n! est :', choices:['R = 1','R = 0','R = +infini','R = e'], correct:2, expl:'C\'est le DSE de exp(x), qui converge partout : R = +infini.' },
+      { theme:'series', q:'On peut deriver une serie entiere terme a terme :', choices:['Sur tout R','Sur ]-R, R[ seulement','Sur [-R, R]','Nulle part'], correct:1, expl:'La derivation terme a terme est valide sur l\'intervalle ouvert de convergence ]-R, R[.' },
+      { theme:'integrales', q:'Gamma(5) = ?', choices:['24','120','5','1'], correct:0, expl:'Gamma(5) = 4! = 24.' },
+      { theme:'integrales', q:'La convergence dominee necessite :', choices:['f_n -> f pp et |f_n| <= g integrable','f_n uniformement bornee','f_n croissante','f_n continue'], correct:0, expl:'Il faut convergence simple (pp) et domination par une fonction integrable.' },
+      { theme:'probas', q:'Si X ~ B(n,p), alors V(X) = ?', choices:['np','np(1-p)','p(1-p)','n^2 p'], correct:1, expl:'La variance de la binomiale B(n,p) est np(1-p).' },
+      { theme:'probas', q:'G\'_X(1) donne :', choices:['P(X=1)','E(X)','V(X)','E(X^2)'], correct:1, expl:'La derivee de la fonction generatrice evaluee en 1 donne l\'esperance.' },
+      { theme:'probas', q:'Pour X et Y independantes a valeurs dans N, P(X+Y=n) se calcule par :', choices:['Integration','Convolution discrete','Transformee de Fourier','Produit direct'], correct:1, expl:'P(X+Y=n) = sum P(X=k)P(Y=n-k) : c\'est la formule de convolution discrete.' },
+      { theme:'euclidiens', q:'L\'egalite dans Cauchy-Schwarz a lieu ssi :', choices:['x = y','x et y colineaires','x orthogonal a y','||x|| = ||y||'], correct:1, expl:'|<x,y>| = ||x||.||y|| si et seulement si x et y sont colineaires.' },
+      { theme:'euclidiens', q:'Le procede de Gram-Schmidt produit :', choices:['Une base quelconque','Une base orthonormee','Une base duale','Une matrice diagonale'], correct:1, expl:'Gram-Schmidt orthonormalise une famille libre en une base orthonormee.' },
+      { theme:'calcdiff', q:'Condition necessaire d\'extremum local pour f differentiable :', choices:['grad f(a) = 0','det H_f(a) > 0','f(a) = 0','f convexe'], correct:0, expl:'En un extremum local, le gradient s\'annule (point critique).' },
+      { theme:'calcdiff', q:'La methode de Lagrange sert a :', choices:['Diagonaliser','Trouver des extrema sous contrainte','Calculer des integrales','Resoudre des EDL'], correct:1, expl:'Les multiplicateurs de Lagrange permettent de trouver les extrema de f sous la contrainte g = 0.' },
+      { theme:'reduction', q:'Cayley-Hamilton affirme que :', choices:['chi_A(A) = 0','det(A) = 0','A est diagonalisable','tr(A) = 0'], correct:0, expl:'Toute matrice annule son propre polynome caracteristique : chi_A(A) = 0.' },
+      { theme:'series', q:'Le DSE de 1/(1-x) est :', choices:['sum x^n, R=1','sum x^n/n!, R=infini','sum (-1)^n x^n, R=1','sum nx^n, R=1'], correct:0, expl:'1/(1-x) = sum_{n>=0} x^n pour |x| < 1.' },
+      { theme:'probas', q:'E(X) pour X ~ Geometrique(p) est :', choices:['p','1/p','1-p','p/(1-p)'], correct:1, expl:'L\'esperance de la loi geometrique G(p) est 1/p.' }
+    ];
+
+    window.initE3AQuiz = function() {
+      const allQ = window.E3A_QUIZ;
+      let questions = [], idx = 0, score = 0, answered = false;
+
+      const questionEl = document.getElementById('quizQuestion');
+      const choicesEl = document.getElementById('quizChoices');
+      const explEl = document.getElementById('quizExplanation');
+      const nextEl = document.getElementById('quizNext');
+      const scoreEl = document.getElementById('quizScore');
+      const progressFill = document.getElementById('quizProgressFill');
+      const progressText = document.getElementById('quizProgressText');
+      const areaEl = document.getElementById('quizArea');
+      const endEl = document.getElementById('quizEnd');
+      const finalScoreEl = document.getElementById('quizFinalScore');
+      const filtersEl = document.getElementById('quizFilters');
+
+      function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      function showQuestion() {
+        if (idx >= questions.length) {
+          areaEl.style.display = 'none';
+          endEl.style.display = '';
+          finalScoreEl.textContent = score + ' / ' + questions.length;
+          return;
+        }
+        answered = false;
+        areaEl.style.display = '';
+        endEl.style.display = 'none';
+        explEl.style.display = 'none';
+        nextEl.style.display = 'none';
+
+        const q = questions[idx];
+        questionEl.textContent = q.q;
+        choicesEl.innerHTML = '';
+
+        q.choices.forEach((c, i) => {
+          const btn = document.createElement('button');
+          btn.className = 'quiz-choice';
+          btn.textContent = c;
+          btn.addEventListener('click', () => answer(i, q.correct, q.expl));
+          choicesEl.appendChild(btn);
+        });
+
+        scoreEl.textContent = 'Score : ' + score + ' / ' + idx;
+        progressFill.style.width = (idx / questions.length * 100) + '%';
+        progressText.textContent = (idx + 1) + ' / ' + questions.length;
+
+        if (window.renderMathInElement) {
+          renderMathInElement(questionEl, {delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});
+        }
+      }
+
+      function answer(chosen, correct, expl) {
+        if (answered) return;
+        answered = true;
+        const btns = choicesEl.querySelectorAll('.quiz-choice');
+        btns.forEach((btn, i) => {
+          btn.classList.add('quiz-choice--answered');
+          if (i === correct) btn.classList.add('quiz-choice--correct');
+          if (i === chosen && chosen !== correct) btn.classList.add('quiz-choice--wrong');
+        });
+        if (chosen === correct) score++;
+        scoreEl.textContent = 'Score : ' + score + ' / ' + (idx + 1);
+        explEl.textContent = expl;
+        explEl.style.display = '';
+        nextEl.style.display = 'block';
+      }
+
+      nextEl.addEventListener('click', () => { idx++; showQuestion(); });
+      document.getElementById('quizRestart').addEventListener('click', () => {
+        idx = 0; score = 0;
+        shuffle(questions);
+        showQuestion();
+      });
+
+      filtersEl.addEventListener('click', (e) => {
+        const chip = e.target.closest('.fc-chip');
+        if (!chip) return;
+        filtersEl.querySelectorAll('.fc-chip').forEach(c => c.classList.remove('fc-chip--active'));
+        chip.classList.add('fc-chip--active');
+        const theme = chip.dataset.quizTheme;
+        questions = theme === 'all' ? [...allQ] : allQ.filter(q => q.theme === theme);
+        shuffle(questions);
+        idx = 0; score = 0;
+        showQuestion();
+      });
+
+      questions = [...allQ];
+      shuffle(questions);
+      showQuestion();
+    };
+
+  })();
+  </script>
+
+  <!-- External data files -->
+  <script src="data/e3a-flashcards.js" defer></script>
+  <script src="data/e3a-quiz.js" defer></script>
+  <script src="main.js?v=10"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

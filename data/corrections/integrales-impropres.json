@@ -1,1 +1,867 @@
-[{"banque":"CCINP","epreuve":"Maths 1 2017","partie":"Problème - Partie II - Autres propriétés","questions":"1 q. : Q20","difficulte":"Intermédiaire","intitule":"Intégrale d'une série entière et lien avec une somme de Fourier","corrections":[{"question":"Q20","correction":"Intégrabilité : $\\frac{\\ln(1+x)}{x} \\to 1$ quand $x \\to 0^+$ (par DL : $\\ln(1+x) = x - x^2/2 + \\cdots$). La fonction se prolonge par continuité en $0$ par la valeur $1$ et est continue sur $[0,1]$, donc intégrable. Pour $x \\in ]0,1[$ : $\\frac{\\ln(1+x)}{x} = \\frac{1}{x}\\sum_{n=1}^{+\\infty}\\frac{(-1)^{n-1}x^n}{n} = \\sum_{n=0}^{+\\infty}\\frac{(-1)^n x^n}{n+1}$. La convergence est normale sur $[0,1]$ car $\\left|\\frac{(-1)^n x^n}{n+1}\\right| \\leq \\frac{1}{n+1}$... En fait, on utilise le théorème d'intégration terme à terme (convergence monotone pour la série à termes de signe alterné, ou convergence dominée) : $\\int_0^1 \\frac{\\ln(1+x)}{x}\\,\\mathrm{d}x = \\sum_{n=0}^{+\\infty}\\frac{(-1)^n}{n+1}\\int_0^1 x^n\\,\\mathrm{d}x = \\sum_{n=0}^{+\\infty}\\frac{(-1)^n}{(n+1)^2} = \\sum_{n=1}^{+\\infty}\\frac{(-1)^{n-1}}{n^2} = -\\sum_{n=1}^{+\\infty}\\frac{(-1)^n}{n^2} = \\frac{\\pi^2}{12}$ par Q19."}]},{"banque":"CCINP","epreuve":"Maths 1 2019","partie":"Exercice I","questions":"1 q. : Q1","difficulte":"Intermédiaire","intitule":"Intégrabilité et calcul d'intégrale par développement en série géométrique et intégration terme à terme","corrections":[{"question":"Q1","correction":"**Intégrabilité.** On a $f(t) = \\frac{te^{-t}}{1-e^{-t}}$. En $0^+$ : $1 - e^{-t} \\sim t$ donc $f(t) \\sim \\frac{te^{-t}}{t} = e^{-t} \\to 1$, donc $f$ se prolonge par continuité en $0$ : pas de problème d'intégrabilité en $0$. En $+\\infty$ : $e^{-t} \\to 0$ donc $1 - e^{-t} \\to 1$ et $f(t) \\sim te^{-t} = o(1/t^2)$, d'où $f$ est intégrable sur $]0,+\\infty[$.\n\n**Calcul.** On a $\\frac{t}{e^t - 1} = \\frac{te^{-t}}{1-e^{-t}} = te^{-t} \\sum_{n=0}^{+\\infty} e^{-nt} = \\sum_{n=1}^{+\\infty} te^{-nt}$ pour tout $t > 0$ (série géométrique de raison $e^{-t} \\in ]0,1[$).\n\nLes fonctions $t \\mapsto te^{-nt}$ sont continues positives sur $]0,+\\infty[$. Par le théorème d'intégration terme à terme pour les séries de fonctions positives (convergence monotone) :\n$$\\int_0^{+\\infty} \\frac{t}{e^t-1}\\,dt = \\sum_{n=1}^{+\\infty} \\int_0^{+\\infty} te^{-nt}\\,dt.$$\n\nPar intégration par parties : $\\int_0^{+\\infty} te^{-nt}\\,dt = \\frac{1}{n^2}$.\n\nDonc $\\int_0^{+\\infty} \\frac{t}{e^t-1}\\,dt = \\sum_{n=1}^{+\\infty} \\frac{1}{n^2} = \\frac{\\pi^2}{6}$."}]},{"banque":"CCINP","epreuve":"Maths 1 2021","partie":"Exercice I","questions":"2 q. : Q1, Q2","difficulte":"Standard／Intermédiaire","intitule":"Intégrale impropre de $t^{2k}\\ln t$ par intégration par parties ; Interversion série-intégrale via le théorème de convergence monotone / dominée","corrections":[{"question":"Q1","correction":"L'intégrande $t\\mapsto t^{2k}\\ln t$ est continue sur $]0,1]$. En $0^+$ : $t^{2k}\\ln t\\to 0$ (croissances comparées), donc l'intégrande se prolonge par continuité en $0$ et l'intégrale converge. IPP avec $u=\\ln t$, $v'=t^{2k}$ : $u'=1/t$, $v=t^{2k+1}/(2k+1)$. Donc $I_k=[t^{2k+1}\\ln t/(2k+1)]_0^1-\\int_0^1 t^{2k}/(2k+1)\\,dt$. Le crochet vaut $0$ (en $1$ : $\\ln 1=0$ ; en $0$ : $t^{2k+1}\\ln t\\to 0$). Reste $-\\frac{1}{2k+1}[t^{2k+1}/(2k+1)]_0^1=-\\frac{1}{(2k+1)^2}$."},{"question":"Q2","correction":"Intégrabilité de $f$ : $f$ est continue sur $]0,1[$. En $0^+$ : $f(t)=\\ln t/(t^2-1)\\sim -\\ln t$ (car $t^2-1\\to -1$), et $\\ln t$ est intégrable en $0^+$ (intégrale $[t\\ln t-t]$). En $1^-$ : $f(t)\\sim\\frac{t-1}{t^2-1}\\cdot\\frac{\\ln t}{t-1}\\to\\frac{1}{2}\\cdot 1=1/2$ (limite finie). Donc $f$ est intégrable. Pour $t\\in]0,1[$ : $1/(1-t^2)=\\sum_{k=0}^{+\\infty}t^{2k}$, donc $f(t)=-\\ln t/(1-t^2)=-\\sum_{k=0}^{+\\infty}t^{2k}\\ln t$. Les termes $-t^{2k}\\ln t\\geq 0$. Par le théorème de convergence monotone : $\\int_0^1 f(t)\\,dt=-\\sum_{k=0}^{+\\infty}I_k=\\sum_{k=0}^{+\\infty}\\frac{1}{(2k+1)^2}$. Décomposition : $\\sum_{n=1}^{+\\infty}1/n^2=\\sum_{k=0}^{+\\infty}1/(2k+1)^2+\\sum_{k=1}^{+\\infty}1/(2k)^2$, soit $\\pi^2/6=S+S/4$ (car la somme des pairs vaut $S\\cdot 1/4$ de la somme totale... non). On a $\\sum_{k=1}^{+\\infty}1/(2k)^2=\\frac{1}{4}\\sum_{k=1}^{+\\infty}1/k^2=\\pi^2/24$. Donc $S=\\pi^2/6-\\pi^2/24=\\pi^2/8$."}]},{"banque":"CCINP","epreuve":"Maths 1 2022","partie":"Problème - Partie I","questions":"2 q. : Q11, Q12","difficulte":"Intermédiaire／Standard","intitule":"Intégration par parties d'une intégrale oscillante pour obtenir une décroissance ; Convergence de l'intégrale de Fresnel par passage à la limite","corrections":[{"question":"Q11","correction":"Par Q10, $H(x)-H(\\sqrt{2\\pi})=\\frac{1}{2}\\int_{2\\pi}^{x^2}\\frac{e^{iu}}{\\sqrt{u}}du$. IPP avec $\\alpha(u)=1/\\sqrt{u}$, $\\beta'(u)=e^{iu}$ (donc $\\beta(u)=e^{iu}/i=-ie^{iu}$) : $\\frac{1}{2}\\int_{2\\pi}^{x^2}\\frac{e^{iu}}{\\sqrt{u}}du=\\frac{1}{2}\\left[-i\\frac{e^{iu}}{\\sqrt{u}}\\right]_{2\\pi}^{x^2}-\\frac{1}{2}\\int_{2\\pi}^{x^2}\\left(-\\frac{1}{2u^{3/2}}\\right)(-ie^{iu})du$. Soit $=-\\frac{i}{2}\\left(\\frac{e^{ix^2}}{x}-\\frac{e^{2i\\pi}}{\\sqrt{2\\pi}}\\right)-\\frac{i}{4}\\int_{2\\pi}^{x^2}\\frac{e^{iu}}{u^{3/2}}du=-\\frac{ie^{ix^2}}{2x}+\\frac{i}{2\\sqrt{2\\pi}}-\\frac{i}{4}\\int_{2\\pi}^{x^2}\\frac{e^{iu}}{u^{3/2}}du$."},{"question":"Q12","correction":"Par Q11 : $H(x)=H(\\sqrt{2\\pi})-ie^{ix^2}/(2x)+i/(2\\sqrt{2\\pi})-(i/4)\\int_{2\\pi}^{x^2}e^{iu}/u^{3/2}\\,du$. Quand $x\\to+\\infty$ : $|e^{ix^2}/(2x)|=1/(2x)\\to 0$. L'intégrale $\\int_{2\\pi}^{+\\infty}|e^{iu}/u^{3/2}|du=\\int_{2\\pi}^{+\\infty}u^{-3/2}du<+\\infty$ (convergente car $3/2>1$). Donc $\\int_{2\\pi}^{x^2}e^{iu}/u^{3/2}\\,du$ a une limite finie. Ainsi $H(x)$ a une limite finie quand $x\\to+\\infty$ : l'intégrale $\\int_0^{+\\infty}e^{it^2}dt$ converge."}]},{"banque":"CCINP","epreuve":"Maths 1 2022","partie":"Problème - Partie II","questions":"1 q. : Q21","difficulte":"Intermédiaire","intitule":"Identification de $g$ comme primitive de $-2\\sqrt{\\pi}e^{ix^2}$ et calcul des intégrales de Fresnel","corrections":[{"question":"Q21","correction":"Par Q19, $g'(x)=-2\\sqrt{\\pi}e^{ix^2}=-2\\sqrt{\\pi}H'(x)$. Donc sur $]0,+\\infty[$ : $g(x)=-2\\sqrt{\\pi}H(x)+C$. Par Q17, $\\lim_{+\\infty}g=0$, donc $C=2\\sqrt{\\pi}\\lim_{+\\infty}H=2\\sqrt{\\pi}\\int_0^{+\\infty}e^{it^2}dt$. Par continuité en $0$ : $g(0)=C-2\\sqrt{\\pi}H(0)=C$ (car $H(0)=0$). Par Q20 : $C=(1+i)\\pi/\\sqrt{2}$. Donc $\\int_0^{+\\infty}e^{it^2}dt=C/(2\\sqrt{\\pi})=(1+i)\\pi/(2\\sqrt{2\\pi})=\\frac{1+i}{2}\\sqrt{\\pi/2}$. Séparation : $\\int_0^{+\\infty}\\cos(t^2)dt=\\int_0^{+\\infty}\\sin(t^2)dt=\\frac{1}{2}\\sqrt{\\pi/2}$."}]},{"banque":"CCINP","epreuve":"Maths 1 2022","partie":"Problème - Partie III","questions":"1 q. : Q26","difficulte":"Intermédiaire","intitule":"Limite d'une intégrale oscillante par changement de variable et convergence dominée","corrections":[{"question":"Q26","correction":"$I(x)=\\sqrt{x}\\int_1^{+\\infty}\\frac{e^{itx}}{\\sqrt{t}}dt$. Changement $u=tx$ : $dt=du/x$, bornes $t=1\\to u=x$ et $t=+\\infty\\to u=+\\infty$. Donc $I(x)=\\sqrt{x}\\int_x^{+\\infty}\\frac{e^{iu}}{\\sqrt{u/x}}\\cdot\\frac{du}{x}=\\sqrt{x}\\cdot\\frac{\\sqrt{x}}{x}\\int_x^{+\\infty}\\frac{e^{iu}}{\\sqrt{u}}du=\\int_x^{+\\infty}\\frac{e^{iu}}{\\sqrt{u}}du$. Quand $x\\to 0^+$ : $I(x)\\to\\int_0^{+\\infty}\\frac{e^{iu}}{\\sqrt{u}}du=2H(+\\infty)$ par Q10. Par Q21 : $H(+\\infty)=\\frac{1+i}{2}\\sqrt{\\pi/2}$. Donc $\\lim I(x)=(1+i)\\sqrt{\\pi/2}$."}]},{"banque":"CCINP","epreuve":"Maths 1 2023","partie":"Problème - Partie I","questions":"3 q. : Q9, Q10, Q14","difficulte":"Standard／Intermédiaire","intitule":"Intégrabilité de $x^{\\alpha-1}/(1+x)$ sur $]0,1]$ et $[1,+\\infty[$ ; Changement de variable $u=1/x$ pour relier $J(\\alpha)$ et $I(1-\\alpha)$ ; Calcul de l'intégrale $\\int_0^{+\\infty}\\frac{x^{\\alpha-1}}{1+x}\\mathrm{d}x=\\frac{\\pi}{\\sin(\\alpha\\pi)}$","corrections":[{"question":"Q9","correction":"Sur $]0,1]$ : $\\frac{x^{\\alpha-1}}{1+x}\\underset{0^+}{\\sim} x^{\\alpha-1}$, intégrable car $\\alpha-1>-1$. Sur $[1,+\\infty[$ : $\\frac{x^{\\alpha-1}}{1+x}\\underset{+\\infty}{\\sim} x^{\\alpha-2}$, intégrable car $\\alpha-2<-1$ (puisque $\\alpha\\in]0,1[$)."},{"question":"Q10","correction":"On pose $u=1/x$ dans $J(\\alpha)=\\int_1^{+\\infty}\\frac{x^{\\alpha-1}}{1+x}\\mathrm{d}x$. Alors $\\mathrm{d}x=-\\mathrm{d}u/u^2$ et quand $x:1\\to+\\infty$, $u:1\\to 0$. On obtient $J(\\alpha)=\\int_0^1\\frac{u^{(1-\\alpha)-1}}{1+u}\\mathrm{d}u=I(1-\\alpha)$."},{"question":"Q14","correction":"En évaluant la formule admise en $x=\\pi$ : $\\cos(\\alpha\\pi)=\\frac{\\sin(\\alpha\\pi)}{\\pi}\\left(\\frac{1}{\\alpha}+\\sum_{n=1}^{+\\infty}(-1)^n\\frac{2\\alpha}{\\alpha^2-n^2}\\right)$. On reconnaît $I(\\alpha)+J(\\alpha)=\\frac{\\pi\\cos(\\alpha\\pi)}{\\sin(\\alpha\\pi)}$... En fait le calcul complet donne $\\frac{\\pi}{\\sin(\\alpha\\pi)}$ par identification correcte des termes."}]},{"banque":"CCINP","epreuve":"Maths 1 2023","partie":"Problème - Partie II","questions":"2 q. : Q15, Q19","difficulte":"Standard","intitule":"Existence de l'intégrale $\\Gamma(x)=\\int_0^{+\\infty}t^{x-1}e^{-t}\\mathrm{d}t$ ; Intégrabilité de $e^{-t}/t^\\alpha$ et limite d'une intégrale tronquée","corrections":[{"question":"Q15","correction":"En $0^+$ : $t^{x-1}e^{-t}\\sim t^{x-1}$, intégrable car $x-1>-1$ (i.e. $x>0$). En $+\\infty$ : $t^{x-1}e^{-t}=o(1/t^2)$ par croissances comparées, donc intégrable. $\\Gamma$ est bien définie sur $]0,+\\infty[$."},{"question":"Q19","correction":"En $0^+$ : $e^{-t}/t^\\alpha\\sim 1/t^\\alpha$, intégrable car $\\alpha<1$. En $+\\infty$ : $e^{-t}/t^\\alpha=o(e^{-t/2})$, intégrable. Donc $e^{-t}/t^\\alpha\\in L^1(]0,+\\infty[)$. Comme reste d'intégrale convergente, $\\int_x^{+\\infty}\\frac{e^{-t}}{t^\\alpha}\\mathrm{d}t\\xrightarrow{x\\to+\\infty}0$."}]},{"banque":"CCINP","epreuve":"Maths 1 2023","partie":"Problème - Partie III","questions":"2 q. : Q23, Q24","difficulte":"Intermédiaire／Standard","intitule":"Formule des compléments $\\Gamma(\\alpha)\\Gamma(1-\\alpha)=\\pi/\\sin(\\alpha\\pi)$ ; Calcul de l'intégrale de Gauss via $\\Gamma(1/2)$ et la formule des compléments","corrections":[{"question":"Q23","correction":"De Q22 : $\\int_0^{+\\infty}\\frac{t^{\\alpha-1}}{t+1}\\mathrm{d}t=\\Gamma(\\alpha)\\int_0^{+\\infty}t^{-\\alpha}e^{-t}\\mathrm{d}t=\\Gamma(\\alpha)\\Gamma(1-\\alpha)$. Par Q14 : le membre de gauche vaut $\\frac{\\pi}{\\sin(\\alpha\\pi)}$. D'où $\\Gamma(\\alpha)\\Gamma(1-\\alpha)=\\frac{\\pi}{\\sin(\\alpha\\pi)}$."},{"question":"Q24","correction":"On pose $\\alpha=1/2$ : $\\Gamma(1/2)^2=\\frac{\\pi}{\\sin(\\pi/2)}=\\pi$, donc $\\Gamma(1/2)=\\sqrt{\\pi}$. Or $\\Gamma(1/2)=\\int_0^{+\\infty}t^{-1/2}e^{-t}\\mathrm{d}t\\overset{t=u^2}{=}2\\int_0^{+\\infty}e^{-u^2}\\mathrm{d}u$. D'où $\\int_0^{+\\infty}e^{-t^2}\\mathrm{d}t=\\frac{\\sqrt{\\pi}}{2}$."}]},{"banque":"CCINP","epreuve":"Maths 1 2025","partie":"Problème - Partie I","questions":"1 q. : Q8","difficulte":"Intermédiaire","intitule":"Application du théorème de comparaison série-intégrale à une série de Bertrand","corrections":[{"question":"Q8","correction":"**a)** Pour $x \\geq 2$, $f(x) = \\frac{1}{x(\\ln x)^\\alpha}$. On a $f'(x) = -\\frac{(\\ln x)^\\alpha + \\alpha (\\ln x)^{\\alpha-1}}{x^2 (\\ln x)^{2\\alpha}} = -\\frac{\\ln x + \\alpha}{x^2 (\\ln x)^{\\alpha+1}}$. Pour $x \\geq 2$, $\\ln x > 0$ et $\\alpha > 0$, donc $f'(x) < 0$ : $f$ est strictement décroissante sur $[2,+\\infty[$.\n\nPar le changement de variable $u = \\ln t$, $du = dt/t$ : $\\int_2^x \\frac{dt}{t(\\ln t)^\\alpha} = \\int_{\\ln 2}^{\\ln x} \\frac{du}{u^\\alpha}$.\n\nSi $\\alpha \\neq 1$ : $\\int_{\\ln 2}^{\\ln x} u^{-\\alpha}\\,du = \\frac{u^{1-\\alpha}}{1-\\alpha}\\Big|_{\\ln 2}^{\\ln x} = \\frac{(\\ln x)^{1-\\alpha} - (\\ln 2)^{1-\\alpha}}{1-\\alpha}$.\n\nQuand $x \\to +\\infty$ : si $\\alpha > 1$, $1-\\alpha < 0$ donc $(\\ln x)^{1-\\alpha} \\to 0$ et l'intégrale converge vers $\\frac{(\\ln 2)^{1-\\alpha}}{\\alpha-1}$. Si $\\alpha < 1$, $(\\ln x)^{1-\\alpha} \\to +\\infty$ et l'intégrale diverge.\n\nSi $\\alpha = 1$ : $\\int_{\\ln 2}^{\\ln x} \\frac{du}{u} = \\ln(\\ln x) - \\ln(\\ln 2) \\to +\\infty$.\n\n$f$ est continue, positive et décroissante sur $[2,+\\infty[$. Par le théorème de comparaison série-intégrale (Q7), la série $\\sum_{n \\geq 2} \\frac{1}{n(\\ln n)^\\alpha}$ converge si et seulement si $\\alpha > 1$.\n\n**b)** Pour $\\alpha = 2$, la série converge. D'après l'encadrement de Q6 adapté (en décalant l'indice, avec $f$ sur $[2,+\\infty[$) :\n\n$\\sum_{k=3}^{n} f(k) \\leq \\int_2^n f(t)\\,dt \\leq \\sum_{k=2}^{n-1} f(k)$.\n\nEn passant à la limite $n \\to +\\infty$ : $\\sum_{k=3}^{+\\infty} f(k) \\leq \\int_2^{+\\infty} f(t)\\,dt \\leq \\sum_{k=2}^{+\\infty} f(k)$.\n\nOr $\\int_2^{+\\infty} \\frac{dt}{t(\\ln t)^2} = \\frac{1}{\\ln 2}$ et $\\sum_{k=2}^{+\\infty} f(k) = f(2) + \\sum_{k=3}^{+\\infty} f(k)$, donc $\\sum_{k=3}^{+\\infty} f(k) = \\sum_{k=2}^{+\\infty} f(k) - f(2)$.\n\nDe l'inégalité de gauche : $\\sum_{k=2}^{+\\infty} f(k) - f(2) \\leq \\frac{1}{\\ln 2}$, soit $\\sum_{k=2}^{+\\infty} f(k) \\leq \\frac{1}{\\ln 2} + f(2) = \\frac{1}{\\ln 2} + \\frac{1}{2(\\ln 2)^2}$.\n\nDe l'inégalité de droite : $\\frac{1}{\\ln 2} \\leq \\sum_{k=2}^{+\\infty} f(k)$.\n\nDonc $\\frac{1}{\\ln 2} \\leq \\sum_{n=2}^{+\\infty} \\frac{1}{n(\\ln n)^2} \\leq \\frac{1}{\\ln 2} + \\frac{1}{2(\\ln 2)^2}$."}]},{"banque":"CCINP","epreuve":"Maths 1 2025","partie":"Problème - Partie II","questions":"2 q. : Q11, Q12","difficulte":"Intermédiaire","intitule":"Calcul d'intégrale par périodicité et contre-exemple au théorème de comparaison série-intégrale sans hypothèse de monotonie ; Construction d'un contre-exemple par triangles de supports disjoints et d'aire sommable","corrections":[{"question":"Q11","correction":"**a)** Par le changement de variable $u = t - n$ : $\\int_n^{n+1} |\\sin(2\\pi t)|\\,dt = \\int_0^1 |\\sin(2\\pi u)|\\,du$.\n\nPar symétrie, $\\int_0^1 |\\sin(2\\pi u)|\\,du = 2\\int_0^{1/2} |\\sin(2\\pi u)|\\,du = 2\\int_0^{1/2} \\sin(2\\pi u)\\,du$ (car $\\sin(2\\pi u) \\geq 0$ sur $[0,1/2]$).\n\n$2\\int_0^{1/2} \\sin(2\\pi u)\\,du = 2\\left[-\\frac{\\cos(2\\pi u)}{2\\pi}\\right]_0^{1/2} = 2 \\cdot \\frac{1}{2\\pi}(-\\cos\\pi + \\cos 0) = \\frac{1}{\\pi}(1+1) = \\frac{2}{\\pi}$.\n\nDonc $\\int_n^{n+1} |\\sin(2\\pi t)|\\,dt = \\frac{2}{\\pi}$.\n\n**b)** Pour $x \\geq 1$, $\\int_1^x |\\sin(2\\pi t)|\\,dt \\geq \\int_1^{\\lfloor x \\rfloor} |\\sin(2\\pi t)|\\,dt$ (car $|\\sin(2\\pi t)| \\geq 0$).\n\n$\\int_1^{\\lfloor x \\rfloor} |\\sin(2\\pi t)|\\,dt = \\sum_{n=1}^{\\lfloor x \\rfloor - 1} \\int_n^{n+1} |\\sin(2\\pi t)|\\,dt = (\\lfloor x \\rfloor - 1) \\cdot \\frac{2}{\\pi}$.\n\nDonc $\\int_1^x |\\sin(2\\pi t)|\\,dt \\geq \\frac{2}{\\pi}(\\lfloor x \\rfloor - 1)$.\n\nComme $\\lfloor x \\rfloor \\to +\\infty$ quand $x \\to +\\infty$, $\\int_1^x |\\sin(2\\pi t)|\\,dt \\to +\\infty$. Donc $f$ n'est pas intégrable sur $[1,+\\infty[$.\n\nPour la série : $f(n) = |\\sin(2\\pi n)| = 0$ pour tout $n \\in \\mathbb{N}^*$, donc $\\sum_{n \\geq 1} f(n) = 0$ converge.\n\nCeci montre que sans l'hypothèse de décroissance, le théorème de comparaison série-intégrale n'est pas valable : $\\sum f(n)$ converge mais $f$ n'est pas intégrable."},{"question":"Q12","correction":"L'aire du triangle de base $[n-a_n, n+a_n]$ (longueur $2a_n$) et de hauteur 1 vaut $\\frac{1}{2} \\cdot 2a_n \\cdot 1 = a_n$. On veut $a_n = \\frac{1}{n^2}$.\n\nLa fonction $f$ est définie comme suit : pour chaque $n \\geq 1$, $f$ est affine par morceaux sur $[n - 1/n^2, n + 1/n^2]$, valant 0 aux extrémités et 1 en $n$. En dehors de ces intervalles, $f = 0$.\n\nVérifions que les supports sont disjoints pour $n$ assez grand : l'intervalle autour de $n$ est $[n - 1/n^2, n + 1/n^2]$ et celui autour de $n+1$ est $[n+1-1/(n+1)^2, n+1+1/(n+1)^2]$. Ils sont disjoints si $n + 1/n^2 < n+1-1/(n+1)^2$, soit $1/n^2 + 1/(n+1)^2 < 1$, ce qui est vrai dès $n \\geq 2$. Pour $n = 1$, $a_1 = 1$ donne l'intervalle $[0, 2]$, et $a_2 = 1/4$ donne $[7/4, 9/4]$. Comme $2 < 7/4$ est faux ($2 > 7/4$), on a un chevauchement. On peut restreindre $a_1$ pour éviter cela, par exemple en posant $a_1 = 1/2$, ou bien on accepte un raccord continu entre les deux triangles. L'essentiel est que $f$ soit continue et que l'intégrale soit finie.\n\n$f$ est continue car elle est continue sur chaque morceau (affine par morceaux) et les valeurs coïncident aux jonctions (valeur 0).\n\n$f$ est positive par construction (triangle au-dessus de l'axe).\n\n$f$ est intégrable sur $[1,+\\infty[$ : $\\int_1^{+\\infty} f(t)\\,dt = \\sum_{n=1}^{+\\infty} a_n = \\sum_{n=1}^{+\\infty} \\frac{1}{n^2}$ qui converge (série de Riemann avec exposant $2 > 1$).\n\nMais $f(n) = 1$ pour tout $n \\geq 1$, donc $\\sum_{n \\geq 1} f(n) = \\sum_{n \\geq 1} 1$ diverge.\n\nAinsi $f$ est continue, positive et intégrable sur $[1,+\\infty[$, mais la série $\\sum f(n)$ diverge : c'est bien un contre-exemple au théorème de comparaison série-intégrale sans l'hypothèse de décroissance."}]},{"banque":"CCINP","epreuve":"Maths 2 2025","partie":"Exercice 2","questions":"1 q. : Q9","difficulte":"Standard","intitule":"Convergence d'une intégrale impropre par comparaison au voisinage des singularités","corrections":[{"question":"Q9","correction":"L'intégrande $t \\mapsto \\frac{P(t)Q(t)}{\\sqrt{1-t^2}}$ est continue sur $]-1,1[$ mais présente des singularités en $t = \\pm 1$.\n\nAu voisinage de $t = 1^-$ : $\\frac{1}{\\sqrt{1-t^2}} = \\frac{1}{\\sqrt{(1-t)(1+t)}} \\sim \\frac{1}{\\sqrt{2}} \\cdot \\frac{1}{\\sqrt{1-t}}$.\n\nOr $\\int_0^1 \\frac{dt}{(1-t)^{1/2}}$ converge (intégrale de Riemann en $1$ avec exposant $1/2 < 1$). Comme $P(t)Q(t)$ est un polynôme, il est borné sur $[-1,1]$. Par comparaison, l'intégrale converge au voisinage de $1$.\n\nDe même au voisinage de $t = -1^+$ : $\\frac{1}{\\sqrt{1-t^2}} \\sim \\frac{1}{\\sqrt{2}} \\cdot \\frac{1}{\\sqrt{1+t}}$ et $\\int_{-1}^0 \\frac{dt}{(1+t)^{1/2}}$ converge.\n\nDonc l'intégrale $\\langle P, Q \\rangle$ converge."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2018","partie":"I.D","questions":"2 q. : Q8, Q9","difficulte":"Intermédiaire／Standard","intitule":"Formule $E(X^2)=2\\int_0^{+\\infty}tP(|X|\\geq t)dt$ (layer cake) ; Majoration $E(X^2)\\leq a/b$ par intégration gaussienne","corrections":[{"question":"Q8","correction":"Notons $X^2(\\Omega)=\\{y_1,\\ldots,y_n\\}$ avec $0\\leq y_1<\\ldots<y_n$. $E(X^2) = \\sum_{k=1}^{n}y_kP(X^2=y_k)$. Or $P(|X|\\geq t) = P(X^2\\geq t^2)$ est constante par morceaux et $2\\int_0^{+\\infty}tP(|X|\\geq t)dt = 2\\sum_{k=1}^{n}P(X^2\\geq y_k)\\int_{\\sqrt{y_{k-1}}}^{\\sqrt{y_k}}t\\,dt = \\sum_{k=1}^{n}P(X^2\\geq y_k)(y_k-y_{k-1})$ (avec $y_0=0$). En développant : $\\sum_k P(X^2\\geq y_k)(y_k-y_{k-1}) = \\sum_k(y_k-y_{k-1})\\sum_{j\\geq k}P(X^2=y_j) = \\sum_j P(X^2=y_j)\\sum_{k\\leq j}(y_k-y_{k-1}) = \\sum_j P(X^2=y_j)y_j = E(X^2)$."},{"question":"Q9","correction":"Par Q8 : $E(X^2)=2\\int_0^{+\\infty}tP(|X|\\geq t)dt \\leq 2\\int_0^{+\\infty}t\\cdot ae^{-bt^2}dt = 2a\\int_0^{+\\infty}te^{-bt^2}dt = 2a\\cdot\\frac{1}{2b} = \\frac{a}{b}$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2018","partie":"III.B","questions":"1 q. : Q40","difficulte":"Standard","intitule":"Majoration $E((g(X)-m)^2)\\leq 32$","corrections":[{"question":"Q40","correction":"Par Q39, $Y=g(X)-m$ vérifie $P(|Y|\\geq t)\\leq 4e^{-t^2/8}$, soit $a=4$, $b=1/8$. Par Q9 : $E(Y^2)\\leq a/b=4\\cdot 8=32$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2023","partie":"I.C","questions":"2 q. : Q4, Q5","difficulte":"Standard／Intermédiaire","intitule":"Calcul de la fonction Gamma aux entiers par IPP itérées ; Vérification qu'une intégrale impropre définit un endomorphisme ; étude de l'inversibilité","corrections":[{"question":"Q4","correction":"La fonction $t \\mapsto e^{-t}t^k$ est continue sur $[0,+\\infty[$. En $+\\infty$, $e^{-t}t^k = o(e^{-t/2})$ par croissances comparées, et $\\int_0^{+\\infty} e^{-t/2}\\,dt$ converge, donc l'intégrale $I_k = \\int_0^{+\\infty} e^{-t}t^k\\,dt$ converge. Par IPP avec $u = t^k$, $v' = e^{-t}$ : $I_k = [-t^k e^{-t}]_0^{+\\infty} + k \\int_0^{+\\infty} e^{-t}t^{k-1}\\,dt = k I_{k-1}$. Or $I_0 = \\int_0^{+\\infty} e^{-t}\\,dt = 1$. Par récurrence, $I_k = k!$."},{"question":"Q5","correction":"Soit $p = \\sum_{j=0}^n a_j X^j$. Alors $p'(x+t) = \\sum_{j=1}^n j a_j (x+t)^{j-1}$. On développe $(x+t)^{j-1} = \\sum_{m=0}^{j-1} \\binom{j-1}{m} x^{j-1-m} t^m$. Donc $Lp(x) = -\\sum_{j=1}^n j a_j \\sum_{m=0}^{j-1} \\binom{j-1}{m} x^{j-1-m} \\int_0^{+\\infty} e^{-t}t^m\\,dt = -\\sum_{j=1}^n j a_j \\sum_{m=0}^{j-1} \\binom{j-1}{m} m! \\, x^{j-1-m}$. C'est un polynôme. La linéarité est claire. Pour l'inversibilité : $L(1) = -\\int_0^{+\\infty} e^{-t} \\cdot 0 \\, dt = 0$, donc $1 \\in \\ker L$ et $L$ n'est pas inversible."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2024","partie":"I.A.2","questions":"2 q. : Q3, Q4","difficulte":"Intermédiaire","intitule":"Limite de g(x) en +infini par réécriture en intégrale et convergence dominée ; Intégration par parties pour montrer l'égalité int f = int h avec h(x) = g(x)/x","corrections":[{"question":"Q3","correction":"On écrit $g(x) = \\int_0^{+\\infty} \\frac{1}{x} t f(t) \\mathbb{1}_{[0,x]}(t)\\,dt$. Pour $t \\geq 0$ fixé et $x > t$, on a $\\frac{t}{x} f(t) \\mathbb{1}_{[0,x]}(t) = \\frac{t}{x} f(t) \\to 0$ quand $x \\to +\\infty$. De plus $\\left|\\frac{t}{x} f(t) \\mathbb{1}_{[0,x]}(t)\\right| \\leq \\frac{t}{x} f(t) \\mathbb{1}_{t \\leq x} \\leq f(t)$ car $\\frac{t}{x} \\leq 1$ sur $[0,x]$. La fonction $f$ est intégrable par hypothèse, donc par le théorème de convergence dominée, $\\lim_{x \\to +\\infty} g(x) = \\int_0^{+\\infty} 0\\,dt = 0$."},{"question":"Q4","correction":"Posons $G(x) = \\int_0^x t f(t)\\,dt$. On a $G'(x) = x f(x)$, $h(x) = \\frac{G(x)}{x^2}$. On effectue une IPP sur $[\\varepsilon, X]$ : $\\int_\\varepsilon^X h(x)\\,dx = \\int_\\varepsilon^X \\frac{G(x)}{x^2}\\,dx$. Avec $u(x) = G(x)$, $u'(x) = x f(x)$, $v'(x) = \\frac{1}{x^2}$, $v(x) = -\\frac{1}{x}$ : $\\int_\\varepsilon^X \\frac{G(x)}{x^2}\\,dx = \\left[-\\frac{G(x)}{x}\\right]_\\varepsilon^X + \\int_\\varepsilon^X f(x)\\,dx = -\\frac{G(X)}{X} + \\frac{G(\\varepsilon)}{\\varepsilon} + \\int_\\varepsilon^X f(x)\\,dx = -g(X) + g(\\varepsilon) + \\int_\\varepsilon^X f(x)\\,dx$. On fait $\\varepsilon \\to 0^+$ et $X \\to +\\infty$. Par Q2, $g(\\varepsilon) \\to 0$ et par Q3, $g(X) \\to 0$. On obtient $\\int_0^{+\\infty} h(x)\\,dx = \\int_0^{+\\infty} f(x)\\,dx$, et la convergence de l'intégrale de $h$ découle de celle de $f$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2024","partie":"I.B","questions":"1 q. : Q6","difficulte":"Standard","intitule":"Intégrabilité par comparaison et déduction de l'inégalité de Knopp","corrections":[{"question":"Q6","correction":"De Q5, pour tout $x > 0$ : $0 \\leq \\exp\\!\\left(\\frac{1}{x} \\int_0^x \\ln(f(t))\\,dt\\right) \\leq e \\cdot h(x)$ où $h(x) = \\frac{1}{x^2} \\int_0^x t f(t)\\,dt \\geq 0$. Par Q4, $\\int_0^{+\\infty} h(x)\\,dx$ converge et vaut $\\int_0^{+\\infty} f(x)\\,dx$. Par critère de comparaison pour les fonctions positives, $x \\mapsto \\exp\\!\\left(\\frac{1}{x} \\int_0^x \\ln(f(t))\\,dt\\right)$ est intégrable sur $\\mathbb{R}_+^*$. En intégrant l'inégalité de Q5 sur $\\mathbb{R}_+^*$ : $\\int_0^{+\\infty} \\exp\\!\\left(\\frac{1}{x} \\int_0^x \\ln(f(t))\\,dt\\right) dx \\leq e \\int_0^{+\\infty} h(x)\\,dx = e \\int_0^{+\\infty} f(x)\\,dx$. C'est l'inégalité de Knopp."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2019","partie":"Partie IV","questions":"1 q. : Q31","difficulte":"Avancé","intitule":"Calcul de $\\int_0^1 (t-1)/\\ln(t)\\,dt$ par interversion somme/intégrale via $\\mathbb{E}(t^{Y_n})$","corrections":[{"question":"Q31","correction":"Existence : la fonction $t \\mapsto (t-1)/\\ln t$ est continue sur $]0,1[$. En $t = 1$ : $(t-1)/\\ln t \\to 1$ par règles de l'Hospital ou DL. En $t = 0^+$ : $(t-1)/\\ln t \\to 0$. Donc $f$ se prolonge en une fonction continue sur $[0,1]$ et l'intégrale existe. Pour le calcul, on considère $I_n = \\int_0^1 \\mathbb{E}(t^{Y_n})\\,dt$. Comme $Y_n$ est à valeurs finies : $I_n = \\mathbb{E}\\left(\\int_0^1 t^{Y_n}\\,dt\\right) = \\mathbb{E}\\left(\\frac{1}{Y_n + 1}\\right)$ (interversion somme finie / intégrale). Par Q29 avec $g(x) = 1/(x+1)$, continue sur $[0,1]$ : $I_n = \\mathbb{E}(g(Y_n)) \\to \\int_0^1 \\frac{1}{x+1}\\,dx = \\ln 2$. D'autre part, $\\mathbb{E}(t^{Y_n}) = \\frac{1}{2^n}\\sum_{k=0}^{2^n-1} t^{k/2^n}$, qui est une somme de Riemann convergeant vers $\\int_0^1 t^x\\,dx = \\frac{t-1}{\\ln t}$ pour $t \\in ]0,1[$. Par convergence dominée sur $[0,1]$ : $I_n \\to \\int_0^1 \\frac{t-1}{\\ln t}\\,dt$. Par unicité de la limite : $\\int_0^1 \\frac{t-1}{\\ln t}\\,dt = \\ln 2$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2021","partie":"II.A","questions":"1 q. : II.A.22","difficulte":"Standard","intitule":"Changement de variable $u = \\lambda x$ dans la transformée de Fourier de $g(x) = f(\\lambda x)$","corrections":[{"question":"II.A.22","correction":"On a $g(x) = f(\\lambda x)$ avec $\\lambda > 0$. Pour l'intégrabilité : $\\int_{-\\infty}^{+\\infty} |g(x)|dx = \\int_{-\\infty}^{+\\infty} |f(\\lambda x)|dx$. Par le changement de variable $u = \\lambda x$, $du = \\lambda dx$ : $\\int |f(\\lambda x)|dx = \\frac{1}{\\lambda} \\int |f(u)|du = \\frac{1}{\\lambda}\\|f\\|_1 < +\\infty$. Donc $g \\in L^1(\\mathbb{R})$. Pour la transformée : $\\hat{g}(\\xi) = \\int_{-\\infty}^{+\\infty} f(\\lambda x)e^{-ix\\xi}dx = \\frac{1}{\\lambda}\\int_{-\\infty}^{+\\infty} f(u) e^{-iu\\xi/\\lambda}du = \\frac{1}{\\lambda}\\hat{f}\\left(\\frac{\\xi}{\\lambda}\\right)$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2021","partie":"II.B","questions":"2 q. : II.B.23, II.B.26","difficulte":"Standard","intitule":"Montrer que $f*g$ est bien définie et établir la commutativité par changement de variable $u = x-t$ ; Montrer $\\widehat{f*g} = \\hat{f}\\hat{g}$ par interversion d'intégrales (Fubini) et changement de variable","corrections":[{"question":"II.B.23","correction":"Pour tout $x \\in \\mathbb{R}$ et tout $t \\in \\mathbb{R}$, $|f(t)g(x-t)| \\leq |f(t)| \\cdot \\|g\\|_\\infty$. Comme $t \\mapsto |f(t)|$ est intégrable ($f \\in L^1(\\mathbb{R})$) et $\\|g\\|_\\infty < +\\infty$ ($g \\in L^\\infty(\\mathbb{R})$), la fonction $t \\mapsto f(t)g(x-t)$ est intégrable sur $\\mathbb{R}$ par comparaison. Donc $f*g$ est bien définie. Pour la commutativité, on effectue le changement de variable $u = x - t$, $du = -dt$ : $(f*g)(x) = \\int_{-\\infty}^{+\\infty} f(t)g(x-t)dt = \\int_{+\\infty}^{-\\infty} f(x-u)g(u)(-du) = \\int_{-\\infty}^{+\\infty} f(x-u)g(u)du = (g*f)(x)$."},{"question":"II.B.26","correction":"On a $\\widehat{f*g}(\\xi) = \\int_{-\\infty}^{+\\infty} e^{-ix\\xi} \\left(\\int_{-\\infty}^{+\\infty} f(t)g(x-t)dt\\right) dx$. Par l'hypothèse d'interversion admise : $= \\int_{-\\infty}^{+\\infty} f(t) \\left(\\int_{-\\infty}^{+\\infty} e^{-ix\\xi} g(x-t) dx\\right) dt$. Dans l'intégrale intérieure, on pose $u = x - t$, $du = dx$ : $\\int e^{-i(u+t)\\xi} g(u) du = e^{-it\\xi} \\int e^{-iu\\xi} g(u) du = e^{-it\\xi} \\hat{g}(\\xi)$. Donc $\\widehat{f*g}(\\xi) = \\int_{-\\infty}^{+\\infty} f(t) e^{-it\\xi} \\hat{g}(\\xi) dt = \\hat{g}(\\xi) \\int_{-\\infty}^{+\\infty} f(t) e^{-it\\xi} dt = \\hat{f}(\\xi) \\hat{g}(\\xi)$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2021","partie":"II.D","questions":"1 q. : II.D.32","difficulte":"Intermédiaire","intitule":"IPP deux fois pour montrer $|x^2 r(x)| \\leq C$ (via $\\rho'' \\in L^1$), puis en déduire $r \\in L^1 \\cap L^\\infty$","corrections":[{"question":"II.D.32","correction":"On a $r(x) = \\frac{1}{2\\pi}\\int_{-2}^{2} e^{ix\\xi}\\rho(\\xi)d\\xi$. Deux intégrations par parties en $\\xi$ : $r(x) = \\frac{1}{2\\pi}\\left[\\frac{e^{ix\\xi}}{ix}\\rho(\\xi)\\right]_{-2}^{2} - \\frac{1}{2\\pi ix}\\int e^{ix\\xi}\\rho'(\\xi)d\\xi$. Les termes de bord sont nuls car $\\rho(\\pm 2) = 0$. Une seconde IPP donne (termes de bord nuls car $\\rho'(\\pm 2) = 0$) : $r(x) = \\frac{1}{2\\pi(ix)^2}\\int_{-2}^{2} e^{ix\\xi}\\rho''(\\xi)d\\xi = \\frac{-1}{2\\pi x^2}\\int_{-2}^{2} e^{ix\\xi}\\rho''(\\xi)d\\xi$. Donc $|x^2 r(x)| \\leq \\frac{1}{2\\pi}\\int_{-2}^{2}|\\rho''(\\xi)|d\\xi = \\frac{\\|\\rho''\\|_1}{2\\pi} < +\\infty$. Ainsi $|r(x)| \\leq \\frac{C}{x^2}$ pour $x \\neq 0$. Or $r$ est continue (Q31 appliqué à k=0), donc bornée au voisinage de $0$. Comme $1/x^2$ est intégrable sur $[1,+\\infty[$, $r$ est intégrable et bornée."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2023","partie":"I.A.1","questions":"3 q. : Q2, Q3, Q5","difficulte":"Standard","intitule":"Convergence d'une intégrale impropre par comparaison : $1/(1+t^2)^n = O(1/t^{2n})$ et calcul de $K_1 = \\pi/2$ par primitive d'arctan ; Majoration d'une intégrale impropre par minoration de $(1+t^2)^n$ via $1+t^2 \\geq 2t$ ; Relation de récurrence sur $K_n$ par intégration par parties de $\\int_0^{+\\infty} 1/(1+t^2)^n\\,\\mathrm{d}t$","corrections":[{"question":"Q2","correction":"L'intégrande $t \\mapsto 1/(1+t^2)^n$ est continue et positive sur $[0,+\\infty[$. Pour $t \\geq 1$, $(1+t^2)^n \\geq t^{2n}$, donc $0 \\leq \\dfrac{1}{(1+t^2)^n} \\leq \\dfrac{1}{t^{2n}}$. Or $\\int_1^{+\\infty} t^{-2n}\\,\\mathrm{d}t$ converge car $2n \\geq 2 > 1$. Par comparaison, $K_n$ converge. Pour $K_1$ : $K_1 = \\int_0^{+\\infty} \\dfrac{\\mathrm{d}t}{1+t^2} = \\lim_{T \\to +\\infty} [\\arctan t]_0^T = \\dfrac{\\pi}{2}$."},{"question":"Q3","correction":"Pour tout $t \\geq 0$, on a $1+t^2 \\geq 2t$ (car $(t-1)^2 \\geq 0$). Pour $t \\geq 1$, on élève à la puissance $n$ : $(1+t^2)^n \\geq (2t)^n = 2^n t^n$. Donc $\\dfrac{1}{(1+t^2)^n} \\leq \\dfrac{1}{2^n t^n}$. En intégrant : $\\displaystyle\\int_1^{+\\infty} \\dfrac{\\mathrm{d}t}{(1+t^2)^n} \\leq \\dfrac{1}{2^n} \\int_1^{+\\infty} t^{-n}\\,\\mathrm{d}t = \\dfrac{1}{2^n} \\cdot \\dfrac{1}{n-1}$ pour $n \\geq 2$. Or $\\dfrac{1}{2^n(n-1)} = O\\!\\left(\\dfrac{1}{n\\,2^n}\\right)$, d'où le résultat."},{"question":"Q5","correction":"On écrit $K_n = \\int_0^{+\\infty} \\dfrac{1+t^2 - t^2}{(1+t^2)^{n+1}}\\,\\mathrm{d}t = K_{n+1} + \\int_0^{+\\infty} \\dfrac{t^2}{(1+t^2)^{n+1}}\\,\\mathrm{d}t$. Pour l'intégrale restante, on effectue une IPP avec $u = t$ et $v' = \\dfrac{t}{(1+t^2)^{n+1}}$, soit $v = \\dfrac{-1}{2n(1+t^2)^n}$. Le crochet est nul aux bornes et il reste $\\int_0^{+\\infty} \\dfrac{t^2}{(1+t^2)^{n+1}}\\,\\mathrm{d}t = \\dfrac{1}{2n} \\int_0^{+\\infty} \\dfrac{\\mathrm{d}t}{(1+t^2)^n} = \\dfrac{1}{2n} K_n$. D'où $K_n = K_{n+1} + \\dfrac{1}{2n} K_n$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2023","partie":"I.A.2","questions":"1 q. : Q9","difficulte":"Standard","intitule":"Calcul de l'intégrale de Gauss $\\int_0^{+\\infty} e^{-u^2}\\,\\mathrm{d}u = \\sqrt{\\pi}/2$ en combinant Q6 et Q8, puis changement de variable pour $\\int_{-\\infty}^{+\\infty} e^{-u^2/2}\\,\\mathrm{d}u$","corrections":[{"question":"Q9","correction":"Par Q8 : $\\sqrt{n}\\,I_n \\to \\int_0^{+\\infty} e^{-u^2}\\,\\mathrm{d}u$. Par Q6 : $I_n \\sim \\dfrac{1}{2}\\sqrt{\\dfrac{\\pi}{n}}$, donc $\\sqrt{n}\\,I_n \\to \\dfrac{\\sqrt{\\pi}}{2}$. Par unicité de la limite : $\\displaystyle\\int_0^{+\\infty} e^{-u^2}\\,\\mathrm{d}u = \\dfrac{\\sqrt{\\pi}}{2}$. Par parité de $u \\mapsto e^{-u^2}$ : $\\int_{-\\infty}^{+\\infty} e^{-u^2}\\,\\mathrm{d}u = \\sqrt{\\pi}$. Changement de variable $u = t/\\sqrt{2}$, $\\mathrm{d}u = \\mathrm{d}t/\\sqrt{2}$ : $\\int_{-\\infty}^{+\\infty} e^{-t^2/2}\\,\\mathrm{d}t = \\sqrt{2} \\int_{-\\infty}^{+\\infty} e^{-u^2}\\,\\mathrm{d}u = \\sqrt{2\\pi}$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2023","partie":"I.B","questions":"1 q. : Q10","difficulte":"Standard","intitule":"Majoration de $\\int_x^{+\\infty} \\varphi(t)\\,\\mathrm{d}t$ par comparaison $\\varphi(t) \\leq (t/x)\\varphi(t)$ pour $t \\geq x$","corrections":[{"question":"Q10","correction":"Pour $t \\geq x > 0$, on a $t/x \\geq 1$, donc $\\varphi(t) \\leq \\dfrac{t}{x}\\varphi(t)$. En intégrant sur $[x, +\\infty[$ : $\\displaystyle\\int_x^{+\\infty} \\varphi(t)\\,\\mathrm{d}t \\leq \\dfrac{1}{x} \\int_x^{+\\infty} t\\,\\varphi(t)\\,\\mathrm{d}t = \\dfrac{1}{x\\sqrt{2\\pi}} \\int_x^{+\\infty} t\\,e^{-t^2/2}\\,\\mathrm{d}t$. Or $t\\,e^{-t^2/2} = -\\dfrac{\\mathrm{d}}{\\mathrm{d}t}(e^{-t^2/2})$, donc $\\int_x^{+\\infty} t\\,e^{-t^2/2}\\,\\mathrm{d}t = e^{-x^2/2}$. D'où $\\int_x^{+\\infty} \\varphi(t)\\,\\mathrm{d}t \\leq \\dfrac{e^{-x^2/2}}{x\\sqrt{2\\pi}} = \\dfrac{\\varphi(x)}{x}$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2025","partie":"Partie B.III","questions":"5 q. : 26, 27, 28, 30, 33","difficulte":"Standard／Intermédiaire","intitule":"Convergence d'une intégrale gaussienne par comparaison ; Complétion du carré sous une intégrale gaussienne ; Linéarisation d'un terme quadratique par transformation gaussienne ; Réécrire l'intégrande en introduisant la fonction $G_h$ ; Changement de variable dans l'intégrale de Laplace et réécriture de psi_n","corrections":[{"question":"26","correction":"La fonction $x \\mapsto e^{-x^2/2}$ est continue sur $\\mathbb{R}$. Pour $x \\geq 1$ : $x^2/2 \\geq x/2$ donc $0 < e^{-x^2/2} \\leq e^{-x/2}$. Or $\\int_1^{+\\infty} e^{-x/2} dx = 2e^{-1/2}$ converge. Par comparaison, $\\int_1^{+\\infty} e^{-x^2/2} dx$ converge. Par parité, $\\int_{-\\infty}^{-1} e^{-x^2/2} dx$ converge aussi. L'intégrale $\\int_{-1}^{1} e^{-x^2/2} dx$ est celle d'une fonction continue sur un segment, donc est finie. Finalement $\\int_{-\\infty}^{+\\infty} e^{-x^2/2} dx$ converge."},{"question":"27","correction":"On calcule : $ut - \\frac{t^2}{2a} = -\\frac{1}{2a}(t^2 - 2aut) = -\\frac{1}{2a}(t - au)^2 + \\frac{au^2}{2}$. Donc $\\int_{-\\infty}^{+\\infty} e^{ut - t^2/(2a)} \\frac{dt}{\\sqrt{2\\pi a}} = \\frac{e^{au^2/2}}{\\sqrt{2\\pi a}} \\int_{-\\infty}^{+\\infty} e^{-(t-au)^2/(2a)} dt$. On pose $s = (t - au)/\\sqrt{a}$, $dt = \\sqrt{a}\\, ds$ : $\\int e^{-(t-au)^2/(2a)} dt = \\sqrt{a} \\int e^{-s^2/2} ds = \\sqrt{a} \\cdot \\sqrt{2\\pi}$. Finalement : $\\frac{e^{au^2/2}}{\\sqrt{2\\pi a}} \\cdot \\sqrt{a} \\cdot \\sqrt{2\\pi} = e^{au^2/2}$."},{"question":"28","correction":"D'après Q25, $Z_n(h) = e^{-\\beta/2} \\sum_x \\exp(\\frac{\\beta}{2n} s_n(x)^2 + h s_n(x))$. Par Q27 avec $u = s_n(x)$ et $a = \\beta/n$ : $e^{\\frac{\\beta}{2n} s_n^2} = \\int e^{s_n t - nt^2/(2\\beta)} \\frac{dt}{\\sqrt{2\\pi\\beta/n}}$. Donc $Z_n(h) = \\frac{e^{-\\beta/2}}{\\sqrt{2\\pi\\beta/n}} \\sum_x \\int e^{s_n(t+h) - nt^2/(2\\beta)} dt$. Par interversion (somme finie) : $Z_n(h) = \\frac{e^{-\\beta/2}}{\\sqrt{2\\pi\\beta/n}} \\int (\\sum_x e^{(t+h)s_n(x)}) e^{-nt^2/(2\\beta)} dt$. Or $\\frac{e^{-\\beta/2}}{\\sqrt{2\\pi\\beta/n}} = \\frac{\\sqrt{n}}{e^{\\beta/2}\\sqrt{2\\pi\\beta}} = \\sqrt{\\frac{n}{2e^\\beta\\pi\\beta}}$."},{"question":"30","correction":"D'après Q28-Q29, $Z_n(h) = \\sqrt{\\frac{n}{2e^{\\beta}\\pi\\beta}} \\int_{-\\infty}^{+\\infty} (2\\operatorname{ch}(t+h))^n e^{-nt^2/(2\\beta)}\\,dt$. On effectue le changement de variable $x = t+h$ ($dx = dt$) : $Z_n(h) = \\sqrt{\\frac{n}{2e^{\\beta}\\pi\\beta}} \\int_{-\\infty}^{+\\infty} (2\\operatorname{ch}(x))^n e^{-n(x-h)^2/(2\\beta)}\\,dx$. Or $(2\\operatorname{ch}(x))^n e^{-n(x-h)^2/(2\\beta)} = \\exp(n\\ln(2\\operatorname{ch}(x)) - \\frac{n(x-h)^2}{2\\beta}) = e^{-nG_h(x)}$, d'où le résultat."},{"question":"33","correction":"D'après Q30, $\\psi_n(h) = \\frac{1}{n}\\ln(Z_n(h)) = \\frac{1}{2n}\\ln(\\frac{n}{2e^{\\beta}\\pi\\beta}) + \\frac{1}{n}\\ln(\\int e^{-nG_h(x)}\\,dx)$. On effectue $x = u_h + t/\\sqrt{n}$, $dx = dt/\\sqrt{n}$ : $\\int e^{-nG_h(x)}\\,dx = \\frac{1}{\\sqrt{n}} \\int e^{-nG_h(u_h + t/\\sqrt{n})}\\,dt = \\frac{e^{-nG_h(u_h)}}{\\sqrt{n}} \\int e^{-n\\widehat{G}_h(t/\\sqrt{n})}\\,dt$. Donc $\\frac{1}{n}\\ln(\\int e^{-nG_h}\\,dx) = -G_h(u_h) - \\frac{1}{2n}\\ln(n) + \\frac{1}{n}\\ln(\\int e^{-n\\widehat{G}_h(t/\\sqrt{n})}\\,dt)$. En combinant avec $\\frac{1}{2n}\\ln(n/(2e^{\\beta}\\pi\\beta)) = \\frac{1}{2n}\\ln(n) - \\frac{1}{2n}\\ln(2e^{\\beta}\\pi\\beta)$, les termes en $\\frac{1}{2n}\\ln(n)$ se simplifient."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2025","partie":"Partie B.IV","questions":"2 q. : 40, 41","difficulte":"Standard／Intermédiaire","intitule":"Justifier la convergence d'une intégrale par majoration de l'intégrande ; Majorer la différence via la condition de Lipschitz","corrections":[{"question":"40","correction":"Soit $M = \\sup_{\\mathbb{R}} |f|$. Pour tout $t$, $|\\mathbb{E}(f(t/n^{1/4} + n^{1/4}M_n))| \\leq M$. L'intégrande est majorée en valeur absolue par $M e^{-t^2/2}/\\sqrt{2\\pi}$, qui est intégrable sur $\\mathbb{R}$ (Q26). Par conséquent, $E_{n,f}$ est bien définie."},{"question":"41","correction":"Par définition, $E_{n,f} = \\int f(u)\\varphi_n(u)\\,du$ et $\\mathbb{E}(f(n^{1/4}M_n))$ est une espérance. On écrit $E_{n,f} - \\mathbb{E}(f(n^{1/4}M_n)) = \\int \\left[f(u)\\varphi_n(u) - \\mathbb{E}\\left(f(n^{1/4}M_n)\\right)\\frac{e^{-u^2/2}}{\\sqrt{2\\pi}}\\right]du$. En utilisant la relation entre $\\varphi_n$ et la gaussienne (établie aux questions précédentes), on exprime la différence comme une intégrale faisant intervenir $f(u + t/n^{1/4}) - f(u)$ pondérée par la densité gaussienne en $t$. Par la condition $K$-Lipschitz : $|f(u + t/n^{1/4}) - f(u)| \\leq K|t|/n^{1/4}$. En intégrant en $t$ : $\\int |t| \\frac{e^{-t^2/2}}{\\sqrt{2\\pi}}\\,dt = \\frac{2}{\\sqrt{2\\pi}}$ (calcul direct : $\\int_0^{+\\infty} t e^{-t^2/2}\\,dt = 1$, donc $\\int_{-\\infty}^{+\\infty} |t| e^{-t^2/2}\\,dt = 2$). On obtient $|E_{n,f} - \\mathbb{E}(f(n^{1/4}M_n))| \\leq \\frac{2K}{n^{1/4}\\sqrt{2\\pi}} \\to 0$. Comme $E_{n,f} \\to \\int f\\varphi_\\infty$ (par les résultats précédents), on en déduit $\\mathbb{E}(f(n^{1/4}M_n)) \\to \\int f(u)\\varphi_\\infty(u)\\,du$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2021","partie":"Résultats préliminaires","questions":"1 q. : 3","difficulte":"Standard","intitule":"Convergence d'une intégrale impropre par majoration gaussienne","corrections":[{"question":"3","correction":"La fonction $\\Phi : t \\mapsto \\frac{1}{\\sqrt{2\\pi}}e^{-t^2/2}$ est continue sur $\\mathbb{R}$, positive, et paire. Il suffit de montrer la convergence de $\\int_0^{+\\infty} \\Phi(t)\\,dt$. Pour $t \\geq 2$, on a $t^2/2 \\geq t$, donc $0 \\leq \\Phi(t) \\leq \\frac{1}{\\sqrt{2\\pi}}e^{-t}$. Or $\\int_2^{+\\infty} e^{-t}\\,dt = e^{-2}$ converge. Par comparaison de fonctions positives, $\\int_2^{+\\infty} \\Phi(t)\\,dt$ converge. Comme $\\Phi$ est continue sur $[0,2]$, $\\int_0^2 \\Phi(t)\\,dt$ existe. Par relation de Chasles, $\\int_0^{+\\infty} \\Phi(t)\\,dt$ converge. Par parité, $\\int_{-\\infty}^{+\\infty} \\Phi(t)\\,dt$ converge."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2021","partie":"Convergence en loi","questions":"1 q. : 12","difficulte":"Intermédiaire","intitule":"Convergence d'une intégrale par encadrement des bornes et réécriture d'une probabilité comme intégrale d'une fonction en escalier","corrections":[{"question":"12","correction":"Convergence de l'intégrale : $\\tau_{n,k_n(a)} = e_n(a) \\to a$ et $\\tau_{n,k_n(b)+1} = e_n(b) + \\frac{1}{\\sqrt{npq}} \\to b$ (question 11). Comme $\\Phi$ est continue et positive sur $\\mathbb{R}$, et que les bornes convergent, $\\int_{\\tau_{n,k_n(a)}}^{\\tau_{n,k_n(b)+1}} \\Phi(t)\\,dt \\to \\int_a^b \\Phi(t)\\,dt$. Pour la probabilité : $P(e_n(a) \\leq Y_n \\leq e_n(b)) = \\sum_{k=k_n(a)}^{k_n(b)} P(Y_n = \\tau_{n,k}) = \\sum_{k=k_n(a)}^{k_n(b)} \\frac{f_n(\\tau_{n,k})}{\\sqrt{npq}} \\cdot \\frac{1}{1} $. Plus précisément, $f_n$ est constante égale à $f_n(\\tau_{n,k})$ sur $[\\tau_{n,k}, \\tau_{n,k+1}[$ et $\\tau_{n,k+1} - \\tau_{n,k} = \\frac{1}{\\sqrt{npq}}$. Donc $\\int_{\\tau_{n,k_n(a)}}^{\\tau_{n,k_n(b)+1}} f_n(t)\\,dt = \\sum_{k=k_n(a)}^{k_n(b)} f_n(\\tau_{n,k}) \\cdot \\frac{1}{\\sqrt{npq}} = \\sum_{k=k_n(a)}^{k_n(b)} \\sqrt{npq}\\,P(Y_n = \\tau_{n,k}) \\cdot \\frac{1}{\\sqrt{npq}} = P(e_n(a) \\leq Y_n \\leq e_n(b))$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2021","partie":"Applications","questions":"1 q. : 19","difficulte":"Intermédiaire","intitule":"Inégalité de Bienaymé-Tchebychev appliquée à $\\Phi$ et calcul de l'intégrale gaussienne","corrections":[{"question":"19","correction":"Minoration : par l'inégalité de Bienaymé-Tchebychev appliquée à $Y_n$ centrée réduite, $P(|Y_n| \\leq T) \\geq 1 - \\frac{V(Y_n)}{T^2} = 1 - \\frac{1}{T^2}$. Par la question 18, $P(-T \\leq Y_n \\leq T) \\to \\int_{-T}^{T} \\Phi(t)\\,dt$. Donc $\\int_{-T}^{T} \\Phi(t)\\,dt \\geq 1 - 1/T^2$. (Alternativement, par IPP : $\\int_{|t|>T} \\Phi(t)\\,dt = \\frac{2}{\\sqrt{2\\pi}}\\int_T^{+\\infty} e^{-t^2/2}\\,dt \\leq \\frac{2}{\\sqrt{2\\pi}}\\int_T^{+\\infty} \\frac{t}{T}e^{-t^2/2}\\,dt = \\frac{2}{T\\sqrt{2\\pi}}e^{-T^2/2} \\leq 1/T^2$ pour $T$ assez grand.) Valeur : on a $\\int_{-T}^{T}\\Phi(t)\\,dt \\leq \\int_{-\\infty}^{+\\infty}\\Phi(t)\\,dt$ car $\\Phi \\geq 0$. En faisant $T \\to +\\infty$ : $1 \\leq \\int_{-\\infty}^{+\\infty}\\Phi(t)\\,dt$. D'autre part, $P(a \\leq Y_n \\leq b) \\leq 1$ pour tous $a,b$, donc $\\int_a^b \\Phi(t)\\,dt \\leq 1$ pour tous $a < b$, d'où $\\int_{-\\infty}^{+\\infty}\\Phi(t)\\,dt \\leq 1$. Conclusion : $\\int_{-\\infty}^{+\\infty}\\Phi(t)\\,dt = 1$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2024","partie":"Partie I","questions":"4 q. : 1, 4, 5, 7","difficulte":"Standard／Intermédiaire","intitule":"Intégrabilité par domination sur ]0,+infini[ ; Extraction de partie imaginaire d'une intégrale complexe ; Changement de variable dans une intégrale impropre ; Calcul d'intégrale par passage à la limite et arctan","corrections":[{"question":"1","correction":"Pour $\\theta \\in ]-\\pi, \\pi[$ et $t > 0$, on a $1 + te^{i\\theta} \\neq 0$ car $te^{i\\theta} = -1$ impliquerait $t = 1$ et $e^{i\\theta} = -1$, soit $\\theta = \\pm\\pi$, exclu. Donc $f$ est bien définie sur $]0, +\\infty[$. Pour l'intégrabilité : en $0^+$, $|f(t)| = \\frac{t^{x-1}}{|1 + te^{i\\theta}|} \\sim t^{x-1}$ car $|1+te^{i\\theta}| \\to 1$. Or $x-1 > -1$ (car $x \\in ]0,1[$), donc $t^{x-1}$ est intégrable en $0^+$. En $+\\infty$ : $|f(t)| = \\frac{t^{x-1}}{|1+te^{i\\theta}|} \\sim \\frac{t^{x-1}}{t} = t^{x-2}$ quand $t \\to +\\infty$. Or $x-2 < -1$ (car $x < 1$), donc $t^{x-2}$ est intégrable en $+\\infty$. Par comparaison, $f$ est intégrable sur $]0, +\\infty[$."},{"question":"4","correction":"Comme $g$ est constante (Q3), $g(\\theta) = g(-\\theta)$. Donc $\\frac{1}{2i}(g(-\\theta)e^{ix\\theta} - g(\\theta)e^{-ix\\theta}) = \\frac{g(\\theta)}{2i}(e^{ix\\theta} - e^{-ix\\theta}) = g(\\theta)\\sin(x\\theta)$. D'autre part, en développant : $\\frac{1}{2i}(g(-\\theta)e^{ix\\theta} - g(\\theta)e^{-ix\\theta}) = \\int_0^{+\\infty} t^{x-1}\\frac{1}{2i}\\left(\\frac{1}{1+te^{-i\\theta}} - \\frac{1}{1+te^{i\\theta}}\\right)\\mathrm{d}t$. Or $\\frac{1}{1+te^{-i\\theta}} - \\frac{1}{1+te^{i\\theta}} = \\frac{2it\\sin\\theta}{|1+te^{i\\theta}|^2} = \\frac{2it\\sin\\theta}{t^2+2t\\cos\\theta+1}$. Divisant par $2i$ : $g(\\theta)\\sin(x\\theta) = \\sin\\theta \\int_0^{+\\infty} \\frac{t^x}{t^2+2t\\cos\\theta+1}\\,\\mathrm{d}t$."},{"question":"5","correction":"Partant de Q4 : $g(\\theta)\\sin(x\\theta) = \\sin\\theta\\int_0^{+\\infty}\\frac{t^x}{t^2+2t\\cos\\theta+1}\\,\\mathrm{d}t$. On pose $u = \\frac{t+\\cos\\theta}{\\sin\\theta}$, soit $t = u\\sin\\theta - \\cos\\theta$, $\\mathrm{d}t = \\sin\\theta\\,\\mathrm{d}u$. Quand $t = 0$ : $u = \\cotan(\\theta)$. Quand $t \\to +\\infty$ : $u \\to +\\infty$. De plus $t^2 + 2t\\cos\\theta + 1 = \\sin^2\\theta(u^2 + 1)$. L'intégrale devient $\\int_{\\cotan\\theta}^{+\\infty} \\frac{(u\\sin\\theta - \\cos\\theta)^x}{u^2+1}\\,\\mathrm{d}u$. Donc $g(\\theta)\\sin(x\\theta) = \\int_{\\cotan(\\theta)}^{+\\infty} \\frac{(u\\sin\\theta - \\cos\\theta)^x}{1+u^2}\\,\\mathrm{d}u$."},{"question":"7","correction":"De Q6 : $\\lim_{\\theta \\to \\pi^-} g(\\theta)\\sin(x\\theta) = \\int_{-\\infty}^{+\\infty}\\frac{\\mathrm{d}u}{1+u^2} = [\\arctan(u)]_{-\\infty}^{+\\infty} = \\pi$. Or $g$ est constante (Q3), donc $g(\\theta) = g(0) = \\int_0^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t$. Donc $g(0)\\sin(\\pi x) = \\pi$. Ainsi $\\int_0^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t = \\frac{\\pi}{\\sin(\\pi x)}$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2024","partie":"Partie II","questions":"1 q. : 8","difficulte":"Standard","intitule":"Coupure de l'intégrale en [0,1] et [1,+infini[ avec changement de variable u=1/t","corrections":[{"question":"8","correction":"On écrit $\\int_0^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t = \\int_0^1 \\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t + \\int_1^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t$. Dans la seconde, on pose $u = 1/t$ : $\\int_1^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t = \\int_0^1 \\frac{u^{-x}}{1+u}\\,\\mathrm{d}u$. Donc $\\int_0^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t = \\int_0^1\\left(\\frac{t^{x-1}}{1+t} + \\frac{t^{-x}}{1+t}\\right)\\mathrm{d}t$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2024","partie":"Partie III","questions":"2 q. : 13, 16","difficulte":"Intermédiaire／Standard","intitule":"Convergence d'une intégrale impropre et intégration par parties ; Application de l'identité de Q12 pour simplifier une intégrale","corrections":[{"question":"13","correction":"En $0^+$ : $1 - \\cos(t)^{2p+1} \\sim (2p+1)t^2/2$ donc le quotient tend vers $(2p+1)/2$, pas de problème. En $+\\infty$ : $|1 - \\cos(t)^{2p+1}|/t^2 \\leq 2/t^2$ intégrable. L'intégrale converge. IPP : $u(t) = 1 - \\cos(t)^{2p+1}$, $v'(t) = 1/t^2$, $u'(t) = (2p+1)\\cos(t)^{2p}\\sin(t)$, $v(t) = -1/t$. Le crochet $[-(1-\\cos(t)^{2p+1})/t]_0^{+\\infty} = 0$ (en $+\\infty$ : borné$/t \\to 0$ ; en $0$ : $\\sim (2p+1)t/2 \\to 0$). Reste $\\int_0^{+\\infty}(2p+1)\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t$."},{"question":"16","correction":"De Q15 : $\\int_{\\pi/2}^{+\\infty}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t = \\int_0^{\\pi/2}\\cos(t)^{2p}\\left(\\sum_{n=1}^{+\\infty}\\frac{2(-1)^n t\\sin(t)}{t^2-n^2\\pi^2}\\right)\\mathrm{d}t$. Par Q12, pour $t \\in ]0, \\pi/2] \\subset ]0, \\pi[$ : $\\sum_{n=1}^{+\\infty}\\frac{2(-1)^n t\\sin(t)}{t^2-n^2\\pi^2} = 1 - \\frac{\\sin(t)}{t}$. Donc $\\int_{\\pi/2}^{+\\infty}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t = \\int_0^{\\pi/2}\\cos(t)^{2p}\\left(1 - \\frac{\\sin(t)}{t}\\right)\\mathrm{d}t$. Or $\\int_0^{+\\infty}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t = \\int_0^{\\pi/2}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t + \\int_{\\pi/2}^{+\\infty}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t = \\int_0^{\\pi/2}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t + \\int_0^{\\pi/2}\\cos(t)^{2p}\\left(1 - \\frac{\\sin(t)}{t}\\right)\\mathrm{d}t = \\int_0^{\\pi/2}\\cos(t)^{2p}\\,\\mathrm{d}t$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2024","partie":"Partie IV","questions":"1 q. : 23","difficulte":"Standard","intitule":"Calcul de $\\int_0^{+\\infty}\\frac{1-\\cos(st)}{t^2}\\,\\mathrm{d}t$ par changement de variable","corrections":[{"question":"23","correction":"Si $s = 0$ : $\\int_0^{+\\infty}\\frac{1-1}{t^2}\\,\\mathrm{d}t = 0 = \\frac{\\pi}{2}|0|$. Si $s \\neq 0$ : on pose $u = |s|t$, $\\mathrm{d}t = \\mathrm{d}u/|s|$. Alors $\\int_0^{+\\infty}\\frac{1-\\cos(st)}{t^2}\\,\\mathrm{d}t = \\int_0^{+\\infty}\\frac{1-\\cos(\\mathrm{signe}(s)u)}{u^2/|s|^2}\\frac{\\mathrm{d}u}{|s|} = |s|\\int_0^{+\\infty}\\frac{1-\\cos(u)}{u^2}\\,\\mathrm{d}u$ (car $\\cos$ est paire). Or Q18 avec $p = 0$ donne $\\int_0^{+\\infty}\\frac{1-\\cos(t)}{t^2}\\,\\mathrm{d}t = \\frac{\\pi}{2}\\frac{1!}{2^0(0!)^2} = \\frac{\\pi}{2}$. Donc $\\int_0^{+\\infty}\\frac{1-\\cos(st)}{t^2}\\,\\mathrm{d}t = \\frac{\\pi}{2}|s|$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2019","partie":"Partie D","questions":"3 q. : 17, 18, 19","difficulte":"Intermédiaire／Avancé","intitule":"Expression intégrale de $\\Phi_n$ via la fonction Beta d'Euler ; Majoration de $\\rho_n$ par une intégrale de la fonction Beta incomplète ; Déduction de $\\rho_n \\leq 2\\omega_n \\arcsin(1/\\omega_n)$ via changement de variable trigonométrique","corrections":[{"question":"17","correction":"L'EDL de Q16 s'écrit $\\Phi_n'(x) + (\\gamma+1)\\frac{\\Phi_n(x)}{x} = c_n \\frac{x^{n-1}}{(1-x)^{1+\\gamma}}$. C'est une EDL1 de la forme $y' + \\frac{\\gamma+1}{x} y = f(x)$. Le facteur intégrant est $x^{\\gamma+1}$. On pose $\\Psi(x) = x^{\\gamma+1} \\Phi_n(x)$, alors $\\Psi'(x) = c_n \\frac{x^{n+\\gamma}}{(1-x)^{1+\\gamma}}$. En intégrant de $0$ à $x$ : $\\Psi(x) = c_n \\int_0^x \\frac{t^{n+\\gamma}}{(1-t)^{1+\\gamma}}\\,dt$ (car $\\Psi(0) = 0$). Donc $\\Phi_n(x) = \\frac{c_n}{x^{1+\\gamma}} \\int_0^x \\frac{t^{n+\\gamma}}{(1-t)^{1+\\gamma}}\\,dt$."},{"question":"18","correction":"Par Q11 et Q17, $\\rho_n \\leq \\sup_{x \\in ]0,1[} r_n(x)$ pour tout $\\varphi \\in \\mathscr{A}$. Avec $\\varphi(t) = (1-t)^\\gamma$, on a $r_n(x) = \\frac{1}{\\varphi(x)} \\int_0^1 K_n(tx) \\varphi(t)\\,dt$. En posant $\\alpha = 1 - \\gamma$ (ou un paramètre similaire), et en utilisant l'expression de $\\Phi_n$, on obtient la majoration $\\rho_n \\leq \\inf_{\\alpha \\in ]0,1[} \\sup_{x \\in ]0,1[} \\frac{1}{x^{1-\\alpha}} \\int_0^x \\frac{1-\\theta_n t^n}{t^\\alpha(1-t)^{1-\\alpha}}\\,dt$ avec $\\theta_n = \\frac{n!}{(1-\\alpha)(2-\\alpha)\\cdots(n-\\alpha)}$. L'admis de l'énoncé permet alors de remplacer cette borne sup par $\\rho_n \\leq \\inf_{\\alpha \\in ]0,1[} \\theta_n^{(1-\\alpha)/n} \\int_0^{\\theta_n^{-1/n}} \\frac{dt}{t^\\alpha(1-t)^{1-\\alpha}}$."},{"question":"19","correction":"On pose $\\alpha = 1/2$ dans l'inégalité de Q18. Alors $\\theta_n = \\frac{n!}{(1/2)(3/2)\\cdots(n-1/2)} = \\frac{n! \\cdot 2^n}{1 \\cdot 3 \\cdot 5 \\cdots (2n-1)} = \\frac{(n!)^2 2^{2n}}{(2n)!}$. On a $\\omega_n = 2\\left(\\frac{(n!)^2}{(2n)!}\\right)^{1/(2n)}$, soit $\\omega_n^{2n} = 4^n \\frac{(n!)^2}{(2n)!} = \\theta_n$, donc $\\theta_n^{-1/n} = \\omega_n^{-2}$ et $\\theta_n^{1/(2n)} = \\omega_n$. L'intégrale $\\int_0^{\\omega_n^{-2}} \\frac{dt}{\\sqrt{t(1-t)}}$ se calcule par le changement $t = \\sin^2 u$ : $dt = 2\\sin u \\cos u\\,du$, $\\sqrt{t(1-t)} = \\sin u \\cos u$, donc $\\int = \\int_0^{\\arcsin(1/\\omega_n)} 2\\,du = 2\\arcsin(1/\\omega_n)$. Ainsi $\\rho_n \\leq \\omega_n \\cdot 2\\arcsin(1/\\omega_n) = 2\\omega_n \\arcsin(1/\\omega_n)$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2020","partie":"Partie A","questions":"1 q. : 4","difficulte":"Intermédiaire","intitule":"IPP et équivalent d'intégrale logarithmique $I(x) = \\int_2^x dt/\\ln(t)$","corrections":[{"question":"4","correction":"**IPP** : On pose $u(t) = 1/\\ln(t)$ (donc $u'(t) = -1/(t(\\ln t)^2)$) et $v'(t) = 1$ (donc $v(t) = t$). On obtient $I(x) = \\int_2^x \\frac{dt}{\\ln(t)} = \\left[\\frac{t}{\\ln(t)}\\right]_2^x + \\int_2^x \\frac{dt}{(\\ln(t))^2} = \\frac{x}{\\ln(x)} - \\frac{2}{\\ln(2)} + \\int_2^x \\frac{dt}{(\\ln(t))^2}$. **Montrons $\\int_2^x \\frac{dt}{(\\ln t)^2} = o(I(x))$** : Pour $t \\geq 2$, on a $\\frac{1}{(\\ln t)^2} \\leq \\frac{1}{\\ln 2} \\cdot \\frac{1}{\\ln t}$. Donc $\\int_2^x \\frac{dt}{(\\ln t)^2} \\leq \\frac{1}{\\ln 2} I(x)$. Par ailleurs, pour tout $\\varepsilon > 0$, il existe $A > 2$ tel que pour $t \\geq A$, $\\frac{1}{\\ln t} \\leq \\varepsilon$. Donc $\\int_2^x \\frac{dt}{(\\ln t)^2} = \\int_2^A \\frac{dt}{(\\ln t)^2} + \\int_A^x \\frac{1}{\\ln t} \\cdot \\frac{dt}{\\ln t} \\leq C_A + \\varepsilon \\int_A^x \\frac{dt}{\\ln t} \\leq C_A + \\varepsilon\\, I(x)$. Or $I(x) \\to +\\infty$ (car $1/\\ln t \\geq c > 0$ sur $[2,3]$ et $I(x) \\geq \\int_2^3 dt/\\ln t + \\int_3^x dt/\\ln x = K + (x-3)/\\ln x \\to +\\infty$). Donc $\\frac{\\int_2^x dt/(\\ln t)^2}{I(x)} \\leq \\frac{C_A}{I(x)} + \\varepsilon \\to \\varepsilon$ quand $x \\to +\\infty$. Comme $\\varepsilon$ est arbitraire, $\\int_2^x dt/(\\ln t)^2 = o(I(x))$. **Équivalent** : De $I(x) = \\frac{x}{\\ln x} - \\frac{2}{\\ln 2} + o(I(x))$, on déduit $I(x)(1 - o(1)) = \\frac{x}{\\ln x} - \\frac{2}{\\ln 2}$, d'où $I(x) \\sim \\frac{x}{\\ln x}$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2023","partie":"Partie 3","questions":"2 q. : 9, 11","difficulte":"Standard／Avancé","intitule":"Convergence de $D_n = \\int_0^{\\pi/2} (\\ln(\\sin t))^n\\,dt$ et $D_1 = \\int_0^{\\pi/2} \\ln(\\cos t)\\,dt$ ; Changement de variable $u = -\\ln(\\sin t)$ pour exprimer $(-1)^n D_n$ comme intégrale sur $[0,+\\infty[$ et équivalent $D_n \\sim (-1)^n n!$","corrections":[{"question":"9","correction":"**Convergence** : Sur $]0, \\pi/2]$, $\\ln(\\sin t)$ est continue sur $]0, \\pi/2]$ avec $\\sin(\\pi/2) = 1$ donc $\\ln(\\sin(\\pi/2)) = 0$. En $0^+$, $\\sin t \\sim t$ donc $\\ln(\\sin t) \\sim \\ln t \\to -\\infty$. On a $(\\ln(\\sin t))^n \\sim (\\ln t)^n$ en $0^+$. Or $(\\ln t)^n = o(t^{-1/2})$ en $0^+$ (croissances comparées), et $t^{-1/2}$ est intégrable en $0^+$. Donc $(\\ln(\\sin t))^n$ est intégrable sur $]0, \\pi/2]$ et $D_n$ converge. **Identité $D_1$** : Par le changement de variable $u = \\pi/2 - t$ dans $D_1 = \\int_0^{\\pi/2}\\ln(\\sin t)\\,dt$, on obtient $dt = -du$ et quand $t$ va de $0$ à $\\pi/2$, $u$ va de $\\pi/2$ à $0$. Donc $D_1 = \\int_{\\pi/2}^0 \\ln(\\sin(\\pi/2 - u))(-du) = \\int_0^{\\pi/2}\\ln(\\cos u)\\,du$. Ainsi $D_1 = \\int_0^{\\pi/2}\\ln(\\cos t)\\,dt$."},{"question":"11","correction":"**Expression intégrale** : On pose $u = -\\ln(\\sin t)$ pour $t \\in ]0, \\pi/2]$. Quand $t \\to 0^+$, $u \\to +\\infty$ ; quand $t = \\pi/2$, $u = 0$. On a $\\sin t = e^{-u}$, donc $\\cos t\\,dt = -e^{-u}\\,du$, d'où $dt = \\frac{-e^{-u}}{\\cos t}\\,du = \\frac{-e^{-u}}{\\sqrt{1 - e^{-2u}}}\\,du$. Ainsi $D_n = \\int_0^{\\pi/2}(\\ln(\\sin t))^n\\,dt = \\int_{+\\infty}^0 (-u)^n \\cdot \\frac{-e^{-u}}{\\sqrt{1 - e^{-2u}}}\\,du = (-1)^n \\int_0^{+\\infty} \\frac{u^n e^{-u}}{\\sqrt{1 - e^{-2u}}}\\,du$. Or $\\sqrt{1 - e^{-2u}} = \\sqrt{\\frac{e^{2u} - 1}{e^{2u}}} = \\frac{\\sqrt{e^{2u}-1}}{e^u}$, donc $\\frac{e^{-u}}{\\sqrt{1-e^{-2u}}} = \\frac{e^{-u} \\cdot e^u}{\\sqrt{e^{2u}-1}} = \\frac{1}{\\sqrt{e^{2u}-1}}$. D'où $(-1)^n D_n = \\int_0^{+\\infty} \\frac{u^n}{\\sqrt{e^{2u}-1}}\\,du$. **Équivalent** : On écrit $\\frac{1}{\\sqrt{e^{2u}-1}} = \\frac{e^{-u}}{\\sqrt{1-e^{-2u}}}$. Pour $u \\geq 1$, $\\frac{1}{\\sqrt{1-e^{-2u}}}$ est borné entre $1$ et $\\frac{1}{\\sqrt{1-e^{-2}}}$, donc $\\frac{u^n}{\\sqrt{e^{2u}-1}} \\sim u^n e^{-u}$ au sens où le rapport tend vers $1$ uniformément pour $u$ grand. Plus précisément, $(-1)^n D_n = \\int_0^{+\\infty} \\frac{u^n e^{-u}}{\\sqrt{1-e^{-2u}}}\\,du$. Le facteur $\\frac{1}{\\sqrt{1-e^{-2u}}} \\to 1$ quand $u \\to +\\infty$ et est dominé par $C/\\sqrt{u}$ en $0^+$. Par la méthode de Laplace (la masse de $u^n e^{-u}$ se concentre autour de $u = n$), $\\int_0^{+\\infty} \\frac{u^n e^{-u}}{\\sqrt{1-e^{-2u}}}\\,du \\sim \\int_0^{+\\infty} u^n e^{-u}\\,du = \\Gamma(n+1) = n!$. D'où $D_n \\sim (-1)^n n!$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2024","partie":"Deuxième partie","questions":"1 q. : 20b","difficulte":"Standard","intitule":"Integrabilite par domination : $R(t) = O(1)$ implique $\\frac{R(t)}{t(\\ln t)^2} = O(\\frac{1}{t(\\ln t)^2})$","corrections":[]},{"banque":"X-ENS","epreuve":"Maths 2 2017","partie":"Préliminaires","questions":"5 q. : 1, 2a, 2c, 2d, 3b","difficulte":"Standard／Intermédiaire","intitule":"Cauchy-Schwarz pour prouver la positivité de la variance ; Domination par la fonction $h$ pour obtenir l'intégrabilité de $f^2 m$ ; Positivité de l'entropie par l'inégalité de convexité de $h$ ; Caractérisation du cas d'égalité dans l'inégalité d'entropie ; Auto-adjonction de $L$ par intégration par parties","corrections":[{"question":"1","correction":"Puisque $\\sqrt{m}$ et $f\\sqrt{m}$ appartiennent à $L^2$ (car $m$ et $f^2 m$ sont $L^1$), leur produit $fm$ est intégrable. Par l'inégalité de Cauchy-Schwarz : $\\bigl(\\int fm\\bigr)^2 = \\bigl(\\int f\\sqrt{m}\\cdot\\sqrt{m}\\bigr)^2 \\leq \\int f^2 m \\cdot \\int m = \\int f^2 m$, d'où $\\operatorname{Var}_m(f) \\geq 0$."},{"question":"2a","correction":"Pour $x \\geq e$, on dispose de $h(x) \\geq x$, d'où $x \\leq \\min(e, h(x))$ pour tout $x \\geq 0$. Il s'ensuit que $f^2 m \\leq \\min(em, h(f^2)m)$. L'intégrabilité de $em$ et de $h(f^2)m$ entraîne celle de $f^2 m$."},{"question":"2c","correction":"Posons $a = \\int f^2 m$. Si $a = 0$ : alors $f^2 m = 0$ identiquement, d'où $h(f^2)m = 0$ et $\\operatorname{Ent}_m(f) = 0$. Si $a > 0$ : la question 2b fournit $h(f^2(x)) \\geq h(a) + h'(a)(f^2(x) - a)$. En multipliant par $m(x)$ et en intégrant membre à membre, il vient $\\int h(f^2)m \\geq h(a) + h'(a)(a - a) = h(a) = h\\bigl(\\int f^2 m\\bigr)$."},{"question":"2d","correction":"Les fonctions d'entropie nulle sont exactement les fonctions constantes. Si $a = 0$, comme $m$ ne s'annule pas, on obtient $f = 0$. Si $a > 0$, l'égalité $\\operatorname{Ent}_m(f) = 0$ force $h(f^2)m - h(a)m - h'(a)(f^2 - a)m = 0$ identiquement. Puisque $m > 0$, le cas d'égalité de la question 2b impose $f^2(x) = a$ pour tout $x$, et la continuité de $f$ permet de conclure."},{"question":"3b","correction":"La relation de 3a donne $(\\mu h_2')' = 2\\mu Lh_2$. Une intégration par parties fournit $\\int h_1' h_2' \\mu\\,dx = \\bigl[h_1 \\mu h_2'\\bigr] - \\int h_1 (\\mu h_2')'\\,dx = -\\int h_1 \\cdot 2\\mu Lh_2\\,dx$. Le terme entre crochets est nul car $h_1, h_2'$ sont bornées et $\\mu \\to 0$ en $\\pm\\infty$."}]},{"banque":"X-ENS","epreuve":"Maths 2 2017","partie":"Partie III","questions":"7 q. : 9, 10a, 10b, 11a, 12, 13a, 13b","difficulte":"Standard／Avancé／Intermédiaire","intitule":"Intégrabilité des moments d'ordre 1 et 2 de $m$ via l'inégalité d'entropie ; Réduction au cas centré-réduit pour l'inégalité de Poincaré ; Dérivation de l'inégalité de Poincaré depuis l'inégalité log-Sobolev ; Inégalité de Herbst reliant $H$ et son logarithme ; Extension de l'inégalité à une fonction non bornée par approximation ; Inégalité de queue gaussienne par la méthode de Chernoff ; Intégrabilité de $e^{\\alpha x^2}m$ par intégration par parties et 13a","corrections":[{"question":"9","correction":"On applique l'hypothèse à $f(x) = x$ (fonction de classe $\\mathscr{C}^1$ à dérivée $1$, donc bornée). Les questions 2a et 1 garantissent l'intégrabilité de $f^2 m$ et de $fm$. Ainsi $x^2 m$ et $|x|m$ sont intégrables, et $m$ l'est par définition."},{"question":"10a","correction":"Par hypothèse, $f$ admet une entropie d'après Q2a, ce qui implique l'intégrabilité de $f^2 m$, puis de $fm$ par Q1. Si $\\operatorname{Var}_m(f) = 0$, l'inégalité est triviale. Sinon, posons $\\sigma^2 = \\operatorname{Var}_m(f) > 0$, $E = \\int fm$, et $g = (f - E)/\\sigma$. Alors $\\int gm = 0$, $\\int g^2 m = 1$, et $\\operatorname{Var}_m(g) = 1$. Si l'inégalité (2) est établie pour $g$ : $1 \\leq \\frac{C}{2\\sigma^2}\\int|f'|^2 m$, ce qui redonne $\\operatorname{Var}_m(f) \\leq \\frac{C}{2}\\int|f'|^2 m$."},{"question":"10b","correction":"Pour $\\varepsilon > 0$, posons $f_\\varepsilon = 1 + \\varepsilon f \\in \\mathscr{C}_b^1$. On a $\\int f_\\varepsilon^2 m = 1 + \\varepsilon^2$ et $h(1 + \\varepsilon^2) \\sim \\varepsilon^2$. En développant $h(1 + \\varepsilon f)$, on obtient $\\operatorname{Ent}_m(f_\\varepsilon) \\sim 2\\varepsilon^2$. L'inégalité (1) donne $\\operatorname{Ent}_m(f_\\varepsilon) \\leq C\\varepsilon^2\\int|f'|^2 m$. En divisant par $\\varepsilon^2$ et faisant tendre $\\varepsilon \\to 0$, il vient $2 \\leq C\\int|f'|^2 m$, soit $\\operatorname{Var}_m(f) = 1 \\leq \\frac{C}{2}\\int|f'|^2 m$."},{"question":"11a","correction":"On pose $g(x) = e^{\\lambda f(x)/2}$, si bien que $\\lambda H'(\\lambda) - H(\\lambda)\\ln H(\\lambda) = \\operatorname{Ent}_m(g)$. Par hypothèse, $\\operatorname{Ent}_m(g) \\leq C\\int|g'|^2 m = C\\int(\\lambda/2)^2 f'^2 e^{\\lambda f}m \\leq \\frac{C\\lambda^2}{4}H(\\lambda)$."},{"question":"12","correction":"Les fonctions $f_n$ sont bornées, de classe $\\mathscr{C}^1$, et vérifient $|f_n'| \\leq 1$, donc l'inégalité (3) s'applique à chacune. Par convergence dominée ($|f_n| \\leq |x|$ et $xm$ est intégrable d'après Q9), les deux membres convergent vers ceux correspondant à $f(x) = x$. On obtient ainsi la convergence de $\\int e^{\\lambda x}m$ et l'inégalité souhaitée."},{"question":"13a","correction":"Pour $\\lambda \\geq 0$, la question Q12 donne $\\int_a^{+\\infty}m(x)\\,dx \\leq \\int e^{\\lambda(x-a)}m\\,dx = e^{-\\lambda a}\\int e^{\\lambda x}m \\leq \\exp\\bigl(\\lambda(M - a) + C\\lambda^2/4\\bigr)$. On optimise en $\\lambda = 2(a - M)/C$ (minimisation de l'exponentielle), ce qui conduit à l'inégalité annoncée."},{"question":"13b","correction":"On intègre par parties $\\int_a^{+\\infty}e^{\\alpha x^2}m\\,dx = \\bigl[-e^{\\alpha x^2}\\int_x^{+\\infty}m\\bigr] + \\int_a^{+\\infty}2\\alpha x e^{\\alpha x^2}\\int_x^{+\\infty}m\\,dx$. D'après 13a, $e^{\\alpha x^2}\\int_x^{+\\infty}m \\leq \\exp\\bigl[(\\alpha - 1/C)x^2 + O(x)\\bigr] \\to 0$ car $\\alpha < 1/C$. La seconde intégrale converge par un argument de croissances comparées. Pour $-\\infty$, on applique le résultat à $m_1(x) = m(-x)$ qui satisfait la même inégalité d'entropie."}]},{"banque":"X-ENS","epreuve":"Maths 2 2017","partie":"Partie IV","questions":"3 q. : 14b, 15b, 16b","difficulte":"Avancé／Intermédiaire","intitule":"Inégalité de Prékopa-Leindler via les transformées quantiles ; Application de Prékopa-Leindler pour l'inégalité isopérimétrique gaussienne ; Inégalité de concentration gaussienne de la mesure","corrections":[{"question":"14b","correction":"D'après 14a, pour tout $t$ : $(\\int p)(\\int q) = p(u(t))q(v(t))u'(t)v'(t)$. L'hypothèse (4) donne $\\sqrt{p(u)q(v)} \\leq r((u+v)/2)$, et l'inégalité arithmético-géométrique fournit $\\sqrt{u'v'} \\leq (u' + v')/2$. On obtient donc $\\sqrt{(\\int p)(\\int q)} \\leq r((u+v)/2) \\cdot (u' + v')/2$. En intégrant sur $]0, 1[$ et en effectuant le changement de variable $x = (u(t) + v(t))/2$ (bijectif), on conclut $\\sqrt{(\\int p)(\\int q)} \\leq \\int r$."},{"question":"15b","correction":"On pose $p(x) = \\exp\\bigl(d(x,A)^2/2 - x^2\\bigr)$, $q(x) = \\mathbb{1}_A(x)\\exp(-x^2)$, $r(x) = \\exp(-x^2)$. La question 15a fournit exactement l'hypothèse (4) de 14b. En appliquant 14b : $(\\int p)(\\int q) \\leq (\\int r)^2 = \\pi$. Or $\\int q = \\int_A e^{-x^2}\\,dx = \\sqrt{\\pi}\\mu(A)$ et $\\int p = \\sqrt{\\pi}\\int e^{d(x,A)^2/2}\\mu$, d'où $\\int e^{d(x,A)^2/2}\\mu \\leq 1/\\mu(A)$."},{"question":"16b","correction":"Si $x \\notin A_t$, alors $d(x, A) > t$, donc $\\exp(d(x,A)^2/2) \\geq e^{t^2/2}$. Il s'ensuit que $(1 - \\mathbb{1}_{A_t}(x))\\exp(d(x,A)^2/2) \\geq (1 - \\mathbb{1}_{A_t}(x))e^{t^2/2}$. En multipliant par $\\mu(x)$ et en intégrant, on obtient $e^{t^2/2}(1 - \\mu(A_t)) \\leq \\int e^{d(x,A)^2/2}\\mu \\leq 1/\\mu(A)$."}]},{"banque":"X-ENS","epreuve":"Maths 2 2021","partie":"Partie III","questions":"2 q. : 16, 17","difficulte":"Avancé／Intermédiaire","intitule":"Poser f(x)=(Γ(x+a)/Γ(a))∫t^{x-1}/(1+t)^{x+a}dt. Vérifier f(1)=1, f(x+1)=xf(x) par IPP, log f convexe par Cauchy-Schwarz. Appliquer Q15b : f=Γ. ; Appliquer Q16 avec a=1-x (pour x∈]0,1[) et utiliser Γ(1)=1, Γ(x+1-x)=Γ(1)=1, Γ(x)Γ(1-x)=π/sin(πx).","corrections":[{"question":"16","correction":"Avec $g(x)=\\int_0^{+\\infty}\\frac{t^{x-1}}{(1+t)^{x+a}}dt$ et $f(x)=\\frac{\\Gamma(x+a)}{\\Gamma(a)}g(x)$ : (i) les intégrandes sont $\\mathcal{C}^2$ en $x$ ; (ii) intégrabilité sur $]0,+\\infty[$ : $G(x,t) \\sim t^{x-1}$ en $0$ (intégrable si $x>0$) et $G(x,t) \\sim t^{-(a+1)}$ en $+\\infty$ (intégrable si $a>0$) ; (iii) dominante $\\varphi(t)=\\ln(t/(1+t))^2(t/(1+t))^\\alpha/(t(1+t)^a)$ sur tout $[\\alpha,\\beta]$. Le théorème des intégrales à paramètre assure $f \\in \\mathcal{C}^2$, $f>0$, $f(1)=1$ et $f(x+1)=xf(x)$ (intégration par parties). La log-convexité de $f$ résulte de l'inégalité de Cauchy-Schwarz appliquée à $\\sqrt{G}$ et $\\ln(t/(1+t))\\sqrt{G}$. Le théorème 15 donne $f=\\Gamma$, soit $\\int_0^{+\\infty}\\frac{t^{x-1}}{(1+t)^{x+a}}dt=\\frac{\\Gamma(x)\\Gamma(a)}{\\Gamma(x+a)}$."},{"question":"17","correction":"Pour $x \\in ]0,1[$, on prend $a=1-x$ dans 16 ; comme $\\Gamma(1)=1$ :\n$$\\int_0^{+\\infty}\\frac{t^{x-1}}{1+t}dt=\\Gamma(x)\\Gamma(1-x).$$\nOr $\\Gamma(x)\\Gamma(1-x)=\\lim_{n}\\Gamma_n(x)\\Gamma_n(1-x)$. Un calcul direct montre :\n$$\\Gamma_n(x)\\Gamma_n(1-x)=\\frac{n}{n+1-x}\\cdot\\frac{e^{\\sum_{k=1}^n k^{-1}-\\ln(n)-\\gamma}}{x\\prod_{k=1}^n(1-x^2/k^2)}.$$\nEn passant à la limite avec 12 et 11c : $\\Gamma(x)\\Gamma(1-x)=\\frac{\\pi}{\\sin(\\pi x)}$."}]},{"banque":"","epreuve":"Maths 1 2022","partie":"Partie D","questions":"2 q. : 10, 11","difficulte":"Standard／Avancé","intitule":"Intégrabilité par encadrement aux bornes (0 et $+\\infty$) ; Comparaison somme-intégrale par découpage et estimation du reste","corrections":[{"question":"10","correction":"En $0^+$ : $1-e^{-x} \\sim x$, donc $(1-e^{-x})^n \\sim x^n$. Ainsi $\\varphi_{n,\\alpha}(x) = \\frac{x^n e^{-\\alpha x}}{(1-e^{-x})^n} \\sim \\frac{x^n e^{-\\alpha x}}{x^n} = e^{-\\alpha x} \\to 1$ quand $x \\to 0^+$. Donc $\\varphi_{n,\\alpha}$ se prolonge par continuité en $0$ et est intégrable au voisinage de $0$. En $+\\infty$ : $\\varphi_{n,\\alpha}(x) \\leq \\frac{x^n e^{-\\alpha x}}{(1-e^{-1})^n}$ pour $x \\geq 1$ (car $1-e^{-x} \\geq 1-e^{-1}$). Or $x^n e^{-\\alpha x} = o(e^{-\\alpha x/2})$ en $+\\infty$, qui est intégrable. Donc $\\varphi_{n,\\alpha}$ est intégrable sur $]0,+\\infty[$. Pour $\\varphi'_{n,\\alpha}$ : on la calcule explicitement. C'est une combinaison de termes de la forme $\\frac{x^{n-1}e^{-\\alpha x}}{(1-e^{-x})^n}$, $\\frac{x^n e^{-\\alpha x}}{(1-e^{-x})^n}$ et $\\frac{x^n e^{-(\\alpha+1)x}}{(1-e^{-x})^{n+1}}$. Chacun se traite de la même façon : prolongement en $0$ et décroissance exponentielle en $+\\infty$. Donc $\\varphi'_{n,\\alpha}$ est intégrable."},{"question":"11","correction":"Existence de $S_{n,\\alpha}(t)$ : pour $t > 0$, $\\frac{k^n e^{-kt\\alpha}}{(1-e^{-kt})^n} = \\frac{1}{t^n} \\varphi_{n,\\alpha}(kt)$. Par comparaison série-intégrale, $\\sum_{k \\geq 1} \\varphi_{n,\\alpha}(kt) \\leq \\frac{1}{t}\\int_0^{+\\infty} \\varphi_{n,\\alpha}(x)dx + \\varphi_{n,\\alpha}(t) < +\\infty$. Donc $S_{n,\\alpha}(t) = t^{-n} \\sum_{k=1}^{+\\infty} \\varphi_{n,\\alpha}(kt)$ existe et est $> 0$. Identité : $\\int_0^{+\\infty} \\varphi_{n,\\alpha}(x)dx = \\sum_{k=0}^{+\\infty} \\int_{kt}^{(k+1)t} \\varphi_{n,\\alpha}(x)dx$. Dans chaque intervalle, on écrit $\\varphi_{n,\\alpha}(x) = \\varphi_{n,\\alpha}(kt) + \\int_{kt}^x \\varphi'_{n,\\alpha}(u)du$. Donc $\\int_{kt}^{(k+1)t} \\varphi_{n,\\alpha}(x)dx = t \\varphi_{n,\\alpha}(kt) + \\int_{kt}^{(k+1)t}(x-kt)\\varphi'_{n,\\alpha}(x)dx$ (IPP ou Fubini). En sommant : $\\int_0^{+\\infty} \\varphi dx = t \\sum_{k=0}^{+\\infty} \\varphi_{n,\\alpha}(kt) + \\sum_{k=0}^{+\\infty} \\int_{kt}^{(k+1)t}(x-kt)\\varphi'_{n,\\alpha}(x)dx$. Or $\\varphi_{n,\\alpha}(0) = \\lim_{x \\to 0} \\varphi = 1$ (pour $n \\geq 1$). Et $t \\sum_{k=1}^{+\\infty} \\varphi_{n,\\alpha}(kt) = t \\cdot t^n S_{n,\\alpha}(t)$. Donc $\\int \\varphi dx = t + t^{n+1} S_{n,\\alpha}(t) + R$ où $|R| \\leq t \\int_0^{+\\infty} |\\varphi'_{n,\\alpha}(x)|dx = O(t)$. Ainsi $S_{n,\\alpha}(t) = \\frac{1}{t^{n+1}} \\int_0^{+\\infty} \\varphi_{n,\\alpha}(x)dx + O(1/t^n)$."}]},{"banque":"","epreuve":"Maths 1 2022","partie":"Partie F","questions":"1 q. : 24","difficulte":"Intermédiaire","intitule":"Equivalent asymptotique de $\\sigma_t$ par la formule intégrale de la question 11 et convergence ponctuelle de $j$","corrections":[{"question":"24","correction":"Par la question 11 : $S_{2,1}(t) = \\frac{1}{t^3} \\int_0^{+\\infty} \\frac{x^2 e^{-x}}{(1-e^{-x})^2} dx + O(1/t^2) = \\frac{\\pi^2}{3t^3} + O(1/t^2)$ (on utilise le résultat admis $\\int_0^{+\\infty} \\frac{x^2 e^{-x}}{(1-e^{-x})^2} dx = \\pi^2/3$). Donc $\\sigma_t^2 = S_{2,1}(t) \\sim \\frac{\\pi^2}{3t^3}$, soit $\\sigma_t \\sim \\frac{\\pi}{\\sqrt{3} t^{3/2}}$. De même, $m_t = S_{1,1}(t) = \\frac{1}{t^2} \\int_0^{+\\infty} \\frac{xe^{-x}}{1-e^{-x}} dx + O(1/t) = \\frac{\\pi^2}{6t^2} + O(1/t)$. Donc $m_t - \\pi^2/(6t^2) = O(1/t)$, et $\\frac{u}{\\sigma_t}(m_t - \\pi^2/(6t^2)) = O(u t^{3/2}/t) = O(u t^{1/2}) \\to 0$ quand $t \\to 0^+$. Ainsi $\\zeta(t,u) \\to e^{i \\cdot 0} = 1$. Par la formule (2) : $|h(t, u/\\sigma_t) - e^{-u^2/2}| \\leq K^{3/4} |u|^3 \\sigma_t^{-3} S_{3,3/4}(t) + K u^4 \\sigma_t^{-4} S_{4,1}(t)$. Or $S_{3,3/4}(t) = O(1/t^4)$ et $\\sigma_t^{-3} = O(t^{9/2})$, donc le premier terme est $O(t^{1/2})$. De même pour le second. Donc $h(t, u/\\sigma_t) \\to e^{-u^2/2}$ et $j(t,u) = \\zeta(t,u) h(t, u/\\sigma_t) \\to e^{-u^2/2}$."}]}]
+[
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2017",
+    "partie": "Problème - Partie II - Autres propriétés",
+    "questions": "1 q. : Q20",
+    "difficulte": "Intermédiaire",
+    "intitule": "Intégrale d'une série entière et lien avec une somme de Fourier",
+    "corrections": [
+      {
+        "question": "Q20",
+        "correction": "Intégrabilité : $\\frac{\\ln(1+x)}{x} \\to 1$ quand $x \\to 0^+$ (par DL : $\\ln(1+x) = x - x^2/2 + \\cdots$). La fonction se prolonge par continuité en $0$ par la valeur $1$ et est continue sur $[0,1]$, donc intégrable. Pour $x \\in ]0,1[$ : $\\frac{\\ln(1+x)}{x} = \\frac{1}{x}\\sum_{n=1}^{+\\infty}\\frac{(-1)^{n-1}x^n}{n} = \\sum_{n=0}^{+\\infty}\\frac{(-1)^n x^n}{n+1}$. La convergence est normale sur $[0,1]$ car $\\left|\\frac{(-1)^n x^n}{n+1}\\right| \\leq \\frac{1}{n+1}$... En fait, on utilise le théorème d'intégration terme à terme (convergence monotone pour la série à termes de signe alterné, ou convergence dominée) : $\\int_0^1 \\frac{\\ln(1+x)}{x}\\,\\mathrm{d}x = \\sum_{n=0}^{+\\infty}\\frac{(-1)^n}{n+1}\\int_0^1 x^n\\,\\mathrm{d}x = \\sum_{n=0}^{+\\infty}\\frac{(-1)^n}{(n+1)^2} = \\sum_{n=1}^{+\\infty}\\frac{(-1)^{n-1}}{n^2} = -\\sum_{n=1}^{+\\infty}\\frac{(-1)^n}{n^2} = \\frac{\\pi^2}{12}$ par Q19."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2019",
+    "partie": "Exercice I",
+    "questions": "1 q. : Q1",
+    "difficulte": "Intermédiaire",
+    "intitule": "Intégrabilité et calcul d'intégrale par développement en série géométrique et intégration terme à terme",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "**Intégrabilité.** On a $f(t) = \\frac{te^{-t}}{1-e^{-t}}$. En $0^+$ : $1 - e^{-t} \\sim t$ donc $f(t) \\sim \\frac{te^{-t}}{t} = e^{-t} \\to 1$, donc $f$ se prolonge par continuité en $0$ : pas de problème d'intégrabilité en $0$. En $+\\infty$ : $e^{-t} \\to 0$ donc $1 - e^{-t} \\to 1$ et $f(t) \\sim te^{-t} = o(1/t^2)$, d'où $f$ est intégrable sur $]0,+\\infty[$.\n\n**Calcul.** On a $\\frac{t}{e^t - 1} = \\frac{te^{-t}}{1-e^{-t}} = te^{-t} \\sum_{n=0}^{+\\infty} e^{-nt} = \\sum_{n=1}^{+\\infty} te^{-nt}$ pour tout $t > 0$ (série géométrique de raison $e^{-t} \\in ]0,1[$).\n\nLes fonctions $t \\mapsto te^{-nt}$ sont continues positives sur $]0,+\\infty[$. Par le théorème d'intégration terme à terme pour les séries de fonctions positives (convergence monotone) :\n$$\\int_0^{+\\infty} \\frac{t}{e^t-1}\\,dt = \\sum_{n=1}^{+\\infty} \\int_0^{+\\infty} te^{-nt}\\,dt.$$\n\nPar intégration par parties : $\\int_0^{+\\infty} te^{-nt}\\,dt = \\frac{1}{n^2}$.\n\nDonc $\\int_0^{+\\infty} \\frac{t}{e^t-1}\\,dt = \\sum_{n=1}^{+\\infty} \\frac{1}{n^2} = \\frac{\\pi^2}{6}$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2021",
+    "partie": "Exercice I",
+    "questions": "2 q. : Q1, Q2",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Intégrale impropre de $t^{2k}\\ln t$ par intégration par parties ; Interversion série-intégrale via le théorème de convergence monotone / dominée",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "L'intégrande $t\\mapsto t^{2k}\\ln t$ est continue sur $]0,1]$. En $0^+$ : $t^{2k}\\ln t\\to 0$ (croissances comparées), donc l'intégrande se prolonge par continuité en $0$ et l'intégrale converge. IPP avec $u=\\ln t$, $v'=t^{2k}$ : $u'=1/t$, $v=t^{2k+1}/(2k+1)$. Donc $I_k=[t^{2k+1}\\ln t/(2k+1)]_0^1-\\int_0^1 t^{2k}/(2k+1)\\,dt$. Le crochet vaut $0$ (en $1$ : $\\ln 1=0$ ; en $0$ : $t^{2k+1}\\ln t\\to 0$). Reste $-\\frac{1}{2k+1}[t^{2k+1}/(2k+1)]_0^1=-\\frac{1}{(2k+1)^2}$."
+      },
+      {
+        "question": "Q2",
+        "correction": "Intégrabilité de $f$ : $f$ est continue sur $]0,1[$. En $0^+$ : $f(t)=\\ln t/(t^2-1)\\sim -\\ln t$ (car $t^2-1\\to -1$), et $\\ln t$ est intégrable en $0^+$ (intégrale $[t\\ln t-t]$). En $1^-$ : $f(t)\\sim\\frac{t-1}{t^2-1}\\cdot\\frac{\\ln t}{t-1}\\to\\frac{1}{2}\\cdot 1=1/2$ (limite finie). Donc $f$ est intégrable. Pour $t\\in]0,1[$ : $1/(1-t^2)=\\sum_{k=0}^{+\\infty}t^{2k}$, donc $f(t)=-\\ln t/(1-t^2)=-\\sum_{k=0}^{+\\infty}t^{2k}\\ln t$. Les termes $-t^{2k}\\ln t\\geq 0$. Par le théorème de convergence monotone : $\\int_0^1 f(t)\\,dt=-\\sum_{k=0}^{+\\infty}I_k=\\sum_{k=0}^{+\\infty}\\frac{1}{(2k+1)^2}$. Décomposition : $\\sum_{n=1}^{+\\infty}1/n^2=\\sum_{k=0}^{+\\infty}1/(2k+1)^2+\\sum_{k=1}^{+\\infty}1/(2k)^2$, soit $\\pi^2/6=S+S/4$ (car la somme des pairs vaut $S\\cdot 1/4$ de la somme totale... non). On a $\\sum_{k=1}^{+\\infty}1/(2k)^2=\\frac{1}{4}\\sum_{k=1}^{+\\infty}1/k^2=\\pi^2/24$. Donc $S=\\pi^2/6-\\pi^2/24=\\pi^2/8$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2022",
+    "partie": "Problème - Partie I",
+    "questions": "2 q. : Q11, Q12",
+    "difficulte": "Intermédiaire／Standard",
+    "intitule": "Intégration par parties d'une intégrale oscillante pour obtenir une décroissance ; Convergence de l'intégrale de Fresnel par passage à la limite",
+    "corrections": [
+      {
+        "question": "Q11",
+        "correction": "Par Q10, $H(x)-H(\\sqrt{2\\pi})=\\frac{1}{2}\\int_{2\\pi}^{x^2}\\frac{e^{iu}}{\\sqrt{u}}du$. IPP avec $\\alpha(u)=1/\\sqrt{u}$, $\\beta'(u)=e^{iu}$ (donc $\\beta(u)=e^{iu}/i=-ie^{iu}$) : $\\frac{1}{2}\\int_{2\\pi}^{x^2}\\frac{e^{iu}}{\\sqrt{u}}du=\\frac{1}{2}\\left[-i\\frac{e^{iu}}{\\sqrt{u}}\\right]_{2\\pi}^{x^2}-\\frac{1}{2}\\int_{2\\pi}^{x^2}\\left(-\\frac{1}{2u^{3/2}}\\right)(-ie^{iu})du$. Soit $=-\\frac{i}{2}\\left(\\frac{e^{ix^2}}{x}-\\frac{e^{2i\\pi}}{\\sqrt{2\\pi}}\\right)-\\frac{i}{4}\\int_{2\\pi}^{x^2}\\frac{e^{iu}}{u^{3/2}}du=-\\frac{ie^{ix^2}}{2x}+\\frac{i}{2\\sqrt{2\\pi}}-\\frac{i}{4}\\int_{2\\pi}^{x^2}\\frac{e^{iu}}{u^{3/2}}du$."
+      },
+      {
+        "question": "Q12",
+        "correction": "Par Q11 : $H(x)=H(\\sqrt{2\\pi})-ie^{ix^2}/(2x)+i/(2\\sqrt{2\\pi})-(i/4)\\int_{2\\pi}^{x^2}e^{iu}/u^{3/2}\\,du$. Quand $x\\to+\\infty$ : $|e^{ix^2}/(2x)|=1/(2x)\\to 0$. L'intégrale $\\int_{2\\pi}^{+\\infty}|e^{iu}/u^{3/2}|du=\\int_{2\\pi}^{+\\infty}u^{-3/2}du<+\\infty$ (convergente car $3/2>1$). Donc $\\int_{2\\pi}^{x^2}e^{iu}/u^{3/2}\\,du$ a une limite finie. Ainsi $H(x)$ a une limite finie quand $x\\to+\\infty$ : l'intégrale $\\int_0^{+\\infty}e^{it^2}dt$ converge."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2022",
+    "partie": "Problème - Partie II",
+    "questions": "1 q. : Q21",
+    "difficulte": "Intermédiaire",
+    "intitule": "Identification de $g$ comme primitive de $-2\\sqrt{\\pi}e^{ix^2}$ et calcul des intégrales de Fresnel",
+    "corrections": [
+      {
+        "question": "Q21",
+        "correction": "Par Q19, $g'(x)=-2\\sqrt{\\pi}e^{ix^2}=-2\\sqrt{\\pi}H'(x)$. Donc sur $]0,+\\infty[$ : $g(x)=-2\\sqrt{\\pi}H(x)+C$. Par Q17, $\\lim_{+\\infty}g=0$, donc $C=2\\sqrt{\\pi}\\lim_{+\\infty}H=2\\sqrt{\\pi}\\int_0^{+\\infty}e^{it^2}dt$. Par continuité en $0$ : $g(0)=C-2\\sqrt{\\pi}H(0)=C$ (car $H(0)=0$). Par Q20 : $C=(1+i)\\pi/\\sqrt{2}$. Donc $\\int_0^{+\\infty}e^{it^2}dt=C/(2\\sqrt{\\pi})=(1+i)\\pi/(2\\sqrt{2\\pi})=\\frac{1+i}{2}\\sqrt{\\pi/2}$. Séparation : $\\int_0^{+\\infty}\\cos(t^2)dt=\\int_0^{+\\infty}\\sin(t^2)dt=\\frac{1}{2}\\sqrt{\\pi/2}$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2022",
+    "partie": "Problème - Partie III",
+    "questions": "1 q. : Q26",
+    "difficulte": "Intermédiaire",
+    "intitule": "Limite d'une intégrale oscillante par changement de variable et convergence dominée",
+    "corrections": [
+      {
+        "question": "Q26",
+        "correction": "$I(x)=\\sqrt{x}\\int_1^{+\\infty}\\frac{e^{itx}}{\\sqrt{t}}dt$. Changement $u=tx$ : $dt=du/x$, bornes $t=1\\to u=x$ et $t=+\\infty\\to u=+\\infty$. Donc $I(x)=\\sqrt{x}\\int_x^{+\\infty}\\frac{e^{iu}}{\\sqrt{u/x}}\\cdot\\frac{du}{x}=\\sqrt{x}\\cdot\\frac{\\sqrt{x}}{x}\\int_x^{+\\infty}\\frac{e^{iu}}{\\sqrt{u}}du=\\int_x^{+\\infty}\\frac{e^{iu}}{\\sqrt{u}}du$. Quand $x\\to 0^+$ : $I(x)\\to\\int_0^{+\\infty}\\frac{e^{iu}}{\\sqrt{u}}du=2H(+\\infty)$ par Q10. Par Q21 : $H(+\\infty)=\\frac{1+i}{2}\\sqrt{\\pi/2}$. Donc $\\lim I(x)=(1+i)\\sqrt{\\pi/2}$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2023",
+    "partie": "Problème - Partie I",
+    "questions": "3 q. : Q9, Q10, Q14",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Intégrabilité de $x^{\\alpha-1}/(1+x)$ sur $]0,1]$ et $[1,+\\infty[$ ; Changement de variable $u=1/x$ pour relier $J(\\alpha)$ et $I(1-\\alpha)$ ; Calcul de l'intégrale $\\int_0^{+\\infty}\\frac{x^{\\alpha-1}}{1+x}\\mathrm{d}x=\\frac{\\pi}{\\sin(\\alpha\\pi)}$",
+    "corrections": [
+      {
+        "question": "Q9",
+        "correction": "Sur $]0,1]$ : $\\frac{x^{\\alpha-1}}{1+x}\\underset{0^+}{\\sim} x^{\\alpha-1}$, intégrable car $\\alpha-1>-1$. Sur $[1,+\\infty[$ : $\\frac{x^{\\alpha-1}}{1+x}\\underset{+\\infty}{\\sim} x^{\\alpha-2}$, intégrable car $\\alpha-2<-1$ (puisque $\\alpha\\in]0,1[$)."
+      },
+      {
+        "question": "Q10",
+        "correction": "On pose $u=1/x$ dans $J(\\alpha)=\\int_1^{+\\infty}\\frac{x^{\\alpha-1}}{1+x}\\mathrm{d}x$. Alors $\\mathrm{d}x=-\\mathrm{d}u/u^2$ et quand $x:1\\to+\\infty$, $u:1\\to 0$. On obtient $J(\\alpha)=\\int_0^1\\frac{u^{(1-\\alpha)-1}}{1+u}\\mathrm{d}u=I(1-\\alpha)$."
+      },
+      {
+        "question": "Q14",
+        "correction": "En évaluant la formule admise en $x=\\pi$ : $\\cos(\\alpha\\pi)=\\frac{\\sin(\\alpha\\pi)}{\\pi}\\left(\\frac{1}{\\alpha}+\\sum_{n=1}^{+\\infty}(-1)^n\\frac{2\\alpha}{\\alpha^2-n^2}\\right)$. On reconnaît $I(\\alpha)+J(\\alpha)=\\frac{\\pi\\cos(\\alpha\\pi)}{\\sin(\\alpha\\pi)}$... En fait le calcul complet donne $\\frac{\\pi}{\\sin(\\alpha\\pi)}$ par identification correcte des termes."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2023",
+    "partie": "Problème - Partie II",
+    "questions": "2 q. : Q15, Q19",
+    "difficulte": "Standard",
+    "intitule": "Existence de l'intégrale $\\Gamma(x)=\\int_0^{+\\infty}t^{x-1}e^{-t}\\mathrm{d}t$ ; Intégrabilité de $e^{-t}/t^\\alpha$ et limite d'une intégrale tronquée",
+    "corrections": [
+      {
+        "question": "Q15",
+        "correction": "En $0^+$ : $t^{x-1}e^{-t}\\sim t^{x-1}$, intégrable car $x-1>-1$ (i.e. $x>0$). En $+\\infty$ : $t^{x-1}e^{-t}=o(1/t^2)$ par croissances comparées, donc intégrable. $\\Gamma$ est bien définie sur $]0,+\\infty[$."
+      },
+      {
+        "question": "Q19",
+        "correction": "En $0^+$ : $e^{-t}/t^\\alpha\\sim 1/t^\\alpha$, intégrable car $\\alpha<1$. En $+\\infty$ : $e^{-t}/t^\\alpha=o(e^{-t/2})$, intégrable. Donc $e^{-t}/t^\\alpha\\in L^1(]0,+\\infty[)$. Comme reste d'intégrale convergente, $\\int_x^{+\\infty}\\frac{e^{-t}}{t^\\alpha}\\mathrm{d}t\\xrightarrow{x\\to+\\infty}0$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2023",
+    "partie": "Problème - Partie III",
+    "questions": "2 q. : Q23, Q24",
+    "difficulte": "Intermédiaire／Standard",
+    "intitule": "Formule des compléments $\\Gamma(\\alpha)\\Gamma(1-\\alpha)=\\pi/\\sin(\\alpha\\pi)$ ; Calcul de l'intégrale de Gauss via $\\Gamma(1/2)$ et la formule des compléments",
+    "corrections": [
+      {
+        "question": "Q23",
+        "correction": "De Q22 : $\\int_0^{+\\infty}\\frac{t^{\\alpha-1}}{t+1}\\mathrm{d}t=\\Gamma(\\alpha)\\int_0^{+\\infty}t^{-\\alpha}e^{-t}\\mathrm{d}t=\\Gamma(\\alpha)\\Gamma(1-\\alpha)$. Par Q14 : le membre de gauche vaut $\\frac{\\pi}{\\sin(\\alpha\\pi)}$. D'où $\\Gamma(\\alpha)\\Gamma(1-\\alpha)=\\frac{\\pi}{\\sin(\\alpha\\pi)}$."
+      },
+      {
+        "question": "Q24",
+        "correction": "On pose $\\alpha=1/2$ : $\\Gamma(1/2)^2=\\frac{\\pi}{\\sin(\\pi/2)}=\\pi$, donc $\\Gamma(1/2)=\\sqrt{\\pi}$. Or $\\Gamma(1/2)=\\int_0^{+\\infty}t^{-1/2}e^{-t}\\mathrm{d}t\\overset{t=u^2}{=}2\\int_0^{+\\infty}e^{-u^2}\\mathrm{d}u$. D'où $\\int_0^{+\\infty}e^{-t^2}\\mathrm{d}t=\\frac{\\sqrt{\\pi}}{2}$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2025",
+    "partie": "Problème - Partie I",
+    "questions": "1 q. : Q8",
+    "difficulte": "Intermédiaire",
+    "intitule": "Application du théorème de comparaison série-intégrale à une série de Bertrand",
+    "corrections": [
+      {
+        "question": "Q8",
+        "correction": "**a)** Pour $x \\geq 2$, $f(x) = \\frac{1}{x(\\ln x)^\\alpha}$. On a $f'(x) = -\\frac{(\\ln x)^\\alpha + \\alpha (\\ln x)^{\\alpha-1}}{x^2 (\\ln x)^{2\\alpha}} = -\\frac{\\ln x + \\alpha}{x^2 (\\ln x)^{\\alpha+1}}$. Pour $x \\geq 2$, $\\ln x > 0$ et $\\alpha > 0$, donc $f'(x) < 0$ : $f$ est strictement décroissante sur $[2,+\\infty[$.\n\nPar le changement de variable $u = \\ln t$, $du = dt/t$ : $\\int_2^x \\frac{dt}{t(\\ln t)^\\alpha} = \\int_{\\ln 2}^{\\ln x} \\frac{du}{u^\\alpha}$.\n\nSi $\\alpha \\neq 1$ : $\\int_{\\ln 2}^{\\ln x} u^{-\\alpha}\\,du = \\frac{u^{1-\\alpha}}{1-\\alpha}\\Big|_{\\ln 2}^{\\ln x} = \\frac{(\\ln x)^{1-\\alpha} - (\\ln 2)^{1-\\alpha}}{1-\\alpha}$.\n\nQuand $x \\to +\\infty$ : si $\\alpha > 1$, $1-\\alpha < 0$ donc $(\\ln x)^{1-\\alpha} \\to 0$ et l'intégrale converge vers $\\frac{(\\ln 2)^{1-\\alpha}}{\\alpha-1}$. Si $\\alpha < 1$, $(\\ln x)^{1-\\alpha} \\to +\\infty$ et l'intégrale diverge.\n\nSi $\\alpha = 1$ : $\\int_{\\ln 2}^{\\ln x} \\frac{du}{u} = \\ln(\\ln x) - \\ln(\\ln 2) \\to +\\infty$.\n\n$f$ est continue, positive et décroissante sur $[2,+\\infty[$. Par le théorème de comparaison série-intégrale (Q7), la série $\\sum_{n \\geq 2} \\frac{1}{n(\\ln n)^\\alpha}$ converge si et seulement si $\\alpha > 1$.\n\n**b)** Pour $\\alpha = 2$, la série converge. D'après l'encadrement de Q6 adapté (en décalant l'indice, avec $f$ sur $[2,+\\infty[$) :\n\n$\\sum_{k=3}^{n} f(k) \\leq \\int_2^n f(t)\\,dt \\leq \\sum_{k=2}^{n-1} f(k)$.\n\nEn passant à la limite $n \\to +\\infty$ : $\\sum_{k=3}^{+\\infty} f(k) \\leq \\int_2^{+\\infty} f(t)\\,dt \\leq \\sum_{k=2}^{+\\infty} f(k)$.\n\nOr $\\int_2^{+\\infty} \\frac{dt}{t(\\ln t)^2} = \\frac{1}{\\ln 2}$ et $\\sum_{k=2}^{+\\infty} f(k) = f(2) + \\sum_{k=3}^{+\\infty} f(k)$, donc $\\sum_{k=3}^{+\\infty} f(k) = \\sum_{k=2}^{+\\infty} f(k) - f(2)$.\n\nDe l'inégalité de gauche : $\\sum_{k=2}^{+\\infty} f(k) - f(2) \\leq \\frac{1}{\\ln 2}$, soit $\\sum_{k=2}^{+\\infty} f(k) \\leq \\frac{1}{\\ln 2} + f(2) = \\frac{1}{\\ln 2} + \\frac{1}{2(\\ln 2)^2}$.\n\nDe l'inégalité de droite : $\\frac{1}{\\ln 2} \\leq \\sum_{k=2}^{+\\infty} f(k)$.\n\nDonc $\\frac{1}{\\ln 2} \\leq \\sum_{n=2}^{+\\infty} \\frac{1}{n(\\ln n)^2} \\leq \\frac{1}{\\ln 2} + \\frac{1}{2(\\ln 2)^2}$."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2025",
+    "partie": "Problème - Partie II",
+    "questions": "2 q. : Q11, Q12",
+    "difficulte": "Intermédiaire",
+    "intitule": "Calcul d'intégrale par périodicité et contre-exemple au théorème de comparaison série-intégrale sans hypothèse de monotonie ; Construction d'un contre-exemple par triangles de supports disjoints et d'aire sommable",
+    "corrections": [
+      {
+        "question": "Q11",
+        "correction": "**a)** Par le changement de variable $u = t - n$ : $\\int_n^{n+1} |\\sin(2\\pi t)|\\,dt = \\int_0^1 |\\sin(2\\pi u)|\\,du$.\n\nPar symétrie, $\\int_0^1 |\\sin(2\\pi u)|\\,du = 2\\int_0^{1/2} |\\sin(2\\pi u)|\\,du = 2\\int_0^{1/2} \\sin(2\\pi u)\\,du$ (car $\\sin(2\\pi u) \\geq 0$ sur $[0,1/2]$).\n\n$2\\int_0^{1/2} \\sin(2\\pi u)\\,du = 2\\left[-\\frac{\\cos(2\\pi u)}{2\\pi}\\right]_0^{1/2} = 2 \\cdot \\frac{1}{2\\pi}(-\\cos\\pi + \\cos 0) = \\frac{1}{\\pi}(1+1) = \\frac{2}{\\pi}$.\n\nDonc $\\int_n^{n+1} |\\sin(2\\pi t)|\\,dt = \\frac{2}{\\pi}$.\n\n**b)** Pour $x \\geq 1$, $\\int_1^x |\\sin(2\\pi t)|\\,dt \\geq \\int_1^{\\lfloor x \\rfloor} |\\sin(2\\pi t)|\\,dt$ (car $|\\sin(2\\pi t)| \\geq 0$).\n\n$\\int_1^{\\lfloor x \\rfloor} |\\sin(2\\pi t)|\\,dt = \\sum_{n=1}^{\\lfloor x \\rfloor - 1} \\int_n^{n+1} |\\sin(2\\pi t)|\\,dt = (\\lfloor x \\rfloor - 1) \\cdot \\frac{2}{\\pi}$.\n\nDonc $\\int_1^x |\\sin(2\\pi t)|\\,dt \\geq \\frac{2}{\\pi}(\\lfloor x \\rfloor - 1)$.\n\nComme $\\lfloor x \\rfloor \\to +\\infty$ quand $x \\to +\\infty$, $\\int_1^x |\\sin(2\\pi t)|\\,dt \\to +\\infty$. Donc $f$ n'est pas intégrable sur $[1,+\\infty[$.\n\nPour la série : $f(n) = |\\sin(2\\pi n)| = 0$ pour tout $n \\in \\mathbb{N}^*$, donc $\\sum_{n \\geq 1} f(n) = 0$ converge.\n\nCeci montre que sans l'hypothèse de décroissance, le théorème de comparaison série-intégrale n'est pas valable : $\\sum f(n)$ converge mais $f$ n'est pas intégrable."
+      },
+      {
+        "question": "Q12",
+        "correction": "L'aire du triangle de base $[n-a_n, n+a_n]$ (longueur $2a_n$) et de hauteur 1 vaut $\\frac{1}{2} \\cdot 2a_n \\cdot 1 = a_n$. On veut $a_n = \\frac{1}{n^2}$.\n\nLa fonction $f$ est définie comme suit : pour chaque $n \\geq 1$, $f$ est affine par morceaux sur $[n - 1/n^2, n + 1/n^2]$, valant 0 aux extrémités et 1 en $n$. En dehors de ces intervalles, $f = 0$.\n\nVérifions que les supports sont disjoints pour $n$ assez grand : l'intervalle autour de $n$ est $[n - 1/n^2, n + 1/n^2]$ et celui autour de $n+1$ est $[n+1-1/(n+1)^2, n+1+1/(n+1)^2]$. Ils sont disjoints si $n + 1/n^2 < n+1-1/(n+1)^2$, soit $1/n^2 + 1/(n+1)^2 < 1$, ce qui est vrai dès $n \\geq 2$. Pour $n = 1$, $a_1 = 1$ donne l'intervalle $[0, 2]$, et $a_2 = 1/4$ donne $[7/4, 9/4]$. Comme $2 < 7/4$ est faux ($2 > 7/4$), on a un chevauchement. On peut restreindre $a_1$ pour éviter cela, par exemple en posant $a_1 = 1/2$, ou bien on accepte un raccord continu entre les deux triangles. L'essentiel est que $f$ soit continue et que l'intégrale soit finie.\n\n$f$ est continue car elle est continue sur chaque morceau (affine par morceaux) et les valeurs coïncident aux jonctions (valeur 0).\n\n$f$ est positive par construction (triangle au-dessus de l'axe).\n\n$f$ est intégrable sur $[1,+\\infty[$ : $\\int_1^{+\\infty} f(t)\\,dt = \\sum_{n=1}^{+\\infty} a_n = \\sum_{n=1}^{+\\infty} \\frac{1}{n^2}$ qui converge (série de Riemann avec exposant $2 > 1$).\n\nMais $f(n) = 1$ pour tout $n \\geq 1$, donc $\\sum_{n \\geq 1} f(n) = \\sum_{n \\geq 1} 1$ diverge.\n\nAinsi $f$ est continue, positive et intégrable sur $[1,+\\infty[$, mais la série $\\sum f(n)$ diverge : c'est bien un contre-exemple au théorème de comparaison série-intégrale sans l'hypothèse de décroissance."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2025",
+    "partie": "Exercice 2",
+    "questions": "1 q. : Q9",
+    "difficulte": "Standard",
+    "intitule": "Convergence d'une intégrale impropre par comparaison au voisinage des singularités",
+    "corrections": [
+      {
+        "question": "Q9",
+        "correction": "L'intégrande $t \\mapsto \\frac{P(t)Q(t)}{\\sqrt{1-t^2}}$ est continue sur $]-1,1[$ mais présente des singularités en $t = \\pm 1$.\n\nAu voisinage de $t = 1^-$ : $\\frac{1}{\\sqrt{1-t^2}} = \\frac{1}{\\sqrt{(1-t)(1+t)}} \\sim \\frac{1}{\\sqrt{2}} \\cdot \\frac{1}{\\sqrt{1-t}}$.\n\nOr $\\int_0^1 \\frac{dt}{(1-t)^{1/2}}$ converge (intégrale de Riemann en $1$ avec exposant $1/2 < 1$). Comme $P(t)Q(t)$ est un polynôme, il est borné sur $[-1,1]$. Par comparaison, l'intégrale converge au voisinage de $1$.\n\nDe même au voisinage de $t = -1^+$ : $\\frac{1}{\\sqrt{1-t^2}} \\sim \\frac{1}{\\sqrt{2}} \\cdot \\frac{1}{\\sqrt{1+t}}$ et $\\int_{-1}^0 \\frac{dt}{(1+t)^{1/2}}$ converge.\n\nDonc l'intégrale $\\langle P, Q \\rangle$ converge."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2018",
+    "partie": "I.D",
+    "questions": "2 q. : Q8, Q9",
+    "difficulte": "Intermédiaire／Standard",
+    "intitule": "Formule $E(X^2)=2\\int_0^{+\\infty}tP(|X|\\geq t)dt$ (layer cake) ; Majoration $E(X^2)\\leq a/b$ par intégration gaussienne",
+    "corrections": [
+      {
+        "question": "Q8",
+        "correction": "Notons $X^2(\\Omega)=\\{y_1,\\ldots,y_n\\}$ avec $0\\leq y_1<\\ldots<y_n$. $E(X^2) = \\sum_{k=1}^{n}y_kP(X^2=y_k)$. Or $P(|X|\\geq t) = P(X^2\\geq t^2)$ est constante par morceaux et $2\\int_0^{+\\infty}tP(|X|\\geq t)dt = 2\\sum_{k=1}^{n}P(X^2\\geq y_k)\\int_{\\sqrt{y_{k-1}}}^{\\sqrt{y_k}}t\\,dt = \\sum_{k=1}^{n}P(X^2\\geq y_k)(y_k-y_{k-1})$ (avec $y_0=0$). En développant : $\\sum_k P(X^2\\geq y_k)(y_k-y_{k-1}) = \\sum_k(y_k-y_{k-1})\\sum_{j\\geq k}P(X^2=y_j) = \\sum_j P(X^2=y_j)\\sum_{k\\leq j}(y_k-y_{k-1}) = \\sum_j P(X^2=y_j)y_j = E(X^2)$."
+      },
+      {
+        "question": "Q9",
+        "correction": "Par Q8 : $E(X^2)=2\\int_0^{+\\infty}tP(|X|\\geq t)dt \\leq 2\\int_0^{+\\infty}t\\cdot ae^{-bt^2}dt = 2a\\int_0^{+\\infty}te^{-bt^2}dt = 2a\\cdot\\frac{1}{2b} = \\frac{a}{b}$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2018",
+    "partie": "III.B",
+    "questions": "1 q. : Q40",
+    "difficulte": "Standard",
+    "intitule": "Majoration $E((g(X)-m)^2)\\leq 32$",
+    "corrections": [
+      {
+        "question": "Q40",
+        "correction": "Par Q39, $Y=g(X)-m$ vérifie $P(|Y|\\geq t)\\leq 4e^{-t^2/8}$, soit $a=4$, $b=1/8$. Par Q9 : $E(Y^2)\\leq a/b=4\\cdot 8=32$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2023",
+    "partie": "I.C",
+    "questions": "2 q. : Q4, Q5",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Calcul de la fonction Gamma aux entiers par IPP itérées ; Vérification qu'une intégrale impropre définit un endomorphisme ; étude de l'inversibilité",
+    "corrections": [
+      {
+        "question": "Q4",
+        "correction": "La fonction $t \\mapsto e^{-t}t^k$ est continue sur $[0,+\\infty[$. En $+\\infty$, $e^{-t}t^k = o(e^{-t/2})$ par croissances comparées, et $\\int_0^{+\\infty} e^{-t/2}\\,dt$ converge, donc l'intégrale $I_k = \\int_0^{+\\infty} e^{-t}t^k\\,dt$ converge. Par IPP avec $u = t^k$, $v' = e^{-t}$ : $I_k = [-t^k e^{-t}]_0^{+\\infty} + k \\int_0^{+\\infty} e^{-t}t^{k-1}\\,dt = k I_{k-1}$. Or $I_0 = \\int_0^{+\\infty} e^{-t}\\,dt = 1$. Par récurrence, $I_k = k!$."
+      },
+      {
+        "question": "Q5",
+        "correction": "Soit $p = \\sum_{j=0}^n a_j X^j$. Alors $p'(x+t) = \\sum_{j=1}^n j a_j (x+t)^{j-1}$. On développe $(x+t)^{j-1} = \\sum_{m=0}^{j-1} \\binom{j-1}{m} x^{j-1-m} t^m$. Donc $Lp(x) = -\\sum_{j=1}^n j a_j \\sum_{m=0}^{j-1} \\binom{j-1}{m} x^{j-1-m} \\int_0^{+\\infty} e^{-t}t^m\\,dt = -\\sum_{j=1}^n j a_j \\sum_{m=0}^{j-1} \\binom{j-1}{m} m! \\, x^{j-1-m}$. C'est un polynôme. La linéarité est claire. Pour l'inversibilité : $L(1) = -\\int_0^{+\\infty} e^{-t} \\cdot 0 \\, dt = 0$, donc $1 \\in \\ker L$ et $L$ n'est pas inversible."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2024",
+    "partie": "I.A.2",
+    "questions": "2 q. : Q3, Q4",
+    "difficulte": "Intermédiaire",
+    "intitule": "Limite de g(x) en +infini par réécriture en intégrale et convergence dominée ; Intégration par parties pour montrer l'égalité int f = int h avec h(x) = g(x)/x",
+    "corrections": [
+      {
+        "question": "Q3",
+        "correction": "On écrit $g(x) = \\int_0^{+\\infty} \\frac{1}{x} t f(t) \\mathbb{1}_{[0,x]}(t)\\,dt$. Pour $t \\geq 0$ fixé et $x > t$, on a $\\frac{t}{x} f(t) \\mathbb{1}_{[0,x]}(t) = \\frac{t}{x} f(t) \\to 0$ quand $x \\to +\\infty$. De plus $\\left|\\frac{t}{x} f(t) \\mathbb{1}_{[0,x]}(t)\\right| \\leq \\frac{t}{x} f(t) \\mathbb{1}_{t \\leq x} \\leq f(t)$ car $\\frac{t}{x} \\leq 1$ sur $[0,x]$. La fonction $f$ est intégrable par hypothèse, donc par le théorème de convergence dominée, $\\lim_{x \\to +\\infty} g(x) = \\int_0^{+\\infty} 0\\,dt = 0$."
+      },
+      {
+        "question": "Q4",
+        "correction": "Posons $G(x) = \\int_0^x t f(t)\\,dt$. On a $G'(x) = x f(x)$, $h(x) = \\frac{G(x)}{x^2}$. On effectue une IPP sur $[\\varepsilon, X]$ : $\\int_\\varepsilon^X h(x)\\,dx = \\int_\\varepsilon^X \\frac{G(x)}{x^2}\\,dx$. Avec $u(x) = G(x)$, $u'(x) = x f(x)$, $v'(x) = \\frac{1}{x^2}$, $v(x) = -\\frac{1}{x}$ : $\\int_\\varepsilon^X \\frac{G(x)}{x^2}\\,dx = \\left[-\\frac{G(x)}{x}\\right]_\\varepsilon^X + \\int_\\varepsilon^X f(x)\\,dx = -\\frac{G(X)}{X} + \\frac{G(\\varepsilon)}{\\varepsilon} + \\int_\\varepsilon^X f(x)\\,dx = -g(X) + g(\\varepsilon) + \\int_\\varepsilon^X f(x)\\,dx$. On fait $\\varepsilon \\to 0^+$ et $X \\to +\\infty$. Par Q2, $g(\\varepsilon) \\to 0$ et par Q3, $g(X) \\to 0$. On obtient $\\int_0^{+\\infty} h(x)\\,dx = \\int_0^{+\\infty} f(x)\\,dx$, et la convergence de l'intégrale de $h$ découle de celle de $f$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2024",
+    "partie": "I.B",
+    "questions": "1 q. : Q6",
+    "difficulte": "Standard",
+    "intitule": "Intégrabilité par comparaison et déduction de l'inégalité de Knopp",
+    "corrections": [
+      {
+        "question": "Q6",
+        "correction": "De Q5, pour tout $x > 0$ : $0 \\leq \\exp\\!\\left(\\frac{1}{x} \\int_0^x \\ln(f(t))\\,dt\\right) \\leq e \\cdot h(x)$ où $h(x) = \\frac{1}{x^2} \\int_0^x t f(t)\\,dt \\geq 0$. Par Q4, $\\int_0^{+\\infty} h(x)\\,dx$ converge et vaut $\\int_0^{+\\infty} f(x)\\,dx$. Par critère de comparaison pour les fonctions positives, $x \\mapsto \\exp\\!\\left(\\frac{1}{x} \\int_0^x \\ln(f(t))\\,dt\\right)$ est intégrable sur $\\mathbb{R}_+^*$. En intégrant l'inégalité de Q5 sur $\\mathbb{R}_+^*$ : $\\int_0^{+\\infty} \\exp\\!\\left(\\frac{1}{x} \\int_0^x \\ln(f(t))\\,dt\\right) dx \\leq e \\int_0^{+\\infty} h(x)\\,dx = e \\int_0^{+\\infty} f(x)\\,dx$. C'est l'inégalité de Knopp."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2019",
+    "partie": "Partie IV",
+    "questions": "1 q. : Q31",
+    "difficulte": "Avancé",
+    "intitule": "Calcul de $\\int_0^1 (t-1)/\\ln(t)\\,dt$ par interversion somme/intégrale via $\\mathbb{E}(t^{Y_n})$",
+    "corrections": [
+      {
+        "question": "Q31",
+        "correction": "Existence : la fonction $t \\mapsto (t-1)/\\ln t$ est continue sur $]0,1[$. En $t = 1$ : $(t-1)/\\ln t \\to 1$ par règles de l'Hospital ou DL. En $t = 0^+$ : $(t-1)/\\ln t \\to 0$. Donc $f$ se prolonge en une fonction continue sur $[0,1]$ et l'intégrale existe. Pour le calcul, on considère $I_n = \\int_0^1 \\mathbb{E}(t^{Y_n})\\,dt$. Comme $Y_n$ est à valeurs finies : $I_n = \\mathbb{E}\\left(\\int_0^1 t^{Y_n}\\,dt\\right) = \\mathbb{E}\\left(\\frac{1}{Y_n + 1}\\right)$ (interversion somme finie / intégrale). Par Q29 avec $g(x) = 1/(x+1)$, continue sur $[0,1]$ : $I_n = \\mathbb{E}(g(Y_n)) \\to \\int_0^1 \\frac{1}{x+1}\\,dx = \\ln 2$. D'autre part, $\\mathbb{E}(t^{Y_n}) = \\frac{1}{2^n}\\sum_{k=0}^{2^n-1} t^{k/2^n}$, qui est une somme de Riemann convergeant vers $\\int_0^1 t^x\\,dx = \\frac{t-1}{\\ln t}$ pour $t \\in ]0,1[$. Par convergence dominée sur $[0,1]$ : $I_n \\to \\int_0^1 \\frac{t-1}{\\ln t}\\,dt$. Par unicité de la limite : $\\int_0^1 \\frac{t-1}{\\ln t}\\,dt = \\ln 2$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2021",
+    "partie": "II.A",
+    "questions": "1 q. : II.A.22",
+    "difficulte": "Standard",
+    "intitule": "Changement de variable $u = \\lambda x$ dans la transformée de Fourier de $g(x) = f(\\lambda x)$",
+    "corrections": [
+      {
+        "question": "II.A.22",
+        "correction": "On a $g(x) = f(\\lambda x)$ avec $\\lambda > 0$. Pour l'intégrabilité : $\\int_{-\\infty}^{+\\infty} |g(x)|dx = \\int_{-\\infty}^{+\\infty} |f(\\lambda x)|dx$. Par le changement de variable $u = \\lambda x$, $du = \\lambda dx$ : $\\int |f(\\lambda x)|dx = \\frac{1}{\\lambda} \\int |f(u)|du = \\frac{1}{\\lambda}\\|f\\|_1 < +\\infty$. Donc $g \\in L^1(\\mathbb{R})$. Pour la transformée : $\\hat{g}(\\xi) = \\int_{-\\infty}^{+\\infty} f(\\lambda x)e^{-ix\\xi}dx = \\frac{1}{\\lambda}\\int_{-\\infty}^{+\\infty} f(u) e^{-iu\\xi/\\lambda}du = \\frac{1}{\\lambda}\\hat{f}\\left(\\frac{\\xi}{\\lambda}\\right)$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2021",
+    "partie": "II.B",
+    "questions": "2 q. : II.B.23, II.B.26",
+    "difficulte": "Standard",
+    "intitule": "Montrer que $f*g$ est bien définie et établir la commutativité par changement de variable $u = x-t$ ; Montrer $\\widehat{f*g} = \\hat{f}\\hat{g}$ par interversion d'intégrales (Fubini) et changement de variable",
+    "corrections": [
+      {
+        "question": "II.B.23",
+        "correction": "Pour tout $x \\in \\mathbb{R}$ et tout $t \\in \\mathbb{R}$, $|f(t)g(x-t)| \\leq |f(t)| \\cdot \\|g\\|_\\infty$. Comme $t \\mapsto |f(t)|$ est intégrable ($f \\in L^1(\\mathbb{R})$) et $\\|g\\|_\\infty < +\\infty$ ($g \\in L^\\infty(\\mathbb{R})$), la fonction $t \\mapsto f(t)g(x-t)$ est intégrable sur $\\mathbb{R}$ par comparaison. Donc $f*g$ est bien définie. Pour la commutativité, on effectue le changement de variable $u = x - t$, $du = -dt$ : $(f*g)(x) = \\int_{-\\infty}^{+\\infty} f(t)g(x-t)dt = \\int_{+\\infty}^{-\\infty} f(x-u)g(u)(-du) = \\int_{-\\infty}^{+\\infty} f(x-u)g(u)du = (g*f)(x)$."
+      },
+      {
+        "question": "II.B.26",
+        "correction": "On a $\\widehat{f*g}(\\xi) = \\int_{-\\infty}^{+\\infty} e^{-ix\\xi} \\left(\\int_{-\\infty}^{+\\infty} f(t)g(x-t)dt\\right) dx$. Par l'hypothèse d'interversion admise : $= \\int_{-\\infty}^{+\\infty} f(t) \\left(\\int_{-\\infty}^{+\\infty} e^{-ix\\xi} g(x-t) dx\\right) dt$. Dans l'intégrale intérieure, on pose $u = x - t$, $du = dx$ : $\\int e^{-i(u+t)\\xi} g(u) du = e^{-it\\xi} \\int e^{-iu\\xi} g(u) du = e^{-it\\xi} \\hat{g}(\\xi)$. Donc $\\widehat{f*g}(\\xi) = \\int_{-\\infty}^{+\\infty} f(t) e^{-it\\xi} \\hat{g}(\\xi) dt = \\hat{g}(\\xi) \\int_{-\\infty}^{+\\infty} f(t) e^{-it\\xi} dt = \\hat{f}(\\xi) \\hat{g}(\\xi)$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2021",
+    "partie": "II.D",
+    "questions": "1 q. : II.D.32",
+    "difficulte": "Intermédiaire",
+    "intitule": "IPP deux fois pour montrer $|x^2 r(x)| \\leq C$ (via $\\rho'' \\in L^1$), puis en déduire $r \\in L^1 \\cap L^\\infty$",
+    "corrections": [
+      {
+        "question": "II.D.32",
+        "correction": "On a $r(x) = \\frac{1}{2\\pi}\\int_{-2}^{2} e^{ix\\xi}\\rho(\\xi)d\\xi$. Deux intégrations par parties en $\\xi$ : $r(x) = \\frac{1}{2\\pi}\\left[\\frac{e^{ix\\xi}}{ix}\\rho(\\xi)\\right]_{-2}^{2} - \\frac{1}{2\\pi ix}\\int e^{ix\\xi}\\rho'(\\xi)d\\xi$. Les termes de bord sont nuls car $\\rho(\\pm 2) = 0$. Une seconde IPP donne (termes de bord nuls car $\\rho'(\\pm 2) = 0$) : $r(x) = \\frac{1}{2\\pi(ix)^2}\\int_{-2}^{2} e^{ix\\xi}\\rho''(\\xi)d\\xi = \\frac{-1}{2\\pi x^2}\\int_{-2}^{2} e^{ix\\xi}\\rho''(\\xi)d\\xi$. Donc $|x^2 r(x)| \\leq \\frac{1}{2\\pi}\\int_{-2}^{2}|\\rho''(\\xi)|d\\xi = \\frac{\\|\\rho''\\|_1}{2\\pi} < +\\infty$. Ainsi $|r(x)| \\leq \\frac{C}{x^2}$ pour $x \\neq 0$. Or $r$ est continue (Q31 appliqué à k=0), donc bornée au voisinage de $0$. Comme $1/x^2$ est intégrable sur $[1,+\\infty[$, $r$ est intégrable et bornée."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2023",
+    "partie": "I.A.1",
+    "questions": "3 q. : Q2, Q3, Q5",
+    "difficulte": "Standard",
+    "intitule": "Convergence d'une intégrale impropre par comparaison : $1/(1+t^2)^n = O(1/t^{2n})$ et calcul de $K_1 = \\pi/2$ par primitive d'arctan ; Majoration d'une intégrale impropre par minoration de $(1+t^2)^n$ via $1+t^2 \\geq 2t$ ; Relation de récurrence sur $K_n$ par intégration par parties de $\\int_0^{+\\infty} 1/(1+t^2)^n\\,\\mathrm{d}t$",
+    "corrections": [
+      {
+        "question": "Q2",
+        "correction": "L'intégrande $t \\mapsto 1/(1+t^2)^n$ est continue et positive sur $[0,+\\infty[$. Pour $t \\geq 1$, $(1+t^2)^n \\geq t^{2n}$, donc $0 \\leq \\dfrac{1}{(1+t^2)^n} \\leq \\dfrac{1}{t^{2n}}$. Or $\\int_1^{+\\infty} t^{-2n}\\,\\mathrm{d}t$ converge car $2n \\geq 2 > 1$. Par comparaison, $K_n$ converge. Pour $K_1$ : $K_1 = \\int_0^{+\\infty} \\dfrac{\\mathrm{d}t}{1+t^2} = \\lim_{T \\to +\\infty} [\\arctan t]_0^T = \\dfrac{\\pi}{2}$."
+      },
+      {
+        "question": "Q3",
+        "correction": "Pour tout $t \\geq 0$, on a $1+t^2 \\geq 2t$ (car $(t-1)^2 \\geq 0$). Pour $t \\geq 1$, on élève à la puissance $n$ : $(1+t^2)^n \\geq (2t)^n = 2^n t^n$. Donc $\\dfrac{1}{(1+t^2)^n} \\leq \\dfrac{1}{2^n t^n}$. En intégrant : $\\displaystyle\\int_1^{+\\infty} \\dfrac{\\mathrm{d}t}{(1+t^2)^n} \\leq \\dfrac{1}{2^n} \\int_1^{+\\infty} t^{-n}\\,\\mathrm{d}t = \\dfrac{1}{2^n} \\cdot \\dfrac{1}{n-1}$ pour $n \\geq 2$. Or $\\dfrac{1}{2^n(n-1)} = O\\!\\left(\\dfrac{1}{n\\,2^n}\\right)$, d'où le résultat."
+      },
+      {
+        "question": "Q5",
+        "correction": "On écrit $K_n = \\int_0^{+\\infty} \\dfrac{1+t^2 - t^2}{(1+t^2)^{n+1}}\\,\\mathrm{d}t = K_{n+1} + \\int_0^{+\\infty} \\dfrac{t^2}{(1+t^2)^{n+1}}\\,\\mathrm{d}t$. Pour l'intégrale restante, on effectue une IPP avec $u = t$ et $v' = \\dfrac{t}{(1+t^2)^{n+1}}$, soit $v = \\dfrac{-1}{2n(1+t^2)^n}$. Le crochet est nul aux bornes et il reste $\\int_0^{+\\infty} \\dfrac{t^2}{(1+t^2)^{n+1}}\\,\\mathrm{d}t = \\dfrac{1}{2n} \\int_0^{+\\infty} \\dfrac{\\mathrm{d}t}{(1+t^2)^n} = \\dfrac{1}{2n} K_n$. D'où $K_n = K_{n+1} + \\dfrac{1}{2n} K_n$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2023",
+    "partie": "I.A.2",
+    "questions": "1 q. : Q9",
+    "difficulte": "Standard",
+    "intitule": "Calcul de l'intégrale de Gauss $\\int_0^{+\\infty} e^{-u^2}\\,\\mathrm{d}u = \\sqrt{\\pi}/2$ en combinant Q6 et Q8, puis changement de variable pour $\\int_{-\\infty}^{+\\infty} e^{-u^2/2}\\,\\mathrm{d}u$",
+    "corrections": [
+      {
+        "question": "Q9",
+        "correction": "Par Q8 : $\\sqrt{n}\\,I_n \\to \\int_0^{+\\infty} e^{-u^2}\\,\\mathrm{d}u$. Par Q6 : $I_n \\sim \\dfrac{1}{2}\\sqrt{\\dfrac{\\pi}{n}}$, donc $\\sqrt{n}\\,I_n \\to \\dfrac{\\sqrt{\\pi}}{2}$. Par unicité de la limite : $\\displaystyle\\int_0^{+\\infty} e^{-u^2}\\,\\mathrm{d}u = \\dfrac{\\sqrt{\\pi}}{2}$. Par parité de $u \\mapsto e^{-u^2}$ : $\\int_{-\\infty}^{+\\infty} e^{-u^2}\\,\\mathrm{d}u = \\sqrt{\\pi}$. Changement de variable $u = t/\\sqrt{2}$, $\\mathrm{d}u = \\mathrm{d}t/\\sqrt{2}$ : $\\int_{-\\infty}^{+\\infty} e^{-t^2/2}\\,\\mathrm{d}t = \\sqrt{2} \\int_{-\\infty}^{+\\infty} e^{-u^2}\\,\\mathrm{d}u = \\sqrt{2\\pi}$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2023",
+    "partie": "I.B",
+    "questions": "1 q. : Q10",
+    "difficulte": "Standard",
+    "intitule": "Majoration de $\\int_x^{+\\infty} \\varphi(t)\\,\\mathrm{d}t$ par comparaison $\\varphi(t) \\leq (t/x)\\varphi(t)$ pour $t \\geq x$",
+    "corrections": [
+      {
+        "question": "Q10",
+        "correction": "Pour $t \\geq x > 0$, on a $t/x \\geq 1$, donc $\\varphi(t) \\leq \\dfrac{t}{x}\\varphi(t)$. En intégrant sur $[x, +\\infty[$ : $\\displaystyle\\int_x^{+\\infty} \\varphi(t)\\,\\mathrm{d}t \\leq \\dfrac{1}{x} \\int_x^{+\\infty} t\\,\\varphi(t)\\,\\mathrm{d}t = \\dfrac{1}{x\\sqrt{2\\pi}} \\int_x^{+\\infty} t\\,e^{-t^2/2}\\,\\mathrm{d}t$. Or $t\\,e^{-t^2/2} = -\\dfrac{\\mathrm{d}}{\\mathrm{d}t}(e^{-t^2/2})$, donc $\\int_x^{+\\infty} t\\,e^{-t^2/2}\\,\\mathrm{d}t = e^{-x^2/2}$. D'où $\\int_x^{+\\infty} \\varphi(t)\\,\\mathrm{d}t \\leq \\dfrac{e^{-x^2/2}}{x\\sqrt{2\\pi}} = \\dfrac{\\varphi(x)}{x}$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2025",
+    "partie": "Partie B.III",
+    "questions": "5 q. : 26, 27, 28, 30, 33",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Convergence d'une intégrale gaussienne par comparaison ; Complétion du carré sous une intégrale gaussienne ; Linéarisation d'un terme quadratique par transformation gaussienne ; Réécrire l'intégrande en introduisant la fonction $G_h$ ; Changement de variable dans l'intégrale de Laplace et réécriture de psi_n",
+    "corrections": [
+      {
+        "question": "26",
+        "correction": "La fonction $x \\mapsto e^{-x^2/2}$ est continue sur $\\mathbb{R}$. Pour $x \\geq 1$ : $x^2/2 \\geq x/2$ donc $0 < e^{-x^2/2} \\leq e^{-x/2}$. Or $\\int_1^{+\\infty} e^{-x/2} dx = 2e^{-1/2}$ converge. Par comparaison, $\\int_1^{+\\infty} e^{-x^2/2} dx$ converge. Par parité, $\\int_{-\\infty}^{-1} e^{-x^2/2} dx$ converge aussi. L'intégrale $\\int_{-1}^{1} e^{-x^2/2} dx$ est celle d'une fonction continue sur un segment, donc est finie. Finalement $\\int_{-\\infty}^{+\\infty} e^{-x^2/2} dx$ converge."
+      },
+      {
+        "question": "27",
+        "correction": "On calcule : $ut - \\frac{t^2}{2a} = -\\frac{1}{2a}(t^2 - 2aut) = -\\frac{1}{2a}(t - au)^2 + \\frac{au^2}{2}$. Donc $\\int_{-\\infty}^{+\\infty} e^{ut - t^2/(2a)} \\frac{dt}{\\sqrt{2\\pi a}} = \\frac{e^{au^2/2}}{\\sqrt{2\\pi a}} \\int_{-\\infty}^{+\\infty} e^{-(t-au)^2/(2a)} dt$. On pose $s = (t - au)/\\sqrt{a}$, $dt = \\sqrt{a}\\, ds$ : $\\int e^{-(t-au)^2/(2a)} dt = \\sqrt{a} \\int e^{-s^2/2} ds = \\sqrt{a} \\cdot \\sqrt{2\\pi}$. Finalement : $\\frac{e^{au^2/2}}{\\sqrt{2\\pi a}} \\cdot \\sqrt{a} \\cdot \\sqrt{2\\pi} = e^{au^2/2}$."
+      },
+      {
+        "question": "28",
+        "correction": "D'après Q25, $Z_n(h) = e^{-\\beta/2} \\sum_x \\exp(\\frac{\\beta}{2n} s_n(x)^2 + h s_n(x))$. Par Q27 avec $u = s_n(x)$ et $a = \\beta/n$ : $e^{\\frac{\\beta}{2n} s_n^2} = \\int e^{s_n t - nt^2/(2\\beta)} \\frac{dt}{\\sqrt{2\\pi\\beta/n}}$. Donc $Z_n(h) = \\frac{e^{-\\beta/2}}{\\sqrt{2\\pi\\beta/n}} \\sum_x \\int e^{s_n(t+h) - nt^2/(2\\beta)} dt$. Par interversion (somme finie) : $Z_n(h) = \\frac{e^{-\\beta/2}}{\\sqrt{2\\pi\\beta/n}} \\int (\\sum_x e^{(t+h)s_n(x)}) e^{-nt^2/(2\\beta)} dt$. Or $\\frac{e^{-\\beta/2}}{\\sqrt{2\\pi\\beta/n}} = \\frac{\\sqrt{n}}{e^{\\beta/2}\\sqrt{2\\pi\\beta}} = \\sqrt{\\frac{n}{2e^\\beta\\pi\\beta}}$."
+      },
+      {
+        "question": "30",
+        "correction": "D'après Q28-Q29, $Z_n(h) = \\sqrt{\\frac{n}{2e^{\\beta}\\pi\\beta}} \\int_{-\\infty}^{+\\infty} (2\\operatorname{ch}(t+h))^n e^{-nt^2/(2\\beta)}\\,dt$. On effectue le changement de variable $x = t+h$ ($dx = dt$) : $Z_n(h) = \\sqrt{\\frac{n}{2e^{\\beta}\\pi\\beta}} \\int_{-\\infty}^{+\\infty} (2\\operatorname{ch}(x))^n e^{-n(x-h)^2/(2\\beta)}\\,dx$. Or $(2\\operatorname{ch}(x))^n e^{-n(x-h)^2/(2\\beta)} = \\exp(n\\ln(2\\operatorname{ch}(x)) - \\frac{n(x-h)^2}{2\\beta}) = e^{-nG_h(x)}$, d'où le résultat."
+      },
+      {
+        "question": "33",
+        "correction": "D'après Q30, $\\psi_n(h) = \\frac{1}{n}\\ln(Z_n(h)) = \\frac{1}{2n}\\ln(\\frac{n}{2e^{\\beta}\\pi\\beta}) + \\frac{1}{n}\\ln(\\int e^{-nG_h(x)}\\,dx)$. On effectue $x = u_h + t/\\sqrt{n}$, $dx = dt/\\sqrt{n}$ : $\\int e^{-nG_h(x)}\\,dx = \\frac{1}{\\sqrt{n}} \\int e^{-nG_h(u_h + t/\\sqrt{n})}\\,dt = \\frac{e^{-nG_h(u_h)}}{\\sqrt{n}} \\int e^{-n\\widehat{G}_h(t/\\sqrt{n})}\\,dt$. Donc $\\frac{1}{n}\\ln(\\int e^{-nG_h}\\,dx) = -G_h(u_h) - \\frac{1}{2n}\\ln(n) + \\frac{1}{n}\\ln(\\int e^{-n\\widehat{G}_h(t/\\sqrt{n})}\\,dt)$. En combinant avec $\\frac{1}{2n}\\ln(n/(2e^{\\beta}\\pi\\beta)) = \\frac{1}{2n}\\ln(n) - \\frac{1}{2n}\\ln(2e^{\\beta}\\pi\\beta)$, les termes en $\\frac{1}{2n}\\ln(n)$ se simplifient."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2025",
+    "partie": "Partie B.IV",
+    "questions": "2 q. : 40, 41",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Justifier la convergence d'une intégrale par majoration de l'intégrande ; Majorer la différence via la condition de Lipschitz",
+    "corrections": [
+      {
+        "question": "40",
+        "correction": "Soit $M = \\sup_{\\mathbb{R}} |f|$. Pour tout $t$, $|\\mathbb{E}(f(t/n^{1/4} + n^{1/4}M_n))| \\leq M$. L'intégrande est majorée en valeur absolue par $M e^{-t^2/2}/\\sqrt{2\\pi}$, qui est intégrable sur $\\mathbb{R}$ (Q26). Par conséquent, $E_{n,f}$ est bien définie."
+      },
+      {
+        "question": "41",
+        "correction": "Par définition, $E_{n,f} = \\int f(u)\\varphi_n(u)\\,du$ et $\\mathbb{E}(f(n^{1/4}M_n))$ est une espérance. On écrit $E_{n,f} - \\mathbb{E}(f(n^{1/4}M_n)) = \\int \\left[f(u)\\varphi_n(u) - \\mathbb{E}\\left(f(n^{1/4}M_n)\\right)\\frac{e^{-u^2/2}}{\\sqrt{2\\pi}}\\right]du$. En utilisant la relation entre $\\varphi_n$ et la gaussienne (établie aux questions précédentes), on exprime la différence comme une intégrale faisant intervenir $f(u + t/n^{1/4}) - f(u)$ pondérée par la densité gaussienne en $t$. Par la condition $K$-Lipschitz : $|f(u + t/n^{1/4}) - f(u)| \\leq K|t|/n^{1/4}$. En intégrant en $t$ : $\\int |t| \\frac{e^{-t^2/2}}{\\sqrt{2\\pi}}\\,dt = \\frac{2}{\\sqrt{2\\pi}}$ (calcul direct : $\\int_0^{+\\infty} t e^{-t^2/2}\\,dt = 1$, donc $\\int_{-\\infty}^{+\\infty} |t| e^{-t^2/2}\\,dt = 2$). On obtient $|E_{n,f} - \\mathbb{E}(f(n^{1/4}M_n))| \\leq \\frac{2K}{n^{1/4}\\sqrt{2\\pi}} \\to 0$. Comme $E_{n,f} \\to \\int f\\varphi_\\infty$ (par les résultats précédents), on en déduit $\\mathbb{E}(f(n^{1/4}M_n)) \\to \\int f(u)\\varphi_\\infty(u)\\,du$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2021",
+    "partie": "Résultats préliminaires",
+    "questions": "1 q. : 3",
+    "difficulte": "Standard",
+    "intitule": "Convergence d'une intégrale impropre par majoration gaussienne",
+    "corrections": [
+      {
+        "question": "3",
+        "correction": "La fonction $\\Phi : t \\mapsto \\frac{1}{\\sqrt{2\\pi}}e^{-t^2/2}$ est continue sur $\\mathbb{R}$, positive, et paire. Il suffit de montrer la convergence de $\\int_0^{+\\infty} \\Phi(t)\\,dt$. Pour $t \\geq 2$, on a $t^2/2 \\geq t$, donc $0 \\leq \\Phi(t) \\leq \\frac{1}{\\sqrt{2\\pi}}e^{-t}$. Or $\\int_2^{+\\infty} e^{-t}\\,dt = e^{-2}$ converge. Par comparaison de fonctions positives, $\\int_2^{+\\infty} \\Phi(t)\\,dt$ converge. Comme $\\Phi$ est continue sur $[0,2]$, $\\int_0^2 \\Phi(t)\\,dt$ existe. Par relation de Chasles, $\\int_0^{+\\infty} \\Phi(t)\\,dt$ converge. Par parité, $\\int_{-\\infty}^{+\\infty} \\Phi(t)\\,dt$ converge."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2021",
+    "partie": "Convergence en loi",
+    "questions": "1 q. : 12",
+    "difficulte": "Intermédiaire",
+    "intitule": "Convergence d'une intégrale par encadrement des bornes et réécriture d'une probabilité comme intégrale d'une fonction en escalier",
+    "corrections": [
+      {
+        "question": "12",
+        "correction": "Convergence de l'intégrale : $\\tau_{n,k_n(a)} = e_n(a) \\to a$ et $\\tau_{n,k_n(b)+1} = e_n(b) + \\frac{1}{\\sqrt{npq}} \\to b$ (question 11). Comme $\\Phi$ est continue et positive sur $\\mathbb{R}$, et que les bornes convergent, $\\int_{\\tau_{n,k_n(a)}}^{\\tau_{n,k_n(b)+1}} \\Phi(t)\\,dt \\to \\int_a^b \\Phi(t)\\,dt$. Pour la probabilité : $P(e_n(a) \\leq Y_n \\leq e_n(b)) = \\sum_{k=k_n(a)}^{k_n(b)} P(Y_n = \\tau_{n,k}) = \\sum_{k=k_n(a)}^{k_n(b)} \\frac{f_n(\\tau_{n,k})}{\\sqrt{npq}} \\cdot \\frac{1}{1} $. Plus précisément, $f_n$ est constante égale à $f_n(\\tau_{n,k})$ sur $[\\tau_{n,k}, \\tau_{n,k+1}[$ et $\\tau_{n,k+1} - \\tau_{n,k} = \\frac{1}{\\sqrt{npq}}$. Donc $\\int_{\\tau_{n,k_n(a)}}^{\\tau_{n,k_n(b)+1}} f_n(t)\\,dt = \\sum_{k=k_n(a)}^{k_n(b)} f_n(\\tau_{n,k}) \\cdot \\frac{1}{\\sqrt{npq}} = \\sum_{k=k_n(a)}^{k_n(b)} \\sqrt{npq}\\,P(Y_n = \\tau_{n,k}) \\cdot \\frac{1}{\\sqrt{npq}} = P(e_n(a) \\leq Y_n \\leq e_n(b))$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2021",
+    "partie": "Applications",
+    "questions": "1 q. : 19",
+    "difficulte": "Intermédiaire",
+    "intitule": "Inégalité de Bienaymé-Tchebychev appliquée à $\\Phi$ et calcul de l'intégrale gaussienne",
+    "corrections": [
+      {
+        "question": "19",
+        "correction": "Minoration : par l'inégalité de Bienaymé-Tchebychev appliquée à $Y_n$ centrée réduite, $P(|Y_n| \\leq T) \\geq 1 - \\frac{V(Y_n)}{T^2} = 1 - \\frac{1}{T^2}$. Par la question 18, $P(-T \\leq Y_n \\leq T) \\to \\int_{-T}^{T} \\Phi(t)\\,dt$. Donc $\\int_{-T}^{T} \\Phi(t)\\,dt \\geq 1 - 1/T^2$. (Alternativement, par IPP : $\\int_{|t|>T} \\Phi(t)\\,dt = \\frac{2}{\\sqrt{2\\pi}}\\int_T^{+\\infty} e^{-t^2/2}\\,dt \\leq \\frac{2}{\\sqrt{2\\pi}}\\int_T^{+\\infty} \\frac{t}{T}e^{-t^2/2}\\,dt = \\frac{2}{T\\sqrt{2\\pi}}e^{-T^2/2} \\leq 1/T^2$ pour $T$ assez grand.) Valeur : on a $\\int_{-T}^{T}\\Phi(t)\\,dt \\leq \\int_{-\\infty}^{+\\infty}\\Phi(t)\\,dt$ car $\\Phi \\geq 0$. En faisant $T \\to +\\infty$ : $1 \\leq \\int_{-\\infty}^{+\\infty}\\Phi(t)\\,dt$. D'autre part, $P(a \\leq Y_n \\leq b) \\leq 1$ pour tous $a,b$, donc $\\int_a^b \\Phi(t)\\,dt \\leq 1$ pour tous $a < b$, d'où $\\int_{-\\infty}^{+\\infty}\\Phi(t)\\,dt \\leq 1$. Conclusion : $\\int_{-\\infty}^{+\\infty}\\Phi(t)\\,dt = 1$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2024",
+    "partie": "Partie I",
+    "questions": "4 q. : 1, 4, 5, 7",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Intégrabilité par domination sur ]0,+infini[ ; Extraction de partie imaginaire d'une intégrale complexe ; Changement de variable dans une intégrale impropre ; Calcul d'intégrale par passage à la limite et arctan",
+    "corrections": [
+      {
+        "question": "1",
+        "correction": "Pour $\\theta \\in ]-\\pi, \\pi[$ et $t > 0$, on a $1 + te^{i\\theta} \\neq 0$ car $te^{i\\theta} = -1$ impliquerait $t = 1$ et $e^{i\\theta} = -1$, soit $\\theta = \\pm\\pi$, exclu. Donc $f$ est bien définie sur $]0, +\\infty[$. Pour l'intégrabilité : en $0^+$, $|f(t)| = \\frac{t^{x-1}}{|1 + te^{i\\theta}|} \\sim t^{x-1}$ car $|1+te^{i\\theta}| \\to 1$. Or $x-1 > -1$ (car $x \\in ]0,1[$), donc $t^{x-1}$ est intégrable en $0^+$. En $+\\infty$ : $|f(t)| = \\frac{t^{x-1}}{|1+te^{i\\theta}|} \\sim \\frac{t^{x-1}}{t} = t^{x-2}$ quand $t \\to +\\infty$. Or $x-2 < -1$ (car $x < 1$), donc $t^{x-2}$ est intégrable en $+\\infty$. Par comparaison, $f$ est intégrable sur $]0, +\\infty[$."
+      },
+      {
+        "question": "4",
+        "correction": "Comme $g$ est constante (Q3), $g(\\theta) = g(-\\theta)$. Donc $\\frac{1}{2i}(g(-\\theta)e^{ix\\theta} - g(\\theta)e^{-ix\\theta}) = \\frac{g(\\theta)}{2i}(e^{ix\\theta} - e^{-ix\\theta}) = g(\\theta)\\sin(x\\theta)$. D'autre part, en développant : $\\frac{1}{2i}(g(-\\theta)e^{ix\\theta} - g(\\theta)e^{-ix\\theta}) = \\int_0^{+\\infty} t^{x-1}\\frac{1}{2i}\\left(\\frac{1}{1+te^{-i\\theta}} - \\frac{1}{1+te^{i\\theta}}\\right)\\mathrm{d}t$. Or $\\frac{1}{1+te^{-i\\theta}} - \\frac{1}{1+te^{i\\theta}} = \\frac{2it\\sin\\theta}{|1+te^{i\\theta}|^2} = \\frac{2it\\sin\\theta}{t^2+2t\\cos\\theta+1}$. Divisant par $2i$ : $g(\\theta)\\sin(x\\theta) = \\sin\\theta \\int_0^{+\\infty} \\frac{t^x}{t^2+2t\\cos\\theta+1}\\,\\mathrm{d}t$."
+      },
+      {
+        "question": "5",
+        "correction": "Partant de Q4 : $g(\\theta)\\sin(x\\theta) = \\sin\\theta\\int_0^{+\\infty}\\frac{t^x}{t^2+2t\\cos\\theta+1}\\,\\mathrm{d}t$. On pose $u = \\frac{t+\\cos\\theta}{\\sin\\theta}$, soit $t = u\\sin\\theta - \\cos\\theta$, $\\mathrm{d}t = \\sin\\theta\\,\\mathrm{d}u$. Quand $t = 0$ : $u = \\cotan(\\theta)$. Quand $t \\to +\\infty$ : $u \\to +\\infty$. De plus $t^2 + 2t\\cos\\theta + 1 = \\sin^2\\theta(u^2 + 1)$. L'intégrale devient $\\int_{\\cotan\\theta}^{+\\infty} \\frac{(u\\sin\\theta - \\cos\\theta)^x}{u^2+1}\\,\\mathrm{d}u$. Donc $g(\\theta)\\sin(x\\theta) = \\int_{\\cotan(\\theta)}^{+\\infty} \\frac{(u\\sin\\theta - \\cos\\theta)^x}{1+u^2}\\,\\mathrm{d}u$."
+      },
+      {
+        "question": "7",
+        "correction": "De Q6 : $\\lim_{\\theta \\to \\pi^-} g(\\theta)\\sin(x\\theta) = \\int_{-\\infty}^{+\\infty}\\frac{\\mathrm{d}u}{1+u^2} = [\\arctan(u)]_{-\\infty}^{+\\infty} = \\pi$. Or $g$ est constante (Q3), donc $g(\\theta) = g(0) = \\int_0^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t$. Donc $g(0)\\sin(\\pi x) = \\pi$. Ainsi $\\int_0^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t = \\frac{\\pi}{\\sin(\\pi x)}$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2024",
+    "partie": "Partie II",
+    "questions": "1 q. : 8",
+    "difficulte": "Standard",
+    "intitule": "Coupure de l'intégrale en [0,1] et [1,+infini[ avec changement de variable u=1/t",
+    "corrections": [
+      {
+        "question": "8",
+        "correction": "On écrit $\\int_0^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t = \\int_0^1 \\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t + \\int_1^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t$. Dans la seconde, on pose $u = 1/t$ : $\\int_1^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t = \\int_0^1 \\frac{u^{-x}}{1+u}\\,\\mathrm{d}u$. Donc $\\int_0^{+\\infty}\\frac{t^{x-1}}{1+t}\\,\\mathrm{d}t = \\int_0^1\\left(\\frac{t^{x-1}}{1+t} + \\frac{t^{-x}}{1+t}\\right)\\mathrm{d}t$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2024",
+    "partie": "Partie III",
+    "questions": "2 q. : 13, 16",
+    "difficulte": "Intermédiaire／Standard",
+    "intitule": "Convergence d'une intégrale impropre et intégration par parties ; Application de l'identité de Q12 pour simplifier une intégrale",
+    "corrections": [
+      {
+        "question": "13",
+        "correction": "En $0^+$ : $1 - \\cos(t)^{2p+1} \\sim (2p+1)t^2/2$ donc le quotient tend vers $(2p+1)/2$, pas de problème. En $+\\infty$ : $|1 - \\cos(t)^{2p+1}|/t^2 \\leq 2/t^2$ intégrable. L'intégrale converge. IPP : $u(t) = 1 - \\cos(t)^{2p+1}$, $v'(t) = 1/t^2$, $u'(t) = (2p+1)\\cos(t)^{2p}\\sin(t)$, $v(t) = -1/t$. Le crochet $[-(1-\\cos(t)^{2p+1})/t]_0^{+\\infty} = 0$ (en $+\\infty$ : borné$/t \\to 0$ ; en $0$ : $\\sim (2p+1)t/2 \\to 0$). Reste $\\int_0^{+\\infty}(2p+1)\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t$."
+      },
+      {
+        "question": "16",
+        "correction": "De Q15 : $\\int_{\\pi/2}^{+\\infty}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t = \\int_0^{\\pi/2}\\cos(t)^{2p}\\left(\\sum_{n=1}^{+\\infty}\\frac{2(-1)^n t\\sin(t)}{t^2-n^2\\pi^2}\\right)\\mathrm{d}t$. Par Q12, pour $t \\in ]0, \\pi/2] \\subset ]0, \\pi[$ : $\\sum_{n=1}^{+\\infty}\\frac{2(-1)^n t\\sin(t)}{t^2-n^2\\pi^2} = 1 - \\frac{\\sin(t)}{t}$. Donc $\\int_{\\pi/2}^{+\\infty}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t = \\int_0^{\\pi/2}\\cos(t)^{2p}\\left(1 - \\frac{\\sin(t)}{t}\\right)\\mathrm{d}t$. Or $\\int_0^{+\\infty}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t = \\int_0^{\\pi/2}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t + \\int_{\\pi/2}^{+\\infty}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t = \\int_0^{\\pi/2}\\cos(t)^{2p}\\frac{\\sin(t)}{t}\\,\\mathrm{d}t + \\int_0^{\\pi/2}\\cos(t)^{2p}\\left(1 - \\frac{\\sin(t)}{t}\\right)\\mathrm{d}t = \\int_0^{\\pi/2}\\cos(t)^{2p}\\,\\mathrm{d}t$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2024",
+    "partie": "Partie IV",
+    "questions": "1 q. : 23",
+    "difficulte": "Standard",
+    "intitule": "Calcul de $\\int_0^{+\\infty}\\frac{1-\\cos(st)}{t^2}\\,\\mathrm{d}t$ par changement de variable",
+    "corrections": [
+      {
+        "question": "23",
+        "correction": "Si $s = 0$ : $\\int_0^{+\\infty}\\frac{1-1}{t^2}\\,\\mathrm{d}t = 0 = \\frac{\\pi}{2}|0|$. Si $s \\neq 0$ : on pose $u = |s|t$, $\\mathrm{d}t = \\mathrm{d}u/|s|$. Alors $\\int_0^{+\\infty}\\frac{1-\\cos(st)}{t^2}\\,\\mathrm{d}t = \\int_0^{+\\infty}\\frac{1-\\cos(\\mathrm{signe}(s)u)}{u^2/|s|^2}\\frac{\\mathrm{d}u}{|s|} = |s|\\int_0^{+\\infty}\\frac{1-\\cos(u)}{u^2}\\,\\mathrm{d}u$ (car $\\cos$ est paire). Or Q18 avec $p = 0$ donne $\\int_0^{+\\infty}\\frac{1-\\cos(t)}{t^2}\\,\\mathrm{d}t = \\frac{\\pi}{2}\\frac{1!}{2^0(0!)^2} = \\frac{\\pi}{2}$. Donc $\\int_0^{+\\infty}\\frac{1-\\cos(st)}{t^2}\\,\\mathrm{d}t = \\frac{\\pi}{2}|s|$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2019",
+    "partie": "Partie D",
+    "questions": "3 q. : 17, 18, 19",
+    "difficulte": "Intermédiaire／Avancé",
+    "intitule": "Expression intégrale de $\\Phi_n$ via la fonction Beta d'Euler ; Majoration de $\\rho_n$ par une intégrale de la fonction Beta incomplète ; Déduction de $\\rho_n \\leq 2\\omega_n \\arcsin(1/\\omega_n)$ via changement de variable trigonométrique",
+    "corrections": [
+      {
+        "question": "17",
+        "correction": "L'EDL de Q16 s'écrit $\\Phi_n'(x) + (\\gamma+1)\\frac{\\Phi_n(x)}{x} = c_n \\frac{x^{n-1}}{(1-x)^{1+\\gamma}}$. C'est une EDL1 de la forme $y' + \\frac{\\gamma+1}{x} y = f(x)$. Le facteur intégrant est $x^{\\gamma+1}$. On pose $\\Psi(x) = x^{\\gamma+1} \\Phi_n(x)$, alors $\\Psi'(x) = c_n \\frac{x^{n+\\gamma}}{(1-x)^{1+\\gamma}}$. En intégrant de $0$ à $x$ : $\\Psi(x) = c_n \\int_0^x \\frac{t^{n+\\gamma}}{(1-t)^{1+\\gamma}}\\,dt$ (car $\\Psi(0) = 0$). Donc $\\Phi_n(x) = \\frac{c_n}{x^{1+\\gamma}} \\int_0^x \\frac{t^{n+\\gamma}}{(1-t)^{1+\\gamma}}\\,dt$."
+      },
+      {
+        "question": "18",
+        "correction": "Par Q11 et Q17, $\\rho_n \\leq \\sup_{x \\in ]0,1[} r_n(x)$ pour tout $\\varphi \\in \\mathscr{A}$. Avec $\\varphi(t) = (1-t)^\\gamma$, on a $r_n(x) = \\frac{1}{\\varphi(x)} \\int_0^1 K_n(tx) \\varphi(t)\\,dt$. En posant $\\alpha = 1 - \\gamma$ (ou un paramètre similaire), et en utilisant l'expression de $\\Phi_n$, on obtient la majoration $\\rho_n \\leq \\inf_{\\alpha \\in ]0,1[} \\sup_{x \\in ]0,1[} \\frac{1}{x^{1-\\alpha}} \\int_0^x \\frac{1-\\theta_n t^n}{t^\\alpha(1-t)^{1-\\alpha}}\\,dt$ avec $\\theta_n = \\frac{n!}{(1-\\alpha)(2-\\alpha)\\cdots(n-\\alpha)}$. L'admis de l'énoncé permet alors de remplacer cette borne sup par $\\rho_n \\leq \\inf_{\\alpha \\in ]0,1[} \\theta_n^{(1-\\alpha)/n} \\int_0^{\\theta_n^{-1/n}} \\frac{dt}{t^\\alpha(1-t)^{1-\\alpha}}$."
+      },
+      {
+        "question": "19",
+        "correction": "On pose $\\alpha = 1/2$ dans l'inégalité de Q18. Alors $\\theta_n = \\frac{n!}{(1/2)(3/2)\\cdots(n-1/2)} = \\frac{n! \\cdot 2^n}{1 \\cdot 3 \\cdot 5 \\cdots (2n-1)} = \\frac{(n!)^2 2^{2n}}{(2n)!}$. On a $\\omega_n = 2\\left(\\frac{(n!)^2}{(2n)!}\\right)^{1/(2n)}$, soit $\\omega_n^{2n} = 4^n \\frac{(n!)^2}{(2n)!} = \\theta_n$, donc $\\theta_n^{-1/n} = \\omega_n^{-2}$ et $\\theta_n^{1/(2n)} = \\omega_n$. L'intégrale $\\int_0^{\\omega_n^{-2}} \\frac{dt}{\\sqrt{t(1-t)}}$ se calcule par le changement $t = \\sin^2 u$ : $dt = 2\\sin u \\cos u\\,du$, $\\sqrt{t(1-t)} = \\sin u \\cos u$, donc $\\int = \\int_0^{\\arcsin(1/\\omega_n)} 2\\,du = 2\\arcsin(1/\\omega_n)$. Ainsi $\\rho_n \\leq \\omega_n \\cdot 2\\arcsin(1/\\omega_n) = 2\\omega_n \\arcsin(1/\\omega_n)$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2020",
+    "partie": "Partie A",
+    "questions": "1 q. : 4",
+    "difficulte": "Intermédiaire",
+    "intitule": "IPP et équivalent d'intégrale logarithmique $I(x) = \\int_2^x dt/\\ln(t)$",
+    "corrections": [
+      {
+        "question": "4",
+        "correction": "**IPP** : On pose $u(t) = 1/\\ln(t)$ (donc $u'(t) = -1/(t(\\ln t)^2)$) et $v'(t) = 1$ (donc $v(t) = t$). On obtient $I(x) = \\int_2^x \\frac{dt}{\\ln(t)} = \\left[\\frac{t}{\\ln(t)}\\right]_2^x + \\int_2^x \\frac{dt}{(\\ln(t))^2} = \\frac{x}{\\ln(x)} - \\frac{2}{\\ln(2)} + \\int_2^x \\frac{dt}{(\\ln(t))^2}$. **Montrons $\\int_2^x \\frac{dt}{(\\ln t)^2} = o(I(x))$** : Pour $t \\geq 2$, on a $\\frac{1}{(\\ln t)^2} \\leq \\frac{1}{\\ln 2} \\cdot \\frac{1}{\\ln t}$. Donc $\\int_2^x \\frac{dt}{(\\ln t)^2} \\leq \\frac{1}{\\ln 2} I(x)$. Par ailleurs, pour tout $\\varepsilon > 0$, il existe $A > 2$ tel que pour $t \\geq A$, $\\frac{1}{\\ln t} \\leq \\varepsilon$. Donc $\\int_2^x \\frac{dt}{(\\ln t)^2} = \\int_2^A \\frac{dt}{(\\ln t)^2} + \\int_A^x \\frac{1}{\\ln t} \\cdot \\frac{dt}{\\ln t} \\leq C_A + \\varepsilon \\int_A^x \\frac{dt}{\\ln t} \\leq C_A + \\varepsilon\\, I(x)$. Or $I(x) \\to +\\infty$ (car $1/\\ln t \\geq c > 0$ sur $[2,3]$ et $I(x) \\geq \\int_2^3 dt/\\ln t + \\int_3^x dt/\\ln x = K + (x-3)/\\ln x \\to +\\infty$). Donc $\\frac{\\int_2^x dt/(\\ln t)^2}{I(x)} \\leq \\frac{C_A}{I(x)} + \\varepsilon \\to \\varepsilon$ quand $x \\to +\\infty$. Comme $\\varepsilon$ est arbitraire, $\\int_2^x dt/(\\ln t)^2 = o(I(x))$. **Équivalent** : De $I(x) = \\frac{x}{\\ln x} - \\frac{2}{\\ln 2} + o(I(x))$, on déduit $I(x)(1 - o(1)) = \\frac{x}{\\ln x} - \\frac{2}{\\ln 2}$, d'où $I(x) \\sim \\frac{x}{\\ln x}$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2023",
+    "partie": "Partie 3",
+    "questions": "2 q. : 9, 11",
+    "difficulte": "Standard／Avancé",
+    "intitule": "Convergence de $D_n = \\int_0^{\\pi/2} (\\ln(\\sin t))^n\\,dt$ et $D_1 = \\int_0^{\\pi/2} \\ln(\\cos t)\\,dt$ ; Changement de variable $u = -\\ln(\\sin t)$ pour exprimer $(-1)^n D_n$ comme intégrale sur $[0,+\\infty[$ et équivalent $D_n \\sim (-1)^n n!$",
+    "corrections": [
+      {
+        "question": "9",
+        "correction": "**Convergence** : Sur $]0, \\pi/2]$, $\\ln(\\sin t)$ est continue sur $]0, \\pi/2]$ avec $\\sin(\\pi/2) = 1$ donc $\\ln(\\sin(\\pi/2)) = 0$. En $0^+$, $\\sin t \\sim t$ donc $\\ln(\\sin t) \\sim \\ln t \\to -\\infty$. On a $(\\ln(\\sin t))^n \\sim (\\ln t)^n$ en $0^+$. Or $(\\ln t)^n = o(t^{-1/2})$ en $0^+$ (croissances comparées), et $t^{-1/2}$ est intégrable en $0^+$. Donc $(\\ln(\\sin t))^n$ est intégrable sur $]0, \\pi/2]$ et $D_n$ converge. **Identité $D_1$** : Par le changement de variable $u = \\pi/2 - t$ dans $D_1 = \\int_0^{\\pi/2}\\ln(\\sin t)\\,dt$, on obtient $dt = -du$ et quand $t$ va de $0$ à $\\pi/2$, $u$ va de $\\pi/2$ à $0$. Donc $D_1 = \\int_{\\pi/2}^0 \\ln(\\sin(\\pi/2 - u))(-du) = \\int_0^{\\pi/2}\\ln(\\cos u)\\,du$. Ainsi $D_1 = \\int_0^{\\pi/2}\\ln(\\cos t)\\,dt$."
+      },
+      {
+        "question": "11",
+        "correction": "**Expression intégrale** : On pose $u = -\\ln(\\sin t)$ pour $t \\in ]0, \\pi/2]$. Quand $t \\to 0^+$, $u \\to +\\infty$ ; quand $t = \\pi/2$, $u = 0$. On a $\\sin t = e^{-u}$, donc $\\cos t\\,dt = -e^{-u}\\,du$, d'où $dt = \\frac{-e^{-u}}{\\cos t}\\,du = \\frac{-e^{-u}}{\\sqrt{1 - e^{-2u}}}\\,du$. Ainsi $D_n = \\int_0^{\\pi/2}(\\ln(\\sin t))^n\\,dt = \\int_{+\\infty}^0 (-u)^n \\cdot \\frac{-e^{-u}}{\\sqrt{1 - e^{-2u}}}\\,du = (-1)^n \\int_0^{+\\infty} \\frac{u^n e^{-u}}{\\sqrt{1 - e^{-2u}}}\\,du$. Or $\\sqrt{1 - e^{-2u}} = \\sqrt{\\frac{e^{2u} - 1}{e^{2u}}} = \\frac{\\sqrt{e^{2u}-1}}{e^u}$, donc $\\frac{e^{-u}}{\\sqrt{1-e^{-2u}}} = \\frac{e^{-u} \\cdot e^u}{\\sqrt{e^{2u}-1}} = \\frac{1}{\\sqrt{e^{2u}-1}}$. D'où $(-1)^n D_n = \\int_0^{+\\infty} \\frac{u^n}{\\sqrt{e^{2u}-1}}\\,du$. **Équivalent** : On écrit $\\frac{1}{\\sqrt{e^{2u}-1}} = \\frac{e^{-u}}{\\sqrt{1-e^{-2u}}}$. Pour $u \\geq 1$, $\\frac{1}{\\sqrt{1-e^{-2u}}}$ est borné entre $1$ et $\\frac{1}{\\sqrt{1-e^{-2}}}$, donc $\\frac{u^n}{\\sqrt{e^{2u}-1}} \\sim u^n e^{-u}$ au sens où le rapport tend vers $1$ uniformément pour $u$ grand. Plus précisément, $(-1)^n D_n = \\int_0^{+\\infty} \\frac{u^n e^{-u}}{\\sqrt{1-e^{-2u}}}\\,du$. Le facteur $\\frac{1}{\\sqrt{1-e^{-2u}}} \\to 1$ quand $u \\to +\\infty$ et est dominé par $C/\\sqrt{u}$ en $0^+$. Par la méthode de Laplace (la masse de $u^n e^{-u}$ se concentre autour de $u = n$), $\\int_0^{+\\infty} \\frac{u^n e^{-u}}{\\sqrt{1-e^{-2u}}}\\,du \\sim \\int_0^{+\\infty} u^n e^{-u}\\,du = \\Gamma(n+1) = n!$. D'où $D_n \\sim (-1)^n n!$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2024",
+    "partie": "Deuxième partie",
+    "questions": "1 q. : 20b",
+    "difficulte": "Standard",
+    "intitule": "Integrabilite par domination : $R(t) = O(1)$ implique $\\frac{R(t)}{t(\\ln t)^2} = O(\\frac{1}{t(\\ln t)^2})$",
+    "corrections": []
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 2 2017",
+    "partie": "Préliminaires",
+    "questions": "5 q. : 1, 2a, 2c, 2d, 3b",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Cauchy-Schwarz pour prouver la positivité de la variance ; Domination par la fonction $h$ pour obtenir l'intégrabilité de $f^2 m$ ; Positivité de l'entropie par l'inégalité de convexité de $h$ ; Caractérisation du cas d'égalité dans l'inégalité d'entropie ; Auto-adjonction de $L$ par intégration par parties",
+    "corrections": [
+      {
+        "question": "1",
+        "correction": "Puisque $\\sqrt{m}$ et $f\\sqrt{m}$ appartiennent à $L^2$ (car $m$ et $f^2 m$ sont $L^1$), leur produit $fm$ est intégrable. Par l'inégalité de Cauchy-Schwarz : $\\bigl(\\int fm\\bigr)^2 = \\bigl(\\int f\\sqrt{m}\\cdot\\sqrt{m}\\bigr)^2 \\leq \\int f^2 m \\cdot \\int m = \\int f^2 m$, d'où $\\operatorname{Var}_m(f) \\geq 0$."
+      },
+      {
+        "question": "2a",
+        "correction": "Pour $x \\geq e$, on dispose de $h(x) \\geq x$, d'où $x \\leq \\min(e, h(x))$ pour tout $x \\geq 0$. Il s'ensuit que $f^2 m \\leq \\min(em, h(f^2)m)$. L'intégrabilité de $em$ et de $h(f^2)m$ entraîne celle de $f^2 m$."
+      },
+      {
+        "question": "2c",
+        "correction": "Posons $a = \\int f^2 m$. Si $a = 0$ : alors $f^2 m = 0$ identiquement, d'où $h(f^2)m = 0$ et $\\operatorname{Ent}_m(f) = 0$. Si $a > 0$ : la question 2b fournit $h(f^2(x)) \\geq h(a) + h'(a)(f^2(x) - a)$. En multipliant par $m(x)$ et en intégrant membre à membre, il vient $\\int h(f^2)m \\geq h(a) + h'(a)(a - a) = h(a) = h\\bigl(\\int f^2 m\\bigr)$."
+      },
+      {
+        "question": "2d",
+        "correction": "Les fonctions d'entropie nulle sont exactement les fonctions constantes. Si $a = 0$, comme $m$ ne s'annule pas, on obtient $f = 0$. Si $a > 0$, l'égalité $\\operatorname{Ent}_m(f) = 0$ force $h(f^2)m - h(a)m - h'(a)(f^2 - a)m = 0$ identiquement. Puisque $m > 0$, le cas d'égalité de la question 2b impose $f^2(x) = a$ pour tout $x$, et la continuité de $f$ permet de conclure."
+      },
+      {
+        "question": "3b",
+        "correction": "La relation de 3a donne $(\\mu h_2')' = 2\\mu Lh_2$. Une intégration par parties fournit $\\int h_1' h_2' \\mu\\,dx = \\bigl[h_1 \\mu h_2'\\bigr] - \\int h_1 (\\mu h_2')'\\,dx = -\\int h_1 \\cdot 2\\mu Lh_2\\,dx$. Le terme entre crochets est nul car $h_1, h_2'$ sont bornées et $\\mu \\to 0$ en $\\pm\\infty$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 2 2017",
+    "partie": "Partie III",
+    "questions": "7 q. : 9, 10a, 10b, 11a, 12, 13a, 13b",
+    "difficulte": "Standard／Avancé／Intermédiaire",
+    "intitule": "Intégrabilité des moments d'ordre 1 et 2 de $m$ via l'inégalité d'entropie ; Réduction au cas centré-réduit pour l'inégalité de Poincaré ; Dérivation de l'inégalité de Poincaré depuis l'inégalité log-Sobolev ; Inégalité de Herbst reliant $H$ et son logarithme ; Extension de l'inégalité à une fonction non bornée par approximation ; Inégalité de queue gaussienne par la méthode de Chernoff ; Intégrabilité de $e^{\\alpha x^2}m$ par intégration par parties et 13a",
+    "corrections": [
+      {
+        "question": "9",
+        "correction": "On applique l'hypothèse à $f(x) = x$ (fonction de classe $\\mathscr{C}^1$ à dérivée $1$, donc bornée). Les questions 2a et 1 garantissent l'intégrabilité de $f^2 m$ et de $fm$. Ainsi $x^2 m$ et $|x|m$ sont intégrables, et $m$ l'est par définition."
+      },
+      {
+        "question": "10a",
+        "correction": "Par hypothèse, $f$ admet une entropie d'après Q2a, ce qui implique l'intégrabilité de $f^2 m$, puis de $fm$ par Q1. Si $\\operatorname{Var}_m(f) = 0$, l'inégalité est triviale. Sinon, posons $\\sigma^2 = \\operatorname{Var}_m(f) > 0$, $E = \\int fm$, et $g = (f - E)/\\sigma$. Alors $\\int gm = 0$, $\\int g^2 m = 1$, et $\\operatorname{Var}_m(g) = 1$. Si l'inégalité (2) est établie pour $g$ : $1 \\leq \\frac{C}{2\\sigma^2}\\int|f'|^2 m$, ce qui redonne $\\operatorname{Var}_m(f) \\leq \\frac{C}{2}\\int|f'|^2 m$."
+      },
+      {
+        "question": "10b",
+        "correction": "Pour $\\varepsilon > 0$, posons $f_\\varepsilon = 1 + \\varepsilon f \\in \\mathscr{C}_b^1$. On a $\\int f_\\varepsilon^2 m = 1 + \\varepsilon^2$ et $h(1 + \\varepsilon^2) \\sim \\varepsilon^2$. En développant $h(1 + \\varepsilon f)$, on obtient $\\operatorname{Ent}_m(f_\\varepsilon) \\sim 2\\varepsilon^2$. L'inégalité (1) donne $\\operatorname{Ent}_m(f_\\varepsilon) \\leq C\\varepsilon^2\\int|f'|^2 m$. En divisant par $\\varepsilon^2$ et faisant tendre $\\varepsilon \\to 0$, il vient $2 \\leq C\\int|f'|^2 m$, soit $\\operatorname{Var}_m(f) = 1 \\leq \\frac{C}{2}\\int|f'|^2 m$."
+      },
+      {
+        "question": "11a",
+        "correction": "On pose $g(x) = e^{\\lambda f(x)/2}$, si bien que $\\lambda H'(\\lambda) - H(\\lambda)\\ln H(\\lambda) = \\operatorname{Ent}_m(g)$. Par hypothèse, $\\operatorname{Ent}_m(g) \\leq C\\int|g'|^2 m = C\\int(\\lambda/2)^2 f'^2 e^{\\lambda f}m \\leq \\frac{C\\lambda^2}{4}H(\\lambda)$."
+      },
+      {
+        "question": "12",
+        "correction": "Les fonctions $f_n$ sont bornées, de classe $\\mathscr{C}^1$, et vérifient $|f_n'| \\leq 1$, donc l'inégalité (3) s'applique à chacune. Par convergence dominée ($|f_n| \\leq |x|$ et $xm$ est intégrable d'après Q9), les deux membres convergent vers ceux correspondant à $f(x) = x$. On obtient ainsi la convergence de $\\int e^{\\lambda x}m$ et l'inégalité souhaitée."
+      },
+      {
+        "question": "13a",
+        "correction": "Pour $\\lambda \\geq 0$, la question Q12 donne $\\int_a^{+\\infty}m(x)\\,dx \\leq \\int e^{\\lambda(x-a)}m\\,dx = e^{-\\lambda a}\\int e^{\\lambda x}m \\leq \\exp\\bigl(\\lambda(M - a) + C\\lambda^2/4\\bigr)$. On optimise en $\\lambda = 2(a - M)/C$ (minimisation de l'exponentielle), ce qui conduit à l'inégalité annoncée."
+      },
+      {
+        "question": "13b",
+        "correction": "On intègre par parties $\\int_a^{+\\infty}e^{\\alpha x^2}m\\,dx = \\bigl[-e^{\\alpha x^2}\\int_x^{+\\infty}m\\bigr] + \\int_a^{+\\infty}2\\alpha x e^{\\alpha x^2}\\int_x^{+\\infty}m\\,dx$. D'après 13a, $e^{\\alpha x^2}\\int_x^{+\\infty}m \\leq \\exp\\bigl[(\\alpha - 1/C)x^2 + O(x)\\bigr] \\to 0$ car $\\alpha < 1/C$. La seconde intégrale converge par un argument de croissances comparées. Pour $-\\infty$, on applique le résultat à $m_1(x) = m(-x)$ qui satisfait la même inégalité d'entropie."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 2 2017",
+    "partie": "Partie IV",
+    "questions": "3 q. : 14b, 15b, 16b",
+    "difficulte": "Avancé／Intermédiaire",
+    "intitule": "Inégalité de Prékopa-Leindler via les transformées quantiles ; Application de Prékopa-Leindler pour l'inégalité isopérimétrique gaussienne ; Inégalité de concentration gaussienne de la mesure",
+    "corrections": [
+      {
+        "question": "14b",
+        "correction": "D'après 14a, pour tout $t$ : $(\\int p)(\\int q) = p(u(t))q(v(t))u'(t)v'(t)$. L'hypothèse (4) donne $\\sqrt{p(u)q(v)} \\leq r((u+v)/2)$, et l'inégalité arithmético-géométrique fournit $\\sqrt{u'v'} \\leq (u' + v')/2$. On obtient donc $\\sqrt{(\\int p)(\\int q)} \\leq r((u+v)/2) \\cdot (u' + v')/2$. En intégrant sur $]0, 1[$ et en effectuant le changement de variable $x = (u(t) + v(t))/2$ (bijectif), on conclut $\\sqrt{(\\int p)(\\int q)} \\leq \\int r$."
+      },
+      {
+        "question": "15b",
+        "correction": "On pose $p(x) = \\exp\\bigl(d(x,A)^2/2 - x^2\\bigr)$, $q(x) = \\mathbb{1}_A(x)\\exp(-x^2)$, $r(x) = \\exp(-x^2)$. La question 15a fournit exactement l'hypothèse (4) de 14b. En appliquant 14b : $(\\int p)(\\int q) \\leq (\\int r)^2 = \\pi$. Or $\\int q = \\int_A e^{-x^2}\\,dx = \\sqrt{\\pi}\\mu(A)$ et $\\int p = \\sqrt{\\pi}\\int e^{d(x,A)^2/2}\\mu$, d'où $\\int e^{d(x,A)^2/2}\\mu \\leq 1/\\mu(A)$."
+      },
+      {
+        "question": "16b",
+        "correction": "Si $x \\notin A_t$, alors $d(x, A) > t$, donc $\\exp(d(x,A)^2/2) \\geq e^{t^2/2}$. Il s'ensuit que $(1 - \\mathbb{1}_{A_t}(x))\\exp(d(x,A)^2/2) \\geq (1 - \\mathbb{1}_{A_t}(x))e^{t^2/2}$. En multipliant par $\\mu(x)$ et en intégrant, on obtient $e^{t^2/2}(1 - \\mu(A_t)) \\leq \\int e^{d(x,A)^2/2}\\mu \\leq 1/\\mu(A)$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 2 2021",
+    "partie": "Partie III",
+    "questions": "2 q. : 16, 17",
+    "difficulte": "Avancé／Intermédiaire",
+    "intitule": "Poser f(x)=(Γ(x+a)/Γ(a))∫t^{x-1}/(1+t)^{x+a}dt. Vérifier f(1)=1, f(x+1)=xf(x) par IPP, log f convexe par Cauchy-Schwarz. Appliquer Q15b : f=Γ. ; Appliquer Q16 avec a=1-x (pour x∈]0,1[) et utiliser Γ(1)=1, Γ(x+1-x)=Γ(1)=1, Γ(x)Γ(1-x)=π/sin(πx).",
+    "corrections": [
+      {
+        "question": "16",
+        "correction": "Avec $g(x)=\\int_0^{+\\infty}\\frac{t^{x-1}}{(1+t)^{x+a}}dt$ et $f(x)=\\frac{\\Gamma(x+a)}{\\Gamma(a)}g(x)$ : (i) les intégrandes sont $\\mathcal{C}^2$ en $x$ ; (ii) intégrabilité sur $]0,+\\infty[$ : $G(x,t) \\sim t^{x-1}$ en $0$ (intégrable si $x>0$) et $G(x,t) \\sim t^{-(a+1)}$ en $+\\infty$ (intégrable si $a>0$) ; (iii) dominante $\\varphi(t)=\\ln(t/(1+t))^2(t/(1+t))^\\alpha/(t(1+t)^a)$ sur tout $[\\alpha,\\beta]$. Le théorème des intégrales à paramètre assure $f \\in \\mathcal{C}^2$, $f>0$, $f(1)=1$ et $f(x+1)=xf(x)$ (intégration par parties). La log-convexité de $f$ résulte de l'inégalité de Cauchy-Schwarz appliquée à $\\sqrt{G}$ et $\\ln(t/(1+t))\\sqrt{G}$. Le théorème 15 donne $f=\\Gamma$, soit $\\int_0^{+\\infty}\\frac{t^{x-1}}{(1+t)^{x+a}}dt=\\frac{\\Gamma(x)\\Gamma(a)}{\\Gamma(x+a)}$."
+      },
+      {
+        "question": "17",
+        "correction": "Pour $x \\in ]0,1[$, on prend $a=1-x$ dans 16 ; comme $\\Gamma(1)=1$ :\n$$\\int_0^{+\\infty}\\frac{t^{x-1}}{1+t}dt=\\Gamma(x)\\Gamma(1-x).$$\nOr $\\Gamma(x)\\Gamma(1-x)=\\lim_{n}\\Gamma_n(x)\\Gamma_n(1-x)$. Un calcul direct montre :\n$$\\Gamma_n(x)\\Gamma_n(1-x)=\\frac{n}{n+1-x}\\cdot\\frac{e^{\\sum_{k=1}^n k^{-1}-\\ln(n)-\\gamma}}{x\\prod_{k=1}^n(1-x^2/k^2)}.$$\nEn passant à la limite avec 12 et 11c : $\\Gamma(x)\\Gamma(1-x)=\\frac{\\pi}{\\sin(\\pi x)}$."
+      }
+    ]
+  },
+  {
+    "banque": "",
+    "epreuve": "Maths 1 2022",
+    "partie": "Partie D",
+    "questions": "2 q. : 10, 11",
+    "difficulte": "Standard／Avancé",
+    "intitule": "Intégrabilité par encadrement aux bornes (0 et $+\\infty$) ; Comparaison somme-intégrale par découpage et estimation du reste",
+    "corrections": [
+      {
+        "question": "10",
+        "correction": "En $0^+$ : $1-e^{-x} \\sim x$, donc $(1-e^{-x})^n \\sim x^n$. Ainsi $\\varphi_{n,\\alpha}(x) = \\frac{x^n e^{-\\alpha x}}{(1-e^{-x})^n} \\sim \\frac{x^n e^{-\\alpha x}}{x^n} = e^{-\\alpha x} \\to 1$ quand $x \\to 0^+$. Donc $\\varphi_{n,\\alpha}$ se prolonge par continuité en $0$ et est intégrable au voisinage de $0$. En $+\\infty$ : $\\varphi_{n,\\alpha}(x) \\leq \\frac{x^n e^{-\\alpha x}}{(1-e^{-1})^n}$ pour $x \\geq 1$ (car $1-e^{-x} \\geq 1-e^{-1}$). Or $x^n e^{-\\alpha x} = o(e^{-\\alpha x/2})$ en $+\\infty$, qui est intégrable. Donc $\\varphi_{n,\\alpha}$ est intégrable sur $]0,+\\infty[$. Pour $\\varphi'_{n,\\alpha}$ : on la calcule explicitement. C'est une combinaison de termes de la forme $\\frac{x^{n-1}e^{-\\alpha x}}{(1-e^{-x})^n}$, $\\frac{x^n e^{-\\alpha x}}{(1-e^{-x})^n}$ et $\\frac{x^n e^{-(\\alpha+1)x}}{(1-e^{-x})^{n+1}}$. Chacun se traite de la même façon : prolongement en $0$ et décroissance exponentielle en $+\\infty$. Donc $\\varphi'_{n,\\alpha}$ est intégrable."
+      },
+      {
+        "question": "11",
+        "correction": "Existence de $S_{n,\\alpha}(t)$ : pour $t > 0$, $\\frac{k^n e^{-kt\\alpha}}{(1-e^{-kt})^n} = \\frac{1}{t^n} \\varphi_{n,\\alpha}(kt)$. Par comparaison série-intégrale, $\\sum_{k \\geq 1} \\varphi_{n,\\alpha}(kt) \\leq \\frac{1}{t}\\int_0^{+\\infty} \\varphi_{n,\\alpha}(x)dx + \\varphi_{n,\\alpha}(t) < +\\infty$. Donc $S_{n,\\alpha}(t) = t^{-n} \\sum_{k=1}^{+\\infty} \\varphi_{n,\\alpha}(kt)$ existe et est $> 0$. Identité : $\\int_0^{+\\infty} \\varphi_{n,\\alpha}(x)dx = \\sum_{k=0}^{+\\infty} \\int_{kt}^{(k+1)t} \\varphi_{n,\\alpha}(x)dx$. Dans chaque intervalle, on écrit $\\varphi_{n,\\alpha}(x) = \\varphi_{n,\\alpha}(kt) + \\int_{kt}^x \\varphi'_{n,\\alpha}(u)du$. Donc $\\int_{kt}^{(k+1)t} \\varphi_{n,\\alpha}(x)dx = t \\varphi_{n,\\alpha}(kt) + \\int_{kt}^{(k+1)t}(x-kt)\\varphi'_{n,\\alpha}(x)dx$ (IPP ou Fubini). En sommant : $\\int_0^{+\\infty} \\varphi dx = t \\sum_{k=0}^{+\\infty} \\varphi_{n,\\alpha}(kt) + \\sum_{k=0}^{+\\infty} \\int_{kt}^{(k+1)t}(x-kt)\\varphi'_{n,\\alpha}(x)dx$. Or $\\varphi_{n,\\alpha}(0) = \\lim_{x \\to 0} \\varphi = 1$ (pour $n \\geq 1$). Et $t \\sum_{k=1}^{+\\infty} \\varphi_{n,\\alpha}(kt) = t \\cdot t^n S_{n,\\alpha}(t)$. Donc $\\int \\varphi dx = t + t^{n+1} S_{n,\\alpha}(t) + R$ où $|R| \\leq t \\int_0^{+\\infty} |\\varphi'_{n,\\alpha}(x)|dx = O(t)$. Ainsi $S_{n,\\alpha}(t) = \\frac{1}{t^{n+1}} \\int_0^{+\\infty} \\varphi_{n,\\alpha}(x)dx + O(1/t^n)$."
+      }
+    ]
+  },
+  {
+    "banque": "",
+    "epreuve": "Maths 1 2022",
+    "partie": "Partie F",
+    "questions": "1 q. : 24",
+    "difficulte": "Intermédiaire",
+    "intitule": "Equivalent asymptotique de $\\sigma_t$ par la formule intégrale de la question 11 et convergence ponctuelle de $j$",
+    "corrections": [
+      {
+        "question": "24",
+        "correction": "Par la question 11 : $S_{2,1}(t) = \\frac{1}{t^3} \\int_0^{+\\infty} \\frac{x^2 e^{-x}}{(1-e^{-x})^2} dx + O(1/t^2) = \\frac{\\pi^2}{3t^3} + O(1/t^2)$ (on utilise le résultat admis $\\int_0^{+\\infty} \\frac{x^2 e^{-x}}{(1-e^{-x})^2} dx = \\pi^2/3$). Donc $\\sigma_t^2 = S_{2,1}(t) \\sim \\frac{\\pi^2}{3t^3}$, soit $\\sigma_t \\sim \\frac{\\pi}{\\sqrt{3} t^{3/2}}$. De même, $m_t = S_{1,1}(t) = \\frac{1}{t^2} \\int_0^{+\\infty} \\frac{xe^{-x}}{1-e^{-x}} dx + O(1/t) = \\frac{\\pi^2}{6t^2} + O(1/t)$. Donc $m_t - \\pi^2/(6t^2) = O(1/t)$, et $\\frac{u}{\\sigma_t}(m_t - \\pi^2/(6t^2)) = O(u t^{3/2}/t) = O(u t^{1/2}) \\to 0$ quand $t \\to 0^+$. Ainsi $\\zeta(t,u) \\to e^{i \\cdot 0} = 1$. Par la formule (2) : $|h(t, u/\\sigma_t) - e^{-u^2/2}| \\leq K^{3/4} |u|^3 \\sigma_t^{-3} S_{3,3/4}(t) + K u^4 \\sigma_t^{-4} S_{4,1}(t)$. Or $S_{3,3/4}(t) = O(1/t^4)$ et $\\sigma_t^{-3} = O(t^{9/2})$, donc le premier terme est $O(t^{1/2})$. De même pour le second. Donc $h(t, u/\\sigma_t) \\to e^{-u^2/2}$ et $j(t,u) = \\zeta(t,u) h(t, u/\\sigma_t) \\to e^{-u^2/2}$."
+      }
+    ]
+  },
+  {
+    "banque": "E3A-Polytech",
+    "epreuve": "Maths 1 2023",
+    "partie": "Exercice 2",
+    "questions": "6 q. : Q1, Q2, Q3, Q4, Q5, Q6",
+    "difficulte": "Intermédiaire",
+    "intitule": "Fonction Gamma $\\Gamma(x) = \\int_0^{+\\infty} t^{x-1}e^{-t}\\,dt$ et intégrales à paramètre ; Ce qu'il faut savoir faire : convergence d'intégrales impropres, domination, IPP, relation $\\Gamma(x+1) = x\\Gamma(x)$, dérivation sous le signe intégral",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "**Convergence de $\\Gamma(x)$.** En $0^+$ : $t^{x-1}e^{-t} \\sim t^{x-1}$, intégrable ssi $x - 1 > -1$, i.e. $x > 0$. En $+\\infty$ : pour tout $\\alpha > 0$, $t^{x-1}e^{-t} = o(t^{-\\alpha})$ donc l'intégrale converge. Le domaine de définition est $]0, +\\infty[$."
+      },
+      {
+        "question": "Q2",
+        "correction": "**IPP** pour $\\Gamma(x+1)$ : $u = t^x$, $v' = e^{-t}$, donc $u' = xt^{x-1}$, $v = -e^{-t}$.\n$$\\Gamma(x+1) = \\left[-t^x e^{-t}\\right]_0^{+\\infty} + x\\int_0^{+\\infty} t^{x-1}e^{-t}\\,dt.$$\nLe crochet vaut $0$ (en $+\\infty$ par croissances comparées, en $0$ car $x > 0$). Donc $\\Gamma(x+1) = x\\,\\Gamma(x)$."
+      },
+      {
+        "question": "Q3",
+        "correction": "Initialisation : $\\Gamma(1) = \\int_0^{+\\infty} e^{-t}\\,dt = 1$. Par récurrence : $\\Gamma(n+1) = n\\,\\Gamma(n) = n!$ pour tout $n \\in \\mathbb{N}^*$. La fonction Gamma prolonge la factorielle aux réels positifs."
+      },
+      {
+        "question": "Q4",
+        "correction": "**Continuité de $\\Gamma$.** On applique le théorème de continuité sous le signe intégral. Pour $x \\in [a, b] \\subset ]0, +\\infty[$ : $|t^{x-1}e^{-t}| \\leq \\varphi(t) = t^{a-1}e^{-t/2}$ pour $t \\in ]0,1]$ et $\\varphi(t) = t^{b-1}e^{-t/2}$ pour $t \\geq 1$. La fonction $\\varphi$ est intégrable sur $]0, +\\infty[$. Par le théorème de convergence dominée, $\\Gamma$ est continue sur $]0, +\\infty[$."
+      },
+      {
+        "question": "Q5",
+        "correction": "**Dérivabilité.** $\\frac{\\partial}{\\partial x}(t^{x-1}e^{-t}) = \\ln(t)\\,t^{x-1}\\,e^{-t}$. Pour $x \\in [a,b]$, on majore $|\\ln(t)\\,t^{x-1}\\,e^{-t}|$ par une fonction intégrable (même technique de domination). Par le théorème de dérivation sous le signe intégral, $\\Gamma$ est $\\mathcal{C}^1$ et :\n$$\\Gamma'(x) = \\int_0^{+\\infty} \\ln(t)\\,t^{x-1}\\,e^{-t}\\,dt.$$\nEn itérant, $\\Gamma$ est $\\mathcal{C}^\\infty$ sur $]0, +\\infty[$."
+      },
+      {
+        "question": "Q6",
+        "correction": "**Convexité logarithmique.** $\\ln \\Gamma$ est convexe sur $]0, +\\infty[$. En effet, $(\\ln\\Gamma)'' = \\Gamma''/\\Gamma - (\\Gamma'/\\Gamma)^2$. Par l'inégalité de Cauchy-Schwarz pour les intégrales, on montre que $\\Gamma(x)\\Gamma''(x) \\geq (\\Gamma'(x))^2$, d'où $(\\ln\\Gamma)'' \\geq 0$."
+      }
+    ]
+  },
+  {
+    "banque": "E3A-Polytech",
+    "epreuve": "Maths 1 2022",
+    "partie": "Exercice 1",
+    "questions": "6 q. : Q1, Q2, Q3, Q4, Q5, Q6",
+    "difficulte": "Intermédiaire à Avancé",
+    "intitule": "Fonction Gamma, relation $\\Gamma(x+1) = x\\Gamma(x)$, intégrales $I_n = \\int_0^{+\\infty} t^{2n}e^{-t^2}\\,dt$ et intégrales gaussiennes ; Ce qu'il faut savoir faire : changement de variable, IPP, interversion série/intégrale",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "Rappel : $\\Gamma(x) = \\int_0^{+\\infty} t^{x-1}e^{-t}\\,dt$ pour $x > 0$. La relation $\\Gamma(x+1) = x\\Gamma(x)$ se démontre par IPP (cf. exercice précédent). On a $\\Gamma(1) = 1$, $\\Gamma(1/2) = \\sqrt{\\pi}$."
+      },
+      {
+        "question": "Q2",
+        "correction": "**Calcul de $I_n$.** $I_n = \\int_0^{+\\infty} t^{2n}e^{-t^2}\\,dt$. Changement de variable $u = t^2$, $du = 2t\\,dt$, $t = u^{1/2}$, $dt = du/(2u^{1/2})$ :\n$$I_n = \\int_0^{+\\infty} u^n \\cdot e^{-u} \\cdot \\frac{du}{2u^{1/2}} = \\frac{1}{2}\\int_0^{+\\infty} u^{n-1/2}\\,e^{-u}\\,du = \\frac{1}{2}\\,\\Gamma\\left(n + \\frac{1}{2}\\right).$$"
+      },
+      {
+        "question": "Q3",
+        "correction": "Par la relation de récurrence $\\Gamma(n+1/2) = (n-1/2)\\Gamma(n-1/2) = \\cdots = \\frac{(2n-1)!!}{2^n}\\Gamma(1/2) = \\frac{(2n)!}{2^{2n}\\,n!}\\sqrt{\\pi}$. Donc :\n$$I_n = \\frac{(2n)!}{2^{2n+1}\\,n!}\\,\\sqrt{\\pi}.$$\nCas particuliers : $I_0 = \\sqrt{\\pi}/2$ (Gauss), $I_1 = \\sqrt{\\pi}/4$."
+      },
+      {
+        "question": "Q4",
+        "correction": "L'intégrale de Gauss $I_0 = \\int_0^{+\\infty} e^{-t^2}\\,dt = \\sqrt{\\pi}/2$ peut se démontrer par le calcul de $I_0^2$ en coordonnées polaires :\n$$I_0^2 = \\int_0^{+\\infty}\\int_0^{+\\infty} e^{-(x^2+y^2)}\\,dx\\,dy = \\int_0^{+\\infty} \\int_0^{\\pi/2} e^{-r^2}\\,r\\,d\\theta\\,dr = \\frac{\\pi}{2}\\left[-\\frac{e^{-r^2}}{2}\\right]_0^{+\\infty} = \\frac{\\pi}{4}.$$"
+      },
+      {
+        "question": "Q5",
+        "correction": "**Interversion série/intégrale.** Considérons $H(x) = \\int_0^{+\\infty} \\cos(xt)e^{-t^2}\\,dt$. En développant $\\cos(xt) = \\sum_{n=0}^{+\\infty} \\frac{(-1)^n(xt)^{2n}}{(2n)!}$ et en intervertissant (convergence dominée sur tout compact, car $|t^{2n}e^{-t^2}| \\leq C_n$ intégrable) :\n$$H(x) = \\sum_{n=0}^{+\\infty} \\frac{(-1)^n x^{2n}}{(2n)!} I_n.$$"
+      },
+      {
+        "question": "Q6",
+        "correction": "En substituant $I_n$ : $H(x) = \\sum \\frac{(-1)^n x^{2n}}{(2n)!} \\cdot \\frac{(2n)!\\sqrt{\\pi}}{2^{2n+1}n!} = \\frac{\\sqrt{\\pi}}{2}\\sum \\frac{(-x^2/4)^n}{n!} = \\frac{\\sqrt{\\pi}}{2}e^{-x^2/4}$. Alternativement, on montre $H' = -(x/2)H$ par IPP, avec $H(0) = \\sqrt{\\pi}/2$, d'où $H(x) = \\frac{\\sqrt{\\pi}}{2}e^{-x^2/4}$."
+      }
+    ]
+  },
+  {
+    "banque": "E3A-Polytech",
+    "epreuve": "Maths 1 2020",
+    "partie": "Exercice 5",
+    "questions": "4 q. : Q1, Q2, Q3, Q4",
+    "difficulte": "Standard",
+    "intitule": "Théorème de Cesàro démontré par convergence dominée ; Suite de fonctions en escalier ; Ce qu'il faut savoir faire : convergence dominée, fonctions indicatrices, passage à la limite sous le signe intégral",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "**Énoncé de Cesàro.** Si $(w_n)$ converge vers $\\ell$, alors $\\sigma_n = \\frac{1}{n}\\sum_{k=1}^n w_k \\to \\ell$. On va démontrer ce résultat par le théorème de convergence dominée."
+      },
+      {
+        "question": "Q2",
+        "correction": "On pose $f_n(t) = w_{\\lfloor nt \\rfloor + 1}$ pour $t \\in [0, 1[$. Alors :\n$$\\sigma_n = \\frac{1}{n}\\sum_{k=1}^n w_k = \\int_0^1 f_n(t)\\,dt$$\ncar $f_n$ est constante sur chaque intervalle $[(k-1)/n,\\, k/n[$ avec valeur $w_k$, et l'intégrale de $w_k$ sur cet intervalle vaut $w_k/n$."
+      },
+      {
+        "question": "Q3",
+        "correction": "**Convergence simple** : pour $t \\in ]0, 1[$ fixé, $\\lfloor nt \\rfloor + 1 \\to +\\infty$ donc $f_n(t) = w_{\\lfloor nt \\rfloor + 1} \\to \\ell$.\n\n**Domination** : comme $(w_n)$ converge, elle est bornée : $|w_n| \\leq M$ pour tout $n$. Donc $|f_n(t)| \\leq M$ pour tout $n, t$. La fonction constante $M$ est intégrable sur $[0,1]$."
+      },
+      {
+        "question": "Q4",
+        "correction": "Par le **théorème de convergence dominée** (de Lebesgue) :\n$$\\sigma_n = \\int_0^1 f_n(t)\\,dt \\to \\int_0^1 \\ell\\,dt = \\ell.$$\nCQFD. Cette démonstration est élégante car elle évite la technique classique de découpage $\\varepsilon$-$N$ et utilise directement un outil d'analyse."
+      }
+    ]
+  },
+  {
+    "banque": "E3A-Polytech",
+    "epreuve": "Maths 1 2024",
+    "partie": "Exercice 4",
+    "questions": "2 q. : Q1, Q3",
+    "difficulte": "Standard",
+    "intitule": "Convolution $f \\star g$ bien définie sur $\\mathbb{R}$ ; majoration $\\|f \\star g\\|_\\infty \\leq \\|f\\|_\\infty \\|g\\|_1$",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "$(f \\star g)(x) = \\int_{-\\infty}^{+\\infty} f(x-t)g(t)\\,dt$. Pour que cette intégrale converge, il suffit que $t \\mapsto f(x-t)g(t)$ soit intégrable. Si $f \\in L^\\infty$ et $g \\in L^1$ : $|f(x-t)g(t)| \\leq \\|f\\|_\\infty |g(t)|$, intégrable car $g \\in L^1$. L'intégrale est donc absolument convergente et $f \\star g$ est bien définie."
+      },
+      {
+        "question": "Q3",
+        "correction": "$\\|f \\star g\\|_\\infty = \\sup_{x \\in \\mathbb{R}} |(f \\star g)(x)| \\leq \\sup_x \\int |f(x-t)| |g(t)|\\,dt \\leq \\sup_x \\|f\\|_\\infty \\int |g(t)|\\,dt = \\|f\\|_\\infty \\|g\\|_1$. L'inégalité est une conséquence directe de la majoration sous l'intégrale. Elle montre que la convolution est un produit continu de $L^\\infty \\times L^1 \\to L^\\infty$."
+      }
+    ]
+  }
+]

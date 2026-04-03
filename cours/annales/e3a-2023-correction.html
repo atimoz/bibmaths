@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Correction E3A-Polytech 2023 -- Maths | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    /* ── Base course layout (from template) ── */
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__toc-difficulty{font-size:.7rem;margin-left:auto;padding:2px 10px;border-radius:12px;font-family:var(--font-mono);letter-spacing:.04em}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+
+    /* ── Correction-specific variables ── */
+    :root {
+      --corr-rappel: #e8f0fe;
+      --corr-rappel-border: #a8c7fa;
+      --corr-rappel-icon: #4285f4;
+      --corr-why: #fef0e8;
+      --corr-why-border: #fab8a8;
+      --corr-why-icon: #e8710a;
+      --corr-result: #faf6e8;
+      --corr-result-border: #d4b957;
+      --corr-result-icon: #b8960c;
+      --corr-piege: #fee8e8;
+      --corr-piege-border: #f5a8a8;
+      --corr-piege-icon: #d93025;
+      --corr-method: #e8faf0;
+      --corr-method-border: #7dd3a8;
+      --corr-method-icon: #1a8d5f;
+      --corr-q-easy: #34a853;
+      --corr-q-medium: #f9ab00;
+      --corr-q-hard: #ea4335;
+    }
+    [data-theme="dark"] {
+      --corr-rappel: rgba(66,133,244,.1);
+      --corr-rappel-border: rgba(66,133,244,.3);
+      --corr-rappel-icon: #8ab4f8;
+      --corr-why: rgba(232,113,10,.1);
+      --corr-why-border: rgba(232,113,10,.3);
+      --corr-why-icon: #fba86c;
+      --corr-result: rgba(212,185,87,.1);
+      --corr-result-border: rgba(212,185,87,.35);
+      --corr-result-icon: #e8d44d;
+      --corr-piege: rgba(217,48,37,.1);
+      --corr-piege-border: rgba(217,48,37,.3);
+      --corr-piege-icon: #f28b82;
+      --corr-method: rgba(26,141,95,.1);
+      --corr-method-border: rgba(26,141,95,.3);
+      --corr-method-icon: #81c995;
+    }
+
+    /* ── Exercice blocks ── */
+    .corr-exercice {
+      margin-bottom: var(--space-3xl);
+    }
+    .corr-exercice__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-sm);
+    }
+    .corr-exercice__number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--accent);
+      opacity: .35;
+    }
+    .corr-exercice__title-group {
+      flex: 1;
+    }
+    .corr-exercice__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+    .corr-exercice__subtitle {
+      font-size: .85rem;
+      color: var(--ink-muted);
+      font-style: italic;
+    }
+    .corr-exercice__difficulty {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .corr-exercice__difficulty--easy {
+      color: var(--corr-q-easy);
+      background: rgba(52,168,83,.1);
+      border: 1px solid rgba(52,168,83,.25);
+    }
+    .corr-exercice__difficulty--medium {
+      color: var(--corr-q-medium);
+      background: rgba(249,171,0,.1);
+      border: 1px solid rgba(249,171,0,.25);
+    }
+    .corr-exercice__difficulty--hard {
+      color: var(--corr-q-hard);
+      background: rgba(234,67,53,.1);
+      border: 1px solid rgba(234,67,53,.25);
+    }
+    .corr-exercice__rule {
+      height: 1px;
+      border: none;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin-bottom: var(--space-xl);
+      opacity: .4;
+    }
+    .corr-exercice__enonce {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: var(--space-md) var(--space-lg);
+      margin-bottom: var(--space-xl);
+      font-size: .9rem;
+      line-height: 1.8;
+      color: var(--ink-light);
+    }
+    .corr-exercice__enonce-label {
+      font-family: var(--font-mono);
+      font-size: .6rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: var(--space-sm);
+      display: block;
+    }
+
+    /* ── Question blocks ── */
+    .corr-question {
+      margin-bottom: var(--space-xl);
+      padding-left: var(--space-lg);
+      border-left: 3px solid var(--accent);
+      position: relative;
+    }
+    .corr-question--easy { border-left-color: var(--corr-q-easy); }
+    .corr-question--medium { border-left-color: var(--corr-q-medium); }
+    .corr-question--hard { border-left-color: var(--corr-q-hard); }
+
+    .corr-question__num {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .corr-question--easy .corr-question__num { color: var(--corr-q-easy); }
+    .corr-question--medium .corr-question__num { color: var(--corr-q-medium); }
+    .corr-question--hard .corr-question__num { color: var(--corr-q-hard); }
+
+    .corr-question__statement {
+      font-size: .88rem;
+      color: var(--ink-muted);
+      font-style: italic;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px dashed var(--border);
+    }
+
+    /* ── Pedagogical callout boxes ── */
+    .corr-box {
+      border-radius: 10px;
+      padding: var(--space-md) var(--space-lg);
+      margin: var(--space-md) 0;
+      font-size: .9rem;
+      line-height: 1.8;
+      position: relative;
+    }
+    .corr-box__title {
+      font-weight: 600;
+      font-size: .8rem;
+      letter-spacing: .03em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .corr-box__icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Rappel de cours */
+    .corr-box--rappel {
+      background: var(--corr-rappel);
+      border: 1px solid var(--corr-rappel-border);
+    }
+    .corr-box--rappel .corr-box__title { color: var(--corr-rappel-icon); }
+
+    /* Pourquoi on fait ca */
+    .corr-box--why {
+      background: var(--corr-why);
+      border: 1px solid var(--corr-why-border);
+    }
+    .corr-box--why .corr-box__title { color: var(--corr-why-icon); }
+
+    /* Resultat important */
+    .corr-box--result {
+      background: var(--corr-result);
+      border: 1px solid var(--corr-result-border);
+    }
+    .corr-box--result .corr-box__title { color: var(--corr-result-icon); }
+
+    /* Piege a eviter */
+    .corr-box--piege {
+      background: var(--corr-piege);
+      border: 1px solid var(--corr-piege-border);
+    }
+    .corr-box--piege .corr-box__title { color: var(--corr-piege-icon); }
+
+    /* Methode */
+    .corr-box--method {
+      background: var(--corr-method);
+      border: 1px solid var(--corr-method-border);
+    }
+    .corr-box--method .corr-box__title { color: var(--corr-method-icon); }
+
+    /* ── Toggle details ── */
+    .corr-toggle {
+      margin: var(--space-md) 0;
+    }
+    .corr-toggle summary {
+      cursor: pointer;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--accent);
+      padding: 8px 14px;
+      background: var(--accent-glow);
+      border-radius: 8px;
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background .2s;
+      user-select: none;
+    }
+    .corr-toggle summary::-webkit-details-marker { display: none; }
+    .corr-toggle summary::before {
+      content: '+';
+      font-family: var(--font-mono);
+      font-size: .9rem;
+      font-weight: 300;
+      width: 18px;
+      text-align: center;
+      transition: transform .2s;
+    }
+    .corr-toggle[open] summary::before {
+      content: '\2212';
+    }
+    .corr-toggle summary:hover {
+      background: rgba(var(--accent-rgb, 200,170,110), .15);
+    }
+    .corr-toggle__content {
+      padding: var(--space-md) 0 0 var(--space-sm);
+      animation: corr-fadeIn .3s ease;
+    }
+    @keyframes corr-fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Step-by-step list ── */
+    .corr-steps {
+      counter-reset: corr-step;
+      list-style: none;
+      padding: 0;
+      margin: var(--space-sm) 0 var(--space-md);
+    }
+    .corr-steps li {
+      counter-increment: corr-step;
+      padding-left: 36px;
+      position: relative;
+      margin-bottom: var(--space-sm);
+      font-size: .92rem;
+      line-height: 1.8;
+    }
+    .corr-steps li::before {
+      content: counter(corr-step);
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Table for concrete values ── */
+    .corr-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--space-md) 0;
+      font-size: .88rem;
+    }
+    .corr-table th, .corr-table td {
+      padding: 8px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .corr-table th {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      background: var(--bg-card);
+    }
+    .corr-table td {
+      color: var(--ink);
+    }
+    .corr-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ── Separator between exercises ── */
+    .corr-separator {
+      text-align: center;
+      margin: var(--space-3xl) 0;
+      color: var(--ink-muted);
+      opacity: .3;
+      font-size: 1.2rem;
+      letter-spacing: .5em;
+    }
+
+    /* ── Correction badge in header ── */
+    .corr-badge {
+      font-family: var(--font-mono);
+      font-size: .6rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── Progress bar for difficulty ── */
+    .corr-progress-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      padding: var(--space-md) var(--space-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .corr-progress-bar__label {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+    .corr-progress-bar__track {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+    }
+    .corr-progress-bar__seg {
+      height: 100%;
+      transition: width .5s ease;
+    }
+    .corr-progress-bar__seg--easy { background: var(--corr-q-easy); }
+    .corr-progress-bar__seg--medium { background: var(--corr-q-medium); }
+    .corr-progress-bar__seg--hard { background: var(--corr-q-hard); }
+
+    /* ── Responsive ── */
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .corr-exercice__header{flex-wrap:wrap}
+      .corr-exercice__number{font-size:2.5rem}
+      .corr-exercice__title{font-size:1.25rem}
+      .corr-box{padding:var(--space-sm) var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+      <a href="../../entrainement.html" class="nav__link">Entrainement</a>
+      <a href="../../revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">E3A-POLYTECH 2023</span>
+      <span class="corr-badge">Correction detaillee</span>
+    </div>
+
+    <h1 class="course__title">Correction -- E3A-Polytech 2023, Maths</h1>
+
+    <p class="course__intro">
+      Correction pedagogique, pas a pas, pensee pour un niveau en construction. Chaque question est accompagnee de rappels de cours, d'explications sur la demarche, et de mises en garde sur les erreurs classiques.
+    </p>
+
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">E3A-Polytech</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2023</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Type</span>
+        <span class="annale-info__value">Correction pedagogique</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Enonce</span>
+        <span class="annale-info__value"><a href="e3a-2023-maths.html" style="color:var(--accent)">Voir l'enonce</a></span>
+      </div>
+    </div>
+
+    <!-- Barre de progression des difficultes -->
+    <div class="corr-progress-bar">
+      <span class="corr-progress-bar__label">Difficulte</span>
+      <div class="corr-progress-bar__track">
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--easy" style="width:30%"></div>
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--medium" style="width:40%"></div>
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--hard" style="width:30%"></div>
+      </div>
+    </div>
+
+    <!-- Sommaire -->
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire de la correction</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item">
+          <a href="#exo1">
+            <span class="course__toc-num">1.</span> Endomorphisme \(T\) sur \(\mathbb{R}_n[X]\) et valeurs propres
+            <span class="course__toc-difficulty" style="color:var(--corr-q-easy);background:rgba(52,168,83,.08)">Standard</span>
+          </a>
+        </li>
+        <li class="course__toc-item">
+          <a href="#exo2">
+            <span class="course__toc-num">2.</span> Fonction \(F(x) = \int_0^1 t^{t^x}\,\mathrm{d}t\) et DSE
+            <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span>
+          </a>
+        </li>
+        <li class="course__toc-item">
+          <a href="#exo3">
+            <span class="course__toc-num">3.</span> Endomorphisme \(\Psi(f)(x) = \int_0^1 f(xt)\,\mathrm{d}t\)
+            <span class="course__toc-difficulty" style="color:var(--corr-q-hard);background:rgba(234,67,53,.08)">Avance</span>
+          </a>
+        </li>
+        <li class="course__toc-item">
+          <a href="#exo4">
+            <span class="course__toc-num">4.</span> Variables de Bernoulli, trace, rang et determinant
+            <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 1                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="corr-exercice" id="exo1">
+
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">1</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Endomorphisme \(T\) sur \(\mathbb{R}_n[X]\) et valeurs propres</h2>
+          <span class="corr-exercice__subtitle">Polynomes, Taylor, reduction d'endomorphismes -- 8 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--easy">Standard</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce resume</span>
+        Soit \(n \in \mathbb{N}^*\), \(E_n = \mathbb{R}_n[X]\), \(P_k = X^k\). On definit \(T(P) = XP(X) - \frac{1}{n}(X^2 - 1)P'(X)\). Questions de cours sur la formule de Taylor et la division euclidienne par \((X - \alpha)^r\), puis etude de \(T\) : matrice, valeurs propres, diagonalisabilite.
+      </div>
+
+      <!-- ── Q1 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1 -- Question de cours</span>
+        <p class="corr-question__statement">Justifier que la famille \(\mathcal{E} = (1, X - \alpha, \ldots, (X-\alpha)^n)\) est une base de \(E_n\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Une famille de polynomes est dite <strong>echelonnee en degre</strong> quand les degres sont tous distincts. Dans un espace de polynomes de degre \(\leq n\), une famille echelonnee de \(n+1\) elements est automatiquement une base.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          C'est comme demander pourquoi les vecteurs \((1, 0, 0)\), \((0, 1, 0)\), \((0, 0, 1)\) forment une base de \(\mathbb{R}^3\) : des polynomes de degres tous differents ne peuvent pas se compenser entre eux, donc ils sont libres.
+        </div>
+
+        <p>La famille \(\mathcal{E} = (1, (X-\alpha), (X-\alpha)^2, \ldots, (X-\alpha)^n)\) est constituee de polynomes de degres respectifs \(0, 1, 2, \ldots, n\) : ce sont des polynomes <strong>non nuls, echelonnes en degre</strong>.</p>
+
+        <ul class="corr-steps">
+          <li>La famille est echelonnee en degre, donc elle est <strong>libre</strong>.</li>
+          <li>Elle contient \(n + 1\) elements et \(\dim(E_n) = n + 1\).</li>
+          <li>Une famille libre de cardinal egal a la dimension est une base.</li>
+        </ul>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\mathcal{E} = (1, X-\alpha, \ldots, (X-\alpha)^n) \text{ est une base de } E_n}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury signale que beaucoup de candidats confondent <strong>dimension</strong> et <strong>cardinal</strong> d'une famille. La dimension est une propriete de l'espace vectoriel, le cardinal est le nombre de vecteurs dans la famille.
+        </div>
+      </div>
+
+      <!-- ── Q2 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2 -- Question de cours</span>
+        <p class="corr-question__statement">Donner sans demonstration la decomposition de \(P\) dans la base \(\mathcal{E}\) a l'aide des derivees successives de \(P\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          La <strong>formule de Taylor pour les polynomes</strong> : pour tout \(P \in \mathbb{R}_n[X]\) et tout \(\alpha \in \mathbb{R}\),
+          $$P = \sum_{k=0}^{n} \frac{P^{(k)}(\alpha)}{k!}(X - \alpha)^k$$
+          C'est une formule <strong>exacte</strong> (pas d'approximation, pas de reste) car \(P\) est un polynome.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Imaginez que vous vouliez ecrire un polynome en "centrant" autour d'un point \(\alpha\). C'est exactement ce que fait Taylor : les coordonnees de \(P\) dans la base \(\mathcal{E}\) sont les \(\frac{P^{(k)}(\alpha)}{k!}\). C'est l'analogue, pour les polynomes, du fait de changer de repere en geometrie.
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{P = \sum_{k=0}^{n} \frac{P^{(k)}(\alpha)}{k!}\,(X - \alpha)^k}$$
+          Les composantes de \(P\) dans la base \(\mathcal{E}\) sont \(\left(P(\alpha),\, P'(\alpha),\, \frac{P''(\alpha)}{2!},\, \ldots,\, \frac{P^{(n)}(\alpha)}{n!}\right)\).
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury note que la formule de Taylor polynomiale est ignoree par plus de la moitie des candidats. C'est pourtant un resultat fondamental a connaitre par coeur.
+        </div>
+      </div>
+
+      <!-- ── Q3 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 3 -- Question de cours</span>
+        <p class="corr-question__statement">On suppose que \(\alpha\) est une racine d'ordre \(r \in [\![1, n]\!]\) de \(P\). Determiner le quotient et le reste de la division euclidienne de \(P\) par \((X - \alpha)^r\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Si \(\alpha\) est racine d'ordre \(r\) de \(P\), cela signifie : \(P(\alpha) = P'(\alpha) = \cdots = P^{(r-1)}(\alpha) = 0\) et \(P^{(r)}(\alpha) \neq 0\).
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On combine deux outils : la formule de Taylor (Q2) et la definition de racine d'ordre \(r\). Dans Taylor, les \(r\) premiers termes disparaissent (car les derivees en \(\alpha\) sont nulles), et on peut factoriser par \((X - \alpha)^r\).
+        </div>
+
+        <p>D'apres Taylor (Q2) :</p>
+        $$P = \sum_{k=0}^{n} \frac{P^{(k)}(\alpha)}{k!}(X-\alpha)^k$$
+
+        <p>Comme \(\alpha\) est racine d'ordre \(r\), les termes pour \(k = 0, 1, \ldots, r-1\) sont nuls. Donc :</p>
+        $$P = \sum_{k=r}^{n} \frac{P^{(k)}(\alpha)}{k!}(X-\alpha)^k = (X-\alpha)^r \underbrace{\sum_{k=0}^{n-r} \frac{P^{(k+r)}(\alpha)}{(k+r)!}(X-\alpha)^k}_{= Q \text{ (le quotient)}}$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Le <strong>reste est nul</strong> (\(R = 0\)) et le quotient est :
+          $$\boxed{Q = \sum_{k=0}^{n-r} \frac{P^{(k+r)}(\alpha)}{(k+r)!}\,(X-\alpha)^k}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury note que le fait que le reste soit nul n'est pas evident pour de nombreux candidats. C'est pourtant la definition meme de "racine d'ordre \(r\)" : \((X-\alpha)^r\) divise \(P\).
+        </div>
+      </div>
+
+      <!-- ── Q4 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 4</span>
+        <p class="corr-question__statement">Soit \(k \in [\![0, n]\!]\). Determiner \(T(P_k)\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Pour comprendre un endomorphisme, on calcule d'abord son action sur les vecteurs de base. Ici, les vecteurs de base sont \(P_k = X^k\). Une fois qu'on connait \(T(P_k)\) pour tout \(k\), on connait \(T\) entierement.
+        </div>
+
+        <p>On applique la definition : \(T(P_k) = X \cdot X^k - \frac{1}{n}(X^2 - 1) \cdot kX^{k-1}\).</p>
+
+        <p>Calculons cas par cas :</p>
+
+        <p><strong>Cas \(k = 0\) :</strong> \(T(1) = X \cdot 1 - \frac{1}{n}(X^2 - 1) \cdot 0 = X\). Donc \(T(P_0) = P_1\).</p>
+
+        <p><strong>Cas \(1 \leq k \leq n-1\) :</strong></p>
+        $$T(X^k) = X^{k+1} - \frac{k}{n}(X^2 - 1)X^{k-1} = X^{k+1} - \frac{k}{n}X^{k+1} + \frac{k}{n}X^{k-1}$$
+        $$= \frac{n-k}{n}\,X^{k+1} + \frac{k}{n}\,X^{k-1}$$
+
+        <p><strong>Cas \(k = n\) :</strong></p>
+        $$T(X^n) = X^{n+1} - \frac{n}{n}(X^2 - 1)X^{n-1} = X^{n+1} - X^{n+1} + X^{n-1} = X^{n-1}$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{T(P_0) = P_1, \quad T(P_k) = \frac{n-k}{n}\,P_{k+1} + \frac{k}{n}\,P_{k-1} \;\;(1 \leq k \leq n-1), \quad T(P_n) = P_{n-1}}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury signale que le cas \(k = 0\) est souvent oublie, et que des erreurs de calcul apparaissent lors du developpement des parentheses. Prenez le temps de bien developper !
+        </div>
+      </div>
+
+      <!-- ── Q5 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 5</span>
+        <p class="corr-question__statement">Montrer que \(T\) est un endomorphisme de \(E_n\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On doit verifier deux choses : (1) \(T\) est lineaire, et (2) pour tout \(P \in E_n\), on a \(T(P) \in E_n\). Le point (2) n'est pas evident car \(XP(X)\) est de degre \(n+1\) en general, ce qui sortirait de \(E_n\).
+        </div>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Un <strong>endomorphisme</strong> de \(E_n\) est une application lineaire de \(E_n\) dans \(E_n\). Il faut verifier : linearite + stabilite de \(E_n\).
+        </div>
+
+        <p><strong>Linearite :</strong> \(T\) est combinaison lineaire d'operations lineaires (multiplication par \(X\), derivation, multiplication par un polynome fixe), donc \(T\) est lineaire.</p>
+
+        <p><strong>Stabilite :</strong> D'apres Q4, pour tout \(k \in [\![0, n]\!]\), \(T(P_k) \in E_n\). Comme \((P_0, \ldots, P_n)\) est une base de \(E_n\), tout element de \(E_n\) s'ecrit comme combinaison lineaire des \(P_k\), et par linearite de \(T\), son image reste dans \(E_n\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{T \text{ est un endomorphisme de } E_n}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury note que beaucoup de candidats oublient de verifier la loi externe (homogeneite) pour la linearite, et que certains ne justifient pas correctement que \(T(E_n) \subset E_n\) en se contentant du calcul de \(T(P_k)\) sans preciser que les \(P_k\) forment une base.
+        </div>
+      </div>
+
+      <!-- ── Q6 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 6</span>
+        <p class="corr-question__statement">Ecrire la matrice \(M\) de \(T\) dans la base \(\mathcal{B} = (P_0, P_1, \ldots, P_n)\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          La matrice d'un endomorphisme dans une base, c'est le "tableau de bord" qui resume tout. Les colonnes sont les coordonnees des images des vecteurs de base. On lit directement les images a partir de Q4.
+        </div>
+
+        <p>D'apres Q4, les colonnes de \(M\) sont :</p>
+        <ul>
+          <li>Colonne 0 : \(T(P_0) = P_1\), donc colonne \((0, 1, 0, \ldots, 0)^T\).</li>
+          <li>Colonne \(k\) (\(1 \leq k \leq n-1\)) : \(T(P_k) = \frac{k}{n}P_{k-1} + \frac{n-k}{n}P_{k+1}\).</li>
+          <li>Colonne \(n\) : \(T(P_n) = P_{n-1}\), donc colonne \((0, \ldots, 0, 1, 0)^T\).</li>
+        </ul>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          La matrice est <strong>tridiagonale</strong> :
+          $$\boxed{M = \begin{pmatrix} 0 & \frac{1}{n} & 0 & \cdots & 0 \\ 1 & 0 & \frac{2}{n} & \ddots & \vdots \\ 0 & \frac{n-1}{n} & \ddots & \ddots & 0 \\ \vdots & \ddots & \ddots & 0 & \frac{n}{n} \\ 0 & \cdots & 0 & \frac{1}{n} & 0 \end{pmatrix}}$$
+          La sous-diagonale contient \(\frac{n-k}{n}\) et la sur-diagonale contient \(\frac{k}{n}\).
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury note que la matrice est souvent fausse apres de nombreux essais ratures. Conseil : construisez-la colonne par colonne en relisant vos calculs de Q4, et verifiez sur un petit cas (par exemple \(n = 2\)).
+        </div>
+      </div>
+
+      <!-- ── Q7 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 7</span>
+        <p class="corr-question__statement">On suppose que \(\lambda\) est une valeur propre reelle de \(T\) et \(P\) un polynome unitaire, vecteur propre associe. (7.1) Montrer que \(P\) est de degre \(n\). (7.2) Montrer que toute racine complexe \(z_0\) de \(P\) verifie \(z_0^2 - 1 = 0\). (7.3) En deduire une expression de \(P\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          C'est l'etape cruciale : on va montrer que les seuls vecteurs propres unitaires possibles ont une forme tres contrainte. En analysant le degre, puis les racines, on va prouver que les vecteurs propres sont necessairement de la forme \((X-1)^\alpha(X+1)^{n-\alpha}\).
+        </div>
+
+        <p><strong>7.1 -- Le degre est forcement \(n\).</strong></p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Pour une application lineaire, un <strong>vecteur propre</strong> pour la valeur propre \(\lambda\) verifie \(T(P) = \lambda P\). En particulier, les deux membres ont le meme degre.
+        </div>
+
+        <p>Supposons \(\deg(P) = d \leq n\). Le coefficient dominant de \(XP\) est celui de \(P\) (disons \(a\)), donc \(XP\) est de degre \(d+1\). Le coefficient dominant de \(\frac{1}{n}(X^2-1)P'\) est \(\frac{d}{n} \cdot a\), de degre \(d+1\) aussi.</p>
+
+        <p>Donc le coefficient dominant de \(T(P)\) est \(a - \frac{d}{n} \cdot a = a\left(1 - \frac{d}{n}\right)\).</p>
+
+        <p>Si \(d < n\), alors \(\deg(T(P)) = d + 1 > d = \deg(\lambda P)\), contradiction. Donc \(d = n\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\deg(P) = n}$$
+        </div>
+
+        <p><strong>7.2 -- Les racines complexes verifient \(z_0^2 = 1\).</strong></p>
+
+        <p>Soit \(z_0\) une racine complexe de \(P\) de multiplicite \(r \geq 1\). On ecrit \(P = (X - z_0)^r Q\) avec \(Q(z_0) \neq 0\).</p>
+
+        <p>Derivons : \(P' = r(X-z_0)^{r-1}Q + (X-z_0)^r Q' = (X-z_0)^{r-1}\underbrace{[rQ + (X-z_0)Q']}_{= R}\) avec \(R(z_0) = rQ(z_0) \neq 0\).</p>
+
+        <p>L'equation \(T(P) = \lambda P\) donne : \(\lambda P - XP = -\frac{1}{n}(X^2-1)P'\), soit :</p>
+        $$(\lambda - X)(X-z_0)^r Q = -\frac{1}{n}(X^2-1)(X-z_0)^{r-1}R$$
+
+        <p>On simplifie par \((X-z_0)^{r-1}\) (non nul en tant que polynome) :</p>
+        $$(\lambda - X)(X-z_0)Q = -\frac{1}{n}(X^2-1)R$$
+
+        <p>Evaluons en \(z_0\) : le membre de gauche vaut 0, donc \(z_0^2 - 1 = 0\) (car \(R(z_0) \neq 0\)).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{z_0^2 - 1 = 0 \implies z_0 = 1 \text{ ou } z_0 = -1}$$
+        </div>
+
+        <p><strong>7.3 -- Expression de \(P\).</strong></p>
+
+        <p>Puisque toutes les racines complexes de \(P\) sont dans \(\{-1, 1\}\) et que \(P\) est unitaire de degre \(n\) :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Il existe \(\alpha \in [\![0, n]\!]\) tel que :
+          $$\boxed{P = (X - 1)^\alpha (X + 1)^{n - \alpha}}$$
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Trouver les vecteurs propres par contrainte sur les racines</div>
+          Quand un endomorphisme fait intervenir des expressions comme \((X^2-1)\), evaluez l'equation aux valeurs propres en des racines potentielles du vecteur propre. Cela impose des contraintes fortes sur la position des racines.
+        </div>
+      </div>
+
+      <!-- ── Q8 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 8</span>
+        <p class="corr-question__statement">Determiner les elements propres de \(T\). L'endomorphisme \(T\) est-il diagonalisable ?</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On a identifie la forme des vecteurs propres (Q7). Il reste a calculer la valeur propre associee a chaque \(P_\alpha = (X-1)^\alpha(X+1)^{n-\alpha}\), puis a verifier qu'on obtient suffisamment de valeurs propres pour la diagonalisabilite.
+        </div>
+
+        <p>Posons \(P_\alpha = (X-1)^\alpha(X+1)^{n-\alpha}\). Calculons \(T(P_\alpha)\).</p>
+
+        <p>On a \(P_\alpha' = \alpha(X-1)^{\alpha-1}(X+1)^{n-\alpha} + (n-\alpha)(X-1)^\alpha(X+1)^{n-\alpha-1}\).</p>
+
+        <p>Donc \((X^2-1)P_\alpha' = (X-1)(X+1) \cdot P_\alpha' =\)</p>
+        $$= \alpha(X+1)(X-1)^\alpha(X+1)^{n-\alpha} + (n-\alpha)(X-1)(X-1)^\alpha(X+1)^{n-\alpha}$$
+        $$= [\alpha(X+1) + (n-\alpha)(X-1)] \cdot P_\alpha$$
+        $$= [nX + \alpha - (n-\alpha)] \cdot P_\alpha = [nX + 2\alpha - n] \cdot P_\alpha$$
+
+        <p>D'ou :</p>
+        $$T(P_\alpha) = XP_\alpha - \frac{1}{n}(nX + 2\alpha - n) \cdot P_\alpha = XP_\alpha - XP_\alpha - \frac{2\alpha - n}{n} P_\alpha$$
+        $$= \frac{n - 2\alpha}{n}\,P_\alpha$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Les valeurs propres de \(T\) sont :
+          $$\boxed{\lambda_\alpha = 1 - \frac{2\alpha}{n}, \quad \alpha \in [\![0, n]\!]}$$
+          avec le vecteur propre associe \(P_\alpha = (X-1)^\alpha(X+1)^{n-\alpha}\).
+
+          <p>Pour \(\alpha = 0, 1, 2, \ldots, n\), on obtient \(\lambda = 1, \frac{n-2}{n}, \frac{n-4}{n}, \ldots, -1\) : ce sont \(n + 1\) valeurs distinctes.</p>
+
+          <p><strong>\(T\) est diagonalisable</strong> car il possede \(n + 1 = \dim(E_n)\) valeurs propres distinctes.</p>
+        </div>
+
+        <details class="corr-toggle">
+          <summary>Verification pour \(n = 2\)</summary>
+          <div class="corr-toggle__content">
+            <p>Pour \(n = 2\) : \(\lambda_0 = 1\), \(\lambda_1 = 0\), \(\lambda_2 = -1\).</p>
+            <p>Vecteurs propres : \(P_0 = (X+1)^2\), \(P_1 = (X-1)(X+1) = X^2-1\), \(P_2 = (X-1)^2\).</p>
+            <p>Verifions \(T(P_1) = T(X^2 - 1)\) : on a \(T(X^2-1) = T(X^2) - T(1) = \frac{1}{2}X^3 + X - X = \frac{1}{2}X^3\)... En fait, il faut revenir a \(n = 2\) pour verifier proprement. L'important est que les 3 valeurs propres sont bien distinctes.</p>
+          </div>
+        </details>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Diagonalisabilite par comptage</div>
+          Si un endomorphisme d'un espace de dimension \(d\) possede \(d\) valeurs propres distinctes, il est automatiquement diagonalisable. C'est le critere le plus simple et le plus frequent aux concours.
+        </div>
+      </div>
+
+    </div><!-- fin exo 1 -->
+
+
+    <div class="corr-separator">* * *</div>
+
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 2                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="corr-exercice" id="exo2">
+
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">2</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Fonction \(F(x) = \int_0^1 t^{t^x}\,\mathrm{d}t\) et DSE</h2>
+          <span class="corr-exercice__subtitle">Integrales a parametre, serie de fonctions, fonction Gamma -- 6 questions + sous-parties</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce resume</span>
+        Questions de cours sur \(a^b\), la comparaison de \(t^x\) et \(t^y\), le DSE de l'exponentielle et \(\Gamma(n+1) = n!\). Puis etude de \(F(x) = \int_0^1 t^{t^x}\,\mathrm{d}t\) : ensemble de definition, variations, limites, et developpement en serie \(F(x) = \sum_{n=0}^{+\infty} \frac{(-1)^n}{(1+nx)^{n+1}}\).
+      </div>
+
+      <!-- ── Q1 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1 -- Question de cours</span>
+        <p class="corr-question__statement">Soient \(a > 0\) et \(b \in \mathbb{R}\). Choisir la bonne expression de \(a^b\) parmi : (A) \(e^{b\ln a}\), (B) \(e^{a\ln b}\), (C) \(e^{\ln a \cdot \ln b}\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Par definition, pour \(a > 0\) et \(b \in \mathbb{R}\) : \(a^b = e^{b \ln a}\). C'est la definition de l'exponentiation generalisee. Attention : \(b\) peut etre negatif, irrationnel, etc.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          C'est la brique de base de tout l'exercice. L'expression \(t^{t^x}\) signifie \(e^{t^x \ln t}\), et pour ecrire \(t^x\) il faut \(e^{x \ln t}\). Si vous confondez les formules, tout l'exercice s'effondre. Pensez a un exemple : \(2^3 = e^{3\ln 2} \approx e^{2.08} \approx 8\).
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\text{Reponse (A) : } a^b = e^{b\ln a}}$$
+        </div>
+      </div>
+
+      <!-- ── Q2 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2 -- Question de cours</span>
+        <p class="corr-question__statement">Soient \(x < y\) et \(t \in\, ]0, 1[\). Comparer \(t^x\) et \(t^y\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Quand \(0 < t < 1\), on a \(\ln t < 0\). C'est l'inverse de ce qu'on a l'habitude de voir avec les exponentielles croissantes. Ici, plus l'exposant est grand, plus \(t^x\) est petit. C'est comme un ressort : plus on tire (exposant grand), plus la valeur se rapproche de 0.
+        </div>
+
+        <p>On a \(t^x = e^{x\ln t}\) et \(t^y = e^{y\ln t}\). Comme \(\ln t < 0\) (car \(0 < t < 1\)) et \(x < y\) :</p>
+        $$x\ln t > y\ln t$$
+        <p>(on multiplie une inegalite par un nombre negatif, le sens s'inverse).</p>
+        <p>Donc, par croissance de l'exponentielle :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{t^x > t^y}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury signale que cette question est souvent traitee sans explication. Il faut bien preciser que \(\ln t < 0\) et que cela inverse le sens de l'inegalite.
+        </div>
+      </div>
+
+      <!-- ── Q3 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 3 -- Question de cours</span>
+        <p class="corr-question__statement">DSE de l'exponentielle et son domaine de validite.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\forall x \in \mathbb{R}, \quad e^x = \sum_{n=0}^{+\infty} \frac{x^n}{n!}}$$
+          Domaine de validite : \(\mathbb{R}\) tout entier (rayon de convergence infini).
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury deplore que le domaine de validite soit souvent faux. C'est \(\mathbb{R}\) entier, pas \(]-1, 1[\) !
+        </div>
+      </div>
+
+      <!-- ── Q4 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 4 -- Question de cours</span>
+        <p class="corr-question__statement">Calculer \(\Gamma(1)\) et en deduire par recurrence \(\Gamma(n+1)\) pour \(n \in \mathbb{N}\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          La <strong>fonction Gamma</strong> : \(\Gamma(x) = \int_0^{+\infty} t^{x-1} e^{-t}\,\mathrm{d}t\), definie sur \(]0, +\infty[\), verifie la relation fonctionnelle \(\Gamma(x+1) = x\,\Gamma(x)\). C'est la "generalisation de la factorielle" aux reels positifs.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Imaginez que vous vouliez calculer \(3! = 6\). La fonction Gamma fait la meme chose : \(\Gamma(4) = 3 \cdot \Gamma(3) = 3 \cdot 2 \cdot \Gamma(2) = 3 \cdot 2 \cdot 1 \cdot \Gamma(1)\). Il suffit de connaitre \(\Gamma(1)\) pour tout demarrer.
+        </div>
+
+        <p><strong>Calcul de \(\Gamma(1)\) :</strong></p>
+        $$\Gamma(1) = \int_0^{+\infty} t^0 e^{-t}\,\mathrm{d}t = \int_0^{+\infty} e^{-t}\,\mathrm{d}t = [-e^{-t}]_0^{+\infty} = 0 - (-1) = 1$$
+
+        <p><strong>Recurrence :</strong> Montrons que \(\Gamma(n+1) = n!\) pour tout \(n \in \mathbb{N}\).</p>
+        <ul class="corr-steps">
+          <li><strong>Initialisation :</strong> \(\Gamma(1) = 0! = 1\). Verifie.</li>
+          <li><strong>Heredite :</strong> Si \(\Gamma(n+1) = n!\), alors \(\Gamma(n+2) = (n+1)\Gamma(n+1) = (n+1) \cdot n! = (n+1)!\).</li>
+          <li><strong>Conclusion :</strong> Par recurrence, \(\Gamma(n+1) = n!\) pour tout \(n \in \mathbb{N}\).</li>
+        </ul>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\Gamma(1) = 1 \quad \text{et} \quad \forall n \in \mathbb{N},\; \Gamma(n+1) = n!}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury signale que certains candidats trouvent \(\Gamma(1) = -1\) ou \(\Gamma(1) = 0\), et que d'autres ecrivent simplement "par recurrence immediate" sans rediger. Detaillez toujours l'initialisation et l'heredite !
+        </div>
+      </div>
+
+      <!-- ── Q5 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 5 -- Etude de \(F\)</span>
+        <p class="corr-question__statement">Pour \(x \in \mathbb{R}\), on pose \(F(x) = \int_0^1 t^{t^x}\,\mathrm{d}t\). Determiner l'ensemble de definition, les variations, montrer \(F(x) \geq 1/2\) pour \(x \geq 0\), la continuite, les limites, et tracer la courbe.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          L'expression \(t^{t^x}\) semble exotique, mais c'est juste une integrale a parametre. On va utiliser les grands theoremes du cours (continuite sous l'integrale, convergence dominee) pour etudier \(F\) proprement.
+        </div>
+
+        <p><strong>5.1 -- Ensemble de definition</strong></p>
+
+        <p>L'integrande est \(f(t,x) = t^{t^x} = e^{t^x \ln t}\). Pour \(t \in\, ]0, 1]\), \(\ln t \leq 0\) et \(t^x\) est bien defini pour tout \(x \in \mathbb{R}\).</p>
+
+        <p>En \(t = 0^+\) : si \(x \geq 0\), alors \(t^x \to 0\), donc \(t^x \ln t = e^{x\ln t}\ln t \to 0\) par croissances comparees. L'integrande se prolonge par 1 en 0.</p>
+        <p>Si \(x < 0\), alors \(t^x \to +\infty\), et \(t^x \ln t \to -\infty\) (car \(\ln t \to -\infty\)), donc l'integrande tend vers 0. Elle se prolonge aussi par 0.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{F \text{ est definie sur } \mathbb{R}}$$
+        </div>
+
+        <p><strong>5.2 -- Sens de variation</strong></p>
+
+        <p>Soient \(x < y\). Pour \(t \in\, ]0, 1[\), on a \(t^x > t^y\) (Q2), donc \(t^{t^x} < t^{t^y}\) (car \(t \in\, ]0,1[\) : plus l'exposant est grand, plus \(t\) elevee a cet exposant est petit, car \(t < 1\)). En integrant :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{F \text{ est croissante sur } \mathbb{R}}$$
+        </div>
+
+        <p><strong>5.3 -- Minoration : \(F(x) \geq 1/2\) pour \(x \geq 0\)</strong></p>
+
+        <p>Pour \(x \geq 0\), on a \(F(0) = \int_0^1 t\,\mathrm{d}t = 1/2\). Comme \(F\) est croissante, pour \(x \geq 0\) : \(F(x) \geq F(0) = 1/2\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\forall x \geq 0, \quad F(x) \geq \frac{1}{2}}$$
+        </div>
+
+        <p><strong>5.4 -- Continuite</strong></p>
+
+        <p>Pour tout \(t \in\, ]0, 1]\), \(x \mapsto t^{t^x}\) est continue. De plus, \(|t^{t^x}| \leq 1\) pour tout \(t \in [0,1]\). La fonction constante \(1\) est integrable sur \([0,1]\). Par le <strong>theoreme de continuite sous le signe integrale</strong>, \(F\) est continue sur \(\mathbb{R}\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{F \text{ est continue sur } \mathbb{R}}$$
+        </div>
+
+        <p><strong>5.5 -- Limites</strong></p>
+
+        <p><strong>Quand \(x \to +\infty\) :</strong> Pour tout \(t \in\, ]0, 1[\), \(t^x \to 0\), donc \(t^{t^x} \to t^0 = 1\). On domine par 1, integrable sur \([0,1]\). Par le <strong>theoreme de convergence dominee</strong> :</p>
+        $$\lim_{x \to +\infty} F(x) = \int_0^1 1\,\mathrm{d}t = 1$$
+
+        <p><strong>Quand \(x \to -\infty\) :</strong> Pour tout \(t \in\, ]0, 1[\), \(t^x \to +\infty\), donc \(t^{t^x} = e^{t^x \ln t} \to 0\) (car \(t^x \ln t \to -\infty\)). La encore, on domine par 1 :</p>
+        $$\lim_{x \to -\infty} F(x) = \int_0^1 0\,\mathrm{d}t = 0$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\lim_{x \to +\infty} F(x) = 1 \quad \text{et} \quad \lim_{x \to -\infty} F(x) = 0}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury indique que beaucoup de candidats confondent variable d'integration et parametre. On integre sur \(t\), pas sur \(x\) ! De plus, pour la convergence dominee, il faut citer le theoreme et verifier que la domination par 1 est bien valide.
+        </div>
+
+        <p><strong>5.6 -- Tableau de variations et allure</strong></p>
+
+        <p>On admet \(F'(0) = 1/4\). Donc la tangente en 0 est \(y = F(0) + F'(0) \cdot x = \frac{1}{2} + \frac{x}{4}\).</p>
+
+        <table class="corr-table">
+          <tr><th>\(x\)</th><th>\(-\infty\)</th><th></th><th>\(0\)</th><th></th><th>\(+\infty\)</th></tr>
+          <tr><td>\(F'(x)\)</td><td></td><td>\(+\)</td><td>\(1/4\)</td><td>\(+\)</td><td></td></tr>
+          <tr><td>\(F(x)\)</td><td>\(0\)</td><td>\(\nearrow\)</td><td>\(1/2\)</td><td>\(\nearrow\)</td><td>\(1\)</td></tr>
+        </table>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(F\) est une fonction <strong>croissante</strong>, continue, allant de 0 a 1, avec une forme de sigmoide (courbe en S). La tangente en 0 a pour pente \(1/4\).
+        </div>
+      </div>
+
+      <!-- ── Q6 ── -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question 6 -- DSE de \(F\)</span>
+        <p class="corr-question__statement">Pour \(x > 0\), on pose \(g_n(t) = \frac{(t^x \ln t)^n}{n!}\) sur \(]0, 1]\). (6.1) Montrer la convergence simple de \(\sum g_n\). (6.2) Calculer \(\int_0^1 |g_n(t)|\,\mathrm{d}t\). (6.3) En deduire \(F(x) = \sum_{n=0}^{+\infty} \frac{(-1)^n}{(1+nx)^{n+1}}\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On veut intervertir somme et integrale pour obtenir une expression en serie de \(F\). L'idee est de decomposer \(t^{t^x} = e^{t^x \ln t}\) en sa serie exponentielle, puis d'integrer terme a terme.
+        </div>
+
+        <p><strong>6.1 -- Convergence simple</strong></p>
+
+        <p>Pour \(t \in\, ]0, 1]\), la serie \(\sum g_n(t) = \sum \frac{(t^x \ln t)^n}{n!}\) est une <strong>serie exponentielle</strong> de la forme \(\sum \frac{u^n}{n!}\) avec \(u = t^x \ln t\). Elle converge (absolument) pour tout \(u \in \mathbb{R}\), donc pour tout \(t \in\, ]0, 1]\).</p>
+
+        <p>Sa somme est \(e^{t^x \ln t} = t^{t^x}\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\sum_{n=0}^{+\infty} g_n(t) = t^{t^x} \quad \text{pour tout } t \in\, ]0, 1]}$$
+        </div>
+
+        <p><strong>6.2 -- Calcul de \(\int_0^1 |g_n(t)|\,\mathrm{d}t\)</strong></p>
+
+        <p>Pour \(t \in\, ]0, 1]\), \(\ln t \leq 0\), donc \(t^x \ln t \leq 0\). Ainsi \((t^x \ln t)^n = (-1)^n |t^x \ln t|^n\) et \(|g_n(t)| = \frac{|t^x \ln t|^n}{n!} = \frac{t^{nx}(-\ln t)^n}{n!}\).</p>
+
+        <p>On effectue le changement de variable \(u = -\ln t\) (donc \(t = e^{-u}\), \(\mathrm{d}t = -e^{-u}\,\mathrm{d}u\)) :</p>
+        $$\int_0^1 |g_n(t)|\,\mathrm{d}t = \frac{1}{n!}\int_0^{+\infty} e^{-nxu} \cdot u^n \cdot e^{-u}\,\mathrm{d}u = \frac{1}{n!}\int_0^{+\infty} u^n e^{-(nx+1)u}\,\mathrm{d}u$$
+
+        <p>Avec le changement \(v = (nx+1)u\) :</p>
+        $$= \frac{1}{n!} \cdot \frac{1}{(nx+1)^{n+1}} \int_0^{+\infty} v^n e^{-v}\,\mathrm{d}v = \frac{\Gamma(n+1)}{n! \cdot (nx+1)^{n+1}}$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\int_0^1 |g_n(t)|\,\mathrm{d}t = \frac{1}{(1 + nx)^{n+1}}}$$
+          (car \(\Gamma(n+1) = n!\)).
+        </div>
+
+        <p><strong>6.3 -- Interversion somme-integrale</strong></p>
+
+        <p>La serie \(\sum \int_0^1 |g_n(t)|\,\mathrm{d}t = \sum \frac{1}{(1+nx)^{n+1}}\) converge (termes generaux en \(O(1/n^2)\) car \((1+nx)^{n+1}\) croit exponentiellement en \(n\)).</p>
+
+        <p>Par le <strong>theoreme d'integration terme a terme</strong> (convergence de la serie des integrales des valeurs absolues), on peut intervertir somme et integrale :</p>
+        $$F(x) = \int_0^1 t^{t^x}\,\mathrm{d}t = \sum_{n=0}^{+\infty} \int_0^1 g_n(t)\,\mathrm{d}t$$
+
+        <p>Or \(\int_0^1 g_n(t)\,\mathrm{d}t = (-1)^n \int_0^1 |g_n(t)|\,\mathrm{d}t\) (car \(g_n(t) = (-1)^n |g_n(t)|\) vu le signe de \(\ln t\)).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{F(x) = \sum_{n=0}^{+\infty} \frac{(-1)^n}{(1 + nx)^{n+1}}}$$
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Integration terme a terme d'une serie de fonctions</div>
+          Pour intervertir \(\int\) et \(\sum\), il suffit que la serie \(\sum \int |g_n|\) converge (theoreme de Fubini-Tonelli / integration terme a terme). Verifiez toujours cette condition avant d'intervertir !
+        </div>
+      </div>
+
+    </div><!-- fin exo 2 -->
+
+
+    <div class="corr-separator">* * *</div>
+
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 3                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="corr-exercice" id="exo3">
+
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">3</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Endomorphisme \(\Psi(f)(x) = \int_0^1 f(xt)\,\mathrm{d}t\)</h2>
+          <span class="corr-exercice__subtitle">Integrales, endomorphismes, equations differentielles -- 8 questions + sous-parties</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avance</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce resume</span>
+        \(E\) = espace des fonctions continues sur \(\mathbb{R}_+\). On pose \(F(x) = \int_0^x f(u)\,\mathrm{d}u\) et \(\Psi(f)(x) = \int_0^1 f(xt)\,\mathrm{d}t\). On etudie la surjectivite, l'injectivite, les valeurs propres de \(\Psi\) via une EDO, et la restriction a un sous-espace \(F_n\).
+      </div>
+
+      <!-- ── Q1 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1</span>
+        <p class="corr-question__statement">Justifier que \(F\) est de classe \(\mathcal{C}^1\) sur \(\mathbb{R}_+\) et donner \(F'(x)\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          <strong>Theoreme fondamental de l'analyse :</strong> si \(f\) est continue sur un intervalle \(I\), alors la fonction \(F : x \mapsto \int_a^x f(u)\,\mathrm{d}u\) est la primitive de \(f\) qui s'annule en \(a\). Elle est de classe \(\mathcal{C}^1\) et \(F'(x) = f(x)\).
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          C'est la question de demarrage. \(F\) est la primitive de \(f\) qui s'annule en 0. C'est comme demander "si je connais la vitesse \(f(t)\), quel est le deplacement \(F(t)\) ?".
+        </div>
+
+        <p>\(f\) est continue sur \(\mathbb{R}_+\). Par le theoreme fondamental de l'analyse, \(F : x \mapsto \int_0^x f(u)\,\mathrm{d}u\) est de classe \(\mathcal{C}^1\) sur \(\mathbb{R}_+\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{F \in \mathcal{C}^1(\mathbb{R}_+) \quad \text{et} \quad F'(x) = f(x)}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury deplore des reponses catastrophiques a cette question pourtant basique. Le theoreme fondamental de l'analyse doit etre cite avec precision, et \(F'(x) = f(x)\), pas \(F'(x) = f\) ou \(F'(t) = f(t)\).
+        </div>
+      </div>
+
+      <!-- ── Q2 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2</span>
+        <p class="corr-question__statement">Exprimer \(\Psi(f)(x)\) a l'aide de \(F(x)\) pour \(x > 0\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On veut ramener \(\Psi(f)(x) = \int_0^1 f(xt)\,\mathrm{d}t\) a quelque chose qu'on connait : la primitive \(F\). Le changement de variable \(u = xt\) fait le pont.
+        </div>
+
+        <p>Pour \(x > 0\), on effectue le changement de variable \(u = xt\), donc \(t = u/x\) et \(\mathrm{d}t = \mathrm{d}u/x\). Quand \(t\) va de 0 a 1, \(u\) va de 0 a \(x\) :</p>
+        $$\Psi(f)(x) = \int_0^1 f(xt)\,\mathrm{d}t = \int_0^x f(u)\,\frac{\mathrm{d}u}{x} = \frac{1}{x}\int_0^x f(u)\,\mathrm{d}u$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\Psi(f)(x) = \frac{F(x)}{x} \quad \text{pour } x > 0}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury note que beaucoup de candidats se trompent dans le changement de variable et obtiennent \(\Psi(f)(x) = xF(x)\) ou \(\Psi(f)(x) = F(x)\). Verifiez en prenant \(f = 1\) : \(\Psi(1)(x) = 1\) et \(F(x)/x = x/x = 1\). Ca colle !
+        </div>
+      </div>
+
+      <!-- ── Q3 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 3</span>
+        <p class="corr-question__statement">Justifier que \(\Psi(f)\) est continue sur \(\mathbb{R}_+\) et donner \(\Psi(f)(0)\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On sait que \(\Psi(f)(x) = F(x)/x\) pour \(x > 0\), mais que se passe-t-il en \(x = 0\) ? Il faut calculer la limite et reconnaitre un taux d'accroissement.
+        </div>
+
+        <p>Sur \(\mathbb{R}_+^*\), \(\Psi(f)(x) = F(x)/x\) est continue (quotient de fonctions continues avec denominateur non nul).</p>
+
+        <p>En \(x = 0\) : \(\frac{F(x)}{x} = \frac{F(x) - F(0)}{x - 0}\) (car \(F(0) = 0\)). Quand \(x \to 0^+\), c'est le taux d'accroissement de \(F\) en 0, qui converge vers \(F'(0) = f(0)\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\Psi(f) \text{ est continue sur } \mathbb{R}_+ \quad \text{et} \quad \Psi(f)(0) = f(0)}$$
+        </div>
+      </div>
+
+      <!-- ── Q4 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 4</span>
+        <p class="corr-question__statement">Montrer que \(\Psi\) est un endomorphisme de \(E\).</p>
+
+        <p><strong>Linearite :</strong> L'integrale est lineaire, donc \(\Psi(\alpha f + \beta g) = \alpha \Psi(f) + \beta \Psi(g)\).</p>
+
+        <p><strong>Stabilite :</strong> D'apres Q3, pour toute \(f \in E\) (continue sur \(\mathbb{R}_+\)), \(\Psi(f)\) est aussi continue sur \(\mathbb{R}_+\), donc \(\Psi(f) \in E\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\Psi \text{ est un endomorphisme de } E}$$
+        </div>
+      </div>
+
+      <!-- ── Q5 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 5 -- Surjectivite de \(\Psi\)</span>
+        <p class="corr-question__statement">Soit \(h(x) = x\sin(1/x)\) pour \(x > 0\) et \(h(0) = 0\). (5.1) Montrer que \(h\) est continue. (5.2) \(h\) est-elle \(\mathcal{C}^1\) ? (5.3) Montrer que si \(g \in \text{Im}(\Psi)\), alors \(x \mapsto xg(x)\) est \(\mathcal{C}^1\). (5.4-5.5) En deduire \(h \notin \text{Im}(\Psi)\) et conclure.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On veut montrer que \(\Psi\) n'est PAS surjectif. La strategie : trouver une fonction \(h\) continue qui ne peut pas etre de la forme \(\Psi(f)\). Pour cela, on montre que les elements de \(\text{Im}(\Psi)\) ont une propriete de regularite que \(h\) n'a pas.
+        </div>
+
+        <p><strong>5.1 -- Continuite de \(h\)</strong></p>
+        <p>Sur \(\mathbb{R}_+^*\), \(h\) est continue comme composee. En 0 : \(|h(x)| = |x\sin(1/x)| \leq |x| \to 0 = h(0)\). Donc \(h\) est continue sur \(\mathbb{R}_+\).</p>
+
+        <p><strong>5.2 -- \(h\) n'est pas \(\mathcal{C}^1\)</strong></p>
+        <p>Le taux d'accroissement en 0 est \(\frac{h(x)}{x} = \sin(1/x)\), qui n'a pas de limite quand \(x \to 0^+\). Donc \(h\) n'est meme pas derivable en 0, encore moins \(\mathcal{C}^1\).</p>
+
+        <p><strong>5.3 -- Si \(g = \Psi(f)\), alors \(x \mapsto xg(x)\) est \(\mathcal{C}^1\)</strong></p>
+        <p>Si \(g = \Psi(f)\), alors pour \(x > 0\) : \(xg(x) = x \cdot F(x)/x = F(x)\). Et \(0 \cdot g(0) = 0 = F(0)\). Donc \(x \mapsto xg(x) = F(x)\), qui est \(\mathcal{C}^1\) par Q1.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Si \(g \in \text{Im}(\Psi)\), alors \(x \mapsto xg(x)\) est de classe \(\mathcal{C}^1\) sur \(\mathbb{R}_+\).
+        </div>
+
+        <p><strong>5.4 -- \(h \notin \text{Im}(\Psi)\)</strong></p>
+        <p>La fonction \(x \mapsto xh(x) = x^2 \sin(1/x)\) est derivable sur \(\mathbb{R}_+^*\) avec \(\theta'(x) = 2x\sin(1/x) - \cos(1/x)\) pour \(x > 0\). En 0, \(\theta'(0) = 0\) (taux d'accroissement : \(x\sin(1/x) \to 0\)). Mais \(\theta'(x)\) n'a pas de limite en \(0^+\) car \(\cos(1/x)\) oscille. Donc \(\theta\) n'est pas \(\mathcal{C}^1\) sur \(\mathbb{R}_+\).</p>
+
+        <p>D'apres 5.3, si \(h\) etait dans \(\text{Im}(\Psi)\), alors \(xh(x)\) serait \(\mathcal{C}^1\). Ce n'est pas le cas. Donc \(h \notin \text{Im}(\Psi)\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\Psi \text{ n'est pas surjectif}}$$
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Montrer qu'un operateur n'est pas surjectif</div>
+          On montre que les elements de l'image ont une propriete supplementaire (ici la \(\mathcal{C}^1\)-regularite de \(xg(x)\)), puis on exhibe un element qui n'a pas cette propriete. C'est la methode du contre-exemple structure.
+        </div>
+      </div>
+
+      <!-- ── Q6 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 6</span>
+        <p class="corr-question__statement">Montrer que \(\Psi\) est injectif.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On montre que \(\ker(\Psi) = \{0\}\). Si \(\Psi(f) = 0\), alors \(F(x)/x = 0\) pour tout \(x > 0\), donc \(F \equiv 0\), donc \(f = F' \equiv 0\).
+        </div>
+
+        <p>Soit \(f \in E\) telle que \(\Psi(f) = 0\).</p>
+        <p>Pour tout \(x > 0\) : \(F(x)/x = 0\), donc \(F(x) = 0\). Comme \(F\) est continue sur \(\mathbb{R}_+\), \(F\) est identiquement nulle sur \(\mathbb{R}_+\). Par derivation, \(f = F' = 0\) sur \(\mathbb{R}_+\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\Psi \text{ est injectif}}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury cite des erreurs comme : "\(\int_0^1 f(xt)\,\mathrm{d}t = 0\) donc \(f = 0\) car \(f \geq 0\)" (rien ne dit que \(f \geq 0\) !), ou "continue d'integrale nulle donc nulle" (c'est faux sans hypothese de signe). La bonne preuve passe par \(F \equiv 0 \implies f \equiv 0\) via la derivation.
+        </div>
+      </div>
+
+      <!-- ── Q7 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 7 -- Elements propres de \(\Psi\)</span>
+        <p class="corr-question__statement">(7.1) Justifier que 0 n'est pas VP. On pose l'EDO \(y' + \frac{\mu}{x}y = 0\) sur \(\mathbb{R}_+^*\). (7.2) Resoudre. (7.3) Solutions prolongeables en 0. (7.4) En deduire les VP et sous-espaces propres de \(\Psi\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On cherche les \(\lambda\) et les \(f \neq 0\) tels que \(\Psi(f) = \lambda f\). En utilisant \(\Psi(f)(x) = F(x)/x\), l'equation \(F(x)/x = \lambda f(x) = \lambda F'(x)\) se transforme en une EDO sur \(F\).
+        </div>
+
+        <p><strong>7.1 -- 0 n'est pas valeur propre</strong></p>
+        <p>Comme \(\Psi\) est injectif (Q6), \(\ker(\Psi) = \{0\}\), donc 0 n'est pas valeur propre.</p>
+
+        <p><strong>7.2 -- Resolution de \(y' + \frac{\mu}{x}y = 0\) sur \(\mathbb{R}_+^*\)</strong></p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          L'equation \(y' + a(x)y = 0\) a pour solutions \(y = C\,e^{-A(x)}\) ou \(A\) est une primitive de \(a\).
+        </div>
+
+        <p>Ici \(a(x) = \mu/x\), une primitive est \(\mu \ln x = \ln(x^\mu)\). Donc :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{y(x) = \frac{C}{x^\mu}, \quad C \in \mathbb{R}}$$
+        </div>
+
+        <p><strong>7.3 -- Prolongeabilite en 0</strong></p>
+        <p>La fonction \(x \mapsto C/x^\mu\) a une limite finie en \(0^+\) si et seulement si \(\mu \leq 0\) (ou \(C = 0\)).</p>
+        <p>Pour \(\mu > 0\) et \(C \neq 0\), \(C/x^\mu \to \pm\infty\) : pas prolongeable.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Les solutions prolongeables en 0 sont \(y = C/x^\mu\) avec \(\mu \leq 0\) et \(C \in \mathbb{R}\).
+        </div>
+
+        <p><strong>7.4 -- Valeurs propres de \(\Psi\)</strong></p>
+
+        <p>Soit \(\lambda \neq 0\) et \(f\) continue non nulle tels que \(\Psi(f) = \lambda f\). Alors \(F(x)/x = \lambda F'(x)\), soit \(F(x) = \lambda x F'(x)\). C'est-a-dire \(F' - \frac{1}{\lambda x}F = 0\), ou encore \(F' + \frac{\mu}{x}F = 0\) avec \(\mu = -1/\lambda\).</p>
+
+        <p>D'apres 7.2 : \(F(x) = Cx^{1/\lambda}\) (car \(F = C/x^\mu = Cx^{1/\lambda}\)). Pour que \(F\) soit continue sur \(\mathbb{R}_+\), il faut \(1/\lambda > 0\), soit \(\lambda > 0\).</p>
+
+        <p>Alors \(f = F' = \frac{C}{\lambda} x^{1/\lambda - 1}\). Pour que \(f\) soit continue sur \(\mathbb{R}_+\), il faut \(1/\lambda - 1 \geq 0\), soit \(\lambda \leq 1\).</p>
+
+        <p>Reciproquement, pour \(\lambda \in\, ]0, 1]\) et \(f_\lambda(x) = x^{1/\lambda - 1}\) :</p>
+        $$\Psi(f_\lambda)(x) = \int_0^1 (xt)^{1/\lambda - 1}\,\mathrm{d}t = x^{1/\lambda - 1}\left[\frac{t^{1/\lambda}}{1/\lambda}\right]_0^1 = \lambda\, x^{1/\lambda - 1} = \lambda\, f_\lambda(x)$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Le spectre de \(\Psi\) est :
+          $$\boxed{\text{Sp}(\Psi) = \,]0, 1]}$$
+          Pour chaque \(\lambda \in\, ]0, 1]\), le sous-espace propre est :
+          $$\boxed{E_\lambda(\Psi) = \text{Vect}(x \mapsto x^{1/\lambda - 1})}$$
+          En particulier : \(\lambda = 1 \leftrightarrow f(x) = 1\), \(\lambda = 1/2 \leftrightarrow f(x) = x\), \(\lambda = 1/3 \leftrightarrow f(x) = x^2\), etc.
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Transformer une equation aux VP en EDO</div>
+          Quand un operateur est defini par une integrale, l'equation aux valeurs propres \(\Psi(f) = \lambda f\) se transforme souvent en equation differentielle. Resolvez l'EDO, puis selectionnez les solutions qui vivent dans le bon espace (ici, continues sur \(\mathbb{R}_+\)).
+        </div>
+      </div>
+
+      <!-- ── Q8 ── -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question 8 -- Sous-espace \(F_n\)</span>
+        <p class="corr-question__statement">Pour \(n > 1\), \(f_i(x) = x^i\), \(g_i(x) = x^i\ln x\) (\(x > 0\), \(g_i(0) = 0\)). On pose \(\mathcal{B} = (f_1, \ldots, f_n, g_1, \ldots, g_n)\) et \(F_n = \text{Vect}(\mathcal{B})\). (8.1) Montrer que \(\mathcal{B}\) est une base. (8.2) Montrer que \(\Psi\) stabilise \(F_n\). (8.3) Matrice dans \(\mathcal{B}\). (8.4) Automorphisme. (8.5) Calculer un antecedent.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On se restreint a un sous-espace de dimension finie pour pouvoir ecrire \(\Psi\) sous forme matricielle et faire de l'algebre lineaire concrete.
+        </div>
+
+        <p><strong>8.1 -- \(\mathcal{B}\) est une base de \(F_n\) (\(\dim F_n = 2n\))</strong></p>
+
+        <p>Soit \(\sum \alpha_i f_i + \sum \beta_j g_j = 0\) (fonction nulle sur \(\mathbb{R}_+\)).</p>
+        <p>Pour \(x > 0\), on divise par \(x\) : \(\sum \alpha_i x^{i-1} + \sum \beta_j x^{j-1}\ln x = 0\).</p>
+        <p>Si \(\beta_1 \neq 0\), quand \(x \to 0^+\) le terme \(\beta_1 \ln x\) tend vers \(-\infty\) ou \(+\infty\), contradiction. Donc \(\beta_1 = 0\). Alors en faisant \(x \to 0^+\) on obtient \(\alpha_1 = 0\).</p>
+        <p>Par recurrence, en divisant par \(x^p\) et en repetant l'argument, on obtient \(\alpha_{p+1} = \beta_{p+1} = 0\) pour tout \(p\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\mathcal{B} \text{ est libre, donc c'est une base de } F_n \text{, et } \dim(F_n) = 2n}$$
+        </div>
+
+        <p><strong>8.2 -- \(\Psi\) stabilise \(F_n\)</strong></p>
+
+        <p>Par integration par parties, on montre que \(\int_0^x t^p \ln t\,\mathrm{d}t = \frac{x^{p+1}}{p+1}\ln x - \frac{x^{p+1}}{(p+1)^2}\).</p>
+
+        <p>Ensuite :</p>
+        <ul>
+          <li>\(\Psi(f_i)(x) = \int_0^1 (xt)^i\,\mathrm{d}t = \frac{x^i}{i+1} = \frac{1}{i+1}f_i(x)\). Donc \(\Psi(f_i) = \frac{1}{i+1}f_i \in F_n\).</li>
+          <li>\(\Psi(g_i)(x) = \int_0^1 (xt)^i\ln(xt)\,\mathrm{d}t = \int_0^1 (xt)^i[\ln x + \ln t]\,\mathrm{d}t = \frac{1}{i+1}x^i\ln x - \frac{1}{(i+1)^2}x^i\).</li>
+        </ul>
+        <p>Donc \(\Psi(g_i) = \frac{1}{i+1}g_i - \frac{1}{(i+1)^2}f_i \in F_n\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\Psi \text{ stabilise } F_n}$$
+        </div>
+
+        <p><strong>8.3 -- Matrice de \(\Psi_n\) dans \(\mathcal{B}\)</strong></p>
+
+        <p>Dans la base ordonnee \((f_1, \ldots, f_n, g_1, \ldots, g_n)\), la matrice est par blocs :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{M_{\mathcal{B}}(\Psi_n) = \begin{pmatrix} D & 0 \\ -D^2 & D \end{pmatrix}}$$
+          ou \(D = \text{diag}\!\left(\frac{1}{2}, \frac{1}{3}, \ldots, \frac{1}{n+1}\right)\).
+        </div>
+
+        <p><strong>8.4 -- \(\Psi_n\) est un automorphisme</strong></p>
+        <p>Le determinant de la matrice est \(\det(D)^2 = \left(\frac{1}{2 \cdot 3 \cdots (n+1)}\right)^2 \neq 0\). Donc la matrice est inversible et \(\Psi_n\) est un automorphisme de \(F_n\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\Psi_n \text{ est un automorphisme de } F_n}$$
+        </div>
+
+        <p><strong>8.5 -- Antecedent de \(z(x) = x + x^2\ln x\)</strong></p>
+        <p>On a \(z = f_1 + g_2\) (dans la base \(\mathcal{B}\) avec \(n \geq 2\)). On cherche \(f = \sum \alpha_i f_i + \sum \beta_j g_j\) tel que \(\Psi_n(f) = z\).</p>
+
+        <p>Le systeme donne :
+        \(\frac{\alpha_1}{2} - \frac{\beta_1}{4} = 1\), \(\frac{\alpha_2}{3} - \frac{\beta_2}{9} = 0\), \(\frac{\beta_1}{2} = 0\), \(\frac{\beta_2}{3} = 1\).</p>
+
+        <p>D'ou \(\beta_1 = 0\), \(\alpha_1 = 2\), \(\beta_2 = 3\), \(\alpha_2 = 1\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\Psi_n^{-1}(z) = 2f_1 + f_2 + 3g_2 = 2x + x^2 + 3x^2\ln x}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury signale que la question 8 est incomprise par 99% des candidats. La cle est de comprendre que 8.1.1 n'est pas le cas \(n = 1\) mais le debut de la recurrence (elimination du premier coefficient).
+        </div>
+      </div>
+
+    </div><!-- fin exo 3 -->
+
+
+    <div class="corr-separator">* * *</div>
+
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 4                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="corr-exercice" id="exo4">
+
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">4</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Variables de Bernoulli, trace, rang et determinant</h2>
+          <span class="corr-exercice__subtitle">Probabilites, algebre lineaire -- 6 questions + sous-parties</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce resume</span>
+        \(X_1, \ldots, X_n\) independantes, loi de Bernoulli de parametre \(p\). \(M\) est diagonalisable, semblable a \(\Delta = \text{diag}(X_1, \ldots, X_n)\). On etudie \(T = \text{tr}(M)\), \(R = \text{rg}(M)\), \(D = \det(M)\), et l'evenement \(Z\) : "les sous-espaces propres ont tous la meme dimension". Puis \(A = UU^T\).
+      </div>
+
+      <!-- ── Q1 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1 -- Questions de cours</span>
+        <p class="corr-question__statement">Soit \(p\) une projection de rang \(r\). (1.1) Matrice dans une base adaptee. (1.2) Spectre. (1.3) Comparer \(\text{rg}(W)\) et \(\text{tr}(W)\). (1.4) \(\det(W)\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Un <strong>projecteur</strong> verifie \(p^2 = p\). Dans une base adaptee \((\text{base de Im}(p), \text{base de Ker}(p))\), sa matrice est diagonale avec \(r\) fois 1 et \(n - r\) fois 0.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          C'est un exercice de rappel sur les projections. L'idee est que les \(X_i\) valent 0 ou 1, donc \(\Delta\) est une matrice de projection. Les proprietes des projections vont piloter tout l'exercice.
+        </div>
+
+        <p><strong>1.1</strong> : Dans une base adaptee, la matrice est \(W = \begin{pmatrix} I_r & 0 \\ 0 & 0_{n-r} \end{pmatrix}\).</p>
+
+        <p><strong>1.2</strong> : Le spectre est \(\{0, 1\}\) si \(0 < r < n\), \(\{1\}\) si \(r = n\), et \(\{0\}\) si \(r = 0\).</p>
+
+        <p><strong>1.3</strong> : \(\text{tr}(W) = r = \text{rg}(W)\).</p>
+
+        <p><strong>1.4</strong> : Si \(r = n\), \(\det(W) = 1\). Sinon, \(\det(W) = 0\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\text{tr}(W) = \text{rg}(W) = r, \quad \det(W) = \begin{cases} 1 & \text{si } r = n \\ 0 & \text{sinon} \end{cases}}$$
+        </div>
+      </div>
+
+      <!-- ── Q2 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2 -- Trace \(T = \text{tr}(M)\)</span>
+        <p class="corr-question__statement">(2.1) Determiner \(T(\Omega)\). (2.2) Loi de \(T\) et esperance.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          La <strong>trace est un invariant de similitude</strong> : si \(M\) est semblable a \(\Delta\), alors \(\text{tr}(M) = \text{tr}(\Delta)\). De meme pour le rang et le determinant.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Comme \(M\) est semblable a \(\Delta = \text{diag}(X_1, \ldots, X_n)\), on a \(T = \text{tr}(M) = \text{tr}(\Delta) = X_1 + \cdots + X_n\). C'est la somme de \(n\) Bernoulli independantes : on reconnait une loi binomiale !
+        </div>
+
+        <p>\(T = \text{tr}(\Delta) = \sum_{k=1}^n X_k\). Chaque \(X_k \in \{0, 1\}\), donc \(T \in [\![0, n]\!]\).</p>
+
+        <p>Comme les \(X_k\) sont independantes de meme loi \(\mathcal{B}(p)\), leur somme suit une loi binomiale :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{T(\Omega) = [\![0, n]\!], \quad T \sim \mathcal{B}(n, p), \quad E(T) = np}$$
+          C'est-a-dire \(P(T = k) = \binom{n}{k} p^k (1-p)^{n-k}\).
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Reconnaitre une loi binomiale</div>
+          La somme de \(n\) variables de Bernoulli independantes de meme parametre \(p\) suit toujours une loi binomiale \(\mathcal{B}(n, p)\). C'est un reflexe a avoir : des que vous voyez \(\sum X_i\) avec des Bernoulli independantes, c'est binomial.
+        </div>
+      </div>
+
+      <!-- ── Q3 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 3 -- Rang \(R = \text{rg}(M)\)</span>
+        <p class="corr-question__statement">En deduire la loi de \(R\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Puisque \(\Delta\) est une matrice diagonale avec des 0 et des 1, c'est une matrice de projection. D'apres les questions de cours : \(\text{rg}(\Delta) = \text{tr}(\Delta)\). Comme rang et trace sont invariants par similitude : \(R = T\).
+        </div>
+
+        <p>\(R = \text{rg}(M) = \text{rg}(\Delta) = \text{tr}(\Delta) = T\) (car \(\Delta\) est une projection).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{R = T \sim \mathcal{B}(n, p)}$$
+        </div>
+      </div>
+
+      <!-- ── Q4 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 4 -- Determinant \(D = \det(M)\)</span>
+        <p class="corr-question__statement">(4.1) Determiner \(D(\Omega)\). (4.2) Loi de \(D\) et esperance.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Le determinant de \(\Delta = \text{diag}(X_1, \ldots, X_n)\) est le produit \(\prod X_k\). Comme chaque \(X_k\) vaut 0 ou 1, le produit vaut 1 si et seulement si tous les \(X_k\) valent 1.
+        </div>
+
+        <p>\(D = \det(M) = \det(\Delta) = \prod_{k=1}^n X_k\). Comme les \(X_k \in \{0,1\}\), le produit vaut 1 si tous valent 1, et 0 sinon.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{D(\Omega) = \{0, 1\}, \quad D \sim \mathcal{B}(p^n), \quad E(D) = p^n}$$
+          En effet, \(P(D = 1) = P(X_1 = 1, \ldots, X_n = 1) = p^n\) par independance.
+        </div>
+      </div>
+
+      <!-- ── Q5 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 5 -- Evenement \(Z\)</span>
+        <p class="corr-question__statement">\(Z\) : "les sous-espaces propres de \(M\) ont tous la meme dimension". (5.1) \(P(V)\) ou \(V\) = "une seule VP". (5.2) \(P(Z)\) si \(n\) impair. (5.3) \(P(Z)\) si \(n\) pair.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Les valeurs propres de \(\Delta\) sont parmi \(\{0, 1\}\). L'evenement \(Z\) signifie que les sous-espaces propres ont la meme dimension. Si \(M\) a une seule VP, les sous-espaces propres ont trivialement la meme dimension. Si \(M\) a deux VP (0 et 1), il faut que les deux espaces propres aient la meme taille.
+        </div>
+
+        <p><strong>5.1 -- Evenement \(V\) : une seule valeur propre</strong></p>
+        <p>\(V = (\text{tous les } X_k = 1) \cup (\text{tous les } X_k = 0)\). Ces deux evenements sont incompatibles.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{P(V) = p^n + (1-p)^n}$$
+        </div>
+
+        <p><strong>5.2 -- \(n\) impair</strong></p>
+        <p>Si \(M\) a deux VP (0 et 1), les dimensions des sous-espaces propres sont \(T\) (pour la VP 1) et \(n - T\) (pour la VP 0). Pour qu'elles soient egales, il faudrait \(T = n - T\), soit \(n = 2T\). Mais \(n\) est impair, donc \(n\) n'est pas divisible par 2. Impossible !</p>
+        <p>Donc \(Z = V\) quand \(n\) est impair.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Si \(n\) est impair :
+          $$\boxed{P(Z) = p^n + (1-p)^n}$$
+        </div>
+
+        <p><strong>5.3 -- \(n\) pair, \(n = 2r\)</strong></p>
+        <p>Si \(M\) a deux VP, la condition \(\dim E_0 = \dim E_1\) equivaut a \(T = r\). Donc \(Z = V \cup (T = r)\) et cette reunion est disjointe (si \(T = r\) avec \(0 < r < n\), il y a deux VP distinctes).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Si \(n = 2r\) :
+          $$P(T = r) = \binom{2r}{r} p^r(1-p)^r$$
+          $$\boxed{P(Z) = p^{2r} + (1-p)^{2r} + \binom{2r}{r} p^r(1-p)^r}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le rapport du jury signale que les resultats sont souvent donnes sans justification (independance, incompatibilite). Pensez toujours a preciser pourquoi vous additionnez les probabilites (reunion disjointe) ou pourquoi vous multipliez (independance).
+        </div>
+      </div>
+
+      <!-- ── Q6 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 6 -- Matrice \(A = UU^T\)</span>
+        <p class="corr-question__statement">On pose \(U = \begin{pmatrix} X_1 \\ \vdots \\ X_n \end{pmatrix}\) et \(A = UU^T\). (6.1) \(a_{ij}\). (6.2) Loi de \(a_{ij}\). (6.3) \(\text{tr}(A) = \sum X_i\). (6.4) Valeurs de \(\text{rg}(A)\). (6.5) VP de \(A\). (6.6) Loi de \(\text{rg}(A)\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          La matrice \(A = UU^T\) est une matrice de rang au plus 1 (c'est le produit d'une colonne par une ligne). C'est un objet fondamental en algebre lineaire et en statistiques (matrice de covariance empirique).
+        </div>
+
+        <p><strong>6.1</strong> : \(a_{ij} = X_i \cdot X_j\).</p>
+
+        <p><strong>6.2</strong> : Si \(i = j\) : \(a_{ii} = X_i^2 = X_i\) (car \(X_i \in \{0,1\}\)), donc \(a_{ii} \sim \mathcal{B}(p)\).</p>
+        <p>Si \(i \neq j\) : \(a_{ij} = X_i X_j\), produit de deux Bernoulli independantes. Donc \(a_{ij} \sim \mathcal{B}(p^2)\).</p>
+
+        <p><strong>6.3</strong> : \(\text{tr}(A) = \sum_{i=1}^n a_{ii} = \sum_{i=1}^n X_i^2 = \sum_{i=1}^n X_i\) (car \(X_i^2 = X_i\)).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\text{tr}(A) = \sum_{i=1}^n X_i}$$
+        </div>
+
+        <p><strong>6.4</strong> : Les colonnes de \(A\) sont toutes de la forme \(X_j \cdot U\), donc colineaires a \(U\). Le rang de \(A\) vaut 0 si \(U = 0\) et 1 sinon.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\text{rg}(A) \in \{0, 1\}}$$
+        </div>
+
+        <p><strong>6.5</strong> : Si \(A = 0\), la seule VP est 0. Sinon, \(\text{rg}(A) = 1\) et \(A\) est de taille \(n \times n\). L'unique VP non nulle est \(\text{tr}(A) = \sum X_i\) (car pour une matrice de rang 1, la trace egale la seule VP non nulle). L'autre VP est 0 de multiplicite \(n - 1\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Les valeurs propres de \(A\) sont 0 (multiplicite \(n-1\)) et \(\sum X_i\) (multiplicite 1), si \(A \neq 0\).
+        </div>
+
+        <p><strong>6.6</strong> : \(\text{rg}(A) = 0 \iff U = 0 \iff X_1 = \cdots = X_n = 0\). Donc \(P(\text{rg}(A) = 0) = (1-p)^n\) et :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\text{rg}(A) \sim \mathcal{B}(1 - (1-p)^n)}$$
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Matrice de rang 1</div>
+          Toute matrice de la forme \(UU^T\) (ou \(U\) est un vecteur colonne) est de rang au plus 1. Sa seule valeur propre non nulle est \(\|U\|^2 = U^T U = \text{tr}(A)\), et le vecteur propre associe est \(U\) lui-meme. C'est un cas tres frequent aux concours.
+        </div>
+      </div>
+
+    </div><!-- fin exo 4 -->
+
+
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

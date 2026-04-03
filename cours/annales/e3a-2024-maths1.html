@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E3A-Polytech 2024 -- Maths 1 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-body);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-body);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
+    .question ol li{margin-bottom:4px}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    .annale-warning{background:linear-gradient(135deg,rgba(255,170,0,.08),rgba(255,170,0,.03));border:1px solid rgba(255,170,0,.25);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.85rem;line-height:1.7;color:var(--ink-light)}
+    .annale-warning strong{color:var(--ink);font-weight:600}
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+      <a href="../../entrainement.html" class="nav__link">Entraînement</a>
+      <a href="../../revision.html" class="nav__link">Révision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">E3A-POLYTECH 2024</span>
+    </div>
+
+    <h1 class="course__title">E3A-Polytech 2024 -- Mathematiques 1</h1>
+
+    <div class="annale-warning">
+      <strong>Enonce reconstitue</strong> a partir des rapports de jury et analyses disponibles. Pour l'enonce officiel complet, consulter le PDF sur <a href="https://www.e3a-polytech.fr/" target="_blank" rel="noopener">e3a-polytech.fr</a>.
+    </div>
+
+    <div style="margin-bottom:var(--space-xl)">
+      <a href="e3a-2024-correction.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#E91E63;color:#fff;border-radius:10px;font-family:var(--font-body);font-size:.85rem;font-weight:600;text-decoration:none;transition:background .2s">
+        <span>&#9998;</span> Voir la correction detaillee
+      </a>
+    </div>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 1, filiere MP. Duree : 4 heures. Le sujet comporte 4 exercices independants : partie entiere et loi geometrique, serie entiere \(\sum \cos(n)/n\, x^n\), matrice verifiant \(A^\top = 3A^2 - A - I_n\), et produit de convolution.
+    </p>
+
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">E3A-Polytech</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Mathematiques 1</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2024</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Partie entiere, loi geometrique, series entieres, cos(n)/n, polynome annulateur, diagonalisabilite, convolution</span>
+      </div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#exo1"><span class="course__toc-num">1.</span> Partie entiere et loi geometrique</a></li>
+        <li class="course__toc-item"><a href="#exo2"><span class="course__toc-num">2.</span> Serie entiere cos(n)/n x^n</a></li>
+        <li class="course__toc-item"><a href="#exo3"><span class="course__toc-num">3.</span> Matrice verifiant A^T = 3A^2 - A - I</a></li>
+        <li class="course__toc-item"><a href="#exo4"><span class="course__toc-num">4.</span> Convolution</a></li>
+      </ol>
+    </nav>
+
+    <!-- EXERCICE 1 -->
+    <div class="annale-exercice" id="exo1">
+      <h2 class="annale-exercice__title">Exercice 1 -- Partie entiere et loi geometrique</h2>
+
+      <p class="annale-exercice__intro">Pour tout reel \(x\), on rappelle que la partie entiere de \(x\), notee \(\lfloor x \rfloor\), est l'unique entier relatif \(k\) verifiant \(k \leqslant x < k+1\). Soit \(X\) une variable aleatoire suivant une loi geometrique de parametre \(p\) avec \(p \in\, ]0,1[\). Le but de l'exercice est de determiner la loi de \(Y\), la variable aleatoire definie par \(Y = \left\lfloor \dfrac{X+1}{2} \right\rfloor\).</p>
+
+      <div class="question" id="Q1">
+        <span class="question__num">1.</span>
+        <p>Representer dans un repere orthonormal la fonction \(x \mapsto \left\lfloor \dfrac{x+1}{2} \right\rfloor\) sur l'intervalle \([-2, 2]\).</p>
+      </div>
+
+      <div class="question" id="Q2">
+        <span class="question__num">2.</span>
+        <p>Determiner \(Y(\Omega)\).</p>
+      </div>
+
+      <div class="question" id="Q3">
+        <span class="question__num">3.</span>
+        <p>Soit \(k\) un entier naturel non nul. Ecrire l'evenement \((Y = k)\) a l'aide d'evenements \((X = j)\) ou \(j\) est un entier naturel non nul.</p>
+      </div>
+
+      <div class="question" id="Q4">
+        <span class="question__num">4.</span>
+        <p>Determiner la loi de \(Y\).</p>
+      </div>
+    </div>
+
+    <!-- EXERCICE 2 -->
+    <div class="annale-exercice" id="exo2">
+      <h2 class="annale-exercice__title">Exercice 2 -- Serie entiere \(\sum \frac{\cos(n)}{n}\,x^n\)</h2>
+
+      <div class="question" id="Q1b">
+        <span class="question__num">1. Question preliminaire</span>
+        <p>En utilisant l'egalite \(\cos(2\theta) = 2\cos^2(\theta) - 1\) pour \(\theta \in \mathbf{R}\), demontrer que la suite \((\cos(n))_{n \in \mathbf{N}}\) ne converge pas vers \(0\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">On considere la serie entiere \(\displaystyle\sum_{n \geqslant 1} a_n\,x^n\) ou \(\forall n \in \mathbf{N}^*,\; a_n = \dfrac{\cos(n)}{n}\). On note \(R\) son rayon de convergence.</p>
+
+      <div class="question" id="Q2b">
+        <span class="question__num">2.</span>
+        <p>Montrer que \(R \geqslant 1\).</p>
+      </div>
+
+      <div class="question" id="Q3b">
+        <span class="question__num">3.</span>
+        <p>Prouver que la serie de terme general \(\cos(n)\) diverge.</p>
+      </div>
+
+      <div class="question" id="Q4b">
+        <span class="question__num">4.</span>
+        <p>En deduire la valeur de \(R\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">On note alors, pour tout \(x \in\, ]-R, R[\), \(f(x) = \displaystyle\sum_{n=1}^{+\infty} \frac{\cos(n)}{n}\,x^n\).</p>
+
+      <div class="question" id="Q5b">
+        <span class="question__num">5.</span>
+        <p>Donner le rayon de convergence et la somme de la serie entiere definie par \(\displaystyle\sum_{n=0}^{+\infty} e^{in}\,x^n\) ou \(i\) designe le nombre complexe usuel tel que \(i^2 = -1\).</p>
+      </div>
+
+      <div class="question" id="Q6b">
+        <span class="question__num">6.</span>
+        <p>En deduire une expression simple de \(f'(x)\) pour tout \(x \in\, ]-R, R[\).</p>
+      </div>
+
+      <div class="question" id="Q7b">
+        <span class="question__num">7.</span>
+        <p>Determiner alors une expression de la somme de la serie entiere proposee a l'aide de fonctions usuelles.</p>
+      </div>
+
+      <div class="question" id="Q8b">
+        <span class="question__num">8.</span>
+        <p>En deduire le rayon de convergence et la somme \(g(x)\) de la serie entiere \(\displaystyle\sum_{n \geqslant 1} \frac{\cos^2\!\left(\frac{n}{2}\right)}{n}\,x^n\).</p>
+      </div>
+    </div>
+
+    <!-- EXERCICE 3 -->
+    <div class="annale-exercice" id="exo3">
+      <h2 class="annale-exercice__title">Exercice 3 -- Matrice verifiant \(A^\top = 3A^2 - A - I_n\)</h2>
+
+      <p class="annale-exercice__intro">Soit \(n\) un entier naturel non nul. On considere une matrice \(A \in \mathcal{M}_n(\mathbf{R})\) telle que \(A^\top = 3A^2 - A - I_n\).</p>
+
+      <div class="question" id="Q1c">
+        <span class="question__num">1.</span>
+        <p>Demontrer que la matrice \(B = 3A^3 - A^2 - A\) est symetrique reelle.</p>
+      </div>
+
+      <div class="question" id="Q2c">
+        <span class="question__num">2.</span>
+        <p>Montrer que les valeurs propres de \(B\) sont reelles, positives ou nulles. On pourra etudier le signe de \(Y^\top B Y\) pour un vecteur \(Y\) de \(\mathbf{R}^n\).</p>
+      </div>
+
+      <div class="question" id="Q3c">
+        <span class="question__num">3.</span>
+        <p>Montrer que l'on a : \(A = 3(A^\top)^2 - A^\top - I_n\).</p>
+      </div>
+
+      <div class="question" id="Q4c">
+        <span class="question__num">4.</span>
+        <p>En deduire que le polynome \(P(X) = (3X^2 - X - 1)^2 - X^2\) est annulateur de la matrice \(A\).</p>
+      </div>
+
+      <div class="question" id="Q5c">
+        <span class="question__num">5.</span>
+        <p>Determiner un polynome unitaire annulateur de \(A^\top\).</p>
+      </div>
+
+      <div class="question" id="Q6c">
+        <span class="question__num">6.</span>
+        <p>Factoriser \(P\) en produit de polynomes irreductibles dans \(\mathbf{R}[X]\).</p>
+      </div>
+
+      <div class="question" id="Q7c">
+        <span class="question__num">7.</span>
+        <p>La matrice \(A\) est-elle inversible ?</p>
+      </div>
+
+      <div class="question" id="Q8c">
+        <span class="question__num">8.</span>
+        <p>Etablir que la matrice \(A\) est diagonalisable et preciser ses valeurs propres possibles.</p>
+      </div>
+
+      <div class="question" id="Q9c">
+        <span class="question__num">9.</span>
+        <p>Soit \(\lambda\) une valeur propre de \(A\) et \(V\) un vecteur propre associe. Montrer que \(V\) est aussi vecteur propre de \(A^\top\).</p>
+      </div>
+
+      <div class="question" id="Q10c">
+        <span class="question__num">10.</span>
+        <p>On note \(\alpha_1 = 1, \alpha_2, \alpha_3, \alpha_4\) les racines du polynome \(P\). On appelle \(\mathcal{L} = (L_1, L_2, L_3, L_4)\) la famille des polynomes de Lagrange associee.</p>
+        <ol>
+          <li><strong>10.1.</strong> Determiner \(L_1\) sous forme d'un produit de polynomes irreductibles de \(\mathbf{R}[X]\).</li>
+          <li><strong>10.2.</strong> Verifier que \(\mathcal{L}\) est une base de \(\mathbf{R}_3[X]\).</li>
+          <li><strong>10.3.</strong> Soit \(R \in \mathbf{R}_3[X]\). Determiner les coordonnees du polynome \(R\) dans la base \(\mathcal{L}\).</li>
+        </ol>
+      </div>
+
+      <div class="question" id="Q11c">
+        <span class="question__num">11. Etude des puissances de \(A\)</span>
+        <ol>
+          <li><strong>11.1.</strong> Soit \(k \in \mathbf{N}^*\). Exprimer le reste de la division euclidienne de \(X^k\) par le polynome \(P\) dans la base \(\mathcal{L}\). En deduire une expression de \(A^k\).</li>
+          <li><strong>11.2.</strong> Demontrer que la suite \((A^k)_{k \in \mathbf{N}^*}\) converge vers une matrice de projection. Exprimer cette matrice a l'aide de la matrice \(A\) et des \((L_i)\).</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- EXERCICE 4 -->
+    <div class="annale-exercice" id="exo4">
+      <h2 class="annale-exercice__title">Exercice 4 -- Convolution</h2>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">Questions preliminaires</h3>
+      </div>
+
+      <div class="question" id="Q1d">
+        <span class="question__num">1.</span>
+        <p>Demontrer qu'une fonction \(f\) de classe \(\mathcal{C}^1\) sur un segment \(J\) est lipschitzienne sur \(J\).</p>
+      </div>
+
+      <div class="question" id="Q2d">
+        <span class="question__num">2.</span>
+        <p>Demontrer qu'une fonction \(k\)-lipschitzienne sur un intervalle \(I\) est uniformement continue sur cet intervalle.</p>
+      </div>
+
+      <p class="annale-exercice__intro">Soient \(E\) l'espace vectoriel des fonctions continues par morceaux bornees sur \(\mathbf{R}\) et \(F\) l'espace vectoriel des fonctions continues par morceaux integrables sur \(\mathbf{R}\). On rappelle que \(\|g\|_1 = \displaystyle\int_{\mathbf{R}} |g(t)|\,\mathrm{d}t\) et \(\|f\|_\infty = \sup_{t \in \mathbf{R}} |f(t)|\). Soient \(g \in F\) et \(f \in E\).</p>
+
+      <div class="question" id="Q3d">
+        <span class="question__num">3.</span>
+        <p>Montrer que la fonction \(x \mapsto (f \star g)(x) = \displaystyle\int_{-\infty}^{+\infty} f(x-t)\,g(t)\,\mathrm{d}t\) est bien definie sur \(\mathbf{R}\).</p>
+      </div>
+
+      <div class="question" id="Q4d">
+        <span class="question__num">4.</span>
+        <p>Demontrer que \(f \star g = g \star f\).</p>
+      </div>
+
+      <div class="question" id="Q5d">
+        <span class="question__num">5.</span>
+        <p>On pose \(f_1 : x \in \mathbf{R} \mapsto \begin{cases} 1 & \text{si } x \in [-\frac{1}{2}, \frac{1}{2}] \\ 0 & \text{sinon}\end{cases}\).</p>
+        <ol>
+          <li><strong>5.1.</strong> Representer la fonction \(f_1\) dans un repere orthonormal.</li>
+          <li><strong>5.2.</strong> La fonction \(f_1\) est-elle continue sur \(\mathbf{R}\) ?</li>
+        </ol>
+      </div>
+
+      <div class="question" id="Q6d">
+        <span class="question__num">6. Etude de \(f_1 \star g\)</span>
+        <ol>
+          <li><strong>6.1.</strong> Montrer que \(f_1 \star g\) est bien definie sur \(\mathbf{R}\).</li>
+          <li><strong>6.2.</strong> Si \(g\) est \(k\)-lipschitzienne sur \(\mathbf{R}\), prouver que \(f_1 \star g\) est uniformement continue sur \(\mathbf{R}\).</li>
+          <li><strong>6.3.</strong> Demontrer que pour tout \(x\) reel : \((f_1 \star g)(x) = \displaystyle\int_{x-1/2}^{x+1/2} g(u)\,\mathrm{d}u\).</li>
+          <li><strong>6.4.</strong> Si \(g\) est continue sur \(\mathbf{R}\), prouver que \(f_1 \star g\) est de classe \(\mathcal{C}^1\) sur \(\mathbf{R}\) et calculer sa derivee.</li>
+        </ol>
+      </div>
+
+      <div class="question" id="Q7d">
+        <span class="question__num">7. Etude de \(f_1 \star f_1\)</span>
+        <ol>
+          <li><strong>7.1.</strong> Justifier que \(f_1 \star f_1\) existe.</li>
+          <li><strong>7.2.</strong> Determiner l'expression de \((f_1 \star f_1)(x)\) suivant les valeurs du reel \(x\).</li>
+          <li><strong>7.3.</strong> Representer la fonction \(f_1 \star f_1\) dans un repere orthonormal.</li>
+          <li><strong>7.4.</strong> La fonction \(f_1 \star f_1\) est-elle continue sur \(\mathbf{R}\) ?</li>
+        </ol>
+      </div>
+
+      <div class="question" id="Q8d">
+        <span class="question__num">8.</span>
+        <p>Soit \(\alpha > 0\). On note \(h_\alpha(x) = \dfrac{1}{\alpha}\,f_1\!\left(\dfrac{x}{\alpha}\right)\).</p>
+        <ol>
+          <li><strong>8.1.</strong> Representer graphiquement la fonction \(h_2\) dans un repere orthonormal.</li>
+          <li><strong>8.2.</strong> Verifier que \(\displaystyle\int_{-\infty}^{+\infty} h_\alpha(x)\,\mathrm{d}x = 1\).</li>
+          <li><strong>8.3.</strong> Soit \(x_0\) un point en lequel \(g\) est continue. Montrer que \(\lim_{\alpha \to 0} (h_\alpha \star g)(x_0) = g(x_0)\).</li>
+        </ol>
+      </div>
+
+      <div class="question" id="Q9d">
+        <span class="question__num">9. Etude d'une norme subordonnee</span>
+        <ol>
+          <li><strong>9.1.</strong> Montrer que pour tout \(h \in E\) : \(\|h \star g\|_\infty \leqslant \|g\|_1\,\|h\|_\infty\).</li>
+          <li><strong>9.2.</strong> Montrer que l'endomorphisme \(\Phi\) de \((E, \|\cdot\|_\infty)\) qui a tout \(h\) associe \(h \star g\) est continu.</li>
+          <li><strong>9.3.</strong> En deduire une majoration de \(|||\Phi|||\) (norme subordonnee de \(\Phi\)).</li>
+        </ol>
+      </div>
+
+      <div class="question" id="Q10d">
+        <span class="question__num">10.</span>
+        <p>On suppose que \(g\) est bornee, continue par morceaux et que \(f\) verifie : \(\exists A > 0\) tel que \(\forall x\) verifiant \(|x| \geqslant A\), \(f(x) = 0\). Montrer que \(f \star g\) est uniformement continue sur \(\mathbf{R}\).</p>
+      </div>
+    </div>
+
+    <nav class="course__nav">
+      <a href="e3a-2025-maths1.html" class="course__nav-link">
+        &larr; Precedent
+        <span>E3A-Polytech 2025 -- Maths 1</span>
+      </a>
+      <a href="e3a-2023-maths1.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>E3A-Polytech 2023 -- Maths 1</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>

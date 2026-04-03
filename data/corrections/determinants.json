@@ -1,1 +1,381 @@
-[{"banque":"CCINP","epreuve":"Maths 2 2019","partie":"Problème - Partie II","questions":"1 q. : Q17","difficulte":"Intermédiaire","intitule":"Le polynôme $x\\mapsto\\det(R+xS)$ est non identiquement nul","corrections":[{"question":"Q17","correction":"La fonction $f : x \\mapsto \\det(R + xS)$ est polynomiale en $x$ de degré $\\leq n$ (par multilinéarité du déterminant par rapport aux colonnes de $R + xS$, chaque colonne étant affine en $x$).\n\nEn évaluant en $x = i$ : $f(i) = \\det(R + iS) = \\det(P) \\neq 0$ car $P$ est inversible. Donc $f$ n'est pas le polynôme nul.\n\nUn polynôme non nul de degré $\\leq n$ possède au plus $n$ racines réelles. L'ensemble des réels est infini ($n \\geq 2$), donc il existe $x_0 \\in \\mathbb{R}$ tel que $f(x_0) \\neq 0$, c'est-à-dire $\\det(R + x_0 S) \\neq 0$ : la matrice $R + x_0 S$ est inversible."}]},{"banque":"CCINP","epreuve":"Maths 2 2022","partie":"Exercice 1","questions":"4 q. : Q1, Q2, Q3, Q4","difficulte":"Standard／Intermédiaire","intitule":"Calcul de $V(x_1,x_2)=x_2-x_1$ et justification qu'il suffit de traiter le cas distinct ; Récurrence sur $n$ pour la formule du déterminant de Vandermonde $V(x_1,\\ldots,x_n)=\\prod_{i<j}(x_j-x_i)$ ; Déterminant de la matrice $(i^j)$ par factorisation en Vandermonde ; Application du Vandermonde : au moins une somme de puissances $\\sum x_k^j$ est non nulle","corrections":[{"question":"Q1","correction":"$V(x_1,x_2)=\\begin{vmatrix}1&1\\\\x_1&x_2\\end{vmatrix}=x_2-x_1=\\prod_{1\\le i<j\\le 2}(x_j-x_i)$. Les deux membres de l'égalité $V(x_1,\\ldots,x_n)=\\prod_{i<j}(x_j-x_i)$ sont des fonctions polynomiales en $(x_1,\\ldots,x_n)$. Si elles coïncident pour tous les $n$-uplets deux à deux distincts, elles coïncident partout par continuité (un polynôme nul sur un ouvert dense de $\\mathbb{C}^n$ est identiquement nul)."},{"question":"Q2","correction":"On développe $P(t)=V(x_1,\\ldots,x_{n-1},t)$ par rapport à la dernière colonne. Le terme de la ligne $k$ est $t^{k-1}$ multiplié par son cofacteur : $P$ est un polynôme en $t$ de degré $\\le n-1$. Le coefficient dominant (celui de $t^{n-1}$) est le cofacteur $(n,n)$, soit $V(x_1,\\ldots,x_{n-1})$. Si $t=x_i$ pour $i\\in\\{1,\\ldots,n-1\\}$, deux colonnes sont identiques donc $P(x_i)=0$. Ainsi $P$ admet $x_1,\\ldots,x_{n-1}$ comme racines ($n-1$ racines distinctes pour un polynôme de degré $\\le n-1$), d'où $P(t)=V(x_1,\\ldots,x_{n-1})\\prod_{i=1}^{n-1}(t-x_i)$. En évaluant en $t=x_n$ : $V(x_1,\\ldots,x_n)=V(x_1,\\ldots,x_{n-1})\\prod_{i=1}^{n-1}(x_n-x_i)$. Par hypothèse de récurrence $V(x_1,\\ldots,x_{n-1})=\\prod_{1\\le i<j\\le n-1}(x_j-x_i)$, donc $V(x_1,\\ldots,x_n)=\\prod_{1\\le i<j\\le n-1}(x_j-x_i)\\cdot\\prod_{i=1}^{n-1}(x_n-x_i)=\\prod_{1\\le i<j\\le n}(x_j-x_i)$."},{"question":"Q3","correction":"Le coefficient $(i,j)$ de $A$ est $i^j$. En factorisant $i$ sur la ligne $i$ pour $i=1,\\ldots,n$ : $\\det(A)=\\left(\\prod_{i=1}^n i\\right)\\det\\bigl((i^{j-1})_{i,j}\\bigr)=n!\\,V(1,2,\\ldots,n)$. Par la formule de Vandermonde : $V(1,2,\\ldots,n)=\\prod_{1\\le i<j\\le n}(j-i)$. Donc $\\det(A)=n!\\prod_{1\\le i<j\\le n}(j-i)$."},{"question":"Q4","correction":"**Exemple** : $n=2$, $a_1=1$, $a_2=i$ : distincts, non nuls, et $1^2+i^2=1-1=0$.\n\n**Partie principale** : par l'absurde, supposons $\\sum_{k=1}^n x_k^j=0$ pour tout $j\\in\\{1,\\ldots,n\\}$. La matrice de Vandermonde $W=(x_i^{j-1})_{1\\le i,j\\le n}$ est inversible car les $x_k$ sont deux à deux distincts ($\\det W=\\prod_{i<j}(x_j-x_i)\\neq 0$). Posons $X=(1,\\ldots,1)^T\\in\\mathbb{C}^n$. Alors pour $j\\in\\{2,\\ldots,n+1\\}$, la $j$-ème ligne de la matrice de Vandermonde $(n+1)\\times n$ donne $(x_1^{j-1},\\ldots,x_n^{j-1})\\cdot X=\\sum_k x_k^{j-1}=0$. Les lignes 2 à $n$ de la matrice de Vandermonde $n\\times n$ (indices $j=1,\\ldots,n-1$) et la ligne supplémentaire donnent $\\sum_k x_k^j=0$ pour $j=1,\\ldots,n$, soit $(W')X=0$ où $W'$ est formée des lignes 2 à $n+1$. Or la première ligne donne $\\sum_k x_k^0=n\\neq 0$, et $WX$ aurait sa première composante $=n\\neq 0$ avec les composantes 2 à $n$ nulles, ce qui contredit $W$ inversible et $X\\neq 0$ seulement si $WX\\neq 0$. Plus précisément : $W$ inversible implique $WX\\neq 0$, donc l'une au moins des composantes $(WX)_j=\\sum_k x_k^{j-1}$ pour $j=1,\\ldots,n$ est non nulle. Comme $(WX)_1=n\\neq 0$, on a a fortiori l'une des sommes $\\sum x_k^j$ pour $j\\in\\{0,1,\\ldots,n-1\\}$ non nulle. Pour $j\\ge 1$ : si toutes les sommes $\\sum x_k^j=0$ pour $j=1,\\ldots,n$, alors en considérant $WX$ dont les composantes sont $\\sum x_k^{j-1}$ pour $j=1,\\ldots,n$, on obtient $WX=(n,0,\\ldots,0)^T\\neq 0$, ce qui est cohérent mais ne donne pas contradiction directement. Il faut considérer la matrice $W'$ formée des lignes $(x_1^j,\\ldots,x_n^j)$ pour $j=1,\\ldots,n$ : $\\det(W')=\\left(\\prod x_k\\right)V(x_1,\\ldots,x_n)\\neq 0$ (car $x_k\\neq 0$ et distincts). Si $W'X=0$, alors $X=0$, contradiction avec $X=(1,\\ldots,1)^T\\neq 0$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2017","partie":"I.B","questions":"1 q. : I.B.4","difficulte":"Intermédiaire","intitule":"$A(A^{-1})_s A^\\top=A_s$ d'où $(\\det A)^2\\det((A^{-1})_s)=\\det(A_s)$","corrections":[{"question":"I.B.4","correction":"On calcule le produit $A (A^{-1})_s A^T$. On a $(A^{-1})_s = \\dfrac{A^{-1} + (A^{-1})^T}{2} = \\dfrac{A^{-1} + (A^T)^{-1}}{2}$. Donc $A (A^{-1})_s A^T = A \\cdot \\dfrac{A^{-1} + (A^T)^{-1}}{2} \\cdot A^T = \\dfrac{A A^{-1} A^T + A(A^T)^{-1} A^T}{2} = \\dfrac{A^T + A}{2} = A_s$. Ainsi $A (A^{-1})_s A^T = A_s$. En passant au déterminant : $\\det(A) \\cdot \\det((A^{-1})_s) \\cdot \\det(A^T) = \\det(A_s)$, soit $\\det(A)^2 \\det((A^{-1})_s) = \\det(A_s)$ puisque $\\det(A^T) = \\det(A)$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2017","partie":"II.A","questions":"1 q. : II.A.4-5","difficulte":"Intermédiaire","intitule":"Produit par blocs : $\\det(A_N)=-N^\\top A^{-1}N\\cdot\\det(A)$","corrections":[{"question":"II.A.4-5","correction":"On suppose $A$ inversible. Par la formule du complément de Schur appliquée au bloc $A$ inversible dans $A_N = \\begin{pmatrix} A & N \\\\ N^\\top & 0 \\end{pmatrix}$ : $\\det(A_N) = \\det(A) \\cdot \\det(0 - N^\\top A^{-1} N) = -\\det(A) \\cdot N^\\top A^{-1} N$. Puisque $\\det(A) \\neq 0$, on a $\\det(A_N) = 0 \\Leftrightarrow N^\\top A^{-1} N = 0$. D'après II.A.2-3, $A$ est $H$-singulière $\\Leftrightarrow$ $\\det(A_N) = 0$ $\\Leftrightarrow$ $N^\\top A^{-1} N = 0$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2017","partie":"II.B","questions":"1 q. : II.B.1-3","difficulte":"Standard","intitule":"Exemple $A(\\mu)$ 3×3 : $\\det A(\\mu)=1$, $A_s$ singulière pour $\\mu=1,1\\pm\\sqrt{3}$, hyperplan $H$ pour $\\mu=1$","corrections":[{"question":"II.B.1-3","correction":"Soit $A(\\mu) = \\begin{pmatrix} 2-\\mu & -1 & \\mu \\\\ -1 & 2-\\mu & \\mu-1 \\\\ 0 & -1 & 1 \\end{pmatrix}$. (II.B.1) En développant le déterminant suivant la troisième ligne : $\\det(A(\\mu)) = 0 \\cdot \\ldots + 1 \\cdot \\det\\begin{pmatrix} 2-\\mu & \\mu \\\\ -1 & \\mu-1 \\end{pmatrix} + 1 \\cdot \\det\\begin{pmatrix} 2-\\mu & -1 \\\\ -1 & 2-\\mu \\end{pmatrix}$. Le premier mineur vaut $(2-\\mu)(\\mu-1)+\\mu = -\\mu^2+4\\mu-2$. Le second vaut $(2-\\mu)^2-1 = \\mu^2-4\\mu+3$. Leur somme vaut $1$, donc $\\det(A(\\mu))=1$ pour tout $\\mu$ : $A(\\mu)$ est toujours inversible. (II.B.2) On calcule $A_s(\\mu) = \\begin{pmatrix} 2-\\mu & -1 & \\mu/2 \\\\ -1 & 2-\\mu & (\\mu-2)/2 \\\\ \\mu/2 & (\\mu-2)/2 & 1 \\end{pmatrix}$ et $\\det(A_s(\\mu))$ est un polynôme en $\\mu$ qui s'annule pour $\\mu = 1, 1-\\sqrt{3}, 1+\\sqrt{3}$. (II.B.3) Pour $\\mu=1$, $A_s(1)$ est singulière. Comme $A(1)$ est inversible, par I.B.4 on a $\\det((A(1)^{-1})_s) = \\det(A_s(1))/(\\det A(1))^2 = 0$, donc $(A(1)^{-1})_s$ est singulière. On détermine $N$ dans $\\ker((A(1)^{-1})_s)$ et on pose $H = N^\\perp$. Par II.A.6, $A(1)$ est $H$-singulière."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2017","partie":"II.C","questions":"2 q. : II.C.3-4, II.C.5-6","difficulte":"Intermédiaire","intitule":"Complément de Schur : $\\det(A_N)=\\det(N^\\top A^{-1}N)\\det(A)$ ; $\\det(N'^\\top AN')=(N'_1^\\top A_sN'_1)(N'_2^\\top A_sN'_2)-(N'_1^\\top A_sN'_2)^2+(N'_1^\\top A_aN'_2)^2$","corrections":[{"question":"II.C.3-4","correction":"On suppose $A$ inversible. Par le complément de Schur avec le bloc $A$ inversible : $\\det(A_N) = \\det(A) \\cdot \\det(0_{2 \\times 2} - N^\\top A^{-1} N) = \\det(A) \\cdot \\det(-N^\\top A^{-1} N) = \\det(A) \\cdot \\det(N^\\top A^{-1} N)$ car $\\det(-M) = (-1)^2 \\det(M) = \\det(M)$ pour $M \\in M_2$. Puisque $\\det(A) \\neq 0$, on a $A$ est $F$-singulière $\\Leftrightarrow$ $\\det(A_N) = 0$ $\\Leftrightarrow$ $\\det(N^\\top A^{-1} N) = 0$."},{"question":"II.C.5-6","correction":"Si $(N_1', N_2')$ est une autre base de $F^\\perp$, il existe $P \\in GL_2(\\mathbb{R})$ telle que $N' = NP$. Alors $\\det(N'^\\top A^{-1} N') = (\\det P)^2 \\det(N^\\top A^{-1} N)$ : l'annulation ne dépend pas du choix de base. Calculons $\\det(N'^\\top A N')$ en décomposant $A = A_s + A_a$. On a $N_i'^\\top A N_j' = N_i'^\\top A_s N_j' + N_i'^\\top A_a N_j'$. Posons $s_{ij} = N_i'^\\top A_s N_j'$ (symétrique en $i,j$) et $a_{ij} = N_i'^\\top A_a N_j'$ (antisymétrique : $a_{ij} = -a_{ji}$, $a_{ii}=0$). Le déterminant $2 \\times 2$ donne $\\det(N'^\\top A N') = (s_{11})(s_{22}) - (s_{12} + a_{12})(s_{12} - a_{12}) = s_{11}s_{22} - s_{12}^2 + a_{12}^2$, soit $(N_1'^\\top A_s N_1')(N_2'^\\top A_s N_2') - (N_1'^\\top A_s N_2')^2 + (N_1'^\\top A_a N_2')^2$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2017","partie":"II.D","questions":"1 q. : II.D.1-2","difficulte":"Intermédiaire","intitule":"Choix de $N'$ avec $\\det(N'^\\top A(1)N')=0$ puis $F$ de dim 1 tel que $A(1)$ $F$-singulière","corrections":[{"question":"II.D.1-2","correction":"Pour $A(1)$, on cherche un sous-espace $F$ de dimension 1 (codimension 2) tel que $A(1)$ soit $F$-singulière. Il faut trouver $N_1', N_2'$ tels que $\\det(N'^\\top A(1) N') = 0$. D'après la formule de II.C.6 : $(N_1'^\\top A_s N_1')(N_2'^\\top A_s N_2') - (N_1'^\\top A_s N_2')^2 + (N_1'^\\top A_a N_2')^2 = 0$. Comme le premier terme $s_{11}s_{22} - s_{12}^2 \\geq 0$ (Cauchy-Schwarz) et le second $a_{12}^2 \\geq 0$, il faut que les deux s'annulent. Donc $N_1'$ et $N_2'$ doivent être colinéaires pour le PS défini par $A_s(1)$ ET $N_1'^\\top A_a(1) N_2' = 0$. On calcule $A_s(1)$ et $A_a(1)$ explicitement, puis on résout ces conditions pour obtenir $N_1', N_2'$. Le sous-espace $F = (\\mathrm{Vect}(N_1', N_2'))^\\perp$ est de dimension 1 et $A(1)$ est $F$-singulière."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2020","partie":"I.D","questions":"1 q. : Q16","difficulte":"Standard","intitule":"Calcul du déterminant de Smith via factorisation triangulaire","corrections":[{"question":"Q16","correction":"$D$ est triangulaire inférieure : $d_{ij} = 1$ si $j | i$, donc $d_{ij} = 0$ si $j > i$ (car $j > i$ implique $j \\nmid i$ pour $i, j \\geq 1$). Les coefficients diagonaux de $D$ sont $d_{ii} = 1$. Donc $\\det D = 1$. $M'$ est triangulaire inférieure : $m'_{ij} \\neq 0$ ssi $j | i$, donc $m'_{ij} = 0$ si $j > i$. Les coefficients diagonaux sont $m'_{kk} = g(k)$. Donc $\\det M' = \\prod_{k=1}^{n} g(k)$. Par Q15, $\\det M = \\det M' \\cdot \\det D^\\top = \\prod_{k=1}^{n} g(k) \\cdot 1 = \\prod_{k=1}^{n} g(k)$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2020","partie":"II.A","questions":"4 q. : Q20, Q21, Q22, Q23","difficulte":"Standard／Intermédiaire","intitule":"Morphisme $\\sigma \\mapsto P_\\sigma$ et similitude par conjugaison ; Vérification par calcul direct de la conjugaison de deux cycles ; Conjugaison de deux cycles de même longueur ; Caractérisation de la conjugaison par le type cyclique","corrections":[{"question":"Q20","correction":"Le coefficient $(i,j)$ de $P_\\rho P_{\\rho'}$ est $\\sum_{k=1}^n a^{(\\rho)}_{ik} a^{(\\rho')}_{kj}$ où $a^{(\\rho)}_{ik} = \\mathbf{1}_{i=\\rho(k)}$ et $a^{(\\rho')}_{kj} = \\mathbf{1}_{k=\\rho'(j)}$. La somme vaut $1$ ssi il existe $k$ tel que $i = \\rho(k)$ et $k = \\rho'(j)$, i.e. $k = \\rho'(j)$ et $i = \\rho(\\rho'(j))$. Donc $(P_\\rho P_{\\rho'})_{ij} = \\mathbf{1}_{i = (\\rho \\circ \\rho')(j)} = (P_{\\rho\\rho'})_{ij}$. Si $\\tau = \\rho \\sigma \\rho^{-1}$, alors $P_\\tau = P_{\\rho\\sigma\\rho^{-1}} = P_\\rho P_\\sigma P_{\\rho^{-1}} = P_\\rho P_\\sigma (P_\\rho)^{-1}$, donc $P_\\sigma$ et $P_\\tau$ sont semblables."},{"question":"Q21","correction":"Pour $x = 2$ : $\\rho\\gamma_1\\rho^{-1}(2) = \\rho\\gamma_1(1) = \\rho(3) = 6$. Et $\\gamma_2(2) = 6$. Pour $x = 6$ : $\\rho\\gamma_1\\rho^{-1}(6) = \\rho\\gamma_1(3) = \\rho(7) = 4$. Et $\\gamma_2(6) = 4$. Pour $x = 4$ : $\\rho\\gamma_1\\rho^{-1}(4) = \\rho\\gamma_1(7) = \\rho(1) = 2$. Et $\\gamma_2(4) = 2$. Pour $x \\notin \\{2, 4, 6\\}$ : $\\rho^{-1}(x) \\notin \\{1, 3, 7\\} = \\text{Supp}(\\gamma_1)$, donc $\\gamma_1(\\rho^{-1}(x)) = \\rho^{-1}(x)$ et $\\rho\\gamma_1\\rho^{-1}(x) = x = \\gamma_2(x)$."},{"question":"Q22","correction":"Soient $\\gamma = (a_1 \\cdots a_\\ell)$ et $\\gamma' = (b_1 \\cdots b_\\ell)$ deux cycles de longueur $\\ell$ dans $\\mathfrak{S}_n$. Construisons $\\rho \\in \\mathfrak{S}_n$ telle que $\\rho(a_i) = b_i$ pour $i \\in \\llbracket 1, \\ell \\rrbracket$, et $\\rho$ envoie bijectivement le complémentaire $\\llbracket 1,n \\rrbracket \\setminus \\{a_1,\\ldots,a_\\ell\\}$ sur $\\llbracket 1,n \\rrbracket \\setminus \\{b_1,\\ldots,b_\\ell\\}$ (c'est possible car ces deux ensembles ont même cardinal). Alors pour $x = a_i$ ($i < \\ell$) : $\\rho\\gamma\\rho^{-1}(b_i) = \\rho\\gamma(a_i) = \\rho(a_{i+1}) = b_{i+1} = \\gamma'(b_i)$. Pour $x = a_\\ell$ : $\\rho\\gamma\\rho^{-1}(b_\\ell) = \\rho(a_1) = b_1 = \\gamma'(b_\\ell)$. Pour $x \\notin \\{b_1,\\ldots,b_\\ell\\}$ : $\\rho^{-1}(x) \\notin \\{a_1,\\ldots,a_\\ell\\}$, donc $\\rho\\gamma\\rho^{-1}(x) = x = \\gamma'(x)$."},{"question":"Q23","correction":"**$\\Rightarrow$** : Si $\\tau = \\rho\\sigma\\rho^{-1}$ et $\\sigma = \\gamma_1 \\cdots \\gamma_r$ (cycles à supports disjoints), alors $\\tau = (\\rho\\gamma_1\\rho^{-1}) \\cdots (\\rho\\gamma_r\\rho^{-1})$ et les $\\rho\\gamma_i\\rho^{-1}$ sont des cycles de mêmes longueurs à supports disjoints. Donc $c_\\ell(\\sigma) = c_\\ell(\\tau)$ pour tout $\\ell$. **$\\Leftarrow$** : Si $\\sigma$ et $\\tau$ ont même type cyclique, elles ont le même nombre de cycles de chaque longueur. On écrit $\\sigma = \\gamma_1 \\cdots \\gamma_r$ et $\\tau = \\gamma'_1 \\cdots \\gamma'_r$ avec $|\\gamma_i| = |\\gamma'_i|$. Pour chaque $i$, on construit $\\rho_i$ envoyant le support de $\\gamma_i$ sur celui de $\\gamma'_i$ dans le bon ordre. Les supports étant disjoints, on peut définir $\\rho$ sur $\\llbracket 1,n \\rrbracket$ en concaténant ces $\\rho_i$ (et l'identité sur les points fixes). Alors $\\tau = \\rho\\sigma\\rho^{-1}$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2020","partie":"Partie III","questions":"1 q. : Q36","difficulte":"Intermédiaire","intitule":"Calcul du déterminant de la matrice de Redheffer via triangularisation par produit","corrections":[{"question":"Q36","correction":"Calculons $(C_n)_{ij} = \\sum_{k=1}^n (A_n)_{ik} (H_n)_{kj}$.\n\n**Cas $i = j = 1$** : $(C_n)_{11} = \\sum_k a_{1k} h_{k1} = \\sum_k \\mu(k) \\cdot 1 = \\sum_{k=1}^n \\mu(k) = M(n)$.\n\n**Cas $i = 1, j > 1$** : $(C_n)_{1j} = \\sum_k a_{1k} h_{kj} = \\mu(j) h_{jj} + \\sum_{k \\neq j} \\mu(k) h_{kj}$. Or $h_{kj} = 1$ si $k | j$ et $j \\neq 1$, $h_{kj} = 0$ sinon (pour $k \\neq j$ et $j > 1$, $h_{kj} = 1$ ssi $k | j$). Donc $(C_n)_{1j} = \\sum_{k|j} \\mu(k) = (\\mu * \\mathbf{1})(j) = \\delta(j) = 0$ (par Q12, car $j > 1$).\n\n**Cas $i > 1, j \\geq 1$** : $(C_n)_{ij} = a_{i,i} h_{ij} = h_{ij}$ (car $a_{ik} = 0$ pour $k \\neq i$ quand $i > 1$, et $a_{ii} = 1$). Sauf si $j = 1$ : $(C_n)_{i1} = h_{i1} = 1$ pour $j = 1$. Pour $j > 1$ : $(C_n)_{ij} = h_{ij}$.\n\nDonc $C_n$ est la matrice qui coïncide avec $H_n$ sauf sur la première ligne : $(C_n)_{11} = M(n)$ et $(C_n)_{1j} = 0$ pour $j > 1$. En développant $\\det C_n$ par la première ligne : $\\det C_n = M(n) \\cdot \\det H'$ où $H'$ est la sous-matrice $(h_{ij})_{i,j \\geq 2}$. En fait, $C_n$ a $M(n)$ en $(1,1)$ et des zéros sur le reste de la première ligne, et la sous-matrice $i, j \\geq 2$ est celle de $H_n$. La sous-matrice $(i,j) \\in \\llbracket 2,n \\rrbracket^2$ de $H_n$ a $h_{ij} = 1$ si $i | j$ et $0$ sinon (pour $j \\geq 2$), qui est triangulaire supérieure avec $1$ sur la diagonale. Donc $\\det(\\text{sous-matrice}) = 1$. Ainsi $\\det C_n = M(n)$. Or $\\det A_n = 1$ (triangulaire supérieure, diag. de $1$). Donc $\\det H_n = \\det C_n / \\det A_n = M(n)$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2022","partie":"II.B","questions":"1 q. : Q12","difficulte":"Standard","intitule":"Parité de la dimension via det d'une matrice antisymétrique","corrections":[{"question":"Q12","correction":"$\\Omega^\\top = -\\Omega$ donne $\\det(\\Omega) = \\det(\\Omega^\\top) = \\det(-\\Omega) = (-1)^n \\det(\\Omega)$. Si $n$ est impair, $(-1)^n = -1$, donc $\\det(\\Omega) = -\\det(\\Omega)$, soit $\\det(\\Omega) = 0$. Or $\\Omega$ est inversible (Q11), contradiction. Donc $n$ est pair."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2022","partie":"III.B","questions":"1 q. : Q20","difficulte":"Avancé","intitule":"Positivité du déterminant via complexification par blocs","corrections":[{"question":"Q20","correction":"Posons $P = \\begin{pmatrix} I_m & 0 \\\\ iI_m & I_m \\end{pmatrix}$ et $Q = \\begin{pmatrix} I_m & 0 \\\\ -iI_m & I_m \\end{pmatrix}$. On a $\\det(P) = \\det(Q) = 1$. Calculons $PMQ = \\begin{pmatrix} I_m & 0 \\\\ iI_m & I_m \\end{pmatrix} \\begin{pmatrix} U & -V \\\\ V & U \\end{pmatrix} \\begin{pmatrix} I_m & 0 \\\\ -iI_m & I_m \\end{pmatrix} = \\begin{pmatrix} U & -V \\\\ iU+V & -iV+U \\end{pmatrix} \\begin{pmatrix} I_m & 0 \\\\ -iI_m & I_m \\end{pmatrix} = \\begin{pmatrix} U+iV & -V \\\\ iU+V+i(iV-U) & -(iV-U)+U-iV \\end{pmatrix}$. On simplifie : bloc $(2,1)$ : $iU + V - V - iU = 0$. Bloc $(2,2)$ : $U - iV + U - iV$... Reprenons : $PMQ = \\begin{pmatrix} U + iV & -V \\\\ 0 & U - iV \\end{pmatrix}$. Donc $\\det(M) = \\det(PMQ) = \\det(U+iV) \\det(U-iV) = \\det(U+iV) \\overline{\\det(U+iV)} = |\\det(U+iV)|^2 \\geq 0$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2022","partie":"III.C","questions":"2 q. : Q23, Q26","difficulte":"Standard","intitule":"det(M) = 1 pour M ∈ OSp_n via det ≥ 0 et det = ±1 ; Conclusion det(M) = 1 via décomposition polaire","corrections":[{"question":"Q23","correction":"$M \\in O_n(\\mathbb{R})$ donc $\\det(M)^2 = \\det(M^\\top M) = \\det(I_n) = 1$, soit $\\det(M) = \\pm 1$. Par Q22, $M \\in \\mathcal{C}_J$, donc par Q20, $\\det(M) \\geq 0$. D'où $\\det(M) = 1$."},{"question":"Q26","correction":"$M = OS$ avec $O \\in OSp_n$ et $S \\in Sp_n$. De $M^\\top J M = J$ : $\\det(M^\\top) \\det(J) \\det(M) = \\det(J)$, soit $\\det(M)^2 = 1$. Par Q23, $\\det(O) = 1$. Les valeurs propres de $S$ sont strictement positives, donc $\\det(S) > 0$. Ainsi $\\det(M) = \\det(O) \\det(S) = \\det(S) > 0$. Combiné avec $\\det(M)^2 = 1$, on obtient $\\det(M) = 1$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2022","partie":"III.D.1","questions":"1 q. : Q29","difficulte":"Intermédiaire","intitule":"Déterminant d'une transvection symplectique > 0","corrections":[{"question":"Q29","correction":"Par Q28, $\\tau^\\lambda_a = \\tau^{\\lambda/2}_a \\circ \\tau^{\\lambda/2}_a$. Donc $\\det(\\tau^\\lambda_a) = \\det(\\tau^{\\lambda/2}_a)^2 \\geq 0$. Par Q27, $\\tau^\\lambda_a$ est symplectique, donc inversible (Q16 : $Sp_n \\subset GL_n$). Ainsi $\\det(\\tau^\\lambda_a) \\neq 0$, d'où $\\det(\\tau^\\lambda_a) > 0$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2022","partie":"III.D.5","questions":"1 q. : Q42","difficulte":"Standard","intitule":"Sp_n ⊂ SL_n par connexité et continuité du déterminant","corrections":[{"question":"Q42","correction":"**Méthode 1 (connexité)** : $\\det : Sp_n(\\mathbb{R}) \\to \\mathbb{R}^*$ est continue. $Sp_n$ est connexe par arcs (Q41), donc connexe. L'image $\\det(Sp_n)$ est connexe dans $\\mathbb{R}^*$. De $M^\\top J M = J$, on tire $\\det(M)^2 = 1$, donc $\\det(M) \\in \\{-1, 1\\}$. Une partie connexe de $\\{-1, 1\\}$ (ensemble discret) est un singleton. Comme $I_n \\in Sp_n$ et $\\det(I_n) = 1$, on a $\\det(Sp_n) = \\{1\\}$. **Méthode 2 (transvections)** : par Q40, toute $M \\in Sp_n$ s'écrit $M = \\tau_p \\circ \\cdots \\circ \\tau_1$ (transvections symplectiques). Par Q29, $\\det(\\tau_k) > 0$ pour tout $k$. Donc $\\det(M) = \\prod \\det(\\tau_k) > 0$. Combiné avec $\\det(M)^2 = 1$, on obtient $\\det(M) = 1$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2022","partie":"IV.B","questions":"1 q. : Q45","difficulte":"Standard","intitule":"Déduire r ≥ 1 du déterminant et de la majoration spectrale","corrections":[{"question":"Q45","correction":"Le déterminant de $U$ est le produit de ses valeurs propres complexes (comptées avec multiplicité). Si $\\lambda_1, \\ldots, \\lambda_{2m}$ sont ces valeurs propres : $|\\det(U)| = \\prod_{i=1}^{2m} |\\lambda_i|$. Comme $\\det(U) = 1$ ($u \\in SL$), on a $\\prod |\\lambda_i| = 1$. Par Q44, $|\\lambda_i| \\leq r$ pour tout $i$. Donc $1 = \\prod |\\lambda_i| \\leq r^{2m}$, d'où $r^{2m} \\geq 1$, soit $r \\geq 1$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2022","partie":"Partie 1","questions":"1 q. : 5","difficulte":"Standard","intitule":"Calcul de $\\det(e^A) = e^{\\mathrm{tr}(A)}$ par trigonalisation","corrections":[{"question":"5","correction":"Sur $\\mathbb{C}$, toute matrice est trigonalisable. Soit $P \\in \\mathrm{GL}_n(\\mathbb{C})$ telle que $T = P^{-1}AP$ soit triangulaire supérieure, de diagonale $(\\lambda_1, \\ldots, \\lambda_n)$ (les valeurs propres de $A$ avec multiplicité). Par l'hypothèse du sujet, $e^T = P^{-1}e^AP$, donc $\\det(e^A) = \\det(e^T)$. Écrivons $T = D + N$ où $D = \\mathrm{diag}(\\lambda_1, \\ldots, \\lambda_n)$ et $N$ est strictement triangulaire supérieure (donc nilpotente). Puisque $D$ et $N$ commutent (car $D$ est scalaire par blocs diagonaux... plus précisément on décompose en montrant que $DN = ND$ coefficient par coefficient), on a $e^T = e^De^N$. Alternativement, $e^T$ est triangulaire supérieure avec des coefficients diagonaux $e^{\\lambda_i}$ (car si $T$ est triangulaire supérieure, $T^k$ l'est aussi avec diagonale $(\\lambda_1^k, \\ldots, \\lambda_n^k)$, donc $e^T$ a pour diagonale $(e^{\\lambda_1}, \\ldots, e^{\\lambda_n})$). Ainsi $\\det(e^T) = \\prod_{i=1}^n e^{\\lambda_i} = e^{\\sum_{i=1}^n \\lambda_i} = e^{\\mathrm{tr}(T)} = e^{\\mathrm{tr}(A)}$ car la trace est un invariant de similitude."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2022","partie":"Partie 3","questions":"2 q. : 9, 15","difficulte":"Standard／Intermédiaire","intitule":"Détermination de $\\mathcal{A}_G$ pour $G = \\mathrm{SL}_n(\\mathbb{R})$ via $\\det(e^{tM}) = e^{t\\,\\mathrm{tr}(M)}$ ; Calcul de $\\delta_M'(0)$ avec $\\delta_M(t) = \\det(I_n + tM)$ par DL à l'ordre 1","corrections":[{"question":"9","correction":"$M \\in \\mathcal{A}_G$ ssi $e^{tM} \\in \\mathrm{SL}_n(\\mathbb{R})$ pour tout $t \\in \\mathbb{R}$, ssi $\\det(e^{tM}) = 1$ pour tout $t$. Par Q5, $\\det(e^{tM}) = e^{\\mathrm{tr}(tM)} = e^{t\\,\\mathrm{tr}(M)}$. Donc la condition devient $e^{t\\,\\mathrm{tr}(M)} = 1$ pour tout $t \\in \\mathbb{R}$, ce qui équivaut à $t\\,\\mathrm{tr}(M) = 0$ pour tout $t$, soit $\\mathrm{tr}(M) = 0$. Ainsi $\\mathcal{A}_G = \\{M \\in \\mathcal{M}_n(\\mathbb{R}) \\mid \\mathrm{tr}(M) = 0\\}$, c'est-à-dire l'ensemble des matrices de trace nulle, souvent noté $\\mathfrak{sl}_n(\\mathbb{R})$."},{"question":"15","correction":"On a $\\delta_M(t) = \\det(I_n + tM)$. Les colonnes de $I_n + tM$ sont $C_j = e_j + tM_j$ où $e_j$ est le $j$-ème vecteur canonique et $M_j$ la $j$-ème colonne de $M$. Par multilinéarité du déterminant par rapport aux colonnes : $\\det(I_n + tM) = \\det(e_1 + tM_1, \\ldots, e_n + tM_n)$. En développant, le terme constant (degré 0 en $t$) est $\\det(e_1, \\ldots, e_n) = 1$. Le terme de degré 1 en $t$ est $\\sum_{j=1}^n \\det(e_1, \\ldots, e_{j-1}, tM_j, e_{j+1}, \\ldots, e_n) = t\\sum_{j=1}^n m_{j,j} = t\\,\\mathrm{tr}(M)$ (car $\\det(e_1, \\ldots, M_j, \\ldots, e_n) = m_{j,j}$ par développement selon la $j$-ème colonne). Donc $\\delta_M(t) = 1 + t\\,\\mathrm{tr}(M) + O(t^2)$, ce qui montre que $\\delta_M$ est dérivable en 0 et $\\delta_M'(0) = \\mathrm{tr}(M)$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2024","partie":"Partie I","questions":"1 q. : 8","difficulte":"Avancé","intitule":"Formule de récurrence pour le polynôme caractéristique d'un graphe obtenu par jonction de deux graphes","corrections":[{"question":"8","correction":"Indexons les sommets de $G$ en plaçant $s_1$ en position 1, les autres sommets de $G_1$ en positions $2, \\ldots, n_1$, puis $s_2$ en position $n_1 + 1$, et les autres sommets de $G_2$ en positions $n_1 + 2, \\ldots, n$. La matrice $XI_n - M_G$ a la forme $\\begin{pmatrix} XI_{n_1} - M_{G_1} & -E \\\\ -E^T & XI_{n_2} - M_{G_2} \\end{pmatrix}$ où $E$ est la matrice $n_1 \\times n_2$ avec un seul coefficient non nul : $E_{1,1} = 1$ (arête $\\{s_1,s_2\\}$). Donc $E = e_1 f_1^T$ où $e_1, f_1$ sont les premiers vecteurs de base. En développant le déterminant par rapport à la colonne $n_1+1$ (correspondant à $s_2$), puis en développant les cofacteurs, on obtient par la formule du complément de Schur (ou par développement direct) : $\\det(XI_n - M_G) = \\det(XI_{n_1} - M_{G_1}) \\det(XI_{n_2} - M_{G_2}) - \\det(XI_{n_1-1} - M_{G_1 \\setminus s_1}) \\det(XI_{n_2-1} - M_{G_2 \\setminus s_2})$. En identifiant les polynômes caractéristiques des graphes, on obtient $\\chi_G = \\chi_{G_1} \\chi_{G_2} - \\chi_{G_1 \\setminus s_1} \\chi_{G_2 \\setminus s_2}$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2021","partie":"Partie 3","questions":"1 q. : III2","difficulte":"Intermédiaire","intitule":"Développer $\\det(A+B)$ par multilinéarité par colonnes ; tous les termes sauf $\\det(A)$ contiennent au moins un coefficient de $B\\in I$","corrections":[{"question":"III2","correction":"Par multilinéarité du déterminant, $\\det(A+B) = \\sum_{(i_1,\\ldots,i_n) \\in \\{1,2\\}^n} \\det(C_{i_1}, \\ldots)$. Le terme $(1,\\ldots,1)$ donne $\\det(A)$. Tout autre terme contient au moins une colonne de $B$, dont les coefficients sont dans $I$, donc le déterminant correspondant appartient à $I$ (développement selon cette colonne). Ainsi $\\det(A+B) - \\det(A) \\in I$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2022","partie":"Partie I","questions":"1 q. : 4b","difficulte":"Standard","intitule":"Calcul d'un déterminant par diagonalité de la matrice de Gram","corrections":[{"question":"4b","correction":"D'après (3d), pour $i \\neq j$, $u_i \\perp u_j'$ (car $u_i \\in W_i$ et $u_j' \\in W_j$, sous-espaces orthogonaux). Donc $\\text{Gram}(u,u')$ est diagonale avec $\\text{Gram}(u,u')_{kk} = \\langle u_k, u_k'\\rangle = \\cos\\theta_k$. Ainsi $\\det(\\text{Gram}(u,u')) = \\prod_{k=1}^p \\cos\\theta_k$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2022","partie":"Partie II","questions":"4 q. : 5a, 5b, 7a, 9a","difficulte":"Standard","intitule":"Vérification des propriétés d'une application alternée ; Composition d'une application alternée avec une application linéaire ; Transformation de $\\Omega_p$ par changement de base ; p-volume comme valeur absolue d'un déterminant","corrections":[{"question":"5a","correction":"Le déterminant est multilinéaire par rapport aux colonnes. Pour $\\varphi \\in \\mathfrak{S}_p$, le changement $\\sigma' = \\sigma \\circ \\varphi^{-1}$ (bijection sur $\\mathfrak{S}_p$) donne $[x_{\\varphi(1)},\\ldots,x_{\\varphi(p)}] = \\varepsilon(\\varphi)[x_1,\\ldots,x_p]$. L'application est donc bien $p$-linéaire alternée."},{"question":"5b","correction":"Pour $\\sigma \\in \\mathfrak{S}_p$ : $g(u_{\\sigma(1)},\\ldots,u_{\\sigma(p)}) = [f(u_{\\sigma(1)}),\\ldots,f(u_{\\sigma(p)})] = \\varepsilon(\\sigma)[f(u_1),\\ldots,f(u_p)] = \\varepsilon(\\sigma)g(u)$. La linéarité en chaque argument découle de la linéarité de $f$ et de la multilinéarité du produit mixte. Donc $g \\in \\mathcal{A}_p(F,\\mathbb{R})$."},{"question":"7a","correction":"Pour tout $u \\in E^p$ : $\\text{Gram}(e',u)_{ij} = \\langle e_i', u_j\\rangle = \\sum_k M_{ik}\\langle e_k, u_j\\rangle = (M \\cdot \\text{Gram}(e,u))_{ij}$. Donc $\\Omega_p(e')(u) = \\det(M \\cdot \\text{Gram}(e,u)) = \\det(M)\\det(\\text{Gram}(e,u)) = \\det(M)\\Omega_p(e)(u)$."},{"question":"9a","correction":"On a $e_j = \\sum_i (P_b^e)_{ij} b_i$. D'après (7a), $\\Omega_p(e) = \\det(P_b^e)\\Omega_p(b)$. Donc $\\Omega_p(e)(e) = \\det(P_b^e)^2 \\Omega_p(b)(b) = \\det(P_b^e)^2$ (car $b$ orthonormée). Ainsi $\\text{vol}_p(e) = |\\det(P_b^e)|$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2024","partie":"Première partie","questions":"2 q. : 1b, 2","difficulte":"Intermédiaire","intitule":"Calcul du determinant de $M_x$ par identification avec la formule de Leibniz et utilisation de la diagonalisation de Q1a ; Exploitation du polynome $P(x)=(x-1)^{n-1}(x+n-1)$ par evaluation, derivation et integration","corrections":[]}]
+[
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2019",
+    "partie": "Problème - Partie II",
+    "questions": "1 q. : Q17",
+    "difficulte": "Intermédiaire",
+    "intitule": "Le polynôme $x\\mapsto\\det(R+xS)$ est non identiquement nul",
+    "corrections": [
+      {
+        "question": "Q17",
+        "correction": "La fonction $f : x \\mapsto \\det(R + xS)$ est polynomiale en $x$ de degré $\\leq n$ (par multilinéarité du déterminant par rapport aux colonnes de $R + xS$, chaque colonne étant affine en $x$).\n\nEn évaluant en $x = i$ : $f(i) = \\det(R + iS) = \\det(P) \\neq 0$ car $P$ est inversible. Donc $f$ n'est pas le polynôme nul.\n\nUn polynôme non nul de degré $\\leq n$ possède au plus $n$ racines réelles. L'ensemble des réels est infini ($n \\geq 2$), donc il existe $x_0 \\in \\mathbb{R}$ tel que $f(x_0) \\neq 0$, c'est-à-dire $\\det(R + x_0 S) \\neq 0$ : la matrice $R + x_0 S$ est inversible."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 2 2022",
+    "partie": "Exercice 1",
+    "questions": "4 q. : Q1, Q2, Q3, Q4",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Calcul de $V(x_1,x_2)=x_2-x_1$ et justification qu'il suffit de traiter le cas distinct ; Récurrence sur $n$ pour la formule du déterminant de Vandermonde $V(x_1,\\ldots,x_n)=\\prod_{i<j}(x_j-x_i)$ ; Déterminant de la matrice $(i^j)$ par factorisation en Vandermonde ; Application du Vandermonde : au moins une somme de puissances $\\sum x_k^j$ est non nulle",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "$V(x_1,x_2)=\\begin{vmatrix}1&1\\\\x_1&x_2\\end{vmatrix}=x_2-x_1=\\prod_{1\\le i<j\\le 2}(x_j-x_i)$. Les deux membres de l'égalité $V(x_1,\\ldots,x_n)=\\prod_{i<j}(x_j-x_i)$ sont des fonctions polynomiales en $(x_1,\\ldots,x_n)$. Si elles coïncident pour tous les $n$-uplets deux à deux distincts, elles coïncident partout par continuité (un polynôme nul sur un ouvert dense de $\\mathbb{C}^n$ est identiquement nul)."
+      },
+      {
+        "question": "Q2",
+        "correction": "On développe $P(t)=V(x_1,\\ldots,x_{n-1},t)$ par rapport à la dernière colonne. Le terme de la ligne $k$ est $t^{k-1}$ multiplié par son cofacteur : $P$ est un polynôme en $t$ de degré $\\le n-1$. Le coefficient dominant (celui de $t^{n-1}$) est le cofacteur $(n,n)$, soit $V(x_1,\\ldots,x_{n-1})$. Si $t=x_i$ pour $i\\in\\{1,\\ldots,n-1\\}$, deux colonnes sont identiques donc $P(x_i)=0$. Ainsi $P$ admet $x_1,\\ldots,x_{n-1}$ comme racines ($n-1$ racines distinctes pour un polynôme de degré $\\le n-1$), d'où $P(t)=V(x_1,\\ldots,x_{n-1})\\prod_{i=1}^{n-1}(t-x_i)$. En évaluant en $t=x_n$ : $V(x_1,\\ldots,x_n)=V(x_1,\\ldots,x_{n-1})\\prod_{i=1}^{n-1}(x_n-x_i)$. Par hypothèse de récurrence $V(x_1,\\ldots,x_{n-1})=\\prod_{1\\le i<j\\le n-1}(x_j-x_i)$, donc $V(x_1,\\ldots,x_n)=\\prod_{1\\le i<j\\le n-1}(x_j-x_i)\\cdot\\prod_{i=1}^{n-1}(x_n-x_i)=\\prod_{1\\le i<j\\le n}(x_j-x_i)$."
+      },
+      {
+        "question": "Q3",
+        "correction": "Le coefficient $(i,j)$ de $A$ est $i^j$. En factorisant $i$ sur la ligne $i$ pour $i=1,\\ldots,n$ : $\\det(A)=\\left(\\prod_{i=1}^n i\\right)\\det\\bigl((i^{j-1})_{i,j}\\bigr)=n!\\,V(1,2,\\ldots,n)$. Par la formule de Vandermonde : $V(1,2,\\ldots,n)=\\prod_{1\\le i<j\\le n}(j-i)$. Donc $\\det(A)=n!\\prod_{1\\le i<j\\le n}(j-i)$."
+      },
+      {
+        "question": "Q4",
+        "correction": "**Exemple** : $n=2$, $a_1=1$, $a_2=i$ : distincts, non nuls, et $1^2+i^2=1-1=0$.\n\n**Partie principale** : par l'absurde, supposons $\\sum_{k=1}^n x_k^j=0$ pour tout $j\\in\\{1,\\ldots,n\\}$. La matrice de Vandermonde $W=(x_i^{j-1})_{1\\le i,j\\le n}$ est inversible car les $x_k$ sont deux à deux distincts ($\\det W=\\prod_{i<j}(x_j-x_i)\\neq 0$). Posons $X=(1,\\ldots,1)^T\\in\\mathbb{C}^n$. Alors pour $j\\in\\{2,\\ldots,n+1\\}$, la $j$-ème ligne de la matrice de Vandermonde $(n+1)\\times n$ donne $(x_1^{j-1},\\ldots,x_n^{j-1})\\cdot X=\\sum_k x_k^{j-1}=0$. Les lignes 2 à $n$ de la matrice de Vandermonde $n\\times n$ (indices $j=1,\\ldots,n-1$) et la ligne supplémentaire donnent $\\sum_k x_k^j=0$ pour $j=1,\\ldots,n$, soit $(W')X=0$ où $W'$ est formée des lignes 2 à $n+1$. Or la première ligne donne $\\sum_k x_k^0=n\\neq 0$, et $WX$ aurait sa première composante $=n\\neq 0$ avec les composantes 2 à $n$ nulles, ce qui contredit $W$ inversible et $X\\neq 0$ seulement si $WX\\neq 0$. Plus précisément : $W$ inversible implique $WX\\neq 0$, donc l'une au moins des composantes $(WX)_j=\\sum_k x_k^{j-1}$ pour $j=1,\\ldots,n$ est non nulle. Comme $(WX)_1=n\\neq 0$, on a a fortiori l'une des sommes $\\sum x_k^j$ pour $j\\in\\{0,1,\\ldots,n-1\\}$ non nulle. Pour $j\\ge 1$ : si toutes les sommes $\\sum x_k^j=0$ pour $j=1,\\ldots,n$, alors en considérant $WX$ dont les composantes sont $\\sum x_k^{j-1}$ pour $j=1,\\ldots,n$, on obtient $WX=(n,0,\\ldots,0)^T\\neq 0$, ce qui est cohérent mais ne donne pas contradiction directement. Il faut considérer la matrice $W'$ formée des lignes $(x_1^j,\\ldots,x_n^j)$ pour $j=1,\\ldots,n$ : $\\det(W')=\\left(\\prod x_k\\right)V(x_1,\\ldots,x_n)\\neq 0$ (car $x_k\\neq 0$ et distincts). Si $W'X=0$, alors $X=0$, contradiction avec $X=(1,\\ldots,1)^T\\neq 0$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2017",
+    "partie": "I.B",
+    "questions": "1 q. : I.B.4",
+    "difficulte": "Intermédiaire",
+    "intitule": "$A(A^{-1})_s A^\\top=A_s$ d'où $(\\det A)^2\\det((A^{-1})_s)=\\det(A_s)$",
+    "corrections": [
+      {
+        "question": "I.B.4",
+        "correction": "On calcule le produit $A (A^{-1})_s A^T$. On a $(A^{-1})_s = \\dfrac{A^{-1} + (A^{-1})^T}{2} = \\dfrac{A^{-1} + (A^T)^{-1}}{2}$. Donc $A (A^{-1})_s A^T = A \\cdot \\dfrac{A^{-1} + (A^T)^{-1}}{2} \\cdot A^T = \\dfrac{A A^{-1} A^T + A(A^T)^{-1} A^T}{2} = \\dfrac{A^T + A}{2} = A_s$. Ainsi $A (A^{-1})_s A^T = A_s$. En passant au déterminant : $\\det(A) \\cdot \\det((A^{-1})_s) \\cdot \\det(A^T) = \\det(A_s)$, soit $\\det(A)^2 \\det((A^{-1})_s) = \\det(A_s)$ puisque $\\det(A^T) = \\det(A)$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2017",
+    "partie": "II.A",
+    "questions": "1 q. : II.A.4-5",
+    "difficulte": "Intermédiaire",
+    "intitule": "Produit par blocs : $\\det(A_N)=-N^\\top A^{-1}N\\cdot\\det(A)$",
+    "corrections": [
+      {
+        "question": "II.A.4-5",
+        "correction": "On suppose $A$ inversible. Par la formule du complément de Schur appliquée au bloc $A$ inversible dans $A_N = \\begin{pmatrix} A & N \\\\ N^\\top & 0 \\end{pmatrix}$ : $\\det(A_N) = \\det(A) \\cdot \\det(0 - N^\\top A^{-1} N) = -\\det(A) \\cdot N^\\top A^{-1} N$. Puisque $\\det(A) \\neq 0$, on a $\\det(A_N) = 0 \\Leftrightarrow N^\\top A^{-1} N = 0$. D'après II.A.2-3, $A$ est $H$-singulière $\\Leftrightarrow$ $\\det(A_N) = 0$ $\\Leftrightarrow$ $N^\\top A^{-1} N = 0$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2017",
+    "partie": "II.B",
+    "questions": "1 q. : II.B.1-3",
+    "difficulte": "Standard",
+    "intitule": "Exemple $A(\\mu)$ 3×3 : $\\det A(\\mu)=1$, $A_s$ singulière pour $\\mu=1,1\\pm\\sqrt{3}$, hyperplan $H$ pour $\\mu=1$",
+    "corrections": [
+      {
+        "question": "II.B.1-3",
+        "correction": "Soit $A(\\mu) = \\begin{pmatrix} 2-\\mu & -1 & \\mu \\\\ -1 & 2-\\mu & \\mu-1 \\\\ 0 & -1 & 1 \\end{pmatrix}$. (II.B.1) En développant le déterminant suivant la troisième ligne : $\\det(A(\\mu)) = 0 \\cdot \\ldots + 1 \\cdot \\det\\begin{pmatrix} 2-\\mu & \\mu \\\\ -1 & \\mu-1 \\end{pmatrix} + 1 \\cdot \\det\\begin{pmatrix} 2-\\mu & -1 \\\\ -1 & 2-\\mu \\end{pmatrix}$. Le premier mineur vaut $(2-\\mu)(\\mu-1)+\\mu = -\\mu^2+4\\mu-2$. Le second vaut $(2-\\mu)^2-1 = \\mu^2-4\\mu+3$. Leur somme vaut $1$, donc $\\det(A(\\mu))=1$ pour tout $\\mu$ : $A(\\mu)$ est toujours inversible. (II.B.2) On calcule $A_s(\\mu) = \\begin{pmatrix} 2-\\mu & -1 & \\mu/2 \\\\ -1 & 2-\\mu & (\\mu-2)/2 \\\\ \\mu/2 & (\\mu-2)/2 & 1 \\end{pmatrix}$ et $\\det(A_s(\\mu))$ est un polynôme en $\\mu$ qui s'annule pour $\\mu = 1, 1-\\sqrt{3}, 1+\\sqrt{3}$. (II.B.3) Pour $\\mu=1$, $A_s(1)$ est singulière. Comme $A(1)$ est inversible, par I.B.4 on a $\\det((A(1)^{-1})_s) = \\det(A_s(1))/(\\det A(1))^2 = 0$, donc $(A(1)^{-1})_s$ est singulière. On détermine $N$ dans $\\ker((A(1)^{-1})_s)$ et on pose $H = N^\\perp$. Par II.A.6, $A(1)$ est $H$-singulière."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2017",
+    "partie": "II.C",
+    "questions": "2 q. : II.C.3-4, II.C.5-6",
+    "difficulte": "Intermédiaire",
+    "intitule": "Complément de Schur : $\\det(A_N)=\\det(N^\\top A^{-1}N)\\det(A)$ ; $\\det(N'^\\top AN')=(N'_1^\\top A_sN'_1)(N'_2^\\top A_sN'_2)-(N'_1^\\top A_sN'_2)^2+(N'_1^\\top A_aN'_2)^2$",
+    "corrections": [
+      {
+        "question": "II.C.3-4",
+        "correction": "On suppose $A$ inversible. Par le complément de Schur avec le bloc $A$ inversible : $\\det(A_N) = \\det(A) \\cdot \\det(0_{2 \\times 2} - N^\\top A^{-1} N) = \\det(A) \\cdot \\det(-N^\\top A^{-1} N) = \\det(A) \\cdot \\det(N^\\top A^{-1} N)$ car $\\det(-M) = (-1)^2 \\det(M) = \\det(M)$ pour $M \\in M_2$. Puisque $\\det(A) \\neq 0$, on a $A$ est $F$-singulière $\\Leftrightarrow$ $\\det(A_N) = 0$ $\\Leftrightarrow$ $\\det(N^\\top A^{-1} N) = 0$."
+      },
+      {
+        "question": "II.C.5-6",
+        "correction": "Si $(N_1', N_2')$ est une autre base de $F^\\perp$, il existe $P \\in GL_2(\\mathbb{R})$ telle que $N' = NP$. Alors $\\det(N'^\\top A^{-1} N') = (\\det P)^2 \\det(N^\\top A^{-1} N)$ : l'annulation ne dépend pas du choix de base. Calculons $\\det(N'^\\top A N')$ en décomposant $A = A_s + A_a$. On a $N_i'^\\top A N_j' = N_i'^\\top A_s N_j' + N_i'^\\top A_a N_j'$. Posons $s_{ij} = N_i'^\\top A_s N_j'$ (symétrique en $i,j$) et $a_{ij} = N_i'^\\top A_a N_j'$ (antisymétrique : $a_{ij} = -a_{ji}$, $a_{ii}=0$). Le déterminant $2 \\times 2$ donne $\\det(N'^\\top A N') = (s_{11})(s_{22}) - (s_{12} + a_{12})(s_{12} - a_{12}) = s_{11}s_{22} - s_{12}^2 + a_{12}^2$, soit $(N_1'^\\top A_s N_1')(N_2'^\\top A_s N_2') - (N_1'^\\top A_s N_2')^2 + (N_1'^\\top A_a N_2')^2$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2017",
+    "partie": "II.D",
+    "questions": "1 q. : II.D.1-2",
+    "difficulte": "Intermédiaire",
+    "intitule": "Choix de $N'$ avec $\\det(N'^\\top A(1)N')=0$ puis $F$ de dim 1 tel que $A(1)$ $F$-singulière",
+    "corrections": [
+      {
+        "question": "II.D.1-2",
+        "correction": "Pour $A(1)$, on cherche un sous-espace $F$ de dimension 1 (codimension 2) tel que $A(1)$ soit $F$-singulière. Il faut trouver $N_1', N_2'$ tels que $\\det(N'^\\top A(1) N') = 0$. D'après la formule de II.C.6 : $(N_1'^\\top A_s N_1')(N_2'^\\top A_s N_2') - (N_1'^\\top A_s N_2')^2 + (N_1'^\\top A_a N_2')^2 = 0$. Comme le premier terme $s_{11}s_{22} - s_{12}^2 \\geq 0$ (Cauchy-Schwarz) et le second $a_{12}^2 \\geq 0$, il faut que les deux s'annulent. Donc $N_1'$ et $N_2'$ doivent être colinéaires pour le PS défini par $A_s(1)$ ET $N_1'^\\top A_a(1) N_2' = 0$. On calcule $A_s(1)$ et $A_a(1)$ explicitement, puis on résout ces conditions pour obtenir $N_1', N_2'$. Le sous-espace $F = (\\mathrm{Vect}(N_1', N_2'))^\\perp$ est de dimension 1 et $A(1)$ est $F$-singulière."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2020",
+    "partie": "I.D",
+    "questions": "1 q. : Q16",
+    "difficulte": "Standard",
+    "intitule": "Calcul du déterminant de Smith via factorisation triangulaire",
+    "corrections": [
+      {
+        "question": "Q16",
+        "correction": "$D$ est triangulaire inférieure : $d_{ij} = 1$ si $j | i$, donc $d_{ij} = 0$ si $j > i$ (car $j > i$ implique $j \\nmid i$ pour $i, j \\geq 1$). Les coefficients diagonaux de $D$ sont $d_{ii} = 1$. Donc $\\det D = 1$. $M'$ est triangulaire inférieure : $m'_{ij} \\neq 0$ ssi $j | i$, donc $m'_{ij} = 0$ si $j > i$. Les coefficients diagonaux sont $m'_{kk} = g(k)$. Donc $\\det M' = \\prod_{k=1}^{n} g(k)$. Par Q15, $\\det M = \\det M' \\cdot \\det D^\\top = \\prod_{k=1}^{n} g(k) \\cdot 1 = \\prod_{k=1}^{n} g(k)$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2020",
+    "partie": "II.A",
+    "questions": "4 q. : Q20, Q21, Q22, Q23",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Morphisme $\\sigma \\mapsto P_\\sigma$ et similitude par conjugaison ; Vérification par calcul direct de la conjugaison de deux cycles ; Conjugaison de deux cycles de même longueur ; Caractérisation de la conjugaison par le type cyclique",
+    "corrections": [
+      {
+        "question": "Q20",
+        "correction": "Le coefficient $(i,j)$ de $P_\\rho P_{\\rho'}$ est $\\sum_{k=1}^n a^{(\\rho)}_{ik} a^{(\\rho')}_{kj}$ où $a^{(\\rho)}_{ik} = \\mathbf{1}_{i=\\rho(k)}$ et $a^{(\\rho')}_{kj} = \\mathbf{1}_{k=\\rho'(j)}$. La somme vaut $1$ ssi il existe $k$ tel que $i = \\rho(k)$ et $k = \\rho'(j)$, i.e. $k = \\rho'(j)$ et $i = \\rho(\\rho'(j))$. Donc $(P_\\rho P_{\\rho'})_{ij} = \\mathbf{1}_{i = (\\rho \\circ \\rho')(j)} = (P_{\\rho\\rho'})_{ij}$. Si $\\tau = \\rho \\sigma \\rho^{-1}$, alors $P_\\tau = P_{\\rho\\sigma\\rho^{-1}} = P_\\rho P_\\sigma P_{\\rho^{-1}} = P_\\rho P_\\sigma (P_\\rho)^{-1}$, donc $P_\\sigma$ et $P_\\tau$ sont semblables."
+      },
+      {
+        "question": "Q21",
+        "correction": "Pour $x = 2$ : $\\rho\\gamma_1\\rho^{-1}(2) = \\rho\\gamma_1(1) = \\rho(3) = 6$. Et $\\gamma_2(2) = 6$. Pour $x = 6$ : $\\rho\\gamma_1\\rho^{-1}(6) = \\rho\\gamma_1(3) = \\rho(7) = 4$. Et $\\gamma_2(6) = 4$. Pour $x = 4$ : $\\rho\\gamma_1\\rho^{-1}(4) = \\rho\\gamma_1(7) = \\rho(1) = 2$. Et $\\gamma_2(4) = 2$. Pour $x \\notin \\{2, 4, 6\\}$ : $\\rho^{-1}(x) \\notin \\{1, 3, 7\\} = \\text{Supp}(\\gamma_1)$, donc $\\gamma_1(\\rho^{-1}(x)) = \\rho^{-1}(x)$ et $\\rho\\gamma_1\\rho^{-1}(x) = x = \\gamma_2(x)$."
+      },
+      {
+        "question": "Q22",
+        "correction": "Soient $\\gamma = (a_1 \\cdots a_\\ell)$ et $\\gamma' = (b_1 \\cdots b_\\ell)$ deux cycles de longueur $\\ell$ dans $\\mathfrak{S}_n$. Construisons $\\rho \\in \\mathfrak{S}_n$ telle que $\\rho(a_i) = b_i$ pour $i \\in \\llbracket 1, \\ell \\rrbracket$, et $\\rho$ envoie bijectivement le complémentaire $\\llbracket 1,n \\rrbracket \\setminus \\{a_1,\\ldots,a_\\ell\\}$ sur $\\llbracket 1,n \\rrbracket \\setminus \\{b_1,\\ldots,b_\\ell\\}$ (c'est possible car ces deux ensembles ont même cardinal). Alors pour $x = a_i$ ($i < \\ell$) : $\\rho\\gamma\\rho^{-1}(b_i) = \\rho\\gamma(a_i) = \\rho(a_{i+1}) = b_{i+1} = \\gamma'(b_i)$. Pour $x = a_\\ell$ : $\\rho\\gamma\\rho^{-1}(b_\\ell) = \\rho(a_1) = b_1 = \\gamma'(b_\\ell)$. Pour $x \\notin \\{b_1,\\ldots,b_\\ell\\}$ : $\\rho^{-1}(x) \\notin \\{a_1,\\ldots,a_\\ell\\}$, donc $\\rho\\gamma\\rho^{-1}(x) = x = \\gamma'(x)$."
+      },
+      {
+        "question": "Q23",
+        "correction": "**$\\Rightarrow$** : Si $\\tau = \\rho\\sigma\\rho^{-1}$ et $\\sigma = \\gamma_1 \\cdots \\gamma_r$ (cycles à supports disjoints), alors $\\tau = (\\rho\\gamma_1\\rho^{-1}) \\cdots (\\rho\\gamma_r\\rho^{-1})$ et les $\\rho\\gamma_i\\rho^{-1}$ sont des cycles de mêmes longueurs à supports disjoints. Donc $c_\\ell(\\sigma) = c_\\ell(\\tau)$ pour tout $\\ell$. **$\\Leftarrow$** : Si $\\sigma$ et $\\tau$ ont même type cyclique, elles ont le même nombre de cycles de chaque longueur. On écrit $\\sigma = \\gamma_1 \\cdots \\gamma_r$ et $\\tau = \\gamma'_1 \\cdots \\gamma'_r$ avec $|\\gamma_i| = |\\gamma'_i|$. Pour chaque $i$, on construit $\\rho_i$ envoyant le support de $\\gamma_i$ sur celui de $\\gamma'_i$ dans le bon ordre. Les supports étant disjoints, on peut définir $\\rho$ sur $\\llbracket 1,n \\rrbracket$ en concaténant ces $\\rho_i$ (et l'identité sur les points fixes). Alors $\\tau = \\rho\\sigma\\rho^{-1}$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2020",
+    "partie": "Partie III",
+    "questions": "1 q. : Q36",
+    "difficulte": "Intermédiaire",
+    "intitule": "Calcul du déterminant de la matrice de Redheffer via triangularisation par produit",
+    "corrections": [
+      {
+        "question": "Q36",
+        "correction": "Calculons $(C_n)_{ij} = \\sum_{k=1}^n (A_n)_{ik} (H_n)_{kj}$.\n\n**Cas $i = j = 1$** : $(C_n)_{11} = \\sum_k a_{1k} h_{k1} = \\sum_k \\mu(k) \\cdot 1 = \\sum_{k=1}^n \\mu(k) = M(n)$.\n\n**Cas $i = 1, j > 1$** : $(C_n)_{1j} = \\sum_k a_{1k} h_{kj} = \\mu(j) h_{jj} + \\sum_{k \\neq j} \\mu(k) h_{kj}$. Or $h_{kj} = 1$ si $k | j$ et $j \\neq 1$, $h_{kj} = 0$ sinon (pour $k \\neq j$ et $j > 1$, $h_{kj} = 1$ ssi $k | j$). Donc $(C_n)_{1j} = \\sum_{k|j} \\mu(k) = (\\mu * \\mathbf{1})(j) = \\delta(j) = 0$ (par Q12, car $j > 1$).\n\n**Cas $i > 1, j \\geq 1$** : $(C_n)_{ij} = a_{i,i} h_{ij} = h_{ij}$ (car $a_{ik} = 0$ pour $k \\neq i$ quand $i > 1$, et $a_{ii} = 1$). Sauf si $j = 1$ : $(C_n)_{i1} = h_{i1} = 1$ pour $j = 1$. Pour $j > 1$ : $(C_n)_{ij} = h_{ij}$.\n\nDonc $C_n$ est la matrice qui coïncide avec $H_n$ sauf sur la première ligne : $(C_n)_{11} = M(n)$ et $(C_n)_{1j} = 0$ pour $j > 1$. En développant $\\det C_n$ par la première ligne : $\\det C_n = M(n) \\cdot \\det H'$ où $H'$ est la sous-matrice $(h_{ij})_{i,j \\geq 2}$. En fait, $C_n$ a $M(n)$ en $(1,1)$ et des zéros sur le reste de la première ligne, et la sous-matrice $i, j \\geq 2$ est celle de $H_n$. La sous-matrice $(i,j) \\in \\llbracket 2,n \\rrbracket^2$ de $H_n$ a $h_{ij} = 1$ si $i | j$ et $0$ sinon (pour $j \\geq 2$), qui est triangulaire supérieure avec $1$ sur la diagonale. Donc $\\det(\\text{sous-matrice}) = 1$. Ainsi $\\det C_n = M(n)$. Or $\\det A_n = 1$ (triangulaire supérieure, diag. de $1$). Donc $\\det H_n = \\det C_n / \\det A_n = M(n)$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2022",
+    "partie": "II.B",
+    "questions": "1 q. : Q12",
+    "difficulte": "Standard",
+    "intitule": "Parité de la dimension via det d'une matrice antisymétrique",
+    "corrections": [
+      {
+        "question": "Q12",
+        "correction": "$\\Omega^\\top = -\\Omega$ donne $\\det(\\Omega) = \\det(\\Omega^\\top) = \\det(-\\Omega) = (-1)^n \\det(\\Omega)$. Si $n$ est impair, $(-1)^n = -1$, donc $\\det(\\Omega) = -\\det(\\Omega)$, soit $\\det(\\Omega) = 0$. Or $\\Omega$ est inversible (Q11), contradiction. Donc $n$ est pair."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2022",
+    "partie": "III.B",
+    "questions": "1 q. : Q20",
+    "difficulte": "Avancé",
+    "intitule": "Positivité du déterminant via complexification par blocs",
+    "corrections": [
+      {
+        "question": "Q20",
+        "correction": "Posons $P = \\begin{pmatrix} I_m & 0 \\\\ iI_m & I_m \\end{pmatrix}$ et $Q = \\begin{pmatrix} I_m & 0 \\\\ -iI_m & I_m \\end{pmatrix}$. On a $\\det(P) = \\det(Q) = 1$. Calculons $PMQ = \\begin{pmatrix} I_m & 0 \\\\ iI_m & I_m \\end{pmatrix} \\begin{pmatrix} U & -V \\\\ V & U \\end{pmatrix} \\begin{pmatrix} I_m & 0 \\\\ -iI_m & I_m \\end{pmatrix} = \\begin{pmatrix} U & -V \\\\ iU+V & -iV+U \\end{pmatrix} \\begin{pmatrix} I_m & 0 \\\\ -iI_m & I_m \\end{pmatrix} = \\begin{pmatrix} U+iV & -V \\\\ iU+V+i(iV-U) & -(iV-U)+U-iV \\end{pmatrix}$. On simplifie : bloc $(2,1)$ : $iU + V - V - iU = 0$. Bloc $(2,2)$ : $U - iV + U - iV$... Reprenons : $PMQ = \\begin{pmatrix} U + iV & -V \\\\ 0 & U - iV \\end{pmatrix}$. Donc $\\det(M) = \\det(PMQ) = \\det(U+iV) \\det(U-iV) = \\det(U+iV) \\overline{\\det(U+iV)} = |\\det(U+iV)|^2 \\geq 0$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2022",
+    "partie": "III.C",
+    "questions": "2 q. : Q23, Q26",
+    "difficulte": "Standard",
+    "intitule": "det(M) = 1 pour M ∈ OSp_n via det ≥ 0 et det = ±1 ; Conclusion det(M) = 1 via décomposition polaire",
+    "corrections": [
+      {
+        "question": "Q23",
+        "correction": "$M \\in O_n(\\mathbb{R})$ donc $\\det(M)^2 = \\det(M^\\top M) = \\det(I_n) = 1$, soit $\\det(M) = \\pm 1$. Par Q22, $M \\in \\mathcal{C}_J$, donc par Q20, $\\det(M) \\geq 0$. D'où $\\det(M) = 1$."
+      },
+      {
+        "question": "Q26",
+        "correction": "$M = OS$ avec $O \\in OSp_n$ et $S \\in Sp_n$. De $M^\\top J M = J$ : $\\det(M^\\top) \\det(J) \\det(M) = \\det(J)$, soit $\\det(M)^2 = 1$. Par Q23, $\\det(O) = 1$. Les valeurs propres de $S$ sont strictement positives, donc $\\det(S) > 0$. Ainsi $\\det(M) = \\det(O) \\det(S) = \\det(S) > 0$. Combiné avec $\\det(M)^2 = 1$, on obtient $\\det(M) = 1$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2022",
+    "partie": "III.D.1",
+    "questions": "1 q. : Q29",
+    "difficulte": "Intermédiaire",
+    "intitule": "Déterminant d'une transvection symplectique > 0",
+    "corrections": [
+      {
+        "question": "Q29",
+        "correction": "Par Q28, $\\tau^\\lambda_a = \\tau^{\\lambda/2}_a \\circ \\tau^{\\lambda/2}_a$. Donc $\\det(\\tau^\\lambda_a) = \\det(\\tau^{\\lambda/2}_a)^2 \\geq 0$. Par Q27, $\\tau^\\lambda_a$ est symplectique, donc inversible (Q16 : $Sp_n \\subset GL_n$). Ainsi $\\det(\\tau^\\lambda_a) \\neq 0$, d'où $\\det(\\tau^\\lambda_a) > 0$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2022",
+    "partie": "III.D.5",
+    "questions": "1 q. : Q42",
+    "difficulte": "Standard",
+    "intitule": "Sp_n ⊂ SL_n par connexité et continuité du déterminant",
+    "corrections": [
+      {
+        "question": "Q42",
+        "correction": "**Méthode 1 (connexité)** : $\\det : Sp_n(\\mathbb{R}) \\to \\mathbb{R}^*$ est continue. $Sp_n$ est connexe par arcs (Q41), donc connexe. L'image $\\det(Sp_n)$ est connexe dans $\\mathbb{R}^*$. De $M^\\top J M = J$, on tire $\\det(M)^2 = 1$, donc $\\det(M) \\in \\{-1, 1\\}$. Une partie connexe de $\\{-1, 1\\}$ (ensemble discret) est un singleton. Comme $I_n \\in Sp_n$ et $\\det(I_n) = 1$, on a $\\det(Sp_n) = \\{1\\}$. **Méthode 2 (transvections)** : par Q40, toute $M \\in Sp_n$ s'écrit $M = \\tau_p \\circ \\cdots \\circ \\tau_1$ (transvections symplectiques). Par Q29, $\\det(\\tau_k) > 0$ pour tout $k$. Donc $\\det(M) = \\prod \\det(\\tau_k) > 0$. Combiné avec $\\det(M)^2 = 1$, on obtient $\\det(M) = 1$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2022",
+    "partie": "IV.B",
+    "questions": "1 q. : Q45",
+    "difficulte": "Standard",
+    "intitule": "Déduire r ≥ 1 du déterminant et de la majoration spectrale",
+    "corrections": [
+      {
+        "question": "Q45",
+        "correction": "Le déterminant de $U$ est le produit de ses valeurs propres complexes (comptées avec multiplicité). Si $\\lambda_1, \\ldots, \\lambda_{2m}$ sont ces valeurs propres : $|\\det(U)| = \\prod_{i=1}^{2m} |\\lambda_i|$. Comme $\\det(U) = 1$ ($u \\in SL$), on a $\\prod |\\lambda_i| = 1$. Par Q44, $|\\lambda_i| \\leq r$ pour tout $i$. Donc $1 = \\prod |\\lambda_i| \\leq r^{2m}$, d'où $r^{2m} \\geq 1$, soit $r \\geq 1$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2022",
+    "partie": "Partie 1",
+    "questions": "1 q. : 5",
+    "difficulte": "Standard",
+    "intitule": "Calcul de $\\det(e^A) = e^{\\mathrm{tr}(A)}$ par trigonalisation",
+    "corrections": [
+      {
+        "question": "5",
+        "correction": "Sur $\\mathbb{C}$, toute matrice est trigonalisable. Soit $P \\in \\mathrm{GL}_n(\\mathbb{C})$ telle que $T = P^{-1}AP$ soit triangulaire supérieure, de diagonale $(\\lambda_1, \\ldots, \\lambda_n)$ (les valeurs propres de $A$ avec multiplicité). Par l'hypothèse du sujet, $e^T = P^{-1}e^AP$, donc $\\det(e^A) = \\det(e^T)$. Écrivons $T = D + N$ où $D = \\mathrm{diag}(\\lambda_1, \\ldots, \\lambda_n)$ et $N$ est strictement triangulaire supérieure (donc nilpotente). Puisque $D$ et $N$ commutent (car $D$ est scalaire par blocs diagonaux... plus précisément on décompose en montrant que $DN = ND$ coefficient par coefficient), on a $e^T = e^De^N$. Alternativement, $e^T$ est triangulaire supérieure avec des coefficients diagonaux $e^{\\lambda_i}$ (car si $T$ est triangulaire supérieure, $T^k$ l'est aussi avec diagonale $(\\lambda_1^k, \\ldots, \\lambda_n^k)$, donc $e^T$ a pour diagonale $(e^{\\lambda_1}, \\ldots, e^{\\lambda_n})$). Ainsi $\\det(e^T) = \\prod_{i=1}^n e^{\\lambda_i} = e^{\\sum_{i=1}^n \\lambda_i} = e^{\\mathrm{tr}(T)} = e^{\\mathrm{tr}(A)}$ car la trace est un invariant de similitude."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2022",
+    "partie": "Partie 3",
+    "questions": "2 q. : 9, 15",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Détermination de $\\mathcal{A}_G$ pour $G = \\mathrm{SL}_n(\\mathbb{R})$ via $\\det(e^{tM}) = e^{t\\,\\mathrm{tr}(M)}$ ; Calcul de $\\delta_M'(0)$ avec $\\delta_M(t) = \\det(I_n + tM)$ par DL à l'ordre 1",
+    "corrections": [
+      {
+        "question": "9",
+        "correction": "$M \\in \\mathcal{A}_G$ ssi $e^{tM} \\in \\mathrm{SL}_n(\\mathbb{R})$ pour tout $t \\in \\mathbb{R}$, ssi $\\det(e^{tM}) = 1$ pour tout $t$. Par Q5, $\\det(e^{tM}) = e^{\\mathrm{tr}(tM)} = e^{t\\,\\mathrm{tr}(M)}$. Donc la condition devient $e^{t\\,\\mathrm{tr}(M)} = 1$ pour tout $t \\in \\mathbb{R}$, ce qui équivaut à $t\\,\\mathrm{tr}(M) = 0$ pour tout $t$, soit $\\mathrm{tr}(M) = 0$. Ainsi $\\mathcal{A}_G = \\{M \\in \\mathcal{M}_n(\\mathbb{R}) \\mid \\mathrm{tr}(M) = 0\\}$, c'est-à-dire l'ensemble des matrices de trace nulle, souvent noté $\\mathfrak{sl}_n(\\mathbb{R})$."
+      },
+      {
+        "question": "15",
+        "correction": "On a $\\delta_M(t) = \\det(I_n + tM)$. Les colonnes de $I_n + tM$ sont $C_j = e_j + tM_j$ où $e_j$ est le $j$-ème vecteur canonique et $M_j$ la $j$-ème colonne de $M$. Par multilinéarité du déterminant par rapport aux colonnes : $\\det(I_n + tM) = \\det(e_1 + tM_1, \\ldots, e_n + tM_n)$. En développant, le terme constant (degré 0 en $t$) est $\\det(e_1, \\ldots, e_n) = 1$. Le terme de degré 1 en $t$ est $\\sum_{j=1}^n \\det(e_1, \\ldots, e_{j-1}, tM_j, e_{j+1}, \\ldots, e_n) = t\\sum_{j=1}^n m_{j,j} = t\\,\\mathrm{tr}(M)$ (car $\\det(e_1, \\ldots, M_j, \\ldots, e_n) = m_{j,j}$ par développement selon la $j$-ème colonne). Donc $\\delta_M(t) = 1 + t\\,\\mathrm{tr}(M) + O(t^2)$, ce qui montre que $\\delta_M$ est dérivable en 0 et $\\delta_M'(0) = \\mathrm{tr}(M)$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2024",
+    "partie": "Partie I",
+    "questions": "1 q. : 8",
+    "difficulte": "Avancé",
+    "intitule": "Formule de récurrence pour le polynôme caractéristique d'un graphe obtenu par jonction de deux graphes",
+    "corrections": [
+      {
+        "question": "8",
+        "correction": "Indexons les sommets de $G$ en plaçant $s_1$ en position 1, les autres sommets de $G_1$ en positions $2, \\ldots, n_1$, puis $s_2$ en position $n_1 + 1$, et les autres sommets de $G_2$ en positions $n_1 + 2, \\ldots, n$. La matrice $XI_n - M_G$ a la forme $\\begin{pmatrix} XI_{n_1} - M_{G_1} & -E \\\\ -E^T & XI_{n_2} - M_{G_2} \\end{pmatrix}$ où $E$ est la matrice $n_1 \\times n_2$ avec un seul coefficient non nul : $E_{1,1} = 1$ (arête $\\{s_1,s_2\\}$). Donc $E = e_1 f_1^T$ où $e_1, f_1$ sont les premiers vecteurs de base. En développant le déterminant par rapport à la colonne $n_1+1$ (correspondant à $s_2$), puis en développant les cofacteurs, on obtient par la formule du complément de Schur (ou par développement direct) : $\\det(XI_n - M_G) = \\det(XI_{n_1} - M_{G_1}) \\det(XI_{n_2} - M_{G_2}) - \\det(XI_{n_1-1} - M_{G_1 \\setminus s_1}) \\det(XI_{n_2-1} - M_{G_2 \\setminus s_2})$. En identifiant les polynômes caractéristiques des graphes, on obtient $\\chi_G = \\chi_{G_1} \\chi_{G_2} - \\chi_{G_1 \\setminus s_1} \\chi_{G_2 \\setminus s_2}$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2021",
+    "partie": "Partie 3",
+    "questions": "1 q. : III2",
+    "difficulte": "Intermédiaire",
+    "intitule": "Développer $\\det(A+B)$ par multilinéarité par colonnes ; tous les termes sauf $\\det(A)$ contiennent au moins un coefficient de $B\\in I$",
+    "corrections": [
+      {
+        "question": "III2",
+        "correction": "Par multilinéarité du déterminant, $\\det(A+B) = \\sum_{(i_1,\\ldots,i_n) \\in \\{1,2\\}^n} \\det(C_{i_1}, \\ldots)$. Le terme $(1,\\ldots,1)$ donne $\\det(A)$. Tout autre terme contient au moins une colonne de $B$, dont les coefficients sont dans $I$, donc le déterminant correspondant appartient à $I$ (développement selon cette colonne). Ainsi $\\det(A+B) - \\det(A) \\in I$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2022",
+    "partie": "Partie I",
+    "questions": "1 q. : 4b",
+    "difficulte": "Standard",
+    "intitule": "Calcul d'un déterminant par diagonalité de la matrice de Gram",
+    "corrections": [
+      {
+        "question": "4b",
+        "correction": "D'après (3d), pour $i \\neq j$, $u_i \\perp u_j'$ (car $u_i \\in W_i$ et $u_j' \\in W_j$, sous-espaces orthogonaux). Donc $\\text{Gram}(u,u')$ est diagonale avec $\\text{Gram}(u,u')_{kk} = \\langle u_k, u_k'\\rangle = \\cos\\theta_k$. Ainsi $\\det(\\text{Gram}(u,u')) = \\prod_{k=1}^p \\cos\\theta_k$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2022",
+    "partie": "Partie II",
+    "questions": "4 q. : 5a, 5b, 7a, 9a",
+    "difficulte": "Standard",
+    "intitule": "Vérification des propriétés d'une application alternée ; Composition d'une application alternée avec une application linéaire ; Transformation de $\\Omega_p$ par changement de base ; p-volume comme valeur absolue d'un déterminant",
+    "corrections": [
+      {
+        "question": "5a",
+        "correction": "Le déterminant est multilinéaire par rapport aux colonnes. Pour $\\varphi \\in \\mathfrak{S}_p$, le changement $\\sigma' = \\sigma \\circ \\varphi^{-1}$ (bijection sur $\\mathfrak{S}_p$) donne $[x_{\\varphi(1)},\\ldots,x_{\\varphi(p)}] = \\varepsilon(\\varphi)[x_1,\\ldots,x_p]$. L'application est donc bien $p$-linéaire alternée."
+      },
+      {
+        "question": "5b",
+        "correction": "Pour $\\sigma \\in \\mathfrak{S}_p$ : $g(u_{\\sigma(1)},\\ldots,u_{\\sigma(p)}) = [f(u_{\\sigma(1)}),\\ldots,f(u_{\\sigma(p)})] = \\varepsilon(\\sigma)[f(u_1),\\ldots,f(u_p)] = \\varepsilon(\\sigma)g(u)$. La linéarité en chaque argument découle de la linéarité de $f$ et de la multilinéarité du produit mixte. Donc $g \\in \\mathcal{A}_p(F,\\mathbb{R})$."
+      },
+      {
+        "question": "7a",
+        "correction": "Pour tout $u \\in E^p$ : $\\text{Gram}(e',u)_{ij} = \\langle e_i', u_j\\rangle = \\sum_k M_{ik}\\langle e_k, u_j\\rangle = (M \\cdot \\text{Gram}(e,u))_{ij}$. Donc $\\Omega_p(e')(u) = \\det(M \\cdot \\text{Gram}(e,u)) = \\det(M)\\det(\\text{Gram}(e,u)) = \\det(M)\\Omega_p(e)(u)$."
+      },
+      {
+        "question": "9a",
+        "correction": "On a $e_j = \\sum_i (P_b^e)_{ij} b_i$. D'après (7a), $\\Omega_p(e) = \\det(P_b^e)\\Omega_p(b)$. Donc $\\Omega_p(e)(e) = \\det(P_b^e)^2 \\Omega_p(b)(b) = \\det(P_b^e)^2$ (car $b$ orthonormée). Ainsi $\\text{vol}_p(e) = |\\det(P_b^e)|$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2024",
+    "partie": "Première partie",
+    "questions": "2 q. : 1b, 2",
+    "difficulte": "Intermédiaire",
+    "intitule": "Calcul du determinant de $M_x$ par identification avec la formule de Leibniz et utilisation de la diagonalisation de Q1a ; Exploitation du polynome $P(x)=(x-1)^{n-1}(x+n-1)$ par evaluation, derivation et integration",
+    "corrections": []
+  },
+  {
+    "banque": "E3A-Polytech",
+    "epreuve": "Maths 1 2024",
+    "partie": "Exercice 3",
+    "questions": "1 q. : Q1",
+    "difficulte": "Standard",
+    "intitule": "Inversibilité de $A$ via $\\det(A) = P(0) \\neq 0$ ; lien polynôme caractéristique et déterminant",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "$\\det(A) = (-1)^n P_A(0)$ où $P_A(\\lambda) = \\det(A - \\lambda I)$ est le polynôme caractéristique. $A$ est inversible $\\Leftrightarrow \\det(A) \\neq 0 \\Leftrightarrow 0$ n'est pas racine de $P_A \\Leftrightarrow 0 \\notin \\mathrm{Sp}(A)$. Si $P_A = P$ est donné et $P(0) \\neq 0$, alors $A$ est inversible. De plus, $A^{-1}$ s'exprime comme un polynôme en $A$ par Cayley-Hamilton : $P(A) = 0$ donne $A(a_1 I + a_2 A + \\cdots + a_n A^{n-1}) = -a_0 I$, soit $A^{-1} = -\\frac{1}{a_0}(a_1 I + \\cdots + a_n A^{n-1})$."
+      }
+    ]
+  }
+]

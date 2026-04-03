@@ -1,1 +1,414 @@
-[{"banque":"CCINP","epreuve":"Maths 1 2020","partie":"Partie I - Développement ternaire propre","questions":"4 q. : Q6, Q7, Q8, Q10","difficulte":"Standard","intitule":"Algorithme glouton du développement en base 3 via la partie entière ; Suites adjacentes et surjectivité de l'application de développement ternaire ; Implémentation du développement ternaire propre ; Détection d'erreur par bit de parité","corrections":[{"question":"Q6","correction":"Pour $x\\in[0,1[$, posons $y=\\lfloor 3^{n-1}x\\rfloor\\in\\mathbb{N}$. On a $y\\leq 3^{n-1}x<y+1$ donc $3y\\leq 3^n x<3y+3$, et $\\lfloor 3^n x\\rfloor\\in\\{3y,3y+1,3y+2\\}$. Donc $t_n(x)=\\lfloor 3^n x\\rfloor-3\\lfloor 3^{n-1}x\\rfloor\\in\\{0,1,2\\}$ pour tout $n\\geq 1$. Ainsi $t(x)=(t_1(x),t_2(x),\\ldots)\\in T$."},{"question":"Q7","correction":"On pose $x_n=\\sum_{k=1}^n t_k(x)/3^k=\\lfloor 3^n x\\rfloor/3^n$ et $y_n=x_n+1/3^n$. On a $x_n\\leq x<y_n$ (car $\\lfloor 3^n x\\rfloor\\leq 3^n x<\\lfloor 3^n x\\rfloor+1$). Donc $(x_n)$ est croissante (majorée par $x$), $(y_n)$ est décroissante (minorée par $x$), et $y_n-x_n=1/3^n\\to 0$ : suites adjacentes de même limite $x$. Donc $x=\\lim x_n=\\sum_{n=1}^{+\\infty}t_n(x)/3^n=\\sigma(t(x))$. Pour $x=1$, on prend $t=(2,2,2,\\ldots)$ et $\\sigma(t)=2\\cdot 1/2=1$. Ainsi $\\sigma$ est surjective de $T$ sur $[0,1]$."},{"question":"Q8","correction":"```python\ndef dev_ternaire(x, n):\n    L = []\n    for k in range(1, n+1):\n        tk = int(pow(3,k) * x) - 3 * int(pow(3,k-1) * x)\n        L.append(tk)\n    return L\n```\nOn utilise int() pour la partie entière (valable pour $x\\geq 0$). La boucle calcule chaque chiffre ternaire $t_k(x)$ de rang $1$ à $n$."},{"question":"Q10","correction":"```python\ndef ajout(L):\n    s = sum(L)\n    if s % 2 == 0:\n        return L + [-1]\n    else:\n        return L + [-2]\n\ndef verif(L):\n    s = sum(L[:-1])\n    if s % 2 == 0:\n        return L[-1] == -1\n    else:\n        return L[-1] == -2\n```\nLa fonction ajout ajoute un dernier élément ($-1$ ou $-2$) selon la parité de la somme. La fonction verif vérifie que le dernier élément est cohérent avec la parité de la somme des éléments précédents."}]},{"banque":"CCINP","epreuve":"Maths 1 2021","partie":"Problème - Partie I","questions":"3 q. : Q5, Q6, Q7","difficulte":"Standard","intitule":"Implémentation itérative de la factorielle en Python ; Analyse de complexité d'un calcul de coefficient binomial ; Relation de récurrence sur les coefficients binomiaux et fonction récursive","corrections":[{"question":"Q5","correction":"```python\ndef factorielle(n):\n    r = 1\n    for i in range(1, n+1):\n        r *= i\n    return r\n```\nOn initialise le résultat à $1$ puis on multiplie par $1,2,\\ldots,n$ successivement. Complexité : $n-1$ multiplications."},{"question":"Q6","correction":"`factorielle(30)` : 29 multiplications. `factorielle(10)` : 9. `factorielle(20)` : 19. Puis 1 multiplication au dénominateur et 1 division entière : total $29+9+19+1+1=59$ multiplications/divisions. Optimisation : calculer $\\binom{30}{10}=\\frac{30\\cdot 29\\cdots 21}{10!}$, soit 9 multiplications au numérateur + 9 au dénominateur + 1 division $=19+1=20$ opérations. Avec `/` au lieu de `//` : la division `/` en Python 3 renvoie toujours un `float`, donc le résultat serait de type `float` (par exemple `30045015.0` au lieu de `30045015`)."},{"question":"Q7","correction":"Preuve : $\\frac{n}{p}\\binom{n-1}{p-1}=\\frac{n}{p}\\cdot\\frac{(n-1)!}{(p-1)!(n-p)!}=\\frac{n!}{p!(n-p)!}=\\binom{n}{p}$. Fonction récursive :\n```python\ndef binom_rec(n, p):\n    if p == 0:\n        return 1\n    return n * binom_rec(n-1, p-1) // p\n```\nCas de base : $\\binom{n}{0}=1$. Appel récursif : $\\binom{n}{p}=\\frac{n}{p}\\binom{n-1}{p-1}$. On utilise `//` pour la division entière (attention : `n * binom_rec(n-1,p-1)` est toujours divisible par $p$)."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2024","partie":"I.C","questions":"1 q. : Q10","difficulte":"Intermédiaire","intitule":"Réarrangement décroissant d'une suite pour lever l'hypothèse de décroissance","corrections":[{"question":"Q10","correction":"Soit $(a_n)$ une suite de réels strictement positifs telle que $\\sum a_n$ converge. On considère la suite $(a'_n)$ obtenue en réarrangeant $(a_n)$ par ordre décroissant. Par le théorème de réarrangement des séries à termes positifs, $\\sum a'_n = \\sum a_n$ converge avec la même somme. La suite $(a'_n)$ est décroissante, donc par Q9 : $\\sum \\left(\\prod_{k=1}^n a'_k\\right)^{1/n} \\leq e \\sum a'_n = e \\sum a_n$. Il reste à vérifier que $\\left(\\prod_{k=1}^n a_k\\right)^{1/n} \\leq \\left(\\prod_{k=1}^n a'_k\\right)^{1/n}$ pour tout $n$, ce qui découle du fait que le produit des $n$ plus grands termes est maximal (inégalité de réarrangement). Ainsi $\\sum \\left(\\prod_{k=1}^n a_k\\right)^{1/n} \\leq e \\sum a_n$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2024","partie":"II.B","questions":"2 q. : Q19, Q20","difficulte":"Standard／Avancé","intitule":"Vérification de l'inégalité 1/e <= ((k+1)/(k+2))^{k+1} par étude de la suite classique (1+1/n)^n ; Récurrence sur omega_k <= k/(k+1) via la relation omega_{k+1}^{k+1} = (1/lambda) omega_k^k (1 - omega_k/k)^{-k}","corrections":[{"question":"Q19","correction":"La suite $\\left(1 + \\frac{1}{n}\\right)^n$ est croissante et converge vers $e$. Donc pour tout $k \\in \\mathbb{N}$ : $\\left(1 + \\frac{1}{k+1}\\right)^{k+1} \\leq e$. Or $\\left(1 + \\frac{1}{k+1}\\right)^{k+1} = \\left(\\frac{k+2}{k+1}\\right)^{k+1}$. Donc $\\left(\\frac{k+2}{k+1}\\right)^{k+1} \\leq e$, ce qui donne en inversant : $\\left(\\frac{k+1}{k+2}\\right)^{k+1} \\geq \\frac{1}{e}$."},{"question":"Q20","correction":"D'abord $\\omega_1$ : $\\gamma_1 = a_1 = \\lambda \\omega_1 a_1$, donc $\\omega_1 = \\frac{1}{\\lambda}$. Si $\\lambda > e$, $\\omega_1 = \\frac{1}{\\lambda} < \\frac{1}{e}$. Pour l'indication : $\\gamma_{k+1}^{k+1} = a_1 \\cdots a_{k+1} = \\gamma_k^k \\cdot a_{k+1}$. Or $\\gamma_k = \\lambda \\omega_k a_k$ et $a_{k+1} = a_k\\left(1 - \\frac{\\omega_k}{k}\\right)$. On obtient $\\omega_{k+1}^{k+1} = \\frac{1}{\\lambda} \\omega_k^k \\left(1 - \\frac{\\omega_k}{k}\\right)^{-k}$. Si $\\omega_k \\leq \\frac{k}{k+1}$, alors $\\left(1 - \\frac{\\omega_k}{k}\\right)^{-k} \\leq \\left(1 - \\frac{1}{k+1}\\right)^{-k} = \\left(\\frac{k+1}{k}\\right)^k$ et $\\omega_k^k \\leq \\left(\\frac{k}{k+1}\\right)^k$. Donc $\\omega_{k+1}^{k+1} \\leq \\frac{1}{\\lambda} \\left(\\frac{k}{k+1}\\right)^k \\left(\\frac{k+1}{k}\\right)^k = \\frac{1}{\\lambda}$. Puis $\\omega_{k+1} \\leq \\left(\\frac{1}{\\lambda}\\right)^{1/(k+1)} < \\left(\\frac{1}{e}\\right)^{1/(k+1)}$. Par Q19 : $\\frac{1}{e} \\leq \\left(\\frac{k+1}{k+2}\\right)^{k+1}$, donc $\\omega_{k+1} \\leq \\frac{k+1}{k+2}$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 1 2025","partie":"Partie C","questions":"1 q. : Q20","difficulte":"Intermédiaire","intitule":"Preuve d'irrationalité par approximation rationnelle (critère d'irrationalité)","corrections":[{"question":"Q20","correction":"Raisonnons par l'absurde : supposons $\\alpha \\in \\mathbb{Q}$, i.e. $\\alpha = a/b$ avec $a \\in \\mathbb{N}$, $b \\in \\mathbb{N}^*$. Pour tout $n$, $|\\alpha - p_n/q_n| = |a/b - p_n/q_n| = |aq_n - bp_n|/(bq_n)$. Or $aq_n - bp_n \\in \\mathbb{Z}$ et $p_n/q_n \\neq \\alpha = a/b$, donc $aq_n - bp_n \\neq 0$. Comme $aq_n - bp_n$ est un entier non nul, $|aq_n - bp_n| \\geq 1$. D'où $|\\alpha - p_n/q_n| \\geq \\frac{1}{bq_n}$. Cela signifie $q_n|\\alpha - p_n/q_n| \\geq \\frac{1}{b} > 0$ pour tout $n$. Mais l'hypothèse $|\\alpha - p_n/q_n| = o(1/q_n)$ signifie $q_n|\\alpha - p_n/q_n| \\to 0$, ce qui est une contradiction. Donc $\\alpha$ est irrationnel."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2019","partie":"Partie IV","questions":"3 q. : Q24, Q25, Q27","difficulte":"Standard／Intermédiaire","intitule":"Monotonie de $(F_n(x))$ et $(G_n(x))$ : ajout d'un terme positif $U_{n+1}/2^{n+1}$ ; Convergence d'une suite décroissante minorée par $0$ ; Encadrement de $F_n(x)$ et $G_n(x)$ par des valeurs dyadiques proches et passage à la limite","corrections":[{"question":"Q24","correction":"Pour tout $\\omega \\in \\Omega$, $Y_{n+1}(\\omega) = Y_n(\\omega) + U_{n+1}(\\omega)/2^{n+1} \\geq Y_n(\\omega)$ car $U_{n+1}(\\omega) \\geq 0$. Donc $\\{Y_{n+1} \\leq x\\} \\subset \\{Y_n \\leq x\\}$ et $F_{n+1}(x) = \\mathbb{P}(Y_{n+1} \\leq x) \\leq \\mathbb{P}(Y_n \\leq x) = F_n(x)$ : $(F_n(x))$ est décroissante. De même, $\\{Y_{n+1} < x\\} \\subset \\{Y_n < x\\}$ donne $G_{n+1}(x) \\leq G_n(x)$ : $(G_n(x))$ est décroissante."},{"question":"Q25","correction":"Par Q24, $(F_n(x))_{n \\geq 1}$ est décroissante. De plus, $F_n(x) = \\mathbb{P}(Y_n \\leq x) \\geq 0$ pour tout $n$. Toute suite réelle décroissante et minorée converge (théorème de convergence monotone). Donc $(F_n(x))$ converge. Le même raisonnement s'applique à $(G_n(x))_{n \\geq 1}$, décroissante et minorée par $0$."},{"question":"Q27","correction":"Soit $x \\in [0,1]$. Posons $a_n = \\pi_n(x) \\in D_n$ et $b_n = a_n + 1/2^n$. Par Q13, $a_n \\leq x < b_n$, donc $a_n \\to x$. La croissance de $Y_n \\mapsto \\mathbb{P}(Y_n \\leq \\cdot)$ donne $F_n(a_n) \\leq F_n(x) \\leq F_n(b_n)$ (si $b_n \\leq 1$). Pour $a_n \\in D_n$ : $F_n(a_n) = a_n + 1/2^n \\to x$. Si $b_n \\in D_n$ : $F_n(b_n) = b_n + 1/2^n = a_n + 2/2^n \\to x$. Si $b_n = 1$ : $F_n(1) = 1$. Dans tous les cas, par encadrement $\\lim F_n(x) = x$. Raisonnement analogue pour $G_n(x)$ : $G_n(a_n) \\leq G_n(x) \\leq G_n(b_n)$, et $G_n(a_n) = a_n \\to x$, $G_n(b_n) = b_n \\to x$. Donc $\\lim G_n(x) = x$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2023","partie":"I.A.1","questions":"1 q. : Q6","difficulte":"Intermédiaire","intitule":"Équivalent de $I_n$ via la relation $K_{n+1} = (1 - 1/(2n))K_n$ et passage à la limite $K_n \\sim \\sqrt{\\pi/(2n)}$","corrections":[{"question":"Q6","correction":"De Q5 : $K_{n+1} = \\left(1 - \\dfrac{1}{2n}\\right) K_n$. En itérant : $K_n = K_1 \\displaystyle\\prod_{j=1}^{n-1} \\left(1 - \\dfrac{1}{2j}\\right)$. On peut relier $K_n$ aux intégrales de Wallis $W_m = \\int_0^{\\pi/2} \\cos^m(\\theta)\\,\\mathrm{d}\\theta$ via le changement de variable $t = \\tan\\theta$ : on obtient $K_n = W_{2n-2}$. Or l'équivalent classique des intégrales de Wallis donne $W_m \\sim \\sqrt{\\pi/(2m)}$ quand $m \\to +\\infty$. Donc $K_n = W_{2n-2} \\sim \\sqrt{\\dfrac{\\pi}{2(2n-2)}} \\sim \\sqrt{\\dfrac{\\pi}{4n}} = \\dfrac{1}{2}\\sqrt{\\dfrac{\\pi}{n}}$. Par Q4, $I_n \\sim K_n \\sim \\dfrac{1}{2}\\sqrt{\\dfrac{\\pi}{n}}$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2023","partie":"II.A","questions":"2 q. : Q18, Q21","difficulte":"Standard","intitule":"Vérification de la relation de symétrie $-x_{n,k} = x_{n,n-k}$ par calcul direct ; Décroissance de $B_n$ sur $\\mathbb{R}^+$ par décroissance de $k \\mapsto \\binom{n}{k}$ pour $k \\geq n/2$","corrections":[{"question":"Q18","correction":"On a $x_{n,k} = -\\sqrt{n} + \\dfrac{2k}{\\sqrt{n}}$. Donc $-x_{n,k} = \\sqrt{n} - \\dfrac{2k}{\\sqrt{n}}$. D'autre part, $x_{n,n-k} = -\\sqrt{n} + \\dfrac{2(n-k)}{\\sqrt{n}} = -\\sqrt{n} + 2\\sqrt{n} - \\dfrac{2k}{\\sqrt{n}} = \\sqrt{n} - \\dfrac{2k}{\\sqrt{n}}$. D'où $-x_{n,k} = x_{n,n-k}$."},{"question":"Q21","correction":"La fonction $B_n$ est constante sur chaque intervalle $[x_{n,k} - 1/\\sqrt{n},\\, x_{n,k} + 1/\\sqrt{n}[$. Sur $\\mathbb{R}^+$, les paliers successifs correspondent aux indices $k$ croissants avec $x_{n,k} \\geq 0$, soit $k \\geq n/2$. Pour montrer la décroissance, il suffit de vérifier que $\\binom{n}{k} \\geq \\binom{n}{k+1}$ pour $k \\geq n/2$. Or $\\dfrac{\\binom{n}{k+1}}{\\binom{n}{k}} = \\dfrac{n-k}{k+1}$. Pour $k \\geq n/2$ : $n - k \\leq k \\leq k+1$, donc ce rapport est $\\leq 1$. Si $n$ est pair, le palier au-dessus de $0$ commence à $k = n/2$ et les suivants décroissent. Si $n$ est impair, $x_{n,k} \\geq 0$ pour $k \\geq (n+1)/2$ et la décroissance est similaire. Donc $B_n$ est décroissante sur $\\mathbb{R}^+$."}]},{"banque":"Centrale-Supélec","epreuve":"Maths 2 2025","partie":"Partie B.II","questions":"1 q. : 23","difficulte":"Intermédiaire","intitule":"Limite d'une suite définie via la trace d'une puissance de matrice","corrections":[{"question":"23","correction":"D'après Q21, $Z_n(h) = \\mathrm{tr}(A^n) = \\lambda_+^n + \\lambda_-^n$ où $\\lambda_+$ et $\\lambda_-$ sont les valeurs propres de $A$ données par Q22. Comme $\\lambda_+ > |\\lambda_-| \\geq 0$, on écrit $\\psi_n(h) = \\frac{1}{n}\\ln(Z_n(h)) = \\frac{1}{n}\\ln(\\lambda_+^n(1 + (\\lambda_-/\\lambda_+)^n)) = \\ln(\\lambda_+) + \\frac{1}{n}\\ln(1 + (\\lambda_-/\\lambda_+)^n)$. Or $|\\lambda_-/\\lambda_+| < 1$ donc $(\\lambda_-/\\lambda_+)^n \\to 0$, d'où $\\frac{1}{n}\\ln(1 + (\\lambda_-/\\lambda_+)^n) \\to 0$. Ainsi $\\psi_n(h) \\to \\ln(\\lambda_+) = \\ln(e^\\beta \\cosh(h) + \\sqrt{e^{2\\beta}\\cosh^2(h) - 2\\sinh(2\\beta)})$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2017","partie":"Partie A","questions":"1 q. : 5","difficulte":"Standard","intitule":"Monotonie, limite et équivalent de la suite de Wallis","corrections":[{"question":"5","correction":"Décroissance stricte : pour $t \\in ]0, \\pi/2[$, $0 < \\sin t < 1$, donc $(\\sin t)^{n+1} < (\\sin t)^n$. En intégrant : $W_{n+1} < W_n$. Limite : $(W_n)$ décroissante minorée par $0$ converge vers $\\ell \\geq 0$. De $W_n W_{n+1} = \\frac{\\pi}{2(n+1)} \\to 0$, on déduit $\\ell^2 = 0$, $\\ell = 0$. Équivalent : $\\frac{W_{n+2}}{W_n} = \\frac{n+1}{n+2} \\to 1$ et $W_{n+2} \\leq W_{n+1} \\leq W_n$ donnent $\\frac{W_{n+1}}{W_n} \\to 1$, soit $W_{n+1} \\sim W_n$. Alors $W_n^2 \\sim W_n W_{n+1} = \\frac{\\pi}{2(n+1)} \\sim \\frac{\\pi}{2n}$. D'où $W_n \\sim \\sqrt{\\frac{\\pi}{2n}}$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2018","partie":"Partie B","questions":"7 q. : 3, 4, 5, 6, 7, 8, 9","difficulte":"Standard／Intermédiaire","intitule":"Inf et sup d'ensembles emboîtés : monotonie et convergence ; Caractérisation de limsup/liminf comme extrema parmi les suites monotones encadrantes ; Comparaison des limsup/liminf de suites ordonnées ; Suites adjacentes et convergence via limsup = liminf ; Division euclidienne et sous-additivité itérée ; Bornitude puis passage à la limsup dans l'inégalité de sous-additivité ; Convergence par encadrement limsup ≤ inf ≤ liminf","corrections":[{"question":"3","correction":"Comme $u$ est bornée, il existe $M > 0$ tel que $|u_k| \\leq M$ pour tout $k \\geq 1$. Les ensembles $U_n = \\{u_k : k \\geq n\\}$ sont non vides et bornés, donc $\\underline{u}_n = \\inf(U_n)$ et $\\overline{u}_n = \\sup(U_n)$ existent dans $\\mathbb{R}$. Monotonie : $U_{n+1} \\subset U_n$ implique $\\inf(U_{n+1}) \\geq \\inf(U_n)$, donc $(\\underline{u}_n)$ est croissante. De même $\\sup(U_{n+1}) \\leq \\sup(U_n)$, donc $(\\overline{u}_n)$ est décroissante. Convergence : $(\\underline{u}_n)$ est croissante majorée par $M$, donc converge. $(\\overline{u}_n)$ est décroissante minorée par $-M$, donc converge."},{"question":"4","correction":"$\\overline{u}$ est décroissante (Q3) et $\\overline{u}_n = \\sup(U_n) \\geq u_n$ pour tout $n$, donc $\\overline{u} \\succeq u$. Soit $w$ décroissante telle que $w \\succeq u$. Pour tout $n \\geq 1$ et tout $k \\geq n$ : $w_n \\geq w_k$ (décroissance) et $w_k \\geq u_k$ ($w \\succeq u$). Donc $w_n \\geq u_k$ pour tout $k \\geq n$, d'où $w_n \\geq \\sup\\{u_k : k \\geq n\\} = \\overline{u}_n$. Ainsi $w \\succeq \\overline{u}$ : $\\overline{u}$ est la plus petite suite décroissante plus grande que $u$. De même, $\\underline{u}$ est croissante et $\\underline{u} \\preceq u$. Si $w$ croissante vérifie $w \\preceq u$, pour $k \\geq n$ : $w_n \\leq w_k \\leq u_k$, donc $w_n \\leq \\inf(U_n) = \\underline{u}_n$. Ainsi $w \\preceq \\underline{u}$ : $\\underline{u}$ est la plus grande suite croissante plus petite que $u$."},{"question":"5","correction":"Soit $v \\succeq u$. Pour tout $k \\geq n$, $v_k \\geq u_k$. Donc $\\sup\\{v_k : k \\geq n\\} \\geq \\sup\\{u_k : k \\geq n\\}$, i.e. $\\overline{v}_n \\geq \\overline{u}_n$. En passant à la limite : $\\overline{\\lim}\\,v_n \\geq \\overline{\\lim}\\,u_n$. De même, $\\inf\\{v_k : k \\geq n\\} \\geq \\inf\\{u_k : k \\geq n\\}$, donc $\\underline{v}_n \\geq \\underline{u}_n$, et en passant à la limite : $\\underline{\\lim}\\,v_n \\geq \\underline{\\lim}\\,u_n$."},{"question":"6","correction":"Sens direct : supposons $\\overline{u}$ et $\\underline{u}$ adjacentes. $(\\overline{u}_n)$ est décroissante, $(\\underline{u}_n)$ est croissante (Q3), et $\\overline{u}_n - \\underline{u}_n \\to 0$. Elles convergent donc vers une même limite $\\ell$. Or $\\underline{u}_n \\leq u_n \\leq \\overline{u}_n$ pour tout $n$ (car $\\inf(U_n) \\leq u_n \\leq \\sup(U_n)$). Par le théorème des gendarmes, $u_n \\to \\ell$. Réciproque : si $u_n \\to \\ell$, pour tout $\\varepsilon > 0$, il existe $N$ tel que pour $k \\geq N$, $|u_k - \\ell| < \\varepsilon$. Donc $\\ell - \\varepsilon \\leq \\inf(U_N) \\leq \\sup(U_N) \\leq \\ell + \\varepsilon$, d'où $\\overline{u}_N - \\underline{u}_N \\leq 2\\varepsilon$. Ainsi $\\overline{u}_n - \\underline{u}_n \\to 0$ : les suites sont adjacentes. Dans ce cas, les trois suites $u$, $\\overline{u}$, $\\underline{u}$ convergent vers la même limite $\\ell$."},{"question":"7","correction":"On a $m = qn + r$ avec $q \\geq 2$ (car $m \\geq 2n$) et $0 \\leq r < n$. On écrit $m = (q-1)n + (n+r)$. Par sous-additivité itérée, $u_{jn} \\leq j u_n$ pour tout $j \\geq 1$ (récurrence immédiate sur $j$ : $u_{(j+1)n} \\leq u_{jn} + u_n \\leq ju_n + u_n$). Puis $u_m = u_{(q-1)n + (n+r)} \\leq u_{(q-1)n} + u_{n+r} \\leq (q-1)u_n + u_{n+r}$. Comme $0 \\leq r < n$, on a $n \\leq n+r \\leq 2n-1$, donc $u_{n+r} \\leq \\max\\{u_n, \\ldots, u_{2n-1}\\}$. En divisant par $m = qn+r$ : $\\frac{u_m}{m} \\leq \\frac{(q-1)u_n}{qn+r} + \\frac{\\max\\{u_n, \\ldots, u_{2n-1}\\}}{m}$. Or $(q-1)n = m - n - r$, donc $\\frac{(q-1)u_n}{m} = \\frac{m-n-r}{m} \\cdot \\frac{u_n}{n}$. D'où $\\frac{u_m}{m} \\leq \\frac{m-n-r}{m} \\cdot \\frac{u_n}{n} + \\frac{\\max\\{u_n, \\ldots, u_{2n-1}\\}}{m}$."},{"question":"8","correction":"Fixons $n = 1$. Pour $m \\geq 2$ : de Q7 (avec $n=1$), $\\frac{u_m}{m} \\leq \\frac{m-1-r}{m} \\cdot u_1 + \\frac{u_1}{m} \\leq u_1 + u_1 = 2u_1$. Avec $u_1/1 = u_1$, la suite $(u_m/m)$ est majorée. Elle est minorée par $0$ (car $u$ positive). Donc $(u_m/m)$ est bornée. Pour le passage à la limsup, fixons $n \\geq 1$. De Q7, pour $m \\geq 2n$ : $\\frac{u_m}{m} \\leq \\frac{m-n-r}{m} \\cdot \\frac{u_n}{n} + \\frac{C_n}{m}$ où $C_n = \\max\\{u_n, \\ldots, u_{2n-1}\\}$. Quand $m \\to +\\infty$ : $\\frac{m-n-r}{m} \\leq 1$ et $\\frac{C_n}{m} \\to 0$. Donc pour tout $\\varepsilon > 0$, il existe $M_0$ tel que pour $m \\geq M_0$, $\\frac{u_m}{m} \\leq \\frac{u_n}{n} + \\varepsilon$. Ainsi $\\overline{\\lim}_{m \\to +\\infty} \\frac{u_m}{m} \\leq \\frac{u_n}{n} + \\varepsilon$. Ceci étant vrai pour tout $\\varepsilon > 0$ : $\\overline{\\lim}_{m \\to +\\infty} \\frac{u_m}{m} \\leq \\frac{u_n}{n}$."},{"question":"9","correction":"De Q8 : pour tout $n \\geq 1$, $\\overline{\\lim}_{m \\to +\\infty} \\frac{u_m}{m} \\leq \\frac{u_n}{n}$. En prenant l'inf sur $n \\geq 1$ : $\\overline{\\lim}_{m \\to +\\infty} \\frac{u_m}{m} \\leq \\inf_{n \\geq 1} \\frac{u_n}{n}$. Or $\\inf_{n \\geq 1} \\frac{u_n}{n} \\leq \\frac{u_n}{n}$ pour tout $n$, donc en particulier $\\inf_{n \\geq 1} \\frac{u_n}{n} \\leq \\underline{\\lim}_{n \\to +\\infty} \\frac{u_n}{n}$. Bilan : $\\overline{\\lim} \\frac{u_n}{n} \\leq \\inf_{n \\geq 1} \\frac{u_n}{n} \\leq \\underline{\\lim} \\frac{u_n}{n} \\leq \\overline{\\lim} \\frac{u_n}{n}$. Toutes ces quantités sont donc égales, ce qui prouve la convergence de $(u_n/n)$, avec $\\lim_{n \\to +\\infty} \\frac{u_n}{n} = \\inf_{n \\geq 1} \\frac{u_n}{n}$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2019","partie":"Partie A","questions":"1 q. : 4","difficulte":"Intermédiaire","intitule":"Équivalent d'un terme général par produit télescopique","corrections":[{"question":"4","correction":"Pour $k$ entier relatif fixé, $\\frac{u_{\\lfloor x \\rfloor + k}(x)}{u_{\\lfloor x \\rfloor}(x)} = \\prod_{j=0}^{k-1} \\frac{u_{\\lfloor x \\rfloor + j + 1}(x)}{u_{\\lfloor x \\rfloor + j}(x)}$ (produit de $\\lfloor x \\rfloor$ à $\\lfloor x \\rfloor + k - 1$ si $k > 0$, produit inverse si $k < 0$). Or $\\frac{u_{m+1}(x)}{u_m(x)} = \\frac{x}{(m+1)^{1-r} m^r}$. Pour $m = \\lfloor x \\rfloor + j$ avec $j$ fixé, $m \\sim x$ et $\\frac{x}{(m+1)^{1-r}m^r} \\to 1$ quand $x \\to +\\infty$. Donc chaque facteur du produit fini tend vers $1$, et le produit (fini, nombre de facteurs $= |k|$) tend vers $1$. Ainsi $u_{\\lfloor x \\rfloor + k}(x) \\sim u_{\\lfloor x \\rfloor}(x)$.\\n\\nPour la minoration : pour $x$ assez grand et $n$ fixé, chacun des termes $u_{\\lfloor x \\rfloor - j}(x)$ pour $0 \\leq j \\leq n$ vérifie $u_{\\lfloor x \\rfloor - j}(x) \\geq \\frac{1}{2} u_{\\lfloor x \\rfloor}(x)$ (car l'équivalent donne un rapport $\\to 1$). Donc $\\sum_{i=\\lfloor x \\rfloor - n}^{\\lfloor x \\rfloor} u_i(x) \\geq (n+1) \\cdot \\frac{1}{2} u_{\\lfloor x \\rfloor}(x)$. En fait, plus précisément, comme chaque $u_i(x)/u_{\\lfloor x \\rfloor}(x) \\to 1$, la somme de $n+1$ termes chacun $\\sim u_{\\lfloor x \\rfloor}(x)$ donne $\\sum \\geq n \\cdot u_{\\lfloor x \\rfloor}(x)$ pour $x$ assez grand."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2021","partie":"Étude asymptotique d'une suite","questions":"1 q. : 8","difficulte":"Intermédiaire","intitule":"Convergence d'une suite par DL de $\\zeta$ et équivalents","corrections":[{"question":"8","correction":"Par les questions 6 et 7, $\\sqrt{npq}\\,p_n \\sim \\frac{1}{\\sqrt{2\\pi}} e^{-np\\,\\zeta(u_n)-nq\\,\\zeta(v_n)}$ avec $u_n = \\frac{x_n - np}{np}$ et $v_n = \\frac{np - x_n}{nq}$. Notons que $u_n = \\frac{\\lceil np-q\\rceil - np}{np}$. Comme $np - q \\leq \\lceil np-q \\rceil < np-q+1$, on a $\\frac{-q}{np} \\leq u_n < \\frac{1-q}{np} = \\frac{p}{np} = \\frac{1}{n}$. Donc $u_n = O(1/n)$ et de même $v_n = -\\frac{p}{q}u_n \\cdot \\frac{np}{nq}$... Plus précisément $v_n = \\frac{np - x_n}{nq} = -\\frac{p}{q}u_n$, donc $v_n = O(1/n)$. Par le DL de $\\zeta$ (question 4) : $\\zeta(u_n) = u_n + \\frac{u_n^2}{2} + o(u_n^2)$. Donc $np\\,\\zeta(u_n) = np\\,u_n + \\frac{np\\,u_n^2}{2} + o(np\\,u_n^2) = (x_n - np) + \\frac{(x_n-np)^2}{2np} + o(1/n)$. De même $nq\\,\\zeta(v_n) = (np - x_n) + \\frac{(np-x_n)^2}{2nq} + o(1/n)$. La somme donne $np\\,\\zeta(u_n) + nq\\,\\zeta(v_n) = \\frac{(x_n-np)^2}{2}\\left(\\frac{1}{np}+\\frac{1}{nq}\\right) + o(1/n) = \\frac{(x_n-np)^2}{2npq} + o(1/n)$. Or $|x_n - np| \\leq 1$, donc $\\frac{(x_n-np)^2}{2npq} \\leq \\frac{1}{2npq} \\to 0$. Ainsi $np\\,\\zeta(u_n) + nq\\,\\zeta(v_n) \\to 0$, d'où $\\sqrt{npq}\\,p_n \\to \\frac{1}{\\sqrt{2\\pi}}$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 1 2021","partie":"Convergence en loi","questions":"1 q. : 14","difficulte":"Standard","intitule":"Limites des facteurs auxiliaires par équivalents de $k_n(t)$","corrections":[{"question":"14","correction":"Pour $t \\in [a,b]$, $k_n(t) = \\lfloor \\sqrt{npq}\\,t + np \\rfloor \\sim np$ car $\\sqrt{npq}\\,t = o(np)$ (puisque $\\sqrt{npq}\\,t = O(\\sqrt{n})$ tandis que $np \\sim n$). De même $n - k_n(t) \\sim nq$. Donc $\\frac{pqn^2}{k_n(t)(n-k_n(t))} \\sim \\frac{pqn^2}{np \\cdot nq} = 1$, d'où la racine tend vers 1. Pour le second facteur : $k_n(t) \\to +\\infty$ et $n - k_n(t) \\to +\\infty$, donc $\\varepsilon_{k_n(t)} \\to 0$ et $\\varepsilon_{n-k_n(t)} \\to 0$ (car $\\varepsilon_m \\to 0$ quand $m \\to +\\infty$). Avec $\\varepsilon_n \\to 0$, on obtient $\\frac{1+\\varepsilon_n}{(1+\\varepsilon_{k_n(t)})(1+\\varepsilon_{n-k_n(t)})} \\to \\frac{1}{1 \\cdot 1} = 1$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2018","partie":"Partie C","questions":"1 q. : 13","difficulte":"Intermédiaire","intitule":"Convergence quadratique de la méthode de Newton : $\\|X_k - X^*\\| \\leq \\frac{(\\rho\\sqrt{C})^{2^k}}{C}$","corrections":[{"question":"13","correction":"Par Q12, $\\|X_{k+1} - X^*\\| = \\|G(X_k) - X^*\\| \\leq C\\|X_k - X^*\\|^2$ pour tout $k$ tel que $X_k \\in B(X^*,\\rho)$ avec $\\rho \\leq r$. Posons $e_k = \\|X_k - X^*\\|$. On a $e_{k+1} \\leq Ce_k^2$. Choisissons $\\rho$ tel que $C\\rho < 1$. Si $X_0 \\in B(X^*,\\rho)$, alors $e_0 \\leq \\rho$. Montrons par récurrence que $e_k \\leq \\frac{(\\rho\\sqrt{C})^{2^k}}{C}$ et $X_k \\in B(X^*,\\rho)$. **Initialisation** : $e_0 \\leq \\rho = \\frac{(\\rho\\sqrt{C})^1}{\\sqrt{C}} \\leq \\frac{(\\rho\\sqrt{C})^1}{C}$... Posons plutôt $\\alpha = C\\rho < 1$. On montre $Ce_k \\leq \\alpha^{2^k}$, i.e. $e_k \\leq \\alpha^{2^k}/C$. Pour $k=0$ : $Ce_0 \\leq C\\rho = \\alpha = \\alpha^{2^0}$. **Hérédité** : $Ce_{k+1} \\leq C \\cdot Ce_k^2 = (Ce_k)^2 \\leq (\\alpha^{2^k})^2 = \\alpha^{2^{k+1}}$. De plus $e_{k+1} \\leq \\alpha^{2^{k+1}}/C \\leq \\alpha/C \\leq \\rho$ (car $\\alpha < 1$). Donc $X_{k+1} \\in B(X^*,\\rho)$ et la récurrence se poursuit. Comme $\\alpha < 1$, $\\alpha^{2^k} \\to 0$, donc $e_k \\to 0$ : $(X_k)$ converge vers $X^*$. La convergence est quadratique (l'erreur est mise au carré à chaque étape)."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2018","partie":"Partie D","questions":"1 q. : 17","difficulte":"Intermédiaire","intitule":"Convergence de la suite $\\lambda_{k,\\ell}$ vers $\\sqrt{\\lambda_\\ell}$ par étude de $\\frac{\\lambda_{k+1,\\ell} - \\sqrt{\\lambda_\\ell}}{\\lambda_{k+1,\\ell} + \\sqrt{\\lambda_\\ell}}$","corrections":[{"question":"17","correction":"Posons $a = \\sqrt{\\lambda_\\ell}$ et $x_k = \\lambda_{k,\\ell}$. On a $x_{k+1} = \\frac{1}{2}(x_k + a^2/x_k)$. Calculons $\\frac{x_{k+1} - a}{x_{k+1} + a}$. On a $x_{k+1} - a = \\frac{x_k^2 + a^2 - 2ax_k}{2x_k} = \\frac{(x_k - a)^2}{2x_k}$ et $x_{k+1} + a = \\frac{x_k^2 + a^2 + 2ax_k}{2x_k} = \\frac{(x_k + a)^2}{2x_k}$. Donc $\\frac{x_{k+1} - a}{x_{k+1} + a} = \\left(\\frac{x_k - a}{x_k + a}\\right)^2$. Par récurrence : $\\frac{x_{k+1} - a}{x_{k+1} + a} = \\left(\\frac{x_0 - a}{x_0 + a}\\right)^{2^{k+1}} = \\left(\\frac{\\mu - \\sqrt{\\lambda_\\ell}}{\\mu + \\sqrt{\\lambda_\\ell}}\\right)^{2^{k+1}}$. Comme $\\mu > 0$ et $\\sqrt{\\lambda_\\ell} > 0$, on a $\\left|\\frac{\\mu - \\sqrt{\\lambda_\\ell}}{\\mu + \\sqrt{\\lambda_\\ell}}\\right| < 1$ (car $|\\mu - \\sqrt{\\lambda_\\ell}| < \\mu + \\sqrt{\\lambda_\\ell}$). Donc ce rapport tend vers $0$ quand $k \\to +\\infty$, d'où $\\frac{x_k - a}{x_k + a} \\to 0$, i.e. $x_k \\to a = \\sqrt{\\lambda_\\ell}$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2018","partie":"Partie E","questions":"2 q. : 20, 21","difficulte":"Avancé","intitule":"Déterminer $\\eta$ tel que $\\widehat{V}_k = \\sqrt{A} + \\eta^k \\Delta$ pour tout $k$ ; Condition sur le conditionnement de $A$ pour la convergence de $(\\widehat{V}_k)$","corrections":[{"question":"20","correction":"On a $\\Delta = \\varepsilon C_i C_j^T$ avec $C_\\ell = Pe_\\ell$ (colonnes de $P$). Dans la base propre, $P^T\\Delta P = \\varepsilon e_i e_j^T = \\varepsilon E_{i,j}$. Posons $D^{1/2} = \\mathrm{diag}(\\sqrt{\\lambda_1},\\ldots,\\sqrt{\\lambda_n})$, de sorte que $\\sqrt{A} = PD^{1/2}P^T$. La relation $\\Delta_1 = \\frac{1}{2}(\\Delta - (\\sqrt{A})^{-1}\\Delta\\sqrt{A})$ donne, en conjuguant par $P$ : $P^T\\Delta_1 P = \\frac{1}{2}(\\varepsilon E_{i,j} - D^{-1/2}(\\varepsilon E_{i,j})D^{1/2}) = \\frac{\\varepsilon}{2}(E_{i,j} - \\frac{\\sqrt{\\lambda_j}}{\\sqrt{\\lambda_i}}E_{i,j}) = \\frac{\\varepsilon}{2}\\left(1 - \\frac{\\sqrt{\\lambda_j}}{\\sqrt{\\lambda_i}}\\right)E_{i,j}$. Donc $\\Delta_1 = \\eta \\Delta$ avec $\\eta = \\frac{1}{2}\\left(1 - \\frac{\\sqrt{\\lambda_j}}{\\sqrt{\\lambda_i}}\\right) = \\frac{\\sqrt{\\lambda_i} - \\sqrt{\\lambda_j}}{2\\sqrt{\\lambda_i}}$. Par récurrence, $\\Delta_k = \\eta^k \\Delta$, d'où $\\widehat{V}_k = \\sqrt{A} + \\eta^k \\Delta$."},{"question":"21","correction":"Le conditionnement de $A$ est $\\kappa(A) = \\lambda_n / \\lambda_1$ (avec $\\lambda_1 \\leq \\ldots \\leq \\lambda_n$). La suite $(\\widehat{V}_k)$ converge vers $\\sqrt{A}$ ssi $|\\eta|^k \\to 0$, ssi $|\\eta| < 1$ pour tout choix de $i \\neq j$. On a $\\eta = \\frac{\\sqrt{\\lambda_i} - \\sqrt{\\lambda_j}}{2\\sqrt{\\lambda_i}}$. Le cas le plus défavorable est $\\sqrt{\\lambda_i} = \\sqrt{\\lambda_n}$ et $\\sqrt{\\lambda_j} = \\sqrt{\\lambda_1}$ (ou $i \\leftrightarrow j$). Pour $i = n, j = 1$ : $\\eta = \\frac{\\sqrt{\\lambda_n} - \\sqrt{\\lambda_1}}{2\\sqrt{\\lambda_n}} = \\frac{1}{2}\\left(1 - \\sqrt{\\frac{\\lambda_1}{\\lambda_n}}\\right) = \\frac{1}{2}(1 - \\kappa(A)^{-1/2})$. La condition $|\\eta| < 1$ donne $\\frac{1}{2}(1 - \\kappa(A)^{-1/2}) < 1$, soit $\\kappa(A)^{-1/2} > -1$, toujours vrai. Pour $i = 1, j = n$ : $\\eta = \\frac{\\sqrt{\\lambda_1} - \\sqrt{\\lambda_n}}{2\\sqrt{\\lambda_1}} = \\frac{1}{2}(1 - \\sqrt{\\kappa(A)})$. La condition $|\\eta| < 1$ donne $|1 - \\sqrt{\\kappa(A)}| < 2$, soit $-2 < 1 - \\sqrt{\\kappa(A)} < 2$, i.e. $-1 < -\\sqrt{\\kappa(A)} < 1$, soit $\\sqrt{\\kappa(A)} < 3$ (la condition $\\sqrt{\\kappa(A)} > -1$ est triviale). Donc la condition est $\\kappa(A) < 9$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2019","partie":"Partie B","questions":"1 q. : 8","difficulte":"Standard","intitule":"Montrer que la suite $(\\rho_n)$ est croissante et convergente","corrections":[{"question":"8","correction":"Croissance : Soit $X = (x_0, \\ldots, x_{n-1})^t \\in \\mathbb{R}^n$ avec $\\|X\\| = 1$. On pose $\\hat{X} = (x_0, \\ldots, x_{n-1}, 0)^t \\in \\mathbb{R}^{n+1}$, de sorte que $\\|\\hat{X}\\| = 1$. On a ${}^t \\hat{X} H_{n+1} \\hat{X} = \\sum_{j,k=0}^{n} \\frac{\\hat{x}_j \\hat{x}_k}{j+k+1} = \\sum_{j,k=0}^{n-1} \\frac{x_j x_k}{j+k+1} = {}^t X H_n X$ (les termes avec $j=n$ ou $k=n$ sont nuls). Donc ${}^t X H_n X = {}^t \\hat{X} H_{n+1} \\hat{X} \\leq \\rho_{n+1}$. En prenant le max sur $X$, $\\rho_n \\leq \\rho_{n+1}$. Convergence : Par Q7, $\\rho_n \\leq \\pi$ pour tout $n$. La suite $(\\rho_n)$ est croissante et majorée, donc convergente."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2020","partie":"Partie B","questions":"1 q. : 12","difficulte":"Standard","intitule":"Convergence de $E(N_n)/n$ via le lemme de Césaro","corrections":[{"question":"12","correction":"D'après Q11, $E(N_n) = 1 + \\sum_{i=1}^n P(R > i)$. Donc $\\frac{E(N_n)}{n} = \\frac{1}{n} + \\frac{1}{n}\\sum_{i=1}^n P(R > i)$. Posons $u_i = P(R > i)$. On a $P(R > i) = P(\\bigcap_{k=1}^i \\{S_k \\neq 0_d\\})$. La suite d'événements $(\\bigcap_{k=1}^i \\{S_k \\neq 0_d\\})_{i \\geq 1}$ est décroissante pour l'inclusion, donc par continuité décroissante : $P(R > i) \\to P(\\bigcap_{i=1}^{+\\infty} \\{S_i \\neq 0_d\\}) = P(R = +\\infty)$. Par le théorème de Césaro, $\\frac{1}{n}\\sum_{i=1}^n P(R > i) \\to P(R = +\\infty)$. Et $1/n \\to 0$. Donc $\\frac{E(N_n)}{n} \\to P(R = +\\infty)$."}]},{"banque":"Mines-Ponts","epreuve":"Maths 2 2020","partie":"Partie D","questions":"1 q. : 17","difficulte":"Avancé","intitule":"Équivalent $a_n \\sim 1/B_n$ par encadrement asymptotique","corrections":[{"question":"17","correction":"D'après Q16, $a_n \\leq 1/B_n$ et $1 \\leq a_n B_{m-n} + a_0(B_m - B_{m-n})$ pour $m > n$. De la seconde : $a_n \\geq \\frac{1 - a_0(B_m - B_{m-n})}{B_{m-n}}$. On utilise $m = m_n$ tel que $B_{m_n-n} \\sim B_n$ et $B_{m_n} - B_{m_n-n} \\to 0$. Avec ces hypothèses : $a_n \\geq \\frac{1 - a_0(B_{m_n} - B_{m_n-n})}{B_{m_n-n}} = \\frac{1}{B_{m_n-n}} - \\frac{a_0(B_{m_n} - B_{m_n-n})}{B_{m_n-n}}$. Le premier terme est $\\sim 1/B_n$ et le second tend vers $0$ (car le numérateur $\\to 0$ et le dénominateur $\\to +\\infty$ puisque $B_n \\to +\\infty$). Donc $a_n \\geq 1/B_n - o(1/B_n) \\sim 1/B_n$. Combiné avec $a_n \\leq 1/B_n$ (Q16), on obtient $a_n \\sim 1/B_n$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2019","partie":"Partie 4","questions":"1 q. : 23c","difficulte":"Intermédiaire","intitule":"Minorer $P_n(\\alpha_n)$ pour montrer que $\\alpha_n$ diverge","corrections":[{"question":"23c","correction":"De $P_n(\\alpha_n) = 0$ : $\\alpha_n^4 - 6\\alpha_n^3 + 10\\alpha_n^2 - 6\\alpha_n + 1 = n\\alpha_n(\\alpha_n^2 - \\alpha_n + 1) \\geq n$ (car $x(x^2 - x + 1) \\geq 1$ pour $x \\geq 1$). Si $\\alpha_n$ ne divergeait pas, une sous-suite serait bornée et le membre gauche aussi, contradiction. Donc $\\alpha_n \\to +\\infty$."}]},{"banque":"X-ENS","epreuve":"Maths 1 2024","partie":"Première partie","questions":"1 q. : 14a","difficulte":"Intermédiaire","intitule":"Developpement asymptotique de $\\mathbb{E}[X_n^2]$ a partir de $H_n^2$ et $\\sum 1/i^2$","corrections":[]},{"banque":"X-ENS","epreuve":"Maths 2 2023","partie":"Partie II","questions":"1 q. : 14","difficulte":"Intermédiaire","intitule":"Récurrence forte sur les majorations des suites $\\alpha_i, \\beta_i, \\varepsilon_i$","corrections":[]}]
+[
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2020",
+    "partie": "Partie I - Développement ternaire propre",
+    "questions": "4 q. : Q6, Q7, Q8, Q10",
+    "difficulte": "Standard",
+    "intitule": "Algorithme glouton du développement en base 3 via la partie entière ; Suites adjacentes et surjectivité de l'application de développement ternaire ; Implémentation du développement ternaire propre ; Détection d'erreur par bit de parité",
+    "corrections": [
+      {
+        "question": "Q6",
+        "correction": "Pour $x\\in[0,1[$, posons $y=\\lfloor 3^{n-1}x\\rfloor\\in\\mathbb{N}$. On a $y\\leq 3^{n-1}x<y+1$ donc $3y\\leq 3^n x<3y+3$, et $\\lfloor 3^n x\\rfloor\\in\\{3y,3y+1,3y+2\\}$. Donc $t_n(x)=\\lfloor 3^n x\\rfloor-3\\lfloor 3^{n-1}x\\rfloor\\in\\{0,1,2\\}$ pour tout $n\\geq 1$. Ainsi $t(x)=(t_1(x),t_2(x),\\ldots)\\in T$."
+      },
+      {
+        "question": "Q7",
+        "correction": "On pose $x_n=\\sum_{k=1}^n t_k(x)/3^k=\\lfloor 3^n x\\rfloor/3^n$ et $y_n=x_n+1/3^n$. On a $x_n\\leq x<y_n$ (car $\\lfloor 3^n x\\rfloor\\leq 3^n x<\\lfloor 3^n x\\rfloor+1$). Donc $(x_n)$ est croissante (majorée par $x$), $(y_n)$ est décroissante (minorée par $x$), et $y_n-x_n=1/3^n\\to 0$ : suites adjacentes de même limite $x$. Donc $x=\\lim x_n=\\sum_{n=1}^{+\\infty}t_n(x)/3^n=\\sigma(t(x))$. Pour $x=1$, on prend $t=(2,2,2,\\ldots)$ et $\\sigma(t)=2\\cdot 1/2=1$. Ainsi $\\sigma$ est surjective de $T$ sur $[0,1]$."
+      },
+      {
+        "question": "Q8",
+        "correction": "```python\ndef dev_ternaire(x, n):\n    L = []\n    for k in range(1, n+1):\n        tk = int(pow(3,k) * x) - 3 * int(pow(3,k-1) * x)\n        L.append(tk)\n    return L\n```\nOn utilise int() pour la partie entière (valable pour $x\\geq 0$). La boucle calcule chaque chiffre ternaire $t_k(x)$ de rang $1$ à $n$."
+      },
+      {
+        "question": "Q10",
+        "correction": "```python\ndef ajout(L):\n    s = sum(L)\n    if s % 2 == 0:\n        return L + [-1]\n    else:\n        return L + [-2]\n\ndef verif(L):\n    s = sum(L[:-1])\n    if s % 2 == 0:\n        return L[-1] == -1\n    else:\n        return L[-1] == -2\n```\nLa fonction ajout ajoute un dernier élément ($-1$ ou $-2$) selon la parité de la somme. La fonction verif vérifie que le dernier élément est cohérent avec la parité de la somme des éléments précédents."
+      }
+    ]
+  },
+  {
+    "banque": "CCINP",
+    "epreuve": "Maths 1 2021",
+    "partie": "Problème - Partie I",
+    "questions": "3 q. : Q5, Q6, Q7",
+    "difficulte": "Standard",
+    "intitule": "Implémentation itérative de la factorielle en Python ; Analyse de complexité d'un calcul de coefficient binomial ; Relation de récurrence sur les coefficients binomiaux et fonction récursive",
+    "corrections": [
+      {
+        "question": "Q5",
+        "correction": "```python\ndef factorielle(n):\n    r = 1\n    for i in range(1, n+1):\n        r *= i\n    return r\n```\nOn initialise le résultat à $1$ puis on multiplie par $1,2,\\ldots,n$ successivement. Complexité : $n-1$ multiplications."
+      },
+      {
+        "question": "Q6",
+        "correction": "`factorielle(30)` : 29 multiplications. `factorielle(10)` : 9. `factorielle(20)` : 19. Puis 1 multiplication au dénominateur et 1 division entière : total $29+9+19+1+1=59$ multiplications/divisions. Optimisation : calculer $\\binom{30}{10}=\\frac{30\\cdot 29\\cdots 21}{10!}$, soit 9 multiplications au numérateur + 9 au dénominateur + 1 division $=19+1=20$ opérations. Avec `/` au lieu de `//` : la division `/` en Python 3 renvoie toujours un `float`, donc le résultat serait de type `float` (par exemple `30045015.0` au lieu de `30045015`)."
+      },
+      {
+        "question": "Q7",
+        "correction": "Preuve : $\\frac{n}{p}\\binom{n-1}{p-1}=\\frac{n}{p}\\cdot\\frac{(n-1)!}{(p-1)!(n-p)!}=\\frac{n!}{p!(n-p)!}=\\binom{n}{p}$. Fonction récursive :\n```python\ndef binom_rec(n, p):\n    if p == 0:\n        return 1\n    return n * binom_rec(n-1, p-1) // p\n```\nCas de base : $\\binom{n}{0}=1$. Appel récursif : $\\binom{n}{p}=\\frac{n}{p}\\binom{n-1}{p-1}$. On utilise `//` pour la division entière (attention : `n * binom_rec(n-1,p-1)` est toujours divisible par $p$)."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2024",
+    "partie": "I.C",
+    "questions": "1 q. : Q10",
+    "difficulte": "Intermédiaire",
+    "intitule": "Réarrangement décroissant d'une suite pour lever l'hypothèse de décroissance",
+    "corrections": [
+      {
+        "question": "Q10",
+        "correction": "Soit $(a_n)$ une suite de réels strictement positifs telle que $\\sum a_n$ converge. On considère la suite $(a'_n)$ obtenue en réarrangeant $(a_n)$ par ordre décroissant. Par le théorème de réarrangement des séries à termes positifs, $\\sum a'_n = \\sum a_n$ converge avec la même somme. La suite $(a'_n)$ est décroissante, donc par Q9 : $\\sum \\left(\\prod_{k=1}^n a'_k\\right)^{1/n} \\leq e \\sum a'_n = e \\sum a_n$. Il reste à vérifier que $\\left(\\prod_{k=1}^n a_k\\right)^{1/n} \\leq \\left(\\prod_{k=1}^n a'_k\\right)^{1/n}$ pour tout $n$, ce qui découle du fait que le produit des $n$ plus grands termes est maximal (inégalité de réarrangement). Ainsi $\\sum \\left(\\prod_{k=1}^n a_k\\right)^{1/n} \\leq e \\sum a_n$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2024",
+    "partie": "II.B",
+    "questions": "2 q. : Q19, Q20",
+    "difficulte": "Standard／Avancé",
+    "intitule": "Vérification de l'inégalité 1/e <= ((k+1)/(k+2))^{k+1} par étude de la suite classique (1+1/n)^n ; Récurrence sur omega_k <= k/(k+1) via la relation omega_{k+1}^{k+1} = (1/lambda) omega_k^k (1 - omega_k/k)^{-k}",
+    "corrections": [
+      {
+        "question": "Q19",
+        "correction": "La suite $\\left(1 + \\frac{1}{n}\\right)^n$ est croissante et converge vers $e$. Donc pour tout $k \\in \\mathbb{N}$ : $\\left(1 + \\frac{1}{k+1}\\right)^{k+1} \\leq e$. Or $\\left(1 + \\frac{1}{k+1}\\right)^{k+1} = \\left(\\frac{k+2}{k+1}\\right)^{k+1}$. Donc $\\left(\\frac{k+2}{k+1}\\right)^{k+1} \\leq e$, ce qui donne en inversant : $\\left(\\frac{k+1}{k+2}\\right)^{k+1} \\geq \\frac{1}{e}$."
+      },
+      {
+        "question": "Q20",
+        "correction": "D'abord $\\omega_1$ : $\\gamma_1 = a_1 = \\lambda \\omega_1 a_1$, donc $\\omega_1 = \\frac{1}{\\lambda}$. Si $\\lambda > e$, $\\omega_1 = \\frac{1}{\\lambda} < \\frac{1}{e}$. Pour l'indication : $\\gamma_{k+1}^{k+1} = a_1 \\cdots a_{k+1} = \\gamma_k^k \\cdot a_{k+1}$. Or $\\gamma_k = \\lambda \\omega_k a_k$ et $a_{k+1} = a_k\\left(1 - \\frac{\\omega_k}{k}\\right)$. On obtient $\\omega_{k+1}^{k+1} = \\frac{1}{\\lambda} \\omega_k^k \\left(1 - \\frac{\\omega_k}{k}\\right)^{-k}$. Si $\\omega_k \\leq \\frac{k}{k+1}$, alors $\\left(1 - \\frac{\\omega_k}{k}\\right)^{-k} \\leq \\left(1 - \\frac{1}{k+1}\\right)^{-k} = \\left(\\frac{k+1}{k}\\right)^k$ et $\\omega_k^k \\leq \\left(\\frac{k}{k+1}\\right)^k$. Donc $\\omega_{k+1}^{k+1} \\leq \\frac{1}{\\lambda} \\left(\\frac{k}{k+1}\\right)^k \\left(\\frac{k+1}{k}\\right)^k = \\frac{1}{\\lambda}$. Puis $\\omega_{k+1} \\leq \\left(\\frac{1}{\\lambda}\\right)^{1/(k+1)} < \\left(\\frac{1}{e}\\right)^{1/(k+1)}$. Par Q19 : $\\frac{1}{e} \\leq \\left(\\frac{k+1}{k+2}\\right)^{k+1}$, donc $\\omega_{k+1} \\leq \\frac{k+1}{k+2}$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 1 2025",
+    "partie": "Partie C",
+    "questions": "1 q. : Q20",
+    "difficulte": "Intermédiaire",
+    "intitule": "Preuve d'irrationalité par approximation rationnelle (critère d'irrationalité)",
+    "corrections": [
+      {
+        "question": "Q20",
+        "correction": "Raisonnons par l'absurde : supposons $\\alpha \\in \\mathbb{Q}$, i.e. $\\alpha = a/b$ avec $a \\in \\mathbb{N}$, $b \\in \\mathbb{N}^*$. Pour tout $n$, $|\\alpha - p_n/q_n| = |a/b - p_n/q_n| = |aq_n - bp_n|/(bq_n)$. Or $aq_n - bp_n \\in \\mathbb{Z}$ et $p_n/q_n \\neq \\alpha = a/b$, donc $aq_n - bp_n \\neq 0$. Comme $aq_n - bp_n$ est un entier non nul, $|aq_n - bp_n| \\geq 1$. D'où $|\\alpha - p_n/q_n| \\geq \\frac{1}{bq_n}$. Cela signifie $q_n|\\alpha - p_n/q_n| \\geq \\frac{1}{b} > 0$ pour tout $n$. Mais l'hypothèse $|\\alpha - p_n/q_n| = o(1/q_n)$ signifie $q_n|\\alpha - p_n/q_n| \\to 0$, ce qui est une contradiction. Donc $\\alpha$ est irrationnel."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2019",
+    "partie": "Partie IV",
+    "questions": "3 q. : Q24, Q25, Q27",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Monotonie de $(F_n(x))$ et $(G_n(x))$ : ajout d'un terme positif $U_{n+1}/2^{n+1}$ ; Convergence d'une suite décroissante minorée par $0$ ; Encadrement de $F_n(x)$ et $G_n(x)$ par des valeurs dyadiques proches et passage à la limite",
+    "corrections": [
+      {
+        "question": "Q24",
+        "correction": "Pour tout $\\omega \\in \\Omega$, $Y_{n+1}(\\omega) = Y_n(\\omega) + U_{n+1}(\\omega)/2^{n+1} \\geq Y_n(\\omega)$ car $U_{n+1}(\\omega) \\geq 0$. Donc $\\{Y_{n+1} \\leq x\\} \\subset \\{Y_n \\leq x\\}$ et $F_{n+1}(x) = \\mathbb{P}(Y_{n+1} \\leq x) \\leq \\mathbb{P}(Y_n \\leq x) = F_n(x)$ : $(F_n(x))$ est décroissante. De même, $\\{Y_{n+1} < x\\} \\subset \\{Y_n < x\\}$ donne $G_{n+1}(x) \\leq G_n(x)$ : $(G_n(x))$ est décroissante."
+      },
+      {
+        "question": "Q25",
+        "correction": "Par Q24, $(F_n(x))_{n \\geq 1}$ est décroissante. De plus, $F_n(x) = \\mathbb{P}(Y_n \\leq x) \\geq 0$ pour tout $n$. Toute suite réelle décroissante et minorée converge (théorème de convergence monotone). Donc $(F_n(x))$ converge. Le même raisonnement s'applique à $(G_n(x))_{n \\geq 1}$, décroissante et minorée par $0$."
+      },
+      {
+        "question": "Q27",
+        "correction": "Soit $x \\in [0,1]$. Posons $a_n = \\pi_n(x) \\in D_n$ et $b_n = a_n + 1/2^n$. Par Q13, $a_n \\leq x < b_n$, donc $a_n \\to x$. La croissance de $Y_n \\mapsto \\mathbb{P}(Y_n \\leq \\cdot)$ donne $F_n(a_n) \\leq F_n(x) \\leq F_n(b_n)$ (si $b_n \\leq 1$). Pour $a_n \\in D_n$ : $F_n(a_n) = a_n + 1/2^n \\to x$. Si $b_n \\in D_n$ : $F_n(b_n) = b_n + 1/2^n = a_n + 2/2^n \\to x$. Si $b_n = 1$ : $F_n(1) = 1$. Dans tous les cas, par encadrement $\\lim F_n(x) = x$. Raisonnement analogue pour $G_n(x)$ : $G_n(a_n) \\leq G_n(x) \\leq G_n(b_n)$, et $G_n(a_n) = a_n \\to x$, $G_n(b_n) = b_n \\to x$. Donc $\\lim G_n(x) = x$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2023",
+    "partie": "I.A.1",
+    "questions": "1 q. : Q6",
+    "difficulte": "Intermédiaire",
+    "intitule": "Équivalent de $I_n$ via la relation $K_{n+1} = (1 - 1/(2n))K_n$ et passage à la limite $K_n \\sim \\sqrt{\\pi/(2n)}$",
+    "corrections": [
+      {
+        "question": "Q6",
+        "correction": "De Q5 : $K_{n+1} = \\left(1 - \\dfrac{1}{2n}\\right) K_n$. En itérant : $K_n = K_1 \\displaystyle\\prod_{j=1}^{n-1} \\left(1 - \\dfrac{1}{2j}\\right)$. On peut relier $K_n$ aux intégrales de Wallis $W_m = \\int_0^{\\pi/2} \\cos^m(\\theta)\\,\\mathrm{d}\\theta$ via le changement de variable $t = \\tan\\theta$ : on obtient $K_n = W_{2n-2}$. Or l'équivalent classique des intégrales de Wallis donne $W_m \\sim \\sqrt{\\pi/(2m)}$ quand $m \\to +\\infty$. Donc $K_n = W_{2n-2} \\sim \\sqrt{\\dfrac{\\pi}{2(2n-2)}} \\sim \\sqrt{\\dfrac{\\pi}{4n}} = \\dfrac{1}{2}\\sqrt{\\dfrac{\\pi}{n}}$. Par Q4, $I_n \\sim K_n \\sim \\dfrac{1}{2}\\sqrt{\\dfrac{\\pi}{n}}$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2023",
+    "partie": "II.A",
+    "questions": "2 q. : Q18, Q21",
+    "difficulte": "Standard",
+    "intitule": "Vérification de la relation de symétrie $-x_{n,k} = x_{n,n-k}$ par calcul direct ; Décroissance de $B_n$ sur $\\mathbb{R}^+$ par décroissance de $k \\mapsto \\binom{n}{k}$ pour $k \\geq n/2$",
+    "corrections": [
+      {
+        "question": "Q18",
+        "correction": "On a $x_{n,k} = -\\sqrt{n} + \\dfrac{2k}{\\sqrt{n}}$. Donc $-x_{n,k} = \\sqrt{n} - \\dfrac{2k}{\\sqrt{n}}$. D'autre part, $x_{n,n-k} = -\\sqrt{n} + \\dfrac{2(n-k)}{\\sqrt{n}} = -\\sqrt{n} + 2\\sqrt{n} - \\dfrac{2k}{\\sqrt{n}} = \\sqrt{n} - \\dfrac{2k}{\\sqrt{n}}$. D'où $-x_{n,k} = x_{n,n-k}$."
+      },
+      {
+        "question": "Q21",
+        "correction": "La fonction $B_n$ est constante sur chaque intervalle $[x_{n,k} - 1/\\sqrt{n},\\, x_{n,k} + 1/\\sqrt{n}[$. Sur $\\mathbb{R}^+$, les paliers successifs correspondent aux indices $k$ croissants avec $x_{n,k} \\geq 0$, soit $k \\geq n/2$. Pour montrer la décroissance, il suffit de vérifier que $\\binom{n}{k} \\geq \\binom{n}{k+1}$ pour $k \\geq n/2$. Or $\\dfrac{\\binom{n}{k+1}}{\\binom{n}{k}} = \\dfrac{n-k}{k+1}$. Pour $k \\geq n/2$ : $n - k \\leq k \\leq k+1$, donc ce rapport est $\\leq 1$. Si $n$ est pair, le palier au-dessus de $0$ commence à $k = n/2$ et les suivants décroissent. Si $n$ est impair, $x_{n,k} \\geq 0$ pour $k \\geq (n+1)/2$ et la décroissance est similaire. Donc $B_n$ est décroissante sur $\\mathbb{R}^+$."
+      }
+    ]
+  },
+  {
+    "banque": "Centrale-Supélec",
+    "epreuve": "Maths 2 2025",
+    "partie": "Partie B.II",
+    "questions": "1 q. : 23",
+    "difficulte": "Intermédiaire",
+    "intitule": "Limite d'une suite définie via la trace d'une puissance de matrice",
+    "corrections": [
+      {
+        "question": "23",
+        "correction": "D'après Q21, $Z_n(h) = \\mathrm{tr}(A^n) = \\lambda_+^n + \\lambda_-^n$ où $\\lambda_+$ et $\\lambda_-$ sont les valeurs propres de $A$ données par Q22. Comme $\\lambda_+ > |\\lambda_-| \\geq 0$, on écrit $\\psi_n(h) = \\frac{1}{n}\\ln(Z_n(h)) = \\frac{1}{n}\\ln(\\lambda_+^n(1 + (\\lambda_-/\\lambda_+)^n)) = \\ln(\\lambda_+) + \\frac{1}{n}\\ln(1 + (\\lambda_-/\\lambda_+)^n)$. Or $|\\lambda_-/\\lambda_+| < 1$ donc $(\\lambda_-/\\lambda_+)^n \\to 0$, d'où $\\frac{1}{n}\\ln(1 + (\\lambda_-/\\lambda_+)^n) \\to 0$. Ainsi $\\psi_n(h) \\to \\ln(\\lambda_+) = \\ln(e^\\beta \\cosh(h) + \\sqrt{e^{2\\beta}\\cosh^2(h) - 2\\sinh(2\\beta)})$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2017",
+    "partie": "Partie A",
+    "questions": "1 q. : 5",
+    "difficulte": "Standard",
+    "intitule": "Monotonie, limite et équivalent de la suite de Wallis",
+    "corrections": [
+      {
+        "question": "5",
+        "correction": "Décroissance stricte : pour $t \\in ]0, \\pi/2[$, $0 < \\sin t < 1$, donc $(\\sin t)^{n+1} < (\\sin t)^n$. En intégrant : $W_{n+1} < W_n$. Limite : $(W_n)$ décroissante minorée par $0$ converge vers $\\ell \\geq 0$. De $W_n W_{n+1} = \\frac{\\pi}{2(n+1)} \\to 0$, on déduit $\\ell^2 = 0$, $\\ell = 0$. Équivalent : $\\frac{W_{n+2}}{W_n} = \\frac{n+1}{n+2} \\to 1$ et $W_{n+2} \\leq W_{n+1} \\leq W_n$ donnent $\\frac{W_{n+1}}{W_n} \\to 1$, soit $W_{n+1} \\sim W_n$. Alors $W_n^2 \\sim W_n W_{n+1} = \\frac{\\pi}{2(n+1)} \\sim \\frac{\\pi}{2n}$. D'où $W_n \\sim \\sqrt{\\frac{\\pi}{2n}}$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2018",
+    "partie": "Partie B",
+    "questions": "7 q. : 3, 4, 5, 6, 7, 8, 9",
+    "difficulte": "Standard／Intermédiaire",
+    "intitule": "Inf et sup d'ensembles emboîtés : monotonie et convergence ; Caractérisation de limsup/liminf comme extrema parmi les suites monotones encadrantes ; Comparaison des limsup/liminf de suites ordonnées ; Suites adjacentes et convergence via limsup = liminf ; Division euclidienne et sous-additivité itérée ; Bornitude puis passage à la limsup dans l'inégalité de sous-additivité ; Convergence par encadrement limsup ≤ inf ≤ liminf",
+    "corrections": [
+      {
+        "question": "3",
+        "correction": "Comme $u$ est bornée, il existe $M > 0$ tel que $|u_k| \\leq M$ pour tout $k \\geq 1$. Les ensembles $U_n = \\{u_k : k \\geq n\\}$ sont non vides et bornés, donc $\\underline{u}_n = \\inf(U_n)$ et $\\overline{u}_n = \\sup(U_n)$ existent dans $\\mathbb{R}$. Monotonie : $U_{n+1} \\subset U_n$ implique $\\inf(U_{n+1}) \\geq \\inf(U_n)$, donc $(\\underline{u}_n)$ est croissante. De même $\\sup(U_{n+1}) \\leq \\sup(U_n)$, donc $(\\overline{u}_n)$ est décroissante. Convergence : $(\\underline{u}_n)$ est croissante majorée par $M$, donc converge. $(\\overline{u}_n)$ est décroissante minorée par $-M$, donc converge."
+      },
+      {
+        "question": "4",
+        "correction": "$\\overline{u}$ est décroissante (Q3) et $\\overline{u}_n = \\sup(U_n) \\geq u_n$ pour tout $n$, donc $\\overline{u} \\succeq u$. Soit $w$ décroissante telle que $w \\succeq u$. Pour tout $n \\geq 1$ et tout $k \\geq n$ : $w_n \\geq w_k$ (décroissance) et $w_k \\geq u_k$ ($w \\succeq u$). Donc $w_n \\geq u_k$ pour tout $k \\geq n$, d'où $w_n \\geq \\sup\\{u_k : k \\geq n\\} = \\overline{u}_n$. Ainsi $w \\succeq \\overline{u}$ : $\\overline{u}$ est la plus petite suite décroissante plus grande que $u$. De même, $\\underline{u}$ est croissante et $\\underline{u} \\preceq u$. Si $w$ croissante vérifie $w \\preceq u$, pour $k \\geq n$ : $w_n \\leq w_k \\leq u_k$, donc $w_n \\leq \\inf(U_n) = \\underline{u}_n$. Ainsi $w \\preceq \\underline{u}$ : $\\underline{u}$ est la plus grande suite croissante plus petite que $u$."
+      },
+      {
+        "question": "5",
+        "correction": "Soit $v \\succeq u$. Pour tout $k \\geq n$, $v_k \\geq u_k$. Donc $\\sup\\{v_k : k \\geq n\\} \\geq \\sup\\{u_k : k \\geq n\\}$, i.e. $\\overline{v}_n \\geq \\overline{u}_n$. En passant à la limite : $\\overline{\\lim}\\,v_n \\geq \\overline{\\lim}\\,u_n$. De même, $\\inf\\{v_k : k \\geq n\\} \\geq \\inf\\{u_k : k \\geq n\\}$, donc $\\underline{v}_n \\geq \\underline{u}_n$, et en passant à la limite : $\\underline{\\lim}\\,v_n \\geq \\underline{\\lim}\\,u_n$."
+      },
+      {
+        "question": "6",
+        "correction": "Sens direct : supposons $\\overline{u}$ et $\\underline{u}$ adjacentes. $(\\overline{u}_n)$ est décroissante, $(\\underline{u}_n)$ est croissante (Q3), et $\\overline{u}_n - \\underline{u}_n \\to 0$. Elles convergent donc vers une même limite $\\ell$. Or $\\underline{u}_n \\leq u_n \\leq \\overline{u}_n$ pour tout $n$ (car $\\inf(U_n) \\leq u_n \\leq \\sup(U_n)$). Par le théorème des gendarmes, $u_n \\to \\ell$. Réciproque : si $u_n \\to \\ell$, pour tout $\\varepsilon > 0$, il existe $N$ tel que pour $k \\geq N$, $|u_k - \\ell| < \\varepsilon$. Donc $\\ell - \\varepsilon \\leq \\inf(U_N) \\leq \\sup(U_N) \\leq \\ell + \\varepsilon$, d'où $\\overline{u}_N - \\underline{u}_N \\leq 2\\varepsilon$. Ainsi $\\overline{u}_n - \\underline{u}_n \\to 0$ : les suites sont adjacentes. Dans ce cas, les trois suites $u$, $\\overline{u}$, $\\underline{u}$ convergent vers la même limite $\\ell$."
+      },
+      {
+        "question": "7",
+        "correction": "On a $m = qn + r$ avec $q \\geq 2$ (car $m \\geq 2n$) et $0 \\leq r < n$. On écrit $m = (q-1)n + (n+r)$. Par sous-additivité itérée, $u_{jn} \\leq j u_n$ pour tout $j \\geq 1$ (récurrence immédiate sur $j$ : $u_{(j+1)n} \\leq u_{jn} + u_n \\leq ju_n + u_n$). Puis $u_m = u_{(q-1)n + (n+r)} \\leq u_{(q-1)n} + u_{n+r} \\leq (q-1)u_n + u_{n+r}$. Comme $0 \\leq r < n$, on a $n \\leq n+r \\leq 2n-1$, donc $u_{n+r} \\leq \\max\\{u_n, \\ldots, u_{2n-1}\\}$. En divisant par $m = qn+r$ : $\\frac{u_m}{m} \\leq \\frac{(q-1)u_n}{qn+r} + \\frac{\\max\\{u_n, \\ldots, u_{2n-1}\\}}{m}$. Or $(q-1)n = m - n - r$, donc $\\frac{(q-1)u_n}{m} = \\frac{m-n-r}{m} \\cdot \\frac{u_n}{n}$. D'où $\\frac{u_m}{m} \\leq \\frac{m-n-r}{m} \\cdot \\frac{u_n}{n} + \\frac{\\max\\{u_n, \\ldots, u_{2n-1}\\}}{m}$."
+      },
+      {
+        "question": "8",
+        "correction": "Fixons $n = 1$. Pour $m \\geq 2$ : de Q7 (avec $n=1$), $\\frac{u_m}{m} \\leq \\frac{m-1-r}{m} \\cdot u_1 + \\frac{u_1}{m} \\leq u_1 + u_1 = 2u_1$. Avec $u_1/1 = u_1$, la suite $(u_m/m)$ est majorée. Elle est minorée par $0$ (car $u$ positive). Donc $(u_m/m)$ est bornée. Pour le passage à la limsup, fixons $n \\geq 1$. De Q7, pour $m \\geq 2n$ : $\\frac{u_m}{m} \\leq \\frac{m-n-r}{m} \\cdot \\frac{u_n}{n} + \\frac{C_n}{m}$ où $C_n = \\max\\{u_n, \\ldots, u_{2n-1}\\}$. Quand $m \\to +\\infty$ : $\\frac{m-n-r}{m} \\leq 1$ et $\\frac{C_n}{m} \\to 0$. Donc pour tout $\\varepsilon > 0$, il existe $M_0$ tel que pour $m \\geq M_0$, $\\frac{u_m}{m} \\leq \\frac{u_n}{n} + \\varepsilon$. Ainsi $\\overline{\\lim}_{m \\to +\\infty} \\frac{u_m}{m} \\leq \\frac{u_n}{n} + \\varepsilon$. Ceci étant vrai pour tout $\\varepsilon > 0$ : $\\overline{\\lim}_{m \\to +\\infty} \\frac{u_m}{m} \\leq \\frac{u_n}{n}$."
+      },
+      {
+        "question": "9",
+        "correction": "De Q8 : pour tout $n \\geq 1$, $\\overline{\\lim}_{m \\to +\\infty} \\frac{u_m}{m} \\leq \\frac{u_n}{n}$. En prenant l'inf sur $n \\geq 1$ : $\\overline{\\lim}_{m \\to +\\infty} \\frac{u_m}{m} \\leq \\inf_{n \\geq 1} \\frac{u_n}{n}$. Or $\\inf_{n \\geq 1} \\frac{u_n}{n} \\leq \\frac{u_n}{n}$ pour tout $n$, donc en particulier $\\inf_{n \\geq 1} \\frac{u_n}{n} \\leq \\underline{\\lim}_{n \\to +\\infty} \\frac{u_n}{n}$. Bilan : $\\overline{\\lim} \\frac{u_n}{n} \\leq \\inf_{n \\geq 1} \\frac{u_n}{n} \\leq \\underline{\\lim} \\frac{u_n}{n} \\leq \\overline{\\lim} \\frac{u_n}{n}$. Toutes ces quantités sont donc égales, ce qui prouve la convergence de $(u_n/n)$, avec $\\lim_{n \\to +\\infty} \\frac{u_n}{n} = \\inf_{n \\geq 1} \\frac{u_n}{n}$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2019",
+    "partie": "Partie A",
+    "questions": "1 q. : 4",
+    "difficulte": "Intermédiaire",
+    "intitule": "Équivalent d'un terme général par produit télescopique",
+    "corrections": [
+      {
+        "question": "4",
+        "correction": "Pour $k$ entier relatif fixé, $\\frac{u_{\\lfloor x \\rfloor + k}(x)}{u_{\\lfloor x \\rfloor}(x)} = \\prod_{j=0}^{k-1} \\frac{u_{\\lfloor x \\rfloor + j + 1}(x)}{u_{\\lfloor x \\rfloor + j}(x)}$ (produit de $\\lfloor x \\rfloor$ à $\\lfloor x \\rfloor + k - 1$ si $k > 0$, produit inverse si $k < 0$). Or $\\frac{u_{m+1}(x)}{u_m(x)} = \\frac{x}{(m+1)^{1-r} m^r}$. Pour $m = \\lfloor x \\rfloor + j$ avec $j$ fixé, $m \\sim x$ et $\\frac{x}{(m+1)^{1-r}m^r} \\to 1$ quand $x \\to +\\infty$. Donc chaque facteur du produit fini tend vers $1$, et le produit (fini, nombre de facteurs $= |k|$) tend vers $1$. Ainsi $u_{\\lfloor x \\rfloor + k}(x) \\sim u_{\\lfloor x \\rfloor}(x)$.\\n\\nPour la minoration : pour $x$ assez grand et $n$ fixé, chacun des termes $u_{\\lfloor x \\rfloor - j}(x)$ pour $0 \\leq j \\leq n$ vérifie $u_{\\lfloor x \\rfloor - j}(x) \\geq \\frac{1}{2} u_{\\lfloor x \\rfloor}(x)$ (car l'équivalent donne un rapport $\\to 1$). Donc $\\sum_{i=\\lfloor x \\rfloor - n}^{\\lfloor x \\rfloor} u_i(x) \\geq (n+1) \\cdot \\frac{1}{2} u_{\\lfloor x \\rfloor}(x)$. En fait, plus précisément, comme chaque $u_i(x)/u_{\\lfloor x \\rfloor}(x) \\to 1$, la somme de $n+1$ termes chacun $\\sim u_{\\lfloor x \\rfloor}(x)$ donne $\\sum \\geq n \\cdot u_{\\lfloor x \\rfloor}(x)$ pour $x$ assez grand."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2021",
+    "partie": "Étude asymptotique d'une suite",
+    "questions": "1 q. : 8",
+    "difficulte": "Intermédiaire",
+    "intitule": "Convergence d'une suite par DL de $\\zeta$ et équivalents",
+    "corrections": [
+      {
+        "question": "8",
+        "correction": "Par les questions 6 et 7, $\\sqrt{npq}\\,p_n \\sim \\frac{1}{\\sqrt{2\\pi}} e^{-np\\,\\zeta(u_n)-nq\\,\\zeta(v_n)}$ avec $u_n = \\frac{x_n - np}{np}$ et $v_n = \\frac{np - x_n}{nq}$. Notons que $u_n = \\frac{\\lceil np-q\\rceil - np}{np}$. Comme $np - q \\leq \\lceil np-q \\rceil < np-q+1$, on a $\\frac{-q}{np} \\leq u_n < \\frac{1-q}{np} = \\frac{p}{np} = \\frac{1}{n}$. Donc $u_n = O(1/n)$ et de même $v_n = -\\frac{p}{q}u_n \\cdot \\frac{np}{nq}$... Plus précisément $v_n = \\frac{np - x_n}{nq} = -\\frac{p}{q}u_n$, donc $v_n = O(1/n)$. Par le DL de $\\zeta$ (question 4) : $\\zeta(u_n) = u_n + \\frac{u_n^2}{2} + o(u_n^2)$. Donc $np\\,\\zeta(u_n) = np\\,u_n + \\frac{np\\,u_n^2}{2} + o(np\\,u_n^2) = (x_n - np) + \\frac{(x_n-np)^2}{2np} + o(1/n)$. De même $nq\\,\\zeta(v_n) = (np - x_n) + \\frac{(np-x_n)^2}{2nq} + o(1/n)$. La somme donne $np\\,\\zeta(u_n) + nq\\,\\zeta(v_n) = \\frac{(x_n-np)^2}{2}\\left(\\frac{1}{np}+\\frac{1}{nq}\\right) + o(1/n) = \\frac{(x_n-np)^2}{2npq} + o(1/n)$. Or $|x_n - np| \\leq 1$, donc $\\frac{(x_n-np)^2}{2npq} \\leq \\frac{1}{2npq} \\to 0$. Ainsi $np\\,\\zeta(u_n) + nq\\,\\zeta(v_n) \\to 0$, d'où $\\sqrt{npq}\\,p_n \\to \\frac{1}{\\sqrt{2\\pi}}$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 1 2021",
+    "partie": "Convergence en loi",
+    "questions": "1 q. : 14",
+    "difficulte": "Standard",
+    "intitule": "Limites des facteurs auxiliaires par équivalents de $k_n(t)$",
+    "corrections": [
+      {
+        "question": "14",
+        "correction": "Pour $t \\in [a,b]$, $k_n(t) = \\lfloor \\sqrt{npq}\\,t + np \\rfloor \\sim np$ car $\\sqrt{npq}\\,t = o(np)$ (puisque $\\sqrt{npq}\\,t = O(\\sqrt{n})$ tandis que $np \\sim n$). De même $n - k_n(t) \\sim nq$. Donc $\\frac{pqn^2}{k_n(t)(n-k_n(t))} \\sim \\frac{pqn^2}{np \\cdot nq} = 1$, d'où la racine tend vers 1. Pour le second facteur : $k_n(t) \\to +\\infty$ et $n - k_n(t) \\to +\\infty$, donc $\\varepsilon_{k_n(t)} \\to 0$ et $\\varepsilon_{n-k_n(t)} \\to 0$ (car $\\varepsilon_m \\to 0$ quand $m \\to +\\infty$). Avec $\\varepsilon_n \\to 0$, on obtient $\\frac{1+\\varepsilon_n}{(1+\\varepsilon_{k_n(t)})(1+\\varepsilon_{n-k_n(t)})} \\to \\frac{1}{1 \\cdot 1} = 1$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2018",
+    "partie": "Partie C",
+    "questions": "1 q. : 13",
+    "difficulte": "Intermédiaire",
+    "intitule": "Convergence quadratique de la méthode de Newton : $\\|X_k - X^*\\| \\leq \\frac{(\\rho\\sqrt{C})^{2^k}}{C}$",
+    "corrections": [
+      {
+        "question": "13",
+        "correction": "Par Q12, $\\|X_{k+1} - X^*\\| = \\|G(X_k) - X^*\\| \\leq C\\|X_k - X^*\\|^2$ pour tout $k$ tel que $X_k \\in B(X^*,\\rho)$ avec $\\rho \\leq r$. Posons $e_k = \\|X_k - X^*\\|$. On a $e_{k+1} \\leq Ce_k^2$. Choisissons $\\rho$ tel que $C\\rho < 1$. Si $X_0 \\in B(X^*,\\rho)$, alors $e_0 \\leq \\rho$. Montrons par récurrence que $e_k \\leq \\frac{(\\rho\\sqrt{C})^{2^k}}{C}$ et $X_k \\in B(X^*,\\rho)$. **Initialisation** : $e_0 \\leq \\rho = \\frac{(\\rho\\sqrt{C})^1}{\\sqrt{C}} \\leq \\frac{(\\rho\\sqrt{C})^1}{C}$... Posons plutôt $\\alpha = C\\rho < 1$. On montre $Ce_k \\leq \\alpha^{2^k}$, i.e. $e_k \\leq \\alpha^{2^k}/C$. Pour $k=0$ : $Ce_0 \\leq C\\rho = \\alpha = \\alpha^{2^0}$. **Hérédité** : $Ce_{k+1} \\leq C \\cdot Ce_k^2 = (Ce_k)^2 \\leq (\\alpha^{2^k})^2 = \\alpha^{2^{k+1}}$. De plus $e_{k+1} \\leq \\alpha^{2^{k+1}}/C \\leq \\alpha/C \\leq \\rho$ (car $\\alpha < 1$). Donc $X_{k+1} \\in B(X^*,\\rho)$ et la récurrence se poursuit. Comme $\\alpha < 1$, $\\alpha^{2^k} \\to 0$, donc $e_k \\to 0$ : $(X_k)$ converge vers $X^*$. La convergence est quadratique (l'erreur est mise au carré à chaque étape)."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2018",
+    "partie": "Partie D",
+    "questions": "1 q. : 17",
+    "difficulte": "Intermédiaire",
+    "intitule": "Convergence de la suite $\\lambda_{k,\\ell}$ vers $\\sqrt{\\lambda_\\ell}$ par étude de $\\frac{\\lambda_{k+1,\\ell} - \\sqrt{\\lambda_\\ell}}{\\lambda_{k+1,\\ell} + \\sqrt{\\lambda_\\ell}}$",
+    "corrections": [
+      {
+        "question": "17",
+        "correction": "Posons $a = \\sqrt{\\lambda_\\ell}$ et $x_k = \\lambda_{k,\\ell}$. On a $x_{k+1} = \\frac{1}{2}(x_k + a^2/x_k)$. Calculons $\\frac{x_{k+1} - a}{x_{k+1} + a}$. On a $x_{k+1} - a = \\frac{x_k^2 + a^2 - 2ax_k}{2x_k} = \\frac{(x_k - a)^2}{2x_k}$ et $x_{k+1} + a = \\frac{x_k^2 + a^2 + 2ax_k}{2x_k} = \\frac{(x_k + a)^2}{2x_k}$. Donc $\\frac{x_{k+1} - a}{x_{k+1} + a} = \\left(\\frac{x_k - a}{x_k + a}\\right)^2$. Par récurrence : $\\frac{x_{k+1} - a}{x_{k+1} + a} = \\left(\\frac{x_0 - a}{x_0 + a}\\right)^{2^{k+1}} = \\left(\\frac{\\mu - \\sqrt{\\lambda_\\ell}}{\\mu + \\sqrt{\\lambda_\\ell}}\\right)^{2^{k+1}}$. Comme $\\mu > 0$ et $\\sqrt{\\lambda_\\ell} > 0$, on a $\\left|\\frac{\\mu - \\sqrt{\\lambda_\\ell}}{\\mu + \\sqrt{\\lambda_\\ell}}\\right| < 1$ (car $|\\mu - \\sqrt{\\lambda_\\ell}| < \\mu + \\sqrt{\\lambda_\\ell}$). Donc ce rapport tend vers $0$ quand $k \\to +\\infty$, d'où $\\frac{x_k - a}{x_k + a} \\to 0$, i.e. $x_k \\to a = \\sqrt{\\lambda_\\ell}$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2018",
+    "partie": "Partie E",
+    "questions": "2 q. : 20, 21",
+    "difficulte": "Avancé",
+    "intitule": "Déterminer $\\eta$ tel que $\\widehat{V}_k = \\sqrt{A} + \\eta^k \\Delta$ pour tout $k$ ; Condition sur le conditionnement de $A$ pour la convergence de $(\\widehat{V}_k)$",
+    "corrections": [
+      {
+        "question": "20",
+        "correction": "On a $\\Delta = \\varepsilon C_i C_j^T$ avec $C_\\ell = Pe_\\ell$ (colonnes de $P$). Dans la base propre, $P^T\\Delta P = \\varepsilon e_i e_j^T = \\varepsilon E_{i,j}$. Posons $D^{1/2} = \\mathrm{diag}(\\sqrt{\\lambda_1},\\ldots,\\sqrt{\\lambda_n})$, de sorte que $\\sqrt{A} = PD^{1/2}P^T$. La relation $\\Delta_1 = \\frac{1}{2}(\\Delta - (\\sqrt{A})^{-1}\\Delta\\sqrt{A})$ donne, en conjuguant par $P$ : $P^T\\Delta_1 P = \\frac{1}{2}(\\varepsilon E_{i,j} - D^{-1/2}(\\varepsilon E_{i,j})D^{1/2}) = \\frac{\\varepsilon}{2}(E_{i,j} - \\frac{\\sqrt{\\lambda_j}}{\\sqrt{\\lambda_i}}E_{i,j}) = \\frac{\\varepsilon}{2}\\left(1 - \\frac{\\sqrt{\\lambda_j}}{\\sqrt{\\lambda_i}}\\right)E_{i,j}$. Donc $\\Delta_1 = \\eta \\Delta$ avec $\\eta = \\frac{1}{2}\\left(1 - \\frac{\\sqrt{\\lambda_j}}{\\sqrt{\\lambda_i}}\\right) = \\frac{\\sqrt{\\lambda_i} - \\sqrt{\\lambda_j}}{2\\sqrt{\\lambda_i}}$. Par récurrence, $\\Delta_k = \\eta^k \\Delta$, d'où $\\widehat{V}_k = \\sqrt{A} + \\eta^k \\Delta$."
+      },
+      {
+        "question": "21",
+        "correction": "Le conditionnement de $A$ est $\\kappa(A) = \\lambda_n / \\lambda_1$ (avec $\\lambda_1 \\leq \\ldots \\leq \\lambda_n$). La suite $(\\widehat{V}_k)$ converge vers $\\sqrt{A}$ ssi $|\\eta|^k \\to 0$, ssi $|\\eta| < 1$ pour tout choix de $i \\neq j$. On a $\\eta = \\frac{\\sqrt{\\lambda_i} - \\sqrt{\\lambda_j}}{2\\sqrt{\\lambda_i}}$. Le cas le plus défavorable est $\\sqrt{\\lambda_i} = \\sqrt{\\lambda_n}$ et $\\sqrt{\\lambda_j} = \\sqrt{\\lambda_1}$ (ou $i \\leftrightarrow j$). Pour $i = n, j = 1$ : $\\eta = \\frac{\\sqrt{\\lambda_n} - \\sqrt{\\lambda_1}}{2\\sqrt{\\lambda_n}} = \\frac{1}{2}\\left(1 - \\sqrt{\\frac{\\lambda_1}{\\lambda_n}}\\right) = \\frac{1}{2}(1 - \\kappa(A)^{-1/2})$. La condition $|\\eta| < 1$ donne $\\frac{1}{2}(1 - \\kappa(A)^{-1/2}) < 1$, soit $\\kappa(A)^{-1/2} > -1$, toujours vrai. Pour $i = 1, j = n$ : $\\eta = \\frac{\\sqrt{\\lambda_1} - \\sqrt{\\lambda_n}}{2\\sqrt{\\lambda_1}} = \\frac{1}{2}(1 - \\sqrt{\\kappa(A)})$. La condition $|\\eta| < 1$ donne $|1 - \\sqrt{\\kappa(A)}| < 2$, soit $-2 < 1 - \\sqrt{\\kappa(A)} < 2$, i.e. $-1 < -\\sqrt{\\kappa(A)} < 1$, soit $\\sqrt{\\kappa(A)} < 3$ (la condition $\\sqrt{\\kappa(A)} > -1$ est triviale). Donc la condition est $\\kappa(A) < 9$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2019",
+    "partie": "Partie B",
+    "questions": "1 q. : 8",
+    "difficulte": "Standard",
+    "intitule": "Montrer que la suite $(\\rho_n)$ est croissante et convergente",
+    "corrections": [
+      {
+        "question": "8",
+        "correction": "Croissance : Soit $X = (x_0, \\ldots, x_{n-1})^t \\in \\mathbb{R}^n$ avec $\\|X\\| = 1$. On pose $\\hat{X} = (x_0, \\ldots, x_{n-1}, 0)^t \\in \\mathbb{R}^{n+1}$, de sorte que $\\|\\hat{X}\\| = 1$. On a ${}^t \\hat{X} H_{n+1} \\hat{X} = \\sum_{j,k=0}^{n} \\frac{\\hat{x}_j \\hat{x}_k}{j+k+1} = \\sum_{j,k=0}^{n-1} \\frac{x_j x_k}{j+k+1} = {}^t X H_n X$ (les termes avec $j=n$ ou $k=n$ sont nuls). Donc ${}^t X H_n X = {}^t \\hat{X} H_{n+1} \\hat{X} \\leq \\rho_{n+1}$. En prenant le max sur $X$, $\\rho_n \\leq \\rho_{n+1}$. Convergence : Par Q7, $\\rho_n \\leq \\pi$ pour tout $n$. La suite $(\\rho_n)$ est croissante et majorée, donc convergente."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2020",
+    "partie": "Partie B",
+    "questions": "1 q. : 12",
+    "difficulte": "Standard",
+    "intitule": "Convergence de $E(N_n)/n$ via le lemme de Césaro",
+    "corrections": [
+      {
+        "question": "12",
+        "correction": "D'après Q11, $E(N_n) = 1 + \\sum_{i=1}^n P(R > i)$. Donc $\\frac{E(N_n)}{n} = \\frac{1}{n} + \\frac{1}{n}\\sum_{i=1}^n P(R > i)$. Posons $u_i = P(R > i)$. On a $P(R > i) = P(\\bigcap_{k=1}^i \\{S_k \\neq 0_d\\})$. La suite d'événements $(\\bigcap_{k=1}^i \\{S_k \\neq 0_d\\})_{i \\geq 1}$ est décroissante pour l'inclusion, donc par continuité décroissante : $P(R > i) \\to P(\\bigcap_{i=1}^{+\\infty} \\{S_i \\neq 0_d\\}) = P(R = +\\infty)$. Par le théorème de Césaro, $\\frac{1}{n}\\sum_{i=1}^n P(R > i) \\to P(R = +\\infty)$. Et $1/n \\to 0$. Donc $\\frac{E(N_n)}{n} \\to P(R = +\\infty)$."
+      }
+    ]
+  },
+  {
+    "banque": "Mines-Ponts",
+    "epreuve": "Maths 2 2020",
+    "partie": "Partie D",
+    "questions": "1 q. : 17",
+    "difficulte": "Avancé",
+    "intitule": "Équivalent $a_n \\sim 1/B_n$ par encadrement asymptotique",
+    "corrections": [
+      {
+        "question": "17",
+        "correction": "D'après Q16, $a_n \\leq 1/B_n$ et $1 \\leq a_n B_{m-n} + a_0(B_m - B_{m-n})$ pour $m > n$. De la seconde : $a_n \\geq \\frac{1 - a_0(B_m - B_{m-n})}{B_{m-n}}$. On utilise $m = m_n$ tel que $B_{m_n-n} \\sim B_n$ et $B_{m_n} - B_{m_n-n} \\to 0$. Avec ces hypothèses : $a_n \\geq \\frac{1 - a_0(B_{m_n} - B_{m_n-n})}{B_{m_n-n}} = \\frac{1}{B_{m_n-n}} - \\frac{a_0(B_{m_n} - B_{m_n-n})}{B_{m_n-n}}$. Le premier terme est $\\sim 1/B_n$ et le second tend vers $0$ (car le numérateur $\\to 0$ et le dénominateur $\\to +\\infty$ puisque $B_n \\to +\\infty$). Donc $a_n \\geq 1/B_n - o(1/B_n) \\sim 1/B_n$. Combiné avec $a_n \\leq 1/B_n$ (Q16), on obtient $a_n \\sim 1/B_n$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2019",
+    "partie": "Partie 4",
+    "questions": "1 q. : 23c",
+    "difficulte": "Intermédiaire",
+    "intitule": "Minorer $P_n(\\alpha_n)$ pour montrer que $\\alpha_n$ diverge",
+    "corrections": [
+      {
+        "question": "23c",
+        "correction": "De $P_n(\\alpha_n) = 0$ : $\\alpha_n^4 - 6\\alpha_n^3 + 10\\alpha_n^2 - 6\\alpha_n + 1 = n\\alpha_n(\\alpha_n^2 - \\alpha_n + 1) \\geq n$ (car $x(x^2 - x + 1) \\geq 1$ pour $x \\geq 1$). Si $\\alpha_n$ ne divergeait pas, une sous-suite serait bornée et le membre gauche aussi, contradiction. Donc $\\alpha_n \\to +\\infty$."
+      }
+    ]
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 1 2024",
+    "partie": "Première partie",
+    "questions": "1 q. : 14a",
+    "difficulte": "Intermédiaire",
+    "intitule": "Developpement asymptotique de $\\mathbb{E}[X_n^2]$ a partir de $H_n^2$ et $\\sum 1/i^2$",
+    "corrections": []
+  },
+  {
+    "banque": "X-ENS",
+    "epreuve": "Maths 2 2023",
+    "partie": "Partie II",
+    "questions": "1 q. : 14",
+    "difficulte": "Intermédiaire",
+    "intitule": "Récurrence forte sur les majorations des suites $\\alpha_i, \\beta_i, \\varepsilon_i$",
+    "corrections": []
+  },
+  {
+    "banque": "E3A-Polytech",
+    "epreuve": "Maths 1 2020",
+    "partie": "Exercice 3",
+    "questions": "2 q. : Q2, Q5",
+    "difficulte": "Intermédiaire",
+    "intitule": "Suites indexées par $\\mathbb{Z}$ ; équation caractéristique de la récurrence ; valeurs propres de l'opérateur de décalage $T$",
+    "corrections": [
+      {
+        "question": "Q2",
+        "correction": "La récurrence $x_{n+2} = ax_{n+1} + bx_n$ (pour $n \\in \\mathbb{Z}$) a pour équation caractéristique $r^2 = ar + b$, soit $r^2 - ar - b = 0$. Si les racines $r_1, r_2$ sont distinctes et non nulles (car la suite est indexée par $\\mathbb{Z}$, il faut $b \\neq 0$ pour pouvoir remonter), la solution générale est $x_n = \\alpha r_1^n + \\beta r_2^n$ pour $n \\in \\mathbb{Z}$."
+      },
+      {
+        "question": "Q5",
+        "correction": "L'opérateur de décalage $T : (x_n)_{n \\in \\mathbb{Z}} \\mapsto (x_{n+1})_{n \\in \\mathbb{Z}}$ vérifie $T^2 = aT + bI$ sur l'espace des suites récurrentes. Les valeurs propres de $T$ sont les racines $r_1, r_2$ de l'équation caractéristique, et les vecteurs propres associés sont les suites géométriques $(r_i^n)_{n \\in \\mathbb{Z}}$. Si $r_1 \\neq r_2$, $T$ est diagonalisable sur cet espace de dimension 2."
+      }
+    ]
+  },
+  {
+    "banque": "E3A-Polytech",
+    "epreuve": "Maths 1 2020",
+    "partie": "Exercice 5",
+    "questions": "2 q. : Q1, Q4",
+    "difficulte": "Standard",
+    "intitule": "Théorème de Cesàro ; convergence de moyennes $f_n(t) = w_{\\lfloor nt \\rfloor + 1}$",
+    "corrections": [
+      {
+        "question": "Q1",
+        "correction": "Théorème de Cesàro : si $(u_n)$ converge vers $\\ell$, alors $\\sigma_n = \\frac{1}{n}\\sum_{k=1}^n u_k \\to \\ell$. Preuve : soit $\\varepsilon > 0$. Il existe $N$ tel que $|u_k - \\ell| < \\varepsilon$ pour $k \\geq N$. Alors $|\\sigma_n - \\ell| \\leq \\frac{1}{n}\\sum_{k=1}^{N-1}|u_k - \\ell| + \\frac{n-N+1}{n}\\varepsilon$. Le premier terme tend vers $0$, donc pour $n$ assez grand, $|\\sigma_n - \\ell| < 2\\varepsilon$."
+      },
+      {
+        "question": "Q4",
+        "correction": "Pour $t \\in [0, 1]$, $f_n(t) = w_{\\lfloor nt \\rfloor + 1}$. Si $(w_k)$ converge vers $\\ell$, alors pour $t > 0$ fixé, $\\lfloor nt \\rfloor + 1 \\to +\\infty$ donc $f_n(t) \\to \\ell$ (convergence simple). Pour la convergence de $\\frac{1}{n}\\sum_{k=1}^n w_k$, on écrit $\\int_0^1 f_n(t)\\,dt = \\frac{1}{n}\\sum_{k=0}^{n-1} w_{k+1} = \\sigma_n$ et on applique Cesàro."
+      }
+    ]
+  }
+]

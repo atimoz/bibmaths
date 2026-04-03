@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E3A-Polytech 2025 -- Maths 1 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-body);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-body);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
+    .question ol li{margin-bottom:4px}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    .annale-warning{background:linear-gradient(135deg,rgba(255,170,0,.08),rgba(255,170,0,.03));border:1px solid rgba(255,170,0,.25);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.85rem;line-height:1.7;color:var(--ink-light)}
+    .annale-warning strong{color:var(--ink);font-weight:600}
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+      <a href="../../entrainement.html" class="nav__link">Entraînement</a>
+      <a href="../../revision.html" class="nav__link">Révision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">E3A-POLYTECH 2025</span>
+    </div>
+
+    <h1 class="course__title">E3A-Polytech 2025 -- Mathematiques 1</h1>
+
+    <div class="annale-warning">
+      <strong>Enonce reconstitue</strong> a partir des rapports de jury et analyses disponibles. Pour l'enonce officiel complet, consulter le PDF sur <a href="https://www.e3a-polytech.fr/" target="_blank" rel="noopener">e3a-polytech.fr</a>.
+    </div>
+
+    <div style="margin-bottom:var(--space-xl)">
+      <a href="e3a-2025-correction.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#E91E63;color:#fff;border-radius:10px;font-family:var(--font-body);font-size:.85rem;font-weight:600;text-decoration:none;transition:background .2s">
+        <span>&#9998;</span> Voir la correction detaillee
+      </a>
+    </div>
+
+    <p class="course__intro">
+      Epreuve de mathematiques 1, filiere MP. Duree : 4 heures. Le sujet comporte 3 exercices independants couvrant les extrema sous contrainte dans \(\mathbf{R}^4\), la transformee de Fourier discrete (endomorphisme de \(\mathbf{C}_{n-1}[X]\)), et l'etude d'une serie entiere \(\sum x^n/(n!)^2\).
+    </p>
+
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">E3A-Polytech</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Mathematiques 1</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2025</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Extrema sous contrainte, multiplicateurs de Lagrange, transformee de Fourier discrete, racines de l'unite, series entieres</span>
+      </div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#exo1"><span class="course__toc-num">1.</span> Extrema sous contrainte dans R^4 (3 methodes)</a></li>
+        <li class="course__toc-item"><a href="#exo2"><span class="course__toc-num">2.</span> Transformee de Fourier discrete</a></li>
+        <li class="course__toc-item"><a href="#exo3"><span class="course__toc-num">3.</span> Serie entiere et etude de fonctions</a></li>
+      </ol>
+    </nav>
+
+    <!-- EXERCICE 1 -->
+    <div class="annale-exercice" id="exo1">
+      <h2 class="annale-exercice__title">Exercice 1 -- Extrema sous contrainte dans \(\mathbf{R}^4\)</h2>
+
+      <p class="annale-exercice__intro">Soit \(f\) la fonction definie sur \(\mathbf{R}^4\) muni de son produit scalaire canonique par \(\forall X = (x,y,z,t) \in \mathbf{R}^4,\; f(X) = x^2 + y^2 + z^2 + t^2\). On cherche les extrema eventuels de \(f\) sous la contrainte \(H = \{X = (x,y,z,t) \in \mathbf{R}^4 : x + y = 2\}\) et les points ou ces extrema sont atteints.</p>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">Premiere methode</h3>
+      </div>
+
+      <div class="question" id="Q1">
+        <span class="question__num">1.</span>
+        <p>Determiner les extrema de la fonction \(h : (u,v,w) \in \mathbf{R}^3 \mapsto 2u^2 + v^2 + w^2 - 4u + 4\).</p>
+      </div>
+
+      <div class="question" id="Q2">
+        <span class="question__num">2.</span>
+        <p>Determiner les solutions du probleme pose.</p>
+      </div>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">Deuxieme methode</h3>
+      </div>
+
+      <p class="annale-exercice__intro">Soit \(g : X = (x,y,z,t) \in \mathbf{R}^4 \mapsto x + y - 2\).</p>
+
+      <div class="question" id="Q3">
+        <span class="question__num">3.</span>
+        <p>En utilisant la fonction \(g\), determiner les extrema possibles de \(f\) restreinte a \(H\).</p>
+      </div>
+
+      <div class="question" id="Q4">
+        <span class="question__num">4.</span>
+        <p>Retrouver les solutions du probleme pose.</p>
+      </div>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">Troisieme methode</h3>
+      </div>
+
+      <p class="annale-exercice__intro">Soit \(F = \{X = (x,y,z,t) \in \mathbf{R}^4 : x + y = 0\}\) et \(Y = (-1,-1,0,0) \in \mathbf{R}^4\).</p>
+
+      <div class="question" id="Q5">
+        <span class="question__num">5.</span>
+        <p>Demontrer que \(F\) est un sous-espace vectoriel de \(\mathbf{R}^4\) et en donner la dimension.</p>
+      </div>
+
+      <div class="question" id="Q6">
+        <span class="question__num">6.</span>
+        <p>Determiner le sous-espace orthogonal du sous-espace \(F\).</p>
+      </div>
+
+      <div class="question" id="Q7">
+        <span class="question__num">7.</span>
+        <p>Calculer la distance \(d(Y, F)\) entre \(Y\) et le sous-espace vectoriel \(F\).</p>
+      </div>
+
+      <div class="question" id="Q8">
+        <span class="question__num">8.</span>
+        <p>Soit \(X \in \mathbf{R}^4\). Justifier que : \(X \in H \iff X + Y \in F\).</p>
+      </div>
+
+      <div class="question" id="Q9">
+        <span class="question__num">9.</span>
+        <p>En deduire la structure de l'ensemble \(H\).</p>
+      </div>
+
+      <div class="question" id="Q10">
+        <span class="question__num">10.</span>
+        <p>Retrouver de nouveau les solutions du probleme pose.</p>
+      </div>
+    </div>
+
+    <!-- EXERCICE 2 -->
+    <div class="annale-exercice" id="exo2">
+      <h2 class="annale-exercice__title">Exercice 2 -- Transformee de Fourier discrete</h2>
+
+      <p class="annale-exercice__intro">Soit \(n \geqslant 3\). On note \(E_{n-1} = \mathbf{C}_{n-1}[X]\) le \(\mathbf{C}\)-espace vectoriel de dimension \(n\) des polynomes de degre au plus \(n-1\). On note \(\mathcal{B} = (Q_0, Q_1, \ldots, Q_{n-1})\) la base canonique ou \(Q_k(X) = X^k\). Pour tout \(\alpha \in \mathbf{C}\), on note \(\varphi_\alpha\) l'endomorphisme de \(E_{n-1}\) defini par</p>
+      <div class="math-display">$$\varphi_\alpha(P) = \frac{1}{\sqrt{n}} \sum_{q=0}^{n-1} P(\alpha^q)\, X^q$$</div>
+      <p class="annale-exercice__intro">Soit \(A_\alpha\) la matrice de \(\varphi_\alpha\) dans la base \(\mathcal{B}\). Soit \(\omega = e^{2i\pi/n}\). On rappelle que \(\omega^n = 1\) et \(\overline{\omega} = \omega^{-1}\).</p>
+
+      <div class="question" id="Q1b">
+        <span class="question__num">1.</span>
+        <p>Determiner, suivant la valeur de l'entier relatif \(m\), la somme \(\sigma_m = \displaystyle\sum_{r=1}^{n} \omega^{m(r-1)}\).</p>
+      </div>
+
+      <div class="question" id="Q2b">
+        <span class="question__num">2.</span>
+        <p>Ecrire la matrice \(A_\omega\) dans le cas ou \(n = 3\). On utilisera le nombre complexe \(j = e^{2i\pi/3}\).</p>
+      </div>
+
+      <div class="question" id="Q3b">
+        <span class="question__num">3.</span>
+        <p>Demontrer que, pour tout couple \((k,\ell) \in \llbracket 1,n \rrbracket^2\), on a : \(a_{k,\ell} = \dfrac{1}{\sqrt{n}}\,\omega^{(k-1)(\ell-1)}\).</p>
+      </div>
+
+      <div class="question" id="Q4b">
+        <span class="question__num">4.</span>
+        <p>La matrice \(A_\omega\) est-elle symetrique ? Peut-on affirmer qu'elle est diagonalisable ?</p>
+      </div>
+
+      <div class="question" id="Q5b">
+        <span class="question__num">5.</span>
+        <p>Calculer \(A_\omega \times \overline{A_\omega}\). En deduire que \(A_\omega\) est inversible et determiner son inverse.</p>
+      </div>
+
+      <div class="question" id="Q6b">
+        <span class="question__num">6.</span>
+        <p>Determiner alors un nombre complexe \(\alpha\) tel que \(\varphi_\omega^{-1} = \varphi_\alpha\).</p>
+      </div>
+
+      <div class="question" id="Q7b">
+        <span class="question__num">7.</span>
+        <p>Calculer \((A_\omega)^2\) puis verifier que \((A_\omega)^4 = I_n\).</p>
+      </div>
+
+      <div class="question" id="Q8b">
+        <span class="question__num">8.</span>
+        <p>La matrice \(A_\omega\) est-elle diagonalisable ?</p>
+      </div>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">Elements propres de \(\varphi_\omega\)</h3>
+      </div>
+
+      <p class="annale-exercice__intro">On note, pour \(q \in \llbracket 0, n-1 \rrbracket\), \(L_q(X) = \dfrac{X^n - 1}{X - \omega^q}\). En particulier, \(L_0(X) = 1 + X + \cdots + X^{n-1}\).</p>
+
+      <div class="question" id="Q9b">
+        <span class="question__num">9.</span>
+        <p>Determiner les valeurs propres possibles de \(\varphi_\omega\).</p>
+      </div>
+
+      <div class="question" id="Q10b">
+        <span class="question__num">10.</span>
+        <p>Exprimer les \(n\) racines du polynome \(X^n - 1\) a l'aide de puissances de \(\omega\).</p>
+      </div>
+
+      <div class="question" id="Q11b">
+        <span class="question__num">11.</span>
+        <p>En deduire que \(\forall q \in \llbracket 0, n-1 \rrbracket,\; L_q \in E_{n-1}\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">On pose \(H_0 = \mathrm{Vect}(Q_0, L_0)\) et on admet que \((Q_0, L_0)\) en est une base.</p>
+
+      <div class="question" id="Q12b">
+        <span class="question__num">12.</span>
+        <p>Verifier que \(H_0\) est stable par \(\varphi_\omega\).</p>
+      </div>
+
+      <div class="question" id="Q13b">
+        <span class="question__num">13.</span>
+        <p>Ecrire la matrice de l'endomorphisme induit par \(\varphi_\omega\) sur \(H_0\) dans la base \((Q_0, L_0)\).</p>
+      </div>
+
+      <div class="question" id="Q14b">
+        <span class="question__num">14.</span>
+        <p>En deduire un vecteur non nul de \(\ker(\varphi_\omega - \mathrm{Id}_{E_{n-1}})\) et un vecteur non nul de \(\ker(\varphi_\omega + \mathrm{Id}_{E_{n-1}})\).</p>
+      </div>
+
+      <div class="question" id="Q15b">
+        <span class="question__num">15.</span>
+        <p>Dans le cas \(n = 3\), determiner le spectre de \(A_\omega\).</p>
+      </div>
+
+      <div class="question" id="Q16b">
+        <span class="question__num">16.</span>
+        <p>Dans le cas \(n = 4\), determiner les valeurs propres de \(A_\omega\).</p>
+      </div>
+
+      <div class="question" id="Q17b">
+        <span class="question__num">17.</span>
+        <p>Determiner les valeurs propres de la matrice
+        \(\begin{pmatrix} 0 & 0 & \frac{\sqrt{n}}{\omega} & 0 \\ 0 & 0 & 0 & \frac{\sqrt{n}}{\omega^{n-1}} \\ \frac{\omega}{\sqrt{n}} & 0 & 0 & \frac{\omega^{n-1}}{\sqrt{n}} \\ 0 & 0 & 0 & 0 \end{pmatrix}\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">On suppose a present \(n \geqslant 5\).</p>
+
+      <div class="question" id="Q18b">
+        <span class="question__num">18.</span>
+        <p>Montrer que le sous-espace vectoriel \(G = \mathrm{Vect}(Q_1, Q_{n-1}, L_1, L_{n-1})\) est de dimension 4 et est stable par \(\varphi_\omega\).</p>
+      </div>
+
+      <div class="question" id="Q19b">
+        <span class="question__num">19.</span>
+        <p>Determiner le spectre de \(\varphi_\omega\).</p>
+      </div>
+    </div>
+
+    <!-- EXERCICE 3 -->
+    <div class="annale-exercice" id="exo3">
+      <h2 class="annale-exercice__title">Exercice 3 -- Serie entiere et etude de fonctions</h2>
+
+      <p class="annale-exercice__intro"><strong>Question de cours.</strong></p>
+
+      <div class="question" id="Q1c">
+        <span class="question__num">1.</span>
+        <p>Rappeler le developpement en serie entiere de la fonction exponentielle et son domaine de validite.</p>
+      </div>
+
+      <p class="annale-exercice__intro">On pose, lorsque cela est possible, \(f(x) = \displaystyle\sum_{n=0}^{+\infty} \frac{x^n}{(n!)^2}\).</p>
+
+      <div class="question" id="Q2c">
+        <span class="question__num">2.</span>
+        <p>Montrer que la fonction \(f\) est definie sur \(\mathbf{R}\).</p>
+      </div>
+
+      <div class="question" id="Q3c">
+        <span class="question__num">3.</span>
+        <p>Justifier que \(f\) est de classe \(\mathcal{C}^\infty\) sur \(\mathbf{R}\).</p>
+      </div>
+
+      <div class="question" id="Q4c">
+        <span class="question__num">4.</span>
+        <p>Demontrer que la fonction \(f\) est lipschitzienne sur tout segment \([a,b]\) de \(\mathbf{R}\).</p>
+      </div>
+
+      <div class="question" id="Q5c">
+        <span class="question__num">5.</span>
+        <p>Prouver que pour tout reel positif \(x\), \(f'(x) \leqslant e^x\).</p>
+      </div>
+
+      <div class="question" id="Q6c">
+        <span class="question__num">6.</span>
+        <p>Soient \(x\) et \(y\) deux reels positifs. On note \(z = \max(x,y)\). Prouver que l'on a : \(|f(x) - f(y)| \leqslant e^z\,|x - y|\).</p>
+      </div>
+
+      <div class="question" id="Q7c">
+        <span class="question__num">7.</span>
+        <p>Prouver que l'on a : \(f(x) - 1 \underset{x \to 0}{\sim} x\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">On pose, pour tout \(x > 0\), \(g(x) = \displaystyle\int_1^x \frac{1}{t\,[f(t)]^2}\,\mathrm{d}t\).</p>
+
+      <div class="question" id="Q8c">
+        <span class="question__num">8.</span>
+        <p>Justifier que \(g\) est de classe \(\mathcal{C}^\infty\) sur \(]0, +\infty[\).</p>
+      </div>
+
+      <div class="question" id="Q9c">
+        <span class="question__num">9.</span>
+        <p>Etudier le signe de \(g\) sur \(]0, +\infty[\).</p>
+      </div>
+
+      <div class="question" id="Q10c">
+        <span class="question__num">10.</span>
+        <p>Montrer que : \(g(x) \underset{x \to 0}{\sim} \ln(x)\).</p>
+      </div>
+
+      <div class="question" id="Q11c">
+        <span class="question__num">11.</span>
+        <p>Prouver que pour tout \(t > 0\), on a : \(f(t) > 1 + t\).</p>
+      </div>
+
+      <div class="question" id="Q12c">
+        <span class="question__num">12.</span>
+        <p>En deduire que \(g\) possede une limite finie lorsque \(x\) tend vers \(+\infty\).</p>
+      </div>
+
+      <div class="question" id="Q13c">
+        <span class="question__num">13.</span>
+        <p>Decomposer en elements simples la fraction rationnelle \(F(X) = \dfrac{1}{X(1+X)^2}\).</p>
+      </div>
+
+      <div class="question" id="Q14c">
+        <span class="question__num">14.</span>
+        <p>Demontrer que pour tout \(x > 1\), on a :</p>
+        <div class="math-display">$$g(x) \leqslant \ln\!\left(\frac{x}{x+1}\right) + \frac{1}{x+1} + \ln(2) - \frac{1}{2}$$</div>
+      </div>
+
+      <div class="question" id="Q15c">
+        <span class="question__num">15.</span>
+        <p>En deduire que \(g\) est majoree par \(\ln(2)\) sur \(]0, +\infty[\).</p>
+      </div>
+    </div>
+
+    <nav class="course__nav">
+      <a href="../../mp.html#annales" class="course__nav-link">
+        &larr; Retour
+        <span>Toutes les annales</span>
+      </a>
+      <a href="e3a-2024-maths1.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>E3A-Polytech 2024 -- Maths 1</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
