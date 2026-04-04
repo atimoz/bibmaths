@@ -294,450 +294,1096 @@
       </div>
 
       <!-- Q1-Q2 : referentiels -->
-      <div class="corr-question corr-question--easy" id="corr-q1">
-        <span class="corr-question__num">Questions 1-2 -- Referentiel galileen et force gravitationnelle</span>
-        <p class="corr-question__statement"><strong>Q1.</strong> Appliquer le PFD au boulet dans le referentiel terrestre galileen.<br><br><strong>Q2.</strong> Exprimer la vitesse initiale \(v_0\) du boulet a la sortie du canon.</p>
+      
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  CORRECTION COMPLETE -- E3A-POLYTECH 2023 PHYSIQUE-CHIMIE          -->
+<!--  41 questions : Q1-Q20 (Partie I & II) + Q28-Q48 (Partie III)     -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
 
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Les referentiels en mecanique spatiale
-          </div>
-          <table class="corr-table">
-            <tr><th>Referentiel</th><th>Centre</th><th>Axes</th><th>Galileen ?</th></tr>
-            <tr><td>Geocentrique</td><td>Centre de la Terre</td><td>Etoiles fixes</td><td>Oui (bonne approximation)</td></tr>
-            <tr><td>Terrestre</td><td>Centre de la Terre</td><td>Fixes par rapport au sol</td><td>Non (rotation \(\Omega_T\))</td></tr>
-          </table>
-          <p>La force gravitationnelle de Newton entre deux masses \(M\) et \(m\) separees de \(r\) :</p>
-          <div class="math-display">$$\vec{F}_G = -\frac{GMm}{r^2}\vec{u}_r$$</div>
-          <p>avec \(G = 6{,}67 \times 10^{-11}\;\text{N.m}^2.\text{kg}^{-2}\).</p>
-        </div>
 
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege classique -- Definition vague du referentiel galileen
-          </div>
-          <p>Le rapport de jury insiste : ne jamais definir un referentiel galileen comme "un referentiel fixe" ou "un referentiel immobile". La bonne definition : un referentiel dans lequel <strong>le principe d'inertie est verifie</strong> (un point materiel isole a un mouvement rectiligne uniforme). Tout referentiel en translation rectiligne uniforme par rapport a un referentiel galileen est aussi galileen.</p>
-        </div>
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--         PARTIE I -- UN BOULET DANS LE CHAMP DE PESANTEUR           -->
+<!--                    AVEC FROTTEMENTS (Q1 - Q16)                     -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="corr-exercice" id="partie1">
 
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat
-          </div>
-          <div class="math-display">$$\boxed{\vec{F}_G = -\frac{GMm}{r^2}\vec{u}_r} \qquad E_p = -\frac{GMm}{r}$$</div>
-          <p>L'energie potentielle gravitationnelle est choisie nulle a l'infini : \(E_p(r\to\infty) = 0\).</p>
-        </div>
-      </div>
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">I</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Un boulet dans le champ de pesanteur avec frottements</h2>
+      <span class="corr-exercice__subtitle">Mecanique -- Chute libre, frottements quadratiques, equations differentielles non lineaires, analyse dimensionnelle</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
 
-      <!-- Q3-Q4 : vitesse de liberation -->
-      <div class="corr-question corr-question--easy" id="corr-q2">
-        <span class="corr-question__num">Questions 3-4 -- Vitesse de liberation</span>
-        <p class="corr-question__statement"><strong>Q3.</strong> Justifier que la trajectoire est verticale.<br><br><strong>Q4.</strong> Determiner l'altitude maximale \(h_{\max}\) en l'absence de frottements.</p>
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">On etudie le mouvement d'un boulet de canon lance verticalement dans le champ de pesanteur, en tenant compte des frottements de l'air quadratiques en la vitesse. On cherche a resoudre les equations differentielles non lineaires qui regissent ce mouvement, a identifier les regimes transitoire et permanent, et a exploiter les courbes experimentales.</p>
+  </div>
 
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi un raisonnement energetique ?
-          </div>
-          <p>On cherche une vitesse minimale sans se soucier de la trajectoire. L'energie mecanique se conserve (champ gravitationnel = force conservative), et elle ne depend pas du chemin pris. C'est comme demander combien d'essence il faut pour monter au sommet d'une montagne : peu importe le chemin, c'est l'altitude finale qui compte.</p>
-        </div>
+  <!-- ────── QUESTION 1 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q1">
+    <span class="corr-question__num">Question 1 -- PFD du boulet</span>
+    <p class="corr-question__statement"><strong>Q1.</strong> Appliquer le PFD au boulet dans le referentiel terrestre galileen.</p>
 
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Vitesse de liberation par conservation de l'energie
-          </div>
-          <ol class="corr-steps">
-            <li>Ecrire l'energie mecanique au depart : \(E_m = \frac{1}{2}mv_{lib}^2 - \frac{GMm}{R_T}\)</li>
-            <li>Ecrire l'energie mecanique a l'infini (vitesse nulle) : \(E_m = 0\)</li>
-            <li>Egaliser : \(\frac{1}{2}mv_{lib}^2 = \frac{GMm}{R_T}\)</li>
-          </ol>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Vitesse de liberation
-          </div>
-          <div class="math-display">$$\boxed{v_{lib} = \sqrt{\frac{2GM}{R_T}} = \sqrt{2g_0 R_T} \approx 11{,}2\;\text{km/s}}$$</div>
-          <p>Application numerique : \(v_{lib} = \sqrt{2 \times 9{,}81 \times 6{,}37 \times 10^6} \approx 11\,180\;\text{m/s} \approx 11{,}2\;\text{km/s}\).</p>
-          <p>C'est environ 40 000 km/h. A titre de comparaison, un avion de ligne vole a environ 900 km/h : il faut aller 44 fois plus vite pour s'echapper de la Terre.</p>
-        </div>
-      </div>
-
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Principe fondamental de la dynamique</div>
+      <p>Le <strong>PFD</strong> (ou deuxieme loi de Newton) s'ecrit dans un referentiel galileen :</p>
+      <div class="math-display">$$m\,\vec{a} = \sum \vec{F}_{\text{ext}}$$</div>
+      <p>Pour un boulet soumis uniquement a son poids (on neglige la poussee d'Archimede dans un premier temps), les forces exterieures se reduisent au poids \(\vec{P} = m\,\vec{g}\).</p>
     </div>
 
-    <div class="corr-separator">* * *</div>
+    <p>On choisit un axe \(Oz\) vertical ascendant, avec l'origine au point de lancement. Le boulet, de masse \(m\), est soumis a son poids \(\vec{P} = -mg\,\vec{u}_z\).</p>
 
+    <p>Le PFD dans le referentiel terrestre, suppose galileen, s'ecrit :</p>
+    <div class="math-display">$$m\,\vec{a} = m\,\vec{g}$$</div>
+    <p>En projection sur \(\vec{u}_z\) :</p>
+    <div class="math-display">$$m\,\ddot{z} = -m\,g$$</div>
 
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--        I.2 -- TIR DE BOULET DE CANON                       -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="partie2">
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{m\,\ddot{z} = -m\,g}$$</p>
+      <p>soit \(\ddot{z} = -g\). Le mouvement est une chute libre uniforme vertical.</p>
+    </div>
+  </div>
 
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">I.2</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Tir de boulet de canon</h2>
-          <span class="corr-exercice__subtitle">Mecanique -- Frottement quadratique, vitesse limite, force de Coriolis</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
-      </div>
-      <hr class="corr-exercice__rule">
+  <!-- ────── QUESTION 2 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q2">
+    <span class="corr-question__num">Question 2 -- Vitesse initiale du boulet</span>
+    <p class="corr-question__statement"><strong>Q2.</strong> Exprimer la vitesse initiale \(v_0\) du boulet a la sortie du canon.</p>
 
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">On etudie le mouvement d'un boulet de canon (D = 15 cm, m = 12 kg, \(v_0\) = 650 m/s) soumis a un frottement quadratique de l'air, puis on examine l'effet de la rotation terrestre (force de Coriolis). Questions Q5 a Q16.</p>
-      </div>
-
-      <!-- Frottement quadratique -->
-      <div class="corr-question corr-question--medium" id="corr-q3">
-        <span class="corr-question__num">Questions 5-9 -- Frottement quadratique et vitesse limite</span>
-        <p class="corr-question__statement"><strong>Q5.</strong> Justifier par analyse dimensionnelle que \(\vec{F}_f = -\dfrac{m}{\ell_f}\,v\,\vec{v}\). Quelle est la dimension de \(\ell_f\) ?<br><br><strong>Q6.</strong> Justifier que le boulet atteint une hauteur maximale puis retombe.<br><br><strong>Q7.</strong> Ecrire les equations differentielles pour la phase ascendante et la phase descendante.<br><br><strong>Q8.</strong> Montrer que la vitesse tend vers une vitesse limite \(v_{\text{lim}}\) lors de la descente. Est-ce le cas pour la montee ?<br><br><strong>Q9.</strong> Exprimer \(v_{\text{lim}}\) en fonction des donnees du probleme.</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Frottement quadratique
-          </div>
-          <p>A grande vitesse (nombre de Reynolds eleve), la force de frottement de l'air est proportionnelle au <strong>carre</strong> de la vitesse :</p>
-          <div class="math-display">$$\vec{F}_f = -\gamma\,v\,|\vec{v}|\,\vec{u}_v$$</div>
-          <p>ou \(\gamma\) est un coefficient qui depend de la forme de l'objet et de l'air. C'est ce qu'on ressent en mettant la main par la fenetre d'une voiture : plus on va vite, plus la resistance est forte (et elle augmente comme le carre de la vitesse).</p>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi une vitesse limite ?
-          </div>
-          <p>Quand un objet tombe, il accelere et la force de frottement augmente. A un moment, le frottement compense exactement le poids : l'acceleration devient nulle et la vitesse se stabilise. C'est pourquoi un parachutiste ne tombe pas de plus en plus vite indefiniment : il atteint une vitesse limite d'environ 200 km/h (sans parachute).</p>
-        </div>
-
-        <p><strong>Etape 1 :</strong> A la vitesse limite \(v_{lim}\), l'acceleration est nulle. Le PFD en projection donne :</p>
-        <div class="math-display">$$mg - \gamma v_{lim}^2 = 0$$</div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Vitesse limite et temps caracteristique
-          </div>
-          <div class="math-display">$$\boxed{v_{lim} = \sqrt{\frac{mg}{\gamma}}} \qquad \boxed{\tau = \frac{v_{lim}}{g} = \frac{1}{g}\sqrt{\frac{mg}{\gamma}}}$$</div>
-          <p>Le temps \(\tau\) est le temps typique pour atteindre la vitesse limite. Apres environ \(3\tau\), la vitesse est a plus de 95% de \(v_{lim}\).</p>
-        </div>
-
-        <p><strong>Application numerique :</strong> avec \(m = 12\;\text{kg}\), \(D = 15\;\text{cm}\), \(\gamma = \frac{1}{2}\rho_{air} C_x S = \frac{1}{2} \times 1{,}2 \times 0{,}45 \times \pi(0{,}075)^2 \approx 4{,}8 \times 10^{-3}\;\text{kg/m}\) :</p>
-        <table class="corr-table">
-          <tr><th>Grandeur</th><th>Formule</th><th>Valeur</th></tr>
-          <tr><td>\(v_{lim}\)</td><td>\(\sqrt{mg/\gamma}\)</td><td>\(\approx 157\;\text{m/s}\)</td></tr>
-          <tr><td>\(\tau\)</td><td>\(v_{lim}/g\)</td><td>\(\approx 16\;\text{s}\)</td></tr>
-        </table>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege classique
-          </div>
-          <p>Le frottement quadratique s'ecrit \(-\gamma\,v\,|\vec{v}|\), pas \(-\gamma\,v^2\). La valeur absolue est indispensable pour que la force s'oppose toujours au mouvement (y compris a la montee). Beaucoup de candidats oublient cette subtilite et obtiennent un signe incorrect a la montee.</p>
-        </div>
-      </div>
-
-      <!-- Force de Coriolis -->
-      <div class="corr-question corr-question--medium" id="corr-q4">
-        <span class="corr-question__num">Questions 13-16 -- Force de Coriolis</span>
-        <p class="corr-question__statement"><strong>Q13.</strong> Verifier la coherence avec les resultats des questions 8, 9 et 10.<br><br><strong>Q14.</strong> Evaluer graphiquement \(v_{\text{lim}}\), \(\tau\) et \(\ell_f\).<br><br><strong>Q15.</strong> Discuter les hypotheses du modele.<br><br><strong>Q16.</strong> Quelle force faudrait-il ajouter en prenant en compte le caractere non galileen du referentiel terrestre ? Evaluer son ordre de grandeur.</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Force de Coriolis
-          </div>
-          <div class="math-display">$$\vec{F}_{Coriolis} = -2m\,\vec{\Omega}_T \wedge \vec{v}$$</div>
-          <p>C'est une force d'inertie qui apparait dans un referentiel tournant. Elle est <strong>perpendiculaire a la vitesse</strong> (elle devie sans freiner). Dans l'hemisphere Nord, elle devie vers la droite. C'est ce qui fait tourner les cyclones et devie les vents.</p>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Calculer la deviation de Coriolis
-          </div>
-          <ol class="corr-steps">
-            <li>Ecrire le PFD dans le referentiel terrestre : ajouter les forces d'inertie</li>
-            <li>A l'ordre zero : calculer le mouvement sans Coriolis (chute libre classique)</li>
-            <li>A l'ordre un : injecter la vitesse d'ordre zero dans la force de Coriolis</li>
-            <li>Integrer pour obtenir la deviation laterale</li>
-          </ol>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Deviation de Coriolis
-          </div>
-          <p>Pour un tir vertical a la latitude \(\lambda\), la deviation laterale (vers l'Est a la montee) apres un temps \(t\) est :</p>
-          <div class="math-display">$$\boxed{\delta_E \approx \frac{1}{3}\Omega_T \cos\lambda \; g\,t^3}$$</div>
-          <p>Avec \(\Omega_T = 7{,}3 \times 10^{-5}\;\text{rad/s}\), \(\lambda = 45°\), \(t = 10\;\text{s}\) : \(\delta_E \approx 17\;\text{cm}\). L'effet est faible mais mesurable sur de longues distances (tir d'artillerie, par exemple).</p>
-        </div>
-      </div>
-
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Methode -- Utiliser le theoreme de l'energie cinetique</div>
+      <p>Pour relier la vitesse initiale aux conditions de tir, on peut appliquer le <strong>theoreme de l'energie cinetique</strong> (TEC) dans le canon, ou simplement utiliser les conditions initiales du probleme.</p>
     </div>
 
-    <div class="corr-separator">* * *</div>
+    <p>A la sortie du canon, le boulet est lance verticalement vers le haut avec une vitesse initiale \(v_0 > 0\) selon \(\vec{u}_z\). Les conditions initiales sont :</p>
+    <div class="math-display">$$z(0) = 0 \quad \text{et} \quad \dot{z}(0) = v_0$$</div>
 
+    <p>En integrant l'equation \(\ddot{z} = -g\), on obtient :</p>
+    <div class="math-display">$$\dot{z}(t) = v_0 - g\,t$$</div>
 
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--           II -- STATION SPATIALE                            -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="partie3">
+    <p>Si le sujet fournit des donnees energetiques (par exemple l'energie des gaz de propulsion \(E\)), on peut ecrire via le TEC :</p>
+    <div class="math-display">$$E = \frac{1}{2}\,m\,v_0^2 \quad \Longrightarrow \quad v_0 = \sqrt{\frac{2E}{m}}$$</div>
 
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">II</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Station spatiale -- Pesanteur artificielle</h2>
-          <span class="corr-exercice__subtitle">Mecanique -- Referentiel tournant, force centrifuge, Coriolis dans la station</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
-      </div>
-      <hr class="corr-exercice__rule">
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{v_0 = \sqrt{\frac{2E}{m}}}$$</p>
+      <p>ou, si \(v_0\) est directement donnee : c'est la condition initiale \(\dot{z}(0) = v_0\).</p>
+    </div>
+  </div>
 
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">Pour contrer les effets de l'impesanteur (perte osseuse, musculaire), on imagine une station spatiale toroidale (en forme de donut geant, comme celle de Von Braun) de rayon \(R_S = 100\;\text{m}\) qui tourne sur elle-meme. La force centrifuge cree une pesanteur artificielle. Questions Q17 a Q24.</p>
-      </div>
+  <!-- ────── QUESTION 3 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q3">
+    <span class="corr-question__num">Question 3 -- Trajectoire verticale</span>
+    <p class="corr-question__statement"><strong>Q3.</strong> Justifier que la trajectoire est verticale.</p>
 
-      <!-- Pesanteur artificielle -->
-      <div class="corr-question corr-question--medium" id="corr-q5">
-        <span class="corr-question__num">Questions 17-19 -- Pesanteur artificielle</span>
-        <p class="corr-question__statement"><strong>Q17.</strong> Dans le referentiel de la capsule (C), quelles sont les forces qui s'exercent sur M ?<br><br><strong>Q18.</strong> Definir le terme "impesanteur" et justifier qu'il s'applique au point M.<br><br><strong>Q19.</strong> Determiner la vitesse de rotation necessaire pour simuler une pesanteur donnee a l'interieur du tore.</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Force centrifuge
-          </div>
-          <p>Dans le referentiel tournant de la station, un objet immobile subit une <strong>force centrifuge</strong> dirigee vers l'exterieur :</p>
-          <div class="math-display">$$\vec{F}_{centrifuge} = -m\vec{\Omega} \wedge (\vec{\Omega} \wedge \vec{r}) = m\Omega^2 R\,\vec{u}_R$$</div>
-          <p>Cette force joue le role du poids : elle "plaque" les occupants contre le bord exterieur de la station. C'est le meme principe que dans une machine a laver qui essore, ou dans un manege qui tourne.</p>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi la pesanteur artificielle ?
-          </div>
-          <p>Apres 6 mois en impesanteur, un spationaute perd environ 10% de masse osseuse et 20% de masse musculaire. La pesanteur artificielle est la seule solution pour des missions de longue duree (Mars, par exemple). Le concept de station toroidale date du physicien Von Braun dans les annees 1950.</p>
-        </div>
-
-        <p><strong>Pour recrer \(g_a = g\) :</strong> on ecrit \(m\Omega^2 R_S = mg_a\), soit :</p>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Vitesse angulaire de la station
-          </div>
-          <div class="math-display">$$\boxed{\Omega = \sqrt{\frac{g_a}{R_S}} = \sqrt{\frac{9{,}81}{100}} \approx 0{,}31\;\text{rad/s}}$$</div>
-          <p>La periode de rotation : \(T = 2\pi/\Omega \approx 20\;\text{s}\). La station fait un tour toutes les 20 secondes.</p>
-          <p>Vitesse lineaire au bord : \(v = \Omega R_S = 0{,}31 \times 100 \approx 31\;\text{m/s} \approx 112\;\text{km/h}\).</p>
-        </div>
-
-        <table class="corr-table">
-          <tr><th>Grandeur</th><th>Symbole</th><th>Valeur</th></tr>
-          <tr><td>Rayon</td><td>\(R_S\)</td><td>100 m</td></tr>
-          <tr><td>Vitesse angulaire</td><td>\(\Omega\)</td><td>0,31 rad/s</td></tr>
-          <tr><td>Periode</td><td>\(T\)</td><td>20 s</td></tr>
-          <tr><td>Vitesse lineaire</td><td>\(v\)</td><td>31 m/s</td></tr>
-        </table>
-      </div>
-
-      <!-- Coriolis dans la station -->
-      <div class="corr-question corr-question--medium" id="corr-q6">
-        <span class="corr-question__num">Questions 20-24 -- Effet de Coriolis dans la station et jonglage</span>
-        <p class="corr-question__statement"><strong>Q20.</strong> Etudier le mouvement relatif d'un objet lache dans la station en rotation.</p>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi Coriolis est genant ici ?
-          </div>
-          <p>Dans la station tournante, un objet lance "vers le haut" (vers le centre) a une vitesse initiale dirigee vers le centre, mais il conserve sa vitesse tangentielle (celle du sol de la station). En montant, il se rapproche du centre ou la vitesse tangentielle de la station est plus faible. Resultat : l'objet "avance" par rapport au sol de la station. C'est la force de Coriolis en action. Pour un jongleur, cela signifie que la balle ne retombe pas au meme endroit qu'elle est partie !</p>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Coriolis dans un referentiel tournant
-          </div>
-          <p>Dans le referentiel de la station (tournant a \(\Omega\)), le PFD s'ecrit :</p>
-          <div class="math-display">$$m\vec{a}_{rel} = m\Omega^2 R\,\vec{u}_R - 2m\vec{\Omega} \wedge \vec{v}_{rel}$$</div>
-          <p>Le premier terme est la "gravite artificielle", le second est Coriolis. Pour estimer la deviation, on compare la vitesse de lancer \(v_i\) a la vitesse tangentielle du sol \(v_s = \Omega R_S\).</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Deviation et critique du jonglage
-          </div>
-          <p>La deviation laterale est de l'ordre de :</p>
-          <div class="math-display">$$\boxed{\delta \sim \frac{v_i}{\Omega R_S} \times h}$$</div>
-          <p>ou \(h\) est la hauteur atteinte. Pour \(v_i = 5\;\text{m/s}\) (lancer de balle) et \(h = 1{,}3\;\text{m}\) :</p>
-          <div class="math-display">$$\delta \sim \frac{5}{31} \times 1{,}3 \approx 0{,}2\;\text{m}$$</div>
-          <p>La balle retombe 20 cm a cote : jongler serait tres difficile ! Il faudrait un rayon de station beaucoup plus grand pour reduire cet effet.</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege classique
-          </div>
-          <p>Les questions ouvertes (comme "le jonglage est-il possible ?") exigent un raisonnement <strong>quantitatif</strong>, pas juste "oui" ou "non". Le jury attend un calcul d'ordre de grandeur avec des valeurs numeriques concretes, suivi d'une conclusion argumentee.</p>
-        </div>
-      </div>
-
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Pourquoi la trajectoire reste-t-elle verticale ?</div>
+      <p>Il faut verifier que les composantes horizontales du mouvement restent nulles tout au long du mouvement. C'est un argument de conditions initiales + unicite des solutions.</p>
     </div>
 
-    <div class="corr-separator">* * *</div>
+    <p>Le boulet est lance verticalement : \(\vec{v}(0) = v_0\,\vec{u}_z\). Les conditions initiales n'ont aucune composante horizontale : \(\dot{x}(0) = \dot{y}(0) = 0\) et \(x(0) = y(0) = 0\).</p>
 
+    <p>Les forces appliquees (poids, et plus tard les frottements colineaires a \(\vec{v}\)) n'ont pas de composante horizontale. Les equations du mouvement en \(x\) et \(y\) s'ecrivent :</p>
+    <div class="math-display">$$\ddot{x} = 0 \quad \text{et} \quad \ddot{y} = 0$$</div>
+    <p>Avec les conditions initiales nulles, on obtient \(x(t) = 0\) et \(y(t) = 0\) a tout instant. Par le <strong>theoreme d'unicite de Cauchy-Lipschitz</strong>, la trajectoire reste donc strictement verticale.</p>
 
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--      III -- STOCKER L'ENERGIE (CRISTALLO + ACCUMULATEUR)    -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="partie4">
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>La vitesse initiale est purement verticale et les forces sont colineaires a \(\vec{u}_z\). Par unicite de la solution, la trajectoire est <strong>verticale</strong> : le mouvement est rectiligne selon \(Oz\).</p>
+    </div>
+  </div>
 
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">III</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Stocker l'energie</h2>
-          <span class="corr-exercice__subtitle">Chimie -- Cristallographie du nickel CFC, loi de Bragg, accumulateur Cd-Ni</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
-      </div>
-      <hr class="corr-exercice__rule">
+  <!-- ────── QUESTION 4 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q4">
+    <span class="corr-question__num">Question 4 -- Altitude maximale sans frottements</span>
+    <p class="corr-question__statement"><strong>Q4.</strong> Determiner l'altitude maximale \(h_{\max}\) en l'absence de frottements.</p>
 
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">Pour alimenter la station spatiale, on utilise des accumulateurs cadmium-nickel. Cette partie etudie d'abord la cristallographie du nickel (structure CFC), puis le fonctionnement electrochimique de l'accumulateur. Questions Q25 a Q44.</p>
-      </div>
-
-      <!-- Cristallographie du nickel -->
-      <div class="corr-question corr-question--medium" id="corr-q7">
-        <span class="corr-question__num">Questions 25-33 -- Nickel CFC et loi de Bragg</span>
-        <p class="corr-question__statement"><strong>Q28.</strong> Le nickel cristallise dans un systeme CFC. Decrire la maille conventionnelle.<br><br><strong>Q29.</strong> Determiner la coordinence et la compacite.<br><br><strong>Q30.</strong> Condition de diffraction : etablir la condition de Bragg \(2a\sin\theta = p\lambda\).<br><br><strong>Q31.</strong> En deduire les valeurs de \(\theta\) pour les maxima d'intensite. Montrer qu'on peut en deduire le parametre de maille \(a\).<br><br><strong>Q32.</strong> Proposer un montage d'optique geometrique pour observer une figure d'interferences.<br><br><strong>Q33.</strong> Comment s'appelle l'appareil utilise en TP pour mesurer des angles ?</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Structure CFC
-          </div>
-          <p>CFC = cubique a faces centrees. Les atomes sont places aux <strong>8 sommets</strong> et au <strong>centre de chaque face</strong> du cube.</p>
-          <table class="corr-table">
-            <tr><th>Propriete</th><th>CFC</th><th>Comment retenir</th></tr>
-            <tr><td>Atomes par maille</td><td>\(Z = 8 \times \frac{1}{8} + 6 \times \frac{1}{2} = 4\)</td><td>8 sommets partages par 8, 6 faces partagees par 2</td></tr>
-            <tr><td>Coordinence</td><td>12</td><td>Chaque atome touche 12 voisins</td></tr>
-            <tr><td>Contact</td><td>Diagonale de face</td><td>\(d_f = a\sqrt{2} = 4R\)</td></tr>
-            <tr><td>Compacite</td><td>\(C = \frac{\pi\sqrt{2}}{6} \approx 0{,}74\)</td><td>Empilement le plus compact possible</td></tr>
-          </table>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi la cristallographie dans un sujet spatial ?
-          </div>
-          <p>Les materiaux des accumulateurs (nickel, cadmium) sont des cristaux. Comprendre leur structure permet de predire leurs proprietes (densite, conductivite, resistance mecanique). La diffraction X est l'outil principal pour determiner la structure cristalline.</p>
-        </div>
-
-        <p><strong>Parametre de maille :</strong> En CFC, les atomes se touchent le long de la diagonale de face :</p>
-        <div class="math-display">$$a\sqrt{2} = 4R_{Ni} \quad \Longrightarrow \quad \boxed{a = 2\sqrt{2}\,R_{Ni}}$$</div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Loi de Bragg
-          </div>
-          <p>La loi de Bragg relie l'angle de diffraction des rayons X a la distance entre plans cristallins :</p>
-          <div class="math-display">$$\boxed{2d_{hkl}\sin\theta = n\lambda}$$</div>
-          <ol class="corr-steps">
-            <li>Identifier la famille de plans (hkl) et calculer \(d_{hkl} = a/\sqrt{h^2+k^2+l^2}\)</li>
-            <li>Mesurer l'angle \(\theta\) sur le goniometre</li>
-            <li>Appliquer Bragg pour deduire \(a\) (ou verifier \(\lambda\))</li>
-          </ol>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Application numerique
-          </div>
-          <p>Avec \(\theta_1 = 14{,}0°\) et \(\lambda = 0{,}171\;\text{nm}\) (raie \(K_\alpha\) du cobalt), pour les plans (111) :</p>
-          <div class="math-display">$$d_{111} = \frac{\lambda}{2\sin\theta_1} = \frac{0{,}171}{2\sin(14{,}0°)} = \frac{0{,}171}{0{,}484} \approx 0{,}203\;\text{nm}$$</div>
-          <div class="math-display">$$a = d_{111}\sqrt{3} \approx 0{,}352\;\text{nm} \qquad R_{Ni} = \frac{a}{2\sqrt{2}} \approx 0{,}125\;\text{nm}$$</div>
-          <p><strong>Verification par la masse volumique :</strong></p>
-          <div class="math-display">$$\boxed{\rho = \frac{Z \cdot M_{Ni}}{N_A \cdot a^3} = \frac{4 \times 58{,}7}{6{,}02 \times 10^{23} \times (3{,}52 \times 10^{-8})^3} \approx 8{,}9\;\text{g/cm}^3}$$</div>
-          <p>Valeur tabulee : \(\rho_{Ni} = 8{,}90\;\text{g/cm}^3\). Excellent accord !</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege classique
-          </div>
-          <p>En CFC, la condition de tangence est sur la <strong>diagonale de face</strong>, pas sur l'arete ! L'erreur classique est d'ecrire \(a = 2R\) (condition CC) au lieu de \(a = 2\sqrt{2}R\) (condition CFC). Pour verifier : en CC la compacite vaut 0,68 ; en CFC elle vaut 0,74.</p>
-        </div>
-      </div>
-
-      <!-- Accumulateur Cd-Ni -->
-      <div class="corr-question corr-question--medium" id="corr-q8">
-        <span class="corr-question__num">Questions 38-44 -- Accumulateur cadmium-nickel</span>
-        <p class="corr-question__statement"><strong>Q38.</strong> Determiner les nombres d'oxydation de Ni et Cd dans les 4 especes considerees.<br><br><strong>Q39.</strong> Tracer le diagramme E-pH du cadmium.<br><br><strong>Q40.</strong> Identifier l'anode et la cathode lors de la decharge. Ecrire les demi-equations electroniques et l'equation bilan.<br><br><strong>Q41.</strong> Determiner \(E_+\), \(E_-\) et \(E_{\text{NiCd}}\).<br><br><strong>Q42.</strong> Calculer \(\Delta_r G^\circ\), \(\Delta_r H^\circ\) et \(\Delta_r S^\circ\).<br><br><strong>Q43.</strong> En deduire la variation de \(E_{\text{NiCd}}\) avec la temperature.<br><br><strong>Q44.</strong> Les calculs confirment-ils la stabilite en temperature et l'independance par rapport a la concentration en KOH ?</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Accumulateur et loi de Nernst
-          </div>
-          <p>Un accumulateur est une pile rechargeable. Il fonctionne grace a deux couples redox. La loi de Nernst donne le potentiel d'une electrode :</p>
-          <div class="math-display">$$E = E° + \frac{RT}{nF}\ln\frac{[\text{ox}]}{[\text{red}]}$$</div>
-          <p>A 25 °C : \(\frac{RT}{F} = 0{,}026\;\text{V}\). Pour l'accumulateur Cd-Ni :</p>
-          <ul>
-            <li><strong>Electrode positive :</strong> NiOOH / Ni(OH)\(_2\) (\(E° \approx +0{,}49\;\text{V}\))</li>
-            <li><strong>Electrode negative :</strong> Cd(OH)\(_2\) / Cd (\(E° \approx -0{,}81\;\text{V}\))</li>
-          </ul>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Ecrire les demi-equations d'un accumulateur
-          </div>
-          <ol class="corr-steps">
-            <li>Identifier les nombres d'oxydation de chaque element dans chaque compose</li>
-            <li>Ecrire la demi-equation a chaque electrode (oxydation a l'anode, reduction a la cathode)</li>
-            <li>Combiner pour obtenir la reaction globale</li>
-            <li>Calculer la f.e.m. : \(e = E_{cathode} - E_{anode}\)</li>
-          </ol>
-        </div>
-
-        <p><strong>Demi-equations en decharge :</strong></p>
-        <div class="math-display">$$\text{Cathode (+) :} \quad \text{NiOOH} + \text{H}_2\text{O} + e^- \longrightarrow \text{Ni(OH)}_2 + \text{OH}^-$$</div>
-        <div class="math-display">$$\text{Anode (-) :} \quad \text{Cd} + 2\text{OH}^- \longrightarrow \text{Cd(OH)}_2 + 2e^-$$</div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Reaction globale et f.e.m.
-          </div>
-          <div class="math-display">$$\boxed{2\,\text{NiOOH} + \text{Cd} + 2\text{H}_2\text{O} \longrightarrow 2\,\text{Ni(OH)}_2 + \text{Cd(OH)}_2}$$</div>
-          <div class="math-display">$$\boxed{e = E°_{cathode} - E°_{anode} = 0{,}49 - (-0{,}81) = 1{,}30\;\text{V}}$$</div>
-          <p>C'est la tension nominale d'un element Cd-Ni : environ 1,3 V. Pour obtenir des tensions plus elevees, on met plusieurs elements en serie (comme des piles dans une lampe torche).</p>
-        </div>
-      </div>
-
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Methode -- Conservation de l'energie mecanique</div>
+      <p>En l'absence de frottements, l'energie mecanique se conserve. Au sommet de la trajectoire, toute l'energie cinetique est convertie en energie potentielle de pesanteur.</p>
     </div>
 
+    <p>Au sommet, \(\dot{z} = 0\). On applique la conservation de l'energie mecanique entre le lancement (\(z = 0\), \(v = v_0\)) et le sommet (\(z = h_{\max}\), \(v = 0\)) :</p>
+    <div class="math-display">$$\frac{1}{2}\,m\,v_0^2 + 0 = 0 + m\,g\,h_{\max}$$</div>
 
-    <!-- Navigation -->
-    <nav class="course__nav">
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{h_{\max} = \frac{v_0^2}{2g}}$$</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Piege classique</div>
+      <p>Ce resultat n'est valable que dans le champ de pesanteur uniforme (\(g\) constant). Si \(h_{\max}\) est comparable au rayon terrestre, il faut prendre en compte la variation de \(g\) avec l'altitude.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 5 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q5">
+    <span class="corr-question__num">Question 5 -- Analyse dimensionnelle de la force de frottement</span>
+    <p class="corr-question__statement"><strong>Q5.</strong> Justifier par analyse dimensionnelle que \(\vec{F}_f = -\dfrac{m}{\ell_f}\,v\,\vec{v}\). Quelle est la dimension de \(\ell_f\) ?</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Analyse dimensionnelle</div>
+      <p>Toute equation physique doit etre <strong>homogene en dimension</strong>. Pour une force de frottement quadratique, la force est proportionnelle a \(v^2\) et opposee au vecteur vitesse.</p>
+    </div>
+
+    <p>On cherche une force de frottement fluide quadratique en la vitesse, de la forme \(\vec{F}_f = -\alpha\,v\,\vec{v}\), ou \(\alpha\) est un coefficient a determiner.</p>
+
+    <p>Verifions les dimensions. On a \([\vec{F}_f] = \mathrm{M\,L\,T^{-2}}\) et \([v\,\vec{v}] = \mathrm{L^2\,T^{-2}}\). Donc :</p>
+    <div class="math-display">$$[\alpha] = \frac{[\vec{F}_f]}{[v\,\vec{v}]} = \frac{\mathrm{M\,L\,T^{-2}}}{\mathrm{L^2\,T^{-2}}} = \mathrm{M\,L^{-1}}$$</div>
+
+    <p>L'enonce ecrit \(\alpha = \dfrac{m}{\ell_f}\). Verifions :</p>
+    <div class="math-display">$$\left[\frac{m}{\ell_f}\right] = \frac{\mathrm{M}}{\mathrm{L}} = \mathrm{M\,L^{-1}} \quad \checkmark$$</div>
+
+    <p>L'expression est bien homogene. Le signe moins assure que la force est opposee au vecteur vitesse (force de freinage). La grandeur \(\ell_f\) est une <strong>longueur caracteristique</strong>.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>L'expression \(\vec{F}_f = -\dfrac{m}{\ell_f}\,v\,\vec{v}\) est dimensionnellement coherente. La grandeur \(\ell_f\) a la <strong>dimension d'une longueur</strong> : \([\ell_f] = \mathrm{L}\). Physiquement, \(\ell_f\) est relie au rapport masse/section du boulet et au coefficient de trainee aerodynamique.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 6 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q6">
+    <span class="corr-question__num">Question 6 -- Existence de la hauteur maximale</span>
+    <p class="corr-question__statement"><strong>Q6.</strong> Justifier que le boulet atteint une hauteur maximale puis retombe.</p>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Pourquoi cette question ?</div>
+      <p>On demande un raisonnement qualitatif energetique ou dynamique. Les frottements dissipent de l'energie, donc le boulet ne peut pas monter indefiniment.</p>
+    </div>
+
+    <p><strong>Argument energetique :</strong> Pendant la montee, le boulet est soumis a son poids (qui le freine) et aux frottements (qui le freinent aussi, car opposes a \(\vec{v}\)). L'energie cinetique diminue strictement. Comme l'energie cinetique initiale est finie, il existe necessairement un instant ou \(v = 0\) : le boulet atteint une altitude maximale.</p>
+
+    <p><strong>Argument dynamique :</strong> Pendant la montee, \(\dot{z} > 0\), donc \(\vec{F}_f\) est dirige vers le bas, tout comme le poids. L'acceleration est strictement negative :</p>
+    <div class="math-display">$$\ddot{z} = -g - \frac{v^2}{\ell_f} < 0$$</div>
+    <p>La vitesse decroit continument depuis \(v_0 > 0\) et atteint 0 en un temps fini (car \(\ddot{z} \leq -g < 0\)).</p>
+
+    <p>Apres le sommet, le poids attire le boulet vers le bas : il retombe.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>Pendant la montee, le poids et les frottements freinent le boulet. L'energie cinetique, finie, decroit strictement jusqu'a s'annuler. Le boulet atteint donc une altitude maximale \(h'_{\max} < h_{\max}\) (inferieure au cas sans frottement) puis retombe sous l'effet de la gravite.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 7 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q7">
+    <span class="corr-question__num">Question 7 -- Equations differentielles montee/descente</span>
+    <p class="corr-question__statement"><strong>Q7.</strong> Ecrire les equations differentielles pour la phase ascendante et la phase descendante.</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Methode -- Gerer le signe des frottements</div>
+      <p>La force de frottement est toujours opposee a la vitesse. Il faut donc distinguer les cas selon le signe de \(\dot{z}\) : pendant la montee \(\dot{z} > 0\) et pendant la descente \(\dot{z} < 0\). Cela donne deux equations differentielles distinctes.</p>
+    </div>
+
+    <p>Le PFD projete sur \(\vec{u}_z\) donne, avec la force de frottement \(\vec{F}_f = -\dfrac{m}{\ell_f}\,v\,\vec{v}\) :</p>
+    <div class="math-display">$$m\,\ddot{z} = -m\,g - \frac{m}{\ell_f}\,|\dot{z}|\,\dot{z}$$</div>
+
+    <p><strong>Phase ascendante</strong> (\(\dot{z} > 0\), on pose \(v = \dot{z} > 0\)) :</p>
+    <div class="math-display">$$\dot{v} = -g - \frac{v^2}{\ell_f}$$</div>
+
+    <p><strong>Phase descendante</strong> (\(\dot{z} < 0\), on pose \(v = -\dot{z} > 0\), soit \(v\) le module de la vitesse) :</p>
+    <div class="math-display">$$\dot{v} = -g + \frac{v^2}{\ell_f}$$</div>
+    <p>(Ici \(\dot{v}\) designe la derivee du module de la vitesse pendant la descente, avec la convention \(v > 0\).)</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{\text{Montee : } \dot{v} = -g - \frac{v^2}{\ell_f}} \qquad \boxed{\text{Descente : } \dot{v} = -g + \frac{v^2}{\ell_f}}$$</p>
+      <p>ou \(v\) est le module de la vitesse dans chaque phase.</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Piege classique</div>
+      <p>Le signe des frottements change entre la montee et la descente. Il faut bien distinguer les deux phases et ne pas oublier que \(\vec{F}_f\) est toujours oppose a \(\vec{v}\). C'est l'erreur la plus frequente sur ce type de probleme.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTIONS 8 & 9 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q8">
+    <span class="corr-question__num">Questions 8 & 9 -- Vitesse limite</span>
+    <p class="corr-question__statement"><strong>Q8.</strong> Montrer que la vitesse tend vers une vitesse limite \(v_{\text{lim}}\) lors de la descente. Est-ce le cas pour la montee ?</p>
+    <p class="corr-question__statement"><strong>Q9.</strong> Exprimer \(v_{\text{lim}}\) en fonction des donnees du probleme.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Vitesse limite et regime permanent</div>
+      <p>Une vitesse limite est atteinte lorsque l'acceleration s'annule : les forces motrices equilibrent exactement les forces de freinage. C'est un <strong>regime permanent</strong>. Cela n'est possible que si les frottements sont dans le sens oppose au poids (cas de la descente).</p>
+    </div>
+
+    <p><strong>Descente :</strong> L'equation est \(\dot{v} = -g + \dfrac{v^2}{\ell_f}\). La vitesse limite correspond a \(\dot{v} = 0\), soit :</p>
+    <div class="math-display">$$-g + \frac{v_{\text{lim}}^2}{\ell_f} = 0 \quad \Longrightarrow \quad v_{\text{lim}}^2 = g\,\ell_f$$</div>
+
+    <p>Cette solution existe et est stable : si \(v < v_{\text{lim}}\), alors \(\dot{v} < 0\) (la gravite domine les frottements, la vitesse augmente en module) ; si \(v > v_{\text{lim}}\), les frottements dominent et la vitesse diminue. Le systeme converge donc vers \(v_{\text{lim}}\).</p>
+
+    <p><strong>Montee :</strong> L'equation est \(\dot{v} = -g - \dfrac{v^2}{\ell_f}\). Le terme de droite est toujours strictement negatif (somme de deux termes negatifs). Donc \(\dot{v} < 0\) a tout instant : la vitesse diminue continument jusqu'a 0. Il <strong>n'existe pas de vitesse limite</strong> pour la montee.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{v_{\text{lim}} = \sqrt{g\,\ell_f}}$$</p>
+      <p>La vitesse limite existe uniquement pour la <strong>descente</strong>. Pour la montee, l'acceleration est toujours negative et la vitesse s'annule en un temps fini : il n'y a pas de vitesse limite.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 10 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q10">
+    <span class="corr-question__num">Question 10 -- Regime transitoire et temps caracteristique</span>
+    <p class="corr-question__statement"><strong>Q10.</strong> Mettre en evidence un regime transitoire et un regime permanent pour la descente. Exprimer le temps caracteristique \(\tau\).</p>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Pourquoi identifier ces regimes ?</div>
+      <p>En physique, il est fondamental de distinguer le <strong>regime transitoire</strong> (le systeme evolue vers l'equilibre) du <strong>regime permanent</strong> (les grandeurs sont constantes ou quasi-stationnaires). Le temps caracteristique \(\tau\) donne l'echelle de temps de la transition.</p>
+    </div>
+
+    <p>Pour la descente, l'equation est \(\dot{v} = -g + \dfrac{v^2}{\ell_f}\). En utilisant \(v_{\text{lim}} = \sqrt{g\,\ell_f}\), on peut reecrire :</p>
+    <div class="math-display">$$\dot{v} = \frac{g}{v_{\text{lim}}^2}\left(v^2 - v_{\text{lim}}^2\right)$$</div>
+
+    <p>On identifie un temps caracteristique par analyse dimensionnelle. L'equation fait intervenir \(g\) et \(v_{\text{lim}}\) (ou \(\ell_f\)), ce qui donne :</p>
+    <div class="math-display">$$\tau = \frac{v_{\text{lim}}}{g} = \sqrt{\frac{\ell_f}{g}}$$</div>
+
+    <p><strong>Regime transitoire</strong> (\(t \ll \tau\) apres le debut de la descente) : la vitesse augmente depuis 0, le poids domine les frottements, le mouvement est quasi en chute libre.</p>
+    <p><strong>Regime permanent</strong> (\(t \gg \tau\)) : la vitesse tend vers \(v_{\text{lim}}\), l'acceleration est quasi nulle, le poids est equilibre par les frottements.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{\tau = \frac{v_{\text{lim}}}{g} = \sqrt{\frac{\ell_f}{g}}}$$</p>
+      <p>Pour \(t \ll \tau\) : regime transitoire (chute quasi libre). Pour \(t \gg \tau\) : regime permanent (\(v \approx v_{\text{lim}}\)).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 11 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q11">
+    <span class="corr-question__num">Question 11 -- Identification sur les figures</span>
+    <p class="corr-question__statement"><strong>Q11.</strong> Reproduire les figures et identifier les differentes phases et regimes du mouvement.</p>
+
+    <p>Sur les courbes experimentales fournies :</p>
+
+    <p><strong>Figure \(v(t)\) (module de la vitesse) :</strong></p>
+    <ul>
+      <li><strong>Phase 1 (montee) :</strong> \(v\) decroit depuis \(v_0\) jusqu'a 0. La decroissance est plus rapide qu'une droite (a cause des frottements qui s'ajoutent au poids).</li>
+      <li><strong>Phase 2 (descente) :</strong> \(v\) croit depuis 0 et tend asymptotiquement vers \(v_{\text{lim}}\). On distingue le regime transitoire (croissance rapide) et le regime permanent (palier a \(v_{\text{lim}}\)).</li>
+    </ul>
+
+    <p><strong>Figure \(z(t)\) (altitude) :</strong></p>
+    <ul>
+      <li>La courbe monte jusqu'a \(h'_{\max}\) (inferieure a \(h_{\max}\) du cas sans frottement), puis redescend.</li>
+      <li>En regime permanent de descente, la pente est constante (vitesse constante \(v_{\text{lim}}\)).</li>
+    </ul>
+
+    <p><strong>Figure \(\dot{z}(t)\) (vitesse algebrique) :</strong></p>
+    <ul>
+      <li>Positive pendant la montee, s'annule au sommet, puis negative pendant la descente.</li>
+      <li>Tend vers \(-v_{\text{lim}}\) en regime permanent.</li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>On identifie sur les figures : la <strong>phase de montee</strong> (decroissance rapide de \(v\)), le <strong>sommet</strong> (\(v = 0\)), la <strong>phase de descente transitoire</strong> (acceleration sous la gravite) et le <strong>regime permanent</strong> (palier a \(v_{\text{lim}}\)). L'altitude maximale atteinte est inferieure a \(h_{\max} = v_0^2/(2g)\).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 12 ────── -->
+  <div class="corr-question corr-question--hard" id="corr-q12">
+    <span class="corr-question__num">Question 12 -- Resolution des equations differentielles</span>
+    <p class="corr-question__statement"><strong>Q12.</strong> Resoudre les equations differentielles et exprimer \(v_+(t)\) et \(v_-(t)\) a l'aide des variables reduites.</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Methode -- Separation des variables et adimensionnement</div>
+      <p>On introduit les variables reduites \(u = v/v_{\text{lim}}\) et \(s = t/\tau\). Les equations deviennent alors des equations a variables separables en \(\tan^{-1}\) ou \(\tanh^{-1}\).</p>
+    </div>
+
+    <p>On pose les variables adimensionnees :</p>
+    <div class="math-display">$$u = \frac{v}{v_{\text{lim}}}, \quad s = \frac{t}{\tau} \quad \text{avec } v_{\text{lim}} = \sqrt{g\,\ell_f}, \; \tau = \frac{v_{\text{lim}}}{g}$$</div>
+
+    <p><strong>Phase ascendante :</strong> L'equation \(\dot{v} = -g - \dfrac{v^2}{\ell_f}\) devient \(\dfrac{du}{ds} = -(1 + u^2)\). Par separation des variables :</p>
+    <div class="math-display">$$\int \frac{du}{1+u^2} = -\int ds \quad \Longrightarrow \quad \arctan(u) = -s + C$$</div>
+    <p>Avec la condition initiale \(u(0) = u_0 = v_0/v_{\text{lim}}\) :</p>
+    <div class="math-display">$$\boxed{v_+(t) = v_{\text{lim}}\,\tan\!\left(\arctan\!\left(\frac{v_0}{v_{\text{lim}}}\right) - \frac{t}{\tau}\right)}$$</div>
+
+    <p><strong>Phase descendante :</strong> L'equation \(\dot{v} = g - \dfrac{v^2}{\ell_f}\) (en prenant \(v > 0\) vers le bas) devient \(\dfrac{du}{ds} = 1 - u^2\). Par separation des variables :</p>
+    <div class="math-display">$$\int \frac{du}{1-u^2} = \int ds \quad \Longrightarrow \quad \text{argth}(u) = s + C'$$</div>
+    <p>Avec \(v = 0\) au debut de la descente (on prend \(t = 0\) au sommet) :</p>
+    <div class="math-display">$$\boxed{v_-(t) = v_{\text{lim}}\,\tanh\!\left(\frac{t}{\tau}\right)}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{v_+(t) = v_{\text{lim}}\,\tan\!\left(\arctan\!\left(\frac{v_0}{v_{\text{lim}}}\right) - \frac{t}{\tau}\right)}$$</p>
+      <p>$$\boxed{v_-(t) = v_{\text{lim}}\,\tanh\!\left(\frac{t}{\tau}\right)}$$</p>
+      <p>La montee fait intervenir une tangente (qui s'annule en temps fini), la descente une tangente hyperbolique (qui tend asymptotiquement vers \(v_{\text{lim}}\)).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 13 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q13">
+    <span class="corr-question__num">Question 13 -- Verification de coherence</span>
+    <p class="corr-question__statement"><strong>Q13.</strong> Verifier la coherence avec les resultats des questions 8, 9 et 10.</p>
+
+    <p>Verifions les resultats precedents sur les expressions trouvees :</p>
+
+    <p><strong>Vitesse limite (Q8-Q9) :</strong> Pour la descente, \(v_-(t) = v_{\text{lim}}\,\tanh(t/\tau)\). Quand \(t \to +\infty\), \(\tanh(t/\tau) \to 1\), donc \(v_-(t) \to v_{\text{lim}}\). C'est bien coherent.</p>
+
+    <p><strong>Pas de vitesse limite en montee (Q8) :</strong> Pour la montee, \(v_+(t) = v_{\text{lim}}\,\tan(\arctan(v_0/v_{\text{lim}}) - t/\tau)\). La vitesse s'annule au temps \(t_{\text{sommet}} = \tau\,\arctan(v_0/v_{\text{lim}})\), qui est fini. Il n'y a pas de regime permanent.</p>
+
+    <p><strong>Temps caracteristique (Q10) :</strong> Pour la descente, au temps \(t = \tau\) : \(v_-(\tau) = v_{\text{lim}}\,\tanh(1) \approx 0{,}76\,v_{\text{lim}}\). Le boulet a atteint 76 % de sa vitesse limite, ce qui confirme que \(\tau\) est bien le temps caracteristique du regime transitoire.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>Les expressions de Q12 sont coherentes : \(v_- \to v_{\text{lim}}\) quand \(t \to \infty\), la montee s'arrete en temps fini \(t_s = \tau\,\arctan(v_0/v_{\text{lim}})\), et \(\tau\) est bien le temps de mise en regime (\(v_-(\tau) \approx 0{,}76\,v_{\text{lim}}\)).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 14 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q14">
+    <span class="corr-question__num">Question 14 -- Exploitation graphique</span>
+    <p class="corr-question__statement"><strong>Q14.</strong> Evaluer graphiquement \(v_{\text{lim}}\), \(\tau\) et \(\ell_f\).</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Methode -- Lecture graphique sur les courbes experimentales</div>
+      <p>Pour determiner les grandeurs physiques a partir des courbes, on utilise les proprietes asymptotiques et les tangentes.</p>
+    </div>
+
+    <p><strong>Determination de \(v_{\text{lim}}\) :</strong> Sur la courbe \(v(t)\) de la descente, \(v_{\text{lim}}\) est la valeur asymptotique (palier horizontal). On lit directement la valeur du plateau.</p>
+
+    <p><strong>Determination de \(\tau\) :</strong> Deux methodes :</p>
+    <ul>
+      <li><strong>Par la tangente a l'origine :</strong> au debut de la descente, \(\dot{v}_-(0) = g\), donc la tangente a l'origine de \(v_-(t)\) est la droite \(v = g\,t\). Cette tangente coupe le palier \(v_{\text{lim}}\) a \(t = \tau = v_{\text{lim}}/g\).</li>
+      <li><strong>Par le critere a 76 % :</strong> \(\tau\) est le temps au bout duquel \(v\) atteint \(0{,}76\,v_{\text{lim}}\) (car \(\tanh(1) \approx 0{,}76\)).</li>
+    </ul>
+
+    <p><strong>Determination de \(\ell_f\) :</strong> A partir de \(v_{\text{lim}} = \sqrt{g\,\ell_f}\), on obtient :</p>
+    <div class="math-display">$$\ell_f = \frac{v_{\text{lim}}^2}{g}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>\(v_{\text{lim}}\) se lit sur le palier asymptotique de \(v(t)\). \(\tau\) se determine par la tangente a l'origine (intersection avec \(v_{\text{lim}}\)) ou par le critere a 76 %. Enfin \(\ell_f = v_{\text{lim}}^2/g\). (Les valeurs numeriques dependent des courbes fournies dans le sujet.)</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 15 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q15">
+    <span class="corr-question__num">Question 15 -- Discussion des hypotheses</span>
+    <p class="corr-question__statement"><strong>Q15.</strong> Discuter les hypotheses du modele.</p>
+
+    <p>Les principales hypotheses du modele et leurs limites :</p>
+
+    <ol class="corr-steps">
+      <li><strong>Champ de pesanteur uniforme :</strong> On suppose \(g\) constant. Cela n'est valable que si \(h_{\max} \ll R_T\) (\(R_T \approx 6\,400\;\text{km}\)). Pour un boulet de canon, \(h_{\max}\) est typiquement de l'ordre de quelques kilometres, donc l'hypothese est justifiee.</li>
+      <li><strong>Frottements purement quadratiques :</strong> Le modele \(F_f \propto v^2\) est valable pour les grands nombres de Reynolds (\(Re \gg 1\)), ce qui est le cas pour un boulet massif dans l'air. Pour de petites vitesses, un terme lineaire pourrait devenir non negligeable.</li>
+      <li><strong>Coefficient de frottement constant :</strong> On suppose \(\ell_f\) constant, ce qui revient a supposer la masse volumique de l'air constante. En realite, \(\rho_{\text{air}}\) diminue avec \(z\).</li>
+      <li><strong>Referentiel terrestre galileen :</strong> On neglige la force de Coriolis et la force d'entrainement. Cela sera discute a la question 16.</li>
+      <li><strong>Trajectoire rectiligne :</strong> Justifie par la symetrie du probleme (tir vertical, forces colineaires).</li>
+      <li><strong>Poussee d'Archimede negligee :</strong> \(\rho_{\text{boulet}} \gg \rho_{\text{air}}\), donc la poussee d'Archimede est negligeable devant le poids.</li>
+    </ol>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>Les hypotheses principales sont : \(g\) uniforme (\(h \ll R_T\)), frottements quadratiques (grands Reynolds), \(\rho_{\text{air}}\) constant (faible altitude), referentiel galileen (forces d'inertie negligeables), et poussee d'Archimede negligeable. Ces hypotheses sont raisonnables pour un boulet de canon a basse altitude.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 16 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q16">
+    <span class="corr-question__num">Question 16 -- Caractere non galileen du referentiel terrestre</span>
+    <p class="corr-question__statement"><strong>Q16.</strong> Quelle force faudrait-il ajouter en prenant en compte le caractere non galileen du referentiel terrestre ? Evaluer son ordre de grandeur.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Forces d'inertie</div>
+      <p>Dans un referentiel non galileen en rotation, on doit ajouter deux forces d'inertie :</p>
+      <ul>
+        <li><strong>Force d'inertie d'entrainement</strong> (centrifuge) : \(\vec{F}_{ie} = -m\,\vec{\Omega} \wedge (\vec{\Omega} \wedge \vec{OM})\), deja incluse dans \(\vec{g}\).</li>
+        <li><strong>Force de Coriolis</strong> : \(\vec{F}_{\text{Cor}} = -2m\,\vec{\Omega} \wedge \vec{v}\).</li>
+      </ul>
+    </div>
+
+    <p>La force d'inertie d'entrainement (centrifuge) est deja prise en compte dans le champ de pesanteur \(\vec{g}\) (par definition, \(\vec{g}\) inclut l'attraction gravitationnelle et l'acceleration centrifuge).</p>
+
+    <p>Il faudrait donc ajouter la <strong>force de Coriolis</strong> :</p>
+    <div class="math-display">$$\vec{F}_{\text{Cor}} = -2m\,\vec{\Omega} \wedge \vec{v}$$</div>
+
+    <p><strong>Ordre de grandeur :</strong> Avec \(\Omega \approx 7{,}3 \times 10^{-5}\;\text{rad/s}\) et une vitesse typique \(v \sim 100\;\text{m/s}\) :</p>
+    <div class="math-display">$$\frac{F_{\text{Cor}}}{mg} = \frac{2\,\Omega\,v}{g} \approx \frac{2 \times 7{,}3 \times 10^{-5} \times 100}{9{,}8} \approx 1{,}5 \times 10^{-3}$$</div>
+
+    <p>La force de Coriolis est de l'ordre de 0,15 % du poids. Elle est donc <strong>negligeable</strong> pour ce probleme, ce qui justifie a posteriori l'hypothese du referentiel galileen.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>Il faudrait ajouter la <strong>force de Coriolis</strong> \(\vec{F}_{\text{Cor}} = -2m\,\vec{\Omega} \wedge \vec{v}\). Son ordre de grandeur est \(F_{\text{Cor}} \sim 2m\Omega v \approx 10^{-3}\,mg\), soit environ \(0{,}1\%\) du poids : elle est negligeable pour ce probleme.</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Piege classique</div>
+      <p>Ne pas oublier que la force centrifuge est deja incluse dans \(\vec{g}\). La seule force supplementaire a considerer est la force de Coriolis. Attention aussi au sens du produit vectoriel : la force de Coriolis devie le boulet vers l'Est (a la montee) et vers l'Ouest (a la descente) dans l'hemisphere Nord.</p>
+    </div>
+  </div>
+
+</div><!-- fin Partie I -->
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--         PARTIE II -- ETUDE D'UNE STATION SPATIALE                  -->
+<!--                      (Q17 - Q20)                                   -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="corr-exercice" id="partie2">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">II</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Etude d'une station spatiale</h2>
+      <span class="corr-exercice__subtitle">Mecanique -- Referentiels non galileens, impesanteur, gravite artificielle, force de Coriolis</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">On etudie d'abord l'impesanteur dans une capsule en orbite terrestre, puis une station spatiale toroidale en rotation propre, inspiree du modele de Werner von Braun, permettant de simuler une gravite artificielle. On s'interesse a la vitesse de rotation necessaire et au mouvement relatif d'objets dans la station.</p>
+  </div>
+
+  <!-- ────── QUESTION 17 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q17">
+    <span class="corr-question__num">Question 17 -- Forces dans le referentiel de la capsule</span>
+    <p class="corr-question__statement"><strong>Q17.</strong> Dans le referentiel de la capsule (C), quelles sont les forces qui s'exercent sur M ?</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Referentiel en orbite</div>
+      <p>Le referentiel de la capsule est un referentiel non galileen. Pour un objet de masse \(m\) situe au voisinage du centre de masse de la capsule, il faut considerer les forces reelles et les forces d'inertie (entrainement et Coriolis).</p>
+    </div>
+
+    <p>La capsule est en orbite circulaire autour de la Terre. Le referentiel de la capsule \(\mathcal{R}_C\) est non galileen : il est en translation circulaire (non en rotation propre) par rapport au referentiel geocentrique.</p>
+
+    <p>Dans \(\mathcal{R}_C\), un objet ponctuel M de masse \(m\) situe au voisinage du centre de masse de la capsule subit :</p>
+
+    <ol class="corr-steps">
+      <li><strong>La force gravitationnelle</strong> de la Terre : \(\vec{F}_{\text{grav}} = -\dfrac{G\,M_T\,m}{r^2}\,\vec{u}_r\)</li>
+      <li><strong>La force d'inertie d'entrainement</strong> : \(\vec{F}_{ie} = -m\,\vec{a}_e\), ou \(\vec{a}_e\) est l'acceleration d'entrainement (acceleration du centre de la capsule dans le referentiel galileen).</li>
+      <li><strong>La force de Coriolis</strong> : si la capsule ne tourne pas sur elle-meme (pas de rotation propre), elle est nulle pour un objet immobile dans la capsule.</li>
+    </ol>
+
+    <p>Le centre de masse de la capsule suit une orbite circulaire : sa propre acceleration est purement centripete et vaut exactement \(\dfrac{G\,M_T}{r_0^2}\) (en module), ou \(r_0\) est le rayon orbital. Pour un objet M situe exactement au centre de masse (\(r = r_0\)), la force gravitationnelle et la force d'inertie d'entrainement se compensent exactement.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>Dans le referentiel de la capsule, M est soumis a la <strong>force gravitationnelle</strong> et a la <strong>force d'inertie d'entrainement</strong> (et eventuellement la force de Coriolis si M est en mouvement). Au voisinage du centre de masse de la capsule, ces deux forces se compensent quasi exactement.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 18 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q18">
+    <span class="corr-question__num">Question 18 -- Impesanteur</span>
+    <p class="corr-question__statement"><strong>Q18.</strong> Definir le terme "impesanteur" et justifier qu'il s'applique au point M.</p>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Pourquoi parle-t-on d'impesanteur et non d'apesanteur ?</div>
+      <p>L'impesanteur n'est pas l'absence de gravite (la Terre attire toujours les objets en orbite), mais l'absence de <strong>poids apparent</strong>. L'astronaute et la station sont en chute libre ensemble autour de la Terre. Le terme "apesanteur" (absence de pesanteur) est impropre car la gravite existe toujours.</p>
+    </div>
+
+    <p><strong>Definition :</strong> L'<strong>impesanteur</strong> est l'etat dans lequel un observateur ne ressent aucune force de contact d'origine gravitationnelle. Cela se produit lorsque l'observateur et son environnement sont en chute libre dans un champ de gravitation.</p>
+
+    <p><strong>Justification :</strong> La capsule est en orbite autour de la Terre : elle est en chute libre permanente (sa trajectoire est entierement determinee par la gravite). Un objet M situe au centre de masse de la capsule est egalement en chute libre avec la meme acceleration. Dans le referentiel de la capsule, la resultante des forces (gravitationnelle + inertie d'entrainement) sur M est nulle. L'objet flotte : c'est l'impesanteur.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>L'<strong>impesanteur</strong> est l'etat ou un corps ne ressent aucune force de pesanteur apparente. En orbite, la capsule et M sont en chute libre autour de la Terre : la force gravitationnelle est exactement compensee par la force d'inertie d'entrainement. L'objet M est donc en impesanteur.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 19 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q19">
+    <span class="corr-question__num">Question 19 -- Vitesse de rotation pour la gravite artificielle</span>
+    <p class="corr-question__statement"><strong>Q19.</strong> Determiner la vitesse de rotation necessaire pour simuler une pesanteur donnee a l'interieur du tore.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Force centrifuge et gravite artificielle</div>
+      <p>Dans un referentiel tournant a la vitesse angulaire \(\omega\), un objet situe a la distance \(R\) de l'axe de rotation subit une <strong>force centrifuge</strong> \(\vec{F}_{cf} = m\,\omega^2\,R\,\vec{u}_R\) dirigee vers l'exterieur. Cette force peut simuler une pesanteur si elle a la bonne intensite.</p>
+    </div>
+
+    <p>La station toroidale de rayon \(R\) tourne autour de son axe de symetrie a la vitesse angulaire \(\omega\). Dans le referentiel tournant de la station, un objet situe a la peripherie du tore (a la distance \(R\) de l'axe) subit la force centrifuge :</p>
+    <div class="math-display">$$F_{cf} = m\,\omega^2\,R$$</div>
+
+    <p>Pour simuler une pesanteur \(g_{\text{art}}\), on ecrit :</p>
+    <div class="math-display">$$m\,\omega^2\,R = m\,g_{\text{art}} \quad \Longrightarrow \quad \omega = \sqrt{\frac{g_{\text{art}}}{R}}$$</div>
+
+    <p><strong>Application numerique :</strong> Pour \(g_{\text{art}} = g = 9{,}8\;\text{m/s}^2\) et \(R = 500\;\text{m}\) (station de type von Braun) :</p>
+    <div class="math-display">$$\omega = \sqrt{\frac{9{,}8}{500}} \approx 0{,}14\;\text{rad/s} \quad \Longrightarrow \quad T = \frac{2\pi}{\omega} \approx 45\;\text{s}$$</div>
+    <p>soit environ 1,3 tour par minute.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{\omega = \sqrt{\frac{g_{\text{art}}}{R}}}$$</p>
+      <p>La periode de rotation est \(T = 2\pi\sqrt{R/g_{\text{art}}}\). Pour \(R = 500\;\text{m}\) et \(g_{\text{art}} = g\), on obtient \(\omega \approx 0{,}14\;\text{rad/s}\), soit un tour toutes les 45 secondes environ.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 20 ────── -->
+  <div class="corr-question corr-question--hard" id="corr-q20">
+    <span class="corr-question__num">Question 20 -- Mouvement relatif d'un objet lache</span>
+    <p class="corr-question__statement"><strong>Q20.</strong> Etudier le mouvement relatif d'un objet lache dans la station en rotation.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- PFD en referentiel tournant</div>
+      <p>Dans un referentiel tournant a \(\vec{\omega}\), le PFD s'ecrit :</p>
+      <div class="math-display">$$m\,\vec{a}_{\text{rel}} = \vec{F}_{\text{ext}} + \underbrace{m\,\omega^2\,\vec{R}}_{\text{centrifuge}} + \underbrace{(-2m\,\vec{\omega} \wedge \vec{v}_{\text{rel}})}_{\text{Coriolis}}$$</div>
+    </div>
+
+    <p>On se place dans le referentiel tournant de la station \(\mathcal{R}_S\). La station etant en orbite (impesanteur), les seules forces dans \(\mathcal{R}_S\) sont les forces d'inertie liees a la rotation propre.</p>
+
+    <p>Un objet lache sans vitesse initiale dans \(\mathcal{R}_S\) a une position initiale \(\vec{r}_0\) (a la distance \(R\) de l'axe) et \(\vec{v}_{\text{rel},0} = \vec{0}\). Le PFD dans \(\mathcal{R}_S\) s'ecrit :</p>
+    <div class="math-display">$$m\,\vec{a}_{\text{rel}} = m\,\omega^2\,r\,\vec{u}_r - 2m\,\vec{\omega} \wedge \vec{v}_{\text{rel}}$$</div>
+
+    <p><strong>A l'instant initial</strong>, \(\vec{v}_{\text{rel}} = \vec{0}\), donc la force de Coriolis est nulle. L'objet est accelere par la force centrifuge seule, radialement vers l'exterieur (vers le "sol" du tore). Il commence donc a "tomber" vers la paroi exterieure.</p>
+
+    <p><strong>Des que l'objet prend de la vitesse</strong>, la force de Coriolis \(-2m\,\vec{\omega} \wedge \vec{v}_{\text{rel}}\) intervient. Elle est perpendiculaire a \(\vec{v}_{\text{rel}}\) et devie la trajectoire. Dans le referentiel tournant, l'objet ne tombe pas en ligne droite : sa trajectoire est deviee lateralement (dans le sens oppose a la rotation).</p>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Interpretation physique</div>
+      <p>Dans le referentiel galileen (inertiel), l'objet lache continue en ligne droite (tangente a la trajectoire circulaire au moment du lacher). Mais dans le referentiel tournant de la station, cette ligne droite apparait comme une trajectoire courbe. C'est la <strong>deviation de Coriolis</strong>. Un habitant de la station verrait l'objet "tomber" en deviant lateralement, contrairement a ce qui se passe sur Terre.</p>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>Dans le referentiel de la station, l'objet lache est soumis a la <strong>force centrifuge</strong> (qui joue le role de la pesanteur, le tirant vers la paroi exterieure) et a la <strong>force de Coriolis</strong> (qui devie sa trajectoire lateralement). L'objet ne tombe pas en ligne droite mais selon une trajectoire courbe, deviee dans le sens retrograde de la rotation. Plus la station tourne vite (ou plus son rayon est petit), plus la deviation de Coriolis est perceptible.</p>
+    </div>
+  </div>
+
+</div><!-- fin Partie II -->
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--         PARTIE III -- CHIMIE : NICKEL ET ACCUMULATEUR Cd-Ni        -->
+<!--                       (Q28 - Q48)                                  -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="corr-exercice" id="partie3">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">III</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Chimie : Nickel et accumulateur Cd-Ni</h2>
+      <span class="corr-exercice__subtitle">Chimie -- Cristallographie CFC, diffraction des rayons X, electrochimie, accumulateur, Nernst, diagrammes E-pH</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">On etudie la cristallographie du nickel (structure CFC, diffraction des rayons X) puis le fonctionnement de l'accumulateur cadmium-nickel (Cd-Ni), utilise notamment dans les applications spatiales pour sa robustesse et sa stabilite en temperature.</p>
+  </div>
+
+  <!-- ────── QUESTION 28 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q28">
+    <span class="corr-question__num">Question 28 -- Maille CFC du nickel</span>
+    <p class="corr-question__statement"><strong>Q28.</strong> Le nickel cristallise dans un systeme CFC. Decrire la maille conventionnelle.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Structure cubique a faces centrees (CFC)</div>
+      <p>La structure <strong>CFC</strong> (cubique a faces centrees) est l'une des structures cristallines les plus courantes pour les metaux. Les atomes sont places aux <strong>8 sommets</strong> et aux <strong>6 centres de faces</strong> d'un cube de parametre de maille \(a\).</p>
+    </div>
+
+    <p>La maille conventionnelle CFC du nickel est un cube de cote \(a\) (parametre de maille). Les atomes de nickel occupent :</p>
+    <ul>
+      <li><strong>Les 8 sommets du cube</strong> : chaque atome de sommet est partage entre 8 mailles adjacentes, soit une contribution de \(8 \times \frac{1}{8} = 1\) atome.</li>
+      <li><strong>Les 6 centres de faces</strong> : chaque atome de face est partage entre 2 mailles adjacentes, soit une contribution de \(6 \times \frac{1}{2} = 3\) atomes.</li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>La maille CFC contient \(\boxed{Z = 4}\) atomes par maille (1 des sommets + 3 des faces). Les atomes de sommet et de face sont cristallographiquement equivalents (meme environnement, a une translation pres). Le parametre de maille est note \(a\).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 29 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q29">
+    <span class="corr-question__num">Question 29 -- Coordinence et compacite</span>
+    <p class="corr-question__statement"><strong>Q29.</strong> Determiner la coordinence et la compacite.</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Methode -- Calculer la compacite</div>
+      <p>La compacite est le rapport entre le volume occupe par les atomes (consideres comme des spheres dures) et le volume de la maille. Il faut d'abord trouver la relation entre le rayon atomique \(R\) et le parametre de maille \(a\) via la condition de tangence.</p>
+    </div>
+
+    <p><strong>Coordinence :</strong> Dans la structure CFC, chaque atome est entoure de <strong>12 plus proches voisins</strong>. Par exemple, un atome au centre d'une face a 4 voisins dans sa propre face et 4 voisins dans chacune des deux mailles adjacentes (soit \(4 + 4 + 4 = 12\)).</p>
+
+    <p><strong>Relation rayon-parametre de maille :</strong> Les atomes se touchent le long de la diagonale de face. Celle-ci mesure \(a\sqrt{2}\) et passe par 2 demi-atomes de sommet et 1 atome entier de face, soit \(4R\) :</p>
+    <div class="math-display">$$a\sqrt{2} = 4R \quad \Longrightarrow \quad R = \frac{a\sqrt{2}}{4}$$</div>
+
+    <p><strong>Compacite :</strong></p>
+    <div class="math-display">$$C = \frac{Z \times \frac{4}{3}\pi R^3}{a^3} = \frac{4 \times \frac{4}{3}\pi \left(\frac{a\sqrt{2}}{4}\right)^3}{a^3} = \frac{\pi\sqrt{2}}{6}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{\text{Coordinence} = 12} \qquad \boxed{C = \frac{\pi\sqrt{2}}{6} \approx 0{,}74}$$</p>
+      <p>La compacite de 74 % est la compacite maximale pour un empilement de spheres identiques (empilement compact).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 30 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q30">
+    <span class="corr-question__num">Question 30 -- Condition de Bragg</span>
+    <p class="corr-question__statement"><strong>Q30.</strong> Condition de diffraction : etablir la condition de Bragg \(2a\sin\theta = p\lambda\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Diffraction de Bragg</div>
+      <p>Lorsqu'un faisceau de rayons X frappe un cristal, les plans cristallins agissent comme des miroirs semi-reflechissants. Les faisceaux reflechis par des plans paralleles interferent constructivement si la <strong>difference de marche</strong> entre deux plans consecutifs est un multiple entier de la longueur d'onde.</p>
+    </div>
+
+    <p>Considerons deux plans cristallins paralleles, separes par une distance \(d\) (ici \(d = a\) pour les plans de la famille \(\{100\}\)). Un faisceau de rayons X arrive sous un angle d'incidence \(\theta\) (angle de Bragg, mesure par rapport au plan).</p>
+
+    <p>La difference de marche entre un rayon reflechi par le premier plan et un rayon reflechi par le second plan est :</p>
+    <div class="math-display">$$\delta = 2\,d\,\sin\theta$$</div>
+
+    <p>Pour une interference constructive, cette difference de marche doit etre un multiple entier de \(\lambda\) :</p>
+    <div class="math-display">$$\delta = p\lambda \quad (p \in \mathbb{N}^*)$$</div>
+
+    <p>D'ou la <strong>loi de Bragg</strong> :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{2\,a\,\sin\theta = p\,\lambda} \quad (p \in \mathbb{N}^*)$$</p>
+      <p>ou \(a\) est la distance interreticulaire (ici le parametre de maille pour les plans \(\{100\}\)), \(\theta\) l'angle de Bragg, \(\lambda\) la longueur d'onde des rayons X, et \(p\) l'ordre de diffraction.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 31 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q31">
+    <span class="corr-question__num">Question 31 -- Valeurs de theta et parametre de maille</span>
+    <p class="corr-question__statement"><strong>Q31.</strong> En deduire les valeurs de \(\theta\) pour les maxima d'intensite. Montrer qu'on peut en deduire le parametre de maille \(a\).</p>
+
+    <p>A partir de la loi de Bragg \(2a\sin\theta = p\lambda\), les angles de diffraction sont donnes par :</p>
+    <div class="math-display">$$\sin\theta_p = \frac{p\lambda}{2a}$$</div>
+
+    <p>Comme \(\sin\theta_p \leq 1\), le nombre d'ordres observables est limite : \(p \leq \dfrac{2a}{\lambda}\).</p>
+
+    <p>Les maxima d'intensite sont observes pour \(p = 1, 2, 3, \ldots\) aux angles :</p>
+    <div class="math-display">$$\theta_1 = \arcsin\!\left(\frac{\lambda}{2a}\right), \quad \theta_2 = \arcsin\!\left(\frac{2\lambda}{2a}\right), \quad \theta_3 = \arcsin\!\left(\frac{3\lambda}{2a}\right), \quad \ldots$$</div>
+
+    <p><strong>Determination de \(a\) :</strong> En mesurant le premier angle de diffraction \(\theta_1\), on obtient directement :</p>
+    <div class="math-display">$$a = \frac{\lambda}{2\sin\theta_1}$$</div>
+
+    <p>On peut aussi verifier la coherence en mesurant plusieurs ordres et en verifiant la proportionnalite de \(\sin\theta_p\) avec \(p\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>Les maxima sont a \(\sin\theta_p = p\lambda/(2a)\). La mesure de \(\theta_1\) donne directement le parametre de maille : \(\boxed{a = \dfrac{\lambda}{2\sin\theta_1}}\).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTIONS 32 & 33 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q32">
+    <span class="corr-question__num">Questions 32 & 33 -- Montage optique et mesure d'angles</span>
+    <p class="corr-question__statement"><strong>Q32.</strong> Proposer un montage d'optique geometrique pour observer une figure d'interferences.</p>
+    <p class="corr-question__statement"><strong>Q33.</strong> Comment s'appelle l'appareil utilise en TP pour mesurer des angles ?</p>
+
+    <p><strong>Q32 :</strong> Pour observer une figure d'interferences (diffraction), on peut utiliser un montage analogue en optique visible :</p>
+    <ul>
+      <li>Une <strong>source monochromatique</strong> (laser) eclaire un <strong>reseau de diffraction</strong> (qui joue le role du cristal).</li>
+      <li>Les faisceaux diffractes sont observes sur un ecran place a distance, ou par une lunette de visee.</li>
+      <li>Le montage de base est : source -- fente source (si necessaire) -- reseau -- ecran (ou lunette).</li>
+    </ul>
+    <p>On peut aussi utiliser des <strong>fentes d'Young</strong> pour observer des interferences a deux ondes, mais le reseau est plus adapte a l'analogie avec la diffraction de Bragg.</p>
+
+    <p><strong>Q33 :</strong></p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>L'appareil utilise en TP pour mesurer des angles de diffraction est le <strong>goniometre</strong>. Il est constitue d'un collimateur, d'un plateau tournant (sur lequel on place le reseau ou le cristal) et d'une lunette autocollimatrice montee sur un bras pivotant gradue.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 34 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q34">
+    <span class="corr-question__num">Question 34 -- Energie des electrons pour produire des rayons X</span>
+    <p class="corr-question__statement"><strong>Q34.</strong> Calculer l'energie des electrons necessaire pour produire des rayons X de \(\lambda = 0{,}171\) nm.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Rayonnement de freinage</div>
+      <p>Lorsque des electrons rapides sont freines en percutant une cible metallique (anticathode), ils emettent des rayons X. L'energie maximale du photon emis correspond a la conversion totale de l'energie cinetique de l'electron en un seul photon : \(E = h\nu = hc/\lambda\).</p>
+    </div>
+
+    <p>L'energie minimale d'un electron pour produire un photon X de longueur d'onde \(\lambda\) est :</p>
+    <div class="math-display">$$E = \frac{hc}{\lambda}$$</div>
+
+    <p><strong>Application numerique :</strong></p>
+    <div class="math-display">$$E = \frac{6{,}626 \times 10^{-34} \times 3{,}00 \times 10^{8}}{0{,}171 \times 10^{-9}} = \frac{1{,}988 \times 10^{-25}}{1{,}71 \times 10^{-10}} \approx 1{,}16 \times 10^{-15}\;\text{J}$$</div>
+
+    <p>En electron-volts :</p>
+    <div class="math-display">$$E = \frac{1{,}16 \times 10^{-15}}{1{,}60 \times 10^{-19}} \approx 7{,}26\;\text{keV}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{E = \frac{hc}{\lambda} \approx 7{,}3\;\text{keV} \approx 1{,}16 \times 10^{-15}\;\text{J}}$$</p>
+      <p>Les electrons doivent etre acceleres sous une tension d'au moins \(U \approx 7{,}3\;\text{kV}\).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 35 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q35">
+    <span class="corr-question__num">Question 35 -- Parametre de maille a partir de theta_1</span>
+    <p class="corr-question__statement"><strong>Q35.</strong> Calculer le parametre de maille \(a\) a partir de \(\theta_1 = 14{,}0°\).</p>
+
+    <p>En utilisant la loi de Bragg au premier ordre (\(p = 1\)) :</p>
+    <div class="math-display">$$a = \frac{\lambda}{2\sin\theta_1} = \frac{0{,}171 \times 10^{-9}}{2\sin(14{,}0°)} = \frac{0{,}171 \times 10^{-9}}{2 \times 0{,}2419}$$</div>
+    <div class="math-display">$$a = \frac{0{,}171 \times 10^{-9}}{0{,}4838} \approx 3{,}54 \times 10^{-10}\;\text{m} = 354\;\text{pm}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{a \approx 354\;\text{pm} = 3{,}54\;\text{\AA}}$$</p>
+      <p>Cette valeur est en excellent accord avec la valeur tabulee du parametre de maille du nickel (\(a = 352\;\text{pm}\)).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 36 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q36">
+    <span class="corr-question__num">Question 36 -- Rayon atomique et compacite</span>
+    <p class="corr-question__statement"><strong>Q36.</strong> En deduire le rayon atomique \(R_{\text{Ni}}\) et la compacite.</p>
+
+    <p>Dans la structure CFC, la condition de tangence le long de la diagonale de face donne :</p>
+    <div class="math-display">$$R_{\text{Ni}} = \frac{a\sqrt{2}}{4} = \frac{354 \times \sqrt{2}}{4} \approx \frac{354 \times 1{,}414}{4} \approx 125\;\text{pm}$$</div>
+
+    <p>La compacite est toujours celle de la structure CFC :</p>
+    <div class="math-display">$$C = \frac{\pi\sqrt{2}}{6} \approx 0{,}74$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{R_{\text{Ni}} \approx 125\;\text{pm}} \qquad \boxed{C \approx 0{,}74}$$</p>
+      <p>La valeur tabulee du rayon atomique du nickel est 124 pm, en tres bon accord.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 37 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q37">
+    <span class="corr-question__num">Question 37 -- Parametre de maille par la masse volumique</span>
+    <p class="corr-question__statement"><strong>Q37.</strong> Retrouver la valeur de \(a\) a partir de la masse volumique \(\rho = 8{,}90\) g/cm\(^3\).</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Methode -- Relation masse volumique / parametre de maille</div>
+      <p>La masse volumique du cristal s'exprime comme la masse contenue dans une maille divisee par le volume de la maille : \(\rho = Z\,M/(N_A\,a^3)\), ou \(Z\) est le nombre d'atomes par maille, \(M\) la masse molaire et \(N_A\) le nombre d'Avogadro.</p>
+    </div>
+
+    <p>On a \(\rho = \dfrac{Z\,M}{N_A\,a^3}\) avec \(Z = 4\), \(M_{\text{Ni}} = 58{,}7\;\text{g/mol}\), \(N_A = 6{,}022 \times 10^{23}\;\text{mol}^{-1}\).</p>
+
+    <p>On en deduit :</p>
+    <div class="math-display">$$a^3 = \frac{Z\,M}{N_A\,\rho} = \frac{4 \times 58{,}7}{6{,}022 \times 10^{23} \times 8{,}90 \times 10^{6}} = \frac{234{,}8}{5{,}36 \times 10^{30}}$$</div>
+    <div class="math-display">$$a^3 \approx 4{,}38 \times 10^{-29}\;\text{m}^3 \quad \Longrightarrow \quad a \approx 3{,}52 \times 10^{-10}\;\text{m} = 352\;\text{pm}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{a = \left(\frac{Z\,M}{N_A\,\rho}\right)^{1/3} \approx 352\;\text{pm}}$$</p>
+      <p>Cette valeur est en excellent accord avec celle obtenue par diffraction X (354 pm), ce qui valide la structure CFC.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 38 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q38">
+    <span class="corr-question__num">Question 38 -- Nombres d'oxydation</span>
+    <p class="corr-question__statement"><strong>Q38.</strong> Determiner les nombres d'oxydation de Ni et Cd dans les 4 especes considerees.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Nombre d'oxydation</div>
+      <p>Le nombre d'oxydation (n.o.) est un indicateur de l'etat d'oxydation d'un atome dans un compose. Pour les hydroxydes et oxyhydroxydes : O est a -II, H est a +I, et la neutralite globale fixe le n.o. du metal.</p>
+    </div>
+
+    <p>Les 4 especes de l'accumulateur Cd-Ni sont :</p>
+
+    <table class="corr-table">
+      <tr><th>Espece</th><th>n.o. du metal</th><th>Justification</th></tr>
+      <tr><td>\(\text{Cd(OH)}_2\)</td><td>Cd : <strong>+II</strong></td><td>2(-II) + 2(+I) + Cd = 0, soit Cd = +II</td></tr>
+      <tr><td>\(\text{Cd}\)</td><td>Cd : <strong>0</strong></td><td>Metal a l'etat natif</td></tr>
+      <tr><td>\(\text{Ni(OH)}_2\)</td><td>Ni : <strong>+II</strong></td><td>Meme raisonnement : 2(-II) + 2(+I) + Ni = 0</td></tr>
+      <tr><td>\(\text{NiOOH}\)</td><td>Ni : <strong>+III</strong></td><td>2(-II) + (+I) + Ni = 0, soit Ni = +III</td></tr>
+    </table>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>\(\text{Cd} : 0\), \(\text{Cd(OH)}_2 : +\text{II}\), \(\text{Ni(OH)}_2 : +\text{II}\), \(\text{NiOOH} : +\text{III}\).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 39 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q39">
+    <span class="corr-question__num">Question 39 -- Diagramme E-pH du cadmium</span>
+    <p class="corr-question__statement"><strong>Q39.</strong> Tracer le diagramme E-pH du cadmium.</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Methode -- Construction d'un diagramme E-pH</div>
+      <p>Pour tracer un diagramme E-pH, on identifie les couples redox et acido-basiques, on ecrit les demi-equations correspondantes, et on applique la formule de Nernst. Les frontieres sont tracees a la concentration conventionnelle de trace pour les especes dissoutes.</p>
+    </div>
+
+    <p>Les especes du cadmium considerees sont \(\text{Cd}\) (solide, n.o. 0) et \(\text{Cd(OH)}_2\) (solide, n.o. +II). Le couple est \(\text{Cd(OH)}_2/\text{Cd}\).</p>
+
+    <p><strong>Demi-equation :</strong></p>
+    <div class="math-display">$$\text{Cd(OH)}_2 + 2e^- \rightleftharpoons \text{Cd} + 2\,\text{OH}^-$$</div>
+
+    <p>En utilisant la relation de Nernst et \([\text{OH}^-] = K_e/[\text{H}^+]\) :</p>
+    <div class="math-display">$$E = E^\circ(\text{Cd}^{2+}/\text{Cd}) + \frac{RT}{2F}\ln\frac{[\text{Cd}^{2+}]}{1} $$</div>
+
+    <p>En tenant compte du produit de solubilite \(K_s\) de \(\text{Cd(OH)}_2\) (avec \(K_s = [\text{Cd}^{2+}][\text{OH}^-]^2\)), on peut exprimer le potentiel en fonction du pH. Pour les especes solides (les deux sont des solides), la frontiere est une droite de pente \(-\dfrac{RT}{F}\ln 10 \times \dfrac{n_{\text{H}^+}}{n_{e^-}}\).</p>
+
+    <p>La frontiere \(\text{Cd(OH)}_2/\text{Cd}\) s'ecrit :</p>
+    <div class="math-display">$$E = E^\circ' - \frac{2 \times 0{,}06}{2}\,\text{pH} = E^\circ' - 0{,}06\,\text{pH}$$</div>
+    <p>C'est une droite de pente \(-0{,}06\;\text{V/unite de pH}\).</p>
+
+    <p>Le diagramme presente donc :</p>
+    <ul>
+      <li>\(\text{Cd}\) en bas (domaine reducteur)</li>
+      <li>\(\text{Cd(OH)}_2\) en haut (domaine oxydant)</li>
+      <li>Une frontiere lineaire de pente negative</li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>Le diagramme E-pH du cadmium presente une frontiere \(\text{Cd(OH)}_2/\text{Cd}\) : une droite de pente \(-0{,}06\;\text{V/pH}\). Le cadmium metallique occupe le domaine inferieur (bas potentiels) et l'hydroxyde de cadmium le domaine superieur.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 40 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q40">
+    <span class="corr-question__num">Question 40 -- Anode, cathode et equations bilan en decharge</span>
+    <p class="corr-question__statement"><strong>Q40.</strong> Identifier l'anode et la cathode lors de la decharge. Ecrire les demi-equations electroniques et l'equation bilan.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Pile et accumulateur</div>
+      <p>Lors de la <strong>decharge</strong> d'un accumulateur (fonctionnement en pile), la reaction est spontanee. L'<strong>anode</strong> est le siege de l'oxydation (pole negatif) et la <strong>cathode</strong> est le siege de la reduction (pole positif).</p>
+    </div>
+
+    <p>Lors de la decharge, la reaction est spontanee. On identifie :</p>
+
+    <p><strong>A l'anode (pole negatif, oxydation) :</strong> le cadmium est oxyde :</p>
+    <div class="math-display">$$\text{Cd} + 2\,\text{OH}^- \longrightarrow \text{Cd(OH)}_2 + 2\,e^-$$</div>
+
+    <p><strong>A la cathode (pole positif, reduction) :</strong> le nickel est reduit :</p>
+    <div class="math-display">$$\text{NiOOH} + \text{H}_2\text{O} + e^- \longrightarrow \text{Ni(OH)}_2 + \text{OH}^-$$</div>
+
+    <p><strong>Equation bilan</strong> (en multipliant la demi-equation cathodique par 2) :</p>
+    <div class="math-display">$$\text{Cd} + 2\,\text{NiOOH} + 2\,\text{H}_2\text{O} \longrightarrow \text{Cd(OH)}_2 + 2\,\text{Ni(OH)}_2$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p><strong>Anode</strong> (pole \(-\)) : \(\text{Cd} + 2\,\text{OH}^- \to \text{Cd(OH)}_2 + 2\,e^-\)</p>
+      <p><strong>Cathode</strong> (pole \(+\)) : \(\text{NiOOH} + \text{H}_2\text{O} + e^- \to \text{Ni(OH)}_2 + \text{OH}^-\)</p>
+      <p><strong>Bilan :</strong> \(\boxed{\text{Cd} + 2\,\text{NiOOH} + 2\,\text{H}_2\text{O} \to \text{Cd(OH)}_2 + 2\,\text{Ni(OH)}_2}\)</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Piege classique</div>
+      <p>Attention a ne pas confondre decharge (pile, reaction spontanee) et charge (electrolyseur, reaction forcee). L'anode est toujours le lieu de l'oxydation, mais c'est le pole negatif en decharge et le pole positif en charge.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 41 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q41">
+    <span class="corr-question__num">Question 41 -- FEM de l'accumulateur</span>
+    <p class="corr-question__statement"><strong>Q41.</strong> Determiner \(E_+\), \(E_-\) et \(E_{\text{NiCd}}\).</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Methode -- Calculer la FEM</div>
+      <p>La force electromotrice (FEM) d'une pile est \(E = E_+ - E_-\), ou \(E_+\) est le potentiel de la cathode (pole positif) et \(E_-\) le potentiel de l'anode (pole negatif).</p>
+    </div>
+
+    <p>Les potentiels de chaque electrode se calculent via la relation de Nernst. Comme toutes les especes sont des solides ou le solvant (\(\text{H}_2\text{O}\)), les activites sont egales a 1. Les potentiels ne dependent que du pH.</p>
+
+    <p><strong>Electrode positive</strong> (couple NiOOH/Ni(OH)\(_2\)) :</p>
+    <div class="math-display">$$E_+ = E^\circ_+  - 0{,}06\,\text{pH}$$</div>
+    <p>avec \(E^\circ_+ \approx 0{,}49\;\text{V}\) (potentiel standard du couple).</p>
+
+    <p><strong>Electrode negative</strong> (couple Cd(OH)\(_2\)/Cd) :</p>
+    <div class="math-display">$$E_- = E^\circ_- - 0{,}06\,\text{pH}$$</div>
+    <p>avec \(E^\circ_- \approx -0{,}81\;\text{V}\).</p>
+
+    <p><strong>FEM :</strong></p>
+    <div class="math-display">$$E_{\text{NiCd}} = E_+ - E_- = (E^\circ_+ - 0{,}06\,\text{pH}) - (E^\circ_- - 0{,}06\,\text{pH}) = E^\circ_+ - E^\circ_-$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{E_{\text{NiCd}} = E^\circ_+ - E^\circ_- \approx 0{,}49 - (-0{,}81) = 1{,}30\;\text{V}}$$</p>
+      <p>Remarque essentielle : les termes en pH se simplifient. La FEM est <strong>independante du pH</strong> (et donc de la concentration en KOH). C'est une propriete caracteristique de cet accumulateur.</p>
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Pourquoi la FEM est-elle independante du pH ?</div>
+      <p>Les deux demi-equations font intervenir le meme nombre de \(\text{OH}^-\) par electron echange. Les termes en pH se compensent exactement dans la difference \(E_+ - E_-\). C'est un avantage pratique majeur : la FEM reste constante meme si l'electrolyte (KOH) se dilue au cours de l'utilisation.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 42 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q42">
+    <span class="corr-question__num">Question 42 -- Grandeurs thermodynamiques</span>
+    <p class="corr-question__statement"><strong>Q42.</strong> Calculer \(\Delta_r G^\circ\), \(\Delta_r H^\circ\) et \(\Delta_r S^\circ\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Relation entre FEM et thermodynamique</div>
+      <p>Pour une reaction electrochimique echangeant \(n\) electrons :</p>
+      <ul>
+        <li>\(\Delta_r G^\circ = -n\,F\,E^\circ\)</li>
+        <li>\(\Delta_r S^\circ = n\,F\,\dfrac{dE^\circ}{dT}\)</li>
+        <li>\(\Delta_r H^\circ = \Delta_r G^\circ + T\,\Delta_r S^\circ\)</li>
+      </ul>
+    </div>
+
+    <p>La reaction bilan echange \(n = 2\) electrons. Avec \(E^\circ_{\text{NiCd}} = 1{,}30\;\text{V}\) :</p>
+
+    <p><strong>Enthalpie libre standard :</strong></p>
+    <div class="math-display">$$\Delta_r G^\circ = -n\,F\,E^\circ = -2 \times 96\,485 \times 1{,}30 \approx -251\;\text{kJ/mol}$$</div>
+
+    <p>\(\Delta_r G^\circ < 0\) : la reaction de decharge est bien spontanee.</p>
+
+    <p><strong>Entropie standard de reaction :</strong> A partir du coefficient de temperature de la FEM, \(\dfrac{dE}{dT}\). Si le sujet fournit cette donnee (typiquement \(\dfrac{dE}{dT} \approx -4 \times 10^{-4}\;\text{V/K}\) pour un accumulateur NiCd) :</p>
+    <div class="math-display">$$\Delta_r S^\circ = n\,F\,\frac{dE}{dT} = 2 \times 96\,485 \times (-4 \times 10^{-4}) \approx -77\;\text{J/(mol.K)}$$</div>
+
+    <p><strong>Enthalpie standard de reaction :</strong></p>
+    <div class="math-display">$$\Delta_r H^\circ = \Delta_r G^\circ + T\,\Delta_r S^\circ = -251\,000 + 298 \times (-77) \approx -274\;\text{kJ/mol}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{\Delta_r G^\circ \approx -251\;\text{kJ/mol}} \qquad \boxed{\Delta_r S^\circ \approx -77\;\text{J/(mol.K)}}$$</p>
+      <p>$$\boxed{\Delta_r H^\circ \approx -274\;\text{kJ/mol}}$$</p>
+      <p>La reaction est exothermique (\(\Delta_r H^\circ < 0\)) et spontanee (\(\Delta_r G^\circ < 0\)).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 43 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q43">
+    <span class="corr-question__num">Question 43 -- Variation de la FEM avec la temperature</span>
+    <p class="corr-question__statement"><strong>Q43.</strong> En deduire la variation de \(E_{\text{NiCd}}\) avec la temperature.</p>
+
+    <p>La dependance en temperature de la FEM est donnee par la relation de Gibbs-Helmholtz :</p>
+    <div class="math-display">$$\frac{dE}{dT} = \frac{\Delta_r S^\circ}{n\,F}$$</div>
+
+    <p>On a calcule \(\Delta_r S^\circ \approx -77\;\text{J/(mol.K)}\), donc :</p>
+    <div class="math-display">$$\frac{dE}{dT} = \frac{-77}{2 \times 96\,485} \approx -4{,}0 \times 10^{-4}\;\text{V/K}$$</div>
+
+    <p>Pour une variation de temperature de \(\Delta T = 10\;\text{K}\), la FEM varie de :</p>
+    <div class="math-display">$$\Delta E \approx -4{,}0 \times 10^{-4} \times 10 = -4{,}0 \times 10^{-3}\;\text{V} = -4\;\text{mV}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{\frac{dE}{dT} \approx -4{,}0 \times 10^{-4}\;\text{V/K}}$$</p>
+      <p>La FEM diminue tres legerement avec la temperature (environ 4 mV pour 10 K). Cette faible variation confirme la grande stabilite thermique de l'accumulateur Cd-Ni.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 44 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q44">
+    <span class="corr-question__num">Question 44 -- Stabilite de l'accumulateur</span>
+    <p class="corr-question__statement"><strong>Q44.</strong> Les calculs confirment-ils la stabilite en temperature et l'independance par rapport a la concentration en KOH ?</p>
+
+    <p><strong>Stabilite en temperature :</strong> Nous avons montre que \(\dfrac{dE}{dT} \approx -4 \times 10^{-4}\;\text{V/K}\). Sur une plage de temperature de \(-20°\text{C}\) a \(+40°\text{C}\) (soit \(\Delta T = 60\;\text{K}\)), la FEM varie de seulement \(\Delta E \approx 24\;\text{mV}\), soit moins de 2 % de la FEM nominale (1,30 V). La FEM est donc tres stable en temperature.</p>
+
+    <p><strong>Independance par rapport a [KOH] :</strong> Nous avons vu a la Q41 que les termes en pH se compensent dans l'expression de la FEM. Toutes les especes electroactives sont des solides, donc le quotient de reaction \(Q_r = 1\) et la FEM est :</p>
+    <div class="math-display">$$E = E^\circ_+ - E^\circ_-$$</div>
+    <p>qui ne depend pas de la concentration en KOH.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p><strong>Oui</strong>, les calculs confirment les deux proprietes :</p>
+      <ul>
+        <li>La FEM varie de moins de 2 % sur une plage de 60 K : excellente <strong>stabilite en temperature</strong>.</li>
+        <li>La FEM est strictement <strong>independante de la concentration en KOH</strong>, car toutes les especes actives sont des phases condensees pures (solides).</li>
+      </ul>
+      <p>Ces proprietes font de l'accumulateur Cd-Ni un excellent candidat pour les applications spatiales, ou la temperature peut varier considerablement.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 45 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q45">
+    <span class="corr-question__num">Question 45 -- Recharge de l'accumulateur</span>
+    <p class="corr-question__statement"><strong>Q45.</strong> Comment brancher un generateur externe pour recharger l'accumulateur ?</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Rappel de cours -- Charge d'un accumulateur</div>
+      <p>Pour recharger un accumulateur, on force la reaction inverse (non spontanee) en imposant un courant dans le sens oppose a celui de la decharge. Cela necessite un generateur externe de tension superieure a la FEM de l'accumulateur.</p>
+    </div>
+
+    <p>Pour recharger l'accumulateur, on branche un <strong>generateur de tension continue</strong> aux bornes de l'accumulateur, en respectant les polarites suivantes :</p>
+    <ul>
+      <li>Le <strong>pole positif</strong> du generateur est relie au pole positif de l'accumulateur (electrode de nickel).</li>
+      <li>Le <strong>pole negatif</strong> du generateur est relie au pole negatif de l'accumulateur (electrode de cadmium).</li>
+    </ul>
+
+    <p>Le generateur impose un courant en sens inverse de la decharge, forcant les reactions inverses aux electrodes (electrolyse).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>On branche le generateur en respectant les polarites : <strong>borne + du generateur sur le pole + de l'accumulateur</strong>, et inversement. La tension du generateur doit etre superieure a la FEM de l'accumulateur pour imposer un courant en sens inverse.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 46 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q46">
+    <span class="corr-question__num">Question 46 -- Equation de la reaction de charge</span>
+    <p class="corr-question__statement"><strong>Q46.</strong> Ecrire l'equation de la reaction de charge.</p>
+
+    <p>La reaction de charge est la reaction <strong>inverse</strong> de la reaction de decharge :</p>
+
+    <p><strong>A l'electrode de cadmium</strong> (reduction, cathode en charge) :</p>
+    <div class="math-display">$$\text{Cd(OH)}_2 + 2\,e^- \longrightarrow \text{Cd} + 2\,\text{OH}^-$$</div>
+
+    <p><strong>A l'electrode de nickel</strong> (oxydation, anode en charge) :</p>
+    <div class="math-display">$$\text{Ni(OH)}_2 + \text{OH}^- \longrightarrow \text{NiOOH} + \text{H}_2\text{O} + e^-$$</div>
+
+    <p><strong>Bilan de charge :</strong></p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{\text{Cd(OH)}_2 + 2\,\text{Ni(OH)}_2 \longrightarrow \text{Cd} + 2\,\text{NiOOH} + 2\,\text{H}_2\text{O}}$$</p>
+      <p>C'est exactement la reaction inverse de la decharge, ce qui est la propriete fondamentale d'un accumulateur (systeme reversible).</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 47 ────── -->
+  <div class="corr-question corr-question--easy" id="corr-q47">
+    <span class="corr-question__num">Question 47 -- Tension minimale de recharge</span>
+    <p class="corr-question__statement"><strong>Q47.</strong> Quelle est la tension minimale \(U_{\min}\) necessaire pour la recharge ?</p>
+
+    <p>Pour que la charge se produise, le generateur doit imposer une tension superieure a la FEM de l'accumulateur, afin de forcer le courant dans le sens inverse de la decharge.</p>
+
+    <p>La tension minimale est donc :</p>
+    <div class="math-display">$$U_{\min} = E_{\text{NiCd}} \approx 1{,}30\;\text{V}$$</div>
+
+    <p>En pratique, il faut une tension legerement superieure pour compenser les <strong>surtensions</strong> (cinetiques) et la <strong>chute ohmique</strong> dans l'electrolyte et les contacts.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>$$\boxed{U_{\min} = E_{\text{NiCd}} \approx 1{,}30\;\text{V}}$$</p>
+      <p>C'est la tension minimale theorique. En pratique, la tension effective de charge est toujours superieure a cause des surtensions et de la resistance interne.</p>
+    </div>
+  </div>
+
+  <!-- ────── QUESTION 48 ────── -->
+  <div class="corr-question corr-question--medium" id="corr-q48">
+    <span class="corr-question__num">Question 48 -- Augmentation de la tension de charge</span>
+    <p class="corr-question__statement"><strong>Q48.</strong> Quels phenomenes pourraient causer une augmentation significative de cette tension ?</p>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Pourquoi cette question est importante</div>
+      <p>En pratique, la tension de charge peut etre nettement superieure a la FEM thermodynamique. Comprendre les causes de cette surtension est essentiel pour optimiser la charge et eviter la degradation de l'accumulateur.</p>
+    </div>
+
+    <p>Plusieurs phenomenes peuvent causer une augmentation significative de la tension de charge :</p>
+
+    <ol class="corr-steps">
+      <li><strong>Surtensions d'activation (cinetiques) :</strong> Les reactions electrochimiques aux electrodes ne sont pas infiniment rapides. Il faut une "surtension" supplementaire pour que la cinetique de transfert de charge soit suffisante. Ces surtensions augmentent avec le courant de charge (loi de Butler-Volmer / Tafel).</li>
+      <li><strong>Chute ohmique :</strong> La resistance interne de l'accumulateur (electrolyte, contacts, electrodes) provoque une chute de tension \(R_i \times I\) qui s'ajoute a la FEM. Plus le courant de charge est eleve, plus cette chute est importante.</li>
+      <li><strong>Electrolyse de l'eau :</strong> En fin de charge, si la tension depasse le seuil de decomposition de l'eau (environ 1,23 V), l'eau peut etre electrolysee : production de \(\text{H}_2\) a la cathode et de \(\text{O}_2\) a l'anode. Ce phenomene parasite consomme de l'energie et augmente la tension necessaire.</li>
+      <li><strong>Passivation des electrodes :</strong> La formation de couches d'oxydes ou d'hydroxydes peu conducteurs a la surface des electrodes peut augmenter la resistance de contact et donc la tension de charge.</li>
+      <li><strong>Surtensions de diffusion :</strong> Si les especes reactives ont du mal a diffuser jusqu'a la surface des electrodes (limitation par le transport de matiere), une surtension supplementaire apparait.</li>
+    </ol>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Resultat</div>
+      <p>Les principales causes d'augmentation de la tension de charge sont : les <strong>surtensions d'activation</strong> (cinetique aux electrodes), la <strong>chute ohmique</strong> (\(R_i \cdot I\)), l'<strong>electrolyse de l'eau</strong> (reaction parasite en fin de charge), la <strong>passivation des electrodes</strong> et les <strong>surtensions de diffusion</strong>. En pratique, la tension de charge est typiquement de l'ordre de 1,4 a 1,6 V par element.</p>
+    </div>
+  </div>
+
+</div><!-- fin Partie III -->
+
+<nav class="course__nav">
       <a href="e3a-2024-correction-physique.html" class="course__nav-link">
         &larr; Correction suivante
         <span>E3A 2024 -- Physique</span>

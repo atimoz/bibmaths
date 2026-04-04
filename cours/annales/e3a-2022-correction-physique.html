@@ -602,586 +602,874 @@
       </div>
 
       <!-- Q1-Q3 -->
-      <div class="corr-question corr-question--medium" id="corr-q1">
-        <span class="corr-question__num">Questions 1-3 -- Equation du mouvement et regime pseudo-periodique</span>
-        <p class="corr-question__statement"><strong>Q1.</strong> Quel phenomene physique la force \(\vec{f} = -\lambda\vec{v}\) modelise-t-elle ? Justifier par un argument energetique le signe de \(\lambda\).<br><br><strong>Q2.</strong> On note \(z(t) = \ell(t) - \ell_0\). Etablir l'equation differentielle dont \(z(t)\) est solution pour \(t > 0\).<br><br><strong>Q3.</strong> Exprimer la frequence propre et le facteur de qualite \(Q\) en fonction de \(k\), \(m\) et \(\lambda\).</p>
+      
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--   CORRECTION COMPLETE E3A-POLYTECH 2022 PHYSIQUE-CHIMIE   -->
+<!--   Contenu pedagogique -- 40 questions                      -->
+<!-- ════════════════════════════════════════════════════════════ -->
 
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Oscillateur mecanique amorti
-          </div>
-          <p>Un oscillateur mecanique amorti obeit a l'equation fondamentale :</p>
-          <div class="math-display">$$m\ddot{z} + \lambda \dot{z} + kz = 0$$</div>
-          <p>ou \(m\) est la masse, \(\lambda\) le coefficient d'amortissement (frottements visqueux), et \(k\) la raideur du ressort (ou equivalent). On definit :</p>
-          <table class="corr-table">
-            <tr><th>Grandeur</th><th>Formule</th><th>Interpretation</th></tr>
-            <tr><td>Pulsation propre</td><td>\(\omega_0 = \sqrt{k/m}\)</td><td>Frequence a laquelle le systeme oscille "naturellement"</td></tr>
-            <tr><td>Frequence propre</td><td>\(f_0 = \omega_0 / (2\pi)\)</td><td>En Hertz, c'est la note du diapason</td></tr>
-            <tr><td>Facteur de qualite</td><td>\(Q = \sqrt{km}/\lambda\)</td><td>Plus Q est grand, moins le systeme perd d'energie (moins amorti)</td></tr>
-          </table>
-          <p>Avec ces notations, l'equation se reecrit sous forme canonique :</p>
-          <div class="math-display">$$\ddot{z} + \frac{\omega_0}{Q}\dot{z} + \omega_0^2 z = 0$$</div>
-        </div>
 
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi on fait ca ?
-          </div>
-          <p>On veut comprendre <strong>comment</strong> le diapason vibre apres avoir ete frappe. Quand on tape sur un diapason, on ne lui fournit pas un signal periodique continu -- on lui donne juste un coup bref. Le diapason oscille ensuite <strong>librement</strong> a sa frequence propre, en perdant progressivement son energie (le son s'eteint). C'est exactement comme une balancoire qu'on pousse une seule fois : elle oscille puis s'arrete.</p>
-        </div>
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--        PARTIE I -- REPONSE PERCUSSIONNELLE (Q1-Q9)         -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="corr-exercice" id="partie1">
 
-        <p><strong>Identification des forces :</strong></p>
-        <ol class="corr-steps">
-          <li>La force de rappel elastique \(-kz\) (comme un ressort : plus on ecarte, plus ca rappelle)</li>
-          <li>La force de frottement visqueux \(-\lambda \dot{z}\) (l'air freine le mouvement, proportionnel a la vitesse)</li>
-          <li>Le PFD donne : \(m\ddot{z} = -kz - \lambda\dot{z}\)</li>
-        </ol>
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">I</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Reponse percussionnelle du diapason</h2>
+      <span class="corr-exercice__subtitle">Oscillateurs -- Regime libre amorti, facteur de qualite, pseudo-periode</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
 
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Equation du mouvement
-          </div>
-          <div class="math-display">$$\boxed{m\ddot{z} + \lambda \dot{z} + kz = 0}$$</div>
-          <p>Avec les AN : \(f_0 = 500\) Hz, \(m = 30\) g. On en deduit la raideur :</p>
-          <div class="math-display">$$k = m\omega_0^2 = m(2\pi f_0)^2 = 0{,}030 \times (2\pi \times 500)^2 \approx 3 \times 10^5 \;\text{N/m}$$</div>
-          <p>Le facteur de qualite est \(Q \approx 500\). Comme \(Q \gg 1\), le regime est <strong>pseudo-periodique</strong> : le diapason oscille longtemps avant de s'arreter (il faut environ \(Q/\pi \approx 160\) oscillations pour perdre la moitie de l'amplitude).</p>
-        </div>
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">Un diapason est modelise comme un oscillateur mecanique amorti. On le frappe (percussion) et on etudie sa reponse libre. C'est la base de l'acoustique musicale : comprendre pourquoi un diapason vibre a une frequence bien precise. Ici \(f_0 = 500\) Hz, \(m = 30\) g. Questions Q1 a Q9.</p>
+  </div>
 
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Comment calculer k a partir de f_0 et m
-          </div>
-          <p>C'est une recette ultra-classique : si on connait la frequence propre et la masse, on retrouve la raideur via \(k = m(2\pi f_0)^2\). Toujours verifier l'ordre de grandeur : \(3 \times 10^5\) N/m est une raideur tres elevee, coherente avec un diapason metallique rigide.</p>
-        </div>
+  <!-- ── Q1-Q3 ── -->
+  <div class="corr-question corr-question--easy" id="corr-q1">
+    <span class="corr-question__num">Questions 1-3 -- Force de frottement, equation du mouvement, grandeurs caracteristiques</span>
+    <p class="corr-question__statement"><strong>Q1.</strong> Quel phenomene physique la force \(\vec{f} = -\lambda\vec{v}\) modelise-t-elle ? Justifier par un argument energetique le signe de \(\lambda\).<br><br><strong>Q2.</strong> On note \(z(t) = \ell(t) - \ell_0\). Etablir l'equation differentielle dont \(z(t)\) est solution pour \(t > 0\).<br><br><strong>Q3.</strong> Exprimer la frequence propre et le facteur de qualite \(Q\) en fonction de \(k\), \(m\) et \(\lambda\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel de cours -- Oscillateur mecanique amorti
       </div>
-
-      <!-- Q4-Q6 -->
-      <div class="corr-question corr-question--medium" id="corr-q4">
-        <span class="corr-question__num">Questions 4-6 -- Solution du regime pseudo-periodique</span>
-        <p class="corr-question__statement"><strong>Q4.</strong> Sachant que l'on obtient des pseudo-oscillations, etablir l'expression litterale de \(z(t)\).<br><br><strong>Q5.</strong> Estimer la constante de raideur du ressort equivalent pour un diapason de 500 Hz et 30 g. Comparer avec un ressort de TP.<br><br><strong>Q6.</strong> Proposer une estimation du facteur de qualite du diapason (emission detectable pendant 30 s).</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel -- Solution du regime pseudo-periodique
-          </div>
-          <p>Pour \(Q > 1/2\) (faible amortissement), la solution est :</p>
-          <div class="math-display">$$z(t) = Z_0 \, e^{-t/\tau} \cos(\omega_1 t + \varphi)$$</div>
-          <p>avec le temps d'amortissement \(\tau = 2Q/\omega_0\) et la pseudo-pulsation \(\omega_1 = \omega_0\sqrt{1 - 1/(4Q^2)}\).</p>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi Q = 500 simplifie tout ?
-          </div>
-          <p>Avec \(Q = 500\), le terme \(1/(4Q^2) = 1/(4 \times 250000) \approx 10^{-6}\). Autant dire que \(\omega_1 \approx \omega_0\) a \(10^{-6}\) pres. En pratique, la pseudo-periode est indiscernable de la periode propre : \(T_1 \approx T_0 = 1/f_0 = 2\) ms. Le temps d'amortissement est \(\tau = 2 \times 500 / (2\pi \times 500) \approx 0{,}32\) s.</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat
-          </div>
-          <div class="math-display">$$\boxed{z(t) = Z_0 \, e^{-t/\tau} \cos(\omega_0 t + \varphi) \qquad \text{avec } \tau = \frac{2Q}{\omega_0} \approx 0{,}32 \;\text{s}}$$</div>
-          <p>L'approximation \(\omega_1 \approx \omega_0\) est largement justifiee ici. Le son du diapason dure quelques secondes (\(\sim 5\tau \approx 1{,}6\) s) avant de devenir inaudible.</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege -- Ne pas confondre regime libre et regime force
-          </div>
-          <p>Ici, le diapason oscille <strong>librement</strong> apres la percussion. Il n'y a pas de force excitatrice periodique. La frequence observee est la frequence <strong>propre</strong> \(f_0\), pas une frequence imposee par un generateur. Beaucoup de candidats confondent et cherchent une resonance alors qu'il n'y a pas d'excitation continue.</p>
-        </div>
-      </div>
-
-      <!-- Q7-Q9 -->
-      <div class="corr-question corr-question--medium" id="corr-q7">
-        <span class="corr-question__num">Questions 7-9 -- Decrement logarithmique et mesure de Q</span>
-        <p class="corr-question__statement"><strong>Q7.</strong> Est-il correct d'affirmer que la duree entre deux maxima vaut exactement la periode propre ?<br><br><strong>Q8.</strong> Est-il correct d'affirmer que les branches du diapason oscillent a la frequence \(f_0\) apres percussion ?<br><br><strong>Q9.</strong> Exploiter le document 1 pour estimer la frequence propre et le facteur de qualite du diapason A.</p>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Mesurer Q experimentalement
-          </div>
-          <p>Le decrement logarithmique est le logarithme du rapport de deux amplitudes successives :</p>
-          <div class="math-display">$$\delta = \ln\frac{z(t)}{z(t+T_1)} = \frac{T_1}{\tau} = \frac{\pi}{Q}\sqrt{1 - \frac{1}{4Q^2}} \approx \frac{\pi}{Q}$$</div>
-          <p>Pour mesurer Q : on releve l'amplitude a deux instants separes de \(n\) periodes, et :</p>
-          <div class="math-display">$$Q = \frac{n\pi}{\ln(z_0 / z_n)}$$</div>
-          <p>C'est une methode tres utilisee en TP : on compte les oscillations sur un oscilloscope et on mesure le rapport des amplitudes.</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Applications numeriques
-          </div>
-          <div class="math-display">$$\boxed{\delta \approx \frac{\pi}{Q} \approx 6{,}3 \times 10^{-3} \qquad Q \approx 500}$$</div>
-          <p>Un \(Q\) de 500 est typique d'un diapason en acier. C'est ce qui fait qu'il produit un son pur et prolonge, parfait pour accorder un instrument.</p>
-        </div>
-      </div>
-
+      <p>L'equation canonique d'un oscillateur mecanique amorti est :</p>
+      <div class="math-display">$$\ddot{z} + \frac{\omega_0}{Q}\dot{z} + \omega_0^2 z = 0$$</div>
+      <p>Les grandeurs fondamentales sont :</p>
+      <table class="corr-table">
+        <tr><th>Grandeur</th><th>Definition</th><th>Interpretation</th></tr>
+        <tr><td>Pulsation propre</td><td>\(\omega_0 = \sqrt{k/m}\)</td><td>Pulsation naturelle sans amortissement</td></tr>
+        <tr><td>Frequence propre</td><td>\(f_0 = \omega_0/(2\pi)\)</td><td>En Hz, la "note" du diapason</td></tr>
+        <tr><td>Facteur de qualite</td><td>\(Q = m\omega_0/\lambda = \sqrt{km}/\lambda\)</td><td>Rapport energie stockee / energie perdue par cycle</td></tr>
+      </table>
     </div>
 
-    <div class="corr-separator">* * *</div>
-
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--        PARTIE II -- GENERATION DU CHAMP EXCITATEUR         -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="partie2">
-
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">II</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Generation du champ excitateur</h2>
-          <span class="corr-exercice__subtitle">Electromagnetisme -- Solenoide, theoreme d'Ampere</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--easy">Standard</span>
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Pourquoi cette force modelise les frottements ?
       </div>
-      <hr class="corr-exercice__rule">
-
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">On utilise un solenoide pour creer un champ magnetique qui va exciter le diapason. C'est le coeur du dispositif experimental : transformer un courant electrique en champ magnetique. Questions Q10 a Q16.</p>
-      </div>
-
-      <!-- Q10-Q12 -->
-      <div class="corr-question corr-question--easy" id="corr-q10">
-        <span class="corr-question__num">Questions 10-12 -- Champ du solenoide infini</span>
-        <p class="corr-question__statement"><strong>Q10.</strong> Dans l'approximation du solenoide infini, justifier que \(\vec{B}(M) = B(r)\,\vec{u}_z\).<br><br><strong>Q11.</strong> Justifier que le champ est uniforme a l'interieur. Etablir son expression en admettant qu'il est nul a l'exterieur.<br><br><strong>Q12.</strong> Estimer \(B_0\) pour \(n = 10^3\) spires/m et \(I = 0{,}1\) A. Comparer au champ terrestre.</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Theoreme d'Ampere
-          </div>
-          <p>Le theoreme d'Ampere relie la circulation de \(\vec{B}\) sur un contour ferme aux courants enlaces :</p>
-          <div class="math-display">$$\oint_{\mathcal{C}} \vec{B} \cdot d\vec{\ell} = \mu_0 I_{\text{enlace}}$$</div>
-          <p>Pour un solenoide de \(n\) spires par metre parcouru par un courant \(I\) :</p>
-          <ul>
-            <li><strong>Direction :</strong> \(\vec{B}\) est selon l'axe du solenoide (par symetrie de revolution + invariance par translation)</li>
-            <li><strong>Sens :</strong> donne par la regle de la main droite (ou du tire-bouchon)</li>
-            <li><strong>Uniformite :</strong> \(\vec{B}\) ne depend pas de la position a l'interieur (pour un solenoide infini)</li>
-          </ul>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- La recette "solenoide"
-          </div>
-          <ol class="corr-steps">
-            <li>Analyser les symetries : plan de symetrie -> \(\vec{B}\) dans ce plan ; plan d'antisymetrie -> \(\vec{B}\) perpendiculaire. Ici, \(\vec{B}\) est selon l'axe \(\vec{e}_z\).</li>
-            <li>Analyser les invariances : invariance par translation selon \(z\) et par rotation autour de l'axe -> \(B\) ne depend ni de \(z\) ni de \(\theta\) ni de \(r\) (a l'interieur).</li>
-            <li>Choisir un contour d'Ampere rectangulaire : un cote a l'interieur (longueur \(\ell\)), un cote a l'exterieur (ou \(B = 0\)).</li>
-            <li>Appliquer le theoreme : \(B \cdot \ell = \mu_0 \cdot n\ell \cdot I\).</li>
-          </ol>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Champ dans le solenoide
-          </div>
-          <div class="math-display">$$\boxed{B = \mu_0 n I}$$</div>
-          <p><strong>AN :</strong> \(n = 10^3\) spires/m, \(I = 0{,}1\) A :</p>
-          <div class="math-display">$$B_0 = 4\pi \times 10^{-7} \times 10^3 \times 0{,}1 \approx 1{,}3 \times 10^{-4} \;\text{T}$$</div>
-          <p>C'est de l'ordre du champ terrestre. C'est faible mais suffisant pour exciter un diapason tres sensible (\(Q\) grand).</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege -- n est le nombre de spires par metre, pas le nombre total
-          </div>
-          <p>La formule utilise \(n\) = nombre de spires <strong>par unite de longueur</strong> (en spires/m). Si l'enonce donne le nombre total \(N\) et la longueur \(L\), il faut calculer \(n = N/L\). Erreur frequente : utiliser directement \(N\) a la place de \(n\).</p>
-        </div>
-      </div>
-
-      <!-- Q13-Q16 -->
-      <div class="corr-question corr-question--easy" id="corr-q13">
-        <span class="corr-question__num">Questions 13-16 -- Auto-inductance et effets transitoires</span>
-        <p class="corr-question__statement"><strong>Q13.</strong> Quel est l'interet de l'approximation du solenoide infini ? Conditions de validite ?<br><br><strong>Q14.</strong> Rappeler et nommer les equations de Maxwell.<br><br><strong>Q15.</strong> Justifier que \(\vec{E}(M,t) = E(r,t)\,\vec{u}_\theta\) a l'interieur du solenoide.<br><br><strong>Q16.</strong> Montrer que \(E(r,t) = E_0(r)\sin(\omega t)\). Preciser \(E_0(r)\).</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel -- Auto-inductance
-          </div>
-          <p>Le flux a travers le solenoide est \(\Phi = LI\) avec \(L = \mu_0 n^2 V\) ou \(V\) est le volume. La tension aux bornes est \(u = L\,dI/dt + RI\).</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat
-          </div>
-          <div class="math-display">$$\boxed{L = \mu_0 n^2 \ell S}$$</div>
-          <p>ou \(\ell\) est la longueur du solenoide et \(S\) sa section. Le temps d'etablissement du courant est \(\tau_{RL} = L/R\).</p>
-        </div>
-      </div>
-
+      <p>La force \(\vec{f} = -\lambda\vec{v}\) modelise les <strong>frottements fluides</strong> (frottements visqueux). L'air exerce sur les branches du diapason une force qui s'oppose au mouvement (d'ou le signe \(-\)), proportionnelle a la vitesse.</p>
+      <p><strong>Argument energetique :</strong> la puissance de cette force est \(\mathcal{P} = \vec{f} \cdot \vec{v} = -\lambda v^2\). Comme \(v^2 \geq 0\), on a \(\mathcal{P} \leq 0\) si et seulement si \(\lambda > 0\). Cela signifie que la force <strong>dissipe</strong> de l'energie : elle retire de l'energie mecanique au systeme, ce qui traduit bien un frottement.</p>
     </div>
 
-    <div class="corr-separator">* * *</div>
-
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--       PARTIE III -- INTERACTION CHAMP / DIAPASON           -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="partie3">
-
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">III</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Interaction champ / diapason</h2>
-          <span class="corr-exercice__subtitle">Electromagnetisme + Oscillateurs -- Force de Laplace, resonance</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Etablir l'equation differentielle
       </div>
-      <hr class="corr-exercice__rule">
-
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">Le champ magnetique cree par le solenoide exerce une force sur le diapason magnetique. On etudie le couplage entre le modele electromagnetique et le modele mecanique. Le point cle est que la force est en \(\cos^2(\omega t)\), ce qui double la frequence. Questions Q17 a Q22.</p>
-      </div>
-
-      <!-- Q17-Q19 -->
-      <div class="corr-question corr-question--medium" id="corr-q17">
-        <span class="corr-question__num">Questions 17-19 -- Force magnetique et doublement de frequence</span>
-        <p class="corr-question__statement"><strong>Q17.</strong> Qu'est-ce qu'un conducteur parfait ?<br><br><strong>Q18.</strong> Justifier l'existence d'un champ reflechi dans l'air.<br><br><strong>Q19.</strong> Exprimer \(\vec{E}_r(M,t)\) a l'aide de la relation de passage. En deduire \(\vec{B}_r(M,t)\).</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel -- Linearisation de cos^2
-          </div>
-          <p>L'identite trigonometrique fondamentale :</p>
-          <div class="math-display">$$\cos^2(\omega t) = \frac{1 + \cos(2\omega t)}{2}$$</div>
-          <p>Cette formule dit que \(\cos^2\) contient une partie constante (composante continue) et une partie oscillante a frequence <strong>double</strong>.</p>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi la force est en cos^2 ?
-          </div>
-          <p>Le champ magnetique du solenoide est proportionnel au courant \(I\), qui est sinusoidal : \(B \propto I \propto \cos(\omega t)\). La force magnetique sur un materiau magnetique est proportionnelle a \(B^2\) (ou au gradient de \(B^2\)). Donc :</p>
-          <div class="math-display">$$F \propto B^2 \propto \cos^2(\omega t) = \frac{1 + \cos(2\omega t)}{2}$$</div>
-          <p>La force contient donc une composante a frequence \(2f_{\text{source}}\). Si on veut exciter le diapason a sa frequence propre \(f_0\), il faut que \(2f_{\text{source}} = f_0\).</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            PIEGE MAJEUR -- La frequence de la source n'est PAS f_0
-          </div>
-          <p>C'est LE piege de cette partie et le rapport du jury le signale explicitement. La force est en \(\cos^2(\omega_s t)\), ce qui donne une excitation a \(2f_s\). Pour avoir la resonance a \(f_0 = 256\) Hz, il faut :</p>
-          <div class="math-display">$$2f_{\text{source}} = f_0 \quad \Longrightarrow \quad \boxed{f_{\text{source}} = 128 \;\text{Hz}}$$</div>
-          <p>Un grand nombre de candidats ecrivent \(f_{\text{source}} = 256\) Hz. C'est FAUX. La force etant en \(B^2 \propto \cos^2\), la frequence de l'excitation mecanique est le double de la frequence du courant.</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Frequence d'alimentation
-          </div>
-          <div class="math-display">$$\boxed{f_{\text{source}} = \frac{f_0}{2} = 128 \;\text{Hz}}$$</div>
-          <p>La source doit alimenter le solenoide a 128 Hz pour que la force mecanique (en \(\cos^2\)) excite le diapason a 256 Hz = \(f_0\).</p>
-        </div>
-      </div>
-
-      <!-- Q20-Q22 -->
-      <div class="corr-question corr-question--medium" id="corr-q20">
-        <span class="corr-question__num">Questions 20-22 -- Courbe de resonance</span>
-        <p class="corr-question__statement"><strong>Q20.</strong> Montrer que \(b(z) \simeq B_0(1 + az/R)\). Donner la valeur de \(a\).<br><br><strong>Q21.</strong> Montrer que la force subie par un element de volume s'ecrit \(\mathrm{d}\vec{F}_m \simeq -\alpha\cos^2(\omega t)\,\mathrm{d}V\,\vec{u}_z\). Les dipoles induits sont-ils attires vers la zone de champ fort ?<br><br><strong>Q22.</strong> A quelle frequence doit-on regler la source pour exciter le diapason a resonance (256 Hz) ?</p>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Lire une courbe de resonance
-          </div>
-          <p>La courbe de resonance en amplitude est :</p>
-          <div class="math-display">$$A(\omega) = \frac{F_0/m}{\sqrt{(\omega_0^2 - \omega^2)^2 + (\omega\omega_0/Q)^2}}$$</div>
-          <p>La largeur a mi-hauteur vaut \(\Delta \omega = \omega_0 / Q\). Plus \(Q\) est grand, plus le pic est etroit et haut : le diapason ne repond qu'a une bande tres fine de frequences.</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat
-          </div>
-          <p>Avec \(Q \approx 500\), la bande passante est :</p>
-          <div class="math-display">$$\boxed{\Delta f = \frac{f_0}{Q} = \frac{500}{500} = 1 \;\text{Hz}}$$</div>
-          <p>Le diapason ne repond significativement qu'aux frequences comprises dans un intervalle de 1 Hz autour de \(f_0\). C'est une selectivite remarquable, ce qui en fait un excellent etalon de frequence.</p>
-        </div>
-      </div>
-
+      <p>On applique le PFD (Principe Fondamental de la Dynamique) projete sur l'axe vertical :</p>
+      <ol class="corr-steps">
+        <li>Bilan des forces : poids \(m\vec{g}\), force de rappel elastique \(-k(\ell - \ell_0)\vec{u}_z = -kz\,\vec{u}_z\), frottements \(-\lambda\dot{z}\,\vec{u}_z\).</li>
+        <li>A l'equilibre, le poids compense la force de rappel a \(\ell_0\), donc \(mg = k\ell_0\) (si l'axe est oriente vers le bas). Le poids disparait quand on ecrit en termes de \(z = \ell - \ell_0\).</li>
+        <li>PFD : \(m\ddot{z} = -kz - \lambda\dot{z}\).</li>
+      </ol>
     </div>
 
-    <div class="corr-separator">* * *</div>
-
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--       PARTIE IV -- OSCILLATEUR DE RELAXATION               -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="partie4">
-
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">IV</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Oscillateur de relaxation</h2>
-          <span class="corr-exercice__subtitle">Electronique -- Tube fluorescent, basculement, montage a AO</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
       </div>
-      <hr class="corr-exercice__rule">
+      <p><strong>Q1.</strong> La force \(\vec{f} = -\lambda\vec{v}\) modelise les frottements fluides (visqueux). On a \(\lambda > 0\) car la puissance dissipee \(\mathcal{P} = -\lambda v^2 \leq 0\) (force toujours dissipative).</p>
+      <p><strong>Q2.</strong> L'equation differentielle est :</p>
+      <div class="math-display">$$\boxed{m\ddot{z} + \lambda \dot{z} + kz = 0}$$</div>
+      <p><strong>Q3.</strong> On identifie avec la forme canonique \(\ddot{z} + (\omega_0/Q)\dot{z} + \omega_0^2 z = 0\) :</p>
+      <div class="math-display">$$\boxed{f_0 = \frac{1}{2\pi}\sqrt{\frac{k}{m}}} \qquad \boxed{Q = \frac{\sqrt{km}}{\lambda} = \frac{m\omega_0}{\lambda}}$$</div>
+    </div>
+  </div>
 
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">On etudie un tube fluorescent qui presente un comportement de type oscillateur de relaxation : il s'allume a une tension seuil \(V_a\) (allumage) et s'eteint a une tension seuil \(V_e < V_a\) (extinction). Ce mecanisme de basculement cree des oscillations periodiques. Questions Q23 a Q29.</p>
+  <!-- ── Q4-Q6 ── -->
+  <div class="corr-question corr-question--medium" id="corr-q4">
+    <span class="corr-question__num">Questions 4-6 -- Solution pseudo-periodique, estimations numeriques</span>
+    <p class="corr-question__statement"><strong>Q4.</strong> Sachant que l'on obtient des pseudo-oscillations, etablir l'expression litterale de \(z(t)\).<br><br><strong>Q5.</strong> Estimer la constante de raideur du ressort equivalent pour un diapason de 500 Hz et 30 g. Comparer avec un ressort de TP.<br><br><strong>Q6.</strong> Proposer une estimation du facteur de qualite du diapason (emission detectable pendant 30 s).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel -- Regime pseudo-periodique
       </div>
-
-      <!-- Q23-Q25 -->
-      <div class="corr-question corr-question--medium" id="corr-q23">
-        <span class="corr-question__num">Questions 23-25 -- Principe du tube fluorescent</span>
-        <p class="corr-question__statement"><strong>Q23.</strong> A quelle condition sur \(E\) le tube s'allume-t-il ? Exprimer l'instant d'allumage \(t_a\).<br><br><strong>Q24.</strong> Le tube etant allume, exprimer \(u(t)\) en fonction de \(E'\), \(U_a\), \(r\), \(R\), \(\tau'\) et \(t_a\).<br><br><strong>Q25.</strong> A quelle condition le tube s'eteint-il ? Exprimer l'instant d'extinction \(t_e\).</p>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi "relaxation" ?
-          </div>
-          <p>A la difference d'un oscillateur harmonique (qui oscille en douceur autour d'un equilibre), un oscillateur de <strong>relaxation</strong> bascule brusquement entre deux etats. Imaginez un robinet qui goutte : la goutte grossit lentement (charge du condensateur), puis tombe d'un coup (decharge). Le cycle recommence indefiniment. C'est le meme principe que le clignotant d'une voiture.</p>
-        </div>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel -- Charge d'un condensateur a travers une resistance
-          </div>
-          <p>La tension aux bornes d'un condensateur charge par une source \(E\) a travers une resistance \(R\) :</p>
-          <div class="math-display">$$u_C(t) = E\left(1 - e^{-t/(RC)}\right)$$</div>
-          <p>La constante de temps est \(\tau = RC\). Apres \(5\tau\), le condensateur est pratiquement charge a \(E\).</p>
-        </div>
-
-        <p><strong>Cycle de fonctionnement :</strong></p>
-        <ol class="corr-steps">
-          <li>Le condensateur se charge a travers \(R\) : \(u_C\) augmente exponentiellement vers \(E\).</li>
-          <li>Quand \(u_C\) atteint \(V_a\) (seuil d'allumage), le tube s'allume et se comporte comme un court-circuit.</li>
-          <li>Le condensateur se decharge rapidement a travers le tube.</li>
-          <li>Quand \(u_C\) descend a \(V_e\) (seuil d'extinction), le tube s'eteint. Retour a l'etape 1.</li>
-        </ol>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Periode des oscillations
-          </div>
-          <p>La duree de charge (etape 1) est dominante. On resout \(V_a = E(1 - e^{-T/(RC)})\) :</p>
-          <div class="math-display">$$\boxed{T = RC \ln\left(\frac{E - V_e}{E - V_a}\right)}$$</div>
-          <p>La frequence des oscillations depend de \(R\), \(C\), \(E\), et des seuils du tube.</p>
-        </div>
-      </div>
-
-      <!-- Q26-Q29 -->
-      <div class="corr-question corr-question--medium" id="corr-q26">
-        <span class="corr-question__num">Questions 26-29 -- Application a l'excitation du diapason</span>
-        <p class="corr-question__statement"><strong>Q26.</strong> Exprimer la periode \(T\) des oscillations.<br><br><strong>Q27.</strong> Tracer l'allure de \(u(t)\) pour \(t \geq 0\).<br><br><strong>Q28.</strong> A partir du document 3, estimer la frequence propre et le facteur de qualite du diapason A en regime force.<br><br><strong>Q29.</strong> Le fait que l'oscillateur ne soit pas sinusoidal est-il problematique pour l'etude en regime sinusoidal force ?</p>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Dimensionner un oscillateur de relaxation
-          </div>
-          <p>Pour obtenir une frequence cible \(f\) :</p>
-          <ol class="corr-steps">
-            <li>Fixer les seuils \(V_a\) et \(V_e\) (imposes par le tube).</li>
-            <li>Choisir \(E > V_a\) (obligatoire pour que le tube puisse s'allumer).</li>
-            <li>Calculer \(RC = T / \ln\left(\frac{E-V_e}{E-V_a}\right)\) avec \(T = 1/f\).</li>
-            <li>Choisir \(R\) et \(C\) parmi les valeurs commerciales. Attention : \(R\) pas trop grande (sinon le courant ne suffit pas a maintenir le tube allume).</li>
-          </ol>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege -- Oublier la condition E > V_a
-          </div>
-          <p>Si \(E \leq V_a\), le condensateur ne peut jamais atteindre le seuil d'allumage : le tube ne s'allume jamais et il n'y a pas d'oscillations. C'est une condition necessaire souvent oubliee dans les copies.</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat
-          </div>
-          <p>L'oscillateur de relaxation fournit un signal periodique non sinusoidal (dents de scie) qui alimente le solenoide. Le spectre de ce signal contient des harmoniques, dont celle a la frequence du diapason, permettant l'excitation.</p>
-        </div>
-      </div>
-
+      <p>Quand \(Q > 1/2\) (faible amortissement), l'equation caracteristique \(r^2 + (\omega_0/Q)r + \omega_0^2 = 0\) a deux racines complexes conjuguees. La solution est :</p>
+      <div class="math-display">$$z(t) = Z_0\,e^{-t/\tau}\cos(\omega_1 t + \varphi)$$</div>
+      <p>avec :</p>
+      <ul>
+        <li>Le temps d'amortissement : \(\tau = 2Q/\omega_0\) (temps pour que l'amplitude soit divisee par \(e\))</li>
+        <li>La pseudo-pulsation : \(\omega_1 = \omega_0\sqrt{1 - 1/(4Q^2)}\)</li>
+        <li>\(Z_0\) et \(\varphi\) : fixes par les conditions initiales</li>
+      </ul>
     </div>
 
-    <div class="corr-separator">* * *</div>
-
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--       CHIMIE -- SYNTHESE DE L'AMMONIAC                     -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="chimie">
-
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">V</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Chimie -- Synthese de l'ammoniac</h2>
-          <span class="corr-exercice__subtitle">Thermodynamique chimique -- Equilibre, Le Chatelier, cristallographie</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Determiner les constantes d'integration
       </div>
-      <hr class="corr-exercice__rule">
-
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">La synthese industrielle de l'ammoniac (procede Haber-Bosch) est l'une des reactions les plus importantes de l'industrie chimique. On etudie les aspects thermodynamiques, l'influence de la pression et de la temperature, le role du catalyseur, et la cristallographie du fer. Questions Q30 a Q40.</p>
-      </div>
-
-      <!-- Q30-Q33 -->
-      <div class="corr-question corr-question--medium" id="corr-q30">
-        <span class="corr-question__num">Questions 30-33 -- Thermodynamique de la synthese</span>
-        <p class="corr-question__statement"><strong>Q30.</strong> Donner un schema de Lewis de l'ammoniac.<br><br><strong>Q31.</strong> Donner la structure electronique d'un atome de fer dans l'etat fondamental.<br><br><strong>Q32.</strong> Donner la structure electronique de Fe\(^{2+}\) et Fe\(^{3+}\). Lequel est le plus stable ? Justifier.<br><br><strong>Q33.</strong> Exprimer puis estimer la masse volumique du fer dans la structure cubique centree (\(a = 3 \times 10^2\) pm).</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Constante d'equilibre
-          </div>
-          <p>La constante d'equilibre thermodynamique est reliee a l'enthalpie libre standard de reaction :</p>
-          <div class="math-display">$$K^\circ(T) = \exp\left(-\frac{\Delta_r G^\circ(T)}{RT}\right)$$</div>
-          <p>avec \(\Delta_r G^\circ = \Delta_r H^\circ - T\Delta_r S^\circ\) (approximation d'Ellingham : \(\Delta_r H^\circ\) et \(\Delta_r S^\circ\) independants de \(T\)).</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Equation et thermodynamique
-          </div>
-          <div class="math-display">$$\boxed{3\text{H}_2(g) + \text{N}_2(g) \rightleftharpoons 2\text{NH}_3(g) \qquad \Delta_r H^\circ = -114{,}7 \;\text{kJ/mol}}$$</div>
-          <p>La reaction est <strong>exothermique</strong> (\(\Delta_r H^\circ < 0\)) : elle degage de la chaleur. Cela aura des consequences importantes sur l'influence de la temperature (cf. Le Chatelier).</p>
-        </div>
-      </div>
-
-      <!-- Q34-Q36 -->
-      <div class="corr-question corr-question--medium" id="corr-q34">
-        <span class="corr-question__num">Questions 34-36 -- Influence de P et T (Le Chatelier)</span>
-        <p class="corr-question__statement"><strong>Q34.</strong> Commenter les valeurs de \(\Delta_r H_1^\circ = -114{,}7\) kJ/mol et \(\Delta_r S_1^\circ = -245{,}9\) J/(K.mol).<br><br><strong>Q35.</strong> Exprimer la constante d'equilibre \(K_1\) de la reaction \(3\text{H}_2 + \text{N}_2 = 2\text{NH}_3\).<br><br><strong>Q36.</strong> Que vaut la variance de l'equilibre ?</p>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi P = 300 bar dans l'industrie ?
-          </div>
-          <p>Le principe de Le Chatelier dit : si on augmente la pression, l'equilibre se deplace dans le sens qui diminue le nombre de moles gazeuses. Comptons les moles :</p>
-          <ul>
-            <li>Reactifs : 3 + 1 = <strong>4 moles</strong> de gaz</li>
-            <li>Produits : <strong>2 moles</strong> de gaz</li>
-          </ul>
-          <p>Augmenter P favorise le sens direct (moins de moles gazeuses). D'ou l'utilisation de pressions enormes (\(\sim 300\) bar) dans le procede Haber-Bosch.</p>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Le Chatelier en 3 etapes
-          </div>
-          <ol class="corr-steps">
-            <li><strong>Identifier la perturbation</strong> : augmentation de P, de T, ajout d'un reactif...</li>
-            <li><strong>Compter</strong> : pour P, compter \(\Delta \nu_{\text{gaz}}\) ; pour T, regarder le signe de \(\Delta_r H^\circ\).</li>
-            <li><strong>Conclure</strong> : l'equilibre se deplace pour <strong>s'opposer</strong> a la perturbation.</li>
-          </ol>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Conditions optimales
-          </div>
-          <table class="corr-table">
-            <tr><th>Parametre</th><th>Effet sur le rendement</th><th>Valeur industrielle</th></tr>
-            <tr><td>Pression</td><td>P augmente -> favorise NH\(_3\) (moins de moles gaz)</td><td>\(\sim 300\) bar</td></tr>
-            <tr><td>Temperature</td><td>T diminue -> favorise NH\(_3\) (exothermique)</td><td>\(\sim 450\)°C (compromis cinetique)</td></tr>
-          </table>
-          <div class="math-display">$$\boxed{\text{Haute } P \text{ (favorise thermodynamiquement) + } T \text{ moderee (compromis thermo/cinetique)}}$$</div>
-          <p>A basse temperature, l'equilibre est tres favorable mais la reaction est trop lente. A haute temperature, c'est rapide mais l'equilibre est defavorable. D'ou le compromis a \(\sim 450\)°C avec un catalyseur.</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege -- Le catalyseur ne deplace PAS l'equilibre
-          </div>
-          <p>Le catalyseur (fer) accelere la reaction dans les deux sens. Il ne modifie ni \(K^\circ\) ni la composition a l'equilibre. Il permet simplement d'atteindre l'equilibre plus vite, ce qui est crucial a "basse" temperature (450°C, c'est deja beaucoup mais insuffisant sans catalyseur).</p>
-        </div>
-      </div>
-
-      <!-- Q37-Q40 -->
-      <div class="corr-question corr-question--medium" id="corr-q37">
-        <span class="corr-question__num">Questions 37-40 -- Cristallographie du fer CC</span>
-        <p class="corr-question__statement"><strong>Q37.</strong> Exprimer \(K_1\) en fonction du rendement \(r\), \(P\) et \(p^\circ\).<br><br><strong>Q38.</strong> Effet d'une augmentation de la pression sur le rendement ? Commenter le choix de 300 bars.<br><br><strong>Q39.</strong> Effet d'une augmentation de la temperature sur le rendement ?<br><br><strong>Q40.</strong> Pourquoi aurait-il ete preferable de travailler a 25 °C ? Raison du choix de 450 °C ? Role du catalyseur ?</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel -- Structure cubique centree (CC)
-          </div>
-          <table class="corr-table">
-            <tr><th>Propriete</th><th>Valeur</th></tr>
-            <tr><td>Atomes par maille</td><td>\(Z = 8 \times \frac{1}{8} + 1 = 2\)</td></tr>
-            <tr><td>Condition de tangence</td><td>Grande diagonale : \(4r = a\sqrt{3}\)</td></tr>
-            <tr><td>Compacite</td><td>\(C = \frac{2 \times \frac{4}{3}\pi r^3}{a^3} = \frac{\pi\sqrt{3}}{8} \approx 0{,}68\)</td></tr>
-            <tr><td>Coordinence</td><td>8 (chaque atome touche 8 voisins)</td></tr>
-          </table>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi la grande diagonale ?
-          </div>
-          <p>Dans la structure CC, les atomes se touchent le long de la <strong>grande diagonale</strong> du cube (du coin au centre puis au coin oppose). C'est la direction ou les atomes sont les plus proches. La grande diagonale du cube vaut \(a\sqrt{3}\) et contient 4 rayons atomiques (2 demi-atomes aux coins + 1 atome entier au centre = 4r au total).</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultats -- Cristallographie du fer
-          </div>
-          <div class="math-display">$$\boxed{r = \frac{a\sqrt{3}}{4}} \qquad \boxed{C = \frac{\pi\sqrt{3}}{8} \approx 68\%} \qquad \boxed{\rho = \frac{2M}{N_A a^3}}$$</div>
-          <p>Avec \(a = 287\) pm et \(M_{\text{Fe}} = 56\) g/mol, on trouve \(\rho \approx 7{,}9\) g/cm\(^3\), coherent avec la masse volumique tabulee du fer (\(7{,}87\) g/cm\(^3\)).</p>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Les 3 structures a connaitre
-          </div>
-          <table class="corr-table">
-            <tr><th>Structure</th><th>Z</th><th>Tangence</th><th>Compacite</th></tr>
-            <tr><td>CC</td><td>2</td><td>\(4r = a\sqrt{3}\)</td><td>0,68</td></tr>
-            <tr><td>CFC</td><td>4</td><td>\(4r = a\sqrt{2}\)</td><td>0,74</td></tr>
-            <tr><td>HC</td><td>2</td><td>\(2r = a\)</td><td>0,74</td></tr>
-          </table>
-          <p>Ces 3 structures couvrent 90% des questions de cristallo au concours. Savoir les decrire, compter les atomes par maille, et calculer la compacite est indispensable.</p>
-        </div>
-      </div>
-
+      <p>Apres percussion, les conditions initiales naturelles sont :</p>
+      <ol class="corr-steps">
+        <li>\(z(0) = z_0\) (ecart initial impose par le choc) et \(\dot{z}(0) = 0\) (la branche est deplacee mais pas lancee).</li>
+        <li>De \(z(0) = Z_0\cos\varphi = z_0\) et \(\dot{z}(0) = -Z_0(\omega_1\sin\varphi + \cos\varphi/\tau) = 0\).</li>
+        <li>On en tire \(\tan\varphi = -1/(\omega_1\tau)\). Avec \(Q \gg 1\), \(\omega_1\tau \approx Q \gg 1\) donc \(\varphi \approx 0\) et \(Z_0 \approx z_0\).</li>
+      </ol>
     </div>
 
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q4.</strong> L'expression de \(z(t)\) en regime pseudo-periodique est :</p>
+      <div class="math-display">$$\boxed{z(t) = Z_0\,e^{-t/\tau}\cos(\omega_1 t + \varphi) \qquad \text{avec } \tau = \frac{2Q}{\omega_0},\; \omega_1 = \omega_0\sqrt{1 - \frac{1}{4Q^2}}}$$</div>
+      <p><strong>Q5.</strong> La constante de raideur equivalente est :</p>
+      <div class="math-display">$$k = m\omega_0^2 = m(2\pi f_0)^2 = 0{,}030 \times (2\pi \times 500)^2 \approx 3 \times 10^5 \;\text{N/m}$$</div>
+      <p>C'est <strong>environ 10 000 fois plus</strong> qu'un ressort de TP (raideur typique \(\sim 10-30\) N/m). Cela traduit la tres grande rigidite de l'acier du diapason.</p>
+      <p><strong>Q6.</strong> Le son est detectable pendant environ 30 s. On considere que le signal devient indetectable quand l'amplitude a ete divisee par un facteur \(\sim 1000\) (soit \(e^7 \approx 1000\)), donc \(30 \approx 7\tau\), soit \(\tau \approx 4\) s. Or \(\tau = 2Q/\omega_0 = Q/(\pi f_0)\), d'ou :</p>
+      <div class="math-display">$$Q \approx \pi f_0 \tau \approx \pi \times 500 \times 4 \approx 6000$$</div>
+      <p>L'ordre de grandeur est \(Q \sim\) quelques milliers (on accepte entre 3000 et 10000 selon les hypotheses).</p>
+    </div>
 
-    <!-- Navigation -->
-    <nav class="course__nav">
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Piege -- Ne pas confondre \(\tau\) et \(5\tau\)
+      </div>
+      <p>Attention : \(\tau\) est le temps pour que l'amplitude soit divisee par \(e \approx 2{,}7\). Ce n'est <strong>pas</strong> le temps pour que le signal disparaisse. En general, on considere que le signal est "eteint" apres \(5\tau\) a \(7\tau\). Les candidats qui ecrivent \(Q = \pi f_0 \times 30\) = 47 000 surestiment largement \(Q\).</p>
+    </div>
+  </div>
+
+  <!-- ── Q7-Q9 ── -->
+  <div class="corr-question corr-question--medium" id="corr-q7">
+    <span class="corr-question__num">Questions 7-9 -- Pseudo-periode, frequence reelle, exploitation du document 1</span>
+    <p class="corr-question__statement"><strong>Q7.</strong> Est-il correct d'affirmer que la duree entre deux maxima vaut exactement la periode propre ?<br><br><strong>Q8.</strong> Est-il correct d'affirmer que les branches du diapason oscillent a la frequence \(f_0\) apres percussion ?<br><br><strong>Q9.</strong> Exploiter le document 1 pour estimer la frequence propre et le facteur de qualite du diapason A.</p>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Pourquoi ces questions sont subtiles
+      </div>
+      <p>Ce sont des questions de <strong>reflexion conceptuelle</strong>, typiques des concours E3A. L'enonce teste si le candidat comprend la difference entre pseudo-pulsation \(\omega_1\) et pulsation propre \(\omega_0\). Mais surtout, la nuance est que pour \(Q \gg 1\), la difference est negligeable !</p>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q7.</strong> <strong>Non</strong>, ce n'est pas exactement la periode propre. La duree entre deux maxima est la <strong>pseudo-periode</strong> \(T_1 = 2\pi/\omega_1\), et non la periode propre \(T_0 = 2\pi/\omega_0\). Comme \(\omega_1 = \omega_0\sqrt{1 - 1/(4Q^2)} < \omega_0\), on a \(T_1 > T_0\). Cependant, pour un diapason avec \(Q \gg 1\), l'ecart est infime : \(T_1/T_0 = 1/\sqrt{1 - 1/(4Q^2)} \approx 1 + 1/(8Q^2)\), soit un ecart relatif de l'ordre de \(10^{-8}\) pour \(Q = 5000\).</p>
+      <p><strong>Q8.</strong> <strong>Pas exactement</strong>, mais en pratique oui. Les branches oscillent a la pseudo-frequence \(f_1 = \omega_1/(2\pi)\), legerement inferieure a \(f_0\). Mais pour \(Q \gg 1\), \(f_1 \approx f_0\) a une precision bien meilleure que la largeur du spectre d'emission. On peut donc affirmer que les branches oscillent "a la frequence \(f_0\)" en pratique.</p>
+      <p><strong>Q9.</strong> Exploitation du document 1 :</p>
+      <ul>
+        <li><strong>Frequence propre :</strong> on mesure la duree de \(n\) pseudo-periodes sur l'enregistrement, et on divise : \(f_0 \approx f_1 = n/\Delta t\). Le diapason A vibre a 440 Hz.</li>
+        <li><strong>Facteur de qualite :</strong> on utilise le decrement logarithmique. On mesure l'amplitude a deux instants separes de \(n\) periodes : \(\delta = \frac{1}{n}\ln\frac{z(t)}{z(t + nT_1)}\), puis \(Q = \pi/\delta\).</li>
+      </ul>
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Mesurer Q sur un oscillogramme
+      </div>
+      <ol class="corr-steps">
+        <li>Reperer deux maxima bien separes : \(z_1\) a l'instant \(t_1\), et \(z_2\) a l'instant \(t_2 = t_1 + nT_1\).</li>
+        <li>Calculer le decrement logarithmique : \(\delta = \frac{1}{n}\ln(z_1/z_2)\).</li>
+        <li>En deduire : \(Q = \pi/\delta\).</li>
+        <li>Prendre \(n\) le plus grand possible pour minimiser l'erreur de lecture.</li>
+      </ol>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--        PARTIE II -- GENERATION DU CHAMP EXCITATEUR (Q10-Q16) -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="corr-exercice" id="partie2">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">II</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Generation du champ excitateur</h2>
+      <span class="corr-exercice__subtitle">Electromagnetisme -- Solenoide infini, theoreme d'Ampere, equations de Maxwell</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--easy">Standard</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">On utilise un solenoide pour creer le champ magnetique excitateur du diapason. On determine le champ \(\vec{B}\) a l'interieur, puis le champ electrique \(\vec{E}\) induit par la variation temporelle de \(\vec{B}\). Questions Q10 a Q16.</p>
+  </div>
+
+  <!-- ── Q10-Q12 ── -->
+  <div class="corr-question corr-question--easy" id="corr-q10">
+    <span class="corr-question__num">Questions 10-12 -- Champ magnetique du solenoide infini</span>
+    <p class="corr-question__statement"><strong>Q10.</strong> Dans l'approximation du solenoide infini, justifier que \(\vec{B}(M) = B(r)\,\vec{u}_z\).<br><br><strong>Q11.</strong> Justifier que le champ est uniforme a l'interieur. Etablir son expression en admettant qu'il est nul a l'exterieur.<br><br><strong>Q12.</strong> Estimer \(B_0\) pour \(n = 10^3\) spires/m et \(I = 0{,}1\) A. Comparer au champ terrestre.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel -- Symetries et invariances du solenoide
+      </div>
+      <p>Le solenoide infini presente :</p>
+      <ul>
+        <li><strong>Invariance par translation</strong> selon \(z\) (l'axe) : \(\vec{B}\) ne depend pas de \(z\).</li>
+        <li><strong>Invariance par rotation</strong> autour de l'axe \(Oz\) : \(\vec{B}\) ne depend pas de \(\theta\).</li>
+        <li><strong>Plans de symetrie</strong> : tout plan contenant l'axe \(Oz\) est un plan de symetrie des courants. Donc \(\vec{B}\) est contenu dans ce plan, ce qui impose \(B_\theta = 0\).</li>
+        <li><strong>Plans d'antisymetrie</strong> : tout plan perpendiculaire a l'axe est un plan d'antisymetrie (les courants changent de sens). Donc \(\vec{B}\) est perpendiculaire a ce plan, ce qui impose \(B_r = 0\).</li>
+      </ul>
+      <p>Conclusion : \(\vec{B}(M) = B(r)\,\vec{u}_z\), le champ ne depend que de \(r\) et est dirige selon l'axe.</p>
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Application du theoreme d'Ampere
+      </div>
+      <ol class="corr-steps">
+        <li>Choisir un contour d'Ampere <strong>rectangulaire</strong> dans un plan \((r, z)\) : un cote interieur de longueur \(h\), un cote exterieur de longueur \(h\), et deux segments radiaux.</li>
+        <li>Les segments radiaux ne contribuent pas (car \(\vec{B} \perp d\vec{\ell}\) sur ces segments).</li>
+        <li>A l'exterieur, \(B = 0\) (admis).</li>
+        <li>Circulation : \(\oint \vec{B}\cdot d\vec{\ell} = B_{\text{int}} \times h - 0 = B_{\text{int}} \cdot h\).</li>
+        <li>Courant enlace : le rectangle englobe \(n \cdot h\) spires, donc \(I_{\text{enlace}} = nhI\).</li>
+        <li>Theoreme d'Ampere : \(B_{\text{int}} \cdot h = \mu_0 nhI\), soit \(B_{\text{int}} = \mu_0 nI\).</li>
+      </ol>
+      <p>Le resultat est independant de \(r\) : le champ est <strong>uniforme</strong> a l'interieur.</p>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q10.</strong> Par analyse des symetries (plans contenant l'axe) et invariances (translation selon \(z\), rotation autour de \(z\)), on obtient \(\vec{B}(M) = B(r)\,\vec{u}_z\).</p>
+      <p><strong>Q11.</strong> Le theoreme d'Ampere applique a un contour rectangulaire donne un champ uniforme a l'interieur :</p>
+      <div class="math-display">$$\boxed{\vec{B}_{\text{int}} = \mu_0 n I\,\vec{u}_z}$$</div>
+      <p><strong>Q12.</strong> Application numerique :</p>
+      <div class="math-display">$$B_0 = \mu_0 n I = 4\pi \times 10^{-7} \times 10^3 \times 0{,}1 = 4\pi \times 10^{-5} \approx 1{,}3 \times 10^{-4}\;\text{T} = 0{,}13\;\text{mT}$$</div>
+      <p>Le champ terrestre vaut environ \(B_T \approx 5 \times 10^{-5}\) T = 0,05 mT. Donc \(B_0 \approx 2{,}5\,B_T\) : le champ du solenoide est du meme ordre de grandeur que le champ terrestre, soit un champ assez faible.</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Piege -- n est le nombre de spires par metre
+      </div>
+      <p>La formule \(B = \mu_0 n I\) utilise \(n\) = nombre de spires <strong>par unite de longueur</strong>. Si l'enonce donne le nombre total \(N\) de spires et la longueur \(L\), il faut d'abord calculer \(n = N/L\). Utiliser \(N\) au lieu de \(n\) donne un resultat faux.</p>
+    </div>
+  </div>
+
+  <!-- ── Q13-Q14 ── -->
+  <div class="corr-question corr-question--easy" id="corr-q13">
+    <span class="corr-question__num">Questions 13-14 -- Approximation du solenoide infini, equations de Maxwell</span>
+    <p class="corr-question__statement"><strong>Q13.</strong> Quel est l'interet de l'approximation du solenoide infini ? Conditions de validite ?<br><br><strong>Q14.</strong> Rappeler et nommer les equations de Maxwell.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q13.</strong> L'approximation du solenoide infini permet d'obtenir un champ <strong>uniforme</strong> et <strong>analytique</strong> a l'interieur, ce qui simplifie enormement les calculs. Elle est valable lorsque la longueur du solenoide \(L\) est tres grande devant son rayon \(R\) : \(L \gg R\). En pratique, on considere le rapport \(L/R > 10\) comme suffisant. De plus, on se place loin des bords (a une distance \(> R\) des extremites) pour eviter les effets de bord.</p>
+      <p><strong>Q14.</strong> Les quatre equations de Maxwell sont :</p>
+      <table class="corr-table">
+        <tr><th>Equation</th><th>Nom</th><th>Expression locale</th></tr>
+        <tr><td>Maxwell-Gauss</td><td>Equation du flux electrique</td><td>\(\vec{\nabla}\cdot\vec{E} = \rho/\varepsilon_0\)</td></tr>
+        <tr><td>Maxwell-Thomson</td><td>Conservation du flux magnetique</td><td>\(\vec{\nabla}\cdot\vec{B} = 0\)</td></tr>
+        <tr><td>Maxwell-Faraday</td><td>Induction</td><td>\(\vec{\nabla}\times\vec{E} = -\partial\vec{B}/\partial t\)</td></tr>
+        <tr><td>Maxwell-Ampere</td><td>Equation d'Ampere generalisee</td><td>\(\vec{\nabla}\times\vec{B} = \mu_0\vec{j} + \mu_0\varepsilon_0\,\partial\vec{E}/\partial t\)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Q15-Q16 ── -->
+  <div class="corr-question corr-question--medium" id="corr-q15">
+    <span class="corr-question__num">Questions 15-16 -- Champ electrique induit dans le solenoide</span>
+    <p class="corr-question__statement"><strong>Q15.</strong> Justifier que \(\vec{E}(M,t) = E(r,t)\,\vec{u}_\theta\) a l'interieur du solenoide.<br><br><strong>Q16.</strong> Montrer que \(E(r,t) = E_0(r)\sin(\omega t)\). Preciser \(E_0(r)\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel -- Equation de Maxwell-Faraday integrale
+      </div>
+      <p>L'equation de Maxwell-Faraday sous forme integrale (loi de Faraday) s'ecrit :</p>
+      <div class="math-display">$$\oint_{\mathcal{C}} \vec{E}\cdot d\vec{\ell} = -\frac{d}{dt}\iint_{\mathcal{S}} \vec{B}\cdot d\vec{S}$$</div>
+      <p>La variation temporelle du flux de \(\vec{B}\) cree un champ electrique induit \(\vec{E}\).</p>
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Determiner \(\vec{E}\) par symetrie puis Maxwell-Faraday
+      </div>
+      <ol class="corr-steps">
+        <li><strong>Symetries :</strong> Les plans contenant l'axe \(Oz\) sont des plans d'antisymetrie pour le courant (les courants circulaires changent de sens par reflexion). Donc \(\vec{E}\) est perpendiculaire a ces plans : \(\vec{E}\) n'a qu'une composante selon \(\vec{u}_\theta\).</li>
+        <li><strong>Invariances :</strong> par translation selon \(z\) et rotation autour de \(z\), \(E\) ne depend que de \(r\) (et de \(t\)).</li>
+        <li><strong>Contour de Faraday :</strong> cercle de rayon \(r\) centre sur l'axe, dans un plan perpendiculaire a \(z\).</li>
+        <li>Circulation : \(\oint \vec{E}\cdot d\vec{\ell} = E(r,t) \times 2\pi r\).</li>
+        <li>Flux : \(\Phi = B(t) \times \pi r^2 = \mu_0 n I(t) \times \pi r^2\).</li>
+      </ol>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q15.</strong> Par les symetries (plans contenant l'axe sont des plans d'antisymetrie des courants) et les invariances (translation en \(z\), rotation en \(\theta\)), on obtient :</p>
+      <div class="math-display">$$\boxed{\vec{E}(M,t) = E(r,t)\,\vec{u}_\theta}$$</div>
+      <p><strong>Q16.</strong> Le courant est sinusoidal : \(I(t) = I_0\cos(\omega t)\). La loi de Faraday sur un cercle de rayon \(r\) donne :</p>
+      <div class="math-display">$$E(r,t) \times 2\pi r = -\frac{d}{dt}\left[\mu_0 n I_0\cos(\omega t) \times \pi r^2\right] = \mu_0 n I_0 \omega \pi r^2 \sin(\omega t)$$</div>
+      <p>D'ou :</p>
+      <div class="math-display">$$\boxed{E(r,t) = E_0(r)\sin(\omega t) \qquad \text{avec } E_0(r) = \frac{\mu_0 n I_0 \omega r}{2}}$$</div>
+      <p>Le champ electrique induit est proportionnel a \(r\) : il est nul sur l'axe et maximal au bord du solenoide. Il est en quadrature de phase avec le courant (dephasage de \(\pi/2\)).</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--   PARTIE III -- INTERACTION CHAMP / BRANCHE DU DIAPASON (Q17-Q22) -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="corr-exercice" id="partie3">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">III</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Interaction champ / branche du diapason</h2>
+      <span class="corr-exercice__subtitle">Electromagnetisme -- Conducteur parfait, reflexion, force magnetique</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">Le champ magnetique cree par le solenoide interagit avec les branches metalliques du diapason. On etudie la reflexion du champ electrique sur le conducteur parfait, le gradient de champ, et la force resultante. Le point cle est que la force est en \(\cos^2(\omega t)\), ce qui double la frequence d'excitation. Questions Q17 a Q22.</p>
+  </div>
+
+  <!-- ── Q17-Q19 ── -->
+  <div class="corr-question corr-question--medium" id="corr-q17">
+    <span class="corr-question__num">Questions 17-19 -- Conducteur parfait et champ reflechi</span>
+    <p class="corr-question__statement"><strong>Q17.</strong> Qu'est-ce qu'un conducteur parfait ?<br><br><strong>Q18.</strong> Justifier l'existence d'un champ reflechi dans l'air.<br><br><strong>Q19.</strong> Exprimer \(\vec{E}_r(M,t)\) a l'aide de la relation de passage. En deduire \(\vec{B}_r(M,t)\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel -- Conducteur parfait
+      </div>
+      <p>Un conducteur parfait est un materiau de <strong>conductivite infinie</strong> (\(\sigma \to +\infty\)). Les consequences sont :</p>
+      <ul>
+        <li>Le champ electrique est <strong>/dev/null a l'interieur</strong> du conducteur : \(\vec{E}_{\text{int}} = \vec{0}\). En effet, \(\vec{j} = \sigma\vec{E}\), et si \(\sigma \to \infty\), un champ non nul donnerait un courant infini, ce qui est impossible physiquement.</li>
+        <li>La composante tangentielle de \(\vec{E}\) est <strong>nulle a la surface</strong> (relation de passage : la composante tangentielle est continue).</li>
+        <li>Le champ magnetique est egalement nul a l'interieur (en regime variable).</li>
+      </ul>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q17.</strong> Un conducteur parfait est un materiau dont la conductivite \(\sigma\) est infinie. En consequence, \(\vec{E} = \vec{0}\) et \(\vec{B} = \vec{0}\) a l'interieur (en regime variable). Les charges se redistribuent instantanement pour annuler tout champ interne.</p>
+      <p><strong>Q18.</strong> Le champ electrique incident \(\vec{E}_i\) (cree par le solenoide) ne peut pas penetrer dans le conducteur parfait. Mais la composante tangentielle de \(\vec{E}\) est continue a la surface. Pour que \(E_{\text{tan}} = 0\) a la surface du conducteur, il faut qu'il existe un champ <strong>reflechi</strong> \(\vec{E}_r\) qui compense exactement le champ incident a la surface. C'est le meme mecanisme que la reflexion d'une onde electromagnetique sur un miroir metallique.</p>
+      <p><strong>Q19.</strong> La relation de passage impose la continuite de la composante tangentielle de \(\vec{E}\) a la surface. Comme \(\vec{E} = \vec{0}\) dans le conducteur :</p>
+      <div class="math-display">$$\vec{E}_{i,\text{tan}} + \vec{E}_{r,\text{tan}} = \vec{0} \quad \Longrightarrow \quad \boxed{\vec{E}_r = -\vec{E}_i}$$</div>
+      <p>Le champ reflechi est l'oppose du champ incident (en composante tangentielle). Pour le champ magnetique, la relation de structure d'une onde plane donne :</p>
+      <div class="math-display">$$\boxed{\vec{B}_r = +\vec{B}_i}$$</div>
+      <p>(Le champ magnetique reflechi est dans le meme sens que l'incident : il y a doublement de \(\vec{B}\) a la surface du conducteur.)</p>
+    </div>
+  </div>
+
+  <!-- ── Q20-Q22 ── -->
+  <div class="corr-question corr-question--hard" id="corr-q20">
+    <span class="corr-question__num">Questions 20-22 -- Gradient de champ, force magnetique, frequence de resonance</span>
+    <p class="corr-question__statement"><strong>Q20.</strong> Montrer que \(b(z) \simeq B_0(1 + az/R)\). Donner la valeur de \(a\).<br><br><strong>Q21.</strong> Montrer que la force subie par un element de volume s'ecrit \(\mathrm{d}\vec{F}_m \simeq -\alpha\cos^2(\omega t)\,\mathrm{d}V\,\vec{u}_z\). Les dipoles induits sont-ils attires vers la zone de champ fort ?<br><br><strong>Q22.</strong> A quelle frequence doit-on regler la source pour exciter le diapason a resonance (256 Hz) ?</p>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Pourquoi un DL du champ ?
+      </div>
+      <p>Pres de l'extremite du solenoide, le champ n'est plus parfaitement uniforme. Il presente un <strong>gradient</strong> : \(B\) varie avec la position \(z\). Ce gradient est essentiel car c'est lui qui cree la force sur le diapason (un champ uniforme n'exerce pas de force nette sur un dipole magnetique). Le DL au premier ordre est la bonne approche pour obtenir une expression analytique simple.</p>
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Force sur un materiau magnetique dans un gradient de champ
+      </div>
+      <p>La force volumique sur un materiau paramagnetique (ou diamagnetique) dans un champ non uniforme est :</p>
+      <div class="math-display">$$\vec{f}_m = \frac{\chi_m}{\mu_0}\left(\vec{B}\cdot\vec{\nabla}\right)\vec{B} = \frac{\chi_m}{2\mu_0}\vec{\nabla}(B^2)$$</div>
+      <p>Si \(B(z,t) = B_0(1 + az/R)\cos(\omega t)\), alors \(B^2 \propto (1 + az/R)^2\cos^2(\omega t)\) et le gradient selon \(z\) fait apparaitre le terme en \(\cos^2(\omega t)\).</p>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q20.</strong> Pres de l'extremite du solenoide, on effectue un DL au premier ordre en \(z/R\) :</p>
+      <div class="math-display">$$\boxed{b(z) \simeq B_0\left(1 + \frac{az}{R}\right)}$$</div>
+      <p>La constante \(a\) depend de la geometrie exacte du solenoide au voisinage de l'extremite. Elle est de l'ordre de l'unite (\(a \sim 1\)) et represente le taux de variation relative du champ sur une distance \(R\).</p>
+      <p><strong>Q21.</strong> La force volumique est proportionnelle au gradient de \(B^2\). Comme \(B(z,t) = b(z)\cos(\omega t)\), on a \(B^2 = b(z)^2\cos^2(\omega t)\) et :</p>
+      <div class="math-display">$$\frac{\partial B^2}{\partial z} = 2b(z)\frac{db}{dz}\cos^2(\omega t) = 2B_0\left(1 + \frac{az}{R}\right)\frac{aB_0}{R}\cos^2(\omega t)$$</div>
+      <p>Au premier ordre en \(z/R\) :</p>
+      <div class="math-display">$$\boxed{d\vec{F}_m \simeq -\alpha\cos^2(\omega t)\,dV\,\vec{u}_z}$$</div>
+      <p>ou \(\alpha\) est une constante positive (qui depend de \(\chi_m\), \(B_0\), \(a\), \(R\)). Le signe indique que les elements de volume sont <strong>attires vers la zone de champ fort</strong> (vers l'interieur du solenoide), ce qui est le comportement attendu pour un materiau paramagnetique (\(\chi_m > 0\)).</p>
+      <p><strong>Q22.</strong> La force contient le terme \(\cos^2(\omega t)\). En utilisant la linearisation :</p>
+      <div class="math-display">$$\cos^2(\omega t) = \frac{1 + \cos(2\omega t)}{2}$$</div>
+      <p>L'excitation mecanique a lieu a la pulsation \(2\omega\) (frequence \(2f_{\text{source}}\)). Pour la resonance a \(f_0 = 256\) Hz :</p>
+      <div class="math-display">$$2f_{\text{source}} = f_0 \quad \Longrightarrow \quad \boxed{f_{\text{source}} = \frac{f_0}{2} = 128\;\text{Hz}}$$</div>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        PIEGE MAJEUR -- La frequence de la source est la moitie de f_0
+      </div>
+      <p>C'est LE piege classique de cette partie, signale par le rapport du jury. La force etant en \(B^2 \propto \cos^2(\omega_s t)\), la frequence d'excitation mecanique est <strong>le double</strong> de la frequence du courant. La reponse \(f_s = 256\) Hz est FAUSSE. Il faut \(f_s = f_0/2 = 128\) Hz.</p>
+      <p>Moyen mnemotechnique : "la force est en \(B^2\), le carre double la frequence".</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--   PARTIE IV -- FABRICATION DE LA SOURCE DE COURANT (Q23-Q29) -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="corr-exercice" id="partie4">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">IV</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Fabrication de la source de courant</h2>
+      <span class="corr-exercice__subtitle">Electronique -- Oscillateur de relaxation, tube fluorescent, Fourier</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">On construit un oscillateur de relaxation a base de tube fluorescent pour alimenter le solenoide. Le tube possede deux seuils : il s'allume quand la tension a ses bornes atteint \(U_a\) et s'eteint quand elle descend sous \(U_e\). Ce mecanisme de basculement produit des oscillations periodiques non sinusoidales. Questions Q23 a Q29.</p>
+  </div>
+
+  <!-- ── Q23-Q25 ── -->
+  <div class="corr-question corr-question--medium" id="corr-q23">
+    <span class="corr-question__num">Questions 23-25 -- Allumage, regime allume, extinction du tube</span>
+    <p class="corr-question__statement"><strong>Q23.</strong> A quelle condition sur \(E\) le tube s'allume-t-il ? Exprimer l'instant d'allumage \(t_a\).<br><br><strong>Q24.</strong> Le tube etant allume, exprimer \(u(t)\) en fonction de \(E'\), \(U_a\), \(r\), \(R\), \(\tau'\) et \(t_a\).<br><br><strong>Q25.</strong> A quelle condition le tube s'eteint-il ? Exprimer l'instant d'extinction \(t_e\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel -- Charge et decharge d'un condensateur
+      </div>
+      <p>Charge a travers \(R\) depuis une source \(E\), partant de \(u_0\) :</p>
+      <div class="math-display">$$u(t) = E + (u_0 - E)\,e^{-t/\tau} \qquad \text{avec } \tau = RC$$</div>
+      <p>Le condensateur "tend vers" la valeur \(E\) avec une constante de temps \(\tau\). Si on part de 0, on a \(u(t) = E(1 - e^{-t/\tau})\).</p>
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Pourquoi un oscillateur "de relaxation" ?
+      </div>
+      <p>Le terme "relaxation" vient du fait que le systeme alterne entre deux phases : une phase de <strong>charge lente</strong> (le condensateur se charge a travers \(R\)) et une phase de <strong>decharge rapide</strong> (le tube allume court-circuite le condensateur). C'est comme une soupape de pression qui s'ouvre brutalement quand un seuil est atteint, puis se referme quand la pression a suffisamment baisse.</p>
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Analyser un oscillateur de relaxation
+      </div>
+      <ol class="corr-steps">
+        <li><strong>Phase eteint :</strong> le tube est un circuit ouvert. Le condensateur se charge a travers \(R\) vers la tension \(E\). Equation : \(u(t) = E(1 - e^{-t/(RC)})\) (si on part de 0) ou plus generalement \(u(t) = E + (U_e - E)e^{-(t-t_e)/\tau}\) (si on part de \(U_e\)).</li>
+        <li><strong>Allumage :</strong> quand \(u = U_a\), le tube s'allume. Condition : \(E > U_a\), sinon le condensateur n'atteint jamais le seuil.</li>
+        <li><strong>Phase allume :</strong> le tube conduit avec une resistance \(r \ll R\). Le circuit equivalent change. Le condensateur se decharge a travers \(r\) avec une nouvelle constante de temps \(\tau' = rC \ll RC\).</li>
+        <li><strong>Extinction :</strong> quand \(u = U_e < U_a\), le tube s'eteint. On revient a l'etape 1.</li>
+      </ol>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q23.</strong> Pour que le tube s'allume, il faut que la tension aux bornes du condensateur puisse atteindre \(U_a\). Comme \(u(t)\) tend vers \(E\), la condition est :</p>
+      <div class="math-display">$$\boxed{E > U_a}$$</div>
+      <p>L'instant d'allumage \(t_a\) est donne par \(u(t_a) = U_a\). Si on part de \(u = 0\) :</p>
+      <div class="math-display">$$E(1 - e^{-t_a/\tau}) = U_a \quad \Longrightarrow \quad \boxed{t_a = \tau\ln\left(\frac{E}{E - U_a}\right)}$$</div>
+      <p>Si on part de \(u = U_e\) (regime permanent) :</p>
+      <div class="math-display">$$t_a = \tau\ln\left(\frac{E - U_e}{E - U_a}\right)$$</div>
+
+      <p><strong>Q24.</strong> Quand le tube est allume, il presente une resistance \(r\) et une fem \(E'\). Le condensateur est en parallele avec le tube. L'equation differentielle sur \(u\) (tension du condensateur) donne :</p>
+      <div class="math-display">$$\boxed{u(t) = E' + (U_a - E')\,e^{-(t-t_a)/\tau'}}$$</div>
+      <p>ou \(\tau'\) est la constante de temps en phase allumee, et \(E' = Er/(R+r)\) est la tension asymptotique du nouveau circuit.</p>
+
+      <p><strong>Q25.</strong> Le tube s'eteint quand la tension descend sous le seuil d'extinction \(U_e\). La condition pour que l'extinction ait lieu est :</p>
+      <div class="math-display">$$\boxed{E' < U_e}$$</div>
+      <p>(Sinon la tension ne descend jamais sous \(U_e\) et le tube reste allume en permanence.) L'instant d'extinction est :</p>
+      <div class="math-display">$$\boxed{t_e = t_a + \tau'\ln\left(\frac{U_a - E'}{U_e - E'}\right)}$$</div>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Piege -- Les deux conditions sont necessaires
+      </div>
+      <p>Pour avoir des oscillations, il faut <strong>les deux conditions simultanement</strong> : \(E > U_a\) (pour l'allumage) ET \(E' < U_e\) (pour l'extinction). Si une seule est verifiee, pas d'oscillations.</p>
+    </div>
+  </div>
+
+  <!-- ── Q26-Q29 ── -->
+  <div class="corr-question corr-question--medium" id="corr-q26">
+    <span class="corr-question__num">Questions 26-29 -- Periode, trace de u(t), regime force, decomposition de Fourier</span>
+    <p class="corr-question__statement"><strong>Q26.</strong> Exprimer la periode \(T\) des oscillations.<br><br><strong>Q27.</strong> Tracer l'allure de \(u(t)\) pour \(t \geq 0\).<br><br><strong>Q28.</strong> A partir du document 3, estimer la frequence propre et le facteur de qualite du diapason A en regime force.<br><br><strong>Q29.</strong> Le fait que l'oscillateur ne soit pas sinusoidal est-il problematique pour l'etude en regime sinusoidal force ?</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q26.</strong> La periode est la somme de la duree de charge (tube eteint) et de la duree de decharge (tube allume). La phase de charge domine largement car \(\tau \gg \tau'\) :</p>
+      <div class="math-display">$$\boxed{T = \tau\ln\left(\frac{E - U_e}{E - U_a}\right) + \tau'\ln\left(\frac{U_a - E'}{U_e - E'}\right) \approx RC\ln\left(\frac{E - U_e}{E - U_a}\right)}$$</div>
+      <p>car le second terme (decharge rapide) est negligeable devant le premier.</p>
+
+      <p><strong>Q27.</strong> L'allure de \(u(t)\) est un signal en "dents de scie" :</p>
+      <ul>
+        <li>Monte exponentielle lente de \(U_e\) a \(U_a\) (charge a travers \(R\), constante de temps \(\tau = RC\))</li>
+        <li>Chute rapide de \(U_a\) a \(U_e\) (decharge a travers le tube, constante de temps \(\tau' \ll \tau\))</li>
+        <li>Le cycle se repete periodiquement</li>
+      </ul>
+      <p>Le signal oscille donc entre \(U_e\) et \(U_a\) de maniere periodique mais <strong>non sinusoidale</strong>.</p>
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Exploiter une courbe de resonance en regime force
+      </div>
+      <ol class="corr-steps">
+        <li>La frequence de resonance \(f_r\) est la frequence du maximum de l'amplitude.</li>
+        <li>La bande passante \(\Delta f\) est la largeur du pic a \(A_{\max}/\sqrt{2}\) (a -3 dB).</li>
+        <li>Le facteur de qualite se deduit de : \(Q = f_r / \Delta f\).</li>
+      </ol>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat (suite)
+      </div>
+      <p><strong>Q28.</strong> A partir du document 3 (courbe de resonance en regime force), on releve :</p>
+      <ul>
+        <li>La frequence de resonance correspond au maximum du pic : \(f_r \approx 440\) Hz (diapason La).</li>
+        <li>La bande passante a -3 dB donne \(\Delta f\). Le facteur de qualite est \(Q = f_r / \Delta f\).</li>
+      </ul>
+      <p>Pour un diapason typique, on obtient \(Q\) de l'ordre de quelques milliers.</p>
+
+      <p><strong>Q29.</strong> Le signal de l'oscillateur de relaxation n'est pas sinusoidal, mais cela n'est <strong>pas problematique</strong> pour l'etude en regime force. Voici pourquoi :</p>
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Pourquoi ca marche malgre le signal non sinusoidal ?
+      </div>
+      <p>D'apres le <strong>theoreme de Fourier</strong>, tout signal periodique peut se decomposer en une somme de sinusoides (fondamental + harmoniques). Le signal en dents de scie contient :</p>
+      <ul>
+        <li>Le fondamental a la frequence \(f = 1/T\)</li>
+        <li>Les harmoniques a \(2f\), \(3f\), \(4f\), etc.</li>
+      </ul>
+      <p>Or le diapason est un oscillateur de facteur de qualite tres eleve (\(Q \sim\) milliers). Sa bande passante est extremement etroite : \(\Delta f = f_0/Q \sim 0{,}1\) Hz. Il ne repond donc qu'a la composante de Fourier situee dans cette bande, c'est-a-dire l'harmonique la plus proche de \(f_0\). Toutes les autres composantes sont filtrees. Le diapason se comporte comme un <strong>filtre passe-bande ultra-selectif</strong> : meme si l'excitation n'est pas sinusoidale, la reponse est quasi-sinusoidale.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--   PROBLEME 2 -- SYNTHESE DE L'AMMONIAC (Q30-Q40)          -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="corr-exercice" id="chimie">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">V</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Chimie -- Synthese de l'ammoniac</h2>
+      <span class="corr-exercice__subtitle">Lewis, configuration electronique, cristallographie CC, thermodynamique chimique, Le Chatelier</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">La synthese industrielle de l'ammoniac (procede Haber-Bosch) est l'une des reactions chimiques les plus importantes au monde. On etudie la structure de l'ammoniac, la cristallographie du catalyseur (fer), puis la thermodynamique de l'equilibre chimique et l'influence des parametres experimentaux. Questions Q30 a Q40.</p>
+  </div>
+
+  <!-- ── Q30-Q32 ── -->
+  <div class="corr-question corr-question--easy" id="corr-q30">
+    <span class="corr-question__num">Questions 30-32 -- Lewis de NH3, configuration electronique du fer et de ses ions</span>
+    <p class="corr-question__statement"><strong>Q30.</strong> Donner un schema de Lewis de l'ammoniac.<br><br><strong>Q31.</strong> Donner la structure electronique d'un atome de fer dans l'etat fondamental.<br><br><strong>Q32.</strong> Donner la structure electronique de Fe\(^{2+}\) et Fe\(^{3+}\). Lequel est le plus stable ? Justifier.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel -- Schema de Lewis
+      </div>
+      <p>Pour construire le schema de Lewis d'une molecule :</p>
+      <ol class="corr-steps">
+        <li>Compter le nombre total d'electrons de valence.</li>
+        <li>Placer l'atome central (le moins electronegatif, sauf H).</li>
+        <li>Former les liaisons covalentes (doublets liants).</li>
+        <li>Completer les octets (ou le duet pour H) avec des doublets non liants.</li>
+      </ol>
+      <p>Pour NH\(_3\) : N a 5 electrons de valence, chaque H en a 1. Total : 5 + 3 = 8 electrons = 4 doublets.</p>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q30.</strong> L'ammoniac NH\(_3\) possede 3 liaisons covalentes N-H et 1 doublet non liant sur l'azote. La geometrie est <strong>pyramidale</strong> (type AX\(_3\)E\(_1\) en VSEPR). Le doublet non liant confere a la molecule un <strong>moment dipolaire</strong> et un caractere basique (il peut capter un proton H\(^+\)).</p>
+      <div class="math-display">$$\text{Schema de Lewis : }\quad :\overset{..}{\text{N}}\text{H}_3 \quad \text{(3 liaisons N-H + 1 doublet libre sur N)}$$</div>
+
+      <p><strong>Q31.</strong> Le fer (Z = 26) a la configuration electronique :</p>
+      <div class="math-display">$$\boxed{\text{Fe} : 1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,3d^6\,4s^2 = [\text{Ar}]\,3d^6\,4s^2}$$</div>
+      <p>Attention : on remplit d'abord la sous-couche \(4s\) avant \(3d\) (regle de Klechkowski), mais pour les ions des metaux de transition, c'est \(4s\) qui est ionisee en premier.</p>
+
+      <p><strong>Q32.</strong> Pour les ions, on retire d'abord les electrons de la couche \(4s\) :</p>
+      <div class="math-display">$$\boxed{\text{Fe}^{2+} : [\text{Ar}]\,3d^6} \qquad \boxed{\text{Fe}^{3+} : [\text{Ar}]\,3d^5}$$</div>
+      <p><strong>Fe\(^{3+}\) est le plus stable.</strong> Justification : la sous-couche \(3d\) de Fe\(^{3+}\) est <strong>a moitie remplie</strong> (\(3d^5\)) avec un electron dans chaque orbitale. Cette configuration de demi-remplissage est particulierement stable car elle maximise l'energie d'echange (stabilisation de Hund). La sous-couche \(3d^6\) de Fe\(^{2+}\) presente un electron en exces par rapport a cette configuration optimale.</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Piege -- Ordre d'ionisation des metaux de transition
+      </div>
+      <p>Pour l'atome neutre, on remplit \(4s\) avant \(3d\) (Klechkowski). Mais pour l'ionisation, on <strong>retire d'abord les electrons de 4s</strong>, pas de 3d. Ecrire Fe\(^{2+}\) = \([\text{Ar}]\,3d^4\,4s^2\) est FAUX. La bonne reponse est \([\text{Ar}]\,3d^6\).</p>
+    </div>
+  </div>
+
+  <!-- ── Q33 ── -->
+  <div class="corr-question corr-question--easy" id="corr-q33">
+    <span class="corr-question__num">Question 33 -- Cristallographie du fer CC</span>
+    <p class="corr-question__statement"><strong>Q33.</strong> Exprimer puis estimer la masse volumique du fer dans la structure cubique centree (\(a = 3 \times 10^2\) pm).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel -- Structure cubique centree (CC)
+      </div>
+      <table class="corr-table">
+        <tr><th>Propriete</th><th>CC</th></tr>
+        <tr><td>Nombre d'atomes par maille \(Z\)</td><td>\(Z = 8 \times \frac{1}{8} + 1 = 2\)</td></tr>
+        <tr><td>Condition de tangence</td><td>Grande diagonale : \(4r = a\sqrt{3}\)</td></tr>
+        <tr><td>Compacite</td><td>\(C = \frac{\pi\sqrt{3}}{8} \approx 0{,}68\)</td></tr>
+        <tr><td>Coordinence</td><td>8</td></tr>
+      </table>
+      <p>Les 8 atomes aux sommets sont partages entre 8 mailles (contribution 1/8 chacun). L'atome au centre appartient entierement a la maille.</p>
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Calculer la masse volumique d'un cristal
+      </div>
+      <ol class="corr-steps">
+        <li>Compter le nombre d'atomes par maille \(Z\).</li>
+        <li>Calculer la masse de la maille : \(m_{\text{maille}} = Z \times M / N_A\).</li>
+        <li>Calculer le volume de la maille : \(V_{\text{maille}} = a^3\).</li>
+        <li>En deduire : \(\rho = m_{\text{maille}} / V_{\text{maille}} = ZM/(N_A a^3)\).</li>
+      </ol>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p>Expression de la masse volumique :</p>
+      <div class="math-display">$$\boxed{\rho = \frac{ZM}{N_A a^3} = \frac{2M}{N_A a^3}}$$</div>
+      <p>Application numerique avec \(M_{\text{Fe}} = 56\) g/mol, \(N_A = 6{,}02 \times 10^{23}\) mol\(^{-1}\), \(a = 300\) pm \(= 3{,}00 \times 10^{-10}\) m :</p>
+      <div class="math-display">$$\rho = \frac{2 \times 56 \times 10^{-3}}{6{,}02 \times 10^{23} \times (3{,}00 \times 10^{-10})^3} = \frac{0{,}112}{6{,}02 \times 10^{23} \times 2{,}7 \times 10^{-29}}$$</div>
+      <div class="math-display">$$\boxed{\rho \approx 6{,}9 \times 10^3\;\text{kg/m}^3 \approx 6{,}9\;\text{g/cm}^3}$$</div>
+      <p>La valeur tabulee est \(\rho_{\text{Fe}} = 7{,}87\) g/cm\(^3\). L'ecart provient de l'arrondi sur le parametre de maille (\(a = 300\) pm au lieu de la valeur exacte \(a = 287\) pm). Avec \(a = 287\) pm, on obtiendrait \(\rho \approx 7{,}9\) g/cm\(^3\), en excellent accord.</p>
+    </div>
+  </div>
+
+  <!-- ── Q34-Q36 ── -->
+  <div class="corr-question corr-question--medium" id="corr-q34">
+    <span class="corr-question__num">Questions 34-36 -- Commentaire thermodynamique, constante d'equilibre, variance</span>
+    <p class="corr-question__statement"><strong>Q34.</strong> Commenter les valeurs de \(\Delta_r H_1^\circ = -114{,}7\) kJ/mol et \(\Delta_r S_1^\circ = -245{,}9\) J/(K.mol).<br><br><strong>Q35.</strong> Exprimer la constante d'equilibre \(K_1\) de la reaction \(3\text{H}_2 + \text{N}_2 = 2\text{NH}_3\).<br><br><strong>Q36.</strong> Que vaut la variance de l'equilibre ?</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q34.</strong> Commentaire de \(\Delta_r H_1^\circ = -114{,}7\) kJ/mol :</p>
+      <ul>
+        <li><strong>Signe negatif :</strong> la reaction est <strong>exothermique</strong> (elle libere de la chaleur). La formation des liaisons N-H dans NH\(_3\) libere plus d'energie que n'en necessite la rupture des liaisons H-H et N\(\equiv\)N.</li>
+        <li><strong>Ordre de grandeur :</strong> ~100 kJ/mol, c'est une enthalpie de reaction typique pour une reaction chimique usuelle.</li>
+      </ul>
+      <p>Commentaire de \(\Delta_r S_1^\circ = -245{,}9\) J/(K.mol) :</p>
+      <ul>
+        <li><strong>Signe negatif :</strong> l'entropie <strong>diminue</strong>. Cela est coherent car on passe de 4 moles de gaz (3H\(_2\) + N\(_2\)) a 2 moles de gaz (2NH\(_3\)). Moins de moles gazeuses = moins de desordre = entropie plus faible.</li>
+        <li><strong>Consequence :</strong> cette diminution d'entropie est defavorable a la reaction (second principe). A haute temperature, le terme \(-T\Delta_r S^\circ\) devient positif et tres grand, rendant \(\Delta_r G^\circ > 0\) : la reaction est thermodynamiquement defavorable a haute \(T\).</li>
+      </ul>
+
+      <p><strong>Q35.</strong> La constante d'equilibre est le quotient reactionnel a l'equilibre, exprime en termes d'activites. Pour des gaz parfaits, l'activite est \(a_i = p_i/p^\circ\). Pour la reaction \(3\text{H}_2 + \text{N}_2 = 2\text{NH}_3\) :</p>
+      <div class="math-display">$$\boxed{K_1 = \frac{(p_{\text{NH}_3}/p^\circ)^2}{(p_{\text{H}_2}/p^\circ)^3 \times (p_{\text{N}_2}/p^\circ)} = \frac{p_{\text{NH}_3}^2 \cdot (p^\circ)^2}{p_{\text{H}_2}^3 \cdot p_{\text{N}_2}}}$$</div>
+
+      <p><strong>Q36.</strong> La variance est donnee par la <strong>regle de Gibbs</strong> : \(v = C + 2 - \varphi\), ou \(C\) est le nombre de constituants independants et \(\varphi\) le nombre de phases.</p>
+      <ul>
+        <li>Especes : N\(_2\), H\(_2\), NH\(_3\) (3 especes).</li>
+        <li>Relations : 1 relation d'equilibre, et eventuellement une contrainte stoechiometrique si le melange initial est stoechiometrique (N\(_2\)/H\(_2\) = 1/3).</li>
+        <li>Constituants independants : \(C = 3 - 1 = 2\) (si pas de contrainte supplementaire) ou \(C = 3 - 2 = 1\) (avec le rapport stoechiometrique initial).</li>
+        <li>Phases : \(\varphi = 1\) (tout est gazeux).</li>
+      </ul>
+      <div class="math-display">$$\boxed{v = C + 2 - \varphi = 2 + 2 - 1 = 3}$$</div>
+      <p>(Les 3 parametres intensifs independants sont par exemple : \(T\), \(P\), et la fraction molaire d'une espece.) Si le melange est stoechiometrique, \(v = 1 + 2 - 1 = 2\) (seuls \(T\) et \(P\) sont libres).</p>
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel -- Regle de Gibbs
+      </div>
+      <p>La variance \(v\) est le nombre de parametres intensifs que l'on peut fixer librement sans rompre l'equilibre :</p>
+      <div class="math-display">$$v = C + 2 - \varphi$$</div>
+      <p>avec \(C\) = nombre de constituants independants (especes - relations), et \(\varphi\) = nombre de phases. Le "+2" correspond aux variables \(T\) et \(P\).</p>
+    </div>
+  </div>
+
+  <!-- ── Q37-Q38 ── -->
+  <div class="corr-question corr-question--medium" id="corr-q37">
+    <span class="corr-question__num">Questions 37-38 -- Expression de K en fonction du rendement, effet de la pression</span>
+    <p class="corr-question__statement"><strong>Q37.</strong> Exprimer \(K_1\) en fonction du rendement \(r\), \(P\) et \(p^\circ\).<br><br><strong>Q38.</strong> Effet d'une augmentation de la pression sur le rendement ? Commenter le choix de 300 bars.</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Exprimer K en fonction du rendement
+      </div>
+      <p>On part d'un melange stoechiometrique : 3 mol H\(_2\) + 1 mol N\(_2\) (total initial : 4 mol). On definit le rendement \(r\) comme la fraction de N\(_2\) convertie.</p>
+      <table class="corr-table">
+        <tr><th>Espece</th><th>Initial (mol)</th><th>Equilibre (mol)</th><th>Fraction molaire</th></tr>
+        <tr><td>N\(_2\)</td><td>1</td><td>\(1 - r\)</td><td>\(\frac{1 - r}{4 - 2r}\)</td></tr>
+        <tr><td>H\(_2\)</td><td>3</td><td>\(3 - 3r\)</td><td>\(\frac{3(1 - r)}{4 - 2r}\)</td></tr>
+        <tr><td>NH\(_3\)</td><td>0</td><td>\(2r\)</td><td>\(\frac{2r}{4 - 2r}\)</td></tr>
+        <tr><td><strong>Total</strong></td><td>4</td><td>\(4 - 2r\)</td><td>1</td></tr>
+      </table>
+      <p>On utilise \(p_i = x_i \times P\) et on injecte dans l'expression de \(K_1\).</p>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q37.</strong> En substituant les fractions molaires :</p>
+      <div class="math-display">$$K_1 = \frac{\left(\frac{2r}{4-2r}\right)^2}{\left(\frac{3(1-r)}{4-2r}\right)^3 \times \frac{1-r}{4-2r}} \times \frac{(p^\circ)^2}{P^2}$$</div>
+      <p>Apres simplification :</p>
+      <div class="math-display">$$\boxed{K_1 = \frac{4r^2(4-2r)^2}{27(1-r)^4} \times \frac{(p^\circ)^2}{P^2} = \frac{16\,r^2(2-r)^2}{27(1-r)^4} \times \frac{(p^\circ)^2}{P^2}}$$</div>
+
+      <p><strong>Q38.</strong> L'expression montre que \(K_1\) est fixe a \(T\) donnee (il ne depend pas de \(P\)). Si on augmente \(P\), le facteur \((p^\circ)^2/P^2\) diminue. Pour que \(K_1\) reste constant, il faut que le terme en \(r\) <strong>augmente</strong> : donc le rendement \(r\) augmente.</p>
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Interpretation par Le Chatelier
+      </div>
+      <p>On retrouve le meme resultat par le <strong>principe de Le Chatelier</strong> : une augmentation de pression deplace l'equilibre dans le sens qui <strong>diminue le nombre total de moles gazeuses</strong>. Ici, \(\Delta\nu_{\text{gaz}} = 2 - (3+1) = -2 < 0\) : le sens direct (formation de NH\(_3\)) diminue le nombre de moles. Donc une augmentation de \(P\) favorise la formation d'ammoniac.</p>
+      <p>Le choix de <strong>300 bars</strong> dans le procede Haber-Bosch est un compromis : plus la pression est elevee, plus le rendement est bon, mais le cout et la complexite des installations (reacteurs sous haute pression) augmentent aussi. 300 bars est un optimum economique : au-dela, le gain marginal en rendement ne justifie plus l'investissement supplementaire.</p>
+    </div>
+  </div>
+
+  <!-- ── Q39-Q40 ── -->
+  <div class="corr-question corr-question--medium" id="corr-q39">
+    <span class="corr-question__num">Questions 39-40 -- Effet de la temperature, role du catalyseur, compromis cinetique</span>
+    <p class="corr-question__statement"><strong>Q39.</strong> Effet d'une augmentation de la temperature sur le rendement ?<br><br><strong>Q40.</strong> Pourquoi aurait-il ete preferable de travailler a 25 °C ? Raison du choix de 450 °C ? Role du catalyseur ?</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel -- Loi de van't Hoff
+      </div>
+      <p>La dependance en temperature de la constante d'equilibre est donnee par la loi de van't Hoff :</p>
+      <div class="math-display">$$\frac{d\ln K}{dT} = \frac{\Delta_r H^\circ}{RT^2}$$</div>
+      <p>Si \(\Delta_r H^\circ < 0\) (exothermique) : quand \(T\) augmente, \(\ln K\) diminue, donc \(K\) diminue. L'equilibre est <strong>defavorise</strong> par la temperature.</p>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat
+      </div>
+      <p><strong>Q39.</strong> La reaction est exothermique (\(\Delta_r H^\circ < 0\)). D'apres la loi de van't Hoff (ou Le Chatelier : une augmentation de \(T\) favorise le sens endothermique), une <strong>augmentation de temperature diminue \(K\)</strong> et donc <strong>diminue le rendement</strong>.</p>
+      <p>Quantitativement, on peut le voir sur l'expression de \(K\) :</p>
+      <div class="math-display">$$K(T) = \exp\left(-\frac{\Delta_r G^\circ}{RT}\right) = \exp\left(-\frac{\Delta_r H^\circ - T\Delta_r S^\circ}{RT}\right)$$</div>
+      <p>Avec \(\Delta_r H^\circ < 0\) et \(\Delta_r S^\circ < 0\), quand \(T\) augmente, \(\Delta_r G^\circ = \Delta_r H^\circ - T\Delta_r S^\circ\) augmente (car \(-T\Delta_r S^\circ > 0\) et croit), donc \(K\) diminue.</p>
+
+      <p><strong>Q40.</strong> Trois points importants :</p>
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Pourquoi 450 degres C malgre le defavorable thermodynamique ?
+      </div>
+      <p><strong>1. Pourquoi 25 degres C serait preferable ?</strong> A 25 degres C, la constante d'equilibre \(K\) est tres grande (car la reaction est exothermique et tres favorable thermodynamiquement a basse temperature). Le rendement a l'equilibre serait quasi-total.</p>
+      <p><strong>2. Pourquoi choisir 450 degres C ?</strong> A 25 degres C, la <strong>cinetique est beaucoup trop lente</strong>. La liaison triple N\(\equiv\)N est tres stable (energie de liaison \(\sim\) 945 kJ/mol), et la barriere d'activation est enorme. A temperature ambiante, il faudrait attendre des millions d'annees pour atteindre l'equilibre ! A 450 degres C, la vitesse de reaction est suffisante pour une production industrielle en un temps raisonnable. C'est un <strong>compromis cinetique/thermodynamique</strong>.</p>
+      <p><strong>3. Role du catalyseur (fer) :</strong> Le catalyseur <strong>abaisse la barriere d'activation</strong> en proposant un mecanisme reactionnel alternatif de moindre energie (adsorption des reactifs sur la surface, dissociation de N\(_2\), hydrogenation progressive). Cela permet d'obtenir une vitesse de reaction suffisante a "seulement" 450 degres C (au lieu de 800-1000 degres C sans catalyseur).</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        PIEGE CLASSIQUE -- Le catalyseur ne deplace PAS l'equilibre
+      </div>
+      <p>Le catalyseur <strong>n'a aucun effet sur la position de l'equilibre</strong>. Il ne modifie ni \(K\), ni le rendement final, ni la composition a l'equilibre. Il accelere la reaction dans les <strong>deux sens</strong> (direct et inverse) de maniere egale. Son seul role est de permettre d'atteindre l'equilibre plus rapidement. Dire que "le catalyseur favorise la formation de NH\(_3\)" est <strong>faux</strong> : il favorise l'atteinte de l'equilibre, qui peut etre plus ou moins en faveur de NH\(_3\) selon \(T\) et \(P\).</p>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Synthese -- Conditions optimales du procede Haber-Bosch
+      </div>
+      <table class="corr-table">
+        <tr><th>Parametre</th><th>Effet thermo</th><th>Choix industriel</th><th>Justification</th></tr>
+        <tr><td>Pression</td><td>\(P \nearrow\) : rendement \(\nearrow\)</td><td>\(\sim 200-300\) bar</td><td>Compromis rendement / cout installation</td></tr>
+        <tr><td>Temperature</td><td>\(T \nearrow\) : rendement \(\searrow\)</td><td>\(\sim 400-500\) degres C</td><td>Compromis thermo / cinetique</td></tr>
+        <tr><td>Catalyseur</td><td>Aucun effet sur \(K\)</td><td>Fe + promoteurs</td><td>Abaisse la barriere d'activation</td></tr>
+      </table>
+      <p>Le rendement typique est de l'ordre de 15 a 20% par passage. Le procede fonctionne en boucle : les gaz non convertis sont recycles, ce qui permet d'atteindre une conversion globale proche de 100%.</p>
+    </div>
+  </div>
+
+</div>
+
+<nav class="course__nav">
       <a href="e3a-2024-correction-physique.html" class="course__nav-link">
         &larr; Correction precedente
         <span>E3A 2024 -- Physique</span>

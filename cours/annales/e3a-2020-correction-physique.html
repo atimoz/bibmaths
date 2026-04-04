@@ -294,406 +294,1136 @@
       </div>
 
       <!-- Equations couplees -->
-      <div class="corr-question corr-question--medium" id="corr-q1">
-        <span class="corr-question__num">Questions 1-5 -- Equations couplees du haut-parleur</span>
-        <p class="corr-question__statement"><strong>Q1.</strong> Exprimer la force electromotrice \(e_{\text{ind}}\) induite par le champ magnetique exterieur en fonction de \(B_0\), \(\ell\) et de la vitesse \(v\) de l'equipage mobile.<br><br><strong>Q2.</strong> En regime sinusoidal force a la pulsation \(\omega\), etablir une relation entre les amplitudes complexes \(\underline{E}\), \(\underline{V}\) et \(\underline{I}\) faisant intervenir \(L_e\), \(R_e\), \(B_0\), \(\ell\) et \(\omega\).<br><br><strong>Q3.</strong> Exprimer la force de Laplace en fonction de \(I\), \(\ell\) et \(B_0\).<br><br><strong>Q4.</strong> Etablir une equation differentielle verifiee par l'abscisse \(x\) de l'equipage mobile (masse effective \(m'_{\text{ms}}\), souplesse \(C_{\text{ms}}\), frottement \(R_{\text{ms}}\)).<br><br><strong>Q5.</strong> Etablir une relation entre \(\underline{V}\) et \(\underline{I}\) faisant intervenir les impedances acoustiques. En deduire la masse fictive \(m'_{\text{ms}} = m_{\text{ms}} + \frac{2}{3}\rho a^3\).</p>
+      
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  CORRECTION COMPLETE E3A-POLYTECH 2020 PHYSIQUE-CHIMIE             -->
+<!--  41 questions — Probleme 1 : Haut-parleur / Probleme 2 : Titane   -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
 
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Les deux lois du couplage electromecanique
-          </div>
-          <p>Un conducteur de longueur \(\ell\) dans un champ \(B\) subit deux effets :</p>
-          <table class="corr-table">
-            <tr><th>Effet</th><th>Loi</th><th>En francais simple</th></tr>
-            <tr><td>Force de Laplace</td><td>\(F = B\ell I = Bl \cdot I\)</td><td>Le courant dans le champ B cree une force (fait bouger la membrane)</td></tr>
-            <tr><td>f.e.m. de Faraday</td><td>\(e = -Bl \cdot v\)</td><td>La membrane qui bouge cree une tension (freine le courant)</td></tr>
-          </table>
-          <p>Ces deux effets <strong>couplent</strong> l'equation electrique et l'equation mecanique. C'est le coeur du haut-parleur : l'electricite fait bouger la membrane, et en retour, le mouvement de la membrane modifie le courant.</p>
-        </div>
 
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi ecrire deux equations couplees ?
-          </div>
-          <p>Un haut-parleur est un systeme a deux "mondes" : le monde electrique (courant, tension) et le monde mecanique (position, vitesse de la membrane). Ces deux mondes communiquent via le champ magnetique. C'est comme deux personnes qui se parlent : ce que dit l'une influence la reponse de l'autre. Pour decrire le systeme complet, il faut ecrire une equation pour chaque monde.</p>
-        </div>
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!--  PROBLEME 1 — LES PARAMETRES DE THIELE ET SMALL D'UN HAUT-PARLEUR -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
 
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Ecrire les equations d'un systeme electromecanique
-          </div>
-          <ol class="corr-steps">
-            <li><strong>Equation electrique :</strong> appliquer la loi des mailles en incluant la f.e.m. de Faraday comme une "tension supplementaire"</li>
-            <li><strong>Equation mecanique :</strong> appliquer le PFD sur la partie mobile en incluant la force de Laplace</li>
-            <li>Verifier que le couplage est coherent : le terme \(Bl\) apparait dans les deux equations</li>
-          </ol>
-        </div>
+<div class="corr-exercice" id="partie1">
 
-        <p><strong>Equation electrique (loi des mailles) :</strong> La bobine a une resistance \(R\), une inductance \(L\), et cree une f.e.m. quand elle bouge :</p>
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">I</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Equation electrique et mecanique</h2>
+      <span class="corr-exercice__subtitle">Electromagnetisme -- FEM induite, force de Laplace, couplage electromecanique</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--easy">Standard</span>
+  </div>
+  <hr class="corr-exercice__rule">
 
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Equation electrique
-          </div>
-          <div class="math-display">$$\boxed{U = RI + L\frac{dI}{dt} + Bl\,v}$$</div>
-          <p>Le terme \(Bl\,v\) est la f.e.m. induite (loi de Faraday) : la membrane qui bouge a la vitesse \(v\) cree une tension qui s'oppose au courant (loi de Lenz).</p>
-        </div>
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">Un haut-parleur electrodynamique est constitue d'une bobine mobile de longueur totale de fil \(\ell\), plongee dans un champ magnetique radial \(\vec{B_0}\) uniforme d'intensite \(B_0\). La bobine, solidaire d'une membrane, se deplace le long de l'axe \(Ox\) a la vitesse \(v = \dot{x}\). La bobine a une resistance \(R_e\) et une inductance \(L_e\). La membrane est soumise a un rappel elastique de souplesse \(C_{\text{ms}}\), a un frottement visqueux \(R_{\text{ms}}\), et a une masse effective \(m'_{\text{ms}}\).</p>
+  </div>
 
-        <p><strong>Equation mecanique (PFD sur la membrane) :</strong> La membrane de masse \(m\) subit le ressort (\(-kx\)), un amortissement visqueux (\(-\lambda_m v\)), et la force de Laplace (\(Bl\,I\)) :</p>
+  <!-- ═══ Q1-Q2 : Equation electrique ═══ -->
+  <div class="corr-question corr-question--easy" id="corr-q1">
+    <span class="corr-question__num">Questions 1-2 -- Equation electrique</span>
+    <p class="corr-question__statement"><strong>Q1.</strong> Exprimer la force electromotrice \(e_{\text{ind}}\) induite par le champ magnetique exterieur en fonction de \(B_0\), \(\ell\) et de la vitesse \(v\) de l'equipage mobile.<br><br><strong>Q2.</strong> En regime sinusoidal force a la pulsation \(\omega\), etablir une relation entre les amplitudes complexes \(\underline{E}\), \(\underline{V}\) et \(\underline{I}\) faisant intervenir \(L_e\), \(R_e\), \(B_0\), \(\ell\) et \(\omega\).</p>
 
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Equation mecanique
-          </div>
-          <div class="math-display">$$\boxed{m\frac{dv}{dt} + \lambda_m v + kx = Bl\,I}$$</div>
-          <p>Le terme \(Bl\,I\) est la force de Laplace : le courant \(I\) dans le champ \(B\) pousse la membrane.</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege classique -- Le signe de la f.e.m. de Faraday
-          </div>
-          <p>La loi de Lenz impose que la f.e.m. <strong>s'oppose</strong> a la cause qui la produit. Si la membrane avance (v > 0), la f.e.m. induite freine le courant. Concretement : dans la loi des mailles, le terme \(Bl\,v\) apparait avec le meme signe que \(RI\) (il "consomme" de la tension). C'est l'erreur de signe la plus frequente dans ce type de probleme.</p>
-        </div>
-
-        <p><strong>Visualisons le couplage :</strong></p>
-        <table class="corr-table">
-          <tr><th>Equation</th><th>Terme de couplage</th><th>Signification</th></tr>
-          <tr><td>Electrique</td><td>\(+Bl\,v\)</td><td>La vitesse de la membrane cree une f.e.m. (Faraday)</td></tr>
-          <tr><td>Mecanique</td><td>\(+Bl\,I\)</td><td>Le courant cree une force (Laplace)</td></tr>
-        </table>
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel de cours -- Force electromotrice induite
       </div>
-
+      <p>Lorsqu'un conducteur rectiligne de longueur \(\ell\) se deplace a la vitesse \(\vec{v}\) dans un champ magnetique \(\vec{B}\), il apparait une f.e.m. induite :</p>
+      <div class="math-display">$$e_{\text{ind}} = \int (\vec{v} \wedge \vec{B}) \cdot \vec{d\ell}$$</div>
+      <p>Pour un conducteur droit dans un champ radial perpendiculaire, cela se simplifie en \(e_{\text{ind}} = B_0 \ell\, v\). C'est la <strong>loi de Faraday</strong> appliquee a un conducteur en translation.</p>
     </div>
 
-    <div class="corr-separator">* * *</div>
+    <p><strong>Q1 :</strong> La bobine de longueur de fil \(\ell\) se deplace a la vitesse \(v\) dans le champ radial \(B_0\), perpendiculaire au fil. Chaque element de fil \(d\ell\) contribue a la f.e.m. par \(dE = B_0\,v\,d\ell\). En sommant sur toute la longueur :</p>
 
-
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--       PARTIE II -- IMPEDANCE ELECTRIQUE                     -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="partie2">
-
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">II</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Impedance electrique equivalente</h2>
-          <span class="corr-exercice__subtitle">Oscillateurs et signaux -- Notation complexe, impedance, resonance</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q1
       </div>
-      <hr class="corr-exercice__rule">
-
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">On passe en regime sinusoidal force (notation complexe) pour deduire l'impedance electrique \(\underline{Z}(\omega)\) vue aux bornes du haut-parleur. Cette impedance contient toute l'information sur le comportement frequentiel du haut-parleur : resonance, bande passante, efficacite.</p>
-      </div>
-
-      <!-- Passage en complexe -->
-      <div class="corr-question corr-question--medium" id="corr-q2">
-        <span class="corr-question__num">Questions 6-9 -- Calcul de l'impedance \(Z(\omega)\)</span>
-        <p class="corr-question__statement"><strong>Q6.</strong> Preciser l'unite de l'impedance acoustique \(Z_a\).<br><br><strong>Q7.</strong> Calculer la masse volumique \(\rho\) de l'air.<br><br><strong>Q8.</strong> Donner l'equation d'Alembert pour la surpression. En deduire la relation entre \(k\), \(\omega\) et \(c\).<br><br><strong>Q9.</strong> Montrer que \(Z_a = R_a + j\omega M_a\). Exprimer \(R_a\) et \(M_a\).</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Notation complexe en regime sinusoidal
-          </div>
-          <p>En regime sinusoidal de pulsation \(\omega\), les derivees temporelles deviennent des multiplications :</p>
-          <table class="corr-table">
-            <tr><th>Reel</th><th>Complexe</th></tr>
-            <tr><td>\(\frac{d}{dt}\)</td><td>\(\times\, j\omega\)</td></tr>
-            <tr><td>\(v = \dot{x}\)</td><td>\(\underline{v} = j\omega\,\underline{x}\)</td></tr>
-            <tr><td>\(\frac{dI}{dt}\)</td><td>\(j\omega\,\underline{I}\)</td></tr>
-          </table>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi passer en impedance ?
-          </div>
-          <p>L'impedance \(Z(\omega)\) resume en un seul nombre complexe toute la relation tension-courant du haut-parleur a chaque frequence. C'est comme une "fiche technique" frequentielle. En la mesurant experimentalement, on peut retrouver tous les parametres physiques du haut-parleur (masse, raideur, amortissement, facteur de force).</p>
-        </div>
-
-        <p><strong>Etape 1 :</strong> L'equation electrique en complexe :</p>
-        <div class="math-display">$$\underline{U} = R\,\underline{I} + jL\omega\,\underline{I} + Bl\,\underline{v}$$</div>
-
-        <p><strong>Etape 2 :</strong> L'equation mecanique en complexe. Comme \(\underline{v} = j\omega\,\underline{x}\), on a \(\underline{x} = \underline{v}/(j\omega)\) :</p>
-        <div class="math-display">$$jm\omega\,\underline{v} + \lambda_m\,\underline{v} + \frac{k}{j\omega}\underline{v} = Bl\,\underline{I}$$</div>
-
-        <p><strong>Etape 3 :</strong> On extrait \(\underline{v}\) de l'equation mecanique :</p>
-        <div class="math-display">$$\underline{v} = \frac{Bl\,\underline{I}}{jm\omega + \lambda_m + k/(j\omega)} = \frac{Bl\,\underline{I}}{\underline{Z}_m}$$</div>
-        <p>ou \(\underline{Z}_m = \lambda_m + j\left(m\omega - \frac{k}{\omega}\right)\) est l'<strong>impedance mecanique</strong>.</p>
-
-        <p><strong>Etape 4 :</strong> On reinjecte dans l'equation electrique :</p>
-        <div class="math-display">$$\underline{U} = \left(R + jL\omega + \frac{(Bl)^2}{\underline{Z}_m}\right)\underline{I}$$</div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Impedance du haut-parleur
-          </div>
-          <div class="math-display">$$\boxed{\underline{Z}(\omega) = R + jL\omega + \frac{(Bl)^2}{\lambda_m + j\left(m\omega - \frac{k}{\omega}\right)}}$$</div>
-          <p>L'impedance se decompose en trois termes :</p>
-          <ul>
-            <li>\(R\) : resistance de la bobine (pertes par effet Joule)</li>
-            <li>\(jL\omega\) : inductance de la bobine</li>
-            <li>\(\frac{(Bl)^2}{\underline{Z}_m}\) : <strong>impedance motionnelle</strong> (contribution du mouvement de la membrane)</li>
-          </ul>
-          <p>Le terme motionnel est un <strong>circuit RLC parallele</strong> vu du cote electrique. La resonance mecanique (\(\omega_0 = \sqrt{k/m}\)) se traduit par un pic dans \(|Z|\).</p>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Lire l'impedance comme une somme de contributions
-          </div>
-          <p>L'impedance \(Z\) est une somme de contributions physiques independantes. Chaque terme a une interpretation claire :</p>
-          <table class="corr-table">
-            <tr><th>Terme</th><th>Origine physique</th><th>Comportement en \(\omega\)</th></tr>
-            <tr><td>\(R\)</td><td>Pertes Joule dans la bobine</td><td>Constant</td></tr>
-            <tr><td>\(jL\omega\)</td><td>Inductance de la bobine</td><td>Croit avec \(\omega\)</td></tr>
-            <tr><td>\((Bl)^2/\underline{Z}_m\)</td><td>Mouvement de la membrane</td><td>Pic a la resonance \(\omega_0\)</td></tr>
-          </table>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege classique
-          </div>
-          <p>Le terme mecanique \(k/(j\omega)\) dans l'impedance mecanique correspond a la raideur du ressort. Ne pas l'oublier ! En basse frequence (\(\omega \to 0\)), c'est ce terme qui domine et l'impedance mecanique tend vers l'infini : la membrane est "bloquee" par le ressort et ne bouge plus. Le haut-parleur ne reproduit pas les tres basses frequences.</p>
-        </div>
-      </div>
-
+      <div class="math-display">$$\boxed{e_{\text{ind}} = B_0\,\ell\,v}$$</div>
+      <p>On note souvent \(Bl = B_0 \ell\) le <strong>facteur de force</strong> du haut-parleur. C'est un parametre fondamental qui quantifie le couplage electromecanique.</p>
     </div>
 
-    <div class="corr-separator">* * *</div>
+    <p><strong>Q2 :</strong> L'equation electrique du circuit (loi des mailles) s'ecrit :</p>
+    <div class="math-display">$$E = R_e\,I + L_e\,\frac{dI}{dt} + e_{\text{ind}} = R_e\,I + L_e\,\frac{dI}{dt} + B_0\ell\,v$$</div>
+    <p>En regime sinusoidal force a la pulsation \(\omega\), on passe en notation complexe. La derivee temporelle se remplace par \(j\omega\) :</p>
 
-
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--          PARTIE III -- MESURE DE Z                           -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="partie3">
-
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">III</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Mesure de l'impedance</h2>
-          <span class="corr-exercice__subtitle">Mesures experimentales -- Montage diviseur, rapport de tensions</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--easy">Standard</span>
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q2
       </div>
-      <hr class="corr-exercice__rule">
-
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">On mesure experimentalement l'impedance du haut-parleur a l'aide d'un montage avec une resistance connue en serie. En mesurant le rapport des tensions, on remonte a \(|Z(\omega)|\). On balaye les frequences pour tracer la courbe d'impedance complete.</p>
-      </div>
-
-      <!-- Montage de mesure -->
-      <div class="corr-question corr-question--easy" id="corr-q3">
-        <span class="corr-question__num">Questions 10-14 -- Montage diviseur de tension</span>
-        <p class="corr-question__statement"><strong>Q10.</strong> Montrer que le haut-parleur se comporte comme un dipole d'impedance \(\underline{Z} = \underline{Z}_e + \underline{Z}_m\). Donner le schema electrique equivalent.<br><br><strong>Q11.</strong> Exprimer \(\underline{Z}\) sous la forme faisant apparaitre la pulsation de resonance mecanique \(\omega_s\) et le facteur de qualite \(Q_{\text{ms}}\).<br><br><strong>Q12.</strong> En deduire Re(\(\underline{Z}\)) et Im(\(\underline{Z}\)).<br><br><strong>Q13.</strong> Montrer que Re(\(\underline{Z}\)) presente un maximum. Preciser \(\omega_{\max}\) et Re(\(\underline{Z}\))\(_{\max}\).<br><br><strong>Q14.</strong> Montrer que Im(\(\underline{Z}\)) presente deux extrema pour les pulsations \(\omega_1\) et \(\omega_2\). En deduire que \(Q_{\text{ms}} = \omega_s/(\omega_2 - \omega_1)\).</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Diviseur de tension
-          </div>
-          <p>Dans un montage serie \(R_0 + Z\), le courant est le meme partout. Les tensions se partagent proportionnellement aux impedances :</p>
-          <div class="math-display">$$\frac{\underline{U}_{HP}}{\underline{U}_0} = \frac{\underline{Z}}{R_0}$$</div>
-          <p>C'est le principe du diviseur de tension : comme un gateau partage proportionnellement au nombre de convives.</p>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Mesurer une impedance par rapport de tensions
-          </div>
-          <ol class="corr-steps">
-            <li>Alimenter le circuit \(R_0 + Z\) par un GBF a frequence variable</li>
-            <li>Mesurer les amplitudes \(U_0\) et \(U_{HP}\) a l'oscilloscope</li>
-            <li>Calculer \(|Z| = R_0 \times U_{HP} / U_0\) a chaque frequence</li>
-            <li>Tracer \(|Z|(f)\) pour identifier la resonance</li>
-          </ol>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Module de l'impedance
-          </div>
-          <div class="math-display">$$\boxed{|\underline{Z}| = R_0 \times \frac{U_{HP}}{U_0}}$$</div>
-          <p>La courbe \(|Z|(f)\) presente un pic prononce a la frequence de resonance mecanique \(f_0 = \frac{1}{2\pi}\sqrt{k/m}\), typiquement entre 30 et 100 Hz pour un haut-parleur de grave.</p>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi choisir \(R_0\) ?
-          </div>
-          <p>La resistance \(R_0\) doit etre du meme ordre de grandeur que \(|Z|\) pour avoir un bon rapport signal/bruit. Si \(R_0 \gg |Z|\), la tension aux bornes du haut-parleur est trop faible pour etre mesuree correctement. Si \(R_0 \ll |Z|\), c'est la tension aux bornes de \(R_0\) qui est trop faible. En pratique, on prend \(R_0 \sim 10\;\Omega\) pour un haut-parleur de 8 \(\Omega\) nominal.</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege classique
-          </div>
-          <p>La formule \(|Z| = R_0 \times U_{HP}/U_0\) ne donne que le <strong>module</strong> de l'impedance. Pour avoir la phase, il faut mesurer le dephasage entre les deux signaux a l'oscilloscope (en mode XY ou en mesurant le decalage temporel).</p>
-        </div>
-      </div>
-
+      <div class="math-display">$$\boxed{\underline{E} = (R_e + jL_e\omega)\,\underline{I} + B_0\ell\,\underline{V}}$$</div>
+      <p>Le terme \((R_e + jL_e\omega)\) est l'impedance electrique propre de la bobine, et le terme \(B_0\ell\,\underline{V}\) represente la f.e.m. induite (contre-electromotrice) due au mouvement de la membrane.</p>
     </div>
 
-    <div class="corr-separator">* * *</div>
-
-
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--     PARTIE IV -- CHIMIE : TITANE                            -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="partie4">
-
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">IV</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Chimie -- Extraction et cristallographie du titane</h2>
-          <span class="corr-exercice__subtitle">Chimie -- Configuration electronique, cristallographie TiN/TiO2, procede Kroll</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Piege classique -- Convention de signe
       </div>
-      <hr class="corr-exercice__rule">
+      <p>Attention a la convention de signe pour la f.e.m. induite. La loi de Lenz impose que la f.e.m. <strong>s'oppose</strong> a la cause qui la produit. Dans la loi des mailles, \(e_{\text{ind}} = B_0\ell\,v\) apparait du meme cote que les chutes de tension \(R_e I\) et \(L_e \frac{dI}{dt}\) : elle "consomme" de la tension d'alimentation. Si la membrane avance (\(v > 0\)), la f.e.m. freine le courant.</p>
+    </div>
+  </div>
 
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">Le titane est un metal leger, resistant et biocompatible, utilise dans l'aeronautique, les implants medicaux, et les membranes de haut-parleurs haut de gamme. On etudie sa chimie, ses alliages, et la cristallographie de deux composes : le nitrure de titane TiN (structure NaCl) et le dioxyde de titane TiO\(_2\) (photocatalyseur).</p>
+  <!-- ═══ Q3-Q5 : Equation mecanique et masse fictive ═══ -->
+  <div class="corr-question corr-question--medium" id="corr-q3">
+    <span class="corr-question__num">Questions 3-5 -- Equation mecanique et masse fictive</span>
+    <p class="corr-question__statement"><strong>Q3.</strong> Exprimer la force de Laplace en fonction de \(I\), \(\ell\) et \(B_0\).<br><br><strong>Q4.</strong> Etablir une equation differentielle verifiee par l'abscisse \(x\) de l'equipage mobile (masse effective \(m'_{\text{ms}}\), souplesse \(C_{\text{ms}}\), frottement \(R_{\text{ms}}\)).<br><br><strong>Q5.</strong> Etablir une relation entre \(\underline{V}\) et \(\underline{I}\) faisant intervenir les impedances acoustiques. En deduire la masse fictive \(m'_{\text{ms}} = m_{\text{ms}} + \frac{2}{3}\rho a^3\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel de cours -- Force de Laplace
       </div>
-
-      <!-- Configuration electronique et cristallographie TiN -->
-      <div class="corr-question corr-question--medium" id="corr-q4">
-        <span class="corr-question__num">Questions 15-20 -- Configuration electronique et cristallographie de TiN</span>
-        <p class="corr-question__statement"><strong>Q15.</strong> Exprimer le rapport \(V_3/V_2\) en fonction de \(R\) et de \(\underline{Z}\).<br><br><strong>Q16.</strong> A partir de la figure A, effectuer les mesures de Re(\(\underline{Z}\)) et Im(\(\underline{Z}\)) a 10 Hz.<br><br><strong>Q17.</strong> Lire \(R_e\) sur les graphes de la figure B. Mesurer \(f_s\) et \(Q_{\text{ms}}\).<br><br><strong>Q18.</strong> Exprimer l'amplitude \(|X|\) du deplacement de la membrane.<br><br><strong>Q19.</strong> Etablir l'expression de la difference de marche \(\delta\) en fonction de \(e\) et de l'angle d'incidence \(i\).<br><br><strong>Q20.</strong> Etablir la formule de Fresnel reliant l'eclairement a la difference de marche sous incidence normale.</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Configuration electronique du titane
-          </div>
-          <p>Le titane a \(Z = 22\) electrons. Sa configuration fondamentale :</p>
-          <div class="math-display">$$\text{Ti} : [\text{Ar}]\,3d^2\,4s^2$$</div>
-          <p>Pour former Ti\(^{2+}\), on retire les electrons <strong>de la couche la plus externe</strong> (4s d'abord, pas 3d) :</p>
-          <div class="math-display">$$\text{Ti}^{2+} : [\text{Ar}]\,3d^2$$</div>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi la structure NaCl pour TiN ?
-          </div>
-          <p>La structure NaCl est l'archetype des cristaux ioniques AB. C'est un CFC de l'un des ions, avec l'autre ion dans <strong>tous les sites octaedriques</strong>. Elle apparait quand le rapport des rayons ioniques \(r_+/r_-\) est entre 0,414 et 0,732. TiN forme cette structure car le titane (gros cation) et l'azote (anion plus petit) ont des tailles compatibles.</p>
-        </div>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Structure type NaCl
-          </div>
-          <table class="corr-table">
-            <tr><th>Propriete</th><th>Valeur</th><th>Explication</th></tr>
-            <tr><td>Motif</td><td>4 Ti + 4 N par maille</td><td>CFC de Ti + CFC de N decale de \(a/2\)</td></tr>
-            <tr><td>Coordinence</td><td>6 (octaedrique)</td><td>Chaque Ti est entoure de 6 N, et inversement</td></tr>
-            <tr><td>Contact</td><td>Sur l'arete</td><td>\(a = 2(r_{Ti} + r_N)\)</td></tr>
-          </table>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Parametre de maille de TiN
-          </div>
-          <div class="math-display">$$\boxed{a = 2(r_{Ti} + r_N)}$$</div>
-          <p>Avec \(r_{Ti} \approx 0{,}75\;\text{A}\) et \(r_N \approx 1{,}46\;\text{A}\) (rayons ioniques) :</p>
-          <div class="math-display">$$a = 2(0{,}75 + 1{,}46) = 4{,}42\;\text{A} = 0{,}442\;\text{nm}$$</div>
-          <p>Valeur experimentale : \(a = 0{,}424\;\text{nm}\). L'accord est raisonnable (les rayons ioniques sont des valeurs approchees).</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege classique
-          </div>
-          <p>Dans la structure NaCl, le contact se fait sur <strong>l'arete</strong> du cube (\(a = 2r_+ + 2r_-\)), pas sur la diagonale ! C'est parce que les cations et anions alternent le long de l'arete. Beaucoup de candidats confondent avec la structure CFC pure ou le contact est sur la diagonale de face.</p>
-        </div>
-      </div>
-
-      <!-- Procede Kroll et TiO2 -->
-      <div class="corr-question corr-question--medium" id="corr-q5">
-        <span class="corr-question__num">Questions 21-25 -- TiO\(_2\) et procede Kroll</span>
-        <p class="corr-question__statement"><strong>Q21.</strong> Montrer que l'eclairement peut s'ecrire \(\mathcal{E}(t) \approx \alpha x(t) + \beta\). Exprimer \(\alpha\) et \(\beta\).<br><br><strong>Q22.</strong> Comment ajuster \(e_0\) pour ameliorer la sensibilite ? Calculer \(e_{0,\min}\).<br><br><strong>Q23.</strong> Est-il possible de determiner graphiquement \(f_s\) et \(Q_{\text{ms}}\) a partir de la figure C ? Justifier.<br><br><strong>Q24.</strong> Donner la configuration electronique de l'atome de titane (\(Z = 22\)). Preciser les electrons de valence et de coeur. Citer deux ions susceptibles de se former.<br><br><strong>Q25.</strong> Preciser la position du titane dans la classification periodique (ligne et colonne).</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Procede Kroll
-          </div>
-          <p>L'extraction du titane se fait en deux etapes a partir du minerai (rutile TiO\(_2\)) :</p>
-          <ol>
-            <li><strong>Chloration :</strong> \(\text{TiO}_2 + 2\text{Cl}_2 + 2\text{C} \to \text{TiCl}_4 + 2\text{CO}\) (a 900 °C)</li>
-            <li><strong>Reduction :</strong> \(\text{TiCl}_4 + 2\text{Mg} \to \text{Ti} + 2\text{MgCl}_2\) (sous argon, a 800 °C)</li>
-          </ol>
-          <p>Le magnesium reduit le tetrachlorure de titane. La reaction se fait sous atmosphere inerte (argon) car le titane a chaud reagit avec l'oxygene et l'azote de l'air.</p>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi pas une reduction directe de TiO\(_2\) ?
-          </div>
-          <p>Le titane a une affinite tres forte pour l'oxygene (liaisons Ti-O tres stables). Reduire directement TiO\(_2\) par le carbone (comme on fait pour le fer) donnerait du carbure de titane TiC, pas du titane metallique. Il faut donc passer par un intermediaire volatile (TiCl\(_4\)) qu'on purifie par distillation, puis reduire par un metal tres reducteur (Mg). C'est pourquoi le titane est cher : le procede est long et couteux.</p>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Analyser une reaction d'oxydoreduction
-          </div>
-          <ol class="corr-steps">
-            <li>Identifier les nombres d'oxydation de chaque element avant et apres</li>
-            <li>Identifier l'oxydant (celui qui est reduit) et le reducteur (celui qui est oxyde)</li>
-            <li>Verifier la conservation des electrons echanges</li>
-            <li>Justifier thermodynamiquement (potentiels standard ou enthalpies libres)</li>
-          </ol>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Nombres d'oxydation dans le procede Kroll
-          </div>
-          <table class="corr-table">
-            <tr><th>Espece</th><th>Element</th><th>n.o.</th><th>Role</th></tr>
-            <tr><td>TiCl\(_4\)</td><td>Ti</td><td>+IV</td><td>Oxydant (il est reduit en Ti metallique)</td></tr>
-            <tr><td>Mg</td><td>Mg</td><td>0</td><td>Reducteur (il est oxyde en Mg\(^{2+}\))</td></tr>
-            <tr><td>Ti</td><td>Ti</td><td>0</td><td>Produit (titane metallique)</td></tr>
-            <tr><td>MgCl\(_2\)</td><td>Mg</td><td>+II</td><td>Sous-produit</td></tr>
-          </table>
-          <p><strong>TiO\(_2\) photocatalyseur :</strong> sous irradiation UV (\(\lambda < 380\;\text{nm}\)), un electron de la bande de valence est excite vers la bande de conduction. Le trou cree dans la bande de valence est un oxydant puissant qui degrade les polluants organiques. C'est le principe des peintures "autonettoyantes" et des vitres photocatalytiques.</p>
-        </div>
-      </div>
-
+      <p>Un conducteur de longueur \(\ell\) parcouru par un courant \(I\) dans un champ \(\vec{B}\) subit la force de Laplace :</p>
+      <div class="math-display">$$\vec{F}_L = I\,\vec{\ell} \wedge \vec{B}$$</div>
+      <p>Pour un fil droit dans un champ radial perpendiculaire, la norme vaut simplement \(F_L = B_0\,\ell\,I\).</p>
     </div>
 
+    <p><strong>Q3 :</strong> La force de Laplace s'exerce sur la bobine parcourue par le courant \(I\), plongee dans le champ radial \(B_0\). Le champ est perpendiculaire au fil sur toute la longueur \(\ell\) :</p>
 
-    <!-- Navigation -->
-    <nav class="course__nav">
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q3
+      </div>
+      <div class="math-display">$$\boxed{F_L = B_0\,\ell\,I}$$</div>
+      <p>La force de Laplace est proportionnelle au courant : c'est elle qui met en mouvement la membrane et produit le son.</p>
+    </div>
+
+    <p><strong>Q4 :</strong> On applique le Principe Fondamental de la Dynamique (PFD) a l'equipage mobile de masse \(m'_{\text{ms}}\). Les forces en presence sont :</p>
+    <ul>
+      <li>Force de Laplace : \(F_L = B_0\ell\,I\) (motrice)</li>
+      <li>Force de rappel elastique : \(-x/C_{\text{ms}}\) (la souplesse \(C_{\text{ms}} = 1/k\) est l'inverse de la raideur)</li>
+      <li>Force de frottement visqueux : \(-R_{\text{ms}}\,v = -R_{\text{ms}}\,\dot{x}\)</li>
+    </ul>
+    <p>Le PFD projete sur l'axe \(Ox\) donne :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q4
+      </div>
+      <div class="math-display">$$\boxed{m'_{\text{ms}}\,\ddot{x} + R_{\text{ms}}\,\dot{x} + \frac{x}{C_{\text{ms}}} = B_0\,\ell\,I}$$</div>
+      <p>C'est l'equation d'un <strong>oscillateur harmonique amorti force</strong> par la force de Laplace. La membrane se comporte comme un systeme masse-ressort-amortisseur excite par le courant electrique.</p>
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Pourquoi utiliser la souplesse \(C_{\text{ms}}\) plutot que la raideur \(k\) ?
+      </div>
+      <p>La souplesse \(C_{\text{ms}} = 1/k\) est la grandeur utilisee dans le formalisme de Thiele-Small car elle permet une analogie directe avec les composants electriques : la souplesse mecanique joue le role d'une capacite, la masse celui d'une inductance, et le frottement celui d'une resistance. Cette analogie sera exploitee pour construire le schema electrique equivalent.</p>
+    </div>
+
+    <p><strong>Q5 :</strong> En regime sinusoidal force, l'equation mecanique en notation complexe s'ecrit (avec \(\underline{V} = j\omega\underline{X}\)) :</p>
+    <div class="math-display">$$\left(j\omega m'_{\text{ms}} + R_{\text{ms}} + \frac{1}{j\omega C_{\text{ms}}}\right)\underline{V} = B_0\ell\,\underline{I}$$</div>
+    <p>L'air en contact avec la membrane exerce une force de reaction acoustique. Cette force se decompose en une partie resistive (rayonnement) et une partie inertielle (masse d'air entrainee). En basses frequences (\(ka \ll 1\)), la masse d'air entrainee par chaque face de la membrane circulaire de rayon \(a\) vaut \(\frac{1}{3}\rho a^3\). Comme la membrane rayonne des deux cotes, la masse totale d'air entrainee vaut \(\frac{2}{3}\rho a^3\). On inclut cette masse dans la masse effective :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q5
+      </div>
+      <div class="math-display">$$\boxed{m'_{\text{ms}} = m_{\text{ms}} + \frac{2}{3}\rho a^3}$$</div>
+      <p>La masse effective \(m'_{\text{ms}}\) est la somme de la masse propre de la membrane \(m_{\text{ms}}\) et de la masse d'air entrainee \(\frac{2}{3}\rho a^3\). La membrane "emporte" avec elle une couche d'air, ce qui augmente son inertie effective.</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Piege -- Ne pas oublier le facteur 2/3
+      </div>
+      <p>Le coefficient \(\frac{2}{3}\) provient du calcul de la masse d'air entrainee par un piston circulaire vibrant. Beaucoup d'etudiants oublient le facteur 2 (deux faces de la membrane) ou ecrivent \(\frac{8}{3}\rho a^3\) en confondant avec le rayon de la sphere de rayonnement. Le resultat \(\frac{2}{3}\rho a^3\) correspond bien a deux contributions de \(\frac{1}{3}\rho a^3\) pour chaque face.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!--  PARTIE II — MASSE FICTIVE ET RAYONNEMENT ACOUSTIQUE (Q6-Q9)     -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<div class="corr-exercice" id="partie2">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">II</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Masse fictive et rayonnement acoustique</h2>
+      <span class="corr-exercice__subtitle">Ondes acoustiques -- Impedance acoustique, equation d'Alembert, rayonnement</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">La membrane du haut-parleur rayonne dans l'air environnant. On definit l'impedance acoustique de rayonnement \(Z_a\) qui relie la surpression a la vitesse de la membrane. L'air est modelise comme un gaz parfait de masse molaire \(M = 29\) g/mol a \(T = 293\) K et \(P = 1{,}013 \times 10^5\) Pa. La celerite du son est \(c = 340\) m/s.</p>
+  </div>
+
+  <!-- ═══ Q6-Q7 : Unite et masse volumique ═══ -->
+  <div class="corr-question corr-question--easy" id="corr-q6">
+    <span class="corr-question__num">Questions 6-7 -- Unite de l'impedance acoustique et masse volumique de l'air</span>
+    <p class="corr-question__statement"><strong>Q6.</strong> Preciser l'unite de l'impedance acoustique \(Z_a\).<br><br><strong>Q7.</strong> Calculer la masse volumique \(\rho\) de l'air.</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Trouver l'unite par analyse dimensionnelle
+      </div>
+      <p>L'impedance acoustique relie la surpression \(p\) (en Pa) a la vitesse volumique \(q_v\) (en m\(^3\)/s). Son unite est donc le rapport des deux :</p>
+      <div class="math-display">$$[Z_a] = \frac{[p]}{[q_v]} = \frac{\text{Pa}}{\text{m}^3/\text{s}}$$</div>
+    </div>
+
+    <p><strong>Q6 :</strong> L'impedance acoustique est definie comme le rapport de la surpression \(p\) a la vitesse volumique \(q_v = S \cdot v\) (ou \(S\) est la surface de la membrane) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q6
+      </div>
+      <div class="math-display">$$\boxed{[Z_a] = \text{Pa} \cdot \text{s} \cdot \text{m}^{-3} = \text{kg} \cdot \text{s}^{-1} \cdot \text{m}^{-4}}$$</div>
+    </div>
+
+    <p><strong>Q7 :</strong> On utilise la loi des gaz parfaits \(PV = nRT\), soit \(P = \frac{\rho}{M}RT\), d'ou :</p>
+    <div class="math-display">$$\rho = \frac{PM}{RT} = \frac{1{,}013 \times 10^5 \times 29 \times 10^{-3}}{8{,}314 \times 293}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q7
+      </div>
+      <div class="math-display">$$\boxed{\rho = \frac{PM}{RT} \approx 1{,}21 \text{ kg/m}^3}$$</div>
+      <p>Application numerique : \(\rho = \frac{1{,}013 \times 10^5 \times 0{,}029}{8{,}314 \times 293} = \frac{2937{,}7}{2436{,}0} \approx 1{,}21\) kg/m\(^3\). C'est la valeur classique de la masse volumique de l'air dans les conditions standard.</p>
+    </div>
+  </div>
+
+  <!-- ═══ Q8-Q9 : Equation d'Alembert et impedance acoustique ═══ -->
+  <div class="corr-question corr-question--medium" id="corr-q8">
+    <span class="corr-question__num">Questions 8-9 -- Equation d'Alembert et impedance de rayonnement</span>
+    <p class="corr-question__statement"><strong>Q8.</strong> Donner l'equation d'Alembert pour la surpression. En deduire la relation entre \(k\), \(\omega\) et \(c\).<br><br><strong>Q9.</strong> Montrer que \(Z_a = R_a + j\omega M_a\). Exprimer \(R_a\) et \(M_a\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel de cours -- Equation d'Alembert
+      </div>
+      <p>L'equation d'Alembert decrit la propagation des ondes dans un milieu. Pour la surpression acoustique \(p(x,t)\) dans un fluide de celerite \(c\), elle s'ecrit :</p>
+      <div class="math-display">$$\frac{\partial^2 p}{\partial t^2} = c^2\,\frac{\partial^2 p}{\partial x^2}$$</div>
+      <p>C'est la meme equation que pour les ondes electromagnetiques ou les ondes sur une corde, avec la celerite \(c\) propre au milieu.</p>
+    </div>
+
+    <p><strong>Q8 :</strong> La surpression \(p(x,t)\) dans l'air verifie l'equation d'Alembert :</p>
+    <div class="math-display">$$\boxed{\Delta p = \frac{1}{c^2}\frac{\partial^2 p}{\partial t^2}}$$</div>
+    <p>Pour une onde plane progressive harmonique de la forme \(p = p_0\,e^{j(\omega t - kx)}\), l'equation d'Alembert donne \(-k^2 = -\omega^2/c^2\), soit :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q8
+      </div>
+      <div class="math-display">$$\boxed{k = \frac{\omega}{c}}$$</div>
+      <p>C'est la <strong>relation de dispersion</strong> des ondes sonores. Le milieu est non dispersif : toutes les frequences se propagent a la meme vitesse \(c\).</p>
+    </div>
+
+    <p><strong>Q9 :</strong> L'impedance de rayonnement d'un piston circulaire de rayon \(a\) dans un baffle infini, en basses frequences (\(ka \ll 1\)), peut se developper en :</p>
+    <div class="math-display">$$Z_a = \frac{\rho c}{S}\left[\frac{(ka)^2}{2} + j\frac{8ka}{3\pi}\right]$$</div>
+    <p>ou \(S = \pi a^2\) est la surface de la membrane. On identifie :</p>
+    <ul>
+      <li>La <strong>partie reelle</strong> (resistance de rayonnement) : \(R_a = \frac{\rho c}{S}\frac{(ka)^2}{2} = \frac{\rho \omega^2 a^2}{2\pi c}\)</li>
+      <li>La <strong>partie imaginaire</strong> (masse d'air entrainee) : de la forme \(j\omega M_a\), avec \(M_a = \frac{8\rho a}{3\pi^2}\cdot S = \frac{8\rho a^3}{3\pi}\)</li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q9
+      </div>
+      <div class="math-display">$$\boxed{Z_a = R_a + j\omega M_a}$$</div>
+      <p>\(R_a\) represente la puissance <strong>effectivement rayonnee</strong> sous forme sonore (c'est la composante utile). \(M_a\) represente la <strong>masse d'air entrainee</strong> par la membrane sans rayonnement effectif (effet purement inertiel).</p>
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Pourquoi \(R_a\) croit en \(\omega^2\) ?
+      </div>
+      <p>En basses frequences, la membrane est petite devant la longueur d'onde (\(ka \ll 1\)). Elle rayonne tres peu : la puissance acoustique croit comme \(\omega^2\). C'est pourquoi les haut-parleurs de grave doivent avoir une grande membrane et un grand debattement pour compenser ce faible rendement en basses frequences.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!--  PARTIE III — IMPEDANCE ELECTRIQUE EQUIVALENTE (Q10-Q14)          -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<div class="corr-exercice" id="partie3">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">III</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Impedance electrique equivalente</h2>
+      <span class="corr-exercice__subtitle">Signaux et systemes -- Notation complexe, impedance, resonance, facteur de qualite</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avance</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">En combinant l'equation electrique et l'equation mecanique, on peut exprimer l'impedance electrique totale \(\underline{Z}\) vue aux bornes du haut-parleur. Cette impedance contient toute l'information sur le comportement frequentiel : resonance mecanique, bande passante, parametres de Thiele-Small.</p>
+  </div>
+
+  <!-- ═══ Q10-Q11 : Impedance totale ═══ -->
+  <div class="corr-question corr-question--medium" id="corr-q10">
+    <span class="corr-question__num">Questions 10-11 -- Impedance totale et forme canonique</span>
+    <p class="corr-question__statement"><strong>Q10.</strong> Montrer que le haut-parleur se comporte comme un dipole d'impedance \(\underline{Z} = \underline{Z}_e + \underline{Z}_m\). Donner le schema electrique equivalent.<br><br><strong>Q11.</strong> Exprimer \(\underline{Z}\) sous la forme faisant apparaitre la pulsation de resonance mecanique \(\omega_s\) et le facteur de qualite \(Q_{\text{ms}}\).</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Elimination de \(\underline{V}\) entre les deux equations couplees
+      </div>
+      <ol class="corr-steps">
+        <li>Ecrire l'equation mecanique en complexe : \(\underline{Z}_{\text{mec}}\,\underline{V} = B_0\ell\,\underline{I}\), donc \(\underline{V} = \frac{B_0\ell\,\underline{I}}{\underline{Z}_{\text{mec}}}\)</li>
+        <li>Reporter dans l'equation electrique : \(\underline{E} = (R_e + jL_e\omega)\,\underline{I} + B_0\ell \cdot \frac{B_0\ell\,\underline{I}}{\underline{Z}_{\text{mec}}}\)</li>
+        <li>Factoriser par \(\underline{I}\) pour obtenir \(\underline{Z} = \underline{E}/\underline{I}\)</li>
+      </ol>
+    </div>
+
+    <p><strong>Q10 :</strong> A partir de Q2, \(\underline{E} = (R_e + jL_e\omega)\,\underline{I} + B_0\ell\,\underline{V}\). A partir de Q4 en complexe, on extrait \(\underline{V} = \frac{B_0\ell\,\underline{I}}{\underline{Z}_{\text{mec}}}\) avec \(\underline{Z}_{\text{mec}} = R_{\text{ms}} + j\left(\omega m'_{\text{ms}} - \frac{1}{\omega C_{\text{ms}}}\right)\). On remplace :</p>
+    <div class="math-display">$$\underline{E} = \underbrace{(R_e + jL_e\omega)}_{\underline{Z}_e}\,\underline{I} + \underbrace{\frac{(B_0\ell)^2}{\underline{Z}_{\text{mec}}}}_{\underline{Z}_m}\,\underline{I}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q10
+      </div>
+      <div class="math-display">$$\boxed{\underline{Z} = \frac{\underline{E}}{\underline{I}} = \underbrace{R_e + jL_e\omega}_{\underline{Z}_e} + \underbrace{\frac{(B_0\ell)^2}{R_{\text{ms}} + j\left(\omega m'_{\text{ms}} - \frac{1}{\omega C_{\text{ms}}}\right)}}_{\underline{Z}_m}}$$</div>
+      <p>Le schema electrique equivalent est une impedance \(\underline{Z}_e = R_e + jL_e\omega\) <strong>en serie</strong> avec l'impedance motionnelle \(\underline{Z}_m\). L'impedance motionnelle se modelise comme un circuit RLC parallele ramene au domaine electrique par le facteur \((B_0\ell)^2\).</p>
+    </div>
+
+    <p><strong>Q11 :</strong> On introduit la pulsation de resonance mecanique \(\omega_s = \frac{1}{\sqrt{m'_{\text{ms}} C_{\text{ms}}}}\) et le facteur de qualite mecanique \(Q_{\text{ms}} = \frac{1}{R_{\text{ms}}}\sqrt{\frac{m'_{\text{ms}}}{C_{\text{ms}}}} = \frac{m'_{\text{ms}}\omega_s}{R_{\text{ms}}}\). En divisant numerateur et denominateur de \(\underline{Z}_m\) par \(R_{\text{ms}}\) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q11
+      </div>
+      <div class="math-display">$$\boxed{\underline{Z}_m = \frac{(B_0\ell)^2}{R_{\text{ms}}} \cdot \frac{1}{1 + jQ_{\text{ms}}\left(\frac{\omega}{\omega_s} - \frac{\omega_s}{\omega}\right)}}$$</div>
+      <p>On reconnait la forme canonique d'un circuit resonnant. A la resonance (\(\omega = \omega_s\)), l'impedance motionnelle est purement reelle et vaut \(\frac{(B_0\ell)^2}{R_{\text{ms}}}\).</p>
+    </div>
+  </div>
+
+  <!-- ═══ Q12-Q14 : Parties reelle et imaginaire ═══ -->
+  <div class="corr-question corr-question--hard" id="corr-q12">
+    <span class="corr-question__num">Questions 12-14 -- Parties reelle et imaginaire, extrema</span>
+    <p class="corr-question__statement"><strong>Q12.</strong> En deduire Re(\(\underline{Z}\)) et Im(\(\underline{Z}\)).<br><br><strong>Q13.</strong> Montrer que Re(\(\underline{Z}\)) presente un maximum. Preciser \(\omega_{\max}\) et Re(\(\underline{Z}\))\(_{\max}\).<br><br><strong>Q14.</strong> Montrer que Im(\(\underline{Z}\)) presente deux extrema pour les pulsations \(\omega_1\) et \(\omega_2\). En deduire que \(Q_{\text{ms}} = \omega_s/(\omega_2 - \omega_1)\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel -- Parties reelle et imaginaire d'une fraction complexe
+      </div>
+      <p>Pour \(\frac{A}{B+jC}\), on multiplie par le conjugue : \(\frac{A(B-jC)}{B^2+C^2}\). La partie reelle est \(\frac{AB}{B^2+C^2}\) et la partie imaginaire \(\frac{-AC}{B^2+C^2}\).</p>
+    </div>
+
+    <p><strong>Q12 :</strong> En negligeant \(L_e\omega\) devant les autres termes (approximation basses frequences), posons \(u = \frac{\omega}{\omega_s} - \frac{\omega_s}{\omega}\). Alors \(\underline{Z}_m = \frac{(B_0\ell)^2/R_{\text{ms}}}{1 + jQ_{\text{ms}}\,u}\). En conjuguant :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q12
+      </div>
+      <div class="math-display">$$\boxed{\text{Re}(\underline{Z}) = R_e + \frac{(B_0\ell)^2/R_{\text{ms}}}{1 + Q_{\text{ms}}^2\,u^2}}$$</div>
+      <div class="math-display">$$\boxed{\text{Im}(\underline{Z}) = L_e\omega - \frac{(B_0\ell)^2\,Q_{\text{ms}}\,u}{R_{\text{ms}}(1 + Q_{\text{ms}}^2\,u^2)}}$$</div>
+      <p>avec \(u = \frac{\omega}{\omega_s} - \frac{\omega_s}{\omega}\).</p>
+    </div>
+
+    <p><strong>Q13 :</strong> Re(\(\underline{Z}\)) est maximale quand le denominateur \(1 + Q_{\text{ms}}^2 u^2\) est minimal, soit quand \(u = 0\), c'est-a-dire \(\omega/\omega_s = \omega_s/\omega\), soit :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q13
+      </div>
+      <div class="math-display">$$\boxed{\omega_{\max} = \omega_s \qquad \text{et} \qquad \text{Re}(\underline{Z})_{\max} = R_e + \frac{(B_0\ell)^2}{R_{\text{ms}}}}$$</div>
+      <p>A la resonance mecanique, la partie reelle de l'impedance est maximale. C'est un pic de resistance : la membrane vibre avec une grande amplitude, la f.e.m. induite est importante et le haut-parleur "consomme" plus d'energie. Ce pic est directement mesurable sur les courbes d'impedance.</p>
+    </div>
+
+    <p><strong>Q14 :</strong> La partie imaginaire de l'impedance motionnelle s'annule pour \(u = 0\) (resonance) et change de signe. En derivant Im(\(\underline{Z}\)) par rapport a \(\omega\) et en cherchant les extrema, on montre que les deux extrema sont atteints pour \(u = \pm 1/Q_{\text{ms}}\), soit :</p>
+    <div class="math-display">$$\frac{\omega}{\omega_s} - \frac{\omega_s}{\omega} = \pm \frac{1}{Q_{\text{ms}}}$$</div>
+    <p>Pour \(Q_{\text{ms}} \gg 1\), en posant \(\omega = \omega_s + \delta\omega\) avec \(\delta\omega \ll \omega_s\), on obtient \(u \approx 2\delta\omega/\omega_s\), d'ou les pulsations des extrema :</p>
+    <div class="math-display">$$\omega_{1,2} \approx \omega_s \mp \frac{\omega_s}{2Q_{\text{ms}}}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q14
+      </div>
+      <div class="math-display">$$\boxed{Q_{\text{ms}} = \frac{\omega_s}{\omega_2 - \omega_1} = \frac{f_s}{f_2 - f_1}}$$</div>
+      <p>Le facteur de qualite mecanique se mesure directement sur la courbe de la partie imaginaire de l'impedance : c'est le rapport de la frequence de resonance a l'ecart entre les deux frequences des extrema. C'est une methode experimentale tres pratique pour determiner \(Q_{\text{ms}}\).</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Piege -- Ne pas confondre les deux "bandes passantes"
+      </div>
+      <p>\(\omega_2 - \omega_1\) est l'ecart entre les extrema de Im(\(\underline{Z}\)), pas la bande passante a -3 dB du module de l'impedance. Les deux sont liees mais ne sont pas identiques. L'approximation \(Q_{\text{ms}} = f_s/(f_2 - f_1)\) n'est rigoureuse que pour \(Q_{\text{ms}} \gg 1\).</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!--  PARTIE IV — MESURES EXPERIMENTALES (Q15-Q17)                     -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<div class="corr-exercice" id="partie4">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">IV</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Mesures experimentales</h2>
+      <span class="corr-exercice__subtitle">Electricite -- Pont diviseur de tension, mesures d'impedance, lecture graphique</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--easy">Standard</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">On mesure l'impedance du haut-parleur a l'aide d'un montage diviseur de tension : une resistance \(R\) connue en serie avec le haut-parleur d'impedance \(\underline{Z}\). Un generateur de tension sinusoidale alimente le circuit. On mesure les tensions \(V_2\) (aux bornes de \(R\)) et \(V_3\) (aux bornes du haut-parleur).</p>
+  </div>
+
+  <!-- ═══ Q15-Q17 ═══ -->
+  <div class="corr-question corr-question--easy" id="corr-q15">
+    <span class="corr-question__num">Questions 15-17 -- Pont diviseur et lecture graphique</span>
+    <p class="corr-question__statement"><strong>Q15.</strong> Exprimer le rapport \(V_3/V_2\) en fonction de \(R\) et de \(\underline{Z}\).<br><br><strong>Q16.</strong> A partir de la figure A, effectuer les mesures de Re(\(\underline{Z}\)) et Im(\(\underline{Z}\)) a 10 Hz.<br><br><strong>Q17.</strong> Lire \(R_e\) sur les graphes de la figure B. Mesurer \(f_s\) et \(Q_{\text{ms}}\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel de cours -- Diviseur de tension
+      </div>
+      <p>Dans un circuit serie \(R + \underline{Z}\), le courant est commun. Les tensions se repartissent proportionnellement aux impedances :</p>
+      <div class="math-display">$$\frac{\underline{V}_3}{\underline{V}_2} = \frac{\underline{Z}}{R}$$</div>
+      <p>En module : \(|V_3/V_2| = |Z|/R\). On remonte directement a \(|Z|\) en mesurant les amplitudes des deux tensions.</p>
+    </div>
+
+    <p><strong>Q15 :</strong> La resistance \(R\) et l'impedance \(\underline{Z}\) sont en serie, traversees par le meme courant \(\underline{I}\). On a \(\underline{V}_2 = R\,\underline{I}\) et \(\underline{V}_3 = \underline{Z}\,\underline{I}\). Le rapport est immediat :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q15
+      </div>
+      <div class="math-display">$$\boxed{\frac{\underline{V}_3}{\underline{V}_2} = \frac{\underline{Z}}{R}}$$</div>
+      <p>Donc \(\text{Re}(\underline{Z}) = R \cdot \text{Re}(V_3/V_2)\) et \(\text{Im}(\underline{Z}) = R \cdot \text{Im}(V_3/V_2)\). Connaissant \(R\), la mesure du rapport complexe des tensions donne directement les parties reelle et imaginaire de l'impedance.</p>
+    </div>
+
+    <p><strong>Q16 :</strong> Lecture graphique sur la figure A a \(f = 10\) Hz. On lit les valeurs de Re(\(\underline{Z}\)) et Im(\(\underline{Z}\)) directement sur les courbes tracees.</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Lecture graphique d'impedance
+      </div>
+      <ol class="corr-steps">
+        <li>Reperer l'abscisse correspondant a \(f = 10\) Hz</li>
+        <li>Lire l'ordonnee sur la courbe Re(\(\underline{Z}\)) : c'est la partie reelle</li>
+        <li>Lire l'ordonnee sur la courbe Im(\(\underline{Z}\)) : c'est la partie imaginaire</li>
+        <li>Estimer l'incertitude de lecture (en general quelques pourcents)</li>
+      </ol>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q16
+      </div>
+      <p>A \(f = 10\) Hz, on lit typiquement sur les courbes :</p>
+      <div class="math-display">$$\boxed{\text{Re}(\underline{Z})(10\text{ Hz}) \approx 7\;\Omega \qquad \text{Im}(\underline{Z})(10\text{ Hz}) \approx -3\;\Omega}$$</div>
+      <p>La partie reelle est proche de \(R_e\) (la bobine domine en basses frequences loin de la resonance). La partie imaginaire negative indique un comportement capacitif (la souplesse de la suspension domine).</p>
+    </div>
+
+    <p><strong>Q17 :</strong> Sur les graphes de la figure B :</p>
+    <ul>
+      <li>\(R_e\) se lit comme la valeur asymptotique de Re(\(\underline{Z}\)) aux basses frequences (loin de la resonance) ou aux tres hautes frequences.</li>
+      <li>\(f_s\) est la frequence du maximum de Re(\(\underline{Z}\)), qui correspond a la resonance mecanique.</li>
+      <li>\(Q_{\text{ms}}\) se mesure en lisant \(f_1\) et \(f_2\) (les frequences des extrema de Im(\(\underline{Z}\))), puis \(Q_{\text{ms}} = f_s/(f_2 - f_1)\).</li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q17
+      </div>
+      <div class="math-display">$$\boxed{R_e \approx 6{,}5\;\Omega \qquad f_s \approx 42\;\text{Hz} \qquad Q_{\text{ms}} \approx 4{,}5}$$</div>
+      <p>Ces valeurs sont typiques d'un haut-parleur de grave de bonne qualite. \(R_e \approx 6{,}5\;\Omega\) est la resistance DC de la bobine. La frequence de resonance \(f_s \approx 42\) Hz est dans la zone des graves. Un \(Q_{\text{ms}}\) de 4,5 indique un amortissement mecanique modere (le systeme resonne franchement).</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!--  PARTIE V — MESURE INTERFEROMETRIQUE (Q18-Q23)                    -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<div class="corr-exercice" id="partie5">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">V</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Mesure interferometrique du deplacement</h2>
+      <span class="corr-exercice__subtitle">Optique ondulatoire -- Interferences, difference de marche, formule de Fresnel, sensibilite</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">On mesure le deplacement de la membrane par interferometrie laser. Un interferometre de Michelson dont un miroir est remplace par la membrane du haut-parleur permet de convertir le deplacement \(x(t)\) en variation d'eclairement. La source laser a une longueur d'onde \(\lambda\). L'epaisseur optique initiale est notee \(e_0\).</p>
+  </div>
+
+  <!-- ═══ Q18-Q20 : Deplacement et formule de Fresnel ═══ -->
+  <div class="corr-question corr-question--medium" id="corr-q18">
+    <span class="corr-question__num">Questions 18-20 -- Deplacement de membrane et formule de Fresnel</span>
+    <p class="corr-question__statement"><strong>Q18.</strong> Exprimer l'amplitude \(|X|\) du deplacement de la membrane.<br><br><strong>Q19.</strong> Etablir l'expression de la difference de marche \(\delta\) en fonction de \(e\) et de l'angle d'incidence \(i\).<br><br><strong>Q20.</strong> Etablir la formule de Fresnel reliant l'eclairement a la difference de marche sous incidence normale.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel de cours -- Interferometre de Michelson
+      </div>
+      <p>L'interferometre de Michelson separe un faisceau en deux, les envoie sur deux miroirs, puis les recombine. La difference de marche entre les deux bras determine l'eclairement au point de recombinaison. Si un miroir se deplace de \(\delta x\), la difference de marche varie de \(2\delta x\) (aller-retour).</p>
+    </div>
+
+    <p><strong>Q18 :</strong> En regime sinusoidal force, le deplacement de la membrane est \(x(t) = |X|\cos(\omega t + \varphi)\). A partir de l'equation mecanique en complexe, on a \(\underline{V} = j\omega\underline{X}\), donc \(\underline{X} = \underline{V}/(j\omega)\). En utilisant \(\underline{V} = B_0\ell\,\underline{I}/\underline{Z}_{\text{mec}}\) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q18
+      </div>
+      <div class="math-display">$$\boxed{|X| = \frac{B_0\ell\,|I|}{\omega\,|\underline{Z}_{\text{mec}}|} = \frac{B_0\ell\,|I|}{\omega\sqrt{R_{\text{ms}}^2 + \left(\omega m'_{\text{ms}} - \frac{1}{\omega C_{\text{ms}}}\right)^2}}}$$</div>
+      <p>L'amplitude du deplacement est maximale a la resonance (\(\omega = \omega_s\)), ou l'impedance mecanique se reduit a \(R_{\text{ms}}\) seul. Plus le facteur de qualite est eleve, plus le debattement a la resonance est important.</p>
+    </div>
+
+    <p><strong>Q19 :</strong> Pour un interferometre de Michelson en lame d'air d'epaisseur \(e\), sous un angle d'incidence \(i\), la difference de marche entre les deux faisceaux reflechis est :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q19
+      </div>
+      <div class="math-display">$$\boxed{\delta = 2e\cos(i)}$$</div>
+      <p>Le facteur 2 vient de l'aller-retour du faisceau dans la lame d'air. Le cosinus tient compte de l'inclinaison du faisceau : sous incidence oblique, le chemin optique effectif est reduit par \(\cos(i)\).</p>
+    </div>
+
+    <p><strong>Q20 :</strong> Sous incidence normale (\(i = 0\)), la difference de marche est \(\delta = 2e\). Les deux ondes recombinees ont des amplitudes egales (separatrice 50/50). L'eclairement resultant est donne par la <strong>formule de Fresnel</strong> :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q20
+      </div>
+      <div class="math-display">$$\boxed{\mathcal{E} = 2\mathcal{E}_0\left(1 + \cos\frac{2\pi\delta}{\lambda}\right) = 2\mathcal{E}_0\left(1 + \cos\frac{4\pi e}{\lambda}\right)}$$</div>
+      <p>ou \(\mathcal{E}_0\) est l'eclairement de chacun des deux faisceaux pris separement. L'eclairement varie entre 0 (interferences destructives, \(\delta = (2p+1)\lambda/2\)) et \(4\mathcal{E}_0\) (interferences constructives, \(\delta = p\lambda\)).</p>
+    </div>
+  </div>
+
+  <!-- ═══ Q21-Q23 : Linearisation et sensibilite ═══ -->
+  <div class="corr-question corr-question--medium" id="corr-q21">
+    <span class="corr-question__num">Questions 21-23 -- Linearisation de l'eclairement et sensibilite</span>
+    <p class="corr-question__statement"><strong>Q21.</strong> Montrer que l'eclairement peut s'ecrire \(\mathcal{E}(t) \approx \alpha x(t) + \beta\). Exprimer \(\alpha\) et \(\beta\).<br><br><strong>Q22.</strong> Comment ajuster \(e_0\) pour ameliorer la sensibilite ? Calculer \(e_{0,\min}\).<br><br><strong>Q23.</strong> Est-il possible de determiner graphiquement \(f_s\) et \(Q_{\text{ms}}\) a partir de la figure C ? Justifier.</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Lineariser l'eclairement pour les petits deplacements
+      </div>
+      <ol class="corr-steps">
+        <li>Ecrire \(e = e_0 + x(t)\) ou \(e_0\) est l'epaisseur au repos et \(x(t) \ll \lambda\) est le deplacement</li>
+        <li>Developper au premier ordre en \(x/\lambda\) la formule de Fresnel</li>
+        <li>Identifier les coefficients \(\alpha\) et \(\beta\)</li>
+      </ol>
+    </div>
+
+    <p><strong>Q21 :</strong> Avec \(e = e_0 + x(t)\) et \(x \ll \lambda\), on developpe au premier ordre :</p>
+    <div class="math-display">$$\cos\frac{4\pi(e_0 + x)}{\lambda} = \cos\frac{4\pi e_0}{\lambda}\cos\frac{4\pi x}{\lambda} - \sin\frac{4\pi e_0}{\lambda}\sin\frac{4\pi x}{\lambda}$$</div>
+    <p>Comme \(x \ll \lambda\), on a \(\cos(4\pi x/\lambda) \approx 1\) et \(\sin(4\pi x/\lambda) \approx 4\pi x/\lambda\). D'ou :</p>
+    <div class="math-display">$$\mathcal{E}(t) \approx 2\mathcal{E}_0\left(1 + \cos\frac{4\pi e_0}{\lambda}\right) - 2\mathcal{E}_0 \cdot \frac{4\pi}{\lambda}\sin\frac{4\pi e_0}{\lambda} \cdot x(t)$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q21
+      </div>
+      <div class="math-display">$$\boxed{\alpha = -\frac{8\pi\mathcal{E}_0}{\lambda}\sin\frac{4\pi e_0}{\lambda} \qquad \beta = 2\mathcal{E}_0\left(1 + \cos\frac{4\pi e_0}{\lambda}\right)}$$</div>
+      <p>L'eclairement varie lineairement avec le deplacement \(x(t)\). Le coefficient \(\alpha\) donne la <strong>sensibilite</strong> de la mesure : plus \(|\alpha|\) est grand, plus un petit deplacement produit une grande variation d'eclairement detectable.</p>
+    </div>
+
+    <p><strong>Q22 :</strong> La sensibilite \(|\alpha|\) est maximale quand \(|\sin(4\pi e_0/\lambda)| = 1\), c'est-a-dire :</p>
+    <div class="math-display">$$\frac{4\pi e_0}{\lambda} = \frac{\pi}{2} + p\pi \quad \Rightarrow \quad e_0 = \frac{\lambda}{8}(1 + 2p), \quad p \in \mathbb{N}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q22
+      </div>
+      <div class="math-display">$$\boxed{e_{0,\min} = \frac{\lambda}{8}}$$</div>
+      <p>Pour \(\lambda = 632{,}8\) nm (laser He-Ne), on obtient \(e_{0,\min} = 79\) nm. En pratique, on regle l'epaisseur initiale a un quart de frange (\(\lambda/8\) de difference de marche, soit un eclairement moyen a mi-pente de la sinusoide), ce qui correspond au point de fonctionnement le plus sensible et le plus lineaire.</p>
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Pourquoi regler a \(\lambda/8\) ?
+      </div>
+      <p>A cette epaisseur, l'eclairement est exactement a mi-pente de la sinusoide d'interference. C'est le point ou la variation d'eclairement est proportionnelle au deplacement (zone lineaire), et ou la sensibilite est maximale. Si on est au sommet ou au creux d'une frange, la derivee est nulle et on ne detecte rien. C'est exactement le meme principe que polariser un transistor au milieu de sa zone lineaire.</p>
+    </div>
+
+    <p><strong>Q23 :</strong> La figure C montre le signal d'eclairement en fonction du temps. Puisque \(\mathcal{E}(t) \approx \alpha x(t) + \beta\), le signal est proportionnel au deplacement \(x(t)\). La courbe \(|X|(f)\) est la reponse frequentielle d'un oscillateur amorti force.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q23
+      </div>
+      <p><strong>Oui</strong>, il est possible de determiner graphiquement \(f_s\) et \(Q_{\text{ms}}\) a partir de la figure C.</p>
+      <ul>
+        <li>\(f_s\) est la frequence du maximum du deplacement (pic de la courbe de resonance).</li>
+        <li>\(Q_{\text{ms}}\) se deduit de la largeur du pic a \(-3\) dB (ou a \(|X|_{\max}/\sqrt{2}\)) : \(Q_{\text{ms}} = f_s/\Delta f\).</li>
+      </ul>
+      <p>L'interferometre donne acces directement au deplacement de la membrane (et non a l'impedance electrique), ce qui permet une mesure independante et plus directe des parametres mecaniques \(f_s\) et \(Q_{\text{ms}}\).</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!--  PROBLEME 2 — AUTOUR DE LA CHIMIE DU TITANE                      -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!--  PARTIE VI — GENERALITES ET EXTRACTION (Q24-Q31)                  -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<div class="corr-exercice" id="partie6">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">VI</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Generalites et extraction du titane</h2>
+      <span class="corr-exercice__subtitle">Chimie generale -- Configuration electronique, thermodynamique chimique, extraction metallurgique</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">Le titane (Z = 22) est un metal de transition leger, resistant a la corrosion et biocompatible. Son extraction est difficile car il a une grande affinite pour l'oxygene. On etudie d'abord ses proprietes electroniques, puis la thermodynamique de la reduction des oxydes pour comprendre pourquoi le carbone peut reduire FeO mais pas TiO\(_2\).</p>
+  </div>
+
+  <!-- ═══ Q24-Q25 : Configuration electronique ═══ -->
+  <div class="corr-question corr-question--easy" id="corr-q24">
+    <span class="corr-question__num">Questions 24-25 -- Configuration electronique et classification periodique</span>
+    <p class="corr-question__statement"><strong>Q24.</strong> Donner la configuration electronique de l'atome de titane (\(Z = 22\)). Preciser les electrons de valence et de coeur. Citer deux ions susceptibles de se former.<br><br><strong>Q25.</strong> Preciser la position du titane dans la classification periodique (ligne et colonne).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel de cours -- Remplissage des orbitales
+      </div>
+      <p>Pour les metaux de transition, on remplit les orbitales dans l'ordre de Klechkowski. Les electrons de <strong>valence</strong> d'un metal de transition sont ceux des sous-couches \(ns\) et \((n-1)d\). Les electrons de <strong>coeur</strong> sont tous les autres (configuration du gaz noble precedent).</p>
+    </div>
+
+    <p><strong>Q24 :</strong> Le titane a \(Z = 22\) electrons. On remplit dans l'ordre : \(1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^2\,3d^2\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q24
+      </div>
+      <div class="math-display">$$\boxed{\text{Ti}\;(Z=22) : [\text{Ar}]\,3d^2\,4s^2 = 1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,3d^2\,4s^2}$$</div>
+      <ul>
+        <li><strong>Electrons de valence :</strong> \(3d^2\,4s^2\) (4 electrons de valence)</li>
+        <li><strong>Electrons de coeur :</strong> \(1s^2\,2s^2\,2p^6\,3s^2\,3p^6\) = 18 electrons (configuration de l'argon)</li>
+        <li><strong>Ions possibles :</strong> Ti\(^{2+}\) : \([\text{Ar}]\,3d^2\) (perte des 2 electrons 4s) et Ti\(^{4+}\) : \([\text{Ar}]\) (perte des 4 electrons de valence). On peut aussi citer Ti\(^{3+}\) : \([\text{Ar}]\,3d^1\).</li>
+      </ul>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Piege -- Ordre de perte des electrons lors de l'ionisation
+      </div>
+      <p>On remplit 4s <strong>avant</strong> 3d (regle de Klechkowski), mais on perd 4s <strong>avant</strong> 3d lors de l'ionisation. Pour Ti\(^{2+}\), on retire les 2 electrons de 4s, pas de 3d. C'est une erreur tres frequente chez les candidats.</p>
+    </div>
+
+    <p><strong>Q25 :</strong> Le titane a sa couche de valence en 4s et 3d. Le nombre quantique principal maximal est \(n = 4\), donc il est en 4eme periode. Il a 2 electrons \(d\), donc il est dans la colonne 4 (groupe IVB ou colonne 4 de la nomenclature IUPAC).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q25
+      </div>
+      <div class="math-display">$$\boxed{\text{Titane : 4eme periode (ligne 4), colonne 4 (groupe IVB)}}$$</div>
+      <p>Le titane est le premier metal de transition de la 4eme periode apres le scandium (colonne 3). C'est un element du bloc \(d\).</p>
+    </div>
+  </div>
+
+  <!-- ═══ Q26-Q28 : Thermodynamique ═══ -->
+  <div class="corr-question corr-question--medium" id="corr-q26">
+    <span class="corr-question__num">Questions 26-28 -- Reactions de formation et thermodynamique</span>
+    <p class="corr-question__statement"><strong>Q26.</strong> Ecrire les reactions standard de formation de CO(g), FeO(s) et TiO\(_2\)(s).<br><br><strong>Q27.</strong> Exprimer et calculer l'enthalpie standard de la reaction C(s) + FeO(s) = CO(g) + Fe(s).<br><br><strong>Q28.</strong> Exprimer et calculer l'entropie standard de cette reaction.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel de cours -- Reaction standard de formation
+      </div>
+      <p>La reaction standard de formation d'un compose est la reaction qui forme <strong>une mole</strong> du compose a partir des corps simples dans leur etat standard de reference. Par definition, \(\Delta_f H^\circ\) des corps simples stables est nulle.</p>
+    </div>
+
+    <p><strong>Q26 :</strong></p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q26
+      </div>
+      <div class="math-display">$$\boxed{\text{CO(g)} : \text{C(s, graphite)} + \tfrac{1}{2}\text{O}_2\text{(g)} \to \text{CO(g)}}$$</div>
+      <div class="math-display">$$\boxed{\text{FeO(s)} : \text{Fe(s)} + \tfrac{1}{2}\text{O}_2\text{(g)} \to \text{FeO(s)}}$$</div>
+      <div class="math-display">$$\boxed{\text{TiO}_2\text{(s)} : \text{Ti(s)} + \text{O}_2\text{(g)} \to \text{TiO}_2\text{(s)}}$$</div>
+      <p>Attention : pour TiO\(_2\), il faut une mole de O\(_2\) (pas 1/2) car il y a 2 atomes d'oxygene.</p>
+    </div>
+
+    <p><strong>Q27 :</strong> La reaction etudiee est : C(s) + FeO(s) = CO(g) + Fe(s). En appliquant la loi de Hess :</p>
+    <div class="math-display">$$\Delta_r H^\circ = \Delta_f H^\circ(\text{CO}) + \Delta_f H^\circ(\text{Fe}) - \Delta_f H^\circ(\text{C}) - \Delta_f H^\circ(\text{FeO})$$</div>
+    <p>Comme Fe(s) et C(s, graphite) sont des corps simples stables, \(\Delta_f H^\circ(\text{Fe}) = \Delta_f H^\circ(\text{C}) = 0\) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q27
+      </div>
+      <div class="math-display">$$\boxed{\Delta_r H^\circ = \Delta_f H^\circ(\text{CO}) - \Delta_f H^\circ(\text{FeO}) = -110{,}5 - (-272{,}0) = +161{,}5\;\text{kJ/mol}}$$</div>
+      <p>La reaction est <strong>endothermique</strong> : il faut fournir de l'energie pour reduire FeO par le carbone.</p>
+    </div>
+
+    <p><strong>Q28 :</strong></p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q28
+      </div>
+      <div class="math-display">$$\boxed{\Delta_r S^\circ = S^\circ(\text{CO}) + S^\circ(\text{Fe}) - S^\circ(\text{C}) - S^\circ(\text{FeO}) = 197{,}6 + 27{,}3 - 5{,}7 - 57{,}6 = +161{,}6\;\text{J/(mol\cdot K)}}$$</div>
+      <p>L'entropie de reaction est largement positive : on passe d'un etat "tout solide" a un etat contenant un gaz (CO). La creation d'une espece gazeuse augmente toujours fortement le desordre.</p>
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Pourquoi \(\Delta_r S^\circ > 0\) favorise la reaction a haute temperature ?
+      </div>
+      <p>D'apres \(\Delta_r G^\circ = \Delta_r H^\circ - T\Delta_r S^\circ\), si \(\Delta_r H^\circ > 0\) et \(\Delta_r S^\circ > 0\), la reaction est defavorisee a basse temperature mais <strong>favorisee a haute temperature</strong> (le terme \(-T\Delta_r S^\circ\) finit par dominer). C'est precisement pourquoi la metallurgie extractive opere a haute temperature.</p>
+    </div>
+  </div>
+
+  <!-- ═══ Q29-Q31 : Enthalpie libre, variance, extraction ═══ -->
+  <div class="corr-question corr-question--medium" id="corr-q29">
+    <span class="corr-question__num">Questions 29-31 -- Enthalpie libre, variance et extraction du titane</span>
+    <p class="corr-question__statement"><strong>Q29.</strong> Calculer \(\Delta_r G^\circ\) et la constante d'equilibre a \(T = 1500\) K.<br><br><strong>Q30.</strong> Determiner la variance. Effet d'une hausse de temperature ?<br><br><strong>Q31.</strong> Calculer la constante d'equilibre de la reaction C(s) + 2/3 TiO\(_2\)(s) = CO(g) + 2/3 Ti(s). Conclure sur la pertinence du mode operatoire.</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Calcul de \(\Delta_r G^\circ(T)\) avec l'approximation d'Ellingham
+      </div>
+      <ol class="corr-steps">
+        <li>Approximation d'Ellingham : \(\Delta_r H^\circ\) et \(\Delta_r S^\circ\) sont supposes independants de \(T\)</li>
+        <li>\(\Delta_r G^\circ(T) = \Delta_r H^\circ - T\,\Delta_r S^\circ\)</li>
+        <li>\(K(T) = \exp\left(-\frac{\Delta_r G^\circ(T)}{RT}\right)\)</li>
+      </ol>
+    </div>
+
+    <p><strong>Q29 :</strong> A \(T = 1500\) K :</p>
+    <div class="math-display">$$\Delta_r G^\circ(1500) = 161\,500 - 1500 \times 161{,}6 = 161\,500 - 242\,400 = -80\,900\;\text{J/mol}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q29
+      </div>
+      <div class="math-display">$$\boxed{\Delta_r G^\circ(1500\;\text{K}) \approx -80{,}9\;\text{kJ/mol}}$$</div>
+      <div class="math-display">$$K(1500) = \exp\left(\frac{80\,900}{8{,}314 \times 1500}\right) = \exp(6{,}49) \approx 660$$</div>
+      <div class="math-display">$$\boxed{K(1500\;\text{K}) \approx 660}$$</div>
+      <p>\(K \gg 1\) : la reaction est tres favorable a 1500 K. Le carbone reduit efficacement FeO a cette temperature.</p>
+    </div>
+
+    <p><strong>Q30 :</strong> La variance \(v\) est donnee par la regle de Gibbs : \(v = C + 2 - \varphi\).</p>
+    <ul>
+      <li>Constituants independants : \(C = 4 - 1 = 3\) (4 especes, 1 equilibre)</li>
+      <li>Phases : 3 solides purs (C, FeO, Fe) + 1 phase gazeuse = <strong>4 phases</strong></li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q30
+      </div>
+      <div class="math-display">$$\boxed{v = 3 + 2 - 4 = 1}$$</div>
+      <p>La variance est 1 : si on fixe la temperature, le systeme est entierement determine.</p>
+      <p><strong>Effet d'une hausse de temperature :</strong> la reaction etant endothermique (\(\Delta_r H^\circ > 0\)), d'apres Van't Hoff, une hausse de temperature <strong>deplace l'equilibre dans le sens direct</strong> (sens de la reduction de FeO). La pression de CO augmente.</p>
+    </div>
+
+    <p><strong>Q31 :</strong> Pour la reaction C(s) + 2/3 TiO\(_2\)(s) = CO(g) + 2/3 Ti(s) :</p>
+    <div class="math-display">$$\Delta_r H^\circ = \Delta_f H^\circ(\text{CO}) - \tfrac{2}{3}\Delta_f H^\circ(\text{TiO}_2) = -110{,}5 - \tfrac{2}{3}(-944{,}7) = -110{,}5 + 629{,}8 = +519{,}3\;\text{kJ/mol}$$</div>
+    <div class="math-display">$$\Delta_r S^\circ = 197{,}6 + \tfrac{2}{3}(30{,}7) - 5{,}7 - \tfrac{2}{3}(50{,}3) = +178{,}9\;\text{J/(mol\cdot K)}$$</div>
+    <p>A 1500 K :</p>
+    <div class="math-display">$$\Delta_r G^\circ(1500) = 519\,300 - 1500 \times 178{,}9 = +250\,950\;\text{J/mol}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q31
+      </div>
+      <div class="math-display">$$K(1500) = \exp\left(-\frac{250\,950}{8{,}314 \times 1500}\right) = \exp(-20{,}1) \approx 2 \times 10^{-9}$$</div>
+      <div class="math-display">$$\boxed{K(1500\;\text{K}) \approx 2 \times 10^{-9} \ll 1}$$</div>
+      <p><strong>Conclusion :</strong> La reduction de TiO\(_2\) par le carbone est <strong>thermodynamiquement defavorable</strong>, meme a 1500 K. Le carbone ne peut pas reduire TiO\(_2\) comme il reduit FeO. L'extraction du titane necessite un <strong>procede indirect</strong> (procede Kroll : chloration puis reduction par le magnesium).</p>
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Pourquoi la difference entre Fe et Ti ?
+      </div>
+      <p>La liaison Ti-O est beaucoup plus stable que la liaison Fe-O (l'enthalpie de formation de TiO\(_2\) est presque 4 fois plus negative que celle de FeO). Le titane a une affinite tres forte pour l'oxygene, ce qui rend son oxyde difficile a reduire. Sur le diagramme d'Ellingham, la droite de TiO\(_2\) est tres basse : seuls les reducteurs les plus puissants (Mg, Na, Ca) peuvent le reduire.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!--  PARTIE VII — CRISTALLOGRAPHIE TiN (Q32-Q36)                     -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<div class="corr-exercice" id="partie7">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">VII</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Cristallographie du nitrure de titane TiN</h2>
+      <span class="corr-exercice__subtitle">Chimie des solides -- Structure NaCl, population, parametre de maille, sites octaedriques</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">Le nitrure de titane TiN cristallise dans la structure type NaCl. C'est un materiau tres dur, refractaire et dore, utilise comme revetement protecteur. On donne : \(M_{\text{Ti}} = 47{,}9\) g/mol, \(M_{\text{N}} = 14{,}0\) g/mol, \(\mathcal{N}_A = 6{,}022 \times 10^{23}\) mol\(^{-1}\), \(\rho = 5{,}4\) g/cm\(^3\).</p>
+  </div>
+
+  <!-- ═══ Q32-Q33 : Maille et population ═══ -->
+  <div class="corr-question corr-question--easy" id="corr-q32">
+    <span class="corr-question__num">Questions 32-33 -- Maille elementaire et population</span>
+    <p class="corr-question__statement"><strong>Q32.</strong> Completer la maille elementaire de TiN en perspective et en projection cotee (structure type NaCl).<br><br><strong>Q33.</strong> Determiner la population et verifier la stoechiometrie.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel de cours -- Structure type NaCl
+      </div>
+      <p>La structure NaCl est constituee de deux reseaux CFC interpenetres, decales de \(a/2\) le long d'une arete. Chaque ion est entoure de 6 ions de l'autre espece en <strong>coordinence octaedrique</strong>.</p>
+    </div>
+
+    <p><strong>Q32 :</strong> Dans la structure type NaCl avec les atomes de Ti aux noeuds du CFC :</p>
+    <ul>
+      <li><strong>Ti :</strong> aux 8 sommets du cube + aux 6 centres de faces</li>
+      <li><strong>N :</strong> aux 12 milieux d'aretes + au centre du cube</li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q32
+      </div>
+      <p>La maille est un cube d'arete \(a\) contenant les atomes de Ti en reseau CFC et les atomes de N dans tous les sites octaedriques (milieux des aretes et centre du cube).</p>
+    </div>
+
+    <p><strong>Q33 :</strong> Comptons les atomes par maille :</p>
+    <table class="corr-table">
+      <tr><th>Position</th><th>Nombre</th><th>Partage</th><th>Contribution</th></tr>
+      <tr><td>Ti aux sommets</td><td>8</td><td>\(\times 1/8\)</td><td>1</td></tr>
+      <tr><td>Ti aux centres de faces</td><td>6</td><td>\(\times 1/2\)</td><td>3</td></tr>
+      <tr><td>N aux milieux d'aretes</td><td>12</td><td>\(\times 1/4\)</td><td>3</td></tr>
+      <tr><td>N au centre</td><td>1</td><td>\(\times 1\)</td><td>1</td></tr>
+    </table>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q33
+      </div>
+      <div class="math-display">$$\boxed{Z_{\text{Ti}} = 8 \times \frac{1}{8} + 6 \times \frac{1}{2} = 4 \qquad Z_{\text{N}} = 12 \times \frac{1}{4} + 1 = 4}$$</div>
+      <p>La maille contient <strong>4 Ti et 4 N</strong>, soit 4 motifs TiN. Le rapport Ti/N = 4/4 = 1 confirme la stoechiometrie TiN.</p>
+    </div>
+  </div>
+
+  <!-- ═══ Q34-Q36 : Parametre de maille et sites ═══ -->
+  <div class="corr-question corr-question--medium" id="corr-q34">
+    <span class="corr-question__num">Questions 34-36 -- Parametre de maille, rayon et sites octaedriques</span>
+    <p class="corr-question__statement"><strong>Q34.</strong> Exprimer et calculer le parametre de maille \(a\) a partir de \(\rho = 5{,}4\) g/cm\(^3\).<br><br><strong>Q35.</strong> Exprimer le rayon de l'atome de titane en fonction du parametre de maille.<br><br><strong>Q36.</strong> Exprimer le rayon \(R_O\) d'un site octaedrique et verifier l'habitabilite pour l'atome d'azote.</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Calculer le parametre de maille a partir de la masse volumique
+      </div>
+      <ol class="corr-steps">
+        <li>Ecrire la masse de la maille : \(m = Z \times M_{\text{motif}} / \mathcal{N}_A\) avec \(Z = 4\)</li>
+        <li>Ecrire le volume de la maille : \(V = a^3\)</li>
+        <li>Egaliser \(\rho = m/V\) et resoudre pour \(a\)</li>
+      </ol>
+    </div>
+
+    <p><strong>Q34 :</strong> Avec \(Z = 4\), \(M_{\text{motif}} = 47{,}9 + 14{,}0 = 61{,}9\) g/mol :</p>
+    <div class="math-display">$$a = \left(\frac{4 \times 61{,}9}{6{,}022 \times 10^{23} \times 5{,}4}\right)^{1/3} = \left(7{,}61 \times 10^{-23}\right)^{1/3}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q34
+      </div>
+      <div class="math-display">$$\boxed{a = \left(\frac{4(M_{\text{Ti}} + M_{\text{N}})}{\mathcal{N}_A \rho}\right)^{1/3} \approx 4{,}24 \times 10^{-10}\;\text{m} = 0{,}424\;\text{nm}}$$</div>
+      <p>En excellent accord avec la valeur experimentale \(a = 0{,}4235\) nm.</p>
+    </div>
+
+    <p><strong>Q35 :</strong> Dans la structure NaCl, le contact anion-cation se fait le long de l'arete : \(a = 2r_{\text{Ti}} + 2r_{\text{N}}\), d'ou :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q35
+      </div>
+      <div class="math-display">$$\boxed{r_{\text{Ti}} = \frac{a}{2} - r_{\text{N}}}$$</div>
+    </div>
+
+    <p><strong>Q36 :</strong> Dans le CFC de Ti, le rayon du site octaedrique vaut :</p>
+    <div class="math-display">$$R_O = \frac{a}{2} - r_{\text{Ti}}$$</div>
+    <p>C'est exactement \(r_{\text{N}}\) d'apres la relation de contact.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q36
+      </div>
+      <div class="math-display">$$\boxed{R_O = \frac{a}{2} - r_{\text{Ti}}}$$</div>
+      <p>L'atome d'azote occupe exactement le site octaedrique disponible. L'<strong>habitabilite est verifiee</strong> : \(r_{\text{N}} \leq R_O\), la structure NaCl est bien stable pour TiN.</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Piege -- Contact sur l'arete, pas sur la diagonale
+      </div>
+      <p>Dans la structure NaCl, le contact se fait sur l'<strong>arete</strong> du cube (\(a = 2r_+ + 2r_-\)), et non sur la diagonale de face comme dans un CFC pur. Ne pas confondre le contact entre plus proches voisins de meme espece (diagonale de face) et le contact cation-anion (arete du cube).</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!--  PARTIE VIII — CATALYSE TiO2 (Q37-Q38)                           -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<div class="corr-exercice" id="partie8">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">VIII</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Catalyse par le dioxyde de titane TiO\(_2\)</h2>
+      <span class="corr-exercice__subtitle">Cinetique chimique -- Cinetique d'ordre 1, constante de vitesse, photocatalyse</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--easy">Standard</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">Le dioxyde de titane TiO\(_2\) est un photocatalyseur : sous irradiation UV, il degrade les polluants organiques. On etudie la cinetique de degradation d'un pesticide en solution aqueuse en presence de TiO\(_2\) irradie.</p>
+  </div>
+
+  <div class="corr-question corr-question--easy" id="corr-q37">
+    <span class="corr-question__num">Questions 37-38 -- Verification de l'ordre et constante de vitesse</span>
+    <p class="corr-question__statement"><strong>Q37.</strong> Verifier que la degradation du pesticide est compatible avec une cinetique d'ordre 1.<br><br><strong>Q38.</strong> Donner la valeur numerique de la constante de vitesse \(k\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel de cours -- Cinetique d'ordre 1
+      </div>
+      <p>Pour une reaction d'ordre 1 : \([\text{A}](t) = [\text{A}]_0\,e^{-kt}\), donc \(\ln[\text{A}](t) = \ln[\text{A}]_0 - kt\). Si \(\ln[\text{A}]\) vs \(t\) est une <strong>droite</strong>, la cinetique est d'ordre 1. La pente vaut \(-k\).</p>
+    </div>
+
+    <p><strong>Q37 :</strong></p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q37
+      </div>
+      <p>Le trace de \(\ln[C]\) en fonction de \(t\) donne une <strong>droite de pente negative</strong>. La degradation est donc bien compatible avec une <strong>cinetique d'ordre 1</strong>.</p>
+      <div class="math-display">$$\boxed{\ln\frac{[C]}{[C]_0} = -kt \quad \Rightarrow \quad \text{droite de pente } -k}$$</div>
+    </div>
+
+    <p><strong>Q38 :</strong> On determine \(k\) a partir de la pente de la droite :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q38
+      </div>
+      <div class="math-display">$$\boxed{k \approx 3{,}5 \times 10^{-2}\;\text{min}^{-1}}$$</div>
+      <p>Le temps de demi-reaction est \(t_{1/2} = \ln 2 / k \approx 20\) min. En une vingtaine de minutes sous UV, la moitie du pesticide est degradee par la photocatalyse TiO\(_2\).</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="corr-separator">* * *</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!--  PARTIE IX — DOSAGE DU TITANE (Q39-Q41)                          -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<div class="corr-exercice" id="partie9">
+
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">IX</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Dosage du titane (catalyseur Ziegler-Natta)</h2>
+      <span class="corr-exercice__subtitle">Chimie des solutions -- Titrage redox, precipitation, pH</span>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-exercice__enonce">
+    <span class="corr-exercice__enonce-label">Contexte</span>
+    <p style="margin-bottom:0">Le titane entre dans la composition du catalyseur de Ziegler-Natta, utilise pour la polymerisation des olefines. On dose les ions Ti\(^{3+}\) en solution par titrage redox. On etudie ensuite la precipitation de l'hydroxyde Ti(OH)\(_3\) pour determiner les conditions de pH de stabilite de la solution.</p>
+  </div>
+
+  <div class="corr-question corr-question--medium" id="corr-q39">
+    <span class="corr-question__num">Questions 39-41 -- Titrage et precipitation</span>
+    <p class="corr-question__statement"><strong>Q39.</strong> Donner l'equation support de la reaction de titrage.<br><br><strong>Q40.</strong> Exprimer et calculer la concentration en ions titane(III).<br><br><strong>Q41.</strong> Determiner le pH de precipitation de l'hydroxyde de titane(III) Ti(OH)\(_3\)(s).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Rappel de cours -- Titrage redox
+      </div>
+      <p>Les ions Ti\(^{3+}\) sont reducteurs (ils s'oxydent en Ti\(^{4+}\)). A l'equivalence d'un titrage 1:1 : \(n_{\text{oxydant}} = n_{\text{reducteur}}\).</p>
+    </div>
+
+    <p><strong>Q39 :</strong> Les ions Ti\(^{3+}\) sont oxydes en Ti\(^{4+}\) (perte d'un electron). Si le titrage est realise par une solution d'ions Fe\(^{3+}\) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q39
+      </div>
+      <div class="math-display">$$\boxed{\text{Ti}^{3+} + \text{Fe}^{3+} \to \text{Ti}^{4+} + \text{Fe}^{2+}}$$</div>
+      <p>Reaction redox a un electron, stoechiometrie 1:1.</p>
+    </div>
+
+    <p><strong>Q40 :</strong> A l'equivalence :</p>
+    <div class="math-display">$$C_{\text{Ti}} \cdot V_{\text{Ti}} = C_{\text{Fe}} \cdot V_{\text{eq}}$$</div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q40
+      </div>
+      <div class="math-display">$$\boxed{C_{\text{Ti}^{3+}} = \frac{C_{\text{Fe}^{3+}} \cdot V_{\text{eq}}}{V_{\text{Ti}}}}$$</div>
+      <p>Typiquement, pour \(C_{\text{Fe}} = 0{,}10\) mol/L, \(V_{\text{eq}} = 12{,}5\) mL et \(V_{\text{Ti}} = 25{,}0\) mL :</p>
+      <div class="math-display">$$C_{\text{Ti}^{3+}} = \frac{0{,}10 \times 12{,}5}{25{,}0} = 5{,}0 \times 10^{-2}\;\text{mol/L}$$</div>
+    </div>
+
+    <p><strong>Q41 :</strong> L'hydroxyde Ti(OH)\(_3\)(s) precipite quand \([\text{Ti}^{3+}][\text{OH}^-]^3 = K_s\).</p>
+    <div class="math-display">$$[\text{OH}^-] = \left(\frac{K_s}{[\text{Ti}^{3+}]}\right)^{1/3}$$</div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Methode -- Determiner un pH de precipitation
+      </div>
+      <ol class="corr-steps">
+        <li>Ecrire l'equilibre de dissolution : Ti(OH)\(_3\)(s) \(\rightleftharpoons\) Ti\(^{3+}\) + 3 OH\(^-\)</li>
+        <li>A la limite de precipitation : \([\text{OH}^-]^3 = K_s / [\text{Ti}^{3+}]\)</li>
+        <li>Calculer pOH puis \(\text{pH} = 14 - \text{pOH}\)</li>
+      </ol>
+    </div>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Resultat Q41
+      </div>
+      <div class="math-display">$$\boxed{\text{pH}_{\text{precip}} = 14 - \frac{1}{3}\left(\text{p}K_s + \log[\text{Ti}^{3+}]\right)}$$</div>
+      <p>Avec typiquement \(\text{p}K_s = 40\) et \([\text{Ti}^{3+}] = 5{,}0 \times 10^{-2}\) mol/L :</p>
+      <div class="math-display">$$\text{pH}_{\text{precip}} = 14 - \frac{40 - 1{,}3}{3} = 14 - 12{,}9 \approx 1{,}1$$</div>
+      <p><strong>Conclusion :</strong> L'hydroxyde de titane(III) precipite des pH tres bas (\(\text{pH} \approx 1\)). Pour maintenir Ti\(^{3+}\) en solution, il faut travailler en <strong>milieu tres acide</strong>.</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">
+        <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Piege -- L'exposant 3 dans le calcul du pH
+      </div>
+      <p>Le facteur \(1/3\) dans la formule du pH vient de l'exposant 3 de [OH\(^-\)] dans le \(K_s\). Avec un hydroxyde M(OH)\(_n\), la formule devient \(\text{pOH} = \frac{1}{n}(\text{p}K_s + \log[\text{M}^{n+}])\). Pour Ti(OH)\(_3\), \(n = 3\).</p>
+    </div>
+  </div>
+
+</div>
+
+<nav class="course__nav">
       <a href="e3a-2023-correction-physique.html" class="course__nav-link">
         &larr; Correction suivante
         <span>E3A 2023 -- Physique</span>

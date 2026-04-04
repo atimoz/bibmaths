@@ -585,414 +585,863 @@
       </div>
 
       <!-- Kepler et masse de Jupiter -->
-      <div class="corr-question corr-question--medium" id="corr-kepler">
-        <span class="corr-question__num">Questions 1-5 -- 3eme loi de Kepler et masse de Jupiter</span>
-        <p class="corr-question__statement"><strong>Q1.</strong> Enoncer la troisieme loi de Kepler, puis estimer la masse de Jupiter a partir des donnees des satellites galileens.<br><br><strong>Q2.</strong> Calculer la masse volumique moyenne de Jupiter.<br><br><strong>Q3.</strong> Calculer l'angle maximal \(\alpha_{\max}\) sous lequel Jupiter est vue depuis la Terre.<br><br><strong>Q4.</strong> Evaluer la periode de revolution siderale \(T_J\) de Jupiter et la duree entre deux oppositions.<br><br><strong>Q5.</strong> Conditions pour que l'oeil n'accommode pas. Position de l'objectif et de l'oculaire. Foyers du systeme ?</p>
+      
+<!-- ============================================================
+     CORRECTION E3A-POLYTECH 2021 — PHYSIQUE-CHIMIE
+     Contenu pedagogique (46 questions)
+     ============================================================ -->
 
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel de cours -- Les 3 lois de Kepler
-          </div>
-          <table class="corr-table">
-            <tr><th>Loi</th><th>Enonce</th><th>En pratique</th></tr>
-            <tr><td>1ere loi</td><td>Les orbites sont des ellipses dont le corps central occupe un foyer</td><td>Pour les satellites galileens, les orbites sont quasi-circulaires</td></tr>
-            <tr><td>2eme loi</td><td>La loi des aires : le rayon vecteur balaie des aires egales en des temps egaux</td><td>Consequence de la conservation du moment cinetique</td></tr>
-            <tr><td>3eme loi</td><td>\(T^2 = \dfrac{4\pi^2}{GM_J}\,a^3\)</td><td>Le rapport \(T^2/a^3\) est le meme pour tous les satellites de Jupiter</td></tr>
-          </table>
-        </div>
+<!-- ════════════════════════════════════════════════════════════
+     PARTIE I — LES CARACTERISTIQUES DE JUPITER
+     ════════════════════════════════════════════════════════════ -->
 
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Regression lineaire en log-log
-          </div>
-          <p>Pour verifier que \(T^2 \propto a^3\), on trace \(\ln(T)\) en fonction de \(\ln(a)\). Si la relation est verifiee, on obtient une droite de pente \(3/2\) :</p>
-          <div class="math-display">$$\ln(T) = \frac{3}{2}\ln(a) + \frac{1}{2}\ln\left(\frac{4\pi^2}{GM_J}\right)$$</div>
-          <ol class="corr-steps">
-            <li>Tracer les points \((\ln a_i, \ln T_i)\) pour chaque satellite galileen.</li>
-            <li>Verifier que la pente est bien \(3/2\) (ou de maniere equivalente, que \(\log(T^2)\) vs \(\log(a^3)\) donne une pente 1).</li>
-            <li>De l'ordonnee a l'origine, extraire \(M_J\).</li>
-          </ol>
-        </div>
+<div class="corr-exercice" id="partie1-corr">
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">I</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Les caracteristiques de Jupiter</h2>
+      <span class="corr-exercice__subtitle">Kepler, optique, trajectoire de Juno, gravitation, atmosphere</span>
+    </div>
+  </div>
+  <hr class="corr-exercice__rule">
 
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi tracer en log-log ?
-          </div>
-          <p>Si on a une relation de type \(y = Cx^n\), alors \(\ln y = n \ln x + \ln C\). En tracant \(\ln y\) vs \(\ln x\), on obtient une droite de pente \(n\). C'est la methode standard pour verifier une loi de puissance experimentale. Ici, ca permet de verifier que l'exposant est bien \(3/2\) (ou 3 si on trace \(T^2\) vs \(a^3\)).</p>
-        </div>
+  <!-- ─── I.1 Observer Jupiter depuis la Terre ─── -->
+  <h3 style="font-family:var(--font-body);font-size:1.15rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-lg)">I.1 -- Observer Jupiter depuis la Terre</h3>
 
-        <p><strong>Donnees des satellites galileens :</strong></p>
-        <table class="corr-table">
-          <tr><th>Satellite</th><th>\(a\) (10\(^3\) km)</th><th>\(T\) (jours)</th><th>\(T^2/a^3\) (s\(^2\)/m\(^3\))</th></tr>
-          <tr><td>Io</td><td>422</td><td>1,77</td><td>\(\approx 3{,}1 \times 10^{-16}\)</td></tr>
-          <tr><td>Europe</td><td>671</td><td>3,55</td><td>\(\approx 3{,}1 \times 10^{-16}\)</td></tr>
-          <tr><td>Ganymede</td><td>1070</td><td>7,15</td><td>\(\approx 3{,}1 \times 10^{-16}\)</td></tr>
-          <tr><td>Callisto</td><td>1883</td><td>16,7</td><td>\(\approx 3{,}1 \times 10^{-16}\)</td></tr>
-        </table>
+  <!-- Q1-Q2 : Kepler et masse de Jupiter -->
+  <div class="corr-question corr-question--easy" id="corr-q1">
+    <span class="corr-question__num">Questions 1 &amp; 2 -- Troisieme loi de Kepler, masse et masse volumique de Jupiter</span>
+    <p class="corr-question__statement"><strong>Q1.</strong> Enoncer la troisieme loi de Kepler, puis estimer la masse de Jupiter a partir des donnees des satellites galileens.</p>
+    <p class="corr-question__statement"><strong>Q2.</strong> Calculer la masse volumique moyenne de Jupiter.</p>
 
-        <p>Le rapport \(T^2/a^3\) est bien constant : la 3eme loi de Kepler est verifiee. On en deduit :</p>
-        <div class="math-display">$$\frac{T^2}{a^3} = \frac{4\pi^2}{GM_J} \quad \Longrightarrow \quad M_J = \frac{4\pi^2 a^3}{GT^2}$$</div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Masse de Jupiter
-          </div>
-          <div class="math-display">$$\boxed{M_J = \frac{4\pi^2 a^3}{GT^2} \approx 1{,}9 \times 10^{27} \;\text{kg}}$$</div>
-          <p>C'est environ 318 fois la masse de la Terre. Jupiter est de loin la planete la plus massive du systeme solaire.</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege -- Les unites dans la 3eme loi de Kepler
-          </div>
-          <p>Attention aux unites ! La formule \(T^2 = 4\pi^2 a^3/(GM)\) necessite \(T\) en <strong>secondes</strong> et \(a\) en <strong>metres</strong>. Si les donnees sont en jours et en milliers de km, il faut convertir <strong>avant</strong> d'appliquer la formule. C'est une source d'erreur tres frequente dans les copies.</p>
-        </div>
-      </div>
-
-      <!-- Vitesse de liberation -->
-      <div class="corr-question corr-question--medium" id="corr-vlib">
-        <span class="corr-question__num">Questions 6-8 -- Vitesse de liberation</span>
-        <p class="corr-question__statement"><strong>Q6.</strong> Completer la marche du rayon incident. Indiquer l'angle \(\alpha'\).<br><br><strong>Q7.</strong> Determiner le grossissement \(G = \alpha'/\alpha = f'_1/f'_2\). Jupiter sera-t-elle discernee ?<br><br><strong>Q8.</strong> Determiner la vitesse de liberation \(v_\ell\) de la Terre. Calculer numeriquement.</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel -- Vitesse de liberation
-          </div>
-          <p>La vitesse de liberation est la vitesse minimale qu'un objet doit avoir a la surface d'un astre pour s'en echapper definitivement (aller a l'infini avec une vitesse nulle). On l'obtient par conservation de l'energie mecanique :</p>
-          <div class="math-display">$$E_m = \frac{1}{2}mv_{\text{lib}}^2 - \frac{GMm}{R} = 0$$</div>
-          <p>La condition \(E_m = 0\) correspond a la trajectoire parabolique : c'est la frontiere entre les trajectoires liees (ellipses) et les trajectoires non liees (hyperboles).</p>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi l'energie mecanique est nulle ?
-          </div>
-          <p>Imaginez qu'on lance une balle vers le haut. Si elle va assez vite, elle s'echappe. Si elle va trop lentement, elle retombe. La vitesse de liberation est la <strong>juste-limite</strong> : la balle arrive a l'infini avec une vitesse nulle (\(E_c = 0\)) et l'energie potentielle est aussi nulle a l'infini (\(E_p \to 0\)). Donc \(E_m = E_c + E_p = 0\).</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Vitesse de liberation
-          </div>
-          <div class="math-display">$$\boxed{v_{\text{lib}} = \sqrt{\frac{2GM}{R}}}$$</div>
-          <table class="corr-table">
-            <tr><th>Astre</th><th>\(v_{\text{lib}}\)</th></tr>
-            <tr><td>Terre</td><td>\(\approx 11{,}2\) km/s</td></tr>
-            <tr><td>Jupiter</td><td>\(\approx 60\) km/s</td></tr>
-          </table>
-          <p>La vitesse de liberation de Jupiter est 5 fois celle de la Terre. C'est a cause de sa masse enorme et malgre son grand rayon.</p>
-        </div>
-      </div>
-
-      <!-- Orbite de Juno -->
-      <div class="corr-question corr-question--medium" id="corr-orbite">
-        <span class="corr-question__num">Questions 9-14 -- Orbite de Juno et forces centrales</span>
-        <p class="corr-question__statement"><strong>Q9.</strong> Dans quelle circonstance peut-on supposer le centre de Jupiter immobile ?<br><br><strong>Q10.</strong> Montrer que le moment cinetique est constant et que le mouvement est plan.<br><br><strong>Q11.</strong> Exprimer \(\vec{r}\) et \(\vec{v}\) dans la base polaire.<br><br><strong>Q12.</strong> Montrer que \(r^2\dot{\theta}\) est une constante du mouvement.<br><br><strong>Q13.</strong> Determiner l'energie mecanique sous la forme \(\mathcal{E}_m = \frac{1}{2}m\dot{r}^2 + U_{\text{eff}}(r)\). Justifier la conservation.<br><br><strong>Q14.</strong> Tracer \(U_{\text{eff}}(r)\) et discuter les trajectoires possibles (etats lies, diffusion).</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel -- Mouvement a force centrale
-          </div>
-          <p>Quand la force est toujours dirigee vers un centre fixe (\(\vec{F} = F(r)\vec{e}_r\)), deux grandeurs sont conservees :</p>
-          <ul>
-            <li><strong>Moment cinetique :</strong> \(L = mr^2\dot{\theta} = \text{cste}\) (consequence de la force centrale)</li>
-            <li><strong>Energie mecanique :</strong> \(E_m = \frac{1}{2}m\dot{r}^2 + \frac{L^2}{2mr^2} - \frac{GMm}{r} = \text{cste}\)</li>
-          </ul>
-          <p>Au perijove (point le plus proche) et a l'apojove (point le plus eloigne), la vitesse est purement orthoradiale : \(\dot{r} = 0\), donc \(v = r\dot{\theta} = L/(mr)\).</p>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Trouver les vitesses aux apsides
-          </div>
-          <p>Aux points extremes (perijove \(r_P\) et apojove \(r_A\)), on utilise simultanément :</p>
-          <ol class="corr-steps">
-            <li>Conservation du moment cinetique : \(mv_P r_P = mv_A r_A\), soit \(v_P/v_A = r_A/r_P\).</li>
-            <li>Conservation de l'energie : \(\frac{1}{2}mv_P^2 - \frac{GM_J m}{r_P} = \frac{1}{2}mv_A^2 - \frac{GM_J m}{r_A}\).</li>
-            <li>On resout ce systeme de 2 equations a 2 inconnues (\(v_P\) et \(v_A\)).</li>
-          </ol>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Vitesses orbitales de Juno
-          </div>
-          <div class="math-display">$$\boxed{v_P = \sqrt{\frac{2GM_J r_A}{r_P(r_P + r_A)}} \qquad v_A = \sqrt{\frac{2GM_J r_P}{r_A(r_P + r_A)}}}$$</div>
-          <p>On peut aussi exprimer les vitesses avec le demi-grand axe \(a = (r_P + r_A)/2\) :</p>
-          <div class="math-display">$$v_P = \sqrt{GM_J\left(\frac{2}{r_P} - \frac{1}{a}\right)} \qquad \text{(formule de la vis-viva)}$$</div>
-          <p>Au perijove, la sonde passe tres pres de Jupiter et sa vitesse est maximale. A l'apojove, elle est loin et va lentement. C'est la 2eme loi de Kepler en action.</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege -- Le champ gravitationnel de Jupiter n'est PAS uniforme
-          </div>
-          <p>Jupiter n'est pas une sphere parfaite (elle est aplatie aux poles a cause de sa rotation rapide). Le champ gravitationnel contient donc des termes <strong>multipolaires</strong> (corrections en \(1/r^3\), \(1/r^4\)...). L'orbite de Juno n'est pas exactement une ellipse : elle precesse lentement. Le sujet demande parfois de discuter ces corrections ; il ne faut pas supposer que l'orbite est une ellipse parfaite quand l'enonce parle de champ non uniforme.</p>
-        </div>
-      </div>
-
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Rappel de cours</div>
+      <p><strong>Troisieme loi de Kepler</strong> : pour un satellite en orbite circulaire de rayon \(a\) autour d'un astre de masse \(M\), la periode \(T\) verifie :</p>
+      $$ \frac{T^2}{a^3} = \frac{4\pi^2}{GM} $$
+      <p>Cette constante ne depend que de la masse de l'astre central. La loi s'etend aux orbites elliptiques en remplacant \(a\) par le demi-grand axe.</p>
     </div>
 
-    <div class="corr-separator">* * *</div>
+    <p><strong>Q1 -- Estimation de la masse de Jupiter.</strong></p>
+    <ol class="corr-steps">
+      <li>On applique la troisieme loi de Kepler a un satellite galileen (par exemple Io) en orbite autour de Jupiter. La force de gravitation fournit la force centripete, ce qui donne :</li>
+    </ol>
+    $$ \frac{T^2}{a^3} = \frac{4\pi^2}{G\,M_J} $$
+    <p>On en deduit :</p>
+    $$ M_J = \frac{4\pi^2\,a^3}{G\,T^2} $$
 
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--          BLOC 2 -- PHYSIQUE APPLIQUEE SPATIALE             -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="bloc2">
-
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">II</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Physique appliquee spatiale</h2>
-          <span class="corr-exercice__subtitle">Physique spatiale -- Sous-problemes autour de la sonde Juno</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
-      </div>
-      <hr class="corr-exercice__rule">
-
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">Cette partie regroupe des sous-problemes de physique appliquee lies a la sonde Juno : transfert thermique, production d'energie (panneaux solaires), communication radio, effets relativistes. Chaque sous-probleme est relativement independant.</p>
-      </div>
-
-      <!-- Transfert thermique -->
-      <div class="corr-question corr-question--medium" id="corr-therm">
-        <span class="corr-question__num">Questions 29-33 -- Bilan thermique</span>
-        <p class="corr-question__statement"><strong>Q29.</strong> Determiner la temperature \(T(x)\) dans une plaque en regime stationnaire.<br><br><strong>Q30.</strong> Calculer la puissance thermique transferee a travers la plaque.<br><br><strong>Q31.</strong> Definir la resistance thermique \(R_{th}\) par analogie avec l'electrocinetique.<br><br><strong>Q32.</strong> Determiner la conductivite thermique equivalente d'un empilement multicouche.<br><br><strong>Q33.</strong> Verifier sur les cas particuliers \(\lambda_1 = \lambda_2\) et \(e_1 \ll e_2\).</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel -- Flux solaire et loi en 1/r^2
-          </div>
-          <p>Le flux solaire (puissance par unite de surface) decroit avec le carre de la distance :</p>
-          <div class="math-display">$$\phi(r) = \phi_0 \left(\frac{d_0}{r}\right)^2$$</div>
-          <p>ou \(\phi_0 = 1361\) W/m\(^2\) est la constante solaire a la distance Terre-Soleil \(d_0 = 1\) UA.</p>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi Juno utilise des panneaux solaires et pas un RTG ?
-          </div>
-          <p>La plupart des sondes vers Jupiter (Voyager, Cassini) utilisent des generateurs thermoelectriques a radioisotopes (RTG, au plutonium). Juno est la premiere sonde a utiliser des panneaux solaires a cette distance. L'avantage est d'eviter le plutonium (rare et radioactif). L'inconvenient est que le flux solaire est 25 fois plus faible qu'a la distance Terre, d'ou des panneaux enormes (60 m\(^2\)).</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Flux solaire a Jupiter
-          </div>
-          <p>Jupiter est a environ 5,2 UA du Soleil :</p>
-          <div class="math-display">$$\boxed{\phi_J = \frac{1361}{5{,}2^2} \approx 50 \;\text{W/m}^2}$$</div>
-          <p>C'est environ 4% du flux recu par la Terre. Avec des panneaux de 60 m\(^2\) et un rendement de \(\sim 10\%\), la sonde dispose d'environ 300 W de puissance electrique.</p>
-        </div>
-      </div>
-
-      <!-- Communication -->
-      <div class="corr-question corr-question--easy" id="corr-comm">
-        <span class="corr-question__num">Questions 27-28 -- Agitation thermique</span>
-        <p class="corr-question__statement"><strong>Q27.</strong> Calculer la vitesse la plus probable d'agitation thermique \(v_c\).<br><br><strong>Q28.</strong> Expliquer pourquoi l'atmosphere de Jupiter peut etre riche en dihydrogene et helium.</p>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Ordres de grandeur spatiaux
-          </div>
-          <p>Les signaux radio se propagent a la vitesse de la lumiere \(c = 3 \times 10^8\) m/s. La distance Jupiter-Terre varie entre 4,2 et 6,2 UA selon les positions relatives. En moyenne :</p>
-          <div class="math-display">$$t = \frac{d}{c} \approx \frac{5{,}2 \times 1{,}5 \times 10^{11}}{3 \times 10^8} \approx 2600 \;\text{s} \approx 43 \;\text{min}$$</div>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat
-          </div>
-          <div class="math-display">$$\boxed{t_{\text{aller}} \approx 43 \;\text{min}}$$</div>
-          <p>Un aller-retour prend donc environ 1h26. La sonde doit etre autonome pour les manoeuvres urgentes, car on ne peut pas la piloter en temps reel.</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege -- Distance variable selon les configurations
-          </div>
-          <p>La distance Terre-Jupiter varie enormement selon que les deux planetes sont du meme cote du Soleil (opposition : \(\sim 4{,}2\) UA) ou de cotes opposes (conjonction : \(\sim 6{,}2\) UA). Si le sujet precise "en opposition", la distance est minimale. Si rien n'est precise, prendre la distance moyenne \(\sim 5{,}2\) UA (rayon de l'orbite de Jupiter).</p>
-        </div>
-      </div>
-
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Methode</div>
+      <p>Application numerique avec les donnees de Io : \(a \approx 4{,}22 \times 10^8\;\text{m}\), \(T \approx 1{,}77\;\text{jours} = 1{,}53 \times 10^5\;\text{s}\), et \(G = 6{,}67 \times 10^{-11}\;\text{N.m}^2.\text{kg}^{-2}\).</p>
     </div>
 
-    <div class="corr-separator">* * *</div>
+    $$ M_J = \frac{4\pi^2 \times (4{,}22 \times 10^8)^3}{6{,}67 \times 10^{-11} \times (1{,}53 \times 10^5)^2} \approx 1{,}9 \times 10^{27}\;\text{kg} $$
 
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!--       BLOC 3 -- ACCUMULATEURS + CRISTALLOGRAPHIE           -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div class="corr-exercice" id="bloc3">
-
-      <div class="corr-exercice__header">
-        <span class="corr-exercice__number">III</span>
-        <div class="corr-exercice__title-group">
-          <h2 class="corr-exercice__title">Accumulateurs et cristallographie du germanium</h2>
-          <span class="corr-exercice__subtitle">Electrochimie -- Li-ion, Na-ion, structure diamant</span>
-        </div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
-      </div>
-      <hr class="corr-exercice__rule">
-
-      <div class="corr-exercice__enonce">
-        <span class="corr-exercice__enonce-label">Contexte</span>
-        <p style="margin-bottom:0">On etudie les technologies de stockage d'energie utilisees dans les sondes spatiales et les vehicules electriques : accumulateurs lithium-ion et sodium-ion. La partie cristallographie porte sur le germanium (structure diamant), un semi-conducteur utilise en electronique.</p>
-      </div>
-
-      <!-- Li-ion vs Na-ion -->
-      <div class="corr-question corr-question--medium" id="corr-accum">
-        <span class="corr-question__num">Questions 37-46 -- Accumulateurs et chimie</span>
-        <p class="corr-question__statement"><strong>Q37.</strong> Quel interet y aurait-il a remplacer le lithium par le sodium ?<br><br><strong>Q38.</strong> Configuration electronique du lithium. Justifier la valeur basse de \(E^\circ_{\text{Li}^+/\text{Li}}\).<br><br><strong>Q39.</strong> Ecrire les equations du lithium et du sodium avec l'eau. Calculer les constantes d'equilibre.<br><br><strong>Q40.</strong> Lequel de ces deux metaux est le plus reactif ? Comparaison thermodynamique et cinetique.<br><br><strong>Q41.</strong> Donner un schema de Lewis de SO\(_2\) et SO\(_3\).<br><br><strong>Q42.</strong> Calculer \(\Delta_r H^\circ\) et \(\Delta_r S^\circ\) pour \(2\text{SO}_2 + \text{O}_2 \rightleftharpoons 2\text{SO}_3\). Exprimer \(\Delta_r G^\circ(T)\) dans l'approximation d'Ellingham.<br><br><strong>Q43.</strong> L'augmentation de la temperature favorise-t-elle la production de SO\(_3\) ?<br><br><strong>Q44.</strong> Exprimer \(K^\circ(T)\) en fonction des fractions molaires et de la pression totale.<br><br><strong>Q45.</strong> L'augmentation de la pression favorise-t-elle la production de SO\(_3\) ?<br><br><strong>Q46.</strong> Quels choix industriels pour optimiser la production de SO\(_3\) ? Compromis cinetique/thermodynamique/financier.</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel -- Principe d'un accumulateur
-          </div>
-          <p>Un accumulateur est un dispositif electrochimique <strong>reversible</strong> : il peut stocker de l'energie chimique et la restituer sous forme electrique (et inversement). Il est constitue de :</p>
-          <ul>
-            <li><strong>Anode</strong> (electrode negative) : siege de l'oxydation lors de la decharge</li>
-            <li><strong>Cathode</strong> (electrode positive) : siege de la reduction lors de la decharge</li>
-            <li><strong>Electrolyte</strong> : milieu ionique qui permet le transport des ions entre les electrodes</li>
-          </ul>
-          <p>La tension de l'accumulateur est liee a la difference de potentiel des couples redox via la formule de Nernst.</p>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi s'interesser au Na-ion ?
-          </div>
-          <p>Le lithium est rare et cher. Le sodium est extremement abondant (sel de mer). Les batteries Na-ion sont moins performantes (densite d'energie plus faible) mais beaucoup moins couteuses et plus durables. C'est un enjeu technologique majeur pour la transition energetique : stocker l'electricite renouvelable a grande echelle a moindre cout.</p>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Comparaison Li-ion / Na-ion
-          </div>
-          <table class="corr-table">
-            <tr><th>Critere</th><th>Li-ion</th><th>Na-ion</th></tr>
-            <tr><td>Densite d'energie</td><td>\(\sim 250\) Wh/kg</td><td>\(\sim 160\) Wh/kg</td></tr>
-            <tr><td>Tension nominale</td><td>\(\sim 3{,}7\) V</td><td>\(\sim 3{,}1\) V</td></tr>
-            <tr><td>Cout</td><td>Eleve (lithium rare)</td><td>Faible (sodium abondant)</td></tr>
-            <tr><td>Duree de vie</td><td>\(\sim 1000\) cycles</td><td>\(\sim 3000\) cycles</td></tr>
-            <tr><td>Application</td><td>Smartphones, vehicules</td><td>Stockage stationnaire</td></tr>
-          </table>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Lire un sujet de chimie en physique
-          </div>
-          <p>Dans un sujet de physique-chimie, la partie chimie est souvent plus descriptive. La cle est de :</p>
-          <ol class="corr-steps">
-            <li>Identifier les demi-equations d'oxydo-reduction a chaque electrode.</li>
-            <li>Ecrire l'equation bilan (somme des demi-equations).</li>
-            <li>Calculer la f.e.m. par difference des potentiels standard.</li>
-            <li>Ne pas paniquer si vous ne connaissez pas le materiau : les donnees necessaires sont dans l'enonce.</li>
-          </ol>
-        </div>
-      </div>
-
-      <!-- Cristallographie du germanium -->
-      <div class="corr-question corr-question--medium" id="corr-cristallo">
-        <span class="corr-question__num">Questions 34-36 -- Cristallographie du germanium</span>
-        <p class="corr-question__statement"><strong>Q34.</strong> Dessiner la maille conventionnelle du cristal de germanium (structure diamant). En deduire la coordinence.<br><br><strong>Q35.</strong> Determiner la compacite de cette structure.<br><br><strong>Q36.</strong> Evaluer la masse volumique du germanium.</p>
-
-        <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            Rappel -- Structure diamant
-          </div>
-          <p>La structure diamant est une structure CFC avec des atomes supplementaires dans la moitie des sites tetraedriques. C'est la structure du carbone diamant, du silicium et du germanium.</p>
-          <ul>
-            <li>C'est un reseau CFC + un motif de 2 atomes (un au noeud, un decale de \((a/4, a/4, a/4)\))</li>
-            <li>Chaque atome est entoure de 4 voisins en disposition <strong>tetraedrique</strong> (coordinence 4)</li>
-            <li>La liaison est <strong>covalente</strong> (hybridation sp\(^3\))</li>
-          </ul>
-        </div>
-
-        <div class="corr-box corr-box--why">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            Pourquoi la structure diamant est-elle "CFC + remplissage" ?
-          </div>
-          <p>Imaginez une maille CFC classique (comme le cuivre). Maintenant, ajoutez 4 atomes a l'interieur de la maille, chacun au centre d'un petit tetraedre. Ces 4 atomes supplementaires occupent la moitie des sites tetraedriques de la maille CFC. Au total, on a :</p>
-          <ul>
-            <li>Atomes CFC : \(8 \times 1/8 + 6 \times 1/2 = 4\)</li>
-            <li>Atomes tetraedriques : 4</li>
-            <li><strong>Total : 8 atomes par maille</strong></li>
-          </ul>
-        </div>
-
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Resultat -- Cristallographie du germanium
-          </div>
-          <div class="math-display">$$\boxed{Z = 8 \;\text{atomes par maille}}$$</div>
-          <p><strong>Condition de tangence :</strong> les atomes se touchent le long de la direction \([111]\) reliant un sommet du cube a un site tetraedrique. La distance entre ces deux atomes est \(a\sqrt{3}/4 = 2r\), d'ou :</p>
-          <div class="math-display">$$\boxed{r = \frac{a\sqrt{3}}{8}}$$</div>
-          <p><strong>Compacite :</strong></p>
-          <div class="math-display">$$C = \frac{8 \times \frac{4}{3}\pi r^3}{a^3} = \frac{8 \times \frac{4}{3}\pi \left(\frac{a\sqrt{3}}{8}\right)^3}{a^3} = \frac{\pi\sqrt{3}}{16} \approx 0{,}34$$</div>
-          <div class="math-display">$$\boxed{C \approx 34\%}$$</div>
-          <p>C'est une compacite tres faible (la moitie de celle de CFC). Les liaisons covalentes dirigees empechent un empilement compact. C'est pour ca que le diamant est tres dur mais pas tres dense.</p>
-
-          <p><strong>Masse volumique :</strong></p>
-          <div class="math-display">$$\boxed{\rho = \frac{8M}{N_A a^3}}$$</div>
-          <p>Avec \(M_{\text{Ge}} = 72{,}6\) g/mol et \(a = 566\) pm : \(\rho \approx 5{,}3\) g/cm\(^3\).</p>
-        </div>
-
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Piege -- Ne pas confondre structure diamant et CFC
-          </div>
-          <p>La structure diamant a 8 atomes par maille (pas 4 comme CFC). La condition de tangence est differente : ce n'est PAS \(4r = a\sqrt{2}\) (ca c'est CFC) mais \(8r = a\sqrt{3}\). Et la compacite est 0,34 (pas 0,74). C'est une erreur tres frequente : les candidats appliquent les formules CFC a la structure diamant.</p>
-        </div>
-
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title">
-            <svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Methode -- Structures a connaitre pour le concours
-          </div>
-          <table class="corr-table">
-            <tr><th>Structure</th><th>Z</th><th>Tangence</th><th>Compacite</th><th>Exemples</th></tr>
-            <tr><td>CC</td><td>2</td><td>\(4r = a\sqrt{3}\)</td><td>0,68</td><td>Fe, Na, K</td></tr>
-            <tr><td>CFC</td><td>4</td><td>\(4r = a\sqrt{2}\)</td><td>0,74</td><td>Cu, Al, Au</td></tr>
-            <tr><td>HC</td><td>2</td><td>\(2r = a\)</td><td>0,74</td><td>Zn, Mg, Ti</td></tr>
-            <tr><td>Diamant</td><td>8</td><td>\(8r = a\sqrt{3}\)</td><td>0,34</td><td>C, Si, Ge</td></tr>
-            <tr><td>NaCl</td><td>4+4</td><td>\(2(r_+ + r_-) = a\)</td><td>variable</td><td>NaCl, MgO</td></tr>
-          </table>
-          <p>Avec ce tableau en tete, on couvre la quasi-totalite des questions de cristallographie au concours.</p>
-        </div>
-      </div>
-
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{M_J \approx 1{,}9 \times 10^{27}\;\text{kg}} $$
+      <p>On verifie la coherence : c'est environ 318 fois la masse de la Terre.</p>
     </div>
 
+    <p><strong>Q2 -- Masse volumique moyenne.</strong></p>
+    <p>On modelise Jupiter comme une sphere de rayon \(R_J \approx 7{,}15 \times 10^7\;\text{m}\). Le volume est :</p>
+    $$ V_J = \frac{4}{3}\pi R_J^3 $$
+    <p>La masse volumique moyenne vaut :</p>
+    $$ \rho_J = \frac{M_J}{V_J} = \frac{3\,M_J}{4\pi\,R_J^3} $$
 
-    <!-- Navigation -->
-    <nav class="course__nav">
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{\rho_J = \frac{3\,M_J}{4\pi\,R_J^3} \approx 1{,}24 \times 10^3\;\text{kg.m}^{-3} \approx 1{,}24\;\text{g.cm}^{-3}} $$
+      <p>Cette valeur est tres inferieure a celle de la Terre (\(\approx 5{,}5\;\text{g.cm}^{-3}\)), ce qui confirme que Jupiter est une geante gazeuse composee principalement d'hydrogene et d'helium.</p>
+    </div>
+  </div>
+
+  <!-- Q3-Q4 : Angle et periode -->
+  <div class="corr-question corr-question--easy" id="corr-q3">
+    <span class="corr-question__num">Questions 3 &amp; 4 -- Angle sous-tendu et periode de Jupiter</span>
+    <p class="corr-question__statement"><strong>Q3.</strong> Calculer l'angle maximal \(\alpha_{\max}\) sous lequel Jupiter est vue depuis la Terre.</p>
+    <p class="corr-question__statement"><strong>Q4.</strong> Evaluer la periode de revolution siderale \(T_J\) de Jupiter et la duree entre deux oppositions.</p>
+
+    <p><strong>Q3 -- Angle maximal.</strong></p>
+    <p>L'angle sous lequel on voit Jupiter est maximal lorsque la distance Terre-Jupiter est minimale, c'est-a-dire a l'opposition. A ce moment, la distance vaut \(d_{\min} = a_J - a_T\) ou \(a_J\) et \(a_T\) sont les demi-grands axes des orbites de Jupiter et de la Terre.</p>
+    <p>Le diametre apparent est alors :</p>
+    $$ \alpha_{\max} = \frac{2\,R_J}{d_{\min}} = \frac{2\,R_J}{a_J - a_T} $$
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Methode</div>
+      <p>Avec \(R_J \approx 7{,}15 \times 10^7\;\text{m}\), \(a_J \approx 7{,}78 \times 10^{11}\;\text{m}\) (5,2 UA), \(a_T \approx 1{,}50 \times 10^{11}\;\text{m}\) (1 UA) :</p>
+    </div>
+
+    $$ \alpha_{\max} = \frac{2 \times 7{,}15 \times 10^7}{6{,}28 \times 10^{11}} \approx 2{,}28 \times 10^{-4}\;\text{rad} $$
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{\alpha_{\max} \approx 2{,}3 \times 10^{-4}\;\text{rad} \approx 47''} $$
+      <p>C'est un angle tres faible : Jupiter n'est qu'un point lumineux a l'oeil nu.</p>
+    </div>
+
+    <p><strong>Q4 -- Periode siderale et duree entre deux oppositions.</strong></p>
+    <p>On utilise la troisieme loi de Kepler pour le Soleil. En prenant la Terre comme reference (\(T_T = 1\;\text{an}\), \(a_T = 1\;\text{UA}\)) :</p>
+    $$ \frac{T_J^2}{a_J^3} = \frac{T_T^2}{a_T^3} \quad \Longrightarrow \quad T_J = T_T \left(\frac{a_J}{a_T}\right)^{3/2} = 1 \times (5{,}2)^{3/2} $$
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{T_J \approx 11{,}9\;\text{ans}} $$
+    </div>
+
+    <p>Pour la duree entre deux oppositions, on utilise la relation des periodes synodiques. La vitesse angulaire de la Terre est \(\omega_T = 2\pi/T_T\) et celle de Jupiter \(\omega_J = 2\pi/T_J\). La periode synodique \(T_{\text{syn}}\) verifie :</p>
+    $$ \frac{1}{T_{\text{syn}}} = \frac{1}{T_T} - \frac{1}{T_J} $$
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{T_{\text{syn}} = \frac{T_T \cdot T_J}{T_J - T_T} \approx \frac{1 \times 11{,}9}{11{,}9 - 1} \approx 1{,}09\;\text{an} \approx 399\;\text{jours}} $$
+    </div>
+  </div>
+
+  <!-- Q5-Q7 : Lunette astronomique -->
+  <div class="corr-question corr-question--easy" id="corr-q5">
+    <span class="corr-question__num">Questions 5 a 7 -- Lunette astronomique</span>
+    <p class="corr-question__statement"><strong>Q5.</strong> Conditions pour que l'oeil n'accommode pas. Position de l'objectif et de l'oculaire. Foyers du systeme ?</p>
+    <p class="corr-question__statement"><strong>Q6.</strong> Completer la marche du rayon incident. Indiquer l'angle \(\alpha'\).</p>
+    <p class="corr-question__statement"><strong>Q7.</strong> Determiner le grossissement \(G = \alpha'/\alpha = f'_1/f'_2\). Jupiter sera-t-elle discernee ?</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Rappel de cours</div>
+      <p>La lunette astronomique afocale est constituee de deux lentilles convergentes : l'objectif \(L_1\) (grande focale \(f'_1\)) et l'oculaire \(L_2\) (courte focale \(f'_2\)). Le systeme est afocal quand le foyer image de \(L_1\) coincide avec le foyer objet de \(L_2\) : \(F'_1 = F_2\).</p>
+    </div>
+
+    <p><strong>Q5.</strong> Pour que l'oeil n'accommode pas, l'image finale doit etre rejetee a l'infini. L'objet etant a l'infini, il faut que le systeme soit <strong>afocal</strong> : le foyer image de l'objectif \(F'_1\) coincide avec le foyer objet de l'oculaire \(F_2\). La distance entre les deux lentilles vaut alors \(d = f'_1 + f'_2\).</p>
+
+    <p><strong>Q6.</strong> Un rayon parallele a l'axe entre dans l'objectif et converge au foyer \(F'_1 = F_2\). Ce point etant au foyer objet de l'oculaire, le rayon emerge parallele a l'axe mais a une hauteur differente. Un rayon incline d'un angle \(\alpha\) par rapport a l'axe forme son image intermediaire dans le plan focal de l'objectif, a une hauteur \(h = f'_1 \tan\alpha \approx f'_1\,\alpha\). L'oculaire transforme cette image en un faisceau parallele faisant un angle \(\alpha'\) avec l'axe, tel que \(h = f'_2\,\alpha'\) (en valeur absolue).</p>
+
+    <p><strong>Q7.</strong> Le grossissement angulaire est :</p>
+    $$ G = \frac{\alpha'}{\alpha} = -\frac{f'_1}{f'_2} $$
+    <p>Le signe negatif traduit le fait que l'image est renversee.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{G = -\frac{f'_1}{f'_2}} $$
+    </div>
+
+    <p>Le pouvoir separateur de l'oeil est d'environ \(\varepsilon \approx 3 \times 10^{-4}\;\text{rad}\). L'angle apparent de Jupiter vaut \(\alpha_{\max} \approx 2{,}3 \times 10^{-4}\;\text{rad}\). Pour discerner le disque de Jupiter, il faut \(|G|\,\alpha_{\max} > \varepsilon\). Si par exemple \(|G| = 30\), on obtient \(|G|\,\alpha_{\max} \approx 7 \times 10^{-3}\;\text{rad} \gg \varepsilon\) : Jupiter sera bien discernee comme un disque.</p>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Piege</div>
+      <p>Ne pas oublier le signe negatif du grossissement qui traduit l'inversion de l'image. Le jury attend aussi que l'on compare \(|G|\,\alpha_{\max}\) au pouvoir separateur de l'oeil pour conclure.</p>
+    </div>
+  </div>
+
+  <!-- ─── I.2 La trajectoire de la sonde Juno ─── -->
+  <h3 style="font-family:var(--font-body);font-size:1.15rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-lg)">I.2 -- La trajectoire de la sonde Juno</h3>
+
+  <!-- Q8-Q9 : Vitesse de liberation et hypotheses -->
+  <div class="corr-question corr-question--easy" id="corr-q8">
+    <span class="corr-question__num">Questions 8 &amp; 9 -- Vitesse de liberation et hypotheses</span>
+    <p class="corr-question__statement"><strong>Q8.</strong> Determiner la vitesse de liberation \(v_\ell\) de la Terre. Calculer numeriquement.</p>
+    <p class="corr-question__statement"><strong>Q9.</strong> Dans quelle circonstance peut-on supposer le centre de Jupiter immobile ?</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Rappel de cours</div>
+      <p>La vitesse de liberation est la vitesse minimale qu'il faut communiquer a un objet a la surface d'un astre pour qu'il s'en echappe definitivement (energie mecanique nulle a l'infini).</p>
+    </div>
+
+    <p><strong>Q8.</strong> A la surface de la Terre (rayon \(R_T\)), l'energie mecanique d'un objet de masse \(m\) lance a la vitesse \(v\) est :</p>
+    $$ \mathcal{E}_m = \frac{1}{2}m\,v^2 - \frac{G\,M_T\,m}{R_T} $$
+    <p>Pour que l'objet s'echappe a l'infini avec une vitesse nulle (cas limite), on pose \(\mathcal{E}_m = 0\) :</p>
+    $$ \frac{1}{2}m\,v_\ell^2 = \frac{G\,M_T\,m}{R_T} $$
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{v_\ell = \sqrt{\frac{2\,G\,M_T}{R_T}} \approx \sqrt{\frac{2 \times 6{,}67 \times 10^{-11} \times 5{,}97 \times 10^{24}}{6{,}37 \times 10^6}} \approx 11{,}2\;\text{km.s}^{-1}} $$
+    </div>
+
+    <p><strong>Q9.</strong> On peut supposer le centre de Jupiter immobile dans le referentiel d'etude si la masse de la sonde Juno est tres inferieure a la masse de Jupiter : \(m_{\text{Juno}} \ll M_J\). C'est l'hypothese du probleme a deux corps ou l'astre central est considere comme fixe (probleme du centre fixe attractif). On se place dans le <strong>referentiel jupiterocentrique</strong>, suppose galileen.</p>
+  </div>
+
+  <!-- Q10-Q12 : Moment cinetique et constante des aires -->
+  <div class="corr-question corr-question--medium" id="corr-q10">
+    <span class="corr-question__num">Questions 10 a 12 -- Conservation du moment cinetique et constante des aires</span>
+    <p class="corr-question__statement"><strong>Q10.</strong> Montrer que le moment cinetique est constant et que le mouvement est plan.</p>
+    <p class="corr-question__statement"><strong>Q11.</strong> Exprimer \(\vec{r}\) et \(\vec{v}\) dans la base polaire.</p>
+    <p class="corr-question__statement"><strong>Q12.</strong> Montrer que \(r^2\dot{\theta}\) est une constante du mouvement.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Rappel de cours</div>
+      <p>Pour une force centrale \(\vec{F} = F(r)\,\vec{u}_r\), le moment de la force par rapport au centre est nul : \(\vec{r} \wedge \vec{F} = \vec{0}\). Par consequent, le moment cinetique \(\vec{L} = \vec{r} \wedge m\vec{v}\) est une constante du mouvement.</p>
+    </div>
+
+    <p><strong>Q10.</strong> La force gravitationnelle exercee par Jupiter sur la sonde est :</p>
+    $$ \vec{F} = -\frac{G\,M_J\,m}{r^2}\,\vec{u}_r $$
+    <p>C'est une <strong>force centrale</strong> (dirigee selon \(\vec{u}_r\)). Le moment de cette force par rapport au centre Jupiter est :</p>
+    $$ \vec{\mathcal{M}}_O(\vec{F}) = \vec{r} \wedge \vec{F} = r\,\vec{u}_r \wedge F(r)\,\vec{u}_r = \vec{0} $$
+    <p>Le theoreme du moment cinetique donne alors :</p>
+    $$ \frac{\mathrm{d}\vec{L}}{\mathrm{d}t} = \vec{0} \quad \Longrightarrow \quad \vec{L} = \text{cte} $$
+    <p>Puisque \(\vec{L} = m\,\vec{r} \wedge \vec{v}\) est constant, le vecteur position \(\vec{r}\) est a tout instant perpendiculaire a \(\vec{L}\) : le mouvement a lieu dans un plan contenant le centre Jupiter et perpendiculaire a \(\vec{L}\). Le mouvement est donc <strong>plan</strong>.</p>
+
+    <p><strong>Q11.</strong> Dans la base polaire \((\vec{u}_r, \vec{u}_\theta)\) du plan du mouvement :</p>
+    $$ \vec{r} = r\,\vec{u}_r $$
+    $$ \vec{v} = \dot{r}\,\vec{u}_r + r\dot{\theta}\,\vec{u}_\theta $$
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{\vec{r} = r\,\vec{u}_r \qquad;\qquad \vec{v} = \dot{r}\,\vec{u}_r + r\dot{\theta}\,\vec{u}_\theta} $$
+    </div>
+
+    <p><strong>Q12.</strong> Le moment cinetique s'ecrit :</p>
+    $$ \vec{L} = m\,\vec{r} \wedge \vec{v} = m\,r\,\vec{u}_r \wedge (\dot{r}\,\vec{u}_r + r\dot{\theta}\,\vec{u}_\theta) = m\,r^2\dot{\theta}\,\vec{u}_z $$
+    <p>Puisque \(\vec{L}\) est constant, sa norme l'est aussi :</p>
+    $$ L = m\,r^2\dot{\theta} = \text{cte} $$
+    <p>On pose la <strong>constante des aires</strong> \(C = r^2\dot{\theta}\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{C = r^2\dot{\theta} = \text{cte (loi des aires)}} $$
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Pourquoi ?</div>
+      <p>La loi des aires est une consequence directe de la conservation du moment cinetique pour une force centrale. Elle traduit le fait que le rayon vecteur balaie des aires egales en des temps egaux (deuxieme loi de Kepler).</p>
+    </div>
+  </div>
+
+  <!-- Q13-Q15 : Energie mecanique et orbite -->
+  <div class="corr-question corr-question--medium" id="corr-q13">
+    <span class="corr-question__num">Questions 13 a 15 -- Energie mecanique, energie potentielle effective et orbite elliptique</span>
+    <p class="corr-question__statement"><strong>Q13.</strong> Determiner l'energie mecanique sous la forme \(\mathcal{E}_m = \frac{1}{2}m\dot{r}^2 + U_{\text{eff}}(r)\). Justifier la conservation.</p>
+    <p class="corr-question__statement"><strong>Q14.</strong> Tracer \(U_{\text{eff}}(r)\) et discuter les trajectoires possibles (etats lies, diffusion).</p>
+    <p class="corr-question__statement"><strong>Q15.</strong> Determiner le demi-grand axe \(a\) de l'orbite elliptique. Relations entre \(r_{\min}\), \(r_{\max}\) et \(a\).</p>
+
+    <p><strong>Q13.</strong> L'energie cinetique s'ecrit :</p>
+    $$ E_c = \frac{1}{2}m\,v^2 = \frac{1}{2}m(\dot{r}^2 + r^2\dot{\theta}^2) $$
+    <p>En utilisant \(C = r^2\dot{\theta}\), on a \(r^2\dot{\theta}^2 = C^2/r^2\). L'energie potentielle gravitationnelle est \(E_p = -G\,M_J\,m / r\). Ainsi :</p>
+    $$ \mathcal{E}_m = \frac{1}{2}m\,\dot{r}^2 + \frac{m\,C^2}{2r^2} - \frac{G\,M_J\,m}{r} $$
+    <p>On definit l'<strong>energie potentielle effective</strong> :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{U_{\text{eff}}(r) = \frac{m\,C^2}{2r^2} - \frac{G\,M_J\,m}{r}} $$
+      $$ \boxed{\mathcal{E}_m = \frac{1}{2}m\,\dot{r}^2 + U_{\text{eff}}(r) = \text{cte}} $$
+    </div>
+
+    <p>La conservation de \(\mathcal{E}_m\) se justifie par le fait que la force gravitationnelle est conservative (derive d'un potentiel) et qu'il n'y a pas de force non-conservative.</p>
+
+    <p><strong>Q14.</strong> Analyse de \(U_{\text{eff}}(r)\) :</p>
+    <ul>
+      <li>Quand \(r \to 0^+\) : le terme centrifuge \(\propto 1/r^2\) domine, donc \(U_{\text{eff}} \to +\infty\) (barriere centrifuge).</li>
+      <li>Quand \(r \to +\infty\) : \(U_{\text{eff}} \to 0^-\).</li>
+      <li>Il existe un minimum en \(r_0\) obtenu par \(\mathrm{d}U_{\text{eff}}/\mathrm{d}r = 0\) :</li>
+    </ul>
+    $$ r_0 = \frac{C^2}{G\,M_J} \qquad;\qquad U_{\text{eff}}(r_0) = -\frac{m\,G^2\,M_J^2}{2\,C^2} $$
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Methode</div>
+      <p>Discussion selon la valeur de \(\mathcal{E}_m\) :</p>
+      <ul>
+        <li>\(\mathcal{E}_m = U_{\text{eff}}(r_0)\) : orbite circulaire de rayon \(r_0\).</li>
+        <li>\(U_{\text{eff}}(r_0) < \mathcal{E}_m < 0\) : <strong>etat lie</strong>, trajectoire elliptique, \(r\) oscille entre \(r_{\min}\) et \(r_{\max}\).</li>
+        <li>\(\mathcal{E}_m = 0\) : trajectoire parabolique (cas limite).</li>
+        <li>\(\mathcal{E}_m > 0\) : <strong>etat de diffusion</strong>, trajectoire hyperbolique, la sonde s'echappe a l'infini.</li>
+      </ul>
+    </div>
+
+    <p><strong>Q15.</strong> Pour une orbite elliptique (\(\mathcal{E}_m < 0\)), la relation entre l'energie et le demi-grand axe est :</p>
+    $$ \mathcal{E}_m = -\frac{G\,M_J\,m}{2a} $$
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{a = -\frac{G\,M_J\,m}{2\,\mathcal{E}_m}} $$
+    </div>
+
+    <p>Les distances extremes (perijove \(r_{\min}\) et apojove \(r_{\max}\)) sont les racines de \(U_{\text{eff}}(r) = \mathcal{E}_m\) :</p>
+    $$ r_{\min} + r_{\max} = 2a \qquad;\qquad r_{\min} \cdot r_{\max} = \frac{C^2}{G\,M_J} \cdot a $$
+    <p>On a aussi \(r_{\min} = a(1-e)\) et \(r_{\max} = a(1+e)\) ou \(e\) est l'excentricite de l'ellipse.</p>
+  </div>
+
+  <!-- ─── I.3 La structure interne de Jupiter ─── -->
+  <h3 style="font-family:var(--font-body);font-size:1.15rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-lg)">I.3 -- La structure interne de Jupiter</h3>
+
+  <!-- Q16-Q18 : Gravitation / analogie electrostatique -->
+  <div class="corr-question corr-question--easy" id="corr-q16">
+    <span class="corr-question__num">Questions 16 a 18 -- Champ gravitationnel, analogie electrostatique, equation de Poisson</span>
+    <p class="corr-question__statement"><strong>Q16.</strong> Comment s'exprime la force de gravitation a partir du champ \(\vec{G}(P)\) ?</p>
+    <p class="corr-question__statement"><strong>Q17.</strong> Dresser une analogie entre les equations de la gravitation et de l'electrostatique.</p>
+    <p class="corr-question__statement"><strong>Q18.</strong> Ecrire l'equation de Poisson pour le potentiel gravitationnel \(\Phi\).</p>
+
+    <p><strong>Q16.</strong> La force gravitationnelle exercee sur une masse \(m\) placee en un point \(P\) s'ecrit :</p>
+    $$ \vec{F} = m\,\vec{G}(P) $$
+    <p>ou \(\vec{G}(P)\) est le champ de gravitation cree par la distribution de masse au point \(P\). Pour une masse ponctuelle \(M\) situee en \(O\) :</p>
+    $$ \vec{G}(P) = -\frac{GM}{r^2}\,\vec{u}_r $$
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{\vec{F} = m\,\vec{G}(P) \qquad\text{avec}\qquad \vec{G}(P) = -\frac{GM}{r^2}\,\vec{u}_r} $$
+    </div>
+
+    <p><strong>Q17.</strong> Tableau d'analogie gravitation / electrostatique :</p>
+    <table class="corr-table">
+      <tr><th>Grandeur</th><th>Gravitation</th><th>Electrostatique</th></tr>
+      <tr><td>Source</td><td>Masse \(m\)</td><td>Charge \(q\)</td></tr>
+      <tr><td>Densite</td><td>\(\rho_m\) (masse volumique)</td><td>\(\rho_e\) (charge volumique)</td></tr>
+      <tr><td>Champ</td><td>\(\vec{G}\)</td><td>\(\vec{E}\)</td></tr>
+      <tr><td>Potentiel</td><td>\(\Phi\) avec \(\vec{G} = -\vec{\nabla}\Phi\)</td><td>\(V\) avec \(\vec{E} = -\vec{\nabla}V\)</td></tr>
+      <tr><td>Constante</td><td>\(G\)</td><td>\(1/(4\pi\varepsilon_0)\)</td></tr>
+      <tr><td>Theoreme de Gauss</td><td>\(\oiint \vec{G}\cdot\mathrm{d}\vec{S} = -4\pi G\,M_{\text{int}}\)</td><td>\(\oiint \vec{E}\cdot\mathrm{d}\vec{S} = Q_{\text{int}}/\varepsilon_0\)</td></tr>
+    </table>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Pourquoi ?</div>
+      <p>La correspondance formelle est \(q \leftrightarrow m\), \(1/(4\pi\varepsilon_0) \leftrightarrow -G\). Le signe negatif traduit le caractere toujours attractif de la gravitation (pas d'anti-masse).</p>
+    </div>
+
+    <p><strong>Q18.</strong> Par analogie avec l'equation de Poisson en electrostatique (\(\Delta V = -\rho_e / \varepsilon_0\)), on obtient :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{\Delta\Phi = 4\pi\,G\,\rho_m} $$
+    </div>
+  </div>
+
+  <!-- Q19-Q22 : Gauss gravitationnel -->
+  <div class="corr-question corr-question--medium" id="corr-q19">
+    <span class="corr-question__num">Questions 19 a 22 -- Theoreme de Gauss gravitationnel et champ a l'exterieur</span>
+    <p class="corr-question__statement"><strong>Q19.</strong> Enoncer et appliquer le theoreme de Gauss gravitationnel.</p>
+    <p class="corr-question__statement"><strong>Q20.</strong> Justifier que \(\vec{G}(M) = -G(r)\,\vec{u}_r\) pour une distribution a symetrie spherique.</p>
+    <p class="corr-question__statement"><strong>Q21.</strong> Exprimer \(M(r) = \int_0^r 4\pi r'^2 \rho(r')\,\mathrm{d}r'\).</p>
+    <p class="corr-question__statement"><strong>Q22.</strong> Determiner \(G(r)\) pour \(r > R\). Tracer. Donner \(\Phi(r)\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Rappel de cours</div>
+      <p><strong>Theoreme de Gauss gravitationnel</strong> : le flux du champ gravitationnel a travers une surface fermee est proportionnel a la masse interieure :</p>
+      $$ \oiint_{\Sigma} \vec{G} \cdot \mathrm{d}\vec{S} = -4\pi\,G\,M_{\text{int}} $$
+    </div>
+
+    <p><strong>Q19.</strong> Enonce : voir le rappel ci-dessus. On applique ce theoreme en choisissant comme surface de Gauss une sphere \(\Sigma\) de rayon \(r\) centree sur Jupiter. Par symetrie spherique, \(\vec{G}\) est radial et uniforme sur \(\Sigma\), donc :</p>
+    $$ \oiint_{\Sigma} \vec{G} \cdot \mathrm{d}\vec{S} = -G(r) \times 4\pi r^2 = -4\pi\,G\,M(r) $$
+
+    <p><strong>Q20.</strong> Pour une distribution a symetrie spherique, les invariances par rotation impliquent que \(\vec{G}\) ne depend que de \(r\) et est dirige selon \(\vec{u}_r\). La symetrie par rapport a tout plan contenant le centre impose que la composante orthoradiale est nulle. Donc :</p>
+    $$ \vec{G}(M) = -G(r)\,\vec{u}_r $$
+    <p>ou \(G(r) > 0\) represente l'intensite du champ (le signe negatif indique qu'il est dirige vers le centre).</p>
+
+    <p><strong>Q21.</strong> La masse contenue dans une sphere de rayon \(r\) s'obtient en integrant la densite sur des coquilles spheriques :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{M(r) = \int_0^r 4\pi\,r'^2\,\rho(r')\,\mathrm{d}r'} $$
+    </div>
+
+    <p><strong>Q22.</strong> Pour \(r > R_J\) (a l'exterieur de Jupiter), toute la masse est interieure : \(M(r) = M_J\). Le theoreme de Gauss donne :</p>
+    $$ G(r) = \frac{G\,M_J}{r^2} $$
+    <p>Le champ est le meme que celui cree par une masse ponctuelle \(M_J\) placee au centre (theoreme de Newton).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{\vec{G}(r) = -\frac{G\,M_J}{r^2}\,\vec{u}_r \quad (r > R_J)} $$
+      <p>Le potentiel gravitationnel, tel que \(\vec{G} = -\vec{\nabla}\Phi\), s'obtient par integration :</p>
+      $$ \boxed{\Phi(r) = -\frac{G\,M_J}{r} \quad (r > R_J)} $$
+      <p>avec la convention \(\Phi(\infty) = 0\).</p>
+    </div>
+
+    <p>Le trace de \(G(r)\) montre une decroissance en \(1/r^2\) pour \(r > R_J\), et a l'interieur, le profil depend de \(\rho(r)\).</p>
+  </div>
+
+  <!-- Q23-Q24 : Aplatissement de Jupiter -->
+  <div class="corr-question corr-question--medium" id="corr-q23">
+    <span class="corr-question__num">Questions 23 &amp; 24 -- Rotation et aplatissement de Jupiter</span>
+    <p class="corr-question__statement"><strong>Q23.</strong> Exprimer l'acceleration du centre P en fonction de \(r\), \(\theta\) et \(\omega_{\text{sid}}\).</p>
+    <p class="corr-question__statement"><strong>Q24.</strong> Expliquer la forme d'ellipsoide de revolution de Jupiter (aplatissement aux poles).</p>
+
+    <p><strong>Q23.</strong> Un point P a la surface de Jupiter, situe a la colatitude \(\theta\), se trouve a une distance \(d = R_J\sin\theta\) de l'axe de rotation. Dans le referentiel tournant avec Jupiter (vitesse angulaire \(\omega_{\text{sid}}\)), il subit une acceleration d'entrainement centrifuge :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{\vec{a}_e = \omega_{\text{sid}}^2\,R_J\,\sin\theta\;\vec{u}_\perp} $$
+      <p>ou \(\vec{u}_\perp\) est le vecteur unitaire dirige depuis l'axe de rotation vers le point P (perpendiculairement a l'axe). En composantes : la composante radiale vaut \(\omega_{\text{sid}}^2\,R_J\,\sin^2\theta\) et la composante selon \(\vec{u}_\theta\) vaut \(\omega_{\text{sid}}^2\,R_J\,\sin\theta\cos\theta\).</p>
+    </div>
+
+    <p><strong>Q24.</strong> La force centrifuge (en referentiel tournant) s'ajoute a la gravite. A l'equateur (\(\theta = \pi/2\)), la force centrifuge est maximale et dirigee vers l'exterieur : elle s'oppose a la gravite. Aux poles (\(\theta = 0\)), elle est nulle. En consequence :</p>
+    <ul>
+      <li>A l'equateur, la pesanteur effective est reduite par la force centrifuge.</li>
+      <li>Aux poles, la pesanteur effective est maximale.</li>
+    </ul>
+    <p>L'equilibre hydrostatique impose que la surface d'equipotentiel (gravitation + centrifuge) definisse la forme de la planete. Comme la force centrifuge "gonfle" l'equateur, Jupiter prend la forme d'un <strong>ellipsoide de revolution aplati aux poles</strong>. Cet aplatissement est d'autant plus marque que la rotation est rapide (Jupiter tourne en environ 10 heures, ce qui est tres rapide pour une planete geante).</p>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Pourquoi ?</div>
+      <p>L'aplatissement de Jupiter est de l'ordre de 6,5 %, soit \((R_{\text{eq}} - R_{\text{pol}})/R_{\text{eq}} \approx 0{,}065\). C'est bien plus que celui de la Terre (0,3 %) en raison de la rotation tres rapide de Jupiter.</p>
+    </div>
+  </div>
+
+  <!-- Q25-Q26 : Moment d'inertie -->
+  <div class="corr-question corr-question--easy" id="corr-q25">
+    <span class="corr-question__num">Questions 25 &amp; 26 -- Moment d'inertie et structure interne</span>
+    <p class="corr-question__statement"><strong>Q25.</strong> Calculer la constante \(K = I_J/(M_J R_J^2)\) pour une boule pleine homogene.</p>
+    <p class="corr-question__statement"><strong>Q26.</strong> En quoi la connaissance de \(K\) est-elle interessante ?</p>
+
+    <p><strong>Q25.</strong> Le moment d'inertie d'une boule pleine homogene de masse \(M\) et de rayon \(R\) par rapport a un axe passant par le centre est :</p>
+    $$ I = \frac{2}{5}MR^2 $$
+    <p>Donc pour une boule homogene :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{K = \frac{I_J}{M_J\,R_J^2} = \frac{2}{5} = 0{,}4 \quad\text{(boule homogene)}} $$
+    </div>
+
+    <p><strong>Q26.</strong> La connaissance experimentale de \(K\) est tres interessante car elle renseigne sur la <strong>repartition radiale de la masse</strong> a l'interieur de la planete :</p>
+    <ul>
+      <li>Si \(K = 0{,}4\) : la masse est repartie de facon homogene.</li>
+      <li>Si \(K < 0{,}4\) : la masse est concentree au centre (noyau dense), ce qui est le cas de Jupiter ou \(K \approx 0{,}26\).</li>
+      <li>Si \(K > 0{,}4\) : la masse est concentree en peripherie (coquille creuse).</li>
+    </ul>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Pourquoi ?</div>
+      <p>Le fait que \(K_{\text{Jupiter}} \approx 0{,}26 < 0{,}4\) confirme la presence d'un noyau dense (metallique/rocheux) au centre de Jupiter, entoure d'enveloppes d'hydrogene de plus en plus legeres.</p>
+    </div>
+  </div>
+
+  <!-- Q27-Q28 : Atmosphere et agitation thermique -->
+  <div class="corr-question corr-question--medium" id="corr-q27">
+    <span class="corr-question__num">Questions 27 &amp; 28 -- Agitation thermique et composition de l'atmosphere</span>
+    <p class="corr-question__statement"><strong>Q27.</strong> Calculer la vitesse la plus probable d'agitation thermique \(v_c\).</p>
+    <p class="corr-question__statement"><strong>Q28.</strong> Expliquer pourquoi l'atmosphere de Jupiter peut etre riche en dihydrogene et helium.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Rappel de cours</div>
+      <p>Dans la theorie cinetique des gaz, la distribution de Maxwell-Boltzmann donne la vitesse la plus probable :</p>
+      $$ v_c = \sqrt{\frac{2\,k_B\,T}{m_{\text{mol}}}} $$
+      <p>ou \(m_{\text{mol}}\) est la masse d'une molecule et \(k_B\) la constante de Boltzmann.</p>
+    </div>
+
+    <p><strong>Q27.</strong> La vitesse la plus probable d'agitation thermique d'un gaz de masse molaire \(M_{\text{mol}}\) a la temperature \(T\) est :</p>
+    $$ v_c = \sqrt{\frac{2\,k_B\,T}{m}} = \sqrt{\frac{2\,R\,T}{M_{\text{mol}}}} $$
+    <p>ou \(R = N_A\,k_B\) est la constante des gaz parfaits. Pour le dihydrogene (\(M_{\text{mol}} = 2 \times 10^{-3}\;\text{kg.mol}^{-1}\)) a la temperature de la haute atmosphere de Jupiter (\(T \approx 165\;\text{K}\)) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{v_c = \sqrt{\frac{2 \times 8{,}314 \times 165}{2 \times 10^{-3}}} \approx 1{,}17 \times 10^3\;\text{m.s}^{-1} \approx 1{,}2\;\text{km.s}^{-1}} $$
+    </div>
+
+    <p><strong>Q28.</strong> Une planete retient un gaz dans son atmosphere si la vitesse d'agitation thermique est tres inferieure a la vitesse de liberation depuis sa surface. La vitesse de liberation de Jupiter est :</p>
+    $$ v_{\ell,J} = \sqrt{\frac{2\,G\,M_J}{R_J}} \approx 60\;\text{km.s}^{-1} $$
+
+    <p>Pour Jupiter, meme pour les molecules les plus legeres (H\(_2\)) : \(v_c \approx 1{,}2\;\text{km.s}^{-1} \ll v_{\ell,J} \approx 60\;\text{km.s}^{-1}\). La condition de retention est largement satisfaite.</p>
+
+    <p>En revanche, pour la Terre (\(v_{\ell,T} \approx 11{,}2\;\text{km.s}^{-1}\)), la vitesse d'agitation de H\(_2\) a la temperature terrestre est du meme ordre de grandeur, et les molecules les plus rapides de la queue de distribution de Maxwell-Boltzmann peuvent s'echapper : c'est pourquoi la Terre a perdu la quasi-totalite de son hydrogene et de son helium au cours de l'histoire geologique.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      <p>Jupiter peut retenir les gaz legers (H\(_2\), He) car sa vitesse de liberation est bien superieure a la vitesse d'agitation thermique de ces especes. C'est pourquoi son atmosphere est principalement composee de dihydrogene et d'helium.</p>
+    </div>
+  </div>
+
+</div><!-- fin partie I -->
+
+<div class="corr-separator">* * *</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     PARTIE II — ELECTRONIQUE EMBARQUEE DANS LA SONDE
+     ════════════════════════════════════════════════════════════ -->
+
+<div class="corr-exercice" id="partie2-corr">
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">II</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Electronique embarquee dans la sonde</h2>
+      <span class="corr-exercice__subtitle">Diffusion thermique, cristallographie du germanium</span>
+    </div>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <!-- ─── II.1 Traitement thermique ─── -->
+  <h3 style="font-family:var(--font-body);font-size:1.15rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-lg)">II.1 -- Traitement thermique de cartes electroniques</h3>
+
+  <!-- Q29-Q30 : Temperature et puissance thermique -->
+  <div class="corr-question corr-question--easy" id="corr-q29">
+    <span class="corr-question__num">Questions 29 &amp; 30 -- Profil de temperature en regime stationnaire et puissance thermique</span>
+    <p class="corr-question__statement"><strong>Q29.</strong> Determiner la temperature \(T(x)\) dans une plaque en regime stationnaire.</p>
+    <p class="corr-question__statement"><strong>Q30.</strong> Calculer la puissance thermique transferee a travers la plaque.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Rappel de cours</div>
+      <p><strong>Loi de Fourier</strong> : le flux de chaleur par conduction est proportionnel au gradient de temperature :</p>
+      $$ \vec{j}_Q = -\lambda\,\vec{\nabla}T $$
+      <p>En regime stationnaire et sans source interne, l'equation de la chaleur se reduit a \(\Delta T = 0\) (equation de Laplace).</p>
+    </div>
+
+    <p><strong>Q29.</strong> On considere une plaque d'epaisseur \(e\), de conductivite thermique \(\lambda\), dont les faces sont maintenues aux temperatures \(T_1\) (en \(x = 0\)) et \(T_2\) (en \(x = e\)). En regime stationnaire unidimensionnel, l'equation de Laplace donne :</p>
+    $$ \frac{\mathrm{d}^2 T}{\mathrm{d}x^2} = 0 $$
+    <p>La solution generale est \(T(x) = Ax + B\). Les conditions aux limites imposent \(B = T_1\) et \(A = (T_2 - T_1)/e\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{T(x) = T_1 + \frac{T_2 - T_1}{e}\,x} $$
+      <p>Le profil de temperature est <strong>lineaire</strong> dans la plaque en regime stationnaire.</p>
+    </div>
+
+    <p><strong>Q30.</strong> Le flux surfacique de chaleur est constant dans la plaque :</p>
+    $$ j_Q = -\lambda\,\frac{\mathrm{d}T}{\mathrm{d}x} = -\lambda\,\frac{T_2 - T_1}{e} = \frac{\lambda\,(T_1 - T_2)}{e} $$
+    <p>La puissance thermique transferee a travers une surface \(S\) est :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{P_{\text{th}} = j_Q \times S = \frac{\lambda\,S}{e}\,(T_1 - T_2)} $$
+    </div>
+  </div>
+
+  <!-- Q31-Q33 : Resistance thermique et multicouche -->
+  <div class="corr-question corr-question--medium" id="corr-q31">
+    <span class="corr-question__num">Questions 31 a 33 -- Resistance thermique et conductivite equivalente</span>
+    <p class="corr-question__statement"><strong>Q31.</strong> Definir la resistance thermique \(R_{th}\) par analogie avec l'electrocinetique.</p>
+    <p class="corr-question__statement"><strong>Q32.</strong> Determiner la conductivite thermique equivalente d'un empilement multicouche.</p>
+    <p class="corr-question__statement"><strong>Q33.</strong> Verifier sur les cas particuliers \(\lambda_1 = \lambda_2\) et \(e_1 \ll e_2\).</p>
+
+    <p><strong>Q31.</strong> Par analogie avec la loi d'Ohm \(U = R\,I\), on ecrit la difference de temperature comme "force motrice" et le flux thermique comme "courant" :</p>
+    $$ T_1 - T_2 = R_{\text{th}} \times P_{\text{th}} $$
+    <p>La resistance thermique d'une plaque d'epaisseur \(e\), de conductivite \(\lambda\) et de surface \(S\) est :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{R_{\text{th}} = \frac{e}{\lambda\,S}} $$
+    </div>
+
+    <table class="corr-table">
+      <tr><th>Electrocinetique</th><th>Thermique</th></tr>
+      <tr><td>Tension \(U\)</td><td>Ecart de temperature \(\Delta T\)</td></tr>
+      <tr><td>Courant \(I\)</td><td>Flux thermique \(P_{\text{th}}\)</td></tr>
+      <tr><td>Resistance \(R = \rho\,L/(S)\)</td><td>Resistance thermique \(R_{\text{th}} = e/(\lambda\,S)\)</td></tr>
+    </table>
+
+    <p><strong>Q32.</strong> Pour un empilement de deux couches en serie (epaisseurs \(e_1, e_2\), conductivites \(\lambda_1, \lambda_2\)), les resistances thermiques s'additionnent :</p>
+    $$ R_{\text{th,tot}} = R_{\text{th},1} + R_{\text{th},2} = \frac{e_1}{\lambda_1\,S} + \frac{e_2}{\lambda_2\,S} $$
+    <p>On definit la conductivite equivalente \(\lambda_{\text{eq}}\) par \(R_{\text{th,tot}} = (e_1 + e_2)/(\lambda_{\text{eq}}\,S)\), d'ou :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{\lambda_{\text{eq}} = \frac{e_1 + e_2}{\dfrac{e_1}{\lambda_1} + \dfrac{e_2}{\lambda_2}}} $$
+    </div>
+
+    <p><strong>Q33.</strong> Verifications :</p>
+    <ul>
+      <li><strong>Si \(\lambda_1 = \lambda_2 = \lambda\)</strong> : \(\lambda_{\text{eq}} = \frac{e_1 + e_2}{e_1/\lambda + e_2/\lambda} = \frac{e_1 + e_2}{(e_1+e_2)/\lambda} = \lambda\). Coherent : deux couches de meme materiau donnent le meme materiau.</li>
+      <li><strong>Si \(e_1 \ll e_2\)</strong> : \(\lambda_{\text{eq}} \approx \frac{e_2}{e_2/\lambda_2} = \lambda_2\). Coherent : la couche epaisse impose sa conductivite.</li>
+    </ul>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Piege</div>
+      <p>Les resistances thermiques s'additionnent en serie (comme en electrocinetique), mais attention : c'est une <strong>moyenne harmonique</strong> ponderee par les epaisseurs pour la conductivite equivalente, et non une moyenne arithmetique !</p>
+    </div>
+  </div>
+
+  <!-- ─── II.2 Structure cristalline du germanium ─── -->
+  <h3 style="font-family:var(--font-body);font-size:1.15rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-lg)">II.2 -- Structure cristalline du germanium</h3>
+
+  <!-- Q34-Q36 : Cristallographie -->
+  <div class="corr-question corr-question--medium" id="corr-q34">
+    <span class="corr-question__num">Questions 34 a 36 -- Maille diamant, compacite et masse volumique</span>
+    <p class="corr-question__statement"><strong>Q34.</strong> Dessiner la maille conventionnelle du cristal de germanium (structure diamant). En deduire la coordinence.</p>
+    <p class="corr-question__statement"><strong>Q35.</strong> Determiner la compacite de cette structure.</p>
+    <p class="corr-question__statement"><strong>Q36.</strong> Evaluer la masse volumique du germanium.</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Rappel de cours</div>
+      <p>La <strong>structure diamant</strong> est constituee de deux reseaux CFC imbriques, decales de \((a/4, a/4, a/4)\). Chaque atome est entoure de 4 voisins en geometrie tetraedrique. C'est la structure du carbone diamant, du silicium et du germanium.</p>
+    </div>
+
+    <p><strong>Q34.</strong> La maille conventionnelle de la structure diamant est une maille cubique de parametre \(a\), contenant :</p>
+    <ul>
+      <li>Les atomes d'un reseau CFC : 8 sommets (contribution \(8 \times 1/8 = 1\)) + 6 centres de faces (contribution \(6 \times 1/2 = 3\)) = 4 atomes.</li>
+      <li>4 atomes supplementaires situes dans les sites tetraedriques (centres de 4 des 8 sous-cubes de la maille, en alternance).</li>
+    </ul>
+    <p>Au total : <strong>8 atomes par maille</strong>.</p>
+    <p>Chaque atome est entoure de 4 plus proches voisins en geometrie tetraedrique.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{\text{Coordinence} = 4} $$
+    </div>
+
+    <p><strong>Q35.</strong> La condition de contact entre plus proches voisins se fait le long de la diagonale du sous-cube de cote \(a/2\). La distance entre deux voisins est \(d = \frac{a\sqrt{3}}{4}\), donc \(2r = d\), soit \(r = \frac{a\sqrt{3}}{8}\).</p>
+    <p>La compacite est le rapport du volume occupe par les atomes au volume de la maille :</p>
+    $$ C = \frac{8 \times \frac{4}{3}\pi r^3}{a^3} = \frac{8 \times \frac{4}{3}\pi \left(\frac{a\sqrt{3}}{8}\right)^3}{a^3} $$
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{C = \frac{\pi\sqrt{3}}{16} \approx 0{,}34} $$
+      <p>C'est une compacite faible (34 %), bien inferieure a celle du CFC (\(\approx 74\%\)), ce qui est coherent avec la coordinence de 4 (liaisons covalentes dirigees).</p>
+    </div>
+
+    <p><strong>Q36.</strong> La masse volumique se calcule a partir du nombre d'atomes par maille, de la masse molaire \(M_{\text{Ge}}\) et du parametre de maille \(a\) :</p>
+    $$ \rho = \frac{N \times M_{\text{Ge}}}{N_A \times a^3} $$
+    <p>Avec \(N = 8\) atomes par maille, \(M_{\text{Ge}} = 72{,}6\;\text{g.mol}^{-1}\) et \(a \approx 5{,}66 \times 10^{-10}\;\text{m}\) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{\rho = \frac{8 \times 72{,}6 \times 10^{-3}}{6{,}02 \times 10^{23} \times (5{,}66 \times 10^{-10})^3} \approx 5{,}32 \times 10^3\;\text{kg.m}^{-3} \approx 5{,}3\;\text{g.cm}^{-3}} $$
+      <p>Cette valeur est en excellent accord avec la valeur experimentale (5,323 g.cm\(^{-3}\)).</p>
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Methode</div>
+      <p>La formule \(\rho = N\,M/(N_A\,a^3)\) est a connaitre par coeur pour les questions de cristallographie. Elle permet soit de calculer \(\rho\) a partir de \(a\), soit de determiner \(a\) a partir de \(\rho\).</p>
+    </div>
+  </div>
+
+</div><!-- fin partie II -->
+
+<div class="corr-separator">* * *</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     PARTIE III — ACCUMULATEURS ELECTROCHIMIQUES
+     ════════════════════════════════════════════════════════════ -->
+
+<div class="corr-exercice" id="partie3-corr">
+  <div class="corr-exercice__header">
+    <span class="corr-exercice__number">III</span>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Accumulateurs electrochimiques</h2>
+      <span class="corr-exercice__subtitle">Li-ion vs Na-ion, electrochimie, reactivite avec l'eau, chimie SO<sub>2</sub>/SO<sub>3</sub></span>
+    </div>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <!-- Q37-Q38 : Li vs Na -->
+  <div class="corr-question corr-question--easy" id="corr-q37">
+    <span class="corr-question__num">Questions 37 &amp; 38 -- Interet du sodium et potentiel du lithium</span>
+    <p class="corr-question__statement"><strong>Q37.</strong> Quel interet y aurait-il a remplacer le lithium par le sodium ?</p>
+    <p class="corr-question__statement"><strong>Q38.</strong> Configuration electronique du lithium. Justifier la valeur basse de \(E^\circ_{\text{Li}^+/\text{Li}}\).</p>
+
+    <p><strong>Q37.</strong> Les principaux interets de remplacer le lithium par le sodium dans les accumulateurs sont :</p>
+    <ul>
+      <li><strong>Abondance</strong> : le sodium est le 6e element le plus abondant dans la croute terrestre, alors que le lithium est relativement rare et concentre geographiquement (Chili, Australie, Chine). Cela rend le sodium bien moins cher.</li>
+      <li><strong>Cout</strong> : les matieres premieres sont moins cheres, ce qui permet des accumulateurs plus economiques pour le stockage stationnaire d'energie.</li>
+      <li><strong>Impact environnemental</strong> : l'extraction du lithium (salars, mines) pose des problemes ecologiques importants.</li>
+    </ul>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Piege</div>
+      <p>Attention : le sodium a une masse molaire plus elevee que le lithium (23 vs 7 g/mol) et un potentiel standard moins negatif, ce qui donne des accumulateurs de densite d'energie plus faible. C'est le principal inconvenient a mentionner aussi.</p>
+    </div>
+
+    <p><strong>Q38.</strong> La configuration electronique du lithium (\(Z = 3\)) est :</p>
+    $$ \text{Li} : 1s^2\,2s^1 $$
+    <p>Le lithium possede un seul electron de valence (2s\(^1\)) facile a arracher. Le couple Li\(^+\)/Li a un potentiel standard tres negatif (\(E^\circ \approx -3{,}04\;\text{V}\)) pour plusieurs raisons :</p>
+    <ul>
+      <li>Li est un <strong>metal alcalin tres electroposif</strong> : il perd facilement son electron 2s.</li>
+      <li>L'ion Li\(^+\) est tres petit (rayon \(\approx 76\;\text{pm}\)), ce qui lui confere une <strong>enthalpie d'hydratation tres elevee</strong> (en valeur absolue). La forte stabilisation de Li\(^+\) en solution aqueuse favorise thermodynamiquement la forme oxydee.</li>
+      <li>L'<strong>enthalpie de sublimation</strong> et l'<strong>energie d'ionisation</strong> de Li sont relativement faibles pour un metal.</li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      <p>La valeur tres negative de \(E^\circ_{\text{Li}^+/\text{Li}}\) resulte principalement de la tres forte enthalpie d'hydratation de l'ion Li\(^+\) (petit et tres polarisant), qui stabilise fortement la forme ionique en solution.</p>
+    </div>
+  </div>
+
+  <!-- Q39-Q40 : Reactivite avec l'eau -->
+  <div class="corr-question corr-question--medium" id="corr-q39">
+    <span class="corr-question__num">Questions 39 &amp; 40 -- Reactivite du lithium et du sodium avec l'eau</span>
+    <p class="corr-question__statement"><strong>Q39.</strong> Ecrire les equations du lithium et du sodium avec l'eau. Calculer les constantes d'equilibre.</p>
+    <p class="corr-question__statement"><strong>Q40.</strong> Lequel de ces deux metaux est le plus reactif ? Comparaison thermodynamique et cinetique.</p>
+
+    <p><strong>Q39.</strong> Les reactions des metaux alcalins avec l'eau sont :</p>
+    $$ 2\,\text{Li}(s) + 2\,\text{H}_2\text{O}(\ell) \longrightarrow 2\,\text{Li}^+(aq) + 2\,\text{HO}^-(aq) + \text{H}_2(g) $$
+    $$ 2\,\text{Na}(s) + 2\,\text{H}_2\text{O}(\ell) \longrightarrow 2\,\text{Na}^+(aq) + 2\,\text{HO}^-(aq) + \text{H}_2(g) $$
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Methode</div>
+      <p>Pour calculer la constante d'equilibre, on identifie les deux couples redox en jeu :</p>
+      <ul>
+        <li>Couple 1 : M\(^+\)/M avec \(E^\circ_1\) (reduction du cation metallique)</li>
+        <li>Couple 2 : H\(_2\)O/H\(_2\) avec \(E^\circ_2 = 0\;\text{V}\) (a pH = 0), ou plutot \(E^\circ(\text{H}_2\text{O}/\text{H}_2) = -0{,}41\;\text{V}\) a pH 7</li>
+      </ul>
+      <p>La fem standard vaut \(\Delta E^\circ = E^\circ_{\text{oxydant}} - E^\circ_{\text{reducteur}} = E^\circ_2 - E^\circ_1\). La constante d'equilibre est \(\ln K = \frac{n\,F\,\Delta E^\circ}{RT}\).</p>
+    </div>
+
+    <p>En utilisant les couples H\(_2\)O/H\(_2\) (\(E^\circ = 0\;\text{V}\) par convention) et M\(^+\)/M :</p>
+    <ul>
+      <li>Pour Li : \(\Delta E^\circ = 0 - (-3{,}04) = 3{,}04\;\text{V}\). Avec \(n = 2\) electrons echanges :</li>
+    </ul>
+    $$ \log K_{\text{Li}} = \frac{n\,F\,\Delta E^\circ}{RT\,\ln 10} = \frac{2 \times 3{,}04}{0{,}06} \approx 101 $$
+
+    <ul>
+      <li>Pour Na : \(\Delta E^\circ = 0 - (-2{,}71) = 2{,}71\;\text{V}\) :</li>
+    </ul>
+    $$ \log K_{\text{Na}} = \frac{2 \times 2{,}71}{0{,}06} \approx 90 $$
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{K_{\text{Li}} \approx 10^{101} \qquad;\qquad K_{\text{Na}} \approx 10^{90}} $$
+      <p>Les deux reactions sont thermodynamiquement <strong>totales</strong> (constantes d'equilibre gigantesques).</p>
+    </div>
+
+    <p><strong>Q40.</strong></p>
+    <ul>
+      <li><strong>Thermodynamiquement</strong> : le lithium a un potentiel standard plus negatif (\(-3{,}04\;\text{V}\) vs \(-2{,}71\;\text{V}\)), donc sa reaction avec l'eau est plus favorable thermodynamiquement (\(K_{\text{Li}} > K_{\text{Na}}\)). Le lithium est un reducteur plus puissant.</li>
+      <li><strong>Cinetiquement</strong> : en pratique, le sodium reagit beaucoup plus violemment avec l'eau que le lithium (explosion possible, flamme jaune). Cela s'explique par des facteurs cinetiques : le sodium a un point de fusion plus bas (98 C vs 181 C pour Li), il fond rapidement au contact de l'eau exothermique, ce qui augmente la surface de contact et emballe la reaction. Le lithium, plus dur et avec un point de fusion plus eleve, reagit plus calmement.</li>
+    </ul>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Pourquoi ?</div>
+      <p>Ce cas illustre parfaitement la difference entre thermodynamique et cinetique : ce n'est pas parce qu'une reaction est plus favorable thermodynamiquement qu'elle est plus rapide. La cinetique depend de la barriere d'activation et des conditions physiques (etat de surface, fusion du metal, etc.).</p>
+    </div>
+  </div>
+
+  <!-- Q41 : Lewis SO2 et SO3 -->
+  <div class="corr-question corr-question--easy" id="corr-q41">
+    <span class="corr-question__num">Question 41 -- Schemas de Lewis</span>
+    <p class="corr-question__statement"><strong>Q41.</strong> Donner un schema de Lewis de SO\(_2\) et SO\(_3\).</p>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Rappel de cours</div>
+      <p>Pour construire un schema de Lewis : compter les electrons de valence, placer les liaisons et les doublets non liants en respectant la regle de l'octet pour les atomes de la 2e periode, et eventuellement l'hypervalence pour les atomes de la 3e periode (comme le soufre).</p>
+    </div>
+
+    <p><strong>SO\(_2\)</strong> : le soufre a 6 electrons de valence, chaque oxygene aussi. Total : \(6 + 2 \times 6 = 18\) electrons de valence (9 doublets).</p>
+    <p>Structure avec une double liaison S=O et une liaison simple S-O (+ charges formelles), ou mieux, structure avec deux doubles liaisons S=O et un doublet non liant sur S. Le soufre est hypervalent (10 electrons) :</p>
+    <p style="text-align:center;font-size:1.1rem">O=S=O avec un doublet non liant sur S et des doublets non liants sur chaque O</p>
+    <p>La molecule est <strong>coudee</strong> (geometrie VSEPR : AX\(_2\)E\(_1\), angle d'environ 119 degres).</p>
+
+    <p><strong>SO\(_3\)</strong> : total de \(6 + 3 \times 6 = 24\) electrons de valence (12 doublets).</p>
+    <p>Structure avec trois doubles liaisons S=O (soufre hypervalent a 12 electrons) :</p>
+    <p style="text-align:center;font-size:1.1rem">Geometrie trigonale plane (AX\(_3\)), angle de 120 degres</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      <p><strong>SO\(_2\)</strong> : molecule coudee (type AX\(_2\)E\(_1\)), soufre portant un doublet non liant, deux doubles liaisons S=O.</p>
+      <p><strong>SO\(_3\)</strong> : molecule plane trigonale (type AX\(_3\)), trois doubles liaisons S=O, pas de doublet non liant sur S.</p>
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Piege</div>
+      <p>Le soufre appartient a la 3e periode et peut etre hypervalent (plus de 8 electrons autour). Il ne faut pas forcer la regle de l'octet sur le soufre. Les structures avec charges formelles minimales sont preferees.</p>
+    </div>
+  </div>
+
+  <!-- Q42-Q43 : Thermodynamique de la reaction SO2/SO3 -->
+  <div class="corr-question corr-question--medium" id="corr-q42">
+    <span class="corr-question__num">Questions 42 &amp; 43 -- Enthalpie, entropie et influence de la temperature</span>
+    <p class="corr-question__statement"><strong>Q42.</strong> Calculer \(\Delta_r H^\circ\) et \(\Delta_r S^\circ\) pour \(2\text{SO}_2 + \text{O}_2 \rightleftharpoons 2\text{SO}_3\). Exprimer \(\Delta_r G^\circ(T)\) dans l'approximation d'Ellingham.</p>
+    <p class="corr-question__statement"><strong>Q43.</strong> L'augmentation de la temperature favorise-t-elle la production de SO\(_3\) ?</p>
+
+    <p><strong>Q42.</strong> La reaction etudiee est :</p>
+    $$ 2\,\text{SO}_2(g) + \text{O}_2(g) \rightleftharpoons 2\,\text{SO}_3(g) $$
+
+    <p>On calcule \(\Delta_r H^\circ\) et \(\Delta_r S^\circ\) a partir des enthalpies standard de formation et des entropies standard molaires (donnees dans l'enonce) :</p>
+    $$ \Delta_r H^\circ = 2\,\Delta_f H^\circ(\text{SO}_3) - 2\,\Delta_f H^\circ(\text{SO}_2) - \Delta_f H^\circ(\text{O}_2) $$
+    $$ \Delta_r S^\circ = 2\,S^\circ_m(\text{SO}_3) - 2\,S^\circ_m(\text{SO}_2) - S^\circ_m(\text{O}_2) $$
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Methode</div>
+      <p>Avec les donnees typiques :</p>
+      <ul>
+        <li>\(\Delta_f H^\circ(\text{SO}_2) = -296{,}8\;\text{kJ.mol}^{-1}\), \(\Delta_f H^\circ(\text{SO}_3) = -395{,}7\;\text{kJ.mol}^{-1}\)</li>
+        <li>\(S^\circ_m(\text{SO}_2) = 248{,}2\;\text{J.K}^{-1}.\text{mol}^{-1}\), \(S^\circ_m(\text{SO}_3) = 256{,}8\;\text{J.K}^{-1}.\text{mol}^{-1}\), \(S^\circ_m(\text{O}_2) = 205{,}1\;\text{J.K}^{-1}.\text{mol}^{-1}\)</li>
+      </ul>
+    </div>
+
+    $$ \Delta_r H^\circ = 2 \times (-395{,}7) - 2 \times (-296{,}8) - 0 = -197{,}8\;\text{kJ.mol}^{-1} $$
+    $$ \Delta_r S^\circ = 2 \times 256{,}8 - 2 \times 248{,}2 - 205{,}1 = -187{,}9\;\text{J.K}^{-1}.\text{mol}^{-1} $$
+
+    <p>Dans l'<strong>approximation d'Ellingham</strong> (on neglige la variation de \(\Delta_r H^\circ\) et \(\Delta_r S^\circ\) avec \(T\)) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{\Delta_r G^\circ(T) = \Delta_r H^\circ - T\,\Delta_r S^\circ \approx -197{,}8 + 0{,}188\,T \quad\text{(kJ.mol}^{-1}\text{)}} $$
+      <p>avec \(T\) en kelvins.</p>
+    </div>
+
+    <p><strong>Q43.</strong> La reaction est <strong>exothermique</strong> (\(\Delta_r H^\circ < 0\)). D'apres le principe de Le Chatelier (ou la loi de van't Hoff), une augmentation de temperature deplace l'equilibre dans le sens endothermique, c'est-a-dire dans le <strong>sens inverse</strong> (decomposition de SO\(_3\)).</p>
+    <p>Mathematiquement : \(\frac{\mathrm{d}\ln K^\circ}{\mathrm{d}T} = \frac{\Delta_r H^\circ}{RT^2} < 0\) car \(\Delta_r H^\circ < 0\). Donc \(K^\circ\) diminue quand \(T\) augmente.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      <p><strong>Non</strong>, l'augmentation de la temperature <strong>defavorise</strong> la production de SO\(_3\) car la reaction directe est exothermique.</p>
+    </div>
+  </div>
+
+  <!-- Q44-Q45 : Pression et equilibre -->
+  <div class="corr-question corr-question--medium" id="corr-q44">
+    <span class="corr-question__num">Questions 44 &amp; 45 -- Expression de \(K^\circ(T)\) et influence de la pression</span>
+    <p class="corr-question__statement"><strong>Q44.</strong> Exprimer \(K^\circ(T)\) en fonction des fractions molaires et de la pression totale.</p>
+    <p class="corr-question__statement"><strong>Q45.</strong> L'augmentation de la pression favorise-t-elle la production de SO\(_3\) ?</p>
+
+    <p><strong>Q44.</strong> Pour la reaction en phase gazeuse \(2\,\text{SO}_2 + \text{O}_2 \rightleftharpoons 2\,\text{SO}_3\), l'expression de la constante d'equilibre en termes d'activites (gaz parfaits) est :</p>
+    $$ K^\circ(T) = \frac{\left(\frac{P_{\text{SO}_3}}{P^\circ}\right)^2}{\left(\frac{P_{\text{SO}_2}}{P^\circ}\right)^2 \times \frac{P_{\text{O}_2}}{P^\circ}} $$
+    <p>En introduisant les fractions molaires \(x_i\) et la pression totale \(P\) (\(P_i = x_i\,P\)) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      $$ \boxed{K^\circ(T) = \frac{x_{\text{SO}_3}^2}{x_{\text{SO}_2}^2 \times x_{\text{O}_2}} \times \frac{P^\circ}{P}} $$
+      <p>ou \(\Delta\nu_g = 2 - (2+1) = -1\), donc le facteur en pression est \((P/P^\circ)^{\Delta\nu_g} = P^\circ/P\).</p>
+    </div>
+
+    <p><strong>Q45.</strong> On reecrit l'expression sous la forme :</p>
+    $$ K_x = \frac{x_{\text{SO}_3}^2}{x_{\text{SO}_2}^2 \times x_{\text{O}_2}} = K^\circ(T) \times \frac{P}{P^\circ} $$
+    <p>A temperature constante, \(K^\circ(T)\) est fixe. Si \(P\) augmente, \(K_x\) augmente. Pour que le rapport des fractions molaires augmente, il faut que \(x_{\text{SO}_3}\) augmente (le numerateur) et/ou que \(x_{\text{SO}_2}\) et \(x_{\text{O}_2}\) diminuent (le denominateur). L'equilibre se deplace dans le <strong>sens direct</strong>.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      <p><strong>Oui</strong>, l'augmentation de la pression <strong>favorise</strong> la production de SO\(_3\).</p>
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Pourquoi ?</div>
+      <p>C'est une application directe du principe de Le Chatelier : la reaction directe diminue le nombre total de moles gazeuses (\(\Delta\nu_g = -1\)), donc une augmentation de pression deplace l'equilibre dans le sens qui diminue la pression, c'est-a-dire le sens direct.</p>
+    </div>
+  </div>
+
+  <!-- Q46 : Optimisation industrielle -->
+  <div class="corr-question corr-question--medium" id="corr-q46">
+    <span class="corr-question__num">Question 46 -- Choix industriels pour la production de SO\(_3\)</span>
+    <p class="corr-question__statement"><strong>Q46.</strong> Quels choix industriels pour optimiser la production de SO\(_3\) ? Compromis cinetique/thermodynamique/financier.</p>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Methode</div>
+      <p>Cette question synthetise les resultats precedents et fait appel au raisonnement industriel. Il faut penser a trois aspects : thermodynamique (rendement), cinetique (vitesse), et economie (cout).</p>
+    </div>
+
+    <p>Le procede industriel est le <strong>procede de contact</strong> pour la fabrication de l'acide sulfurique. Les choix sont :</p>
+
+    <p><strong>1. Temperature :</strong></p>
+    <ul>
+      <li><em>Thermodynamiquement</em>, une temperature basse favorise le sens direct (reaction exothermique).</li>
+      <li><em>Cinetiquement</em>, une temperature elevee accelere la reaction.</li>
+      <li><em>Compromis</em> : on travaille a temperature <strong>moderee</strong>, typiquement 400--500 C, suffisante pour que le catalyseur soit actif, tout en conservant un rendement acceptable.</li>
+    </ul>
+
+    <p><strong>2. Pression :</strong></p>
+    <ul>
+      <li>Une pression elevee favorise la production de SO\(_3\) (\(\Delta\nu_g < 0\)).</li>
+      <li>Cependant, travailler a haute pression est <strong>couteux</strong> (compresseurs, materiaux resistants, securite).</li>
+      <li><em>Compromis</em> : on travaille a une pression <strong>moderee</strong>, souvent voisine de la pression atmospherique ou legerement superieure, car le gain de rendement ne justifie pas le cout supplementaire (le rendement est deja eleve a pression ambiante avec le catalyseur).</li>
+    </ul>
+
+    <p><strong>3. Catalyseur :</strong></p>
+    <ul>
+      <li>On utilise un catalyseur a base de <strong>pentoxyde de vanadium V\(_2\)O\(_5\)</strong> (catalyseur de contact) pour abaisser l'energie d'activation et rendre la reaction suffisamment rapide a temperature moderee.</li>
+      <li>Le catalyseur ne modifie pas l'equilibre, mais permet d'atteindre l'equilibre plus rapidement.</li>
+    </ul>
+
+    <p><strong>4. Exces de O\(_2\) :</strong></p>
+    <ul>
+      <li>On travaille avec un exces d'air (donc de O\(_2\)) pour deplacer l'equilibre dans le sens direct (loi d'action de masse).</li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
+      <p>Le compromis industriel est :</p>
+      <ul>
+        <li><strong>Temperature moderee</strong> (400-500 C) : compromis cinetique/thermodynamique</li>
+        <li><strong>Pression atmospherique ou legerement superieure</strong> : le gain ne justifie pas le cout</li>
+        <li><strong>Catalyseur V\(_2\)O\(_5\)</strong> : accelere la reaction sans modifier l'equilibre</li>
+        <li><strong>Exces de dioxygene</strong> : deplace l'equilibre dans le sens direct</li>
+      </ul>
+      <p>Ce procede atteint un rendement de conversion superieur a 99 % dans les installations modernes a plusieurs etages de catalyse.</p>
+    </div>
+  </div>
+
+</div><!-- fin partie III -->
+
+<nav class="course__nav">
       <a href="e3a-2022-correction-physique.html" class="course__nav-link">
         &larr; Correction precedente
         <span>E3A 2022 -- Physique</span>
