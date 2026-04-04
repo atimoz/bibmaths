@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="fr" data-site="physique">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E3A-Polytech Physique MP | LibPhysique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+/* ---- E3A accent override ---- */
+.e3a-accent { --accent: #E91E63; --accent-light: #F48FB1; --accent-glow: rgba(233,30,99,0.12); }
+
+.e3a-accent .filter-btn:hover {
+  border-color: #E91E63;
+  color: #E91E63;
+  background: rgba(233,30,99,0.05);
+}
+.e3a-accent .filter-btn--active {
+  background: #E91E63;
+  color: #fff;
+  border-color: #E91E63;
+}
+.e3a-accent .filter-btn--active:hover {
+  background: #D81B60;
+  border-color: #D81B60;
+  color: #fff;
+}
+[data-theme="dark"] .e3a-accent .filter-btn--active {
+  color: #fff;
+}
+
+/* ---- Annales cards ---- */
+.annales-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  max-width: var(--max-w);
+  margin: 0 auto var(--space-xl);
+  padding: 0 var(--space-lg);
+}
+@media (max-width: 900px) { .annales-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .annales-grid { grid-template-columns: 1fr; } }
+
+.annale-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid #E91E63;
+  border-radius: 12px;
+  padding: var(--space-lg);
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
+}
+.annale-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(233,30,99,0.08);
+}
+.annale-card__year {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #E91E63;
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+.annale-card__theme {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: var(--space-sm);
+}
+.annale-card__meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-md);
+}
+.annale-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: var(--space-md);
+}
+.annale-chip {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(233,30,99,0.08);
+  color: #E91E63;
+  font-weight: 500;
+}
+[data-theme="dark"] .annale-chip {
+  background: rgba(233,30,99,0.15);
+  color: #F48FB1;
+}
+.annale-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.annale-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.annale-btn--enonce {
+  background: #E91E63;
+  color: #fff;
+  border-color: #E91E63;
+}
+.annale-btn--enonce:hover { background: #D81B60; }
+.annale-btn--correction {
+  background: transparent;
+  color: #E91E63;
+  border-color: #E91E63;
+}
+.annale-btn--correction:hover {
+  background: rgba(233,30,99,0.08);
+}
+
+/* ---- Frequency bars ---- */
+.freq-section {
+  max-width: 720px;
+  margin: 0 auto var(--space-xl);
+  padding: 0 var(--space-lg);
+}
+.freq-section__title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+.freq-bar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+.freq-bar-row__label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink);
+  min-width: 140px;
+  text-align: right;
+}
+.freq-bar-row__track {
+  flex: 1;
+  height: 24px;
+  background: var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.freq-bar-row__fill {
+  height: 100%;
+  background: linear-gradient(135deg, #E91E63, #F48FB1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #fff;
+  transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.freq-bar-row__note {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+/* ---- Resumes ---- */
+.resume-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  max-width: var(--max-w);
+  margin: 0 auto var(--space-xl);
+  padding: 0 var(--space-lg);
+}
+
+/* ---- Flashcards ---- */
+.fc-container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+.fc-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+}
+.fc-chip {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.fc-chip:hover { border-color: #E91E63; color: #E91E63; }
+.fc-chip--active { background: #E91E63; color: #fff; border-color: #E91E63; }
+.fc-stats {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-lg);
+}
+.fc-card-wrapper {
+  perspective: 800px;
+  max-width: 540px;
+  margin: 0 auto var(--space-lg);
+  min-height: 260px;
+}
+.fc-card {
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease-out);
+}
+.fc-card.flipped { transform: rotateY(180deg); }
+.fc-card__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+}
+.fc-card__face--back {
+  transform: rotateY(180deg);
+  border-left: 4px solid #E91E63;
+}
+.fc-card__question {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.fc-card__answer {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.7;
+}
+.fc-card__hint {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink-muted);
+  margin-top: var(--space-md);
+}
+.fc-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+}
+.fc-btn {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 10px 28px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.fc-btn--know { background: #4CAF50; color: #fff; border-color: #4CAF50; }
+.fc-btn--know:hover { background: #43a047; }
+.fc-btn--review { background: transparent; color: #E91E63; border-color: #E91E63; }
+.fc-btn--review:hover { background: rgba(233,30,99,0.08); }
+
+/* ---- Quiz ---- */
+.quiz-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+.quiz-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+.quiz-progress__bar {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.quiz-progress__fill {
+  height: 100%;
+  background: #E91E63;
+  border-radius: 3px;
+  transition: width 0.3s var(--ease-out);
+}
+.quiz-progress__text {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+.quiz-score {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-md);
+}
+.quiz-question {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  min-height: 60px;
+}
+.quiz-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: var(--space-lg);
+}
+.quiz-choice {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  padding: 14px 20px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+.quiz-choice:hover:not(.quiz-choice--answered) {
+  border-color: #E91E63;
+  background: rgba(233,30,99,0.04);
+}
+.quiz-choice--correct {
+  border-color: #4CAF50 !important;
+  background: rgba(76,175,80,0.08) !important;
+  color: #2E7D32 !important;
+}
+.quiz-choice--wrong {
+  border-color: #f44336 !important;
+  background: rgba(244,67,54,0.08) !important;
+  color: #C62828 !important;
+}
+[data-theme="dark"] .quiz-choice--correct { color: #81C784 !important; }
+[data-theme="dark"] .quiz-choice--wrong { color: #EF9A9A !important; }
+.quiz-choice--answered { cursor: default; }
+.quiz-explanation {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid #4CAF50;
+  border-radius: 10px;
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink);
+  line-height: 1.6;
+  display: none;
+}
+.quiz-next {
+  display: none;
+  margin: 0 auto var(--space-lg);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 32px;
+  border-radius: 10px;
+  background: #E91E63;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.quiz-next:hover { background: #D81B60; }
+.quiz-end {
+  text-align: center;
+  padding: var(--space-xl);
+  display: none;
+}
+.quiz-end__score {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #E91E63;
+}
+.quiz-end__label {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  margin-top: var(--space-sm);
+}
+.quiz-restart {
+  margin-top: var(--space-lg);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 32px;
+  border-radius: 10px;
+  background: #E91E63;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.quiz-restart:hover { background: #D81B60; }
+
+/* ---- Section title inside tabs ---- */
+.tab-section-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-align: center;
+  margin: var(--space-xl) 0 var(--space-lg);
+}
+.tab-empty {
+  text-align: center;
+  padding: var(--space-xl);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+</style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../mp.html" class="site-switcher__btn">Maths</a>
+        <a href="index.html" class="site-switcher__btn site-switcher__btn--active">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="mpsi.html" class="dropdown__item">Cours</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="mp.html#annales" class="dropdown__item">Annales</a>
+        </div>
+      </div>
+      <a href="e3a.html" class="nav__link nav__link--active">E3A</a>
+      <a href="../entrainement.html" class="nav__link">Entrainement</a>
+      <a href="../revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../mp.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="mpsi.html" class="mobile-menu__page-link">MPSI -- Physique Sup</a></div>
+    <div class="mobile-menu__group"><a href="mp.html" class="mobile-menu__page-link">MP -- Physique Spe</a></div>
+    <div class="mobile-menu__group"><a href="e3a.html" class="mobile-menu__page-link mobile-menu__page-link--active">E3A-Polytech Physique</a></div>
+  </div>
+
+  <!-- Page Header -->
+  <header class="page-header e3a-accent">
+    <div class="page-header__inner">
+      <a href="mp.html" class="page-header__back">&larr; MP Physique</a>
+      <p class="page-header__eyebrow">Concours</p>
+      <h1 class="page-header__title">E3A-Polytech Physique-Chimie MP</h1>
+      <p class="page-header__subtitle">Annales corrigees, resumes, flashcards et quiz pour preparer l'epreuve de physique-chimie</p>
+      <div class="page-header__filters" id="filters">
+        <button class="filter-btn filter-btn--active" data-filter="annales">Annales</button>
+        <button class="filter-btn" data-filter="resumes">Resumes</button>
+        <button class="filter-btn" data-filter="flashcards">Flashcards</button>
+        <button class="filter-btn" data-filter="quiz">Quiz</button>
+        <button class="filter-btn" data-filter="maths">Maths</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="program e3a-accent">
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONGLET 1 : ANNALES                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-type="annales">
+
+      <!-- Stats thematiques physique -->
+      <div class="freq-section">
+        <h2 class="freq-section__title">Themes recurrents Physique-Chimie E3A (2020-2025)</h2>
+        <p style="text-align:center;font-size:.82rem;color:var(--ink-muted);margin-bottom:var(--space-lg)">Frequence d'apparition par domaine sur 6 annees :</p>
+
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">EM / OEM</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:0%" data-target="100%">4/6</div>
+          </div>
+          <span class="freq-bar-row__note">2020, 22, 24, 25</span>
+        </div>
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">Mecanique / Gravitation</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:0%" data-target="75%">3/6</div>
+          </div>
+          <span class="freq-bar-row__note">2021, 23, 25</span>
+        </div>
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">Oscillateurs / Circuits</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:0%" data-target="75%">3/6</div>
+          </div>
+          <span class="freq-bar-row__note">2020, 22, 25</span>
+        </div>
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">Cristallographie</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:0%" data-target="75%">3/6</div>
+          </div>
+          <span class="freq-bar-row__note">2020, 22, 23</span>
+        </div>
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">Thermochimie / Cinetique</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:0%" data-target="75%">3/6</div>
+          </div>
+          <span class="freq-bar-row__note">2022, 24, 25</span>
+        </div>
+        <div class="freq-bar-row">
+          <span class="freq-bar-row__label">Optique</span>
+          <div class="freq-bar-row__track">
+            <div class="freq-bar-row__fill" style="width:0%" data-target="50%">2/6</div>
+          </div>
+          <span class="freq-bar-row__note">2023, 25</span>
+        </div>
+      </div>
+
+      <!-- Grille annales -->
+      <h3 style="font-family:var(--font-display);font-size:1.3rem;font-weight:400;color:var(--ink-muted);margin:0 0 var(--space-lg);text-align:center">Annales corrigees (2020-2025)</h3>
+
+      <div class="annales-grid">
+
+        <!-- 2025 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2025</div>
+          <div class="annale-card__theme">Suivi medical d'un spationaute</div>
+          <div class="annale-card__meta">4 parties</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Mecanique</span>
+            <span class="annale-chip">EM</span>
+            <span class="annale-chip">Chimie</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-2025-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-2025-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <!-- 2024 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2024</div>
+          <div class="annale-card__theme">Interaction champ EM / matiere + Isomerisation</div>
+          <div class="annale-card__meta">4 parties + chimie</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">EM</span>
+            <span class="annale-chip">Bohr</span>
+            <span class="annale-chip">Cinetique</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-2024-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-2024-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <!-- 2023 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2023</div>
+          <div class="annale-card__theme">Vivre dans l'espace</div>
+          <div class="annale-card__meta">3 parties + chimie</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Mecanique</span>
+            <span class="annale-chip">Cristallo</span>
+            <span class="annale-chip">Electrochimie</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-2023-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-2023-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <!-- 2022 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2022</div>
+          <div class="annale-card__theme">Diapason + Ammoniac</div>
+          <div class="annale-card__meta">4 parties + chimie</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Oscillateurs</span>
+            <span class="annale-chip">EM</span>
+            <span class="annale-chip">Cristallo</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-2022-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-2022-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <!-- 2021 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2021</div>
+          <div class="annale-card__theme">Mission Juno</div>
+          <div class="annale-card__meta">3 parties</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Mecanique</span>
+            <span class="annale-chip">Electrochimie</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-2021-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-2021-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <!-- 2020 -->
+        <div class="annale-card">
+          <div class="annale-card__year">2020</div>
+          <div class="annale-card__theme">Haut-parleur + Titane</div>
+          <div class="annale-card__meta">3 parties + chimie</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">EM</span>
+            <span class="annale-chip">Oscillateurs</span>
+            <span class="annale-chip">Cristallo</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-2020-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-2020-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Lien synthese -->
+      <div style="text-align:center;padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px;max-width:600px;margin:0 auto">
+        <p style="font-size:.85rem;color:var(--ink-muted);margin-bottom:var(--space-sm)">Analyse complete 2020-2025</p>
+        <a href="e3a-physique-mp.html" style="font-family:var(--font-body);font-size:.9rem;font-weight:600;color:#E91E63">Synthese : formules cles + themes recurrents &rarr;</a>
+      </div>
+
+    </div><!-- end annales -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONGLET 2 : RESUMES                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-type="resumes" style="display:none">
+
+      <div style="text-align:center;margin-bottom:var(--space-xl)">
+        <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:400;margin-bottom:var(--space-sm)">Fiches ciblees Physique-Chimie E3A</h2>
+        <p style="color:var(--ink-light);font-size:.95rem;max-width:600px;margin:0 auto">Les themes essentiels pour preparer l'epreuve de physique-chimie E3A-Polytech, classes par frequence d'apparition.</p>
+      </div>
+
+      <div class="chapter-grid" style="margin-bottom:var(--space-2xl)">
+
+        <div class="chapter-card" style="border-left:4px solid #E91E63">
+          <span class="chapter-card__num" style="color:#E91E63">P1</span>
+          <h3 class="chapter-card__title">Electromagnetisme / OEM</h3>
+          <p class="chapter-card__desc">Equations de Maxwell, OEM dans le vide et dans les milieux, vecteur de Poynting, effet de peau, rayonnement dipolaire</p>
+          <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--ink-muted);margin-top:8px;display:block">4 annees sur 6 -- tombe presque chaque annee</span>
+        </div>
+
+        <div class="chapter-card" style="border-left:4px solid #E91E63">
+          <span class="chapter-card__num" style="color:#E91E63">P1</span>
+          <h3 class="chapter-card__title">Mecanique du point / Gravitation</h3>
+          <p class="chapter-card__desc">Lois de Newton, moment cinetique, force centrale, lois de Kepler, probleme a deux corps, satellites</p>
+          <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--ink-muted);margin-top:8px;display:block">3 annees sur 6</span>
+        </div>
+
+        <div class="chapter-card" style="border-left:4px solid #E91E63">
+          <span class="chapter-card__num" style="color:#E91E63">P1</span>
+          <h3 class="chapter-card__title">Oscillateurs / Circuits RLC</h3>
+          <p class="chapter-card__desc">Oscillateur harmonique, amorti, force, resonance, impedance, facteur de qualite, filtres</p>
+          <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--ink-muted);margin-top:8px;display:block">3 annees sur 6</span>
+        </div>
+
+        <div class="chapter-card" style="border-left:4px solid #D4873B">
+          <span class="chapter-card__num" style="color:#D4873B">P2</span>
+          <h3 class="chapter-card__title">Cristallographie</h3>
+          <p class="chapter-card__desc">Structures CFC, CC, NaCl, coordinence, compacite, sites interstitiels, masse volumique</p>
+          <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--ink-muted);margin-top:8px;display:block">3 annees sur 6</span>
+        </div>
+
+        <div class="chapter-card" style="border-left:4px solid #D4873B">
+          <span class="chapter-card__num" style="color:#D4873B">P2</span>
+          <h3 class="chapter-card__title">Thermochimie / Cinetique</h3>
+          <p class="chapter-card__desc">Loi d'Arrhenius, ordres de reaction, enthalpie, entropie, loi de Hess, diagrammes de phases</p>
+          <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--ink-muted);margin-top:8px;display:block">3 annees sur 6</span>
+        </div>
+
+        <div class="chapter-card" style="border-left:4px solid #4CAF50">
+          <span class="chapter-card__num" style="color:#4CAF50">P3</span>
+          <h3 class="chapter-card__title">Optique</h3>
+          <p class="chapter-card__desc">Lois de Snell-Descartes, lentilles minces, interferences, diffraction, reseau</p>
+          <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--ink-muted);margin-top:8px;display:block">2 annees sur 6</span>
+        </div>
+
+        <div class="chapter-card" style="border-left:4px solid #4CAF50">
+          <span class="chapter-card__num" style="color:#4CAF50">P3</span>
+          <h3 class="chapter-card__title">Thermodynamique</h3>
+          <p class="chapter-card__desc">Premier et second principes, machines thermiques, Carnot, entropie, gaz parfait, corps pur diphasique</p>
+          <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--ink-muted);margin-top:8px;display:block">Regulier</span>
+        </div>
+
+        <div class="chapter-card" style="border-left:4px solid #4CAF50">
+          <span class="chapter-card__num" style="color:#4CAF50">P3</span>
+          <h3 class="chapter-card__title">Electrochimie</h3>
+          <p class="chapter-card__desc">Equation de Nernst, piles, electrolyse, diagrammes E-pH, corrosion</p>
+          <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--ink-muted);margin-top:8px;display:block">Regulier</span>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px;max-width:600px;margin:0 auto">
+        <p style="font-size:.85rem;color:var(--ink-muted);margin-bottom:var(--space-sm)">Synthese detaillee avec formules cles</p>
+        <a href="e3a-physique-mp.html" style="font-family:var(--font-body);font-size:.9rem;font-weight:600;color:#E91E63">Voir la synthese complete 2020-2025 &rarr;</a>
+      </div>
+
+    </div><!-- end resumes -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONGLET 3 : FLASHCARDS                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-type="flashcards" style="display:none">
+      <div class="fc-container">
+
+        <div class="fc-filters" id="fcFilters">
+          <button class="fc-chip fc-chip--active" data-fc-theme="all">Tout</button>
+          <button class="fc-chip" data-fc-theme="em">EM / OEM</button>
+          <button class="fc-chip" data-fc-theme="mecanique">Mecanique</button>
+          <button class="fc-chip" data-fc-theme="thermo">Thermo</button>
+          <button class="fc-chip" data-fc-theme="ondes">Ondes</button>
+          <button class="fc-chip" data-fc-theme="optique">Optique</button>
+          <button class="fc-chip" data-fc-theme="chimie">Chimie</button>
+        </div>
+
+        <div class="fc-stats" id="fcStats">Carte 1 / -- &mdash; Je sais : 0 &middot; A revoir : 0</div>
+
+        <div class="fc-card-wrapper">
+          <div class="fc-card" id="fcCard">
+            <div class="fc-card__face fc-card__face--front">
+              <div class="fc-card__question" id="fcQuestion">Chargement des flashcards...</div>
+              <div class="fc-card__hint">Cliquer pour retourner</div>
+            </div>
+            <div class="fc-card__face fc-card__face--back">
+              <div class="fc-card__answer" id="fcAnswer"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fc-actions" id="fcActions" style="display:none">
+          <button class="fc-btn fc-btn--know" id="fcKnow">Je sais</button>
+          <button class="fc-btn fc-btn--review" id="fcReview">A revoir</button>
+        </div>
+
+        <div class="tab-empty" id="fcEmpty" style="display:none">
+          Aucune flashcard pour ce theme. Selectionnez un autre filtre.
+        </div>
+
+      </div>
+    </div><!-- end flashcards -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONGLET 4 : QUIZ                            -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-type="quiz" style="display:none">
+      <div class="quiz-container">
+
+        <div class="fc-filters" id="quizFilters">
+          <button class="fc-chip fc-chip--active" data-quiz-theme="all">Tout</button>
+          <button class="fc-chip" data-quiz-theme="em">EM / OEM</button>
+          <button class="fc-chip" data-quiz-theme="mecanique">Mecanique</button>
+          <button class="fc-chip" data-quiz-theme="thermo">Thermo</button>
+          <button class="fc-chip" data-quiz-theme="ondes">Ondes</button>
+          <button class="fc-chip" data-quiz-theme="optique">Optique</button>
+          <button class="fc-chip" data-quiz-theme="chimie">Chimie</button>
+        </div>
+
+        <div class="quiz-progress">
+          <div class="quiz-progress__bar">
+            <div class="quiz-progress__fill" id="quizProgressFill" style="width:0%"></div>
+          </div>
+          <span class="quiz-progress__text" id="quizProgressText">0 / --</span>
+        </div>
+
+        <div class="quiz-score" id="quizScore">Score : 0 / 0</div>
+
+        <div id="quizArea">
+          <div class="quiz-question" id="quizQuestion">Chargement du quiz...</div>
+          <div class="quiz-choices" id="quizChoices"></div>
+          <div class="quiz-explanation" id="quizExplanation"></div>
+          <button class="quiz-next" id="quizNext">Question suivante</button>
+        </div>
+
+        <div class="quiz-end" id="quizEnd">
+          <div class="quiz-end__score" id="quizFinalScore"></div>
+          <div class="quiz-end__label">Bravo ! Quiz termine.</div>
+          <button class="quiz-restart" id="quizRestart">Recommencer</button>
+        </div>
+
+      </div>
+    </div><!-- end quiz -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ONGLET 5 : MATHS (lien retour)             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-type="maths" style="display:none">
+
+      <div style="text-align:center;padding:var(--space-2xl) var(--space-lg)">
+        <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:400;margin-bottom:var(--space-md)">Annales Mathematiques E3A-Polytech</h2>
+        <p style="color:var(--ink-light);font-size:.95rem;max-width:600px;margin:0 auto var(--space-xl)">Retrouvez les annales de mathematiques E3A-Polytech MP avec corrections detaillees, flashcards et quiz sur LibMaths.</p>
+
+        <a href="../e3a.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;background:#E91E63;color:#fff;font-family:var(--font-body);font-size:.95rem;font-weight:600;text-decoration:none;transition:background .15s">
+          Voir les annales Maths E3A &rarr;
+        </a>
+
+        <div style="margin-top:var(--space-2xl);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-lg);max-width:600px;margin-left:auto;margin-right:auto">
+          <div style="text-align:center;padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:12px">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:#E91E63">25+</div>
+            <div style="font-size:.8rem;color:var(--ink-muted)">Annales maths corrigees</div>
+          </div>
+          <div style="text-align:center;padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:12px">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:#E91E63">60</div>
+            <div style="font-size:.8rem;color:var(--ink-muted)">Flashcards maths</div>
+          </div>
+          <div style="text-align:center;padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:12px">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:#E91E63">40</div>
+            <div style="font-size:.8rem;color:var(--ink-muted)">QCM maths</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end maths -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<strong>Physique</strong></span>
+        <p class="footer__tagline">Physique-Chimie de prepa, en ligne.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="index.html">Accueil</a>
+          <a href="mpsi.html">MPSI</a>
+          <a href="mp.html">MP</a>
+          <a href="e3a.html">E3A-Polytech</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibPhysique &mdash; Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../main.js?v=10"></script>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- E3A Physique Inline JS: Tabs, Flashcards, Quiz -->
+  <!-- ═══════════════════════════════════════════ -->
+  <script>
+  (function(){
+    'use strict';
+
+    /* ---- Tab filtering ---- */
+    const filters = document.getElementById('filters');
+    if (filters) {
+      filters.addEventListener('click', function(e) {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+        const filterVal = btn.dataset.filter;
+
+        filters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-btn--active'));
+        btn.classList.add('filter-btn--active');
+
+        document.querySelectorAll('main > [data-type]').forEach(section => {
+          section.style.display = section.dataset.type === filterVal ? '' : 'none';
+        });
+
+        /* Lazy-init flashcards / quiz on first activation */
+        if (filterVal === 'flashcards' && !window.__fcInit) {
+          window.__fcInit = true;
+          if (typeof initE3AFlashcardsPhysique === 'function') initE3AFlashcardsPhysique();
+        }
+        if (filterVal === 'quiz' && !window.__quizInit) {
+          window.__quizInit = true;
+          if (typeof initE3AQuizPhysique === 'function') initE3AQuizPhysique();
+        }
+      });
+    }
+
+    /* ---- Animated frequency bars ---- */
+    function animateFreqBars() {
+      document.querySelectorAll('.freq-bar-row__fill[data-target]').forEach(bar => {
+        if (bar.dataset.animated) return;
+        const rect = bar.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          bar.style.width = bar.dataset.target;
+          bar.dataset.animated = '1';
+        }
+      });
+    }
+    if (filters) {
+      filters.addEventListener('click', () => setTimeout(animateFreqBars, 50));
+    }
+    window.addEventListener('scroll', animateFreqBars, { passive: true });
+    setTimeout(animateFreqBars, 100);
+
+    /* ═══════════════════════════════════════════════ */
+    /*  FLASHCARDS ENGINE (physique)                   */
+    /* ═══════════════════════════════════════════════ */
+
+    window.E3A_FLASHCARDS_PHYSIQUE = window.E3A_FLASHCARDS_PHYSIQUE || [
+      { theme:'em', q:'Ecrire les equations de Maxwell dans le vide.', a:'div E = rho/eps0, div B = 0, rot E = -dB/dt, rot B = mu0*j + mu0*eps0*dE/dt.' },
+      { theme:'em', q:'Expression du vecteur de Poynting ?', a:'Pi = (1/mu0) E x B. Il represente la puissance surfacique transportee par l\'OEM.' },
+      { theme:'mecanique', q:'Theoreme du moment cinetique en O fixe ?', a:'dL_O/dt = M_O (somme des moments des forces exterieures).' },
+      { theme:'mecanique', q:'Troisieme loi de Kepler ?', a:'T^2/a^3 = 4*pi^2/(G*M) = constante.' },
+      { theme:'thermo', q:'Rendement du cycle de Carnot ?', a:'eta = 1 - T_f/T_c (temperatures en Kelvin).' },
+      { theme:'ondes', q:'Equation d\'onde dans une corde ?', a:'d2y/dt2 = c^2 * d2y/dx2, avec c = sqrt(T/mu).' },
+      { theme:'optique', q:'Loi de Snell-Descartes pour la refraction ?', a:'n1 * sin(i1) = n2 * sin(i2).' },
+      { theme:'chimie', q:'Compacite de la structure CFC ?', a:'C = pi/(3*sqrt(2)) = 0.74 (74%).' }
+    ];
+
+    window.initE3AFlashcardsPhysique = function() {
+      const cards = window.E3A_FLASHCARDS_PHYSIQUE;
+      let filtered = [...cards];
+      let idx = 0, known = 0, review = 0;
+
+      const cardEl = document.getElementById('fcCard');
+      const qEl = document.getElementById('fcQuestion');
+      const aEl = document.getElementById('fcAnswer');
+      const statsEl = document.getElementById('fcStats');
+      const actionsEl = document.getElementById('fcActions');
+      const emptyEl = document.getElementById('fcEmpty');
+      const filtersEl = document.getElementById('fcFilters');
+
+      function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      function show() {
+        if (filtered.length === 0) {
+          cardEl.parentElement.style.display = 'none';
+          actionsEl.style.display = 'none';
+          emptyEl.style.display = '';
+          statsEl.textContent = '';
+          return;
+        }
+        cardEl.parentElement.style.display = '';
+        emptyEl.style.display = 'none';
+        actionsEl.style.display = 'flex';
+        cardEl.classList.remove('flipped');
+        qEl.innerHTML = filtered[idx].q;
+        aEl.innerHTML = filtered[idx].a;
+        statsEl.textContent = 'Carte ' + (idx+1) + ' / ' + filtered.length + ' — Je sais : ' + known + ' · A revoir : ' + review;
+        if (window.renderMathInElement) {
+          renderMathInElement(qEl, {delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true},{left:'$$',right:'$$',display:true}]});
+          renderMathInElement(aEl, {delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true},{left:'$$',right:'$$',display:true}]});
+        }
+      }
+
+      function next() {
+        idx = (idx + 1) % filtered.length;
+        show();
+      }
+
+      cardEl.addEventListener('click', () => cardEl.classList.toggle('flipped'));
+
+      document.getElementById('fcKnow').addEventListener('click', () => { known++; next(); });
+      document.getElementById('fcReview').addEventListener('click', () => { review++; next(); });
+
+      filtersEl.addEventListener('click', (e) => {
+        const chip = e.target.closest('.fc-chip');
+        if (!chip) return;
+        filtersEl.querySelectorAll('.fc-chip').forEach(c => c.classList.remove('fc-chip--active'));
+        chip.classList.add('fc-chip--active');
+        const theme = chip.dataset.fcTheme;
+        filtered = theme === 'all' ? [...cards] : cards.filter(c => c.theme === theme);
+        shuffle(filtered);
+        idx = 0; known = 0; review = 0;
+        show();
+      });
+
+      shuffle(filtered);
+      show();
+    };
+
+    /* ═══════════════════════════════════════════════ */
+    /*  QUIZ ENGINE (physique)                         */
+    /* ═══════════════════════════════════════════════ */
+
+    window.E3A_QUIZ_PHYSIQUE = window.E3A_QUIZ_PHYSIQUE || [
+      { theme:'em', question:'L\'equation de Maxwell-Faraday s\'ecrit :', choices:['rot E = -dB/dt','div E = rho/eps0','rot B = mu0*j','div B = 0'], correct:0, explanation:'Maxwell-Faraday : rot E = -dB/dt, elle traduit l\'induction electromagnetique.' },
+      { theme:'mecanique', question:'La troisieme loi de Kepler relie :', choices:['T^2 et a^3','v et r','F et m','E et L'], correct:0, explanation:'T^2/a^3 = 4*pi^2/(G*M), loi universelle pour les orbites kepleriennes.' },
+      { theme:'thermo', question:'Le rendement de Carnot vaut :', choices:['1 - Tf/Tc','Tf/Tc','1 - Tc/Tf','Tc - Tf'], correct:0, explanation:'eta_Carnot = 1 - T_froid/T_chaud, rendement maximal theorique.' },
+      { theme:'ondes', question:'La pulsation de resonance d\'un circuit RLC serie est :', choices:['1/sqrt(LC)','R/L','1/(RC)','sqrt(L/C)'], correct:0, explanation:'omega_0 = 1/sqrt(LC), frequence propre du circuit.' },
+      { theme:'optique', question:'Pour une lentille mince convergente, la relation de conjugaison est :', choices:['1/OA\' - 1/OA = 1/f\'','1/OA + 1/OA\' = 1/f','OA * OA\' = f^2','OA + OA\' = 2f'], correct:0, explanation:'Relation de conjugaison de Descartes : 1/OA\' - 1/OA = 1/f\' (avec convention algebrique).' },
+      { theme:'chimie', question:'La compacite de la structure CFC est :', choices:['0.74','0.68','0.52','0.91'], correct:0, explanation:'C_CFC = pi/(3*sqrt(2)) = 0.7405, structure la plus compacte avec l\'HC.' },
+      { theme:'chimie', question:'L\'equation de Nernst s\'ecrit :', choices:['E = E0 + (RT/nF)*ln(Q)','E = E0 - (RT/nF)*ln(Q)','E = E0 * exp(-nF/RT)','E = nFE0'], correct:0, explanation:'E = E0 + (RT/(nF)) * ln([Ox]/[Red]) pour un couple Ox/Red.' },
+      { theme:'em', question:'La puissance moyenne rayonnee par un dipole oscillant est proportionnelle a :', choices:['omega^4','omega^2','omega','1/omega^2'], correct:0, explanation:'P ~ omega^4 * p0^2 / (12*pi*eps0*c^3), la dependance en omega^4 explique la couleur bleue du ciel (diffusion Rayleigh).' }
+    ];
+
+    window.initE3AQuizPhysique = function() {
+      const allQ = window.E3A_QUIZ_PHYSIQUE;
+      let questions = [], idx = 0, score = 0, answered = false;
+
+      const questionEl = document.getElementById('quizQuestion');
+      const choicesEl = document.getElementById('quizChoices');
+      const explEl = document.getElementById('quizExplanation');
+      const nextEl = document.getElementById('quizNext');
+      const scoreEl = document.getElementById('quizScore');
+      const progressFill = document.getElementById('quizProgressFill');
+      const progressText = document.getElementById('quizProgressText');
+      const areaEl = document.getElementById('quizArea');
+      const endEl = document.getElementById('quizEnd');
+      const finalScoreEl = document.getElementById('quizFinalScore');
+      const filtersEl = document.getElementById('quizFilters');
+
+      function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      function showQuestion() {
+        if (idx >= questions.length) {
+          areaEl.style.display = 'none';
+          endEl.style.display = '';
+          finalScoreEl.textContent = score + ' / ' + questions.length;
+          return;
+        }
+        answered = false;
+        areaEl.style.display = '';
+        endEl.style.display = 'none';
+        explEl.style.display = 'none';
+        nextEl.style.display = 'none';
+
+        const q = questions[idx];
+        questionEl.innerHTML = q.question;
+        choicesEl.innerHTML = '';
+
+        q.choices.forEach((c, i) => {
+          const btn = document.createElement('button');
+          btn.className = 'quiz-choice';
+          btn.textContent = c;
+          btn.addEventListener('click', () => answer(i, q.correct, q.explanation));
+          choicesEl.appendChild(btn);
+        });
+
+        scoreEl.textContent = 'Score : ' + score + ' / ' + idx;
+        progressFill.style.width = (idx / questions.length * 100) + '%';
+        progressText.textContent = (idx + 1) + ' / ' + questions.length;
+
+        if (window.renderMathInElement) {
+          renderMathInElement(questionEl, {delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});
+          choicesEl.querySelectorAll('.quiz-choice').forEach(btn => {
+            renderMathInElement(btn, {delimiters:[{left:'\\(',right:'\\)',display:false}]});
+          });
+        }
+      }
+
+      function answer(chosen, correct, expl) {
+        if (answered) return;
+        answered = true;
+        const btns = choicesEl.querySelectorAll('.quiz-choice');
+        btns.forEach((btn, i) => {
+          btn.classList.add('quiz-choice--answered');
+          if (i === correct) btn.classList.add('quiz-choice--correct');
+          if (i === chosen && chosen !== correct) btn.classList.add('quiz-choice--wrong');
+        });
+        if (chosen === correct) score++;
+        scoreEl.textContent = 'Score : ' + score + ' / ' + (idx + 1);
+        explEl.innerHTML = expl;
+        explEl.style.display = '';
+        nextEl.style.display = 'block';
+        if (window.renderMathInElement) {
+          renderMathInElement(explEl, {delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});
+        }
+      }
+
+      nextEl.addEventListener('click', () => { idx++; showQuestion(); });
+      document.getElementById('quizRestart').addEventListener('click', () => {
+        idx = 0; score = 0;
+        shuffle(questions);
+        showQuestion();
+      });
+
+      filtersEl.addEventListener('click', (e) => {
+        const chip = e.target.closest('.fc-chip');
+        if (!chip) return;
+        filtersEl.querySelectorAll('.fc-chip').forEach(c => c.classList.remove('fc-chip--active'));
+        chip.classList.add('fc-chip--active');
+        const theme = chip.dataset.quizTheme;
+        questions = theme === 'all' ? [...allQ] : allQ.filter(q => q.theme === theme);
+        shuffle(questions);
+        idx = 0; score = 0;
+        showQuestion();
+      });
+
+      questions = [...allQ];
+      shuffle(questions);
+      showQuestion();
+    };
+
+  })();
+  </script>
+
+  <!-- External data files -->
+  <script src="../data/e3a-flashcards-physique.js" defer></script>
+  <script src="../data/e3a-quiz-physique.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
