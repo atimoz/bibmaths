@@ -542,6 +542,37 @@
   font-size: 0.9rem;
   color: var(--ink-muted);
 }
+
+/* Badges difficulte sur cartes annales */
+.annale-card__diff {
+  font-family: var(--font-mono);
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 6px;
+  display: inline-block;
+}
+.annale-card__diff--easy { color: #34a853; background: rgba(52,168,83,.1); border: 1px solid rgba(52,168,83,.25); }
+.annale-card__diff--medium { color: #f9ab00; background: rgba(249,171,0,.1); border: 1px solid rgba(249,171,0,.25); }
+.annale-card__diff--hard { color: #ea4335; background: rgba(234,67,53,.1); border: 1px solid rgba(234,67,53,.25); }
+.annale-card__diff--unknown { color: var(--ink-muted); background: rgba(150,150,150,.08); border: 1px solid rgba(150,150,150,.15); }
+
+/* Graphe barres empilees */
+.diff-chart { max-width: 600px; margin: 0 auto var(--space-xl); }
+.diff-chart__title { font-family: var(--font-body); font-size: 1rem; font-weight: 600; text-align: center; margin-bottom: var(--space-md); }
+.diff-chart__row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.diff-chart__year { font-family: var(--font-mono); font-size: .75rem; color: var(--ink-muted); min-width: 36px; text-align: right; }
+.diff-chart__bar { flex: 1; height: 20px; border-radius: 4px; overflow: hidden; display: flex; background: rgba(150,150,150,.08); }
+.diff-chart__seg { height: 100%; transition: width .6s cubic-bezier(.4,0,.2,1); }
+.diff-chart__seg--s { background: #34a853; }
+.diff-chart__seg--i { background: #f9ab00; }
+.diff-chart__seg--a { background: #ea4335; }
+.diff-chart__counts { font-family: var(--font-mono); font-size: .65rem; color: var(--ink-muted); min-width: 70px; }
+.diff-chart__legend { display: flex; justify-content: center; gap: var(--space-lg); margin-top: var(--space-sm); font-size: .7rem; color: var(--ink-muted); }
+.diff-chart__legend-dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; margin-right: 4px; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -639,6 +670,7 @@
           <div class="annale-card__year">2025</div>
           <div class="annale-card__theme">Optimisation, DFT, Bessel</div>
           <div class="annale-card__meta">3 exercices</div>
+          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
           <div class="annale-card__tags">
             <span class="annale-chip">Calcul diff</span>
             <span class="annale-chip">Series entieres</span>
@@ -655,6 +687,7 @@
           <div class="annale-card__year">2024</div>
           <div class="annale-card__theme">Geometrique, cos(n)/n, A^T=3A^2-A-I, Convolution</div>
           <div class="annale-card__meta">4 exercices</div>
+          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
           <div class="annale-card__tags">
             <span class="annale-chip">Probabilites</span>
             <span class="annale-chip">Series entieres</span>
@@ -672,6 +705,7 @@
           <div class="annale-card__year">2023</div>
           <div class="annale-card__theme">Endo R_n[X], Gamma, Operateur integral, Matrices aleatoires</div>
           <div class="annale-card__meta">4 exercices</div>
+          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
           <div class="annale-card__tags">
             <span class="annale-chip">Reduction</span>
             <span class="annale-chip">Integrales</span>
@@ -689,6 +723,7 @@
           <div class="annale-card__year">2022</div>
           <div class="annale-card__theme">Gamma/Gauss, Max urnes, Cauchy-Schwarz, Circulantes</div>
           <div class="annale-card__meta">4 exercices</div>
+          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
           <div class="annale-card__tags">
             <span class="annale-chip">Integrales</span>
             <span class="annale-chip">Probabilites</span>
@@ -706,6 +741,7 @@
           <div class="annale-card__year">2021</div>
           <div class="annale-card__theme">Series fonctions, Endo symetrique, Generatrices, Forme lineaire</div>
           <div class="annale-card__meta">4 exercices</div>
+          <span class="annale-card__diff annale-card__diff--easy">Standard-Intermediaire</span>
           <div class="annale-card__tags">
             <span class="annale-chip">Series</span>
             <span class="annale-chip">Euclidiens</span>
@@ -723,6 +759,7 @@
           <div class="annale-card__year">2020</div>
           <div class="annale-card__theme">Geometrique, Prod ch, Suites Z, R_n[X], Cesaro</div>
           <div class="annale-card__meta">5 exercices</div>
+          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
           <div class="annale-card__tags">
             <span class="annale-chip">Probabilites</span>
             <span class="annale-chip">Series entieres</span>
@@ -747,6 +784,7 @@
           <div class="annale-card__year">2019</div>
           <div class="annale-card__theme">Trigonometrie, Endomorphisme de matrices, Equation integrale, Espaces euclidiens</div>
           <div class="annale-card__meta">4 exercices + 1 probleme</div>
+          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
           <div class="annale-card__actions">
             <a href="cours/annales/e3a-2019-maths1.html" class="annale-btn annale-btn--enonce">Maths 1</a>
             <a href="cours/annales/e3a-2019-maths2.html" class="annale-btn annale-btn--enonce">Maths 2</a>
@@ -756,6 +794,7 @@
           <div class="annale-card__year">2018</div>
           <div class="annale-card__theme">Series, Reduction, Probabilites, Moyenne arithmetico-geometrique</div>
           <div class="annale-card__meta">4 exercices + 1 probleme</div>
+          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
           <div class="annale-card__actions">
             <a href="cours/annales/e3a-2018-maths1.html" class="annale-btn annale-btn--enonce">Maths 1</a>
             <a href="cours/annales/e3a-2018-maths2.html" class="annale-btn annale-btn--enonce">Maths 2</a>
@@ -765,6 +804,7 @@
           <div class="annale-card__year">2017</div>
           <div class="annale-card__theme">Gamma, Endomorphisme antisymetrique, Newton, Polynomes de Taylor</div>
           <div class="annale-card__meta">3 exercices + 1 probleme</div>
+          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
           <div class="annale-card__actions">
             <a href="cours/annales/e3a-2017-maths1.html" class="annale-btn annale-btn--enonce">Maths 1</a>
             <a href="cours/annales/e3a-2017-maths2.html" class="annale-btn annale-btn--enonce">Maths 2</a>
@@ -774,6 +814,7 @@
           <div class="annale-card__year">2016</div>
           <div class="annale-card__theme">Commutant, Equation differentielle, Series de fonctions, Poisson, Gamma</div>
           <div class="annale-card__meta">4 exercices + 1 probleme</div>
+          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
           <div class="annale-card__actions">
             <a href="cours/annales/e3a-2016-maths1.html" class="annale-btn annale-btn--enonce">Maths 1</a>
             <a href="cours/annales/e3a-2016-maths2.html" class="annale-btn annale-btn--enonce">Maths 2</a>
@@ -782,6 +823,7 @@
         <div class="annale-card">
           <div class="annale-card__year">2015</div>
           <div class="annale-card__meta">4 exercices + 1 probleme</div>
+          <span class="annale-card__diff annale-card__diff--unknown">Non evalue</span>
           <div class="annale-card__actions">
             <a href="cours/annales/e3a-2015-maths1.html" class="annale-btn annale-btn--enonce">Maths 1</a>
             <a href="cours/annales/e3a-2015-maths2.html" class="annale-btn annale-btn--enonce">Maths 2</a>
@@ -794,21 +836,37 @@
       <p style="text-align:center;font-size:.8rem;color:var(--ink-muted);margin-bottom:var(--space-lg)">Sujets en PDF — Math A + Math B ou Maths 1 + Maths 2</p>
 
       <div class="annale-grid">
-        <div class="annale-card"><div class="annale-card__year">2014</div><div class="annale-card__actions"><a href="cours/annales/e3a-2014-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2014-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2013</div><div class="annale-card__actions"><a href="cours/annales/e3a-2013-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2013-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2012</div><div class="annale-card__actions"><a href="cours/annales/e3a-2012-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2012-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2011</div><div class="annale-card__actions"><a href="cours/annales/e3a-2011-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2011-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2010</div><div class="annale-card__actions"><a href="cours/annales/e3a-2010-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2010-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2009</div><div class="annale-card__actions"><a href="cours/annales/e3a-2009-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2009-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2008</div><div class="annale-card__actions"><a href="cours/annales/e3a-2008-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2008-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2007</div><div class="annale-card__actions"><a href="cours/annales/e3a-2007-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2007-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2006</div><div class="annale-card__actions"><a href="cours/annales/e3a-2006-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2006-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2005</div><div class="annale-card__actions"><a href="cours/annales/e3a-2005-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2005-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2004</div><div class="annale-card__actions"><a href="cours/annales/e3a-2004-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2004-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2003</div><div class="annale-card__actions"><a href="cours/annales/e3a-2003-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2003-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2002</div><div class="annale-card__actions"><a href="cours/annales/e3a-2002-maths1.html" class="annale-btn annale-btn--enonce">Maths 1</a><a href="cours/annales/e3a-2002-maths2.html" class="annale-btn annale-btn--enonce">Maths 2</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2001</div><div class="annale-card__actions"><a href="cours/annales/e3a-2001-maths1.html" class="annale-btn annale-btn--enonce">Maths 1</a><a href="cours/annales/e3a-2001-maths2.html" class="annale-btn annale-btn--enonce">Maths 2</a></div></div>
-        <div class="annale-card"><div class="annale-card__year">2000</div><div class="annale-card__actions"><a href="cours/annales/e3a-2000-maths1.html" class="annale-btn annale-btn--enonce">Maths 1</a><a href="cours/annales/e3a-2000-maths2.html" class="annale-btn annale-btn--enonce">Maths 2</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2014</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2014-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2014-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2013</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2013-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2013-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2012</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2012-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2012-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2011</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2011-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2011-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2010</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2010-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2010-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2009</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2009-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2009-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2008</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2008-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2008-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2007</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2007-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2007-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2006</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2006-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2006-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2005</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2005-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2005-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2004</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2004-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2004-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2003</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2003-maths1.html" class="annale-btn annale-btn--enonce">Math A</a><a href="cours/annales/e3a-2003-maths2.html" class="annale-btn annale-btn--enonce">Math B</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2002</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2002-maths1.html" class="annale-btn annale-btn--enonce">Maths 1</a><a href="cours/annales/e3a-2002-maths2.html" class="annale-btn annale-btn--enonce">Maths 2</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2001</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2001-maths1.html" class="annale-btn annale-btn--enonce">Maths 1</a><a href="cours/annales/e3a-2001-maths2.html" class="annale-btn annale-btn--enonce">Maths 2</a></div></div>
+        <div class="annale-card"><div class="annale-card__year">2000</div><span class="annale-card__diff annale-card__diff--unknown">Non evalue</span><div class="annale-card__actions"><a href="cours/annales/e3a-2000-maths1.html" class="annale-btn annale-btn--enonce">Maths 1</a><a href="cours/annales/e3a-2000-maths2.html" class="annale-btn annale-btn--enonce">Maths 2</a></div></div>
+      </div>
+
+      <!-- KPIs difficulte -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-md);max-width:600px;margin:0 auto var(--space-xl);text-align:center">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:var(--space-md)">
+          <div style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--accent)">24</div>
+          <div style="font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)">Exercices analyses</div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:var(--space-md)">
+          <div style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:#f9ab00">I</div>
+          <div style="font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)">Difficulte moyenne</div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:var(--space-md)">
+          <div style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:#ea4335">4</div>
+          <div style="font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)">Exercices avances</div>
+        </div>
       </div>
 
       <!-- Analyse statistique des themes -->
@@ -860,6 +918,75 @@
           <div class="freq-bar-row__track">
             <div class="freq-bar-row__fill" style="width:0%" data-target="29%">2 (8%)</div>
           </div>
+        </div>
+      </div>
+
+      <!-- Repartition des difficultes -->
+      <div class="diff-chart">
+        <h2 class="diff-chart__title">Repartition des difficultes par annee</h2>
+
+        <div class="diff-chart__row">
+          <span class="diff-chart__year">2025</span>
+          <div class="diff-chart__bar">
+            <div class="diff-chart__seg diff-chart__seg--s" style="width:33%"></div>
+            <div class="diff-chart__seg diff-chart__seg--i" style="width:67%"></div>
+          </div>
+          <span class="diff-chart__counts">1S 2I 0A</span>
+        </div>
+
+        <div class="diff-chart__row">
+          <span class="diff-chart__year">2024</span>
+          <div class="diff-chart__bar">
+            <div class="diff-chart__seg diff-chart__seg--s" style="width:25%"></div>
+            <div class="diff-chart__seg diff-chart__seg--i" style="width:50%"></div>
+            <div class="diff-chart__seg diff-chart__seg--a" style="width:25%"></div>
+          </div>
+          <span class="diff-chart__counts">1S 2I 1A</span>
+        </div>
+
+        <div class="diff-chart__row">
+          <span class="diff-chart__year">2023</span>
+          <div class="diff-chart__bar">
+            <div class="diff-chart__seg diff-chart__seg--s" style="width:25%"></div>
+            <div class="diff-chart__seg diff-chart__seg--i" style="width:50%"></div>
+            <div class="diff-chart__seg diff-chart__seg--a" style="width:25%"></div>
+          </div>
+          <span class="diff-chart__counts">1S 2I 1A</span>
+        </div>
+
+        <div class="diff-chart__row">
+          <span class="diff-chart__year">2022</span>
+          <div class="diff-chart__bar">
+            <div class="diff-chart__seg diff-chart__seg--s" style="width:25%"></div>
+            <div class="diff-chart__seg diff-chart__seg--i" style="width:50%"></div>
+            <div class="diff-chart__seg diff-chart__seg--a" style="width:25%"></div>
+          </div>
+          <span class="diff-chart__counts">1S 2I 1A</span>
+        </div>
+
+        <div class="diff-chart__row">
+          <span class="diff-chart__year">2021</span>
+          <div class="diff-chart__bar">
+            <div class="diff-chart__seg diff-chart__seg--s" style="width:75%"></div>
+            <div class="diff-chart__seg diff-chart__seg--i" style="width:25%"></div>
+          </div>
+          <span class="diff-chart__counts">3S 1I 0A</span>
+        </div>
+
+        <div class="diff-chart__row">
+          <span class="diff-chart__year">2020</span>
+          <div class="diff-chart__bar">
+            <div class="diff-chart__seg diff-chart__seg--s" style="width:40%"></div>
+            <div class="diff-chart__seg diff-chart__seg--i" style="width:40%"></div>
+            <div class="diff-chart__seg diff-chart__seg--a" style="width:20%"></div>
+          </div>
+          <span class="diff-chart__counts">2S 2I 1A</span>
+        </div>
+
+        <div class="diff-chart__legend">
+          <span><span class="diff-chart__legend-dot" style="background:#34a853"></span> Standard</span>
+          <span><span class="diff-chart__legend-dot" style="background:#f9ab00"></span> Intermediaire</span>
+          <span><span class="diff-chart__legend-dot" style="background:#ea4335"></span> Avance</span>
         </div>
       </div>
 
