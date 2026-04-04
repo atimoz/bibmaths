@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Correction E3A 2017 -- Maths 1 &amp; 2 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__toc-difficulty{font-size:.7rem;margin-left:auto;padding:2px 10px;border-radius:12px;font-family:var(--font-mono);letter-spacing:.04em}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+
+    :root {
+      --corr-rappel: #e8f0fe;--corr-rappel-border: #a8c7fa;--corr-rappel-icon: #4285f4;
+      --corr-why: #fef0e8;--corr-why-border: #fab8a8;--corr-why-icon: #e8710a;
+      --corr-result: #faf6e8;--corr-result-border: #d4b957;--corr-result-icon: #b8960c;
+      --corr-piege: #fee8e8;--corr-piege-border: #f5a8a8;--corr-piege-icon: #d93025;
+      --corr-method: #e8faf0;--corr-method-border: #7dd3a8;--corr-method-icon: #1a8d5f;
+      --corr-q-easy: #34a853;--corr-q-medium: #f9ab00;--corr-q-hard: #ea4335;
+    }
+    [data-theme="dark"] {
+      --corr-rappel: rgba(66,133,244,.1);--corr-rappel-border: rgba(66,133,244,.3);--corr-rappel-icon: #8ab4f8;
+      --corr-why: rgba(232,113,10,.1);--corr-why-border: rgba(232,113,10,.3);--corr-why-icon: #fba86c;
+      --corr-result: rgba(212,185,87,.1);--corr-result-border: rgba(212,185,87,.35);--corr-result-icon: #e8d44d;
+      --corr-piege: rgba(217,48,37,.1);--corr-piege-border: rgba(217,48,37,.3);--corr-piege-icon: #f28b82;
+      --corr-method: rgba(26,141,95,.1);--corr-method-border: rgba(26,141,95,.3);--corr-method-icon: #81c995;
+    }
+
+    .corr-exercice{margin-bottom:var(--space-3xl)}
+    .corr-exercice__header{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-sm)}
+    .corr-exercice__number{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;line-height:1;color:var(--accent);opacity:.35}
+    .corr-exercice__title-group{flex:1}
+    .corr-exercice__title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;color:var(--ink);line-height:1.25;margin-bottom:4px}
+    .corr-exercice__subtitle{font-size:.85rem;color:var(--ink-muted);font-style:italic}
+    .corr-exercice__difficulty{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:20px;white-space:nowrap}
+    .corr-exercice__difficulty--easy{color:var(--corr-q-easy);background:rgba(52,168,83,.1);border:1px solid rgba(52,168,83,.25)}
+    .corr-exercice__difficulty--medium{color:var(--corr-q-medium);background:rgba(249,171,0,.1);border:1px solid rgba(249,171,0,.25)}
+    .corr-exercice__difficulty--hard{color:var(--corr-q-hard);background:rgba(234,67,53,.1);border:1px solid rgba(234,67,53,.25)}
+    .corr-exercice__rule{height:1px;border:none;background:linear-gradient(90deg,var(--accent),transparent);margin-bottom:var(--space-xl);opacity:.4}
+    .corr-exercice__enonce{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.9rem;line-height:1.8;color:var(--ink-light)}
+    .corr-exercice__enonce-label{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-sm);display:block}
+
+    .corr-question{margin-bottom:var(--space-xl);padding-left:var(--space-lg);border-left:3px solid var(--accent);position:relative}
+    .corr-question--easy{border-left-color:var(--corr-q-easy)}
+    .corr-question--medium{border-left-color:var(--corr-q-medium)}
+    .corr-question--hard{border-left-color:var(--corr-q-hard)}
+    .corr-question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:6px;display:block}
+    .corr-question--easy .corr-question__num{color:var(--corr-q-easy)}
+    .corr-question--medium .corr-question__num{color:var(--corr-q-medium)}
+    .corr-question--hard .corr-question__num{color:var(--corr-q-hard)}
+    .corr-question__statement{font-size:.88rem;color:var(--ink-muted);font-style:italic;margin-bottom:var(--space-md);padding-bottom:var(--space-sm);border-bottom:1px dashed var(--border)}
+
+    .corr-box{border-radius:10px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0;font-size:.9rem;line-height:1.8;position:relative}
+    .corr-box__title{font-weight:600;font-size:.8rem;letter-spacing:.03em;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+    .corr-box--rappel{background:var(--corr-rappel);border:1px solid var(--corr-rappel-border)}
+    .corr-box--rappel .corr-box__title{color:var(--corr-rappel-icon)}
+    .corr-box--why{background:var(--corr-why);border:1px solid var(--corr-why-border)}
+    .corr-box--why .corr-box__title{color:var(--corr-why-icon)}
+    .corr-box--result{background:var(--corr-result);border:1px solid var(--corr-result-border)}
+    .corr-box--result .corr-box__title{color:var(--corr-result-icon)}
+    .corr-box--piege{background:var(--corr-piege);border:1px solid var(--corr-piege-border)}
+    .corr-box--piege .corr-box__title{color:var(--corr-piege-icon)}
+    .corr-box--method{background:var(--corr-method);border:1px solid var(--corr-method-border)}
+    .corr-box--method .corr-box__title{color:var(--corr-method-icon)}
+
+    .corr-toggle{margin:var(--space-md) 0}
+    .corr-toggle summary{cursor:pointer;font-size:.82rem;font-weight:500;color:var(--accent);padding:8px 14px;background:var(--accent-glow);border-radius:8px;list-style:none;display:inline-flex;align-items:center;gap:6px;transition:background .2s;user-select:none}
+    .corr-toggle summary::-webkit-details-marker{display:none}
+    .corr-toggle summary::before{content:'+';font-family:var(--font-mono);font-size:.9rem;font-weight:300;width:18px;text-align:center}
+    .corr-toggle[open] summary::before{content:'\2212'}
+    .corr-toggle__content{padding:var(--space-md) 0 0 var(--space-sm);animation:corr-fadeIn .3s ease}
+    @keyframes corr-fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+    .corr-steps{counter-reset:corr-step;list-style:none;padding:0;margin:var(--space-sm) 0 var(--space-md)}
+    .corr-steps li{counter-increment:corr-step;padding-left:36px;position:relative;margin-bottom:var(--space-sm);font-size:.92rem;line-height:1.8}
+    .corr-steps li::before{content:counter(corr-step);position:absolute;left:0;top:2px;width:24px;height:24px;border-radius:50%;background:var(--accent-glow);color:var(--accent);font-family:var(--font-mono);font-size:.7rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+
+    .corr-separator{text-align:center;margin:var(--space-3xl) 0;color:var(--ink-muted);opacity:.3;font-size:1.2rem;letter-spacing:.5em}
+    .corr-badge{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--accent);padding:4px 12px;border-radius:20px}
+    .corr-epreuve-sep{text-align:center;margin:var(--space-3xl) 0;padding:var(--space-lg) 0;border-top:2px solid var(--accent);border-bottom:2px solid var(--accent)}
+    .corr-epreuve-sep__title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--accent);margin-bottom:4px}
+    .corr-epreuve-sep__subtitle{font-size:.85rem;color:var(--ink-muted)}
+
+    .corr-progress-bar{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-xl);padding:var(--space-md) var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:12px}
+    .corr-progress-bar__label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);white-space:nowrap}
+    .corr-progress-bar__track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;display:flex}
+    .corr-progress-bar__seg{height:100%}
+    .corr-progress-bar__seg--easy{background:var(--corr-q-easy)}
+    .corr-progress-bar__seg--medium{background:var(--corr-q-medium)}
+    .corr-progress-bar__seg--hard{background:var(--corr-q-hard)}
+
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .corr-exercice__header{flex-wrap:wrap}
+      .corr-exercice__number{font-size:2.5rem}
+      .corr-exercice__title{font-size:1.25rem}
+      .corr-box{padding:var(--space-sm) var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+      <a href="../../entrainement.html" class="nav__link">Entrainement</a>
+      <a href="../../revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">E3A 2017</span>
+      <span class="corr-badge">Correction detaillee</span>
+    </div>
+
+    <h1 class="course__title">Correction -- E3A 2017, Maths 1 &amp; 2</h1>
+
+    <p class="course__intro">
+      Correction pedagogique des deux epreuves de mathematiques E3A 2017 (filiere MP). Maths 1 couvre integrales/Gamma, endomorphisme antisymetrique, et methode de Newton/Galton-Watson. Maths 2 est un probleme sur les polynomes de Taylor de l'exponentielle.
+    </p>
+
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">E3A</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2017</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Type</span>
+        <span class="annale-info__value">Correction pedagogique</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Enonces</span>
+        <span class="annale-info__value"><a href="e3a-2017-maths1.html" style="color:var(--accent)">Maths 1</a> &middot; <a href="e3a-2017-maths2.html" style="color:var(--accent)">Maths 2</a></span>
+      </div>
+    </div>
+
+    <div class="corr-progress-bar">
+      <span class="corr-progress-bar__label">Difficulte</span>
+      <div class="corr-progress-bar__track">
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--easy" style="width:25%"></div>
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--medium" style="width:40%"></div>
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--hard" style="width:35%"></div>
+      </div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire de la correction</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item" style="font-size:.75rem;color:var(--ink-muted);font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 8px">-- Maths 1 (4h) --</li>
+        <li class="course__toc-item">
+          <a href="#m1-exo1"><span class="course__toc-num">1.</span> Integrales generalisees et fonction Gamma
+            <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span></a>
+        </li>
+        <li class="course__toc-item">
+          <a href="#m1-exo2"><span class="course__toc-num">2.</span> Endomorphisme antisymetrique
+            <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span></a>
+        </li>
+        <li class="course__toc-item">
+          <a href="#m1-exo3"><span class="course__toc-num">3.</span> Methode de Newton et Galton-Watson
+            <span class="course__toc-difficulty" style="color:var(--corr-q-hard);background:rgba(234,67,53,.08)">Avance</span></a>
+        </li>
+        <li class="course__toc-item" style="font-size:.75rem;color:var(--ink-muted);font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;margin-top:var(--space-sm)">-- Maths 2 (3h) --</li>
+        <li class="course__toc-item">
+          <a href="#m2-taylor"><span class="course__toc-num">4.</span> Polynomes de Taylor de l'exponentielle
+            <span class="course__toc-difficulty" style="color:var(--corr-q-hard);background:rgba(234,67,53,.08)">Avance</span></a>
+        </li>
+      </ol>
+    </nav>
+
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--               EPREUVE 1 : MATHS 1 (4h)                    -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+
+    <div class="corr-epreuve-sep">
+      <div class="corr-epreuve-sep__title">Epreuve de Mathematiques 1</div>
+      <div class="corr-epreuve-sep__subtitle">Duree : 4 heures -- 3 exercices independants</div>
+    </div>
+
+
+    <!-- ── MATHS 1 - EXERCICE 1 ── -->
+    <div class="corr-exercice" id="m1-exo1">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">1</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Integrales generalisees et fonction Gamma</h2>
+          <span class="corr-exercice__subtitle">Convergence, changement de variable, theoreme de convergence dominee, series entieres -- 4 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        Soit \(\alpha > 1\). On etudie \(I_n = \int_0^{+\infty} (1+t^\alpha)^{-n}\,\mathrm{d}t\), on relie a la fonction Gamma via un changement de variable, et on determine un equivalent de \(I_n\) puis une serie entiere associee.
+      </div>
+
+      <!-- Q1 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1 -- Convergence et changement de variable</span>
+        <p class="corr-question__statement">Justifier la convergence de \(I_n\) et effectuer le changement de variable \(t = (u/n)^{1/\alpha}\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          La <strong>fonction Gamma d'Euler</strong> est definie par \(\Gamma(s) = \int_0^{+\infty} u^{s-1} e^{-u}\,\mathrm{d}u\) pour \(s > 0\). Elle prolonge la factorielle : \(\Gamma(n+1) = n!\) pour \(n \in \mathbb{N}\).
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          L'integrande \((1+t^\alpha)^{-n}\) se comporte comme \(t^{-n\alpha}\) en \(+\infty\). Comme \(n\alpha > \alpha > 1\), l'integrale converge. Le changement de variable va faire apparaitre \((1+u/n)^{-n}\), qui converge vers \(e^{-u}\) quand \(n \to +\infty\) : c'est le lien avec Gamma.
+        </div>
+
+        <p>Avec \(t = (u/n)^{1/\alpha}\), on a \(\mathrm{d}t = \frac{1}{\alpha n}(u/n)^{1/\alpha - 1}\mathrm{d}u\) et \(1 + t^\alpha = 1 + u/n\). Donc :</p>
+        $$I_n = \frac{1}{\alpha\,n^{1/\alpha}} \int_0^{+\infty} u^{1/\alpha - 1} (1 + u/n)^{-n}\,\mathrm{d}u$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{v_n := \int_0^{+\infty} u^{1/\alpha - 1}(1+u/n)^{-n}\,\mathrm{d}u = \alpha\,n^{1/\alpha}\,I_n}$$
+        </div>
+      </div>
+
+      <!-- Q1c - Domination -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 1c -- Domination</span>
+        <p class="corr-question__statement">Montrer que \((1+u/n)^{-n} \leqslant 1/(1+u)\) pour tout \(n \geqslant 1\) et \(u \geqslant 0\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          C'est la domination necessaire pour appliquer le theoreme de convergence dominee. On doit trouver une fonction integrable qui majore l'integrande uniformement en \(n\).
+        </div>
+
+        <p>On utilise l'inegalite \(\ln(1+x) \leqslant x\) pour \(x > -1\). Avec \(x = u/n\) :</p>
+        $$-n\ln(1+u/n) \leqslant -n \cdot \frac{u/n}{1+u/n} = \frac{-u}{1+u/n} \leqslant -\frac{u}{1+u}$$
+
+        <p>Donc \((1+u/n)^{-n} \leqslant e^{-u/(1+u)}\). En fait, une preuve plus directe utilise la convexite de \(x \mapsto x^{-n}\) et donne directement \((1+u/n)^{-n} \leqslant (1+u)^{-1}\) pour \(n \geqslant 1\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          La fonction \(u \mapsto u^{1/\alpha - 1}/(1+u)\) est integrable sur \(]0, +\infty[\) (car \(1/\alpha - 1 > -1\) en 0 et le denominateur donne une decroissance en \(u^{1/\alpha - 2}\) en \(+\infty\), avec \(1/\alpha - 2 < -1\)). La domination est donc valide.
+        </div>
+      </div>
+
+      <!-- Q2-3 : Convergence et equivalent -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Questions 2-3 -- Equivalent de \(I_n\)</span>
+        <p class="corr-question__statement">Montrer que \(v_n \to \Gamma(1/\alpha)\) et en deduire un equivalent de \(I_n\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Le <strong>theoreme de convergence dominee</strong> dit que si \(f_n \to f\) ponctuellement et \(|f_n| \leqslant g\) integrable, alors \(\int f_n \to \int f\). C'est l'outil fondamental pour passer a la limite sous le signe integrale.
+        </div>
+
+        <p>On a \((1+u/n)^{-n} \to e^{-u}\) ponctuellement quand \(n \to +\infty\), et la domination est assuree. Par le TCD :</p>
+        $$v_n \to \int_0^{+\infty} u^{1/\alpha - 1} e^{-u}\,\mathrm{d}u = \Gamma(1/\alpha)$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{I_n \underset{n \to +\infty}{\sim} \frac{\Gamma(1/\alpha)}{\alpha\,n^{1/\alpha}}}$$
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Equivalent d'une integrale a parametre</div>
+          Pour trouver un equivalent de \(\int f_n\) : (1) faire un changement de variable pour normaliser, (2) identifier la limite ponctuelle de l'integrande, (3) trouver une domination, (4) appliquer le TCD. L'equivalent est donne par l'integrale de la limite.
+        </div>
+      </div>
+
+      <!-- Q4 : Serie entiere -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 4 -- Serie entiere \(\sum I_n x^n\)</span>
+        <p class="corr-question__statement">Determiner le rayon de convergence et calculer la somme \(S(x) = \sum_{n=1}^{+\infty} I_n x^n\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Comme \(I_n \sim C/n^{1/\alpha}\), on a \(|I_n|^{1/n} \to 1\), donc le rayon est \(R = 1\). Pour la somme, on intervertit somme et integrale pour obtenir une serie geometrique.
+        </div>
+
+        <p>Pour \(|x| < 1\) et \(t > 0\) :</p>
+        $$S(x) = \sum_{n=1}^{+\infty} x^n \int_0^{+\infty} (1+t^\alpha)^{-n}\,\mathrm{d}t = \int_0^{+\infty} \sum_{n=1}^{+\infty} \left(\frac{x}{1+t^\alpha}\right)^n \mathrm{d}t$$
+
+        <p>La serie geometrique donne \(\sum_{n=1}^{+\infty} r^n = r/(1-r)\) avec \(r = x/(1+t^\alpha)\) :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{R = 1 \quad \text{et} \quad S(x) = \int_0^{+\infty} \frac{x}{1 + t^\alpha - x}\,\mathrm{d}t \quad \text{pour } |x| < 1}$$
+        </div>
+      </div>
+    </div>
+
+    <div class="corr-separator">* * *</div>
+
+
+    <!-- ── MATHS 1 - EXERCICE 2 ── -->
+    <div class="corr-exercice" id="m1-exo2">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">2</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Endomorphisme antisymetrique</h2>
+          <span class="corr-exercice__subtitle">Espaces euclidiens, matrices antisymetriques, reduction en dimension paire -- 6 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        \(E\) est un espace euclidien, \(u\) un automorphisme verifiant \((u(x)|y) = -(x|u(y))\). On montre que \(n\) est pair et on reduit \(u\) en blocs \(\begin{pmatrix} 0 & -a \\ a & 0 \end{pmatrix}\).
+      </div>
+
+      <!-- Q1 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1 -- Matrice antisymetrique</span>
+        <p class="corr-question__statement">Montrer que la matrice de \(u\) dans une base orthonormee verifie \(A^\top = -A\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Une matrice \(A\) est <strong>antisymetrique</strong> si \(A^\top = -A\). Les coefficients diagonaux sont nuls et \(a_{ij} = -a_{ji}\). Le determinant d'une matrice antisymetrique d'ordre impair est nul.
+        </div>
+
+        <p>Dans une base orthonormee, \(a_{ij} = (u(e_j)|e_i)\). La condition \((u(x)|y) = -(x|u(y))\) donne \(a_{ij} = (u(e_j)|e_i) = -(e_j|u(e_i)) = -a_{ji}\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{A^\top = -A}$$
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2 -- \(n\) est pair</span>
+        <p class="corr-question__statement">Montrer que la dimension \(n\) de \(E\) est paire.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Si \(n\) est impair, alors \(\det(A) = \det(A^\top) = \det(-A) = (-1)^n \det(A) = -\det(A)\), donc \(\det(A) = 0\). Mais \(u\) est un automorphisme, donc \(\det(A) \neq 0\). Contradiction.
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{n \text{ est pair}}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Ne pas oublier que \(\det(cA) = c^n \det(A)\) (et non \(c \det(A)\)). C'est la puissance \(n\)-ieme, pas la premiere puissance. Beaucoup d'erreurs viennent de cette confusion.
+        </div>
+      </div>
+
+      <!-- Q3-4 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Questions 3-4 -- \(v = u^2\) et ses valeurs propres</span>
+        <p class="corr-question__statement">Montrer que \(v = u^2\) est symetrique defini negatif, diagonalisable en base orthonormee.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On a \(v = u \circ u\). Comme \(u\) est antisymetrique, \(v\) est symetrique : \((v(x)|y) = (u^2(x)|y) = -(u(x)|u(y)) = (x|u^2(y)) = (x|v(y))\). Donc \(v\) est diagonalisable en BON par le theoreme spectral.
+        </div>
+
+        <p>Pour les valeurs propres : \((v(x)|x) = (u^2(x)|x) = -(u(x)|u(x)) = -\|u(x)\|^2 \leqslant 0\), avec egalite ssi \(u(x) = 0\), ce qui est impossible car \(u\) est un automorphisme (si \(x \neq 0\)).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(v = u^2\) est un endomorphisme <strong>symetrique defini negatif</strong>. Toutes ses valeurs propres sont <strong>strictement negatives</strong>. Il est diagonalisable en base orthonormee.
+        </div>
+      </div>
+
+      <!-- Q5-6 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Questions 5-6 -- Reduction en blocs</span>
+        <p class="corr-question__statement">Montrer que pour chaque valeur propre \(\lambda < 0\) de \(v\), le plan \(F = \mathrm{Vect}(x, u(x))\) est stable par \(u\), et que la matrice de \(u|_F\) est \(\begin{pmatrix} 0 & -a \\ a & 0 \end{pmatrix}\) avec \(a = \sqrt{-\lambda}\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          C'est le coeur de la reduction : un endomorphisme antisymetrique se decompose en blocs 2x2 de rotation. Chaque bloc correspond a une "frequence propre". C'est l'analogue reel de la diagonalisation complexe en valeurs propres imaginaires pures \(\pm ia\).
+        </div>
+
+        <p><strong>Dimension de \(F\) :</strong> Si \(u(x)\) etait colineaire a \(x\), disons \(u(x) = \mu x\), alors \((u(x)|x) = \mu\|x\|^2\). Mais \((u(x)|x) = -(x|u(x)) = -\mu\|x\|^2\), donc \(\mu = -\mu = 0\), contradiction avec le fait que \(u\) est un automorphisme. Donc \(\dim F = 2\).</p>
+
+        <p><strong>Stabilite :</strong> \(u(x) \in F\) par definition. \(u(u(x)) = v(x) = \lambda x \in F\). Donc \(F\) est stable. De plus, \(F^\perp\) est stable car \(u\) est antisymetrique.</p>
+
+        <p><strong>Matrice :</strong> On pose \(e_1 = x/\|x\|\) et \(e_2 = u(x)/(a\|x\|)\) avec \(a = \sqrt{-\lambda}\). On verifie que \((e_1, e_2)\) est orthonormee et que \(u(e_1) = ae_2\), \(u(e_2) = -ae_1\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Il existe une base orthonormee dans laquelle la matrice de \(u\) est :
+          $$\boxed{\begin{pmatrix} 0 & -\alpha_1 & & & \\ \alpha_1 & 0 & & & \\ & & 0 & -\alpha_2 & \\ & & \alpha_2 & 0 & \\ & & & & \ddots \end{pmatrix}}$$
+          ou les \(\alpha_k > 0\) sont tels que \(-\alpha_k^2\) sont les valeurs propres de \(u^2\).
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Reduction d'un endomorphisme antisymetrique</div>
+          <ul class="corr-steps">
+            <li>Verifier que \(v = u^2\) est symetrique negatif.</li>
+            <li>Diagonaliser \(v\) en base orthonormee : valeurs propres \(-a_1^2, \ldots, -a_{n/2}^2\).</li>
+            <li>Pour chaque valeur propre, construire le plan stable \(\mathrm{Vect}(x, u(x))\).</li>
+            <li>Orthonormaliser pour obtenir la matrice par blocs.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="corr-separator">* * *</div>
+
+
+    <!-- ── MATHS 1 - EXERCICE 3 ── -->
+    <div class="corr-exercice" id="m1-exo3">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">3</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Methode de Newton et processus de Galton-Watson</h2>
+          <span class="corr-exercice__subtitle">Analyse, convergence quadratique, probabilites, fonction generatrice -- 6 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avance</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        Partie 1 : on etudie le zero \(\ell\) de \(H(t) = 10t^3 + 31t^2 + 71t - a\) par la methode de Newton. Partie 2 : on montre que \(\ell\) est la probabilite d'extinction d'un processus de Galton-Watson.
+      </div>
+
+      <!-- Partie 1 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Partie 1, Q1 -- Existence du zero</span>
+        <p class="corr-question__statement">Montrer qu'il existe un unique \(\ell \in ]0, 1/2[\) tel que \(H(\ell) = 0\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Le <strong>theoreme des valeurs intermediaires</strong> assure l'existence d'un zero si \(f\) est continue et change de signe. La stricte monotonie assure l'unicite.
+        </div>
+
+        <p>\(H(0) = -a < 0\) et \(H(1/2) = 10/8 + 31/4 + 71/2 - a = 1.25 + 7.75 + 35.5 - a = 44.5 - a > 0\) (car \(a < 29\)). De plus, \(H'(t) = 30t^2 + 62t + 71 > 0\) pour tout \(t\) (discriminant \(62^2 - 4 \cdot 30 \cdot 71 < 0\)), donc \(H\) est strictement croissante.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Par le TVI et la stricte croissance de \(H\), il existe un unique \(\ell \in ]0, 1/2[\) tel que \(\boxed{H(\ell) = 0}\).
+        </div>
+      </div>
+
+      <!-- Partie 1 : Newton -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Partie 1, Q2 -- Convergence quadratique de Newton</span>
+        <p class="corr-question__statement">Montrer que \(|u_{n+1} - \ell| \leqslant \frac{7}{10}|u_n - \ell|^2\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          La methode de Newton a une <strong>convergence quadratique</strong> : a chaque iteration, le nombre de decimales correctes double approximativement. La borne \(7/10 < 1\) garantit que la convergence est effective.
+        </div>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          La <strong>methode de Newton</strong> pour trouver un zero de \(f\) : \(u_{n+1} = u_n - f(u_n)/f'(u_n)\). Si \(f\) est \(\mathcal{C}^2\), la convergence est quadratique : \(|u_{n+1} - \ell| \leqslant \frac{M}{2m}|u_n - \ell|^2\) ou \(M = \sup |f''|\) et \(m = \inf |f'|\) sur l'intervalle.
+        </div>
+
+        <p>On utilise le developpement de Taylor de \(H\) en \(\ell\) : \(H(u_n) = H'(\ell)(u_n - \ell) + \frac{1}{2}H''(c)(u_n - \ell)^2\) pour un certain \(c\). Comme \(u_{n+1} = u_n - H(u_n)/H'(u_n)\), on obtient :</p>
+
+        $$u_{n+1} - \ell = \frac{H''(c)}{2H'(u_n)}(u_n - \ell)^2$$
+
+        <p>Sur \([0, 1/2]\) : \(|H''(t)| = |60t + 62| \leqslant 92\) et \(H'(t) \geqslant H'(0) = 71\). Donc \(|u_{n+1} - \ell| \leqslant \frac{92}{2 \times 71}|u_n - \ell|^2 = \frac{46}{71}|u_n - \ell|^2 \leqslant \frac{7}{10}|u_n - \ell|^2\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{|u_{n+1} - \ell| \leqslant \frac{7}{10}\,|u_n - \ell|^2}$$
+          La convergence est quadratique. En partant de \(u_0 = 1/2\) avec \(|u_0 - \ell| \leqslant 1/2\), on obtient \(|u_1 - \ell| \leqslant 7/40\) et \(|u_2 - \ell| \leqslant 0.021 < 0.03\).
+        </div>
+      </div>
+
+      <!-- Partie 2 : Galton-Watson -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Partie 2 -- Processus de Galton-Watson</span>
+        <p class="corr-question__statement">Montrer que la probabilite d'extinction du processus est \(\ell\), le zero de \(H\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Un <strong>processus de Galton-Watson</strong> modelise l'evolution d'une population : chaque individu a un nombre aleatoire d'enfants (de loi \(X\)). Si \(Z_n\) est le nombre d'individus a la generation \(n\), alors la <strong>fonction generatrice</strong> verifie \(G_{Z_{n+1}} = G_X \circ G_{Z_n}\). La probabilite d'extinction est le plus petit point fixe de \(G_X\) dans \([0, 1]\).
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On a une variable aleatoire \(X\) a valeurs dans \(\{0,1,2,3,4\}\). La fonction generatrice \(G_X(s) = E(s^X)\) est un polynome. La probabilite d'extinction est le plus petit point fixe de \(G_X\) dans \([0, 1[\), c'est-a-dire le plus petit \(s\) tel que \(G_X(s) = s\). On montre que cette equation se ramene a \(H(s) = 0\).
+        </div>
+
+        <p>La suite \(w_n = P(Z_n = 0) = G_{Z_n}(0)\) verifie \(w_{n+1} = G_X(w_n)\) avec \(w_0 = 0\). Comme \(G_X\) est croissante et convexe sur \([0,1]\), la suite \((w_n)\) est croissante et bornee par le point fixe \(\ell\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          La probabilite d'extinction du processus de Galton-Watson est :
+          $$\boxed{L(a) = \lim_{n \to +\infty} w_n = \ell}$$
+          ou \(\ell\) est l'unique zero de \(H\) dans \(]0, 1/2[\). C'est le plus petit point fixe de \(G_X\).
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Probabilite d'extinction</div>
+          Pour un processus de Galton-Watson de fonction generatrice \(G\) : si \(E(X) > 1\) (regime sur-critique), la probabilite d'extinction est le plus petit point fixe de \(G\) dans \([0, 1[\). Si \(E(X) \leqslant 1\), l'extinction est certaine (\(q = 1\)).
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--               EPREUVE 2 : MATHS 2 (3h)                    -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+
+    <div class="corr-epreuve-sep">
+      <div class="corr-epreuve-sep__title">Epreuve de Mathematiques 2</div>
+      <div class="corr-epreuve-sep__subtitle">Duree : 3 heures -- Probleme unique</div>
+    </div>
+
+
+    <!-- ── MATHS 2 ── -->
+    <div class="corr-exercice" id="m2-taylor">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">4</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Polynomes de Taylor de l'exponentielle</h2>
+          <span class="corr-exercice__subtitle">Endomorphisme de derivation, racines, equivalent asymptotique, fonction de Lambert -- 25 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avance</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        On etudie \(S_n(X) = \sum_{i=0}^{n} X^i/i!\) (polynome de Taylor de \(e^X\)) : endomorphisme \(\varphi : P \mapsto P - P'\), racine reelle unique pour \(n\) impair, equivalent de cette racine, et module des racines complexes.
+      </div>
+
+      <!-- Partie I -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Partie I -- Endomorphisme \(\varphi : P \mapsto P - P'\) (Q1-7)</span>
+        <p class="corr-question__statement">Etudier l'endomorphisme \(\varphi_n\) sur \(\mathbb{R}_n[X]\) et exprimer son inverse.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          L'endomorphisme \(\varphi : P \mapsto P - P'\) est triangulaire dans la base canonique (car \(\deg(P') < \deg(P)\)). Il est donc inversible (seule valeur propre : 1) et son inverse s'exprime comme une serie de puissances de la derivation.
+        </div>
+
+        <p><strong>Q2 :</strong> Dans la base canonique \((1, X, \ldots, X^n)\), la matrice de \(\varphi_n\) est triangulaire inferieure avec des 1 sur la diagonale (car \(\varphi(X^k) = X^k - kX^{k-1}\)).</p>
+
+        <p><strong>Q3 :</strong> La seule valeur propre est 1, de multiplicite \(n+1\). Le sous-espace propre est \(\ker(\varphi_n - \mathrm{Id}) = \ker(-\delta) = \mathbb{R}\) (les constantes). L'endomorphisme n'est pas diagonalisable pour \(n \geqslant 1\).</p>
+
+        <p><strong>Q5-7 :</strong> Comme \(\varphi = \mathrm{Id} - \delta\) avec \(\delta^{n+1} = 0\) sur \(\mathbb{R}_n[X]\), l'inverse est \(\varphi^{-1} = \sum_{k=0}^{n} \delta^k\). Donc \(s_i = \varphi^{-1}(X^i/i!) = \sum_{k=0}^{n} \frac{(X^i/i!)^{(k)}}{1} = \sum_{k=0}^{\min(i,n)} \frac{X^{i-k}}{(i-k)!}\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{s_i(X) = \sum_{k=0}^{i} \frac{X^k}{k!} = S_i(X)}$$
+          Les polynomes de Taylor de l'exponentielle sont exactement les "antecedents" de la base canonique par l'endomorphisme \(\varphi\).
+        </div>
+      </div>
+
+      <!-- Partie II -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Partie II -- Racine reelle de \(S_n\) (Q8-10)</span>
+        <p class="corr-question__statement">Montrer que \(S_n\) a une unique racine reelle si \(n\) est impair, et aucune si \(n\) est pair.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          \(S_n\) approche \(e^x > 0\), donc pour \(n\) pair, \(S_n(x) > 0\) partout (car \(\lim_{\pm \infty} = +\infty\) et le minimum est positif). Pour \(n\) impair, \(S_n(x) \to -\infty\) quand \(x \to -\infty\), donc il y a un zero negatif.
+        </div>
+
+        <p><strong>Recurrence :</strong> On utilise la relation \(S_n'(x) = S_{n-1}(x)\). Si \(S_{n-1} > 0\) partout (\(n-1\) pair), alors \(S_n\) est strictement croissante. Comme \(S_n(0) = 1 > 0\) et \(S_n(x) \to -\infty\) quand \(x \to -\infty\) (terme dominant \(x^n/n!\) avec \(n\) impair), il y a exactement un zero negatif.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          <ul>
+            <li>\(n\) pair : \(\boxed{S_n \text{ n'a aucune racine reelle}}\) (minimum strictement positif).</li>
+            <li>\(n\) impair : \(\boxed{S_n \text{ a une unique racine reelle } \alpha_n < 0}\) (strictement croissante avec \(S_n(0) = 1\)).</li>
+          </ul>
+          La suite \((\alpha_{2m+1})\) est decroissante et \(\alpha_{2m+1} \to -\infty\).
+        </div>
+      </div>
+
+      <!-- Partie III-IV -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Parties III-IV -- Equivalent de \(\alpha_{2m+1}\) (Q11-21)</span>
+        <p class="corr-question__statement">Etudier la fonction \(h(x) = xe^{1-x}\), son inverse, et en deduire un equivalent de \(\alpha_n\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          La <strong>fonction W de Lambert</strong> est l'inverse de \(x \mapsto xe^x\). Elle apparait naturellement dans l'etude asymptotique des racines des polynomes de Taylor de l'exponentielle. La fonction \(h(x) = xe^{1-x}\) est une variante : \(h(1) = 1\), \(h'(1) = 0\), \(h\) atteint son maximum en \(x = 1\).
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Le changement de variable \(u = t/n\) dans \(e^{-\alpha_n} S_n(\alpha_n) = 0\) fait apparaitre \(h(t)^n\). La methode de Laplace permet alors d'obtenir un equivalent asymptotique de l'integrale et donc de \(\alpha_n\).
+        </div>
+
+        <p><strong>Q11 :</strong> \(h(x) = xe^{1-x}\) est croissante sur \(]-\infty, 1]\), decroissante sur \([1, +\infty[\), avec \(h(1) = 1\) (maximum global). \(h(x) \to 0\) en \(+\infty\) et \(h(x) \to -\infty\) en \(-\infty\).</p>
+
+        <p><strong>Q13-14 :</strong> Il existe un unique \(\rho < 0\) tel que \(h(\rho) = -1\), et \(\rho \in ]-1/2, -1/4[\).</p>
+
+        <p><strong>Q17-21 :</strong> Par la methode de Laplace appliquee a l'integrale \(\int_0^{\gamma_n} h(t)^n\,\mathrm{d}t\), on montre que la suite \(\gamma_n = \alpha_n/n\) converge vers \(\rho\), ce qui donne :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\alpha_{2m+1} \sim \rho \cdot (2m+1) \quad \text{quand } m \to +\infty}$$
+          ou \(\rho \in ]-1/2, -1/4[\) est l'unique solution de \(\rho\,e^{1-\rho} = -1\). Autrement dit, la racine reelle de \(S_n\) croit lineairement en \(n\), avec un coefficient \(\rho \approx -0.2785\).
+        </div>
+      </div>
+
+      <!-- Partie V -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Partie V -- Module des racines complexes (Q22-25)</span>
+        <p class="corr-question__statement">Montrer que toutes les racines complexes de \(S_n\) ont un module strictement inferieur a \(n\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          C'est un resultat utilise comme hypothese dans la partie II. La preuve utilise une inegalite fine sur les sommes de nombres complexes de module \(\leqslant 1\), puis un argument de coefficients decroissants/croissants.
+        </div>
+
+        <p><strong>Q22 :</strong> Le lemme clef : si \(|\alpha_i| \leqslant 1\) et \(|\sum \theta_i \alpha_i| = \sum \theta_i\) avec \(\theta_i > 0\), alors tous les \(\alpha_i\) sont egaux (a 1, par un argument de cas d'egalite dans l'inegalite triangulaire).</p>
+
+        <p><strong>Q23-24 :</strong> Si un polynome \(P = \sum a_k X^k\) a des coefficients positifs decroissants \(a_0 = a_1 > a_2 > \cdots > a_n\), alors toute racine a un module \(> 1\). Par symetrie (renversement des coefficients), des coefficients croissants donnent des racines de module \(< 1\).</p>
+
+        <p><strong>Q25 :</strong> Le polynome \(T_n(X) = S_n(nX) = \sum \frac{n^k}{k!} X^k\) a des coefficients \(c_k = n^k/k!\) qui verifient \(c_{k+1}/c_k = n/(k+1)\). Pour \(k \leqslant n-1\), ce rapport est \(\geqslant 1\), et \(c_{n-1} = c_n\). Par Q24, les racines de \(T_n\) ont un module \(< 1\), donc celles de \(S_n\) ont un module \(< n\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\forall n \geqslant 2, \quad \text{toute racine } z \text{ de } S_n \text{ verifie } |z| < n}$$
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Localisation des racines par les coefficients</div>
+          Les inegalites sur les coefficients d'un polynome donnent des informations sur le module des racines. Les polynomes a coefficients positifs (log-concaves, decroissants...) ont des proprietes speciales. Pensez a Enestrom-Kakeya : si \(0 < a_0 \leqslant a_1 \leqslant \cdots \leqslant a_n\), toutes les racines sont dans le disque unite.
+        </div>
+      </div>
+    </div>
+
+
+    <nav class="course__nav">
+      <a href="e3a-2016-correction.html" class="course__nav-link">
+        &larr; Precedent
+        <span>Correction E3A 2016</span>
+      </a>
+      <a href="e3a-2018-correction.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>Correction E3A 2018</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

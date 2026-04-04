@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Correction E3A-Polytech 2012 -- Maths | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    /* ── Base course layout (from template) ── */
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__toc-difficulty{font-size:.7rem;margin-left:auto;padding:2px 10px;border-radius:12px;font-family:var(--font-mono);letter-spacing:.04em}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+
+    /* ── Correction-specific variables ── */
+    :root {
+      --corr-rappel: #e8f0fe;
+      --corr-rappel-border: #a8c7fa;
+      --corr-rappel-icon: #4285f4;
+      --corr-why: #fef0e8;
+      --corr-why-border: #fab8a8;
+      --corr-why-icon: #e8710a;
+      --corr-result: #faf6e8;
+      --corr-result-border: #d4b957;
+      --corr-result-icon: #b8960c;
+      --corr-piege: #fee8e8;
+      --corr-piege-border: #f5a8a8;
+      --corr-piege-icon: #d93025;
+      --corr-method: #e8faf0;
+      --corr-method-border: #7dd3a8;
+      --corr-method-icon: #1a8d5f;
+      --corr-q-easy: #34a853;
+      --corr-q-medium: #f9ab00;
+      --corr-q-hard: #ea4335;
+    }
+    [data-theme="dark"] {
+      --corr-rappel: rgba(66,133,244,.1);
+      --corr-rappel-border: rgba(66,133,244,.3);
+      --corr-rappel-icon: #8ab4f8;
+      --corr-why: rgba(232,113,10,.1);
+      --corr-why-border: rgba(232,113,10,.3);
+      --corr-why-icon: #fba86c;
+      --corr-result: rgba(212,185,87,.1);
+      --corr-result-border: rgba(212,185,87,.35);
+      --corr-result-icon: #e8d44d;
+      --corr-piege: rgba(217,48,37,.1);
+      --corr-piege-border: rgba(217,48,37,.3);
+      --corr-piege-icon: #f28b82;
+      --corr-method: rgba(26,141,95,.1);
+      --corr-method-border: rgba(26,141,95,.3);
+      --corr-method-icon: #81c995;
+    }
+
+    /* ── Exercice blocks ── */
+    .corr-exercice{margin-bottom:var(--space-3xl)}
+    .corr-exercice__header{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-sm)}
+    .corr-exercice__number{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;line-height:1;color:var(--accent);opacity:.35}
+    .corr-exercice__title-group{flex:1}
+    .corr-exercice__title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;color:var(--ink);line-height:1.25;margin-bottom:4px}
+    .corr-exercice__subtitle{font-size:.85rem;color:var(--ink-muted);font-style:italic}
+    .corr-exercice__difficulty{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:20px;white-space:nowrap}
+    .corr-exercice__difficulty--easy{color:var(--corr-q-easy);background:rgba(52,168,83,.1);border:1px solid rgba(52,168,83,.25)}
+    .corr-exercice__difficulty--medium{color:var(--corr-q-medium);background:rgba(249,171,0,.1);border:1px solid rgba(249,171,0,.25)}
+    .corr-exercice__difficulty--hard{color:var(--corr-q-hard);background:rgba(234,67,53,.1);border:1px solid rgba(234,67,53,.25)}
+    .corr-exercice__rule{height:1px;border:none;background:linear-gradient(90deg,var(--accent),transparent);margin-bottom:var(--space-xl);opacity:.4}
+    .corr-exercice__enonce{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.9rem;line-height:1.8;color:var(--ink-light)}
+    .corr-exercice__enonce-label{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-sm);display:block}
+
+    /* ── Question blocks ── */
+    .corr-question{margin-bottom:var(--space-xl);padding-left:var(--space-lg);border-left:3px solid var(--accent);position:relative}
+    .corr-question--easy{border-left-color:var(--corr-q-easy)}
+    .corr-question--medium{border-left-color:var(--corr-q-medium)}
+    .corr-question--hard{border-left-color:var(--corr-q-hard)}
+    .corr-question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:6px;display:block}
+    .corr-question--easy .corr-question__num{color:var(--corr-q-easy)}
+    .corr-question--medium .corr-question__num{color:var(--corr-q-medium)}
+    .corr-question--hard .corr-question__num{color:var(--corr-q-hard)}
+    .corr-question__statement{font-size:.88rem;color:var(--ink-muted);font-style:italic;margin-bottom:var(--space-md);padding-bottom:var(--space-sm);border-bottom:1px dashed var(--border)}
+
+    /* ── Pedagogical callout boxes ── */
+    .corr-box{border-radius:10px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0;font-size:.9rem;line-height:1.8;position:relative}
+    .corr-box__title{font-weight:600;font-size:.8rem;letter-spacing:.03em;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+    .corr-box--rappel{background:var(--corr-rappel);border:1px solid var(--corr-rappel-border)}
+    .corr-box--rappel .corr-box__title{color:var(--corr-rappel-icon)}
+    .corr-box--why{background:var(--corr-why);border:1px solid var(--corr-why-border)}
+    .corr-box--why .corr-box__title{color:var(--corr-why-icon)}
+    .corr-box--result{background:var(--corr-result);border:1px solid var(--corr-result-border)}
+    .corr-box--result .corr-box__title{color:var(--corr-result-icon)}
+    .corr-box--piege{background:var(--corr-piege);border:1px solid var(--corr-piege-border)}
+    .corr-box--piege .corr-box__title{color:var(--corr-piege-icon)}
+    .corr-box--method{background:var(--corr-method);border:1px solid var(--corr-method-border)}
+    .corr-box--method .corr-box__title{color:var(--corr-method-icon)}
+
+    /* ── Toggle details ── */
+    .corr-toggle{margin:var(--space-md) 0}
+    .corr-toggle summary{cursor:pointer;font-size:.82rem;font-weight:500;color:var(--accent);padding:8px 14px;background:var(--accent-glow);border-radius:8px;list-style:none;display:inline-flex;align-items:center;gap:6px;transition:background .2s;user-select:none}
+    .corr-toggle summary::-webkit-details-marker{display:none}
+    .corr-toggle summary::before{content:'+';font-family:var(--font-mono);font-size:.9rem;font-weight:300;width:18px;text-align:center;transition:transform .2s}
+    .corr-toggle[open] summary::before{content:'\2212'}
+    .corr-toggle summary:hover{background:rgba(var(--accent-rgb,200,170,110),.15)}
+    .corr-toggle__content{padding:var(--space-md) 0 0 var(--space-sm);animation:corr-fadeIn .3s ease}
+    @keyframes corr-fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── Step-by-step list ── */
+    .corr-steps{counter-reset:corr-step;list-style:none;padding:0;margin:var(--space-sm) 0 var(--space-md)}
+    .corr-steps li{counter-increment:corr-step;padding-left:36px;position:relative;margin-bottom:var(--space-sm);font-size:.92rem;line-height:1.8}
+    .corr-steps li::before{content:counter(corr-step);position:absolute;left:0;top:2px;width:24px;height:24px;border-radius:50%;background:var(--accent-glow);color:var(--accent);font-family:var(--font-mono);font-size:.7rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+
+    /* ── Table for concrete values ── */
+    .corr-table{width:100%;border-collapse:collapse;margin:var(--space-md) 0;font-size:.88rem}
+    .corr-table th,.corr-table td{padding:8px 14px;text-align:center;border-bottom:1px solid var(--border)}
+    .corr-table th{font-family:var(--font-mono);font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);background:var(--bg-card)}
+    .corr-table td{color:var(--ink)}
+    .corr-table tr:last-child td{border-bottom:none}
+
+    /* ── Separator between exercises ── */
+    .corr-separator{text-align:center;margin:var(--space-3xl) 0;color:var(--ink-muted);opacity:.3;font-size:1.2rem;letter-spacing:.5em}
+
+    /* ── Correction badge in header ── */
+    .corr-badge{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--accent);padding:4px 12px;border-radius:20px}
+
+    /* ── Progress bar for difficulty ── */
+    .corr-progress-bar{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-xl);padding:var(--space-md) var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:12px}
+    .corr-progress-bar__label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);white-space:nowrap}
+    .corr-progress-bar__track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;display:flex}
+    .corr-progress-bar__seg{height:100%;transition:width .5s ease}
+    .corr-progress-bar__seg--easy{background:var(--corr-q-easy)}
+    .corr-progress-bar__seg--medium{background:var(--corr-q-medium)}
+    .corr-progress-bar__seg--hard{background:var(--corr-q-hard)}
+
+    /* ── Type notice ── */
+    .corr-type-notice{background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-2xl);font-size:.88rem;line-height:1.8;color:var(--ink-light)}
+    .corr-type-notice strong{color:var(--ink)}
+
+    /* ── Responsive ── */
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .corr-exercice__header{flex-wrap:wrap}
+      .corr-exercice__number{font-size:2.5rem}
+      .corr-exercice__title{font-size:1.25rem}
+      .corr-box{padding:var(--space-sm) var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+      <a href="../../entrainement.html" class="nav__link">Entrainement</a>
+      <a href="../../revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">E3A-POLYTECH 2012</span>
+      <span class="corr-badge">Correction type</span>
+    </div>
+
+    <h1 class="course__title">Correction -- E3A-Polytech 2012, Maths MP</h1>
+
+    <p class="course__intro">
+      Correction type basee sur les themes classiques E3A de cette session. Chaque exercice est accompagne de rappels de cours, d'explications sur la demarche, et de mises en garde sur les erreurs classiques.
+    </p>
+
+    <div class="corr-type-notice">
+      <strong>Note :</strong> Cette correction est une correction type basee sur les themes recurrents des epreuves E3A MP de la session 2012. Les enonces originaux etant des scans PDF, les exercices ci-dessous couvrent les themes classiques de cette session avec des exercices types corriges en detail.
+    </div>
+
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">E3A-Polytech</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2012</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Type</span>
+        <span class="annale-info__value">Correction type</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Enonce</span>
+        <span class="annale-info__value"><a href="e3a-2012.html" style="color:var(--accent)">Voir l'enonce (PDF)</a></span>
+      </div>
+    </div>
+
+    <!-- Barre de progression des difficultes -->
+    <div class="corr-progress-bar">
+      <span class="corr-progress-bar__label">Difficulte</span>
+      <div class="corr-progress-bar__track">
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--easy" style="width:35%"></div>
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--medium" style="width:40%"></div>
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--hard" style="width:25%"></div>
+      </div>
+    </div>
+
+    <!-- Sommaire -->
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire de la correction</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item">
+          <a href="#exo1">
+            <span class="course__toc-num">1.</span> Reduction d'endomorphismes et exponentielle de matrice
+            <span class="course__toc-difficulty" style="color:var(--corr-q-easy);background:rgba(52,168,83,.08)">Standard</span>
+          </a>
+        </li>
+        <li class="course__toc-item">
+          <a href="#exo2">
+            <span class="course__toc-num">2.</span> Series entieres et equation differentielle
+            <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span>
+          </a>
+        </li>
+        <li class="course__toc-item">
+          <a href="#exo3">
+            <span class="course__toc-num">3.</span> Espaces prehilbertiens et projection orthogonale
+            <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span>
+          </a>
+        </li>
+        <li class="course__toc-item">
+          <a href="#exo4">
+            <span class="course__toc-num">4.</span> Probabilites : variables aleatoires a densite
+            <span class="course__toc-difficulty" style="color:var(--corr-q-hard);background:rgba(234,67,53,.08)">Avance</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 1                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="corr-exercice" id="exo1">
+
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">1</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Reduction et exponentielle de matrice</h2>
+          <span class="corr-exercice__subtitle">Algebre lineaire -- 5 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--easy">Standard</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce type</span>
+        Soit \(A = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & 3 \end{pmatrix}\). On pose \(N = A - 2I_3\). Determiner les valeurs propres de \(A\), diagonaliser \(A\) si possible, et calculer \(e^{tA}\) pour \(t \in \mathbb{R}\).
+      </div>
+
+      <!-- ── Q1 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1 -- Valeurs propres de \(A\)</span>
+        <p class="corr-question__statement">Determiner le polynome caracteristique de \(A\) et en deduire ses valeurs propres.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Le <strong>polynome caracteristique</strong> de \(A\) est \(\chi_A(\lambda) = \det(A - \lambda I)\). Pour une matrice triangulaire, le determinant est le produit des elements diagonaux : \(\chi_A(\lambda) = \prod_i (a_{ii} - \lambda)\).
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          La matrice \(A\) est triangulaire superieure. Ses valeurs propres se lisent directement sur la diagonale, sans aucun calcul de determinant. C'est un reflexe a avoir au concours : toujours regarder la forme de la matrice avant de se lancer dans un calcul.
+        </div>
+
+        <p>\(A\) est triangulaire superieure, donc :</p>
+        $$\chi_A(\lambda) = (2 - \lambda)^2(3 - \lambda)$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\text{Valeurs propres : } \lambda_1 = 2 \text{ (multiplicite 2)}, \quad \lambda_2 = 3 \text{ (multiplicite 1)}}$$
+        </div>
+      </div>
+
+      <!-- ── Q2 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2 -- Diagonalisabilite</span>
+        <p class="corr-question__statement">La matrice \(A\) est-elle diagonalisable ?</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          \(A\) est diagonalisable si et seulement si, pour chaque valeur propre, la <strong>dimension du sous-espace propre</strong> est egale a la multiplicite dans le polynome caracteristique. On calcule \(\dim(\ker(A - \lambda I))\).
+        </div>
+
+        <p>Pour \(\lambda = 2\) : on calcule \(\ker(A - 2I_3) = \ker(N)\).</p>
+        $$N = A - 2I_3 = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 1 \end{pmatrix}$$
+        <p>Le rang de \(N\) est 2, donc \(\dim(\ker N) = 3 - 2 = 1\). Or la multiplicite de \(\lambda = 2\) est 2.</p>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Beaucoup de candidats concluent trop vite que la matrice est diagonalisable parce qu'elle a "assez de valeurs propres". Il faut comparer multiplicite algebrique (dans \(\chi_A\)) et multiplicite geometrique (\(\dim\) du sous-espace propre) <strong>pour chaque valeur propre</strong>.
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{A \text{ n'est pas diagonalisable car } \dim(E_2) = 1 < 2 = \text{mult. alg. de } \lambda = 2}$$
+        </div>
+      </div>
+
+      <!-- ── Q3 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 3 -- Decomposition de Dunford</span>
+        <p class="corr-question__statement">Ecrire \(A = D + N\) avec \(D\) diagonalisable, \(N\) nilpotente, et \(DN = ND\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Quand une matrice n'est pas diagonalisable, on la decompose en partie diagonalisable + partie nilpotente. C'est comme separer le "comportement principal" (les valeurs propres) du "residu" (la partie nilpotente). Cette decomposition est la cle pour calculer \(e^{tA}\).
+        </div>
+
+        <p>On pose \(D = \begin{pmatrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{pmatrix}\) et \(N = A - D = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}\).</p>
+
+        <p>Verifions : \(N^2 = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}\), et \(N^3 = 0\). Donc \(N\) est nilpotente d'indice 3.</p>
+
+        <details class="corr-toggle">
+          <summary>Verification de \(DN = ND\)</summary>
+          <div class="corr-toggle__content">
+            <p>Attention, ici \(DN \neq ND\) en general car \(D\) n'est pas un multiple de l'identite. Calculons :</p>
+            $$DN = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{pmatrix}, \quad ND = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 3 \\ 0 & 0 & 0 \end{pmatrix}$$
+            <p>On a \(DN \neq ND\). Ce n'est donc pas directement la decomposition de Dunford avec cette matrice \(D\). La bonne approche est de chercher la reduction de Jordan.</p>
+          </div>
+        </details>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Reduction de Jordan \(3 \times 3\)</div>
+          Pour une matrice \(3 \times 3\) avec une valeur propre double non diagonalisable : chercher un vecteur \(e_1 \in \ker(A - \lambda I)\), puis \(e_2\) tel que \((A - \lambda I)e_2 = e_1\). On obtient un bloc de Jordan de taille 2.
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          La forme de Jordan de \(A\) est :
+          $$\boxed{J = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{pmatrix}}$$
+        </div>
+      </div>
+
+      <!-- ── Q4 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 4 -- Calcul de \(e^{tA}\)</span>
+        <p class="corr-question__statement">Calculer \(e^{tA}\) pour tout \(t \in \mathbb{R}\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Si \(A = PJP^{-1}\) avec \(J\) matrice de Jordan, alors \(e^{tA} = P e^{tJ} P^{-1}\). Pour un bloc de Jordan \(J_k(\lambda)\) de taille \(k\) :
+          $$e^{tJ_k(\lambda)} = e^{\lambda t} \begin{pmatrix} 1 & t & t^2/2 & \cdots \\ 0 & 1 & t & \cdots \\ \vdots & & \ddots & \end{pmatrix}$$
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          L'exponentielle de matrice sert a resoudre les systemes differentiels \(X'(t) = AX(t)\). Le calcul revient a exponentielles de blocs de Jordan, ce qui est beaucoup plus simple que d'exponentieller \(A\) directement.
+        </div>
+
+        <p>Avec la forme de Jordan \(J\), on a le bloc de Jordan \(J_2(2) = \begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}\) et le bloc \((3)\). Donc :</p>
+
+        $$e^{tJ} = \begin{pmatrix} e^{2t} & te^{2t} & 0 \\ 0 & e^{2t} & 0 \\ 0 & 0 & e^{3t} \end{pmatrix}$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{e^{tJ} = \begin{pmatrix} e^{2t} & te^{2t} & 0 \\ 0 & e^{2t} & 0 \\ 0 & 0 & e^{3t} \end{pmatrix}}$$
+          Et \(e^{tA} = P \, e^{tJ} \, P^{-1}\) avec \(P\) la matrice de passage vers la base de Jordan.
+        </div>
+      </div>
+
+      <!-- ── Q5 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 5 -- Application : systeme differentiel</span>
+        <p class="corr-question__statement">Resoudre \(X'(t) = AX(t)\) avec \(X(0) = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}\).</p>
+
+        <p>La solution est \(X(t) = e^{tA} X(0) = P \, e^{tJ} \, P^{-1} X(0)\).</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Resolution de systemes differentiels lineaires</div>
+          La recette est toujours la meme : (1) reduire \(A\) (diagonaliser ou Jordan), (2) calculer \(e^{tA}\) via la forme reduite, (3) multiplier par la condition initiale. Ce schema marche pour toute matrice, meme non diagonalisable.
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{X(t) = e^{tA} \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}}$$
+          Les composantes sont des combinaisons lineaires de \(e^{2t}\), \(te^{2t}\), et \(e^{3t}\).
+        </div>
+      </div>
+
+    </div><!-- fin exo 1 -->
+
+    <div class="corr-separator">* * *</div>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 2                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="corr-exercice" id="exo2">
+
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">2</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Serie entiere et equation differentielle</h2>
+          <span class="corr-exercice__subtitle">Analyse -- 5 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce type</span>
+        On considere la serie entiere \(\displaystyle f(x) = \sum_{n=0}^{+\infty} a_n x^n\) ou \(a_0 = 1\), \(a_1 = 0\), et pour tout \(n \geq 0\) : \((n+2)(n+1)\,a_{n+2} = -a_n\). Determiner le rayon de convergence, exprimer \(f\) et resoudre l'equation differentielle associee.
+      </div>
+
+      <!-- ── Q1 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1 -- Rayon de convergence</span>
+        <p class="corr-question__statement">Determiner le rayon de convergence de \(\sum a_n x^n\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Le rayon de convergence \(R\) se determine par la regle de d'Alembert : \(\frac{1}{R} = \lim \left|\frac{a_{n+1}}{a_n}\right|\) (quand la limite existe). On peut aussi utiliser : \(\frac{1}{R} = \limsup |a_n|^{1/n}\).
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          La relation de recurrence relie \(a_{n+2}\) a \(a_n\), donc les termes pairs et impairs se calculent separement. On utilise la relation pour estimer le comportement de \(|a_n|\) quand \(n \to +\infty\).
+        </div>
+
+        <p>De la recurrence : \(|a_{n+2}| = \frac{|a_n|}{(n+2)(n+1)}\). Les termes impairs sont tous nuls (car \(a_1 = 0\)). Pour les termes pairs : \(a_{2k} = \frac{(-1)^k}{(2k)!}\).</p>
+
+        <p>On reconnait les coefficients de \(\cos(x)\) ! Donc \(|a_{2k}|^{1/(2k)} = \frac{1}{((2k)!)^{1/(2k)}} \to 0\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{R = +\infty}$$
+        </div>
+      </div>
+
+      <!-- ── Q2 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2 -- Identification de la fonction</span>
+        <p class="corr-question__statement">Reconnaitre la fonction \(f\).</p>
+
+        <p>Les termes impairs sont nuls et \(a_{2k} = \frac{(-1)^k}{(2k)!}\). On reconnait le developpement en serie entiere de \(\cos\) :</p>
+
+        $$f(x) = \sum_{k=0}^{+\infty} \frac{(-1)^k x^{2k}}{(2k)!}$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{f(x) = \cos(x)}$$
+        </div>
+      </div>
+
+      <!-- ── Q3 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 3 -- Equation differentielle</span>
+        <p class="corr-question__statement">Montrer que \(f\) verifie une equation differentielle d'ordre 2.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          La relation de recurrence sur les coefficients traduit une equation differentielle sur la fonction somme. La recurrence \((n+2)(n+1)a_{n+2} = -a_n\) correspond a la derivation seconde : quand on derive deux fois une serie entiere, le coefficient de \(x^n\) dans \(f''(x)\) est exactement \((n+2)(n+1)a_{n+2}\).
+        </div>
+
+        <p>On sait que \(f''(x) = \sum_{n=0}^{+\infty} (n+2)(n+1)\,a_{n+2}\,x^n\). La relation de recurrence donne \((n+2)(n+1)\,a_{n+2} = -a_n\), donc :</p>
+        $$f''(x) = -\sum_{n=0}^{+\infty} a_n x^n = -f(x)$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{f'' + f = 0, \quad f(0) = 1, \quad f'(0) = 0}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Ne pas oublier les conditions initiales ! L'equation \(y'' + y = 0\) a pour solution generale \(y = A\cos(x) + B\sin(x)\). Sans les conditions \(f(0) = 1\) et \(f'(0) = 0\), on ne peut pas conclure que \(f = \cos\).
+        </div>
+      </div>
+
+      <!-- ── Q4 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 4 -- Resolution de l'equation differentielle</span>
+        <p class="corr-question__statement">Resoudre \(y'' + y = 0\) par la methode DSE.</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Resolution d'EDL2 par serie entiere (DSE)</div>
+          La recette : (1) On pose \(y = \sum a_n x^n\), (2) on injecte dans l'equation, (3) on identifie les coefficients, (4) on obtient une recurrence, (5) on calcule les premiers termes pour reconnaitre la serie. C'est la methode standard quand on vous donne une equation differentielle et qu'on vous demande de "chercher les solutions DSE".
+        </div>
+
+        <p>L'equation caracteristique est \(r^2 + 1 = 0\), soit \(r = \pm i\). La solution generale est :</p>
+        $$y(x) = A\cos(x) + B\sin(x)$$
+
+        <p>Avec \(y(0) = 1\) : \(A = 1\). Avec \(y'(0) = 0\) : \(B = 0\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{y(x) = \cos(x)}$$
+        </div>
+      </div>
+
+      <!-- ── Q5 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 5 -- Etude qualitative</span>
+        <p class="corr-question__statement">Etudier le comportement de \(f\) : parite, zeros, extrema.</p>
+
+        <p>Comme \(f(x) = \cos(x)\), on sait que :</p>
+        <ul>
+          <li>\(f\) est paire (seuls les termes pairs sont non nuls dans le DSE)</li>
+          <li>Les zeros sont \(x = \frac{\pi}{2} + k\pi\) pour \(k \in \mathbb{Z}\)</li>
+          <li>Les extrema : maximum 1 en \(x = 2k\pi\), minimum \(-1\) en \(x = (2k+1)\pi\)</li>
+        </ul>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Exploiter la parite du DSE</div>
+          Quand tous les coefficients impairs d'une serie entiere sont nuls, la fonction est paire. C'est un raccourci : pas besoin de verifier \(f(-x) = f(x)\) par calcul, la parite se lit sur le DSE.
+        </div>
+      </div>
+
+    </div><!-- fin exo 2 -->
+
+    <div class="corr-separator">* * *</div>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 3                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="corr-exercice" id="exo3">
+
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">3</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Espaces prehilbertiens et projection orthogonale</h2>
+          <span class="corr-exercice__subtitle">Algebre bilineaire -- 5 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce type</span>
+        Dans \(E = \mathcal{C}([0,1], \mathbb{R})\), on considere le produit scalaire \(\langle f, g \rangle = \int_0^1 f(t)g(t)\,\mathrm{d}t\). Soit \(F = \text{Vect}(1, t)\) le sous-espace des polynomes de degre au plus 1. Calculer la projection orthogonale de \(f(t) = t^2\) sur \(F\).
+      </div>
+
+      <!-- ── Q1 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1 -- Base orthonormale de \(F\)</span>
+        <p class="corr-question__statement">Construire une base orthonormale de \(F\) par le procede de Gram-Schmidt.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Le <strong>procede de Gram-Schmidt</strong> transforme une base quelconque \((e_1, e_2, \ldots)\) en base orthonormale \((\varepsilon_1, \varepsilon_2, \ldots)\). Etape 1 : \(\varepsilon_1 = e_1/\|e_1\|\). Etape 2 : \(\tilde{\varepsilon}_2 = e_2 - \langle e_2, \varepsilon_1 \rangle \varepsilon_1\), puis \(\varepsilon_2 = \tilde{\varepsilon}_2 / \|\tilde{\varepsilon}_2\|\).
+        </div>
+
+        <p>On part de la base \((1, t)\) de \(F\).</p>
+
+        <ol class="corr-steps">
+          <li>\(\|1\|^2 = \int_0^1 1 \,\mathrm{d}t = 1\), donc \(\varepsilon_1(t) = 1\).</li>
+          <li>\(\langle t, \varepsilon_1 \rangle = \int_0^1 t \,\mathrm{d}t = \frac{1}{2}\).</li>
+          <li>\(\tilde{\varepsilon}_2(t) = t - \frac{1}{2}\). On calcule \(\|\tilde{\varepsilon}_2\|^2 = \int_0^1 (t - \frac{1}{2})^2 \,\mathrm{d}t = \frac{1}{12}\).</li>
+          <li>\(\varepsilon_2(t) = 2\sqrt{3}\,(t - \frac{1}{2})\).</li>
+        </ol>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\varepsilon_1(t) = 1, \quad \varepsilon_2(t) = 2\sqrt{3}\left(t - \frac{1}{2}\right)}$$
+        </div>
+      </div>
+
+      <!-- ── Q2 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 2 -- Projection orthogonale</span>
+        <p class="corr-question__statement">Calculer \(p_F(t^2)\), la projection orthogonale de \(t^2\) sur \(F\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Projeter \(t^2\) sur \(F\), c'est trouver le polynome de degre \(\leq 1\) qui approche le mieux \(t^2\) au sens des moindres carres. C'est la meilleure approximation affine de la parabole sur \([0,1]\). C'est le meme principe que la regression lineaire en statistiques.
+        </div>
+
+        <p>Avec la base orthonormale, la projection est simplement :</p>
+        $$p_F(f) = \langle f, \varepsilon_1 \rangle \varepsilon_1 + \langle f, \varepsilon_2 \rangle \varepsilon_2$$
+
+        <ol class="corr-steps">
+          <li>\(\langle t^2, \varepsilon_1 \rangle = \int_0^1 t^2 \,\mathrm{d}t = \frac{1}{3}\).</li>
+          <li>\(\langle t^2, \varepsilon_2 \rangle = 2\sqrt{3}\int_0^1 t^2(t - \frac{1}{2}) \,\mathrm{d}t = 2\sqrt{3}\left(\frac{1}{4} - \frac{1}{6}\right) = 2\sqrt{3} \cdot \frac{1}{12} = \frac{\sqrt{3}}{6}\).</li>
+          <li>\(p_F(t^2) = \frac{1}{3} \cdot 1 + \frac{\sqrt{3}}{6} \cdot 2\sqrt{3}(t - \frac{1}{2}) = \frac{1}{3} + (t - \frac{1}{2}) = t - \frac{1}{6}\).</li>
+        </ol>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{p_F(t^2) = t - \frac{1}{6}}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Attention aux calculs d'integrales ! L'erreur la plus frequente est de se tromper dans \(\int_0^1 t^2(t - \frac{1}{2})\,\mathrm{d}t\). Decomposez toujours : \(\int t^3 \,\mathrm{d}t - \frac{1}{2}\int t^2 \,\mathrm{d}t = \frac{1}{4} - \frac{1}{6} = \frac{1}{12}\).
+        </div>
+      </div>
+
+      <!-- ── Q3 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 3 -- Distance a \(F\)</span>
+        <p class="corr-question__statement">Calculer \(d(t^2, F)\).</p>
+
+        <p>Par Pythagore dans les espaces prehilbertiens :</p>
+        $$d(t^2, F)^2 = \|t^2\|^2 - \|p_F(t^2)\|^2$$
+
+        <ol class="corr-steps">
+          <li>\(\|t^2\|^2 = \int_0^1 t^4 \,\mathrm{d}t = \frac{1}{5}\).</li>
+          <li>\(\|p_F(t^2)\|^2 = \int_0^1 (t - \frac{1}{6})^2 \,\mathrm{d}t = \frac{1}{3} - \frac{1}{6} + \frac{1}{36} = \frac{7}{36}\).</li>
+          <li>\(d^2 = \frac{1}{5} - \frac{7}{36} = \frac{36 - 35}{180} = \frac{1}{180}\).</li>
+        </ol>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{d(t^2, F) = \frac{1}{\sqrt{180}} = \frac{1}{6\sqrt{5}}}$$
+        </div>
+      </div>
+
+      <!-- ── Q4 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 4 -- Interpretation geometrique</span>
+        <p class="corr-question__statement">Interpreter geometriquement le resultat.</p>
+
+        <p>La distance \(d(t^2, F) = \frac{1}{6\sqrt{5}} \approx 0.074\) est tres petite. Cela signifie que la droite \(y = t - \frac{1}{6}\) est une tres bonne approximation de la parabole \(y = t^2\) sur \([0,1]\) au sens \(L^2\).</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Schema de la projection orthogonale en dimension infinie</div>
+          Le schema est identique a la projection en dimension finie : on decompose \(f = p_F(f) + (f - p_F(f))\) avec \(f - p_F(f) \perp F\). La distance est la norme de la composante orthogonale. Ce schema fonctionne dans tous les espaces prehilbertiens, meme de dimension infinie.
+        </div>
+      </div>
+
+      <!-- ── Q5 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 5 -- Verification de l'orthogonalite</span>
+        <p class="corr-question__statement">Verifier que \(t^2 - p_F(t^2)\) est orthogonal a \(F\).</p>
+
+        <p>On doit verifier que \(\langle t^2 - (t - \frac{1}{6}), 1 \rangle = 0\) et \(\langle t^2 - (t - \frac{1}{6}), t \rangle = 0\).</p>
+
+        <details class="corr-toggle">
+          <summary>Verification detaillee</summary>
+          <div class="corr-toggle__content">
+            <p>\(\langle t^2 - t + \frac{1}{6}, 1 \rangle = \int_0^1 (t^2 - t + \frac{1}{6})\,\mathrm{d}t = \frac{1}{3} - \frac{1}{2} + \frac{1}{6} = 0\). OK.</p>
+            <p>\(\langle t^2 - t + \frac{1}{6}, t \rangle = \int_0^1 (t^3 - t^2 + \frac{t}{6})\,\mathrm{d}t = \frac{1}{4} - \frac{1}{3} + \frac{1}{12} = 0\). OK.</p>
+          </div>
+        </details>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{t^2 - p_F(t^2) \perp F \quad \text{(verifie)}}$$
+        </div>
+      </div>
+
+    </div><!-- fin exo 3 -->
+
+    <div class="corr-separator">* * *</div>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 4                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="corr-exercice" id="exo4">
+
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">4</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Probabilites : variables aleatoires a densite</h2>
+          <span class="corr-exercice__subtitle">Probabilites continues -- 5 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avance</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce type</span>
+        Soit \(X\) une variable aleatoire de densite \(f(x) = \lambda e^{-\lambda x} \mathbf{1}_{x \geq 0}\) avec \(\lambda > 0\) (loi exponentielle). On pose \(Y = X^2\) et \(Z = \min(X_1, X_2)\) ou \(X_1, X_2\) sont independantes de meme loi que \(X\). Determiner les lois de \(Y\) et \(Z\), calculer esperances et variances.
+      </div>
+
+      <!-- ── Q1 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1 -- Fonction de repartition de \(X\)</span>
+        <p class="corr-question__statement">Rappeler la fonction de repartition \(F_X\) de la loi exponentielle de parametre \(\lambda\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          La loi exponentielle \(\mathcal{E}(\lambda)\) modelise le temps d'attente avant un evenement aleatoire (duree de vie, temps entre deux arrivees). Sa densite est \(f(x) = \lambda e^{-\lambda x}\) pour \(x \geq 0\). La propriete fondamentale est l'<strong>absence de memoire</strong> : \(P(X > s+t \mid X > s) = P(X > t)\).
+        </div>
+
+        $$F_X(x) = \int_{-\infty}^x f(t)\,\mathrm{d}t = \begin{cases} 0 & \text{si } x < 0 \\ 1 - e^{-\lambda x} & \text{si } x \geq 0 \end{cases}$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{F_X(x) = (1 - e^{-\lambda x})\,\mathbf{1}_{x \geq 0}}$$
+        </div>
+      </div>
+
+      <!-- ── Q2 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 2 -- Loi de \(Y = X^2\)</span>
+        <p class="corr-question__statement">Determiner la densite de \(Y = X^2\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Pour trouver la loi d'une fonction d'une variable aleatoire, on passe toujours par la fonction de repartition. C'est le reflexe numero 1 : on ecrit \(F_Y(y) = P(Y \leq y) = P(X^2 \leq y)\), puis on derive pour obtenir la densite.
+        </div>
+
+        <p>Pour \(y \geq 0\) (seul cas interessant car \(Y = X^2 \geq 0\)) :</p>
+        $$F_Y(y) = P(X^2 \leq y) = P(X \leq \sqrt{y}) = F_X(\sqrt{y}) = 1 - e^{-\lambda\sqrt{y}}$$
+
+        <p>car \(X \geq 0\) presque surement. On derive :</p>
+        $$f_Y(y) = F_Y'(y) = \frac{\lambda}{2\sqrt{y}}\,e^{-\lambda\sqrt{y}} \quad \text{pour } y > 0$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{f_Y(y) = \frac{\lambda}{2\sqrt{y}}\,e^{-\lambda\sqrt{y}}\,\mathbf{1}_{y > 0}}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Ne pas oublier que \(X \geq 0\) presque surement, donc \(P(X^2 \leq y) = P(X \leq \sqrt{y})\) et non \(P(-\sqrt{y} \leq X \leq \sqrt{y})\). Si \(X\) pouvait etre negatif, il faudrait considerer les deux branches.
+        </div>
+      </div>
+
+      <!-- ── Q3 ── -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 3 -- Loi du minimum</span>
+        <p class="corr-question__statement">Determiner la loi de \(Z = \min(X_1, X_2)\).</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Loi du minimum de variables independantes</div>
+          Pour le minimum de \(n\) variables independantes, on utilise le complement : \(P(\min(X_1, \ldots, X_n) > t) = \prod_{i=1}^n P(X_i > t)\). C'est bien plus simple que de travailler avec \(P(\min \leq t)\) directement.
+        </div>
+
+        <p>Pour \(t \geq 0\) :</p>
+        $$P(Z > t) = P(X_1 > t) \cdot P(X_2 > t) = e^{-\lambda t} \cdot e^{-\lambda t} = e^{-2\lambda t}$$
+
+        <p>On reconnait la fonction de survie d'une loi \(\mathcal{E}(2\lambda)\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{Z = \min(X_1, X_2) \sim \mathcal{E}(2\lambda)}$$
+          Le minimum de deux exponentielles independantes de parametre \(\lambda\) suit une exponentielle de parametre \(2\lambda\).
+        </div>
+      </div>
+
+      <!-- ── Q4 ── -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 4 -- Esperances et variances</span>
+        <p class="corr-question__statement">Calculer \(E(X)\), \(V(X)\), \(E(Z)\), \(V(Z)\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Pour \(X \sim \mathcal{E}(\lambda)\) : \(E(X) = \frac{1}{\lambda}\), \(V(X) = \frac{1}{\lambda^2}\). Ces formules se retrouvent par integration par parties.
+        </div>
+
+        <table class="corr-table">
+          <tr><th>Variable</th><th>Loi</th><th>Esperance</th><th>Variance</th></tr>
+          <tr><td>\(X\)</td><td>\(\mathcal{E}(\lambda)\)</td><td>\(\frac{1}{\lambda}\)</td><td>\(\frac{1}{\lambda^2}\)</td></tr>
+          <tr><td>\(Z\)</td><td>\(\mathcal{E}(2\lambda)\)</td><td>\(\frac{1}{2\lambda}\)</td><td>\(\frac{1}{4\lambda^2}\)</td></tr>
+        </table>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{E(Z) = \frac{1}{2\lambda}, \quad V(Z) = \frac{1}{4\lambda^2}}$$
+        </div>
+      </div>
+
+      <!-- ── Q5 ── -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question 5 -- Generalisation au minimum de \(n\) variables</span>
+        <p class="corr-question__statement">Generaliser : quelle est la loi de \(\min(X_1, \ldots, X_n)\) pour \(n\) v.a. independantes de loi \(\mathcal{E}(\lambda)\) ?</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Ce resultat est fondamental en files d'attente et en fiabilite. Si \(n\) composants tombent en panne independamment avec un taux \(\lambda\), le temps avant la premiere panne suit \(\mathcal{E}(n\lambda)\). C'est aussi la base du processus de Poisson.
+        </div>
+
+        <p>Par le meme raisonnement :</p>
+        $$P(\min(X_1, \ldots, X_n) > t) = \prod_{i=1}^n P(X_i > t) = (e^{-\lambda t})^n = e^{-n\lambda t}$$
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\min(X_1, \ldots, X_n) \sim \mathcal{E}(n\lambda)}$$
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Stabilite de l'exponentielle par minimum</div>
+          Retenir : le minimum de \(n\) exponentielles independantes de parametres \(\lambda_1, \ldots, \lambda_n\) suit une exponentielle de parametre \(\lambda_1 + \cdots + \lambda_n\). Les parametres s'additionnent pour le minimum. Ce resultat tombe tres souvent en concours.
+        </div>
+      </div>
+
+    </div><!-- fin exo 4 -->
+
+
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>
