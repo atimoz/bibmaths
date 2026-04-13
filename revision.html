@@ -1740,6 +1740,7 @@
     var autoMode = urlParams.get('auto');
     if (autoMode) {
       setTimeout(function() {
+        console.log('[auto] starting session, mode=' + autoMode + ', cards=' + FLASHCARDS.length);
         if (autoMode === 'all') {
           startSession(FLASHCARDS.slice());
         } else if (autoMode.startsWith('ch:')) {
