@@ -659,6 +659,21 @@
       background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: var(--ink-light);
     }
     .cal7__pop-btn--secondary:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.15); }
+    .cal7__pop-cards {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
+      padding-top: 10px; border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .cal7__pop-cards-label {
+      width: 100%; font-size: .6rem; text-transform: uppercase;
+      letter-spacing: .5px; color: var(--ink-faint); font-weight: 600; margin-bottom: 2px;
+    }
+    .cal7__pop-card-link {
+      padding: 4px 10px; border-radius: 6px; font-size: .68rem; font-weight: 500;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+      color: var(--ink-light); text-decoration: none; cursor: pointer;
+      transition: all .12s;
+    }
+    .cal7__pop-card-link:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.15); color: #fff; }
     .cal7__pop-check {
       display: flex; align-items: center; gap: 8px;
       margin-top: 10px; font-size: .72rem; color: var(--ink-muted); cursor: pointer;
@@ -1271,6 +1286,35 @@
           html += '</div>';
         }
 
+        // Contextual card links based on slot type
+        var cardLinks = [];
+        if (slot.type === 'correction') {
+          cardLinks.push({ id: 'card-protocol', label: 'Protocole de correction' });
+          cardLinks.push({ id: 'card-errors', label: 'Erreurs classiques' });
+        }
+        if (slot.type === 'math') {
+          cardLinks.push({ id: 'card-reflexes-math', label: 'Reflexes maths' });
+        }
+        if (slot.type === 'physics') {
+          cardLinks.push({ id: 'card-reflexes-physics', label: 'Formules physique' });
+        }
+        if (slot.type === 'cours') {
+          cardLinks.push({ id: 'card-reflexes-math', label: 'Reflexes maths' });
+          cardLinks.push({ id: 'card-reflexes-physics', label: 'Formules physique' });
+        }
+        if (slot.type === 'fiche') {
+          cardLinks.push({ id: 'card-fiche', label: 'Modele de fiche' });
+          cardLinks.push({ id: 'card-reflexes-math', label: 'Reflexes maths' });
+        }
+        if (cardLinks.length > 0) {
+          html += '<div class="cal7__pop-cards">';
+          html += '<span class="cal7__pop-cards-label">Fiches utiles</span>';
+          cardLinks.forEach(function(cl) {
+            html += '<a href="#' + cl.id + '" class="cal7__pop-card-link" data-card="' + cl.id + '">' + cl.label + '</a>';
+          });
+          html += '</div>';
+        }
+
         html += '<label class="cal7__pop-check"><input type="checkbox" data-slot="' + slot.id + '"' + (progress[slot.id] ? ' checked' : '') + '> Marquer comme fait</label>';
 
         popEl.innerHTML = html;
@@ -1299,6 +1343,21 @@
         popEl.style.top = top + 'px';
 
         popEl.querySelector('.cal7__pop-close').addEventListener('click', closePopover);
+        // Card link handlers — scroll to card and open it
+        popEl.querySelectorAll('.cal7__pop-card-link').forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            var cardId = this.dataset.card;
+            var card = document.getElementById(cardId);
+            if (card) {
+              card.setAttribute('open', '');
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              card.style.outline = '2px solid var(--accent, #7432FF)';
+              setTimeout(function() { card.style.outline = ''; }, 2000);
+            }
+            closePopover();
+          });
+        });
         var cb = popEl.querySelector('[data-slot]');
         if (cb) cb.addEventListener('change', function() {
           progress[this.dataset.slot] = this.checked;
@@ -1325,36 +1384,36 @@
         let cardsHtml = '';
 
         // Method protocol
-        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">6 ETAPES</span><span class="cal7__card-title">' + P.method.title + '</span></summary><div class="cal7__card-body"><ol>';
+        cardsHtml += '<details class="cal7__card" id="card-protocol"><summary><span class="cal7__card-icon">6 ETAPES</span><span class="cal7__card-title">' + P.method.title + '</span></summary><div class="cal7__card-body"><ol>';
         P.method.steps.forEach(s => {
           cardsHtml += '<li><strong>' + s.action + '</strong> \u2014 ' + s.detail + (s.time ? ' <em>(' + s.time + ')</em>' : '') + '</li>';
         });
         cardsHtml += '</ol></div></details>';
 
         // Last day protocol
-        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">J-1</span><span class="cal7__card-title">' + P.lastDay.title + '</span></summary><div class="cal7__card-body"><ol>';
+        cardsHtml += '<details class="cal7__card" id="card-lastday"><summary><span class="cal7__card-icon">J-1</span><span class="cal7__card-title">' + P.lastDay.title + '</span></summary><div class="cal7__card-body"><ol>';
         P.lastDay.steps.forEach(s => {
           cardsHtml += '<li><strong>' + s.when + '</strong> \u2014 ' + s.action + ' <em>(' + s.time + ')</em></li>';
         });
         cardsHtml += '</ol></div></details>';
 
         // Math reflexes
-        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">20</span><span class="cal7__card-title">Reflexes maths</span></summary><div class="cal7__card-body"><ol>';
+        cardsHtml += '<details class="cal7__card" id="card-reflexes-math"><summary><span class="cal7__card-icon">20</span><span class="cal7__card-title">Reflexes maths</span></summary><div class="cal7__card-body"><ol>';
         P.reflexes.math.forEach(r => { cardsHtml += '<li>' + r + '</li>'; });
         cardsHtml += '</ol></div></details>';
 
         // Physics formulas
-        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">10</span><span class="cal7__card-title">Formules physique</span></summary><div class="cal7__card-body"><ol>';
+        cardsHtml += '<details class="cal7__card" id="card-reflexes-physics"><summary><span class="cal7__card-icon">10</span><span class="cal7__card-title">Formules physique</span></summary><div class="cal7__card-body"><ol>';
         P.reflexes.physics.forEach(r => { cardsHtml += '<li>' + r + '</li>'; });
         cardsHtml += '</ol></div></details>';
 
         // Errors
-        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">10</span><span class="cal7__card-title">Erreurs classiques a eviter</span></summary><div class="cal7__card-body"><ol>';
+        cardsHtml += '<details class="cal7__card" id="card-errors"><summary><span class="cal7__card-icon">10</span><span class="cal7__card-title">Erreurs classiques a eviter</span></summary><div class="cal7__card-body"><ol>';
         P.reflexes.errors.forEach(r => { cardsHtml += '<li>' + r + '</li>'; });
         cardsHtml += '</ol></div></details>';
 
         // Fiche template
-        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">MODELE</span><span class="cal7__card-title">' + P.ficheTemplate.title + '</span></summary><div class="cal7__card-body"><ul>';
+        cardsHtml += '<details class="cal7__card" id="card-fiche"><summary><span class="cal7__card-icon">MODELE</span><span class="cal7__card-title">' + P.ficheTemplate.title + '</span></summary><div class="cal7__card-body"><ul>';
         P.ficheTemplate.sections.forEach(s => {
           cardsHtml += '<li><strong>' + s.name + '</strong> \u2014 ' + s.desc + '</li>';
         });
