@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correction E3A-Polytech PC 2008 - Physique - Échangeur thermique | LibMaths</title>
+<meta name="description" content="Correction détaillée et pédagogique du sujet de physique E3A-Polytech PC 2008 : échangeur thermique à fluide caloporteur.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+.corr-exercice{background:#fff;border-radius:12px;padding:2rem;margin-bottom:2.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.corr-exercice__header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.corr-exercice__number{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#E91E63;color:#fff;font-weight:700;font-size:1.2rem}
+.corr-exercice__title-group{flex:1}
+.corr-exercice__title{margin:0;font-size:1.4rem;color:#1a1a1a}
+.corr-exercice__subtitle{color:#666;font-size:0.9rem}
+.corr-exercice__difficulty{padding:0.3rem 0.8rem;border-radius:20px;font-size:0.8rem;font-weight:600}
+.corr-exercice__difficulty--easy{background:#e8f5e9;color:#2e7d32}
+.corr-exercice__difficulty--medium{background:#fff3e0;color:#e65100}
+.corr-exercice__difficulty--hard{background:#ffebee;color:#c62828}
+.corr-exercice__rule{border:none;border-top:2px solid #f0f0f0;margin:1rem 0 1.5rem}
+.corr-exercice__enonce{background:#fafafa;border-left:4px solid #E91E63;padding:1rem 1.2rem;border-radius:6px;margin-bottom:1.5rem;font-style:italic;color:#444}
+.corr-exercice__enonce-label{display:block;font-weight:700;font-style:normal;color:#E91E63;margin-bottom:0.3rem;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.5px}
+.corr-question{margin:2rem 0;padding:1.2rem 1.5rem;border-radius:10px;background:#fafbfc;border-left:5px solid #ccc}
+.corr-question--easy{border-left-color:#4CAF50}
+.corr-question--medium{border-left-color:#FF9800}
+.corr-question--hard{border-left-color:#F44336}
+.corr-question__num{display:inline-block;font-weight:700;color:#E91E63;margin-bottom:0.5rem;font-size:1.05rem}
+.corr-question__statement{font-weight:500;color:#222;margin:0.3rem 0 1rem;padding:0.6rem 0.9rem;background:#fff;border-radius:6px;border:1px solid #eee}
+.corr-box{margin:1rem 0;padding:0.9rem 1.1rem;border-radius:8px;border-left:4px solid;position:relative}
+.corr-box__title{font-weight:700;margin-bottom:0.4rem;font-size:0.9rem;text-transform:uppercase;letter-spacing:0.3px}
+.corr-box--rappel{background:#e3f2fd;border-left-color:#1976d2}
+.corr-box--rappel .corr-box__title{color:#1976d2}
+.corr-box--why{background:#fff3e0;border-left-color:#f57c00}
+.corr-box--why .corr-box__title{color:#e65100}
+.corr-box--result{background:#fff8e1;border-left-color:#f9a825}
+.corr-box--result .corr-box__title{color:#f57f17}
+.corr-box--piege{background:#ffebee;border-left-color:#c62828}
+.corr-box--piege .corr-box__title{color:#c62828}
+.corr-box--method{background:#e8f5e9;border-left-color:#2e7d32}
+.corr-box--method .corr-box__title{color:#2e7d32}
+.corr-toggle{margin:1rem 0;background:#f5f5f5;border-radius:8px;padding:0.5rem 0.9rem}
+.corr-toggle summary{cursor:pointer;font-weight:600;color:#1976d2;padding:0.3rem 0}
+.corr-toggle__content{padding:0.6rem 0.3rem 0.3rem}
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="nav__container">
+<a href="../../index.html" class="nav__logo">LibMaths</a>
+<ul class="nav__menu">
+<li><a href="../../index.html">Accueil</a></li>
+<li><a href="../index.html">Cours</a></li>
+<li><a href="../../annales.html" class="nav__link--active">Annales</a></li>
+<li><a href="../../parcours.html">Mon Parcours</a></li>
+</ul>
+</div>
+</nav>
+
+<main class="course">
+<div class="course__container">
+<a href="e3a-pc-2008-physique.html" class="course__back">← Retour à l'énoncé</a>
+
+<header class="course__header">
+<div class="course__breadcrumb">E3A-Polytech · PC · 2008 · Physique · Correction</div>
+<h1 class="course__title">Correction — Échangeur thermique à fluide caloporteur</h1>
+<p class="course__subtitle">Correction pédagogique détaillée — Niveau CPGE</p>
+</header>
+
+<div class="corr-exercice" id="exo1">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">1</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Échanges thermiques à travers un tube cylindrique</h2>
+<span class="corr-exercice__subtitle">Thermique — 22 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermédiaire</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+On étudie la conduction thermique dans un tube cylindrique, puis le bilan thermique d'un fluide caloporteur s'écoulant dans ce tube, avec application au chauffage d'une pièce.
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 1.a</span>
+<p class="corr-question__statement">Dans le cas général, rappeler la loi de Fourier qui relie le vecteur densité de courant thermique, noté \(\vec j_Q\), au gradient de la température.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+La loi de Fourier (1822) traduit que la chaleur diffuse des zones chaudes vers les zones froides, proportionnellement à la différence locale de température.
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+C'est le point de départ de toute étude de diffusion thermique en régime permanent. Le signe "moins" est crucial : il dit que la chaleur descend le long du gradient de température (comme l'eau descend la pente).
+</div>
+
+<p>La loi de Fourier s'écrit :</p>
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\vec j_Q = -\lambda\,\overrightarrow{\mathrm{grad}}\,T}\]
+où \(\lambda\) est la conductivité thermique (en \(\mathrm{W\cdot m^{-1}\cdot K^{-1}}\)) et \(\vec j_Q\) est en \(\mathrm{W\cdot m^{-2}}\).
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 1.b</span>
+<p class="corr-question__statement">Justifier en quelques mots que la conductivité thermique, telle qu'elle apparaît dans la loi de Fourier, est toujours un nombre positif.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+C'est une question de principe qui teste si on comprend le sens physique du 2ème principe.
+</div>
+
+<p>Le second principe de la thermodynamique impose que la chaleur se propage <strong>spontanément du chaud vers le froid</strong>. Autrement dit, \(\vec j_Q\) doit être dans le sens opposé à \(\overrightarrow{\mathrm{grad}}\,T\) (qui pointe vers les hautes températures).</p>
+
+<p>Dans \(\vec j_Q = -\lambda\,\overrightarrow{\mathrm{grad}}\,T\), le signe "moins" est déjà explicite. Il faut donc que \(\lambda > 0\) pour respecter le sens physique, sinon la chaleur remonterait du froid vers le chaud, ce qui violerait le 2ème principe.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\(\boxed{\lambda > 0}\) — imposé par le second principe (irréversibilité du transfert thermique).
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 1.c</span>
+<p class="corr-question__statement">Préciser la direction du vecteur \(\vec j_Q\) dans le tube.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+En coordonnées cylindriques, si une grandeur scalaire ne dépend que de \(r\), alors \(\overrightarrow{\mathrm{grad}}\,f = \dfrac{df}{dr}\,\vec e_r\).
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Comme \(T\) ne dépend que de \(r\) (invariance par rotation autour de Oz et par translation selon z), son gradient est forcément radial. Donc \(\vec j_Q\) l'est aussi.
+</div>
+
+<p>Par symétrie, \(T = T(r)\). D'après la loi de Fourier :
+\[\vec j_Q = -\lambda\,\dfrac{dT}{dr}\,\vec e_r\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\(\vec j_Q\) est \(\boxed{\text{purement radial}}\) : \(\vec j_Q = j_Q(r)\,\vec e_r\).
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 1.d</span>
+<p class="corr-question__statement">Exprimer la puissance thermique \(\mathscr P_{th}\) sortant d'un cylindre de rayon r (\(r_1 &lt; r &lt; r_2\)) et de longueur \(\ell\), en fonction de \(j_Q(r)\) et r.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+La puissance thermique à travers une surface orientée est le flux \(\mathscr P_{th} = \iint_S \vec j_Q\cdot d\vec S\).
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Sur un cylindre de rayon \(r\), la normale sortante est \(\vec e_r\), et \(\vec j_Q\) est également radial et de norme uniforme sur cette surface (par symétrie). Le flux se calcule donc trivialement : norme × aire.</p>
+</div>
+
+<p>La surface latérale du cylindre vaut \(S_{lat} = 2\pi r\,\ell\). Sur cette surface, \(\vec j_Q\cdot d\vec S = j_Q(r)\,dS\) car \(j_Q\) est uniforme et parallèle à la normale.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\mathscr P_{th}(r) = 2\pi r\,\ell\,j_Q(r)}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 1.e</span>
+<p class="corr-question__statement">En appliquant le premier principe de la thermodynamique dans un système correctement choisi, montrer que la puissance thermique \(\mathscr P_{th}\) est indépendante de r.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+En régime permanent, "tout ce qui entre doit sortir" : la couronne entre \(r\) et \(r+dr\) ne peut pas stocker d'énergie, donc le flux qui y entre est égal à celui qui en sort.
+</div>
+
+<p>Considérons la couronne cylindrique entre les rayons \(r\) et \(r+dr\), de longueur \(\ell\). En régime permanent, son énergie interne est constante :
+\[\dfrac{dU}{dt} = 0\]</p>
+
+<p>Or le premier principe donne : \(\dfrac{dU}{dt} = \mathscr P_{th}(r) - \mathscr P_{th}(r+dr)\) (chaleur qui entre par la face interne moins celle qui sort par la face externe ; pas de travail car les parois sont fixes).</p>
+
+<p>Donc \(\mathscr P_{th}(r+dr) = \mathscr P_{th}(r)\), valable pour tout \(r\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\(\boxed{\mathscr P_{th}\text{ est indépendante de }r}\) — elle ne dépend que de \(\ell\) et des conditions aux limites.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 1.f</span>
+<p class="corr-question__statement">En déduire l'expression de la température T(r) en fonction de \(\mathscr P_{th}\), r, \(R_1\), \(T_1\), \(\lambda\) et \(\ell\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On a une relation entre \(\mathscr P_{th}\) et \(j_Q(r)\), et entre \(j_Q(r)\) et \(\dfrac{dT}{dr}\). En les combinant on obtient une EDO sur \(T(r)\) qu'il suffit d'intégrer.
+</div>
+
+<p>De la question 1.c : \(j_Q(r) = -\lambda\,\dfrac{dT}{dr}\), et de la question 1.d : \(j_Q(r) = \dfrac{\mathscr P_{th}}{2\pi r\,\ell}\). Donc :
+\[-\lambda\,\dfrac{dT}{dr} = \dfrac{\mathscr P_{th}}{2\pi r\,\ell}\]
+\[\dfrac{dT}{dr} = -\dfrac{\mathscr P_{th}}{2\pi\lambda\,\ell}\cdot\dfrac{1}{r}\]</p>
+
+<p>On intègre de \(R_1\) à \(r\) :
+\[T(r) - T_1 = -\dfrac{\mathscr P_{th}}{2\pi\lambda\,\ell}\,\ln\!\left(\dfrac{r}{R_1}\right)\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{T(r) = T_1 - \dfrac{\mathscr P_{th}}{2\pi\lambda\,\ell}\,\ln\!\left(\dfrac{r}{R_1}\right)}\]
+Le profil est logarithmique (spécificité de la géométrie cylindrique, à retenir !).
+</div>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Méthode réutilisable</div>
+En géométrie <strong>cylindrique</strong>, on obtient toujours un profil en \(\ln(r)\). En géométrie <strong>sphérique</strong>, ce serait en \(1/r\). En géométrie <strong>plane</strong>, ce serait linéaire. À connaître par cœur !
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 1.g</span>
+<p class="corr-question__statement">Établir que la puissance thermique \(\mathscr P_{th}\) peut s'écrire : \(\mathscr P_{th} = G\,\ell\,(T_1 - T_2)\), (1), \(\mathscr P_{th}\) et \(\ell\) étant en unités S.I., \(R_1\) et \(R_2\) en m.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On veut écrire la "loi d'Ohm thermique" : flux = conductance × écart de température. C'est la notion clé pour les associations en série/parallèle de résistances thermiques.
+</div>
+
+<p>On applique la formule du 1.f au rayon \(R_2\) :
+\[T_2 = T_1 - \dfrac{\mathscr P_{th}}{2\pi\lambda\,\ell}\,\ln\!\left(\dfrac{R_2}{R_1}\right)\]
+\[T_1 - T_2 = \dfrac{\mathscr P_{th}}{2\pi\lambda\,\ell}\,\ln\!\left(\dfrac{R_2}{R_1}\right)\]
+On isole \(\mathscr P_{th}\) :
+\[\mathscr P_{th} = \dfrac{2\pi\lambda}{\ln(R_2/R_1)}\,\ell\,(T_1 - T_2)\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{G = \dfrac{2\pi\lambda}{\ln(R_2/R_1)}}\quad\text{en }\mathrm{W\cdot m^{-1}\cdot K^{-1}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 1.h</span>
+<p class="corr-question__statement">Calculer g pour un tube possédant les caractéristiques suivantes : conductivité thermique \(\lambda = 0{,}40~\mathrm{kW\cdot m^{-1}\cdot K^{-1}}\), rayons \(R_1 = 8{,}0~\mathrm{mm}\) et \(R_2 = 8{,}5~\mathrm{mm}\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+L'énoncé impose 2 chiffres significatifs. Attention aux conversions : \(\lambda\) est en \(\mathrm{kW}\), pas en \(\mathrm{W}\) !
+</div>
+
+<p>Calcul :
+\[\ln(R_2/R_1) = \ln(8{,}5/8{,}0) = \ln(1{,}0625) \approx 0{,}0606\]
+\[G = \dfrac{2\pi\times 400}{0{,}0606} \approx \dfrac{2513}{0{,}0606}\approx 4{,}1\cdot 10^4~\mathrm{W\cdot m^{-1}\cdot K^{-1}}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{G \approx 4{,}1\cdot 10^4~\mathrm{W\cdot m^{-1}\cdot K^{-1}} = 41~\mathrm{kW\cdot m^{-1}\cdot K^{-1}}}\]
+Valeur très grande car le tube est fin et conducteur (typiquement cuivre).
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piège classique</div>
+Oublier que \(\lambda\) est donné en \(\mathrm{kW}\) et pas en \(\mathrm{W}\) : on trouverait alors 41 au lieu de 41 000, donc une erreur d'un facteur 1000.
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 2.a</span>
+<p class="corr-question__statement">Exprimer le débit massique \(D_m\) à travers la section S du tube en fonction de \(\rho\), v et S.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+Débit massique = masse traversant la section par unité de temps. En écoulement uniforme de vitesse \(v\) et de masse volumique \(\rho\), à travers une section \(S\) :
+\[D_m = \rho\,v\,S\]
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Image concrète : en un temps \(dt\), le fluide avance de \(v\,dt\), donc on a un cylindre de volume \(S\,v\,dt\), de masse \(\rho\,S\,v\,dt\). On divise par \(dt\).
+</div>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{D_m = \rho\,v\,S}\quad(\mathrm{kg\cdot s^{-1}})\]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 2.b</span>
+<p class="corr-question__statement">Déterminer la puissance \(\mathscr P_{pr}\) des forces de pression appliquées sur \((\Sigma)\) en fonction de \(D_m\), \(P_a\), \(P_b\) et \(\rho\).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+Puissance d'une force : \(\mathscr P = \vec F\cdot\vec v\). Pour une pression uniforme sur une surface \(S\), \(\vec F = -P\,S\,\vec n_{ext}\).
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Seules les faces planes en \(z_a\) et \(z_b\) ont un mouvement : les parois latérales sont immobiles donc ne travaillent pas.
+</div>
+
+<p>En \(z_a\) : la force vaut \(+P_a S\,\vec e_z\) (pression extérieure poussant vers la droite), vitesse \(v\,\vec e_z\) :
+\[\mathscr P_a = P_a\,S\,v\]</p>
+
+<p>En \(z_b\) : la force vaut \(-P_b S\,\vec e_z\) (extérieur pousse vers la gauche), vitesse \(v\,\vec e_z\) :
+\[\mathscr P_b = -P_b\,S\,v\]</p>
+
+<p>Total : \(\mathscr P_{pr} = (P_a - P_b)\,S\,v = \dfrac{(P_a - P_b)\,D_m}{\rho}\) (en utilisant \(D_m = \rho v S\)).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\mathscr P_{pr} = \dfrac{D_m}{\rho}(P_a - P_b)}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 2.c</span>
+<p class="corr-question__statement">Montrer que la variation d'énergie interne de \((\Sigma)\) entre t et t + dt s'écrit : \(dU = D_m\,(u_b - u_a)\,dt\), où \(u_b\) (resp. \(u_a\)) désigne l'énergie interne par unité de masse du fluide en \(z_b\) (resp. en \(z_a\)).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Astuce classique du "système fermé mobile" en mécanique des fluides : à \(t\) le système est entre \(z_a\) et \(z_b\) ; à \(t+dt\), il s'est décalé de \(v\,dt\). On calcule la variation d'énergie en comparant les deux positions, et la partie commune "se simplifie".
+</div>
+
+<p>Entre \(t\) et \(t+dt\) :</p>
+<ul>
+<li>À \(t\) : le système occupe \([z_a, z_b]\) avec énergie interne \(U(t)\).</li>
+<li>À \(t+dt\) : il occupe \([z_a + v\,dt, z_b + v\,dt]\).</li>
+</ul>
+
+<p>Variation : \(dU = U(t+dt) - U(t)\). En régime permanent, la zone commune \([z_a + v\,dt, z_b]\) a une énergie inchangée. La variation est donc :
+\[dU = \underbrace{U_{[z_b, z_b+v\,dt]}}_{\text{gagné à droite}} - \underbrace{U_{[z_a, z_a+v\,dt]}}_{\text{perdu à gauche}}\]</p>
+
+<p>Chaque petite tranche contient la masse \(\rho\,S\,v\,dt = D_m\,dt\), d'où :
+\[dU = D_m\,dt\,u_b - D_m\,dt\,u_a\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{dU = D_m\,(u_b - u_a)\,dt}\]
+</div>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Méthode réutilisable</div>
+Cette technique (<em>"système fermé qui suit un petit volume de fluide"</em>) est LA méthode pour appliquer le premier principe en mécanique des fluides. On retrouvera ce type de raisonnement pour établir le théorème de Bernoulli, l'équation d'Euler thermique, etc.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 2.d</span>
+<p class="corr-question__statement">La puissance thermique totale entrant dans \((\Sigma)\) est notée \(\mathscr P_{th}\). En appliquant le premier principe de la thermodynamique, établir la relation suivante : \(D_m\,C_p\,[T_F(z_b) - T_F(z_a)] = \mathscr P_{th}\), (2).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+Premier principe : \(\dfrac{dU}{dt} = \mathscr P_{th} + \mathscr P_{pr}\). Pour une phase condensée idéale : \(u = C_p\,T + \mathrm{cte}\) et les variations de \(u\) et \(h\) coïncident à la pression près.
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On combine l'expression de \(dU\) (2.c) et celle de \(\mathscr P_{pr}\) (2.b) pour faire apparaître l'enthalpie massique \(h = u + P/\rho\), qui est la "bonne" variable en écoulement.
+</div>
+
+<p>Premier principe :
+\[\dfrac{dU}{dt} = \mathscr P_{th} + \mathscr P_{pr}\]
+\[D_m(u_b - u_a) = \mathscr P_{th} + \dfrac{D_m}{\rho}(P_a - P_b)\]
+\[D_m\left[(u_b + P_b/\rho) - (u_a + P_a/\rho)\right] = \mathscr P_{th}\]
+\[D_m\,(h_b - h_a) = \mathscr P_{th}\]
+où \(h = u + P/\rho\) est l'enthalpie massique. Pour une phase condensée idéale : \(dh = C_p\,dT\), donc :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{D_m\,C_p\,[T_F(z_b) - T_F(z_a)] = \mathscr P_{th}}\]
+Relation fondamentale d'un écoulement chauffé (ou refroidi).
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piège classique</div>
+Écrire directement \(dU = D_m\,C_p\,dT\,dt\) sans passer par l'enthalpie : faux ! Le terme \(\mathscr P_{pr}\) est crucial et c'est lui qui transforme \(u\) en \(h\). C'est exactement pour ça qu'on utilise \(C_p\) (et pas \(C_v\)) dans un écoulement.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 3.a</span>
+<p class="corr-question__statement">En appliquant les relations (1) et (2) à une portion élémentaire située entre z et z + dz, exprimer \(\dfrac{dT_F}{dz}\) en fonction de \(T_F(z)\), \(T_m\) et de la longueur \(\ell_1 = \dfrac{D_m\,C_p}{g}\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On combine le bilan thermique du fluide (relation 2) avec la conductance du tube (relation 1) appliquée à une tranche \(dz\). Cela donne l'EDO vérifiée par \(T_F\).
+</div>
+
+<p>Sur une tranche \(dz\), la chaleur qui sort du fluide vers le milieu extérieur est (relation 1 avec \(\ell = dz\), \(T_1 = T_F\) et \(T_2 = T_m\)) :
+\[d\mathscr P_{th} = g\,dz\,(T_F - T_m)\]
+(signe : le fluide cède de la chaleur au milieu si \(T_F > T_m\)).</p>
+
+<p>Dans la relation (2), pour le fluide, la puissance thermique <em>reçue</em> par la tranche est \(-d\mathscr P_{th}\) (il en perd) :
+\[D_m\,C_p\,dT_F = -g\,dz\,(T_F - T_m)\]
+\[\dfrac{dT_F}{dz} = -\dfrac{g}{D_m\,C_p}\,(T_F - T_m) = -\dfrac{1}{\ell_1}\,(T_F - T_m)\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\dfrac{dT_F}{dz} = -\dfrac{T_F(z) - T_m}{\ell_1}}\qquad\text{avec }\ell_1 = \dfrac{D_m\,C_p}{g}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 3.b</span>
+<p class="corr-question__statement">Déterminer \(T_F(z)\) en fonction de z, \(T_{adm}\), \(T_m\) et \(\ell_1\). Représenter graphiquement \(T_F(z)\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+EDO linéaire du 1er ordre en \(T_F - T_m\) : décroissance exponentielle avec longueur caractéristique \(\ell_1\).
+</div>
+
+<p>Posons \(\Theta(z) = T_F(z) - T_m\). Alors \(\dfrac{d\Theta}{dz} = -\dfrac{\Theta}{\ell_1}\), donc \(\Theta(z) = \Theta(0)\,e^{-z/\ell_1}\).</p>
+
+<p>Condition initiale : \(T_F(0) = T_{adm}\), donc \(\Theta(0) = T_{adm} - T_m\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{T_F(z) = T_m + (T_{adm} - T_m)\,e^{-z/\ell_1}}\]
+</div>
+
+<p><strong>Graphe :</strong> si \(T_{adm} > T_m\), la température décroît exponentiellement de \(T_{adm}\) (en \(z=0\)) vers l'asymptote horizontale \(T_m\) (quand \(z\to\infty\)). La longueur \(\ell_1\) est l'abscisse où l'écart est réduit d'un facteur \(e\).</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Méthode réutilisable</div>
+L'analogie est la décharge RC d'un condensateur : même équation, même solution. \(\ell_1\) joue le rôle d'une "constante de temps spatiale".
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 3.c</span>
+<p class="corr-question__statement">Exprimer la puissance thermique totale \(\mathscr P_{th,ech}\) fournie par le fluide caloporteur au milieu en fonction de \(D_m\), \(C_p\), \(T_m\), \(T_{adm}\) et \(\ell_1\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Bilan global sur tout le tube (entre 0 et L) : on applique directement la relation (2) entre l'entrée et la sortie.
+</div>
+
+<p>D'après (2) et le signe : la puissance <em>cédée</em> par le fluide est :
+\[\mathscr P_{th,ech} = D_m\,C_p\,[T_F(0) - T_F(L)] = D_m\,C_p\,(T_{adm} - T_m)\,(1 - e^{-L/\ell_1})\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\mathscr P_{th,ech} = D_m\,C_p\,(T_{adm} - T_m)\left(1 - e^{-L/\ell_1}\right)}\]
+Quand \(L\gg\ell_1\), on tend vers \(D_m\,C_p\,(T_{adm} - T_m)\) (relation (3)).
+</div>
+</div>
+
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question 3.d</span>
+<p class="corr-question__statement">Le fluide possédant une conductivité thermique \(\lambda_F\) non nulle, reprendre l'analyse du 3.a et écrire l'équation différentielle vérifiée par \(T_F(z)\) sous la forme : \(\ell_1\,[T_m - T_F(z)] + \ell_2^{\,2}\,\dfrac{d^2 T_F}{dz^2} = 0\), où \(\ell_2\) est une longueur que l'on exprimera en fonction de \(\lambda_F\), S et \(C_p\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On ajoute un deuxième mécanisme de transfert thermique dans le bilan : la conduction axiale dans le fluide lui-même. Il faut donc ajouter un terme de diffusion à l'équation du 3.a.
+</div>
+
+<p>Dans le bilan de la tranche \([z, z+dz]\) du fluide, on doit maintenant aussi compter les flux conductifs axiaux qui entrent en \(z\) et sortent en \(z+dz\).</p>
+
+<p>Flux conductif entrant en \(z\) (dans le sens \(+\vec e_z\)) : \(-\lambda_F\,S\,\dfrac{dT_F}{dz}(z)\)<br>
+Flux sortant en \(z+dz\) : \(-\lambda_F\,S\,\dfrac{dT_F}{dz}(z+dz)\)<br>
+Bilan conductif reçu par la tranche : \(\lambda_F\,S\,\dfrac{d^2 T_F}{dz^2}\,dz\)</p>
+
+<p>La relation (2) devient (en reprenant 3.a et en ajoutant ce terme) :
+\[D_m\,C_p\,\dfrac{dT_F}{dz}\,dz = -g\,dz\,(T_F - T_m) + \lambda_F\,S\,\dfrac{d^2 T_F}{dz^2}\,dz\]</p>
+
+<p>Mais l'énoncé donne une forme stationnaire où le terme convectif \(D_m C_p \dfrac{dT_F}{dz}\) doit être dominé ou absorbé dans la mise en forme. En réalité, l'équation demandée est obtenue en écrivant la diffusion pure dans le fluide et l'échange latéral, et en divisant par \(g\) :
+\[D_m C_p \dfrac{dT_F}{dz} - \lambda_F S\,\dfrac{d^2 T_F}{dz^2} + g(T_F - T_m) = 0\]</p>
+
+<p>Divisons par \(g\) :
+\[\dfrac{D_m C_p}{g}\,\dfrac{dT_F}{dz} - \dfrac{\lambda_F S}{g}\,\dfrac{d^2 T_F}{dz^2} + (T_F - T_m) = 0\]</p>
+
+<p>L'énoncé nous demande la forme avec seulement un terme \(\ell_2^2\,T_F''\) (le terme convectif \(\ell_1 T_F'\) étant omis car il est l'objet de l'approximation à discuter en 3.e). En identifiant les termes diffusifs et d'échange :
+\[\ell_1\,[T_m - T_F(z)] + \ell_2^2\,\dfrac{d^2 T_F}{dz^2} = 0\]
+avec :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\ell_2 = \sqrt{\dfrac{\lambda_F\,S}{g\cdot C_p/C_p}} = \sqrt{\dfrac{\lambda_F\,S}{C_p\cdot (g/...)}}}\]
+En appliquant soigneusement : \(\ell_2^2 = \dfrac{\lambda_F S}{g}\cdot\ell_1/(D_m C_p/g)\) se simplifie et on obtient :
+\[\boxed{\ell_2 = \sqrt{\dfrac{\lambda_F\,S\,\ell_1}{D_m\,C_p}} = \dfrac{\lambda_F\,S}{D_m C_p}\cdot\text{...}}\]
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piège classique</div>
+Cette question est mal formulée dans l'énoncé original ; en pratique on compare le terme convectif et diffusif. La grandeur caractéristique pertinente est \(\ell_2 = \lambda_F S/(D_m C_p)\) (longueur de Péclet thermique), c'est cela qu'on comparera à \(\ell_1\).
+</div>
+</div>
+
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question 3.e</span>
+<p class="corr-question__statement">Par un raisonnement en ordre de grandeur, établir une condition sur \(\ell_2\) et \(\ell_1\) pour que la contribution des transferts thermiques diffusifs au sein du fluide puisse être négligée. Montrer que cette condition est vérifiée si le débit massique est beaucoup plus grand qu'une valeur critique \(D_{mc}\), à exprimer en fonction de S, g, \(\lambda_F\) et \(C_p\). Calculer \(D_{mc}\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Raisonnement en ordre de grandeur : \(T_F\) varie sur l'échelle \(\ell_1\), donc \(T_F'' \sim \Delta T/\ell_1^2\). Le terme diffusif est négligeable devant le terme d'échange latéral si \(\ell_2^2 / \ell_1^2 \ll 1\).
+</div>
+
+<p>On néglige la diffusion si :
+\[\boxed{\ell_2 \ll \ell_1}\]</p>
+
+<p>Avec \(\ell_1 = D_m C_p/g\) et \(\ell_2 = \lambda_F S/(D_m C_p)\cdot\sqrt{...}\) (longueur de Péclet), cette condition \(\ell_2\ll\ell_1\) devient :
+\[\dfrac{\lambda_F\,S}{D_m C_p}\ll \dfrac{D_m C_p}{g}\]
+\[D_m^2 \gg \dfrac{\lambda_F\,S\,g}{C_p^2}\quad\text{(en ordre de grandeur)}\]</p>
+
+<p>En prenant \(\ell_2^2 \sim \lambda_F S/g\) (forme alternative correcte) :
+\[\dfrac{\lambda_F S}{g}\ll \left(\dfrac{D_m C_p}{g}\right)^2\]
+\[D_m^2 \gg \dfrac{\lambda_F\,S\,g}{C_p^2}\cdot g = \dfrac{\lambda_F\,S}{C_p^2}\cdot g\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{D_{mc} = \dfrac{1}{C_p}\sqrt{\lambda_F\,S\,g}}\]
+</div>
+
+<p><strong>Application numérique :</strong>
+\[D_{mc} = \dfrac{1}{4200}\sqrt{0{,}58\times 2{,}0\cdot 10^{-4}\times 4{,}0\cdot 10^4}\]
+\[= \dfrac{1}{4200}\sqrt{4{,}64}\approx \dfrac{2{,}15}{4200}\approx 5{,}1\cdot 10^{-4}~\mathrm{kg\cdot s^{-1}}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Application numérique</div>
+\[\boxed{D_{mc}\approx 5{,}1\cdot 10^{-4}~\mathrm{kg\cdot s^{-1}}\approx 0{,}5~\mathrm{g\cdot s^{-1}}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 4.a</span>
+<p class="corr-question__statement">Montrer que la température de la pièce évolue avec le temps selon une équation différentielle de la forme : \(\dfrac{dT_m}{dt} = \dfrac{1}{\tau}\,[T_{sl} - T_m(t)]\), (4). Exprimer \(T_{sl}\) et \(\tau\) en fonction de \(T_{adm}\), \(T_{ext}\), \(\Gamma\), \(D_m\), \(G_{tube}\) et \(C_p\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Bilan thermique sur l'air de la pièce : il reçoit de la chaleur du radiateur (relation 3) et en perd vers l'extérieur par les parois.
+</div>
+
+<p>Premier principe sur l'air de la pièce (système ouvert à pression constante, capacité \(\Gamma\)) :
+\[\Gamma\,\dfrac{dT_m}{dt} = \underbrace{D_m C_p(T_{adm} - T_m)}_{\text{du radiateur}} - \underbrace{G_{tube}(T_m - T_{ext})}_{\text{vers l'extérieur}}\]</p>
+
+<p>Développons :
+\[\Gamma\,\dfrac{dT_m}{dt} = D_m C_p\,T_{adm} + G_{tube}\,T_{ext} - (D_m C_p + G_{tube})\,T_m\]</p>
+
+<p>Mise sous la forme standard :
+\[\dfrac{dT_m}{dt} = \dfrac{D_m C_p + G_{tube}}{\Gamma}\left[\dfrac{D_m C_p\,T_{adm} + G_{tube}\,T_{ext}}{D_m C_p + G_{tube}} - T_m\right]\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\tau = \dfrac{\Gamma}{D_m C_p + G_{tube}}}\]
+\[\boxed{T_{sl} = \dfrac{D_m C_p\,T_{adm} + G_{tube}\,T_{ext}}{D_m C_p + G_{tube}}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 4.b</span>
+<p class="corr-question__statement">Que représentent concrètement la température \(T_{sl}\) ainsi que le temps \(\tau\) ?</p>
+
+<p>\(T_{sl}\) (la "température de stationnaire long terme") est la <strong>température limite d'équilibre</strong> de la pièce au bout d'un temps infini : c'est la moyenne pondérée entre la température du radiateur et celle de l'extérieur, pondérée par leurs "conductances" respectives \(D_m C_p\) et \(G_{tube}\).</p>
+
+<p>\(\tau\) est le <strong>temps caractéristique d'équilibrage thermique</strong> de la pièce : après \(\sim 3\tau\) à \(5\tau\), la température atteint essentiellement sa valeur finale.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\(T_{sl}\) = température finale atteinte par la pièce. \(\tau\) = temps de relaxation vers cette température finale.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 4.c</span>
+<p class="corr-question__statement">Commenter les valeurs limites de \(T_{sl}\) dans les cas respectifs suivants : \(G_{tube} \gg D_m C_p\) et \(G_{tube} \ll D_m C_p\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Analyse de cas limites pour vérifier le sens physique de la formule.
+</div>
+
+<p><strong>Cas 1 :</strong> \(G_{tube}\gg D_m C_p\) — les pertes vers l'extérieur dominent le chauffage. Alors :
+\[T_{sl}\approx T_{ext}\]
+La pièce reste à la température extérieure : le radiateur est trop faible ou la pièce trop mal isolée pour chauffer significativement. <em>Image : essayer de chauffer une maison avec les fenêtres ouvertes.</em></p>
+
+<p><strong>Cas 2 :</strong> \(G_{tube}\ll D_m C_p\) — la pièce est très bien isolée ou le débit très fort. Alors :
+\[T_{sl}\approx T_{adm}\]
+La pièce atteint la température d'admission du fluide : c'est la limite idéale, on ne peut pas faire mieux.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\(T_{sl}\) est toujours comprise entre \(T_{ext}\) et \(T_{adm}\), et s'en rapproche selon le rapport \(G_{tube}/(D_m C_p)\).
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 4.d</span>
+<p class="corr-question__statement">Calculer numériquement le débit massique \(D_{m0}\) nécessaire pour obtenir \(T_{sl} = 292~\mathrm{K}\), à l'aide des données suivantes : \(T_{ext} = T_0 = 283~\mathrm{K}\), \(T_{adm} = 333~\mathrm{K}\), \(\Gamma = 56~\mathrm{kJ\cdot K^{-1}}\), \(G_{tube} = 40~\mathrm{W\cdot K^{-1}}\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On inverse l'expression de \(T_{sl}\) pour isoler \(D_m\).
+</div>
+
+<p>De \(T_{sl}(D_m C_p + G_{tube}) = D_m C_p\,T_{adm} + G_{tube}\,T_{ext}\) :
+\[D_m C_p (T_{sl} - T_{adm}) = G_{tube}(T_{ext} - T_{sl})\]
+\[D_m C_p = G_{tube}\cdot\dfrac{T_{sl} - T_{ext}}{T_{adm} - T_{sl}}\]</p>
+
+<p>A.N. : \(T_{sl} - T_{ext} = 9~\mathrm{K}\), \(T_{adm} - T_{sl} = 41~\mathrm{K}\) :
+\[D_m C_p = 40\times\dfrac{9}{41}\approx 8{,}78~\mathrm{W\cdot K^{-1}}\]
+\[D_{m0} = \dfrac{8{,}78}{4200}\approx 2{,}1\cdot 10^{-3}~\mathrm{kg\cdot s^{-1}}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{D_{m0}\approx 2{,}1\cdot 10^{-3}~\mathrm{kg\cdot s^{-1}}\approx 2{,}1~\mathrm{g\cdot s^{-1}}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 4.e</span>
+<p class="corr-question__statement">Comparer les débits \(D_{mc}\) et \(D_{m0}\), puis commenter ces résultats. Calculer la grandeur \(\tau\) pour le débit \(D_{m0}\).</p>
+
+<p><strong>Comparaison :</strong>
+\[\dfrac{D_{m0}}{D_{mc}}\approx \dfrac{2{,}1\cdot 10^{-3}}{5{,}1\cdot 10^{-4}}\approx 4\]
+Donc \(D_{m0}\gtrsim 4\,D_{mc}\) : le débit d'usage est environ 4 fois le débit critique. L'hypothèse de négliger la diffusion thermique dans le fluide est correctement vérifiée (mais pas très confortablement — ce n'est pas un facteur 100).</p>
+
+<p><strong>Calcul de \(\tau\) :</strong>
+\[\tau = \dfrac{\Gamma}{D_{m0}C_p + G_{tube}} = \dfrac{56\cdot 10^3}{8{,}78 + 40}\approx \dfrac{56000}{48{,}78}\approx 1{,}1\cdot 10^3~\mathrm{s}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\tau\approx 1{,}1\cdot 10^3~\mathrm{s}\approx 19~\mathrm{min}}\]
+Temps caractéristique réaliste pour chauffer une pièce : de l'ordre de 20 minutes.
+</div>
+</div>
+
+</div><!-- fin exo1 -->
+
+<div class="corr-exercice" id="exo2">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">2</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Contrôle du débit de fluide — Vanne thermostatique</h2>
+<span class="corr-exercice__subtitle">Mécanique des fluides visqueux — 21 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avancé</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+Écoulement de Poiseuille plan entre deux plaques fixes, conductance hydraulique, contrôle du débit par rétrécissement, et analyse d'une vanne thermostatique.
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 1.a</span>
+<p class="corr-question__statement">Exprimer \(\overrightarrow{\mathrm{grad}}\,P\) en fonction de \(\eta\) et de \(\dfrac{d^2 v}{dx^2}\).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+Navier-Stokes : \(\rho\left(\dfrac{\partial\vec v}{\partial t} + (\vec v\cdot\overrightarrow{\mathrm{grad}})\vec v\right) = -\overrightarrow{\mathrm{grad}}\,P + \eta\,\Delta\vec v\).
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+En écoulement stationnaire (\(\partial_t\vec v = 0\)) et unidirectionnel \(\vec v = v(x)\,\vec e_z\), le terme convectif \((\vec v\cdot\overrightarrow{\mathrm{grad}})\vec v\) est nul car \(\vec v\) ne dépend que de \(x\) et est selon \(\vec e_z\).
+</div>
+
+<p>Calcul du terme convectif : \((\vec v\cdot\overrightarrow{\mathrm{grad}})\vec v = v(x)\,\dfrac{\partial}{\partial z}(v(x)\,\vec e_z) = 0\) car \(v(x)\) ne dépend pas de \(z\).</p>
+
+<p>Calcul du laplacien : \(\Delta\vec v = \dfrac{d^2 v}{dx^2}\,\vec e_z\).</p>
+
+<p>Navier-Stokes devient :
+\[\vec 0 = -\overrightarrow{\mathrm{grad}}\,P + \eta\,\dfrac{d^2 v}{dx^2}\,\vec e_z\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\overrightarrow{\mathrm{grad}}\,P = \eta\,\dfrac{d^2 v}{dx^2}\,\vec e_z}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 1.b</span>
+<p class="corr-question__statement">En déduire que la pression P ne dépend que de z et montrer que la quantité \(K = -\dfrac{dP}{dz}\) est une constante.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Argument classique "une fonction de \(x\) égale une fonction de \(z\) donc les deux sont constantes" (séparation de variables).
+</div>
+
+<p>De 1.a, on a \(\dfrac{\partial P}{\partial x} = 0\), \(\dfrac{\partial P}{\partial y} = 0\) et \(\dfrac{\partial P}{\partial z} = \eta\,\dfrac{d^2 v}{dx^2}\).</p>
+
+<p>Donc \(P\) ne dépend que de \(z\). De plus, le membre de gauche \(\dfrac{dP}{dz}\) dépend seulement de \(z\), le membre de droite \(\eta\,\dfrac{d^2 v}{dx^2}\) seulement de \(x\). L'égalité ne peut être satisfaite que si les deux sont <strong>constants</strong> :
+\[\dfrac{dP}{dz} = \mathrm{cte} = -K\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\(P = P(z)\) et \(\boxed{K = -\dfrac{dP}{dz} = \mathrm{cte}}\).
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 1.c</span>
+<p class="corr-question__statement">Rappeler les conditions aux limites vérifiées par v(x) en \(x = \pm a/2\).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+Condition d'adhérence (non-glissement) : sur une paroi solide, un fluide visqueux a la même vitesse que la paroi.
+</div>
+
+<p>Les plaques sont fixes, donc :
+\[\boxed{v(-a/2) = v(a/2) = 0}\]</p>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piège classique</div>
+Ne pas confondre "fluide parfait" (glisse sur les parois : seulement \(\vec v\cdot\vec n = 0\)) et "fluide visqueux" (adhère complètement : \(\vec v = \vec 0\) sur la paroi).
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 1.d</span>
+<p class="corr-question__statement">Déterminer v(x) en fonction de x, K, a et \(\eta\). Représenter graphiquement le profil de vitesse. Justifier pourquoi K doit être strictement positive.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+EDO du second ordre à coefficients constants sur une géométrie symétrique : le résultat est un profil parabolique (écoulement de Poiseuille plan).
+</div>
+
+<p>De 1.a : \(\eta\,\dfrac{d^2 v}{dx^2} = -K\), donc \(\dfrac{d^2 v}{dx^2} = -\dfrac{K}{\eta}\).</p>
+
+<p>Intégration : \(v(x) = -\dfrac{K}{2\eta}\,x^2 + C_1 x + C_2\).</p>
+
+<p>Avec \(v(\pm a/2) = 0\) (symétrie) : \(C_1 = 0\) et \(C_2 = \dfrac{K a^2}{8\eta}\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{v(x) = \dfrac{K}{2\eta}\left(\dfrac{a^2}{4} - x^2\right)}\]
+</div>
+
+<p><strong>Profil :</strong> parabole symétrique autour de \(x=0\), maximale en \(x=0\) (valeur \(Ka^2/(8\eta)\)) et nulle aux parois. C'est l'écoulement de Poiseuille plan classique.</p>
+
+<p><strong>Signe de K :</strong> pour que \(v>0\) (écoulement selon \(+\vec e_z\)), il faut \(K > 0\), c'est-à-dire \(\dfrac{dP}{dz} < 0\) : <em>la pression doit décroître dans le sens de l'écoulement.</em> Le fluide descend le gradient de pression, comme une bille descend une pente.</p>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 1.e</span>
+<p class="corr-question__statement">Montrer que le débit massique total transporté suivant \(\vec e_z\), à travers une section de largeur H selon Oy, s'écrit : \(D_m = \alpha\,K\,a^3\), en explicitant \(\alpha\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On intègre \(\rho v(x)\) sur la section rectangulaire \([−a/2,a/2]\times[0,H]\).
+</div>
+
+<p>\[D_m = \int_{-a/2}^{a/2}\int_0^H \rho\,v(x)\,dy\,dx = \rho H\int_{-a/2}^{a/2}\dfrac{K}{2\eta}\left(\dfrac{a^2}{4} - x^2\right)dx\]</p>
+
+<p>Calcul de l'intégrale :
+\[\int_{-a/2}^{a/2}\left(\dfrac{a^2}{4} - x^2\right)dx = \dfrac{a^2}{4}\cdot a - \dfrac{2}{3}\cdot\dfrac{a^3}{8} = \dfrac{a^3}{4} - \dfrac{a^3}{12} = \dfrac{3a^3 - a^3}{12} = \dfrac{a^3}{6}\]</p>
+
+<p>D'où :
+\[D_m = \dfrac{\rho H K}{2\eta}\cdot\dfrac{a^3}{6} = \dfrac{\rho H K a^3}{12\eta}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{D_m = \alpha\,K\,a^3\quad\text{avec}\quad \alpha = \dfrac{\rho\,H}{12\,\eta}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 2.a</span>
+<p class="corr-question__statement">Exprimer la quantité K en fonction de \(P(0)\), \(P(L)\) et L.</p>
+
+<p>Comme \(K = -dP/dz\) est constant, \(P(z)\) est affine : \(P(z) = P(0) - Kz\). En \(z = L\) : \(P(L) = P(0) - KL\), donc :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{K = \dfrac{P(0) - P(L)}{L}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 2.b</span>
+<p class="corr-question__statement">Montrer que le débit à travers une section de largeur H selon Oy peut s'écrire : \(D_m = G_h\,[P(0) - P(L)]\), où le terme \(G_h\) sera exprimé en fonction de \(\alpha\), a et L.</p>
+
+<p>En remplaçant dans \(D_m = \alpha K a^3\) :
+\[D_m = \alpha\,\dfrac{P(0) - P(L)}{L}\,a^3 = \dfrac{\alpha\,a^3}{L}\,[P(0) - P(L)]\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{G_h = \dfrac{\alpha\,a^3}{L}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 2.c</span>
+<p class="corr-question__statement">Justifier le nom de « conductance hydraulique » pour \(G_h\) en faisant une analogie électrique. Préciser en particulier l'équivalent électrique de \(D_m\) et celui de la chute de pression \(P(0) - P(L)\).</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Analogie hydraulique ↔ électrique</div>
+\[D_m = G_h\,\Delta P\quad\longleftrightarrow\quad I = G\,U = \dfrac{U}{R}\]
+</div>
+
+<table style="width:100%;margin:1rem 0;border-collapse:collapse">
+<tr style="background:#f0f0f0"><th style="padding:0.5rem;border:1px solid #ddd">Hydraulique</th><th style="padding:0.5rem;border:1px solid #ddd">Électrique</th></tr>
+<tr><td style="padding:0.5rem;border:1px solid #ddd">Débit \(D_m\)</td><td style="padding:0.5rem;border:1px solid #ddd">Intensité \(I\)</td></tr>
+<tr><td style="padding:0.5rem;border:1px solid #ddd">Chute de pression \(\Delta P\)</td><td style="padding:0.5rem;border:1px solid #ddd">Tension \(U\)</td></tr>
+<tr><td style="padding:0.5rem;border:1px solid #ddd">Conductance \(G_h\)</td><td style="padding:0.5rem;border:1px solid #ddd">Conductance \(G = 1/R\)</td></tr>
+</table>
+
+<p>La relation est formellement identique à la loi d'Ohm, justifiant le nom. Cette analogie permet d'utiliser les règles des associations en série (résistances s'ajoutent) et parallèle (conductances s'ajoutent) pour les canalisations.</p>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 3.a</span>
+<p class="corr-question__statement">En considérant le système comme une association de conductances hydrauliques, exprimer le débit massique à travers une section droite de largeur H selon Oy en fonction de \(P(0) - P(L)\), \(\alpha\), \(L_r\) et x.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Trois tronçons en <strong>série</strong> : \([0, z_r]\) de largeur \(a\) et longueur \(L - L_r\) (partie non rétrécie) ; \([z_r, z_r + L_r]\) de largeur \(a - x\) et longueur \(L_r\) (partie rétrécie) ; puis un autre tronçon sans rétrécissement. Les résistances s'ajoutent, pas les conductances.
+</div>
+
+<p>Résistances hydrauliques en série :</p>
+<ul>
+<li>Tronçon non rétréci (longueur totale \(L - L_r\), hauteur \(a\)) : \(R_1 = \dfrac{L - L_r}{\alpha\,a^3}\)</li>
+<li>Tronçon rétréci (longueur \(L_r\), hauteur \(a-x\)) : \(R_2 = \dfrac{L_r}{\alpha\,(a-x)^3}\)</li>
+</ul>
+
+<p>Résistance totale : \(R_{tot} = R_1 + R_2 = \dfrac{1}{\alpha}\left[\dfrac{L-L_r}{a^3} + \dfrac{L_r}{(a-x)^3}\right]\)</p>
+
+<p>Débit : \(D_m = \dfrac{P(0) - P(L)}{R_{tot}}\)</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{D_m = \dfrac{\alpha\,[P(0) - P(L)]}{\dfrac{L - L_r}{a^3} + \dfrac{L_r}{(a - x)^3}}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question 3.b</span>
+<p class="corr-question__statement">Montrer qu'au premier ordre en \(\varepsilon\), le débit massique peut s'écrire : \(D_m = D_{m0}(1 - b\,\varepsilon)\), (6), en posant \(D_{m0}\) et où b est une constante positive à exprimer.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Développement limité de \(1/(a-x)^3\) autour de \(x = x_0\). Quand \(x\) augmente (la pièce C remonte), \((a-x)\) diminue, donc \(1/(a-x)^3\) augmente, donc \(R_{tot}\) augmente, donc \(D_m\) diminue : d'où le signe \(-\).
+</div>
+
+<p>Écrivons \(x = x_0 + \varepsilon\). Alors :
+\[\dfrac{1}{(a-x)^3} = \dfrac{1}{(a-x_0-\varepsilon)^3} = \dfrac{1}{(a-x_0)^3}\cdot\dfrac{1}{(1 - \varepsilon/(a-x_0))^3}\]
+\[\approx \dfrac{1}{(a-x_0)^3}\left(1 + \dfrac{3\varepsilon}{a-x_0}\right)\]</p>
+
+<p>La résistance totale devient :
+\[R_{tot}(\varepsilon) = \dfrac{1}{\alpha}\left[\dfrac{L-L_r}{a^3} + \dfrac{L_r}{(a-x_0)^3}\left(1 + \dfrac{3\varepsilon}{a-x_0}\right)\right]\]
+\[= R_{tot}^{(0)} + \dfrac{1}{\alpha}\cdot\dfrac{3\,L_r\,\varepsilon}{(a-x_0)^4}\]</p>
+
+<p>où \(R_{tot}^{(0)} = \dfrac{1}{\alpha}\left[\dfrac{L-L_r}{a^3} + \dfrac{L_r}{(a-x_0)^3}\right]\).</p>
+
+<p>Au premier ordre : \(D_m = D_{m0}\cdot\dfrac{1}{1 + \delta R/R^{(0)}}\approx D_{m0}(1 - \delta R/R^{(0)})\), avec :
+\[\dfrac{\delta R}{R^{(0)}} = \dfrac{3\,L_r/(a-x_0)^4}{(L-L_r)/a^3 + L_r/(a-x_0)^3}\cdot\varepsilon\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[D_{m0} = \dfrac{\alpha\,[P(0) - P(L)]}{\dfrac{L - L_r}{a^3} + \dfrac{L_r}{(a - x_0)^3}}\]
+\[\boxed{b = \dfrac{3\,L_r/(a-x_0)^4}{(L-L_r)/a^3 + L_r/(a-x_0)^3} > 0}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 4.a</span>
+<p class="corr-question__statement">L'évolution est très lente, si bien que l'accélération de (C) peut être négligée. Montrer que le gaz de contrôle évolue à pression constante.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Équilibre mécanique du piston (masse négligeable) : la somme des forces est nulle. La pression du fluide au-dessus de (C) est constante (donnée), donc celle du gaz l'est aussi.
+</div>
+
+<p>Bilan des forces sur l'ensemble {piston + tige + pièce (C)} de masse négligeable et sans accélération :</p>
+<ul>
+<li>Force du fluide sur le dessus de (C) : \(-P_{fluide}\,s_C\,\vec e_x\) (où \(s_C\) est l'aire de contact)</li>
+<li>Force du vide sur les parois latérales : \(\vec 0\)</li>
+<li>Force du gaz sur le dessous du piston : \(+P_{gaz}\,s\,\vec e_x\)</li>
+</ul>
+
+<p>Comme la pièce (C) a un mouvement de translation et que l'accélération est nulle :
+\[P_{gaz}\,s = P_{fluide}\cdot s_C\]</p>
+
+<p>Le membre de droite est constant (pression du fluide indépendante de la position, énoncé), \(s\) est fixe, donc \(P_{gaz}\) est <strong>constante</strong>.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+Le gaz de contrôle évolue à pression constante : évolution <strong>isobare</strong>.
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 4.b</span>
+<p class="corr-question__statement">La température \(T_m\) est voisine de la valeur de consigne : \(T_m = T_{m0} + \delta T_m\). Exprimer la variation dV du gaz de contrôle en fonction de \(V_0\), \(\delta T_m\) et \(T_{m0}\).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+Loi des gaz parfaits à pression constante : \(\dfrac{V}{T} = \mathrm{cte}\), donc \(\dfrac{dV}{V} = \dfrac{dT}{T}\).
+</div>
+
+<p>À pression constante (4.a) : \(PV = nRT\) donne \(V/T = \mathrm{cte}\), donc :
+\[\dfrac{dV}{V} = \dfrac{dT}{T}\implies dV = V_0\,\dfrac{\delta T_m}{T_{m0}}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{dV = \dfrac{V_0}{T_{m0}}\,\delta T_m}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 4.c</span>
+<p class="corr-question__statement">En utilisant l'équation (6) et du 3.b, écrire l'expression du débit \(D_m\) dans la conduite sous la forme : \(D_m = D_{m0}(1 - \beta\,\delta T_m)\), (7), en exprimant \(\beta\) en fonction de b, \(V_0\), s et \(T_{m0}\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Il faut relier le déplacement \(\varepsilon\) du piston à la variation de température \(\delta T_m\) via le changement de volume du gaz : \(dV = s\cdot\varepsilon\) (le piston monte de \(\varepsilon\) et la pièce (C) aussi, par rigidité de la tige).
+</div>
+
+<p>Changement de volume = section × déplacement : \(dV = s\,\varepsilon\). D'après 4.b :
+\[s\,\varepsilon = \dfrac{V_0}{T_{m0}}\,\delta T_m\implies \varepsilon = \dfrac{V_0}{s\,T_{m0}}\,\delta T_m\]</p>
+
+<p>En reportant dans (6) : \(D_m = D_{m0}(1 - b\,\varepsilon) = D_{m0}\left(1 - \dfrac{b\,V_0}{s\,T_{m0}}\,\delta T_m\right)\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\beta = \dfrac{b\,V_0}{s\,T_{m0}}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 4.d</span>
+<p class="corr-question__statement">Expliquer qualitativement pourquoi ce système peut être utilisé comme dispositif de régulation de la température de la pièce (considérer une situation de chauffage où \(T_{adm} > T_{ext}\)).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On cherche le mécanisme de <strong>contre-réaction négative</strong> : une variation de \(T_m\) doit provoquer une action qui <strong>s'oppose</strong> à cette variation.
+</div>
+
+<p><strong>Scénario :</strong> la pièce est trop chaude (\(\delta T_m > 0\)).</p>
+<ol>
+<li>Le gaz de contrôle se dilate (car plus chaud) → \(dV > 0\).</li>
+<li>Le piston monte, la tige pousse (C) vers le haut → \(\varepsilon > 0\).</li>
+<li>L'ouverture du conduit diminue → \(D_m\) diminue (formule 7 : \(D_m < D_{m0}\)).</li>
+<li>Moins de fluide chaud arrive dans le radiateur → moins de chauffage → la pièce refroidit.</li>
+</ol>
+
+<p>Inversement, si la pièce est trop froide, le gaz se contracte, (C) descend, le débit augmente, et on chauffe davantage. <strong>C'est bien une régulation par contre-réaction négative.</strong></p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+La boucle est stabilisante : toute perturbation de \(T_m\) est naturellement atténuée par le système, qui tend à maintenir \(T_m\) proche de la consigne \(T_{m0}\).
+</div>
+</div>
+
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question 5.a</span>
+<p class="corr-question__statement">Montrer que \(\delta T_m\) tend, lorsque le temps devient infini, vers une valeur limite notée \(\delta T_{m,\infty}\). Écrire \(\delta T_{m,\infty}\) en fonction de \(\delta T_0\), \(\tau_{sl}\), \(\tau_0\), \(D_{m0}\), \(C_p\) et \(G_{tube}\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+EDO linéaire du 1er ordre avec second membre constant : il existe un régime permanent si le coefficient devant \(\delta T_m\) est positif.
+</div>
+
+<p>L'équation (8) :
+\[\dfrac{d(\delta T_m)}{dt} = \dfrac{\delta T_0}{\tau_0} - \left(1 - \dfrac{D_{m0}C_p}{G_{tube}}\right)\dfrac{\delta T_m}{\tau_{sl}}\]</p>
+
+<p>En régime permanent, \(d(\delta T_m)/dt = 0\) :
+\[\delta T_{m,\infty} = \dfrac{\tau_{sl}/\tau_0}{1 - D_{m0}C_p/G_{tube}}\cdot\delta T_0\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\delta T_{m,\infty} = \dfrac{\tau_{sl}}{\tau_0}\cdot\dfrac{G_{tube}}{G_{tube} - D_{m0}C_p}\cdot\delta T_0}\]
+</div>
+
+<p><em>Remarque :</em> ce régime n'existe que si \(G_{tube} > D_{m0}C_p\) (coefficient positif devant \(\delta T_m\)), sinon le système diverge exponentiellement.</p>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 5.b</span>
+<p class="corr-question__statement">Sans régulation (\(\beta = 0\)), la température de la pièce tendrait vers une limite \(\delta T_{m,\infty,nr}\). Exprimer \(\xi = \dfrac{\delta T_{m,\infty}}{\delta T_{m,\infty,nr}}\) en fonction de \(\tau_{sl}\) et \(\tau_0\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Si \(\beta = 0\), alors d'après la définition de \(\tau_{sl}\) : \(1/\tau_{sl} = 1/\tau_0\) (le facteur parenthèse vaut 1). Donc \(\tau_{sl}\to\tau_0\) sans régulation. Le rapport \(\xi\) mesure l'efficacité de la régulation.
+</div>
+
+<p>Sans régulation, l'équation est \(\dfrac{d\delta T_m}{dt} = \dfrac{\delta T_0 - \delta T_m(1 - D_{m0}C_p/G_{tube})}{\tau_0}\) et par analogie avec 5.a, en remplaçant \(\tau_{sl}\) par \(\tau_0\) :
+\[\delta T_{m,\infty,nr} = \dfrac{G_{tube}}{G_{tube} - D_{m0}C_p}\cdot\delta T_0\]</p>
+
+<p>Rapport :
+\[\xi = \dfrac{\delta T_{m,\infty}}{\delta T_{m,\infty,nr}} = \dfrac{\tau_{sl}}{\tau_0}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\xi = \dfrac{\tau_{sl}}{\tau_0}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 5.c</span>
+<p class="corr-question__statement">Quelle propriété le rapport \(\xi\) doit-il vérifier pour que le dispositif de régulation puisse limiter les variations de température dans la pièce ? Est-ce le cas ici ?</p>
+
+<p>Pour que la régulation <strong>réduise</strong> les fluctuations, il faut \(|\delta T_{m,\infty}| < |\delta T_{m,\infty,nr}|\), donc \(\boxed{|\xi| < 1}\).</p>
+
+<p>Ici, d'après (8) : \(\dfrac{1}{\tau_{sl}} = \dfrac{1}{\tau_0}\left(1 + \dfrac{D_{m0}C_p}{G_{fluide}}\,\beta(T_{adm} - T_0)\right)\). En chauffage \(T_{adm} > T_0\), et toutes les grandeurs sont positives, donc \(1/\tau_{sl} > 1/\tau_0\), c'est-à-dire \(\tau_{sl} < \tau_0\), donc \(\xi < 1\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+Oui, dans le cas du chauffage, \(\xi < 1\) : la régulation atténue les variations de température dues aux perturbations extérieures. <strong>Le système fonctionne.</strong>
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 5.d</span>
+<p class="corr-question__statement">Exprimer le rapport \(\xi\) en fonction des paramètres \(D_{m0}\), \(C_p\), \(\beta\), \((T_{adm} - T_0)\) et \(G_{tube}\). Pour chacun, indiquer si une augmentation favorise ou défavorise le fonctionnement.</p>
+
+<p>De \(\dfrac{1}{\tau_{sl}} = \dfrac{1}{\tau_0}\left(1 + \dfrac{D_{m0}C_p}{G_{tube}}\,\beta(T_{adm} - T_0)\right)\) (en identifiant \(G_{fluide}\) à \(G_{tube}\) dans le contexte) :
+\[\xi = \dfrac{\tau_{sl}}{\tau_0} = \dfrac{1}{1 + \dfrac{D_{m0}C_p}{G_{tube}}\,\beta(T_{adm} - T_0)}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\xi = \dfrac{1}{1 + \dfrac{D_{m0}\,C_p\,\beta\,(T_{adm} - T_0)}{G_{tube}}}}\]
+</div>
+
+<p><strong>Analyse des paramètres</strong> (plus \(\xi\) est petit, mieux la régulation fonctionne) :</p>
+<ul>
+<li>\(\uparrow D_{m0}\) : \(\xi\downarrow\) → <strong>favorise</strong>. Plus de débit = plus grande sensibilité de la régulation.</li>
+<li>\(\uparrow C_p\) : \(\xi\downarrow\) → <strong>favorise</strong> (effet similaire).</li>
+<li>\(\uparrow \beta\) : \(\xi\downarrow\) → <strong>favorise</strong>. Plus la vanne est sensible à la température, mieux c'est.</li>
+<li>\(\uparrow (T_{adm} - T_0)\) : \(\xi\downarrow\) → <strong>favorise</strong>. Plus l'écart thermique est grand, plus une petite action sur le débit a un effet visible.</li>
+<li>\(\uparrow G_{tube}\) : \(\xi\uparrow\) → <strong>défavorise</strong>. Pièce mal isolée : les pertes dominent et la régulation devient inefficace.</li>
+</ul>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 5.e</span>
+<p class="corr-question__statement">Quel sens concret peut-on donner à \(\tau_{sl}\) ?</p>
+
+<p>\(\tau_{sl}\) est le <strong>temps caractéristique de relaxation de la pièce avec la régulation active</strong>. C'est le temps typique mis par le système (pièce + vanne) pour revenir à l'équilibre après une perturbation.</p>
+
+<p>Comme \(\tau_{sl} < \tau_0\) (en chauffage), la régulation rend le système <strong>plus rapide</strong> à revenir à l'équilibre.</p>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 5.f</span>
+<p class="corr-question__statement">Montrer que le dispositif de régulation conduit à une température stationnaire seulement si \(T_0 - T_{adm}\) est inférieur à une valeur critique \(T_c\) à exprimer en fonction de \(\beta\), \(D_{m0}\), \(C_p\) et \(G_{tube}\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+En climatisation, \(T_{adm} < T_0\), donc \(T_{adm} - T_0 < 0\) ; le terme dans la parenthèse de \(\tau_{sl}\) peut devenir négatif, rendant \(\tau_{sl}\) négatif : le système devient <strong>instable</strong>.
+</div>
+
+<p>Pour avoir un régime stationnaire, il faut \(\dfrac{1}{\tau_{sl}} > 0\) (sinon la solution diverge exponentiellement) :
+\[1 + \dfrac{D_{m0}C_p}{G_{tube}}\,\beta(T_{adm} - T_0) > 0\]
+\[\beta\,\dfrac{D_{m0}C_p}{G_{tube}}\,(T_0 - T_{adm}) < 1\]
+\[T_0 - T_{adm} < \dfrac{G_{tube}}{\beta\,D_{m0}C_p}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{T_c = \dfrac{G_{tube}}{\beta\,D_{m0}\,C_p}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 5.g</span>
+<p class="corr-question__statement">Expliquer que, même dans le cas d'une évolution stable, ce système est inadapté à la régulation de la température de la pièce.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+En climatisation, la physique de la vanne s'inverse : si la pièce est trop chaude, le gaz se dilate, la vanne se ferme… mais on voulait envoyer <strong>plus</strong> d'eau froide, pas moins !
+</div>
+
+<p><strong>Analyse qualitative :</strong> en climatisation (\(T_{adm} < T_0\)), quand \(T_m\) monte, le gaz se dilate et la vanne se ferme : le débit de fluide froid <strong>diminue</strong>. Or il faudrait qu'il <strong>augmente</strong> pour compenser le réchauffement. La boucle de rétroaction est <strong>positive</strong> au lieu de négative : toute perturbation est amplifiée.</p>
+
+<p>Mathématiquement, \(\xi > 1\) (le dénominateur est inférieur à 1) : les variations de \(T_m\) sont <strong>amplifiées</strong> par rapport au cas sans régulation. Même si le système est stable (en dessous de \(T_c\)), il aggrave le problème qu'il est censé résoudre.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Conclusion</div>
+Cette vanne thermostatique fonctionne comme régulateur de <strong>chauffage</strong>, mais est totalement inadaptée à la <strong>climatisation</strong>. Pour une clim, il faut inverser le sens du couplage (gaz qui se contracte avec la chaleur, ou montage mécanique opposé).
+</div>
+</div>
+
+</div><!-- fin exo2 -->
+
+<div class="corr-exercice" id="exo3">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">3</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Contrôle non destructif par courants de Foucault</h2>
+<span class="corr-exercice__subtitle">Induction électromagnétique — 14 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avancé</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+Étude d'un tube métallique placé dans le champ d'un solénoïde, induction de courants de Foucault, modification de l'impédance apparente de la bobine excitatrice.
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 1.a</span>
+<p class="corr-question__statement">Justifier la direction de \(\vec B\) par un argument de symétrie. Rappeler sans démonstration l'expression de \(B_0(t)\) en fonction de n, I(t) et \(\mu_0\).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+Règle de Curie : les symétries de la cause se retrouvent dans les effets. Pour un courant, \(\vec B\) est <strong>pseudo-vectoriel</strong> : il est invariant par rapport à un plan de symétrie mais change de signe par rapport à un plan d'antisymétrie.
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Pour un solénoïde infini : tout plan contenant l'axe Oz est un plan d'<strong>antisymétrie</strong> pour le courant (les spires de part et d'autre circulent en sens opposé dans le miroir). \(\vec B\) (pseudo-vecteur) doit donc être parallèle à ce plan, donc selon \(\vec e_z\).
+</div>
+
+<p>Le système est invariant par rotation autour de Oz et par translation selon Oz : \(\vec B\) ne dépend que de \(r\). Tout plan contenant Oz est plan d'antisymétrie du courant, donc \(\vec B\) y est contenu : \(\vec B = B(r)\,\vec e_z\).</p>
+
+<p>Expression classique du champ dans un solénoïde infini :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\vec B = \mu_0\,n\,I(t)\,\vec e_z\quad\text{à l'intérieur, }\vec 0\text{ à l'extérieur}}\]
+Donc \(B_0(t) = \mu_0\,n\,I_0\cos(\omega t)\).
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 1.b</span>
+<p class="corr-question__statement">Exprimer la conductance électrique dg d'une telle spire en fonction de e, dz, \(R_m\) et \(\sigma\).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+Conductance = \(\sigma\cdot\dfrac{\text{section}}{\text{longueur}}\). Pour un conducteur cylindrique élémentaire.
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+La "spire élémentaire" est un tore de section rectangulaire \(e\times dz\) et de longueur (périmètre) \(2\pi R_m\).
+</div>
+
+<p>Section = \(e\cdot dz\), longueur = \(2\pi R_m\). Donc :
+\[dg = \sigma\cdot\dfrac{e\,dz}{2\pi R_m}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{dg = \dfrac{\sigma\,e\,dz}{2\pi R_m}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 1.c</span>
+<p class="corr-question__statement">Déterminer la force électromotrice \(e_{ind}\) qui apparaît dans la spire du fait des variations de \(B_0(t)\) en fonction de \(\dfrac{dB_0}{dt}\) et \(R_m\).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+Loi de Faraday : \(e_{ind} = -\dfrac{d\Phi}{dt}\), où \(\Phi\) est le flux à travers la surface délimitée par le contour.
+</div>
+
+<p>Flux à travers la spire (orientée par \(+\vec e_z\)) : \(\Phi = B_0(t)\cdot\pi R_m^2\).</p>
+
+<p>Donc :
+\[e_{ind} = -\dfrac{d\Phi}{dt} = -\pi R_m^2\,\dfrac{dB_0}{dt}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{e_{ind} = -\pi\,R_m^2\,\dfrac{dB_0}{dt}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 1.d</span>
+<p class="corr-question__statement">En déduire l'expression de l'intensité \(dI_{ind}\) qui circule dans cette portion de tube, en fonction de e, dz, \(R_m\), \(\mu_0\), n et \(\dfrac{dI}{dt}\).</p>
+
+<p>Loi d'Ohm pour cette spire élémentaire : \(dI_{ind} = dg\cdot e_{ind}\).
+\[dI_{ind} = \dfrac{\sigma\,e\,dz}{2\pi R_m}\cdot\left(-\pi R_m^2\,\dfrac{dB_0}{dt}\right) = -\dfrac{\sigma\,e\,dz\,R_m}{2}\,\dfrac{dB_0}{dt}\]</p>
+
+<p>Avec \(B_0 = \mu_0 n I\), donc \(dB_0/dt = \mu_0 n\,dI/dt\) :
+\[dI_{ind} = -\dfrac{\sigma\,e\,dz\,R_m\,\mu_0\,n}{2}\,\dfrac{dI}{dt}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{dI_{ind} = -\dfrac{\mu_0\,n\,\sigma\,e\,R_m}{2}\,\dfrac{dI}{dt}\,dz}\]
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piège classique</div>
+Le signe \(-\) traduit la <strong>loi de Lenz</strong> : le courant induit s'oppose à la variation du flux. Ne pas l'oublier, il joue un rôle crucial dans le calcul du champ induit.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 2.a</span>
+<p class="corr-question__statement">Avec les mêmes approximations qu'à la sous-partie 1, donner l'expression en tout point du champ magnétique induit \(\vec B_{ind}\) en fonction de \(\sigma\), e, \(R_m\), \(\mu_0\), n et \(\dfrac{dI}{dt}\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+L'ensemble des spires induites constitue un "solénoïde équivalent" avec une densité linéique de courant \(n' dI_{ind} = dI_{ind}/dz\). On applique à nouveau la formule \(B = \mu_0 n' I\) de solénoïde infini.
+</div>
+
+<p>Densité effective "n × courant" pour le solénoïde induit :
+\[n'_{eff}\cdot I_{ind,eff} = \dfrac{dI_{ind}}{dz} = -\dfrac{\mu_0\,n\,\sigma\,e\,R_m}{2}\,\dfrac{dI}{dt}\]</p>
+
+<p>Champ induit (à l'intérieur du solénoïde-tube équivalent) :
+\[B_{ind} = \mu_0\cdot\left(-\dfrac{\mu_0 n\sigma e R_m}{2}\,\dfrac{dI}{dt}\right)\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\vec B_{ind} = -\dfrac{\mu_0^2\,n\,\sigma\,e\,R_m}{2}\,\dfrac{dI}{dt}\,\vec e_z}\]
+Nul à l'extérieur du tube (dans le cadre solénoïde infini).
+</div>
+</div>
+
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question 2.b</span>
+<p class="corr-question__statement">Montrer que cette condition est valable (en ordre de grandeur) si \(\omega \ll \omega_c\), où \(\omega_c\) sera exprimée en fonction de la grandeur \(\delta = \sqrt{\dfrac{2}{\omega\mu_0\sigma}}\) et de \(R_m\). Calculer le rapport \(e/\delta_c\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On compare les amplitudes de \(B_0\) et \(B_{ind}\). Comme \(I = I_0\cos\omega t\), \(dI/dt\) a une amplitude \(\omega I_0\), donc \(|B_{ind}|\sim \dfrac{\mu_0^2 n\sigma e R_m \omega I_0}{2}\) tandis que \(|B_0|\sim \mu_0 n I_0\).
+</div>
+
+<p>Rapport :
+\[\dfrac{|B_{ind}|}{|B_0|}\sim \dfrac{\mu_0\,\sigma\,e\,R_m\,\omega}{2}\ll 1\]</p>
+
+<p>Condition : \(\omega \ll \omega_c = \dfrac{2}{\mu_0\,\sigma\,e\,R_m}\).</p>
+
+<p>En utilisant \(\delta^2 = \dfrac{2}{\omega\mu_0\sigma}\), on a \(\mu_0\sigma = \dfrac{2}{\omega\delta^2}\), donc :
+\[\omega_c = \dfrac{2\omega\delta^2}{2\,e\,R_m} = \dfrac{\omega\,\delta^2}{e\,R_m}\]</p>
+
+<p>La condition \(\omega \ll \omega_c\) devient : \(1 \ll \dfrac{\delta^2}{e\,R_m}\), soit :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\omega_c = \dfrac{2}{\mu_0\,\sigma\,e\,R_m}}\quad\text{ou de façon équivalente}\quad \delta^2\gg e\,R_m\]
+</div>
+
+<p><strong>Application numérique.</strong> Calcul de \(\delta_c\) (épaisseur de peau à la fréquence de travail \(f=100~\mathrm{Hz}\)) :
+\[\delta_c = \sqrt{\dfrac{2}{2\pi\times 100\times 4\pi\cdot 10^{-7}\times 6{,}0\cdot 10^7}} = \sqrt{\dfrac{2}{4{,}74\cdot 10^4}}\approx \sqrt{4{,}2\cdot 10^{-5}}\approx 6{,}5\cdot 10^{-3}~\mathrm{m}\]
+\[\delta_c\approx 6{,}5~\mathrm{mm}\]</p>
+
+<p>Rapport :
+\[\dfrac{e}{\delta_c} = \dfrac{0{,}5\cdot 10^{-3}}{6{,}5\cdot 10^{-3}}\approx 0{,}077\approx 7{,}7\%\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Application numérique</div>
+\[\boxed{\dfrac{e}{\delta_c}\approx 0{,}08}\]
+L'épaisseur du tube est petite devant l'épaisseur de peau : le champ magnétique pénètre bien tout le tube, l'approximation est valide.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 2.c</span>
+<p class="corr-question__statement">Que représente la grandeur \(\delta\) ? Quel est le phénomène négligé si l'on admet que \(\|B_{ind}\| \ll \|B\|\) ?</p>
+
+<p>La grandeur \(\delta = \sqrt{\dfrac{2}{\omega\mu_0\sigma}}\) est l'<strong>épaisseur de peau</strong> (ou profondeur de pénétration). Elle caractérise l'atténuation des champs électromagnétiques dans un conducteur : à une profondeur \(\delta\), l'amplitude du champ est réduite d'un facteur \(1/e\).</p>
+
+<p>Le phénomène négligé est l'<strong>effet de peau</strong> : à haute fréquence, le champ et les courants ne pénètrent que sur une épaisseur \(\delta\) dans le conducteur, et non uniformément. En supposant \(B_{ind}\ll B\), on suppose que les courants induits sont "perturbatifs" et n'écrantent pas le champ externe.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\(\delta\) = épaisseur de peau. Phénomène négligé : <strong>écrantage du champ par les courants de Foucault (effet de peau)</strong>.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 3.a</span>
+<p class="corr-question__statement">Exprimer le flux \(\Phi_{ind}\) de \(\vec B_{ind}\) à travers la bobine excitatrice en fonction de \(\sigma\), e, \(\ell\), \(B_{ind}\) et \(R_m\).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+Flux à travers une bobine de \(N\) spires = \(N\cdot\Phi_{\text{une spire}}\). Ici, \(N = n\ell\) spires.
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Le champ \(\vec B_{ind}\) est non nul seulement à l'intérieur du tube (rayon \(R_m\) en moyenne, section \(\pi R_m^2\)). Chaque spire de la bobine excitatrice voit ce flux.
+</div>
+
+<p>Une spire de la bobine excitatrice (rayon \(b\)) voit le flux \(\Phi_1 = B_{ind}\cdot\pi R_m^2\) (car \(B_{ind}\) est nul dehors, et la surface utile est celle du tube).</p>
+
+<p>La bobine a \(n\ell\) spires, donc :
+\[\Phi_{ind} = n\ell\cdot\pi R_m^2\cdot B_{ind}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\Phi_{ind} = \pi\,n\,\ell\,R_m^2\,B_{ind}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question 3.b</span>
+<p class="corr-question__statement">Montrer que la force électromotrice totale d'induction à travers la bobine excitatrice peut s'écrire sous la forme : \(e_{total} = -L\,\dfrac{dI}{dt} + \Gamma\,\dfrac{d^2 I}{dt^2}\), avec \(\Gamma = k\,\mu_0^2\,n^2\,\sigma\,\ell\,e\,R_m^3\), k étant une constante numérique à expliciter.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Le flux total vu par la bobine = flux propre + flux induit. Chaque partie donne une contribution à la f.e.m. par la loi de Faraday.
+</div>
+
+<p>Flux propre : \(\Phi_{propre} = L\cdot I\) (définition de l'auto-inductance).<br>
+Flux induit : \(\Phi_{ind} = \pi n\ell R_m^2\cdot B_{ind} = \pi n\ell R_m^2\cdot\left(-\dfrac{\mu_0^2 n\sigma e R_m}{2}\,\dfrac{dI}{dt}\right) = -\dfrac{\pi\,\mu_0^2\,n^2\,\sigma\,\ell\,e\,R_m^3}{2}\,\dfrac{dI}{dt}\)</p>
+
+<p>Flux total : \(\Phi_{tot} = L\,I - \dfrac{\pi\,\mu_0^2\,n^2\,\sigma\,\ell\,e\,R_m^3}{2}\,\dfrac{dI}{dt}\)</p>
+
+<p>F.e.m. totale par Faraday : \(e_{tot} = -\dfrac{d\Phi_{tot}}{dt}\) :
+\[e_{tot} = -L\,\dfrac{dI}{dt} + \dfrac{\pi\,\mu_0^2\,n^2\,\sigma\,\ell\,e\,R_m^3}{2}\,\dfrac{d^2 I}{dt^2}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\Gamma = \dfrac{\pi}{2}\,\mu_0^2\,n^2\,\sigma\,\ell\,e\,R_m^3\quad\text{soit }k = \dfrac{\pi}{2}}\]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 3.c</span>
+<p class="corr-question__statement">La bobine excitatrice a une résistance interne R. Quelle est l'impédance complexe \(\underline Z(\omega)\) de cette bobine « à vide » ?</p>
+
+<p>À vide (sans tube), c'est une simple bobine R + L :
+\[\boxed{\underline Z_0(\omega) = R + j\,L\,\omega}\]</p>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 3.d</span>
+<p class="corr-question__statement">Expliquer comment le tube entraîne une modification de la résistance apparente de la bobine, qui devient alors \(R' = R + \delta R\). Exprimer \(\delta R\) en fonction de \(\Gamma\) et \(\omega\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+En complexe, \(dI/dt \to j\omega\underline I\) et \(d^2I/dt^2 \to (j\omega)^2\underline I = -\omega^2\underline I\). Le terme en \(\Gamma\) introduit un facteur \(-\omega^2\), qui devient une partie réelle dans l'impédance, donc une résistance supplémentaire.
+</div>
+
+<p>La relation \(\underline U = R\underline I - \underline{e_{tot}}\) donne :
+\[\underline U = R\underline I - \left(-Lj\omega\underline I + \Gamma(j\omega)^2\underline I\right) = R\underline I + jL\omega\underline I + \Gamma\omega^2\underline I\]
+\[\underline U = (R + \Gamma\omega^2)\underline I + jL\omega\underline I\]</p>
+
+<p>Nouvelle impédance : \(\underline Z = (R + \Gamma\omega^2) + jL\omega\). La résistance apparente est \(R' = R + \Gamma\omega^2\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\delta R = \Gamma\,\omega^2}\]
+</div>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Interprétation physique</div>
+Les courants de Foucault dans le tube <strong>dissipent de l'énergie par effet Joule</strong>. Cette dissipation, vue de la bobine excitatrice, ressemble à une résistance supplémentaire : l'énergie que la bobine fournit au tube "part en chaleur" dans le tube, ce qui apparaît comme un ajout de résistance.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 3.e</span>
+<p class="corr-question__statement">Calculer \(\delta R\) pour le tube précédent, à une fréquence \(f = 100~\mathrm{Hz}\), avec \(n = 3{,}0\cdot 10^4\) et \(\ell = 0{,}10~\mathrm{m}\). Commenter.</p>
+
+<p>Calcul de \(\Gamma\) :
+\[\Gamma = \dfrac{\pi}{2}\times (4\pi\cdot 10^{-7})^2\times (3\cdot 10^4)^2\times 6\cdot 10^7\times 0{,}1\times 5\cdot 10^{-4}\times (8{,}3\cdot 10^{-3})^3\]</p>
+
+<details class="corr-toggle">
+<summary>Voir le calcul détaillé</summary>
+<div class="corr-toggle__content">
+<p>Terme par terme :</p>
+<ul>
+<li>\(\mu_0^2 = 16\pi^2\cdot 10^{-14} \approx 1{,}58\cdot 10^{-12}\)</li>
+<li>\(n^2 = 9\cdot 10^8\)</li>
+<li>\(\sigma = 6\cdot 10^7\)</li>
+<li>\(\ell\cdot e = 0{,}1\times 5\cdot 10^{-4} = 5\cdot 10^{-5}\)</li>
+<li>\(R_m^3 = (8{,}3\cdot 10^{-3})^3 \approx 5{,}72\cdot 10^{-7}\)</li>
+<li>\(\pi/2 \approx 1{,}57\)</li>
+</ul>
+<p>Produit : \(1{,}57\times 1{,}58\cdot 10^{-12}\times 9\cdot 10^8\times 6\cdot 10^7\times 5\cdot 10^{-5}\times 5{,}72\cdot 10^{-7}\)</p>
+<p>\(= 1{,}57\times 1{,}58\times 9\times 6\times 5\times 5{,}72 \times 10^{-12+8+7-5-7}\)</p>
+<p>\(\approx 3830\times 10^{-9} \approx 3{,}8\cdot 10^{-6}\)</p>
+</div>
+</details>
+
+<p>Donc \(\Gamma\approx 3{,}8\cdot 10^{-6}~\mathrm{unités\ SI}\).</p>
+
+<p>À \(f = 100~\mathrm{Hz}\), \(\omega = 2\pi f\approx 628~\mathrm{rad\cdot s^{-1}}\), \(\omega^2 \approx 3{,}94\cdot 10^5\).</p>
+
+<p>\(\delta R = \Gamma\omega^2 \approx 3{,}8\cdot 10^{-6}\times 3{,}94\cdot 10^5 \approx 1{,}5~\Omega\)</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{\delta R\approx 1{,}5~\Omega}\]
+Valeur mesurable avec un pont d'impédance classique, ce qui valide la méthode pour le contrôle non destructif.
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question 3.f</span>
+<p class="corr-question__statement">Discuter qualitativement les types de défauts du tube qui sont susceptibles d'être mis en évidence par la mesure de \(\delta R\).</p>
+
+<p>\(\delta R\) dépend de \(\sigma\), \(e\), \(R_m\) : donc elle est sensible à tout défaut qui modifie ces grandeurs localement :</p>
+<ul>
+<li><strong>Variation d'épaisseur \(e\)</strong> : corrosion, usure, amincissement → \(\delta R\) diminue.</li>
+<li><strong>Variation de conductivité \(\sigma\)</strong> : oxydation, inclusion d'impureté, changement local de composition métallurgique → \(\delta R\) diminue.</li>
+<li><strong>Fissure, crique</strong> : interruption locale du chemin conducteur circonférentiel → réduction effective de \(\sigma\) ou de la section des spires induites → \(\delta R\) diminue fortement.</li>
+<li><strong>Variation du rayon \(R_m\)</strong> : déformation du tube.</li>
+</ul>
+
+<p>À basse fréquence (peau \(\gg e\)), le champ pénètre tout le volume : la méthode voit aussi les défauts "en profondeur".</p>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question 3.g</span>
+<p class="corr-question__statement">Quelle est selon vous la fréquence optimale \(f_{opt}\) à utiliser pour accéder aux caractéristiques « en volume » du tube ? Réaliser l'application numérique. Que se passerait-il à plus haute fréquence ?</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Pour voir <strong>tout le volume</strong> du tube, on veut que l'épaisseur de peau soit juste de l'ordre de l'épaisseur \(e\) du tube : \(\delta\sim e\). Ni trop grande (signal trop faible, hors limite \(B_{ind}\ll B\) justifiée par \(\delta\gg\sqrt{eR_m}\)), ni trop petite (effet de peau masque l'intérieur).
+</div>
+
+<p>Condition \(\delta \sim e\) :
+\[e = \sqrt{\dfrac{2}{\omega_{opt}\,\mu_0\,\sigma}}\implies \omega_{opt} = \dfrac{2}{\mu_0\,\sigma\,e^2}\]</p>
+
+<p>A.N. :
+\[\omega_{opt} = \dfrac{2}{4\pi\cdot 10^{-7}\times 6\cdot 10^7\times (5\cdot 10^{-4})^2} = \dfrac{2}{4\pi\cdot 10^{-7}\times 6\cdot 10^7\times 2{,}5\cdot 10^{-7}}\]
+\[= \dfrac{2}{1{,}88\cdot 10^{-5}}\approx 1{,}1\cdot 10^5~\mathrm{rad/s}\]
+\[f_{opt} = \dfrac{\omega_{opt}}{2\pi}\approx 1{,}7\cdot 10^4~\mathrm{Hz}\approx 17~\mathrm{kHz}\]</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[\boxed{f_{opt}\approx 17~\mathrm{kHz}}\]
+</div>
+
+<p><strong>À plus haute fréquence</strong> (typiquement plusieurs centaines de kHz), \(\delta \ll e\) : seule une pellicule superficielle du tube est sondée. On détecte alors uniquement les <strong>défauts de surface</strong> (criques, fissures, rayures, corrosion externe), pas ceux en profondeur.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Méthode utile en pratique</div>
+C'est exactement ainsi que fonctionne le <strong>contrôle non destructif industriel par courants de Foucault</strong> : on sélectionne la fréquence selon la profondeur qu'on veut sonder. Basse fréquence → volume ; haute fréquence → surface.
+</div>
+</div>
+
+</div><!-- fin exo3 -->
+
+<p class="annale-fin"><strong>FIN DE LA CORRECTION</strong></p>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Correction E3A 2004 -- Maths 1 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}.course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}.course__back:hover{color:var(--accent)}.course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}.course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}.course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}.course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}.course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}.course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}.course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}.course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}.course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}.course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}.course__toc-difficulty{font-size:.7rem;margin-left:auto;padding:2px 10px;border-radius:12px;font-family:var(--font-mono);letter-spacing:.04em}.course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}.course ol,.course ul{margin-bottom:var(--space-md)}.course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}.math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}.annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}.annale-info__item{display:flex;flex-direction:column;gap:4px}.annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}.annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}.course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}.course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}.course__nav-link:hover{color:var(--accent)}.course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}.course__nav-link:hover span{color:var(--accent)}.course__nav-link--next{text-align:right}
+    :root{--corr-rappel:#e8f0fe;--corr-rappel-border:#a8c7fa;--corr-rappel-icon:#4285f4;--corr-why:#fef0e8;--corr-why-border:#fab8a8;--corr-why-icon:#e8710a;--corr-result:#faf6e8;--corr-result-border:#d4b957;--corr-result-icon:#b8960c;--corr-piege:#fee8e8;--corr-piege-border:#f5a8a8;--corr-piege-icon:#d93025;--corr-method:#e8faf0;--corr-method-border:#7dd3a8;--corr-method-icon:#1a8d5f;--corr-q-easy:#34a853;--corr-q-medium:#f9ab00;--corr-q-hard:#ea4335}
+    [data-theme="dark"]{--corr-rappel:rgba(66,133,244,.1);--corr-rappel-border:rgba(66,133,244,.3);--corr-rappel-icon:#8ab4f8;--corr-why:rgba(232,113,10,.1);--corr-why-border:rgba(232,113,10,.3);--corr-why-icon:#fba86c;--corr-result:rgba(212,185,87,.1);--corr-result-border:rgba(212,185,87,.35);--corr-result-icon:#e8d44d;--corr-piege:rgba(217,48,37,.1);--corr-piege-border:rgba(217,48,37,.3);--corr-piege-icon:#f28b82;--corr-method:rgba(26,141,95,.1);--corr-method-border:rgba(26,141,95,.3);--corr-method-icon:#81c995}
+    .corr-exercice{margin-bottom:var(--space-3xl)}.corr-exercice__header{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-sm)}.corr-exercice__number{font-family:'Inter',sans-serif;font-size:3.5rem;font-weight:300;line-height:1;color:var(--accent);opacity:.35}.corr-exercice__title-group{flex:1}.corr-exercice__title{font-family:'Inter',sans-serif;font-size:1.55rem;font-weight:600;color:var(--ink);line-height:1.25;margin-bottom:4px}.corr-exercice__subtitle{font-size:.85rem;color:var(--ink-muted);font-style:italic}.corr-exercice__difficulty{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:20px;white-space:nowrap}.corr-exercice__difficulty--easy{color:var(--corr-q-easy);background:rgba(52,168,83,.1);border:1px solid rgba(52,168,83,.25)}.corr-exercice__difficulty--medium{color:var(--corr-q-medium);background:rgba(249,171,0,.1);border:1px solid rgba(249,171,0,.25)}.corr-exercice__difficulty--hard{color:var(--corr-q-hard);background:rgba(234,67,53,.1);border:1px solid rgba(234,67,53,.25)}.corr-exercice__rule{height:1px;border:none;background:linear-gradient(90deg,var(--accent),transparent);margin-bottom:var(--space-xl);opacity:.4}.corr-exercice__enonce{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.9rem;line-height:1.8;color:var(--ink-light)}.corr-exercice__enonce-label{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-sm);display:block}
+    .corr-question{margin-bottom:var(--space-xl);padding-left:var(--space-lg);border-left:3px solid var(--accent);position:relative}.corr-question--easy{border-left-color:var(--corr-q-easy)}.corr-question--medium{border-left-color:var(--corr-q-medium)}.corr-question--hard{border-left-color:var(--corr-q-hard)}.corr-question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:6px;display:block}.corr-question--easy .corr-question__num{color:var(--corr-q-easy)}.corr-question--medium .corr-question__num{color:var(--corr-q-medium)}.corr-question--hard .corr-question__num{color:var(--corr-q-hard)}.corr-question__statement{font-size:.88rem;color:var(--ink-muted);font-style:italic;margin-bottom:var(--space-md);padding-bottom:var(--space-sm);border-bottom:1px dashed var(--border)}
+    .corr-box{border-radius:10px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0;font-size:.9rem;line-height:1.8;position:relative}.corr-box__title{font-weight:600;font-size:.8rem;letter-spacing:.03em;margin-bottom:6px;display:flex;align-items:center;gap:8px}.corr-box--rappel{background:var(--corr-rappel);border:1px solid var(--corr-rappel-border)}.corr-box--rappel .corr-box__title{color:var(--corr-rappel-icon)}.corr-box--why{background:var(--corr-why);border:1px solid var(--corr-why-border)}.corr-box--why .corr-box__title{color:var(--corr-why-icon)}.corr-box--result{background:var(--corr-result);border:1px solid var(--corr-result-border)}.corr-box--result .corr-box__title{color:var(--corr-result-icon)}.corr-box--piege{background:var(--corr-piege);border:1px solid var(--corr-piege-border)}.corr-box--piege .corr-box__title{color:var(--corr-piege-icon)}.corr-box--method{background:var(--corr-method);border:1px solid var(--corr-method-border)}.corr-box--method .corr-box__title{color:var(--corr-method-icon)}
+    .corr-separator{text-align:center;margin:var(--space-3xl) 0;color:var(--ink-muted);opacity:.3;font-size:1.2rem;letter-spacing:.5em}.corr-badge{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--accent);padding:4px 12px;border-radius:20px}.corr-progress-bar{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-xl);padding:var(--space-md) var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:12px}.corr-progress-bar__label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);white-space:nowrap}.corr-progress-bar__track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;display:flex}.corr-progress-bar__seg{height:100%}.corr-progress-bar__seg--easy{background:var(--corr-q-easy)}.corr-progress-bar__seg--medium{background:var(--corr-q-medium)}.corr-progress-bar__seg--hard{background:var(--corr-q-hard)}
+    @media(max-width:680px){.course__title{font-size:1.3rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.corr-exercice__header{flex-wrap:wrap}.corr-exercice__number{font-size:2.5rem}.corr-exercice__title{font-size:1.25rem}.corr-box{padding:var(--space-sm) var(--space-md)}.annale-info{flex-direction:column;gap:var(--space-md)}}
+  </style>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <nav class="nav"><div class="site-switcher"><span class="site-switcher__brand">Lib</span><div class="site-switcher__toggle"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a><a href="../../physique/index.html" class="site-switcher__btn">Physique</a></div></div><div class="nav__links"><a href="../../index.html" class="nav__link">Accueil</a><div class="nav__dropdown"><a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mpsi.html#cours" class="dropdown__item">Cours</a><a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a><a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a><a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a></div></div><div class="nav__dropdown"><a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mp.html#cours" class="dropdown__item">Cours</a><a href="../../mp.html#exercices" class="dropdown__item">Exercices</a><a href="../../mp.html#fiches" class="dropdown__item">Fiches</a><a href="../../mp.html#methodes" class="dropdown__item">Methodes</a></div></div></div><a href="../../entrainement.html" class="nav__link">Entrainement</a><a href="../../revision.html" class="nav__link">Revision</a></div><button class="theme-toggle" id="themeToggle" aria-label="Changer de theme"><svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button><button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button></nav>
+  <div class="mobile-menu" id="mobileMenu"><div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a><a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a></div><div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div><div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div></div>
+
+  <article class="course">
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+    <div class="course__meta"><span class="course__badge">E3A 2004</span><span class="corr-badge">Correction detaillee</span></div>
+    <h1 class="course__title">Correction -- E3A 2004, Maths 1</h1>
+    <p class="course__intro">Correction pedagogique du probleme en 3 parties sur les suites \(p\)-periodiques, l'operateur de decalage \(T\), la diagonalisation dans \(\Omega_p\), les moyennes de Cesaro et le calcul de \(\pi/4\).</p>
+
+    <div class="annale-info"><div class="annale-info__item"><span class="annale-info__label">Concours</span><span class="annale-info__value">E3A</span></div><div class="annale-info__item"><span class="annale-info__label">Filiere</span><span class="annale-info__value">MP</span></div><div class="annale-info__item"><span class="annale-info__label">Annee</span><span class="annale-info__value">2004</span></div><div class="annale-info__item"><span class="annale-info__label">Type</span><span class="annale-info__value">Correction pedagogique</span></div><div class="annale-info__item"><span class="annale-info__label">Enonce</span><span class="annale-info__value"><a href="e3a-2004-maths1.html" style="color:var(--accent)">Voir l'enonce</a></span></div></div>
+
+    <div class="corr-progress-bar"><span class="corr-progress-bar__label">Difficulte</span><div class="corr-progress-bar__track"><div class="corr-progress-bar__seg corr-progress-bar__seg--easy" style="width:30%"></div><div class="corr-progress-bar__seg corr-progress-bar__seg--medium" style="width:45%"></div><div class="corr-progress-bar__seg corr-progress-bar__seg--hard" style="width:25%"></div></div></div>
+
+    <nav class="course__toc"><span class="course__toc-title">Sommaire de la correction</span><ol class="course__toc-list">
+      <li class="course__toc-item"><a href="#prelim"><span class="course__toc-num">0.</span> Preliminaires <span class="course__toc-difficulty" style="color:var(--corr-q-easy);background:rgba(52,168,83,.08)">Standard</span></a></li>
+      <li class="course__toc-item"><a href="#p1"><span class="course__toc-num">I.</span> Suites \(p\)-periodiques et diagonalisation <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span></a></li>
+      <li class="course__toc-item"><a href="#p2"><span class="course__toc-num">II.</span> Moyennes de Cesaro <span class="course__toc-difficulty" style="color:var(--corr-q-hard);background:rgba(234,67,53,.08)">Avance</span></a></li>
+      <li class="course__toc-item"><a href="#p3"><span class="course__toc-num">III.</span> Application au calcul de \(\pi/4\) <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span></a></li>
+    </ol></nav>
+
+    <!-- PRELIMINAIRES -->
+    <div class="corr-exercice" id="prelim">
+      <div class="corr-exercice__header"><span class="corr-exercice__number">0</span><div class="corr-exercice__title-group"><h2 class="corr-exercice__title">Preliminaires</h2><span class="corr-exercice__subtitle">Binome, Fourier, serie de Leibniz -- 2 questions</span></div><span class="corr-exercice__difficulty corr-exercice__difficulty--easy">Standard</span></div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1a -- Somme des coefficients binomiaux</span>
+        <p class="corr-question__statement">Demontrer que \(\displaystyle\sum_{k=0}^{n} C_n^k = 2^n\).</p>
+        <div class="corr-box corr-box--rappel"><div class="corr-box__title">Rappel de cours</div>La formule du binome de Newton s'ecrit \((a+b)^n = \sum_{k=0}^n \binom{n}{k} a^k b^{n-k}\) pour \(a, b\) dans un anneau commutatif.</div>
+        <p>On applique la formule du binome avec \(a = 1\) et \(b = 1\) :</p>
+        <div class="math-display">$$\sum_{k=0}^{n} \binom{n}{k} = (1+1)^n = 2^n.$$</div>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{\sum_{k=0}^{n} \binom{n}{k} = 2^n}$$</div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1b -- Formule du binome pour \(L^n = (I+T)^n\)</span>
+        <p class="corr-question__statement">Apres avoir justifie avec soin les hypotheses de son application, utiliser la formule du binome pour calculer \(L^n = (I + T)^n\).</p>
+        <div class="corr-box corr-box--piege"><div class="corr-box__title">Piege classique</div>La formule du binome necessite que \(I\) et \(T\) commutent. C'est bien le cas car \(I\) commute avec tout endomorphisme : \(I \circ T = T \circ I = T\).</div>
+        <p>Puisque \(I\) et \(T\) commutent dans l'algebre des endomorphismes de \(E\), la formule du binome donne :</p>
+        <div class="math-display">$$L^n = (I + T)^n = \sum_{k=0}^{n} \binom{n}{k} I^{n-k} \circ T^k = \sum_{k=0}^{n} \binom{n}{k} T^k.$$</div>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{L^n = \sum_{k=0}^{n} \binom{n}{k} T^k}$$</div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1c -- Expression de \(L^n(u)_0\)</span>
+        <p class="corr-question__statement">En deduire pour \(u \in E\), l'egalite : \(L^n(u)_0 = \sum_{k=0}^{n} C_n^k\, u_k\).</p>
+        <p>On evalue au rang \(0\). Pour tout \(k\), \(T^k(u)_0 = u_k\) (le terme d'indice 0 de la suite decalee \(k\) fois est \(u_k\)). Donc :</p>
+        <div class="math-display">$$L^n(u)_0 = \sum_{k=0}^{n} \binom{n}{k} T^k(u)_0 = \sum_{k=0}^{n} \binom{n}{k}\, u_k.$$</div>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{L^n(u)_0 = \sum_{k=0}^{n} \binom{n}{k}\, u_k}$$</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 2a -- Coefficients de Fourier</span>
+        <p class="corr-question__statement">Calculer les coefficients de Fourier de \(f\), fonction \(2\pi\)-periodique, impaire, definie par \(f(0) = f(\pi) = 0\) et \(\forall t \in\, ]0, \pi[\), \(f(t) = 1\).</p>
+        <div class="corr-box corr-box--method"><div class="corr-box__title">Methode -- Fourier d'une fonction impaire</div>\(f\) est impaire, donc \(a_0 = 0\) et \(a_n = 0\) pour tout \(n\). Il ne reste qu'a calculer les \(b_n = \frac{2}{\pi}\int_0^\pi f(t)\sin(nt)\,\mathrm{d}t\).</div>
+        <p>\(f\) etant impaire, ses coefficients de Fourier en cosinus sont nuls : \(a_n = 0\) pour tout \(n \geqslant 0\).</p>
+        <p>Pour les coefficients en sinus :</p>
+        <div class="math-display">$$b_n = \frac{2}{\pi}\int_0^{\pi} f(t)\sin(nt)\,\mathrm{d}t = \frac{2}{\pi}\int_0^{\pi} \sin(nt)\,\mathrm{d}t = \frac{2}{\pi}\left[-\frac{\cos(nt)}{n}\right]_0^{\pi} = \frac{2}{n\pi}(1 - \cos(n\pi)).$$</div>
+        <p>Or \(\cos(n\pi) = (-1)^n\), donc :</p>
+        <ul>
+          <li>Si \(n\) est pair : \(b_n = 0\).</li>
+          <li>Si \(n = 2m+1\) est impair : \(b_n = \frac{4}{(2m+1)\pi}\).</li>
+        </ul>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{a_n = 0 \;\;\forall n, \quad b_{2m} = 0, \quad b_{2m+1} = \frac{4}{(2m+1)\pi}}$$</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 2b -- Convergence de la serie de Fourier</span>
+        <p class="corr-question__statement">La serie de Fourier de \(f\) converge-t-elle simplement vers \(f\) sur \(\mathbb{R}\) ? Converge-t-elle uniformement vers \(f\) sur \(\mathbb{R}\) ?</p>
+        <div class="corr-box corr-box--rappel"><div class="corr-box__title">Rappel de cours</div>Theoreme de Dirichlet : si \(f\) est \(C^1\) par morceaux, sa serie de Fourier converge simplement, et en tout point de discontinuite elle converge vers la demi-somme des limites a gauche et a droite.</div>
+        <p>\(f\) est \(C^1\) par morceaux (continue par morceaux et de classe \(C^1\) sur chaque morceau). Par le theoreme de Dirichlet, la serie de Fourier converge simplement vers \(f\) en tout point de continuite, et vers \(\frac{f(t^-) + f(t^+)}{2}\) aux points de discontinuite.</p>
+        <p>Aux points \(t = k\pi\), les limites laterales sont \(0\) et \(1\) (ou \(-1\)), donc la serie converge vers \(\frac{1}{2}\) (ou \(-\frac{1}{2}\)). Or \(f(k\pi) = 0 \neq \frac{1}{2}\). Donc la serie de Fourier ne converge <strong>pas</strong> simplement vers \(f\) aux points \(t = k\pi\) avec \(k\) non nul.</p>
+        <p>Puisque la convergence simple vers \(f\) echoue, la convergence uniforme vers \(f\) echoue egalement. De plus, la limite de la serie de Fourier est discontinue aux points \(k\pi\), alors qu'une limite uniforme de fonctions continues serait continue (phenomene de Gibbs).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>La serie de Fourier converge simplement vers \(f\) sauf aux points \(k\pi\) (\(k \in \mathbb{Z}^*\)) ou elle vaut \(\frac{1}{2}\text{sgn}(\sin)\). Elle ne converge pas uniformement vers \(f\) sur \(\mathbb{R}\).</div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2c -- Calcul de la serie de Leibniz</span>
+        <p class="corr-question__statement">Deduire de ce developpement la valeur de \(\displaystyle\sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1}\).</p>
+        <p>En \(t = \frac{\pi}{2}\) (point de continuite), la serie de Fourier converge vers \(f(\pi/2) = 1\) :</p>
+        <div class="math-display">$$f\!\left(\frac{\pi}{2}\right) = \sum_{m=0}^{+\infty} \frac{4}{(2m+1)\pi} \sin\!\left(\frac{(2m+1)\pi}{2}\right) = \frac{4}{\pi}\sum_{m=0}^{+\infty} \frac{(-1)^m}{2m+1} = 1.$$</div>
+        <p>Car \(\sin\!\left(\frac{(2m+1)\pi}{2}\right) = (-1)^m\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{\sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} = \frac{\pi}{4}}$$C'est la formule de Leibniz-Gregory, que la Partie III retrouvera par une methode completement differente.</div>
+      </div>
+    </div>
+
+    <div class="corr-separator">&bull; &bull; &bull;</div>
+
+    <!-- PARTIE I -->
+    <div class="corr-exercice" id="p1">
+      <div class="corr-exercice__header"><span class="corr-exercice__number">I</span><div class="corr-exercice__title-group"><h2 class="corr-exercice__title">Suites \(p\)-periodiques et diagonalisation</h2><span class="corr-exercice__subtitle">Algebre lineaire, racines de l'unite, DFT -- 5 questions</span></div><span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span></div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.1a -- Sous-espace vectoriel</span>
+        <p class="corr-question__statement">Montrer que \(\Omega_p\) est un sous-espace vectoriel de \(E\).</p>
+        <p>On verifie les trois conditions :</p>
+        <ul>
+          <li>La suite nulle est \(p\)-periodique, donc \(0 \in \Omega_p\).</li>
+          <li>Si \(u, v \in \Omega_p\), alors pour tout \(n\), \((u+v)_{n+p} = u_{n+p} + v_{n+p} = u_n + v_n = (u+v)_n\), donc \(u+v \in \Omega_p\).</li>
+          <li>Si \(\lambda \in \mathbb{C}\) et \(u \in \Omega_p\), alors \((\lambda u)_{n+p} = \lambda u_{n+p} = \lambda u_n = (\lambda u)_n\), donc \(\lambda u \in \Omega_p\).</li>
+        </ul>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>\(\Omega_p\) est un sous-espace vectoriel de \(E\).</div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.1b -- Isomorphisme et dimension</span>
+        <p class="corr-question__statement">Demontrer que \(\varphi : \Omega_p \to \mathbb{C}^p\), \(u \mapsto (u_0, \ldots, u_{p-1})^T\) est un isomorphisme. En deduire la dimension de \(\Omega_p\).</p>
+        <p>\(\varphi\) est lineaire (composantes de la somme = somme des composantes). Elle est injective : si \(\varphi(u) = 0\), alors \(u_0 = \cdots = u_{p-1} = 0\), et par periodicite \(u_n = 0\) pour tout \(n\), donc \(u = 0\). Elle est surjective : pour tout \((c_0, \ldots, c_{p-1}) \in \mathbb{C}^p\), la suite definie par \(u_n = c_{n \bmod p}\) est \(p\)-periodique et son image par \(\varphi\) est le vecteur donne.</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{\dim \Omega_p = p}$$\(\varphi\) est un isomorphisme de \(\Omega_p\) sur \(\mathbb{C}^p\).</div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.1c -- Base canonique de \(\Omega_p\)</span>
+        <p class="corr-question__statement">Montrer que la famille de suites \(B_e = \{e^0, e^1, \ldots, e^{p-1}\}\) est une base de \(\Omega_p\).</p>
+        <p>Chaque \(e^j\) est \(p\)-periodique (car la condition \(n \equiv j \pmod{p}\) est periodique). On a \(\varphi(e^j) = (\delta_{0,j}, \delta_{1,j}, \ldots, \delta_{p-1,j})^T\), c'est-a-dire le \(j\)-ieme vecteur de la base canonique de \(\mathbb{C}^p\). Comme \(\varphi\) est un isomorphisme, la famille \(\{\varphi(e^0), \ldots, \varphi(e^{p-1})\}\) est la base canonique de \(\mathbb{C}^p\), donc \(B_e\) est une base de \(\Omega_p\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>\(B_e = \{e^0, e^1, \ldots, e^{p-1}\}\) est une base de \(\Omega_p\), image reciproque de la base canonique de \(\mathbb{C}^p\).</div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.2a -- Stabilite</span>
+        <p class="corr-question__statement">Justifier que \(\Omega_p\) est stable par les endomorphismes \(T\) et \(L\).</p>
+        <p>Si \(u \in \Omega_p\), alors \(T(u)_{n+p} = u_{n+p+1} = u_{n+1} = T(u)_n\), donc \(T(u) \in \Omega_p\). Comme \(L = I + T\) et \(\Omega_p\) est stable par \(I\) (trivialement) et par \(T\), il est stable par \(L\).</p>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.2b -- Noyau de \(t\)</span>
+        <p class="corr-question__statement">Determiner \(\ker t\). Qu'en conclure ?</p>
+        <p>Soit \(u \in \ker t\). Alors \(t(u) = 0\), c'est-a-dire \(u_{n+1} = 0\) pour tout \(n\). Donc \(u_n = 0\) pour tout \(n \geqslant 1\). Mais \(u\) est \(p\)-periodique, donc \(u_0 = u_p = 0\). Ainsi \(u = 0\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>\(\ker t = \{0\}\), donc \(t\) est injectif. Comme \(\Omega_p\) est de dimension finie, \(t\) est un automorphisme de \(\Omega_p\).</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question I.2c -- Noyau de \(l\)</span>
+        <p class="corr-question__statement">Soit \(u \in \ker l\). Montrer que \(\varphi(u)\) verifie le systeme \(\mathcal{S}\). Resoudre selon la parite de \(p\). Determiner \(\ker l\).</p>
+        <div class="corr-box corr-box--method"><div class="corr-box__title">Methode -- Discussion selon la parite</div>Le systeme \(u_k + u_{k+1} = 0\) donne \(u_{k+1} = -u_k\), d'ou \(u_k = (-1)^k u_0\). La derniere equation \(u_0 + u_{p-1} = 0\) impose \(u_0(1 + (-1)^{p-1}) = 0\).</div>
+        <p><strong>(i)</strong> Si \(u \in \ker l\), alors \(l(u) = u + t(u) = 0\), donc pour tout \(n\) : \(u_n + u_{n+1} = 0\). En prenant \(n = 0, 1, \ldots, p-2\), on obtient les \(p-1\) premieres equations du systeme. La derniere equation \(u_0 + u_{p-1} = 0\) vient de la periodicite : \(u_p + u_{p-1} = u_0 + u_{p-1} = 0\).</p>
+        <p><strong>(ii)</strong> De \(u_{k+1} = -u_k\), on deduit \(u_k = (-1)^k u_0\). La derniere equation donne \(u_0 + (-1)^{p-1}u_0 = 0\), soit \(u_0(1 + (-1)^{p-1}) = 0\).</p>
+        <ul>
+          <li>Si \(p\) est <strong>pair</strong> : \((-1)^{p-1} = -1\), donc \(1 + (-1)^{p-1} = 0\) et \(u_0\) est libre. L'espace des solutions est de dimension 1, engendre par la suite \(u_k = (-1)^k\).</li>
+          <li>Si \(p\) est <strong>impair</strong> : \((-1)^{p-1} = 1\), donc \(2u_0 = 0\), soit \(u_0 = 0\). La seule solution est \(u = 0\).</li>
+        </ul>
+        <p><strong>(iii)</strong></p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>
+          <ul>
+            <li>Si \(p\) est impair : \(\ker l = \{0\}\), donc \(l\) est un automorphisme de \(\Omega_p\).</li>
+            <li>Si \(p\) est pair : \(\ker l = \text{Vect}(v)\) ou \(v\) est la suite \(p\)-periodique definie par \(v_k = (-1)^k\). C'est un espace de dimension 1.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question I.3a -- Diagonalisabilite de \(t\)</span>
+        <p class="corr-question__statement">Montrer que \(t^p = I\). En deduire que \(t\) est diagonalisable.</p>
+        <p>Pour toute suite \(u \in \Omega_p\) : \(t^p(u)_n = u_{n+p} = u_n\) (par \(p\)-periodicite), donc \(t^p = \text{Id}_{\Omega_p}\).</p>
+        <div class="corr-box corr-box--rappel"><div class="corr-box__title">Rappel de cours</div>Si un endomorphisme annule un polynome dont toutes les racines sont simples, il est diagonalisable. Le polynome \(X^p - 1\) a \(p\) racines simples distinctes (les racines \(p\)-iemes de l'unite).</div>
+        <p>\(t\) annule le polynome \(X^p - 1\), qui est scinde a racines simples sur \(\mathbb{C}\) (ses racines sont les \(\omega_k = e^{2ik\pi/p}\)). Donc \(t\) est diagonalisable.</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{t^p = \text{Id}, \quad t \text{ est diagonalisable}}$$</div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.3b -- Valeurs propres</span>
+        <p class="corr-question__statement">Montrer que les valeurs propres de \(t\) sont des racines \(p\)-iemes de 1.</p>
+        <p>Si \(\lambda\) est valeur propre de \(t\), avec \(t(u) = \lambda u\) et \(u \neq 0\), alors \(t^p(u) = \lambda^p u = u\), donc \(\lambda^p = 1\). Ainsi \(\lambda\) est une racine \(p\)-ieme de l'unite.</p>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question I.3c -- Base de vecteurs propres</span>
+        <p class="corr-question__statement">Determiner une base de vecteurs propres \(B_\epsilon = \{\epsilon^0, \ldots, \epsilon^{p-1}\}\) de \(t\).</p>
+        <p>On cherche \(\epsilon^j \in \Omega_p\) tel que \(t(\epsilon^j) = \omega_j \epsilon^j\) et \(\epsilon^j_0 = 1\). L'equation \(t(\epsilon^j)_n = \epsilon^j_{n+1} = \omega_j \epsilon^j_n\) donne par recurrence : \(\epsilon^j_n = \omega_j^n = e^{2ijn\pi/p}\).</p>
+        <p>Verification de la periodicite : \(\epsilon^j_{n+p} = \omega_j^{n+p} = \omega_j^n \cdot \omega_j^p = \omega_j^n = \epsilon^j_n\). C'est bien une suite \(p\)-periodique.</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{\epsilon^j_n = \omega_j^n = e^{2ijn\pi/p}}$$Les \(p\) racines \(\omega_0, \omega_1, \ldots, \omega_{p-1}\) sont toutes valeurs propres de \(t\), chacune de multiplicite 1. Les sous-espaces propres sont de dimension 1.</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question I.3d -- Matrice de passage</span>
+        <p class="corr-question__statement">Expliciter la matrice \(P\) de passage de \(B_e\) a \(B_\epsilon\).</p>
+        <p>Les coordonnees de \(\epsilon^j\) dans la base \(B_e\) sont \((\epsilon^j_0, \epsilon^j_1, \ldots, \epsilon^j_{p-1}) = (1, \omega_j, \omega_j^2, \ldots, \omega_j^{p-1})\). La \(j\)-ieme colonne de \(P\) est donc ce vecteur.</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{P = \left(\omega_j^k\right)_{0 \leqslant k, j \leqslant p-1} = \begin{pmatrix} 1 & 1 & 1 & \cdots & 1 \\ 1 & \omega_1 & \omega_2 & \cdots & \omega_{p-1} \\ 1 & \omega_1^2 & \omega_2^2 & \cdots & \omega_{p-1}^2 \\ \vdots & \vdots & \vdots & & \vdots \\ 1 & \omega_1^{p-1} & \omega_2^{p-1} & \cdots & \omega_{p-1}^{p-1}\end{pmatrix}}$$C'est la matrice de la transformee de Fourier discrete (DFT) de taille \(p\).</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question I.3e -- Inverse de \(P\)</span>
+        <p class="corr-question__statement">Montrer que \({}^t\!\bar{P}P = pI_p\). En deduire \(P^{-1}\).</p>
+        <div class="corr-box corr-box--rappel"><div class="corr-box__title">Rappel de cours</div>La somme des racines \(p\)-iemes : \(\sum_{k=0}^{p-1} \omega^k = 0\) si \(\omega \neq 1\), et \(= p\) si \(\omega = 1\).</div>
+        <p>Le coefficient \((i,j)\) de \({}^t\!\bar{P} \cdot P\) est \(\sum_{k=0}^{p-1} \overline{\omega_i^k}\, \omega_j^k = \sum_{k=0}^{p-1} (\omega_j \bar{\omega}_i)^k = \sum_{k=0}^{p-1} \omega_{j-i}^k\).</p>
+        <p>Si \(i = j\) : la somme vaut \(p\). Si \(i \neq j\) : \(\omega_{j-i}\) est une racine \(p\)-ieme de 1 differente de 1, et la somme geometrique vaut \(\frac{\omega_{j-i}^p - 1}{\omega_{j-i} - 1} = 0\).</p>
+        <p>Donc \({}^t\!\bar{P} P = p I_p\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{P^{-1} = \frac{1}{p}\, {}^t\!\bar{P}}$$La matrice \(\frac{1}{\sqrt{p}}P\) est unitaire. C'est la propriete fondamentale de la DFT.</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question I.4a -- Expression de \(l^n(u)\)</span>
+        <p class="corr-question__statement">Exprimer \(l(u)\) puis \(l^n(u)\) en fonction des \(x_k, \omega_k, \epsilon^k\).</p>
+        <p>Si \(u = \sum_{k=0}^{p-1} x_k \epsilon^k\), alors \(t(u) = \sum_{k=0}^{p-1} x_k \omega_k \epsilon^k\) (car \(\epsilon^k\) est vecteur propre de \(t\) pour \(\omega_k\)). Donc :</p>
+        <div class="math-display">$$l(u) = u + t(u) = \sum_{k=0}^{p-1} x_k (1 + \omega_k) \epsilon^k.$$</div>
+        <p>Par recurrence immediate, \(\epsilon^k\) est vecteur propre de \(l\) pour la valeur propre \(1 + \omega_k\), donc :</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{l^n(u) = \sum_{k=0}^{p-1} x_k (1 + \omega_k)^n \epsilon^k}$$</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question I.4b -- Convergence</span>
+        <p class="corr-question__statement">Montrer que pour \(k \in \{1, \ldots, p-1\}\), on a \(\displaystyle\lim_{n \to +\infty} \left(\frac{1 + \omega_k}{2}\right)^n = 0\).</p>
+        <div class="corr-box corr-box--method"><div class="corr-box__title">Methode -- Module d'une somme de racines</div>On calcule \(|1 + \omega_k|^2 = (1+\cos\theta_k)^2 + \sin^2\theta_k = 2 + 2\cos\theta_k = 4\cos^2(\theta_k/2)\) avec \(\theta_k = 2k\pi/p\).</div>
+        <p>Posons \(\theta_k = 2k\pi/p\). Alors \(|1 + \omega_k| = |1 + e^{i\theta_k}| = 2|\cos(\theta_k/2)| = 2|\cos(k\pi/p)|\).</p>
+        <p>Pour \(k \in \{1, \ldots, p-1\}\), on a \(0 < k\pi/p < \pi\), donc \(|\cos(k\pi/p)| < 1\), ce qui donne \(|1 + \omega_k| < 2\), soit \(\left|\frac{1+\omega_k}{2}\right| < 1\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{\forall k \in \{1, \ldots, p-1\}, \quad \left|\frac{1+\omega_k}{2}\right| = |\cos(k\pi/p)| < 1 \implies \left(\frac{1+\omega_k}{2}\right)^n \xrightarrow[n \to +\infty]{} 0}$$</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question I.4c -- Limite de la moyenne de Cesaro</span>
+        <p class="corr-question__statement">En deduire que \(\displaystyle\lim_{n \to +\infty} \frac{1}{2^n} l^n(u)_0 = \frac{u_0 + u_1 + \cdots + u_{p-1}}{p}\).</p>
+        <p>D'apres I.4a, \(\frac{1}{2^n} l^n(u)_0 = \sum_{k=0}^{p-1} x_k \left(\frac{1+\omega_k}{2}\right)^n \epsilon^k_0 = \sum_{k=0}^{p-1} x_k \left(\frac{1+\omega_k}{2}\right)^n\) (car \(\epsilon^k_0 = 1\) pour tout \(k\)).</p>
+        <p>Pour \(k = 0\) : \(\omega_0 = 1\), donc \(\frac{1+\omega_0}{2} = 1\), et le terme vaut \(x_0\). Pour \(k \geqslant 1\) : chaque terme tend vers 0 par I.4b. Donc la limite est \(x_0\).</p>
+        <p>Il reste a calculer \(x_0\). Par la formule d'inversion (\(P^{-1} = \frac{1}{p}\,{}^t\!\bar{P}\)), la premiere coordonnee de \(u\) dans \(B_\epsilon\) est \(x_0 = \frac{1}{p}\sum_{j=0}^{p-1} \bar{\omega}_0^j\, u_j = \frac{1}{p}\sum_{j=0}^{p-1} u_j\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{\lim_{n \to +\infty} \frac{1}{2^n} l^n(u)_0 = \frac{u_0 + u_1 + \cdots + u_{p-1}}{p}}$$La moyenne de Cesaro binomiale d'une suite periodique converge vers la moyenne arithmetique d'une periode.</div>
+      </div>
+
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question I.5 -- Limite des sommes partielles binomiales</span>
+        <p class="corr-question__statement">En deduire que, pour tout \(j \in \{0, \ldots, p-1\}\) : \(\displaystyle\lim_{n \to +\infty} \frac{1}{2^n} \sum_{0 \leqslant k \leqslant \frac{n-j}{p}} \binom{n}{pk+j} = \frac{1}{p}\).</p>
+        <p>On applique le resultat precedent a la suite \(u = e^j\) (le \(j\)-ieme vecteur de la base \(B_e\)). Cette suite vaut 1 si \(n \equiv j \pmod{p}\) et 0 sinon.</p>
+        <p>D'apres la question 1c des Preliminaires : \(L^n(e^j)_0 = \sum_{k=0}^n \binom{n}{k} e^j_k\). Les seuls termes non nuls sont ceux ou \(k \equiv j \pmod{p}\), c'est-a-dire \(k = j, j+p, j+2p, \ldots\). Donc :</p>
+        <div class="math-display">$$L^n(e^j)_0 = \sum_{\substack{k=0 \\ k \equiv j \!\!\pmod{p}}}^n \binom{n}{k} = \sum_{m=0}^{\lfloor(n-j)/p\rfloor} \binom{n}{pm+j}.$$</div>
+        <p>La moyenne d'une periode de \(e^j\) est \(\frac{0 + \cdots + 1 + \cdots + 0}{p} = \frac{1}{p}\). En appliquant I.4c :</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{\lim_{n \to +\infty} \frac{1}{2^n} \sum_{0 \leqslant k \leqslant \frac{n-j}{p}} \binom{n}{pk+j} = \frac{1}{p}}$$Les coefficients binomiaux equirepartis modulo \(p\) representent asymptotiquement la fraction \(1/p\) du total \(2^n\).</div>
+      </div>
+    </div>
+
+    <div class="corr-separator">&bull; &bull; &bull;</div>
+
+    <!-- PARTIE II -->
+    <div class="corr-exercice" id="p2">
+      <div class="corr-exercice__header"><span class="corr-exercice__number">II</span><div class="corr-exercice__title-group"><h2 class="corr-exercice__title">Moyennes de Cesaro</h2><span class="corr-exercice__subtitle">Convergence, sommation, serie telescopique -- 2 questions</span></div><span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avance</span></div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question II.1a -- Verification</span>
+        <p class="corr-question__statement">Verifier que \(\frac{1}{2^n} L^n(u)_0 - \ell = \frac{1}{2^n} \sum_{k=0}^{n} \binom{n}{k} (u_k - \ell)\).</p>
+        <p>Par la question 1c des Preliminaires : \(L^n(u)_0 = \sum_{k=0}^n \binom{n}{k} u_k\). On soustrait \(\ell\) en utilisant \(\sum_{k=0}^n \binom{n}{k} = 2^n\) :</p>
+        <div class="math-display">$$\frac{1}{2^n}L^n(u)_0 - \ell = \frac{1}{2^n}\sum_{k=0}^n \binom{n}{k} u_k - \frac{\ell \cdot 2^n}{2^n} = \frac{1}{2^n}\sum_{k=0}^n \binom{n}{k}(u_k - \ell).$$</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question II.1b(i) -- Majoration de \(|T_N(n)|\)</span>
+        <p class="corr-question__statement">Montrer que \(|T_N(n)| \leqslant \sup\{|u_k - \ell|;\; k \in \{N+1, \ldots, n\}\}\).</p>
+        <p>On a \(T_N(n) = \frac{1}{2^n}\sum_{k=N+1}^n \binom{n}{k}(u_k - \ell)\). En majorant par le sup :</p>
+        <div class="math-display">$$|T_N(n)| \leqslant \frac{1}{2^n}\sum_{k=N+1}^n \binom{n}{k} \cdot \sup_{k \geqslant N+1}|u_k - \ell| \leqslant \frac{1}{2^n} \cdot 2^n \cdot \sup_{k \geqslant N+1}|u_k - \ell|.$$</div>
+        <p>Car \(\sum_{k=N+1}^n \binom{n}{k} \leqslant \sum_{k=0}^n \binom{n}{k} = 2^n\).</p>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question II.1b(ii) -- Majoration de \(|S_N(n)|\)</span>
+        <p class="corr-question__statement">Montrer que \(|S_N(n)| \leqslant \frac{1}{2^n} P_N(n) \sup\{|u_k - \ell|;\; k \in \{0, \ldots, N\}\}\).</p>
+        <p>On a \(S_N(n) = \frac{1}{2^n}\sum_{k=0}^N \binom{n}{k}(u_k - \ell)\). Or \(\binom{n}{k} = \frac{n!}{k!(n-k)!} \leqslant \frac{n^k}{k!}\) (car \(n(n-1)\cdots(n-k+1) \leqslant n^k\)). Donc :</p>
+        <div class="math-display">$$|S_N(n)| \leqslant \frac{1}{2^n}\sum_{k=0}^N \frac{n^k}{k!} \cdot \sup_{0 \leqslant k \leqslant N}|u_k - \ell| = \frac{P_N(n)}{2^n}\sup_{0 \leqslant k \leqslant N}|u_k - \ell|.$$</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question II.1b(iii) -- Limite de \(\frac{P_N(n)}{2^n}\)</span>
+        <p class="corr-question__statement">Justifier que \(\displaystyle\lim_{n \to +\infty} \frac{1}{2^n} P_N(n) = 0\).</p>
+        <div class="corr-box corr-box--rappel"><div class="corr-box__title">Rappel de cours</div>La croissance exponentielle domine la croissance polynomiale : pour tout polynome \(P\), \(\lim_{n\to+\infty} \frac{P(n)}{a^n} = 0\) des que \(a > 1\).</div>
+        <p>\(P_N(n) = \sum_{k=0}^N \frac{n^k}{k!}\) est un polynome en \(n\) de degre \(N\). Comme \(2^n\) croit exponentiellement, \(\frac{P_N(n)}{2^n} \to 0\).</p>
+      </div>
+
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question II.1c -- Theoreme de Cesaro binomial</span>
+        <p class="corr-question__statement">En deduire que \(\displaystyle\lim_{n \to +\infty} \frac{1}{2^n} L^n(u)_0 = \ell\).</p>
+        <div class="corr-box corr-box--method"><div class="corr-box__title">Methode -- Technique epsilon/2</div>On fixe \(\varepsilon > 0\). On choisit \(N\) assez grand pour que \(|T_N(n)| < \varepsilon/2\) (car \(u_k \to \ell\)), puis \(n\) assez grand pour que \(|S_N(n)| < \varepsilon/2\) (car \(P_N(n)/2^n \to 0\)).</div>
+        <p>Soit \(\varepsilon > 0\). Comme \(u_k \to \ell\), il existe \(N\) tel que pour tout \(k > N\), \(|u_k - \ell| < \varepsilon/2\). Par (i), pour tout \(n > N\) : \(|T_N(n)| < \varepsilon/2\).</p>
+        <p>Le terme \(M = \sup_{0 \leqslant k \leqslant N}|u_k - \ell|\) est fini (nombre fini de termes). Par (ii) et (iii), \(|S_N(n)| \leqslant M \cdot \frac{P_N(n)}{2^n} \to 0\). Donc il existe \(n_0\) tel que pour \(n \geqslant n_0\) : \(|S_N(n)| < \varepsilon/2\).</p>
+        <p>Pour \(n \geqslant \max(N, n_0)\) : \(\left|\frac{1}{2^n}L^n(u)_0 - \ell\right| = |S_N(n) + T_N(n)| < \varepsilon\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{\text{Si } u_n \to \ell, \text{ alors } \frac{1}{2^n}L^n(u)_0 \to \ell}$$C'est l'analogue binomial du theoreme de Cesaro : la moyenne ponderee par les coefficients binomiaux conserve la limite.</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question II.2a -- Egalite combinatoire</span>
+        <p class="corr-question__statement">Montrer que \(\sum_{k=0}^{n+1} \binom{n+1}{k}\, s_k = \sum_{k=0}^{n} \binom{n}{k}\, s_k + \sum_{k=0}^{n} \binom{n}{k}\, s_{k+1}\).</p>
+        <p>On utilise la formule de Pascal : \(\binom{n+1}{k} = \binom{n}{k} + \binom{n}{k-1}\) pour \(1 \leqslant k \leqslant n\), avec \(\binom{n+1}{0} = 1 = \binom{n}{0}\) et \(\binom{n+1}{n+1} = 1 = \binom{n}{n}\).</p>
+        <div class="math-display">$$\sum_{k=0}^{n+1} \binom{n+1}{k} s_k = \binom{n}{0}s_0 + \sum_{k=1}^{n}\left[\binom{n}{k} + \binom{n}{k-1}\right]s_k + \binom{n}{n}s_{n+1}.$$</div>
+        <p>En reindexant \(\sum_{k=1}^{n}\binom{n}{k-1}s_k = \sum_{j=0}^{n-1}\binom{n}{j}s_{j+1}\), et en ajoutant le terme \(\binom{n}{n}s_{n+1}\), on obtient le membre de droite.</p>
+      </div>
+
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question II.2b -- Relation de recurrence</span>
+        <p class="corr-question__statement">En deduire que \(S_{n+1} - S_n = \frac{1}{2^{n+1}} L^n(u)_0\).</p>
+        <p>On a \(S_n = \frac{1}{2^n}\sum_{k=0}^n \binom{n}{k} s_k\), donc :</p>
+        <div class="math-display">$$2^{n+1}S_{n+1} = \sum_{k=0}^{n+1}\binom{n+1}{k}s_k = \sum_{k=0}^n \binom{n}{k}s_k + \sum_{k=0}^n \binom{n}{k}s_{k+1} = 2^n S_n + \sum_{k=0}^n \binom{n}{k}s_{k+1}.$$</div>
+        <p>Or \(\sum_{k=0}^n \binom{n}{k}s_{k+1} = \sum_{k=0}^n \binom{n}{k}(s_k + u_k) = 2^n S_n + L^n(u)_0\) (car \(s_{k+1} - s_k = u_k\) et par 1c des Preliminaires).</p>
+        <p>Donc \(2^{n+1}S_{n+1} = 2 \cdot 2^n S_n + L^n(u)_0\), soit \(S_{n+1} = S_n + \frac{L^n(u)_0}{2^{n+1}}\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{S_{n+1} - S_n = \frac{1}{2^{n+1}} L^n(u)_0}$$La suite \(S\) est donc une serie telescopique dont le terme general fait intervenir les moyennes binomiales.</div>
+      </div>
+
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question II.2c -- Formule de sommation</span>
+        <p class="corr-question__statement">On suppose que \(u_n\) est le terme general d'une serie convergente. Montrer que \(\sum_{n=0}^{+\infty} \frac{1}{2^{n+1}} L^n(u)_0\) converge et vaut \(\sum_{n=0}^{+\infty} u_n\).</p>
+        <div class="corr-box corr-box--method"><div class="corr-box__title">Methode -- Serie telescopique</div>La relation \(S_{n+1} - S_n = \frac{L^n(u)_0}{2^{n+1}}\) montre que \(\sum_{n=0}^N \frac{L^n(u)_0}{2^{n+1}} = S_{N+1} - S_0\). Il suffit de montrer que \(S_N\) converge vers la somme de la serie \(\sum u_n\).</div>
+        <p>Par telescopage : \(S_{N+1} = S_0 + \sum_{n=0}^N \frac{L^n(u)_0}{2^{n+1}}\). Or \(S_0 = \frac{1}{2^0}\binom{0}{0}s_0 = s_0 = 0\).</p>
+        <p>Comme \(\sum u_n\) converge, les sommes partielles \(s_n = \sum_{k=0}^{n-1} u_k\) convergent vers \(\ell = \sum_{n=0}^{+\infty} u_n\). Par le theoreme de Cesaro binomial (II.1c) : \(S_n = \frac{1}{2^n}\sum_{k=0}^n \binom{n}{k}s_k \to \ell\).</p>
+        <p>Donc \(\sum_{n=0}^{+\infty} \frac{L^n(u)_0}{2^{n+1}} = \lim_{N\to\infty} S_{N+1} = \ell = \sum_{n=0}^{+\infty} u_n\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{\sum_{n=0}^{+\infty} u_n = \sum_{n=0}^{+\infty} \frac{1}{2^{n+1}} L^n(u)_0}$$Cette formule transforme une serie quelconque convergente en une serie dont les termes sont des moyennes binomiales, qui convergent souvent beaucoup plus vite.</div>
+        <div class="corr-box corr-box--why"><div class="corr-box__title">Pourquoi c'est utile ?</div>Cette transformation accelere la convergence : les coefficients binomiaux \(\binom{n}{k}/2^n\) concentrent le poids autour de \(k \approx n/2\), ce qui lisse les oscillations. La Partie III exploitera cette acceleration pour calculer \(\pi/4\).</div>
+      </div>
+    </div>
+
+    <div class="corr-separator">&bull; &bull; &bull;</div>
+
+    <!-- PARTIE III -->
+    <div class="corr-exercice" id="p3">
+      <div class="corr-exercice__header"><span class="corr-exercice__number">III</span><div class="corr-exercice__title-group"><h2 class="corr-exercice__title">Application au calcul de \(\pi/4\)</h2><span class="corr-exercice__subtitle">Integrales de Wallis, formule de sommation, comparaison -- 4 questions</span></div><span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span></div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question III.1 -- Expression de \(J_n\)</span>
+        <p class="corr-question__statement">Pour tout entier naturel \(n\), montrer que \(J_n = \sum_{k=0}^{n} \binom{n}{k}\, u_k\), ou \(u_k = \frac{(-1)^k}{2k+1}\) et \(J_n = \int_0^1 (1-x^2)^n\,\mathrm{d}x\).</p>
+        <p>On developpe \((1-x^2)^n\) par la formule du binome :</p>
+        <div class="math-display">$$J_n = \int_0^1 (1-x^2)^n\,\mathrm{d}x = \int_0^1 \sum_{k=0}^n \binom{n}{k}(-1)^k x^{2k}\,\mathrm{d}x = \sum_{k=0}^n \binom{n}{k}(-1)^k \int_0^1 x^{2k}\,\mathrm{d}x.$$</div>
+        <p>L'interversion est licite car la somme est finie. Or \(\int_0^1 x^{2k}\,\mathrm{d}x = \frac{1}{2k+1}\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{J_n = \sum_{k=0}^{n} \binom{n}{k}\frac{(-1)^k}{2k+1} = \sum_{k=0}^n \binom{n}{k}\, u_k = L^n(u)_0}$$On retrouve exactement la quantite \(L^n(u)_0\) etudiee dans les parties precedentes.</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question III.2 -- Relation de recurrence et formule explicite</span>
+        <p class="corr-question__statement">Montrer que \(J_n = \frac{2n}{2n+1}\, J_{n-1}\). En deduire \(J_n = \frac{2^{2n}(n!)^2}{(2n+1)!}\).</p>
+        <div class="corr-box corr-box--method"><div class="corr-box__title">Methode -- Integration par parties</div>On ecrit \((1-x^2)^n = (1-x^2)^{n-1}(1-x^2) = (1-x^2)^{n-1} - x^2(1-x^2)^{n-1}\) et on integre le second terme par parties.</div>
+        <p>On a \(J_n = \int_0^1 (1-x^2)^n\,\mathrm{d}x\). Integrons par parties avec \(u' = 1\) et \(v = (1-x^2)^n\) :</p>
+        <div class="math-display">$$J_n = \left[x(1-x^2)^n\right]_0^1 + 2n\int_0^1 x^2(1-x^2)^{n-1}\,\mathrm{d}x = 2n\int_0^1 x^2(1-x^2)^{n-1}\,\mathrm{d}x.$$</div>
+        <p>Or \(x^2 = 1 - (1-x^2)\), donc \(\int_0^1 x^2(1-x^2)^{n-1}\,\mathrm{d}x = J_{n-1} - J_n\). Ainsi :</p>
+        <div class="math-display">$$J_n = 2n(J_{n-1} - J_n) \implies (2n+1)J_n = 2n\,J_{n-1} \implies J_n = \frac{2n}{2n+1}J_{n-1}.$$</div>
+        <p>Par recurrence, avec \(J_0 = 1\) :</p>
+        <div class="math-display">$$J_n = \prod_{k=1}^n \frac{2k}{2k+1} = \frac{2^n \cdot n!}{\frac{(2n+1)!}{2^n \cdot n!}} = \frac{2^{2n}(n!)^2}{(2n+1)!}.$$</div>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{J_n = \frac{2^{2n}(n!)^2}{(2n+1)!}}$$</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question III.3 -- Calcul de \(\pi/4\)</span>
+        <p class="corr-question__statement">En utilisant II.2c, conclure que \(\displaystyle\sum_{n=0}^{+\infty} \frac{2^{2n-1}(n!)^2}{(2n+1)!} = \frac{\pi}{4}\).</p>
+        <p>La serie \(\sum u_n = \sum \frac{(-1)^n}{2n+1}\) est une serie alternee convergente (vers \(\pi/4\) d'apres les Preliminaires 2c). Par la formule de sommation II.2c :</p>
+        <div class="math-display">$$\frac{\pi}{4} = \sum_{n=0}^{+\infty} u_n = \sum_{n=0}^{+\infty} \frac{1}{2^{n+1}} L^n(u)_0 = \sum_{n=0}^{+\infty} \frac{J_n}{2^{n+1}} = \sum_{n=0}^{+\infty} \frac{2^{2n}(n!)^2}{2^{n+1}(2n+1)!} = \sum_{n=0}^{+\infty} \frac{2^{n-1}(n!)^2}{(2n+1)!}.$$</div>
+        <div class="corr-box corr-box--piege"><div class="corr-box__title">Attention a la simplification</div>On a \(\frac{J_n}{2^{n+1}} = \frac{2^{2n}(n!)^2}{2^{n+1}(2n+1)!} = \frac{2^{2n-n-1}(n!)^2}{(2n+1)!} = \frac{2^{n-1}(n!)^2}{(2n+1)!}\). L'enonce ecrit \(\frac{2^{2n-1}(n!)^2}{(2n+1)!}\), ce qui correspond a \(\frac{J_n}{2}\) (et non \(\frac{J_n}{2^{n+1}}\)). Verifions : l'enonce demande \(\sum \frac{2^{2n-1}(n!)^2}{(2n+1)!}\), or \(\frac{2^{2n-1}(n!)^2}{(2n+1)!} = \frac{J_n}{2}\). Mais \(\sum \frac{J_n}{2} = \frac{1}{2}\sum J_n\), ce qui divergerait. Relisons : la formule de l'enonce est bien \(\sum \frac{2^{2n-1}(n!)^2}{(2n+1)!} = \frac{\pi}{4}\), ce qui correspond a \(\sum \frac{J_n}{2^{n+1}} \cdot 2^n = \sum \frac{J_n}{2}\). En fait, reprenons calmement.</div>
+        <p>Reprenons. On a \(J_n = L^n(u)_0 = \frac{2^{2n}(n!)^2}{(2n+1)!}\). Par II.2c :</p>
+        <div class="math-display">$$\frac{\pi}{4} = \sum_{n=0}^{+\infty} \frac{L^n(u)_0}{2^{n+1}} = \sum_{n=0}^{+\infty} \frac{1}{2^{n+1}} \cdot \frac{2^{2n}(n!)^2}{(2n+1)!} = \sum_{n=0}^{+\infty} \frac{2^{2n-n-1}(n!)^2}{(2n+1)!} = \sum_{n=0}^{+\infty} \frac{2^{n-1}(n!)^2}{(2n+1)!}.$$</div>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{\sum_{n=0}^{+\infty} \frac{2^{n-1}(n!)^2}{(2n+1)!} = \frac{\pi}{4}}$$Cette serie a termes positifs converge beaucoup plus rapidement que la serie de Leibniz \(\sum(-1)^n/(2n+1)\) car le terme general decroit exponentiellement.</div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question III.4 -- Comparaison numerique</span>
+        <p class="corr-question__statement">Determiner \(N_1\) et \(N_2\) tels que les sommes partielles approchent \(\pi/4\) a 0.025 pres. Comparer.</p>
+        <div class="corr-box corr-box--method"><div class="corr-box__title">Methode -- Calcul numerique</div>Pour la serie a termes positifs (question a), le reste est majore par le premier terme omis (termes decroissants). Pour la serie alternee (question b), le reste est majore en valeur absolue par le premier terme omis.</div>
+        <p><strong>4a.</strong> On calcule les sommes partielles de \(\sum \frac{2^{n-1}(n!)^2}{(2n+1)!}\) :</p>
+        <ul>
+          <li>\(n=0\) : \(\frac{1}{2}\). Somme = 0.5.</li>
+          <li>\(n=1\) : \(\frac{2^0 \cdot 1}{3!} = \frac{1}{6}\). Somme = 0.6667.</li>
+          <li>\(n=2\) : \(\frac{2 \cdot 4}{5!} = \frac{8}{120} = \frac{1}{15}\). Somme = 0.7333.</li>
+          <li>\(n=3\) : \(\frac{4 \cdot 36}{7!} = \frac{144}{5040} = \frac{1}{35}\). Somme = 0.7619.</li>
+          <li>\(n=4\) : \(\frac{8 \cdot 576}{9!} = \frac{4608}{362880} = \frac{1}{63} \approx 0.0159\). Somme \(\approx 0.7778\).</li>
+        </ul>
+        <p>Or \(\pi/4 \approx 0.7854\). L'erreur pour \(N_1 = 4\) est \(\approx 0.0076 < 0.025\). Pour \(N_1 = 3\), l'erreur est \(\approx 0.0235 < 0.025\). Pour \(N_1 = 2\), l'erreur est \(\approx 0.052 > 0.025\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{N_1 = 3}$$</div>
+
+        <p><strong>4b.</strong> Pour la serie de Leibniz \(\sum \frac{(-1)^n}{2n+1}\), le reste est majore par \(\frac{1}{2(N_2+1)+1}\). On cherche \(\frac{1}{2N_2+3} \leqslant 0.025\), soit \(2N_2 + 3 \geqslant 40\), soit \(N_2 \geqslant 18.5\).</p>
+        <div class="corr-box corr-box--result"><div class="corr-box__title">Resultat</div>$$\boxed{N_2 = 19}$$</div>
+
+        <p><strong>4c.</strong> \(N_1 = 3 \ll N_2 = 19\). La serie obtenue par transformation de Cesaro binomiale converge beaucoup plus vite que la serie de Leibniz alternee. Pour obtenir la meme precision, il faut environ 6 fois moins de termes. Cela illustre le pouvoir d'acceleration de convergence de la transformation etudiee dans ce probleme.</p>
+        <div class="corr-box corr-box--why"><div class="corr-box__title">Bilan du probleme</div>Ce probleme relie trois themes : l'algebre lineaire (diagonalisation de l'operateur de decalage via la DFT), l'analyse (moyennes de Cesaro binomiales), et le calcul effectif (acceleration de la convergence de la serie de Leibniz). La cle est que la transformation \(u \mapsto \frac{1}{2^n}L^n(u)_0\) lisse les oscillations d'une serie alternee en produisant une serie a termes positifs a decroissance exponentielle.</div>
+      </div>
+    </div>
+
+    <nav class="course__nav"><a href="e3a-2003-correction.html" class="course__nav-link">&larr; Precedent<span>Correction E3A 2003</span></a><a href="e3a-2005-correction.html" class="course__nav-link course__nav-link--next">Suivant &rarr;<span>Correction E3A 2005</span></a></nav>
+  </article>
+
+  <footer class="footer"><div class="footer__inner"><div class="footer__brand"><span class="footer__logo">Lib<em>Maths</em></span><p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p></div><div class="footer__links"><div class="footer__col"><h4 class="footer__col-title">Navigation</h4><a href="../../index.html">Accueil</a><a href="../../mpsi.html">MPSI</a><a href="../../mp.html">MP</a></div><div class="footer__col"><h4 class="footer__col-title">Communaute</h4><a href="#">Contribuer</a><a href="#">GitHub</a><a href="#">Contact</a></div></div></div><div class="footer__bottom"><span>&copy; 2026 LibMaths -- Projet open source</span></div></footer>
+  <script src="../../main.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',()=>{const r=()=>renderMathInElement(document.querySelector('.course'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});if(window.renderMathInElement)r();else{const i=setInterval(()=>{if(window.renderMathInElement){clearInterval(i);r()}},100)}})</script>
+</body>
+</html>

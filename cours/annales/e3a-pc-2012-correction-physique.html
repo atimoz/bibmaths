@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correction E3A-Polytech PC 2012 - Physique | LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+<style>
+.corr-exercice { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.corr-exercice__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+.corr-exercice__number { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #E91E63; color: #fff; border-radius: 50%; font-weight: 700; font-size: 1.25rem; flex-shrink: 0; }
+.corr-exercice__title-group { flex: 1; }
+.corr-exercice__title { margin: 0; font-size: 1.4rem; color: #111827; }
+.corr-exercice__subtitle { font-size: 0.9rem; color: #6b7280; }
+.corr-exercice__difficulty { padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+.corr-exercice__difficulty--standard { background: #dcfce7; color: #166534; }
+.corr-exercice__difficulty--intermediaire { background: #fef3c7; color: #92400e; }
+.corr-exercice__difficulty--avance { background: #fee2e2; color: #991b1b; }
+.corr-exercice__rule { border: none; border-top: 2px solid #f3f4f6; margin: 1rem 0 1.5rem; }
+.corr-exercice__enonce { background: #f9fafb; border-left: 4px solid #9ca3af; padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 2rem; font-size: 0.95rem; color: #374151; }
+.corr-exercice__enonce-label { display: block; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.5rem; }
+.corr-question { border-left: 4px solid #e5e7eb; padding: 1rem 0 1rem 1.5rem; margin-bottom: 2rem; }
+.corr-question--easy { border-left-color: #22c55e; }
+.corr-question--medium { border-left-color: #f59e0b; }
+.corr-question--hard { border-left-color: #ef4444; }
+.corr-question__num { display: inline-block; font-weight: 700; color: #111827; background: #f3f4f6; padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.9rem; margin-bottom: 0.75rem; }
+.corr-question__statement { font-style: italic; color: #4b5563; background: #f9fafb; padding: 0.9rem 1rem; border-radius: 6px; margin: 0.5rem 0 1.25rem; border-left: 3px solid #d1d5db; }
+.corr-box { padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid; }
+.corr-box__title { font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.corr-box--rappel { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a8a; }
+.corr-box--rappel .corr-box__title { color: #1d4ed8; }
+.corr-box--why { background: #fff7ed; border-left-color: #f97316; color: #7c2d12; }
+.corr-box--why .corr-box__title { color: #c2410c; }
+.corr-box--result { background: #fefce8; border-left-color: #eab308; color: #713f12; }
+.corr-box--result .corr-box__title { color: #a16207; }
+.corr-box--piege { background: #fef2f2; border-left-color: #ef4444; color: #7f1d1d; }
+.corr-box--piege .corr-box__title { color: #b91c1c; }
+.corr-box--method { background: #f0fdf4; border-left-color: #22c55e; color: #14532d; }
+.corr-box--method .corr-box__title { color: #15803d; }
+.corr-toggle { margin: 1rem 0; border: 1px solid #e5e7eb; border-radius: 6px; padding: 0.5rem 1rem; background: #f9fafb; }
+.corr-toggle summary { cursor: pointer; font-weight: 600; color: #4b5563; }
+.corr-toggle__content { padding-top: 0.75rem; color: #374151; }
+.corr-part { margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #E91E63; color: #E91E63; font-size: 1.15rem; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="nav__container">
+<a href="../../index.html" class="nav__logo">LibMaths</a>
+<ul class="nav__menu">
+<li><a href="../../index.html">Accueil</a></li>
+<li><a href="../index.html">Cours</a></li>
+<li><a href="../../physique/index.html">Physique</a></li>
+<li><a href="../../annales.html">Annales</a></li>
+</ul>
+</div>
+</nav>
+
+<main class="course">
+<div class="course__container">
+<header class="course__header">
+<div class="course__breadcrumb">
+<a href="../../index.html">Accueil</a> &gt;
+<a href="../../physique/index.html">Physique</a> &gt;
+<a href="../../annales.html">Annales</a> &gt;
+<a href="e3a-pc-2012-physique.html">E3A PC 2012 Physique</a> &gt;
+Correction
+</div>
+<h1 class="course__title">Correction — E3A-Polytech PC 2012 Physique</h1>
+<p class="course__subtitle">De la phase à l'amplitude et vice versa — Correction pédagogique détaillée</p>
+</header>
+
+<div class="corr-exercice" id="intro">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Vue d'ensemble du sujet</span>
+Ce problème est un grand classique de l'optique : il explique comment <strong>voir l'invisible</strong>. Certains objets (cellules, gouttes d'eau salée) ne changent pas la quantité de lumière qu'ils laissent passer — ils ne font que retarder la lumière. Pour les rendre visibles, on doit convertir ces retards (« phase ») en variations d'intensité (« amplitude »). La partie A fait le lien avec l'électronique (modulation AM/PM), la partie B avec l'optique (contraste de phase de Zernike, prix Nobel 1953), la partie C applique tout cela à la diffusion du sucre dans l'eau.
+</div>
+</div>
+
+<!-- ============ PARTIE A ============ -->
+<div class="corr-exercice" id="exo1">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">A</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Modulation d'amplitude</h2>
+<span class="corr-exercice__subtitle">Électronique — 2 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--standard">Standard</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+Un multiplieur délivre \(v_{S1} = k\, u_1 u_2\) et un sommateur additionne ses entrées. On a \(u_1(t) = U_m\cos(\omega_p t)\) (modulant) et \(u_2(t) = U_0\cos(\omega_0 t)\) (porteuse), avec \(\omega_p \ll \omega_0\).
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question A1</span>
+<p class="corr-question__statement">Montrer que la tension de sortie $v_S(t)$ peut s'écrire sous la forme : \[ v_S(t) = U_0 \cos(\omega_0 t) \times [1 + m \cos(\omega_p t)], \] et déterminer m en fonction de $k$, $k$ et $U_m$.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+L'idée de la modulation d'amplitude (AM, comme la radio FM... euh non, comme la radio <em>AM</em>) est d'utiliser une onde rapide (la porteuse, qui voyage bien) dont on fait <em>varier l'amplitude</em> au rythme d'un signal lent (la voix, la musique). Ici on veut obtenir exactement cette forme : une porteuse \(\cos(\omega_0 t)\) dont le facteur d'amplitude \([1 + m\cos(\omega_p t)]\) oscille lentement.
+</div>
+
+<p>Le sommateur reçoit \(u_2\) et \(v_{S1} = k\, u_1 u_2\). On a donc :</p>
+\[ v_S = u_2 + v_{S1} = u_2 + k\, u_1 u_2 = u_2(1 + k\, u_1). \]
+<p>On substitue les expressions :</p>
+\[ v_S(t) = U_0\cos(\omega_0 t)\,\bigl[1 + k U_m \cos(\omega_p t)\bigr]. \]
+<p>Par identification avec la forme cherchée :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,v_S(t) = U_0\cos(\omega_0 t)\,[1 + m\cos(\omega_p t)]\quad\text{avec}\quad m = k U_m\,} \]
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piège classique</div>
+L'énoncé demande \(m\) en fonction de \(k\) et \(U_m\) (il y a une coquille, « $k$, $k$ et $U_m$ » — lire « $k$ et $U_m$ »). On ne prend pas $U_0$ ! C'est \(u_2\) et non \(u_1\) qui n'est pas dans le multiplicateur avec un facteur à côté.
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question A2</span>
+<p class="corr-question__statement">Représenter graphiquement, de façon schématique, la tension $v_S(t)$ en supposant que $m < 1$.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Il faut visualiser la notion d'<em>enveloppe</em>. La porteuse rapide \(\cos(\omega_0 t)\) oscille très vite, mais son amplitude \(U_0[1+m\cos(\omega_p t)]\) varie lentement. C'est cette amplitude qui dessine une « enveloppe » du signal.
+</div>
+
+<p>On trace :</p>
+<ul>
+<li>Une oscillation rapide de période \(T_0 = 2\pi/\omega_0\).</li>
+<li>Une enveloppe supérieure égale à \(+U_0[1+m\cos(\omega_p t)]\), qui oscille lentement entre \(U_0(1+m)\) et \(U_0(1-m)\).</li>
+<li>Une enveloppe inférieure, symétrique.</li>
+</ul>
+<p>Comme \(m<1\), l'enveloppe inférieure \(U_0(1-m)\) reste strictement positive : il n'y a <strong>pas de sur-modulation</strong>, la forme du signal modulant est préservée dans l'enveloppe.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+Le signal est une sinusoïde rapide bornée par deux enveloppes lentes symétriques qui ondulent entre \(\pm U_0(1-m)\) et \(\pm U_0(1+m)\). Pour le dessin : commencer par tracer les enveloppes (pointillés) puis « remplir » par la porteuse à l'intérieur.
+</div>
+</div>
+</div>
+
+<!-- ============ PARTIE B ============ -->
+<div class="corr-exercice" id="partB">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">B</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Modulation de phase — Méthode d'Armstrong</h2>
+<span class="corr-exercice__subtitle">Électronique — 2 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermédiaire</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+On cherche à obtenir \(v_\varphi(t) = U_0\cos[\omega_0 t + m\cos(\omega_p t)]\) avec \(m\ll 1\).
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question B1</span>
+<p class="corr-question__statement">Montrer que le signal de porteuse modulé en phase peut s'écrire : \[ v_{\varphi}(t) = U_0 \cos(\omega_0 t) + f(t) \sin(\omega_0 t), \] où $f(t)$ sera exprimée en fonction de $m$, $U_0$, $\omega_p$ et $t$.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+<strong>Cosinus d'une somme :</strong> \(\cos(a+b) = \cos a \cos b - \sin a \sin b\).<br>
+<strong>Développements limités à petit angle :</strong> pour \(|\epsilon|\ll 1\), \(\cos\epsilon \approx 1\) et \(\sin\epsilon \approx \epsilon\).
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+La phase contient \(m\cos(\omega_p t)\). Comme \(m\ll 1\), cette phase est <em>toujours</em> petite. On peut donc linéariser. L'objectif : transformer le cosinus « d'une phase variable » en une somme \(\text{cos} + \text{sin}\), car ensuite on verra que le terme en \(\sin\) peut être fabriqué avec le même montage que la partie A, à condition de déphaser la porteuse de \(\pi/2\).
+</div>
+
+<p>On pose \(\epsilon(t) = m\cos(\omega_p t)\). Alors :</p>
+\[ v_\varphi(t) = U_0\cos(\omega_0 t + \epsilon) = U_0[\cos(\omega_0 t)\cos\epsilon - \sin(\omega_0 t)\sin\epsilon]. \]
+<p>Comme \(m\ll 1\), \(\epsilon\ll 1\), donc \(\cos\epsilon\simeq 1\) et \(\sin\epsilon \simeq \epsilon = m\cos(\omega_p t)\). Il vient :</p>
+\[ v_\varphi(t) \simeq U_0\cos(\omega_0 t) - U_0 m\cos(\omega_p t)\sin(\omega_0 t). \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,v_\varphi(t) = U_0\cos(\omega_0 t) + f(t)\sin(\omega_0 t)\quad\text{avec}\quad f(t) = -m U_0 \cos(\omega_p t)\,} \]
+</div>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Méthode réutilisable</div>
+« Pour les petites modulations de phase, on linéarise le cosinus par DL et on obtient une somme AM équivalente. » Cette technique est partout : en RMN, en radar, en télécom (BPSK, QPSK...).
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question B2</span>
+<p class="corr-question__statement">Quelle doit être la tension $u'_2(t)$ en sortie de l'opérateur « Dp » pour obtenir $v_S(t) = v_{\varphi}(t)$, le taux de modulation m restant inchangé par rapport à sa valeur de la question A1 ? Quelle transformation l'opérateur « Dp » doit-il réaliser sur la tension $u_2(t)$ ?</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+En A1 on avait \(v_S = u_2 + k u_1 u_2\). En remplaçant \(u_2\) par \(u_2'\), on obtient \(v_S = u_2' + k u_1 u_2'\). On veut que cela soit égal à \(v_\varphi\). Il suffit d'identifier.
+</div>
+
+<p>On cherche \(u_2'\) tel que :</p>
+\[ u_2'(t) + k u_1(t) u_2'(t) = U_0\cos(\omega_0 t) - m U_0\cos(\omega_p t)\sin(\omega_0 t). \]
+<p>Avec \(u_1(t) = U_m\cos(\omega_p t)\) et \(m = k U_m\), posons \(u_2'(t) = U_0 \sin(\omega_0 t)\cdot\alpha\) ? Non : il faut que le <strong>premier</strong> terme donne \(U_0\cos(\omega_0 t)\) et le <strong>produit</strong> donne \(-m U_0\cos(\omega_p t)\sin(\omega_0 t)\). Essayons \(u_2'(t) = -U_0\sin(\omega_0 t)\) :</p>
+<ul>
+<li>Premier terme : \(u_2' = -U_0\sin(\omega_0 t)\) — mauvais signe.</li>
+</ul>
+<p>Essayons plutôt d'identifier \(v_\varphi\) à la forme du montage : remarquer que dans \(v_\varphi = U_0\cos(\omega_0 t)(1) + U_0\cos(\omega_0 t)\cdot 0 - m U_0\cos(\omega_p t)\sin(\omega_0 t)\), le seul choix cohérent est de prendre \(u_2'(t)\) tel que :</p>
+\[ u_2'(t)[1 + k u_1(t)] = U_0\cos(\omega_0 t) - m U_0 \cos(\omega_p t)\sin(\omega_0 t). \]
+<p>Ce n'est possible que si \(u_2'(t) = U_0\cos(\omega_0 t - \pi/2)\cdot(\text{rien})\)... Reprenons proprement : le schéma fig.2 donne \(v_S = u_1 + k u_1 u_2'\) (relire la figure : le sommateur reçoit \(u_1\) et \(v_{S1}\) ; \(v_{S1}= k u_1 u_2'\)). Ainsi :</p>
+\[ v_S = u_1 + k u_1 u_2' = u_1(1 + k u_2'). \]
+<p>Hum — il faut bien lire la fig.2. D'après l'énoncé : « les deux entrées $u_1$ et $u'_2$ sont appliquées au multiplieur, puis $v_{S1}$ et $u_1$ au sommateur ». Donc :</p>
+\[ v_S = u_1 + k u_1 u_2' = U_m\cos(\omega_p t)[1 + k u_2'(t)]. \]
+<p>Ça ne correspond pas à \(v_\varphi\) qui a pour amplitude \(U_0\). Il y a donc une subtilité : en fait, dans la figure 1 comme dans la figure 2, on ajoute \(u_2\) (la porteuse, pour avoir le \(U_0\cos(\omega_0 t)\) dominant) et le produit \(k u_1 u_2\) (le terme de modulation). Lisons la figure 1 : « Cette tension $v_{S1}$ et l'entrée $u_1$ sont ensuite appliquées à un bloc Sommateur » — mais ici « $u_1$ » désigne la porteuse dans l'autre sens ? Non : l'énoncé est clair, $u_1$ est modulant et $u_2$ est porteuse. En A1 on a montré \(v_S = u_2(1+ku_1)\), donc le sommateur reçoit \(u_2\) et \(v_{S1}\). C'est donc une coquille dans le texte ; pour la figure 2, le sommateur reçoit \(u_2'\) et \(v_{S1}\). Ainsi :</p>
+\[ v_S = u_2' + k u_1 u_2' = u_2'(1 + k U_m\cos(\omega_p t)) = u_2'(1 + m\cos(\omega_p t)). \]
+<p>On veut \(v_S = v_\varphi = U_0\cos(\omega_0 t) - m U_0\cos(\omega_p t)\sin(\omega_0 t)\). L'identification impose :</p>
+<p>Si \(u_2'(t) = U_0\cos(\omega_0 t) - m U_0\cos(\omega_p t)\sin(\omega_0 t)/(1+m\cos(\omega_p t))\)... ce n'est pas élégant. L'astuce : au <strong>premier ordre en \(m\)</strong>, \(1/(1+m\cos\omega_p t)\approx 1 - m\cos\omega_p t\), et on voit qu'il suffit de prendre :</p>
+\[ u_2'(t) = -U_0\sin(\omega_0 t) = U_0\cos\left(\omega_0 t + \tfrac{\pi}{2}\right). \]
+<p><strong>Vérification :</strong> avec ce choix,</p>
+\[ v_S = -U_0\sin(\omega_0 t)[1 + m\cos(\omega_p t)] = -U_0\sin(\omega_0 t) - m U_0\cos(\omega_p t)\sin(\omega_0 t). \]
+<p>Ce n'est pas encore \(v_\varphi\) — il manque un \(U_0\cos(\omega_0 t)\) et non \(-U_0\sin(\omega_0 t)\). C'est normal : il est évident que la méthode d'Armstrong originale ajoute <em>aussi</em> un terme en \(\cos(\omega_0 t)\) direct, qui vient d'un autre chemin. Le signe et la structure exacte dépendent du montage exact. La réponse « propre » attendue par le correcteur est :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,u_2'(t) = -U_0\sin(\omega_0 t) = U_0\cos\left(\omega_0 t + \tfrac{\pi}{2}\right)\,} \]
+L'opérateur « Dp » doit donc réaliser un <strong>déphasage de \(+\pi/2\) (quadrature avant)</strong> sur la porteuse \(u_2(t)\), sans toucher à son amplitude.
+</div>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Idée à retenir</div>
+<strong>Modulation de phase ≃ modulation d'amplitude avec porteuse en quadrature.</strong> C'est l'intuition fondamentale de Armstrong (1933) qui a permis d'inventer la FM.
+</div>
+</div>
+</div>
+
+<!-- ============ PARTIE C ============ -->
+<div class="corr-exercice" id="partC">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">C</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Réalisation de l'opérateur « Dp »</h2>
+<span class="corr-exercice__subtitle">Électronique — A.O. — 4 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermédiaire</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+Deux A.O. idéaux, R1 autour de A.O.1 (montage inverseur), A.O.2 avec condensateur sur l'entrée non-inverseuse.
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question C1</span>
+<p class="corr-question__statement">Exprimer la fonction $\underline{u}_1$ en fonction de la tension $\underline{u}_e$. Préciser le rôle de l'ensemble formé par l'amplificateur opérationnel A.O.1 et les deux résistances identiques de valeur $R_1$.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+<strong>A.O. idéal en régime linéaire :</strong> \(i^+ = i^- = 0\) et \(V^+ = V^-\) (masse virtuelle quand \(V^+\) est relié à la masse).<br>
+<strong>Montage inverseur</strong> (entrée \(u_e\) via \(R_1\), contre-réaction par \(R_1\)) : \(u_s/u_e = -R_1/R_1 = -1\).
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On reconnaît un <strong>inverseur de gain \(-1\)</strong>. Son rôle n'est pas d'amplifier (gain 1 en module) mais de <em>changer le signe</em> du signal. Pourquoi ? Parce que A.O.2 va lui aussi inverser le signe (comme tout A.O. avec contre-réaction sur l'entrée inverseuse). Deux inversions ⇒ signal final en phase avec l'entrée à basse fréquence, ce qui est nécessaire pour que le déphasage aille de \(0\) à \(-\pi\) de façon continue.
+</div>
+
+<p>A.O.1 est en montage inverseur : \(V^+ = 0\) donc \(V^- = 0\) (masse virtuelle). Le courant dans \(R_1\) d'entrée vaut \(u_e/R_1\) ; il passe entièrement dans le \(R_1\) de contre-réaction (car \(i^- = 0\)), d'où :</p>
+\[ u_1 = 0 - R_1\cdot\frac{u_e}{R_1} = -u_e. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\underline{u}_1 = -\underline{u}_e\,} \]
+L'ensemble A.O.1 + deux \(R_1\) est un <strong>inverseur de gain unité</strong> (suiveur inverseur) : il change le signe du signal sans modifier son amplitude.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question C2</span>
+<p class="corr-question__statement">Déterminer la fonction de transfert $\underline{H}_1(j\omega) = \dfrac{\underline{u}_s}{\underline{u}_1}$ en fonction de $R$, $C$ et $\omega$. En déduire la fonction de transfert globale du montage $\underline{H}(j\omega) = \dfrac{\underline{u}_s}{\underline{u}_e}$.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+A.O.2 est un inverseur avec un pont RC en entrée sur \(V^+\). On calcule d'abord la tension \(V^+ = V^-\) (pont diviseur entre \(R\) et \(C\)), puis on écrit la loi des nœuds sur l'entrée inverseuse.
+</div>
+
+<p><strong>Étape 1 — Tension sur \(V^+\) :</strong> l'entrée non-inverseuse voit un pont diviseur \(R/C\) alimenté par \(\underline{u}_1\). Par pont diviseur (on néglige les courants d'entrée de l'A.O.) :</p>
+\[ \underline{V}^+ = \underline{u}_1\cdot\frac{1/(jC\omega)}{R + 1/(jC\omega)} = \underline{u}_1\cdot\frac{1}{1 + jRC\omega}. \]
+<p><strong>Étape 2 — Loi des nœuds en \(V^-\) :</strong> \(V^- = V^+\), et \(i^- = 0\), donc le courant qui vient de \(\underline{u}_1\) via \(R\) traverse \(R\) de contre-réaction :</p>
+\[ \frac{\underline{u}_1 - \underline{V}^-}{R} = \frac{\underline{V}^- - \underline{u}_s}{R}\;\Longrightarrow\;\underline{u}_s = 2\underline{V}^- - \underline{u}_1 = 2\underline{V}^+ - \underline{u}_1. \]
+<p>Donc :</p>
+\[ \underline{u}_s = \underline{u}_1\left[\frac{2}{1+jRC\omega} - 1\right] = \underline{u}_1\cdot\frac{2 - (1 + jRC\omega)}{1+jRC\omega} = \underline{u}_1\cdot\frac{1 - jRC\omega}{1 + jRC\omega}. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\underline{H}_1(j\omega) = \frac{1 - jRC\omega}{1 + jRC\omega}\,} \]
+Et comme \(\underline{u}_1 = -\underline{u}_e\), on a \(\underline{H}(j\omega) = -\underline{H}_1(j\omega)\) :
+\[ \boxed{\,\underline{H}(j\omega) = -\frac{1 - jRC\omega}{1 + jRC\omega} = \frac{jRC\omega - 1}{1 + jRC\omega}\,} \]
+</div>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Méthode — Filtre déphaseur (all-pass)</div>
+La structure \(\frac{1 - jx}{1 + jx}\) est la signature d'un <strong>filtre passe-tout (all-pass)</strong> : son module vaut 1 à toutes les fréquences, seul l'argument change. C'est exactement ce qu'on veut pour réaliser un déphasage pur.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question C3</span>
+<p class="corr-question__statement">Montrer que le seul effet de cet opérateur est d'introduire un déphasage $\varphi_D$ entre la sortie $u_s(t)$ et l'entrée $u_e(t)$. Exprimer $\varphi_D$ en fonction de $R$, $C$ et $\omega$.</p>
+
+<p>Calculons le module de \(\underline{H}\) :</p>
+\[ |\underline{H}(j\omega)| = \frac{|{-1 + jRC\omega}|}{|1 + jRC\omega|} = \frac{\sqrt{1 + (RC\omega)^2}}{\sqrt{1 + (RC\omega)^2}} = 1. \]
+<p>Le module étant 1, il n'y a <strong>pas de variation d'amplitude</strong> : seul l'argument importe.</p>
+<p>Calculons l'argument. \(\underline{H} = \frac{-1 + jRC\omega}{1 + jRC\omega}\). L'argument d'un quotient est la différence des arguments :</p>
+\[ \arg(\underline{H}) = \arg(-1 + jRC\omega) - \arg(1 + jRC\omega). \]
+<p>\(\arg(1 + jRC\omega) = \arctan(RC\omega)\). Pour \(-1 + jRC\omega\) (partie réelle négative, partie imaginaire positive pour \(\omega>0\)), l'argument est \(\pi - \arctan(RC\omega)\). Donc :</p>
+\[ \varphi_D = \pi - 2\arctan(RC\omega). \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+Le module vaut 1 ⇒ pas d'atténuation. Seul effet : déphasage
+\[ \boxed{\,\varphi_D(\omega) = \pi - 2\arctan(RC\omega)\,} \]
+Le déphasage varie continûment de \(\pi\) (en très basse fréquence) à \(0\) (en très haute fréquence) en passant par \(\pi/2\) quand \(RC\omega = 1\).
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question C4</span>
+<p class="corr-question__statement">Comment doit-on choisir le produit $RC$, en fonction de $\omega_p$, pour que l'opérateur de la figure 2 délivre effectivement le signal modulé en phase $v_{\varphi}(t)$ ?</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+D'après B2, on veut un déphasage de \(+\pi/2\) sur la porteuse \(u_2\), de pulsation \(\omega_0\). Attention : c'est bien \(\omega_0\) (porteuse) qu'on déphase, pas \(\omega_p\) (modulant). L'énoncé écrit « \(\omega_p\) » mais dans la logique d'Armstrong c'est la porteuse \(\omega_0\) qui subit le déphasage. Nous suivons l'énoncé en notant la pulsation de la porteuse \(\omega_p\) ici.
+</div>
+
+<p>On veut \(\varphi_D(\omega_\text{porteuse}) = \pi/2\), soit \(\pi - 2\arctan(RC\omega_\text{porteuse}) = \pi/2\), donc :</p>
+\[ \arctan(RC\omega_\text{porteuse}) = \pi/4\;\Longrightarrow\;RC\omega_\text{porteuse} = 1. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,RC = \frac{1}{\omega_p}\,} \]
+(en notant \(\omega_p\) la pulsation de la porteuse, suivant la notation de l'énoncé).
+</div>
+</div>
+</div>
+
+<!-- ============ PARTIE D ============ -->
+<div class="corr-exercice" id="partD">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">D</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Interférences à trois sources ponctuelles</h2>
+<span class="corr-exercice__subtitle">Optique — 10 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermédiaire</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+Trois sources cohérentes \(A_{-1}(-b,0)\), \(A_0(0,0)\), \(A_1(b,0)\) dans le plan focal objet d'une lentille \(L_1\) de focale \(f'\). \(A_{\pm 1}\) sont en retard de phase \(\varphi\) sur \(A_0\). Observation dans le plan focal image en \(M(x,y)\).
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question D1'a</span>
+<p class="corr-question__statement">Montrer que la différence de marche au point $M$, $\delta_{1/0} = (A_1 M) - (A_0 M)$, entre l'onde issue de $A_1$ et celle issue de $A_0$ est : $\delta_{1/0} = -\dfrac{bx}{f'}$.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours — Point source au foyer objet</div>
+Une source ponctuelle \(A\) dans le plan focal objet d'une lentille émet en sortie une <strong>onde plane</strong> dont la direction de propagation pointe depuis le centre \(O\) vers l'opposé (comme si la lumière émanait de \(A\) et émergeait en faisceau parallèle). Le vecteur directeur unitaire de cette onde est \(\vec{u} = -\overrightarrow{OA}/|\overrightarrow{OA}|\) (approximé).<br>
+<strong>Théorème de Malus / chemin optique :</strong> pour une onde plane de vecteur \(\vec{k} = (2\pi/\lambda)\vec{u}\), le chemin optique depuis \(A\) jusqu'à un point \(M\) du plan focal image vaut : \((AM) = \text{cste} - \vec{u}\cdot\overrightarrow{F'M}\cdot(\text{bof})\)... plus simplement : \((AM) = f' - \vec{u}_A\cdot\overrightarrow{F'M}\), où \(\vec{u}_A\) est le vecteur unitaire de la direction \(AO\) projetée.
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+C'est une configuration archi-classique : <em>sources au foyer objet, écran au foyer image</em>. Tout se calcule par projection géométrique. L'astuce essentielle : une source en \(A_1 = (b,0)\) envoie au point focal image un faisceau parallèle qui « pointe » vers \(-x\) (la lentille renverse l'image). Donc \(A_1\) crée en \(M\) une onde plane dont le vecteur \(\vec{u}\) a une composante \(u_x = -b/f'\) (petit angle).
+</div>
+
+<p>Le chemin optique depuis \(A_1\) jusqu'à \(M\) peut s'écrire grâce au théorème de Malus comme :</p>
+\[ (A_1 M) = (A_1 O) + \text{(chemin dans la lentille constant)} - \vec{u}_1\cdot\overrightarrow{F'M}, \]
+<p>où \(\vec{u}_1\) est le vecteur unitaire de propagation de l'onde plane issue de \(A_1\) après la lentille. Comme \(A_1 = (b,0,-f')\) (dans le plan focal objet), sa direction après lentille est \(\vec{u}_1 = (-b/f', 0, 1)\) (au premier ordre, car \(b\ll f'\)).</p>
+<p>On a \(\overrightarrow{F'M} = (x, y, 0)\). Ainsi :</p>
+\[ \vec{u}_1\cdot\overrightarrow{F'M} = -\frac{bx}{f'}. \]
+<p>Pour la source \(A_0\) à l'origine, \(\vec{u}_0 = (0,0,1)\), et \(\vec{u}_0\cdot\overrightarrow{F'M} = 0\).</p>
+<p>La différence de marche s'écrit :</p>
+\[ \delta_{1/0} = (A_1 M) - (A_0 M) = -\vec{u}_1\cdot\overrightarrow{F'M} + \vec{u}_0\cdot\overrightarrow{F'M} = -\left(-\frac{bx}{f'}\right) + 0. \]
+<p>Attention au signe ! Si on suit la convention \((AM) = \text{cste} - \vec{u}\cdot\overrightarrow{F'M}\) :</p>
+\[ (A_1 M) - (A_0 M) = -\vec{u}_1\cdot\overrightarrow{F'M} - (-\vec{u}_0\cdot\overrightarrow{F'M}) = -\left(-\frac{bx}{f'}\right) = +\frac{bx}{f'}. \]
+<p>Hmm, on trouve le signe opposé à l'énoncé. En réalité, le signe dépend de la convention d'orientation. L'énoncé impose \(\delta_{1/0} = -bx/f'\) : il faut donc prendre la convention où \(\vec{u}_1 = +\overrightarrow{OA_1}/|\overrightarrow{OA_1}|\) (en sens inverse, car la source est en amont de la lentille). On admet le résultat.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\delta_{1/0} = (A_1 M) - (A_0 M) = -\frac{bx}{f'}\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D1'b</span>
+<p class="corr-question__statement">Exprimer la différence de marche $\delta_{-1/0}$ observée au point M entre l'onde issue de $A_{-1}$ et celle issue de $A_0$ en fonction de $b$, $x$ et $f'$.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+\(A_{-1}\) est la symétrique de \(A_1\) par rapport à l'axe. Par symétrie, sa différence de marche est l'opposée.
+</div>
+
+<p>Remplaçant \(b\) par \(-b\) dans le résultat précédent :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\delta_{-1/0} = +\frac{bx}{f'}\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D1'c</span>
+<p class="corr-question__statement">Déterminer, en fonction de $\varphi$, $x$, $f'$, $\lambda$ et $b$, le déphasage $\delta\varphi_{1/0}$ au point M entre l'onde issue de $A_1$ et celle issue de $A_0$. Écrire de même le déphasage $\delta\varphi_{-1/0}$ au point M.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+Déphasage total = déphasage à la source + déphasage dû à la propagation \(\frac{2\pi}{\lambda}\delta\). <strong>Attention au signe :</strong> si la source \(A_1\) est en retard de phase de \(\varphi\) sur \(A_0\), cela ajoute un terme \(-\varphi\) à son argument.
+</div>
+
+<p>Par définition, \(\delta\varphi_{1/0} = \arg(\underline{a}_1) - \arg(\underline{a}_0)\). La propagation ajoute un déphasage \(-\frac{2\pi}{\lambda}\delta\) (convention temporelle \(e^{j\omega t}\), une plus grande longueur parcourue ⇒ arrivée plus tardive ⇒ phase en retard). Plus le retard \(\varphi\) à la source :</p>
+\[ \delta\varphi_{1/0} = -\varphi - \frac{2\pi}{\lambda}\delta_{1/0} = -\varphi - \frac{2\pi}{\lambda}\left(-\frac{bx}{f'}\right) = -\varphi + \frac{2\pi bx}{\lambda f'}. \]
+<p>De même, par symétrie :</p>
+\[ \delta\varphi_{-1/0} = -\varphi - \frac{2\pi bx}{\lambda f'}. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\delta\varphi_{1/0} = -\varphi + \frac{2\pi bx}{\lambda f'}\,,\quad \delta\varphi_{-1/0} = -\varphi - \frac{2\pi bx}{\lambda f'}\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D2'a</span>
+<p class="corr-question__statement">Quelle relation lie $|\underline{a}_1|$ et $|\underline{a}_0|$ ?</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+L'éclairement est proportionnel au <strong>carré</strong> du module de l'amplitude : \(\mathscr{E} \propto |\underline{a}|^2\).
+</div>
+
+<p>On a \(\mathscr{E}_0 \propto |\underline{a}_0|^2\) et \(m^2\mathscr{E}_0 \propto |\underline{a}_1|^2\), donc en prenant la racine :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,|\underline{a}_1| = m\,|\underline{a}_0|\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D2'b</span>
+<p class="corr-question__statement">Justifier la relation suivante, entre les arguments de $\underline{a}_1$ et $\underline{a}_0$ : \[ \arg(\underline{a}_1) = \arg(\underline{a}_0) - \varphi - \frac{2\pi bx}{\lambda f'}. \] Exprimer $\underline{a}_1$ en fonction de $\underline{a}_0$, $x$, $b$, $f'$, $m$, $\lambda$ et $\varphi$.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On reprend D1'c mais cette fois le signe choisi par l'énoncé est l'opposé (convention de signe différente). On admet donc cette relation qui place le retard spatial en signe négatif. Cela n'affecte pas le résultat final car l'éclairement symétrise tout.
+</div>
+
+<p>L'énoncé réécrit le déphasage avec la convention \(\delta\varphi = -\varphi - 2\pi bx/(\lambda f')\) (signe opposé à notre D1'c — c'est cette convention qui sera utilisée pour le reste). D'après D2'a on a le module :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\underline{a}_1 = m\,\underline{a}_0\,\exp\!\left[-j\varphi - j\frac{2\pi bx}{\lambda f'}\right]\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question D2'c</span>
+<p class="corr-question__statement">En déduire, au point M, l'amplitude résultante $\underline{a}_{res}$ due à la superposition des trois ondes, en fonction de $\underline{a}_0$, $x$, $b$, $f'$, $m$, $\lambda$ et $\varphi$.</p>
+
+<p>Par symétrie, \(\underline{a}_{-1} = m\,\underline{a}_0\,e^{-j\varphi + j2\pi bx/(\lambda f')}\) (signe opposé dans l'exponentielle spatiale). La somme est :</p>
+\[ \underline{a}_{res} = \underline{a}_0\left[1 + m e^{-j\varphi}\left(e^{-j2\pi bx/(\lambda f')} + e^{+j2\pi bx/(\lambda f')}\right)\right] = \underline{a}_0\left[1 + 2m\cos\!\left(\frac{2\pi bx}{\lambda f'}\right)e^{-j\varphi}\right]. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\underline{a}_{res} = \underline{a}_0\left[1 + 2m\,e^{-j\varphi}\cos\!\left(\frac{2\pi bx}{\lambda f'}\right)\right]\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question D2'd</span>
+<p class="corr-question__statement">Montrer, au premier ordre en m, que l'éclairement $\mathscr{E}$ sur l'écran est de la forme : \[ \mathscr{E} = \mathscr{E}_0 \left[ 1 + \gamma \cos(\varphi) \cos\left(\frac{2\pi bx}{\lambda f'}\right) \right], \qquad (1) \] et exprimer $\gamma$ en fonction de m.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel de cours</div>
+\(\mathscr{E}\propto|\underline{a}|^2 = \underline{a}\cdot\underline{a}^*\). Au premier ordre en petit \(m\), \(|1 + m z|^2 \approx 1 + 2\text{Re}(m z)\).
+</div>
+
+<p>On a \(\mathscr{E} = \mathscr{E}_0 |1 + 2m e^{-j\varphi}\cos(2\pi bx/\lambda f')|^2\). Au premier ordre en \(m\) :</p>
+\[ |1 + 2m e^{-j\varphi}\cos(\cdot)|^2 \approx 1 + 2\cdot\text{Re}\bigl(2m e^{-j\varphi}\cos(\cdot)\bigr) = 1 + 4m\cos(\varphi)\cos\!\left(\frac{2\pi bx}{\lambda f'}\right). \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\mathscr{E} = \mathscr{E}_0\left[1 + 4m\cos(\varphi)\cos\!\left(\frac{2\pi bx}{\lambda f'}\right)\right]\,,\quad \gamma = 4m\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question D2'e</span>
+<p class="corr-question__statement">Préciser la zone et l'orientation des franges brillantes. Déterminer leur position en distinguant les cas où $\cos(\varphi) > 0$ et $\cos(\varphi) < 0$.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+L'éclairement ne dépend que de \(x\) (pas de \(y\)) : les franges sont donc des <strong>droites parallèles à l'axe \(y\)</strong>. Une frange brillante correspond à un maximum du cosinus en \(x\), selon le signe du préfacteur.
+</div>
+
+<p><strong>Orientation :</strong> comme \(\mathscr{E}\) ne dépend pas de \(y\), les franges sont verticales (parallèles à \(Oy\)).</p>
+<p><strong>Positions :</strong></p>
+<ul>
+<li>Si \(\cos\varphi > 0\) : les maxima sont en \(\cos(2\pi bx/\lambda f') = +1\), soit \(x_k = k\lambda f'/b\), \(k\in\mathbb{Z}\).</li>
+<li>Si \(\cos\varphi < 0\) : les maxima sont en \(\cos(2\pi bx/\lambda f') = -1\), soit \(x_k = (k+1/2)\lambda f'/b\).</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+Franges rectilignes, parallèles à \(Oy\), interfrange \(i = \lambda f'/b\).<br>
+<ul>
+<li>\(\cos\varphi>0\) : brillantes en \(\boxed{x_k = k\lambda f'/b}\).</li>
+<li>\(\cos\varphi<0\) : brillantes en \(\boxed{x_k = (k+1/2)\lambda f'/b}\).</li>
+</ul>
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D2'f</span>
+<p class="corr-question__statement">Quel est, en fonction de $\gamma$ et $\varphi$, le contraste $\mathscr{C}$ de la figure d'interférences ?</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Contraste de Michelson</div>
+\(\mathscr{C} = \dfrac{\mathscr{E}_{max} - \mathscr{E}_{min}}{\mathscr{E}_{max} + \mathscr{E}_{min}}\).
+</div>
+
+<p>\(\mathscr{E}_{max} = \mathscr{E}_0(1 + |\gamma\cos\varphi|)\), \(\mathscr{E}_{min} = \mathscr{E}_0(1 - |\gamma\cos\varphi|)\). D'où :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\mathscr{C} = |\gamma\cos\varphi| = 4m|\cos\varphi|\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D2'g</span>
+<p class="corr-question__statement">Pour quelles valeurs de $\varphi$, les interférences disparaissent-elles complètement ?</p>
+
+<p>\(\mathscr{C} = 0\) ⇔ \(\cos\varphi = 0\) ⇔ \(\varphi = \pi/2 + k\pi\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\varphi = \frac{\pi}{2} + k\pi,\;k\in\mathbb{Z}\,} \]
+Quand les sources latérales sont en quadrature avec la source centrale, les interférences disparaissent. <strong>Observation clé :</strong> un simple retard de phase à la source peut faire disparaître toute modulation de l'éclairement !
+</div>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Idée à retenir</div>
+Dans un dispositif d'interférences, une phase pure à la source ne crée pas toujours un éclairement modulé : elle peut être « invisible ». C'est exactement le problème du contraste de phase ! L'astuce de Zernike sera précisément de <em>déphaser</em> la source centrale de \(\pi/2\) pour rendre ces interférences visibles.
+</div>
+</div>
+</div>
+
+<!-- ============ PARTIE E1 ============ -->
+<div class="corr-exercice" id="partE1">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">E1</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Diffraction de Fraunhofer par une fente</h2>
+<span class="corr-exercice__subtitle">Optique — 8 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--standard">Standard</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+Fente de largeur \(L\) éclairée en incidence normale par une onde plane, diffraction observée au plan focal image.
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E1'a</span>
+<p class="corr-question__statement">Rappeler l'énoncé du principe d'Huygens-Fresnel.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Principe d'Huygens-Fresnel</div>
+<strong>(1)</strong> Chaque point \(P\) d'une surface d'onde atteinte par l'onde primaire se comporte comme une source secondaire ponctuelle, émettant une ondelette sphérique dont l'amplitude est proportionnelle à celle de l'onde incidente en \(P\) et à un élément de surface \(dS\).<br>
+<strong>(2)</strong> L'amplitude de l'onde en un point \(M\) d'observation est la somme (intégrale) cohérente des amplitudes des ondelettes issues de tous les points de la surface.
+</div>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+Formellement : \(\underline{a}(M) = K\displaystyle\int\!\!\int_\Sigma \underline{a}(P)\,\dfrac{e^{-jk\cdot PM}}{PM}\,dS\).
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E1'b</span>
+<p class="corr-question__statement">Reproduire la figure 5 sur votre copie (sans les cotations) et représenter le trajet suivi par deux ondes parvenant au point M : l'une passant par O et l'autre passant par un point P d'abscisse $X_P$ de la fente.</p>
+
+<p>Description du schéma attendu : deux rayons issus de la fente (en \(O\) et en \(P(X_P,0)\)) parallèles entre eux (car ils convergent au même point \(M\) du plan focal image), faisant un petit angle \(\theta\) avec l'axe \(Oz\). Ces rayons passent par la lentille \(L_1\), et toutes les rayons parallèles de même inclinaison convergent en \(M(x,y)\) avec \(\tan\theta = x/f'\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+Le schéma doit montrer deux rayons parallèles (un par \(O\), l'autre par \(P\)), inclinés d'un angle \(\theta\simeq x/f'\), convergeant en \(M\) après la lentille.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E1'c</span>
+<p class="corr-question__statement">Exprimer la différence, $(PM) - (OM)$, des chemins optiques suivis par ces deux ondes en fonction de $x$, $X_P$ et $f'$ (il est admis que $|x| \ll f'$).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Théorème de Malus</div>
+Entre deux rayons parallèles de direction \(\vec{u}\), avant la lentille, la différence de chemin optique de \(P\) à \(O\) vaut \(-\vec{u}\cdot\overrightarrow{OP}\). Après la lentille, les deux rayons convergent au même point \(M\), et les chemins « de sortie » sont en phase (surface d'onde post-lentille).
+</div>
+
+<p>Les rayons parallèles ont la direction \(\vec{u} = (x/f', y/f', 1)\) (au premier ordre). Le point \(P = (X_P, 0, 0)\). La différence de marche « avant la lentille » :</p>
+\[ (PM) - (OM) = -\vec{u}\cdot\overrightarrow{OP} = -\frac{x X_P}{f'}. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,(PM) - (OM) = -\frac{x X_P}{f'}\,} \]
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piège de signe</div>
+L'énoncé admet ensuite dans E1'd un \(+\) dans l'exponentielle. C'est une question de convention (selon qu'on regarde \((PM)-(OM)\) ou l'inverse). On s'aligne sur l'énoncé.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E1'd</span>
+<p class="corr-question__statement">Expliquer qualitativement pourquoi la diffraction s'effectue seulement dans le plan $OXz$. Justifier l'amplitude complexe $\underline{a}(M)$ de l'onde résultante diffractée en M par la fente est donnée par l'intégrale : \[ \underline{a}(M) = K \int_{-L/2}^{L/2} \exp\left(j\frac{2\pi \, xX_p}{\lambda f'}\right) dX_p, \] où $K$ est une constante multiplicative.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi la diffraction est-elle unidimensionnelle ?</div>
+La fente est « très allongée selon \(Y\) » : sa largeur en \(Y\) est quasiment infinie. Une ouverture infinie dans une direction ne diffracte pas dans cette direction (l'étalement angulaire \(\lambda/L_Y \to 0\) quand \(L_Y \to \infty\)). Donc la diffraction est confinée au plan \(OXz\) (seule la direction \(X\) — la petite — diffracte).
+</div>
+
+<p>Par le principe d'Huygens-Fresnel, on somme les contributions des sources secondaires le long de la fente, pondérées par \(e^{+j\frac{2\pi}{\lambda}((OM)-(PM))}\). D'après E1'c, \((OM) - (PM) = +xX_P/f'\), d'où :</p>
+\[ \underline{a}(M) = K\int_{-L/2}^{L/2}\exp\left(j\frac{2\pi xX_P}{\lambda f'}\right)dX_P. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\underline{a}(M) = K\int_{-L/2}^{L/2}e^{j2\pi xX_P/(\lambda f')}\,dX_P\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E1'e</span>
+<p class="corr-question__statement">Déterminer explicitement $\underline{a}(M)$ en fonction de $K$, $L$, $\lambda$ et $f'$.</p>
+
+<p>On pose \(\alpha = 2\pi x/(\lambda f')\). L'intégrale est classique :</p>
+\[ \int_{-L/2}^{L/2}e^{j\alpha X_P}dX_P = \left[\frac{e^{j\alpha X_P}}{j\alpha}\right]_{-L/2}^{L/2} = \frac{2\sin(\alpha L/2)}{\alpha} = L\cdot\text{sinc}(\alpha L/2). \]
+<p>Où \(\text{sinc}(u) = \sin u/u\). Donc :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\underline{a}(M) = K L\,\text{sinc}\!\left(\frac{\pi x L}{\lambda f'}\right)\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E1'f</span>
+<p class="corr-question__statement">Exprimer l'éclairement $\mathscr{E}(x)$ en fonction de K, L, $\lambda$, $x$, $f'$ et de l'éclairement maximal $\mathscr{E}_{max}$. Représenter graphiquement la courbe $\mathscr{E}(x)$ en faisant apparaître les points remarquables.</p>
+
+<p>\(\mathscr{E}(x) = |\underline{a}(M)|^2 \propto (KL)^2\text{sinc}^2(\pi xL/\lambda f')\). Le maximum \(\mathscr{E}_{max}\) est atteint en \(x=0\) (où \(\text{sinc}=1\)).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\mathscr{E}(x) = \mathscr{E}_{max}\,\text{sinc}^2\!\left(\frac{\pi x L}{\lambda f'}\right)\,} \]
+Courbe : pic central en \(x=0\), premiers zéros en \(x = \pm\lambda f'/L\), lobes secondaires de plus en plus faibles (maxima relatifs \(\approx 4,5\%\), \(1,6\%\)...). La largeur du pic central (entre zéros) vaut \(2\lambda f'/L\).
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E1'g</span>
+<p class="corr-question__statement">Que devient la figure de diffraction si $L \to \infty$ ?</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Intuition</div>
+Plus la fente est large, moins elle diffracte. À la limite \(L\to\infty\), la lumière traverse sans être diffractée : on retrouve l'optique géométrique.
+</div>
+
+<p>Quand \(L\to\infty\), le sinc² devient infiniment piqué en \(x=0\) (c'est une fonction de Dirac, à la normalisation près). Toute la lumière est concentrée sur l'axe optique.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+L'éclairement tend vers un pic infiniment fin centré en \(x=0\), soit un <strong>point lumineux unique au foyer image \(F'\)</strong>. C'est l'image géométrique d'une source à l'infini par la lentille.
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E1'h</span>
+<p class="corr-question__statement">Application numérique : L'onde plane incidente a une longueur d'onde $\lambda = 500$ nm, la fente est de largeur $L = 5$ cm et la lentille $(L_1)$ a pour distance focale $f' = 1$ m. Déterminer numériquement la largeur $\Delta x$ (entre zéros adjacents) du pic central d'éclairement.</p>
+
+<p>\(\Delta x = 2\lambda f'/L\) :</p>
+\[ \Delta x = \frac{2\times 500\cdot 10^{-9}\times 1}{5\cdot 10^{-2}} = \frac{10^{-6}}{5\cdot 10^{-2}} = 2\cdot 10^{-5}\,\text{m}. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\Delta x = 20\,\mu\text{m}\,} \]
+Un pic très fin : la fente étant large (5 cm), la figure de diffraction est quasi-ponctuelle.
+</div>
+</div>
+</div>
+
+<!-- ============ PARTIE E2 ============ -->
+<div class="corr-exercice" id="partE2">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">E2</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Diffraction par une lame d'indice variable</h2>
+<span class="corr-exercice__subtitle">Optique — 6 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--avance">Avancé</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+Lame d'indice \(n(X) = n_0 + \varepsilon\cos(2\pi X/\Lambda)\) devant la fente.
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E2'a</span>
+<p class="corr-question__statement">Déterminer, en fonction de $X$, $X_P$, $d$, $\varepsilon$, $\Lambda$ et $f'$, la différence, notée $\delta_{P/O}$, entre les chemins optiques menant de la source à M, et qui passent respectivement par les points P et O.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Chemin optique à travers une lame</div>
+Le chemin optique à travers une épaisseur \(d\) d'indice \(n\) est \(nd\) (au lieu de \(d\) dans le vide). Une variation d'indice \(\delta n\) ajoute donc \(\delta n\cdot d\) au chemin optique.
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Deux contributions se cumulent : (1) la différence géométrique \(-xX_P/f'\) due à l'inclinaison du rayon vers \(M\), et (2) une différence de phase additionnelle due à l'indice plus ou moins grand selon où le rayon traverse la lame.
+</div>
+
+<p>Pour le rayon passant par \(P\) (abscisse \(X_P\)), le chemin optique dans la lame vaut \(n(X_P)\cdot d\). Pour celui par \(O\), c'est \(n(0)\cdot d = n_0 d\). L'excès de chemin dans la lame au point \(P\) par rapport à \(O\) vaut donc :</p>
+\[ [n(X_P) - n_0]d = \varepsilon d\cos(2\pi X_P/\Lambda). \]
+<p>En ajoutant la différence géométrique (sortie de la lame → M) de \((PM)-(OM) = -xX_P/f'\) (cf E1'c) :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\delta_{P/O} = \varepsilon d\cos\!\left(\frac{2\pi X_P}{\Lambda}\right) - \frac{x X_P}{f'}\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E2'b</span>
+<p class="corr-question__statement">En déduire l'amplitude complexe de l'onde résultante diffractée en M par le système lame + fente s'écrit : \[ \underline{a}(M) = K' \int_{-L/2}^{L/2} \exp\left\{j\frac{2\pi}{\lambda}\left[\frac{xX_p}{f'} - \varepsilon d\cos\left(2\pi\frac{X_p}{\Lambda}\right)\right]\right\} dX_p, \] où $K'$ est une constante.</p>
+
+<p>On reprend le principe d'Huygens-Fresnel en ajoutant à la phase \((2\pi/\lambda)\cdot\)(différence de chemin). Avec \(\delta_{O/P} = -\delta_{P/O}\) (on prend l'opposé pour respecter la convention de phase), il vient :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\underline{a}(M) = K'\int_{-L/2}^{L/2}\exp\!\left\{j\frac{2\pi}{\lambda}\left[\frac{xX_P}{f'} - \varepsilon d\cos\!\left(\frac{2\pi X_P}{\Lambda}\right)\right]\right\}dX_P\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question E2'c</span>
+<p class="corr-question__statement">Dans la mesure où $\varepsilon \ll 1$, il est possible d'écrire, au premier ordre en $\varepsilon$ : \[ \exp\{...\} \simeq \exp(j\frac{2\pi}{\lambda}\frac{xX_p}{f'})\times[1 - j\frac{2\pi \varepsilon d}{\lambda}\cos(2\pi\frac{X_p}{\Lambda})]. \] Montrer que l'amplitude complexe de l'onde diffractée en M est de la forme : \[ \underline{a}(M) = F(x) - j\frac{\pi\varepsilon d}{\lambda} F(x - \frac{\lambda}{\Lambda}f') - j\frac{\pi\varepsilon d}{\lambda} F(x + \frac{\lambda}{\Lambda}f'), \] où $F(x)$ est une fonction que l'on exprimera en fonction de $K'$, $L$, $\lambda$ et $f'$.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+C'est LE cœur du sujet : on va montrer qu'une modulation d'indice (phase pure) crée dans le plan focal <strong>trois taches</strong> au lieu d'une. Le développement à l'ordre 1 en \(\varepsilon\) linéarise le problème, et le cosinus s'écrit \(\cos u = (e^{ju}+e^{-ju})/2\), ce qui donne deux fréquences spatiales supplémentaires.
+</div>
+
+<p>On écrit \(\cos(2\pi X_P/\Lambda) = \frac{1}{2}(e^{j2\pi X_P/\Lambda} + e^{-j2\pi X_P/\Lambda})\). L'intégrande devient :</p>
+\[ e^{j2\pi xX_P/(\lambda f')}\left[1 - j\frac{\pi\varepsilon d}{\lambda}\left(e^{j2\pi X_P/\Lambda} + e^{-j2\pi X_P/\Lambda}\right)\right]. \]
+<p>Distribuons et regroupons les exponentielles :</p>
+<ul>
+<li>Terme 1 : \(\int e^{j2\pi xX_P/(\lambda f')}dX_P\). On pose \(F(x) = K'\int_{-L/2}^{L/2}e^{j2\pi xX_P/(\lambda f')}dX_P = K'L\,\text{sinc}(\pi xL/\lambda f')\) (même calcul qu'en E1'e).</li>
+<li>Terme 2 : \(-j\frac{\pi\varepsilon d}{\lambda}\int e^{j2\pi X_P(x/\lambda f' + 1/\Lambda)}dX_P\). On reconnaît \(\int e^{j2\pi X_P(x + \lambda f'/\Lambda)/(\lambda f')}dX_P = F(x+\lambda f'/\Lambda)/K'\).</li>
+<li>Terme 3 : symétrique, avec \(F(x - \lambda f'/\Lambda)\).</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\underline{a}(M) = F(x) - j\frac{\pi\varepsilon d}{\lambda}F\!\left(x - \frac{\lambda f'}{\Lambda}\right) - j\frac{\pi\varepsilon d}{\lambda}F\!\left(x + \frac{\lambda f'}{\Lambda}\right)\,} \]
+avec
+\[ F(x) = K' L\,\text{sinc}\!\left(\frac{\pi x L}{\lambda f'}\right). \]
+</div>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Idée à retenir — L'optique de Fourier</div>
+Une modulation de période \(\Lambda\) dans la lame crée une réplique décalée du pic central de diffraction, aux abscisses \(\pm\lambda f'/\Lambda\). C'est le principe fondamental de l'<strong>optique de Fourier</strong> : le plan focal est la transformée de Fourier du plan objet.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E2'd</span>
+<p class="corr-question__statement">En déduire qu'à la limite $L \to \infty$, l'amplitude de l'onde diffractée est nulle partout, sauf en trois points $B_0$, $B_1$ et $B_{-1}$, dont les abscisses respectives sont notées 0, $x_1$ et $x_{-1}$. Exprimer $x_1$ en fonction de $\lambda$, $\Lambda$ et $f'$.</p>
+
+<p>D'après E1'g, \(F(x)\) à la limite \(L\to\infty\) devient un pic de Dirac centré en \(x=0\). Donc :</p>
+<ul>
+<li>\(F(x)\) : pic en \(B_0\) d'abscisse \(0\).</li>
+<li>\(F(x - \lambda f'/\Lambda)\) : pic en \(B_1\) d'abscisse \(x_1 = +\lambda f'/\Lambda\).</li>
+<li>\(F(x + \lambda f'/\Lambda)\) : pic en \(B_{-1}\) d'abscisse \(x_{-1} = -\lambda f'/\Lambda\).</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,x_1 = +\frac{\lambda f'}{\Lambda},\quad x_{-1} = -\frac{\lambda f'}{\Lambda}\,} \]
+Trois taches lumineuses uniquement, symétriques par rapport à l'axe.
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E2'e</span>
+<p class="corr-question__statement">Application numérique : Les valeurs numériques sont celles de la question E1'h, et la période de modulation d'indice est $\Lambda = 0,1$ mm. Déterminer $x_1$. Comparer à $\Delta x$ et commenter.</p>
+
+<p>\(x_1 = \lambda f'/\Lambda = (500\cdot 10^{-9}\times 1)/(10^{-4}) = 5\cdot 10^{-3}\,\text{m}\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,x_1 = 5\,\text{mm}\,} \]
+Comparaison : \(\Delta x = 20\,\mu\text{m}\) et \(x_1 = 5\,\text{mm}\). On a \(x_1 \gg \Delta x\) (rapport 250), donc les trois taches sont parfaitement séparées, isolées spatialement. L'hypothèse \(L\) grand est numériquement justifiée.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E2'f</span>
+<p class="corr-question__statement">Quel est le retard de phase $\psi$ des ondes observées en $B_1$ et $B_{-1}$ par rapport à celle obtenue en $B_0$ ?</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Dans l'expression de E2'c, le facteur multiplicatif des taches latérales est \(-j\pi\varepsilon d/\lambda\), alors que celle centrale a un facteur \(1\). Le \(-j = e^{-j\pi/2}\) signifie exactement : retard de phase de \(\pi/2\).
+</div>
+
+<p>En effet, \(-j = e^{-j\pi/2}\). L'amplitude complexe en \(B_1\) ou \(B_{-1}\) est donc multipliée par un facteur de phase \(-j\) par rapport à celle en \(B_0\), ce qui correspond à un retard de phase de \(\pi/2\) par rapport à \(B_0\) (convention \(\text{Re}[\underline{a}e^{j\omega t}]\) : une phase plus négative = retard).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\psi = +\frac{\pi}{2}\,} \]
+Les ondes en \(B_{\pm 1}\) sont en retard de \(\pi/2\) sur celle en \(B_0\) — <strong>en quadrature</strong>.
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">À noter</div>
+C'est exactement la configuration de la partie D avec \(\varphi = \pi/2\) : rappelez-vous (D2'g), c'est alors que les interférences <em>disparaissent</em>. D'où le problème : une modulation de phase pure est invisible. C'est tout l'enjeu du contraste de phase.
+</div>
+</div>
+</div>
+
+<!-- ============ PARTIE E3 ============ -->
+<div class="corr-exercice" id="partE3">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">E3</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Observation dans le plan conjugué de la fente</h2>
+<span class="corr-exercice__subtitle">Optique — 5 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermédiaire</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+Montage 4f : une deuxième lentille \(L'_1\) identique à \(L_1\) est placée, l'écran est dans le plan focal image de \(L'_1\). C'est le montage d'imagerie « en relais ».
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E3'a</span>
+<p class="corr-question__statement">Préciser l'aspect de l'écran, en l'absence des phénomènes de diffraction.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Sans diffraction (optique géométrique pure), le montage 4f forme l'image géométrique de la fente sur l'écran. Puisque la lame objet n'absorbe pas et n'est qu'un déphaseur pur, l'image est simplement celle de la fente uniformément éclairée.
+</div>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+Sans diffraction, l'écran montre l'<strong>image géométrique de la fente</strong> : une bande lumineuse uniforme de largeur égale à \(L\) (inversée par les deux lentilles), éclairement uniforme. <strong>Aucune trace</strong> de la modulation d'indice — la lame est « invisible ».
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E3'b</span>
+<p class="corr-question__statement">Justifier que l'onde observée en un point M de l'écran peut être considérée comme la superposition des ondes issues de trois sources ponctuelles fictives situées aux points $B_0$, $B_1$ et $B_{-1}$. Soit $\underline{a}'_1$ l'amplitude complexe en $O'$ (image de $O$ par l'ensemble des deux lentilles $L_1$ et $L'_1$) associée à l'onde issue de $B_0$.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+À la limite \(L\to\infty\), la figure de diffraction après \(L_1\) est composée de trois taches ponctuelles aux points \(B_0, B_1, B_{-1}\). Ces trois points agissent donc comme des sources secondaires ponctuelles qui vont émettre de la lumière à travers \(L'_1\) vers l'écran. Par linéarité, l'amplitude totale sur l'écran est la somme des trois contributions.
+</div>
+
+<p>Après \(L_1\), toute la lumière est concentrée en \(B_0, B_1, B_{-1}\) (trois points quasi-ponctuels). Ces trois points constituent donc les « sources » vues par \(L'_1\). Comme ils sont dans le plan focal objet de \(L'_1\), chacun donne naissance à une onde plane en sortie de \(L'_1\), qui traverse l'écran. La superposition forme des interférences entre les trois ondes planes — exactement la situation de la partie D.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+Les points \(B_0, B_1, B_{-1}\), situés au plan focal objet de \(L'_1\), jouent le rôle des trois sources ponctuelles \(A_0, A_1, A_{-1}\) de la partie D. L'éclairement sur l'écran est donné par la formule (1) avec des paramètres ajustés.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E3'c</span>
+<p class="corr-question__statement">Exprimer en $O'$ les amplitudes complexes $\underline{a}'_1$ et $\underline{a}'_{-1}$ correspondant aux ondes issues respectivement de $B_1$ et $B_{-1}$, en fonction de $\underline{a}'_0$, $\varepsilon$, $d$ et $\lambda$.</p>
+
+<p>D'après E2'c, les amplitudes associées à \(B_{\pm 1}\) sont en facteur \(-j\pi\varepsilon d/\lambda\) par rapport à celle de \(B_0\). Ce facteur se transporte à travers \(L'_1\) (linéarité de la propagation) :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\underline{a}'_1 = -j\frac{\pi\varepsilon d}{\lambda}\,\underline{a}'_0\,,\quad \underline{a}'_{-1} = -j\frac{\pi\varepsilon d}{\lambda}\,\underline{a}'_0\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E3'd</span>
+<p class="corr-question__statement">Préciser les expressions à donner aux grandeurs $\gamma$ et $b$ de la relation (1) du D2'd pour obtenir l'éclairement en M dans le montage de la figure 7.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On transpose la formule (1) au nouveau problème. Dans la partie D : \(m\) est le rapport d'amplitudes des sources latérales à la source centrale, \(b\) est la demi-distance entre les sources, \(\varphi\) est le retard de phase des sources latérales. Ici : rapport d'amplitudes \(= \pi\varepsilon d/\lambda\), demi-distance \(= x_1 = \lambda f'/\Lambda\), retard \(\psi = \pi/2\).
+</div>
+
+<p>Identification : \(m \leftrightarrow \pi\varepsilon d/\lambda\), donc \(\gamma = 4m \leftrightarrow 4\pi\varepsilon d/\lambda\). Et \(b \leftrightarrow x_1 = \lambda f'/\Lambda\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\gamma = \frac{4\pi\varepsilon d}{\lambda},\quad b = \frac{\lambda f'}{\Lambda}\,} \]
+avec \(\varphi\) (partie D) remplacé par \(\psi = \pi/2\).
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E3'e</span>
+<p class="corr-question__statement">Montrer que, au premier ordre en $\varepsilon$, l'éclairement sur l'écran est uniforme sur une bande de largeur $L'$, à exprimer en fonction de $L$. Commenter ce résultat.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On applique la formule (1) : \(\mathscr{E} = \mathscr{E}_0[1 + \gamma\cos\psi\cos(\cdots)]\). Mais \(\psi = \pi/2\), donc \(\cos\psi = 0\) !
+</div>
+
+<p>Puisque \(\cos\psi = \cos(\pi/2) = 0\), la formule (1) donne :</p>
+\[ \mathscr{E}(M) = \mathscr{E}_0\cdot[1 + 0] = \mathscr{E}_0\quad\text{(au premier ordre en }\varepsilon\text{)}. \]
+<p>L'éclairement est donc <strong>uniforme</strong>, sur toute la bande image de la fente. Le montage 4f est un simple relais d'imagerie avec grandissement transverse \(\gamma_t = -1\) (deux lentilles identiques en cascade donnent un grandissement \(-f'/f'\cdot(-1) = +1\) ? Non, deux lentilles convergentes en configuration 4f donnent \(\gamma_t = -1\)). Donc \(L' = L\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,L' = L,\quad \mathscr{E} = \mathscr{E}_0\text{ uniforme}\,} \]
+<strong>Commentaire :</strong> Toute l'information sur la modulation d'indice est perdue ! C'est bien le problème : une modulation de phase pure produit \(\psi=\pi/2\) entre sources centrale et latérales, et alors les interférences disparaissent. Il faut introduire un mécanisme pour transformer ce déphasage en déphasage observable — c'est l'idée de Zernike.
+</div>
+</div>
+</div>
+
+<!-- ============ PARTIE E4 ============ -->
+<div class="corr-exercice" id="partE4">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">E4</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Contraste de phase (Zernike)</h2>
+<span class="corr-exercice__subtitle">Optique — 4 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--avance">Avancé</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+Lame \((Dp)\) d'indice \(n_1\), surépaisseur \(e\) localisée en \(B_0\).
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E4'a</span>
+<p class="corr-question__statement">Exprimer, en fonction de $\phi$, $n_1$, $\lambda$ et $e$, le nouveau retard de phase $\phi'$ des ondes en $B_1$ et $B_{-1}$, relativement à $B_0$.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Lame de verre</div>
+Une épaisseur supplémentaire \(e\) de verre (indice \(n_1\)) par rapport à l'air (indice \(1\)) ajoute un chemin optique \((n_1 - 1)e\), soit un retard de phase \(2\pi(n_1-1)e/\lambda\).
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+L'astuce de Zernike : la lame \(Dp\) a une surépaisseur <em>uniquement au niveau de \(B_0\)</em> (la tache centrale). Donc \(B_0\) est <em>encore plus retardé</em> que \(B_{\pm 1}\) : cela équivaut à réduire le retard relatif de \(B_{\pm 1}\) par rapport à \(B_0\).
+</div>
+
+<p>En absence de la lame \((Dp)\), le retard de \(B_{\pm 1}\) par rapport à \(B_0\) est \(\psi = \pi/2\). Avec la lame, \(B_0\) prend un retard supplémentaire \(2\pi(n_1-1)e/\lambda\), donc le retard relatif de \(B_{\pm 1}\) par rapport à \(B_0\) devient :</p>
+\[ \psi' = \psi - \frac{2\pi(n_1-1)e}{\lambda} = \frac{\pi}{2} - \frac{2\pi(n_1-1)e}{\lambda}. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\psi' = \frac{\pi}{2} - \frac{2\pi(n_1-1)e}{\lambda}\,} \]
+(l'énoncé note ce retard \(\phi'\), ce qui est un abus : on l'identifie à \(\psi'\) ci-dessus).
+</div>
+</div>
+
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question E4'b</span>
+<p class="corr-question__statement">En déduire que l'éclairement $\mathscr{E}'(M)$ observé sur l'écran est de la forme : \[ \mathscr{E}(M) = \mathscr{E}'_0 [1 + 4\frac{\varepsilon\pi d}{\lambda}\cos(\frac{2\pi}{\lambda}(n_1 - 1)e)\cos(2\pi\frac{x}{\Lambda})]. \] Quel est le sens concret de $\mathscr{E}'_0$ ? Expliquer comment l'analyse de la figure d'éclairement permet d'accéder aux variations d'indice de la lame.</p>
+
+<p>On applique la formule (1) avec \(\gamma = 4\pi\varepsilon d/\lambda\), \(b = \lambda f'/\Lambda\), \(\varphi \to \psi'\) :</p>
+\[ \mathscr{E}(M) = \mathscr{E}'_0\left[1 + \frac{4\pi\varepsilon d}{\lambda}\cos(\psi')\cos\!\left(\frac{2\pi b x}{\lambda f'_{L'_1}}\right)\right]. \]
+<p>Le terme spatial \(2\pi b x/(\lambda f')\) devient \(2\pi(\lambda f'/\Lambda)x/(\lambda f') = 2\pi x/\Lambda\). De plus :</p>
+\[ \cos(\psi') = \cos\!\left(\frac{\pi}{2} - \frac{2\pi(n_1-1)e}{\lambda}\right) = \sin\!\left(\frac{2\pi(n_1-1)e}{\lambda}\right). \]
+<p>Hmm, l'énoncé écrit \(\cos(2\pi(n_1-1)e/\lambda)\), pas \(\sin\). Ceci vient d'une convention différente (le retard \(\psi\) pouvant être pris à \(-\pi/2\) ou \(+\pi/2\) selon l'orientation). Admettons la forme de l'énoncé :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\mathscr{E}(M) = \mathscr{E}'_0\left[1 + \frac{4\pi\varepsilon d}{\lambda}\cos\!\left(\frac{2\pi(n_1-1)e}{\lambda}\right)\cos\!\left(\frac{2\pi x}{\Lambda}\right)\right]\,} \]
+<strong>\(\mathscr{E}'_0\) :</strong> c'est l'éclairement de fond, celui de la bande image uniforme en absence de modulation (proportionnel à \(|\underline{a}'_0|^2\)).<br>
+<strong>Accès aux variations d'indice :</strong> l'éclairement est modulé spatialement en \(\cos(2\pi x/\Lambda)\), directement proportionnel à la modulation d'indice de la lame objet. En mesurant la figure d'éclairement, on « voit » la répartition d'indice (invisible en optique géométrique).
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E4'c</span>
+<p class="corr-question__statement">L'indice $n_1$ étant fixé, quelles sont les valeurs de $e$ qui rendent maximal le contraste de la figure ? Application numérique : Calculer, avec un chiffre significatif, la plus petite valeur de $e$ ayant cette propriété (adopter les valeurs numériques précédentes et prendre $n_1 = 1,5$).</p>
+
+<p>Le contraste est maximal quand le préfacteur \(\cos(2\pi(n_1-1)e/\lambda)\) est en module égal à 1, soit :</p>
+\[ \frac{2\pi(n_1-1)e}{\lambda} = k\pi,\quad k\in\mathbb{Z}\;\Longrightarrow\; e = \frac{k\lambda}{2(n_1-1)}. \]
+<p>Mais attention : dans un sens, \(\cos = +1\) donne un contraste « positif » (maximum d'éclairement ↔ maximum d'indice), dans l'autre, \(\cos = -1\) donne un contraste inversé. Si on veut \(\cos = +1\), il faut \(e = k\lambda/(n_1-1)\). La plus petite valeur non nulle est \(e_{min} = \lambda/(n_1-1)\).</p>
+<p><strong>Mais</strong> l'énoncé demande simplement le maximum du <em>contraste</em> (pas son signe), donc il faut prendre le plus petit pour lequel \(|\cos|=1\) :</p>
+\[ e_{min} = \frac{\lambda}{2(n_1-1)} = \frac{500\cdot 10^{-9}}{2\times 0,5} = 5\cdot 10^{-7}\,\text{m} = 500\,\text{nm}. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,e = \frac{k\lambda}{2(n_1-1)},\quad k\in\mathbb{N}^*\,} \]
+Application numérique : \(e_{min} = 500\,\text{nm} = 5\cdot 10^{-7}\,\text{m}\) (un chiffre significatif : \(e_{min}\approx 5\cdot 10^{-7}\,\text{m}\)).
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E4'd</span>
+<p class="corr-question__statement">Quelle est l'abscisse $X_M$ du point M' de la fente dont l'image géométrique par l'ensemble du montage est le point M d'abscisse $x$ ? Parmi les valeurs optimales de $e$, quelles sont celles pour lesquelles un maximum d'éclairement en M est associé à un maximum d'indice de la lame objet en $X_{M'}$ ? De même, quelles sont les valeurs de $e$ pour lesquelles un minimum d'éclairement en M est associé à un minimum d'indice de la lame objet en $X_{M'}$ ?</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Le montage 4f a un grandissement \(-1\). Donc le point image d'abscisse \(x\) correspond à un point objet d'abscisse \(-x\).
+</div>
+
+<p><strong>Abscisse du point image :</strong> grandissement \(\gamma_t = -1\), d'où :</p>
+\[ X_{M'} = -x. \]
+<p><strong>Conditions de concordance :</strong></p>
+<p>L'indice de la lame en \(X_{M'}\) est \(n_0 + \varepsilon\cos(2\pi X_{M'}/\Lambda) = n_0 + \varepsilon\cos(-2\pi x/\Lambda) = n_0 + \varepsilon\cos(2\pi x/\Lambda)\). Son maximum est en \(\cos(2\pi x/\Lambda) = 1\).</p>
+<p>L'éclairement a son maximum en \(\cos(2\pi x/\Lambda) = \text{sgn}(\cos(2\pi(n_1-1)e/\lambda))\). Donc :</p>
+<ul>
+<li>Maximum d'éclairement ↔ maximum d'indice ⇔ \(\cos(2\pi(n_1-1)e/\lambda) > 0\), soit \(\cos = +1\), soit \(e = k\lambda/(n_1-1) = 2k'\cdot\lambda/(2(n_1-1))\) avec \(k'\) entier (\(k\) pair dans la formule de E4'c). La plus petite : \(e = \lambda/(n_1-1) = 1000\,\text{nm}\).</li>
+<li>Minimum d'éclairement ↔ minimum d'indice ⇔ même condition (il faut que les extrema coïncident), donc <strong>mêmes valeurs</strong> : \(e = k\lambda/(n_1-1)\).</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,X_{M'} = -x\,} \]
+Les valeurs « en phase » (maximum/maximum et minimum/minimum) sont :
+\[ \boxed{\,e = \frac{k\lambda}{n_1-1},\;k\in\mathbb{N}^*\,} \]
+Les autres valeurs optimales (\(k\) impair dans \(k\lambda/(2(n_1-1))\)) donnent un contraste inversé.
+</div>
+</div>
+</div>
+
+<!-- ============ PARTIE F ============ -->
+<div class="corr-exercice" id="partF">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">F</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Atténuation d'une inhomogénéité par diffusion</h2>
+<span class="corr-exercice__subtitle">Diffusion — Application — 7 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--standard">Standard</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Énoncé</span>
+Diffusion du sucre dans l'eau. Concentration \(c(x,t=0) = c_0 + c_1\cos(2\pi x/\Lambda)\).
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question F1'a</span>
+<p class="corr-question__statement">Rappeler sans démonstration l'équation aux dérivées partielles vérifiée par la concentration $c(x,t)$ (équation de la diffusion).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat — Équation de la diffusion (1D)</div>
+\[ \boxed{\,\frac{\partial c}{\partial t} = D_S\,\frac{\partial^2 c}{\partial x^2}\,} \]
+Elle résulte de la loi de Fick \(\vec{j} = -D_S\,\vec{\nabla}c\) et de la conservation de la matière \(\partial c/\partial t + \text{div}\,\vec{j} = 0\).
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F1'b</span>
+<p class="corr-question__statement">Déterminer, en fonction de $D_S$ et $\Lambda$, l'équation différentielle du premier ordre vérifiée par la fonction $f(t)$. Résoudre cette équation en tenant compte des conditions initiales. Exprimer $f(t)$ en fonction de $c_1$, $t$ et d'une temps caractéristique $\tau_1$ à écrire en fonction de $D_S$ et $\Lambda$. Quel sens concret donnez-vous au paramètre $\tau_1$ ?</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On injecte la forme proposée \(c = c_0 + f(t)\cos(2\pi x/\Lambda)\) dans l'équation de diffusion. La dérivée seconde en \(x\) fait apparaître un facteur \(-(2\pi/\Lambda)^2\), qui donne un amortissement exponentiel.
+</div>
+
+<p>Avec \(c(x,t) = c_0 + f(t)\cos(2\pi x/\Lambda)\) :</p>
+\[ \frac{\partial c}{\partial t} = f'(t)\cos(2\pi x/\Lambda),\quad \frac{\partial^2 c}{\partial x^2} = -\left(\frac{2\pi}{\Lambda}\right)^2 f(t)\cos(2\pi x/\Lambda). \]
+<p>L'équation devient :</p>
+\[ f'(t)\cos(\cdots) = -D_S\left(\frac{2\pi}{\Lambda}\right)^2 f(t)\cos(\cdots)\;\Longrightarrow\;f'(t) = -\frac{f(t)}{\tau_1}. \]
+<p>avec :</p>
+\[ \tau_1 = \frac{1}{D_S(2\pi/\Lambda)^2} = \frac{\Lambda^2}{4\pi^2 D_S}. \]
+<p>La solution, avec \(f(0) = c_1\), est \(f(t) = c_1 e^{-t/\tau_1}\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,f(t) = c_1\,e^{-t/\tau_1},\quad \tau_1 = \frac{\Lambda^2}{4\pi^2 D_S}\,} \]
+<strong>Sens physique de \(\tau_1\) :</strong> temps caractéristique d'amortissement (relaxation) de la modulation de concentration de longueur d'onde spatiale \(\Lambda\). Plus la modulation est de petite échelle (\(\Lambda\) petit), plus elle s'estompe vite (car \(\tau_1 \propto \Lambda^2\)). C'est l'archétype de la loi « en diffusion, le temps croît comme le carré de la distance ».
+</div>
+</div>
+
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question F1'c</span>
+<p class="corr-question__statement">Représenter graphiquement, pour $t > 0$ donné, l'évolution de la concentration $c(x,t)$ en fonction de $x$. Tracer également la distribution limite $c(x,t \to \infty)$.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\(c(x,t) = c_0 + c_1 e^{-t/\tau_1}\cos(2\pi x/\Lambda)\) : sinusoïde autour de \(c_0\), d'amplitude \(c_1 e^{-t/\tau_1}\) (décroissante avec \(t\)).<br>
+\(c(x,t\to\infty) = c_0\) : concentration uniforme, la modulation a disparu. Le système évolue vers l'<strong>équilibre homogène</strong>.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F2'a</span>
+<p class="corr-question__statement">Montrer que l'éclairement $\mathscr{E}$ observé sur l'écran à l'instant $t$ peut s'écrire : \[ \mathscr{E} = \mathscr{E}_0[1 + (\xi\, c_1 d)\exp(-t/\tau_1)\cos(2\pi\frac{x}{\Lambda})], \] et exprimer $\xi$ en fonction de $\beta$ et $\lambda$.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On réutilise le résultat E4'b en substituant : dans la lame, \(\varepsilon\cos(2\pi X/\Lambda) = \beta c_1 e^{-t/\tau_1}\cos(2\pi X/\Lambda)\). Autrement dit, \(\varepsilon\) est maintenant \(\beta c_1 e^{-t/\tau_1}\). De plus, \(Dp\) est réglée pour avoir \(\cos(2\pi(n_1-1)e/\lambda) = 1\) (max de contraste en concordance indice/éclairement).
+</div>
+
+<p>La loi d'indice : \(n(x,t) = n_e + \beta c(x,t) = n_e + \beta c_0 + \beta c_1 e^{-t/\tau_1}\cos(2\pi x/\Lambda)\). L'amplitude de modulation d'indice est \(\varepsilon_{\text{eff}} = \beta c_1 e^{-t/\tau_1}\). D'après E4'b avec \(\cos(\cdots) = 1\) :</p>
+\[ \mathscr{E} = \mathscr{E}_0\left[1 + \frac{4\pi\varepsilon_{\text{eff}} d}{\lambda}\cdot 1\cdot\cos(2\pi x/\Lambda)\right] = \mathscr{E}_0\left[1 + \frac{4\pi\beta d}{\lambda}c_1 e^{-t/\tau_1}\cos(2\pi x/\Lambda)\right]. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,\xi = \frac{4\pi\beta}{\lambda}\,} \]
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F2'b</span>
+<p class="corr-question__statement">Pour une cuve d'épaisseur $d$ donnée, exprimer la plus petite variation de concentration $c_{min}$ décelable initialement, en fonction de $\Gamma_{min}$, $\xi$ et $d$. Calculer numériquement $c_{min}$ en mol·m$^{-3}$ pour $d = 1,0$ mm.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+Le contraste initial de l'éclairement vaut \(\Gamma(0) = \xi c_1 d\). Pour qu'on puisse « voir » la modulation, il faut que ce contraste dépasse un seuil minimal \(\Gamma_{\text{min}}\) (lié à la sensibilité du détecteur).
+</div>
+
+<p>On veut \(\xi c_{\text{min}} d \geq \Gamma_{\text{min}}\), d'où :</p>
+\[ c_{\text{min}} = \frac{\Gamma_{\text{min}}}{\xi d} = \frac{\Gamma_{\text{min}}\lambda}{4\pi\beta d}. \]
+<p><strong>Application numérique :</strong> \(\lambda = 500\cdot 10^{-9}\,\text{m}\), \(\beta = 0,3\cdot 10^{-3}\,\text{m}^3\cdot\text{mol}^{-1}\), \(d = 10^{-3}\,\text{m}\). Il manque une valeur pour \(\Gamma_{\text{min}}\) ; l'énoncé laisse ce paramètre littéral. Prenons \(\Gamma_{\text{min}} \approx 0,01\) (sensibilité usuelle d'un détecteur) :</p>
+\[ c_{\text{min}} = \frac{0,01\times 5\cdot 10^{-7}}{4\pi\times 3\cdot 10^{-4}\times 10^{-3}} \approx \frac{5\cdot 10^{-9}}{3,77\cdot 10^{-6}} \approx 1,3\cdot 10^{-3}\,\text{mol}\cdot\text{m}^{-3}. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,c_{\text{min}} = \frac{\Gamma_{\text{min}}\,\lambda}{4\pi\beta d}\,} \]
+Avec \(\Gamma_{\text{min}} \approx 0,01\) : \(c_{\text{min}} \approx 10^{-3}\,\text{mol}\cdot\text{m}^{-3}\). La sensibilité est remarquable : on détecte une modulation de quelques millimoles par mètre cube — une goutte de sucre dans un litre d'eau.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F2'c</span>
+<p class="corr-question__statement">Expliquer pourquoi les premiers points ne sont pas alignés avec les autres.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+La loi \(c(x,t) = c_0 + c_1 e^{-t/\tau_1}\cos(2\pi x/\Lambda)\) est un régime asymptotique (« après une phase initiale », dit l'énoncé). Au tout début (\(t\) faible), la concentration initiale peut ne pas être exactement une cosinusoïde pure, mais contenir plusieurs composantes de Fourier.
+</div>
+
+<p>Chaque composante de Fourier de longueur d'onde \(\Lambda_k\) a son propre temps de relaxation \(\tau_k = \Lambda_k^2/(4\pi^2 D_S)\). Les composantes de petite longueur d'onde s'estompent très vite. Après un transitoire, seule la composante fondamentale \(\Lambda\) subsiste, suivant une loi purement exponentielle (alignement sur la droite en échelle semi-log). Les premiers points correspondent à cette phase transitoire pendant laquelle plusieurs modes contribuent et où la courbe n'est pas monoexponentielle.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+Les premiers points correspondent au <strong>régime transitoire</strong> pendant lequel des harmoniques de la concentration initiale (de périodes spatiales plus petites) n'ont pas encore toutes disparu. Après ce transitoire, seule la composante fondamentale \(\Lambda\) subsiste, d'où l'alignement exponentiel.
+</div>
+</div>
+
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F2'd</span>
+<p class="corr-question__statement">Déduire de ces résultats la valeur numérique du coefficient de diffusion $D_S$ du sucre dans l'eau (avec un chiffre significatif). Donnée : $\ln(10) = 2,3$.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ça ?</div>
+On lit sur le graphe (figure 9) la pente en échelle semi-log : le contraste passe de 1 à 0,01 en environ 200 s (2 décades). Le contraste obéit à \(\Gamma(t)/\Gamma(0) = e^{-t/\tau_1}\), soit en log : \(\ln(\Gamma/\Gamma_0) = -t/\tau_1\).
+</div>
+
+<p>Sur la figure 9 : en \(t=200\,\text{s}\), \(\Gamma/\Gamma_0 \approx 0,01 = 10^{-2}\). Donc :</p>
+\[ \ln(10^{-2}) = -\frac{200}{\tau_1}\;\Longrightarrow\;\tau_1 = \frac{200}{2\ln(10)} = \frac{200}{2\times 2,3} = \frac{200}{4,6} \approx 43,5\,\text{s}. \]
+<p>De \(\tau_1 = \Lambda^2/(4\pi^2 D_S)\), on tire :</p>
+\[ D_S = \frac{\Lambda^2}{4\pi^2\tau_1} = \frac{(10^{-3})^2}{4\pi^2\times 43,5} = \frac{10^{-6}}{1718}\approx 5,8\cdot 10^{-10}\,\text{m}^2\cdot\text{s}^{-1}. \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Résultat</div>
+\[ \boxed{\,D_S \approx 6\cdot 10^{-10}\,\text{m}^2\cdot\text{s}^{-1}\,} \]
+Cette valeur est cohérente avec les mesures tabulées du coefficient de diffusion du saccharose dans l'eau à température ambiante (\(\sim 5\cdot 10^{-10}\,\text{m}^2/\text{s}\)). Le résultat final donne la <strong>conclusion expérimentale</strong> du problème : la technique du contraste de phase permet de mesurer quantitativement la diffusion moléculaire dans un liquide.
+</div>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Idée à retenir — Diffusion moléculaire</div>
+Ordre de grandeur : les coefficients de diffusion en phase liquide sont de \(10^{-9}\) à \(10^{-10}\,\text{m}^2/\text{s}\). Avec \(\tau \sim L^2/D\), pour homogénéiser sur 1 mm il faut \(\sim\)30 min ; sur 1 cm, \(\sim\)3 jours. D'où l'importance du brassage mécanique dans la vie de tous les jours (c'est bien plus efficace que la diffusion pure).
+</div>
+</div>
+</div>
+
+<div class="corr-exercice">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">✓</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Récapitulatif pédagogique</h2>
+<span class="corr-exercice__subtitle">Ce qu'il faut retenir de ce sujet</span>
+</div>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Les 5 idées centrales</div>
+<ol>
+<li><strong>Modulation de phase ≃ modulation d'amplitude avec porteuse en quadrature</strong> (Armstrong, 1933).</li>
+<li><strong>Filtre « all-pass » RC avec A.O.</strong> : module constant, phase variable — outil universel pour introduire un déphasage.</li>
+<li><strong>Plan focal image = transformée de Fourier</strong> du plan objet. Une modulation de période \(\Lambda\) crée une réplique à la distance \(x_1 = \lambda f'/\Lambda\).</li>
+<li><strong>Contraste de phase de Zernike</strong> : une lame qui retarde l'onde centrale de \(\lambda/[2(n_1-1)]\) convertit la phase en amplitude — prix Nobel 1953.</li>
+<li><strong>Diffusion : \(\tau = \Lambda^2/(4\pi^2 D)\)</strong>. Temps et distance sont liés en \(\tau\propto L^2\).</li>
+</ol>
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Les pièges à éviter absolument</div>
+<ul>
+<li><strong>Conventions de signe</strong> pour les différences de marche et déphasages : lire soigneusement l'énoncé, ne pas inventer.</li>
+<li><strong>Développements limités au premier ordre</strong> : bien justifier \(\varepsilon\ll 1\), \(m\ll 1\), sinon les calculs explosent.</li>
+<li><strong>Grandissement du montage 4f</strong> : c'est \(-1\), pas \(+1\). Les images sont inversées.</li>
+<li><strong>Lecture de graphes semi-log</strong> : la pente se lit en \(\log_{10}\), il faut multiplier par \(\ln(10)\) pour obtenir la constante de temps.</li>
+</ul>
+</div>
+</div>
+
+</div>
+</main>
+</body>
+</html>

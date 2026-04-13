@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2009 — Physique — LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../../index.html" class="nav-logo">LibMaths</a>
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../index.html">Cours</a></li>
+      <li><a href="../annales.html" class="active">Annales</a></li>
+      <li><a href="../../physique/index.html">Physique</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="course">
+  <div class="course-container">
+    <header class="course-header">
+      <div class="course-breadcrumb">
+        <a href="../../index.html">Accueil</a> &raquo;
+        <a href="../annales.html">Annales</a> &raquo;
+        <span>E3A-Polytech PC 2009 — Physique</span>
+      </div>
+      <h1>E3A-Polytech PC 2009 — Épreuve de Physique</h1>
+      <p class="course-subtitle">Concours ENSAM - ESTP - ARCHIMEDE — Durée : 4 h</p>
+    </header>
+
+    <section class="annale-info">
+      <div class="annale-info__item"><strong>Concours :</strong> E3A-Polytech</div>
+      <div class="annale-info__item"><strong>Filière :</strong> PC</div>
+      <div class="annale-info__item"><strong>Année :</strong> 2009</div>
+      <div class="annale-info__item"><strong>Matière :</strong> Physique</div>
+      <div class="annale-info__item"><strong>Durée :</strong> 4 heures</div>
+    </section>
+
+    <div class="annale-warning">
+      <strong>Sujet retranscrit avec schemas</strong>
+      <p>Si, au cours de l'épreuve, un candidat repère ce qui lui semble être une erreur d'énoncé, d'une part il le signale au chef de salle, d'autre part il le signale sur sa copie et poursuit sa composition en indiquant les raisons des initiatives qu'il est amené à prendre.</p>
+      <p><em>L'usage de calculatrices est autorisé.</em></p>
+    </div>
+
+    <section class="annale-presentation">
+      <h2>L'humidité de l'atmosphère</h2>
+      <p>Ce problème étudie <strong>l'humidité de l'atmosphère</strong>. L'épreuve est divisée en deux parties totalement indépendantes. La première partie traite la thermodynamique d'un air humide sont abordés en première partie. Deux hygromètres, appareils destinés à mesurer l'humidité de l'air, sont étudiés en seconde partie : le <strong>psychromètre</strong> (appareil développé par Regnault au 19<sup>ème</sup> siècle) qui utilise deux thermomètres dont la différence de température peut être reliée à l'humidité, puis un <strong>hygromètre capacitif</strong>, réalisé autour d'un condensateur dont l'isolant électrique est hydrophile.</p>
+
+      <h3>Remarques préliminaires importantes :</h3>
+      <ul>
+        <li>il est rappelé aux candidat(e)s que :
+          <ul>
+            <li>les explications des phénomènes étudiés interviennent dans la notation au même titre que les développements analytiques et les applications numériques ;</li>
+            <li>tout au long de l'énoncé, les paragraphes en italiques ont pour objet d'aider à la compréhension du problème mais ne donnent pas lieu à des questions ;</li>
+            <li>tout résultat fourni dans l'énoncé peut être admis et utilisé par la suite, même s'il n'a pas été démontré par le candidat(e)s ;</li>
+            <li>les applications numériques seront données avec le nombre de chiffres significatifs adapté en fonction des données de l'énoncé. A défaut, elles seront comptées fausses.</li>
+          </ul>
+        </li>
+        <li>tout le problème, et sauf mention explicite du contraire :
+          <ul>
+            <li>la pression sous laquelle sont étudiés les phénomènes est la pression atmosphérique, dont la valeur numérique est \(P_A = 1{,}013\) bar ;</li>
+            <li>le symbole \(\theta\) désigne la température en degré Celsius (°C), tandis que \(T\) représente la température en Kelvin (K) ;</li>
+            <li>la constante des gaz parfaits est \(R = 8{,}31\ \text{J}\cdot\text{K}^{-1}\cdot\text{mol}^{-1}\).</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Il est nécessaire de savoir mesurer et contrôler l'humidité de l'air dans un certain nombre de processus industriels où la teneur en eau d'une phase gazeuse doit être strictement encadrée, mais aussi dans des appareils à usage domestique comme les climatiseurs, les humidificateurs ou encore les contrôleurs d'humidité utilisés dans l'industrie du bâtiment.</p>
+    </section>
+
+    <nav class="annale-toc">
+      <h2>Sommaire</h2>
+      <ul>
+        <li><a href="#exo1">Première partie — Étude thermodynamique de l'air humide</a>
+          <ul>
+            <li><a href="#partA1">A / Relations générales</a></li>
+            <li><a href="#partB1">B / Étude de l'équilibre thermodynamique en vase clos</a></li>
+            <li><a href="#partC1">C / Évaporation de l'eau liquide</a></li>
+          </ul>
+        </li>
+        <li><a href="#exo2">Deuxième partie — Mesure de l'humidité de l'air humide</a>
+          <ul>
+            <li><a href="#partA2">A / Psychromètre</a></li>
+            <li><a href="#partB2">B / Hygromètre capacitif</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <article class="annale-exercice" id="exo1">
+      <h2>Première partie — Étude thermodynamique de l'air humide</h2>
+
+      <section id="partA1">
+        <h3>A / Relations générales</h3>
+        <p><em>Considérons un volume \(V\) d'air humide à la température \(T\), sous la pression atmosphérique \(P_A\). Cette phase gazeuse homogène est modélisée comme un mélange idéal de gaz parfaits, constitué d'une masse \(m_{air}\) d'air sec (de masse molaire \(M_{air} = 29\ \text{g}\cdot\text{mol}^{-1}\)) et d'une masse \(m_{vap}\) de vapeur d'eau (de masse molaire \(M_{vap} = 18\ \text{g}\cdot\text{mol}^{-1}\)). Étudions les caractéristiques thermodynamiques de ce mélange gazeux.</em></p>
+
+        <div class="annale-question" id="Q1">
+          <h4>A1.</h4>
+          <p>Justifier que \(P_A = P_{air} + P_{vap}\) où \(P_{air}\) et \(P_{vap}\) représentent respectivement les pressions partielles de l'air sec et de la vapeur d'eau.</p>
+          <p>Montrer que \(P_{air}\,V = m_{air}\,r_{air}\,T\) et que \(P_{vap}\,V = m_{vap}\,r_{vap}\,T\) en explicitant les constantes \(r_{air}\) et \(r_{vap}\) en fonction de \(R\) et des masses molaires \(M_{air}\) et \(M_{vap}\).</p>
+          <p>L'humidité absolue est définie par le rapport \( w = \dfrac{m_{vap}}{m_{air}} \).</p>
+        </div>
+
+        <div class="annale-question" id="Q2">
+          <h4>A2.</h4>
+          <p>Montrer que le rapport \(w\) peut s'écrire : \( w = \delta\,\dfrac{P_{vap}}{P_A - P_{vap}} \).</p>
+          <p>Donner l'expression de la constante \(\delta\) en fonction des masses molaires \(M_{air}\) et \(M_{vap}\). En déduire l'expression de \(P_A\), \(w\) et \(\delta\).</p>
+          <p>Application numérique : calculer \(\delta\).</p>
+        </div>
+
+        <p><em>Si un air humide à la température \(T\) ne peut être en équilibre thermodynamique homogène que si la pression partielle de la vapeur d'eau qu'il contient est inférieure à la pression de vapeur saturante de l'eau \(P_S(T)\) à cette température : \(P_{vap} < P_S(T)\). Lorsque \(P_{vap} = P_S(T)\) il apparaît de l'eau liquide sous forme de petites gouttes tournant en trouillard ou une butée sur une surface solide. Alors, on dit que l'air humide est dit saturé. La courbe donnant \(P_S\) (en Pa) en fonction de la température \(\theta\) (en °C) est fournie ci-dessous : (<strong>figure 1</strong>).</em></p>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 1 : Pression de vapeur saturante en fonction de la température</div>
+          <p>Graphique représentant \(P_S\) (en Pa) en ordonnée (de 0 à 3500 Pa) en fonction de la température \(\theta\) (en °C) en abscisse (de 0 à 30 °C). La courbe est croissante et convexe, partant d'environ 600 Pa à 0 °C, passant par environ 1000 Pa vers 8 °C, 1250 Pa vers 10 °C, 1700 Pa vers 15 °C, 2300 Pa vers 20 °C, et atteignant environ 3200 Pa à 25 °C, puis continuant au-delà.</p>
+        </div>
+
+        <p>L'humidité relative est définie par \( HU_R = \dfrac{P_{vap}}{P_S(T)} \).</p>
+
+        <div class="annale-question" id="Q3a">
+          <h4>A3*a.</h4>
+          <p>Quelle est la caractéristique d'un air tel que \(HU_R = 0\) ? De même, quelle est la particularité d'un air pour lequel \(HU_R = 1\) (humidité de 100 %) ?</p>
+        </div>
+
+        <div class="annale-question" id="Q3b">
+          <h4>A3*b.</h4>
+          <p>La température et la pression étant fixées, déterminer la valeur maximale \(w_M\) de l'humidité absolue en fonction de \(\delta\), \(P_A\) et \(P_S\).</p>
+          <p>Application numérique : calculer \(w_M\) à \(\theta = 25\) °C pour \(\delta = 0{,}62\).</p>
+        </div>
+
+        <div class="annale-question" id="Q3c">
+          <h4>A3*c.</h4>
+          <p>Comment évolue \(w_M\) lors d'une augmentation isobare de température, puis lors d'une augmentation isotherme de pression ?</p>
+        </div>
+
+        <div class="annale-question" id="Q4a">
+          <h4>A4*a.</h4>
+          <p>L'intérieur d'un local de volume \(V = 350\ \text{m}^3\) est à la température \(\theta_1 = 25\) °C, sous la pression atmosphérique \(P_A\). Son humidité relative est \(HU_R = 0{,}40\). Calculer les masses \(m_{vap}\) de vapeur d'eau, \(m_{air}\) d'air sec ainsi que la masse totale \(m_1\) d'air humide.</p>
+        </div>
+
+        <div class="annale-question" id="Q4b">
+          <h4>A4*b.</h4>
+          <p>Durant la nuit, le local n'est pas chauffé et sa température descend à \(\theta_2 = 5\) °C. Quelle est alors l'humidité relative de l'atmosphère du local, si ce dernier est hermétiquement clos, sous pression constante ? Quelle est la masse \(m_{eau}\) d'eau condensée ?</p>
+        </div>
+
+        <p><em>Considérons la température \(T\) et sous la pression \(P_A\) un air humide non saturé, caractérisé par une humidité absolue \(w\). La température de rosée \(T_R\) est la température à laquelle il faut refroidir cet air à pression constante pour faire apparaître la première goutte d'eau liquide.</em></p>
+
+        <div class="annale-question" id="Q5a">
+          <h4>A5*a.</h4>
+          <p>Quelle est la température de rosée \(T_R\) (ou \(\theta_R\)) de l'air du local étudié en A4*a ?</p>
+        </div>
+
+        <div class="annale-question" id="Q5b">
+          <h4>A5*b.</h4>
+          <p>Une lame métallique en contact avec l'air du local est maintenue refroidie progressivement sous la pression constante \(P_A\). Il apparaît de la buée à la surface de la lame lorsque la température de celle-ci est descendue à 8,0 °C. En déduire les humidités relative \(HU_R\) et absolue \(w\) de cet air lorsqu'il est à la température de 25 °C.</p>
+        </div>
+      </section>
+
+      <section id="partB1">
+        <h3>B / Étude de l'équilibre thermodynamique en vase clos (utilisation des potentiels thermodynamiques)</h3>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 2</div>
+          <p>Schéma d'un cylindre vertical fermé par un piston en haut. Le système \((\mathscr{S})\) est constitué de l'intérieur du cylindre. À l'intérieur, une phase gazeuse notée « mélange d'air et de vapeur d'eau » contenant \(n_{air}\), \(n_{vap}\), à la pression \(P\) et température \(T\), surmonte une phase liquide notée « eau liquide » contenant \(n_{liq}\) moles. Le piston au sommet exerce la pression atmosphérique \(P_A\) sur le système.</p>
+        </div>
+
+        <p><em>Considérons un système fermé \((\mathscr{S})\) formé de \(n_{liq}\) moles d'eau liquide à la température \(T\) sous la pression \(P\), surmontées d'une phase gazeuse à la même température et à la même pression, renfermant \(n_{air}\) moles d'air sec et \(n_{vap}\) moles de vapeur d'eau (<strong>figure 2</strong>). Il est admis que cette phase gazeuse se comporte comme un mélange idéal de gaz parfaits.</em></p>
+
+        <div class="annale-question" id="Q6">
+          <h4>B1.</h4>
+          <p>Rappeler la définition d'un potentiel thermodynamique.</p>
+        </div>
+
+        <p><em>Le système \((\mathscr{S})\) est placé dans un cylindre fermé par un fond et dont les parois sont diathermanes. Ce cylindre est en contact avec un thermostat de température \(T_A\) et il est limité par un piston sans masse, mobile sans frottement, dont la face externe est en contact avec l'atmosphère de pression constante \(P_A = 1{,}013\) bar. Soient \(U\), \(S\) et \(V\) respectivement l'énergie interne, l'entropie et le volume de \((\mathscr{S})\). Introduisons le potentiel thermodynamique \(G^* = U - T_A\,S + P_A\,V\).</em></p>
+
+        <div class="annale-question" id="Q7">
+          <h4>B2.</h4>
+          <p>Montrer que \(G^*\) est un potentiel adapté aux transformations monothermes et monobares.</p>
+          <p><em>Supposons que \((\mathscr{S})\) soit le siège d'une transformation infinitésimale à température et pression constantes. À chaque instant, la température \(T\) de \((\mathscr{S})\) et sa pression \(P\) restent égales à \(T_A\) et \(P_A\). Seules les quantités de matière varient au cours de cette transformation : \(n_{liq}\) devient \(n_{liq} + dn_{liq}\) et le nombre de moles de vapeur d'eau passe de \(n_{vap}\) à \(n_{vap} + dn_{vap}\). Le nombre \(n_{air}\) d'air ne demeure constant.</em></p>
+        </div>
+
+        <div class="annale-question" id="Q8a">
+          <h4>B3*a.</h4>
+          <p>Montrer pour cette transformation particulière \(dG^* = dG\) (\(G\) étant l'enthalpie libre du système) et en déduire que :
+          \[ dG^* = \mu_{liq}\,dn_{liq} + \mu_{vap}\,dn_{vap} \]
+          où \(\mu_{liq}\) et \(\mu_{vap}\) sont les potentiels chimiques de l'eau liquide et de la vapeur d'eau.</p>
+          <p>Rappelons que, d'après le cours de chimie, l'expression générale du potentiel chimique d'un constituant \(A_i\) est de la forme :
+          \[ \mu_i = \mu_i^0(T) + RT\,\ln a_i \]
+          où \(\mu_i^0(T)\) désigne le potentiel chimique standard (grandeur qui ne dépend que de la nature du constituant \(A_i\) et de la température \(T\)) et où \(a_i\) est l'activité chimique du constituant. Lorsque le constituant est seul dans une phase liquide, \(a_i\) vaut 1,00. D'autre part, lorsque le constituant est un gaz parfait, \(a_i\) s'écrit : \(a_i = P_i/P^0\) où \(P_i\) est la pression partielle du constituant et \(P^0\) la pression de référence \(P^0 = 1{,}00\) bar.</p>
+          <p>D'autre part, la pression de vapeur saturante de l'eau \(P_S(T)\) à la température \(T\) peut être définie par la relation thermodynamique suivante :
+          \[ \mu_{vap}^0(T) - \mu_{liq}^0(T) + RT\,\ln\!\left(\dfrac{P_S(T)}{P^0}\right) = 0 \]</p>
+        </div>
+
+        <div class="annale-question" id="Q8b">
+          <h4>B3*b.</h4>
+          <p>En déduire l'expression de \(dG^*\) en fonction des seules grandeurs \(R\), \(T\), \(P_{vap}\) (pression partielle de vapeur d'eau), \(P_S(T)\) et \(dn_{vap}\).</p>
+        </div>
+
+        <p><em>Considérons à l'état initial dans lequel les nombres de moles de liquide et de vapeur d'eau sont respectivement \(n_{liq}(0) = n_0\) et \(n_{vap}(0) = n_1\). Désignons par \(P_{vap}(0)\) la pression partielle en vapeur d'eau dans cet état et supposons \(P_{vap}(0) \neq P_S(T)\).</em></p>
+
+        <div class="annale-question" id="Q8c">
+          <h4>B3*c.</h4>
+          <p>Comment le système évolue-t-il si \(P_{vap}(0) < P_S(T)\) ? Expliciter la condition sur \(n_0\), \(P\) et \(n_{liq}\) pour qu'un équilibre diphasé puisse être atteint dans l'état final.</p>
+        </div>
+
+        <div class="annale-question" id="Q8d">
+          <h4>B3*d.</h4>
+          <p>La température du thermostat est \(\theta_A = 60\) °C, température pour laquelle la pression de vapeur saturante vaut : \(P_S(60\ °\text{C}) = 1{,}98 \cdot 10^4\) Pa. Calculer la composition finale de \((\mathscr{S})\) lorsque les quantités de matière initiales sont :
+          <br>i) \(n_0 = 0{,}20\) mol ; \(n_1 = 0{,}20\) mol ; \(n_{air} = 1{,}5\) mol.
+          <br>ii) \(n_0 = 0{,}12\) mol ; \(n_1 = 0{,}15\) mol ; \(n_{air} = 1{,}5\) mol.</p>
+        </div>
+      </section>
+
+      <section id="partC1">
+        <h3>C / Évaporation de l'eau liquide</h3>
+        <p><em>Étudions maintenant quelques caractéristiques physiques de l'évaporation de l'eau liquide dans l'atmosphère. Contrairement à l'ébullition qui est un phénomène nécessitant un apport d'énergie sous forme de chaleur et qui se produit à une température bien définie (température de vaporisation) pour une pression donnée, l'évaporation de l'eau liquide est un phénomène très lent qui se produit à toute température. Ce phénomène résulte d'un couplage entre la diffusion particulaire des molécules d'eau dans l'air et des transferts thermiques entre le liquide et l'atmosphère.</em></p>
+
+        <p><em>Considérons un modèle unidimensionnel dans lequel une couche d'eau liquide possède une surface libre plane en contact avec l'atmosphère, la hauteur \(h(t)\) de cette surface libre décroît au cours du temps. Le liquide repose sur un fond (situé en \(z = 0\)), pour lequel la température \(T_A\) est supposée constante et identique à celle de l'atmosphère.</em></p>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 3</div>
+          <p>Schéma d'un système d'axe vertical \(Oz\). Un fond est placé en \(z = 0\) (température \(T_A\)). Au-dessus se trouve une phase « Liquide » (notée H pour la hauteur) qui s'étend jusqu'à la hauteur \(h(t)\). À la hauteur \(h(t)\) se trouve la surface libre \(S\), notée \((\mathscr{E})\), au-dessus de laquelle se trouve l'« Atmosphère (température \(T_A\)) ». L'axe \(Oz\) pointe vers le haut.</p>
+        </div>
+
+        <p>Les hypothèses du modèle sont les suivantes :</p>
+        <ul>
+          <li>la pression est uniforme et constante ;</li>
+          <li>l'atmosphère est un milieu immobile à la température constante \(T_A\), au sein duquel diffusent les molécules d'eau avec une densité particulaire \(n_{vap}(z,t)\) ; le vecteur densité de courant particulaire est noté \(\vec{j}\) et le coefficient de diffusion \(D\) ;</li>
+          <li>la phase liquide est immobile et la densité particulaire de molécules d'eau \(n_{liq}\) est supposée stationnaire et uniforme.</li>
+        </ul>
+
+        <div class="annale-question" id="Q9">
+          <h4>C1*.</h4>
+          <p>Rappeler la loi de Fick et en donner le sens physique.</p>
+          <p>En raisonnant sur un cylindre de hauteur élémentaire \(dz\) et de surface de base \(S\), établir l'équation de la diffusion vérifiée par la densité \(n_{vap}(z,t)\) de la vapeur d'eau.</p>
+        </div>
+
+        <p><em>Considérons un instant \(t_0\) donné et définissons le cylindre \((\mathscr{C})\) dont la première base repose sur le fond et dont l'autre base est située au niveau de la surface libre du liquide à cet instant. Ce cylindre possède une hauteur \(H\) constante qui est égale à la hauteur \(h(t_0)\) du liquide à l'instant considéré, ainsi que deux bases de même surface \(S\) (<strong>figure 3</strong>).</em></p>
+
+        <div class="annale-question" id="Q10a">
+          <h4>C2*a.</h4>
+          <p>Déterminer la variation \(dN\) du nombre de molécules d'eau contenues dans \((\mathscr{C})\) entre les instants \(t_0\) et \(t_0 + dt\) et montrer que, lorsque \(dt\) devient très petit, cette variation s'écrit de façon approchée :
+          \[ dN = \left[n_{liq} - n_{vap}[h(t_0), t_0]\right]\dfrac{dh}{dt}(t_0)\,dt \]</p>
+        </div>
+
+        <div class="annale-question" id="Q10b">
+          <h4>C2*b.</h4>
+          <p>Compléter ce bilan en reliant \(dN\) à la densité de courant \(\vec{j}\) des molécules de vapeur d'eau sur la base supérieure du cylindre \((\mathscr{C})\) et établir ainsi que :
+          \[ \dfrac{dh}{dt}(t_0) = \dfrac{D}{n_{liq} - n_{vap}[h(t_0), t_0]}\,\dfrac{\partial n_{vap}}{\partial z}[h(t_0), t_0] \]
+          (l'instant \(t_0\) étant quelconque, cette relation est bien entendu valable à tout instant \(t\))</p>
+        </div>
+
+        <p><em>L'évaporation de l'eau liquide entraîne des transferts thermiques à la fois au sein du liquide et à l'interface liquide-atmosphère. Pour modéliser ces échanges, supposons que l'eau liquide est caractérisée par une conductivité thermique \(\lambda_{liq}\), une masse volumique \(\rho_{liq}\) et que sa température varie de façon unidimensionnelle selon \(T[z, t]\).</em></p>
+
+        <div class="annale-question" id="Q11">
+          <h4>C3.</h4>
+          <p>Rappeler l'expression de la loi de Fourier et établir l'équation de diffusion thermique à laquelle obéit la température au sein du liquide.</p>
+        </div>
+
+        <p><em>Précisons en outre que les échanges thermiques entre le liquide et l'air sont régis par la loi de Newton : la puissance thermique par unité de surface élémentaire \(dS\) située à la surface libre du liquide est donnée par : \(dP = K_{CC}\,[T_A - T_S]\,dS\), où \(T_S\) est la température du liquide sur la surface libre et \(K_{CC}\) le coefficient de conducto-convection, supposé constant.</em></p>
+
+        <div class="annale-question" id="Q12">
+          <h4>C4.</h4>
+          <p>Considérons une tranche élémentaire d'épaisseur \(dz\) et de surface \(S\) qui se vaporise entre les instants \(t\) et \(t + dt\). Expliciter l'épaisseur \(dz\) en fonction de la dérivée de \(h(t)\). Grâce à un bilan énergétique effectué sur cette tranche, montrer que :
+          \[ \lambda_{liq}\,\dfrac{\partial T}{\partial z}[h(t), t] + K_{CC}\,\left(T[h(t), t] - T_A\right) = \rho_{liq}\,L_V\,\dfrac{dh}{dt}(t) \]
+          où \(L_V\) est l'enthalpie massique de vaporisation de l'eau (supposée constante).</p>
+          <p>Par la suite, notons \(v(t) = -\dfrac{dh}{dt}\) la vitesse d'évaporation et intéressons-nous au régime quasi-stationnaire : \(\dfrac{\partial T}{\partial t} \approx 0\).</p>
+        </div>
+
+        <div class="annale-question" id="Q13a">
+          <h4>C5*a.</h4>
+          <p>Montrer que \(T[z, t]\) peut alors s'écrire sous la forme : \(T[z, t] = a(t)\,z + T_A\) où \(a(t)\) est une fonction qui varie très lentement avec le temps.</p>
+        </div>
+
+        <div class="annale-question" id="Q13b">
+          <h4>C5*b.</h4>
+          <p>Déduire de l'étude précédente que le coefficient \(a(t)\) vérifie la relation suivante :
+          \[ a(t) = \dfrac{-v(t)\,\rho_{liq}\,L_V}{\lambda_{liq} + K_{CC}\,h(t)} \]</p>
+        </div>
+
+        <div class="annale-question" id="Q13c">
+          <h4>C5*c.</h4>
+          <p>Quel est le signe de \(a(t)\) ? La température moyenne du liquide est-elle diminuée ou augmentée par le phénomène d'évaporation ? Cette modification a-t-elle tendance à renforcer ou à limiter le phénomène ?</p>
+          <p><em>La variation de température induite par évaporation peut être utilisée pour mesurer l'humidité de l'air, comme nous le verrons dans la partie suivante.</em></p>
+        </div>
+      </section>
+    </article>
+
+    <article class="annale-exercice" id="exo2">
+      <h2>Deuxième partie — Mesure de l'humidité de l'air humide</h2>
+
+      <section id="partA2">
+        <h3>A / Psychromètre</h3>
+        <p><em>Un psychromètre est un appareil destiné à mesurer l'humidité de l'air par la mesure d'une différence de température.</em></p>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 4</div>
+          <p>Schéma d'un psychromètre : un thermomètre vertical dont le bulbe est entouré d'un coton imbibé d'eau liquide. Un courant d'air horizontal de pression \(P_A\), température \(T\), humidité \(w_M\) souffle sur le bulbe. Le coton imbibé d'eau liquide est à la température \(T_h\).</p>
+        </div>
+
+        <p><em>La pointe d'un thermomètre, entourée d'un coton imbibé d'eau liquide, est placée dans un courant d'air humide, ce qui a pour effet de provoquer l'évaporation du liquide et l'enrichissement de la phase gazeuse en vapeur d'eau (<strong>figure 4</strong>). La température de l'air (indiquée par le thermomètre) est constante et vaut \(T_h\) (température humide), inférieure à la température \(T\) et possède une humidité relative \(HU_R\) inconnue. Après son passage sur le coton, cet air est saturé en vapeur d'eau et son humidité absolue devient \(w_M\) (correspondant à une humidité relative de 100 %). Sa température est alors \(T_h\).</em></p>
+
+        <p><em>La transformation s'effectue sous la pression atmosphérique constante \(P_A = 1{,}013\) bar.</em></p>
+
+        <p><em>Définissons le système \((\mathscr{S}_2)\) constitué d'une masse \(m_{air}\) d'air sec mélangé à une masse \(m_{vap}\) de vapeur d'eau et traversant le psychromètre. À sa sortie, \((\mathscr{S}_2)\) s'enrichit d'une masse \(m_{ev}\) de vapeur d'eau provenant de l'évaporation du liquide. \((\mathscr{S}_2)\) n'étant pas un système fermé, il est possible de le compléter par un système fermé en lui adjoignant la masse \(m_{ev}\) d'eau initialement à l'état liquide. Le système fermé ainsi défini sera appelé \((\mathscr{S})\).</em></p>
+
+        <div class="annale-question" id="Q14">
+          <h4>A1.</h4>
+          <p>Expliciter la relation existant entre \(m_{ev}\), \(m_{air}\) et les humidités absolues \(w\) et \(w_M\).</p>
+          <p><em>La transformation est suffisamment rapide pour que les échanges de chaleur entre \((\mathscr{S})\) et le milieu extérieur soient négligés.</em></p>
+        </div>
+
+        <div class="annale-question" id="Q15">
+          <h4>A2.</h4>
+          <p>Montrer que l'enthalpie \(H\) de \((\mathscr{S})\) se conserve au cours de cette transformation.</p>
+          <p><em>L'air humide étant un mélange idéal de gaz parfaits, son enthalpie est la somme des enthalpies de chaque constituant du mélange : \(c_{p(air)}\) et \(c_{p(vap)}\) sont respectivement les capacités thermiques massiques à pression constante (supposées indépendantes de la température), la masse \(w_M\) à la température \(T\) sera notée \(L_V(T)\).</em></p>
+          <p><em>D'autre part, l'étude de la première partie a permis d'établir que \(w_M\) était reliée à \(\delta = M_{vap}/M_{air}\), \(P_S(T)\) (pression de vapeur saturante) et \(P_A\) par l'équation : \( w_M = \dfrac{P_S(T)}{P_A - P_S(T)}\,\delta \).</em></p>
+        </div>
+
+        <div class="annale-question" id="Q16">
+          <h4>A3.</h4>
+          <p>Montrer l'égalité suivante :
+          \[ (w_M - w)\,L_V(T_h) = \left(c_{p(air)} + w\,c_{p(vap)}\right)(T - T_h) \]</p>
+        </div>
+
+        <div class="annale-question" id="Q17a">
+          <h4>A4*a.</h4>
+          <p>En déduire que l'humidité absolue initiale est donnée par :
+          \[ w = \dfrac{\delta\,\dfrac{P_S(T_h)}{P_A - P_S(T_h)}\,L_V(T_h) - c_{p(air)}(T - T_h)}{L_V(T_h) + c_{p(vap)}(T - T_h)} \]</p>
+        </div>
+
+        <div class="annale-question" id="Q17b">
+          <h4>A4*b.</h4>
+          <p>En réalité, la variation de température n'excède pas quelques degrés. Compte tenu des ordres de grandeur des différents termes et à l'aide des données numériques ci-dessous, simplifier l'équation précédente et montrer qu'elle peut s'écrire sous la forme :
+          \[ w = \delta\,\dfrac{P_S(T_h)}{P_A - P_S(T_h)}\,\left[1 - A(T - T_h)\right] \]</p>
+          <p>Donner l'expression de la constante \(A\) en fonction de \(P_A\), \(P_S(T_h)\), \(\delta\), \(L_V(T_h)\) et \(c_{p(air)}\). Calculer \(A\) pour \(T_h = 286\) K, \(P_S(T_h) = 1500\) Pa et \(\delta = 0{,}62\).</p>
+          <p><em>Données numériques :</em></p>
+          <ul>
+            <li>\(L_V(T) = 3225 - 2{,}65\,T\) (\(L_V\) en kJ·kg\(^{-1}\), avec \(T\) en K)</li>
+            <li>\(c_{p(air)} = 1006\ \text{J}\cdot\text{kg}^{-1}\cdot\text{K}^{-1}\)</li>
+            <li>\(c_{p(vap)} = 1840\ \text{J}\cdot\text{kg}^{-1}\cdot\text{K}^{-1}\)</li>
+          </ul>
+          <p><em>Cette méthode est utilisée pour mesurer l'humidité relative \(HU_R\). En remplaçant \(w\) par l'expression donnée dans la première partie, en A2* et compte tenu de l'approximation \(P_A - P_S \approx P_A - P_S(T_h)\), l'équation précédente peut être mise sous la forme approchée :</em>
+          \[ HU_R = \dfrac{P_S(T_h)}{P_S(T)}\,\left[1 - A(T - T_h)\right] \]</p>
+          <p><em>Le psychromètre est constitué de deux thermomètres soumis au même courant d'air. Le premier est au contact direct de l'air et indique la température \(T\). Le second est entouré de coton imbibé d'eau et mesure \(T_h\).</em></p>
+        </div>
+
+        <div class="annale-question" id="Q18">
+          <h4>A5.</h4>
+          <p>Une mesure particulière a donné pour l'air d'un local : \(T_h = 280\) K et \(T = 288\) K. Calculer l'humidité relative \(HU_R\) de cet air en prenant \(A = 6{,}6 \cdot 10^{-3}\ \text{K}^{-1}\) et en utilisant une courbe représentée sur la <strong>figure 1</strong>.</p>
+          <p><em>En pratique, l'humidité relative \(HU_R\) se lit directement dans une table (table psychrométrique) à partir des deux valeurs de \(T\) et \(T_h\).</em></p>
+        </div>
+      </section>
+
+      <section id="partB2">
+        <h3>B / Hygromètre capacitif</h3>
+        <p><em>Certains oxydes métalliques comme \(Al_2O_3\) (alumine) sont hygroscopiques, c'est-à-dire qu'ils peuvent absorber l'eau contenue dans un gaz humide. En conséquence, leurs propriétés électriques, notamment leur permittivité diélectrique, sont modifiées. L'utilisation de ces substances comme isolant électrique d'un condensateur permet de réaliser des capacités \(C_h\) qui dépendent de l'humidité relative \(HU_R\) selon la loi approchée :</em>
+        \[ C_h = C_0\,(1 + a\,HU_R) \]
+        <em>où \(C_0\) et \(a\) sont deux constantes.</em></p>
+
+        <p><em>Ce type de condensateur est réalisé à partir d'une lame d'aluminium constituant l'une des armatures, sur laquelle est déposée une couche d'alumine poreuse. La seconde armature du condensateur est une lame d'or. La mesure de la capacité \(C_h\) de ce type de condensateur constitue actuellement une technique fiable et précise pour déterminer l'humidité relative.</em></p>
+
+        <p><em>Étudions dans cette partie un montage électrocinétique permettant la mesure de \(C_h\). Le montage complet est représenté sur la figure 5 et ses différents éléments seront abordés successivement au cours du problème.</em></p>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 5 : Schéma électrique complet de l'hygromètre</div>
+          <p>Montage électronique en trois étages : (1) À gauche, un générateur délivre \(u_e(t)\) alimentant un dipôle \((AB)\) constitué de deux diodes idéales en tête-bêche en parallèle avec une résistance \(R_a\) ; ce dipôle est placé entre les bornes A et B. Le point B est relié à l'entrée inverseuse d'un amplificateur opérationnel AO1 dont l'entrée non-inverseuse est à la masse. Dans la boucle de rétroaction de AO1 se trouve le condensateur d'humidité \(C_h\). La sortie de AO1 délivre \(u_1(t)\). (2) Au centre, \(u_1(t)\) entre dans un étage intermédiaire représenté par la diode \((D)\) en série. (3) À droite, un second amplificateur opérationnel AO2 (en configuration amplificateur) avec résistance \(R_2\) en entrée et un ensemble parallèle \(R_3\) et \(C\) en rétroaction ; sa sortie délivre \(u_2(t)\). Le courant \(i_C\) traverse \(C\).</p>
+        </div>
+
+        <p><em>Les diodes utilisées (<strong>figure 6</strong>) sont supposées idéales, ce qui signifie :</em></p>
+        <ul>
+          <li>\(i_d = 0\) lorsque \(u_d \leq 0\) (état bloqué)</li>
+          <li>\(u_d = 0\) lorsque \(i_d \geq 0\) (état passant)</li>
+        </ul>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 6</div>
+          <p>Symbole d'une diode orientée, avec le courant \(i_d\) entrant par l'anode, la tension \(u_d\) étant définie entre anode et cathode. Sens conventionnel du passage : anode vers cathode.</p>
+        </div>
+
+        <div class="annale-question" id="Q19">
+          <h4>B1.</h4>
+          <p>Quelle est l'origine physique de la variation de la constante diélectrique de l'alumine \(Al_2O_3(s)\) lorsqu'elle absorbe de l'eau ?</p>
+        </div>
+
+        <div class="annale-question" id="Q20">
+          <h4>B2.</h4>
+          <p>La capacité étudiée varie de 110 pF à 250 pF lorsque l'humidité relative \(HU_R\) passe de la valeur 0 à la valeur 1. Calculer les valeurs numériques de \(C_0\) et \(a\).</p>
+        </div>
+
+        <p><em>Considérons le dipôle \((AB)\) représenté sur la <strong>figure 7</strong>, pour lequel \((D_A)\) et \((D_B)\) sont deux diodes idéales identiques.</em></p>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 7</div>
+          <p>Schéma du dipôle \((AB)\) : entre les bornes A (à gauche) et B (à droite), une diode \((D_A)\) en série avec une résistance \(R_a\) est montée en parallèle avec une diode \((D_B)\) orientée en sens inverse (tête-bêche). Le courant \(i\) entre par A, la tension \(u = v_A - v_B\) est définie entre A et B.</p>
+        </div>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 8</div>
+          <p>Schéma d'un circuit intégrant le dipôle \((AB)\) (constitué de deux diodes idéales en parallèle comme sur la figure 7) alimenté par une source de tension \(u_e(t)\). Le dipôle est connecté au condensateur \(C_h\) en série (ou selon configuration du montage). La tension de sortie est \(u_C(t)\).</p>
+        </div>
+
+        <div class="annale-question" id="Q21">
+          <h4>B3.</h4>
+          <p>Montrer que les deux diodes ne peuvent pas être simultanément dans le même état. Déterminer, selon le signe de la tension \(u\), le résistor ohmique équivalent à \((AB)\).</p>
+        </div>
+
+        <p><em>Ce dipôle est maintenant inséré dans le montage de la <strong>figure 8</strong> dans lequel \(u_e(t)\) est une tension nulle pour \(t < 0\) et \(t > T_1\) et égale à une constante \(E > 0\) lorsque \(0 < t < T_1\). À l'instant \(t = 0\), le condensateur est déchargé.</em></p>
+
+        <div class="annale-question" id="Q22a">
+          <h4>B4*a.</h4>
+          <p>Établir l'équation différentielle vérifiée par \(u_C(t)\) puis exprimer sa solution pour \(0 < t < T_1\) en faisant apparaître une constante de temps, notée \(\tau_a\).</p>
+          <p>À partir de l'instant \(T_1\), \(u_e(t)\) redevient nulle.</p>
+        </div>
+
+        <div class="annale-question" id="Q22b">
+          <h4>B4*b.</h4>
+          <p>Quelle est alors l'équation différentielle vérifiée par \(u_C(t)\) ? Expliciter dans ce cas \(u_C(t)\) pour \(t > T_1\) en fonction des paramètres \(E\), \(T_1\), \(R_a\), \(R_b\) et \(C_h\).</p>
+        </div>
+
+        <div class="annale-question" id="Q22c">
+          <h4>B4*c.</h4>
+          <p>Représenter l'allure de \(u_C(t)\) en fonction du temps dans le cas particulier où \(R_b = 10\,R_a\). Faire figurer sur le schéma les asymptotes et les points remarquables.</p>
+          <p><em>Dans le montage de la <strong>figure 9a</strong>, l'amplificateur opérationnel (AO1) est supposé idéal et fonctionne en régime de saturation. Les tensions de saturation haute et basse sont notées respectivement \(+U_{SAT}\) et \(-U_{SAT}\).</em></p>
+          <p>\(u_e(t)\) est supposée être une tension créneau périodique de période \(T\), maintenue à une valeur constante \(E > 0\) pendant une durée \(T_1\) (\(T_1 < T\)) et nulle pendant le reste de la période, schématisée sur la <strong>figure 9b</strong>.</p>
+        </div>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 9a</div>
+          <p>Schéma : une source de tension \(u_e(t)\) alimente le dipôle \((AB)\) (deux diodes idéales tête-bêche et \(R_a\)) relié au point B à l'entrée inverseuse d'un AO1. L'entrée non-inverseuse de AO1 est à la masse. Dans la boucle de rétroaction de AO1 se trouve le condensateur \(C_h\). La sortie délivre \(u_1(t)\). Une résistance \(R_0\) est présente dans le montage.</p>
+        </div>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 9b</div>
+          <p>Chronogramme de \(u_e(t)\) : signal créneau périodique. Sur chaque période de durée \(T\), \(u_e = E\) (constante positive) de \(t = 0\) à \(t = T_1\), puis \(u_e = 0\) de \(t = T_1\) à \(t = T\).</p>
+        </div>
+
+        <p><em>Le régime permanent est supposé établi : toutes les tensions sont périodiques avec la même période \(T\). Celle-ci est choisie de sorte que \(R_0 C_h << T\), ce qui entraîne que le condensateur est déchargé à la fin de chaque période. Le fonctionnement du montage sera donc étudié entre les instants 0 et \(T\).</em></p>
+
+        <div class="annale-question" id="Q23a">
+          <h4>B5*a.</h4>
+          <p>Expliciter la condition reliant \(\tau_a = R_0\,C_h\) et la durée \(T_1\), pour que la tension \(u_1(t)\) en sortie de l'AO1 puisse basculer de \(+U_{SAT}\) à \(-U_{SAT}\) durant la phase où \(u_e = E\). (cette condition sera supposée vérifiée par la suite).</p>
+          <p>Déterminer, en fonction de \(\tau_a\), l'instant \(T_2\) qui correspond au basculement de \(u_1(t)\) de la valeur \(+U_{SAT}\) à la valeur \(-U_{SAT}\).</p>
+        </div>
+
+        <div class="annale-question" id="Q23b">
+          <h4>B5*b.</h4>
+          <p>Évaluer la valeur minimale de \(T_1\), assurant le fonctionnement correct du montage, sachant que \(R_0 = 2{,}70\) MΩ. Calculer les deux valeurs extrêmes de \(T_2\) qui correspondent respectivement à \(C_h = 110\) pF et \(C_h = 250\) pF.</p>
+        </div>
+
+        <div class="annale-question" id="Q23c">
+          <h4>B5*c.</h4>
+          <p>En choisissant les valeurs numériques suivantes : \(T = 1{,}0\) ms, \(T_1 = 1{,}0\) ms, \(C_h = 110\) pF, \(E = 5{,}0\) V et \(U_{SAT} = 12{,}6\) V, représenter en concordance de temps \(u_e(t)\) et \(u_1(t)\) sur un intervalle de temps de deux périodes.</p>
+          <p><em>Le montage représenté sur la <strong>figure 10</strong> doit permettre de mettre en forme la tension \(u_1(t)\) délivrée par le circuit précédent. Il comprend un amplificateur opérationnel idéal (AO2) en régime linéaire et une diode (D) idéale.</em></p>
+        </div>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 10</div>
+          <p>Schéma : la tension \(u_1(t)\) alimente, via une diode idéale (D), l'entrée inverseuse d'un AO2 idéal (entrée non-inverseuse à la masse). Une résistance \(R_2\) est dans la boucle de rétroaction. La sortie délivre \(u_2(t)\).</p>
+        </div>
+
+        <div class="annale-figure">
+          <div class="annale-figure__label">Figure 11</div>
+          <p>Schéma : la tension \(u_2(t)\) est appliquée à un filtre passif constitué d'une résistance \(R_2\) en série à l'entrée et, en parallèle entre le nœud de sortie et la masse, d'une résistance \(R_3\) et d'un condensateur \(C\). Le courant \(i\) entre dans la branche, \(i_C\) traverse le condensateur. La sortie délivre \(u_3(t)\).</p>
+        </div>
+
+        <div class="annale-question" id="Q24">
+          <h4>B6.</h4>
+          <p>Déterminer, selon le signe de \(u_1(t)\), l'expression de la tension \(u_2(t)\) en sortie de l'AO2.</p>
+          <p><em>Cette tension \(u_2\) est appliquée à l'entrée du filtre passif représenté sur la <strong>figure 11</strong> et constitué de deux résistances \(R_2\) et \(R_3\), ainsi que d'un condensateur de capacité \(C\).</em></p>
+          <p><em>Le régime permanent étant établi, la tension \(u_2(t)\) est périodique de période \(T\) ; elle évolue entre une valeur minimale \(U_{min}\) atteinte aux temps \(nT\) (n entier) et une valeur maximale \(U_{max}\) atteinte aux temps \(nT + T_2\, (n \in \mathbb{N})\) et \(T_2\) est la durée déterminée à la question B5*a.</em></p>
+          <p><em>Étant donnée une fonction \(f(t)\) périodique de période \(T\), sa valeur moyenne est définie par :</em>
+          \[ \langle f(t) \rangle = \dfrac{1}{T}\int_0^T f(t)\,dt \]</p>
+        </div>
+
+        <div class="annale-question" id="Q25a">
+          <h4>B7*a.</h4>
+          <p>Calculer la valeur moyenne de \(u_2(t)\) en fonction de \(U_{SAT}\), \(T\) et \(T_2\).</p>
+        </div>
+
+        <div class="annale-question" id="Q25b">
+          <h4>B7*b.</h4>
+          <p>Montrer que la valeur moyenne \(\langle i_c(t) \rangle\) de l'intensité qui traverse le condensateur est nulle. En déduire la valeur moyenne \(\langle u_3(t) \rangle\) en fonction de \(U_{SAT}\), \(T\), \(T_2\), \(R_2\) et \(R_3\).</p>
+          <p><em>Afin d'alléger les expressions littérales intervenant dans les questions suivantes, posons la quantité \(\tau = \dfrac{R_2\,R_3}{R_2 + R_3}\,C\).</em></p>
+        </div>
+
+        <div class="annale-question" id="Q26a">
+          <h4>B8*a.</h4>
+          <p>Écrire l'équation différentielle du premier ordre à laquelle obéit \(u_3(t)\) lorsque \(0 < t < T_2\). Expliciter sa solution en fonction de \(U_{min}\), \(U_{SAT}\), \(R_2\), \(R_3\) et \(\tau\). (ne pas chercher à déterminer \(U_{min}\) dans cette question)</p>
+        </div>
+
+        <div class="annale-question" id="Q26b">
+          <h4>B8*b.</h4>
+          <p>Quelle est l'équation différentielle satisfaite par \(u_3(t)\) lorsque \(T_2 < t < T\) ? Déterminer sa solution en fonction de \(U_{max}\), \(\tau\) et \(T_2\). (sans chercher à déterminer \(U_{max}\) dans cette question)</p>
+        </div>
+
+        <div class="annale-question" id="Q26c">
+          <h4>B8*c.</h4>
+          <p>Montrer que \(U_{max}\) et \(U_{min}\) prennent les valeurs suivantes :
+          \[ U_{max} = \dfrac{R_3}{R_2 + R_3}\,U_{SAT}\,\dfrac{1 - \exp(-T_2/\tau)}{1 - \exp(-T/\tau)} \]
+          \[ U_{min} = \dfrac{R_3}{R_2 + R_3}\,U_{SAT}\,\exp\!\left[-(T - T_2)/\tau\right]\,\dfrac{1 - \exp(-T_2/\tau)}{1 - \exp(-T/\tau)} \]</p>
+          <p>Le taux d'ondulation \(\rho\) est défini par le quotient : \( \rho = \dfrac{U_{max} - U_{min}}{\langle u_3(t) \rangle} \).</p>
+        </div>
+
+        <div class="annale-question" id="Q26d">
+          <h4>B8*d.</h4>
+          <p>Déterminer l'expression du taux d'ondulation \(\rho\) en fonction de \(T\), \(T_2\) et \(\tau\).</p>
+          <p>Application numérique : calculer \(\rho\) dans le cas le plus défavorable, avec pour valeurs numériques \(T = 1{,}0\) ms et \(\tau = 20\) ms. Conclure.</p>
+        </div>
+
+        <div class="annale-question" id="Q26e">
+          <h4>B8*e.</h4>
+          <p>Sur quels facteurs est-il possible de jouer pour diminuer le taux d'ondulation \(\rho\) ?</p>
+        </div>
+
+        <div class="annale-question" id="Q27">
+          <h4>B9.</h4>
+          <p>Déterminer l'humidité relative \(HU_R\) dans le local, en utilisant les données numériques suivantes : \(R_2 = 56{,}0\) kΩ, \(R_3 = 140\) kΩ, \(R_a = 2{,}70\) MΩ, \(U_{SAT} = 12{,}6\) V et \(T = 1{,}0\) ms. Au contact de l'air ambiant d'un local, le dispositif délivre une tension \(u_3 = 3{,}72\) V.</p>
+        </div>
+      </section>
+    </article>
+
+    <p style="text-align:center;font-weight:bold;margin-top:2em;">FIN DE L'ÉPREUVE</p>
+  </div>
+</main>
+</body>
+</html>

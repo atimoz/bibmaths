@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correction E3A-Polytech PC 2015 - Physique | LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+<style>
+.corr-exercice { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.corr-exercice__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+.corr-exercice__number { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #E91E63; color: #fff; border-radius: 50%; font-weight: 700; font-size: 1.25rem; flex-shrink: 0; }
+.corr-exercice__title-group { flex: 1; }
+.corr-exercice__title { margin: 0; font-size: 1.4rem; color: #111827; }
+.corr-exercice__subtitle { font-size: 0.9rem; color: #6b7280; }
+.corr-exercice__difficulty { padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+.corr-exercice__difficulty--standard { background: #dcfce7; color: #166534; }
+.corr-exercice__difficulty--intermediaire { background: #fef3c7; color: #92400e; }
+.corr-exercice__difficulty--avance { background: #fee2e2; color: #991b1b; }
+.corr-exercice__rule { border: none; border-top: 2px solid #f3f4f6; margin: 1rem 0 1.5rem; }
+.corr-exercice__enonce { background: #f9fafb; border-left: 4px solid #9ca3af; padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 2rem; font-size: 0.95rem; color: #374151; }
+.corr-exercice__enonce-label { display: block; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.5rem; }
+.corr-question { border-left: 4px solid #e5e7eb; padding: 1rem 0 1rem 1.5rem; margin-bottom: 2rem; }
+.corr-question--easy { border-left-color: #22c55e; }
+.corr-question--medium { border-left-color: #f59e0b; }
+.corr-question--hard { border-left-color: #ef4444; }
+.corr-question__num { display: inline-block; font-weight: 700; color: #111827; background: #f3f4f6; padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.9rem; margin-bottom: 0.75rem; }
+.corr-question__statement { font-style: italic; color: #4b5563; background: #f9fafb; padding: 0.9rem 1rem; border-radius: 6px; margin: 0.5rem 0 1.25rem; border-left: 3px solid #d1d5db; }
+.corr-box { padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid; }
+.corr-box__title { font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.corr-box--rappel { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a8a; }
+.corr-box--rappel .corr-box__title { color: #1d4ed8; }
+.corr-box--why { background: #fff7ed; border-left-color: #f97316; color: #7c2d12; }
+.corr-box--why .corr-box__title { color: #c2410c; }
+.corr-box--result { background: #fefce8; border-left-color: #eab308; color: #713f12; }
+.corr-box--result .corr-box__title { color: #a16207; }
+.corr-box--piege { background: #fef2f2; border-left-color: #ef4444; color: #7f1d1d; }
+.corr-box--piege .corr-box__title { color: #b91c1c; }
+.corr-box--method { background: #f0fdf4; border-left-color: #22c55e; color: #14532d; }
+.corr-box--method .corr-box__title { color: #15803d; }
+.corr-toggle { margin: 1rem 0; border: 1px solid #e5e7eb; border-radius: 6px; padding: 0.5rem 1rem; background: #f9fafb; }
+.corr-toggle summary { cursor: pointer; font-weight: 600; color: #4b5563; }
+.corr-toggle__content { padding-top: 0.75rem; color: #374151; }
+.corr-part { margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #E91E63; color: #E91E63; font-size: 1.15rem; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../../index.html" class="nav-logo">LibMaths</a>
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../../physique/index.html">Physique</a></li>
+      <li><a href="../index.html">Annales</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="course">
+  <div class="course-header">
+    <div class="breadcrumb">
+      <a href="../../index.html">Accueil</a> &gt;
+      <a href="../../physique/index.html">Physique</a> &gt;
+      <a href="../index.html">Annales</a> &gt;
+      <span>Correction E3A-Polytech PC 2015 - Physique</span>
+    </div>
+    <h1>Correction E3A-Polytech PC 2015 - Physique</h1>
+    <p class="course-subtitle">Simulation numerique du transfert thermique dans un mur en regime transitoire</p>
+    <p style="margin-top:0.5rem;"><a href="e3a-pc-2015-physique.html">Voir l'enonce</a></p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!--                PARTIE I : ETUDE PRELIMINAIRE                 -->
+  <!-- ============================================================ -->
+  <div class="corr-exercice">
+    <div class="corr-exercice__header">
+      <div class="corr-exercice__number">I</div>
+      <div class="corr-exercice__title-group">
+        <h2 class="corr-exercice__title">Partie I : Etude preliminaire</h2>
+        <span class="corr-exercice__subtitle">Equation de la temperature, conditions aux limites, regime permanent</span>
+      </div>
+    </div>
+    <hr class="corr-exercice__rule">
+
+    <div class="corr-exercice__enonce">
+      <span class="corr-exercice__enonce-label">Contexte</span>
+      On etudie les transferts thermiques dans un mur de maison d'epaisseur \(e = 40\) cm. La temperature interieure est \(T_{int} = 20\) &deg;C. Pour \(t < 0\), \(T_{ext} = T_{ext}^1 = 10\) &deg;C. A \(t = 0\), la temperature exterieure chute a \(T_{ext}^2 = -10\) &deg;C. Proprietes du mur : \(\lambda = 1{,}65\) W.m\(^{-1}\).K\(^{-1}\), \(c_p = 1\,000\) J.kg\(^{-1}\).K\(^{-1}\), \(\rho = 2\,150\) kg.m\(^{-3}\).
+    </div>
+
+    <!-- ======== I.A. Equation gouvernant la temperature ======== -->
+    <h3 class="corr-part">I.A. Equation gouvernant la temperature</h3>
+
+    <!-- Question I.A.1 -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question I.A.1.</div>
+      <div class="corr-question__statement">A quelle condition peut-on supposer que la temperature ne depend pas des coordonnees \(y\) et \(z\) ?</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        L'enonce dit que \(T\) ne depend que de \(x\) et \(t\). On nous demande de justifier pourquoi on peut oublier \(y\) et \(z\). L'idee est simple : si le mur est "pareil partout" dans les directions \(y\) et \(z\), rien ne vient creer de difference de temperature dans ces directions.
+      </div>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours</div>
+        Un probleme est a symetrie plane si les conditions aux limites et la geometrie sont invariantes par translation dans les directions \(y\) et \(z\). Dans ce cas, la temperature ne depend pas de ces coordonnees.
+      </div>
+
+      <p>On peut supposer que la temperature ne depend pas de \(y\) et \(z\) a condition que :</p>
+      <ul>
+        <li>le mur soit <strong>homogene</strong> (memes proprietes physiques \(\lambda\), \(\rho\), \(c_p\) partout),</li>
+        <li>le mur ait des <strong>dimensions laterales</strong> (selon \(y\) et \(z\)) <strong>grandes devant son epaisseur</strong> \(e\),</li>
+        <li>les <strong>conditions aux limites</strong> (temperatures \(T_{int}\) et \(T_{ext}\)) soient <strong>uniformes</strong> sur chaque face, c'est-a-dire independantes de \(y\) et \(z\).</li>
+      </ul>
+      <p>Sous ces conditions, le probleme possede une <strong>symetrie de translation</strong> selon \(y\) et \(z\), et la temperature ne depend que de \(x\) et \(t\) : on parle de probleme unidimensionnel.</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \(\boxed{T = T(x,t) \text{ si le mur est homogene, grand devant } e \text{ et si les C.L. sont uniformes sur chaque face.}}\)
+      </div>
+    </div>
+
+    <!-- Question I.A.2 -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question I.A.2.</div>
+      <div class="corr-question__statement">Donner l'equation generale qui decrit le transport de chaleur dans un solide en l'absence de source d'energie. Comment cette equation se simplifie-t-elle sous les hypotheses de la question I.A.1 ?</div>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours</div>
+        L'equation de la chaleur (ou equation de Fourier) dans un solide homogene, isotrope, sans source interne d'energie s'ecrit :
+        \[\frac{\partial T}{\partial t} = \frac{\lambda}{\rho\,c_p}\,\Delta T\]
+        ou \(\Delta T\) est le laplacien de \(T\). Le coefficient \(\displaystyle\alpha = \frac{\lambda}{\rho\,c_p}\) s'appelle la <strong>diffusivite thermique</strong>.
+      </div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On part de l'equation la plus generale (3D) et on la simplifie grace a l'hypothese \(T = T(x,t)\). Comme \(T\) ne depend pas de \(y\) ni de \(z\), les derivees partielles par rapport a \(y\) et \(z\) sont nulles.
+      </div>
+
+      <p><strong>Equation generale (3D) :</strong></p>
+      <p>En l'absence de source d'energie, l'equation de la chaleur dans un solide s'ecrit :</p>
+      \[\rho\,c_p\,\frac{\partial T}{\partial t} = \lambda\,\Delta T = \lambda\left(\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} + \frac{\partial^2 T}{\partial z^2}\right)\]
+
+      <p><strong>Simplification 1D :</strong></p>
+      <p>Sous les hypotheses de I.A.1, on a \(T = T(x,t)\) donc \(\dfrac{\partial^2 T}{\partial y^2} = 0\) et \(\dfrac{\partial^2 T}{\partial z^2} = 0\). L'equation se reduit a :</p>
+      \[\rho\,c_p\,\frac{\partial T}{\partial t} = \lambda\,\frac{\partial^2 T}{\partial x^2}\]
+
+      <p>En divisant par \(\rho\,c_p\), on obtient :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{\frac{\partial T}{\partial t} = \frac{\lambda}{\rho\,c_p}\,\frac{\partial^2 T}{\partial x^2}}\]
+        C'est l'equation de diffusion thermique unidimensionnelle. Avec la notation de l'enonce \(a = \dfrac{\rho\,c_p}{\lambda}\), on retrouve \(\displaystyle a\,\frac{\partial T}{\partial t} = \frac{\partial^2 T}{\partial x^2}\).
+      </div>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Piege classique</div>
+        Attention au sens de la constante \(a\) dans l'enonce : \(a = \dfrac{\rho\,c_p}{\lambda}\) (l'<strong>inverse</strong> de la diffusivite thermique). Beaucoup d'etudiants confondent \(a\) avec la diffusivite \(\alpha = \dfrac{\lambda}{\rho\,c_p}\).
+      </div>
+    </div>
+
+    <!-- ======== I.B. Conditions aux limites ======== -->
+    <h3 class="corr-part">I.B. Conditions aux limites</h3>
+
+    <!-- Question I.B.1 -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question I.B.1.</div>
+      <div class="corr-question__statement">Traduire chacune de ces conditions aux limites sur la fonction \(T(x,t)\) et/ou sa derivee.</div>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours</div>
+        Il existe deux grands types de conditions aux limites en thermique :
+        <ul>
+          <li><strong>Condition de Dirichlet</strong> : la temperature est imposee a la frontiere.</li>
+          <li><strong>Condition de Neumann</strong> : le flux thermique (donc la derivee de \(T\)) est impose a la frontiere. Un mur isole correspond a un flux nul.</li>
+        </ul>
+      </div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        Pour resoudre une equation aux derivees partielles, il faut des conditions aux limites. L'enonce propose deux situations physiques differentes et demande de les traduire mathematiquement.
+      </div>
+
+      <p><strong>(i) Temperature imposee aux limites (condition de Dirichlet) :</strong></p>
+      <p>En \(x = 0\) (paroi interieure), la temperature est celle de l'interieur :</p>
+      \[T(0, t) = T_{int}\]
+      <p>En \(x = e\) (paroi exterieure), la temperature est celle de l'exterieur :</p>
+      \[T(e, t) = T_{ext}\]
+
+      <p><strong>(ii) Paroi exterieure isolee (condition de Neumann) :</strong></p>
+      <p>Un isolant parfait empeche tout flux de chaleur a travers la paroi exterieure. Or la loi de Fourier donne le flux \(\vec{j}_Q = -\lambda\,\vec{\text{grad}}\,T\). En 1D, \(j_Q = -\lambda\,\dfrac{\partial T}{\partial x}\). Un flux nul en \(x = e\) impose :</p>
+      \[\left.\frac{\partial T}{\partial x}\right|_{x=e} = 0\]
+      <p>La condition en \(x = 0\) reste inchangee : \(T(0,t) = T_{int}\).</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        <p>(i) Dirichlet : \(\boxed{T(0,t) = T_{int}}\) et \(\boxed{T(e,t) = T_{ext}}\)</p>
+        <p>(ii) Neumann en \(x = e\) : \(\boxed{T(0,t) = T_{int}}\) et \(\boxed{\left.\dfrac{\partial T}{\partial x}\right|_{x=e} = 0}\)</p>
+      </div>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">Methode : reconnaitre le type de condition aux limites</div>
+        <ul>
+          <li>Temperature imposee &rarr; condition de <strong>Dirichlet</strong> : on ecrit directement \(T = \text{valeur}\).</li>
+          <li>Paroi isolee (flux nul) &rarr; condition de <strong>Neumann homogene</strong> : on ecrit \(\dfrac{\partial T}{\partial x} = 0\).</li>
+          <li>Echange avec un fluide (Newton) &rarr; condition de <strong>Robin</strong> : \(-\lambda\,\dfrac{\partial T}{\partial x} = h\,(T - T_{fluide})\).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ======== I.C. Solutions en regime permanent ======== -->
+    <h3 class="corr-part">I.C. Solutions en regime permanent</h3>
+
+    <!-- Question I.C.1 -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question I.C.1.</div>
+      <div class="corr-question__statement">Resoudre l'equation obtenue a la question I.A.2. en regime permanent, avec les conditions aux limites de temperatures imposees (question I.B.(i)) pour un instant particulier negatif \(t_1 < 0\), pour un instant particulier positif \(t_2 > 0\), tres longtemps apres la variation de temperature exterieure, quand le regime permanent est de nouveau etabli dans le mur.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        En regime permanent, la temperature ne change plus avec le temps : \(\dfrac{\partial T}{\partial t} = 0\). L'equation de la chaleur se simplifie enormement et devient une equation differentielle ordinaire tres simple a resoudre. On calcule les deux etats stationnaires : avant et longtemps apres le changement de temperature exterieure.
+      </div>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours</div>
+        En regime permanent (ou stationnaire), toutes les grandeurs sont independantes du temps. L'equation \(a\,\dfrac{\partial T}{\partial t} = \dfrac{\partial^2 T}{\partial x^2}\) devient \(\dfrac{d^2 T}{dx^2} = 0\), dont la solution generale est une fonction affine : \(T(x) = Ax + B\).
+      </div>
+
+      <p><strong>En regime permanent :</strong> \(\dfrac{\partial T}{\partial t} = 0\), donc l'equation de la chaleur donne :</p>
+      \[\frac{d^2 T}{dx^2} = 0\]
+      <p>La solution generale est :</p>
+      \[T(x) = Ax + B\]
+      <p>On determine \(A\) et \(B\) avec les conditions aux limites.</p>
+
+      <p><strong>Pour \(t_1 < 0\) (avant la chute de temperature) :</strong></p>
+      <p>Les conditions aux limites sont \(T(0) = T_{int} = 20\) &deg;C et \(T(e) = T_{ext}^1 = 10\) &deg;C.</p>
+      <ul>
+        <li>En \(x = 0\) : \(B = T_{int} = 20\) &deg;C</li>
+        <li>En \(x = e\) : \(Ae + B = T_{ext}^1\) donc \(A = \dfrac{T_{ext}^1 - T_{int}}{e} = \dfrac{10 - 20}{0{,}4} = -25\) &deg;C/m</li>
+      </ul>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat pour \(t_1 < 0\)</div>
+        \[\boxed{T_1(x) = T_{int} + \frac{T_{ext}^1 - T_{int}}{e}\,x = 20 - 25\,x}\]
+        (avec \(T\) en &deg;C et \(x\) en metres)
+      </div>
+
+      <p><strong>Pour \(t_2 > 0\) (longtemps apres, regime permanent retabli) :</strong></p>
+      <p>Les conditions aux limites sont maintenant \(T(0) = T_{int} = 20\) &deg;C et \(T(e) = T_{ext}^2 = -10\) &deg;C.</p>
+      <ul>
+        <li>En \(x = 0\) : \(B = T_{int} = 20\) &deg;C</li>
+        <li>En \(x = e\) : \(Ae + B = T_{ext}^2\) donc \(A = \dfrac{T_{ext}^2 - T_{int}}{e} = \dfrac{-10 - 20}{0{,}4} = -75\) &deg;C/m</li>
+      </ul>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat pour \(t_2 > 0\) (regime permanent retabli)</div>
+        \[\boxed{T_2(x) = T_{int} + \frac{T_{ext}^2 - T_{int}}{e}\,x = 20 - 75\,x}\]
+        (avec \(T\) en &deg;C et \(x\) en metres)
+      </div>
+    </div>
+
+    <!-- Question I.C.2 -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question I.C.2.</div>
+      <div class="corr-question__statement">Quelle est la nature des profils \(T(x)\) obtenus (en regime permanent) a ces deux instants ? Tracer a la main les deux profils sur un meme graphique sur la copie.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On a montre que \(T(x) = Ax + B\). Il faut nommer la nature de cette courbe et la representer graphiquement. Cela servira de reference pour visualiser ensuite l'evolution transitoire.
+      </div>
+
+      <p>Les profils obtenus sont des <strong>fonctions affines de \(x\)</strong> : ce sont des <strong>droites</strong>.</p>
+
+      <p><strong>Description du graphique :</strong></p>
+      <ul>
+        <li>Axe horizontal : \(x\) de \(0\) a \(e = 0{,}4\) m.</li>
+        <li>Axe vertical : \(T\) en &deg;C.</li>
+        <li><strong>Profil 1</strong> (pour \(t_1 < 0\)) : droite partant de \(T_{int} = 20\) &deg;C en \(x = 0\) et arrivant a \(T_{ext}^1 = 10\) &deg;C en \(x = e\). Pente faible.</li>
+        <li><strong>Profil 2</strong> (pour \(t_2 \gg 0\)) : droite partant de \(T_{int} = 20\) &deg;C en \(x = 0\) et arrivant a \(T_{ext}^2 = -10\) &deg;C en \(x = e\). Pente plus forte (en valeur absolue).</li>
+      </ul>
+      <p>Les deux droites se coupent en \(x = 0\) (ou elles valent toutes les deux 20 &deg;C).</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \(\boxed{\text{Les profils en regime permanent sont des droites (fonctions affines de } x\text{).}}\)
+      </div>
+    </div>
+
+    <!-- Question I.C.3 -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question I.C.3.</div>
+      <div class="corr-question__statement">Sur le meme graphique, tracer a la main qualitativement les profils intermediaires a differents instants entre la variation brutale de la temperature exterieure (\(t = 0\)) et l'instant \(t_2\) ou le regime est de nouveau permanent.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On veut visualiser comment le profil de temperature evolue pendant le regime transitoire, entre les deux etats permanents. Cela montre la physique de la diffusion : le changement de temperature se propage progressivement de la paroi exterieure vers l'interieur.
+      </div>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours</div>
+        La diffusion thermique est un phenomene <strong>progressif</strong> : l'information (ici, le changement de temperature exterieure) met du temps a se propager dans le materiau. Le temps caracteristique de diffusion a travers une epaisseur \(e\) est de l'ordre de \(\tau \sim \dfrac{e^2}{\alpha}\) ou \(\alpha = \dfrac{\lambda}{\rho\,c_p}\) est la diffusivite thermique.
+      </div>
+
+      <p><strong>Description des profils intermediaires :</strong></p>
+      <ul>
+        <li>A \(t = 0^+\), juste apres le changement : le profil est encore celui de \(t_1\), sauf en \(x = e\) ou la temperature passe brutalement a \(-10\) &deg;C. On a une discontinuite (en theorie) au bord.</li>
+        <li>Aux instants suivants, la perturbation se diffuse vers l'interieur du mur. Les profils sont <strong>courbes</strong> (non lineaires), avec une courbure plus marquee pres de la paroi exterieure.</li>
+        <li>Progressivement, les profils se rapprochent de la droite finale \(T_2(x)\).</li>
+        <li>En \(x = 0\), la temperature reste toujours egale a \(T_{int} = 20\) &deg;C.</li>
+      </ul>
+
+      <p>Les courbes intermediaires sont <strong>concaves</strong>, situees entre la droite initiale et la droite finale, et convergent vers la droite finale au fur et a mesure que le temps passe.</p>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">Methode : tracer des profils transitoires de diffusion</div>
+        <ol>
+          <li>Tracer les deux etats permanents (droites) comme reperes.</li>
+          <li>Les profils intermediaires sont entre les deux droites.</li>
+          <li>Le changement commence au bord ou la condition a change (\(x = e\)) et se propage vers l'autre bord.</li>
+          <li>Les courbes sont lisses et courbees, jamais en creneau.</li>
+        </ol>
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \(\boxed{\text{Profils intermediaires : courbes concaves entre les deux droites, se diffusant de } x = e \text{ vers } x = 0.}\)
+      </div>
+    </div>
+
+  </div><!-- fin corr-exercice Partie I -->
+
+  <!-- ============================================================ -->
+  <!--              PARTIE II : RESOLUTION NUMERIQUE                -->
+  <!-- ============================================================ -->
+  <div class="corr-exercice">
+    <div class="corr-exercice__header">
+      <div class="corr-exercice__number">II</div>
+      <div class="corr-exercice__title-group">
+        <h2 class="corr-exercice__title">Partie II : Resolution numerique</h2>
+        <span class="corr-exercice__subtitle">Discretisation, schema explicite, schema implicite, programme principal</span>
+      </div>
+    </div>
+    <hr class="corr-exercice__rule">
+
+    <!-- ======== II.A. Equation a resoudre ======== -->
+    <h3 class="corr-part">II.A. Equation a resoudre</h3>
+
+    <!-- Question II.A.1 -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.A.1.</div>
+      <div class="corr-question__statement">Quelle est l'expression de \(a\) en fonction des parametres physiques du mur ?</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        L'enonce ecrit l'equation sous la forme \(a\,\dfrac{\partial T}{\partial t} = \dfrac{\partial^2 T}{\partial x^2}\). On doit identifier \(a\) en comparant avec l'equation de la chaleur obtenue en I.A.2.
+      </div>
+
+      <p>On a obtenu en I.A.2 :</p>
+      \[\rho\,c_p\,\frac{\partial T}{\partial t} = \lambda\,\frac{\partial^2 T}{\partial x^2}\]
+      <p>En divisant par \(\lambda\) :</p>
+      \[\frac{\rho\,c_p}{\lambda}\,\frac{\partial T}{\partial t} = \frac{\partial^2 T}{\partial x^2}\]
+      <p>Par identification avec \(a\,\dfrac{\partial T}{\partial t} = \dfrac{\partial^2 T}{\partial x^2}\) :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{a = \frac{\rho\,c_p}{\lambda}}\]
+        <p>Application numerique : \(a = \dfrac{2150 \times 1000}{1{,}65} \approx 1{,}303 \times 10^6\) s.m\(^{-2}\).</p>
+        <p>Remarque : \(a = 1/\alpha\) ou \(\alpha\) est la diffusivite thermique.</p>
+      </div>
+    </div>
+
+    <!-- Question II.A.2 -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.A.2.</div>
+      <div class="corr-question__statement">Exprimer \(a\) et \(b\) en fonction de \(T_{int}\), \(T_{ext1}\) et \(e\).</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        Attention, ici \(a\) et \(b\) ne sont plus les memes que dans la question precedente ! L'enonce definit la condition initiale comme \(T(x,0) = ax + b\), c'est-a-dire le profil de temperature dans le mur a \(t = 0\). Ce profil est celui du regime permanent pour \(t < 0\), que l'on a calcule en I.C.1.
+      </div>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Piege classique</div>
+        Ne pas confondre le \(a\) de l'equation (1) (qui vaut \(\rho c_p / \lambda\)) avec le \(a\) de la condition initiale \(T(x,0) = ax + b\) (qui est la pente du profil initial). Ce sont deux grandeurs completement differentes, mais l'enonce utilise la meme lettre ! Bien lire le contexte.
+      </div>
+
+      <p>A \(t = 0\), le profil initial correspond au regime permanent avec \(T_{ext}^1\). D'apres I.C.1 :</p>
+      \[T(x, 0) = T_{int} + \frac{T_{ext}^1 - T_{int}}{e}\,x\]
+      <p>Par identification avec \(T(x,0) = ax + b\) :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{b = T_{int}} \qquad \text{et} \qquad \boxed{a = \frac{T_{ext}^1 - T_{int}}{e}}\]
+        <p>Application numerique : \(b = 20\) &deg;C et \(a = \dfrac{10 - 20}{0{,}4} = -25\) &deg;C/m.</p>
+      </div>
+    </div>
+
+    <!-- ======== II.B. Methode des differences finies ======== -->
+    <h3 class="corr-part">II.B. Methode des differences finies</h3>
+
+    <h4 style="color:#374151; margin-top:1.5rem;">II.B.1. Discretisation dans l'espace et dans le temps</h4>
+
+    <!-- Question II.B.1.a -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.1.a.</div>
+      <div class="corr-question__statement">Donner l'expression de \(\Delta x\) en fonction de \(N\) et de l'epaisseur du mur \(e\).</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On divise le segment \([0, e]\) en \(N+1\) intervalles (car il y a \(N+2\) points de \(0\) a \(N+1\)). Le pas d'espace est la longueur de chaque intervalle.
+      </div>
+
+      <p>Il y a \(N + 2\) points numerotes de \(0\) a \(N+1\), donc \(N + 1\) intervalles. Comme la longueur totale est \(e\) :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{\Delta x = \frac{e}{N + 1}}\]
+      </div>
+    </div>
+
+    <!-- Question II.B.1.b -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.1.b.</div>
+      <div class="corr-question__statement">Donner l'abscisse \(x_i\) du \(i^e\) point en fonction de \(i\) et \(\Delta x\), sachant que \(x_0 = 0\) et \(x_{N+1} = e\).</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        Les points sont regulierement espaces a partir de \(x_0 = 0\). Le \(i\)-eme point est donc a la distance \(i \times \Delta x\) du debut.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{x_i = i\,\Delta x}\]
+        <p>Verification : \(x_0 = 0\) et \(x_{N+1} = (N+1)\,\Delta x = (N+1)\,\dfrac{e}{N+1} = e\). C'est coherent.</p>
+      </div>
+    </div>
+
+    <!-- ======== II.B.2. Schema explicite ======== -->
+    <h4 style="color:#374151; margin-top:1.5rem;">II.B.2. Methode utilisant un schema explicite</h4>
+
+    <!-- Question II.B.2.a -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.B.2.a.</div>
+      <div class="corr-question__statement">A l'aide d'un developpement limite de la fonction \(x \mapsto T(x,t)\), donner une expression de \(T(x + \Delta x, t)\) a l'ordre 3 (\(o(\Delta x^3)\)) en fonction de \(T\) et de ses derivees partielles par rapport a \(x\) evaluees en \((x, t)\). De meme, donner une expression de \(T(x - \Delta x, t)\) a l'ordre 3.</div>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours</div>
+        Le developpement de Taylor d'une fonction \(f\) au voisinage de \(x\) s'ecrit :
+        \[f(x + h) = f(x) + h\,f'(x) + \frac{h^2}{2}\,f''(x) + \frac{h^3}{6}\,f'''(x) + o(h^3)\]
+      </div>
+
+      <p>On applique le developpement de Taylor a \(T\) comme fonction de \(x\) (a \(t\) fixe) :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{T(x+\Delta x, t) = T(x,t) + \Delta x\,\frac{\partial T}{\partial x}\bigg|_{x,t} + \frac{(\Delta x)^2}{2}\,\frac{\partial^2 T}{\partial x^2}\bigg|_{x,t} + \frac{(\Delta x)^3}{6}\,\frac{\partial^3 T}{\partial x^3}\bigg|_{x,t} + o(\Delta x^3)}\]
+        \[\boxed{T(x-\Delta x, t) = T(x,t) - \Delta x\,\frac{\partial T}{\partial x}\bigg|_{x,t} + \frac{(\Delta x)^2}{2}\,\frac{\partial^2 T}{\partial x^2}\bigg|_{x,t} - \frac{(\Delta x)^3}{6}\,\frac{\partial^3 T}{\partial x^3}\bigg|_{x,t} + o(\Delta x^3)}\]
+      </div>
+    </div>
+
+    <!-- Question II.B.2.b -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.B.2.b.</div>
+      <div class="corr-question__statement">En deduire une expression approchee a l'ordre 1 (\(o(\Delta x)\)) de \(\left.\dfrac{\partial^2 T}{\partial x^2}\right|_{x,t}\) en fonction de \(T(x + \Delta x, t)\), \(T(x - \Delta x, t)\), \(T(x, t)\) et \(\Delta x\).</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        En additionnant les deux DL, les termes d'ordre impair (en \(\Delta x\) et \((\Delta x)^3\)) s'annulent, et il reste la derivee seconde. C'est la formule aux differences finies centrees classique.
+      </div>
+
+      <p>Additionnons les deux expressions de II.B.2.a :</p>
+      \[T(x+\Delta x, t) + T(x-\Delta x, t) = 2\,T(x,t) + (\Delta x)^2\,\frac{\partial^2 T}{\partial x^2}\bigg|_{x,t} + o(\Delta x^3)\]
+      <p>(les termes en \(\Delta x\) et \((\Delta x)^3\) se simplifient par symetrie)</p>
+      <p>On isole la derivee seconde :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{\frac{\partial^2 T}{\partial x^2}\bigg|_{x,t} \approx \frac{T(x+\Delta x, t) - 2\,T(x,t) + T(x-\Delta x, t)}{(\Delta x)^2}}\]
+        <p>L'erreur de troncature est en fait en \(o((\Delta x)^2)\), ce qui est mieux que l'ordre 1 annonce dans l'enonce (les termes d'ordre 3 s'annulent aussi).</p>
+      </div>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">Methode : differences finies centrees</div>
+        C'est LA formule fondamentale pour approcher une derivee seconde numeriquement. Elle utilise 3 points : le point central et ses deux voisins. Elle est d'ordre 2 en \(\Delta x\) (erreur en \(O((\Delta x)^2)\)).
+      </div>
+    </div>
+
+    <!-- Question II.B.2.c -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.2.c.</div>
+      <div class="corr-question__statement">Deduire de la question precedente une expression approchee de \(\left.\dfrac{\partial^2 T}{\partial x^2}\right|_{x_i, t_k}\) en fonction de \(T_i^k\), \(T_{i+1}^k\), \(T_{i-1}^k\) et \(\Delta x\).</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        C'est simplement la traduction de la formule precedente avec les notations discretes \(T_i^k\).
+      </div>
+
+      <p>On remplace \(x\) par \(x_i\) et \(t\) par \(t_k\) dans la formule de II.B.2.b :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{\frac{\partial^2 T}{\partial x^2}\bigg|_{x_i, t_k} \approx \frac{T_{i+1}^k - 2\,T_i^k + T_{i-1}^k}{(\Delta x)^2}}\]
+      </div>
+    </div>
+
+    <!-- Question II.B.2.d -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.2.d.</div>
+      <div class="corr-question__statement">A l'aide d'un developpement limite de la fonction \(t \mapsto T(x,t)\), donner une expression de \(T(x, t + \Delta t)\) a l'ordre 1 (\(o(\Delta t)\)) en fonction de \(T\) et de sa derivee partielle par rapport a \(t\) evaluees en \((x, t)\).</div>
+
+      <p>On applique le developpement de Taylor a \(T\) comme fonction de \(t\) (a \(x\) fixe) :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{T(x, t + \Delta t) = T(x, t) + \Delta t\,\frac{\partial T}{\partial t}\bigg|_{x,t} + o(\Delta t)}\]
+      </div>
+    </div>
+
+    <!-- Question II.B.2.e -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.2.e.</div>
+      <div class="corr-question__statement">En deduire une valeur approchee de \(\left.\dfrac{\partial T}{\partial t}\right|_{x,t}\) a l'ordre 0 (\(o(1)\)) en fonction de \(T(x, t + \Delta t)\), \(T(x, t)\) et \(\Delta t\).</div>
+
+      <p>On isole la derivee temporelle dans l'expression de II.B.2.d :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{\frac{\partial T}{\partial t}\bigg|_{x,t} \approx \frac{T(x, t + \Delta t) - T(x, t)}{\Delta t}}\]
+        <p>C'est la formule aux differences finies <strong>avant</strong> (forward difference) pour la derivee temporelle. L'erreur est en \(O(\Delta t)\).</p>
+      </div>
+    </div>
+
+    <!-- Question II.B.2.f -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.2.f.</div>
+      <div class="corr-question__statement">Donner une expression de \(\left.\dfrac{\partial T}{\partial t}\right|_{x_i, t_k}\) en fonction de \(\Delta t\), \(T_i^k\) et \(T_i^{k+1}\), avec \(T_i^{k+1} = T(x_i, t_k + \Delta t)\).</div>
+
+      <p>On remplace \(x\) par \(x_i\) et \(t\) par \(t_k\) dans la formule de II.B.2.e :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{\frac{\partial T}{\partial t}\bigg|_{x_i, t_k} \approx \frac{T_i^{k+1} - T_i^k}{\Delta t}}\]
+      </div>
+    </div>
+
+    <!-- Question II.B.2.g -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.B.2.g.</div>
+      <div class="corr-question__statement">L'equation (1) est valable en chaque point d'abscisse \(x_i\) et a chaque instant \(t_k\). Ecrire la forme approchee de cette equation au point \(i\) et a l'instant \(k\) en approchant \(\left.\dfrac{\partial^2 T}{\partial x^2}\right|_{x_i, t_k}\) avec la formule obtenue a la question II.B.2.c. et en approchant \(\left.\dfrac{\partial T}{\partial t}\right|_{x_i, t_k}\) avec la formule obtenue a la question II.B.2.f.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On remplace les derivees partielles de l'equation (1) par leurs approximations numeriques. C'est le coeur de la methode des differences finies : transformer une EDP en une relation algebrique entre les valeurs discretes de \(T\).
+      </div>
+
+      <p>L'equation (1) est \(a\,\dfrac{\partial T}{\partial t} = \dfrac{\partial^2 T}{\partial x^2}\). En remplacant :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{a\,\frac{T_i^{k+1} - T_i^k}{\Delta t} = \frac{T_{i+1}^k - 2\,T_i^k + T_{i-1}^k}{(\Delta x)^2}}\]
+      </div>
+    </div>
+
+    <!-- Question II.B.2.h -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.B.2.h.</div>
+      <div class="corr-question__statement">Montrer que l'equation obtenue a la question II.B.2.g peut s'ecrire sous la forme : \(T_i^{k+1} = r\,T_{i-1}^k + (1 - 2r)\,T_i^k + r\,T_{i+1}^k\) en precisant la valeur du parametre \(r\) en fonction de \(\Delta x\), \(\Delta t\) et \(a\).</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On isole \(T_i^{k+1}\) : c'est la temperature au pas de temps suivant. L'equation donne directement sa valeur a partir des temperatures au pas precedent. D'ou le nom de schema "explicite".
+      </div>
+
+      <p>Partons de l'equation de II.B.2.g et isolons \(T_i^{k+1}\) :</p>
+      \[T_i^{k+1} - T_i^k = \frac{\Delta t}{a\,(\Delta x)^2}\left(T_{i+1}^k - 2\,T_i^k + T_{i-1}^k\right)\]
+      <p>Posons \(r = \dfrac{\Delta t}{a\,(\Delta x)^2}\). On obtient :</p>
+      \[T_i^{k+1} = T_i^k + r\left(T_{i+1}^k - 2\,T_i^k + T_{i-1}^k\right)\]
+      \[T_i^{k+1} = T_i^k + r\,T_{i+1}^k - 2r\,T_i^k + r\,T_{i-1}^k\]
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{T_i^{k+1} = r\,T_{i-1}^k + (1 - 2r)\,T_i^k + r\,T_{i+1}^k}\]
+        avec
+        \[\boxed{r = \frac{\Delta t}{a\,(\Delta x)^2}}\]
+      </div>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Piege classique</div>
+        Attention : ici \(a\) est la constante de l'equation (1), c'est-a-dire \(a = \rho c_p / \lambda\). Donc \(r = \dfrac{\Delta t\,\lambda}{\rho\,c_p\,(\Delta x)^2} = \dfrac{\alpha\,\Delta t}{(\Delta x)^2}\) ou \(\alpha\) est la diffusivite thermique.
+      </div>
+    </div>
+
+    <!-- Question II.B.2.i -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.B.2.i.</div>
+      <div class="corr-question__statement">L'equation (2) est appellee schema numerique explicite. Si on connait la temperature en tous les points \(x_1, x_2, ..., x_{N-1}, x_N\) a l'instant \(t_k\), on peut calculer grace a elle la temperature en tous les points a l'instant ulterieur \(t_{k+1}\). L'equation (2) est-elle valable dans tout le domaine, c'est-a-dire pour toute valeur de \(i\), \(0 \leq i \leq N + 1\) ? Que valent \(T_0^k\) et \(T_{N+1}^k\) ?</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        L'equation (2) fait intervenir \(T_{i-1}^k\) et \(T_{i+1}^k\). Pour \(i = 0\), on aurait besoin de \(T_{-1}^k\) qui n'existe pas. Pour \(i = N+1\), on aurait besoin de \(T_{N+2}^k\) qui n'existe pas non plus. De plus, la temperature aux bords est fixee par les conditions aux limites et ne doit pas etre calculee par le schema.
+      </div>
+
+      <p><strong>Non</strong>, l'equation (2) n'est pas valable pour \(i = 0\) ni pour \(i = N+1\) :</p>
+      <ul>
+        <li>Pour \(i = 0\) : le point \(x_0 = 0\) est sur la frontiere interieure. Sa temperature est imposee par la condition aux limites.</li>
+        <li>Pour \(i = N+1\) : le point \(x_{N+1} = e\) est sur la frontiere exterieure. Sa temperature est aussi imposee.</li>
+      </ul>
+
+      <p>Le schema (2) n'est valable que pour les points <strong>interieurs</strong> : \(1 \leq i \leq N\).</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        <p>\(\boxed{T_0^k = T_{int} = 20 \text{ &deg;C pour tout } k}\)</p>
+        <p>\(\boxed{T_{N+1}^k = T_{ext}^2 = -10 \text{ &deg;C pour tout } k > 0}\)</p>
+        <p>Le schema (2) est valable pour \(1 \leq i \leq N\) seulement.</p>
+      </div>
+    </div>
+
+    <!-- ======== II.B.2.j. Fonction schema_explicite ======== -->
+    <h4 style="color:#374151; margin-top:1.5rem;">II.B.2.j. Elaboration de la fonction <code>schema_explicite</code></h4>
+
+    <!-- Question II.B.2.j.i -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.B.2.j.<em>i</em>)</div>
+      <div class="corr-question__statement">Ecrire l'en-tete de la fonction en precisant bien les parametres d'entree et de sortie.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On definit la signature de la fonction : quels parametres elle recoit (le vecteur initial \(T0\), les conditions aux limites, les parametres de discretisation) et ce qu'elle renvoie (la matrice de temperatures et le nombre d'iterations effectuees).
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>def schema_explicite(T0, Tint, Text2, r, N):
+    """
+    Parametres d'entree :
+      T0   : vecteur de dimension N, temperatures initiales aux points interieurs
+      Tint : temperature interieure (condition en x=0)
+      Text2: temperature exterieure (condition en x=e)
+      r    : parametre r = dt / (a * dx**2)
+      N    : nombre de points interieurs
+    Parametres de sortie :
+      T_tous_k : matrice N x ItMax, profils de temperature a chaque instant
+      nbIter   : nombre d'iterations reellement effectuees
+    """</code></pre>
+      </div>
+    </div>
+
+    <!-- Question II.B.2.j.ii -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.2.j.<em>ii</em>)</div>
+      <div class="corr-question__statement">Le schema numerique (2) permet d'approcher avec succes la solution a la condition \(r < 1/2\). Programmer un test qui avertit l'utilisateur si cette condition n'est pas respectee.</div>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours</div>
+        La condition \(r < 1/2\) est la condition de <strong>stabilite CFL</strong> (Courant-Friedrichs-Lewy) du schema explicite. Si \(r \geq 1/2\), les erreurs numeriques sont amplifiees a chaque pas de temps et la solution diverge.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    if r >= 0.5:
+        print("ATTENTION : r =", r, ">= 0.5, le schema explicite est instable !")</code></pre>
+      </div>
+    </div>
+
+    <!-- Question II.B.2.j.iii -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.2.j.<em>iii</em>)</div>
+      <div class="corr-question__statement">Affecter la valeur 2 000 a <code>ItMax</code>. Creer la matrice <code>T_tous_k</code> de dimensions \(N \times ItMax\) en la remplissant de zeros.</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    ItMax = 2000
+    T_tous_k = np.zeros((N, ItMax))</code></pre>
+      </div>
+    </div>
+
+    <!-- Question II.B.2.j.iv -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.2.j.<em>iv</em>)</div>
+      <div class="corr-question__statement">Remplacer la premiere colonne de <code>T_tous_k</code> par le vecteur des valeurs initiales \(T0\).</div>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours</div>
+        En Python (numpy), les indices commencent a 0. La premiere colonne est donc l'indice de colonne 0 : <code>T_tous_k[:, 0]</code>.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    T_tous_k[:, 0] = T0</code></pre>
+      </div>
+    </div>
+
+    <!-- Question II.B.2.j.v -->
+    <div class="corr-question corr-question--hard">
+      <div class="corr-question__num">Question II.B.2.j.<em>v</em>)</div>
+      <div class="corr-question__statement">Calculer le profil de temperature a l'instant \(k = 1\) (\(t = \Delta t\)), en distinguant le cas \(i = 1\), le cas \(2 \leq i \leq N - 1\) et le cas \(i = N\). Affecter ces valeurs a la deuxieme colonne de <code>T_tous_k</code>.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        Pour \(i = 1\), la formule (2) fait intervenir \(T_0^k = T_{int}\) (condition aux limites). Pour \(i = N\), elle fait intervenir \(T_{N+1}^k = T_{ext}^2\). Pour les points interieurs \(2 \leq i \leq N-1\), tous les voisins sont dans le vecteur \(T^k\). Il faut traiter ces trois cas differemment dans le code.
+      </div>
+
+      <p>Appliquons le schema (2) : \(T_i^{k+1} = r\,T_{i-1}^k + (1-2r)\,T_i^k + r\,T_{i+1}^k\) avec \(k = 0\).</p>
+
+      <p><strong>Cas \(i = 1\) :</strong> \(T_1^1 = r\,T_0^0 + (1-2r)\,T_1^0 + r\,T_2^0\). Or \(T_0^0 = T_{int}\).</p>
+      <p><strong>Cas \(2 \leq i \leq N-1\) :</strong> \(T_i^1 = r\,T_{i-1}^0 + (1-2r)\,T_i^0 + r\,T_{i+1}^0\). Tous les termes sont dans \(T0\).</p>
+      <p><strong>Cas \(i = N\) :</strong> \(T_N^1 = r\,T_{N-1}^0 + (1-2r)\,T_N^0 + r\,T_{N+1}^0\). Or \(T_{N+1}^0 = T_{ext}^2\).</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    # Cas i = 1 (indice Python 0)
+    T_tous_k[0, 1] = r * Tint + (1 - 2*r) * T_tous_k[0, 0] + r * T_tous_k[1, 0]
+    # Cas 2 <= i <= N-1 (indices Python 1 a N-2)
+    for i in range(1, N-1):
+        T_tous_k[i, 1] = r * T_tous_k[i-1, 0] + (1 - 2*r) * T_tous_k[i, 0] + r * T_tous_k[i+1, 0]
+    # Cas i = N (indice Python N-1)
+    T_tous_k[N-1, 1] = r * T_tous_k[N-2, 0] + (1 - 2*r) * T_tous_k[N-1, 0] + r * Text2</code></pre>
+      </div>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Piege classique</div>
+        Attention au decalage d'indices Python ! En Python, les tableaux commencent a l'indice 0. Donc le point \(i = 1\) de l'enonce correspond a l'indice 0 du tableau, et le point \(i = N\) correspond a l'indice \(N-1\). De plus, la premiere colonne (instant \(k = 0\)) est a l'indice 0, et le premier pas calcule (\(k = 1\)) est a l'indice 1.
+      </div>
+    </div>
+
+    <!-- Question II.B.2.j.vi -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.2.j.<em>vi</em>)</div>
+      <div class="corr-question__statement">Ecrire une fonction <code>calc_norme</code> qui calcule la norme 2 d'un vecteur. On rappelle que la norme 2 d'un vecteur \(V\) s'ecrit : \(\|V\|_2 = \sqrt{\sum_{i=1}^{N} V_i^2}\).</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>def calc_norme(V):
+    """Calcule la norme 2 (euclidienne) d'un vecteur V."""
+    s = 0.0
+    for i in range(len(V)):
+        s = s + V[i]**2
+    return s**0.5</code></pre>
+      </div>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">Methode : alternative avec numpy</div>
+        En pratique, on pourrait aussi ecrire <code>return np.sqrt(np.sum(V**2))</code> ou directement <code>return np.linalg.norm(V)</code>, mais le sujet demande d'ecrire la fonction a la main.
+      </div>
+    </div>
+
+    <!-- Question II.B.2.j.vii -->
+    <div class="corr-question corr-question--hard">
+      <div class="corr-question__num">Question II.B.2.j.<em>vii</em>)</div>
+      <div class="corr-question__statement">Elaborer une boucle permettant de calculer iterativement le profil de temperature aux instants \(t_k = k\,\Delta t\) avec \(k \geq 2\). Cette boucle sera interrompue lorsque la norme 2 du vecteur \(\boldsymbol{T}^k - \boldsymbol{T}^{k-1}\) deviendra inferieure a \(10^{-5}\) ou lorsque le nombre d'iterations atteindra la valeur <code>ItMax</code> (prevoir les deux cas). Utiliser, pour cela, la fonction <code>calc_norme</code> definie a la question II.B.2.j.(vi).</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On itere le schema explicite pas a pas dans le temps. On s'arrete soit quand le regime permanent est atteint (la temperature ne bouge presque plus), soit quand on a fait le nombre maximal d'iterations. On utilise une boucle <code>while</code> avec un double critere d'arret, ou une boucle <code>for</code> avec un <code>break</code>.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    nbIter = 1  # On a deja calcule le pas k=1
+    k = 1
+    ecart = 1.0  # initialisation a une valeur > seuil
+
+    while ecart > 1e-5 and k < ItMax - 1:
+        k = k + 1
+        # Cas i = 1 (indice Python 0)
+        T_tous_k[0, k] = r * Tint + (1 - 2*r) * T_tous_k[0, k-1] + r * T_tous_k[1, k-1]
+        # Cas 2 <= i <= N-1 (indices Python 1 a N-2)
+        for i in range(1, N-1):
+            T_tous_k[i, k] = r * T_tous_k[i-1, k-1] + (1 - 2*r) * T_tous_k[i, k-1] + r * T_tous_k[i+1, k-1]
+        # Cas i = N (indice Python N-1)
+        T_tous_k[N-1, k] = r * T_tous_k[N-2, k-1] + (1 - 2*r) * T_tous_k[N-1, k-1] + r * Text2
+        # Calcul de l'ecart
+        ecart = calc_norme(T_tous_k[:, k] - T_tous_k[:, k-1])
+        nbIter = nbIter + 1</code></pre>
+      </div>
+    </div>
+
+    <!-- Question II.B.2.j.viii -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.2.j.<em>viii</em>)</div>
+      <div class="corr-question__statement">Ecrire la fin de la fonction afin de renvoyer tous les arguments de sortie definis au debut de la question II.B.2.j.</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    return T_tous_k, nbIter</code></pre>
+      </div>
+    </div>
+
+    <!-- ======== II.B.3. Schema implicite ======== -->
+    <h4 style="color:#374151; margin-top:1.5rem;">II.B.3. Methode utilisant un schema implicite</h4>
+
+    <!-- Question II.B.3.a -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.B.3.a.</div>
+      <div class="corr-question__statement">Donner la nouvelle expression approchee de l'equation (1) definie en page 3.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        Dans le schema implicite, on evalue la derivee seconde en espace a l'instant \(t_{k+1}\) (et non \(t_k\) comme dans le schema explicite), tandis que la derivee temporelle reste evaluee entre \(t_k\) et \(t_{k+1}\). Cela donne un schema inconditionnellement stable (pas de condition sur \(r\)).
+      </div>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours</div>
+        <ul>
+          <li><strong>Schema explicite</strong> : derivee spatiale evaluee a l'instant \(t_k\) (connu). On peut calculer \(T^{k+1}\) directement.</li>
+          <li><strong>Schema implicite</strong> : derivee spatiale evaluee a l'instant \(t_{k+1}\) (inconnu). Il faut resoudre un systeme lineaire a chaque pas de temps, mais le schema est stable quel que soit \(\Delta t\).</li>
+        </ul>
+      </div>
+
+      <p>On approche la derivee temporelle comme dans le schema explicite (II.B.2.f) et la derivee spatiale seconde avec la formule de II.B.2.c mais evaluee a l'instant \(t_{k+1}\) :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{a\,\frac{T_i^{k+1} - T_i^k}{\Delta t} = \frac{T_{i+1}^{k+1} - 2\,T_i^{k+1} + T_{i-1}^{k+1}}{(\Delta x)^2}}\]
+      </div>
+    </div>
+
+    <!-- Question II.B.3.b -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.B.3.b.</div>
+      <div class="corr-question__statement">Montrer que l'equation obtenue a la question II.B.3.a. peut etre mise sous la forme \(T_i^k = -r\,T_{i-1}^{k+1} + (1 + 2r)\,T_i^{k+1} - r\,T_{i+1}^{k+1}\).</div>
+
+      <p>Partons de l'equation de II.B.3.a et rearrangeons. Multiplions par \(\dfrac{\Delta t}{a}\) :</p>
+      \[T_i^{k+1} - T_i^k = \frac{\Delta t}{a\,(\Delta x)^2}\left(T_{i+1}^{k+1} - 2\,T_i^{k+1} + T_{i-1}^{k+1}\right)\]
+      <p>Avec \(r = \dfrac{\Delta t}{a\,(\Delta x)^2}\) :</p>
+      \[T_i^{k+1} - T_i^k = r\,T_{i+1}^{k+1} - 2r\,T_i^{k+1} + r\,T_{i-1}^{k+1}\]
+      <p>Isolons \(T_i^k\) :</p>
+      \[T_i^k = T_i^{k+1} - r\,T_{i+1}^{k+1} + 2r\,T_i^{k+1} - r\,T_{i-1}^{k+1}\]
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        \[\boxed{T_i^k = -r\,T_{i-1}^{k+1} + (1 + 2r)\,T_i^{k+1} - r\,T_{i+1}^{k+1}}\]
+      </div>
+    </div>
+
+    <!-- Question II.B.3.c -->
+    <div class="corr-question corr-question--hard">
+      <div class="corr-question__num">Question II.B.3.c.</div>
+      <div class="corr-question__statement">Preciser l'expression de la matrice \(M\) et l'expression du vecteur \(\boldsymbol{v}\).</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        Le schema implicite (3) relie \(T^k\) (connu) a \(T^{k+1}\) (inconnu). Pour chaque \(i\) de 1 a \(N\), on a une equation. Cela forme un systeme lineaire \(M\,T^{k+1} = T^k + r\,v\). On doit identifier \(M\) et \(v\).
+      </div>
+
+      <p>Ecrivons le schema (3) pour chaque valeur de \(i\) :</p>
+      <ul>
+        <li>Pour \(i = 1\) : \(T_1^k = -r\,T_0^{k+1} + (1+2r)\,T_1^{k+1} - r\,T_2^{k+1}\). Or \(T_0^{k+1} = T_{int}\), donc :
+        \((1+2r)\,T_1^{k+1} - r\,T_2^{k+1} = T_1^k + r\,T_{int}\)</li>
+        <li>Pour \(2 \leq i \leq N-1\) : \(-r\,T_{i-1}^{k+1} + (1+2r)\,T_i^{k+1} - r\,T_{i+1}^{k+1} = T_i^k\)</li>
+        <li>Pour \(i = N\) : \(T_N^k = -r\,T_{N-1}^{k+1} + (1+2r)\,T_N^{k+1} - r\,T_{N+1}^{k+1}\). Or \(T_{N+1}^{k+1} = T_{ext}^2\), donc :
+        \(-r\,T_{N-1}^{k+1} + (1+2r)\,T_N^{k+1} = T_N^k + r\,T_{ext}^2\)</li>
+      </ul>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat</div>
+        <p>La matrice \(M\) est <strong>tridiagonale</strong> de taille \(N \times N\) :</p>
+        \[\boxed{M = \begin{pmatrix} 1+2r & -r & 0 & \cdots & 0 \\ -r & 1+2r & -r & \ddots & \vdots \\ 0 & \ddots & \ddots & \ddots & 0 \\ \vdots & \ddots & -r & 1+2r & -r \\ 0 & \cdots & 0 & -r & 1+2r \end{pmatrix}}\]
+        <p>Diagonale principale : \(1 + 2r\), sur-diagonale et sous-diagonale : \(-r\).</p>
+        <p>Le vecteur \(v\) contient les conditions aux limites :</p>
+        \[\boxed{\boldsymbol{v} = \begin{pmatrix} T_{int} \\ 0 \\ \vdots \\ 0 \\ T_{ext}^2 \end{pmatrix}}\]
+      </div>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">Methode : construire le systeme matriciel d'un schema implicite</div>
+        <ol>
+          <li>Ecrire l'equation pour chaque point interieur \(i = 1, ..., N\).</li>
+          <li>Les termes en \(T^{k+1}\) forment le produit \(M \cdot T^{k+1}\).</li>
+          <li>Les termes en \(T^k\) forment le second membre.</li>
+          <li>Les conditions aux limites (valeurs connues \(T_0\) et \(T_{N+1}\)) passent dans le second membre via le vecteur \(v\).</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Question II.B.3.d.i (Thomas) -->
+    <div class="corr-question corr-question--hard">
+      <div class="corr-question__num">Question II.B.3.d.<em>i</em>)</div>
+      <div class="corr-question__statement">En utilisant l'algorithme de Thomas, ecrire une fonction <code>CalcTkp1</code> qui permet de calculer le vecteur \(\boldsymbol{u}\), solution du systeme matriciel (5), a partir de la matrice \(M\) et du vecteur \(\boldsymbol{d}\).</div>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours</div>
+        L'algorithme de Thomas est une methode directe (non iterative) pour resoudre un systeme tridiagonal \(M\,u = d\). Il procede en deux etapes :
+        <ol>
+          <li><strong>Phase avant (forward sweep)</strong> : on elimine la sous-diagonale en modifiant \(c\) et \(d\).</li>
+          <li><strong>Phase arriere (back substitution)</strong> : on calcule les inconnues de \(u_N\) a \(u_1\).</li>
+        </ol>
+        La complexite est en \(O(N)\), bien meilleure que l'inversion de matrice en \(O(N^3)\).
+      </div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        A chaque pas de temps, il faut resoudre \(M\,T^{k+1} = T^k + r\,v\). Comme \(M\) est tridiagonale, l'algorithme de Thomas est la methode la plus efficace. On extrait les diagonales \(a_i\), \(b_i\), \(c_i\) de \(M\) puis on applique les formules fournies par l'enonce.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>def CalcTkp1(M, d):
+    """
+    Resout M u = d par l'algorithme de Thomas.
+    M : matrice tridiagonale N x N
+    d : vecteur second membre de taille N
+    Retourne : vecteur u de taille N
+    """
+    N = len(d)
+    # Extraction des diagonales
+    a = np.zeros(N)  # sous-diagonale (a[0] inutilise)
+    b = np.zeros(N)  # diagonale principale
+    c = np.zeros(N)  # sur-diagonale (c[N-1] inutilise)
+    for i in range(N):
+        b[i] = M[i, i]
+    for i in range(N - 1):
+        c[i] = M[i, i + 1]
+    for i in range(1, N):
+        a[i] = M[i, i - 1]
+
+    # Phase avant : calcul des c' et d'
+    cp = np.zeros(N)   # c prime
+    dp = np.zeros(N)   # d prime
+
+    cp[0] = c[0] / b[0]
+    dp[0] = d[0] / b[0]
+
+    for i in range(1, N):
+        denom = b[i] - a[i] * cp[i - 1]
+        if i < N - 1:
+            cp[i] = c[i] / denom
+        dp[i] = (d[i] - a[i] * dp[i - 1]) / denom
+
+    # Phase arriere : calcul de u
+    u = np.zeros(N)
+    u[N - 1] = dp[N - 1]
+    for i in range(N - 2, -1, -1):
+        u[i] = dp[i] - cp[i] * u[i + 1]
+
+    return u</code></pre>
+      </div>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Piege classique</div>
+        Attention aux indices ! En Python, les tableaux commencent a 0. L'indice \(i = 1\) de l'enonce correspond a l'indice 0 en Python. La boucle arriere va de \(N-2\) a 0 (inclus), d'ou le <code>range(N-2, -1, -1)</code>.
+      </div>
+    </div>
+
+    <!-- ======== II.B.3.e. Fonction schema_implicite ======== -->
+    <h4 style="color:#374151; margin-top:1.5rem;">II.B.3.e. Elaboration de la fonction <code>schema_implicite</code></h4>
+
+    <!-- Question II.B.3.e.i -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.3.e.<em>i</em>)</div>
+      <div class="corr-question__statement">Ecrire l'en-tete de la fonction en precisant les parametres d'entree et de sortie.</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>def schema_implicite(T0, Tint, Text2, r, N):
+    """
+    Parametres d'entree :
+      T0   : vecteur de dimension N, temperatures initiales aux points interieurs
+      Tint : temperature interieure (condition en x=0)
+      Text2: temperature exterieure (condition en x=e)
+      r    : parametre r = dt / (a * dx**2)
+      N    : nombre de points interieurs
+    Parametres de sortie :
+      T_tous_k : matrice N x ItMax, profils de temperature a chaque instant
+      nbIter   : nombre d'iterations reellement effectuees
+    """</code></pre>
+      </div>
+    </div>
+
+    <!-- Question II.B.3.e.ii -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.3.e.<em>ii</em>)</div>
+      <div class="corr-question__statement">Affecter la valeur 2 000 a <code>ItMax</code>. Creer la matrice <code>T_tous_k</code> dont les dimensions sont \(N \times ItMax\) en la remplissant de zeros.</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    ItMax = 2000
+    T_tous_k = np.zeros((N, ItMax))</code></pre>
+      </div>
+    </div>
+
+    <!-- Question II.B.3.e.iii -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.3.e.<em>iii</em>)</div>
+      <div class="corr-question__statement">Remplacer la 1\(^{ere}\) colonne de <code>T_tous_k</code> par le vecteur des valeurs initiales \(T0\).</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    T_tous_k[:, 0] = T0</code></pre>
+      </div>
+    </div>
+
+    <!-- Question II.B.3.e.iv -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.B.3.e.<em>iv</em>)</div>
+      <div class="corr-question__statement">Definir la matrice \(M\) et le vecteur \(\boldsymbol{v}\) qui interviennent dans l'equation (4).</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On construit en Python la matrice tridiagonale \(M\) et le vecteur \(v\) determines a la question II.B.3.c. Ces objets sont constants (independants de \(k\)) et peuvent etre construits une seule fois avant la boucle temporelle.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    # Construction de la matrice M (tridiagonale N x N)
+    M = np.zeros((N, N))
+    for i in range(N):
+        M[i, i] = 1 + 2 * r          # diagonale principale
+    for i in range(N - 1):
+        M[i, i + 1] = -r              # sur-diagonale
+        M[i + 1, i] = -r              # sous-diagonale
+
+    # Construction du vecteur v
+    v = np.zeros(N)
+    v[0] = Tint
+    v[N - 1] = Text2</code></pre>
+      </div>
+    </div>
+
+    <!-- Question II.B.3.e.v -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.B.3.e.<em>v</em>)</div>
+      <div class="corr-question__statement">Calculer le profil de temperature a l'instant \(k = 1\) (\(t = \Delta t\)). Affecter ces valeurs a la deuxieme colonne de <code>T_tous_k</code>.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On doit resoudre \(M\,T^1 = T^0 + r\,v\) en utilisant la fonction <code>CalcTkp1</code>. Le second membre est \(T^0 + r\,v\) que l'on calcule d'abord.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    # Second membre : T^0 + r * v
+    d = T_tous_k[:, 0] + r * v
+    # Resolution par l'algorithme de Thomas
+    T_tous_k[:, 1] = CalcTkp1(M, d)</code></pre>
+      </div>
+    </div>
+
+    <!-- Question II.B.3.e.vi -->
+    <div class="corr-question corr-question--hard">
+      <div class="corr-question__num">Question II.B.3.e.<em>vi</em>)</div>
+      <div class="corr-question__statement">Elaborer une boucle permettant de calculer iterativement le profil de temperature aux instants obtenus \(t_k = k \times \Delta t\) avec \(k \geq 2\), en prevoyant un arret lorsque la norme 2 du vecteur \(\boldsymbol{T}^k - \boldsymbol{T}^{k-1}\) deviendra inferieure a \(10^{-5}\) ou lorsque le nombre d'iterations atteindra la valeur <code>ItMax</code> (prevoir les deux cas). Utiliser pour cela la fonction <code>calc_norme</code> definie a la question II.B.2.j.(vi).</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    nbIter = 1
+    k = 1
+    ecart = 1.0
+
+    while ecart > 1e-5 and k < ItMax - 1:
+        k = k + 1
+        # Second membre : T^{k-1} + r * v
+        d = T_tous_k[:, k - 1] + r * v
+        # Resolution par Thomas
+        T_tous_k[:, k] = CalcTkp1(M, d)
+        # Calcul de l'ecart
+        ecart = calc_norme(T_tous_k[:, k] - T_tous_k[:, k - 1])
+        nbIter = nbIter + 1</code></pre>
+      </div>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">Methode : comparaison explicite vs implicite</div>
+        <ul>
+          <li><strong>Schema explicite</strong> : simple a programmer (pas de systeme a resoudre), mais impose \(r < 1/2\), ce qui peut necessiter beaucoup de pas de temps.</li>
+          <li><strong>Schema implicite</strong> : necessite la resolution d'un systeme lineaire a chaque pas de temps, mais est <strong>inconditionnellement stable</strong> (pas de condition sur \(r\)). On peut utiliser de grands pas de temps.</li>
+          <li>Pour un meme temps physique final, le schema implicite avec un grand \(\Delta t\) sera souvent plus rapide malgre le cout par iteration plus eleve.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Question II.B.3.e.vii -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.B.3.e.<em>vii</em>)</div>
+      <div class="corr-question__statement">Ecrire la fin de la fonction afin de renvoyer tous les arguments de sortie definis au debut de la question II.B.2.j.</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>    return T_tous_k, nbIter</code></pre>
+      </div>
+    </div>
+
+    <!-- ======== II.C. Programme principal ======== -->
+    <h3 class="corr-part">II.C. Programme principal</h3>
+
+    <h4 style="color:#374151; margin-top:1.5rem;">II.C.1. Debut du programme</h4>
+
+    <!-- Question II.C.1.a -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.C.1.a.</div>
+      <div class="corr-question__statement">Definir les variables <code>epais</code> (epaisseur du mur), <code>conduc</code> (conductivite thermique), <code>rho</code> (masse volumique), <code>Cp</code> (capacite thermique massique), <code>Tint</code> (temperature interieure), <code>Text1</code> (temperature exterieure pour les instants \(t < 0\)), <code>Text2</code> (temperature exterieure pour les instants \(t > 0\)), \(N\) (nombre de points de calcul a l'interieur du mur) et <code>dt</code> (intervalle de temps elementaire) et leur affecter les valeurs correspondant au probleme physique defini au debut de l'enonce. On prendra un nombre de points de discretisation \(N = 60\) et un pas de temps \(\Delta t\) de 25 secondes.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On initialise toutes les constantes physiques du probleme. Il faut bien utiliser le systeme international (metres, secondes, etc.) pour la coherence des unites.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Donnees physiques
+epais = 0.40          # epaisseur du mur en m
+conduc = 1.65         # conductivite thermique en W/(m.K)
+rho = 2150.0          # masse volumique en kg/m^3
+Cp = 1000.0           # capacite thermique massique en J/(kg.K)
+Tint = 20.0           # temperature interieure en degres C
+Text1 = 10.0          # temperature exterieure pour t < 0 en degres C
+Text2 = -10.0         # temperature exterieure pour t > 0 en degres C
+
+# Parametres numeriques
+N = 60                # nombre de points interieurs
+dt = 25.0             # pas de temps en secondes</code></pre>
+      </div>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Piege classique</div>
+        Attention aux unites ! L'epaisseur doit etre en metres (0.40 m, pas 40 cm). La conductivite thermique \(\lambda\) s'exprime en W.m\(^{-1}\).K\(^{-1}\). L'enonce indique W.m\(^{-2}\).K\(^{-1}\), ce qui est vraisemblablement une coquille dans l'enonce (la bonne unite pour une conductivite thermique est bien W.m\(^{-1}\).K\(^{-1}\)).
+      </div>
+    </div>
+
+    <!-- Question II.C.1.b -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.C.1.b.</div>
+      <div class="corr-question__statement">Calculer les coefficients \(a\) et \(b\) avec la formule trouvee a la question II.A.2.</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code># Coefficients de la condition initiale T(x,0) = a_init * x + b_init
+a_init = (Text1 - Tint) / epais    # pente du profil initial = -25 degres/m
+b_init = Tint                       # ordonnee a l'origine = 20 degres C</code></pre>
+      </div>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Piege classique</div>
+        Pour eviter la confusion avec le \(a\) de l'equation (1), on a nomme ces variables <code>a_init</code> et <code>b_init</code>.
+      </div>
+    </div>
+
+    <!-- Question II.C.1.c -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.C.1.c.</div>
+      <div class="corr-question__statement">Creer un vecteur \(x\) dont les elements \(x_1, x_2, ..., x_N\) sont definis a la question II.B.1.b.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On cree le vecteur des positions des \(N\) points interieurs. On n'inclut pas les bords \(x_0 = 0\) et \(x_{N+1} = e\) car leur temperature est fixee par les conditions aux limites.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>dx = epais / (N + 1)                            # pas d'espace
+x = np.array([i * dx for i in range(1, N + 1)]) # positions x_1 a x_N</code></pre>
+        <p>Alternative avec <code>linspace</code> : <code>x = np.linspace(dx, N * dx, N)</code></p>
+      </div>
+    </div>
+
+    <!-- Question II.C.1.d -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.C.1.d.</div>
+      <div class="corr-question__statement">Calculer le vecteur des temperatures initiales \(T0\).</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>T0 = a_init * x + b_init   # T(x, 0) = a_init * x + b_init pour chaque x_i</code></pre>
+      </div>
+    </div>
+
+    <!-- Question II.C.1.e -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.C.1.e.</div>
+      <div class="corr-question__statement">Calculer <code>alpha</code> selon la formule trouvee a la question II.A.1. Calculer \(r\) en utilisant la formule calculee a la question II.B.2.h.</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>alpha = rho * Cp / conduc   # constante a de l'equation (1)
+r = dt / (alpha * dx**2)    # parametre r du schema numerique</code></pre>
+        <p>Application numerique :</p>
+        <ul>
+          <li>\(\alpha = \dfrac{2150 \times 1000}{1{,}65} \approx 1{,}303 \times 10^6\) s/m\(^2\)</li>
+          <li>\(\Delta x = \dfrac{0{,}4}{61} \approx 6{,}557 \times 10^{-3}\) m</li>
+          <li>\(r = \dfrac{25}{1{,}303 \times 10^6 \times (6{,}557 \times 10^{-3})^2} \approx \dfrac{25}{56{,}0} \approx 0{,}446\)</li>
+        </ul>
+        <p>On a bien \(r < 0{,}5\) : le schema explicite sera stable.</p>
+      </div>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Piege classique</div>
+        Ne pas confondre la variable <code>alpha</code> (qui vaut \(a = \rho c_p / \lambda\)) avec la diffusivite thermique (qui vaut \(\lambda / (\rho c_p)\)). L'enonce utilise la lettre \(a\) pour l'inverse de la diffusivite. On a choisi le nom <code>alpha</code> pour eviter la collision avec le <code>a_init</code> de la question precedente.
+      </div>
+    </div>
+
+    <!-- ======== II.C.2. Calcul des temperatures ======== -->
+    <h4 style="color:#374151; margin-top:1.5rem;">II.C.2. Calcul des temperatures</h4>
+
+    <!-- Question II.C.2.a -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.C.2.a.</div>
+      <div class="corr-question__statement">Ecrire un morceau de programme qui demande a l'utilisateur quel schema (explicite ou implicite) il souhaite utiliser et qui appelle la fonction correspondante.</div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>choix = input("Quel schema souhaitez-vous utiliser ? (explicite/implicite) : ")
+
+if choix == "explicite":
+    T_tous_k, nbIter = schema_explicite(T0, Tint, Text2, r, N)
+elif choix == "implicite":
+    T_tous_k, nbIter = schema_implicite(T0, Tint, Text2, r, N)
+else:
+    print("Choix non reconnu. Veuillez entrer 'explicite' ou 'implicite'.")</code></pre>
+      </div>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">Methode : interaction utilisateur en Python</div>
+        La fonction <code>input()</code> affiche un message et attend que l'utilisateur tape une reponse. En Python 3, <code>input()</code> renvoie toujours une chaine de caracteres. On la compare ensuite avec des tests <code>if/elif/else</code>.
+      </div>
+    </div>
+
+    <!-- ======== II.C.3. Analyse du resultat ======== -->
+    <h4 style="color:#374151; margin-top:1.5rem;">II.C.3. Analyse du resultat</h4>
+
+    <!-- Question II.C.3.a -->
+    <div class="corr-question corr-question--medium">
+      <div class="corr-question__num">Question II.C.3.a.</div>
+      <div class="corr-question__statement">Ecrire un morceau de programme permettant de tracer sur un meme graphique le profil de temperature en fonction de \(x\) tous les 100 pas de temps.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        On veut visualiser l'evolution du profil de temperature au cours du temps. Tracer tous les profils serait illisible, donc on en trace un tous les 100 pas de temps. On utilise <code>matplotlib</code> pour cela.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>for k in range(0, nbIter, 100):
+    plt.plot(x, T_tous_k[:, k])
+
+plt.xlabel('x (m)')
+plt.ylabel('T (degres C)')
+plt.show()</code></pre>
+      </div>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Piege classique</div>
+        Attention : on trace seulement les <code>nbIter</code> premieres colonnes de <code>T_tous_k</code>, pas les 2000 ! Les colonnes au-dela de <code>nbIter</code> sont restees a zero et fausseraient le graphique.
+      </div>
+    </div>
+
+    <!-- Question II.C.3.b -->
+    <div class="corr-question corr-question--easy">
+      <div class="corr-question__num">Question II.C.3.b.</div>
+      <div class="corr-question__statement">Faire afficher le temps en heures au bout duquel le regime permanent est etabli.</div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ca</div>
+        Le nombre d'iterations <code>nbIter</code> nous donne le nombre de pas de temps necessaires. Le temps physique est \(t = \text{nbIter} \times \Delta t\) en secondes. On le convertit en heures en divisant par 3600.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Resultat (Python)</div>
+<pre><code>temps_heures = nbIter * dt / 3600.0
+print("Le regime permanent est etabli au bout de", temps_heures, "heures.")</code></pre>
+      </div>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">Methode : estimation de l'ordre de grandeur</div>
+        Le temps caracteristique de diffusion a travers le mur est \(\tau \sim \dfrac{e^2}{\alpha_{\text{diff}}}\) ou \(\alpha_{\text{diff}} = \dfrac{\lambda}{\rho\,c_p} \approx \dfrac{1{,}65}{2{,}15 \times 10^6} \approx 7{,}67 \times 10^{-7}\) m\(^2\)/s. Donc \(\tau \sim \dfrac{(0{,}4)^2}{7{,}67 \times 10^{-7}} \approx 2{,}09 \times 10^5\) s \(\approx 58\) heures. On s'attend donc a un temps de mise en regime permanent de l'ordre de <strong>quelques dizaines d'heures</strong>, ce qui est physiquement raisonnable pour un mur epais en beton.
+      </div>
+    </div>
+
+  </div><!-- fin corr-exercice Partie II -->
+
+</main>
+</body>
+</html>

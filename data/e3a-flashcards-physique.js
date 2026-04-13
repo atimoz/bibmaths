@@ -1,352 +1,342 @@
 var E3A_FLASHCARDS_PHYSIQUE = [
 
   // ═══════════════════════════════════════════════════════════════
-  //  ÉLECTROMAGNÉTISME / OEM — 8 cartes
+  //  ÉLECTROMAGNÉTISME / OEM — 10 cartes
   // ═══════════════════════════════════════════════════════════════
 
   {
     id: "e3a-phys-em-01",
     theme: "em",
     themeColor: "#E91E63",
-    q: "Écrire les <b>quatre équations de Maxwell</b> dans le vide en présence de charges et courants.",
-    a: "$$\\vec{\\nabla} \\cdot \\vec{E} = \\frac{\\rho}{\\varepsilon_0}$$ $$\\vec{\\nabla} \\cdot \\vec{B} = 0$$ $$\\vec{\\nabla} \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}$$ $$\\vec{\\nabla} \\times \\vec{B} = \\mu_0 \\vec{j} + \\mu_0 \\varepsilon_0 \\frac{\\partial \\vec{E}}{\\partial t}$$",
-    hint: "Maxwell-Gauss, flux magnétique, Maxwell-Faraday, Maxwell-Ampère"
+    q: "Écrire l'équation de <b>Maxwell-Gauss</b> (forme locale). Quelle est sa signification physique ?",
+    a: "$$\\vec{\\nabla} \\cdot \\vec{E} = \\frac{\\rho}{\\varepsilon_0}$$ Les <b>charges électriques</b> sont les sources du champ \\(\\vec{E}\\). En forme intégrale (théorème de Gauss) : $$\\oiint \\vec{E} \\cdot d\\vec{S} = \\frac{Q_{int}}{\\varepsilon_0}$$ Le flux de \\(\\vec{E}\\) à travers une surface fermée est proportionnel à la charge intérieure.",
+    hint: "div E = ρ/ε₀, les charges sont sources de E"
   },
   {
     id: "e3a-phys-em-02",
     theme: "em",
     themeColor: "#E91E63",
-    q: "Donner l'expression du <b>vecteur de Poynting</b> et son interprétation physique.",
-    a: "$$\\vec{\\Pi} = \\frac{1}{\\mu_0} \\vec{E} \\times \\vec{B}$$ Il représente la <b>densité surfacique de puissance</b> transportée par l'onde électromagnétique (en W/m²). Son flux à travers une surface donne la puissance rayonnée.",
-    hint: "Produit vectoriel de E et B, divisé par μ₀"
+    q: "Écrire l'équation de <b>Maxwell-Thomson</b> (conservation du flux magnétique). Quelle conséquence physique ?",
+    a: "$$\\vec{\\nabla} \\cdot \\vec{B} = 0$$ Le champ \\(\\vec{B}\\) est à <b>flux conservatif</b> : il n'existe pas de monopôle magnétique. Les lignes de champ de \\(\\vec{B}\\) se referment toujours sur elles-mêmes. En forme intégrale : $$\\oiint \\vec{B} \\cdot d\\vec{S} = 0$$",
+    hint: "div B = 0, pas de monopôle magnétique"
   },
   {
     id: "e3a-phys-em-03",
     theme: "em",
     themeColor: "#E91E63",
-    q: "Établir l'<b>équation de propagation</b> (équation de d'Alembert) pour \\(\\vec{E}\\) dans le vide sans sources.",
-    a: "À partir de Maxwell-Faraday et Maxwell-Ampère sans sources : $$\\Delta \\vec{E} - \\mu_0 \\varepsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2} = \\vec{0}$$ On identifie la célérité : \\(c = \\frac{1}{\\sqrt{\\mu_0 \\varepsilon_0}}\\).",
-    hint: "Prendre le rotationnel de Maxwell-Faraday"
+    q: "Écrire l'équation de <b>Maxwell-Faraday</b> (forme locale). Quel phénomène décrit-elle ?",
+    a: "$$\\vec{\\nabla} \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}$$ Un champ magnétique variable dans le temps <b>induit</b> un champ électrique à circulation non nulle. C'est le fondement de l'<b>induction électromagnétique</b>. En forme intégrale : $$\\oint \\vec{E} \\cdot d\\vec{l} = -\\frac{d\\Phi_B}{dt}$$",
+    hint: "rot E = −∂B/∂t, induction"
   },
   {
     id: "e3a-phys-em-04",
     theme: "em",
     themeColor: "#E91E63",
-    q: "Pour une OPPM se propageant selon \\(\\vec{u_z}\\), donner la <b>relation de structure</b> entre \\(\\vec{E}\\) et \\(\\vec{B}\\).",
-    a: "$$\\vec{B} = \\frac{1}{c} \\vec{u_z} \\times \\vec{E} = \\frac{\\vec{k} \\times \\vec{E}}{\\omega}$$ \\(\\vec{E}\\), \\(\\vec{B}\\) et \\(\\vec{u_z}\\) forment un trièdre direct. L'onde est <b>transverse</b> : \\(\\vec{E} \\perp \\vec{k}\\) et \\(\\vec{B} \\perp \\vec{k}\\).",
-    hint: "B = (1/c) u × E"
+    q: "Écrire l'équation de <b>Maxwell-Ampère</b> (forme locale). Quel terme a ajouté Maxwell et pourquoi ?",
+    a: "$$\\vec{\\nabla} \\times \\vec{B} = \\mu_0 \\vec{j} + \\mu_0 \\varepsilon_0 \\frac{\\partial \\vec{E}}{\\partial t}$$ Maxwell a ajouté le <b>courant de déplacement</b> \\(\\varepsilon_0 \\frac{\\partial \\vec{E}}{\\partial t}\\) pour assurer la <b>conservation de la charge</b> (compatibilité avec \\(\\vec{\\nabla} \\cdot \\vec{j} + \\frac{\\partial \\rho}{\\partial t} = 0\\)). Ce terme permet l'existence des <b>ondes EM</b>.",
+    hint: "rot B = μ₀j + μ₀ε₀ ∂E/∂t, courant de déplacement"
   },
   {
     id: "e3a-phys-em-05",
     theme: "em",
     themeColor: "#E91E63",
-    q: "Qu'est-ce que l'<b>effet de peau</b> ? Donner l'expression de l'épaisseur de peau \\(\\delta\\).",
-    a: "Dans un conducteur ohmique soumis à un champ EM variable, le courant se concentre en surface. L'épaisseur de peau vaut : $$\\delta = \\sqrt{\\frac{2}{\\mu_0 \\sigma \\omega}}$$ où \\(\\sigma\\) est la conductivité et \\(\\omega\\) la pulsation. L'amplitude décroît en \\(e^{-z/\\delta}\\).",
-    hint: "Décroissance exponentielle, dépend de σ et ω"
+    q: "Donner l'expression du <b>vecteur de Poynting</b> et écrire l'équation locale de conservation de l'énergie EM.",
+    a: "$$\\vec{\\Pi} = \\frac{1}{\\mu_0} \\vec{E} \\times \\vec{B}$$ Il représente la <b>densité surfacique de puissance</b> transportée par l'onde (W/m²). Équation de Poynting : $$\\frac{\\partial u_{em}}{\\partial t} + \\vec{\\nabla} \\cdot \\vec{\\Pi} = -\\vec{j} \\cdot \\vec{E}$$ avec \\(u_{em} = \\frac{1}{2}\\varepsilon_0 E^2 + \\frac{B^2}{2\\mu_0}\\).",
+    hint: "Π = (1/μ₀) E × B, puissance surfacique"
   },
   {
     id: "e3a-phys-em-06",
     theme: "em",
     themeColor: "#E91E63",
-    q: "Donner l'expression de la <b>densité volumique d'énergie électromagnétique</b> et écrire l'équation locale de conservation de l'énergie (Poynting).",
-    a: "Densité d'énergie : $$u_{em} = \\frac{1}{2}\\varepsilon_0 E^2 + \\frac{B^2}{2\\mu_0}$$ Équation de Poynting : $$\\frac{\\partial u_{em}}{\\partial t} + \\vec{\\nabla} \\cdot \\vec{\\Pi} = -\\vec{j} \\cdot \\vec{E}$$ Le terme \\(-\\vec{j} \\cdot \\vec{E}\\) est la puissance volumique cédée aux charges.",
-    hint: "u = ε₀E²/2 + B²/(2μ₀)"
+    q: "Pour une OPPM se propageant selon \\(\\vec{u_z}\\), donner la <b>relation de structure</b> entre \\(\\vec{E}\\) et \\(\\vec{B}\\).",
+    a: "$$\\vec{B} = \\frac{1}{c} \\vec{u_z} \\times \\vec{E} = \\frac{\\vec{k} \\times \\vec{E}}{\\omega}$$ \\(\\vec{E}\\), \\(\\vec{B}\\) et \\(\\vec{u_z}\\) forment un <b>trièdre direct</b>. L'onde est <b>transverse</b> : \\(\\vec{E} \\perp \\vec{k}\\) et \\(\\vec{B} \\perp \\vec{k}\\). Les amplitudes vérifient \\(B_0 = E_0/c\\).",
+    hint: "B = (1/c) u × E, onde transverse"
   },
   {
     id: "e3a-phys-em-07",
     theme: "em",
     themeColor: "#E91E63",
-    q: "Donner la <b>puissance moyenne rayonnée</b> par un dipôle oscillant \\(\\vec{p} = p_0 \\cos(\\omega t) \\vec{u_z}\\).",
-    a: "$$\\langle P \\rangle = \\frac{p_0^2 \\omega^4}{12 \\pi \\varepsilon_0 c^3}$$ La puissance rayonnée est proportionnelle à \\(\\omega^4\\) (loi en puissance quatrième), ce qui explique la <b>diffusion Rayleigh</b> (le ciel est bleu).",
-    hint: "Proportionnelle à ω⁴"
+    q: "Qu'est-ce que l'<b>effet de peau</b> ? Donner l'expression de l'épaisseur de peau \\(\\delta\\).",
+    a: "Dans un conducteur ohmique soumis à un champ EM variable, le courant se <b>concentre en surface</b>. L'épaisseur de peau vaut : $$\\delta = \\sqrt{\\frac{2}{\\mu_0 \\sigma \\omega}}$$ où \\(\\sigma\\) est la conductivité et \\(\\omega\\) la pulsation. L'amplitude décroît en \\(e^{-z/\\delta}\\). Plus \\(\\omega\\) est grand, plus \\(\\delta\\) est petit.",
+    hint: "δ = √(2/(μ₀σω)), décroissance exponentielle"
   },
   {
     id: "e3a-phys-em-08",
     theme: "em",
     themeColor: "#E91E63",
-    q: "Écrire la <b>relation de dispersion</b> d'une OEM dans un plasma non collisionnel. Qu'est-ce que la <b>fréquence de coupure</b> ?",
-    a: "$$\\omega^2 = \\omega_p^2 + c^2 k^2$$ avec la pulsation plasma : $$\\omega_p = \\sqrt{\\frac{n_e e^2}{m_e \\varepsilon_0}}$$ Si \\(\\omega < \\omega_p\\), l'onde est <b>évanescente</b> (\\(k\\) imaginaire). Le plasma est un <b>filtre passe-haut</b>.",
-    hint: "ω² = ωₚ² + c²k², filtre passe-haut"
+    q: "Donner les expressions des <b>densités volumiques d'énergie</b> électrique et magnétique. Que vaut leur rapport pour une OPPM ?",
+    a: "$$u_E = \\frac{1}{2}\\varepsilon_0 E^2 \\qquad u_B = \\frac{B^2}{2\\mu_0}$$ $$u_{em} = u_E + u_B$$ Pour une OPPM dans le vide, comme \\(B = E/c\\) et \\(c = 1/\\sqrt{\\mu_0\\varepsilon_0}\\) : $$u_E = u_B$$ Il y a <b>équipartition</b> de l'énergie entre les composantes électrique et magnétique.",
+    hint: "u = ε₀E²/2 + B²/(2μ₀), équipartition pour OPPM"
+  },
+  {
+    id: "e3a-phys-em-09",
+    theme: "em",
+    themeColor: "#E91E63",
+    q: "Donner les <b>conditions aux limites</b> du champ EM à l'interface entre deux milieux (composantes tangentielle et normale).",
+    a: "En l'absence de charges et courants surfaciques :<br>• \\(E_{t1} = E_{t2}\\) — composante <b>tangentielle de E</b> continue<br>• \\(B_{n1} = B_{n2}\\) — composante <b>normale de B</b> continue<br>• \\(\\varepsilon_1 E_{n1} = \\varepsilon_2 E_{n2}\\) — discontinuité de \\(E_n\\) liée à \\(\\varepsilon\\)<br>• \\(\\frac{B_{t1}}{\\mu_1} = \\frac{B_{t2}}{\\mu_2}\\) — discontinuité de \\(B_t\\) liée à \\(\\mu\\)",
+    hint: "Et continue, Bn continue"
+  },
+  {
+    id: "e3a-phys-em-10",
+    theme: "em",
+    themeColor: "#E91E63",
+    q: "Qu'est-ce que la <b>pression de radiation</b> ? Donner son expression pour une onde arrivant sur un miroir parfait.",
+    a: "La pression de radiation est la <b>force par unité de surface</b> exercée par une onde EM sur un obstacle. Pour une onde d'intensité moyenne \\(\\langle \\Pi \\rangle\\) :<br>• <b>Absorption totale</b> : $$P_{rad} = \\frac{\\langle \\Pi \\rangle}{c}$$<br>• <b>Réflexion totale</b> (miroir parfait) : $$P_{rad} = \\frac{2\\langle \\Pi \\rangle}{c}$$ Le facteur 2 vient du <b>transfert d'impulsion</b> doublé lors de la réflexion.",
+    hint: "P = ⟨Π⟩/c (absorption), 2⟨Π⟩/c (réflexion)"
   },
 
   // ═══════════════════════════════════════════════════════════════
-  //  MÉCANIQUE / GRAVITATION — 8 cartes
+  //  MÉCANIQUE / GRAVITATION — 10 cartes
   // ═══════════════════════════════════════════════════════════════
 
   {
     id: "e3a-phys-meca-01",
     theme: "mecanique",
     themeColor: "#4A90D9",
-    q: "Énoncer les <b>trois lois de Kepler</b> pour le mouvement des planètes.",
-    a: "<b>1ère loi (orbites)</b> : les planètes décrivent des ellipses dont le Soleil occupe un foyer.<br><b>2ème loi (aires)</b> : le rayon vecteur balaie des aires égales en des temps égaux.<br><b>3ème loi (périodes)</b> : $$\\frac{T^2}{a^3} = \\frac{4\\pi^2}{G M}$$ où \\(a\\) est le demi-grand axe.",
-    hint: "Ellipses, aires, T²/a³ = cste"
+    q: "Énoncer la <b>1ère loi de Kepler</b> (loi des orbites).",
+    a: "Les planètes décrivent des <b>ellipses</b> dont le Soleil occupe l'un des <b>foyers</b>. L'équation de la trajectoire en coordonnées polaires : $$r(\\theta) = \\frac{p}{1 + e\\cos\\theta}$$ avec \\(p = L^2/(GMm^2)\\) le paramètre et \\(e\\) l'excentricité (\\(0 \\leq e < 1\\) pour une ellipse).",
+    hint: "Ellipses, Soleil au foyer"
   },
   {
     id: "e3a-phys-meca-02",
     theme: "mecanique",
     themeColor: "#4A90D9",
-    q: "Donner l'expression de l'<b>énergie potentielle effective</b> pour un problème à force centrale en \\(1/r^2\\). Tracer son allure.",
-    a: "$$E_{p,\\text{eff}}(r) = -\\frac{G M m}{r} + \\frac{L^2}{2 m r^2}$$ Le premier terme est attractif (gravitation), le second est la <b>barrière centrifuge</b> (répulsif). Le minimum de \\(E_{p,\\text{eff}}\\) correspond à l'<b>orbite circulaire</b>.",
-    hint: "Gravitation + barrière centrifuge en L²/(2mr²)"
+    q: "Énoncer la <b>2ème loi de Kepler</b> (loi des aires). Quelle grandeur est conservée ?",
+    a: "Le <b>rayon vecteur</b> Soleil-planète balaie des <b>aires égales en des temps égaux</b>. La vitesse aréolaire est constante : $$\\frac{dA}{dt} = \\frac{L}{2m} = \\text{cste}$$ C'est une conséquence directe de la <b>conservation du moment cinétique</b> \\(\\vec{L}\\), car la force gravitationnelle est centrale.",
+    hint: "Aires égales en temps égaux, conservation de L"
   },
   {
     id: "e3a-phys-meca-03",
     theme: "mecanique",
     themeColor: "#4A90D9",
-    q: "Exprimer le <b>moment cinétique</b> \\(\\vec{L}\\) par rapport à un point O et donner le théorème du moment cinétique.",
-    a: "$$\\vec{L}_O = \\vec{r} \\times m\\vec{v}$$ Théorème du moment cinétique : $$\\frac{d\\vec{L}_O}{dt} = \\vec{\\mathcal{M}}_O(\\vec{F})$$ où \\(\\vec{\\mathcal{M}}_O\\) est le moment des forces extérieures. Si \\(\\vec{\\mathcal{M}}_O = \\vec{0}\\), alors \\(\\vec{L}_O\\) est <b>conservé</b>.",
-    hint: "dL/dt = moment des forces"
+    q: "Énoncer la <b>3ème loi de Kepler</b> (loi des périodes). Comment la démontrer ?",
+    a: "$$\\frac{T^2}{a^3} = \\frac{4\\pi^2}{GM}$$ Le rapport \\(T^2/a^3\\) est le même pour toutes les planètes d'un même système. <b>Démonstration</b> (orbite circulaire) : on égale la force gravitationnelle et la force centripète : $$\\frac{GMm}{r^2} = m\\omega^2 r \\quad \\Rightarrow \\quad \\omega^2 = \\frac{GM}{r^3}$$ d'où \\(T = 2\\pi/\\omega\\).",
+    hint: "T²/a³ = 4π²/(GM), même pour toutes les planètes"
   },
   {
     id: "e3a-phys-meca-04",
     theme: "mecanique",
     themeColor: "#4A90D9",
-    q: "Donner l'expression du <b>moment d'inertie</b> d'une sphère homogène de masse \\(M\\) et rayon \\(R\\) par rapport à un axe passant par son centre. Énoncer le théorème de Huygens.",
-    a: "$$J_{\\Delta} = \\frac{2}{5} M R^2$$ <b>Théorème de Huygens</b> (axes parallèles) : $$J_{\\Delta'} = J_{\\Delta_G} + M d^2$$ où \\(d\\) est la distance entre l'axe \\(\\Delta'\\) et l'axe \\(\\Delta_G\\) passant par le centre de masse.",
-    hint: "2/5 MR² et théorème des axes parallèles"
+    q: "Donner l'expression de l'<b>énergie potentielle gravitationnelle</b> et l'énergie mécanique totale pour une orbite elliptique.",
+    a: "$$E_p(r) = -\\frac{GMm}{r}$$ L'énergie mécanique totale : $$E_m = \\frac{1}{2}mv^2 - \\frac{GMm}{r} = -\\frac{GMm}{2a}$$ où \\(a\\) est le demi-grand axe. On a \\(E_m < 0\\) pour une orbite <b>liée</b> (ellipse/cercle), \\(E_m = 0\\) pour la parabole, \\(E_m > 0\\) pour l'hyperbole.",
+    hint: "Ep = −GMm/r, Em = −GMm/(2a)"
   },
   {
     id: "e3a-phys-meca-05",
     theme: "mecanique",
     themeColor: "#4A90D9",
-    q: "Écrire le <b>PFD en référentiel non galiléen</b> en rotation uniforme \\(\\vec{\\Omega}\\). Identifier les forces d'inertie.",
-    a: "$$m\\vec{a}_{R'} = \\vec{F} - m\\vec{a}_e - m\\vec{a}_c$$ avec : <br>• Force d'inertie d'<b>entraînement</b> : \\(-m\\vec{a}_e = -m\\vec{\\Omega} \\times (\\vec{\\Omega} \\times \\vec{r})\\) (centrifuge)<br>• Force de <b>Coriolis</b> : \\(-m\\vec{a}_c = -2m\\vec{\\Omega} \\times \\vec{v}_{R'}\\)",
-    hint: "Entraînement (centrifuge) + Coriolis"
+    q: "Donner la <b>vitesse de libération</b> à la surface d'un astre de masse \\(M\\) et rayon \\(R\\).",
+    a: "On écrit la conservation de l'énergie avec \\(E_m = 0\\) (trajectoire parabolique, énergie minimale pour s'échapper) : $$\\frac{1}{2}mv_{lib}^2 - \\frac{GMm}{R} = 0$$ $$\\boxed{v_{lib} = \\sqrt{\\frac{2GM}{R}}}$$ Pour la Terre : \\(v_{lib} \\approx 11{,}2\\) km/s. C'est \\(\\sqrt{2}\\) fois la vitesse orbitale circulaire en surface.",
+    hint: "v = √(2GM/R), conservation de l'énergie"
   },
   {
     id: "e3a-phys-meca-06",
     theme: "mecanique",
     themeColor: "#4A90D9",
-    q: "Pour un <b>oscillateur harmonique amorti</b> \\(m\\ddot{x} + f\\dot{x} + kx = 0\\), donner le facteur de qualité \\(Q\\) et la condition de pseudo-période.",
-    a: "On pose \\(\\omega_0 = \\sqrt{k/m}\\) et \\(Q = \\frac{m\\omega_0}{f} = \\frac{\\sqrt{km}}{f}\\).<br><b>Régime pseudo-périodique</b> si \\(Q > 1/2\\). La pseudo-pulsation vaut : $$\\omega_1 = \\omega_0 \\sqrt{1 - \\frac{1}{4Q^2}}$$ Le décrément logarithmique : \\(\\delta = \\frac{\\pi}{Q\\sqrt{1 - 1/(4Q^2)}}\\).",
-    hint: "Q = mω₀/f, pseudo-périodique si Q > 1/2"
+    q: "Exprimer le <b>moment cinétique</b> \\(\\vec{L}\\) et montrer qu'il est conservé pour une <b>force centrale</b>.",
+    a: "$$\\vec{L}_O = \\vec{r} \\times m\\vec{v} = mr^2\\dot{\\theta}\\,\\vec{u_z}$$ Théorème du moment cinétique : \\(\\frac{d\\vec{L}}{dt} = \\vec{r} \\times \\vec{F}\\). Pour une force <b>centrale</b>, \\(\\vec{F} = F(r)\\vec{u_r}\\), donc : $$\\vec{r} \\times \\vec{F} = \\vec{0} \\quad \\Rightarrow \\quad \\vec{L} = \\text{cste}$$ Conséquences : mouvement <b>plan</b> et loi des aires.",
+    hint: "L = mr²θ̇, conservé si force centrale"
   },
   {
     id: "e3a-phys-meca-07",
     theme: "mecanique",
     themeColor: "#4A90D9",
-    q: "Donner la <b>vitesse de libération</b> (vitesse d'évasion) à la surface d'un astre de masse \\(M\\) et rayon \\(R\\).",
-    a: "On écrit la conservation de l'énergie avec \\(E = 0\\) à l'infini : $$\\frac{1}{2}mv_{lib}^2 - \\frac{GMm}{R} = 0$$ $$v_{lib} = \\sqrt{\\frac{2GM}{R}}$$ Pour la Terre : \\(v_{lib} \\approx 11{,}2 \\text{ km/s}\\).",
-    hint: "Conservation de l'énergie, E∞ = 0"
+    q: "Donner l'expression de l'<b>énergie potentielle effective</b> pour un problème à force centrale gravitationnelle. Tracer son allure.",
+    a: "$$E_{p,\\text{eff}}(r) = -\\frac{GMm}{r} + \\frac{L^2}{2mr^2}$$ Le premier terme est <b>attractif</b> (gravitation), le second est la <b>barrière centrifuge</b> (répulsif, \\(\\propto 1/r^2\\)). Le minimum de \\(E_{p,\\text{eff}}\\) correspond à l'<b>orbite circulaire</b> de rayon \\(r_0 = L^2/(GMm^2)\\).",
+    hint: "Gravitation + barrière centrifuge en L²/(2mr²)"
   },
   {
     id: "e3a-phys-meca-08",
     theme: "mecanique",
     themeColor: "#4A90D9",
-    q: "Donner l'équation de la <b>trajectoire</b> (formule de Binet) pour une force centrale gravitationnelle. Quels sont les types de trajectoires possibles ?",
-    a: "En posant \\(u = 1/r\\) : $$r(\\theta) = \\frac{p}{1 + e \\cos(\\theta - \\theta_0)}$$ avec \\(p = L^2/(GMm^2)\\) le paramètre et \\(e\\) l'excentricité.<br>• \\(e = 0\\) : cercle<br>• \\(0 < e < 1\\) : ellipse<br>• \\(e = 1\\) : parabole<br>• \\(e > 1\\) : hyperbole",
-    hint: "Conique : r = p/(1 + e cos θ)"
+    q: "Donner l'expression de l'<b>accélération en coordonnées polaires</b> \\((r, \\theta)\\).",
+    a: "$$\\vec{a} = (\\ddot{r} - r\\dot{\\theta}^2)\\,\\vec{u_r} + (r\\ddot{\\theta} + 2\\dot{r}\\dot{\\theta})\\,\\vec{u_\\theta}$$ • Composante <b>radiale</b> : \\(\\ddot{r} - r\\dot{\\theta}^2\\) (le terme \\(-r\\dot{\\theta}^2\\) est l'accélération centripète)<br>• Composante <b>orthoradiale</b> : \\(r\\ddot{\\theta} + 2\\dot{r}\\dot{\\theta} = \\frac{1}{r}\\frac{d(r^2\\dot{\\theta})}{dt}\\) (liée à la variation du moment cinétique)",
+    hint: "a_r = r̈ − rθ̇², a_θ = rθ̈ + 2ṙθ̇"
+  },
+  {
+    id: "e3a-phys-meca-09",
+    theme: "mecanique",
+    themeColor: "#4A90D9",
+    q: "Donner l'expression de la <b>force de Coriolis</b>. Quel est son effet sur un objet en mouvement à la surface de la Terre ?",
+    a: "$$\\vec{F}_{Cor} = -2m\\vec{\\Omega} \\times \\vec{v}_{R'}$$ Propriétés : toujours <b>perpendiculaire</b> à la vitesse (ne travaille pas), et à \\(\\vec{\\Omega}\\). À la surface de la Terre :<br>• Dévie les objets vers la <b>droite</b> dans l'hémisphère Nord<br>• Dévie vers la <b>gauche</b> dans l'hémisphère Sud<br>• Explique la rotation des cyclones et la déviation de Foucault.",
+    hint: "F = −2mΩ × v', déviation vers la droite (hém. Nord)"
+  },
+  {
+    id: "e3a-phys-meca-10",
+    theme: "mecanique",
+    themeColor: "#4A90D9",
+    q: "Écrire le <b>PFD en référentiel non galiléen</b> en rotation uniforme. Identifier les forces d'inertie.",
+    a: "$$m\\vec{a}_{R'} = \\vec{F} + \\vec{F}_{ie} + \\vec{F}_{ic}$$ • Force d'<b>entraînement</b> : $$\\vec{F}_{ie} = -m\\vec{\\Omega} \\times (\\vec{\\Omega} \\times \\vec{r})$$ dirigée vers l'extérieur (<b>centrifuge</b>)<br>• Force de <b>Coriolis</b> : $$\\vec{F}_{ic} = -2m\\vec{\\Omega} \\times \\vec{v}_{R'}$$ perpendiculaire à la vitesse relative.<br>La force centrifuge dérive d'une énergie potentielle : \\(E_{p,cf} = -\\frac{1}{2}m\\Omega^2 r^2\\).",
+    hint: "Centrifuge + Coriolis, PFD modifié"
   },
 
   // ═══════════════════════════════════════════════════════════════
-  //  THERMODYNAMIQUE — 6 cartes
+  //  OSCILLATEURS / CIRCUITS — 10 cartes
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "e3a-phys-thermo-01",
-    theme: "thermo",
+    id: "e3a-phys-osc-01",
+    theme: "oscillateurs",
     themeColor: "#FF9800",
-    q: "Énoncer le <b>premier principe</b> de la thermodynamique pour un système fermé. Distinguer les conventions.",
-    a: "$$\\Delta U = W + Q$$ L'énergie interne \\(U\\) est une <b>fonction d'état</b>. \\(W\\) est le travail reçu et \\(Q\\) la chaleur reçue par le système (convention récepteur). Pour une transformation infinitésimale : \\(dU = \\delta W + \\delta Q\\).",
-    hint: "ΔU = W + Q, U fonction d'état"
+    q: "Écrire l'<b>équation différentielle de l'oscillateur harmonique</b> amorti. Quelle est la forme canonique ?",
+    a: "Forme canonique : $$\\ddot{x} + \\frac{\\omega_0}{Q}\\dot{x} + \\omega_0^2 x = 0$$ avec \\(\\omega_0 = \\sqrt{k/m}\\) la pulsation propre et \\(Q = m\\omega_0/f\\) le facteur de qualité (\\(f\\) coefficient de frottement). Solution générale : \\(x(t) = e^{-\\omega_0 t/(2Q)}\\left(A\\cos(\\omega_1 t) + B\\sin(\\omega_1 t)\\right)\\) avec \\(\\omega_1 = \\omega_0\\sqrt{1 - 1/(4Q^2)}\\).",
+    hint: "ẍ + (ω₀/Q)ẋ + ω₀²x = 0"
   },
   {
-    id: "e3a-phys-thermo-02",
-    theme: "thermo",
+    id: "e3a-phys-osc-02",
+    theme: "oscillateurs",
     themeColor: "#FF9800",
-    q: "Énoncer le <b>second principe</b> de la thermodynamique. Que vaut la création d'entropie pour une transformation réversible ?",
-    a: "$$\\Delta S = S_{éch} + S_{créée}$$ avec \\(S_{éch} = \\int \\frac{\\delta Q}{T_{ext}}\\) et \\(S_{créée} \\geq 0\\).<br>• Transformation <b>réversible</b> : \\(S_{créée} = 0\\)<br>• Transformation <b>irréversible</b> : \\(S_{créée} > 0\\)<br>L'entropie est une <b>fonction d'état</b> extensive.",
-    hint: "ΔS = Séch + Scréée ≥ Séch"
+    q: "Donner la définition et l'expression du <b>facteur de qualité</b> \\(Q\\) d'un oscillateur. Quelle est son interprétation physique ?",
+    a: "$$Q = \\frac{\\omega_0}{\\Delta\\omega} = \\frac{\\text{énergie stockée}}{\\text{énergie dissipée par cycle}} \\times 2\\pi$$ Pour un oscillateur mécanique : \\(Q = \\frac{m\\omega_0}{f} = \\frac{\\sqrt{km}}{f}\\). Pour un circuit RLC série : \\(Q = \\frac{L\\omega_0}{R} = \\frac{1}{R}\\sqrt{\\frac{L}{C}}\\). Un <b>grand Q</b> signifie peu d'amortissement et une résonance <b>aiguë</b>.",
+    hint: "Q = ω₀/Δω = énergie stockée / énergie dissipée × 2π"
   },
   {
-    id: "e3a-phys-thermo-03",
-    theme: "thermo",
+    id: "e3a-phys-osc-03",
+    theme: "oscillateurs",
     themeColor: "#FF9800",
-    q: "Donner le <b>rendement de Carnot</b> d'un moteur ditherme fonctionnant entre une source chaude \\(T_c\\) et une source froide \\(T_f\\).",
-    a: "$$\\eta_{Carnot} = 1 - \\frac{T_f}{T_c}$$ C'est le <b>rendement maximal</b> possible pour un moteur ditherme. Il est atteint uniquement pour un cycle <b>réversible</b>. Les températures sont en <b>kelvins</b>.",
-    hint: "η = 1 − Tf/Tc, rendement maximal"
+    q: "Décrire les <b>3 régimes d'amortissement</b> d'un oscillateur harmonique amorti selon la valeur de \\(Q\\).",
+    a: "Le discriminant dépend de \\(Q\\) :<br><br>• <b>Pseudo-périodique</b> (\\(Q > 1/2\\)) : oscillations amorties de pseudo-pulsation \\(\\omega_1 = \\omega_0\\sqrt{1 - 1/(4Q^2)}\\)<br><br>• <b>Critique</b> (\\(Q = 1/2\\)) : retour à l'équilibre le plus rapide sans oscillation, \\(x(t) = (A + Bt)e^{-\\omega_0 t}\\)<br><br>• <b>Apériodique</b> (\\(Q < 1/2\\)) : retour lent, somme de deux exponentielles décroissantes.",
+    hint: "Q > 1/2, Q = 1/2, Q < 1/2"
   },
   {
-    id: "e3a-phys-thermo-04",
-    theme: "thermo",
+    id: "e3a-phys-osc-04",
+    theme: "oscillateurs",
     themeColor: "#FF9800",
-    q: "Donner les expressions de \\(\\Delta U\\), \\(\\Delta H\\) et \\(\\Delta S\\) pour un <b>gaz parfait</b> entre deux états \\((T_1, V_1)\\) et \\((T_2, V_2)\\).",
-    a: "$$\\Delta U = n C_V (T_2 - T_1)$$ $$\\Delta H = n C_P (T_2 - T_1)$$ $$\\Delta S = n C_V \\ln\\frac{T_2}{T_1} + nR \\ln\\frac{V_2}{V_1}$$ avec \\(C_P - C_V = R\\) (relation de Mayer) et \\(\\gamma = C_P / C_V\\).",
-    hint: "Fonctions d'état → chemin quelconque, relation de Mayer"
+    q: "Distinguer la <b>résonance en amplitude</b> et la <b>résonance en vitesse</b> pour un oscillateur forcé.",
+    a: "<b>Résonance en amplitude</b> : le maximum de \\(|X|\\) est atteint à $$\\omega_A = \\omega_0\\sqrt{1 - \\frac{1}{2Q^2}}$$ Elle n'existe que si \\(Q > 1/\\sqrt{2}\\).<br><br><b>Résonance en vitesse</b> : le maximum de \\(|\\dot{X}|\\) est atteint exactement à $$\\omega_V = \\omega_0$$ Elle existe <b>toujours</b>, quel que soit \\(Q\\). À la résonance en vitesse, la puissance absorbée est maximale.",
+    hint: "ωA < ω₀ (si Q > 1/√2), ωV = ω₀ (toujours)"
   },
   {
-    id: "e3a-phys-thermo-05",
-    theme: "thermo",
+    id: "e3a-phys-osc-05",
+    theme: "oscillateurs",
     themeColor: "#FF9800",
-    q: "Donner l'expression de la <b>loi de Laplace</b> pour une transformation adiabatique réversible d'un gaz parfait.",
-    a: "$$T V^{\\gamma - 1} = \\text{cste}$$ $$P V^{\\gamma} = \\text{cste}$$ $$T^{\\gamma} P^{1-\\gamma} = \\text{cste}$$ avec \\(\\gamma = C_P / C_V\\). Pour un gaz monoatomique : \\(\\gamma = 5/3\\), diatomique : \\(\\gamma = 7/5\\).",
-    hint: "PVγ = cste, adiabatique réversible"
+    q: "Définir la <b>bande passante</b> d'un oscillateur ou d'un filtre. Quel est le lien avec \\(Q\\) ?",
+    a: "La bande passante \\(\\Delta\\omega\\) est l'intervalle de pulsations pour lequel le gain est supérieur à \\(G_{max} - 3\\) dB (soit \\(|H| \\geq |H|_{max}/\\sqrt{2}\\)). $$\\Delta\\omega = \\frac{\\omega_0}{Q} \\qquad \\text{soit} \\qquad \\Delta f = \\frac{f_0}{Q}$$ Plus \\(Q\\) est <b>grand</b>, plus la bande passante est <b>étroite</b> (résonance aiguë, système sélectif).",
+    hint: "Δω = ω₀/Q, −3 dB"
   },
   {
-    id: "e3a-phys-thermo-06",
-    theme: "thermo",
+    id: "e3a-phys-osc-06",
+    theme: "oscillateurs",
     themeColor: "#FF9800",
-    q: "Lors d'un <b>changement de phase</b> liquide→gaz, donner la relation de <b>Clausius-Clapeyron</b>.",
-    a: "$$\\frac{dP}{dT} = \\frac{L_{vap}}{T \\Delta v}$$ où \\(L_{vap}\\) est l'enthalpie massique de vaporisation et \\(\\Delta v = v_{gaz} - v_{liq}\\). Si on assimile la vapeur à un GP et qu'on néglige \\(v_{liq}\\) : $$\\frac{dP}{dT} \\approx \\frac{P L_{vap}}{RT^2}$$",
-    hint: "dP/dT = L/(TΔv)"
+    q: "Donner les <b>impédances complexes</b> de la résistance \\(R\\), de l'inductance \\(L\\) et du condensateur \\(C\\) en régime sinusoïdal.",
+    a: "$$\\underline{Z}_R = R$$ $$\\underline{Z}_L = jL\\omega$$ $$\\underline{Z}_C = \\frac{1}{jC\\omega} = \\frac{-j}{C\\omega}$$ \\(R\\) est <b>en phase</b> avec le courant, \\(L\\) fait <b>avancer</b> la tension de \\(\\pi/2\\), \\(C\\) fait <b>retarder</b> la tension de \\(\\pi/2\\). Les impédances s'ajoutent en série et les admittances en parallèle.",
+    hint: "R, jLω, 1/(jCω)"
+  },
+  {
+    id: "e3a-phys-osc-07",
+    theme: "oscillateurs",
+    themeColor: "#FF9800",
+    q: "Pour un circuit <b>RLC série</b>, donner la pulsation propre \\(\\omega_0\\), le facteur de qualité \\(Q\\), et la condition de résonance en intensité.",
+    a: "$$\\omega_0 = \\frac{1}{\\sqrt{LC}} \\qquad Q = \\frac{L\\omega_0}{R} = \\frac{1}{R}\\sqrt{\\frac{L}{C}}$$ Impédance : \\(\\underline{Z} = R + j(L\\omega - 1/(C\\omega))\\). <b>Résonance en intensité</b> quand \\(\\text{Im}(\\underline{Z}) = 0\\), soit \\(\\omega = \\omega_0\\). Alors \\(|\\underline{Z}| = R\\) (minimum) et l'intensité est <b>maximale</b>.",
+    hint: "ω₀ = 1/√(LC), Q = Lω₀/R"
+  },
+  {
+    id: "e3a-phys-osc-08",
+    theme: "oscillateurs",
+    themeColor: "#FF9800",
+    q: "Donner les <b>analogies mécanique-électrique</b> pour un oscillateur amorti.",
+    a: "<table style='text-align:center'><tr><td><b>Mécanique</b></td><td><b>Électrique</b></td></tr><tr><td>Position \\(x\\)</td><td>Charge \\(q\\)</td></tr><tr><td>Vitesse \\(\\dot{x}\\)</td><td>Intensité \\(i\\)</td></tr><tr><td>Masse \\(m\\)</td><td>Inductance \\(L\\)</td></tr><tr><td>Raideur \\(k\\)</td><td>\\(1/C\\)</td></tr><tr><td>Frottement \\(f\\)</td><td>Résistance \\(R\\)</td></tr><tr><td>Force \\(F\\)</td><td>Tension \\(e\\)</td></tr></table><br>L'équation \\(m\\ddot{x} + f\\dot{x} + kx = F\\) correspond à \\(L\\ddot{q} + R\\dot{q} + q/C = e\\).",
+    hint: "m↔L, k↔1/C, f↔R, x↔q, v↔i"
+  },
+  {
+    id: "e3a-phys-osc-09",
+    theme: "oscillateurs",
+    themeColor: "#FF9800",
+    q: "Qu'est-ce que le <b>couplage électromécanique</b> ? Donner un exemple avec un haut-parleur.",
+    a: "Le couplage électromécanique convertit l'énergie entre les domaines <b>électrique</b> et <b>mécanique</b>. Dans un <b>haut-parleur</b> : une bobine de longueur \\(\\ell\\) parcourue par \\(i\\) dans un champ \\(B\\) subit la force de Laplace : $$F = Bi\\ell$$ Réciproquement, le mouvement de la bobine induit une f.é.m. : $$e = -B\\ell v$$ Le système est décrit par deux équations couplées (mécanique + électrique).",
+    hint: "Force de Laplace + f.é.m. induite, énergie E↔M"
+  },
+  {
+    id: "e3a-phys-osc-10",
+    theme: "oscillateurs",
+    themeColor: "#FF9800",
+    q: "Donner la <b>fonction de transfert</b> d'un filtre passe-bas du 1er ordre (circuit RC). Tracer le diagramme de Bode asymptotique.",
+    a: "$$\\underline{H}(j\\omega) = \\frac{1}{1 + jRC\\omega} = \\frac{1}{1 + j\\omega/\\omega_c}$$ avec \\(\\omega_c = 1/(RC)\\).<br>• <b>BF</b> (\\(\\omega \\ll \\omega_c\\)) : \\(G \\approx 0\\) dB, \\(\\varphi \\approx 0\\)<br>• <b>HF</b> (\\(\\omega \\gg \\omega_c\\)) : pente \\(-20\\) dB/décade, \\(\\varphi \\to -\\pi/2\\)<br>• À \\(\\omega = \\omega_c\\) : \\(G = -3\\) dB, \\(\\varphi = -\\pi/4\\)",
+    hint: "H = 1/(1 + jω/ωc), −20 dB/déc, −3 dB à ωc"
   },
 
   // ═══════════════════════════════════════════════════════════════
-  //  ONDES / OSCILLATEURS / CIRCUITS — 6 cartes
-  // ═══════════════════════════════════════════════════════════════
-
-  {
-    id: "e3a-phys-ondes-01",
-    theme: "ondes",
-    themeColor: "#4CAF50",
-    q: "Écrire l'<b>équation de d'Alembert</b> à une dimension et donner la forme générale de sa solution.",
-    a: "$$\\frac{\\partial^2 y}{\\partial t^2} = c^2 \\frac{\\partial^2 y}{\\partial x^2}$$ Solution générale : $$y(x,t) = f(x - ct) + g(x + ct)$$ soit la superposition d'une onde progressive se propageant vers les \\(x > 0\\) et d'une vers les \\(x < 0\\).",
-    hint: "f(x−ct) + g(x+ct)"
-  },
-  {
-    id: "e3a-phys-ondes-02",
-    theme: "ondes",
-    themeColor: "#4CAF50",
-    q: "Pour un circuit <b>RLC série</b> en régime sinusoïdal forcé, donner l'<b>impédance complexe</b> et la condition de résonance en intensité.",
-    a: "$$\\underline{Z} = R + j\\left(L\\omega - \\frac{1}{C\\omega}\\right)$$ <b>Résonance en intensité</b> quand la partie imaginaire s'annule : $$\\omega_0 = \\frac{1}{\\sqrt{LC}}$$ À la résonance, \\(|\\underline{Z}| = R\\) (minimum) et \\(I\\) est <b>maximale</b>. Le facteur de qualité : \\(Q = \\frac{L\\omega_0}{R} = \\frac{1}{R}\\sqrt{\\frac{L}{C}}\\).",
-    hint: "Z = R + j(Lω − 1/(Cω)), résonance quand Im(Z) = 0"
-  },
-  {
-    id: "e3a-phys-ondes-03",
-    theme: "ondes",
-    themeColor: "#4CAF50",
-    q: "Donner la condition d'existence d'<b>ondes stationnaires</b> sur une corde fixée aux deux extrémités de longueur \\(L\\).",
-    a: "$$y(x,t) = A \\sin(k_n x) \\cos(\\omega_n t)$$ Conditions aux limites : \\(y(0,t) = y(L,t) = 0\\), d'où : $$k_n = \\frac{n\\pi}{L} \\quad \\Rightarrow \\quad f_n = \\frac{nc}{2L}, \\quad n \\in \\mathbb{N}^*$$ Le mode \\(n=1\\) est le <b>fondamental</b>, les suivants sont les <b>harmoniques</b>.",
-    hint: "Nœuds aux extrémités : fₙ = nc/(2L)"
-  },
-  {
-    id: "e3a-phys-ondes-04",
-    theme: "ondes",
-    themeColor: "#4CAF50",
-    q: "Dans un circuit RC série en régime transitoire, donner l'expression de la <b>tension aux bornes du condensateur</b> lors de la charge sous tension \\(E\\).",
-    a: "$$u_C(t) = E\\left(1 - e^{-t/\\tau}\\right)$$ avec la constante de temps \\(\\tau = RC\\). À \\(t = \\tau\\), on atteint 63% de \\(E\\). À \\(t = 5\\tau\\), la charge est considérée terminée (>99%).",
-    hint: "τ = RC, charge exponentielle"
-  },
-  {
-    id: "e3a-phys-ondes-05",
-    theme: "ondes",
-    themeColor: "#4CAF50",
-    q: "Donner le <b>diagramme de Bode</b> (gain et phase) d'un filtre passe-bas du 1er ordre de fonction de transfert \\(\\underline{H} = \\frac{H_0}{1 + j\\omega/\\omega_c}\\).",
-    a: "• <b>Gain</b> : \\(G_{dB} = 20\\log(H_0) - 10\\log\\left(1 + (\\omega/\\omega_c)^2\\right)\\)<br>• BF (\\(\\omega \\ll \\omega_c\\)) : palier à \\(20\\log(H_0)\\)<br>• HF (\\(\\omega \\gg \\omega_c\\)) : pente de \\(-20\\) dB/décade<br>• <b>Phase</b> : \\(\\varphi = -\\arctan(\\omega/\\omega_c)\\), de \\(0\\) à \\(-\\pi/2\\)<br>• À \\(\\omega = \\omega_c\\) : \\(G = 20\\log(H_0) - 3\\) dB et \\(\\varphi = -\\pi/4\\).",
-    hint: "−20 dB/décade en HF, −3 dB à ωc"
-  },
-  {
-    id: "e3a-phys-ondes-06",
-    theme: "ondes",
-    themeColor: "#4CAF50",
-    q: "Énoncer le théorème de <b>superposition</b> et le théorème de <b>Thévenin</b> pour un circuit linéaire.",
-    a: "<b>Superposition</b> : dans un circuit linéaire à plusieurs sources, la réponse est la somme des réponses à chaque source prise séparément (les autres éteintes).<br><b>Thévenin</b> : tout dipôle linéaire est équivalent à une source de tension \\(E_{th}\\) (tension à vide) en série avec une résistance \\(R_{th}\\) (résistance vue entre les bornes, sources éteintes).",
-    hint: "Superposition et modèle équivalent tension + résistance"
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  //  OPTIQUE — 4 cartes
-  // ═══════════════════════════════════════════════════════════════
-
-  {
-    id: "e3a-phys-opt-01",
-    theme: "optique",
-    themeColor: "#9C27B0",
-    q: "Énoncer les <b>lois de Snell-Descartes</b> pour la réfraction. Qu'est-ce que l'angle de réfraction limite ?",
-    a: "<b>1ère loi</b> : le rayon réfracté est dans le plan d'incidence.<br><b>2ème loi</b> : $$n_1 \\sin(i_1) = n_2 \\sin(i_2)$$ Si \\(n_1 > n_2\\), il existe un <b>angle limite</b> : $$\\sin(i_{lim}) = \\frac{n_2}{n_1}$$ Au-delà, <b>réflexion totale</b>.",
-    hint: "n₁ sin i₁ = n₂ sin i₂"
-  },
-  {
-    id: "e3a-phys-opt-02",
-    theme: "optique",
-    themeColor: "#9C27B0",
-    q: "Donner la <b>relation de conjugaison</b> d'une lentille mince de focale \\(f'\\) avec les positions algébriques.",
-    a: "$$\\frac{1}{\\overline{OA'}} - \\frac{1}{\\overline{OA}} = \\frac{1}{f'}$$ Le <b>grandissement</b> transversal : $$\\gamma = \\frac{\\overline{A'B'}}{\\overline{AB}} = \\frac{\\overline{OA'}}{\\overline{OA}}$$ \\(f' > 0\\) pour une lentille convergente, \\(f' < 0\\) pour une divergente.",
-    hint: "1/OA' − 1/OA = 1/f'"
-  },
-  {
-    id: "e3a-phys-opt-03",
-    theme: "optique",
-    themeColor: "#9C27B0",
-    q: "Donner la formule de la <b>figure de diffraction</b> par une fente simple de largeur \\(a\\) éclairée en incidence normale.",
-    a: "L'intensité diffractée vaut : $$I(\\theta) = I_0 \\left(\\frac{\\sin(\\pi a \\sin\\theta / \\lambda)}{\\pi a \\sin\\theta / \\lambda}\\right)^2 = I_0 \\text{sinc}^2\\left(\\frac{\\pi a \\sin\\theta}{\\lambda}\\right)$$ Les <b>minima</b> (zéros) sont en \\(\\sin\\theta = k\\lambda/a\\) pour \\(k \\in \\mathbb{Z}^*\\). La largeur angulaire du pic central vaut \\(2\\lambda/a\\).",
-    hint: "sinc², minima en sin θ = kλ/a"
-  },
-  {
-    id: "e3a-phys-opt-04",
-    theme: "optique",
-    themeColor: "#9C27B0",
-    q: "Décrire le dispositif des <b>fentes d'Young</b> et donner l'expression de l'interfrange.",
-    a: "Deux fentes séparées de \\(a\\), à distance \\(D\\) de l'écran, éclairées par une source monochromatique \\(\\lambda\\). La <b>différence de marche</b> : \\(\\delta = ax/D\\). L'<b>interfrange</b> : $$i = \\frac{\\lambda D}{a}$$ Franges brillantes quand \\(\\delta = k\\lambda\\), sombres quand \\(\\delta = (k + 1/2)\\lambda\\).",
-    hint: "i = λD/a"
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  //  CHIMIE — 8 cartes
+  //  CRISTALLOGRAPHIE / CHIMIE — 10 cartes
   // ═══════════════════════════════════════════════════════════════
 
   {
     id: "e3a-phys-chim-01",
     theme: "chimie",
-    themeColor: "#D4873B",
-    q: "Décrire la structure <b>CFC</b> (cubique faces centrées). Donner la coordinence, le nombre de motifs par maille et la compacité.",
-    a: "<b>Atomes</b> : 8 sommets (×1/8) + 6 faces (×1/2) = <b>4 atomes/maille</b>.<br><b>Coordinence</b> : 12.<br><b>Relation paramètre-rayon</b> : \\(a = 2r\\sqrt{2}\\) (contact sur la diagonale de face).<br><b>Compacité</b> : $$C = \\frac{4 \\times \\frac{4}{3}\\pi r^3}{a^3} = \\frac{\\pi}{3\\sqrt{2}} \\approx 0{,}74$$",
-    hint: "4 atomes, coordinence 12, compacité ≈ 0.74"
+    themeColor: "#4CAF50",
+    q: "Comment calculer la <b>masse volumique</b> d'un cristal à partir des paramètres de maille ?",
+    a: "$$\\rho = \\frac{Z \\cdot M}{N_A \\cdot a^3}$$ où \\(Z\\) est le nombre de motifs par maille, \\(M\\) la masse molaire, \\(N_A\\) le nombre d'Avogadro et \\(a\\) le paramètre de maille. <b>Méthode</b> : compter \\(Z\\) (sommets ×1/8, arêtes ×1/4, faces ×1/2, intérieur ×1), puis appliquer la formule.",
+    hint: "ρ = ZM/(NA·a³)"
   },
   {
     id: "e3a-phys-chim-02",
     theme: "chimie",
-    themeColor: "#D4873B",
-    q: "Décrire la structure <b>CC</b> (cubique centrée). Donner la coordinence, le nombre de motifs par maille et la compacité.",
-    a: "<b>Atomes</b> : 8 sommets (×1/8) + 1 centre = <b>2 atomes/maille</b>.<br><b>Coordinence</b> : 8.<br><b>Relation paramètre-rayon</b> : \\(a\\sqrt{3} = 4r\\) (contact sur la grande diagonale du cube).<br><b>Compacité</b> : $$C = \\frac{\\pi\\sqrt{3}}{8} \\approx 0{,}68$$",
-    hint: "2 atomes, coordinence 8, compacité ≈ 0.68"
+    themeColor: "#4CAF50",
+    q: "Décrire la structure <b>CFC</b>. Donner \\(Z\\), la coordinence et la compacité.",
+    a: "<b>Atomes</b> : 8 sommets (×1/8) + 6 faces (×1/2) = <b>Z = 4</b><br><b>Coordinence</b> : 12<br><b>Contact</b> sur la diagonale de face : \\(a\\sqrt{2} = 4r\\), soit \\(a = 2r\\sqrt{2}\\)<br><b>Compacité</b> : $$C = \\frac{4 \\times \\frac{4}{3}\\pi r^3}{a^3} = \\frac{\\pi}{3\\sqrt{2}} \\approx 0{,}74$$ C'est la compacité <b>maximale</b> (empilement compact). Exemples : Al, Cu, Au, Ag.",
+    hint: "Z = 4, coordinence 12, C ≈ 0.74"
   },
   {
     id: "e3a-phys-chim-03",
     theme: "chimie",
-    themeColor: "#D4873B",
-    q: "Donner la <b>loi d'Arrhenius</b> pour la constante de vitesse \\(k(T)\\). Comment déterminer \\(E_a\\) expérimentalement ?",
-    a: "$$k(T) = A \\, e^{-E_a / (RT)}$$ où \\(A\\) est le facteur pré-exponentiel et \\(E_a\\) l'énergie d'activation.<br>En traçant \\(\\ln k\\) en fonction de \\(1/T\\), on obtient une droite de pente \\(-E_a/R\\). C'est le <b>diagramme d'Arrhenius</b>.",
-    hint: "k = A exp(−Ea/RT), diagramme ln(k) vs 1/T"
+    themeColor: "#4CAF50",
+    q: "Décrire la structure <b>CC</b> (cubique centrée). Donner \\(Z\\), la coordinence et la compacité.",
+    a: "<b>Atomes</b> : 8 sommets (×1/8) + 1 centre = <b>Z = 2</b><br><b>Coordinence</b> : 8<br><b>Contact</b> sur la grande diagonale : \\(a\\sqrt{3} = 4r\\)<br><b>Compacité</b> : $$C = \\frac{\\pi\\sqrt{3}}{8} \\approx 0{,}68$$ Non compact. Exemples : Fe (α), Cr, W, Na, K.",
+    hint: "Z = 2, coordinence 8, C ≈ 0.68"
   },
   {
     id: "e3a-phys-chim-04",
     theme: "chimie",
-    themeColor: "#D4873B",
-    q: "Donner la <b>loi de Nernst</b> pour un couple redox \\(\\text{Ox}/\\text{Red}\\). Quelle est la valeur numérique du facteur \\(RT/F\\) à 25°C ?",
-    a: "$$E = E^\\circ + \\frac{RT}{nF} \\ln \\frac{[\\text{Ox}]}{[\\text{Red}]}$$ À 25°C : \\(\\frac{RT}{F} \\approx 0{,}026\\) V, donc : $$E = E^\\circ + \\frac{0{,}06}{n} \\log \\frac{[\\text{Ox}]}{[\\text{Red}]}$$ où \\(n\\) est le nombre d'électrons échangés.",
-    hint: "E = E° + (RT/nF) ln([Ox]/[Red])"
+    themeColor: "#4CAF50",
+    q: "Énoncer la <b>loi de Bragg</b>. Comment l'utiliser pour déterminer les paramètres de maille ?",
+    a: "$$2d_{hkl} \\sin\\theta = n\\lambda$$ où \\(d_{hkl}\\) est la distance inter-réticulaire des plans \\((hkl)\\), \\(\\theta\\) l'angle de Bragg, \\(n\\) l'ordre de diffraction et \\(\\lambda\\) la longueur d'onde des rayons X. Pour un réseau cubique : $$d_{hkl} = \\frac{a}{\\sqrt{h^2 + k^2 + l^2}}$$ On mesure les angles \\(\\theta\\) des pics de diffraction pour remonter à \\(a\\).",
+    hint: "2d sin θ = nλ, diffraction des rayons X"
   },
   {
     id: "e3a-phys-chim-05",
     theme: "chimie",
-    themeColor: "#D4873B",
-    q: "Donner la relation entre le <b>pH</b> et le <b>pKa</b> pour une solution tampon (couple acide/base conjugué).",
-    a: "Équation de <b>Henderson-Hasselbalch</b> : $$\\text{pH} = \\text{pK}_a + \\log \\frac{[\\text{A}^-]}{[\\text{AH}]}$$ Le pouvoir tampon est maximal quand \\(\\text{pH} = \\text{pK}_a\\), soit \\([\\text{A}^-] = [\\text{AH}]\\). Le pH varie peu lors de l'ajout d'acide ou de base.",
-    hint: "Henderson-Hasselbalch : pH = pKa + log([A⁻]/[AH])"
+    themeColor: "#4CAF50",
+    q: "Donner la <b>loi de Nernst</b> pour un couple redox. Quelle est la valeur de \\(RT/F\\) à 25°C ?",
+    a: "$$E = E^\\circ + \\frac{RT}{nF} \\ln\\frac{a_{\\text{Ox}}}{a_{\\text{Red}}}$$ À 25°C : \\(RT/F \\approx 0{,}026\\) V, d'où la formule avec le log décimal : $$E = E^\\circ + \\frac{0{,}06}{n} \\log\\frac{[\\text{Ox}]}{[\\text{Red}]}$$ \\(n\\) = nombre d'électrons échangés, \\(E^\\circ\\) = potentiel standard.",
+    hint: "E = E° + (0.06/n) log([Ox]/[Red]) à 25°C"
   },
   {
     id: "e3a-phys-chim-06",
     theme: "chimie",
-    themeColor: "#D4873B",
-    q: "Donner les expressions des <b>temps de demi-réaction</b> pour des réactions d'<b>ordre 1</b> et d'<b>ordre 2</b>.",
-    a: "<b>Ordre 1</b> : \\([A] = [A]_0 e^{-kt}\\) $$t_{1/2} = \\frac{\\ln 2}{k}$$ (indépendant de \\([A]_0\\)).<br><br><b>Ordre 2</b> : \\(\\frac{1}{[A]} = \\frac{1}{[A]_0} + kt\\) $$t_{1/2} = \\frac{1}{k [A]_0}$$ (dépend de la concentration initiale).",
-    hint: "Ordre 1 : ln2/k ; Ordre 2 : 1/(k[A]₀)"
+    themeColor: "#4CAF50",
+    q: "Énoncer la <b>loi de Beer-Lambert</b>. Quelles sont ses conditions de validité ?",
+    a: "$$A = \\log\\frac{I_0}{I} = \\varepsilon \\ell c$$ où \\(A\\) est l'absorbance, \\(\\varepsilon\\) le coefficient d'extinction molaire (L·mol⁻¹·cm⁻¹), \\(\\ell\\) la longueur de trajet optique (cm), \\(c\\) la concentration (mol/L). <b>Conditions</b> : lumière monochromatique, solution diluée (\\(c < 10^{-2}\\) mol/L), pas de réaction chimique, pas de diffusion.",
+    hint: "A = εℓc, absorbance proportionnelle à la concentration"
   },
   {
     id: "e3a-phys-chim-07",
     theme: "chimie",
-    themeColor: "#D4873B",
-    q: "Décrire la structure du <b>chlorure de sodium NaCl</b>. Combien de motifs NaCl par maille ? Quelle est la condition de contact ?",
-    a: "Structure <b>CFC de Cl⁻</b> avec Na⁺ dans <b>tous les sites octaédriques</b> (ou vice-versa).<br><b>Motifs par maille</b> : 4 NaCl (4 Na⁺ + 4 Cl⁻).<br><b>Coordinence</b> : 6 pour chaque ion.<br><b>Condition de contact</b> : \\(a = 2(r_{Na^+} + r_{Cl^-})\\) (contact anion-cation le long de l'arête).",
-    hint: "CFC + sites octaédriques, 4 motifs, coordinence 6"
+    themeColor: "#4CAF50",
+    q: "Donner la <b>loi d'Arrhenius</b> pour la constante de vitesse \\(k(T)\\). Comment déterminer \\(E_a\\) ?",
+    a: "$$k(T) = A\\,e^{-E_a/(RT)}$$ où \\(A\\) est le facteur pré-exponentiel et \\(E_a\\) l'énergie d'activation. En passant au logarithme : $$\\ln k = \\ln A - \\frac{E_a}{RT}$$ En traçant \\(\\ln k\\) vs \\(1/T\\), on obtient une droite de pente \\(-E_a/R\\) (<b>diagramme d'Arrhenius</b>). Une \\(E_a\\) élevée signifie une forte dépendance en température.",
+    hint: "k = A exp(−Ea/RT), pente −Ea/R"
   },
   {
     id: "e3a-phys-chim-08",
     theme: "chimie",
-    themeColor: "#D4873B",
-    q: "Qu'est-ce qu'une <b>pile électrochimique</b> ? Donner l'expression de la <b>f.é.m.</b> d'une pile et la relation avec \\(\\Delta_r G\\).",
-    a: "Une pile convertit l'énergie chimique en énergie électrique grâce à deux demi-réactions séparées.<br><b>f.é.m.</b> : $$e = E_{cathode} - E_{anode}$$ Relation avec l'enthalpie libre : $$\\Delta_r G = -nFe$$ La réaction est spontanée si \\(e > 0\\) (soit \\(\\Delta_r G < 0\\)).",
-    hint: "e = E(cathode) − E(anode), ΔrG = −nFe"
+    themeColor: "#4CAF50",
+    q: "Donner la relation entre \\(\\Delta_r G^\\circ\\) et la <b>constante d'équilibre</b> \\(K\\). Quand la réaction est-elle spontanée ?",
+    a: "$$\\Delta_r G^\\circ = -RT \\ln K$$ et plus généralement : $$\\Delta_r G = \\Delta_r G^\\circ + RT \\ln Q_r$$ où \\(Q_r\\) est le quotient réactionnel. À l'équilibre : \\(Q_r = K\\) et \\(\\Delta_r G = 0\\).<br>• \\(\\Delta_r G^\\circ < 0 \\Rightarrow K > 1\\) : réaction <b>thermodynamiquement favorisée</b><br>• \\(\\Delta_r G^\\circ > 0 \\Rightarrow K < 1\\) : réaction défavorisée",
+    hint: "ΔrG° = −RT ln K, K > 1 si ΔrG° < 0"
+  },
+  {
+    id: "e3a-phys-chim-09",
+    theme: "chimie",
+    themeColor: "#4CAF50",
+    q: "Énoncer la <b>loi de Hess</b>. Comment l'utiliser pour calculer un \\(\\Delta_r H^\\circ\\) ?",
+    a: "L'enthalpie étant une <b>fonction d'état</b>, la variation d'enthalpie d'une réaction ne dépend que des états initial et final, pas du chemin suivi. $$\\Delta_r H^\\circ = \\sum \\nu_i \\, \\Delta_f H^\\circ_i(\\text{produits}) - \\sum \\nu_j \\, \\Delta_f H^\\circ_j(\\text{réactifs})$$ On peut aussi décomposer la réaction en étapes connues et <b>sommer</b> les \\(\\Delta_r H^\\circ\\) de chaque étape.",
+    hint: "ΔrH° = Σ ΔfH°(produits) − Σ ΔfH°(réactifs)"
+  },
+  {
+    id: "e3a-phys-chim-10",
+    theme: "chimie",
+    themeColor: "#4CAF50",
+    q: "Énoncer la <b>relation de Van't Hoff</b>. Comment évolue \\(K\\) avec la température ?",
+    a: "$$\\frac{d \\ln K}{dT} = \\frac{\\Delta_r H^\\circ}{RT^2}$$ En intégrant entre \\(T_1\\) et \\(T_2\\) (si \\(\\Delta_r H^\\circ \\approx \\text{cste}\\)) : $$\\ln\\frac{K(T_2)}{K(T_1)} = \\frac{\\Delta_r H^\\circ}{R}\\left(\\frac{1}{T_1} - \\frac{1}{T_2}\\right)$$ • Réaction <b>exothermique</b> (\\(\\Delta_r H^\\circ < 0\\)) : \\(K\\) <b>diminue</b> quand \\(T\\) augmente<br>• Réaction <b>endothermique</b> (\\(\\Delta_r H^\\circ > 0\\)) : \\(K\\) <b>augmente</b> avec \\(T\\)",
+    hint: "d(ln K)/dT = ΔrH°/(RT²), sens exo/endo"
   }
 ];

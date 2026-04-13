@@ -3,91 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MPSI — Math Sup | LibMaths</title>
+  <title>MPSI — Math Sup | Omniscience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t&&t!=='dark')d.setAttribute('data-theme',t)})(document.documentElement)</script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 </head>
 <body>
 
-  <div class="bg-grid" aria-hidden="true"></div>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo"><span class="sidebar__logo-full">Omniscience</span><span class="sidebar__logo-short">O</span></div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Programme</span>
+        <a href="index.html" class="sidebar__link" data-tooltip="Accueil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span class="sidebar__link-text">Accueil</span>
+        </a>
+        <a href="mpsi.html" class="sidebar__link sidebar__link--active" data-tooltip="MPSI">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MPSI — 1ere annee</span>
+        </a>
+        <a href="mp.html" class="sidebar__link" data-tooltip="MP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MP — 2eme annee</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Concours</span>
+        <a href="mp.html#annales-e3a" class="sidebar__link" data-tooltip="E3A-Polytech">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="9" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">E3A</text></svg>
+          <span class="sidebar__link-text">E3A-Polytech</span>
+        </a>
+        <a href="mp.html#annales-ccinp" class="sidebar__link" data-tooltip="CCINP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="10" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">CC</text></svg>
+          <span class="sidebar__link-text">CCINP</span>
+        </a>
+        <a href="mp.html#annales-centrale" class="sidebar__link" data-tooltip="Centrale">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="10" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">CS</text></svg>
+          <span class="sidebar__link-text">Centrale</span>
+        </a>
+        <a href="mp.html#annales-mines" class="sidebar__link" data-tooltip="Mines-Ponts">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="13" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">M</text></svg>
+          <span class="sidebar__link-text">Mines-Ponts</span>
+        </a>
+        <a href="mp.html#annales-xens" class="sidebar__link" data-tooltip="X-ENS">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="13" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">X</text></svg>
+          <span class="sidebar__link-text">X-ENS</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Outils</span>
+        <a href="entrainement.html" class="sidebar__link" data-tooltip="Entrainement">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="sidebar__link-text">Entrainement</span>
+        </a>
+        <a href="revision.html" class="sidebar__link" data-tooltip="Revision">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <span class="sidebar__link-text">Revision</span>
+        </a>
+        <a href="parcours.html" class="sidebar__link" data-tooltip="Parcours">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span class="sidebar__link-text">Mon Parcours</span>
+        </a>
+              <a href="statistiques.html" class="sidebar__link" data-tooltip="Statistiques">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          <span class="sidebar__link-text">Statistiques</span>
+        </a>
+        <a href="timer.html" class="sidebar__link" data-tooltip="Timer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span class="sidebar__link-text">Timer</span>
+        </a>
+</div>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__collapse-btn" id="sidebarCollapse" aria-expanded="true" aria-label="Replier le menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+        <span class="sidebar__collapse-label">Replier</span>
+      </button>
+      <button class="sidebar__theme-toggle" id="themeToggle" aria-label="Changer de theme">
+        <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span class="sidebar__theme-label">Theme</span>
+      </button>
+      <div class="sidebar__subject-switch">
+        <a href="index.html" class="sidebar__subject-btn sidebar__subject-btn--active">Maths</a>
+        <a href="physique/index.html" class="sidebar__subject-btn">Physique</a>
+      </div>
+    </div>
+  </aside>
 
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="site-switcher">
-      <span class="site-switcher__brand">Lib</span>
-      <div class="site-switcher__toggle">
-        <a href="index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
-        <a href="physique/index.html" class="site-switcher__btn">Physique</a>
-      </div>
-    </div>
-    <div class="nav__links">
-      <a href="index.html" class="nav__link">Accueil</a>
-      <div class="nav__dropdown">
-        <a href="mpsi.html" class="nav__link nav__link--has-sub nav__link--active">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mpsi.html#cours" class="dropdown__item">Cours</a>
-          <a href="mpsi.html#exercices" class="dropdown__item">Exercices</a>
-          <a href="mpsi.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="mpsi.html#methodes" class="dropdown__item">Méthodes</a>
-        </div>
-      </div>
-      <div class="nav__dropdown">
-        <a href="mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mp.html#cours" class="dropdown__item">Cours</a>
-          <a href="mp.html#exercices" class="dropdown__item">Exercices</a>
-          <a href="mp.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="mp.html#methodes" class="dropdown__item">Méthodes</a>
-        </div>
-      </div>
-      <a href="entrainement.html" class="nav__link">Entraînement</a>
-      <a href="revision.html" class="nav__link">Révision</a>
-    </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
-      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  <!-- Mobile top bar -->
+  <header class="topbar" id="topbar">
+    <button class="topbar__hamburger" id="menuBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
-    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
-      <span></span><span></span>
+    <span class="topbar__logo">Omniscience</span>
+    <button class="topbar__theme-toggle" id="themeToggleMobile" aria-label="Changer de theme">
+      <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-  </nav>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
-      <a href="index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
-      <a href="physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mpsi.html" class="mobile-menu__page-link mobile-menu__page-link--active">MPSI — Math Sup</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mp.html" class="mobile-menu__page-link">MP — Math Spé</a>
-    </div>
-  </div>
+  <main class="main-content">
 
   <!-- Page Header -->
   <header class="page-header">
     <div class="page-header__inner">
       <a href="index.html" class="page-header__back">← Accueil</a>
-      <p class="page-header__eyebrow">Première année</p>
+      <p class="page-header__eyebrow">Premiere annee</p>
       <h1 class="page-header__title">MPSI</h1>
-      <p class="page-header__subtitle">Mathématiques, Physique et Sciences de l'Ingénieur — 33 chapitres répartis sur deux semestres.</p>
+      <p class="page-header__subtitle">Mathematiques, Physique et Sciences de l'Ingenieur — 33 chapitres repartis sur deux semestres.</p>
       <div class="page-header__filters" id="filters">
         <button class="filter-btn filter-btn--active" data-filter="cours">Cours</button>
         <button class="filter-btn" data-filter="exercices">Exercices</button>
-        <button class="filter-btn" data-filter="methodes">Méthodes</button>
+        <button class="filter-btn" data-filter="methodes">Methodes</button>
         <button class="filter-btn" data-filter="fiches">Fiches</button>
       </div>
     </div>
   </header>
 
   <!-- Program Content -->
-  <main class="program">
+  <div class="program">
 
     <!-- ═══ SEMESTRE 1 ═══ -->
     <div class="semester-label">
@@ -95,14 +136,14 @@
       <span class="semester-label__text">Premier semestre</span>
     </div>
 
-    <!-- Algèbre S1 -->
+    <!-- Algebre S1 -->
     <div class="chapter-group">
-      <h2 class="chapter-group__title">Algèbre</h2>
+      <h2 class="chapter-group__title">Algebre</h2>
       <div class="chapter-grid">
         <a href="cours/mpsi-01-logique-raisonnement.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">01</span>
           <h3 class="chapter-card__title">Logique et raisonnement</h3>
-          <p class="chapter-card__desc">Quantificateurs, connecteurs, modes de raisonnement et récurrence.</p>
+          <p class="chapter-card__desc">Quantificateurs, connecteurs, modes de raisonnement et recurrence.</p>
         </a>
         <a href="cours/mpsi-02-ensembles-applications.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">02</span>
@@ -112,22 +153,22 @@
         <a href="cours/mpsi-03-nombres-complexes.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">03</span>
           <h3 class="chapter-card__title">Nombres complexes</h3>
-          <p class="chapter-card__desc">Forme algébrique, trigonométrique, exponentielle, racines n-ièmes.</p>
+          <p class="chapter-card__desc">Forme algebrique, trigonometrique, exponentielle, racines n-iemes.</p>
         </a>
         <a href="cours/mpsi-04-polynomes.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">04</span>
-          <h3 class="chapter-card__title">Polynômes</h3>
-          <p class="chapter-card__desc">Anneau des polynômes, division euclidienne, racines et factorisation.</p>
+          <h3 class="chapter-card__title">Polynomes</h3>
+          <p class="chapter-card__desc">Anneau des polynomes, division euclidienne, racines et factorisation.</p>
         </a>
         <a href="cours/mpsi-05-fractions-rationnelles.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">05</span>
           <h3 class="chapter-card__title">Fractions rationnelles</h3>
-          <p class="chapter-card__desc">Décomposition en éléments simples sur ℝ et ℂ.</p>
+          <p class="chapter-card__desc">Decomposition en elements simples sur R et C.</p>
         </a>
         <a href="cours/mpsi-06-systemes-lineaires.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">06</span>
-          <h3 class="chapter-card__title">Systèmes linéaires</h3>
-          <p class="chapter-card__desc">Pivot de Gauss, résolution, interprétation géométrique.</p>
+          <h3 class="chapter-card__title">Systemes lineaires</h3>
+          <p class="chapter-card__desc">Pivot de Gauss, resolution, interpretation geometrique.</p>
         </a>
       </div>
     </div>
@@ -138,75 +179,75 @@
       <div class="chapter-grid">
         <a href="cours/mpsi-07-suites-numeriques.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">07</span>
-          <h3 class="chapter-card__title">Suites numériques</h3>
-          <p class="chapter-card__desc">Convergence, suites monotones, suites adjacentes, suites récurrentes.</p>
+          <h3 class="chapter-card__title">Suites numeriques</h3>
+          <p class="chapter-card__desc">Convergence, suites monotones, suites adjacentes, suites recurrentes.</p>
         </a>
         <a href="cours/mpsi-08-limites-continuite.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">08</span>
-          <h3 class="chapter-card__title">Limites et continuité</h3>
-          <p class="chapter-card__desc">Limites de fonctions, continuité, théorème des valeurs intermédiaires.</p>
+          <h3 class="chapter-card__title">Limites et continuite</h3>
+          <p class="chapter-card__desc">Limites de fonctions, continuite, theoreme des valeurs intermediaires.</p>
         </a>
         <a href="cours/mpsi-09-derivation.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">09</span>
-          <h3 class="chapter-card__title">Dérivation</h3>
-          <p class="chapter-card__desc">Dérivée, théorème de Rolle, accroissements finis, fonctions de classe Cⁿ.</p>
+          <h3 class="chapter-card__title">Derivation</h3>
+          <p class="chapter-card__desc">Derivee, theoreme de Rolle, accroissements finis, fonctions de classe Cn.</p>
         </a>
         <a href="cours/mpsi-10-fonctions-usuelles.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">10</span>
           <h3 class="chapter-card__title">Fonctions usuelles</h3>
-          <p class="chapter-card__desc">Fonctions trigonométriques, hyperboliques, logarithmes et exponentielles.</p>
+          <p class="chapter-card__desc">Fonctions trigonometriques, hyperboliques, logarithmes et exponentielles.</p>
         </a>
         <a href="cours/mpsi-11-developpements-limites.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">11</span>
-          <h3 class="chapter-card__title">Développements limités</h3>
-          <p class="chapter-card__desc">Formule de Taylor-Young, opérations sur les DL, applications.</p>
+          <h3 class="chapter-card__title">Developpements limites</h3>
+          <p class="chapter-card__desc">Formule de Taylor-Young, operations sur les DL, applications.</p>
         </a>
         <a href="cours/mpsi-12-integration.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">12</span>
-          <h3 class="chapter-card__title">Intégration</h3>
-          <p class="chapter-card__desc">Primitives, intégrale de Riemann, techniques de calcul, formules fondamentales.</p>
+          <h3 class="chapter-card__title">Integration</h3>
+          <p class="chapter-card__desc">Primitives, integrale de Riemann, techniques de calcul, formules fondamentales.</p>
         </a>
         <a href="cours/mpsi-13-equations-differentielles.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">13</span>
-          <h3 class="chapter-card__title">Équations différentielles linéaires</h3>
-          <p class="chapter-card__desc">EDL d'ordre 1 et 2, à coefficients constants, variation de la constante.</p>
+          <h3 class="chapter-card__title">Equations differentielles lineaires</h3>
+          <p class="chapter-card__desc">EDL d'ordre 1 et 2, a coefficients constants, variation de la constante.</p>
         </a>
         <a href="cours/mpsi-14-comparaison-asymptotique.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">14</span>
           <h3 class="chapter-card__title">Comparaison asymptotique</h3>
-          <p class="chapter-card__desc">Relations de comparaison, équivalents, négligeabilité, notation de Landau.</p>
+          <p class="chapter-card__desc">Relations de comparaison, equivalents, negligeabilite, notation de Landau.</p>
         </a>
       </div>
     </div>
 
-    <!-- Algèbre & Arithmétique S1 -->
+    <!-- Algebre & Arithmetique S1 -->
     <div class="chapter-group">
-      <h2 class="chapter-group__title">Algèbre &amp; Arithmétique</h2>
+      <h2 class="chapter-group__title">Algebre &amp; Arithmetique</h2>
       <div class="chapter-grid">
         <a href="cours/mpsi-15-arithmetique.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">15</span>
-          <h3 class="chapter-card__title">Arithmétique dans ℤ</h3>
-          <p class="chapter-card__desc">Divisibilité, PGCD, théorème de Bézout, nombres premiers.</p>
+          <h3 class="chapter-card__title">Arithmetique dans Z</h3>
+          <p class="chapter-card__desc">Divisibilite, PGCD, theoreme de Bezout, nombres premiers.</p>
         </a>
         <a href="cours/mpsi-16-structures-algebriques.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">16</span>
-          <h3 class="chapter-card__title">Structures algébriques</h3>
+          <h3 class="chapter-card__title">Structures algebriques</h3>
           <p class="chapter-card__desc">Groupes, sous-groupes, morphismes, anneaux et corps.</p>
         </a>
         <a href="cours/mpsi-17-matrices.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">17</span>
           <h3 class="chapter-card__title">Matrices</h3>
-          <p class="chapter-card__desc">Opérations matricielles, inversibilité, matrices élémentaires.</p>
+          <p class="chapter-card__desc">Operations matricielles, inversibilite, matrices elementaires.</p>
         </a>
         <a href="cours/mpsi-18-determinants.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">18</span>
-          <h3 class="chapter-card__title">Déterminants</h3>
-          <p class="chapter-card__desc">Déterminant d'une matrice, propriétés, calcul par développement.</p>
+          <h3 class="chapter-card__title">Determinants</h3>
+          <p class="chapter-card__desc">Determinant d'une matrice, proprietes, calcul par developpement.</p>
         </a>
         <a href="cours/mpsi-19-denombrement.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">19</span>
-          <h3 class="chapter-card__title">Dénombrement</h3>
-          <p class="chapter-card__desc">Combinaisons, arrangements, formule du binôme, principes de comptage.</p>
+          <h3 class="chapter-card__title">Denombrement</h3>
+          <p class="chapter-card__desc">Combinaisons, arrangements, formule du binome, principes de comptage.</p>
         </a>
       </div>
     </div>
@@ -223,90 +264,92 @@
       <div class="chapter-grid">
         <a href="cours/mpsi-20-series-numeriques.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">20</span>
-          <h3 class="chapter-card__title">Séries numériques</h3>
-          <p class="chapter-card__desc">Convergence, séries à termes positifs, critères, séries alternées.</p>
+          <h3 class="chapter-card__title">Series numeriques</h3>
+          <p class="chapter-card__desc">Convergence, series a termes positifs, criteres, series alternees.</p>
         </a>
         <a href="cours/mpsi-21-integrales-impropres.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">21</span>
-          <h3 class="chapter-card__title">Intégrales impropres</h3>
-          <p class="chapter-card__desc">Convergence, intégrales de référence, critères de comparaison.</p>
+          <h3 class="chapter-card__title">Integrales impropres</h3>
+          <p class="chapter-card__desc">Convergence, integrales de reference, criteres de comparaison.</p>
         </a>
         <a href="cours/mpsi-22-suites-series-fonctions.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">22</span>
-          <h3 class="chapter-card__title">Suites et séries de fonctions</h3>
-          <p class="chapter-card__desc">Convergence simple, uniforme, normale, théorèmes d'interversion.</p>
+          <h3 class="chapter-card__title">Suites et series de fonctions</h3>
+          <p class="chapter-card__desc">Convergence simple, uniforme, normale, theoremes d'interversion.</p>
         </a>
         <a href="cours/mpsi-23-series-entieres.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">23</span>
-          <h3 class="chapter-card__title">Séries entières</h3>
-          <p class="chapter-card__desc">Rayon de convergence, somme, développements en série entière.</p>
+          <h3 class="chapter-card__title">Series entieres</h3>
+          <p class="chapter-card__desc">Rayon de convergence, somme, developpements en serie entiere.</p>
         </a>
         <a href="cours/mpsi-24-courbes-parametrees.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">24</span>
-          <h3 class="chapter-card__title">Courbes paramétrées</h3>
-          <p class="chapter-card__desc">Étude locale, tangentes, points singuliers, courbes en polaires.</p>
+          <h3 class="chapter-card__title">Courbes parametrees</h3>
+          <p class="chapter-card__desc">Etude locale, tangentes, points singuliers, courbes en polaires.</p>
         </a>
       </div>
     </div>
 
-    <!-- Algèbre linéaire S2 -->
+    <!-- Algebre lineaire S2 -->
     <div class="chapter-group">
-      <h2 class="chapter-group__title">Algèbre linéaire</h2>
+      <h2 class="chapter-group__title">Algebre lineaire</h2>
       <div class="chapter-grid">
         <a href="cours/mpsi-25-espaces-vectoriels.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">25</span>
           <h3 class="chapter-card__title">Espaces vectoriels</h3>
-          <p class="chapter-card__desc">Sous-espaces, familles libres, génératrices, bases et dimension.</p>
+          <p class="chapter-card__desc">Sous-espaces, familles libres, generatrices, bases et dimension.</p>
         </a>
         <a href="cours/mpsi-26-applications-lineaires.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">26</span>
-          <h3 class="chapter-card__title">Applications linéaires</h3>
-          <p class="chapter-card__desc">Noyau, image, théorème du rang, isomorphismes.</p>
+          <h3 class="chapter-card__title">Applications lineaires</h3>
+          <p class="chapter-card__desc">Noyau, image, theoreme du rang, isomorphismes.</p>
         </a>
         <a href="cours/mpsi-27-matrices-applications-lineaires.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">27</span>
-          <h3 class="chapter-card__title">Matrices et applications linéaires</h3>
-          <p class="chapter-card__desc">Matrice d'une application linéaire, changement de base, rang.</p>
+          <h3 class="chapter-card__title">Matrices et applications lineaires</h3>
+          <p class="chapter-card__desc">Matrice d'une application lineaire, changement de base, rang.</p>
         </a>
         <a href="cours/mpsi-28-reduction-endomorphismes.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">28</span>
-          <h3 class="chapter-card__title">Réduction des endomorphismes</h3>
+          <h3 class="chapter-card__title">Reduction des endomorphismes</h3>
           <p class="chapter-card__desc">Valeurs propres, vecteurs propres, diagonalisation, trigonalisation.</p>
         </a>
         <a href="cours/mpsi-29-espaces-prehilbertiens.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">29</span>
-          <h3 class="chapter-card__title">Espaces préhilbertiens</h3>
-          <p class="chapter-card__desc">Produit scalaire, orthogonalité, projection orthogonale, Gram-Schmidt.</p>
+          <h3 class="chapter-card__title">Espaces prehilbertiens</h3>
+          <p class="chapter-card__desc">Produit scalaire, orthogonalite, projection orthogonale, Gram-Schmidt.</p>
         </a>
         <a href="cours/mpsi-30-geometrie-euclidienne.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">30</span>
-          <h3 class="chapter-card__title">Géométrie euclidienne</h3>
-          <p class="chapter-card__desc">Isométries, matrices orthogonales, classification en dimensions 2 et 3.</p>
+          <h3 class="chapter-card__title">Geometrie euclidienne</h3>
+          <p class="chapter-card__desc">Isometries, matrices orthogonales, classification en dimensions 2 et 3.</p>
         </a>
       </div>
     </div>
 
-    <!-- Probabilités S2 -->
+    <!-- Probabilites S2 -->
     <div class="chapter-group">
-      <h2 class="chapter-group__title">Probabilités</h2>
+      <h2 class="chapter-group__title">Probabilites</h2>
       <div class="chapter-grid">
         <a href="cours/mpsi-31-probabilites-univers-fini.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">31</span>
-          <h3 class="chapter-card__title">Probabilités sur un univers fini</h3>
-          <p class="chapter-card__desc">Espace probabilisé, probabilités conditionnelles, indépendance.</p>
+          <h3 class="chapter-card__title">Probabilites sur un univers fini</h3>
+          <p class="chapter-card__desc">Espace probabilise, probabilites conditionnelles, independance.</p>
         </a>
         <a href="cours/mpsi-32-variables-aleatoires-discretes.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">32</span>
-          <h3 class="chapter-card__title">Variables aléatoires discrètes</h3>
-          <p class="chapter-card__desc">Lois classiques, espérance, variance, fonctions génératrices.</p>
+          <h3 class="chapter-card__title">Variables aleatoires discretes</h3>
+          <p class="chapter-card__desc">Lois classiques, esperance, variance, fonctions generatrices.</p>
         </a>
         <a href="cours/mpsi-33-couples-variables-aleatoires.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">33</span>
-          <h3 class="chapter-card__title">Couples de variables aléatoires</h3>
-          <p class="chapter-card__desc">Loi conjointe, lois marginales, covariance, indépendance.</p>
+          <h3 class="chapter-card__title">Couples de variables aleatoires</h3>
+          <p class="chapter-card__desc">Loi conjointe, lois marginales, covariance, independance.</p>
         </a>
       </div>
     </div>
+
+  </div>
 
   </main>
 
@@ -314,8 +357,8 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <span class="footer__logo">∫ LibMaths</span>
-        <p class="footer__tagline">La beauté des mathématiques, en ligne.</p>
+        <span class="footer__logo">Omniscience</span>
+        <p class="footer__tagline">La beaute des mathematiques, en ligne.</p>
       </div>
       <div class="footer__links">
         <div class="footer__col">
@@ -325,7 +368,7 @@
           <a href="mp.html">MP</a>
         </div>
         <div class="footer__col">
-          <h4 class="footer__col-title">Communauté</h4>
+          <h4 class="footer__col-title">Communaute</h4>
           <a href="#">Contribuer</a>
           <a href="#">GitHub</a>
           <a href="#">Contact</a>
@@ -333,7 +376,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; 2026 LibMaths — Projet open source</span>
+      <span>&copy; 2026 Omniscience — Projet open source</span>
     </div>
   </footer>
 

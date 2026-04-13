@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E3A-Polytech 2019 -- Physique 1 PC | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-body);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-body);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
+    .question ol li{margin-bottom:4px}
+    .annale-figure{background:var(--bg-soft,rgba(127,127,127,.06));border:1px dashed var(--border);border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0}
+    .annale-figure__label{font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+    .annale-figure p{font-size:.88rem;color:var(--ink-light);margin-bottom:0;line-height:1.7}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    .annale-warning{background:linear-gradient(135deg,rgba(255,170,0,.08),rgba(255,170,0,.03));border:1px solid rgba(255,170,0,.25);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.85rem;line-height:1.7;color:var(--ink-light)}
+    .annale-warning strong{color:var(--ink);font-weight:600}
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <a href="../../entrainement.html" class="nav__link">Entrainement</a>
+      <a href="../../revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">E3A-POLYTECH 2019 -- PHYSIQUE 1 PC</span>
+    </div>
+
+    <h1 class="course__title">E3A-Polytech 2019 -- Physique 1 (Modelisation) PC -- Gravir le mur de Huy</h1>
+
+    <div class="annale-warning">
+      <strong>Sujet retranscrit avec schemas</strong> a partir du PDF officiel. Les schemas et figures sont decrits textuellement dans des blocs dedies. Pour le sujet officiel complet, consulter le PDF original.
+    </div>
+
+    <p class="course__intro">
+      Epreuve de physique-modelisation, filiere PC. Duree : 4 heures. Le sujet aborde le dimensionnement du systeme cycliste + velo permettant a un cycliste d'attaquer le Mur de Huy (Tour de France 2015). Trois parties independantes : etude des supercondensateurs pour alimenter le moteur electrique, mecanique appliquee au cycliste (montee, frottements, mesure du moment d'inertie d'une roue), puis dimensionnement final de la matrice de supercondensateurs.
+    </p>
+
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">E3A-Polytech</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">PC</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Physique 1 -- Modelisation</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2019</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Duree</span>
+        <span class="annale-info__value">4 heures</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Condensateur plan, supercondensateurs, RC, mecanique du point, frottements fluides, moment d'inertie, pendule de torsion, oscillations, methodes numeriques</span>
+      </div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#exo1"><span class="course__toc-num">I.</span> Premiere partie -- Supercondensateurs pour alimenter un moteur</a></li>
+        <li class="course__toc-item"><a href="#exo2"><span class="course__toc-num">II.</span> Deuxieme partie -- Mecanique appliquee a un cycliste</a></li>
+        <li class="course__toc-item"><a href="#exo3"><span class="course__toc-num">III.</span> Troisieme partie -- Conclusion</a></li>
+      </ol>
+    </nav>
+
+    <!-- Notations -->
+    <div class="annale-exercice">
+      <h2 class="annale-exercice__title">Notations et valeurs numeriques</h2>
+      <ul>
+        <li>Acceleration de la pesanteur : \(g = 9{,}8\;\text{m}\cdot\text{s}^{-2}\)</li>
+        <li>Masse totale ( cycliste + velo ) : \(m_{\text{tot}} = 100\;\text{kg}\)</li>
+        <li>Moment d'inertie d'une roue de masse \(m_R\) et de rayon \(a\) : \(J = m_R\, a^2\)</li>
+        <li>Permittivite du vide : \(\varepsilon_0 = 8{,}85\cdot 10^{-12}\;\text{F}\cdot\text{m}^{-1}\)</li>
+        <li>Permittivite relative : \(\varepsilon_r\)</li>
+        <li>Champ electrique en M : \(\overrightarrow{E(M)}\)</li>
+        <li>Densite surfacique de charge : \(\sigma_Q\)</li>
+      </ul>
+      <p><strong>Potentiel electrostatique et champ electrostatique :</strong></p>
+      <div class="math-display">$$v_N - v_M = -\int_M^N \overrightarrow{E}\cdot\overrightarrow{d\ell}$$</div>
+      <p><strong>Une formule d'analyse vectorielle :</strong> on considere le champ scalaire \(f : \mathbb{R}^2 \to \mathbb{R}\). Alors :</p>
+      <div class="math-display">$$\Delta f = \operatorname{div}\!\left(\overrightarrow{\operatorname{grad}} f\right)$$</div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                  PREMIERE PARTIE                              -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="annale-exercice" id="exo1">
+      <h2 class="annale-exercice__title">Premiere partie -- Des supercondensateurs pour alimenter un moteur electrique</h2>
+
+      <div class="annale-partie"><h3 class="annale-partie__title">A / Condensateur plan a symetrie de revolution</h3></div>
+
+      <p class="annale-exercice__intro">On considere le condensateur plan de la figure suivante.</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 1 -- Condensateur plan a symetrie de revolution</div>
+        <p>Vue de face : deux disques conducteurs paralleles, en regard l'un de l'autre. L'armature superieure A (a la cote \(z = +e/2\)) et l'armature inferieure B (a la cote \(z = -e/2\)) ont meme rayon \(R_{\text{ext}}\). L'epaisseur \(e\) entre les deux armatures est tres petite devant \(R_{\text{ext}}\). L'axe vertical \((O,\overrightarrow{u_z})\) est l'axe de symetrie de revolution. Vue du dessus : un disque de rayon \(R_{\text{ext}}\) centre sur l'axe. Reperage cylindrique \((r,\theta,z)\) avec base orthonormee directe \((\overrightarrow{u_r},\overrightarrow{u_\theta},\overrightarrow{u_z})\).</p>
+      </div>
+
+      <p>Ses armatures sont des disques conducteurs de rayon \(R_{\text{ext}}\) separes par un dielectrique de permittivite relative \(\varepsilon_r\) et d'epaisseur \(e\). <strong>D'un point de vue electrique, le dielectrique se comporte comme le vide a condition de remplacer la permittivite du vide \(\varepsilon_0\) par la permittivite du milieu \(\varepsilon = \varepsilon_0\,\varepsilon_r\) dans les formules utilisees.</strong></p>
+      <p>Les armatures A et B sont soumises respectivement a un potentiel electrique \(v_A\) et \(v_B\). On note \(Q_A\) la charge electrique de l'armature A et \(Q_B = -Q_A\) celle de l'armature B.</p>
+      <p>On suppose que le champ electrique \(\overrightarrow{E(M)}\) est oriente selon \(\overrightarrow{u_z}\) et qu'il est uniforme a l'interieur du dielectrique.</p>
+      <p>Les armatures etant d'epaisseur negligeable, on notera donc considerees comme confondues avec les plans d'equation \(z = -\dfrac{e}{2}\) et \(z = +\dfrac{e}{2}\). On adoptera un modele de plan uniformement charge en surface pour les decrire.</p>
+
+      <div class="question" id="A1">
+        <span class="question__num">A1.</span>
+        <p>Justifier tres simplement que les armatures d'un condensateur portent des charges electriques de signes opposes.</p>
+      </div>
+
+      <div class="question" id="A2">
+        <span class="question__num">A2.</span>
+        <p>Donner une condition sur \(R_{\text{ext}}\) et \(e\) permettant d'autoriser les armatures a deux plans infinis.</p>
+      </div>
+
+      <p>On s'interesse dans un premier temps uniquement a l'armature superieure, supposee seule et dans le vide.</p>
+
+      <div class="question" id="A3">
+        <span class="question__num">A3.</span>
+        <p>Justifier avec soin que le champ electrique cree en tout point M de l'espace pour cette armature peut s'ecrire \(\overrightarrow{E_A(M)} = E_A(z)\,\overrightarrow{u_z}\).</p>
+      </div>
+
+      <div class="question" id="A4">
+        <span class="question__num">A4.</span>
+        <p>On pose \(z' = z - \dfrac{e}{2}\). Exprimer \(E_A(z')\) en fonction de \(E_A(z)\). On justifiera la reponse.</p>
+      </div>
+
+      <div class="question" id="A5">
+        <span class="question__num">A5.</span>
+        <p>En utilisant le theoreme de Gauss, etablir alors l'expression de la composante du champ electrique cree en tout point de l'espace par l'armature en fonction de \(Q_A\), \(R_{\text{ext}}\) et \(\varepsilon_0\).</p>
+        <p>On prendra le soin de distinguer les cas \(z \geqslant \dfrac{e}{2}\) et \(z \leqslant \dfrac{e}{2}\).</p>
+      </div>
+
+      <p>On considere maintenant l'ensemble des deux armatures separees par le dielectrique de permittivite \(\varepsilon\).</p>
+
+      <div class="question" id="A6">
+        <span class="question__num">A6.</span>
+        <p>Donner l'expression du champ electrique cree en tout point de l'espace par cette distribution. On distinguera trois zones de l'espace.</p>
+      </div>
+
+      <div class="question" id="A7">
+        <span class="question__num">A7.</span>
+        <p>Donner l'expression du potentiel electrostatique \(V(z)\) a l'interieur du dielectrique en fonction de \(R_{\text{ext}}\), \(Q_A\) et \(z\). On prendra comme reference des potentiels electriques \(V(z=0) = 0\).</p>
+      </div>
+
+      <div class="question" id="A8">
+        <span class="question__num">A8.</span>
+        <p>Montrer alors que la capacite \(C\) du condensateur est donnee par la formule :</p>
+        <div class="math-display">$$C = \varepsilon\,\frac{\pi\, R_{\text{ext}}^2}{e}$$</div>
+      </div>
+
+      <p>On suppose le condensateur initialement decharge et on lui soumet une difference de potentiel \(U = v_A - v_B\).</p>
+
+      <div class="question" id="A9">
+        <span class="question__num">A9.</span>
+        <p>Demontrer que l'energie electrique stockee dans le condensateur a pour expression : \(\mathcal{E}_C = \dfrac{1}{2}\,C\,U^2\).</p>
+      </div>
+
+      <p>On souhaite realiser un condensateur avec un dielectrique compose de polypropylene de permittivite relative \(\varepsilon_r = 2{,}2\). Afin d'eviter un claquage (destruction du dielectrique sous l'application d'un champ electrique trop important), on se restreint a un champ electrique \(E_{\max} = 70\;\text{MV}\cdot\text{m}^{-1}\).</p>
+
+      <div class="question" id="A10">
+        <span class="question__num">A10.</span>
+        <p>Quelle est la densite volumique maximale d'energie electrique que l'on peut stocker ? On supposera le volume des armatures negligeable.</p>
+      </div>
+
+      <div class="question" id="A11">
+        <span class="question__num">A11.</span>
+        <p>Quelle doit etre l'epaisseur \(e\) du dielectrique pour une difference de potentiel \(U_{\max} = 350\;\text{V}\) ?</p>
+      </div>
+
+      <div class="question" id="A12">
+        <span class="question__num">A12.</span>
+        <p>Quel doit etre le rayon \(R_{\text{ext}}\) du condensateur pour une capacite de \(C = 1{,}0\;\mu\text{F}\) ? Commenter brievement le resultat obtenu.</p>
+      </div>
+
+      <div class="annale-partie"><h3 class="annale-partie__title">B / Mesure de la capacite d'un condensateur</h3></div>
+
+      <p>On souhaite dans cette partie mesurer experimentalement la capacite \(C\) d'un condensateur. Une methode consiste a soumettre le dipole [ condensateur de capacite \(C\) + conducteur ohmique de resistance \(R\) ] a un echelon de tension et d'analyser la reponse temporelle de ce dipole a cette excitation. Le condensateur est initialement decharge et le conducteur ohmique a pour resistance \(R = 1{,}00 \pm 0{,}01\;\text{k}\Omega\).</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 2 -- Circuit d'etude</div>
+        <p>Maille serie : un generateur de tension continue \(E\) (source ideale a gauche) en serie avec un conducteur ohmique de resistance \(R\) (en haut a droite), et un condensateur de capacite \(C\) (en bas a droite). On mesure la tension \(u_C(t)\) aux bornes du condensateur. Le circuit est ferme par un fil de retour. Convention recepteur sur le condensateur.</p>
+      </div>
+
+      <p>A l'instant de date \(t = 0\), le dipole [\(RC\)] est soumis a une tension constante \(E\). Un systeme d'acquisition permet d'enregistrer tous les \(\Delta t = 0{,}10\;\text{ms}\) la tension \(u_C\) aux bornes du condensateur.</p>
+
+      <p>On obtient le graphe \(u_{C,\exp} = f(t)\) suivant. La courbe de reponse obtenue permet raisonnablement de suggerer un comportement du premier ordre.</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 3 -- Releve experimental et modelisation</div>
+        <p>Graphe de la tension \(u_C\) (en V, axe vertical de 0 a 5) en fonction du temps \(t\) (en s, axe horizontal de 0 a 0,010 s). Deux courbes superposees : les valeurs experimentales (points) et la courbe de modelisation continue. Allure caracteristique d'une charge de condensateur en regime du premier ordre : croissance exponentielle de 0 V vers une asymptote horizontale d'environ 5 V (= \(E\)). Constante de temps de l'ordre de quelques ms.</p>
+      </div>
+
+      <div class="question" id="B1">
+        <span class="question__num">B1.</span>
+        <p>Etablir l'equation differentielle satisfaite par \(u_C\) et montrer qu'elle se met sous la forme :</p>
+        <div class="math-display">$$\frac{\mathrm{d}u_C}{\mathrm{d}t} + \frac{1}{\tau}\,u_C = \frac{E}{\tau}$$</div>
+      </div>
+
+      <div class="question" id="B2">
+        <span class="question__num">B2.</span>
+        <p>Comment nomme-t-on \(\tau\) ? Quelle est sa signification physique ?</p>
+      </div>
+
+      <div class="question" id="B3">
+        <span class="question__num">B3.</span>
+        <p>(*) Determiner a l'aide du releve experimental fourni une estimation de \(\tau\) et de \(E\). Bien expliciter le raisonnement suivi.</p>
+      </div>
+
+      <div class="question" id="B4">
+        <span class="question__num">B4.</span>
+        <p>En deduire alors une estimation de la capacite \(C\) du condensateur.</p>
+      </div>
+
+      <p>On se propose d'etudier sur un algorithme permettant de determiner \(E\) et \(\tau\) en faisant appel a une approximation au sens des moindres carres ainsi qu'a une optimisation par la methode du gradient dont on expose les principes ci-dessous.</p>
+
+      <p><strong>Approximation au sens des moindres carres :</strong></p>
+      <p>Le suivi de l'evolution de la tension \(u_C\) en fonction du temps donne \(N\) mesures fournissant un ensemble de couples \(\{t_i, (u_{C,\exp})_i\}\) pour \(i \in [\![0, N-1]\!]\).</p>
+      <p>La liste tempa contient les \(N\) instants uniformement repartis sur l'intervalle \([0, 0{,}01]\) (exprimes en secondes) et la liste uC_exp contient les \(N\) valeurs de la tension \(u_{C,\exp}\) correspondantes.</p>
+      <p>En supposant ce systeme du premier ordre, on deux variables variables sont elaborees par le modele :</p>
+      <div class="math-display">$$\forall t \geqslant 0, \quad u_C(t) = E\left(1 - \exp\!\left(-\frac{t}{\tau}\right)\right)$$</div>
+      <p>\(u_C(t)\) depend donc de deux parametres \(E\) et \(\tau\). Le probleme consiste a ajuster au mieux ces deux parametres pour faire coincider le plus possible les valeurs numeriques \(u_C(t_i)\) et experimentales \(u_{C,\exp}(t_i)\).</p>
+      <p>Le critere d'approximation au sens des moindres carres introduit une distance donnee par la fonction \(S : \mathbb{R}^2 \to \mathbb{R}_+\) definie par :</p>
+      <div class="math-display">$$S : (E,\tau) \longmapsto \sum_{i=0}^{N-1}\bigl|u_{C,\exp}(t_i) - u_C(t_i)\bigr|^2$$</div>
+      <p>La meilleure approximation est realisee lorsque les parametres \(E\) et \(\tau\) minimisent la fonction \(S\).</p>
+
+      <p>Dans les questions qui suivent, on importe le module <code>numpy</code> sous l'alias <code>np</code> et on dispose des deux tableaux <code>tempa</code> et <code>uC_exp</code>.</p>
+
+      <div class="question" id="B5">
+        <span class="question__num">B5.</span>
+        <p>Ecrire en code Python une fonction <code>uC_th(temps, E, tau)</code> qui prend en arguments le tableau 1D <code>temps</code> ainsi que les deux scalaires reels \(E\) et \(\tau\) et qui renvoie le tableau des valeurs du modele \(u_C(t_i)\).</p>
+      </div>
+
+      <div class="question" id="B6">
+        <span class="question__num">B6.</span>
+        <p>Definir une fonction <code>norme_quad(p1,p2)</code> qui prend en arguments deux tableaux 1D contenant respectivement les \(N\) coordonnees du point \(P_i\) (\(i = 1,2\)) et qui renvoie \(\bigl\|P_1\,P_2\bigr\|^2\). On travaille ici dans un espace affine euclidien de dimension \(N\).</p>
+      </div>
+
+      <div class="question" id="B7">
+        <span class="question__num">B7.</span>
+        <p>Definir la fonction <code>S(tempa, uC_exp, E, tau)</code> prenant en arguments les tableaux <code>tempa</code> et <code>uC_exp</code>, ainsi que les valeurs des deux parametres \(E\) et \(\tau\) et qui retourne la distance definie dans le critere d'approximation au sens des moindres carres.</p>
+      </div>
+
+      <p><strong>Methode du gradient a pas fixe :</strong></p>
+      <p>Il s'agit d'une methode assez simple mais pas tres robuste permettant de trouver le minimum local d'une fonction. Cette principe expose sur l'utilisation du gradient en un point donne de la fonction etudiee pour deduire la direction de la &laquo; descente &raquo; vers le minimum recherche. La distance entre deux points successifs \(M_i(x_i, y_i)\) et \(M_{i+1}(x_{i+1}, y_{i+1})\) de deux iterations de la methode est donnee par la relation suivante :</p>
+      <div class="math-display">$$\overrightarrow{M_i M_{i+1}} = -\alpha_i\,\overrightarrow{\operatorname{grad}}(f)\bigl|_{(x_i, y_i)}$$</div>
+      <p>soit :</p>
+      <div class="math-display">$$\begin{cases} x_{i+1} = x_i - \alpha_i\,\left(\dfrac{\partial f}{\partial x}\right)_{(x_i,y_i)} \\[6pt] y_{i+1} = y_i - \alpha_i\,\left(\dfrac{\partial f}{\partial y}\right)_{(x_i,y_i)} \end{cases}$$</div>
+
+      <p>Le choix du parametre \(\alpha\) determine la vitesse de convergence de la methode du gradient.</p>
+      <p>Plus il est grand, plus la methode converge a priori rapidement. Cependant, si \(\alpha\) est trop grand, il y a un risque de divergence de la suite. En effet, l'algorithme risque de &laquo; sauter &raquo; au-dessus du minimum recherche et d'osciller autour de ce minimum. Enfin si le pas est trop petit, la convergence peut etre lente.</p>
+      <p>Generalement, le gradient est normalise et sa norme sert a choisir un critere d'arret de l'algorithme. Par exemple, l'algorithme estime avoir converge des que \(\bigl\|\overrightarrow{\operatorname{grad}} f(x_i, y_i)\bigr\| < \epsilon\) ou \(\epsilon\) correspond a la tolerance fixee par l'utilisateur.</p>
+      <p>Ici, le gradient de la fonction \(S\) a pour expression :</p>
+      <div class="math-display">$$\overrightarrow{\operatorname{grad}} S = \begin{pmatrix} \left(\dfrac{\partial S}{\partial E}\right)_\tau \approx \dfrac{S(E + h, \tau) - S(E - h, \tau)}{2h} \\[6pt] \left(\dfrac{\partial S}{\partial \tau}\right)_E \approx \dfrac{S(E, \tau + k) - S(E, \tau - k)}{2k} \end{pmatrix}$$</div>
+
+      <div class="question" id="B8">
+        <span class="question__num">B8.</span>
+        <p>Ecrire une fonction <code>grad(tempa, uC_exp, E, tau, h, k)</code> qui prend en arguments les parametres E, tau, h, k, les tableaux tempa, uC_exp et qui retourne un tableau contenant les coordonnees du vecteur gradS.</p>
+      </div>
+
+      <p>On fournit les lignes de code suivantes :</p>
+      <pre><code>import numpy as np
+
+E, tau = 1e-2, 1e-2     #affectation des valeurs initiales des parametres
+                        # (E en kV, tau en s)
+h, k, eps = 1e-1, 1e-5, 1e-4    #affectation des valeurs de h, de k et eps
+alpha = 1e-2                     #affectation de la valeur du pas
+
+g = grad(tempa, uC_exp, E, tau, h, k)
+norm_g = (g[0]**2+g[1]**2)**0.5
+compteur = 0
+
+while (norm_g > eps) and (compteur &lt; 1000):
+    compteur += 1
+    E = E - alpha * g[0]
+    tau = tau - alpha * g[1]
+    g = grad(tempa, uC_exp, E, tau, h, k)
+    norm_g = (g[0]**2+g[1]**2)**0.5
+
+print(E, tau, compteur)
+        #affichage : 5.0209e-3, 9.916e-4, 66</code></pre>
+
+      <div class="question" id="B9">
+        <span class="question__num">B9.</span>
+        <p>Interpreter ces lignes de code.</p>
+      </div>
+
+      <div class="annale-partie"><h3 class="annale-partie__title">C / Matrice de supercondensateurs</h3></div>
+
+      <p><em>Document 1 : Presentation des supercondensateurs</em></p>
+      <p>L'utilisation d'un systeme de stockage d'energie est souvent necessaire pour les applications de type traction electrique. Le composant de stockage est utilise :</p>
+      <ul>
+        <li>dans les systemes isoles ou il alimente des dispositifs demandant une energie elevee ;</li>
+        <li>dans les systemes hybrides ou il joue un role en termes d'apport de puissance ou d'energie selon l'application (par exemple : phases de freinage ou d'acceleration).</li>
+      </ul>
+      <p>Jusqu'a present, les systemes les plus utilises sont les accumulateurs qui ont une puissance specifique et une autonomie relativement elevees. Les condensateurs classiques ont une autonomie incompatible mais possedent une puissance specifique incomparable. Les supercondensateurs apparaissent comme des composants intermediaires en termes de proprietes energetiques qu'ils rendent tres interessants car ils n'ont pratiquement pas de concurrents dans ce domaine.</p>
+      <p>Si l'on veut accroitre la capacite de stockage d'un condensateur, il faut augmenter la permittivite relative \(\varepsilon_r\) du dielectrique et/ou le rapport \(\dfrac{S}{e}\) (\(S\) designant la surface des armatures et \(e\) la distance separant les deux armatures).</p>
+      <p>Le principe de base des supercondensateurs est lie a la valeur elevee du rapport \(\dfrac{S}{e}\). Ainsi, les charges electriques se trouvent localisees sur des surfaces tres importantes (electrodes poreuses) et a des distances tres faibles (principe de la double couche electrochimique) ou apparaissent les ions de l'electrolyte et les charges opposees de l'electrode.</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 4 -- Un supercondensateur</div>
+        <p>Photographie d'un supercondensateur cylindrique de capacite \(C = 3{,}0\cdot 10^2\;\text{F}\) commercialise par le fabricant Maxwell. Forme cylindrique noire avec deux bornes a chaque extremite.</p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 5 -- Double couche electrochimique au sein d'un supercondensateur</div>
+        <p>Coupe transversale d'un supercondensateur. De haut en bas : Electrodes (couche superieure), Separateur (couche intermediaire), Electrolyte (couche inferieure). Les electrodes sont representees comme deux peignes face a face avec des charges electriques (+/-) reparties sur les surfaces. Les ions de l'electrolyte (cations + et anions -) viennent former la double couche electrochimique au contact des electrodes.</p>
+      </div>
+
+      <p>On s'interesse ici a une modelisation rudimentaire d'un supercondensateur. Dans un premier temps on etudie le profil du potentiel electrique \(V(z)\) a l'interieur du dielectrique. Nous proposerons ensuite un &laquo; modele electrocinetique &raquo; d'un supercondensateur. Enfin, une etude experimentale permettra la determination des parametres du modele &laquo; electrocinetique &raquo;.</p>
+
+      <p>Considerons alors le profil de densite volumique de charge \(\rho(z)\) a l'interieur du dielectrique suivant :</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 6 -- Distribution de charge a l'interieur du dielectrique</div>
+        <p>Schema d'un supercondensateur a deux armatures. Armature A a gauche (charge \(Q_A = -Q_A\), potentiel \(v_A^0\)) et armature B a droite (charge \(Q_B = +Q_B\), potentiel \(v_B^0\)). Entre les deux, le dielectrique. La distribution de charge \(\rho(z)\) n'est pas uniforme : elle est non nulle uniquement dans deux fines couches d'epaisseurs \(d_1\) et \(d_2\) situees pres des armatures (\(d_1\) proche de A et \(d_2\) proche de B), avec une zone centrale ou \(\rho(z) = 0\). Profil graphique de \(\rho(z)\) : pic positif au voisinage de l'armature A, plateau nul au centre, pic negatif au voisinage de l'armature B. Les abscisses caracteristiques sont \(-e/2\), \(-e/2 + d_1\), \(e/2 - d_2\) et \(e/2\).</p>
+      </div>
+
+      <p>Les charges a l'interieur du dielectrique sont localisees sur les epaisseurs \(d_1\) et \(d_2\). Graphe de la fonction \(V = f(z)\).</p>
+
+      <div class="question" id="C1">
+        <span class="question__num">C1.</span>
+        <p>Donner une relation entre \(\rho_1\), \(\rho_2\), \(d_1\) et \(d_2\) en la justifiant.</p>
+      </div>
+
+      <div class="question" id="C2">
+        <span class="question__num">C2.</span>
+        <p>Montrer que le potentiel electrique a l'interieur du supercondensateur satisfait l'equation differentielle suivante :</p>
+        <div class="math-display">$$\frac{\mathrm{d}^2 V}{\mathrm{d} z^2}(z) + \frac{\rho(z)}{\varepsilon_0\,\varepsilon_r} = 0$$</div>
+      </div>
+
+      <div class="question" id="C3">
+        <span class="question__num">C3.</span>
+        <p>Justifier la forme lineaire ou parabolique de \(V = f(z)\). Afin de simplifier les calculs, on considerera que \(d_1 = d_2 = d\) et on posera \(v_A^0 = -v_B^0\).</p>
+      </div>
+
+      <p>Un modele electrocinetique modelisant le comportement du supercondensateur consiste a l'assimiler a l'association serie d'un conducteur ohmique de resistance \(R_0\) et d'un condensateur de capacite \(C_0\) :</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 7 -- Modele electrocinetique equivalent au supercondensateur</div>
+        <p>A gauche : symbole du supercondensateur (deux plaques en pointilles avec etiquette \((C_0, R_0)\)) et tension \(u_C\) a ses bornes. Equivalence indiquee par le signe \(\Leftrightarrow\). A droite : circuit serie compose d'un condensateur de capacite \(C_0\) suivi d'un conducteur ohmique de resistance \(R_0\), aux bornes desquels on a la tension \(u_C\).</p>
+      </div>
+
+      <p>On soumet le supercondensateur, initialement charge sous la tension \(U_0\), a une impulsion de courant d'intensite \(I = 100\;\text{A}\) constante pendant la duree \(\Delta t = 10\;\text{s}\).</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 8 -- Schema du circuit realise</div>
+        <p>Source de courant \(I\) (a gauche) en parallele avec le dipole supercondensateur. Le dipole est modelise par la mise en serie de \(R_0\) (en haut) et \(C_0\) (en bas), aux bornes duquel on mesure la tension \(u_C\).</p>
+      </div>
+
+      <p>On obtient le releve de la tension \(u_C = f(t)\) suivant :</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 9 -- Reponse d'un supercondensateur a une impulsion de courant</div>
+        <p>Graphe de \(u_C\) (en V, axe vertical de 1,5 a 3,5) en fonction du temps \(t\) (en s, axe horizontal de 0 a environ 16 s). Allure caracteristique : avant l'impulsion, la tension est constante a environ \(U_0 \approx 1{,}7\;\text{V}\). Au debut de l'impulsion (t = 4 s environ), saut brusque (discontinuite verticale) jusqu'a environ 2 V (saut ohmique \(R_0 I\)), puis croissance lineaire jusqu'a environ 3,3 V pendant la phase de charge a courant constant (de t = 4 s a t = 14 s). Quand l'impulsion s'arrete, nouveau saut brusque vers le bas d'une amplitude egale a \(R_0 I\), puis tension a nouveau constante autour de 3 V.</p>
+      </div>
+
+      <div class="question" id="C4">
+        <span class="question__num">C4.</span>
+        <p>Etablir l'expression de la tension \(u_C = f(t)\) pendant la phase de charge a courant constant.</p>
+      </div>
+
+      <div class="question" id="C5">
+        <span class="question__num">C5.</span>
+        <p>(*) Donner a partir du releve experimental une estimation de la resistance \(R_0\) et de la capacite \(C_0\) du modele equivalent. On explicitera clairement le raisonnement.</p>
+      </div>
+
+      <p>Dans les applications industrielles utilisant des supercondensateurs, ces derniers peuvent etre associes en serie ou en derivation.</p>
+
+      <div class="question" id="C6">
+        <span class="question__num">C6.</span>
+        <p>On associe deux supercondensateurs \((C_0, R_0)\) tous identiques en serie. <em>En utilisant la notion d'impedance complexe, montrer que cette association est equivalente a l'association serie d'un condensateur de capacite \(C_s\) et d'un conducteur ohmique de resistance \(R_s\) dont on donnera les expressions en fonction de \(C_0\) et de \(R_0\). Generaliser le resultat au cas d'une association de \(n\) supercondensateurs tous identiques en serie.</em></p>
+      </div>
+
+      <div class="question" id="C7">
+        <span class="question__num">C7.</span>
+        <p>On associe maintenant deux supercondensateurs \((C_0, R_0)\) tous identiques en derivation. <em>Montrer de meme que cette association est equivalente a l'association serie d'un condensateur de capacite \(C_d\) et d'un conducteur ohmique de resistance \(R_d\) dont on donnera les expressions en fonction de \(C_0\) et de \(R_0\). Generaliser le resultat au cas d'une association de \(m\) supercondensateurs tous identiques en derivation.</em></p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 10 -- Matrice de supercondensateurs</div>
+        <p>Matrice rectangulaire \((n,m)\) de supercondensateurs identiques. Chaque cellule contient un supercondensateur \(C_0\) en serie avec une resistance \(R_0\). Les cellules sont organisees en \(n\) lignes (superposition serie verticale, etiquetee &laquo; \(n\) supercondensateurs en serie &raquo; sur le cote gauche) et \(m\) colonnes (\(m\) branches en derivation, etiquetees en bas). On mesure \(u_C\) aux bornes de l'ensemble. Au total, \(n \times m\) supercondensateurs identiques.</p>
+      </div>
+
+      <div class="question" id="C8">
+        <span class="question__num">C8.</span>
+        <p>On envisage maintenant la matrice \((n, m)\) de supercondensateurs \((C_0, R_0)\) precedente. En utilisant les resultats precedents, donner le modele electrocinetique equivalent a cette matrice constituant d'un condensateur de capacite \(C_{n,m}\) en serie avec un resistor de resistance \(R_{n,m}\). On donnera en particulier l'expression de la capacite \(C_{n,m}\) et de la resistance \(R_{n,m}\) en fonction de \(R_0\), \(C_0\) et des entiers naturels \(n\) et \(m\).</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                  DEUXIEME PARTIE                              -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="annale-exercice" id="exo2">
+      <h2 class="annale-exercice__title">Deuxieme partie -- De la mecanique appliquee a un cycliste</h2>
+
+      <div class="annale-partie"><h3 class="annale-partie__title">D / Quelques considerations energetiques</h3></div>
+
+      <p>Dans toute la suite, le referentiel d'etude est le referentiel terrestre local \(\mathcal{R}\) suppose galileen.</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 11 -- Parametrage</div>
+        <p>Schema d'un point materiel \(M(m)\) sur un plan incline d'angle \(\alpha\) par rapport a l'horizontale. Vitesse \(\overrightarrow{v}\) dirigee selon la pente (vers le haut a droite). Acceleration de la pesanteur \(\overrightarrow{g}\) dirigee verticalement vers le bas. Vecteurs unitaires \(\overrightarrow{u_x}\) (selon la pente) et \(\overrightarrow{u_z}\) (perpendiculaire a la pente). Repere local lie au plan incline.</p>
+      </div>
+
+      <p>On lance une masse ponctuelle M (la masse sera notee \(m\)) vers un plan incline faisant un angle \(\alpha\) avec l'horizontale. Cette masse est lancee avec une vitesse \(\overrightarrow{v}\) horizontale. On negligera tout frottement.</p>
+
+      <div class="question" id="Q1b">
+        <span class="question__num">D1.</span>
+        <p>Quelle est la vitesse minimale \(v_0\) de lancement pour que la masse M atteigne le sommet d'altitude \(h\) ?</p>
+      </div>
+
+      <p>Une roue de meme masse \(m\) et de rayon \(a\) roule sans glisser sur un support horizontal. On note \(\overrightarrow{\omega} = \omega\,\overrightarrow{u_z}\) le vecteur rotation instantane de la roue et \(\overrightarrow{v} = v\,\overrightarrow{u_x}\) la vitesse du centre d'inertie G de la roue.</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 12 -- Parametrage roue</div>
+        <p>Schema d'une roue circulaire de centre G, de rayon \(a\), en contact avec un support horizontal. Vecteur rotation \(\overrightarrow{\omega}\) (perpendiculaire au plan, sortant) et vecteur vitesse \(\overrightarrow{v}\) horizontal. Point de contact \(I\) au sol. Vecteurs \(\overrightarrow{u_x}\) (horizontal) et \(\overrightarrow{u_z}\) (vertical) du repere.</p>
+      </div>
+
+      <div class="question" id="Q2b">
+        <span class="question__num">D2.</span>
+        <p>En exploitant la condition de roulement sans glissement, etablir la relation liant \(v\) et \(\omega\).</p>
+      </div>
+
+      <div class="question" id="Q3b">
+        <span class="question__num">D3.</span>
+        <p>Donner l'expression de l'energie cinetique de la roue dans le referentiel \(\mathcal{R}\) lie a l'axe de rotation de la roue en mouvement de translation a la vitesse \(\overrightarrow{v}\) par rapport au referentiel terrestre en fonction du moment d'inertie \(J = m\,a^2\) de la roue par rapport a l'axe de rotation passant par G.</p>
+      </div>
+
+      <div class="question" id="Q4b">
+        <span class="question__num">D4.</span>
+        <p>En supposant que l'energie cinetique du cycliste et de son velo dans le referentiel terrestre s'ecrive comme la somme du terme precedent et de \(\dfrac{1}{2}\,m\,v^2\), determiner en fonction de \(g\) et \(h\) l'expression de la vitesse minimale de lancement \(v_0'\) pour que cette roue atteigne le sommet du profil de la <strong>figure 11</strong> d'altitude \(h\).</p>
+      </div>
+
+      <div class="question" id="Q5b">
+        <span class="question__num">D5.</span>
+        <p>Comparer \(v_0'\) a \(v_0\). Ce resultat vous parait-il logique ? Expliquez.</p>
+      </div>
+
+      <div class="annale-partie"><h3 class="annale-partie__title">E / Mesure experimentale du moment d'inertie d'une roue de velo par rapport a son axe de rotation</h3></div>
+
+      <p>Dans cette partie, on s'interesse a un protocole experimental permettant d'estimer le moment d'inertie d'une roue de velo par rapport a son axe de rotation &laquo; naturel &raquo;.</p>
+
+      <p>Dans le referentiel terrestre suppose galileen, \(\mathcal{R}(O,\overrightarrow{u_x},\overrightarrow{u_y},\overrightarrow{u_z})\), la roue est reliee a un support fixe \(\mathcal{S}\) dans ce referentiel par un cable de torsion de constante de torsion \(C\). L'ensemble est plonge dans le champ de pesanteur \(\overrightarrow{g} = -g\,\overrightarrow{u_z}\).</p>
+
+      <p>Le seul mouvement possible de la roue est un mouvement de rotation autour de l'axe \((O, \overrightarrow{u_z})\). Quand la roue est en equilibre, son diametre AB est dirige selon la verticale ascendante. Quand la roue est en mouvement, on repere sa position par l'angle oriente \(\theta = \widehat{(\overrightarrow{u_z}, \overrightarrow{AB})}\).</p>
+
+      <p>A l'equilibre, \(\theta = 0\).</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 13 -- Schema du dispositif experimental</div>
+        <p>Roue de velo de centre G suspendue par son axe horizontal. Le support \(\mathcal{S}\) est relie a la roue par un cable vertical (constante de torsion \(C\)). Diametre AB indique sur la roue, vertical au repos. Repere \((O,\overrightarrow{u_x},\overrightarrow{u_y},\overrightarrow{u_z})\) avec \(\overrightarrow{u_z}\) vertical ascendant et \(\overrightarrow{g}\) vertical descendant. Vue laterale et vue de face indiquant l'orientation de l'angle \(\theta\).</p>
+      </div>
+
+      <p>Le moment du couple de rappel exerce par le cable sur la roue est proportionnel a la position angulaire du disque :</p>
+      <div class="math-display">$$\overrightarrow{\Gamma} = -C\,\theta\,\overrightarrow{u_z}$$</div>
+
+      <p>On souhaite dans cette experience determiner les caracteristiques mecaniques du pendule de torsion ainsi forme, a savoir le moment d'inertie \(J\) de la roue par rapport a l'axe \((O,\overrightarrow{u_z})\) et la constante de torsion \(C\) du cable.</p>
+
+      <p>On ecarte la roue de sa position d'equilibre d'un angle \(\theta_0\) et on l'abandonne sans vitesse initiale. Dans l'air les frottements etant negligeables, la roue effectue des oscillations de periode \(T_0\).</p>
+
+      <div class="question" id="Q6b">
+        <span class="question__num">E1.</span>
+        <p>En appliquant la loi scalaire du moment cinetique a la roue, etablir l'equation differentielle satisfaite par l'angle \(\theta\).</p>
+      </div>
+
+      <div class="question" id="Q7b">
+        <span class="question__num">E2.</span>
+        <p>Exprimer la periode \(T_0\) des oscillations en fonction de \(J\) et \(C\).</p>
+      </div>
+
+      <p>La roue est maintenant plongee dans un fluide qui introduit un frottement non negligeable. Il s'effectue un mouvement oscillatoire amorti de pseudo-periode \(T_1\).</p>
+
+      <p>On admet que le moment du couple de frottement est proportionnel a la vitesse angulaire de la roue : \(\overrightarrow{\Gamma_f} = -f\,\dfrac{\mathrm{d}\theta}{\mathrm{d}t}\,\overrightarrow{u_z}\), avec \(f\) constante positive et \(\dfrac{\mathrm{d}\theta}{\mathrm{d}t} = \dot\theta(t)\).</p>
+
+      <p>On enregistre au cours du temps l'evolution de la vitesse angulaire \(\omega\) en fonction du temps. Ces donnees sont stockees dans un fichier <code>data.txt</code> dont les deux premieres colonnes sont saisies en s) et la seconde colonne les valeurs mesurees de la vitesse angulaire (en rad.s\(^{-1}\)). Les colonnes sont separees par des espaces.</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 14 -- Extrait du fichier data.txt</div>
+        <p>Tableau de deux colonnes : t (en s) et omega (en rad/s). Echantillon de valeurs : (0.00 ; -0.183), (0.15 ; -0.825), (0.30 ; -1.356), ... etc. Les donnees correspondent a l'evolution temporelle de la vitesse angulaire de la roue en oscillation amortie.</p>
+      </div>
+
+      <div class="question" id="Q8b">
+        <span class="question__num">E3.</span>
+        <p>Ecrire les lignes de code Python permettant de recuperer dans la variable tempa la liste des differents instants et dans la variable omega_exp la liste des vitesses angulaires instantanees. Les elements des differentes listes seront du type float.</p>
+      </div>
+
+      <div class="question" id="Q9b">
+        <span class="question__num">E4.</span>
+        <p>Ecrire une fonction angle(theta_0, temps, vit_ang) prenant en arguments la valeur initiale de l'angle \(\theta\), une liste des temps, et une liste des vitesses angulaires instantanees et qui retourne une liste des valeurs de l'angle \(\theta\) aux differents instants tempa[i].</p>
+      </div>
+
+      <div class="question" id="Q10b">
+        <span class="question__num">E5.</span>
+        <p>La fonction angle precedente est utilisee sur les donnees liees dans le fichier data.txt et le retour de l'angle \(\theta\) aux differents instants tempa[i] correspondant aux elements de la liste tempa. Ecrire les lignes de code Python permettant d'obtenir le graphe de la figure suivante.</p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 15 -- Trace du graphe experimental</div>
+        <p>Graphe &laquo; Evolution temporelle de theta en fonction du temps &raquo;. Axe horizontal : temps t (en s) de 0 a environ 25 s. Axe vertical : theta (en rad) de -1 a 1,5. Allure : oscillations sinusoidales amorties exponentiellement, avec une amplitude initiale d'environ 1,5 rad qui decroit progressivement vers 0. Plusieurs pseudo-periodes visibles.</p>
+      </div>
+
+      <div class="question" id="Q11b">
+        <span class="question__num">E6.</span>
+        <p>En appliquant la loi scalaire du moment cinetique a la roue dans ces nouvelles conditions, etablir l'equation differentielle satisfaite par \(\theta\) et la mettre sous sa forme canonique habituelle :</p>
+        <div class="math-display">$$\frac{\mathrm{d}^2\theta}{\mathrm{d}t^2} + \frac{\omega_0}{Q}\,\frac{\mathrm{d}\theta}{\mathrm{d}t} + \omega_0^2\,\theta = 0$$</div>
+        <p>Exprimer \(\omega_0\) et \(Q\) en fonction de \(J\), \(f\) et \(C\).</p>
+      </div>
+
+      <div class="question" id="Q12b">
+        <span class="question__num">E7.</span>
+        <p>La forme generale de la solution de cette equation differentielle s'ecrit : \(\theta(t) = \theta_0\,\exp\!\left(-\dfrac{t}{\tau}\right)\,\cos(\Omega\,t + \varphi)\). Montrer que \(\tau\) et \(\Omega\) sont relies a la pulsation propre \(\omega_0\) et au facteur de qualite \(Q\) par les relations suivantes :</p>
+        <div class="math-display">$$\begin{cases} \tau = \dfrac{2Q}{\omega_0} \\[6pt] \Omega = \omega_0\sqrt{1 - \dfrac{1}{4Q^2}} \end{cases}$$</div>
+        <p>A l'aide du graphe precedent, proposer une premiere estimation de \(Q\). Quelle approximation est-il raisonnable de proposer a ce stade ?</p>
+      </div>
+
+      <div class="question" id="Q13b">
+        <span class="question__num">E8.</span>
+        <p>On se propose de determiner \(\tau\) et \(Q\) a partir de l'utilisation du decrement logarithmique dont la definition est : \(\delta \overset{\text{def}}{=} \ln\!\left(\dfrac{\theta(t)}{\theta(t + T_1)}\right)\) ou \(T_1\) designe la pseudo-periode. Exprimer \(Q\) en fonction du decrement logarithmique et au cadre de l'approximation de la question E7.</p>
+      </div>
+
+      <div class="question" id="Q14b">
+        <span class="question__num">E9.</span>
+        <p>En s'appuyant sur le graphe precedent, donner une estimation plus precise de la valeur numerique de \(Q\).</p>
+      </div>
+
+      <div class="question" id="Q15b">
+        <span class="question__num">E10.</span>
+        <p>Une mesure experimentale (dans l'air) a conduit a \(T_0 = 3{,}0 \pm 0{,}2\;\text{s}\). On fournit egalement \(f = 5{,}1\cdot 10^{-3}\;\text{SI}\). Preciser l'unite SI du coefficient de frottement \(f\) et determiner les valeurs numeriques de \(J\) et \(C\).</p>
+      </div>
+
+      <div class="annale-partie"><h3 class="annale-partie__title">F / Etude mecanique et energetique du systeme [ cycliste + velo ]</h3></div>
+
+      <p>On supposera que les roues du velo roulent sans glisser. On precise egalement que dans toute la suite, les actions de contact au niveau de la roue ne sont pas modelisees par une force point d'application et le contact suppose ponctuel entre la roue et le sol. On neglige en particulier le moment de roulement.</p>
+
+      <p><strong>1. Montee d'une cote a puissance constante du cycliste :</strong></p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 16 -- La montee d'une cote</div>
+        <p>Schema d'un cycliste sur un velo gravissant un plan incline d'angle \(\alpha\) par rapport a l'horizontale. Le sommet est etiquete &laquo; SOMMET &raquo; en haut a droite, le point de depart &laquo; DEPART &raquo; en bas a gauche. La hauteur a parcourir est \(H\). Vecteurs unitaires \(\overrightarrow{u_x}\) selon la pente et \(\overrightarrow{u_z}\) perpendiculaire au plan incline. Vitesse \(\overrightarrow{v}\) selon \(\overrightarrow{u_x}\). Le velo est en mouvement ascendant.</p>
+      </div>
+
+      <p>Un cycliste de masse \(m_c\) se deplace a une vitesse \(v\) constante dans la partie ascendante sur son velo dont la pente a pour mesure \(m_p\). On note \(\alpha\) la mesure de l'angle de chaque cote. On suppose que le cycliste fournit constamment au cours du temps. On neglige les forces de frottement dans la \(1\).</p>
+
+      <div class="question" id="Q16b">
+        <span class="question__num">F1.</span>
+        <p>Donner l'expression de l'energie cinetique \(\mathcal{E}_{C,\text{tot}}\) d'un velo et de son passager se deplacant a une vitesse \(v\). Montrer que l'energie cinetique peut s'exprimer uniquement en fonction de \(v\) et des differentes masses.</p>
+      </div>
+
+      <div class="question" id="Q17b">
+        <span class="question__num">F2.</span>
+        <p>(*) Est-il legitime de negliger l'energie cinetique de rotation des roues devant celle du grandeur afin d'illustrer votre propos.</p>
+      </div>
+
+      <div class="question" id="Q18b">
+        <span class="question__num">F3.</span>
+        <p>Pourquoi ne peut-on pas negliger les frottements entre la roue et le sol ? Les actions de contact sont-elles consommatrices d'energie au cours du mouvement de glissement et en considerant que les roues roulent sans glisser sur la route.</p>
+      </div>
+
+      <p><strong>Expression de la puissance delivree par le cycliste :</strong></p>
+
+      <p>On appelle \(\mathcal{P}\) la puissance delivree par le cycliste et \(\omega_d\) la vitesse de rotation de la roue arriere. La chaine est constituee d'un brin tendu et d'un brin mou. Seul le brin tendu exerce une action sur le pignon modifiant par une force constante la chaine et le pignon.</p>
+
+      <p>On considerera que la tension du brin tendu demeure constante le long du brin tendu.</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 17 -- Liaison plateau - roue arriere</div>
+        <p>Schema de la transmission d'un velo : a gauche, le plateau (grand pignon avant) couple au pedalier ; a droite, la roue arriere (de rayon \(a_R\)) avec son pignon (de rayon \(a_P\)). La chaine relie les deux : brin tendu en haut (en gras), brin mou en bas (en traits fins). Vitesse angulaire de rotation de la roue arriere notee \(\omega_d\).</p>
+      </div>
+
+      <div class="question" id="Q19b">
+        <span class="question__num">F4.</span>
+        <p>Etablir la relation entre \(v\) et \(\omega_d\).</p>
+      </div>
+
+      <div class="question" id="Q20b">
+        <span class="question__num">F5.</span>
+        <p>Representer sans souci d'echelle les forces s'exercant sur la roue arriere (le pignon de rayon \(a_P\) faisant partie de la roue arriere).</p>
+      </div>
+
+      <div class="question" id="Q21b">
+        <span class="question__num">F6.</span>
+        <p>En appliquant la loi scalaire du moment cinetique a la roue arriere et en montrant que la composante tangentielle a la chaine, montrer que la composante tangentielle de la force exercee par la route sur la roue arriere est donnee par :</p>
+        <div class="math-display">$$F = \frac{\mathcal{P}}{v}$$</div>
+        <p>ou \(v\) est la vitesse du cycliste.</p>
+      </div>
+
+      <p>Par le meme raisonnement, montrer que la composante tangentielle de la force exercee par la route sur la roue avant est nulle.</p>
+
+      <div class="question" id="Q22b">
+        <span class="question__num">F7.</span>
+        <p>Representer alors les forces exterieures qui s'exercent sur le systeme [ cycliste + velo ]. En deduire la relation : \(\mathcal{P} = m_{\text{tot}}\,g\sin(\alpha)\,v\). Donner une interpretation energetique a cette relation.</p>
+      </div>
+
+      <p>Deux cyclistes developpent une meme puissance moyenne arrivent au bas d'un col de denivele \(H\). En bas de la montee, les cyclistes ont le choix entre deux routes pouvant atteindre le meme col, l'une annoncant le col a une distance \(D_1\), l'autre a \(D_2 (D_2 > D_1)\). On supposera que la pente de la route est constante pendant toute la montee. On considerera donc tres differentee.</p>
+
+      <div class="question" id="Q23b">
+        <span class="question__num">F8.</span>
+        <p>Montrer que la duree mise pour gravir le col est independante de l'inclinaison de la pente et ne depend que du denivele H. La vitesse est-toujours plus grande pour ceux qui empruntent le col a la distance \(D_1\). L'autre a \(D_2\) (\(D_2 > D_1\)). On supposera que la pente de la route est constante toute la montee.</p>
+      </div>
+
+      <div class="question" id="Q24b">
+        <span class="question__num">F9.</span>
+        <p><strong>Application numerique :</strong> un cycliste monte une cote de pente 3,0 % a la vitesse \(v = 15\;\text{km}\cdot\text{h}^{-1}\). Calculer la puissance developpee par le cycliste.</p>
+        <p>Ce meme cycliste developpe la meme puissance moyenne maintenant une cote a 0,1 %. Calculer la vitesse de montee. Les resultats theoriques du paragraphe precedent peuvent-ils s'appliquer dans le cas des faibles pentes ? Comment faudrait-il corriger le modele ?</p>
+      </div>
+
+      <p><strong>2. Influence des frottements de l'air :</strong></p>
+      <p>Les deux modeles mathematiques des frottements fluides les plus couramment utilises sont :</p>
+      <ul>
+        <li>\(\overrightarrow{f} = -k\,\overrightarrow{v_{r/a}}\) ;</li>
+        <li>\(\overrightarrow{f} = -k\,v_{r/a}^2\,\overrightarrow{n}\) ou \(\overrightarrow{n}\) est un vecteur unitaire indiquant la direction et le sens du deplacement du cycliste.</li>
+      </ul>
+
+      <p>Pour decider du modele qui correspond le mieux a la realite, on effectue les experiences suivantes.</p>
+      <p>Un cycliste se laisse aller en roue libre (sans pedaler) dans une pente descendante. Au bout d'un certain temps, sa vitesse est constante. On mesure cette vitesse limite pour differentes inclinaisons de la route et on obtient les resultats page suivante :</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Tableau experimental -- Vitesse limite vs pente</div>
+        <p>Tableau a deux colonnes. Colonne 1 : Pente de la route (en degre par rapport a l'horizontale) avec valeurs : 2,5 ; 3,0 ; 2,2 ; 1,9 ; 4,2 ; 3,9 ; 1,5. Colonne 2 : Vitesse limite (en km.h\(^{-1}\)) avec valeurs respectives : 37 ; 40 ; 35 ; 32 ; 48 ; 46 ; 29.</p>
+      </div>
+
+      <div class="question" id="Q25b">
+        <span class="question__num">F10.</span>
+        <p>(*) A partir des resultats precedents, justifier, parmi les deux modeles mathematiques proposes, quel est celui qui correspond le mieux a l'experience. On pourra realiser des regressions lineaires pertinentes. Donner la valeur numerique du coefficient \(k\) qui interviendra dans l'expression de la force de frottement fluide.</p>
+      </div>
+
+      <p><strong>Integration de la force de frottement avec le modele precedent :</strong></p>
+
+      <p>On se replace dans le cas ou le cycliste developpe une puissance \(\mathcal{P}\) constante et se deplace a vitesse constante dans une pente ascendante faisant un angle \(\alpha\) avec l'horizontale.</p>
+
+      <div class="question" id="Q26b">
+        <span class="question__num">F11.</span>
+        <p>Montrer que l'equation dont la vitesse \(v\) du cycliste est solution en regime permanent est donnee dans le cas d'une modelisation des frottements de l'air par une loi quadratique put :</p>
+        <div class="math-display">$$\mathcal{P} = m_{\text{tot}}\,g\,\sin(\alpha)\,v + k\,v^3$$</div>
+      </div>
+
+      <div class="question" id="Q27b">
+        <span class="question__num">F12.</span>
+        <p>Ecrire une fonction <code>dichotomie(alpha, P, a, b, eps)</code> prenant en arguments les cinq flottants <code>alpha</code>, <code>P</code>, <code>a</code>, <code>b</code>, et <code>eps</code> qui retourne la solution de l'equation \(m_{\text{tot}}\,g\,\sin(\alpha)\,v + k\,v^3 - \mathcal{P} = 0\) dans l'intervalle \([a,b]\) a \(\epsilon\) pres.</p>
+        <p>On considerera des les variables g, m_tot et k ont ete prealablement definies.</p>
+      </div>
+
+      <p>On represente graphiquement le temps de montee en fonction de la pente de la route pour une puissance developpee \(\mathcal{P} = 100\;\text{W}\).</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 18 -- Simulation numerique</div>
+        <p>Graphe du temps de montee (en s, axe vertical de 0 a environ 12000 s) en fonction de l'angle de la pente (en rad, axe horizontal de 0 a environ 0,14 rad). Allure : courbe decroissante puis qui repasse par un minimum vers \(\alpha \approx 0{,}04\) rad, puis remonte. Cela illustre qu'il existe une pente optimale qui minimise le temps de montee pour une puissance fixee.</p>
+      </div>
+
+      <div class="question" id="Q28b">
+        <span class="question__num">F13.</span>
+        <p>Pour quelles valeurs de l'angle de la pente, dans les conditions experimentales donnees, peut-on negliger les forces de frottements de l'air ? Quand sont-elles preponderantes ?</p>
+      </div>
+
+      <div class="question" id="Q29b">
+        <span class="question__num">F14.</span>
+        <p>Les modeles obtenus pour la force de frottements dans l'air sont negligeables, sont-ils numeriquement coherents avec l'etude faite dans la sous-partie <strong>Montee d'une cote a puissance constante du cycliste</strong> ?</p>
+      </div>
+
+      <div class="question" id="Q30b">
+        <span class="question__num">F15.</span>
+        <p>Donner l'expression du temps de montee en fonction de \(H\) (denivele), \(\mathcal{P}\) (puissance developpee par le cycliste), \(\alpha\) (inclinaison de la pente) et de coefficient \(k\) de la force de frottement.</p>
+      </div>
+
+      <div class="question" id="Q31b">
+        <span class="question__num">F16.</span>
+        <p>Verifier que le comportement du temps de montee en fonction de \(\alpha\) est qualitativement coherent avec l'etude numerique.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                  TROISIEME PARTIE                              -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="annale-exercice" id="exo3">
+      <h2 class="annale-exercice__title">Troisieme partie -- Conclusion</h2>
+
+      <p><em>Document 2 : Quelques donnees</em></p>
+      <p>On fournit les caracteristiques d'un supercondensateur de marque Maxwell :</p>
+      <ul>
+        <li>Capacite : \(C_0 = 3{,}0\cdot 10^2\;\text{F}\)</li>
+        <li>Resistance serie : \(R_0 = 1\;\text{m}\Omega\)</li>
+        <li>Tension maximale : \(U_{\max} = 3{,}0\;\text{V}\)</li>
+      </ul>
+      <p>Le moteur electrique dont est equipe le velo est alimente par la matrice de supercondensateurs est un moteur a courant continu presentant les caracteristiques suivantes :</p>
+      <ul>
+        <li>Puissance utile : \(\mathcal{P}_{\text{moteur}} \overset{\text{def}}{=} U_{\text{moteur}}\,i = 180\;\text{W}\)</li>
+        <li>Tension nominale d'utilisation du moteur : \(U_{\text{moteur}} = 36\;\text{V}\)</li>
+      </ul>
+
+      <p>Dans un certain regime d'utilisation, nous considerons que le moteur peut etre modelise par le dipole M oriente en convention recepteur et presentant la caracteristique tension-courant suivante. Ce moteur presente egalement une resistance interne \(r_M = 1\,\Omega\).</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 19 -- Modelisation du moteur et caracteristique courant - tension</div>
+        <p>A gauche : symbole du dipole moteur M en convention recepteur, traverse par le courant \(i\) avec la tension \(U\) a ses bornes. A droite : graphique de la caracteristique \(i = f(U)\) (axes \(U\) horizontal en V, \(i\) vertical en A). La courbe est lineaire (segment de droite) entre deux valeurs caracteristiques, modelisant un moteur a courant continu en convention recepteur. Le point nominal correspond a \((U_{\text{moteur}} = 36\;\text{V}, i)\) avec \(\mathcal{P}_{\text{moteur}} = 180\;\text{W}\), soit \(i = 5\;\text{A}\).</p>
+      </div>
+
+      <p><em>Document 3 : Profil du mur de Huy</em></p>
+      <p>On fournit ci-dessous les caracteristiques du mur de Huy :</p>
+      <ul>
+        <li>Distance parcourue lors de son ascension : \(D = 1{,}3\;\text{km}\)</li>
+        <li>Denivele : \(H = 131\;\text{m}\)</li>
+        <li>Altitude de depart : 79 m</li>
+        <li>Altitude d'arrivee : 212 m</li>
+        <li>Pourcentage moyen d'ascension : \(p = 9{,}6\;\%\) avec un maximum de 26 % a la corde de la chicane</li>
+      </ul>
+      <p><strong>A titre anecdotique :</strong> Le 06 juillet 2015 lors de la troisieme etape du Tour de France Anvers/Huy, le vainqueur de l'etape Rodriguez gravit le mur de Huy en 3'14&Prime; avec une puissance moyenne developpee estimee a \(\mathcal{P} = (5{,}2\pm 0{,}1)\cdot 10^2\;\text{W}\) pour une masse \(m = 70\;\text{kg}\).</p>
+
+      <div class="question" id="Q1c">
+        <span class="question__num">G1.</span>
+        <p>(*) Estimer les valeurs de \(n\) et \(m\) de la matrice de supercondensateurs permettant l'alimentation du moteur electrique du velo pour une montee du mur de Huy a une vitesse \(v = 10\;\text{km}\cdot\text{h}^{-1}\). Le cycliste developpe en moyenne une puissance \(\mathcal{P} = 1{,}0\cdot 10^3\;\text{W}\).</p>
+        <p>On pourra dans un premier temps estimer le temps de montee de la cote du mur de Huy par le cycliste. On exposera clairement la demarche suivie ainsi que les hypotheses effectuees pour la resolution de ce probleme. On precisera soigneusement les notations introduites.</p>
+      </div>
+
+      <p style="text-align:center;font-style:italic;margin-top:var(--space-xl)">FIN DE L'EPREUVE</p>
+    </div>
+
+    <nav class="course__nav">
+      <a href="e3a-2018-maths2.html" class="course__nav-link">
+        &larr; Precedent
+        <span>E3A 2018 -- Maths 2</span>
+      </a>
+      <a href="e3a-2020-physique.html" class="course__nav-link course__nav-link--next">
+        Suivant &rarr;
+        <span>E3A 2020 -- Physique</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

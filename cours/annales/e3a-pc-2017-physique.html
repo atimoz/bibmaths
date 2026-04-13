@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2017 - Physique - LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../../index.html" class="nav-logo">LibMaths</a>
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../../physique/index.html">Physique</a></li>
+      <li><a href="../index.html">Annales</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="course">
+  <div class="course-header">
+    <div class="breadcrumb">
+      <a href="../../index.html">Accueil</a> &gt;
+      <a href="../../physique/index.html">Physique</a> &gt;
+      <a href="../index.html">Annales</a> &gt;
+      <span>E3A-Polytech PC 2017 - Physique-Modelisation</span>
+    </div>
+    <h1>E3A-Polytech PC 2017 - Physique-Modelisation</h1>
+    <p class="course-subtitle">Concours Arts et Metiers ParisTech - ESTP - Polytech - Epreuve de Physique-Modelisation PC - Duree 4 h</p>
+  </div>
+
+  <div class="annale-info">
+    <div class="annale-warning">
+      <strong>Sujet retranscrit avec schemas</strong>
+      <p>L'usage de calculatrices est autorise. Si, au cours de l'epreuve, un candidat repere ce qui lui semble etre une erreur d'enonce, d'une part il le signale au chef de salle, d'autre part il le signale sur sa copie et poursuit sa composition en indiquant les raisons des initiatives qu'il est amene a prendre.</p>
+      <p><em>Remarques preliminaires :</em></p>
+      <ul>
+        <li>Les explications des phenomenes etudies interviennent dans la notation au meme titre que les developpements analytiques et les applications numeriques.</li>
+        <li>Les resultats exprimes sans unite ne seront pas comptabilises.</li>
+        <li>Plusieurs questions demandent une explication qualitative. Il est attendu des reponses claires et concises (moins de 10 lignes).</li>
+        <li>Tout resultat fourni dans l'enonce peut etre admis et utilise par la suite, meme s'il n'a pas ete demontre par le(la) candidat(e).</li>
+        <li>Tout au long de l'enonce, les paragraphes en italiques ont pour objet de fournir des informations et d'aider a la comprehension du probleme mais ne contiennent pas de questions.</li>
+      </ul>
+      <p><em>Remarques pour les questions de programmation :</em></p>
+      <ul>
+        <li>Toutes les questions d'informatique comportent une mention du type &laquo; Ecrire en langage Python... &raquo;. Les codes doivent etre ecrits en langage Python.</li>
+        <li>On se limitera aux types suivants : entiers, flottants, chaines de caracteres, listes, tableaux (array du module numpy) et tuples.</li>
+        <li>On se limitera aux mots cles suivants : <code>if</code>, <code>elif</code>, <code>else</code>, <code>while</code>, <code>for</code>, <code>in</code>, <code>def</code>, <code>return</code>, <code>and</code>, <code>or</code>, <code>not</code>, <code>True</code>, <code>False</code>, <code>import</code>, <code>from</code>, <code>as</code> et <code>None</code>.</li>
+        <li>On se limitera aux fonctions et methodes de la bibliotheque standard suivantes : <code>print</code>, <code>plot</code>, <code>range</code>, <code>enumerate</code>, <code>len</code> et <code>append</code>.</li>
+        <li><strong>Les codes ne respectant pas les consignes precedentes ne seront pas comptabilises.</strong></li>
+      </ul>
+      <p>La <strong>presentation</strong>, la lisibilite, l'orthographe, la qualite de la <strong>redaction, la clarte et la precision</strong> des raisonnements entreront pour une <strong>part importante</strong> dans l'<strong><em>appreciation des copies</em></strong>. En particulier, les resultats non justifies ne seront pas pris en compte. Les candidats sont invites a encadrer les resultats de leurs calculs.</p>
+    </div>
+
+    <h3>Rappel sur la notation complexe</h3>
+    <p>Dans tout le sujet, on associe a une grandeur sinusoidale \( V(t) = V_0 \cos(\omega t + \phi) \) la grandeur complexe \( \underline{V}(t) = \underline{V_0} e^{j\omega t} \) avec \( \underline{V_0} = V_0 e^{j\phi} \) (ou \( j^2 = -1 \)) et telle que \( V(t) = \text{Re}(\underline{V}(t)) \), ou Re est la partie reelle.</p>
+
+    <h3>Donnees</h3>
+    <ul>
+      <li>distance Terre-Soleil : \( d_{ST} = 1{,}5 \times 10^{11} \) m</li>
+      <li>rayon de la Terre : \( R_T = 6{,}4 \times 10^{6} \) m</li>
+      <li>rayon du Soleil : \( R_S = 7{,}0 \times 10^{8} \) m</li>
+      <li>masse du Soleil : \( m_S = 2{,}0 \times 10^{30} \) kg</li>
+      <li>constante de gravitation universelle : \( \mathcal{G} = 6{,}7 \times 10^{-11} \) kg\(^{-1}\) &middot; m\(^3\) &middot; s\(^{-2}\)</li>
+      <li>constante d'Avogadro : \( \mathcal{N}_A = 6{,}0 \times 10^{23} \) mol\(^{-1}\)</li>
+      <li>masse d'un proton H\(^+\) : \( m_p = 1{,}7 \times 10^{-27} \) kg</li>
+      <li>masse d'un electron e\(^-\) : \( m_e = 9{,}1 \times 10^{-31} \) kg</li>
+      <li>charge elementaire : \( e = 1{,}6 \times 10^{-19} \) C</li>
+      <li>constante des gaz parfaits : \( R = 8{,}3 \) J &middot; mol\(^{-1}\) &middot; K\(^{-1}\)</li>
+      <li>constante de Boltzmann : \( k_B = 1{,}4 \times 10^{-23} \) J &middot; K\(^{-1}\)</li>
+      <li>vitesse de lumiere dans le vide : \( c = 3{,}0 \times 10^{8} \) m &middot; s\(^{-1}\)</li>
+      <li>permittivite du vide : \( \varepsilon_0 = 8{,}9 \times 10^{-12} \) F &middot; m\(^{-1}\)</li>
+      <li>permeabilite du vide : \( \mu_0 = 4\pi \times 10^{-7} \) H &middot; m\(^{-1}\)</li>
+    </ul>
+
+    <p><em>Ce probleme constitue de deux parties independantes s'interesse a la production et a l'acheminement de l'energie electrique produite par une centrale photovoltaique. La premiere partie etudie l'origine de l'energie photovoltaique, le Soleil, ainsi que la puissance electrique fournie par une cellule photovoltaique. La deuxieme partie etudie l'acheminement de l'energie electrique jusqu'a l'utilisateur. Les sous-parties sont pour la plupart independantes les unes des autres.</em></p>
+
+    <h2>Table des matieres</h2>
+    <ul class="toc">
+      <li><a href="#partie1">Premiere partie - Etude du Soleil et de son rayonnement</a>
+        <ul>
+          <li><a href="#partieA">A/ Approche descriptive du rayonnement du Soleil (A1 a A5)</a></li>
+          <li><a href="#partieB">B/ Estimation de la temperature du Soleil (B1 a B8)</a></li>
+          <li><a href="#partieC">C/ Etude d'une centrale photovoltaique (C1 a C5)</a></li>
+        </ul>
+      </li>
+      <li><a href="#partie2">Deuxieme partie - Transport de l'energie electrique de la centrale au consommateur</a>
+        <ul>
+          <li><a href="#partieD">D/ Transformation en courant alternatif grace a un onduleur (D1 a D13)</a></li>
+          <li><a href="#partieE">E/ Dimensionnement des cables (E1 a E16)</a></li>
+          <li><a href="#partieF">F/ Propagation de la tension le long d'une ligne electrique (F1 a F12)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ==================== PREMIERE PARTIE ==================== -->
+
+  <article class="annale-exercice" id="partie1">
+    <h2>Premiere partie - Etude du Soleil et de son rayonnement</h2>
+
+    <!-- ===== A/ ===== -->
+    <h3 id="partieA">A/ Approche descriptive du rayonnement du Soleil</h3>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Document 1 - Le rayonnement d'equilibre thermique</div>
+      <p><em>D'apres Wikipedia : https://fr.wikipedia.org/wiki/Corps_noir</em></p>
+      <p>Le <strong>corps noir</strong> est un objet ideal qui absorbe toute l'energie electromagnetique qu'il recoit, sans en reflechir ni en transmettre.</p>
+      <p>En l'absence d'energie electromagnetique exterieure, un corps noir a la temperature d'equilibre \( T \) emet un flux surfacique d'energie electromagnetique dont la densite spectrale, c'est-a-dire le flux surfacique par unite de longueur d'onde emise, depend uniquement de la longueur d'onde et de la temperature.</p>
+      <p>Le maximum de cette densite spectrale de flux surfacique est donne par la <strong>loi de Wien</strong></p>
+      \[ \lambda_{max} = \frac{2{,}898 \times 10^{-3}}{T} \;, \tag{1} \]
+      <p>avec \( \lambda_{max} \) en metres et \( T \) en kelvins. Cette derniere loi exprime le fait que pour un corps noir, le produit de la temperature et de la longueur d'onde du pic de la courbe est toujours egal a une constante. Cette loi tres simple permet ainsi de connaitre la temperature d'un corps assimile a un corps noir par la seule position de son maximum.</p>
+      <p>D'apres la <strong>loi de Stefan-Boltzmann</strong>, le flux surfacique d'energie \( \phi(T) \) (en W &middot; m\(^{-2}\)) emis par le corps noir varie en fonction de la temperature absolue \( T \) (exprimee en kelvin) selon la formule</p>
+      \[ \phi(T) = \sigma T^4 \;, \tag{2} \]
+      <p>ou \( \sigma \) est la constante de Stefan-Boltzmann qui vaut environ \( 5{,}67 \times 10^{-8} \) W &middot; m\(^{-2}\) &middot; K\(^{-4}\).</p>
+    </div>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Document 2 - Le rayonnement solaire</div>
+      <p><em>D'apres Wikipedia : https://fr.wikipedia.org/wiki/Rayonnement_solaire</em></p>
+      <p>Graphique intitule "Spectre du rayonnement solaire" montrant la densite spectrale de flux surfacique d'energie (en W &middot; m\(^{-2}\) &middot; nm\(^{-1}\)) en fonction de la longueur d'onde (en nm) de 250 a 2500 nm. On y voit trois zones : UV, Visible, Infrarouge. La courbe "au sommet de l'atmosphere" suit approximativement le spectre du corps noir a la temperature \( T_S \). La courbe "au niveau de la mer" est plus faible et presente des bandes d'absorption dues a O\(_3\), O\(_2\), H\(_2\)O, CO\(_2\).</p>
+    </div>
+
+    <p><em>On s'interesse aux caracteristiques du rayonnement solaire (documents 1 et 2). Le candidat peut utiliser les informations des documents afin de repondre aux questions.</em></p>
+    <p><em>Dans cette partie, on assimile le Soleil a un corps noir de rayon \( R_S \).</em></p>
+
+    <section class="question" id="A1">
+      <h4>A1.</h4>
+      <p>Estimer la valeur numerique de la temperature \( T_S \) du Soleil assimile a un corps noir. Le raisonnement devra etre explicite.</p>
+    </section>
+
+    <section class="question" id="A2">
+      <h4>A2.</h4>
+      <p>Exprimer le flux surfacique d'energie \( \phi_S \) emis par le Soleil en fonction de \( T_S \) et de \( \sigma \). En deduire l'expression de la puissance totale rayonnee par le Soleil \( \mathcal{P}_S \) en fonction de \( T_S \), \( R_S \) et \( \sigma \).</p>
+    </section>
+
+    <p><em>La distance Terre-Soleil etant tres grande, les rayons solaires peuvent etre consideres comme arrivant parallelement entre eux. Ainsi, la Terre recoit la meme puissance que celle que recevrait un disque de rayon \( R_T \) place perpendiculairement aux rayons solaires incidents.</em></p>
+
+    <section class="question" id="A3">
+      <h4>A3.</h4>
+      <p>Exprimer le flux surfacique d'energie recu par la Terre \( \phi_T \) en fonction de \( \sigma \), \( T_S \), \( R_S \) et \( d_{ST} \) et montrer que la puissance totale recue par la Terre, notee \( \mathcal{P}_T \), s'ecrit</p>
+      \[ \mathcal{P}_T = \sigma T_S^4 \pi \frac{R_S^2 R_T^2}{d_{ST}^2} \;. \]
+      <p>Faire l'application numerique de \( \phi_T \).</p>
+    </section>
+
+    <p><em>En realite, on mesure que la Terre recoit au niveau du sol un flux surfacique total (integre sur toutes les longueurs d'ondes) d'energie d'environ \( \phi'_T \simeq 900 \) W &middot; m\(^{-2}\).</em></p>
+
+    <section class="question" id="A4">
+      <h4>A4.</h4>
+      <p>Proposer une explication pour l'ecart entre la valeur trouvee a la question precedente pour \( \phi_T \) et celle mesuree de 900 W &middot; m\(^{-2}\). On pourra s'aider des documents.</p>
+    </section>
+
+    <section class="question" id="A5">
+      <h4>A5.</h4>
+      <p>A partir de \( \phi'_T \), estimer l'energie recue en un jour par la Terre. Comparer cette valeur a la consommation journaliere de l'humanite valant environ \( 1{,}7 \times 10^{18} \) J. Commenter la pertinence de developper l'energie photovoltaique pour assurer les besoins energetiques de l'humanite.</p>
+    </section>
+
+    <!-- ===== B/ ===== -->
+    <h3 id="partieB">B/ Estimation de la temperature du Soleil</h3>
+
+    <p><em>On se propose de retrouver l'ordre de grandeur de la temperature du Soleil par un modele thermodynamique.</em></p>
+    <p><em>Le Soleil est assimile a une sphere de rayon \( R_S \), de centre O et de masse \( m_S \). La masse volumique est supposee constante et egale a la masse volumique moyenne \( \rho_S \) : c'est l'hypothese notee \( H_1 \). On utilisera les coordonnees spheriques (Figure 1).</em></p>
+
+    <section class="question" id="B1">
+      <h4>B1.</h4>
+      <p>Montrer par des considerations d'invariances et de symetries que l'expression du champ de gravitation \( \vec{g_S}(M) \) cree par le Soleil a une distance \( r \) de son centre se met sous la forme \( \vec{g_S}(M) = g_S(r) \, \vec{u_r} \).</p>
+    </section>
+
+    <section class="question" id="B2">
+      <h4>B2.</h4>
+      <p>Exprimer la masse volumique moyenne \( \rho_S \) en fonction de \( M_S \) et \( R_S \). Par analogie avec l'electrostatique, utiliser le theoreme de Gauss pour determiner l'expression de \( g_S(r) \) lorsque \( r < R_S \) en fonction de \( \mathcal{G} \), \( \rho_s \) et \( r \).</p>
+    </section>
+
+    <p><em>On s'interesse a un volume mesoscopique du Soleil, centre en un point M situe a la distance \( r \) du centre O, dont la vitesse est notee \( \vec{v} \) dans le referentiel suppose galileen heliocentrique et dont la pression est \( P(M) \). On neglige la viscosite.</em></p>
+
+    <section class="question" id="B3">
+      <h4>B3.</h4>
+      <p>Donner la definition d'un volume mesoscopique. Rappeler sans demonstration l'expression de la force volumique equivalente aux forces de pression. En appliquant la deuxieme loi de Newton au volume mesoscopique considere, retrouver l'equation d'Euler.</p>
+    </section>
+
+    <p><em>Pour simplifier l'etude, le fluide constituant le Soleil est suppose au repos. Ceci constitue l'hypothese notee \( H_2 \).</em></p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 1</div>
+      <p>Representation des coordonnees spheriques. Un point M est repere par la distance \( r \) au centre O, l'angle \( \theta \) (colatitude) et l'angle \( \phi \) (longitude). La base orthonormee est \( (\vec{u_r}, \vec{u_\theta}, \vec{u_\phi}) \). Les axes \( x \), \( y \), \( z \) sont indiques.</p>
+    </div>
+
+    <section class="question" id="B4">
+      <h4>B4.</h4>
+      <p>Simplifier l'equation d'Euler precedente pour montrer que la loi de la statique des fluides a l'interieur du Soleil s'ecrit</p>
+      \[ \overrightarrow{\text{grad}}(P) = -\rho_S^2 \mathcal{G} \frac{4}{3} \pi r \, \vec{u_r} \;. \tag{3} \]
+    </section>
+
+    <p><em>On note \( P_O \) la pression au centre du Soleil. L'expression du gradient en coordonnees spheriques est rappelee</em></p>
+    \[ \overrightarrow{\text{grad}}(f) = \frac{\partial f}{\partial r} \vec{u_r} + \frac{1}{r} \frac{\partial f}{\partial \theta} \vec{u_\theta} + \frac{1}{r \sin(\theta)} \frac{\partial f}{\partial \phi} \vec{u_\phi} \;. \tag{4} \]
+
+    <section class="question" id="B5">
+      <h4>B5.</h4>
+      <p>A partir de l'equation (3), determiner l'expression de \( P(r) \) en fonction de \( P_O \), \( \mathcal{G} \), \( r \) et \( \rho_S \). En supposant que la pression a l'exterieur du Soleil est nulle \( P(R_S) = 0 \), determiner l'expression de \( P_O \).</p>
+    </section>
+
+    <p><em>Pour determiner la temperature a l'interieur du Soleil, celui-ci est considere comme constitue d'un gaz parfait (hypothese \( H_3 \)) d'hydrogene totalement ionise, melange equimolaire de protons H\(^+\) et d'electrons e\(^-\).</em></p>
+
+    <section class="question" id="B6">
+      <h4>B6.</h4>
+      <p>Justifier que la masse molaire moyenne du gaz vaut environ \( \mathcal{M} \simeq \frac{1}{2} m_p \mathcal{N}_A \) et effectuer l'application numerique. Quelle est de plus la relation dans ce modele entre \( \mathcal{M} \), la pression \( P \), la temperature \( T \), la constante \( R \) des gaz parfaits et la masse volumique \( \rho_S \) du Soleil ?</p>
+    </section>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Document 3 - La photosphere</div>
+      <p><em>D'apres Wikipedia : https://fr.wikipedia.org/wiki/Soleil</em></p>
+      <p>La photosphere est une des couches externes de l'etoile, dont le rayon externe correspond a la definition du rayon de l'etoile, et qui produit entre autres la lumiere visible.</p>
+      <p>La lumiere qui y est produite contient toutes les informations sur la temperature du rayonnement emis, la gravite de surface et la composition chimique de l'etoile. Pour le Soleil, la photosphere a une profondeur d'environ 400 kilometres.</p>
+    </div>
+
+    <section class="question" id="B7">
+      <h4>B7.</h4>
+      <p>Deduire des questions precedentes l'expression de la temperature dans le Soleil \( T(r) \) en fonction de \( \rho_S \), \( \mathcal{G} \), \( r \), \( R_S \), \( R \) et \( \mathcal{M} \). Quelle est la partie la plus chaude de la photosphere ? En considerant que la lumiere est produite sur la couche interne de la photosphere, calculer la temperature a laquelle est emis le rayonnement electromagnetique du Soleil. Comparer a la valeur obtenue dans la partie A.</p>
+    </section>
+
+    <section class="question" id="B8">
+      <h4>B8.</h4>
+      <p>D'apres votre culture scientifique, discuter de la validite des hypotheses \( H_1 \) et \( H_2 \). Peut-on considerer un gaz de particules chargees comme un gaz parfait ? Discuter de la validite de l'hypothese \( H_3 \). Que dire du modele propose ?</p>
+    </section>
+
+    <!-- ===== C/ ===== -->
+    <h3 id="partieC">C/ Etude d'une centrale photovoltaique</h3>
+
+    <p><em>On s'interesse a une centrale de taille comparable a celle de Martillac, pres de Bordeaux, permettant d'alimenter en electricite une trentaine d'habitations. Elle est constituee 126 modules de 4 panneaux. Chaque panneau est forme de \( 9 \times 6 \) cellules photovoltaiques, et chaque cellule possede une taille \( 16 \) cm \( \times \) \( 16 \) cm. Cette centrale produit environ 100 kW dans de bonnes conditions d'eclairement des modules. La caracteristique d'une cellule est donnee sur la figure suivante (Figure 2).</em></p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 2</div>
+      <p>Caracteristique d'une cellule photovoltaique en convention generateur pour plusieurs valeurs differentes de l'eclairement. Le graphique montre le courant \( I \) (en A) en fonction de la tension \( U \) (en V) pour trois valeurs de flux : \( \phi_T = 900 \) W &middot; m\(^{-2}\) (environ 8 A a court-circuit), \( \phi_T = 700 \) W &middot; m\(^{-2}\) (environ 6 A a court-circuit) et \( \phi_T = 1100 \) W &middot; m\(^{-2}\) (environ 5 A a court-circuit). La tension en circuit ouvert est d'environ 0,65 V. A gauche, schema du circuit : une cellule photovoltaique (diode) avec les conventions de signe pour \( I \) et \( U \).</p>
+    </div>
+
+    <section class="question" id="C1">
+      <h4>C1.</h4>
+      <p>Decrire precisement mais succinctement un protocole experimental permettant de mesurer la caracteristique d'une cellule photovoltaique telle que presentee sur la Figure 2.</p>
+    </section>
+
+    <p><em>On considere une cellule photovoltaique recevant un flux \( \phi'_T \simeq 900 \) W &middot; m\(^{-2}\). Les points experimentaux correspondants sont enregistres dans un environnement Python dans deux objets de type liste : <code>Liste_U</code> contenant les valeurs des tensions mesurees et <code>Liste_I</code> les valeurs des intensites correspondantes.</em></p>
+
+    <section class="question" id="C2">
+      <h4>C2.</h4>
+      <p>Ecrire une fonction <code>MaxPuissance</code> en langage Python prenant en argument <code>Liste_U</code> et <code>Liste_I</code> et renvoyant la tension \( U_m \) et l'intensite \( I_m \) correspondant au maximum de la puissance fournie par la cellule photovoltaique.</p>
+    </section>
+
+    <p><em>Les valeurs trouvees sont \( I_m = 5{,}8 \) A et \( U_m = 0{,}55 \) V. Les \( 9 \times 6 \) cellules photovoltaiques d'un panneau sont en serie tandis que les 4 panneaux d'un module sont en parallele.</em></p>
+
+    <section class="question" id="C3">
+      <h4>C3.</h4>
+      <p>Determiner la tension \( E \) aux bornes d'un module, l'intensite \( I_{mod} \) traversant ce module et la puissance \( \mathcal{P}_{mod} \) delivree par ce module. Retrouver l'ordre de grandeur de 100 kW delivre par la centrale solaire de Martillac.</p>
+    </section>
+
+    <section class="question" id="C4">
+      <h4>C4.</h4>
+      <p>D'apres vous, en vous appuyant sur le document 4 et en argumentant, quelle est la composition des cellules utilisees dans la centrale de Martillac ?</p>
+    </section>
+
+    <section class="question" id="C5">
+      <h4>C5.</h4>
+      <p>Quel est l'ordre de grandeur de la puissance delivree par la centrale lorsque, par temps partiellement nuageux, l'eclairement baisse a 700 W &middot; m\(^{-2}\) ? Commenter sur l'usage des centrales photovoltaiques.</p>
+    </section>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Document 4 - Les differentes technologies de cellules photovoltaiques</div>
+      <p><em>D'apres EDF</em></p>
+      <p>Differentes technologies entrent aujourd'hui dans la composition des installations photovoltaiques :</p>
+      <ul>
+        <li>Le silicium cristallin</li>
+        <li>Le silicium amorphe</li>
+        <li>Le cuivre/indium/selenium</li>
+        <li>Le cuivre/indium/gallium/selenium</li>
+      </ul>
+      <p>Les panneaux solaires a base de silicium cristallin sont les plus anciens. Ils se decomposent eux-memes en deux variantes : le monocristallin et le polycristallin. Ces deux variantes sont aujourd'hui tres proches aussi bien en termes de rendement qu'en termes de cout. Le rendement d'un panneau photovoltaique correspond a la quantite d'energie solaire transformee par le panneau en electricite consommable, par rapport a l'energie captee. Le rendement moyen d'un panneau cristallin du marche est de 14,5%.</p>
+      <p>La souplesse mecanique du silicium amorphe lui permet d'etre essentiellement utilise dans des complexes de type &laquo; membrane solaire &raquo; ou &laquo; tole solaire &raquo;. Le rendement moyen des panneaux solaires a base de silicium amorphe est de 6 a 8%.</p>
+      <p>Aujourd'hui, des technologies emergent a base de cuivre / indium / selenium et de cuivre / indium / gallium / selenium. Elles offrent de grandes perspectives en termes de cout et de rendement.</p>
+    </div>
+
+  </article>
+
+  <!-- ==================== DEUXIEME PARTIE ==================== -->
+
+  <article class="annale-exercice" id="partie2">
+    <h2>Deuxieme partie - Transport de l'energie electrique de la centrale au consommateur</h2>
+
+    <p><em>L'energie produite par une centrale photovoltaique est dans certains cas directement injectee dans le reseau electrique basse tension pour pouvoir etre consommee localement.</em></p>
+    <p><em>Dans toute cette partie, on s'interesse au transport electrique monophase de cette energie, c'est-a-dire utilisant deux cables electriques, principalement employe pour alimenter les zones peu denses en habitations.</em></p>
+    <p><em>Pour des raisons historiques et techniques, le reseau electrique basse tension fonctionne avec des tensions alternatives. En France, la frequence utilisee vaut \( f_r = 50 \) Hz tandis que la tension efficace sur le reseau considere est \( U_r = 230 \) V.</em></p>
+    <p><em>La transformation de la tension continue delivree par la centrale photovoltaique en signal electrique transportable sur le reseau est etudiee dans la partie D. Dans la partie E on examine le dimensionnement des cables utilises pour le transport de l'energie sur le reseau. Enfin, la partie F s'interesse au choix des caracteristiques electriques de la ligne monophasee pour l'adaptation au transport de l'energie jusqu'aux installations domestiques. Ces trois parties sont independantes.</em></p>
+
+    <!-- ===== D/ ===== -->
+    <h3 id="partieD">D/ Transformation en courant alternatif grace a un onduleur</h3>
+
+    <p><em>Pour pouvoir consommer l'energie produite par la centrale, il faut transformer la tension continue \( E \simeq 30 \) V supposee constante et delivree par un module de 4 panneaux (voir la partie C) en tension alternative de frequence \( f_r \) et de tension efficace \( U_r \). Le principe de cette transformation se decompose en trois etapes, illustrees sur la Figure 3 :</em></p>
+    <ul>
+      <li><em>tout d'abord, l'onduleur de tension autonome positionne apres les panneaux photovoltaiques de la centrale transforme le signal continu en signal alternatif ;</em></li>
+      <li><em>ensuite, une operation de filtrage est necessaire pour rendre la tension de sortie de l'onduleur la plus proche possible d'un signal sinusoidal a 50 Hz ;</em></li>
+      <li><em>la derniere etape, qui ne sera pas etudiee ici, consiste a amplifier cette tension pour que sa tension efficace soit de 230 V.</em></li>
+    </ul>
+
+    <p><em>Pour realiser la premiere etape, on etudie un onduleur de tension autonome a commande symetrique dans un premier temps puis a commande decalee dans un second temps.</em></p>
+
+    <p><em>Pour un onduleur autonome a commande symetrique, les interrupteurs representes sur la Figure 3 s'ouvrent et se ferment en fonction du temps, note \( t \), selon la sequence suivante, avec \( T = 1/f_r \) et \( n \) un entier relatif :</em></p>
+
+    \[ \begin{cases} si \quad nT \leq t \leq nT + \dfrac{T}{2} & \text{alors} \quad K_1 \text{ et } K_3 : \text{fermes ;} \quad K_2 \text{ et } K_4 : \text{ouverts,} \\ si \quad nT + \dfrac{T}{2} \leq t \leq (n+1)\,T & \text{alors} \quad K_1 \text{ et } K_3 : \text{ouverts ;} \quad K_2 \text{ et } K_4 : \text{fermes.} \end{cases} \tag{5} \]
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 3</div>
+      <p>Representation schematique du circuit electrique, de la centrale au reseau electrique. On voit une source de tension continue \( E \) a gauche, reliee a un pont en H compose de quatre interrupteurs \( K_1 \), \( K_2 \), \( K_3 \), \( K_4 \). La tension \( u(t) \) est prise aux bornes du pont. La sortie passe par une inductance \( L \) et alimente un transformateur dont la tension de sortie est \( s(t) \). La tension \( v(t) \) est aux bornes du transformateur.</p>
+    </div>
+
+    <section class="question" id="D1">
+      <h4>D1.</h4>
+      <p>Representer le schema electrique equivalent de l'onduleur lorsque \( nT < t \leq nT + T/2 \) et lorsque \( nT + T/2 < t \leq (n+1)\,T \). Representer alors l'allure de la tension \( u(t) \) en sortie de l'onduleur. Quelle est la tension efficace \( U_{eff} \) de \( u(t) \) ?</p>
+    </section>
+
+    <p><em>Cette tension n'etant pas sinusoidale, un filtrage est necessaire. On modelise de maniere tres simple le transformateur par une resistance \( R \) et une inductance negligeable devant \( L \). Le circuit equivalent est represente sur la Figure 4.</em></p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 4</div>
+      <p>Schema du filtre equivalent. Un circuit serie compose d'une inductance \( L \) et d'une resistance \( R \), avec la tension d'entree \( u(t) \) et la tension de sortie \( s(t) \) prise aux bornes de \( R \).</p>
+    </div>
+
+    <p><em>Pour etudier l'influence de ce filtre sur chacun des harmoniques de la tension \( u(t) \), on etudie le comportement de ce filtre lorsque la tension d'entree \( u(t) \) est un signal sinusoidal de frequence \( f \).</em></p>
+
+    <section class="question" id="D2">
+      <h4>D2.</h4>
+      <p>Rappeler l'expression de l'impedance \( \underline{Z}_L \) d'une inductance \( L \) ainsi que celle, \( \underline{Z}_R \), d'une resistance \( R \). En deduire que l'expression de la fonction de transfert \( \underline{H}(f) = \dfrac{\underline{s}}{\underline{u}} \) est</p>
+      \[ \underline{H}(f) = \frac{1}{1 + j\dfrac{f}{f_0}} \;, \tag{6} \]
+      <p>ou l'expression de \( f_0 \) est a determiner en fonction de \( R \) et \( L \).</p>
+    </section>
+
+    <section class="question" id="D3">
+      <h4>D3.</h4>
+      <p>Quelle est la nature de ce filtre ? Est-il adapte pour filtrer \( u(t) \) en un signal sinusoidal a 50 Hz ? Determiner le gain \( G = |\underline{H}(f)| \) du filtre. Exprimer la frequence de coupure a \( -3 \) dB de ce filtre, notee \( f_c \), en fonction de \( f_0 \).</p>
+    </section>
+
+    <p><em>On choisit pour la suite la valeur de \( L \) telle que \( f_r = f_0 \). La tension \( u(t) \) peut se decomposer en une serie de Fourier selon :</em></p>
+
+    \[ u(t) = \frac{4E}{\pi} \sum_{p=0}^{\infty} U_{2p+1} \sin\left[2(2p+1)\pi f_r t\right] \;, \tag{7} \]
+
+    <p><em>avec les amplitudes des harmoniques de rang \( n \) valant \( U_n = \dfrac{1}{n} \).</em></p>
+
+    <section class="question" id="D4">
+      <h4>D4.</h4>
+      <p>En sortie du filtre, quels sont les rangs des harmoniques \( S_n \) presents dans le signal \( s(t) \) ? L'amplitude \( S_3 \) de l'harmonique de rang trois est-elle negligeable devant celle du fondamental ? Meme question avec l'harmonique de rang cinq d'amplitude \( S_5 \). Commenter.</p>
+    </section>
+
+    <p><em>Tout en conservant exactement le meme filtre avec les memes composants, il est possible d'ameliorer le filtrage en jouant sur la sequence d'ouverture et de fermeture des interrupteurs. Dans ce cas, l'onduleur est dit a &laquo; commande decalee &raquo;.</em></p>
+
+    <p><em>L'ouverture et la fermeture des interrupteurs est commandee a partir de la comparaison du signal du reseau pre-existant \( u_r(t) = \sqrt{2} U_r \sin(2\pi f_r t) \) et d'un signal de commande \( p(t) \) de forme triangulaire, d'amplitude \( \alpha \sqrt{2} U_r \) avec \( \alpha = 1{,}10 \) et de frequence \( f_p = 400 \) Hz represente sur la Figure 5. Le fonctionnement est donne par la sequence suivante :</em></p>
+
+    \[ \begin{cases} si \quad u_r(t) > p(t) & \text{alors} \quad K_1 : \text{ferme et } K_4 : \text{ouvert} \\ & \text{sinon} \quad K_1 : \text{ouvert et } K_4 : \text{ferme,} \\ si \quad -u_r(t) > p(t) & \text{alors} \quad K_2 : \text{ferme et } K_3 : \text{ouvert} \\ & \text{sinon} \quad K_2 : \text{ouvert et } K_3 : \text{ferme.} \end{cases} \tag{8} \]
+
+    <p><em>Il y a donc toujours deux interrupteurs ouverts et deux interrupteurs fermes.</em></p>
+
+    <p><em>On se propose d'etudier le principe de cet onduleur numeriquement en langage python. On commence par definir les deux fonctions \( u_r(t) \) et \( p(t) \) servant au pilotage des interrupteurs grace au programme suivant.</em></p>
+
+    <pre><code>from math import sqrt, sin  #racine carree et sinus
+fr = 50.  #frequence du reseau en Hertz
+T = 1./fr
+A = sqrt(2)*230  #amplitude en Volts
+
+def Ur(t):
+    return A*sin(2*pi*fr*t)
+
+fp = 400.  #frequence du signal de commande
+Tp = 1./fp
+alpha = 1.10
+Ap = A*alpha
+
+def p(t):
+    if t&lt;0:
+        return p(-t)
+    n = t%Tp
+    if 0&lt;=n&lt;=Tp/2:
+        return Ap*(4/Tp*n-1)
+    else:
+        return Ap*(-4/Tp*(n-Tp/2)+1)</code></pre>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 5</div>
+      <p>Representation des fonctions de commande \( p \), \( u_r \) et \( -u_r \) en fonction du temps pour l'onduleur a commande decalee. L'axe horizontal est le temps \( t \) (en ms) de 0 a 30 ms. L'amplitude vaut \( \pm \sqrt{2} U_r \). Le signal \( p(t) \) est un signal triangulaire de frequence 400 Hz, \( u_r(t) \) est sinusoidal a 50 Hz. Ce graphique est donne a titre indicatif afin d'aider le candidat si besoin.</p>
+    </div>
+
+    <section class="question" id="D5">
+      <h4>D5.</h4>
+      <p>Commenter et justifier la facon dont a ete definie la fonction p dans le code ci-dessus.</p>
+    </section>
+
+    <section class="question" id="D6">
+      <h4>D6.</h4>
+      <p>Dans cette nouvelle sequence, on montre que si \( K_1 \) et \( K_3 \) sont fermes alors \( u(t) = +E \), si \( K_2 \) et \( K_4 \) sont fermes alors \( u(t) = -E \) et \( u(t) = 0 \) sinon. On associe alors a chaque interrupteur un entier valant 0 si l'interrupteur est ouvert et 1 s'il est ferme. Elaborer une fonction Python nommee <code>tension</code> prenant en arguments les quatre valeurs des interrupteurs \( K_1 \), \( K_2 \), \( K_3 \) et \( K_4 \) et renvoyant la tension \( u \) en sortie de l'onduleur.</p>
+    </section>
+
+    <section class="question" id="D7">
+      <h4>D7.</h4>
+      <p>Elaborer une fonction Python nommee <code>onduleur</code> prenant comme argument un flottant representant le temps \( t \), temps auquel sont evaluees les conditions d'ouverture de la sequence donnee precedemment a l'equation (8), et renvoyant la valeur de la tension en sortie de l'onduleur a cet instant \( t \).</p>
+    </section>
+
+    <p><em>Pour pouvoir tracer l'allure de la tension \( u(t) \), on souhaite definir une liste de \( (N+1) \) valeurs de temps \( t_k \) regulierement espaces compris entre 0 et \( T_N \) tous les deux inclus. Pour la suite, on choisit \( N = 40\,000 \) et \( T_N = 20T \), ou \( T \) est la periode du signal du reseau.</em></p>
+
+    <section class="question" id="D8">
+      <h4>D8.</h4>
+      <p>Donner les instructions en langage Python pour construire les deux listes a enregistrer dans les variables respectives <code>Liste_t</code> et <code>Liste_u</code> et contenant respectivement les valeurs des temps \( t_k \) et des tensions \( u(t_k) \).</p>
+    </section>
+
+    <section class="question" id="D9">
+      <h4>D9.</h4>
+      <p>Ecrire alors en langage Python les commandes permettant de tracer le graphique de \( u(t) \) et de se representer le fonctionnement de l'onduleur comme dans l'exemple page suivante de la Figure 6. On ne se souciera ni des legendes ni des axes.</p>
+    </section>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 6</div>
+      <p>Representation de \( u(t) \) sur une periode et demi en sortie de l'onduleur a commande decalee etudie. Le graphique montre la tension \( u \) (en V) oscillant entre \( +E \), \( -E \) et 0, avec des commutations rapides. L'axe horizontal est le temps \( t \) (en ms) de 0 a 30 ms.</p>
+    </div>
+
+    <section class="question" id="D10">
+      <h4>D10.</h4>
+      <p>Quelle est la frequence d'echantillonnage \( f_e \) de ce signal ? Justifier qualitativement pourquoi un si grand nombre de points de calcul du signal a ete choisi ?</p>
+    </section>
+
+    <p><em>Grace au module <code>fftpack</code> de la bibliotheque <code>scipy</code>, on realise la transformee de Fourier de la tension \( u(t) \). On dispose alors de deux listes de \( N \) elements contenant les frequences et les amplitudes \( A_i \) correspondantes. Ces deux listes, permettent de tracer le spectre de \( u(t) \) represente sur la Figure 7.</em></p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 7</div>
+      <p>Spectre d'amplitude de la tension \( u \) en fonction des frequences. L'axe horizontal est la frequence \( f \) (en Hz) de 0 a 1200 Hz. L'axe vertical est l'amplitude des harmoniques \( A_i \) (en V) de 0 a \( E \). On observe un pic dominant a 50 Hz (fondamental, d'amplitude proche de \( E \)), puis des pics plus faibles autour de 700-1000 Hz.</p>
+    </div>
+
+    <section class="question" id="D11">
+      <h4>D11.</h4>
+      <p>Ecrire la ligne de code Python permettant d'importer le module <code>fftpack</code> de la bibliotheque <code>scipy</code>.</p>
+    </section>
+
+    <section class="question" id="D12">
+      <h4>D12.</h4>
+      <p>A partir du spectre presente sur la Figure 7, verifier si la frequence du fondamental, notee \( f_1 \), est compatible avec celle deduite du signal temporel de la Figure 6, et commenter la presence des autres harmoniques.</p>
+    </section>
+
+    <p><em>On trouve \( \dfrac{A_1}{E} = 0{,}89 \), \( \dfrac{A_{11}}{E} = 0{,}017 \) et \( \dfrac{A_{13}}{E} = 0{,}17 \).</em></p>
+
+    <section class="question" id="D13">
+      <h4>D13.</h4>
+      <p>Calculer les amplitudes relatives des harmoniques \( S_1/E \), \( S_{11}/E \) et \( S_{13}/E \) apres le filtre. Quelle est l'allure du signal de sortie \( s(t) \) en sortie de filtre lorsque l'onduleur est a commande decalee ? Quel avantage y-aurait-il a utiliser un onduleur a commande decalee dans ce montage ?</p>
+    </section>
+
+    <!-- ===== E/ ===== -->
+    <h3 id="partieE">E/ Dimensionnement des cables</h3>
+
+    <p><em>On s'interesse dans cette partie a la dimension des cables employes pour transporter l'energie electrique de la centrale au consommateur. On cherche a justifier le rayon \( r_c \) des cables utilises en debut de reseau basse tension.</em></p>
+    <p><em>Pour cela, on adopte le modele de Drude : un electron libre de charge \( -e \) est soumis a la force qu'exerce un champ electromagnetique et a une force de frottement visqueux, modelisant les collisions, de la forme \( \vec{f} = -\dfrac{m_e}{\tau} \vec{v} \) avec \( m_e \) la masse d'un electron, \( \tau \) un temps de relaxation et \( \vec{v} \) la vitesse des electrons.</em></p>
+    <p><em>Un fil infini d'axe Oz et de rayon \( r_c \) est parcouru par un vecteur densite de courant \( \vec{j_c} \). Le milieu, suppose electriquement neutre, contient \( n_0 \) electrons mobiles par unite de volume. Il est suffisamment dilue pour pouvoir negliger les interactions entre les differentes charges du milieu.</em></p>
+    <p><em>On utilise les coordonnees cylindriques de base \( (\vec{u_r}, \vec{u_\theta}, \vec{u_z}) \). On considere un champ electromagnetique monochromatique de la forme \( \vec{E}(r,t) = \underline{E_0}(r) \exp(j\omega t) \, \vec{u_z} \) pour le champ electrique et \( \vec{B}(r,t) = \underline{B_0}(r) \exp(j\omega t) \, \vec{u_\theta} \) pour le champ magnetique.</em></p>
+    <p><em>Le mouvement d'un electron du milieu conducteur est non relativiste et il est etudie dans le referentiel terrestre suppose galileen.</em></p>
+
+    <section class="question" id="E1">
+      <h4>E1.</h4>
+      <p>Dans le modele presente ci-dessus, appliquer la deuxieme loi de Newton a un electron du milieu et donner l'equation differentielle verifiee par sa vitesse \( \vec{v} \). Faut-il prendre en compte le poids de l'electron ? Justifier.</p>
+    </section>
+
+    <section class="question" id="E2">
+      <h4>E2.</h4>
+      <p>On note \( \mu_0 \) la permeabilite du vide et \( \varepsilon_0 \) la permittivite du vide. Ecrire pour le milieu considere les quatre equations de Maxwell.</p>
+    </section>
+
+    <section class="question" id="E3">
+      <h4>E3.</h4>
+      <p>Justifier que la force magnetique subie par un electron est negligeable devant la force electrique. Simplifier alors l'equation du mouvement d'un electron.</p>
+    </section>
+
+    <p><em>On se place en regime permanent sinusoidal et on note \( \vec{\underline{v}} \) la vitesse de l'electron dans ce regime.</em></p>
+
+    <section class="question" id="E4">
+      <h4>E4.</h4>
+      <p>Exprimer \( \vec{\underline{v}} \) en fonction de \( e \), \( \underline{E_0} \), \( \tau \), \( m_e \) et \( \omega \). En deduire l'expression du vecteur densite de courant \( \vec{\underline{j_c}} \) en fonction des memes variables et de \( n_0 \).</p>
+    </section>
+
+    <section class="question" id="E5">
+      <h4>E5.</h4>
+      <p>Rappeler l'expression de la loi d'Ohm locale en fonction de \( \vec{\underline{j_c}} \), \( \vec{E} \) et de la conductivite electrique \( \gamma \). En deduire que la conductivite complexe \( \underline{\gamma} \) en regime permanent sinusoidal s'exprime</p>
+      \[ \underline{\gamma} = \frac{\gamma_0}{1 + j\tau\omega} \;, \tag{9} \]
+      <p>et donner l'expression de \( \gamma_0 \) en fonction de \( n_0 \), \( e \), \( \tau \) et \( m_e \).</p>
+    </section>
+
+    <p><em>Un milieu conducteur tel que le cable etudie est caracterise par un temps de relaxation de l'ordre de \( \tau \simeq 10^{-14} \) s et une densite de porteurs de charge de l'ordre de \( n_0 \simeq 10^{29} \) m\(^{-3}\). On rappelle que la frequence du signal considere est \( f_r = 50 \) Hz.</em></p>
+
+    <section class="question" id="E6">
+      <h4>E6.</h4>
+      <p>Calculer \( \gamma_0 \). Par des calculs d'ordre de grandeurs, simplifier l'expression de la conductivite \( \underline{\gamma} \) ainsi que l'equation de Maxwell-Ampere.</p>
+    </section>
+
+    <p><em>On rappelle que pour un champ vectoriel \( \vec{f} \), on a la relation \( \overrightarrow{\text{rot}}\left(\overrightarrow{\text{rot}} \, \vec{f}\right) = \overrightarrow{\text{grad}}\left(\text{div}\, \vec{f}\right) - \Delta \vec{f} \) avec \( \Delta \) le laplacien vectoriel.</em></p>
+
+    <section class="question" id="E7">
+      <h4>E7.</h4>
+      <p>Deduire des equations de Maxwell et de la loi d'Ohm locale que le vecteur densite de courant \( \vec{\underline{j_c}}(r) \) verifie</p>
+      \[ \Delta \vec{\underline{j_c}} = \left(\frac{1+j}{\delta}\right)^2 \vec{\underline{j_c}} \;. \tag{10} \]
+      <p>Determiner l'expression de \( \delta \) et le calculer numeriquement dans le cas etudie. Quel nom donne-t-on couramment a \( \delta \) ?</p>
+    </section>
+
+    <p><em>La resolution de cette equation n'est pas demandee. La solution de l'equation precedente en coordonnees cylindriques conduit a un vecteur de la forme \( \vec{\underline{j_c}}(r) = \underline{j_c}(r) \, \vec{u_z} \) avec une certaine expression pour \( \underline{j_c}(r) \).</em></p>
+
+    <p><em>On represente alors sur la Figure 8 l'intensite normalisee \( \dfrac{I(b)}{I_{tot}} \) avec \( I(b) = \left| \displaystyle\int_{r_c - b}^{r_c} 2\pi \underline{j_c}(r) \, r \, \text{d}r \right| \) l'intensite circulant dans l'epaisseur externe \( b \) la plus externe du conducteur et \( I_{tot} = \left| \displaystyle\int_0^{r_c} 2\pi \underline{j_c}(r) \, r \, \text{d}r \right| \) l'intensite totale.</em></p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 8</div>
+      <p>A gauche : representation d'un conducteur cylindrique de rayon \( r_c \) et de l'epaisseur externe \( b \). A droite : representation de \( I(b)/I_{tot} \) en fonction de \( b/\delta \) pour les trois valeurs \( r_c = \delta \), \( r_c = 3\delta \) et \( r_c = 5\delta \). Les courbes montrent que le courant se concentre dans l'epaisseur de peau.</p>
+    </div>
+
+    <section class="question" id="E8">
+      <h4>E8.</h4>
+      <p>En etudiant les courbes representatives de \( I(b)/I_{tot} \) pour differents rayons, quelle est la zone du cable la plus sollicitee pour transporter le courant ? Est-il utile de fabriquer des cables dont le rayon vaut plusieurs fois \( \delta \) ? Justifier.</p>
+    </section>
+
+    <section class="question" id="E9">
+      <h4>E9.</h4>
+      <p>Au debut du reseau basse tension, la section des cables est \( s = 240 \) mm\(^2\). Commenter.</p>
+    </section>
+
+    <section class="question" id="E10">
+      <h4>E10.</h4>
+      <p>En pratique, pour faire circuler des courants intenses, on utilise plusieurs fils de faible rayon isoles les uns des autres, plutot qu'un seul fil de gros rayon. Justifier ce choix.</p>
+    </section>
+
+    <section class="question" id="E11">
+      <h4>E11.</h4>
+      <p>Proposer une explication permettant a \( I(b)/I_{tot} \) d'etre superieur a 1 pour certaines valeurs de \( b \), comme cela peut s'observer sur la Figure 8 dans le cas ou \( r_c = 5\delta \).</p>
+    </section>
+
+    <p><em>On s'interesse maintenant a une methode numerique permettant de calculer les integrales definissant \( I(b) \) et \( I_{tot} \).</em></p>
+
+    <section class="question" id="E12">
+      <h4>E12.</h4>
+      <p>Expliquer en quelques phrases et avec un schema le principe d'integration numerique par la methode des rectangles.</p>
+    </section>
+
+    <section class="question" id="E13">
+      <h4>E13.</h4>
+      <p>Elaborer une fonction Python nommee <code>Rectangles</code> prenant comme arguments une fonction \( f \), deux flottants \( a \) et \( b \) et un nombre de points de calcul \( n \) et renvoyant la valeur approchee par la methode des rectangles de \( \displaystyle\int_a^b f(x) \, \text{d}x \) calculee sur \( n \) points.</p>
+    </section>
+
+    <section class="question" id="E14">
+      <h4>E14.</h4>
+      <p>Quelle est la complexite de calcul de cet algorithme ? On donnera la reponse sous la forme \( \mathcal{O}(k) \) ou \( k \) est une grandeur a determiner en fonction de \( n \).</p>
+    </section>
+
+    <p><em>On souhaite comparer la precision de la methode des rectangles avec deux autres methodes, celle des trapezes et celle de Simpson. On note \( R_n(f) \) la valeur approchee de \( \displaystyle\int_0^{\pi/2} f(t) \, \text{d}t \) par une methode numerique (rectangles, trapezes ou Simpson) utilisant \( n \) points de calcul. Cette comparaison est realisee sur un exemple dont la solution exacte est simple : \( \displaystyle\int_0^{\pi/2} \sin(x) \, \text{d}x = 1 \).</em></p>
+
+    <p><em>On calcule l'erreur \( |\epsilon| = \left| \dfrac{\displaystyle\int_0^{\pi/2} \sin(x)\,\text{d}x - R_n(\sin)}{  \displaystyle\int_0^{\pi/2} \sin(x) \, \text{d}x} \right| = |1 - R_n(\sin)| \). La Figure 9 donne l'erreur \( |\epsilon| \) en fonction du nombre de points de calcul \( n \) pour les trois methodes considerees en echelle log-log.</em></p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 9</div>
+      <p>Erreur des differentes methodes en fonction du nombre de points de calcul \( n \) en echelle log-log. L'axe horizontal est \( n \) de \( 10^0 \) a \( 10^8 \). L'axe vertical est l'erreur \( |\epsilon| \) de \( 10^{-16} \) a \( 10^0 \). Trois methodes sont representees : Rectangles (decroissance la plus lente), Trapezes (decroissance intermediaire), Simpson (decroissance la plus rapide). Pour les grandes valeurs de \( n \), l'erreur augmente legerement (erreurs d'arrondi).</p>
+    </div>
+
+    <section class="question" id="E15">
+      <h4>E15.</h4>
+      <p>A partir de la Figure 9, estimer l'evolution de l'erreur en fonction de \( n \) pour des valeurs de \( n \) pas trop elevees. On donnera la reponse sous la forme \( |\epsilon| = \mathcal{O}(k) \) ou \( k \) est une grandeur a determiner en fonction de \( n \). Comparer les trois methodes d'integration numerique.</p>
+    </section>
+
+    <section class="question" id="E16">
+      <h4>E16.</h4>
+      <p>Passer une certaine valeur de \( n \), on remarque que l'erreur augmente legerement avec \( n \). Ceci est visible sur la Figure 9 pour la methode des trapezes ou de Simpson. Proposer une explication a cela.</p>
+    </section>
+
+    <!-- ===== F/ ===== -->
+    <h3 id="partieF">F/ Propagation de la tension le long d'une ligne electrique</h3>
+
+    <p><em>On se propose ici d'etudier la propagation des signaux electriques dans une ligne monophasee, assimilee a deux cables (en realite il y en a plus, voir partie precedente) de longueur \( L_c \).</em></p>
+    <p><em>Dans un premier temps, un troncon de longueur \( \text{d}x \) de cette ligne monophasee, que l'on considere tres petit devant toutes les longueurs caracteristiques du phenomene, peut-etre modelise par une inductance \( \ell\,\text{d}x \) et une capacite \( \alpha\,\text{d}x \) (\( \ell \) et \( \alpha \) etant constantes) selon le schema de la Figure 10.</em></p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 10</div>
+      <p>Schematisation de la ligne electrique monophasee entre \( x \) et \( x + \text{d}x \) a l'instant \( t \). Un troncon elementaire comprend une inductance \( \ell\,\text{d}x \) en serie et une capacite \( \alpha\,\text{d}x \) en derivation. Le courant est \( i(x,t) \) a l'entree et \( i(x+\text{d}x, t) \) a la sortie. La tension est \( v(x,t) \) a l'entree et \( v(x+\text{d}x, t) \) a la sortie.</p>
+    </div>
+
+    <section class="question" id="F1">
+      <h4>F1.</h4>
+      <p>L'ordre de grandeur de \( L_c \) est de 50 km. L'Approximation des Regimes Quasi-Stationnaires (ARQS) est-elle valable en tout point du cable ? Justifier. On rappelle que la frequence du signal est \( f_r = 50 \) Hz.</p>
+    </section>
+
+    <section class="question" id="F2">
+      <h4>F2.</h4>
+      <p>Montrer que l'application des lois de l'electrocinetique dans l'ARQS permet d'etablir les deux equations suivantes</p>
+      \[ \begin{cases} v(x,t) \;=\; \ell\,\text{d}x\,\dfrac{\partial i}{\partial t}(x,t) + v(x + \text{d}x, t) \;, \\[6pt] i(x,t) \;=\; \alpha\,\text{d}x\,\dfrac{\partial v}{\partial t}(x + \text{d}x, t) + i(x + \text{d}x, t) \;. \end{cases} \tag{11} \]
+    </section>
+
+    <section class="question" id="F3">
+      <h4>F3.</h4>
+      <p>En deduire que \( v(x,t) \) verifie une equation de D'Alembert et exprimer la celerite \( c \) des ondes associees en fonction de \( \ell \) et \( \alpha \).</p>
+    </section>
+
+    <p><em>On cherche des solutions sous la forme d'ondes planes progressives harmoniques (OPPH) de pulsation \( \omega \).</em></p>
+
+    <section class="question" id="F4">
+      <h4>F4.</h4>
+      <p>Determiner la relation de dispersion des ondes dans ce milieu entre la pulsation et le nombre d'onde note \( k \). Donner la definition d'un milieu dispersif et d'un milieu absorbant. Le milieu est-il dispersif ? Est-il absorbant ? Les reponses devront etre succinctement justifiees.</p>
+    </section>
+
+    <p><em>On cherche une solution sous la forme de la somme d'une OPPH incidente notee \( \underline{v}_+(x,t) \) se propageant vers les \( x \) positifs et d'une onde reflechie \( \underline{v}_-(x,t) \) se propageant vers les \( x \) negatifs. On note respectivement \( \underline{V}_+ \) et \( \underline{V}_- \) les amplitudes complexes de ces ondes. Chaque onde de tension est de plus associee a un courant \( \underline{i}_+(x,t) \) et \( \underline{i}_-(x,t) \), d'amplitudes \( \underline{I}_+ \) et \( \underline{I}_- \). On definit enfin l'impedance \( \underline{Z} = \dfrac{\underline{V}}{\underline{I}} \) du milieu, qui depend du type d'onde qui s'y propage.</em></p>
+
+    <section class="question" id="F5">
+      <h4>F5.</h4>
+      <p>Donner la forme des OPPH incidentes et reflechies en tension. En utilisant les relations de l'equation (11), exprimer l'impedance du milieu pour les ondes incidentes, notee \( \underline{Z}_+ \), et pour les ondes reflechies \( \underline{Z}_- \), en fonction de \( \ell \) et \( \alpha \). Quelle est l'unite des impedances \( \underline{Z}_+ \) et \( \underline{Z}_- \) ?</p>
+    </section>
+
+    <p><em>La tension d'entree du reseau basse tension, en \( x = 0 \), est \( v(0,t) = \sqrt{2} U_r \cos(\omega t) \) ou \( U_r = 230 \) V. Le circuit est ferme en \( x = L_c \) sur une habitation modelisee par une simple resistance \( R' \).</em></p>
+
+    <section class="question" id="F6">
+      <h4>F6.</h4>
+      <p>Ecrire, sans les resoudre, les deux equations correspondantes aux conditions de bord et permettant d'obtenir \( \underline{V}_- \) et \( \underline{V}_+ \).</p>
+    </section>
+
+    <section class="question" id="F7">
+      <h4>F7.</h4>
+      <p>Determiner l'expression de \( R' \) en fonction de \( \ell \) et \( \alpha \) afin d'annuler l'onde reflechie. Qualitativement, quel est l'avantage de cette situation d'un point de vue energetique ?</p>
+    </section>
+
+    <p><em>En realite, il y a des pertes d'energie dues a la nature resistive des cables. On ajoute une resistance en serie avec l'inductance \( r\,\text{d}x \) et une autre resistance lineique de valeur \( \dfrac{1}{g\,\text{d}x} \), en parallele avec la capacite \( \alpha\,\text{d}x \) (c'est-a-dire que \( g\,\text{d}x \) est l'admittance de cette resistance).</em></p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 11</div>
+      <p>Schematisation de la ligne electrique monophasee avec pertes entre \( x \) et \( x + \text{d}x \) a l'instant \( t \). Le troncon elementaire comprend une inductance \( \ell\,\text{d}x \) en serie avec une resistance \( r\,\text{d}x \), et en derivation une capacite \( \alpha\,\text{d}x \) en parallele avec une resistance \( \dfrac{1}{g\,\text{d}x} \).</p>
+    </div>
+
+    <section class="question" id="F8">
+      <h4>F8.</h4>
+      <p>Quelles sont les deux nouvelles equations differentielles couplees et du premier ordre verifiees par \( v(x,t) \) et \( i(x,t) \) ?</p>
+    </section>
+
+    <section class="question" id="F9">
+      <h4>F9.</h4>
+      <p>On considere des solutions de la forme \( \underline{v}(x,t) = \underline{V}(x) \exp(j\omega t) \) et \( \underline{i}(x,t) = \underline{I}(x) \exp(j\omega t) \). Montrer que \( \underline{V}(x) \) est solution de l'equation differentielle</p>
+      \[ \frac{\text{d}^2 \underline{V}}{\text{d}x^2} = \underline{Z}_s \, \underline{Y}_p \, \underline{V} \;, \tag{12} \]
+      <p>avec \( \underline{Z}_s = j\ell\omega + r \) et \( \underline{Y}_p = j\alpha\omega + g \).</p>
+    </section>
+
+    <p><em>On note \( \underline{k}(\omega) = k''(\omega) + jk'(\omega) \) tel que \( \underline{k}^2 = \underline{Z}_s \underline{Y}_p \), \( k'(\omega) > 0 \) et \( k''(\omega) > 0 \). Les solutions de l'equation precedente conduisent a</em></p>
+    \[ \underline{v}(x,t) = \underline{V}_1 \exp\left[-k''(\omega)\,x + j(\omega t - k'(\omega)\,x)\right] + \underline{V}_2 \exp\left[k''(\omega)(x - L_c) + j(\omega t + k'(\omega)\,x)\right] \;. \tag{13} \]
+
+    <section class="question" id="F10">
+      <h4>F10.</h4>
+      <p>Sans chercher a determiner les expressions de \( k'(\omega) \) et de \( k''(\omega) \), preciser si ce milieu est dispersif et/ou absorbant.</p>
+    </section>
+
+    <p><em>En choisissant judicieusement les composants et la geometrie de la ligne, il est possible de respecter la condition \( \ell g = r\alpha \). Dans ce cas, on trouve \( k'(\omega) = \omega\sqrt{\ell\alpha} \) et \( k''(\omega) = g\sqrt{\dfrac{\ell}{\alpha}} \). On montre aussi que \( k'' \) est minimal lorsque cette condition est respectee.</em></p>
+
+    <section class="question" id="F11">
+      <h4>F11.</h4>
+      <p>Quels sont les avantages de choisir les parametres des cables tels que \( \ell g = r\alpha \) ?</p>
+    </section>
+
+    <p><em>On admet que sous la condition \( \ell g = r\alpha \), la resistance \( R' \) permettant d'annuler l'onde reflechie est la meme que celle obtenue dans la question F7. Les ordres de grandeurs sont \( g \simeq 2{,}1 \times 10^{-9} \) S &middot; m\(^{-1}\), \( \alpha \simeq 6{,}3 \times 10^{-12} \) F &middot; m\(^{-1}\) et \( \ell \simeq 1{,}0 \times 10^{-7} \) H &middot; m\(^{-1}\).</em></p>
+
+    <section class="question" id="F12">
+      <h4>F12.</h4>
+      <p>Calculer numeriquement \( k'' \) lorsque \( \ell g = r\alpha \). En l'absence d'onde reflechie, calculer la variation relative de l'amplitude de la tension aux bornes de \( R' \) lorsque l'on prend en compte les pertes dans la ligne par rapport au cas sans perte. Commenter.</p>
+    </section>
+
+  </article>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; LibMaths 2025. Sujet original : Concours E3A-Polytech 2017.</p>
+</footer>
+
+</body>
+</html>

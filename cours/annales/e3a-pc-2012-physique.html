@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2012 - Physique | LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<nav class="nav">
+<div class="nav__container">
+<a href="../../index.html" class="nav__logo">LibMaths</a>
+<ul class="nav__menu">
+<li><a href="../../index.html">Accueil</a></li>
+<li><a href="../index.html">Cours</a></li>
+<li><a href="../../physique/index.html">Physique</a></li>
+<li><a href="../../annales.html">Annales</a></li>
+</ul>
+</div>
+</nav>
+
+<main class="course">
+<div class="course__container">
+<header class="course__header">
+<div class="course__breadcrumb">
+<a href="../../index.html">Accueil</a> &gt;
+<a href="../../physique/index.html">Physique</a> &gt;
+<a href="../../annales.html">Annales</a> &gt;
+E3A-Polytech PC 2012 - Physique
+</div>
+<h1 class="course__title">E3A-Polytech PC 2012 - Physique</h1>
+<p class="course__subtitle">Concours Arts et Métiers ParisTech - ESTP - ARCHIMÈDE - Épreuve de Physique PC</p>
+</header>
+
+<div class="annale-info">
+<div class="annale-info__item"><strong>Concours :</strong> E3A-Polytech</div>
+<div class="annale-info__item"><strong>Filière :</strong> PC</div>
+<div class="annale-info__item"><strong>Année :</strong> 2012</div>
+<div class="annale-info__item"><strong>Durée :</strong> 4 h</div>
+<div class="annale-info__item"><strong>Calculatrices :</strong> interdites</div>
+</div>
+
+<div class="annale-warning">
+<strong>Sujet retranscrit avec schémas</strong>
+<p>Si, au cours de l'épreuve, un candidat repère ce qui lui semble être une erreur d'énoncé, d'une part il le signale au chef de salle, d'autre part il le signale sur sa copie et poursuit sa composition en indiquant les raisons des initiatives qu'il est amené à prendre.</p>
+<p>La présentation, la lisibilité, l'orthographe, la qualité de la rédaction, la clarté et la précision des raisonnements entreront pour une part importante dans l'appréciation des copies. En particulier, les résultats non encadrés et non justifiés ne seront pas pris en compte.</p>
+</div>
+
+<div class="annale-intro">
+<h2>De la phase à l'amplitude et vice versa</h2>
+<p>Le problème est constitué de trois parties très largement indépendantes entre elles. La partie A présente une technique permettant de moduler la phase d'un signal optique. La partie B est consacrée à l'étude de la méthode dite de « contraste de phase », qui permet de transformer un signal optique modulé en phase en un signal optique modulé en amplitude. Enfin la partie C analyse une application de cette technique à un problème de diffusion de particules.</p>
+
+<div class="callout callout--rappel">
+<strong>Remarques préliminaires importantes :</strong> il est rappelé aux candidat(e)s que
+<ul>
+<li>les explications des phénomènes étudiés interviennent dans la notation au même titre que les développements analytiques et les applications numériques ;</li>
+<li>tout au long de l'énoncé, les paragraphes en italique ont pour objet d'aider à la compréhension du problème ;</li>
+<li>tout résultat fourni dans l'énoncé peut être admis et utilisé par la suite, même s'il n'a pas été démontré par les candidat(e)s ;</li>
+<li>dans tout le problème, $j$ désigne le nombre complexe de module 1 et d'argument $\pi/2$.</li>
+</ul>
+</div>
+</div>
+
+<nav class="annale-toc">
+<h2>Sommaire</h2>
+<ul>
+<li><a href="#exo1">Première partie - Électronique</a>
+<ul>
+<li><a href="#partA">A / Modulation d'amplitude</a></li>
+<li><a href="#partB">B / Modulation de phase - Méthode d'Armstrong</a></li>
+<li><a href="#partC">C / Réalisation de l'opérateur « Dp »</a></li>
+</ul>
+</li>
+<li><a href="#exo2">Deuxième partie - Optique</a>
+<ul>
+<li><a href="#partD">D / Interférences à trois sources ponctuelles</a></li>
+<li><a href="#partE">E / Diffraction et imagerie</a></li>
+</ul>
+</li>
+<li><a href="#exo3">Troisième partie - Application au suivi d'une expérience de diffusion</a>
+<ul>
+<li><a href="#partF">F / Atténuation d'une inhomogénéité périodique par diffusion</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+
+<section class="annale-exercice" id="exo1">
+<h2>Première partie - Électronique</h2>
+
+<h3 id="partA">A / Modulation d'amplitude</h3>
+<p>Le montage de la <strong>figure 1</strong> représente schématiquement un modulateur d'amplitude ; il comprend un multiplieur, qui délivre une tension de sortie $v_{S1} = k \times u_1 \times u_2$ ($k$ étant une constante) et un sommateur qui délivre en sortie une tension $v_S$, égale à la somme des tensions d'entrée.</p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 1</div>
+<p>Schéma-bloc du modulateur d'amplitude. Deux entrées $u_1$ et $u_2$ sont appliquées à un bloc « Multiplieur » (symbolisé par un cercle avec $\times$) qui délivre la tension $v_{S1}$. Cette tension $v_{S1}$ et l'entrée $u_1$ sont ensuite appliquées à un bloc « Sommateur » (symbolisé par un cercle avec $\Sigma$) qui délivre la tension de sortie $v_S$.</p>
+</div>
+
+<p>Les tensions sont sinusoïdales : $u_1(t) = U_m \cos(\omega_p t)$ et $u_2(t) = U_0 \cos(\omega_0 t)$, avec $\omega_p \gg \omega_0$. $u_1(t)$ est appelé « signal modulant » et $u_2(t)$ « signal de porteuse ».</p>
+
+<div class="annale-question" id="Q1">
+<h4>Question A1</h4>
+<p>Montrer que la tension de sortie $v_S(t)$ peut s'écrire sous la forme :
+\[ v_S(t) = U_0 \cos(\omega_0 t) \times [1 + m \cos(\omega_p t)], \]
+et déterminer m en fonction de $k$, $k$ et $U_m$.</p>
+</div>
+
+<div class="annale-question" id="Q2">
+<h4>Question A2</h4>
+<p>Représenter graphiquement, de façon schématique, la tension $v_S(t)$ en supposant que $m < 1$.</p>
+</div>
+
+<h3 id="partB">B / Modulation de phase - Méthode d'Armstrong</h3>
+<p>Pour certaines applications, il est souhaitable de moduler la phase du signal de porteuse, pour obtenir une tension de la forme $v_{\varphi}(t) = U_0 \cos\big[\omega_0 t + m \cos(\omega_p t)\big]$. Une approche, imaginée par l'inventeur E. ARMSTRONG en 1933, permet très simplement d'obtenir un signal de ce type (pour les faibles modulations) en modifiant légèrement le montage de la figure 1. Dans toute la suite, le taux de modulation $m$ vérifie $m \ll 1$.</p>
+
+<div class="annale-question" id="Q3">
+<h4>Question B1</h4>
+<p>Montrer que le signal de porteuse modulé en phase peut s'écrire :
+\[ v_{\varphi}(t) = U_0 \cos(\omega_0 t) + f(t) \sin(\omega_0 t), \]
+où $f(t)$ sera exprimée en fonction de $m$, $U_0$, $\omega_p$ et $t$.</p>
+</div>
+
+<p>Pour obtenir la tension $v_{\varphi}(t)$, un opérateur « Dp » est introduit dans le montage, comme indiqué sur la <strong>figure 2</strong>.</p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 2</div>
+<p>Schéma-bloc du modulateur de phase selon Armstrong. L'entrée $u_2$ passe d'abord dans un bloc « Opérateur Dp » qui délivre $u'_2$. Les deux entrées $u_1$ et $u'_2$ sont appliquées à un bloc « Multiplieur » ($\times$ $k$) qui délivre $v_{S1}$. Cette tension $v_{S1}$ et l'entrée $u_1$ sont ensuite appliquées au bloc « Sommateur » ($\Sigma$) qui délivre la tension de sortie $v_S$.</p>
+<p>Les tensions $u_1(t)$ et $u_2(t)$ sont inchangées par rapport à la sous-partie A.</p>
+</div>
+
+<div class="annale-question" id="Q4">
+<h4>Question B2</h4>
+<p>Quelle doit être la tension $u'_2(t)$ en sortie de l'opérateur « Dp » pour obtenir $v_S(t) = v_{\varphi}(t)$, le taux de modulation m restant inchangé par rapport à sa valeur de la question A1 ?</p>
+<p>Quelle transformation l'opérateur « Dp » doit-il réaliser sur la tension $u_2(t)$ ?</p>
+</div>
+
+<h3 id="partC">C / Réalisation de l'opérateur « Dp »</h3>
+<p>Le montage étudié pour réaliser l'opérateur « Dp » est représenté sur la <strong>figure 3</strong>.</p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 3</div>
+<p>Montage à deux amplificateurs opérationnels A.O.1 et A.O.2 supposés idéaux et en régime linéaire. L'entrée du montage est la tension $u_e$. Elle est appliquée, via une résistance $R_1$, à l'entrée inverseuse de l'A.O.1 ; l'entrée non inverseuse de A.O.1 est reliée à la masse. Une résistance $R$ relie la sortie $u_1$ de A.O.1 à son entrée inverseuse (contre-réaction). La sortie $u_1$ de A.O.1 est appliquée, via une résistance $R$, à l'entrée inverseuse de A.O.2 ; l'entrée non inverseuse de A.O.2 est reliée à la masse via un condensateur de capacité $C$. Une résistance $R$ relie la sortie $u_s$ de A.O.2 à son entrée inverseuse. La sortie du montage est $u_s$.</p>
+</div>
+
+<p>Les amplificateurs opérationnels sont idéaux et fonctionnent en régime linéaire. Les tensions sont sinusoïdales de pulsation $\omega$ ; les grandeurs soulignées indiquées sur la figure 3 désignent les représentations complexes de ces tensions.</p>
+
+<div class="annale-question" id="Q5">
+<h4>Question C1</h4>
+<p>Exprimer la fonction $\underline{u}_1$ en fonction de la tension $\underline{u}_e$.</p>
+<p>Préciser le rôle de l'ensemble formé par l'amplificateur opérationnel A.O.1 et les deux résistances identiques de valeur $R_1$.</p>
+</div>
+
+<div class="annale-question" id="Q6">
+<h4>Question C2</h4>
+<p>Déterminer la fonction de transfert $\underline{H}_1(j\omega) = \dfrac{\underline{u}_s}{\underline{u}_1}$ en fonction de $R$, $C$ et $\omega$.</p>
+<p>En déduire la fonction de transfert globale du montage $\underline{H}(j\omega) = \dfrac{\underline{u}_s}{\underline{u}_e}$.</p>
+</div>
+
+<div class="annale-question" id="Q7">
+<h4>Question C3</h4>
+<p>Montrer que le seul effet de cet opérateur est d'introduire un déphasage $\varphi_D$ entre la sortie $u_s(t)$ et l'entrée $u_e(t)$. Exprimer $\varphi_D$ en fonction de $R$, $C$ et $\omega$.</p>
+</div>
+
+<div class="annale-question" id="Q8">
+<h4>Question C4</h4>
+<p>Comment doit-on choisir le produit $RC$, en fonction de $\omega_p$, pour que l'opérateur de la figure 2 délivre effectivement le signal modulé en phase $v_{\varphi}(t)$ ?</p>
+</div>
+</section>
+
+<section class="annale-exercice" id="exo2">
+<h2>Deuxième partie - Optique</h2>
+<p>La transposition au domaine optique des notions présentées en première partie a donné naissance à la technique du « contraste de phase », à laquelle cette partie est consacrée. De nombreux objets transparents sont le siège de variations locales d'indice de réfraction qui influent seulement sur la phase de l'onde lumineuse qui les traverse. Ces variations locales sont imperceptibles avec les moyens de l'optique géométrique. La méthode du « contraste de phase », très utilisée en microscopie, consiste à transformer les fluctuations de phase induites par l'objet en fluctuations d'amplitude, facilement détectables.</p>
+<p>Le chemin optique entre deux points $M$ et $N$ sera noté $(MN)$.</p>
+<p>Toutes les expériences sont réalisées dans l'air, dont l'indice de réfraction est assimilé à celui du vide. Nous utiliserons la convention usuelle relative à la représentation complexe d'un signal optique : le signal $s(M,t)$ associé au point $M$, à une onde optique de pulsation $\omega$ et d'amplitude complexe $\underline{a}(M)$ est obtenu par la relation $s(M,t) = \operatorname{Re}[\underline{a}(M)\exp(j\omega t)]$.</p>
+
+<h3 id="partD">D / Interférences à trois sources ponctuelles</h3>
+<p>Considérons la situation idéalisée représentée sur la <strong>figure 4</strong> : trois sources ponctuelles équidistantes $A_1$, $A_0$ et $A_{-1}$ sont alignées sur l'axe $Ox$, aux positions respectives $x = 0$, $x = b$ et $x = -b$. Ces sources sont parfaitement monochromatiques, de longueur d'onde dans le vide $\lambda$, et cohérentes entre elles.</p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 4</div>
+<p>Trois sources $A_1$ (en $x=b$), $A_0$ (en $x=0$) et $A_{-1}$ (en $x=-b$) alignées sur l'axe $Ox$ au plan focal objet d'une lentille convergente $(L_1)$ de centre $O$ et d'axe optique $Oz$. À la distance $f'$ après $(L_1)$ se trouve un écran, plan focal image de $(L_1)$, sur lequel on considère un point $M$ de coordonnées $(x, y)$ dans le repère $(F'xy)$ où $F'$ est le point focal image de $(L_1)$.</p>
+</div>
+
+<p>Les deux sources $A_1$ et $A_{-1}$ oscillent en phase, mais <u>sont en retard de phase de $\varphi$ relativement à la source $A_0$</u>.</p>
+<p>L'éclairement est observé au point $M$ d'un écran placé dans le plan focal image d'une lentille convergente $(L_1)$, d'axe optique confondu avec l'axe $Oz$, de distance focale image $f'$. Le point $M$ est repéré par ses coordonnées dans le repère $F'xy$, $F'$ étant le point focal image de $(L_1)$. Il est admis que le point $M$ est voisin du centre de l'écran ($|x| \ll f'$ et $|y| \ll f'$).</p>
+
+<h4>1 / Différences de marche et déphasages</h4>
+
+<div class="annale-question" id="Q9">
+<h4>Question D1'a</h4>
+<p>Montrer que la différence de marche au point $M$, $\delta_{1/0} = (A_1 M) - (A_0 M)$, entre l'onde issue de $A_1$ et celle issue de $A_0$ est : $\delta_{1/0} = -\dfrac{bx}{f'}$.</p>
+</div>
+
+<div class="annale-question" id="Q10">
+<h4>Question D1'b</h4>
+<p>Exprimer la différence de marche $\delta_{-1/0}$ observée au point M entre l'onde issue de $A_{-1}$ et celle issue de $A_0$ en fonction de $b$, $x$ et $f'$.</p>
+</div>
+
+<div class="annale-question" id="Q11">
+<h4>Question D1'c</h4>
+<p>Déterminer, en fonction de $\varphi$, $x$, $f'$, $\lambda$ et $b$, le déphasage $\delta\varphi_{1/0}$ au point M entre l'onde issue de $A_1$ et celle issue de $A_0$.</p>
+<p>Écrire de même le déphasage $\delta\varphi_{-1/0}$ au point M.</p>
+</div>
+
+<h4>2 / Éclairement sur l'écran</h4>
+<p>Lorsqu'elle est seule, la source $A_0$ crée en M un éclairement $\mathscr{E}_0$. La source $A_1$ est beaucoup moins puissante que $A_0$ : seule, elle crée en M un éclairement $m^2 \mathscr{E}_0$, où m est une constante vérifiant $m \ll 1$. La source $A_{-1}$ est de même intensité que la source $A_1$.</p>
+<p>Soit $\underline{a}_0$ l'amplitude complexe au point $M$ de l'onde issue de $A_0$, et $\underline{a}_1$ l'amplitude complexe en M de l'onde issue de $A_1$.</p>
+
+<div class="annale-question" id="Q12">
+<h4>Question D2'a</h4>
+<p>Quelle relation lie $|\underline{a}_1|$ et $|\underline{a}_0|$ ?</p>
+</div>
+
+<div class="annale-question" id="Q13">
+<h4>Question D2'b</h4>
+<p>Justifier la relation suivante, entre les arguments de $\underline{a}_1$ et $\underline{a}_0$ :
+\[ \arg(\underline{a}_1) = \arg(\underline{a}_0) - \varphi - \frac{2\pi bx}{\lambda f'}. \]
+Exprimer $\underline{a}_1$ en fonction de $\underline{a}_0$, $x$, $b$, $f'$, $m$, $\lambda$ et $\varphi$.</p>
+</div>
+
+<div class="annale-question" id="Q14">
+<h4>Question D2'c</h4>
+<p>En déduire, au point M, l'amplitude résultante $\underline{a}_{res}$ due à la superposition des trois ondes, en fonction de $\underline{a}_0$, $x$, $b$, $f'$, $m$, $\lambda$ et $\varphi$.</p>
+</div>
+
+<div class="annale-question" id="Q15">
+<h4>Question D2'd</h4>
+<p>Montrer, au premier ordre en m, que l'éclairement $\mathscr{E}$ sur l'écran est de la forme :
+\[ \mathscr{E} = \mathscr{E}_0 \left[ 1 + \gamma \cos(\varphi) \cos\left(\frac{2\pi bx}{\lambda f'}\right) \right], \qquad (1) \]
+et exprimer $\gamma$ en fonction de m.</p>
+</div>
+
+<div class="annale-question" id="Q16">
+<h4>Question D2'e</h4>
+<p>Préciser la zone et l'orientation des franges brillantes. Déterminer leur position en distinguant les cas où $\cos(\varphi) > 0$ et $\cos(\varphi) < 0$.</p>
+</div>
+
+<div class="annale-question" id="Q17">
+<h4>Question D2'f</h4>
+<p>Quel est, en fonction de $\gamma$ et $\varphi$, le contraste $\mathscr{C}$ de la figure d'interférences ?</p>
+</div>
+
+<div class="annale-question" id="Q18">
+<h4>Question D2'g</h4>
+<p>Pour quelles valeurs de $\varphi$, les interférences disparaissent-elles complètement ?</p>
+</div>
+
+<h3 id="partE">E / Diffraction et imagerie</h3>
+
+<h4>1 / Diffraction de Fraunhofer par une fente allongée</h4>
+<p>Le montage est celui de la <strong>figure 5</strong> : une fente très allongée selon $Y$, de centre $O$ et de largeur $L$, située dans le plan $OXY$, est éclairée en incidence normale par une onde monochromatique incidente, plane, de longueur d'onde dans le vide $\lambda$.</p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 5</div>
+<p>Onde incidente plane se propageant selon $z$ éclairant une fente allongée selon $Y$, de centre $O$, de largeur $L$, située dans le plan $OXY$. Un point $P$ de la fente a pour abscisse $\xi$ sur $X$. Une lentille convergente $(L_1)$ de distance focale $f'$ est placée après la fente. Un écran est placé dans le plan focal image de $(L_1)$ ; sur cet écran, un point $M$ est repéré par ses coordonnées dans le repère $F'xy$, $F'$ étant le point focal image. $x_M$ désigne l'abscisse de $M$.</p>
+</div>
+
+<p>L'écran d'observation est situé dans le plan focal image d'une lentille convergente $(L_1)$ de distance focale $f'$. Un point $M$ du plan d'observation est repéré par son abscisse $x$.</p>
+
+<div class="annale-question" id="Q19">
+<h4>Question E1'a</h4>
+<p>Rappeler l'énoncé du principe d'Huygens-Fresnel.</p>
+</div>
+
+<div class="annale-question" id="Q20">
+<h4>Question E1'b</h4>
+<p>Reproduire la figure 5 sur votre copie (sans les cotations) et représenter le trajet suivi par deux ondes parvenant au point M : l'une passant par O et l'autre passant par un point P d'abscisse $X_P$ de la fente.</p>
+</div>
+
+<div class="annale-question" id="Q21">
+<h4>Question E1'c</h4>
+<p>Exprimer la différence, $(PM) - (OM)$, des chemins optiques suivis par ces deux ondes en fonction de $x$, $X_P$ et $f'$ (il est admis que $|x| \ll f'$).</p>
+</div>
+
+<div class="annale-question" id="Q22">
+<h4>Question E1'd</h4>
+<p>Expliquer qualitativement pourquoi la diffraction s'effectue seulement dans le plan $OXz$.</p>
+<p>Justifier l'amplitude complexe $\underline{a}(M)$ de l'onde résultante diffractée en M par la fente est donnée par l'intégrale :
+\[ \underline{a}(M) = K \int_{-L/2}^{L/2} \exp\left(j\frac{2\pi \, xX_p}{\lambda f'}\right) dX_p, \]
+où $K$ est une constante multiplicative.</p>
+</div>
+
+<div class="annale-question" id="Q23">
+<h4>Question E1'e</h4>
+<p>Déterminer explicitement $\underline{a}(M)$ en fonction de $K$, $L$, $\lambda$ et $f'$.</p>
+</div>
+
+<div class="annale-question" id="Q24">
+<h4>Question E1'f</h4>
+<p>Exprimer l'éclairement $\mathscr{E}(x)$ en fonction de K, L, $\lambda$, $x$, $f'$ et de l'éclairement maximal $\mathscr{E}_{max}$. Représenter graphiquement la courbe $\mathscr{E}(x)$ en faisant apparaître les points remarquables.</p>
+</div>
+
+<div class="annale-question" id="Q25">
+<h4>Question E1'g</h4>
+<p>Que devient la figure de diffraction si $L \to \infty$ ?</p>
+</div>
+
+<div class="annale-question" id="Q26">
+<h4>Question E1'h</h4>
+<p>Application numérique : L'onde plane incidente a une longueur d'onde $\lambda = 500$ nm, la fente est de largeur $L = 5$ cm et la lentille $(L_1)$ a pour distance focale $f' = 1$ m. Déterminer numériquement la largeur $\Delta x$ (entre zéros adjacents) du pic central d'éclairement.</p>
+</div>
+
+<h4>2 / Diffraction par une lame d'indice variable</h4>
+<p>Une lame parfaitement transparente, dite « lame objet », d'épaisseur $d$, est placée devant la fente précédente (voir <strong>figure 6</strong>). L'indice de cette lame varie d'un point à l'autre : il dépend de l'abscisse $X$ selon la loi périodique : $n(X) = n_0 + \varepsilon \cos\left(2\pi\dfrac{X}{\Lambda}\right)$, où $\Lambda$ est la période des variations d'indice et $\varepsilon \ll 1$.</p>
+<p>La lame objet ne provoque aucun changement d'intensité des ondes qui la traversent.</p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 6</div>
+<p>Montage identique à la figure 5, avec en plus une « lame objet » parfaitement transparente, d'épaisseur $d$, placée juste avant la fente allongée selon $Y$ (le côté source). L'onde incidente plane se propage selon $z$. La fente, de largeur $L$, la lentille $(L_1)$ et l'écran dans le plan focal image sont disposés comme à la figure 5.</p>
+</div>
+
+<div class="annale-question" id="Q27">
+<h4>Question E2'a</h4>
+<p>Déterminer, en fonction de $X$, $X_P$, $d$, $\varepsilon$, $\Lambda$ et $f'$, la différence, notée $\delta_{P/O}$, entre les chemins optiques menant de la source à M, et qui passent respectivement par les points P et O.</p>
+</div>
+
+<div class="annale-question" id="Q28">
+<h4>Question E2'b</h4>
+<p>En déduire l'amplitude complexe de l'onde résultante diffractée en M par le système lame + fente s'écrit :
+\[ \underline{a}(M) = K' \int_{-L/2}^{L/2} \exp\left\{j\frac{2\pi}{\lambda}\left[\frac{xX_p}{f'} - \varepsilon d\cos\left(2\pi\frac{X_p}{\Lambda}\right)\right]\right\} dX_p, \]
+où $K'$ est une constante.</p>
+</div>
+
+<div class="annale-question" id="Q29">
+<h4>Question E2'c</h4>
+<p>Dans la mesure où $\varepsilon \ll 1$, il est possible d'écrire, au premier ordre en $\varepsilon$ :
+\[ \exp\left\{j\frac{2\pi}{\lambda}\left[\frac{xX_p}{f'} - \varepsilon d\cos\left(2\pi\frac{X_p}{\Lambda}\right)\right]\right\} \simeq \exp\left(j\frac{2\pi}{\lambda}\frac{xX_p}{f'}\right)\times\left[1 - j\frac{2\pi \varepsilon d}{\lambda}\cos\left(2\pi\frac{X_p}{\Lambda}\right)\right]. \]
+Montrer que l'amplitude complexe de l'onde diffractée en M est de la forme :
+\[ \underline{a}(M) = F(x) - j\frac{\pi\varepsilon d}{\lambda} F\!\left(x - \frac{\lambda}{\Lambda}f'\right) - j\frac{\pi\varepsilon d}{\lambda} F\!\left(x + \frac{\lambda}{\Lambda}f'\right), \]
+où $F(x)$ est une fonction que l'on exprimera en fonction de $K'$, $L$, $\lambda$ et $f'$.</p>
+</div>
+
+<div class="annale-question" id="Q30">
+<h4>Question E2'd</h4>
+<p>En déduire qu'à la limite $L \to \infty$, l'amplitude de l'onde diffractée est nulle partout, sauf en trois points $B_0$, $B_1$ et $B_{-1}$, dont les abscisses respectives sont notées 0, $x_1$ et $x_{-1}$. Exprimer $x_1$ en fonction de $\lambda$, $\Lambda$ et $f'$.</p>
+</div>
+
+<div class="annale-question" id="Q31">
+<h4>Question E2'e</h4>
+<p>Application numérique : Les valeurs numériques sont celles de la question E1'h, et la période de modulation d'indice est $\Lambda = 0,1$ mm. Déterminer $x_1$. Comparer à $\Delta x$ et commenter.</p>
+</div>
+
+<div class="annale-question" id="Q32">
+<h4>Question E2'f</h4>
+<p>Quel est le retard de phase $\psi$ des ondes observées en $B_1$ et $B_{-1}$ par rapport à celle obtenue en $B_0$ ?</p>
+</div>
+
+<h4>3 / Observation dans le plan conjugué de la fente</h4>
+<p>Le montage de la <strong>figure 6</strong> est modifié comme indiqué en <strong>figure 7</strong>. Une lentille $(L'_1)$, identique à $(L_1)$, est intercalée entre l'écran et le plan focal de $(L_1)$ ; l'écran est placé dans le plan focal de $(L'_1)$. Le centre $O$ de la fente coïncide avec le point focal objet de $(L_1)$. Les points $B_0$, $B_1$ et $B_{-1}$ sont également indiqués sur la figure 7.</p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 7</div>
+<p>Onde incidente plane éclairant la lame objet + fente (de largeur $L$) centrée sur $O$. La lentille $(L_1)$ est placée à la distance $f'$ de la fente. À la distance $f'$ après $(L_1)$ se trouve le plan focal image de $(L_1)$ où se trouvent trois points alignés : $B_1$ (au-dessus de l'axe), $B_0$ (sur l'axe, au point focal $F'$) et $B_{-1}$ (au-dessous de l'axe). Une deuxième lentille $(L'_1)$, identique à $(L_1)$, est placée à la distance $f'$ après ce plan. L'écran est placé dans le plan focal image de $(L'_1)$, à la distance $f'$. Le repère sur l'écran est $(M, y)$.</p>
+</div>
+
+<div class="annale-question" id="Q33">
+<h4>Question E3'a</h4>
+<p>Préciser l'aspect de l'écran, en l'absence des phénomènes de diffraction.</p>
+</div>
+
+<div class="annale-question" id="Q34">
+<h4>Question E3'b</h4>
+<p>Justifier que l'onde observée en un point M de l'écran peut être considérée comme la superposition des ondes issues de trois sources ponctuelles fictives situées aux points $B_0$, $B_1$ et $B_{-1}$.</p>
+<p>Soit $\underline{a}'_1$ l'amplitude complexe en $O'$ (image de $O$ par l'ensemble des deux lentilles $L_1$ et $L'_1$) associée à l'onde issue de $B_0$.</p>
+</div>
+
+<div class="annale-question" id="Q35">
+<h4>Question E3'c</h4>
+<p>Exprimer en $O'$ les amplitudes complexes $\underline{a}'_1$ et $\underline{a}'_{-1}$ correspondant aux ondes issues respectivement de $B_1$ et $B_{-1}$, en fonction de $\underline{a}'_0$, $\varepsilon$, $d$ et $\lambda$.</p>
+</div>
+
+<p>Pour calculer l'éclairement au point M, il est donc possible de transposer les résultats du D2'd en considérant que les sources fictives $B_0$, $B_1$ et $B_{-1}$ jouent le rôle des sources $A_0$, $A_1$ et $A_{-1}$, avec les paramètres de phase et d'amplitude adéquats. Par exemple, le retard de phase $\psi$ de $B_1$ par rapport à $B_0$ joue le même rôle que le paramètre $\varphi$ de la sous-partie D.</p>
+
+<div class="annale-question" id="Q36">
+<h4>Question E3'd</h4>
+<p>Préciser les expressions à donner aux grandeurs $\gamma$ et $b$ de la relation (1) du D2'd pour obtenir l'éclairement en M dans le montage de la figure 7.</p>
+</div>
+
+<div class="annale-question" id="Q37">
+<h4>Question E3'e</h4>
+<p>Montrer que, au premier ordre en $\varepsilon$, l'éclairement sur l'écran est uniforme sur une bande de largeur $L'$, à exprimer en fonction de $L$. Commenter ce résultat.</p>
+</div>
+
+<p>Le montage de la <strong>figure 7</strong> ne permet donc pas de visualiser les variations d'indice qui existent dans la lame : l'information associée à ces variations est irrémédiablement perdue ! La méthode du contraste de phase, introduite par le physicien néerlandais ZERNIKE en 1933, permet d'accéder à cette information.</p>
+
+<h4>4 / Contraste de phase</h4>
+<p>Juste avant le plan focal de $(L_1)$, est disposée une lame de verre $(Dp)$ d'indice $n_1$, à faces parallèles, possédant une surépaisseur $e$ au niveau de $B_0$ (<strong>figure 8</strong>) ; les épaisseurs au niveau de $B_1$ et $B_{-1}$ sont égales.</p>
+<p>Les angles d'incidence étant très faibles, il est possible de négliger les déviations par réfraction dues à la lame $(Dp)$ et de considérer qu'elle est traversée sous incidence normale.</p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 8</div>
+<p>Montage identique à la figure 7 (lame objet + fente + $(L_1)$ + $(L'_1)$ + écran), avec en plus une lame de verre $(Dp)$ d'indice $n_1$, à faces parallèles, placée juste avant le plan focal de $(L_1)$. Cette lame présente une surépaisseur $e$ localisée au niveau du point $B_0$ (point focal image $F'$). Les points $B_1$ et $B_{-1}$ traversent la lame $(Dp)$ dans sa partie d'épaisseur normale.</p>
+</div>
+
+<div class="annale-question" id="Q38">
+<h4>Question E4'a</h4>
+<p>Exprimer, en fonction de $\phi$, $n_1$, $\lambda$ et $e$, le nouveau retard de phase $\phi'$ des ondes en $B_1$ et $B_{-1}$, relativement à $B_0$.</p>
+</div>
+
+<div class="annale-question" id="Q39">
+<h4>Question E4'b</h4>
+<p>En déduire que l'éclairement $\mathscr{E}'(M)$ observé sur l'écran est de la forme :
+\[ \mathscr{E}(M) = \mathscr{E}'_0 \left[ 1 + 4\frac{\varepsilon\pi d}{\lambda}\cos\left(\frac{2\pi}{\lambda}(n_1 - 1)e\right)\cos\left(2\pi\frac{x}{\Lambda}\right) \right]. \]
+Quel est le sens concret de $\mathscr{E}'_0$ ? Expliquer comment l'analyse de la figure d'éclairement permet d'accéder aux variations d'indice de la lame.</p>
+</div>
+
+<div class="annale-question" id="Q40">
+<h4>Question E4'c</h4>
+<p>L'indice $n_1$ étant fixé, quelles sont les valeurs de $e$ qui rendent maximal le contraste de la figure ?</p>
+<p>Application numérique : Calculer, avec un chiffre significatif, la plus petite valeur de $e$ ayant cette propriété (adopter les valeurs numériques précédentes et prendre $n_1 = 1,5$).</p>
+</div>
+
+<div class="annale-question" id="Q41">
+<h4>Question E4'd</h4>
+<p>Quelle est l'abscisse $X_M$ du point M' de la fente dont l'image géométrique par l'ensemble du montage est le point M d'abscisse $x$ ?</p>
+<p>Parmi les valeurs optimales de $e$, quelles sont celles pour lesquelles un maximum d'éclairement en M est associé à un maximum d'indice de la lame objet en $X_{M'}$ ? De même, quelles sont les valeurs de $e$ pour lesquelles un minimum d'éclairement en M est associé à un minimum d'indice de la lame objet en $X_{M'}$ ?</p>
+</div>
+</section>
+
+<section class="annale-exercice" id="exo3">
+<h2>Troisième partie - Application au suivi d'une expérience de diffusion</h2>
+<p>La technique décrite dans la deuxième partie peut être utilisée pour étudier la diffusion de corps transparents dans l'eau. Études le cas de la diffusion du sucre (saccharose) et présentons un exemple d'analyse expérimentale.</p>
+
+<h3 id="partF">F / Atténuation d'une inhomogénéité périodique par diffusion</h3>
+
+<h4>1 / Perturbation sinusoïdale de concentration</h4>
+<p>Le coefficient de diffusion du sucre dans l'eau est noté $D_S$ ; il est supposé indépendant de la concentration.</p>
+<p>Une solution sucrée possède, à l'instant $t = 0$, une concentration en sucre dépendant de l'abscisse $x$ selon une loi de la forme : $c(x,t = 0) = c_0 + c_1 \cos\left(\dfrac{2\pi x}{\Lambda}\right)$, où $c_0$, $c_1$ ($c_1 \ll c_0$) et $\Lambda$ sont des constantes. L'évolution ultérieure (pour $t > 0$) de la concentration est cherchée sous la forme : $c(x,t) = c_0 + f(t)\cos\left(\dfrac{2\pi x}{\Lambda}\right)$.</p>
+
+<div class="annale-question" id="Q42">
+<h4>Question F1'a</h4>
+<p>Rappeler sans démonstration l'équation aux dérivées partielles vérifiée par la concentration $c(x,t)$ (équation de la diffusion).</p>
+</div>
+
+<div class="annale-question" id="Q43">
+<h4>Question F1'b</h4>
+<p>Déterminer, en fonction de $D_S$ et $\Lambda$, l'équation différentielle du premier ordre vérifiée par la fonction $f(t)$. Résoudre cette équation en tenant compte des conditions initiales. Exprimer $f(t)$ en fonction de $c_1$, $t$ et d'une temps caractéristique $\tau_1$ à écrire en fonction de $D_S$ et $\Lambda$. Quel sens concret donnez-vous au paramètre $\tau_1$ ?</p>
+</div>
+
+<div class="annale-question" id="Q44">
+<h4>Question F1'c</h4>
+<p>Représenter graphiquement, pour $t > 0$ donné, l'évolution de la concentration $c(x,t)$ en fonction de $x$. Tracer également la distribution limite $c(x,t \to \infty)$.</p>
+</div>
+
+<h4>2 / Visualisation par contraste de phase et analyse expérimentale</h4>
+<p>L'indice de réfraction de l'eau sucrée, pour de faibles concentrations, selon une loi quasi linéaire : $n = n_e + \beta c$, avec $n_e = 1,33$ et $\beta = 0,3.10^{-3}$ m$^3$·mol$^{-1}$.</p>
+<p>Une cuve à faces parallèles, d'épaisseur $d$, est remplie d'une solution dont la concentration en sucre est, à l'instant $t = 0$, variable de façon périodique avec une période spatiale $\Lambda$. Après une phase initiale, la concentration du sucre peut être décrite par la loi suivante :
+\[ c(x,t) = c_0 + c_1 \exp(-t/\tau_1) \cos\left(2\pi\frac{x}{\Lambda}\right). \]</p>
+<p>Cette cuve est utilisée comme « lame objet » dans le montage décrit en deuxième partie (E4). La source lumineuse et la géométrie du dispositif sont inchangées ; la lame $(Dp)$ est ajustée de telle façon qu'un maximum d'indice corresponde à un maximum d'éclairement.</p>
+
+<div class="annale-question" id="Q45">
+<h4>Question F2'a</h4>
+<p>Montrer que l'éclairement $\mathscr{E}$ observé sur l'écran à l'instant $t$ peut s'écrire :
+\[ \mathscr{E} = \mathscr{E}_0\left[1 + (\xi\, c_1 d)\exp(-t/\tau_1)\cos\left(2\pi\frac{x}{\Lambda}\right)\right], \]
+et exprimer $\xi$ en fonction de $\beta$ et $\lambda$.</p>
+</div>
+
+<div class="annale-question" id="Q46">
+<h4>Question F2'b</h4>
+<p>Pour une cuve d'épaisseur $d$ donnée, exprimer la plus petite variation de concentration $c_{min}$ décelable initialement, en fonction de $\Gamma_{min}$, $\xi$ et $d$.</p>
+<p>Calculer numériquement $c_{min}$ en mol·m$^{-3}$ pour $d = 1,0$ mm.</p>
+<p>La <strong>figure 9</strong> ci-après représente le contraste normalisé, $\Gamma(t)/\Gamma(0)$, en fonction du temps (en secondes), obtenu pour une répartition initiale de période spatiale $\Lambda = 1$ mm.</p>
+</div>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 9</div>
+<p>Courbe expérimentale du contraste normalisé $\Gamma(t)/\Gamma(0)$ en fonction du temps $t$ (en secondes), en échelle semi-logarithmique (l'axe vertical porte les valeurs 10, 1, 0,1 et 0,01). L'axe horizontal va de 0 à 200 s. Les points expérimentaux sont alignés et décroissent de $\Gamma(t)/\Gamma(0) = 1$ à $t=0$ vers environ 0,01 à $t = 200$ s. Les premiers points ne sont pas parfaitement alignés avec les autres.</p>
+</div>
+
+<div class="annale-question" id="Q47">
+<h4>Question F2'c</h4>
+<p>Expliquer pourquoi les premiers points ne sont pas alignés avec les autres.</p>
+</div>
+
+<div class="annale-question" id="Q48">
+<h4>Question F2'd</h4>
+<p>Déduire de ces résultats la valeur numérique du coefficient de diffusion $D_S$ du sucre dans l'eau (avec un chiffre significatif).</p>
+<p>Donnée : $\ln(10) = 2,3$.</p>
+</div>
+</section>
+
+<div class="annale-end">
+<p><strong>FIN DU PROBLÈME</strong></p>
+</div>
+
+</div>
+</main>
+</body>
+</html>

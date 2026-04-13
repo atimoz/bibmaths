@@ -3,231 +3,654 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Correction E3A 2018 -- Maths 1 &amp; 2 | LibMaths</title>
+  <title>Correction E3A 2018 -- Maths 1 | LibMaths</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <style>
-    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}.course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}.course__back:hover{color:var(--accent)}.course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}.course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}.course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}.course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}.course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}.course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}.course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}.course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}.course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}.course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}.course__toc-difficulty{font-size:.7rem;margin-left:auto;padding:2px 10px;border-radius:12px;font-family:var(--font-mono);letter-spacing:.04em}.course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}.course ol,.course ul{margin-bottom:var(--space-md)}.course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}.math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}.annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}.annale-info__item{display:flex;flex-direction:column;gap:4px}.annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}.annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}.course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}.course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}.course__nav-link:hover{color:var(--accent)}.course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}.course__nav-link:hover span{color:var(--accent)}.course__nav-link--next{text-align:right}
-    :root{--corr-rappel:#e8f0fe;--corr-rappel-border:#a8c7fa;--corr-rappel-icon:#4285f4;--corr-why:#fef0e8;--corr-why-border:#fab8a8;--corr-why-icon:#e8710a;--corr-result:#faf6e8;--corr-result-border:#d4b957;--corr-result-icon:#b8960c;--corr-piege:#fee8e8;--corr-piege-border:#f5a8a8;--corr-piege-icon:#d93025;--corr-method:#e8faf0;--corr-method-border:#7dd3a8;--corr-method-icon:#1a8d5f;--corr-q-easy:#34a853;--corr-q-medium:#f9ab00;--corr-q-hard:#ea4335}
-    [data-theme="dark"]{--corr-rappel:rgba(66,133,244,.1);--corr-rappel-border:rgba(66,133,244,.3);--corr-rappel-icon:#8ab4f8;--corr-why:rgba(232,113,10,.1);--corr-why-border:rgba(232,113,10,.3);--corr-why-icon:#fba86c;--corr-result:rgba(212,185,87,.1);--corr-result-border:rgba(212,185,87,.35);--corr-result-icon:#e8d44d;--corr-piege:rgba(217,48,37,.1);--corr-piege-border:rgba(217,48,37,.3);--corr-piege-icon:#f28b82;--corr-method:rgba(26,141,95,.1);--corr-method-border:rgba(26,141,95,.3);--corr-method-icon:#81c995}
-    .corr-exercice{margin-bottom:var(--space-3xl)}.corr-exercice__header{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-sm)}.corr-exercice__number{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;line-height:1;color:var(--accent);opacity:.35}.corr-exercice__title-group{flex:1}.corr-exercice__title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;color:var(--ink);line-height:1.25;margin-bottom:4px}.corr-exercice__subtitle{font-size:.85rem;color:var(--ink-muted);font-style:italic}.corr-exercice__difficulty{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:20px;white-space:nowrap}.corr-exercice__difficulty--easy{color:var(--corr-q-easy);background:rgba(52,168,83,.1);border:1px solid rgba(52,168,83,.25)}.corr-exercice__difficulty--medium{color:var(--corr-q-medium);background:rgba(249,171,0,.1);border:1px solid rgba(249,171,0,.25)}.corr-exercice__difficulty--hard{color:var(--corr-q-hard);background:rgba(234,67,53,.1);border:1px solid rgba(234,67,53,.25)}.corr-exercice__rule{height:1px;border:none;background:linear-gradient(90deg,var(--accent),transparent);margin-bottom:var(--space-xl);opacity:.4}
-    .corr-question{margin-bottom:var(--space-xl);padding-left:var(--space-lg);border-left:3px solid var(--accent);position:relative}.corr-question--easy{border-left-color:var(--corr-q-easy)}.corr-question--medium{border-left-color:var(--corr-q-medium)}.corr-question--hard{border-left-color:var(--corr-q-hard)}.corr-question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:6px;display:block}.corr-question--easy .corr-question__num{color:var(--corr-q-easy)}.corr-question--medium .corr-question__num{color:var(--corr-q-medium)}.corr-question--hard .corr-question__num{color:var(--corr-q-hard)}.corr-question__statement{font-size:.88rem;color:var(--ink-muted);font-style:italic;margin-bottom:var(--space-md);padding-bottom:var(--space-sm);border-bottom:1px dashed var(--border)}
-    .corr-box{border-radius:10px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0;font-size:.9rem;line-height:1.8;position:relative}.corr-box__title{font-weight:600;font-size:.8rem;letter-spacing:.03em;margin-bottom:6px;display:flex;align-items:center;gap:8px}.corr-box__icon{width:18px;height:18px;flex-shrink:0}.corr-box--rappel{background:var(--corr-rappel);border:1px solid var(--corr-rappel-border)}.corr-box--rappel .corr-box__title{color:var(--corr-rappel-icon)}.corr-box--why{background:var(--corr-why);border:1px solid var(--corr-why-border)}.corr-box--why .corr-box__title{color:var(--corr-why-icon)}.corr-box--result{background:var(--corr-result);border:1px solid var(--corr-result-border)}.corr-box--result .corr-box__title{color:var(--corr-result-icon)}.corr-box--piege{background:var(--corr-piege);border:1px solid var(--corr-piege-border)}.corr-box--piege .corr-box__title{color:var(--corr-piege-icon)}.corr-box--method{background:var(--corr-method);border:1px solid var(--corr-method-border)}.corr-box--method .corr-box__title{color:var(--corr-method-icon)}
-    .corr-toggle{margin:var(--space-md) 0}.corr-toggle summary{cursor:pointer;font-size:.82rem;font-weight:500;color:var(--accent);padding:8px 14px;background:var(--accent-glow);border-radius:8px;list-style:none;display:inline-flex;align-items:center;gap:6px;user-select:none}.corr-toggle summary::-webkit-details-marker{display:none}.corr-toggle summary::before{content:'+';font-family:var(--font-mono);font-size:.9rem;font-weight:300;width:18px;text-align:center}.corr-toggle[open] summary::before{content:'\2212'}.corr-toggle__content{padding:var(--space-md) 0 0 var(--space-sm);animation:corr-fadeIn .3s ease}@keyframes corr-fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-    .corr-separator{text-align:center;margin:var(--space-3xl) 0;color:var(--ink-muted);opacity:.3;font-size:1.2rem;letter-spacing:.5em}.corr-badge{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--accent);padding:4px 12px;border-radius:20px}.corr-progress-bar{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-xl);padding:var(--space-md) var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:12px}.corr-progress-bar__label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);white-space:nowrap}.corr-progress-bar__track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;display:flex}.corr-progress-bar__seg{height:100%}.corr-progress-bar__seg--easy{background:var(--corr-q-easy)}.corr-progress-bar__seg--medium{background:var(--corr-q-medium)}.corr-progress-bar__seg--hard{background:var(--corr-q-hard)}
-    .corr-epreuve-header{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin:var(--space-2xl) 0 var(--space-xl);text-align:center}.corr-epreuve-header__title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--accent);margin-bottom:4px}.corr-epreuve-header__sub{font-size:.85rem;color:var(--ink-muted)}
-    @media(max-width:680px){.course__title{font-size:1.3rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.corr-exercice__header{flex-wrap:wrap}.corr-exercice__number{font-size:2.5rem}.corr-exercice__title{font-size:1.25rem}.corr-box{padding:var(--space-sm) var(--space-md)}.annale-info{flex-direction:column;gap:var(--space-md)}}
+    /* ── Base course layout ── */
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__toc-difficulty{font-size:.7rem;margin-left:auto;padding:2px 10px;border-radius:12px;font-family:var(--font-mono);letter-spacing:.04em}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+
+    /* ── Correction-specific variables ── */
+    :root {
+      --corr-rappel: #e8f0fe; --corr-rappel-border: #a8c7fa; --corr-rappel-icon: #4285f4;
+      --corr-why: #fef0e8; --corr-why-border: #fab8a8; --corr-why-icon: #e8710a;
+      --corr-result: #faf6e8; --corr-result-border: #d4b957; --corr-result-icon: #b8960c;
+      --corr-piege: #fee8e8; --corr-piege-border: #f5a8a8; --corr-piege-icon: #d93025;
+      --corr-method: #e8faf0; --corr-method-border: #7dd3a8; --corr-method-icon: #1a8d5f;
+      --corr-q-easy: #34a853; --corr-q-medium: #f9ab00; --corr-q-hard: #ea4335;
+    }
+    [data-theme="dark"] {
+      --corr-rappel: rgba(66,133,244,.1); --corr-rappel-border: rgba(66,133,244,.3); --corr-rappel-icon: #8ab4f8;
+      --corr-why: rgba(232,113,10,.1); --corr-why-border: rgba(232,113,10,.3); --corr-why-icon: #fba86c;
+      --corr-result: rgba(212,185,87,.1); --corr-result-border: rgba(212,185,87,.35); --corr-result-icon: #e8d44d;
+      --corr-piege: rgba(217,48,37,.1); --corr-piege-border: rgba(217,48,37,.3); --corr-piege-icon: #f28b82;
+      --corr-method: rgba(26,141,95,.1); --corr-method-border: rgba(26,141,95,.3); --corr-method-icon: #81c995;
+    }
+
+    .corr-exercice{margin-bottom:var(--space-3xl)}
+    .corr-exercice__header{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-sm)}
+    .corr-exercice__number{font-family:'Inter',sans-serif;font-size:3.5rem;font-weight:300;line-height:1;color:var(--accent);opacity:.35}
+    .corr-exercice__title-group{flex:1}
+    .corr-exercice__title{font-family:'Inter',sans-serif;font-size:1.55rem;font-weight:600;color:var(--ink);line-height:1.25;margin-bottom:4px}
+    .corr-exercice__subtitle{font-size:.85rem;color:var(--ink-muted);font-style:italic}
+    .corr-exercice__difficulty{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:20px;white-space:nowrap}
+    .corr-exercice__difficulty--easy{color:var(--corr-q-easy);background:rgba(52,168,83,.1);border:1px solid rgba(52,168,83,.25)}
+    .corr-exercice__difficulty--medium{color:var(--corr-q-medium);background:rgba(249,171,0,.1);border:1px solid rgba(249,171,0,.25)}
+    .corr-exercice__difficulty--hard{color:var(--corr-q-hard);background:rgba(234,67,53,.1);border:1px solid rgba(234,67,53,.25)}
+    .corr-exercice__rule{height:1px;border:none;background:linear-gradient(90deg,var(--accent),transparent);margin-bottom:var(--space-xl);opacity:.4}
+    .corr-exercice__enonce{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.9rem;line-height:1.8;color:var(--ink-light)}
+    .corr-exercice__enonce-label{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-sm);display:block}
+    .corr-question{margin-bottom:var(--space-xl);padding-left:var(--space-lg);border-left:3px solid var(--accent);position:relative}
+    .corr-question--easy{border-left-color:var(--corr-q-easy)}
+    .corr-question--medium{border-left-color:var(--corr-q-medium)}
+    .corr-question--hard{border-left-color:var(--corr-q-hard)}
+    .corr-question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:6px;display:block}
+    .corr-question--easy .corr-question__num{color:var(--corr-q-easy)}
+    .corr-question--medium .corr-question__num{color:var(--corr-q-medium)}
+    .corr-question--hard .corr-question__num{color:var(--corr-q-hard)}
+    .corr-question__statement{font-size:.88rem;color:var(--ink-muted);font-style:italic;margin-bottom:var(--space-md);padding-bottom:var(--space-sm);border-bottom:1px dashed var(--border)}
+    .corr-box{border-radius:10px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0;font-size:.9rem;line-height:1.8;position:relative}
+    .corr-box__title{font-weight:600;font-size:.8rem;letter-spacing:.03em;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+    .corr-box--rappel{background:var(--corr-rappel);border:1px solid var(--corr-rappel-border)}
+    .corr-box--rappel .corr-box__title{color:var(--corr-rappel-icon)}
+    .corr-box--why{background:var(--corr-why);border:1px solid var(--corr-why-border)}
+    .corr-box--why .corr-box__title{color:var(--corr-why-icon)}
+    .corr-box--result{background:var(--corr-result);border:1px solid var(--corr-result-border)}
+    .corr-box--result .corr-box__title{color:var(--corr-result-icon)}
+    .corr-box--piege{background:var(--corr-piege);border:1px solid var(--corr-piege-border)}
+    .corr-box--piege .corr-box__title{color:var(--corr-piege-icon)}
+    .corr-box--method{background:var(--corr-method);border:1px solid var(--corr-method-border)}
+    .corr-box--method .corr-box__title{color:var(--corr-method-icon)}
+    .corr-steps{counter-reset:corr-step;list-style:none;padding:0;margin:var(--space-sm) 0 var(--space-md)}
+    .corr-steps li{counter-increment:corr-step;padding-left:36px;position:relative;margin-bottom:var(--space-sm);font-size:.92rem;line-height:1.8}
+    .corr-steps li::before{content:counter(corr-step);position:absolute;left:0;top:2px;width:24px;height:24px;border-radius:50%;background:var(--accent-glow);color:var(--accent);font-family:var(--font-mono);font-size:.7rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+    .corr-table{width:100%;border-collapse:collapse;margin:var(--space-md) 0;font-size:.88rem}
+    .corr-table th,.corr-table td{padding:8px 14px;text-align:center;border-bottom:1px solid var(--border)}
+    .corr-table th{font-family:var(--font-mono);font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);background:var(--bg-card)}
+    .corr-table td{color:var(--ink)}
+    .corr-table tr:last-child td{border-bottom:none}
+    .corr-separator{text-align:center;margin:var(--space-3xl) 0;color:var(--ink-muted);opacity:.3;font-size:1.2rem;letter-spacing:.5em}
+    .corr-badge{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--accent);padding:4px 12px;border-radius:20px}
+    .corr-progress-bar{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-xl);padding:var(--space-md) var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:12px}
+    .corr-progress-bar__label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);white-space:nowrap}
+    .corr-progress-bar__track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;display:flex}
+    .corr-progress-bar__seg{height:100%;transition:width .5s ease}
+    .corr-progress-bar__seg--easy{background:var(--corr-q-easy)}
+    .corr-progress-bar__seg--medium{background:var(--corr-q-medium)}
+    .corr-progress-bar__seg--hard{background:var(--corr-q-hard)}
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .corr-exercice__header{flex-wrap:wrap}
+      .corr-exercice__number{font-size:2.5rem}
+      .corr-exercice__title{font-size:1.25rem}
+      .corr-box{padding:var(--space-sm) var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
   </style>
 </head>
 <body>
+
   <div class="bg-grid" aria-hidden="true"></div>
-  <nav class="nav"><div class="site-switcher"><span class="site-switcher__brand">Lib</span><div class="site-switcher__toggle"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a><a href="../../physique/index.html" class="site-switcher__btn">Physique</a></div></div><div class="nav__links"><a href="../../index.html" class="nav__link">Accueil</a><div class="nav__dropdown"><a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mpsi.html#cours" class="dropdown__item">Cours</a><a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a><a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a><a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a></div></div><div class="nav__dropdown"><a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mp.html#cours" class="dropdown__item">Cours</a><a href="../../mp.html#exercices" class="dropdown__item">Exercices</a><a href="../../mp.html#fiches" class="dropdown__item">Fiches</a><a href="../../mp.html#methodes" class="dropdown__item">Methodes</a></div></div></div><a href="../../entrainement.html" class="nav__link">Entraînement</a><a href="../../revision.html" class="nav__link">Revision</a></div><button class="theme-toggle" id="themeToggle" aria-label="Changer de theme"><svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button><button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button></nav>
-  <div class="mobile-menu" id="mobileMenu"><div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a><a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a></div><div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div><div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+      <a href="../../entrainement.html" class="nav__link">Entrainement</a>
+      <a href="../../revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
 
   <article class="course">
-    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
-    <div class="course__meta"><span class="course__badge">E3A 2018</span><span class="corr-badge">Correction detaillee</span></div>
-    <h1 class="course__title">Correction -- E3A 2018, Maths 1 &amp; Maths 2</h1>
-    <p class="course__intro">Correction pedagogique des deux epreuves E3A 2018 (Maths 1 : 4h -- enonce PDF uniquement ; Maths 2 : 3h -- moyenne arithmetico-geometrique et integrales elliptiques). Chaque etape est justifiee avec rappels, intuitions et pieges.</p>
 
-    <div class="annale-info">
-      <div class="annale-info__item"><span class="annale-info__label">Concours</span><span class="annale-info__value">E3A</span></div>
-      <div class="annale-info__item"><span class="annale-info__label">Filiere</span><span class="annale-info__value">MP</span></div>
-      <div class="annale-info__item"><span class="annale-info__label">Annee</span><span class="annale-info__value">2018</span></div>
-      <div class="annale-info__item"><span class="annale-info__label">Type</span><span class="annale-info__value">Correction pedagogique</span></div>
-      <div class="annale-info__item"><span class="annale-info__label">Enonces</span><span class="annale-info__value"><a href="e3a-2018-maths1.html" style="color:var(--accent)">Maths 1 (PDF)</a> &middot; <a href="e3a-2018-maths2.html" style="color:var(--accent)">Maths 2</a></span></div>
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">E3A 2018</span>
+      <span class="corr-badge">Correction detaillee</span>
     </div>
 
-    <div class="corr-progress-bar"><span class="corr-progress-bar__label">Difficulte</span><div class="corr-progress-bar__track"><div class="corr-progress-bar__seg corr-progress-bar__seg--easy" style="width:30%"></div><div class="corr-progress-bar__seg corr-progress-bar__seg--medium" style="width:45%"></div><div class="corr-progress-bar__seg corr-progress-bar__seg--hard" style="width:25%"></div></div></div>
+    <h1 class="course__title">Correction -- E3A 2018, Maths 1</h1>
+
+    <p class="course__intro">
+      Correction pedagogique, pas a pas, pensee pour un niveau en construction. Chaque question est accompagnee de rappels de cours, d'explications sur la demarche, et de mises en garde sur les erreurs classiques.
+    </p>
+
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">E3A</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">MP</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2018</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Type</span>
+        <span class="annale-info__value">Correction pedagogique</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Enonce</span>
+        <span class="annale-info__value"><a href="e3a-2018-maths1.html" style="color:var(--accent)">Voir l'enonce</a></span>
+      </div>
+    </div>
+
+    <div class="corr-progress-bar">
+      <span class="corr-progress-bar__label">Difficulte</span>
+      <div class="corr-progress-bar__track">
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--easy" style="width:35%"></div>
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--medium" style="width:40%"></div>
+        <div class="corr-progress-bar__seg corr-progress-bar__seg--hard" style="width:25%"></div>
+      </div>
+    </div>
 
     <nav class="course__toc">
       <span class="course__toc-title">Sommaire de la correction</span>
       <ol class="course__toc-list">
-        <li class="course__toc-item"><a href="#m1"><span class="course__toc-num">&bull;</span> Epreuve Maths 1 (enonce PDF)</a></li>
-        <li class="course__toc-item"><a href="#m2"><span class="course__toc-num">&bull;</span> Epreuve Maths 2 (3h)</a></li>
-        <li class="course__toc-item"><a href="#m2p1"><span class="course__toc-num">I.</span> Moyenne arithmetico-geometrique <span class="course__toc-difficulty" style="color:var(--corr-q-easy);background:rgba(52,168,83,.08)">Standard</span></a></li>
-        <li class="course__toc-item"><a href="#m2p2"><span class="course__toc-num">II.</span> Lien avec une integrale <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span></a></li>
-        <li class="course__toc-item"><a href="#m2p3"><span class="course__toc-num">III.</span> Etude asymptotique <span class="course__toc-difficulty" style="color:var(--corr-q-hard);background:rgba(234,67,53,.08)">Avance</span></a></li>
-        <li class="course__toc-item"><a href="#m2p5"><span class="course__toc-num">V.</span> Integrale elliptique complete <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span></a></li>
+        <li class="course__toc-item">
+          <a href="#exo1"><span class="course__toc-num">1.</span> Constante d'Euler et developpement asymptotique
+            <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span>
+          </a>
+        </li>
+        <li class="course__toc-item">
+          <a href="#exo2"><span class="course__toc-num">2.</span> Matrices orthogonales a coefficients dans \(\{-1,1\}\)
+            <span class="course__toc-difficulty" style="color:var(--corr-q-medium);background:rgba(249,171,0,.08)">Intermediaire</span>
+          </a>
+        </li>
+        <li class="course__toc-item">
+          <a href="#exo3"><span class="course__toc-num">3.</span> Nombre de valeurs distinctes et probleme des anniversaires
+            <span class="course__toc-difficulty" style="color:var(--corr-q-easy);background:rgba(52,168,83,.08)">Standard</span>
+          </a>
+        </li>
       </ol>
     </nav>
 
-    <!-- ══════════ MATHS 1 ══════════ -->
-    <div class="corr-epreuve-header" id="m1">
-      <div class="corr-epreuve-header__title">Epreuve Maths 1</div>
-      <div class="corr-epreuve-header__sub">Enonce disponible uniquement au format PDF (document numerise) -- <a href="https://www.vmaths.fr/e3a-2018-maths1.pdf" target="_blank" rel="noopener" style="color:var(--accent)">Telecharger le PDF</a></div>
-    </div>
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 1                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="corr-exercice" id="exo1">
 
-    <p>L'enonce de Maths 1 2018 n'etant pas disponible en version texte, la correction de cette epreuve n'est pas detaillee ici. Consultez le PDF du sujet pour travailler l'epreuve.</p>
-
-    <!-- ══════════ MATHS 2 ══════════ -->
-    <div class="corr-epreuve-header" id="m2">
-      <div class="corr-epreuve-header__title">Epreuve Maths 2</div>
-      <div class="corr-epreuve-header__sub">Duree : 3 heures -- Moyenne arithmetico-geometrique, integrales elliptiques</div>
-    </div>
-
-    <!-- PARTIE I -->
-    <div class="corr-exercice" id="m2p1">
       <div class="corr-exercice__header">
-        <div class="corr-exercice__number">I</div>
-        <div class="corr-exercice__title-group"><div class="corr-exercice__title">Moyenne arithmetico-geometrique</div><div class="corr-exercice__subtitle">Suites adjacentes, convergence, proprietes d'homogeneite</div></div>
+        <span class="corr-exercice__number">1</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Constante d'Euler et developpement asymptotique</h2>
+          <span class="corr-exercice__subtitle">Series, comparaison serie-integrale, DL -- 13 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        Pour tout entier naturel \(n\) dans \(\mathbb{N}^*\), on note \(h_n = \sum_{k=1}^{n} \frac{1}{k}\) et \(f_n = h_n - \ln(n)\). On definit \(u_n = \frac{1}{n} + \ln(1 - \frac{1}{n})\) et \(v_n = \frac{1}{n} - \ln(1 + \frac{1}{n})\). L'exercice etudie la convergence de ces series, introduit la constante d'Euler \(\gamma\), puis etablit un developpement asymptotique de \(h_n\).
+      </div>
+
+      <!-- Q1 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1</span>
+        <p class="corr-question__statement">Rappeler le domaine de definition de la fonction \((x \mapsto x + \ln(1 - x))\). Preciser son developpement de Taylor a l'ordre 2 en 0.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Le logarithme \(\ln(1-x)\) est defini pour \(x < 1\). Son developpement de Taylor en 0 : \(\ln(1-x) = -x - \frac{x^2}{2} - \frac{x^3}{3} - \cdots\) pour \(|x| < 1\).
+        </div>
+
+        <p>La fonction \(g : x \mapsto x + \ln(1-x)\) est definie sur \(]-\infty, 1[\).</p>
+        <p>En 0, \(g(x) = x + \ln(1-x) = x - x - \frac{x^2}{2} + o(x^2)\), donc :</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{g(x) = x + \ln(1-x) = -\frac{x^2}{2} + o(x^2)}$$
+          Domaine : \(]-\infty, 1[\).
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2</span>
+        <p class="corr-question__statement">Soit \(n\) un entier naturel non nul. Quel est le signe de \(u_n\) ?</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On veut etudier la convergence de \(\sum u_n\). Pour cela, connaitre le signe permet de savoir si on peut appliquer les criteres de convergence des series a termes positifs (ou negatifs).
+        </div>
+
+        <p>On a \(u_n = g(1/n) = \frac{1}{n} + \ln(1 - \frac{1}{n})\). D'apres la question 1, pour \(x\) proche de 0, \(g(x) \approx -x^2/2 < 0\). Plus rigoureusement, on etudie \(g\) sur \(]0, 1[\) : \(g'(x) = 1 - \frac{1}{1-x} = \frac{-x}{1-x} < 0\) pour \(x \in \,]0,1[\), et \(g(0) = 0\), donc \(g(x) < 0\) pour tout \(x \in \,]0,1[\).</p>
+        <p>Comme \(1/n \in \,]0,1[\) pour \(n \geqslant 2\), et \(u_1 = 1 + \ln 0\) n'est pas defini, on a pour \(n \geqslant 2\) :</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{u_n < 0 \text{ pour tout } n \geqslant 2}$$
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 3</span>
+        <p class="corr-question__statement">Justifier que la serie \(\sum_{n \geqslant 1} u_n\) est convergente.</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Convergence par equivalent</div>
+          Si \(a_n \sim \frac{c}{n^\alpha}\) avec \(\alpha > 1\), alors la serie \(\sum a_n\) converge absolument.
+        </div>
+
+        <p>D'apres le DL a l'ordre 2 : \(u_n = g(1/n) = -\frac{1}{2n^2} + o(1/n^2)\), donc \(u_n \sim -\frac{1}{2n^2}\).</p>
+        <p>La serie \(\sum \frac{1}{n^2}\) converge (serie de Riemann, \(\alpha = 2 > 1\)), donc \(\sum u_n\) converge absolument.</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\sum_{n \geqslant 1} u_n \text{ converge (absolument), car } u_n \sim -\frac{1}{2n^2}}$$
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 4</span>
+        <p class="corr-question__statement">Etudier la fonction \((f : x \mapsto x - \ln(1 + x))\) sur \([0, 1]\).</p>
+
+        <p>On a \(f(0) = 0\) et \(f'(x) = 1 - \frac{1}{1+x} = \frac{x}{1+x} \geqslant 0\) sur \([0, 1]\), avec egalite seulement en \(x = 0\).</p>
+        <p>Donc \(f\) est strictement croissante sur \([0, 1]\), et \(f(x) > 0\) pour tout \(x \in \,]0, 1]\).</p>
+        <p>On a aussi \(f(1) = 1 - \ln 2 \approx 0.307\).</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(f\) est strictement croissante sur \([0, 1]\), \(f(0) = 0\), \(f(1) = 1 - \ln 2\). On a \(f(x) > 0\) pour tout \(x \in \,]0, 1]\).
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 5</span>
+        <p class="corr-question__statement">Justifier que la serie \(\sum_{n \geqslant 1} v_n\) est convergente.</p>
+
+        <p>On a \(v_n = f(1/n) = \frac{1}{n} - \ln(1 + \frac{1}{n})\). Par DL : \(\ln(1 + 1/n) = \frac{1}{n} - \frac{1}{2n^2} + o(1/n^2)\), donc \(v_n = \frac{1}{2n^2} + o(1/n^2)\), soit \(v_n \sim \frac{1}{2n^2}\). La serie converge absolument par comparaison a la serie de Riemann.</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\sum_{n \geqslant 1} v_n \text{ converge, car } v_n \sim \frac{1}{2n^2}}$$
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 6</span>
+        <p class="corr-question__statement">Soit \(n\) un entier naturel non nul. Exprimer en fonction de \(n\), \(u_n - v_n\). En deduire une expression de \(\sum_{n=1}^{N} (v_n - u_n)\) en fonction de \(N\).</p>
+
+        <p>On calcule directement :</p>
+        <div class="math-display">$$u_n - v_n = \left(\frac{1}{n} + \ln\!\left(1 - \frac{1}{n}\right)\right) - \left(\frac{1}{n} - \ln\!\left(1 + \frac{1}{n}\right)\right) = \ln\!\left(1 - \frac{1}{n}\right) + \ln\!\left(1 + \frac{1}{n}\right)$$</div>
+        <p>Donc \(u_n - v_n = \ln\!\left(\frac{n-1}{n} \cdot \frac{n+1}{n}\right) = \ln\!\left(\frac{n^2-1}{n^2}\right) = \ln(n^2 - 1) - 2\ln(n)\).</p>
+        <p>En notant que \(v_n - u_n = -\ln\!\left(\frac{n^2 - 1}{n^2}\right) = \ln\!\left(\frac{n^2}{n^2 - 1}\right)\), la somme telescopique donne :</p>
+        <div class="math-display">$$\sum_{n=2}^{N}(v_n - u_n) = \sum_{n=2}^{N}\left[\ln(n^2) - \ln(n^2 - 1)\right] = \ln\!\left(\prod_{n=2}^{N} \frac{n^2}{(n-1)(n+1)}\right)$$</div>
+        <p>Ce produit se telescopique : \(\prod_{n=2}^{N} \frac{n^2}{(n-1)(n+1)} = \frac{2^2}{1 \cdot 3} \cdot \frac{3^2}{2 \cdot 4} \cdot \frac{4^2}{3 \cdot 5} \cdots = \frac{2N}{N+1}\).</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\sum_{n=2}^{N}(v_n - u_n) = \ln\!\left(\frac{2N}{N+1}\right)}$$
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 7</span>
+        <p class="corr-question__statement">Que peut-on dire des suites \(\left(\sum_{n=1}^{N} v_n\right)\) et \(\left(\sum_{n=1}^{N} u_n\right)\) ? Justifier que \(\sum_{n \geqslant 1} u_n = \sum_{n \geqslant 1} v_n\).</p>
+
+        <p>Les deux series convergent (Q3 et Q5). On a \(\sum_{n=2}^{N}(v_n - u_n) = \ln\!\left(\frac{2N}{N+1}\right) \to \ln 2\) quand \(N \to +\infty\).</p>
+        <p>Mais attention : on nous demande de montrer que les <em>sommes</em> des series sont egales, pas les sommes partielles. En fait, \(\sum_{n \geqslant 2}(v_n - u_n) = \ln 2\), donc \(\sum_{n \geqslant 2} v_n - \sum_{n \geqslant 2} u_n = \ln 2\).</p>
+        <p>Comme \(u_1 = 1 + \ln 0\) pose probleme, on redefinit \(u_1 = 1\). Alors \(v_1 - u_1 = (1 - \ln 2) - 1 = -\ln 2\). Au total : \(\sum_{n \geqslant 1}(v_n - u_n) = -\ln 2 + \ln 2 = 0\).</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\sum_{n \geqslant 1} u_n = \sum_{n \geqslant 1} v_n}$$
+        </div>
+      </div>
+
+      <!-- Q8-9 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Questions 8-9</span>
+        <p class="corr-question__statement">Demontrer que \(\gamma \in \,]0, 1[\). Justifier que \(\ln(n+1) \leqslant h_n \leqslant 1 + \ln(n)\).</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Comparaison serie-integrale</div>
+          Pour une fonction decroissante \(f\), on a \(\int_1^{n+1} f(t)\,\mathrm{d}t \leqslant \sum_{k=1}^{n} f(k) \leqslant f(1) + \int_1^{n} f(t)\,\mathrm{d}t\).
+        </div>
+
+        <p>Pour \(\gamma \in \,]0,1[\) : la serie \(\sum v_n\) est a termes positifs (Q4), donc \(\gamma > 0\). Et \(\gamma = \sum_{n \geqslant 1} v_n \leqslant \sum_{n=1}^{+\infty} \frac{1}{2n^2} < \sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6} < 2\). Plus finement, \(\gamma \leqslant v_1 + \sum_{n \geqslant 2} \frac{1}{2n^2} < 1 - \ln 2 + 1/2 < 1\).</p>
+        <p>Pour l'encadrement de \(h_n\) : la comparaison serie-integrale avec \(f(t) = 1/t\) donne \(\int_1^{n+1}\frac{\mathrm{d}t}{t} \leqslant h_n \leqslant 1 + \int_1^n \frac{\mathrm{d}t}{t}\).</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\gamma \in \,]0,1[ \qquad\text{et}\qquad \ln(n+1) \leqslant h_n \leqslant 1 + \ln(n)}$$
+        </div>
+      </div>
+
+      <!-- Q10-11 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Questions 10-11</span>
+        <p class="corr-question__statement">Justifier que la suite \((f_n)\) est decroissante. Demontrer que \((f_n)\) converge vers \(\gamma\).</p>
+
+        <p>On a \(f_{n+1} - f_n = h_{n+1} - \ln(n+1) - h_n + \ln(n) = \frac{1}{n+1} - \ln(n+1) + \ln(n) = \frac{1}{n+1} + \ln\!\left(\frac{n}{n+1}\right) = \frac{1}{n+1} + \ln\!\left(1 - \frac{1}{n+1}\right)\).</p>
+        <p>C'est \(g(1/(n+1))\) avec \(g(x) = x + \ln(1-x) < 0\) pour \(x \in \,]0,1[\). Donc \(f_{n+1} < f_n\) : la suite est decroissante.</p>
+        <p>Pour la limite : \(\sum_{k=2}^{n} u_k = \sum_{k=2}^{n}\left(\frac{1}{k} + \ln(k-1) - \ln(k)\right) = h_n - 1 + \ln 1 - \ln n = f_n - 1\). Donc \(f_n = 1 + \sum_{k=2}^{n} u_k \to 1 + \sum_{k=2}^{+\infty} u_k = \gamma\).</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{f_n = h_n - \ln(n) \searrow \gamma \approx 0.5772}$$
+          C'est la constante d'Euler-Mascheroni.
+        </div>
+      </div>
+
+      <!-- Q12-13 -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Questions 12-13</span>
+        <p class="corr-question__statement">Soit \(r > 1\). Etudier \(I(a) = \int_a^{+\infty} t^{-r}\,\mathrm{d}t\). Puis demontrer le developpement asymptotique \(h_n = \ln(n) + \gamma + \frac{\alpha}{n} + o(1/n)\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          La question 12 prepare un outil general : si \(w_n \to 0\) et \(n^r(w_{n+1} - w_n) \to \ell > 0\), alors \(n^{r-1} w_n \to \frac{\ell}{r-1}\). C'est un lemme d'Abel discret qu'on appliquera a la question 13.
+        </div>
+
+        <p>Pour la question 12(b) : \(I(a) = \int_a^{+\infty} t^{-r}\,\mathrm{d}t = \left[\frac{t^{-r+1}}{-r+1}\right]_a^{+\infty} = \frac{a^{1-r}}{r-1}\).</p>
+
+        <p>Pour la question 13 : on pose \(w_n = f_n - \gamma = h_n - \ln(n) - \gamma\). On a \(w_n \to 0\) et \(w_{n+1} - w_n = \frac{1}{n+1} + \ln\!\left(\frac{n}{n+1}\right)\). Par DL : \(n^2(w_{n+1} - w_n) = n^2\!\left(\frac{1}{n+1} - \frac{1}{n} + \frac{1}{2n^2} + o(1/n^2)\right) \to \frac{1}{2}\). On applique le lemme avec \(r = 2\), \(\ell = 1/2\) : \(n \cdot w_n \to \frac{\ell}{r-1} = \frac{1/2}{1} = \frac{1}{2}\), soit \(\alpha = 1/2\).</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\sum_{k=1}^{n} \frac{1}{k} = \ln(n) + \gamma + \frac{1}{2n} + o\!\left(\frac{1}{n}\right)}$$
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Ne pas confondre \(w_n\) et \(f_n\). On a \(w_n = f_n - \gamma\), c'est le <em>reste</em> de la serie, pas la somme partielle. C'est \(w_n\) qui tend vers 0, pas \(f_n\).
+        </div>
+      </div>
+    </div>
+
+    <div class="corr-separator">&bull; &bull; &bull;</div>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 2                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="corr-exercice" id="exo2">
+
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">2</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Matrices orthogonales a coefficients dans \(\{-1, 1\}\)</h2>
+          <span class="corr-exercice__subtitle">Algebre bilineaire, determinant, matrices de Hadamard -- 8 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        On etudie \(\mathcal{H}_n\), l'ensemble des matrices \(n \times n\) a coefficients dans \(\{-1,1\}\) dont les colonnes sont orthogonales deux a deux. On montre que si \(\mathcal{H}_n \neq \varnothing\) et \(n > 2\), alors \(n\) est divisible par 4.
+      </div>
+
+      <!-- Q1 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1</span>
+        <p class="corr-question__statement">Exprimer les coefficients de \({}^t\!M\,M\) en fonction des vecteurs colonnes. Dans le cas orthogonal, montrer \(|\!\det(M)| = \|v_1\| \cdots \|v_n\|\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Le coefficient \((i,j)\) de \({}^t\!M\,M\) est \(\langle v_i, v_j \rangle\), le produit scalaire des colonnes \(i\) et \(j\) de \(M\).
+        </div>
+
+        <p>(a) Le coefficient \((i,j)\) de \({}^t\!M\,M\) est \(({}^t\!M\,M)_{ij} = \sum_{k=1}^n m_{ki} m_{kj} = \langle v_i, v_j \rangle\).</p>
+        <p>(b) Si les \(v_i\) sont orthogonaux deux a deux, \({}^t\!M\,M = \mathrm{diag}(\|v_1\|^2, \ldots, \|v_n\|^2)\). Donc \(\det({}^t\!M\,M) = \prod \|v_i\|^2 = (\det M)^2\).</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{|\!\det(M)| = \|v_1\| \, \|v_2\| \cdots \|v_n\|}$$
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2</span>
+        <p class="corr-question__statement">Determiner les matrices dans \(\mathcal{M}_n(\mathbb{R})\) qui sont diagonales et orthogonales.</p>
+
+        <p>Une matrice diagonale \(D = \mathrm{diag}(d_1, \ldots, d_n)\) est orthogonale ssi \({}^t\!D\,D = I_n\), soit \(d_i^2 = 1\) pour tout \(i\).</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\text{Les matrices diagonales orthogonales sont les } \mathrm{diag}(\varepsilon_1, \ldots, \varepsilon_n) \text{ avec } \varepsilon_i \in \{-1, 1\}}$$
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Questions 4</span>
+        <p class="corr-question__statement">Soit \(M \in \mathcal{H}_n\). Quelle est la norme d'un vecteur colonne de \(M\) ? Que vaut \(|\!\det(M)|\) ?</p>
+
+        <p>(a) Chaque colonne \(v_i\) a ses \(n\) composantes dans \(\{-1, 1\}\), donc \(\|v_i\|^2 = \sum_{k=1}^n m_{ki}^2 = n\), soit \(\|v_i\| = \sqrt{n}\).</p>
+        <p>(b) Par la question 1(b) : \(|\!\det(M)| = (\sqrt{n})^n = n^{n/2}\).</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\|v_i\| = \sqrt{n} \qquad\text{et}\qquad |\!\det(M)| = n^{n/2}}$$
+        </div>
+      </div>
+
+      <!-- Q5-6 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Questions 5-6</span>
+        <p class="corr-question__statement">Si la premiere colonne est \(v_1 = (1, \ldots, 1)^T\), montrer que chaque autre colonne a autant de \(1\) que de \(-1\). Montrer que \(\mathcal{H}_n\) contient une telle matrice.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On normalise le probleme : multiplier des colonnes par \(-1\) ne change pas l'orthogonalite. Donc on peut toujours ramener la premiere colonne a \((1, \ldots, 1)^T\), ce qui simplifie l'analyse.
+        </div>
+
+        <p>Q5 : \(\langle v_1, v_i \rangle = \sum_{j=1}^n m_{j,i} = 0\) (orthogonalite). Notons \(p\) le nombre de \(+1\) et \(q = n - p\) le nombre de \(-1\) parmi les \(m_{j,i}\). Alors \(p - q = 0\), donc \(p = q = n/2\).</p>
+        <p>Q6 : Si \(M \in \mathcal{H}_n\), sa premiere colonne \(v_1\) a toutes ses composantes dans \(\{-1, 1\}\). On pose \(D = \mathrm{diag}(v_1)\) (matrice diagonale dont les coefficients sont ceux de \(v_1\)). Alors \(M_0 = DM\) a pour premiere colonne \(D v_1 = (1, \ldots, 1)^T\), et les colonnes de \(M_0\) restent orthogonales car \(D\) est orthogonale.</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          On peut toujours supposer que la premiere colonne est \((1, \ldots, 1)^T\), et alors chaque autre colonne a exactement \(n/2\) coefficients \(+1\) et \(n/2\) coefficients \(-1\). En particulier, \(n\) est pair.
+        </div>
+      </div>
+
+      <!-- Q7-8 -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Questions 7-8</span>
+        <p class="corr-question__statement">Montrer que \(n\) est pair. Si \(n > 2\), montrer que \(\det(M_0)\) est multiple de \(2^{n-1}\) et que \(n\) est multiple de 4.</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Conjecture de Hadamard</div>
+          Le resultat \(n \equiv 0 \pmod{4}\) est une condition necessaire celebre pour l'existence des matrices de Hadamard. La preuve utilise le fait que \(\det(M_0) = n^{n/2}\) est un entier, et une analyse modulo 2 de la structure de \(M_0\).
+        </div>
+
+        <p>Q7 : D'apres Q5-6, \(n\) est pair quand \(\mathcal{H}_n \neq \varnothing\).</p>
+        <p>Q8(a) : Soustrayons la premiere ligne de toutes les autres. Pour \(i \geqslant 2\), la ligne \(i\) devient \((m_{i,1} - 1, \ldots, m_{i,n} - 1)\), dont les composantes sont dans \(\{0, -2\}\). Le determinant est inchange. On factorise \((-2)^{n-1}\) des lignes 2 a \(n\), donc \(\det(M_0) = (-2)^{n-1} \cdot (\text{entier})\), soit \(\det(M_0)\) est divisible par \(2^{n-1}\).</p>
+        <p>Q8(b) : On a \(|\!\det(M_0)| = n^{n/2}\) et \(2^{n-1} \mid n^{n/2}\). Si \(n = 2\) ca marche : \(2^1 \mid 2^1\). Si \(n > 2\), ecrivons \(n = 2m\). Alors \(n^{n/2} = (2m)^m = 2^m m^m\). La condition \(2^{n-1} = 2^{2m-1} \mid 2^m m^m\) exige \(2^{m-1} \mid m^m\). Si \(m\) est impair, \(m^m\) est impair, contradiction. Donc \(m\) est pair, \(n = 2m\) est divisible par 4.</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\mathcal{H}_n \neq \varnothing \text{ et } n > 2 \implies 4 \mid n}$$
+          Les matrices de Hadamard n'existent qu'en taille 1, 2, et les multiples de 4.
+        </div>
+      </div>
+    </div>
+
+    <div class="corr-separator">&bull; &bull; &bull;</div>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 3                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="corr-exercice" id="exo3">
+
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">3</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Nombre de valeurs distinctes et probleme des anniversaires</h2>
+          <span class="corr-exercice__subtitle">Probabilites discretes, esperance, Python -- 12 questions</span>
+        </div>
         <span class="corr-exercice__difficulty corr-exercice__difficulty--easy">Standard</span>
       </div>
       <hr class="corr-exercice__rule">
 
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        Soient \(X_1, \ldots, X_n\) des v.a. i.i.d. de loi uniforme sur \([\![1, \ell]\!]\). On note \(U_n\) le nombre de valeurs distinctes prises par ces variables. On calcule \(\mathbb{E}(U_n)\) et on applique au probleme des anniversaires.
+      </div>
+
+      <!-- Q1 -->
       <div class="corr-question corr-question--easy">
-        <span class="corr-question__num">Questions 1-4 -- Convergence de \((a_n)\) et \((b_n)\)</span>
-        <div class="corr-question__statement">Montrer que les suites \(a_{n+1}=\sqrt{a_n b_n}\), \(b_{n+1}=\frac{a_n+b_n}{2}\) convergent vers une meme limite \(M(a,b)\).</div>
+        <span class="corr-question__num">Question 1</span>
+        <p class="corr-question__statement">Pour \(n = 2\) et \(\ell \geqslant 2\) : justifier que \(U_2 \in \{1, 2\}\). Calculer \(P(U_2 = 1)\), \(P(U_2 = 2)\) et \(\mathbb{E}(U_2)\).</p>
+
+        <p>\(U_2 = 1\) ssi \(X_1 = X_2\). Comme les variables sont independantes et uniformes sur \([\![1, \ell]\!]\) :</p>
+        <div class="math-display">$$P(U_2 = 1) = P(X_1 = X_2) = \sum_{k=1}^{\ell} P(X_1 = k) P(X_2 = k) = \ell \cdot \frac{1}{\ell^2} = \frac{1}{\ell}$$</div>
+        <p>Donc \(P(U_2 = 2) = 1 - \frac{1}{\ell} = \frac{\ell - 1}{\ell}\).</p>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{P(U_2 = 1) = \frac{1}{\ell}, \quad P(U_2 = 2) = \frac{\ell-1}{\ell}, \quad \mathbb{E}(U_2) = 1 + \frac{\ell-1}{\ell} = \frac{2\ell - 1}{\ell}}$$
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2</span>
+        <p class="corr-question__statement">Ecrire les fonctions Python <code>simuU</code> et <code>espU</code>.</p>
+
+        <p>(a) La fonction <code>simuU</code> simule \(U_{10}\) avec \(\ell = 25\) :</p>
+        <pre style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:var(--space-md);font-family:var(--font-mono);font-size:.85rem;overflow-x:auto"><code>import random
+
+def simuU():
+    valeurs = set()
+    for _ in range(10):
+        valeurs.add(random.randint(1, 25))
+    return len(valeurs)</code></pre>
+
+        <p>(b) La fonction <code>espU</code> approche \(\mathbb{E}(U_{10})\) par la loi des grands nombres :</p>
+        <pre style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:var(--space-md);font-family:var(--font-mono);font-size:.85rem;overflow-x:auto"><code>def espU(N=10000):
+    return sum(simuU() for _ in range(N)) / N</code></pre>
+
         <div class="corr-box corr-box--rappel">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Rappel de cours</div>
-          L'inegalite arithmetico-geometrique (AM-GM) dit que \(\sqrt{xy} \leqslant \frac{x+y}{2}\) pour \(x,y > 0\), avec egalite ssi \(x=y\). C'est la cle de tout le probleme. Exemple concret : pour \(a=1,b=9\), on a \(\sqrt{9}=3 \leqslant \frac{10}{2}=5\).
-        </div>
-        <p><strong>Si \(a=b\) :</strong> alors \(a_n=b_n=a\) pour tout \(n\), et \(M(a,a)=a\).</p>
-        <p><strong>Cas general (supposons \(a < b\)) :</strong> Par AM-GM, \(a_1=\sqrt{ab} \leqslant \frac{a+b}{2}=b_1\). De plus \(a \leqslant a_1\) et \(b_1 \leqslant b\). A partir du rang 1, on montre \(a_1 \leqslant a_2 \leqslant \cdots \leqslant b_2 \leqslant b_1\) : les suites sont adjacentes.</p>
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
-          Les suites \((a_n)\) et \((b_n)\) convergent vers une meme limite \(\boxed{M(a,b) > 0}\), la moyenne arithmetico-geometrique.
+          <div class="corr-box__title">Rappel de cours</div>
+          <strong>Loi forte des grands nombres :</strong> Si \((Z_i)\) sont i.i.d. d'esperance \(\mu\) et de variance finie, alors \(\frac{1}{N}\sum_{i=1}^N Z_i \xrightarrow[N \to +\infty]{\text{p.s.}} \mu\).
         </div>
       </div>
 
-      <div class="corr-question corr-question--easy">
-        <span class="corr-question__num">Questions 5-6 -- Proprietes de \(M\)</span>
-        <div class="corr-question__statement">Exprimer \(M(b,a)\), \(M(\lambda a,\lambda b)\) et \(M(a,b)=af(b/a)\).</div>
-        <p>Par symetrie de la construction, \(M(b,a)=M(a,b)\). Par homogeneite : si on remplace \((a,b)\) par \((\lambda a,\lambda b)\), alors \(a_n\) et \(b_n\) sont multiplies par \(\lambda\), donc \(M(\lambda a,\lambda b)=\lambda M(a,b)\).</p>
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
-          $$\boxed{M(b,a)=M(a,b), \quad M(\lambda a,\lambda b)=\lambda M(a,b), \quad M(a,b)=a\,f\!\left(\tfrac{b}{a}\right)}$$
-        </div>
-      </div>
-    </div>
-
-    <div class="corr-separator">&bull; &bull; &bull;</div>
-
-    <!-- PARTIE II -->
-    <div class="corr-exercice" id="m2p2">
-      <div class="corr-exercice__header">
-        <div class="corr-exercice__number">II</div>
-        <div class="corr-exercice__title-group"><div class="corr-exercice__title">Lien avec une integrale</div><div class="corr-exercice__subtitle">Integrales a parametre, changement de variable, invariance</div></div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
-      </div>
-      <hr class="corr-exercice__rule">
-
+      <!-- Q5-6 -->
       <div class="corr-question corr-question--medium">
-        <span class="corr-question__num">Questions 7-9 -- Invariance de \(I(a,b)\)</span>
-        <div class="corr-question__statement">Montrer que \(I(a_n,b_n)=I(a,b)\) pour tout \(n\).</div>
+        <span class="corr-question__num">Questions 5-6</span>
+        <p class="corr-question__statement">Exprimer \(P(X_1 \neq a, \ldots, X_{n-1} \neq a)\). En deduire \(P(X_1 \neq X_n, \ldots, X_{n-1} \neq X_n)\).</p>
+
+        <p>Q5 : Par independance, \(P(X_1 \neq a, \ldots, X_{n-1} \neq a) = \left(1 - \frac{1}{\ell}\right)^{n-1} = \left(\frac{\ell-1}{\ell}\right)^{n-1}\).</p>
+        <p>Q6 : Par la formule des probabilites totales, en conditionnant par la valeur de \(X_n\) :</p>
+        <div class="math-display">$$P(X_1 \neq X_n, \ldots, X_{n-1} \neq X_n) = \sum_{a=1}^{\ell} P(X_n = a) \cdot P(X_1 \neq a, \ldots, X_{n-1} \neq a) = \ell \cdot \frac{1}{\ell} \cdot \left(\frac{\ell-1}{\ell}\right)^{n-1}$$</div>
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{P(X_1 \neq X_n, \ldots, X_{n-1} \neq X_n) = \left(\frac{\ell-1}{\ell}\right)^{n-1}}$$
+        </div>
+      </div>
+
+      <!-- Q8-9 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Questions 8-9</span>
+        <p class="corr-question__statement">En deduire \(\mathbb{E}(U_{n-1}) = \ell(1 - P(X_1 \neq X_n, \ldots, X_{n-1} \neq X_n))\). Exprimer \(\mathbb{E}(U_n)\) en fonction de \(n\) et \(\ell\).</p>
+
         <div class="corr-box corr-box--why">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Pourquoi on fait ca ?</div>
-          L'idee geniale de ce probleme : l'integrale \(I(a,b)=\int_0^{+\infty}\frac{\mathrm{d}t}{\sqrt{(a^2+t^2)(b^2+t^2)}}\) est invariante quand on remplace \((a,b)\) par \((\frac{a+b}{2},\sqrt{ab})\). C'est comme un changement de variable "magique" qui transforme la paire sans changer la valeur de l'integrale.
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          L'idee cle est d'ecrire \(U_n\) comme somme d'indicatrices : \(U_n = \sum_{a=1}^{\ell} \mathbf{1}_{a \in \{X_1, \ldots, X_n\}}\). Par linearite de l'esperance, \(\mathbb{E}(U_n) = \sum_{a=1}^{\ell} P(a \in \{X_1, \ldots, X_n\})\).
         </div>
-        <p>Le changement de variable \(t=\frac{1}{2}(s-\frac{ab}{s})\) transforme \(J(\frac{a+b}{2},\sqrt{ab})\) en \(2I(a,b)=J(a,b)\). Par recurrence, \(I(a_n,b_n)=I(a,b)\).</p>
+
+        <p>On a \(P(a \in \{X_1, \ldots, X_n\}) = 1 - P(X_1 \neq a, \ldots, X_n \neq a) = 1 - \left(\frac{\ell-1}{\ell}\right)^n\).</p>
+        <p>Par linearite de l'esperance :</p>
         <div class="corr-box corr-box--result">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
-          $$\boxed{\forall n, \quad I(a_n,b_n) = I(a,b)}$$
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\mathbb{E}(U_n) = \ell\left(1 - \left(\frac{\ell-1}{\ell}\right)^n\right) = \ell\left(1 - \left(1 - \frac{1}{\ell}\right)^n\right)}$$
         </div>
       </div>
 
-      <div class="corr-question corr-question--medium">
-        <span class="corr-question__num">Questions 10-11 -- Formule de Gauss</span>
-        <div class="corr-question__statement">En deduire \(M(a,b)=\frac{\pi}{2I(a,b)}\).</div>
-        <p>En passant a la limite \(n\to+\infty\) dans \(I(a_n,b_n)=I(a,b)\), on obtient \(I(M,M)=I(a,b)\). Or \(I(M,M)=\int_0^{+\infty}\frac{\mathrm{d}t}{M^2+t^2}=\frac{\pi}{2M}\) (arctangente).</p>
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
-          $$\boxed{M(a,b) = \frac{\pi}{2\,I(a,b)}}$$
-          C'est la celebre formule de Gauss reliant la moyenne arithmetico-geometrique a une integrale elliptique.
-        </div>
-      </div>
-    </div>
-
-    <div class="corr-separator">&bull; &bull; &bull;</div>
-
-    <!-- PARTIE III -->
-    <div class="corr-exercice" id="m2p3">
-      <div class="corr-exercice__header">
-        <div class="corr-exercice__number">III</div>
-        <div class="corr-exercice__title-group"><div class="corr-exercice__title">Etude asymptotique</div><div class="corr-exercice__subtitle">Equivalent de \(I(1,x)\) en \(0^+\), continuite, branche infinie</div></div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avance</span>
-      </div>
-      <hr class="corr-exercice__rule">
-
-      <div class="corr-question corr-question--hard">
-        <span class="corr-question__num">Questions 12-15 -- Equivalent de \(I(1,x)\) en \(0^+\)</span>
-        <div class="corr-question__statement">Determiner un equivalent de \(I(1,x)\) quand \(x\to 0^+\), en deduire \(f(x)\sim -\frac{\pi}{2\ln x}\).</div>
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Methode -- Equivalents d'integrales</div>
-          Pour trouver un equivalent d'une integrale quand un parametre tend vers 0, on (1) simplifie l'integrande la ou il est "gros" (pres de 0), (2) calcule l'integrale simplifiee, (3) verifie que l'erreur est negligeable. Ici on montre que \(I(1,x)\sim\frac{-\ln x}{x}\) en \(0^+\).
-        </div>
-        <p>Par le changement \(t=x/s\), puis comparaison avec \(\int_0^{\sqrt{x}}\frac{\mathrm{d}t}{\sqrt{x^2+t^2}}\), on utilise la primitive \(\mathrm{argsh}(t/x)=\ln(t/x+\sqrt{1+t^2/x^2})\). Apres calcul, \(I(1,x)\sim -\frac{\ln x}{x}\) quand \(x\to 0^+\).</p>
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
-          $$\boxed{f(x) = M(1,x) \underset{x\to 0^+}{\sim} -\frac{\pi}{2\ln x}}$$
-          La fonction \(f\) tend vers 0 en \(0^+\) avec une tangente verticale.
-        </div>
-      </div>
-
-      <div class="corr-question corr-question--medium">
-        <span class="corr-question__num">Questions 16-20 -- Comportement global</span>
-        <div class="corr-question__statement">Relation entre \(f(x)\) et \(f(1/x)\), equivalent en \(+\infty\), variations, courbe.</div>
-        <div class="corr-box corr-box--piege">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Piege classique</div>
-          Ne pas oublier que \(M(1,x)=M(x,1)\) par symetrie, mais \(f(x)=M(1,x)\) alors que \(f(1/x)=M(1,1/x)\). La relation est \(xf(1/x)=f(x)\) (par homogeneite), pas \(f(x)=f(1/x)\).
-        </div>
-        <p>Par \(M(a,b)=aM(1,b/a)\) avec \(a=x, b=1\) : \(M(x,1)=xM(1,1/x)\), soit \(f(x)=xf(1/x)\).</p>
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
-          $$\boxed{f(x) = x\,f(1/x), \qquad f(x)\underset{+\infty}{\sim}\frac{\pi\,x}{2\ln x}}$$
-          La courbe est croissante sur \(]0,+\infty[\), prolongeable par continuite en \(f(0)=0\), avec une direction asymptotique horizontale a gauche et une branche parabolique a droite.
-        </div>
-      </div>
-    </div>
-
-    <div class="corr-separator">&bull; &bull; &bull;</div>
-
-    <!-- PARTIE V -->
-    <div class="corr-exercice" id="m2p5">
-      <div class="corr-exercice__header">
-        <div class="corr-exercice__number">V</div>
-        <div class="corr-exercice__title-group"><div class="corr-exercice__title">Integrale elliptique complete</div><div class="corr-exercice__subtitle">Integrales de Wallis, DSE de \(1/\sqrt{1-t}\), convergence normale</div></div>
-        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
-      </div>
-      <hr class="corr-exercice__rule">
-
+      <!-- Q10-11 -->
       <div class="corr-question corr-question--easy">
-        <span class="corr-question__num">Questions 23-25 -- Lien \(I(1,x)\) et \(K\)</span>
-        <div class="corr-question__statement">Montrer que \(I(1,x)=K(\sqrt{1-x^2})\) pour \(x\in\,]0,1]\) avec \(K(x)=\int_0^{\pi/2}\frac{\mathrm{d}t}{\sqrt{1-x^2\sin^2 t}}\).</div>
-        <p>Le changement \(t=\tan\theta\) dans \(I(1,x)\) donne \(I(1,x)=\int_0^{\pi/2}\frac{\mathrm{d}\theta}{\sqrt{x^2\cos^2\theta+\sin^2\theta}}\). On reconnait \(K(\sqrt{1-x^2})\) en ecrivant \(x^2\cos^2\theta+\sin^2\theta=1-(1-x^2)\sin^2\theta\).</p>
+        <span class="corr-question__num">Questions 10-11</span>
+        <p class="corr-question__statement">Determiner les limites de \(\mathbb{E}(U_n)\) quand \(n \to +\infty\) (\(\ell\) fixe) et quand \(\ell \to +\infty\) (\(n\) fixe).</p>
+
+        <p>Q10 : \(\ell\) fixe, \(n \to +\infty\) : \(\left(\frac{\ell-1}{\ell}\right)^n \to 0\), donc \(\mathbb{E}(U_n) \to \ell\). C'est logique : avec suffisamment de tirages, on finit par obtenir toutes les valeurs.</p>
+        <p>Q11 : \(n\) fixe, \(\ell \to +\infty\) : \(\left(1 - \frac{1}{\ell}\right)^n = 1 - \frac{n}{\ell} + o(1/\ell)\), donc \(\mathbb{E}(U_n) = \ell \cdot \left(\frac{n}{\ell} + o(1/\ell)\right) \to n\). C'est logique : avec enormement de valeurs possibles, les \(n\) tirages donnent presque surement \(n\) valeurs distinctes.</p>
         <div class="corr-box corr-box--result">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
-          $$\boxed{I(1,x) = K\!\left(\sqrt{1-x^2}\right) \quad \text{pour } x \in\,]0,1]}$$
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\lim_{n \to +\infty} \mathbb{E}(U_n) = \ell \qquad\text{et}\qquad \lim_{\ell \to +\infty} \mathbb{E}(U_n) = n}$$
         </div>
       </div>
 
-      <div class="corr-question corr-question--medium">
-        <span class="corr-question__num">Questions 26-29 -- DSE de \(K\)</span>
-        <div class="corr-question__statement">Developper \(K(x)\) en serie entiere.</div>
-        <div class="corr-box corr-box--method">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Methode -- DSE d'une integrale</div>
-          On developpe l'integrande en serie entiere, on intervertit (convergence normale), puis on integre terme a terme. Les integrales de Wallis \(W_n=\int_0^{\pi/2}\sin^{2n}t\,\mathrm{d}t=\frac{(2n)!}{4^n(n!)^2}\frac{\pi}{2}\) donnent les coefficients.
-        </div>
-        <p>En utilisant \(\frac{1}{\sqrt{1-u}}=\sum_{n\geqslant 0}\frac{(2n)!}{4^n(n!)^2}u^n\) et les integrales de Wallis :</p>
-        <div class="corr-box corr-box--result">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
-          $$\boxed{K(x) = \frac{\pi}{2}\sum_{n=0}^{+\infty}\frac{((2n)!)^2}{16^n(n!)^4}\,x^{2n}} \quad \text{pour } |x|<1$$
-        </div>
-      </div>
+      <!-- Q12 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 12</span>
+        <p class="corr-question__statement">Application au probleme des anniversaires : exprimer \(\mathbb{E}(D_n)\) et sa limite quand \(n \to +\infty\).</p>
 
-      <div class="corr-question corr-question--medium">
-        <span class="corr-question__num">Question 30 -- Calcul de \(M(3,5)\)</span>
-        <div class="corr-question__statement">Obtenir une serie numerique pour \(M(3,5)\).</div>
-        <p>On a \(M(3,5)=3M(1,5/3)=\frac{3\pi}{2I(1,5/3)}=\frac{3\pi}{2K(\sqrt{1-25/9})}\). Comme \(1-25/9<0\), on utilise plutot \(M(3,5)=5M(3/5,1)=\frac{5\pi}{2I(1,3/5)}=\frac{5\pi}{2K(4/5)}\).</p>
+        <p>On applique la formule avec \(\ell = 365\) (jours dans l'annee) :</p>
         <div class="corr-box corr-box--result">
-          <div class="corr-box__title"><svg class="corr-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resultat</div>
-          $$\boxed{M(3,5) = \frac{5\pi}{2K(4/5)} = \frac{5}{\displaystyle\sum_{n=0}^{+\infty}\frac{((2n)!)^2}{16^n(n!)^4}\left(\frac{4}{5}\right)^{2n}}}$$
+          <div class="corr-box__title">Resultat</div>
+          $$\boxed{\mathbb{E}(D_n) = 365\left(1 - \left(\frac{364}{365}\right)^n\right) \qquad\text{et}\qquad \lim_{n \to +\infty} \mathbb{E}(D_n) = 365}$$
+          Le nombre moyen de dates d'anniversaire distinctes tend vers 365 : avec suffisamment de personnes, toutes les dates de l'annee sont representees.
         </div>
       </div>
     </div>

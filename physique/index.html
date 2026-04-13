@@ -3,207 +3,384 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LibPhysique — Bibliothèque Scientifique</title>
+  <title>Physique | Omniscience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t&&t!=='dark')d.setAttribute('data-theme',t)})(document.documentElement)</script>
   <link rel="stylesheet" href="../style.css">
-  <!-- KaTeX for math rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    /* ── Homepage overrides — Linear aesthetic ── */
+
+    /* ── Programme cards ── */
+    .programmes-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:640px; margin:0 auto; }
+    .programme-card { background:var(--bg-card); border:1px solid var(--border-hover); border-radius:8px; padding:28px 24px; text-decoration:none; color:var(--ink); transition:all 0.2s ease; display:flex; flex-direction:column; gap:12px; }
+    .programme-card:hover { background:var(--bg-hover); border-color:var(--border-hover); }
+    .programme-card__badge { font-size:11px; font-weight:500; color:var(--ink-muted); }
+    .programme-card__icon { font-size:1.5rem; }
+    .programme-card__title { font-size:20px; font-weight:600; letter-spacing:-0.24px; color:var(--ink); }
+    .programme-card__desc { font-size:14px; color:var(--ink-muted); line-height:1.5; }
+    .programme-card__meta { display:flex; justify-content:space-between; align-items:center; margin-top:auto; }
+    .programme-card__count { font-size:12px; font-weight:500; color:var(--ink-muted); }
+    .programme-card__arrow { font-size:14px; color:var(--ink-faint); transition:color 0.2s; }
+    .programme-card:hover .programme-card__arrow { color:var(--accent-light); }
+
+    /* ── Mock fiche (tilted cards) ── */
+    .mock-fiche { display:flex; gap:var(--space-xl); align-items:center; }
+    .mock-fiche__visual { flex:1; position:relative; min-height:380px; }
+    .mock-fiche__card { position:absolute; width:300px; background:var(--bg-card); border:1px solid var(--border-hover); border-radius:8px; padding:var(--space-lg); transition:transform 0.6s var(--ease-out); }
+    .mock-fiche__card--1 { top:0; left:10%; transform:rotate(-1.5deg) translateY(-4px); z-index:2; }
+    .mock-fiche__card--2 { top:40px; left:28%; transform:rotate(0.8deg) translateY(2px); z-index:1; }
+    .mock-fiche__card-badge { font-size:11px; font-weight:500; padding:3px 8px; border-radius:4px; background:var(--bg-card); color:var(--ink-light); display:inline-block; margin-bottom:var(--space-sm); }
+    .mock-fiche__card-title { font-size:16px; font-weight:600; letter-spacing:-0.24px; margin-bottom:6px; color:var(--ink); }
+    .mock-fiche__text { flex:1; }
+
+    /* ── Mock quiz ── */
+    .mock-quiz { max-width:100%; background:var(--bg-card); border:1px solid var(--border-hover); border-radius:8px; padding:var(--space-lg) var(--space-xl); margin-top:var(--space-xl); }
+    .mock-quiz__q { font-size:15px; line-height:1.6; margin-bottom:var(--space-md); color:var(--ink-light); }
+    .mock-quiz__btns { display:flex; gap:var(--space-sm); }
+    .mock-quiz__btn { flex:1; padding:10px; border-radius:6px; font-family:var(--font-body); font-size:14px; font-weight:500; cursor:pointer; transition:all 0.2s; border:1px solid transparent; background:var(--bg-card); }
+    .mock-quiz__btn--v { border-color:rgba(39,166,68,0.2); color:#27a644; }
+    .mock-quiz__btn--f { border-color:rgba(239,68,68,0.2); color:#ef4444; }
+    .mock-quiz__btn:hover { background:var(--bg-hover); }
+
+    /* ── Annales showcase ── */
+    .annales-showcase { display:grid; grid-template-columns:1fr; gap:12px; margin-top:var(--space-lg); }
+    .annales-showcase__bank { background:var(--bg-card); border:1px solid var(--border-hover); border-radius:8px; padding:16px 20px; transition:background 0.2s; }
+    .annales-showcase__bank:hover { background:var(--bg-hover); }
+    .annales-showcase__header { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .annales-showcase__dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .annales-showcase__name { font-size:14px; font-weight:600; color:var(--ink); letter-spacing:-0.15px; }
+    .annales-showcase__count { font-family:var(--font-mono); font-size:11px; color:var(--ink-muted); margin-left:auto; }
+    .annales-showcase__links { display:flex; flex-wrap:wrap; gap:6px; }
+    .annales-showcase__link { font-family:var(--font-mono); font-size:12px; font-weight:500; color:var(--ink-light); padding:4px 10px; border-radius:6px; background:var(--bg-card); border:1px solid var(--border); transition:all 0.15s; text-decoration:none; }
+    .annales-showcase__link:hover { background:var(--bg-hover); color:var(--ink); border-color:var(--border-hover); }
+
+    /* ── Mobile ── */
+    @media(max-width:680px) {
+      .float-cards { grid-template-columns:1fr; }
+      .mock-fiche { flex-direction:column; }
+      .mock-fiche__visual { min-height:260px; width:100%; }
+      .mock-fiche__card { width:220px; }
+      .mock-fiche__card--1 { left:5%; }
+      .mock-fiche__card--2 { left:18%; }
+      .programmes-grid { grid-template-columns:1fr; }
+    }
+  </style>
 </head>
 <body>
-
-  <!-- Geometric background decoration -->
-  <div class="bg-grid" aria-hidden="true"></div>
-  <div class="bg-circle bg-circle--1" aria-hidden="true"></div>
-  <div class="bg-circle bg-circle--2" aria-hidden="true"></div>
-
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="site-switcher">
-      <span class="site-switcher__brand">Lib</span>
-      <div class="site-switcher__toggle">
-        <a href="../index.html" class="site-switcher__btn">Maths</a>
-        <a href="index.html" class="site-switcher__btn site-switcher__btn--active">Physique</a>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo"><span class="sidebar__logo-full">Omniscience</span><span class="sidebar__logo-short">O</span></div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Programme</span>
+        <a href="index.html" class="sidebar__link sidebar__link--active" data-tooltip="Accueil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span class="sidebar__link-text">Accueil</span>
+        </a>
+        <a href="mpsi.html" class="sidebar__link" data-tooltip="MPSI">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MPSI — 1ere annee</span>
+        </a>
+        <a href="mp.html" class="sidebar__link" data-tooltip="MP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MP — 2eme annee</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Concours</span>
+        <a href="e3a.html" class="sidebar__link" data-tooltip="E3A MP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="9" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">E3A</text></svg>
+          <span class="sidebar__link-text">E3A-Polytech MP</span>
+        </a>
+        <a href="e3a-pc.html" class="sidebar__link" data-tooltip="E3A PC">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="9" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">E3A</text></svg>
+          <span class="sidebar__link-text">E3A-Polytech PC</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Outils</span>
+        <a href="../entrainement.html" class="sidebar__link" data-tooltip="Entrainement">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="sidebar__link-text">Entrainement</span>
+        </a>
+        <a href="../revision.html" class="sidebar__link" data-tooltip="Revision">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <span class="sidebar__link-text">Revision</span>
+        </a>
+        <a href="../parcours.html" class="sidebar__link" data-tooltip="Parcours">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span class="sidebar__link-text">Mon Parcours</span>
+        </a>
+        <a href="../statistiques.html" class="sidebar__link" data-tooltip="Statistiques">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          <span class="sidebar__link-text">Statistiques</span>
+        </a>
+        <a href="../timer.html" class="sidebar__link" data-tooltip="Timer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span class="sidebar__link-text">Timer</span>
+        </a>
+      </div>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__collapse-btn" id="sidebarCollapse" aria-expanded="true" aria-label="Replier le menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+        <span class="sidebar__collapse-label">Replier</span>
+      </button>
+      <button class="sidebar__theme-toggle" id="themeToggle" aria-label="Changer de theme">
+        <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span class="sidebar__theme-label">Theme</span>
+      </button>
+      <div class="sidebar__subject-switch">
+        <a href="../index.html" class="sidebar__subject-btn">Maths</a>
+        <a href="index.html" class="sidebar__subject-btn sidebar__subject-btn--active">Physique</a>
       </div>
     </div>
-    <div class="nav__links">
-      <a href="index.html" class="nav__link nav__link--active">Accueil</a>
-      <div class="nav__dropdown">
-        <a href="mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mpsi.html" class="dropdown__item">Cours</a>
-        </div>
-      </div>
-      <div class="nav__dropdown">
-        <a href="mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mp.html#cours" class="dropdown__item">Cours</a>
-          <a href="mp.html#annales" class="dropdown__item">Annales</a>
-        </div>
-      </div>
-      <a href="e3a.html" class="nav__link">E3A-Polytech</a>
-      <a href="../entrainement.html" class="nav__link">Entrainement</a>
-      <a href="../revision.html" class="nav__link">Revision</a>
-    </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
-      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  </aside>
+
+  <!-- Mobile top bar -->
+  <header class="topbar" id="topbar">
+    <button class="topbar__hamburger" id="menuBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
-    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
-      <span></span><span></span>
+    <span class="topbar__logo">Omniscience</span>
+    <button class="topbar__theme-toggle" id="themeToggleMobile" aria-label="Changer de theme">
+      <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-  </nav>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
-      <a href="../index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
-      <a href="index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mpsi.html" class="mobile-menu__page-link">MPSI — Physique Sup</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mp.html" class="mobile-menu__page-link">MP — Physique Spé</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="e3a.html" class="mobile-menu__page-link">E3A-Polytech Physique</a>
-    </div>
-  </div>
+  <!-- Main content -->
+  <main class="main-content">
 
-  <!-- Hero -->
-  <header class="hero">
-    <div class="hero__content">
-      <p class="hero__eyebrow">Bibliothèque Scientifique</p>
-      <h1 class="hero__title">
-        Cours &amp; exercices de<br>
-        <span class="hero__title--accent">physique</span>,<br>
-        100 % gratuits.
-      </h1>
-      <p class="hero__subtitle">
-        Accédez librement à des cours et exercices — de la mécanique à l'électromagnétisme —
-        sur une plateforme claire et structurée, ouverte à tous.
-      </p>
-      <div class="hero__actions">
-        <a href="#programmes" class="btn btn--primary">Choisir mon programme</a>
-        <a href="#apropos" class="btn btn--ghost">En savoir plus</a>
-      </div>
+  <!-- ════════════════════════════════════════════
+       SECTION 1 — Hero
+       ════════════════════════════════════════════ -->
+  <header class="imm-hero">
+    <div class="imm-hero__bg"></div>
+    <p class="imm-hero__eyebrow">Bibliotheque Scientifique — 100 % gratuit</p>
+    <h1 class="imm-hero__title">
+      23 annales corrigees, 32 flashcards,<br>40 quiz.<br><em>Tout est gratuit.</em>
+    </h1>
+    <p class="imm-hero__sub">
+      Annales E3A-Polytech corrigees (MP + PC), flashcards, quiz interactifs et syntheses — de la mecanique a l'electromagnetisme.
+    </p>
+    <div class="imm-hero__cta">
+      <a href="mpsi.html" class="btn btn--primary">MPSI — Physique Sup</a>
+      <a href="mp.html" class="btn btn--ghost">MP — Physique Spe</a>
     </div>
-    <div class="hero__formula" aria-hidden="true">
-      <div class="hero__formula-card">
-        <span class="hero__formula-label">Équation fondamentale</span>
-        <span class="hero__formula-math" id="euler"></span>
-      </div>
+    <div class="imm-hero__scroll">
+      <span>Decouvrir</span>
+      <div class="imm-hero__scroll-line"></div>
     </div>
   </header>
 
-  <!-- Ticker band -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker__track">
-      <span>Mécanique</span><span class="ticker__dot">·</span>
-      <span>Électromagnétisme</span><span class="ticker__dot">·</span>
-      <span>Thermodynamique</span><span class="ticker__dot">·</span>
-      <span>Optique</span><span class="ticker__dot">·</span>
-      <span>Ondes</span><span class="ticker__dot">·</span>
-      <span>Quantique</span><span class="ticker__dot">·</span>
-      <span>Relativité</span><span class="ticker__dot">·</span>
-      <span>Nucléaire</span><span class="ticker__dot">·</span>
-      <span>Mécanique</span><span class="ticker__dot">·</span>
-      <span>Électromagnétisme</span><span class="ticker__dot">·</span>
-      <span>Thermodynamique</span><span class="ticker__dot">·</span>
-      <span>Optique</span><span class="ticker__dot">·</span>
-      <span>Ondes</span><span class="ticker__dot">·</span>
-      <span>Quantique</span><span class="ticker__dot">·</span>
-      <span>Relativité</span><span class="ticker__dot">·</span>
-      <span>Nucléaire</span><span class="ticker__dot">·</span>
+  <!-- ════════════════════════════════════════════
+       SECTION 2 — Counter band
+       ════════════════════════════════════════════ -->
+  <div class="counter-band">
+    <div class="counter-grid">
+      <div class="counter-item">
+        <span class="counter-num" data-target="23">0</span>
+        <span class="counter-label">Annales</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num" data-target="32">0</span>
+        <span class="counter-label">Flashcards</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num" data-target="40">0</span>
+        <span class="counter-label">Quiz</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num" data-target="6">0</span>
+        <span class="counter-label">Corrections detaillees</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num" data-target="24">0</span>
+        <span class="counter-label">PDF officiels</span>
+      </div>
     </div>
   </div>
 
-  <!-- Programmes Section -->
-  <section class="section" id="programmes">
-    <div class="section__header">
-      <span class="section__number">01</span>
-      <h2 class="section__title">Programmes</h2>
-      <p class="section__desc">Choisissez votre niveau et accédez aux cours, exercices et méthodes correspondants.</p>
+  <!-- ════════════════════════════════════════════
+       SECTION 3 — Annales MP showcase
+       ════════════════════════════════════════════ -->
+  <section class="showcase">
+    <div>
+      <p class="showcase__label">01 — Annales E3A-Polytech MP</p>
+      <h2 class="showcase__title">6 sujets corriges, de 2020 a 2025.</h2>
+      <p class="showcase__desc">Chaque annale est retranscrite avec formules rendues, corrections detaillees et exercices classes par difficulte.</p>
+      <a href="e3a.html" class="showcase__cta">Voir les 6 annales MP <span class="showcase__cta-arrow">&rarr;</span></a>
+    </div>
+    <div class="float-cards">
+      <a href="../cours/annales/e3a-2025-physique.html" class="float-card">
+        <div class="float-card__icon" style="color:#E91E63">&star;</div>
+        <h3 class="float-card__title">Suivi medical d'un spationaute</h3>
+        <p class="float-card__desc">Electrocardiogramme, circuits RL, ondes electromagnetiques, dosage.</p>
+        <span class="float-card__tag">E3A MP — 2025</span>
+      </a>
+      <a href="../cours/annales/e3a-2024-physique.html" class="float-card">
+        <div class="float-card__icon" style="color:#E91E63">&star;</div>
+        <h3 class="float-card__title">Interaction champ EM / matiere</h3>
+        <p class="float-card__desc">Maxwell, pression de radiation, ondes dans les plasmas, effet de peau.</p>
+        <span class="float-card__tag">E3A MP — 2024</span>
+      </a>
+      <a href="../cours/annales/e3a-2023-physique.html" class="float-card">
+        <div class="float-card__icon" style="color:#E91E63">&star;</div>
+        <h3 class="float-card__title">Vivre dans l'espace</h3>
+        <p class="float-card__desc">Gravitation, mecanique orbitale, thermodynamique, micro-ondes.</p>
+        <span class="float-card__tag">E3A MP — 2023</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 4 — Annales PC showcase (tilted cards)
+       ════════════════════════════════════════════ -->
+  <section class="showcase" style="padding-top:0">
+    <div class="mock-fiche">
+      <div class="mock-fiche__visual">
+        <div class="mock-fiche__card mock-fiche__card--1">
+          <span class="mock-fiche__card-badge" style="background:rgba(156,39,176,.15);color:#CE93D8">PC 2019</span>
+          <h4 class="mock-fiche__card-title">Gravitation et reactions</h4>
+          <div style="margin-top:12px;font-size:.82rem;line-height:1.65;color:var(--ink)">
+            <strong style="color:#CE93D8;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase">Themes</strong>
+            <p style="margin:6px 0">Champ gravitationnel, lois de Kepler, transferts thermiques, cinetique chimique.</p>
+          </div>
+        </div>
+        <div class="mock-fiche__card mock-fiche__card--2">
+          <span class="mock-fiche__card-badge" style="background:rgba(156,39,176,.15);color:#CE93D8">PC 2015</span>
+          <h4 class="mock-fiche__card-title">Photovoltaique</h4>
+          <div style="margin-top:12px;font-size:.82rem;line-height:1.65;color:var(--ink)">
+            <strong style="color:#CE93D8;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase">Themes</strong>
+            <p style="margin:6px 0">Semi-conducteurs, effet photoelectrique, circuits electriques, rendement.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mock-fiche__text">
+        <p class="showcase__label">02 — Annales E3A-Polytech PC</p>
+        <h2 class="showcase__title">17 annales corrigees de 2003 a 2019.</h2>
+        <p class="showcase__desc">L'integralite des sujets physique-chimie PC de l'ere pre-reforme, entierement retranscrits avec corrections.</p>
+        <a href="e3a-pc.html" class="showcase__cta">Explorer les annales PC <span class="showcase__cta-arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 5 — Quiz & Flashcards
+       ════════════════════════════════════════════ -->
+  <section class="showcase" style="padding-top:0">
+    <div>
+      <p class="showcase__label">03 — Quiz & Flashcards</p>
+      <h2 class="showcase__title">32 flashcards, 40 quiz interactifs.</h2>
+      <p class="showcase__desc">Electromagnetisme, mecanique, thermodynamique, ondes, optique et chimie — flashcards a retourner et QCM avec corrections instantanees.</p>
+      <a href="e3a.html#flashcards" class="showcase__cta">S'entrainer <span class="showcase__cta-arrow">&rarr;</span></a>
+    </div>
+    <div class="mock-quiz">
+      <p class="mock-quiz__q"><strong>Vrai ou Faux ?</strong> Le vecteur de Poynting \(\vec{\Pi} = \frac{\vec{E} \times \vec{B}}{\mu_0}\) represente la puissance surfacique transportee par une onde electromagnetique.</p>
+      <div class="mock-quiz__btns">
+        <button class="mock-quiz__btn mock-quiz__btn--v" onclick="this.parentElement.nextElementSibling.style.display='block';this.closest('.mock-quiz').style.borderColor='rgba(75,130,90,.3)'">Vrai</button>
+        <button class="mock-quiz__btn mock-quiz__btn--f" onclick="this.parentElement.nextElementSibling.style.display='block';this.closest('.mock-quiz').style.borderColor='rgba(180,50,50,.3)'">Faux</button>
+      </div>
+      <p style="display:none;margin-top:var(--space-md);font-size:.85rem;color:var(--ink-light);line-height:1.6"><strong style="color:#27a644">Vrai.</strong> Le vecteur de Poynting a la dimension d'une puissance par unite de surface (W/m&sup2;). Il pointe dans la direction de propagation de l'energie.</p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 6 — Annales (all banks)
+       ════════════════════════════════════════════ -->
+  <section class="showcase" style="padding-top:0">
+    <div>
+      <p class="showcase__label">04 — Toutes les annales</p>
+      <h2 class="showcase__title">23 sujets, 2 filieres, de 2003 a 2025.</h2>
+      <p class="showcase__desc">E3A-Polytech MP (2020-2025) et E3A-Polytech PC (2003-2019) — tous retranscrits avec formules rendues et corrections detaillees.</p>
+      <a href="mp.html#annales" class="showcase__cta" style="display:inline-block;margin-bottom:var(--space-lg)">Voir toutes les annales <span class="showcase__cta-arrow">&rarr;</span></a>
     </div>
 
-    <div class="programmes-grid">
-<a href="mpsi.html" class="programme-card programme-card--featured">
-        <div class="programme-card__badge">Prépa 1A</div>
-        <div class="programme-card__icon">⚡</div>
+    <!-- Annales grid — recent per bank -->
+    <div class="annales-showcase" id="annalesShowcase">
+      <!-- E3A MP -->
+      <div class="annales-showcase__bank">
+        <div class="annales-showcase__header">
+          <span class="annales-showcase__dot" style="background:#E91E63"></span>
+          <span class="annales-showcase__name">E3A-Polytech MP</span>
+          <span class="annales-showcase__count">6 sujets</span>
+        </div>
+        <div class="annales-showcase__links">
+          <a href="../cours/annales/e3a-2025-physique.html" class="annales-showcase__link">2025</a>
+          <a href="../cours/annales/e3a-2024-physique.html" class="annales-showcase__link">2024</a>
+          <a href="../cours/annales/e3a-2023-physique.html" class="annales-showcase__link">2023</a>
+          <a href="../cours/annales/e3a-2022-physique.html" class="annales-showcase__link">2022</a>
+          <a href="../cours/annales/e3a-2021-physique.html" class="annales-showcase__link">2021</a>
+          <a href="../cours/annales/e3a-2020-physique.html" class="annales-showcase__link">2020</a>
+        </div>
+      </div>
+      <!-- E3A PC -->
+      <div class="annales-showcase__bank">
+        <div class="annales-showcase__header">
+          <span class="annales-showcase__dot" style="background:#9C27B0"></span>
+          <span class="annales-showcase__name">E3A-Polytech PC</span>
+          <span class="annales-showcase__count">17 sujets</span>
+        </div>
+        <div class="annales-showcase__links">
+          <a href="../cours/annales/e3a-2019-PC-physique.html" class="annales-showcase__link">2019</a>
+          <a href="../cours/annales/e3a-2018-PC-physique.html" class="annales-showcase__link">2018</a>
+          <a href="../cours/annales/e3a-2017-PC-physique.html" class="annales-showcase__link">2017</a>
+          <a href="../cours/annales/e3a-2016-PC-physique.html" class="annales-showcase__link">2016</a>
+          <a href="../cours/annales/e3a-2015-PC-physique.html" class="annales-showcase__link">2015</a>
+          <a href="../cours/annales/e3a-2014-PC-physique.html" class="annales-showcase__link">2014</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 7 — Programmes CTA
+       ════════════════════════════════════════════ -->
+  <section class="showcase" id="programmes" style="padding-bottom:100px">
+    <div style="text-align:center;max-width:600px;margin:0 auto">
+      <p class="showcase__label" style="text-align:center">05 — Programmes</p>
+      <h2 class="showcase__title" style="text-align:center;margin:0 auto var(--space-md)">Choisissez votre niveau.</h2>
+    </div>
+    <div class="programmes-grid" style="margin-top:var(--space-xl)">
+      <a href="mpsi.html" class="programme-card programme-card--featured">
+        <div class="programme-card__badge">Prepa 1A</div>
+        <div class="programme-card__icon">&loz;</div>
         <h3 class="programme-card__title">MPSI</h3>
-        <p class="programme-card__desc">Physique Sup — mécanique, thermodynamique, optique et électromagnétisme.</p>
+        <p class="programme-card__desc">Physique Sup — mecanique, thermodynamique, optique et electromagnetisme.</p>
         <div class="programme-card__meta">
-          <span class="programme-card__count">Bientôt disponible</span>
-          <span class="programme-card__arrow">→</span>
+          <span class="programme-card__count">Bientot disponible</span>
+          <span class="programme-card__arrow">&rarr;</span>
         </div>
       </a>
       <a href="mp.html" class="programme-card programme-card--featured">
-        <div class="programme-card__badge">Prépa 2A</div>
-        <div class="programme-card__icon">⚡</div>
+        <div class="programme-card__badge">Prepa 2A</div>
+        <div class="programme-card__icon">&loz;</div>
         <h3 class="programme-card__title">MP</h3>
-        <p class="programme-card__desc">Physique Spé — électromagnétisme avancé, mécanique quantique et physique statistique.</p>
+        <p class="programme-card__desc">Physique Spe — 23 annales corrigees E3A-Polytech (MP + PC).</p>
         <div class="programme-card__meta">
-          <span class="programme-card__count">Bientôt disponible</span>
-          <span class="programme-card__arrow">→</span>
-        </div>
-      </a>
-      <a href="e3a.html" class="programme-card programme-card--featured" style="border-left:4px solid #E91E63">
-        <div class="programme-card__badge" style="background:#E91E63">Concours</div>
-        <div class="programme-card__icon" style="color:#E91E63">&#9733;</div>
-        <h3 class="programme-card__title">E3A-Polytech</h3>
-        <p class="programme-card__desc">Annales corrigees, flashcards et quiz pour preparer l'epreuve de physique-chimie E3A MP.</p>
-        <div class="programme-card__meta">
-          <span class="programme-card__count">6 annales corrigees</span>
+          <span class="programme-card__count">23 annales + concours</span>
           <span class="programme-card__arrow">&rarr;</span>
         </div>
       </a>
     </div>
   </section>
 
-  <!-- Featured Formula -->
-  <section class="formula-showcase">
-    <div class="formula-showcase__inner">
-      <span class="formula-showcase__label">Formule du jour</span>
-      <div class="formula-showcase__equation" id="dailyFormula"></div>
-      <p class="formula-showcase__caption">
-        Les équations de Maxwell — fondement de l'électromagnétisme classique, unifiant électricité, magnétisme et optique.
-      </p>
-    </div>
-  </section>
-
-  <!-- À propos -->
-  <section class="section section--about" id="apropos">
-    <div class="about-layout">
-      <div class="about-content">
-        <span class="section__number">02</span>
-        <h2 class="section__title">À propos</h2>
-        <p class="about-text">
-          LibPhysique est une bibliothèque de physique en ligne, conçue pour offrir un accès clair et structuré
-          aux concepts fondamentaux de la physique. Notre ambition : rendre la rigueur scientifique
-          accessible sans sacrifier l'élégance.
-        </p>
-        <p class="about-text">
-          Ce projet est pensé pour les étudiants, les enseignants et tous les passionnés
-          qui cherchent une référence fiable et agréable à consulter.
-        </p>
-      </div>
-      <div class="about-deco" aria-hidden="true">
-        <div class="about-deco__symbol">⚡</div>
-      </div>
-    </div>
-  </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <span class="footer__logo">⚡ LibPhysique</span>
-        <p class="footer__tagline">La beauté de la physique, en ligne.</p>
+        <span class="footer__logo">Omniscience</span>
+        <p class="footer__tagline">La rigueur de la physique, en ligne.</p>
       </div>
       <div class="footer__links">
         <div class="footer__col">
@@ -211,33 +388,49 @@
           <a href="#programmes">Programmes</a>
           <a href="mpsi.html">MPSI</a>
           <a href="mp.html">MP</a>
-          <a href="e3a.html">E3A-Polytech</a>
         </div>
         <div class="footer__col">
-          <h4 class="footer__col-title">Communauté</h4>
-          <a href="#">Contribuer</a>
-          <a href="#">GitHub</a>
-          <a href="#">Contact</a>
+          <h4 class="footer__col-title">Concours</h4>
+          <a href="e3a.html">E3A-Polytech MP</a>
+          <a href="e3a-pc.html">E3A-Polytech PC</a>
         </div>
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; 2026 LibPhysique — Projet open source</span>
+      <span>&copy; 2026 Omniscience — Projet open source</span>
     </div>
   </footer>
 
   <script src="../main.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Render hero formula: E = mc²
-      const eulerEl = document.getElementById("euler");
-      if (eulerEl && typeof katex !== "undefined") {
-        katex.render("E = mc^2", eulerEl, { displayMode: true, throwOnError: false });
-      }
-      // Render daily formula: Maxwell's equation
-      const dailyEl = document.getElementById("dailyFormula");
-      if (dailyEl && typeof katex !== "undefined") {
-        katex.render("\\nabla \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}", dailyEl, { displayMode: true, throwOnError: false });
+    /* ── Counter animation ── */
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseInt(el.dataset.target);
+        let current = 0;
+        const step = Math.max(1, Math.floor(target / 40));
+        const interval = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(interval); }
+          el.textContent = current;
+        }, 30);
+        counterObs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter-num[data-target]').forEach(el => counterObs.observe(el));
+
+    /* ── KaTeX render ── */
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left:'$$',right:'$$',display:true},
+            {left:'\\(',right:'\\)',display:false}
+          ],
+          throwOnError: false
+        });
       }
     });
   </script>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2018 - Physique - LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../../index.html" class="nav-logo">LibMaths</a>
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../../physique/index.html">Physique</a></li>
+      <li><a href="../index.html">Annales</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="course">
+  <div class="course-header">
+    <div class="breadcrumb">
+      <a href="../../index.html">Accueil</a> &gt;
+      <a href="../../physique/index.html">Physique</a> &gt;
+      <a href="../index.html">Annales</a> &gt;
+      <span>E3A-Polytech PC 2018 - Physique</span>
+    </div>
+    <h1>E3A-Polytech PC 2018 - Physique</h1>
+    <p class="course-subtitle">Concours Communs Polytechniques - Epreuve specifique - Filiere PC - Modelisation de systemes physiques ou chimiques - Duree 4 h</p>
+  </div>
+
+  <div class="annale-info">
+    <div class="annale-warning">
+      <strong>Sujet retranscrit avec schemas</strong>
+      <p><em>N.B. : le candidat attachera la plus grande importance a la clarte, a la precision et a la concision de la redaction. Si un candidat est amene a reperer ce qui peut lui sembler etre une erreur d'enonce, il le signalera sur sa copie et devra poursuivre sa composition en expliquant les raisons des initiatives qu'il a ete amene a prendre.</em></p>
+      <p>Les calculatrices sont autorisees.</p>
+      <p>Le sujet est compose de deux parties (pages 1 a 14) et d'une annexe (pages 15 a 18).</p>
+    </div>
+
+    <h2>Table des matieres</h2>
+    <ul class="toc">
+      <li><a href="#probleme">Probleme - Etude d'une reaction exothermique : stabilite thermique en reacteur ferme</a>
+        <ul>
+          <li><a href="#partie1">Partie I - Modelisation du reacteur ferme parfaitement agite avec double enveloppe (Q1 a Q20)</a></li>
+          <li><a href="#partie2">Partie II - Traitement numerique des donnees experimentales (Q21 a Q42)</a></li>
+        </ul>
+      </li>
+      <li><a href="#annexe">Annexe : Fonctions de Python</a></li>
+    </ul>
+  </div>
+
+  <article class="annale-exercice" id="probleme">
+    <h2>PROBLEME</h2>
+    <h3>Etude d'une reaction exothermique : stabilite thermique en reacteur ferme</h3>
+
+    <h4>Presentation du probleme</h4>
+
+    <p>De nombreux procedes industriels font intervenir des reacteurs fermes pour la synthese de molecules a haute valeur ajoutee. Pour optimiser le rendement de la synthese, il est necessaire de bien comprendre l'influence des parametres physiques (comme la temperature de la reaction,...) sur la marche du reacteur. La maitrise des echanges thermiques est cruciale dans le cas des reactions exothermiques car la chaleur degagee par la reaction provoque une augmentation de la temperature du melange reactionnel. Selon les conditions operatoires, cette augmentation de temperature peut entrainer un emballement thermique du reacteur et conduire a des degats irreversibles.</p>
+
+    <p>L'accident de Seveso le 10 juillet 1976 illustre les problemes lies a l'emballement thermique des reacteurs. Il s'agissait d'un procede de production de 2,4,5-trichlorophenol a partir de 1,2,4,5-tetrachlorobenzene et de soude dans un solvant (l'ethylene glycol) a une temperature voisine de 159 &deg;C et a pression atmospherique en reacteur ferme. La mauvaise maitrise de la temperature de la reaction a entraine le deroulement de reactions secondaires conduisant d'une part a une augmentation de la temperature et de la pression et d'autre part a la formation de produits secondaires toxiques : les dioxines. La rupture de la soupape de securite due a l'augmentation de la pression a conduit au rejet de dioxines dans l'atmosphere.</p>
+
+    <p>L'etude de l'influence des parametres physiques sur la marche d'un reacteur se fait la plupart du temps a l'echelle du laboratoire dans des dispositifs de dimensions beaucoup plus petites que celles des reacteurs utilises dans les procedes industriels. La particularite du reacteur utilise pour la presente etude est qu'il possede une geometrie cylindrique et qu'il est equipe d'une double enveloppe externe dans laquelle circule un fluide permettant de refroidir la paroi du reacteur et d'empecher un emballement thermique (<strong>figure 1</strong>). L'emballement thermique survient lorsque la chaleur degagee par la reaction excede la capacite du reacteur a evacuer l'energie.</p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 1</div>
+      <p>Schema simplifie d'un reacteur ferme parfaitement agite avec une double enveloppe pour son refroidissement. Vue de profil montrant un reacteur cylindrique avec un mobile d'agitation, entoure d'une double enveloppe. La temperature \(T\) represente la temperature dans le reacteur et \(T_p\) la temperature a la paroi (cote refroidissement). Vue en perspective montrant la forme cylindrique du reacteur avec la double enveloppe.</p>
+    </div>
+
+    <p>Pour caracteriser le comportement thermique du reacteur, on commence la plupart du temps par une etude en l'absence de reaction. Cette etude permet dans un premier temps de caracteriser la capacite du reacteur a evacuer l'energie avec la determination du coefficient de transfert thermique a la paroi. Dans un deuxieme temps, on met en oeuvre dans ce reacteur une reaction exothermique \(R \rightarrow produits\). Ces etudes permettent de determiner les valeurs de parametres clefs intervenant dans les equations decrivant le comportement du reacteur (modele theorique). L'utilisation de ce modele theorique permet de predire la stabilite thermique du reacteur. L'etablissement du modele theorique repose sur l'ecriture de bilans de matiere et de chaleur. Une fois que l'influence des conditions physiques sur la marche du reacteur est determinee, on peut en deduire les conditions de stabilite du reacteur industriel.</p>
+
+    <p>Ce sujet est constitue de deux parties. La premiere partie porte sur la modelisation du reacteur ferme parfaitement agite avec double enveloppe. Elle permet l'etablissement du systeme d'equations differentielles regissant les variations de la conversion du reactif et de la temperature en fonction du temps, ainsi que la determination de la valeur de parametres physico-chimiques intervenant dans ces equations. La deuxieme partie porte sur le traitement numerique des donnees experimentales avec la determination des parametres d'un modele par regression lineaire, puis la prediction du comportement thermique du reacteur par resolution d'un systeme d'equations differentielles par la methode d'Euler implicite.</p>
+  </article>
+
+  <article class="annale-exercice" id="partie1">
+    <h2>Partie I - Modelisation du reacteur ferme parfaitement agite avec double enveloppe</h2>
+
+    <h3>I.1 - Etalonnage thermique du reacteur</h3>
+
+    <p>Dans cette partie, on souhaite caracteriser les transferts de chaleur entre un liquide contenu a l'interieur du reacteur et la paroi en l'absence de toute reaction chimique. On supposera que la capacite thermique massique et la masse volumique de ce liquide sont constantes quelle que soit la temperature. Pour caracteriser ces transferts de chaleur, on realise deux experiences successives avec la temperature de la paroi, \(T_p\), maintenue constante dans les deux cas.</p>
+
+    <ul>
+      <li>La premiere experience consiste a chauffer le liquide (initialement a une temperature identique a celle de la paroi) avec un dispositif annexe (une resistance chauffante) dissipant une puissance thermique \(P_{th}\) de 96,0 W. On constate que la temperature de la phase liquide augmente, puis atteint une valeur asymptotique en regime permanent (<strong>figure 2a</strong>).</li>
+      <li>Apres avoir atteint le regime permanent lors de la phase de chauffe, on realise une seconde experience en coupant le chauffage. La temperature du liquide decroit jusqu'a ce qu'elle tende vers la temperature de la paroi (<strong>figure 2b</strong>).</li>
+    </ul>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 2</div>
+      <p>Evolution de la temperature du liquide dans le reacteur.</p>
+      <p>a) pendant la phase de chauffe : graphique montrant \(T-T_p\) (K) en ordonnee (de 0 a 45) en fonction du temps (s) en abscisse (de 0 a 1000). La courbe croit depuis 0, puis atteint un plateau asymptotique aux alentours de 40 K.</p>
+      <p>b) pendant la phase de refroidissement : graphique montrant \(T-T_p\) (K) en ordonnee (de 0 a 45) en fonction du temps (s) en abscisse (de 0 a 1000). La courbe decroit depuis environ 40 K et tend vers 0.</p>
+    </div>
+
+    <p>On exploite d'abord la courbe obtenue lors de la phase de chauffe (<strong>figure 2a</strong>) pour determiner le coefficient de transfert de chaleur a la paroi, note \(U\) (unite : W.m\(^{-2}\).K\(^{-1}\)). Ce coefficient rend compte des echanges de chaleur entre la phase reactionnelle et le fluide caloporteur dans la double enveloppe. Dans le cas present, la temperature \(T_p\) etant la temperature de paroi du cote du fluide caloporteur, il s'agit d'un coefficient de transfert thermique global qui tient compte du transfert convectif cote reaction et du transfert par conduction dans la paroi qui separe les deux fluides.</p>
+
+    <p>Pour obtenir la valeur de \(U\), on commence par etablir l'equation differentielle qui regit l'evolution de la temperature \(T\) en fonction du temps en realisant un bilan d'energie.</p>
+
+    <p>Le bilan d'energie, consequence directe du premier principe de la thermodynamique, applique au systeme constitue par la phase reactionnelle lors de la phase de chauffe, conduit a l'equation differentielle suivante (equation (1)) :</p>
+
+    \[(\rho \times V \times C_p) \frac{dT}{dt} = P_{th} - U \times A \times (T - T_p), \qquad (1)\]
+
+    <p>ou \(T\) est la temperature du fluide a l'interieur du reacteur, \(\rho\), \(V\) et \(C_p\) sont respectivement la masse volumique, le volume et la capacite thermique massique du fluide, \(P_{th}\) est la puissance thermique cedee par la resistance chauffante au milieu reactionnel, \(T_p\) est la temperature de la paroi, maintenue constante (\(T_p = 320{,}0\) K) et \(A\) la surface laterale du reacteur sur laquelle le fluide a l'interieur du reacteur est en contact avec la double enveloppe.</p>
+
+    <section class="question" id="Q1">
+      <h4>Q1.</h4>
+      <p>Interpreter concretement chacun des trois termes du bilan d'energie en precisant leur signification physique et verifier qu'ils sont homogenes aux puissances.</p>
+    </section>
+
+    <section class="question" id="Q2">
+      <h4>Q2.</h4>
+      <p>Donner l'expression de \(T - T_p\) en regime permanent. Il est rappele que la temperature de la paroi, \(T_p\), est maintenue constante tout au long des essais. Il est precise que la temperature de la phase liquide a l'instant initial est egale a \(T_p\).</p>
+    </section>
+
+    <section class="question" id="Q3">
+      <h4>Q3.</h4>
+      <p>D'apres les resultats obtenus lors de la premiere experience (<strong>figure 2a</strong>), donner la valeur de la difference de temperature \(T - T_p\) lorsqu'on atteint le regime permanent. Calculer la valeur du coefficient de transfert de chaleur a la paroi dans les unites SI. On donne \(T_p = 320{,}0\) K, \(\rho = 1\,000{,}0\) kg.m\(^{-3}\), \(V = 0{,}1 \times 10^{-3}\) m\(^3\) et \(C_p = 1\,800{,}0\) J.kg\(^{-1}\).K\(^{-1}\), \(P_{th} = 96{,}0\) W et \(A = 8{,}0 \times 10^{-3}\) m\(^2\).</p>
+    </section>
+
+    <section class="question" id="Q4">
+      <h4>Q4.</h4>
+      <p>On souhaite faire apparaitre un temps caracteristique d'echange thermique \(\tau_c\) du systeme. Montrer que le bilan d'energie peut se mettre sous la forme suivante (equation (2)) :</p>
+      \[\frac{dT}{dt} = s + \frac{T_p - T}{\tau_c}, \qquad (2)\]
+      <p>Donner les expressions de \(s\) et \(\tau_c\). Verifier que \(\tau_c\) est homogene a un temps.</p>
+    </section>
+
+    <p>On souhaite maintenant exploiter les resultats obtenus lors de la phase de refroidissement (<strong>figure 2b</strong>) pour confirmer la valeur du temps caracteristique d'echange thermique determine precedemment.</p>
+
+    <section class="question" id="Q5">
+      <h4>Q5.</h4>
+      <p>Le bilan d'energie etabli a la question Q4 est-il modifie ? Si oui, donner la nouvelle expression de \(\frac{dT}{dt}\).</p>
+    </section>
+
+    <section class="question" id="Q6">
+      <h4>Q6.</h4>
+      <p>Donner l'expression de \(T - T_p\) en fonction du temps \(t\) par resolution de l'equation differentielle. On notera \(T_{max}\) la temperature initiale lors de la phase de refroidissement.</p>
+    </section>
+
+    <section class="question" id="Q7">
+      <h4>Q7.</h4>
+      <p>Le trace de \(\ln(T - T_p)\) (avec \(T - T_p\) en K) en fonction du temps \(t\) (<strong>figure 3</strong>) donne une droite d'equation \(y = -1{,}33 \times 10^{-2} \times x + 3{,}68\) (avec \(x\) en secondes). En deduire la valeur du temps caracteristique d'echange thermique \(\tau_c\). Calculer la valeur du coefficient de transfert de chaleur a la paroi et verifier que cette valeur correspond a celle obtenue avec la premiere experience.</p>
+    </section>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 3</div>
+      <p>Trace de \(\ln(T - T_p)\) en fonction de \(t\) a l'aide des points enregistres lors de la phase de refroidissement (<strong>figure 2b</strong>). Graphique montrant une droite decroissante, avec \(\ln(T-T_p)\) en ordonnee (de -10 a 4) et \(t\) (s) en abscisse (de 0 a 1000).</p>
+    </div>
+
+    <h3>I.2 - Etude d'une reaction exothermique en reacteur ferme a double enveloppe</h3>
+
+    <p>Dans cette sous-partie, on considere que l'on met en oeuvre une reaction chimique exothermique \(R \rightarrow produits\) (\(R\) est dissous dans un solvant) dans le meme reacteur que celui dont on a etudie les echanges thermiques dans la sous-partie precedente. Il s'agit ici de caracteriser le comportement thermique du reacteur en presence d'une reaction exothermique.</p>
+
+    <p>Le comportement du reacteur ferme parfaitement agite avec double enveloppe peut etre represente par un systeme constitue de deux equations differentielles ordinaires. La premiere equation differentielle ordinaire represente l'evolution temporelle de la conversion du reactif \(R\) ; la deuxieme permet de caracteriser l'evolution de la temperature de la reaction en fonction du temps.</p>
+
+    <p>Le reactif \(R\) etant dissout dans un solvant, on considere que le volume du melange reactionnel \(V\) reste constant au cours du temps. On considere egalement que la reaction est homogene et qu'elle a lieu dans tout le volume du melange reactionnel.</p>
+
+    <p>On commence par determiner l'equation differentielle qui regit l'evolution de la conversion du reactif \(R\) en fonction du temps.</p>
+
+    <section class="question" id="Q8">
+      <h4>Q8.</h4>
+      <p>On considere que la reaction est d'ordre 1 par rapport au reactif \(R\). Donner l'expression de la vitesse de la reaction (exprimee par unite de volume de melange reactionnel) que l'on notera \(r\) (on notera \(C_R\) la concentration molaire du reactif \(R\) et \(k\) la constante cinetique). Preciser la dimension et l'unite de \(r\) dans le Systeme International.</p>
+    </section>
+
+    <section class="question" id="Q9">
+      <h4>Q9.</h4>
+      <p>Rappeler la loi d'Arrhenius donnant les variations de la constante de reaction en fonction de la temperature. On notera \(k_0\) le facteur pre-exponentiel et \(E_a\) l'energie d'activation. Preciser les dimensions et les unites SI de \(k\), \(k_0\) et \(E_a\).</p>
+    </section>
+
+    <section class="question" id="Q10">
+      <h4>Q10.</h4>
+      <p>Ecrire le bilan de matiere sous la forme \(\frac{dC_R}{dt} = f(C_R, T)\). Preciser l'expression de \(f(C_R, T)\). Il est rappele que le volume de la phase reactionnelle reste constant au cours du temps.</p>
+    </section>
+
+    <section class="question" id="Q11">
+      <h4>Q11.</h4>
+      <p>Dans le cas ou le reacteur fonctionnerait en marche isotherme, resoudre l'equation differentielle et donner l'expression de la concentration de \(R\) en fonction du temps sous la forme \(C_R = g(t)\). On notera \(C_R^0\) la concentration initiale en \(R\).</p>
+    </section>
+
+    <section class="question" id="Q12">
+      <h4>Q12.</h4>
+      <p>Pour simplifier les bilans, on introduit le taux de conversion de \(R\), note \(X_R\), defini par la relation suivante : \(X_R = (C_R^0 - C_R)/C_R^0\). Exprimer l'evolution du taux de conversion \(X_R\) en fonction du temps pour le cas de la marche isotherme.</p>
+    </section>
+
+    <section class="question" id="Q13">
+      <h4>Q13.</h4>
+      <p>Exprimer l'equation differentielle qui regit l'evolution du taux de conversion \(X_R\) en fonction du temps dans le cas general (marche quelconque, c'est-a-dire non isotherme), sans chercher a la resoudre.</p>
+    </section>
+
+    <p>L'evolution de la temperature en fonction du temps est regie par une seconde equation differentielle obtenue en realisant un bilan d'energie sur le reacteur, consequence directe du premier principe de la thermodynamique.</p>
+
+    <p>La reaction chimique qui se deroule dans le reacteur produit par unite de temps une variation de l'enthalpie du systeme reactionnel donnee par \(S(t, X_R, T)\) (equation (3)) qui correspond a la chaleur degagee par la reaction. Ce parametre est appele &laquo; terme source &raquo; dans la suite.</p>
+
+    \[S(t, X_R, T) = -\Delta_r H^0(T) \times r(t, X_R, T) \times V, \qquad (3)\]
+
+    <p>ou \(V\) est le volume du melange reactionnel, \(r\) est la vitesse de la reaction et \(\Delta_r H^0(T)\) est l'enthalpie molaire standard de la reaction. Dans la suite, on suppose que \(\Delta_r H^0(T)\) ne depend pas de la temperature. On prendra \(\Delta_r H^0(T) = \Delta_r H^0(T_p)\) que l'on notera \(\Delta_r H^0\) pour simplifier.</p>
+
+    <section class="question" id="Q14">
+      <h4>Q14.</h4>
+      <p>Donner la dimension du terme source \(S(t, X_R, T)\).</p>
+    </section>
+
+    <section class="question" id="Q15">
+      <h4>Q15.</h4>
+      <p>Montrer qu'un bilan enthalpique applique a un systeme que l'on precisera avec soin permet d'aboutir a la relation suivante (equation (4)) :</p>
+      \[\frac{dT}{dt} = J \frac{dX_R}{dt} + \frac{T_p - T}{\tau_c}, \qquad (4)\]
+      <p>ou l'on exprimera \(J\) et \(\tau_c\) en fonction de \(\Delta_r H^0\), \(C_R^0\), \(\rho\), \(C_p\), \(V\), \(U\) et \(A\). On admettra qu'il est legitime de negliger la contribution des reactifs, des produits et des accessoires situes a l'interieur du reacteur au travers de leur capacites thermiques devant celle du solvant.</p>
+    </section>
+
+    <section class="question" id="Q16">
+      <h4>Q16.</h4>
+      <p>Donner l'expression du parametre \(J\) ainsi que sa dimension.</p>
+    </section>
+
+    <section class="question" id="Q17">
+      <h4>Q17.</h4>
+      <p>Calculer la valeur du parametre \(J\) en unite SI. On donne \(\Delta_r H^0 = -360{,}0\) kJ.mol\(^{-1}\), \(\rho = 1\,000{,}0\) kg.m\(^{-3}\), \(C_p = 1\,800{,}0\) J.kg\(^{-1}\).K\(^{-1}\) et \(C_R^0 = 500{,}0\) mol.m\(^{-3}\).</p>
+    </section>
+
+    <h3>I.3 - Stabilite thermique du reacteur</h3>
+
+    <p>Une premiere condition de stabilite, valable pour le cas d'une marche adiabatique, est que la temperature finale \(T_f\) de la reaction soit inferieure a une temperature maximale \(T_{max}\), telle que \(T_{max} = 1{,}25 \times T_p\).</p>
+
+    <section class="question" id="Q18">
+      <h4>Q18.</h4>
+      <p>Exprimer l'equation differentielle (equation (4)) dans le cas d'un fonctionnement adiabatique.</p>
+    </section>
+
+    <section class="question" id="Q19">
+      <h4>Q19.</h4>
+      <p>Determiner alors l'expression de la temperature \(T\) en fonction du taux de conversion \(X_R\), du parametre \(J\) et de \(T_0\) la temperature initiale du melange reactionnel.</p>
+    </section>
+
+    <section class="question" id="Q20">
+      <h4>Q20.</h4>
+      <p>Donner l'expression de la temperature \(T_f\) atteinte en fin de reaction dans le cas d'une marche adiabatique sachant que \(T_0 = T_p = 320{,}0\) K. Conclure quant a la stabilite du reacteur dans le cas de cette etude. Donner la signification physique du parametre \(J\).</p>
+    </section>
+  </article>
+
+  <article class="annale-exercice" id="partie2">
+    <h2>Partie II - Traitement numerique des donnees experimentales</h2>
+
+    <p>Les algorithmes demandes au candidat <strong>devront etre realises dans le langage Python</strong>. On supposera les bibliotheques &laquo; numpy &raquo; et &laquo; matplotlib.pyplot &raquo; chargees. Une <strong>annexe</strong> presentant les fonctions usuelles de Python est disponible pages 15 a 18. Les commentaires suffisants a la comprehension du programme devront etre apportes et des noms de variables explicites devront etre utilises lorsque ceux-ci ne sont pas imposes.</p>
+
+    <h3>II.1 - Determination des parametres d'un modele par regression lineaire</h3>
+
+    <p>Pour calculer la valeur du temps caracteristique d'echange thermique du reacteur a la question <strong>Q7</strong>, un modele de regression lineaire simple a ete estime a partir des points experimentaux enregistres lors de la phase de refroidissement.</p>
+
+    <p>Le modele de regression lineaire simple (fonction affine) est un modele de regression d'une variable expliquee (\(\ln(T - T_p)\) dans notre cas) sur une variable explicative (le temps \(t\) dans notre cas) dans lequel on fait l'hypothese que la fonction qui relie la variable explicative a la variable expliquee est lineaire dans ses parametres.</p>
+
+    <p>Soit \(n\) le nombre de points experimentaux. Le modele lineaire simple s'ecrit de la maniere suivante pour un point \(i\) (\(1 \leq i \leq n\)) :</p>
+
+    \[y_i = \widehat{\beta_1} \times x_i + \widehat{\beta_0}, \qquad (5)\]
+
+    <p>ou \(\widehat{\beta_0}\) et \(\widehat{\beta_1}\) sont les parametres du modele, \(y_i\) est la variable expliquee et \(x_i\) est la variable explicative.</p>
+
+    <p>La methode consiste a ecrire le modele (equation (5)) sous la forme matricielle \(Y = L \times B\), \(B\) est un vecteur colonne contenant les parametres du modele \(\widehat{\beta_0}\) et \(\widehat{\beta_1}\), \(Y\) est un vecteur colonne contenant les \(n\) valeurs \(y_i\) et \(L\) une matrice a \(n\) lignes et 2 colonnes, telle que \(L(i,1) = \frac{\partial y_i}{\partial \widehat{\beta_1}}\) et \(L(i,2) = \frac{\partial y_i}{\partial \widehat{\beta_0}}\). Rappelons que \(B = (L^t \times L)^{-1} \times L^t Y\) ou \(L^t\) est la matrice transposee de \(L\).</p>
+
+    <section class="question" id="Q21">
+      <h4>Q21.</h4>
+      <p>Donner les expressions de \(\frac{\partial y_i}{\partial \widehat{\beta_0}}\) et \(\frac{\partial y_i}{\partial \widehat{\beta_1}}\). En deduire la valeur des coefficients de la matrice \(L\).</p>
+    </section>
+
+    <section class="question" id="Q22">
+      <h4>Q22.</h4>
+      <p>On suppose que les vecteurs colonnes \(Y\) et \(X\), qui contiennent les valeurs \(y_i\) et \(x_i\) (\(1 \leq i \leq n\)), sont deja crees. Donner le code permettant de creer la matrice \(L\).</p>
+    </section>
+
+    <section class="question" id="Q23">
+      <h4>Q23.</h4>
+      <p>Donner le code permettant de determiner les coefficients de la matrice \(P = U^t \times L\). Preciser les dimensions de la matrice \(P\).</p>
+    </section>
+
+    <section class="question" id="Q24">
+      <h4>Q24.</h4>
+      <p>Donner le code permettant de determiner les coefficients de la matrice \(Q = U^t \times Y\). Preciser les dimensions de la matrice \(Q\).</p>
+    </section>
+
+    <section class="question" id="Q25">
+      <h4>Q25.</h4>
+      <p>Donner le code permettant de creer une fonction <code>inv_mat(M)</code> qui renvoie la matrice inverse de la matrice \(M\) de dimension (2 \(\times\) 2) donnee comme argument d'entree.</p>
+    </section>
+
+    <section class="question" id="Q26">
+      <h4>Q26.</h4>
+      <p>On note \(N\) la matrice inverse de \(M\). Donner le code permettant de determiner les coefficients \(\widehat{\beta_0}\) et \(\widehat{\beta_1}\) de la matrice \(B\).</p>
+    </section>
+
+    <h3>II.2 - Prediction du comportement thermique du reacteur</h3>
+
+    <p>Dans cette sous-partie, on souhaite utiliser le modele constitue du systeme d'equations differentielles etablies dans la <strong>Partie I</strong> qui decrit l'evolution du taux de conversion du reactif \(X_R\) et de la temperature de reaction \(T\) en fonction du temps pour predire le comportement thermique du reacteur en presence d'une reaction exothermique.</p>
+
+    <p>Pour simplifier les notations, on met le systeme d'equations differentielles sous la forme suivante (equation (6)) :</p>
+
+    \[\begin{cases} \dfrac{dX_R}{dt} = f_1(t, X_R, T), \\ \dfrac{dT}{dt} = f_2(t, X_R, T). \end{cases} \qquad (6)\]
+
+    <p>La methode de resolution proposee pour resoudre le systeme d'equations differentielles est la methode d'Euler implicite a pas fixe. Cette methode est preferee car elle donne de meilleurs resultats que la methode explicite pour les systemes dits raides (un systeme raide est un systeme qui est caracterise par une evolution rapide des phenomenes en fonction du temps, ce qui est le cas ici pour la temperature de reaction).</p>
+
+    <p>Soit une variable \(y\) qui depend du temps \(t\). Comme la methode d'Euler explicite, la methode d'Euler implicite consiste a evaluer la valeur de \(y(t + \Delta t)\) a partir de celle de \(y(t)\) et de la derivee \(\frac{dy}{dt}\) (<strong>figure 4</strong>, page suivante). La difference entre les deux methodes reside dans le choix de l'abscisse a laquelle est evaluee \(\frac{dy}{dt}\). Dans le cas de la methode explicite, elle est evaluee en \(t : \frac{dy}{dt}(t)\) comme le montre le schema de la <strong>figure 4a</strong>, page suivante. Pour la methode implicite, elle est evaluee en \(t + \Delta t : \frac{dy}{dt}(t + \Delta t)\) (<strong>figure 4b</strong>, page suivante).</p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 4</div>
+      <p>Approximation de \(y(t + \Delta t)\) par la methode d'Euler.</p>
+      <p>a) cas de la methode explicite : graphique montrant la courbe \(y(t)\), la tangente en \(t\) de pente \(\frac{dy}{dt}(t)\), et l'approximation \(y(t+\Delta t)\) obtenue en suivant la tangente.</p>
+      <p>b) cas de la methode implicite : graphique montrant la courbe \(y(t)\), la tangente en \(t+\Delta t\) de pente \(\frac{dy}{dt}(t+\Delta t)\), et l'approximation \(y(t+\Delta t)\) obtenue en remontant la tangente depuis \(t\).</p>
+    </div>
+
+    <p>Dans le cas du schema implicite (<strong>figure 4b</strong>), l'expression de \(y(t + \Delta t)\) en fonction de \(y(t)\) et de la derivee \(\frac{dy}{dt}\) evaluee en \(t + \Delta t\) est obtenue en realisant un developpement limite retrograde : \(y(t) = y(t + \Delta t) - \Delta t \times \frac{dy}{dt}(t + \Delta t) + o(\Delta t)\).</p>
+
+    <section class="question" id="Q27">
+      <h4>Q27.</h4>
+      <p>A l'aide d'un developpement limite retrograde de la fonction \(X_R(t)\), donner l'expression de \(X_R(t + \Delta t)\) a l'ordre 1 en fonction de \(X_R(t)\) et de sa derivee partielle par rapport a \(t\), \(\frac{dX_R}{dt}(t + \Delta t)\) evaluee en \(t + \Delta t\).</p>
+    </section>
+
+    <section class="question" id="Q28">
+      <h4>Q28.</h4>
+      <p>En deduire une valeur approchee de \(\frac{dX_R}{dt}(t + \Delta t)\) a l'ordre 0 en fonction de \(X_R(t)\), \(X_R(t + \Delta t)\) et \(\Delta t\).</p>
+    </section>
+
+    <section class="question" id="Q29">
+      <h4>Q29.</h4>
+      <p>A l'aide d'un developpement limite retrograde de la fonction \(T(t)\), donner l'expression de \(T(t + \Delta t)\) a l'ordre 1 en fonction de \(T(t)\) et de sa derivee partielle par rapport a \(t\), \(\frac{dT}{dt}(t + \Delta t)\) evaluee en \(t + \Delta t\).</p>
+    </section>
+
+    <section class="question" id="Q30">
+      <h4>Q30.</h4>
+      <p>En deduire une valeur approchee de \(\frac{dT}{dt}(t + \Delta t)\) a l'ordre 0 en fonction de \(T(t)\), \(T(t + \Delta t)\) et \(\Delta t\).</p>
+    </section>
+
+    <p>On procede a la discretisation des equations. On note \(X_{R_i}\) la conversion evaluee au temps \(t_i\), \(X_{R_{i+1}}\) la conversion evaluee au temps \(t_{i+1}\) et \(\left.\frac{dX_R}{dt}\right|_{t_{i+1}}\) la derivee de \(X_R\) evaluee a l'instant \(t_{i+1}\). De meme, on note \(T_i\) la temperature evaluee au temps \(t_i\), \(T_{i+1}\) la temperature evaluee au temps \(t_{i+1}\) et \(\left.\frac{dT}{dt}\right|_{t_{i+1}}\) la derivee de \(T\) evaluee a l'instant \(t_{i+1}\).</p>
+
+    <section class="question" id="Q31">
+      <h4>Q31.</h4>
+      <p>Donner l'expression de \(\left.\frac{dX_R}{dt}\right|_{t_{i+1}}\) en fonction de \(X_{R_i}\), \(X_{R_{i+1}}\) et \(\Delta t\).</p>
+    </section>
+
+    <section class="question" id="Q32">
+      <h4>Q32.</h4>
+      <p>Donner l'expression approchee de \(X_{R_{i+1}}\) en fonction de \(X_{R_i}\), \(\Delta t\) et de la fonction \(f_1(t_{i+1}, X_{R_{i+1}}, T_{i+1})\), evaluee en \(t_{i+1}\).</p>
+    </section>
+
+    <section class="question" id="Q33">
+      <h4>Q33.</h4>
+      <p>Donner l'expression de \(\left.\frac{dT}{dt}\right|_{t_{i+1}}\) en fonction de \(T_i\), \(T_{i+1}\) et \(\Delta t\).</p>
+    </section>
+
+    <section class="question" id="Q34">
+      <h4>Q34.</h4>
+      <p>Donner l'expression approchee de \(T_{i+1}\) en fonction de \(T_i\), \(\Delta t\) et de la fonction \(f_2(t_{i+1}, X_{R_{i+1}}, T_{i+1})\), evaluee en \(t_{i+1}\).</p>
+    </section>
+
+    <p>On constate que les expressions obtenues aux questions Q32 et Q34 constituent un systeme non lineaire dont les inconnues sont \(X_{R_{i+1}}\) et \(T_{i+1}\). On propose d'utiliser la methode de Newton-Raphson pour trouver les valeurs de \(X_{R_{i+1}}\) et \(T_{i+1}\) a chaque iteration de la methode d'Euler.</p>
+
+    <p>La methode de Newton-Raphson pour la resolution d'un systeme de \(n\) equations non lineaires a \(n\) inconnues \(x = (x_1, ..., x_n)\), mis sous la forme de l'equation (7) suivante,</p>
+
+    \[g(x) = \begin{pmatrix} g_1(x_1, ..., x_n) \\ ... \\ g_n(x_1, ..., x_n) \end{pmatrix} = 0, \qquad (7)\]
+
+    <p>est une extension de la methode de Newton permettant de trouver la racine d'une fonction d'une variable.</p>
+
+    <p>On peut demontrer la formule de recurrence suivante (equation (8)) :</p>
+
+    \[x^{j+1} = x^j - \left(Dg(x^j)\right)^{-1} g(x^j), \qquad (8)\]
+
+    <p>ou \(x^{j+1}\) est la valeur du vecteur \(x\) a l'iteration \(j + 1\), \(x^j\) est la valeur du vecteur \(x\) a l'iteration \(j\), \(g(x^j)\) est la valeur de \(g(x)\) a l'iteration \(j\) et \(Dg(x^j)\) est la matrice Jacobienne evaluee en \(x^j\) (equation (9)) :</p>
+
+    \[Dg(x^j) = \begin{pmatrix} \dfrac{\partial g_1}{\partial x_1} & \cdots & \dfrac{\partial g_1}{\partial x_n} \\ \vdots & & \vdots \\ \dfrac{\partial g_n}{\partial x_1} & \cdots & \dfrac{\partial g_n}{\partial x_n} \end{pmatrix} \qquad (9)\]
+
+    <p>La formule de recurrence s'accompagne du choix d'une valeur initiale, notee \(x^0\), et d'un critere d'arret, par exemple \(\|x^{j+1} - x^j\| \leq \varepsilon\).</p>
+
+    <section class="question" id="Q35">
+      <h4>Q35.</h4>
+      <p>Transformer les expressions obtenues aux questions Q32 et Q34 pour les mettre sous la forme \(g_1(X_{R_{i+1}}, T_{i+1}) = 0\) et \(g_2(X_{R_{i+1}}, T_{i+1}) = 0\).</p>
+    </section>
+
+    <section class="question" id="Q36">
+      <h4>Q36.</h4>
+      <p>Donner les expressions de \(\frac{\partial g_1}{\partial X_{R_{i+1}}}\), \(\frac{\partial g_1}{\partial T_{i+1}}\), \(\frac{\partial g_2}{\partial X_{R_{i+1}}}\) et \(\frac{\partial g_2}{\partial T_{i+1}}\) permettant de construire la matrice Jacobienne \(Dg(X_{R_{i+1}}, T_{i+1})\).</p>
+    </section>
+
+    <section class="question" id="Q37">
+      <h4>Q37.</h4>
+      <p>Ecrire une fonction <code>mat_Dg(x)</code> qui a pour argument d'entree un vecteur \(x\) contenant les valeurs de \(X_{R_{i+1}}\) et \(T_{i+1}\) a l'iteration \(j\) et qui retourne la matrice Jacobienne \(Dg(x^j)\). On supposera que les parametres suivants ont ete au prealable declares comme variables globales : \(\Delta t = 0{,}01\) s, \(k_0 = 5{,}0\) s\(^{-1}\), \(E_a = 20\,000\) J.mol\(^{-1}\), \(J = 100{,}0\) K, \(\tau_c = 75\) s et \(R = 8{,}314\) J.K\(^{-1}\).mol\(^{-1}\).</p>
+    </section>
+
+    <section class="question" id="Q38">
+      <h4>Q38.</h4>
+      <p>Ecrire le code permettant de calculer les valeurs du vecteur \(x\) a l'iteration \(j + 1\) a l'aide de l'equation (8) lors d'une boucle de l'algorithme de Newton-Raphson. On notera <code>x_old</code> la valeur de \(x\) a l'iteration \(j\) et <code>x_new</code> la valeur de \(x\) a l'iteration \(j + 1\). De meme, on notera <code>x_euleri</code> et <code>T_euleri</code> les vecteurs contenant les valeurs de \(X_R\) et \(T\) a l'iteration \(i\) de la methode d'Euler implicite. Pour l'inversion de matrice, on utilisera la fonction <code>inv_mat(N)</code> ecrite a la question Q25.</p>
+    </section>
+
+    <section class="question" id="Q39">
+      <h4>Q39.</h4>
+      <p>Pour obtenir la valeur de <code>x_new</code> par la methode de Newton-Raphson, on souhaite creer une boucle iterative avec condition. La condition d'arret porte sur la valeur absolue de la difference des temperatures \(T_{i+1}^{j+1}\) et \(T_{i+1}^{j}\) que l'on souhaite inferieure a \(10^{-3}\) K. Pour les valeurs initiales de \(X_{R_{i+1}}^0\) et \(T_{i+1}^0\) on prendra respectivement \(0{,}5\) et \(T_p + J/2\). Ecrire le code correspondant. Il est inutile de recopier l'integralite du code ecrit a la question precedente : on indiquera neanmoins sa place dans le code de cette question.</p>
+    </section>
+
+    <p>Maintenant que le code permettant de trouver les valeurs de \(X_{R_{i+1}}\) et \(T_{i+1}\) par la methode de Newton-Raphson lors d'une iteration de la methode d'Euler implicite a ete etabli, on souhaite calculer les valeurs pour l'ensemble des iterations de la methode d'Euler implicite. On rappelle que \(X_R(t = 0) = 0\) et \(T(t = 0) = T_p = 320{,}0\) K. En plus de noter <code>x_euleri</code> et <code>T_euleri</code> les vecteurs contenant les valeurs de \(X_R\) et \(T\) pour chaque iteration \(i\) de la methode d'Euler implicite, on notera <code>t_euleri</code> le vecteur contenant les valeurs de \(t_i\) a chaque iteration. L'integration sera realisee sur l'intervalle \([t_0, t_f]\) avec \(t_0 = 0\) s et \(t_f = 1\,000\) s. Le pas de temps \(\Delta t\) est de 0,01 s.</p>
+
+    <section class="question" id="Q40">
+      <h4>Q40.</h4>
+      <p>Donner le code permettant de calculer le nombre \(m\) d'intervalles \(\Delta t\) compris dans l'intervalle \([t_0, t_f]\) (\(m\) est un entier).</p>
+    </section>
+
+    <section class="question" id="Q41">
+      <h4>Q41.</h4>
+      <p>Ecrire le code permettant de calculer les valeurs des elements des vecteurs <code>x_euleri</code>, <code>T_euleri</code> et <code>t_euleri</code> a chaque iteration de la methode d'Euler implicite.</p>
+    </section>
+
+    <section class="question" id="Q42">
+      <h4>Q42.</h4>
+      <p>Donner le code permettant de tracer les graphiques de la <strong>figure 5</strong> montrant l'evolution de la conversion et de la temperature en fonction du temps que l'on obtiendrait en realisant la resolution numerique du systeme d'equations differentielles (simulation realisee avec : \(k_0 = 5{,}0\) s\(^{-1}\), \(E_a = 20\,000\) J.mol\(^{-1}\), \(J = 100{,}0\) K, \(\tau_c = 75\) s.).</p>
+    </section>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 5</div>
+      <p>Temperature et conversion calculees a partir du modele constitue du systeme d'equations differentielles determinees dans la <strong>Partie I</strong>.</p>
+      <p>Graphique du haut : Evolution de la temperature en fonction du temps. La temperature (K) en ordonnee (de 320 a 356) et le temps (s) en abscisse (de 0 a 1000). La courbe monte rapidement jusqu'a un pic vers 355 K aux alentours de 200 s, puis redescend progressivement vers environ 322 K.</p>
+      <p>Graphique du bas : Evolution de \(X_R\) en fonction du temps. \(X_R\) en ordonnee (de 0 a 1,0) et le temps (s) en abscisse (de 0 a 1000). La courbe croit de 0 avec une forme sigmoide, puis atteint un plateau proche de 0,9 vers 600 s.</p>
+    </div>
+
+    <p style="text-align: center; font-size: 1.5em; font-weight: bold; margin-top: 2em;">FIN</p>
+  </article>
+
+  <article class="annale-exercice" id="annexe">
+    <h2>Annexe : Fonctions de Python</h2>
+
+    <h3>1. Bibliotheque numpy de Python</h3>
+
+    <p>Dans les exemples ci-dessous, la bibliotheque numpy a prealablement ete importee a l'aide de la commande : <code>import numpy as np</code></p>
+
+    <p>On peut alors utiliser les fonctions de la bibliotheque, dont voici quelques exemples :</p>
+
+    <h4>np.array(liste)</h4>
+    <p><em>Description :</em> fonction permettant de creer une matrice (de type tableau) a partir d'une liste.<br>
+    <em>Argument d'entree :</em> une liste definissant un tableau a 1 dimension (vecteur) ou 2 dimensions (matrice).<br>
+    <em>Argument de sortie :</em> un tableau (matrice).</p>
+    <p>Exemples :</p>
+    <pre>np.array([4,3,2])
+  => [4 3 2]
+
+np.array([[5],[7],[1]])
+  => [[5]
+      [7]
+      [1]]
+
+np.array([[3,4,10],[1,8,7]])
+  => [[3 4 10]
+      [1 8 7]]</pre>
+
+    <h4>A(i,j)</h4>
+    <p><em>Description :</em> fonction qui retourne l'element (\(i + 1, j + 1\)) de la matrice \(A\). Pour acceder a l'integralite de la ligne \(i+1\), on ecrit \(A[i,:]\). De meme, pour obtenir toute la colonne \(j+1\) de la matrice \(A\), on utilise la syntaxe \(A[:,j]\).<br>
+    <em>Argument d'entree :</em> une liste contenant les coordonnees de l'element dans le tableau.<br>
+    <em>Argument de sortie :</em> l'element (\(i + 1, j + 1\)) de la matrice \(A\).</p>
+    <p><strong>ATTENTION :</strong> en langage Python, les lignes d'un tableau \(A\) de dimension \(n \times m\) sont numerotees de 0 a \(n - 1\) et les colonnes sont numerotees de 0 a \(m - 1\)</p>
+    <p>Exemple :</p>
+    <pre>A=np.array([[3,4,10],[1,8,7]])
+
+A[0,2]
+  => 10
+
+A[1,:]
+  => [1 8 7]
+
+A[:,2]
+  => [10 7]</pre>
+
+    <h4>np.zeros((n,m))</h4>
+    <p><em>Description :</em> fonction creant une matrice (tableau) de dimensions \(n \times m\) dont tous les elements sont nuls.<br>
+    <em>Arguments d'entree :</em> un tuple de deux entiers correspondant aux dimensions de la matrice a creer.<br>
+    <em>Argument de sortie :</em> un tableau (matrice) d'elements nuls.</p>
+    <p>Exemple :</p>
+    <pre>np.zeros((3,4))
+  => [[0 0 0 0]
+      [0 0 0 0]
+      [0 0 0 0]]</pre>
+
+    <h4>np.linspace(Min,Max,nbElements)</h4>
+    <p><em>Description :</em> fonction creant un vecteur (tableau) de <em>nbElements</em> nombres espaces regulierement entre <em>Min</em> et <em>Max</em>. Le 1<sup>er</sup> element est egal a <em>Min</em>, le dernier est egal a <em>Max</em> et les elements sont espaces de (<em>Max</em> - <em>Min</em>)/(<em>nbElements</em> - 1).<br>
+    <em>Arguments d'entree :</em> un tuple de 3 entiers.<br>
+    <em>Argument de sortie :</em> un tableau (vecteur).</p>
+    <p>Exemple :</p>
+    <pre>np.linspace(3,25,5)
+  => [3 8.5 14 19.5 25]</pre>
+
+    <h4>np.loadtxt('nom_fichier',delimiter='string',usecols=[n])</h4>
+    <p><em>Description :</em> fonction permettant de lire les donnees sous forme de matrice dans un fichier texte et de les stocker sous forme de vecteurs.<br>
+    <em>Arguments d'entree :</em> le nom du fichier qui contient les donnees a charger, le type de caractere utilise dans ce fichier pour separer les donnees (par exemple un espace ou une virgule) et le numero de la colonne a charger (ATTENTION, la premiere colonne porte le numero 0).<br>
+    <em>Argument de sortie :</em> un tableau.</p>
+    <p>Exemple :</p>
+    <pre>data=np.loadtxt('fichier.txt',delimiter=' ',usecols=[0])
+  #dans cet exemple data est un vecteur qui correspond a la premiere #colonne
+  de la matrice contenue dans le fichier 'fichier.txt'.</pre>
+
+    <h3>2. Bibliotheque matplotlib.pyplot de Python</h3>
+
+    <p>Cette bibliotheque permet de tracer des graphiques. Dans les exemples ci-dessous, la bibliotheque matplotlib.pyplot a prealablement ete importee a l'aide de la commande : <code>import matplotlib.pyplot as plt</code></p>
+
+    <p>On peut alors utiliser les fonctions de la bibliotheque, dont voici quelques exemples :</p>
+
+    <h4>plt.plot(x,y)</h4>
+    <p><em>Description :</em> fonction permettant de tracer un graphique de \(n\) points dont les abscisses sont contenues dans le vecteur \(x\) et les ordonnees dans le vecteur \(y\). Cette fonction doit etre suivie de la fonction <code>plt.show()</code> pour que le graphique soit affiche.<br>
+    <em>Arguments d'entree :</em> un vecteur d'abscisses \(x\) (tableau de dimension \(n\)) et un vecteur d'ordonnees \(y\) (tableau de dimension \(n\)).<br>
+    <em>Argument de sortie :</em> un graphique.</p>
+    <p>Exemple :</p>
+    <pre>x= np.linspace(3,25,5)
+y=sin(x)
+plt.plot(x,y)
+plt.title('titre_graphique')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()</pre>
+
+    <h4>plt.title('titre')</h4>
+    <p><em>Description :</em> fonction permettant d'afficher le titre d'un graphique.<br>
+    <em>Argument d'entree :</em> une chaine de caracteres.</p>
+
+    <h4>plt.xlabel('nom')</h4>
+    <p><em>Description :</em> fonction permettant d'afficher le contenu de nom en abscisse d'un graphique.<br>
+    <em>Argument d'entree :</em> une chaine de caracteres.</p>
+
+    <h4>plt.ylabel('nom')</h4>
+    <p><em>Description :</em> fonction permettant d'afficher le contenu de nom en ordonnee d'un graphique.<br>
+    <em>Argument d'entree :</em> une chaine de caracteres.</p>
+
+    <h4>plt.show()</h4>
+    <p><em>Description :</em> fonction realisant l'affichage d'un graphe prealablement cree par la commande <code>plt.plot(x,y)</code>. Elle doit etre appelee apres la fonction plt.plot et apres les fonctions plt.xlabel et plt.ylabel.</p>
+
+    <h3>3. Fonction intrinseque de Python</h3>
+
+    <h4>sum(x)</h4>
+    <p><em>Description :</em> fonction permettant de faire la somme des elements d'un vecteur ou tableau.<br>
+    <em>Arguments d'entree :</em> un vecteur ou un tableau de reel, entier ou complexe.<br>
+    <em>Argument de sortie :</em> un scalaire \(y\) qui est la somme des elements de \(x\).</p>
+    <p>Exemple :</p>
+    <pre>y= sum(x)
+  //y retourne la somme des elements de x.</pre>
+  </article>
+</main>
+</body>
+</html>

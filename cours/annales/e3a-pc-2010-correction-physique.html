@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correction E3A-Polytech PC 2010 — Physique | bibmaths</title>
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+<style>
+.corr-exercice{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:2rem;margin-bottom:2.5rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.corr-exercice__header{display:flex;align-items:center;gap:1rem;margin-bottom:.5rem}
+.corr-exercice__number{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#E91E63;color:#fff;border-radius:50%;font-weight:700;font-size:1.25rem;flex-shrink:0}
+.corr-exercice__title-group{flex:1}
+.corr-exercice__title{margin:0;font-size:1.4rem;color:#1f2937}
+.corr-exercice__subtitle{font-size:.9rem;color:#6b7280}
+.corr-exercice__difficulty{padding:.3rem .8rem;border-radius:999px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.corr-exercice__difficulty--standard{background:#d1fae5;color:#065f46}
+.corr-exercice__difficulty--medium{background:#fed7aa;color:#9a3412}
+.corr-exercice__difficulty--hard{background:#fecaca;color:#991b1b}
+.corr-exercice__rule{border:none;border-top:2px solid #f3f4f6;margin:1rem 0 1.5rem}
+.corr-exercice__enonce{background:#f9fafb;border-left:3px solid #9ca3af;padding:1rem 1.25rem;border-radius:6px;margin-bottom:1.5rem;font-size:.95rem;color:#4b5563}
+.corr-exercice__enonce-label{display:block;font-weight:700;color:#374151;text-transform:uppercase;font-size:.75rem;letter-spacing:.08em;margin-bottom:.3rem}
+.corr-question{border-left:4px solid #d1d5db;padding:1rem 1.25rem;margin:1.5rem 0;border-radius:0 8px 8px 0;background:#fafafa}
+.corr-question--easy{border-left-color:#10b981}
+.corr-question--medium{border-left-color:#f59e0b}
+.corr-question--hard{border-left-color:#ef4444}
+.corr-question__num{display:inline-block;background:#374151;color:#fff;padding:.2rem .7rem;border-radius:4px;font-weight:600;font-size:.85rem;margin-bottom:.5rem}
+.corr-question__statement{font-style:italic;color:#4b5563;margin:.4rem 0 1rem;padding:.6rem .8rem;background:#fff;border-radius:4px;border:1px dashed #d1d5db}
+.corr-box{margin:1rem 0;padding:1rem 1.2rem;border-radius:8px;border-left:4px solid}
+.corr-box__title{font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem}
+.corr-box--rappel{background:#eff6ff;border-left-color:#3b82f6}
+.corr-box--rappel .corr-box__title{color:#1e40af}
+.corr-box--why{background:#fff7ed;border-left-color:#f97316}
+.corr-box--why .corr-box__title{color:#9a3412}
+.corr-box--result{background:#fefce8;border-left-color:#eab308}
+.corr-box--result .corr-box__title{color:#854d0e}
+.corr-box--piege{background:#fef2f2;border-left-color:#ef4444}
+.corr-box--piege .corr-box__title{color:#991b1b}
+.corr-box--method{background:#f0fdf4;border-left-color:#22c55e}
+.corr-box--method .corr-box__title{color:#166534}
+.corr-toggle{margin:1rem 0;border:1px solid #e5e7eb;border-radius:6px;padding:.5rem 1rem;background:#fafafa}
+.corr-toggle summary{cursor:pointer;font-weight:600;color:#4b5563}
+.corr-toggle__content{padding-top:.8rem}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="../../index.html" class="nav__logo">bibmaths</a>
+  <a href="../../physique/index.html" class="nav__link">Physique</a>
+  <a href="../index.html" class="nav__link">Annales</a>
+</nav>
+
+<main class="course">
+  <header class="course__header">
+    <h1>Correction E3A-Polytech PC 2010 — Physique</h1>
+    <p class="course__subtitle">Injection de polymère — Thermique — Rhéométrie de Couette</p>
+  </header>
+
+  <div class="corr-exercice__enonce" style="margin-bottom:2rem">
+    <span class="corr-exercice__enonce-label">Fil conducteur du sujet</span>
+    Le sujet suit la vie d'un polymère fondu du début à la fin du moulage. <strong>Partie 1</strong> : on étudie l'écoulement du polymère entre deux plaques (Poiseuille plan) — comment il remplit le moule. <strong>Partie 2</strong> : on étudie la thermique — la viscosité échauffe le fluide, il faut refroidir. <strong>Partie 3</strong> : on mesure la viscosité avec un viscosimètre de Couette (deux cylindres concentriques). Les trois parties sont largement indépendantes.
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- EXERCICE 1 -->
+  <!-- ============================================================ -->
+  <div class="corr-exercice" id="exo1">
+    <div class="corr-exercice__header">
+      <span class="corr-exercice__number">1</span>
+      <div class="corr-exercice__title-group">
+        <h2 class="corr-exercice__title">Première partie — Injection de polymère fondu</h2>
+        <span class="corr-exercice__subtitle">Écoulement de Poiseuille plan — 16 questions</span>
+      </div>
+      <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermédiaire</span>
+    </div>
+    <hr class="corr-exercice__rule">
+    <div class="corr-exercice__enonce">
+      <span class="corr-exercice__enonce-label">Énoncé</span>
+      Un polymère fondu (polypropylène chargé PPc) est injecté dans un moule parallélépipédique \(L\times w\times e\) sous une surpression \(\Delta P\). Il s'écoule en régime permanent entre deux plaques parallèles \(y=\pm e/2\). C'est le cas classique de l'<strong>écoulement de Poiseuille plan</strong>.
+    </div>
+
+    <!-- A1a -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question A1°a</span>
+      <p class="corr-question__statement">Déterminer la répartition du champ de vitesse entre les plans d'équation \(y=\pm e/2\), en justifiant que la vitesse peut s'écrire : \(\vec V(M,t)=V(y)\vec e_x\).</p>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ça ?</div>
+        Avant tout calcul, il faut <em>justifier</em> la forme du champ de vitesse. Les concepteurs aiment qu'on explique d'où viennent les simplifications — sinon la suite des calculs s'effondre.
+      </div>
+
+      <p><strong>Étape 1 — Direction de \(\vec V\).</strong> L'écoulement se fait selon \(Ox\) (le polymère entre en \(x=0\) et sort en \(x=L\)). Donc \(\vec V = V\,\vec e_x\) : pas de composante selon \(y\) ni \(z\).</p>
+
+      <p><strong>Étape 2 — V ne dépend pas de x.</strong> Le fluide est incompressible, donc \(\mathrm{div}\,\vec V = 0\), ce qui donne \(\partial V/\partial x = 0\). Autrement dit, V ne change pas quand on avance dans le moule.</p>
+
+      <p><strong>Étape 3 — V ne dépend pas de z.</strong> Le moule est très large selon \(z\) (\(w=60\) cm) comparé à son épaisseur (\(e=12\) mm). On considère qu'on est loin des bords, donc par invariance par translation selon \(z\) : \(\partial V/\partial z = 0\).</p>
+
+      <p><strong>Étape 4 — Régime permanent.</strong> \(\partial V/\partial t = 0\).</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        Les seules variations possibles sont selon \(y\) : \[\boxed{\vec V(M,t) = V(y)\,\vec e_x}\]
+      </div>
+    </div>
+
+    <!-- A1b -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question A1°b</span>
+      <p class="corr-question__statement">Comment qualifier cet écoulement ?</p>
+
+      <p>C'est un écoulement :</p>
+      <ul>
+        <li><strong>laminaire</strong> (pas de turbulence, les lames fluides glissent les unes sur les autres sans se mélanger) ;</li>
+        <li><strong>permanent</strong> (indépendant du temps) ;</li>
+        <li><strong>unidirectionnel</strong> (selon \(\vec e_x\) uniquement) ;</li>
+        <li><strong>plan</strong> / parallèle (les vitesses en différents \(y\) sont toutes colinéaires à \(\vec e_x\)) ;</li>
+        <li><strong>incompressible</strong> (hypothèse de l'énoncé).</li>
+      </ul>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        Écoulement <strong>laminaire, permanent, unidirectionnel, incompressible</strong> — c'est un <strong>écoulement de Poiseuille plan</strong>.
+      </div>
+    </div>
+
+    <!-- A2 -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question A2</span>
+      <p class="corr-question__statement">Que représente \(\eta\) ? Préciser ses dimensions et son unité.</p>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours</div>
+        \(\eta\) est la <strong>viscosité dynamique</strong> du fluide. Elle quantifie la force de frottement interne entre deux couches de fluide animées de vitesses différentes. Plus \(\eta\) est grand, plus le fluide est « visqueux » : le miel a une grande \(\eta\), l'eau une petite.
+      </div>
+
+      <p><strong>Dimension.</strong> On part de \(F_{vis} = \eta S\,\partial V/\partial y\). En grandeurs : \([F]=\mathrm{MLT^{-2}}\), \([S]=\mathrm{L^2}\), \([\partial V/\partial y]=\mathrm{T^{-1}}\). D'où :</p>
+      \[[\eta] = \frac{\mathrm{MLT^{-2}}}{\mathrm{L^2}\cdot \mathrm{T^{-1}}} = \mathrm{M\,L^{-1}\,T^{-1}}\]
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \(\eta\) = viscosité dynamique, dimension \(\mathrm{M\,L^{-1}\,T^{-1}}\), unité SI : \(\boxed{\text{Pa}\cdot\text{s} = \text{kg}\cdot\text{m}^{-1}\cdot\text{s}^{-1}}\).
+      </div>
+    </div>
+
+    <!-- A3 -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question A3</span>
+      <p class="corr-question__statement">Rappeler la définition d'un fluide newtonien ; existe-t-il d'autres types de fluides ? Citer des exemples.</p>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours — Fluide newtonien</div>
+        Un fluide est dit <strong>newtonien</strong> si la contrainte tangentielle visqueuse est <em>proportionnelle</em> au gradient de vitesse : \(\tau = \eta\,\partial V/\partial y\), avec \(\eta\) indépendante de \(\partial V/\partial y\).
+      </div>
+
+      <p><strong>Fluides newtoniens</strong> : eau, air, huiles minérales légères, la plupart des liquides simples.</p>
+
+      <p><strong>Fluides non-newtoniens</strong> (\(\eta\) dépend du taux de cisaillement ou du temps) :</p>
+      <ul>
+        <li><strong>Rhéofluidifiants</strong> : \(\eta\) diminue quand on cisaille davantage (peintures, sang, polymères fondus en pratique, ketchup).</li>
+        <li><strong>Rhéoépaississants</strong> : \(\eta\) augmente avec le cisaillement (mélange maïzena + eau).</li>
+        <li><strong>À seuil</strong> (Bingham) : ne s'écoulent qu'au-delà d'une contrainte seuil (dentifrice, boue).</li>
+        <li><strong>Viscoélastiques</strong> : mi-solide mi-liquide (silly putty, certains polymères).</li>
+      </ul>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Piège classique</div>
+        En pratique, un polymère fondu n'est <em>pas</em> strictement newtonien ! L'énoncé fait cette hypothèse pour simplifier. Dans un vrai rapport de jury, ne pas confondre l'hypothèse de travail et la réalité.
+      </div>
+    </div>
+
+    <!-- A4a -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question A4°a</span>
+      <p class="corr-question__statement">Exprimer l'intensité de la force de pesanteur \(dF_g\) à laquelle est soumis un élément de volume \(dxdydz\) du fluide ; écrire l'intensité de la force de viscosité \(dF_{vis}\) relative à l'élément de surface \(dxdz\). Évaluer le rapport \(dF_g/dF_{vis}\) en prenant \(g=9{,}81\) m·s⁻² et une vitesse de l'ordre du m·s⁻¹ ; conclure.</p>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ça ?</div>
+        Dans Navier-Stokes, il y a plein de termes (pesanteur, viscosité, pression, inertie). Avant de résoudre, on regarde <em>lesquels dominent</em>. Pour un liquide très visqueux comme le polypropylène fondu, la pesanteur est ridiculement petite : on va le vérifier par un ordre de grandeur.
+      </div>
+
+      <p><strong>Force de pesanteur.</strong> Simplement le poids de l'élément de volume :
+      \[dF_g = \mu\,g\,dx\,dy\,dz\]</p>
+
+      <p><strong>Force de viscosité.</strong> Sur la face \(dx\,dz\), la contrainte tangentielle est \(\eta\,\partial V/\partial y\) ; en ordre de grandeur \(\partial V/\partial y \sim V/(e/2) \sim 2V/e\), mais évaluons simplement avec \(V/e\) :
+      \[dF_{vis} = \eta\,\frac{\partial V}{\partial y}\,dx\,dz \sim \eta\,\frac{V}{e}\,dx\,dz\]</p>
+
+      <p><strong>Le rapport.</strong>
+      \[\frac{dF_g}{dF_{vis}} \sim \frac{\mu\,g\,dy}{\eta\,V/e}\]
+      En prenant \(dy \sim e\) (on compare sur l'épaisseur totale) :
+      \[\frac{dF_g}{dF_{vis}} \sim \frac{\mu\,g\,e^2}{\eta\,V}\]
+      Application numérique : \(\mu=910\), \(g=9{,}81\), \(e^2=1{,}44\cdot 10^{-4}\), \(\eta=500\), \(V=1\) :
+      \[\frac{dF_g}{dF_{vis}} \sim \frac{910\times 9{,}81\times 1{,}44\cdot 10^{-4}}{500} \approx 2{,}6\cdot 10^{-3}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \(\dfrac{dF_g}{dF_{vis}} \approx 3\cdot 10^{-3} \ll 1\) : la pesanteur est <strong>négligeable</strong> devant la viscosité.
+      </div>
+    </div>
+
+    <!-- A4b -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question A4°b</span>
+      <p class="corr-question__statement">Exprimer l'intensité de la force de pression \(dF_p\) agissant sur l'élément de fluide d'épaisseur dx et de section dydz. Évaluer le rapport \(dF_p/dF_{vis}\) et conclure.</p>
+
+      <p><strong>Force de pression (résultante).</strong> Sur les deux faces \(dy\,dz\) en \(x\) et \(x+dx\) :
+      \[dF_p = [P(x) - P(x+dx)]\,dy\,dz = -\frac{\partial P}{\partial x}\,dx\,dy\,dz\]
+      En ordre de grandeur, \(\partial P/\partial x \sim \Delta P/L\) :
+      \[dF_p \sim \frac{\Delta P}{L}\,dx\,dy\,dz\]</p>
+
+      <p><strong>Le rapport.</strong> Avec \(dF_{vis} \sim \eta\,(V/e)\,dx\,dz\) :
+      \[\frac{dF_p}{dF_{vis}} \sim \frac{(\Delta P/L)\,dy}{\eta\,V/e} \sim \frac{\Delta P\,e^2}{\eta\,V\,L}\]
+      A.N. : \(\Delta P=2\cdot 10^7\), \(e^2=1{,}44\cdot 10^{-4}\), \(\eta=500\), \(V=1\), \(L=1{,}2\) :
+      \[\frac{dF_p}{dF_{vis}} \sim \frac{2\cdot 10^7 \times 1{,}44\cdot 10^{-4}}{500\times 1\times 1{,}2} \approx 4{,}8\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \(\dfrac{dF_p}{dF_{vis}} \sim 5\) (ordre de grandeur 1) : les forces de pression et de viscosité sont <strong>du même ordre</strong> — ce sont elles qui pilotent l'écoulement, la pesanteur peut être ignorée.
+      </div>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">Méthode à retenir</div>
+        Pour un écoulement de Poiseuille (fluide très visqueux, canal étroit), <strong>les termes dominants de Navier-Stokes sont pression et viscosité</strong>. Inertie et pesanteur sont négligeables. Cette analyse par ordre de grandeur est systématique au début de ce type de problème.
+      </div>
+    </div>
+
+    <!-- B1a -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question B1°a</span>
+      <p class="corr-question__statement">Exprimer, en considérant l'élément de fluide de volume \(d^3\tau = dx\,dy\,dz\) (figure 1b), la force volumique de viscosité \(\vec f_{vol,\,vis}\).</p>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ça ?</div>
+        On veut retrouver le terme \(\eta\Delta\vec V\) de Navier-Stokes « à la main », en faisant un bilan de forces sur un petit parallélépipède. C'est l'exercice classique : sur la face du haut, la couche au-dessus tire ; sur la face du bas, la couche en dessous freine ; la différence donne une force nette proportionnelle à la dérivée seconde.
+      </div>
+
+      <p><strong>Force visqueuse sur la face du haut</strong> (en \(y+dy/2\), surface \(dx\,dz\)) : la couche supérieure exerce sur notre élément
+      \[dF_+ = \eta\,\frac{\partial V}{\partial y}\Big|_{y+dy/2}\,dx\,dz\]
+      <strong>Force visqueuse sur la face du bas</strong> (en \(y-dy/2\)) : la couche inférieure tire dans l'autre sens :
+      \[dF_- = -\eta\,\frac{\partial V}{\partial y}\Big|_{y-dy/2}\,dx\,dz\]</p>
+
+      <p><strong>Résultante.</strong> En faisant la différence au premier ordre en \(dy\) :
+      \[dF_{vis} = \eta\left[\frac{\partial V}{\partial y}\Big|_{y+dy/2} - \frac{\partial V}{\partial y}\Big|_{y-dy/2}\right]dx\,dz = \eta\,\frac{\partial^2 V}{\partial y^2}\,dy\,dx\,dz\]</p>
+
+      <p>Divisons par le volume \(dx\,dy\,dz\) :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{\vec f_{vol,\,vis} = \eta\,\frac{\partial^2 V}{\partial y^2}\,\vec e_x}\]
+        C'est bien le terme \(\eta\Delta\vec V\) de Navier-Stokes, avec ici \(\Delta V = \partial^2 V/\partial y^2\) puisque V ne dépend que de y.
+      </div>
+    </div>
+
+    <!-- B1b -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question B1°b</span>
+      <p class="corr-question__statement">Écrire la relation de Navier-Stokes, sachant que l'écoulement est stationnaire et unidirectionnel selon Ox. En déduire l'équation différentielle vérifiée par la pression P puis montrer que la quantité \(dP/dx\) est une constante K à expliciter en fonction de \(\Delta P\) et L. Justifier physiquement le signe de K.</p>
+
+      <p><strong>Simplifications de Navier-Stokes.</strong></p>
+      <ul>
+        <li>Permanent : \(\partial\vec V/\partial t = 0\).</li>
+        <li>Terme convectif : \((\vec V\cdot \overrightarrow{\mathrm{grad}})\vec V = V(y)\partial_x(V(y)\vec e_x) = \vec 0\) (car V ne dépend pas de x).</li>
+        <li>Pesanteur négligée.</li>
+      </ul>
+      <p>Il reste :
+      \[\vec 0 = -\overrightarrow{\mathrm{grad}}\,P + \eta\,\Delta\vec V\]</p>
+
+      <p><strong>Projection selon y et z.</strong> Comme \(\Delta\vec V = (\partial^2 V/\partial y^2)\vec e_x\), ses composantes selon y et z sont nulles. Donc :
+      \[\frac{\partial P}{\partial y} = 0 \quad;\quad \frac{\partial P}{\partial z} = 0\]
+      P ne dépend que de x.</p>
+
+      <p><strong>Projection selon x.</strong>
+      \[0 = -\frac{dP}{dx} + \eta\,\frac{\partial^2 V}{\partial y^2} \quad \Longrightarrow \quad \frac{dP}{dx} = \eta\,\frac{\partial^2 V}{\partial y^2}\]</p>
+
+      <p><strong>Pourquoi K est constante ?</strong> Le membre de gauche \(dP/dx\) ne dépend que de x. Le membre de droite \(\eta\,\partial^2 V/\partial y^2\) ne dépend que de y. Deux fonctions de variables indépendantes qui sont égales sont nécessairement <strong>constantes</strong>. Appelons-la K.</p>
+
+      <p><strong>Valeur de K.</strong> En intégrant \(dP/dx = K\) entre \(x=0\) et \(x=L\) :
+      \[P(L) - P(0) = K\,L\]
+      Or \(P(0) = P_0 + \Delta P\) et \(P(L) = P_0\), donc \(P(L)-P(0) = -\Delta P\) :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{K = \frac{dP}{dx} = -\frac{\Delta P}{L} < 0}\]
+      </div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi K est négatif ?</div>
+        Le fluide va des hautes vers les basses pressions (c'est l'intuition « l'eau descend la pente de pression »). Ici, la pression diminue de \(P_0+\Delta P\) à \(P_0\) quand x augmente, donc le gradient est négatif. Physiquement, K < 0 correspond à un écoulement dans le sens des x croissants.
+      </div>
+    </div>
+
+    <!-- B2a -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question B2°a</span>
+      <p class="corr-question__statement">Préciser les conditions aux limites imposées par le profil en \(y=\pm e/2\).</p>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel de cours — Condition de non-glissement</div>
+        Pour un fluide visqueux en contact avec une paroi solide, la vitesse du fluide à la paroi est <strong>égale à celle de la paroi</strong> (condition d'adhérence). Les parois sont ici immobiles.
+      </div>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{V(y=+e/2) = 0 \quad;\quad V(y=-e/2) = 0}\]
+      </div>
+    </div>
+
+    <!-- B2b -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question B2°b</span>
+      <p class="corr-question__statement">Déterminer l'expression de la vitesse \(V(y)\) en fonction de y, K, e et la viscosité dynamique. Exprimer la vitesse maximale \(V_{max}\) du fluide et déduire \(V(y)\) en fonction de \(V_{max}\), e et la quantité adimensionnée \((2y/e)\).</p>
+
+      <p><strong>Intégration.</strong> De \(\eta\,V''(y) = K\), on tire successivement :
+      \[V'(y) = \frac{K}{\eta}\,y + C_1\]
+      \[V(y) = \frac{K}{2\eta}\,y^2 + C_1 y + C_2\]</p>
+
+      <p><strong>Symétrie.</strong> Le problème est symétrique par rapport au plan \(y=0\), donc V doit être une fonction paire : \(C_1 = 0\). (Formellement, on le retrouve via les conditions aux limites.)</p>
+
+      <p><strong>Conditions aux limites.</strong> \(V(\pm e/2) = 0\) donne :
+      \[\frac{K}{2\eta}\cdot\frac{e^2}{4} + C_2 = 0 \;\Longrightarrow\; C_2 = -\frac{K e^2}{8\eta}\]</p>
+
+      <p>D'où :
+      \[V(y) = \frac{K}{2\eta}\left(y^2 - \frac{e^2}{4}\right) = -\frac{K}{2\eta}\left(\frac{e^2}{4} - y^2\right)\]
+      Comme K est négatif, \(-K>0\) et V(y) > 0. On peut écrire de façon plus propre :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat — Profil parabolique</div>
+        \[\boxed{V(y) = \frac{\Delta P}{2\eta L}\left(\frac{e^2}{4} - y^2\right)}\]
+      </div>
+
+      <p><strong>Vitesse maximale.</strong> Elle est atteinte au milieu, en \(y=0\) :
+      \[V_{max} = V(0) = \frac{\Delta P\,e^2}{8\eta L} = -\frac{K\,e^2}{8\eta}\]</p>
+
+      <p><strong>Forme adimensionnée.</strong> En posant \(u = 2y/e\) :
+      \[V(y) = V_{max}\left(1 - \frac{4y^2}{e^2}\right) = V_{max}\left[1 - \left(\frac{2y}{e}\right)^2\right]\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat — Forme adimensionnée</div>
+        \[\boxed{\frac{V(y)}{V_{max}} = 1 - \left(\frac{2y}{e}\right)^2}\]
+      </div>
+    </div>
+
+    <!-- B2c -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question B2°c</span>
+      <p class="corr-question__statement">Représenter le profil de vitesse \(V(y)/V_{max}\) dans un plan de coupe du moule (figure 1c).</p>
+
+      <p>Le profil est une <strong>parabole</strong> symétrique par rapport à l'axe \(y=0\) :</p>
+      <ul>
+        <li>Valeur maximale \(V/V_{max}=1\) au centre (\(y=0\)).</li>
+        <li>Vitesse nulle aux parois (\(y=\pm e/2\)).</li>
+        <li>Profil concave vers le bas.</li>
+      </ul>
+
+      <p>Schéma (dans le plan (x,y) du moule) :</p>
+      <pre style="background:#f3f4f6;padding:1rem;border-radius:6px;font-family:monospace">
+ y = +e/2  ━━━━━━━━━━━━━━━━━━━━━━  (paroi haute, V = 0)
+             →
+             ──→
+             ────→
+ y =   0    ──────→   (V = V_max)
+             ────→
+             ──→
+             →
+ y = -e/2  ━━━━━━━━━━━━━━━━━━━━━━  (paroi basse, V = 0)
+      </pre>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">À retenir</div>
+        Le <strong>profil parabolique</strong> est la signature du Poiseuille plan : c'est le pendant en géométrie rectangulaire du profil de Poiseuille cylindrique (tuyau rond). À connaître absolument.
+      </div>
+    </div>
+
+    <!-- B3a -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question B3°a</span>
+      <p class="corr-question__statement">Exprimer le débit volumique \(Q_v\) (pour une largeur w du moule dans la direction Oz) en fonction de \(V_{max}\), de w et e ; en déduire la vitesse moyenne \(\overline V\) de l'écoulement.</p>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel — Débit volumique</div>
+        Le débit volumique à travers une section S est \(Q_v = \iint_S \vec V\cdot d\vec S\). Ici la section est le rectangle \(y\in[-e/2,e/2]\), \(z\in[0,w]\), et \(\vec V = V(y)\vec e_x\) avec \(\vec{dS}=dy\,dz\,\vec e_x\).
+      </div>
+
+      <p><strong>Calcul du débit.</strong>
+      \[Q_v = \int_0^w dz\int_{-e/2}^{e/2} V(y)\,dy = w\int_{-e/2}^{e/2} V_{max}\left[1-\left(\frac{2y}{e}\right)^2\right]dy\]
+      Posons \(u = 2y/e\), \(dy = (e/2)du\), \(u\in[-1,1]\) :
+      \[Q_v = w\,V_{max}\,\frac{e}{2}\int_{-1}^{1}(1-u^2)\,du = w\,V_{max}\,\frac{e}{2}\,\Big[u - \frac{u^3}{3}\Big]_{-1}^{1} = w\,V_{max}\,\frac{e}{2}\cdot\frac{4}{3}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{Q_v = \frac{2}{3}\,V_{max}\,w\,e}\]
+        Vitesse moyenne : \(\overline V = Q_v/(w e)\), soit
+        \[\boxed{\overline V = \frac{2}{3}\,V_{max}}\]
+      </div>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">À retenir</div>
+        Pour Poiseuille plan : \(\overline V = \frac{2}{3}V_{max}\). Pour Poiseuille cylindrique (tuyau rond) : \(\overline V = \frac{1}{2}V_{max}\). Ces deux ratios sont à connaître par cœur.
+      </div>
+    </div>
+
+    <!-- B3b -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question B3°b</span>
+      <p class="corr-question__statement">Calculer, à l'aide des données fournies, la vitesse \(V_{max}\), la vitesse moyenne \(\overline V\), le débit \(Q_v\). Définir après évaluation le nombre de Reynolds \(R_e\) et commenter la valeur obtenue.</p>
+
+      <p><strong>Calcul de \(V_{max}\).</strong>
+      \[V_{max} = \frac{\Delta P\,e^2}{8\eta L} = \frac{2\cdot 10^7 \times (12\cdot 10^{-3})^2}{8\times 500 \times 1{,}2}\]
+      Numérateur : \(2\cdot 10^7\times 1{,}44\cdot 10^{-4} = 2880\). Dénominateur : \(4800\).
+      \[V_{max} = 0{,}6\;\text{m/s}\]</p>
+
+      <p><strong>Vitesse moyenne.</strong> \(\overline V = (2/3)\times 0{,}6 = 0{,}4\) m/s.</p>
+
+      <p><strong>Débit.</strong> \(Q_v = \overline V\,w\,e = 0{,}4\times 0{,}60\times 12\cdot 10^{-3} = 2{,}88\cdot 10^{-3}\) m³/s \(\approx\) 2,9 L/s.</p>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel — Nombre de Reynolds</div>
+        \(R_e = \dfrac{\mu\,\overline V\,\ell}{\eta}\), où \(\ell\) est une longueur caractéristique (ici l'épaisseur \(e\)). Il compare les forces d'inertie aux forces de viscosité. \(R_e \ll 1\) : écoulement <em>rampant</em> dominé par la viscosité. \(R_e \gg 2000\) : turbulence.
+      </div>
+
+      <p><strong>Calcul.</strong>
+      \[R_e = \frac{\mu\,\overline V\,e}{\eta} = \frac{910\times 0{,}4\times 12\cdot 10^{-3}}{500} \approx 8{,}7\cdot 10^{-3}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \(V_{max}\approx 0{,}6\) m/s ; \(\overline V\approx 0{,}4\) m/s ; \(Q_v\approx 2{,}9\cdot 10^{-3}\) m³/s ; \(\boxed{R_e\approx 10^{-2} \ll 1}\).
+        <br>L'écoulement est <strong>extrêmement visqueux</strong> (régime rampant), parfaitement laminaire — l'hypothèse de Poiseuille est pleinement validée.
+      </div>
+    </div>
+
+    <!-- B4a -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question B4°a</span>
+      <p class="corr-question__statement">Exprimer le temps de séjour minimum \(t_{min}\). Définir le temps de séjour moyen \(t_{moy}\) en fonction du volume de matière dans le moule et du débit volumique puis l'exprimer en fonction de K, \(\eta\), L et e.</p>
+
+      <p><strong>Temps de séjour minimum.</strong> C'est le temps mis par la particule la plus rapide pour traverser le moule ; or la vitesse maximale est \(V_{max}\) :
+      \[\boxed{t_{min} = \frac{L}{V_{max}} = \frac{8\eta L^2}{\Delta P\,e^2} = -\frac{8\eta L}{K e^2}}\]</p>
+
+      <p><strong>Temps de séjour moyen.</strong> Par définition, c'est le volume du moule divisé par le débit :
+      \[t_{moy} = \frac{V_{moule}}{Q_v} = \frac{L\,w\,e}{(2/3)V_{max}\,w\,e} = \frac{3L}{2V_{max}} = \frac{L}{\overline V}\]
+      En remplaçant \(V_{max} = -K e^2/(8\eta)\) :
+      \[\boxed{t_{moy} = \frac{3L}{2}\cdot\frac{8\eta}{-K e^2} = -\frac{12\eta L}{K e^2} = \frac{12\eta L^2}{\Delta P\,e^2}}\]</p>
+
+      <p>Relation simple : \(t_{moy} = (3/2)\,t_{min}\).</p>
+    </div>
+
+    <!-- B4b -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question B4°b</span>
+      <p class="corr-question__statement">Exprimer le temps de séjour \(t(y)\) pour une tranche de fluide, puis le rapport \(\dfrac{t(y)}{t_{min}}\) en fonction de la quantité adimensionnée \((2y/e)\). Analyser cette expression en traçant schématiquement ce rapport en fonction de la variable \((2y/e)\).</p>
+
+      <p><strong>Temps de séjour à l'altitude y.</strong> La lame à hauteur y a la vitesse V(y), donc met
+      \[t(y) = \frac{L}{V(y)}\]
+      Rapport :
+      \[\frac{t(y)}{t_{min}} = \frac{V_{max}}{V(y)} = \frac{1}{1-(2y/e)^2}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{\frac{t(y)}{t_{min}} = \frac{1}{1-(2y/e)^2}}\]
+      </div>
+
+      <p><strong>Allure.</strong> En posant \(u=2y/e\in[-1,1]\) :</p>
+      <ul>
+        <li>Au centre \(u=0\) : \(t/t_{min} = 1\) (c'est la lame la plus rapide).</li>
+        <li>Près des parois \(u\to\pm 1\) : \(t/t_{min}\to+\infty\).</li>
+      </ul>
+      <p>La courbe est une « cuvette » qui vaut 1 au centre et diverge à chaque paroi :</p>
+      <pre style="background:#f3f4f6;padding:1rem;border-radius:6px;font-family:monospace">
+ t/t_min
+   ∞  │  ╲                     ╱
+      │   ╲                   ╱
+   4  │    ╲_               _╱
+      │      ╲__         __╱
+   2  │         ╲___   ___╱
+   1  │             ‾‾‾
+      └────────────────────────
+      -1           0            +1   u = 2y/e
+      </pre>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Intuition</div>
+        Près des parois, le fluide est quasi immobile (adhérence). Une particule qui y passe met un temps quasi infini. C'est le problème pratique de l'injection : la matière proche des parois reste très longtemps dans le moule, risque de se dégrader thermiquement, et crée des défauts.
+      </div>
+    </div>
+
+    <!-- B4c -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question B4°c</span>
+      <p class="corr-question__statement">Calculer \(t_{min}\) et \(t_{moy}\) à l'aide des données numériques fournies.</p>
+
+      <p>\[t_{min} = \frac{L}{V_{max}} = \frac{1{,}20}{0{,}6} = 2{,}0\;\text{s}\]
+      \[t_{moy} = \frac{L}{\overline V} = \frac{1{,}20}{0{,}4} = 3{,}0\;\text{s}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \(\boxed{t_{min}\approx 2{,}0\;\text{s}\quad;\quad t_{moy}\approx 3{,}0\;\text{s}}\)
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- EXERCICE 2 -->
+  <!-- ============================================================ -->
+  <div class="corr-exercice" id="exo2">
+    <div class="corr-exercice__header">
+      <span class="corr-exercice__number">2</span>
+      <div class="corr-exercice__title-group">
+        <h2 class="corr-exercice__title">Deuxième partie — Thermique de l'injection</h2>
+        <span class="corr-exercice__subtitle">Dissipation visqueuse et équation de la chaleur — 9 questions</span>
+      </div>
+      <span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avancé</span>
+    </div>
+    <hr class="corr-exercice__rule">
+    <div class="corr-exercice__enonce">
+      <span class="corr-exercice__enonce-label">Énoncé</span>
+      La puissance volumique dissipée par viscosité est \(\mathcal P_{vol,vis}=\eta(\partial V/\partial y)^2\). Cette énergie vient chauffer le polymère : c'est un problème classique couplant mécanique des fluides et thermique.
+    </div>
+
+    <!-- C1a -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question C1a</span>
+      <p class="corr-question__statement">En quels endroits du moule cette puissance volumique est-elle maximale ?</p>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ça ?</div>
+        La dissipation est \(\eta(\partial V/\partial y)^2\). Elle est grande là où le cisaillement (gradient de vitesse) est le plus fort — donc là où les couches fluides frottent le plus les unes contre les autres.
+      </div>
+
+      <p>On a \(V(y)=V_{max}[1-(2y/e)^2]\), donc
+      \[\frac{\partial V}{\partial y} = V_{max}\cdot\left(-\frac{8y}{e^2}\right) = -\frac{8 V_{max}\,y}{e^2}\]
+      En valeur absolue, ce terme est maximal en \(y=\pm e/2\) :
+      \[\left|\frac{\partial V}{\partial y}\right|_{max} = \frac{4 V_{max}}{e}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        La dissipation \(\mathcal P_{vol,vis}\) est <strong>maximale aux parois</strong> (\(y=\pm e/2\)) et <strong>nulle au centre</strong> (\(y=0\), là où \(V=V_{max}\) mais \(\partial V/\partial y=0\)).
+      </div>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Piège classique</div>
+        On dit souvent « ça chauffe là où ça va vite ». <strong>Faux !</strong> Ça chauffe là où <em>le cisaillement</em> est fort. Dans un Poiseuille, c'est exactement l'inverse : chaud aux parois (où V=0) et froid au centre (où V est max).
+      </div>
+    </div>
+
+    <!-- C1b -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question C1b</span>
+      <p class="corr-question__statement">En utilisant la répartition de vitesse \(V(y)\) exprimée en fonction de la vitesse moyenne \(\overline V\), exprimer la puissance dissipée par les forces de viscosité vérifie la relation : \(\mathcal P_{vis} = \beta\,\dfrac{\overline V^2}{e}\,wL\) et identifier la constante \(\beta\).</p>
+
+      <p><strong>Puissance totale.</strong> On intègre la puissance volumique sur tout le moule :
+      \[\mathcal P_{vis} = \iiint \eta\left(\frac{\partial V}{\partial y}\right)^2 dV = \eta\,w\,L\int_{-e/2}^{e/2}\left(\frac{\partial V}{\partial y}\right)^2 dy\]</p>
+
+      <p>Avec \(V_{max} = (3/2)\overline V\) :
+      \[\frac{\partial V}{\partial y} = -\frac{8V_{max}\,y}{e^2} = -\frac{12\overline V\,y}{e^2}\]
+      \[\left(\frac{\partial V}{\partial y}\right)^2 = \frac{144\,\overline V^2\,y^2}{e^4}\]</p>
+
+      <p>Intégrale :
+      \[\int_{-e/2}^{e/2}y^2\,dy = 2\cdot\frac{(e/2)^3}{3} = \frac{e^3}{12}\]</p>
+
+      <p>Donc :
+      \[\mathcal P_{vis} = \eta\,wL\cdot\frac{144\,\overline V^2}{e^4}\cdot\frac{e^3}{12} = \eta\,wL\cdot\frac{12\,\overline V^2}{e} = 12\,\eta\,\frac{\overline V^2}{e}\,wL\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{\mathcal P_{vis} = 12\,\eta\,\frac{\overline V^2}{e}\,wL \quad\Longrightarrow\quad \beta = 12\,\eta}\]
+      </div>
+    </div>
+
+    <!-- C1c -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question C1c</span>
+      <p class="corr-question__statement">Analyser l'impact de la puissance déterminée précédemment sur les variations de température du polymère injecté, dans les tous premiers instants où il pénètre dans le moule, en vous appuyant sur chacune des trois affirmations suivantes : (1) la viscosité du polymère est élevée (par rapport à l'eau) ; (2) la viscosité d'un polymère décroît quand la température augmente ; (3) la conductivité thermique d'un polymère est faible.</p>
+
+      <ol>
+        <li><strong>\(\eta\) élevé</strong> (500 Pa·s vs \(10^{-3}\) pour l'eau) : la puissance dissipée \(\mathcal P_{vis}\propto\eta\) est <em>énorme</em> comparée à l'eau. L'échauffement par frottement est donc considérable.</li>
+
+        <li><strong>\(\eta\) décroît avec T</strong> : c'est une <strong>rétroaction négative</strong>. Quand ça chauffe, ça devient plus fluide, donc ça dissipe moins, donc ça chauffe moins. Heureusement pour nous, le système s'auto-régule partiellement.</li>
+
+        <li><strong>\(\lambda\) faible</strong> (0,2 W/m/K vs 0,6 pour l'eau et 50 pour le métal) : la chaleur s'évacue <em>mal</em> par conduction. La puissance dissipée s'accumule localement → la température monte fortement aux parois avant que la diffusion puisse l'évacuer.</li>
+      </ol>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Bilan</div>
+        Dans les premiers instants, on a un <strong>échauffement très important et localisé aux parois</strong>, car la puissance dissipée est grande et n'a pas le temps d'être évacuée (régime quasi-adiabatique local). C'est justement le régime étudié en C1d.
+      </div>
+    </div>
+
+    <!-- C1d -->
+    <div class="corr-question corr-question--hard">
+      <span class="corr-question__num">Question C1d</span>
+      <p class="corr-question__statement">Convertir la puissance volumique maximale \(\left[\mathcal P_{vol,vis}\right]_{max}\), dans les tous premiers instants de l'injection, en élévation de température du polymère (sa viscosité dynamique \(\eta\), sa masse volumique \(\mu\) et sa capacité thermique massique C sont supposées demeurer constantes). En déduire que la variation de température par unité de temps s'écrit : \(\dfrac{dT}{dt} = \psi\,\dfrac{\overline V^2}{e^2}\) et identifier la constante \(\psi\). Calculer cette variation puis analyser le résultat obtenu.</p>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Pourquoi on fait ça ?</div>
+        En adiabatique (pas de perte de chaleur), toute l'énergie dissipée sert à chauffer le fluide : bilan énergétique élémentaire. On va écrire \(\mu C\,dT = \mathcal P_{vol}\,dt\).
+      </div>
+
+      <p><strong>Bilan énergétique local.</strong> Pour un élément de volume, la variation d'enthalpie par unité de temps et de volume \(\mu C\,\partial T/\partial t\) est égale à la puissance volumique dissipée. Dans le pire des cas (aux parois) :
+      \[\mu C\,\frac{dT}{dt} = [\mathcal P_{vol,vis}]_{max}\]</p>
+
+      <p><strong>Valeur max de la puissance volumique.</strong> Aux parois, \((\partial V/\partial y)^2 = (12\overline V/e\cdot 1/2)^2 = (6\overline V/e)^2\) ? Attention, recalculons : \(\partial V/\partial y = -12\overline V\,y/e^2\), évalué en \(y=e/2\) donne \(-6\overline V/e\).
+      \[[\mathcal P_{vol,vis}]_{max} = \eta\left(\frac{6\overline V}{e}\right)^2 = \frac{36\eta\,\overline V^2}{e^2}\]</p>
+
+      <p>D'où :
+      \[\frac{dT}{dt} = \frac{36\eta}{\mu C}\cdot\frac{\overline V^2}{e^2}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{\psi = \frac{36\eta}{\mu C}}\]
+      </div>
+
+      <p><strong>Application numérique.</strong>
+      \[\psi = \frac{36\times 500}{910\times 2340} = \frac{18000}{2{,}13\cdot 10^6} \approx 8{,}45\cdot 10^{-3}\;\text{K·m}^2\text{·s}\]
+      \[\frac{dT}{dt} = 8{,}45\cdot 10^{-3}\cdot\frac{(0{,}4)^2}{(12\cdot 10^{-3})^2} = 8{,}45\cdot 10^{-3}\cdot\frac{0{,}16}{1{,}44\cdot 10^{-4}}\approx 9{,}4\;\text{K/s}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Analyse</div>
+        \(\boxed{dT/dt \approx 9\;\text{K/s}}\) aux parois. C'est <strong>énorme</strong> : en quelques secondes, la température montrerait de plusieurs dizaines de degrés si rien ne l'évacuait. Heureusement, la diffusion thermique prend le relais rapidement (régime stationnaire étudié ensuite).
+      </div>
+    </div>
+
+    <!-- C2a -->
+    <div class="corr-question corr-question--hard">
+      <span class="corr-question__num">Question C2°a</span>
+      <p class="corr-question__statement">Établir l'équation différentielle vérifiée par \(\dfrac{\partial T}{\partial x}\), \(\dfrac{\partial T}{\partial t}\), \(\dfrac{\partial^2 T}{\partial y^2}\) et la vitesse \(V(y)\).</p>
+
+      <p><strong>Partons de l'équation fournie :</strong>
+      \[\mu C\,\frac{DT}{Dt} = \mathrm{div}(\lambda\,\overrightarrow{\mathrm{grad}}\,T) + \mathcal P_{vol,vis}\]</p>
+
+      <p><strong>Dérivée particulaire.</strong>
+      \[\frac{DT}{Dt} = \frac{\partial T}{\partial t} + (\vec V\cdot\overrightarrow{\mathrm{grad}})T = \frac{\partial T}{\partial t} + V(y)\,\frac{\partial T}{\partial x}\]</p>
+
+      <p><strong>Terme diffusif.</strong> \(\lambda\) est constante et uniforme, donc \(\mathrm{div}(\lambda\overrightarrow{\mathrm{grad}}T)=\lambda\Delta T\). L'énoncé demande de négliger la diffusion selon x et z, seule reste celle selon y : \(\Delta T \approx \partial^2 T/\partial y^2\).</p>
+
+      <p><strong>Terme source.</strong> \(\mathcal P_{vol,vis} = \eta(\partial V/\partial y)^2\).</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{\mu C\left[\frac{\partial T}{\partial t} + V(y)\,\frac{\partial T}{\partial x}\right] = \lambda\,\frac{\partial^2 T}{\partial y^2} + \eta\left(\frac{\partial V}{\partial y}\right)^2}\]
+      </div>
+    </div>
+
+    <!-- C2b -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question C2°b</span>
+      <p class="corr-question__statement">Simplifier cette équation, en considérant que le polymère a atteint son régime thermique stationnaire et qu'ainsi, la température ne varie pratiquement plus selon la direction Ox. Tous les autres types d'échanges thermiques (de type convectif comme radiatif) ne seront pas pris en compte.</p>
+
+      <p><strong>Hypothèses.</strong></p>
+      <ul>
+        <li>Stationnaire : \(\partial T/\partial t = 0\).</li>
+        <li>Pas de variation selon x : \(\partial T/\partial x = 0\) → le terme convectif \(V(y)\,\partial T/\partial x = 0\).</li>
+      </ul>
+
+      <p>L'équation devient :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{\lambda\,\frac{d^2 T}{dy^2} + \eta\left(\frac{dV}{dy}\right)^2 = 0}\]
+        C'est une équation de diffusion stationnaire 1D avec terme source (équilibre entre diffusion vers les parois froides et production visqueuse).
+      </div>
+    </div>
+
+    <!-- C2c -->
+    <div class="corr-question corr-question--hard">
+      <span class="corr-question__num">Question C2°c</span>
+      <p class="corr-question__statement">En déduire la loi de répartition de la température \(T(y)\) selon l'épaisseur de l'écoulement, en fonction de \(T_P\), \(\eta\), \(\lambda\), e et \(\overline V\). Exprimer la valeur maximale \(T_{max}\) atteinte et préciser sa localisation. Représenter le profil de température dans un plan de coupe du moule (Ox, Oy) quand le régime stationnaire est atteint.</p>
+
+      <p><strong>Calcul du terme source.</strong> \((\partial V/\partial y)^2 = (12\overline V)^2\,y^2/e^4 = 144\overline V^2\,y^2/e^4\).</p>
+
+      <p><strong>Équation à résoudre :</strong>
+      \[\lambda\,\frac{d^2 T}{dy^2} = -\frac{144\,\eta\,\overline V^2\,y^2}{e^4}\]</p>
+
+      <p><strong>Intégration successive.</strong>
+      \[\frac{dT}{dy} = -\frac{144\,\eta\,\overline V^2}{\lambda\,e^4}\cdot\frac{y^3}{3} + C_1 = -\frac{48\,\eta\,\overline V^2}{\lambda\,e^4}\,y^3 + C_1\]
+      \[T(y) = -\frac{48\,\eta\,\overline V^2}{\lambda\,e^4}\cdot\frac{y^4}{4} + C_1 y + C_2 = -\frac{12\,\eta\,\overline V^2}{\lambda\,e^4}\,y^4 + C_1 y + C_2\]</p>
+
+      <p><strong>Conditions aux limites.</strong> \(T(\pm e/2) = T_P\). Par symétrie, \(T\) est paire en \(y\) : \(C_1 = 0\).
+      \[T_P = -\frac{12\,\eta\,\overline V^2}{\lambda\,e^4}\cdot\frac{e^4}{16} + C_2 = -\frac{3\,\eta\,\overline V^2}{4\lambda} + C_2\]
+      D'où \(C_2 = T_P + \dfrac{3\eta\,\overline V^2}{4\lambda}\).</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat — Profil T(y)</div>
+        \[\boxed{T(y) = T_P + \frac{3\eta\,\overline V^2}{4\lambda}\left[1 - \left(\frac{2y}{e}\right)^4\right]}\]
+      </div>
+
+      <p><strong>Température maximale.</strong> Atteinte au centre \(y=0\) :
+      \[\boxed{T_{max} = T_P + \frac{3\eta\,\overline V^2}{4\lambda}}\]</p>
+
+      <p><strong>Profil :</strong> courbe en \(1 - u^4\), donc plus « plate » au centre qu'une parabole, avec une chute rapide près des parois :</p>
+
+      <pre style="background:#f3f4f6;padding:1rem;border-radius:6px;font-family:monospace">
+ T
+  T_max ┤        ╱‾‾‾‾‾‾‾‾╲
+         │       ╱          ╲
+         │      ╱            ╲
+         │     ╱              ╲
+   T_P   ┤____╱                ╲____
+         └──────────────────────────
+          -e/2       0       +e/2   y
+      </pre>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Interprétation physique</div>
+        La source (viscosité) est max aux parois, la puits (conduction vers les parois froides \(T_P\)) évacue. À l'équilibre, la chaleur doit « remonter » du bord vers les parois en passant par le centre ? Non : la chaleur produite aux parois part directement <em>dans les parois</em>. Au centre, peu de production mais aussi peu d'évacuation — la chaleur s'accumule donc le centre est le plus chaud. C'est cohérent.
+      </div>
+    </div>
+
+    <!-- C2d -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question C2°d</span>
+      <p class="corr-question__statement">Calculer, à l'aide des données numériques, la température maximale obtenue, sachant que la température de la face interne du moule vaut \(T_P = 40\,°\mathrm C\). Calculer le(s) paramètre(s) ayant le plus d'effet sur l'évolution de l'écart de température \(T_{max} - T_P\). Analyser le résultat obtenu d'un point de vue technique.</p>
+
+      <p><strong>A.N.</strong>
+      \[T_{max} - T_P = \frac{3\times 500\times (0{,}4)^2}{4\times 0{,}20} = \frac{3\times 500\times 0{,}16}{0{,}8} = \frac{240}{0{,}8} = 300\;\text{K}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{T_{max} \approx 40 + 300 = 340\;°\mathrm C}\]
+      </div>
+
+      <p><strong>Paramètres dominants.</strong> L'écart \(\Delta T = 3\eta\overline V^2/(4\lambda)\) dépend de trois grandeurs :</p>
+      <ul>
+        <li>\(\propto \eta\) : linéaire en viscosité.</li>
+        <li>\(\propto \overline V^2\) : <strong>carré</strong> de la vitesse moyenne — effet dominant.</li>
+        <li>\(\propto 1/\lambda\) : inversement à la conductivité.</li>
+      </ul>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Analyse technique</div>
+        \(T_{max} \approx 340\) °C est <strong>très élevé</strong> : on flirte avec la température de dégradation du polypropylène (\(\sim 300-350\) °C selon les additifs). Pour éviter la dégradation thermique de la matière et garantir la qualité de la pièce, il faut :
+        <ul>
+          <li>réduire \(\overline V\) (injecter moins vite) — c'est le levier le plus efficace car l'effet est quadratique ;</li>
+          <li>augmenter \(\lambda\) (ajouter des charges conductrices — d'où l'intérêt du PP <em>chargé</em>) ;</li>
+          <li>refroidir davantage les parois (\(T_P\) plus bas).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- C2e -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question C2°e</span>
+      <p class="corr-question__statement">Évaluer la température maximale qui serait atteinte si le polypropylène n'était pas chargé de fines particules (dans ce cas, sa viscosité dynamique chuterait à 100 Pa·s). En déduire les avantages de l'introduction de ces particules.</p>
+
+      <p>Avec \(\eta = 100\) Pa·s (et \(\overline V\) supposée la même) :
+      \[\Delta T = \frac{3\times 100\times 0{,}16}{0{,}8} = 60\;\text{K}\]
+      \[T_{max} \approx 40 + 60 = 100\;°\mathrm C\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        Sans charges : \(T_{max}\approx 100\) °C, bien moins dangereux !
+      </div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Avantages/inconvénients des charges</div>
+        Les charges (fines particules) :
+        <ul>
+          <li><strong>Avantages</strong> : confèrent des propriétés mécaniques (rigidité, résistance), améliorent la stabilité dimensionnelle, réduisent le coût matière, permettent la sérigraphie.</li>
+          <li><strong>Inconvénient</strong> : augmentent considérablement la viscosité (×5 ici) → surchauffe lors de l'injection → risque de dégradation.</li>
+        </ul>
+        Le compromis est au cœur du métier de la plasturgie : charger pour les propriétés mécaniques, mais pas trop pour rester transformable.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- EXERCICE 3 -->
+  <!-- ============================================================ -->
+  <div class="corr-exercice" id="exo3">
+    <div class="corr-exercice__header">
+      <span class="corr-exercice__number">3</span>
+      <div class="corr-exercice__title-group">
+        <h2 class="corr-exercice__title">Troisième partie — Viscosimètre de Couette</h2>
+        <span class="corr-exercice__subtitle">Rhéométrie et mesure de viscosité — 19 questions</span>
+      </div>
+      <span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avancé</span>
+    </div>
+    <hr class="corr-exercice__rule">
+    <div class="corr-exercice__enonce">
+      <span class="corr-exercice__enonce-label">Énoncé</span>
+      Deux cylindres concentriques de rayons \(R_1\) et \(R_2>R_1\) et de hauteur h, d'axe Oz. Un fluide newtonien entre les deux, mis en mouvement par rotation. On détermine \(V(r)\), puis on mesure le couple nécessaire pour faire tourner le cylindre intérieur — ce couple permet de remonter à \(\eta\).
+    </div>
+
+    <!-- D1 -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question D1</span>
+      <p class="corr-question__statement">Montrer, en utilisant les caractéristiques de l'écoulement ainsi que les conditions aux limites (fluide au contact des cylindres), que la vitesse est orthoradiale et s'écrit : \(\vec V = V(r)\vec e_\theta\).</p>
+
+      <p><strong>Invariances.</strong> Le problème est invariant :
+      <ul>
+        <li>par rotation autour de Oz → les grandeurs ne dépendent pas de \(\theta\) ;</li>
+        <li>par translation selon Oz (cylindres infinis) → pas de dépendance en z.</li>
+      </ul>
+      Donc \(V_r, V_\theta, V_z\) ne dépendent que de \(r\) (et de t, mais stationnaire).</p>
+
+      <p><strong>Pas de composante radiale.</strong> L'incompressibilité donne
+      \[\mathrm{div}\,\vec V = \frac{1}{r}\frac{\partial(rV_r)}{\partial r} = 0 \Rightarrow rV_r = \text{cte}\]
+      À la paroi des cylindres (imperméables), \(V_r = 0\) → \(V_r = 0\) partout.</p>
+
+      <p><strong>Pas de composante axiale.</strong> Aucun gradient de pression selon Oz, pas de pesanteur, parois imperméables → \(V_z = 0\).</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        Seule la composante orthoradiale subsiste : \(\boxed{\vec V = V(r)\,\vec e_\theta}\).
+      </div>
+    </div>
+
+    <!-- D2 -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question D2</span>
+      <p class="corr-question__statement">Projeter l'équation de Navier-Stokes selon \(\vec e_r\). Expliquer ce que traduit physiquement la relation ainsi obtenue. Préciser la conséquence du signe du gradient de pression \(dP/dr\).</p>
+
+      <p><strong>Projection radiale.</strong> Terme inertiel fourni : \((\vec V\cdot\overrightarrow{\mathrm{grad}})\vec V = -(V^2/r)\vec e_r\). Le laplacien de \(\vec V\) n'a pas de composante radiale. Donc :
+      \[-\mu\,\frac{V^2}{r} = -\frac{dP}{dr}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{\frac{dP}{dr} = \mu\,\frac{V^2}{r} > 0}\]
+      </div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Interprétation physique</div>
+        C'est l'équilibre <strong>force centrifuge ↔ gradient de pression</strong>. Le fluide tourne, il subit une accélération centripète dirigée vers l'axe. Pour la lui fournir, il faut une force nette dirigée vers le centre, donc une pression <em>plus forte à l'extérieur qu'à l'intérieur</em>. C'est exactement comme l'eau dans un seau qu'on fait tourner : elle remonte sur les bords.
+      </div>
+    </div>
+
+    <!-- D3a -->
+    <div class="corr-question corr-question--hard">
+      <span class="corr-question__num">Question D3°a</span>
+      <p class="corr-question__statement">Établir, grâce à la projection de l'équation de Navier-Stokes selon \(\vec e_\theta\), que la vitesse \(V(r)\) doit satisfaire l'équation différentielle suivante : \(r^2\,\dfrac{d^2V}{dr^2} + r\,\dfrac{dV}{dr} - V = 0\).</p>
+
+      <p><strong>Projection orthoradiale.</strong> Le terme inertiel n'a pas de composante selon \(\vec e_\theta\). Le gradient de pression non plus (P ne dépend que de r). Reste le laplacien :
+      \[0 = \eta\left[\frac{1}{r}\frac{d}{dr}\left(r\frac{dV}{dr}\right) - \frac{V}{r^2}\right]\]</p>
+
+      <p>Développons :
+      \[\frac{1}{r}\frac{d}{dr}\left(r\frac{dV}{dr}\right) = \frac{1}{r}\left[\frac{dV}{dr} + r\,\frac{d^2V}{dr^2}\right] = \frac{1}{r}\frac{dV}{dr} + \frac{d^2V}{dr^2}\]</p>
+
+      <p>Ainsi :
+      \[\frac{d^2V}{dr^2} + \frac{1}{r}\frac{dV}{dr} - \frac{V}{r^2} = 0\]</p>
+
+      <p>En multipliant par \(r^2\) :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{r^2\,\frac{d^2V}{dr^2} + r\,\frac{dV}{dr} - V = 0}\]
+        C'est une équation d'Euler (coefficients en puissances de r).
+      </div>
+    </div>
+
+    <!-- D3b -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question D3°b</span>
+      <p class="corr-question__statement">Vérifier qu'une expression de type \(V(r) = A\,r + B/r\) est solution de cette équation différentielle.</p>
+
+      <p>\[V = Ar + B/r \quad;\quad V' = A - B/r^2 \quad;\quad V'' = 2B/r^3\]
+      \[r^2 V'' + r V' - V = r^2\cdot\frac{2B}{r^3} + r\left(A-\frac{B}{r^2}\right) - Ar - \frac{B}{r}\]
+      \[= \frac{2B}{r} + Ar - \frac{B}{r} - Ar - \frac{B}{r} = 0\;\checkmark\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \(V(r) = Ar + B/r\) est bien solution générale (deux constantes d'intégration pour une équation du second ordre).
+      </div>
+    </div>
+
+    <!-- D3c -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question D3°c</span>
+      <p class="corr-question__statement">Écrire les conditions aux limites pour la vitesse, afin de traduire l'adhérence du fluide sur les parois des deux cylindres. En déduire les expressions des constantes A et B.</p>
+
+      <p><strong>Adhérence :</strong> le fluide colle aux parois.</p>
+      <ul>
+        <li>En \(r=R_1\) : \(V(R_1) = R_1\,\Omega_1\) (vitesse orthoradiale du cylindre intérieur).</li>
+        <li>En \(r=R_2\) : \(V(R_2) = R_2\,\Omega_2\).</li>
+      </ul>
+
+      <p>Système :
+      \[\begin{cases}A R_1 + B/R_1 = R_1\Omega_1\\ A R_2 + B/R_2 = R_2\Omega_2\end{cases}
+      \Longleftrightarrow
+      \begin{cases}A R_1^2 + B = R_1^2\Omega_1\\ A R_2^2 + B = R_2^2\Omega_2\end{cases}\]</p>
+
+      <p>En soustrayant :
+      \[A(R_2^2 - R_1^2) = R_2^2\Omega_2 - R_1^2\Omega_1\]
+      \[\boxed{A = \frac{R_2^2\Omega_2 - R_1^2\Omega_1}{R_2^2 - R_1^2}}\]</p>
+
+      <p>Et :
+      \[B = R_1^2(\Omega_1 - A) = R_1^2\cdot\frac{\Omega_1(R_2^2-R_1^2) - (R_2^2\Omega_2 - R_1^2\Omega_1)}{R_2^2-R_1^2}\]
+      \[\boxed{B = \frac{R_1^2 R_2^2(\Omega_1 - \Omega_2)}{R_2^2 - R_1^2}}\]</p>
+    </div>
+
+    <!-- E1 -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question E1</span>
+      <p class="corr-question__statement">Préciser les valeurs des constantes A et B de la loi de vitesse \(V(r)\), dans le cas du viscosimètre de Couette.</p>
+
+      <p>Dans le viscosimètre de Couette étudié : \(\Omega_1 = \Omega\), \(\Omega_2 = 0\) (cylindre extérieur fixe). On substitue :
+      \[A = \frac{0 - R_1^2\Omega}{R_2^2-R_1^2} = -\frac{R_1^2\,\Omega}{R_2^2-R_1^2}\]
+      \[B = \frac{R_1^2 R_2^2(\Omega - 0)}{R_2^2-R_1^2} = \frac{R_1^2 R_2^2\,\Omega}{R_2^2-R_1^2}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{A = -\frac{R_1^2\,\Omega}{R_2^2-R_1^2}\quad;\quad B = \frac{R_1^2 R_2^2\,\Omega}{R_2^2-R_1^2}}\]
+      </div>
+    </div>
+
+    <!-- E2 -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question E2</span>
+      <p class="corr-question__statement">Montrer que cette vitesse peut s'écrire : \(V(r) = K\left(r - \dfrac{\beta}{r}\right)\). Identifier K et \(\beta\). Représenter (dans le plan de coupe des cylindres) les variations de \(V(r)/K\) en fonction de r, entre \(R_1\) et \(R_2\) ; en déduire le tracé schématique des vecteurs vitesse du fluide entre les deux cylindres.</p>
+
+      <p>\[V(r) = Ar + \frac{B}{r} = A\left(r + \frac{B/A}{r}\right)\]
+      Avec \(B/A = -R_2^2\), donc
+      \[V(r) = A\left(r - \frac{R_2^2}{r}\right)\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{K = A = -\frac{R_1^2\,\Omega}{R_2^2 - R_1^2}\quad;\quad \beta = R_2^2}\]
+      </div>
+
+      <p><strong>Tracé.</strong> \(V(r)/K = r - R_2^2/r\). Cette fonction s'annule en \(r=R_2\) (le cylindre extérieur est fixe). En \(r=R_1\), elle vaut \(R_1 - R_2^2/R_1 = (R_1^2 - R_2^2)/R_1 < 0\). K < 0 aussi, donc V(R_1) > 0 — cohérent avec \(V(R_1) = R_1\Omega > 0\).</p>
+
+      <p>La vitesse décroît (en valeur absolue) de \(R_1\Omega\) en \(r=R_1\) jusqu'à 0 en \(r=R_2\), en étant toujours dirigée dans le sens \(+\vec e_\theta\) :</p>
+
+      <pre style="background:#f3f4f6;padding:1rem;border-radius:6px;font-family:monospace">
+    V
+ R1Ω ┤●
+      │  ●
+      │    ●
+      │      ●
+      │        ●
+    0 ┤───────────●
+      └──────────────
+       R1         R2    r
+      </pre>
+    </div>
+
+    <!-- E3a -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question E3°a</span>
+      <p class="corr-question__statement">Exprimer la force élémentaire de frottement visqueux \(d\vec F_{vis}\) qui s'exerce sur un élément de surface du cylindre fictif de rayon r.</p>
+
+      <p>La contrainte est donnée : \(d\vec F_{vis}/d\Sigma = -\eta\,r\,(d/dr)(V/r)\,\vec e_\theta\).
+      Calculons \(d(V/r)/dr\) avec \(V/r = K(1 - R_2^2/r^2)\) :
+      \[\frac{d}{dr}\left(\frac{V}{r}\right) = K\cdot\frac{2R_2^2}{r^3} = \frac{2K R_2^2}{r^3}\]</p>
+
+      <p>Donc :
+      \[d\vec F_{vis} = -\eta\,r\cdot\frac{2KR_2^2}{r^3}\,d\Sigma\,\vec e_\theta = -\frac{2\eta K R_2^2}{r^2}\,d\Sigma\,\vec e_\theta\]</p>
+
+      <p>L'élément de surface d'un cylindre de rayon r et hauteur h : \(d\Sigma = r\,d\theta\,dz\). Sur tout le cylindre, \(\Sigma = 2\pi r h\).</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{d\vec F_{vis} = -\frac{2\eta\,K\,R_2^2}{r^2}\,d\Sigma\,\vec e_\theta}\]
+      </div>
+    </div>
+
+    <!-- E3b -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question E3°b</span>
+      <p class="corr-question__statement">En déduire le moment élémentaire \(d\vec\Gamma_{vis}\) par rapport à l'axe Oz de cette force élémentaire de frottement visqueux appliquée sur le même cylindre fictif.</p>
+
+      <p>Le bras de levier est r, la force est selon \(\vec e_\theta\), donc \(\vec r\wedge\vec F = r\vec e_r\wedge F\vec e_\theta = r F\,\vec e_z\).
+      \[d\vec\Gamma_{vis} = -\frac{2\eta K R_2^2}{r^2}\cdot r\,d\Sigma\,\vec e_z = -\frac{2\eta K R_2^2}{r}\,d\Sigma\,\vec e_z\]</p>
+
+      <p>En intégrant sur tout le cylindre fictif de rayon r (surface totale \(2\pi r h\)) :
+      \[\vec\Gamma_{vis}(r) = -\frac{2\eta K R_2^2}{r}\cdot 2\pi r h\,\vec e_z = -4\pi\eta h K R_2^2\,\vec e_z\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{\vec\Gamma_{vis}(r) = -4\pi\eta h K R_2^2\,\vec e_z}\]
+        <strong>Le moment est indépendant de r</strong> : c'est la même valeur sur tous les cylindres fictifs, ce qui est physiquement normal en régime permanent (conservation du moment cinétique).
+      </div>
+    </div>
+
+    <!-- E4a -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question E4°a</span>
+      <p class="corr-question__statement">Préciser la caractéristique du moment cinétique scalaire \(\sigma_z\), selon Oz, du système (S).</p>
+
+      <p>Le régime permanent est établi → le champ de vitesse est indépendant du temps → le moment cinétique du fluide compris entre r et r+dr est <strong>constant</strong> :
+      \[\boxed{\frac{d\sigma_z}{dt} = 0}\]</p>
+    </div>
+
+    <!-- E4b -->
+    <div class="corr-question corr-question--hard">
+      <span class="corr-question__num">Question E4°b</span>
+      <p class="corr-question__statement">Appliquer le théorème du moment cinétique scalaire appliqué au système (S). Analyser avec soin les contributions respectives des différentes forces appliquées au système (S) (pression, viscosité, ...).</p>
+
+      <div class="corr-box corr-box--rappel">
+        <div class="corr-box__title">Rappel — Théorème du moment cinétique</div>
+        \(d\sigma_z/dt = \sum \Gamma_{ext,z}\) : la dérivée du moment cinétique est la somme des moments des forces extérieures selon Oz.
+      </div>
+
+      <p><strong>Forces agissant sur la couche fluide entre r et r+dr :</strong></p>
+      <ul>
+        <li><strong>Pesanteur</strong> : négligée par hypothèse.</li>
+        <li><strong>Pression</strong> : sur les faces latérales cylindriques, la pression est radiale (dirigée selon \(\vec e_r\)) — son moment par rapport à Oz est <strong>nul</strong>. Sur les faces supérieure et inférieure (de hauteur), par symétrie, elle ne crée pas de moment selon Oz.</li>
+        <li><strong>Viscosité</strong> : deux contributions, sur la paroi en r (de la part du fluide à l'intérieur) et sur la paroi en r+dr (de la part du fluide à l'extérieur). Ces deux moments sont opposés par la 3e loi de Newton appliquée au fluide autour.</li>
+      </ul>
+
+      <p>Sur le cylindre intérieur de la tranche (rayon r) : le fluide <em>intérieur</em> exerce \(\vec\Gamma_{vis}(r)\) sur S.<br>
+      Sur le cylindre extérieur (rayon r+dr) : le fluide <em>extérieur</em> exerce \(-\vec\Gamma_{vis}(r+dr)\) sur S (signe opposé au moment qu'aurait exercé S sur l'extérieur).</p>
+
+      <p>Or on a montré que \(\vec\Gamma_{vis}\) est <strong>indépendant de r</strong>, donc :
+      \[\vec\Gamma_{vis}(r) - \vec\Gamma_{vis}(r+dr) = \vec 0\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        Le TMC est trivialement vérifié : \(0 = 0\). La <strong>constance de \(\Gamma_{vis}\) avec r est précisément la traduction du TMC en régime permanent</strong>. Le moment exercé par le cylindre intérieur se transmet intégralement au cylindre extérieur à travers le fluide.
+      </div>
+    </div>
+
+    <!-- E4c -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question E4°c</span>
+      <p class="corr-question__statement">Déterminer le moment \(\Gamma\) résultant des forces de viscosité s'exerçant sur le cylindre de rayon \(R_1\), qu'il est nécessaire d'appliquer sur ce cylindre pour le faire tourner à la vitesse angulaire \(\Omega\) ; l'écrire sous la forme \(\Gamma = K\,\eta\,\Omega\) et identifier K.</p>
+
+      <p>Le moment visqueux sur la paroi en \(r=R_1\) vaut (en norme, en posant \(\Gamma = |\Gamma_{vis,z}|\)) :
+      \[\Gamma = 4\pi\eta h\,|K|\,R_2^2 = 4\pi\eta h R_2^2\cdot\frac{R_1^2\,\Omega}{R_2^2-R_1^2}\]</p>
+
+      <p>(Attention : le K ici dans l'énoncé n'est pas celui de la sous-question précédente — renommons-le \(\mathcal K\) pour éviter la confusion.)</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{\Gamma = \mathcal K\,\eta\,\Omega \quad\text{avec}\quad \mathcal K = \frac{4\pi h\,R_1^2 R_2^2}{R_2^2 - R_1^2}}\]
+        Le couple nécessaire est <strong>linéaire en \(\eta\) et en \(\Omega\)</strong> (c'est la signature d'un fluide newtonien).
+      </div>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">À retenir — Principe du viscosimètre</div>
+        On impose \(\Omega\), on mesure \(\Gamma\), le rapport \(\Gamma/\Omega\) est proportionnel à \(\eta\) via un facteur géométrique connu. Inversion : \(\eta = \Gamma/(\mathcal K\Omega)\).
+      </div>
+    </div>
+
+    <!-- F1 -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question F1</span>
+      <p class="corr-question__statement">Exprimer, en utilisant les résultats précédemment obtenus, la viscosité dynamique \(\eta\) en fonction du couple \(\Gamma\) appliqué au cylindre, de la vitesse angulaire \(\Omega\) et des caractéristiques géométriques du dispositif.</p>
+
+      <p>À partir de \(\Gamma = \mathcal K\eta\Omega\) :</p>
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{\eta = \frac{\Gamma\,(R_2^2-R_1^2)}{4\pi h\,R_1^2 R_2^2\,\Omega}}\]
+      </div>
+    </div>
+
+    <!-- F2 -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question F2</span>
+      <p class="corr-question__statement">Pour quelle position de \(D_m\) par rapport à \(D_0\) l'éclairement détecté est-il maximum ? Combien de fois, par tour de rotation de \(D_m\), cela se produit-il ? En déduire une méthode de mesure de la vitesse angulaire \(\Omega\).</p>
+
+      <p><strong>Éclairement.</strong> \(\mathcal E \propto \cos^2(\alpha)\) où \(\alpha\) est l'angle entre les stries des deux disques. Il est maximal quand \(\alpha = 0\) (modulo \(\pi\)) : stries alignées.</p>
+
+      <p><strong>Combien de maxima par tour ?</strong> Comme \(\cos^2\) a une période \(\pi\), chaque fois que l'angle augmente de \(\pi\) (demi-tour), on retrouve un maximum → <strong>2 maxima par tour</strong>.</p>
+
+      <p><strong>Mesure de \(\Omega\).</strong> On compte le nombre N de maxima d'éclairement pendant une durée \(\tau\) ; la vitesse angulaire est
+      \[\Omega = \frac{N}{2\tau}\cdot 2\pi = \frac{\pi N}{\tau}\;\text{rad/s}\]
+      Autrement dit, \(\Omega/(2\pi) = N/(2\tau)\) tours par seconde.</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        Maximum quand stries alignées ; <strong>2 fois par tour</strong> ; on compte les impulsions lumineuses : \(\boxed{\Omega = \pi N/\tau}\).
+      </div>
+    </div>
+
+    <!-- F3 -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question F3</span>
+      <p class="corr-question__statement">Évaluer la viscosité dynamique \(\eta\) du polypropylène fondu. Préciser les facteurs qui vous paraissent limitants pour cette détermination.</p>
+
+      <p><strong>Lecture du graphe.</strong> La droite passe par l'origine et donne \(\Gamma = 16\) N·m pour \(\Omega = 120\) tr/min.
+      Conversion : \(\Omega = 120\cdot 2\pi/60 = 4\pi \approx 12{,}57\) rad/s.
+      \[\frac{\Gamma}{\Omega} = \frac{16}{12{,}57} \approx 1{,}27\;\text{N·m·s}\]</p>
+
+      <p><strong>Données géométriques.</strong> \(R_1 = 4{,}5\) cm = 0,045 m ; \(R_2 = 5{,}0\) cm = 0,05 m ; \(h = 0{,}05\) m.
+      \[R_1^2 = 2{,}025\cdot 10^{-3}\;;\; R_2^2 = 2{,}5\cdot 10^{-3}\;;\; R_2^2 - R_1^2 = 4{,}75\cdot 10^{-4}\]
+      \[R_1^2 R_2^2 = 5{,}06\cdot 10^{-6}\]</p>
+
+      <p>Coefficient :
+      \[\mathcal K = \frac{4\pi\cdot 0{,}05\cdot 5{,}06\cdot 10^{-6}}{4{,}75\cdot 10^{-4}} = \frac{3{,}18\cdot 10^{-6}}{4{,}75\cdot 10^{-4}} \approx 6{,}69\cdot 10^{-3}\;\text{m}^3\]</p>
+
+      <p>Viscosité :
+      \[\eta = \frac{\Gamma}{\mathcal K\Omega} = \frac{1{,}27}{6{,}69\cdot 10^{-3}} \approx 190\;\text{Pa·s}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \(\boxed{\eta \approx 190\;\text{Pa·s}}\) à 260 °C (cohérent avec l'ordre de grandeur 500 Pa·s à 200 °C, la viscosité diminuant avec T).
+      </div>
+
+      <div class="corr-box corr-box--piege">
+        <div class="corr-box__title">Facteurs limitants</div>
+        <ul>
+          <li><strong>Effets de bord</strong> (fond du récipient et surface libre) négligés alors qu'ils contribuent au couple.</li>
+          <li><strong>Hypothèse newtonienne</strong> : un polymère fondu est en réalité rhéofluidifiant.</li>
+          <li><strong>Chauffage par dissipation visqueuse</strong> : le fluide chauffe pendant la mesure, \(\eta\) diminue localement.</li>
+          <li><strong>Régulation thermique</strong> : l'incertitude sur T se répercute fortement car \(\eta\) en dépend exponentiellement.</li>
+          <li><strong>Précision de mesure</strong> du couple et de \(\Omega\).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- F4a -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question F4°a</span>
+      <p class="corr-question__statement">Étudier le sens de variation de la viscosité quand la température croît. Confirmer ce résultat par une approche physico-chimique.</p>
+
+      <p><strong>Mathématiquement.</strong> Dans \(\eta(T) = \eta_0\exp\{(E/R)(1/T - 1/T_0)\}\), quand T croît, \(1/T\) décroît, donc l'exposant décroît (si E > 0), donc \(\eta\) décroît.</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \(\eta\) est <strong>une fonction décroissante de T</strong> : plus c'est chaud, plus ça coule.
+      </div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Interprétation physico-chimique</div>
+        À l'échelle microscopique, la viscosité traduit la résistance des molécules à glisser les unes par rapport aux autres. Quand T augmente, l'agitation thermique est plus forte : les molécules ont plus d'énergie pour franchir les « barrières » d'interaction avec leurs voisines et se déplacer. Analogie : le miel coule mal au frigo, très bien à 40 °C.
+      </div>
+    </div>
+
+    <!-- F4b -->
+    <div class="corr-question corr-question--easy">
+      <span class="corr-question__num">Question F4°b</span>
+      <p class="corr-question__statement">Préciser le sens physique de la grandeur E introduite dans la loi d'Andrade.</p>
+
+      <p>La loi \(\eta \propto \exp(E/RT)\) est une loi d'Arrhenius : E est une <strong>énergie d'activation molaire</strong>. C'est l'énergie qu'il faut fournir à une mole de molécules pour franchir la « barrière » qui les sépare d'une nouvelle position — c'est-à-dire pour que les molécules se déplacent les unes par rapport aux autres dans le fluide.</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        <strong>E = énergie d'activation de l'écoulement visqueux</strong> (énergie molaire). Plus E est grand, plus \(\eta\) est sensible à la température.
+      </div>
+    </div>
+
+    <!-- F4c -->
+    <div class="corr-question corr-question--medium">
+      <span class="corr-question__num">Question F4°c</span>
+      <p class="corr-question__statement">Calculer la valeur de E, sachant que \(R = 8{,}31\) J·mol⁻¹·K⁻¹. Préciser les facteurs chimiques qui influent sur cette grandeur.</p>
+
+      <p><strong>Équation linéarisée.</strong> En prenant le ln :
+      \[\ln\eta = \ln\eta_0 + \frac{E}{R}\left(\frac{1}{T} - \frac{1}{T_0}\right)\]
+      Tracé en fonction de \(1/T\) : droite de pente \(E/R\).</p>
+
+      <p><strong>Pente lue sur le graphe (figure 6).</strong>
+      À \(10^3/T = 1{,}8\) → \(\ln\eta = 4{,}5\) ; à \(10^3/T = 2{,}3\) → \(\ln\eta = 7\).
+      \[\text{pente} = \frac{7 - 4{,}5}{(2{,}3 - 1{,}8)\cdot 10^{-3}} = \frac{2{,}5}{0{,}5\cdot 10^{-3}} = 5000\;\text{K}\]</p>
+
+      <p>Donc \(E/R = 5000\) K :
+      \[E = 5000\times 8{,}31 \approx 4{,}15\cdot 10^4\;\text{J/mol} \approx 41{,}5\;\text{kJ/mol}\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \(\boxed{E \approx 42\;\text{kJ/mol}}\) — ordre de grandeur typique d'une énergie d'activation d'écoulement pour un polymère fondu.
+      </div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Facteurs chimiques influant sur E</div>
+        <ul>
+          <li><strong>Longueur des chaînes</strong> (masse molaire) : chaînes plus longues = plus d'enchevêtrements = E plus grand.</li>
+          <li><strong>Nature des groupements latéraux</strong> : des groupes encombrants gênent le mouvement → E augmente.</li>
+          <li><strong>Interactions intermoléculaires</strong> (liaisons hydrogène, dipôles) : renforcent la cohésion → E augmente.</li>
+          <li><strong>Ramifications, cristallinité</strong> : plus l'ordre est grand, plus l'activation est coûteuse.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- F5 -->
+    <div class="corr-question corr-question--hard">
+      <span class="corr-question__num">Question F5</span>
+      <p class="corr-question__statement">Si la température T d'injection du polymère s'élève d'une quantité \(\Delta T\), écrire la variation relative \(\Delta\eta/\eta\) de la viscosité dynamique. Calculer la variation de viscosité dynamique consécutive à une variation de température \(\Delta T\) de 5 degrés, autour de 200 °C. Analyser les conséquences d'ordre théorique et technique induites par ce résultat.</p>
+
+      <p><strong>Différentiation logarithmique.</strong> De \(\ln\eta = \ln\eta_0 + (E/R)(1/T - 1/T_0)\), on tire
+      \[\frac{d\eta}{\eta} = -\frac{E}{R T^2}\,dT\]
+      Pour une petite variation :</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat</div>
+        \[\boxed{\frac{\Delta\eta}{\eta} \approx -\frac{E}{RT^2}\,\Delta T}\]
+      </div>
+
+      <p><strong>Application numérique.</strong> \(T = 200\) °C = 473 K ; \(\Delta T = 5\) K ; \(E/R = 5000\) K.
+      \[\frac{\Delta\eta}{\eta} = -\frac{5000}{473^2}\times 5 = -\frac{25000}{2{,}24\cdot 10^5} \approx -0{,}112\]</p>
+
+      <div class="corr-box corr-box--result">
+        <div class="corr-box__title">Résultat numérique</div>
+        \(\boxed{\Delta\eta/\eta \approx -11\;\%}\) pour une variation de 5 °C.
+      </div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Conséquences théoriques et techniques</div>
+        <strong>C'est énorme</strong> : une fluctuation de 5 °C — parfaitement banale — fait varier la viscosité de plus de 10 %. Conséquences :
+        <ul>
+          <li><strong>Théorique</strong> : on ne peut pas supposer \(\eta\) constante lors de l'injection ; les modèles les plus fins doivent coupler thermique et rhéologie.</li>
+          <li><strong>Technique</strong> : il faut une <strong>régulation thermique très précise</strong> (à 1 °C près idéalement) du moule, du cylindre d'injection et du procédé, sinon les pièces produites seront de qualité fluctuante (dimensions, finition, résistance mécanique).</li>
+          <li>L'auto-échauffement par viscosité (partie C) aggrave le problème : la montée de température fait chuter \(\eta\), qui modifie l'écoulement, qui modifie l'échauffement… <strong>couplage non-linéaire</strong>.</li>
+          <li>Justification d'outils de mesure type viscosimètre de Couette <em>en temps réel</em> dans les lignes de production.</li>
+        </ul>
+      </div>
+
+      <div class="corr-box corr-box--method">
+        <div class="corr-box__title">À retenir — Méthode de dérivation d'une loi d'Arrhenius</div>
+        Pour toute grandeur \(X = X_0\exp(E/RT)\), différentier logarithmiquement donne \(\Delta X/X = -(E/RT^2)\Delta T\). C'est la formule magique pour évaluer la sensibilité thermique d'une quantité exponentielle — à connaître absolument (cinétique chimique, conductivité semi-conducteurs, viscosité, etc.).
+      </div>
+    </div>
+  </div>
+
+  <p class="annale-fin"><strong>FIN DE LA CORRECTION</strong></p>
+</main>
+</body>
+</html>

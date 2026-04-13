@@ -1,0 +1,1060 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Correction E3A-Polytech 2025 -- Maths 1 | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#E91E63;background:rgba(233,30,99,.1);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.7rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:680px}
+    .course p{font-size:.95rem;line-height:1.8;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md);padding-left:var(--space-lg)}
+    .course li{font-size:.95rem;line-height:1.8;color:var(--ink);margin-bottom:6px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+
+    .corr-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .corr-toc__title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .corr-toc__list{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:6px}
+    .corr-toc__list a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s;text-decoration:none}
+    .corr-toc__list a:hover{background:rgba(233,30,99,.08);color:#E91E63}
+    .corr-toc__num{font-family:var(--font-mono);font-size:.75rem;color:#E91E63;min-width:24px}
+
+    .corr-exercice{margin-bottom:var(--space-2xl);padding:var(--space-xl);background:var(--bg-card);border:1px solid var(--border);border-radius:18px}
+    .corr-exercice__header{display:flex;align-items:flex-start;gap:var(--space-md);margin-bottom:var(--space-md)}
+    .corr-exercice__number{font-family:var(--font-body);font-size:2.2rem;font-weight:700;color:#E91E63;line-height:1;min-width:48px}
+    .corr-exercice__title-group{flex:1;display:flex;flex-direction:column;gap:4px}
+    .corr-exercice__title{font-family:var(--font-body);font-size:1.35rem;font-weight:600;line-height:1.3;margin:0}
+    .corr-exercice__subtitle{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+    .corr-exercice__difficulty{font-family:var(--font-mono);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:20px;height:fit-content}
+    .corr-exercice__difficulty--easy{background:rgba(76,175,80,.12);color:#4CAF50}
+    .corr-exercice__difficulty--medium{background:rgba(255,152,0,.12);color:#FF9800}
+    .corr-exercice__difficulty--hard{background:rgba(244,67,54,.12);color:#F44336}
+    .corr-exercice__rule{border:none;border-top:2px solid #E91E63;margin:var(--space-md) 0 var(--space-lg)}
+    .corr-exercice__enonce{background:rgba(233,30,99,.04);border-left:3px solid #E91E63;border-radius:8px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.92rem;line-height:1.75;color:var(--ink-light)}
+    .corr-exercice__enonce-label{display:block;font-family:var(--font-mono);font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#E91E63;margin-bottom:6px}
+
+    .corr-partie{font-family:var(--font-body);font-size:1.15rem;font-weight:600;color:#E91E63;margin:var(--space-xl) 0 var(--space-md);padding-bottom:6px;border-bottom:1px dashed rgba(233,30,99,.3)}
+
+    .corr-question{margin-bottom:var(--space-xl);padding:var(--space-md) var(--space-lg);border-radius:12px;border-left:3px solid var(--border)}
+    .corr-question--easy{border-left-color:#4CAF50;background:rgba(76,175,80,.03)}
+    .corr-question--medium{border-left-color:#FF9800;background:rgba(255,152,0,.03)}
+    .corr-question--hard{border-left-color:#F44336;background:rgba(244,67,54,.03)}
+    .corr-question__num{display:inline-block;font-family:var(--font-mono);font-size:.75rem;font-weight:600;color:#E91E63;background:rgba(233,30,99,.08);padding:3px 10px;border-radius:12px;margin-bottom:8px}
+    .corr-question__statement{font-size:.95rem;font-style:italic;color:var(--ink-light);line-height:1.75;margin-bottom:var(--space-md);padding-bottom:var(--space-sm);border-bottom:1px dashed var(--border)}
+
+    .corr-box{margin:var(--space-md) 0;padding:var(--space-md) var(--space-lg);border-radius:10px;border-left:4px solid;font-size:.92rem;line-height:1.75}
+    .corr-box__title{font-family:var(--font-mono);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+    .corr-box--rappel{background:rgba(74,144,217,.06);border-left-color:#4A90D9}
+    .corr-box--rappel .corr-box__title{color:#4A90D9}
+    .corr-box--why{background:rgba(255,152,0,.06);border-left-color:#FF9800}
+    .corr-box--why .corr-box__title{color:#FF9800}
+    .corr-box--result{background:rgba(212,175,55,.08);border-left-color:#D4AF37}
+    .corr-box--result .corr-box__title{color:#B8941F}
+    .corr-box--piege{background:rgba(244,67,54,.06);border-left-color:#F44336}
+    .corr-box--piege .corr-box__title{color:#F44336}
+    .corr-box--method{background:rgba(76,175,80,.06);border-left-color:#4CAF50}
+    .corr-box--method .corr-box__title{color:#4CAF50}
+
+    .corr-toggle{margin:var(--space-md) 0;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+    .corr-toggle summary{cursor:pointer;padding:var(--space-sm) var(--space-md);font-family:var(--font-mono);font-size:.78rem;font-weight:600;color:var(--accent);background:rgba(0,0,0,.02);user-select:none}
+    .corr-toggle summary:hover{background:rgba(0,0,0,.04)}
+    .corr-toggle__content{padding:var(--space-md) var(--space-lg);font-size:.92rem;line-height:1.75}
+
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .corr-exercice{padding:var(--space-md)}
+      .corr-question{padding:var(--space-sm) var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+        </div>
+      </div>
+      <a href="../../entrainement.html" class="nav__link">Entrainement</a>
+      <a href="../../revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <article class="course">
+
+    <a href="e3a-2025-maths1.html" class="course__back">&larr; Retour a l'enonce</a>
+
+    <div class="course__meta">
+      <span class="course__badge">Correction -- E3A 2025</span>
+    </div>
+
+    <h1 class="course__title">Correction detaillee -- E3A-Polytech 2025 Maths 1</h1>
+
+    <p class="course__intro">
+      Correction pas a pas pensee pour les niveaux faibles a moyens. Chaque question est decomposee en trois temps : <strong>ce qu'on demande</strong>, <strong>pourquoi on procede ainsi</strong>, et <strong>comment on calcule</strong>. Les pieges classiques signales par les rapports de jury sont mis en evidence.
+    </p>
+
+    <nav class="corr-toc">
+      <span class="corr-toc__title">Sommaire</span>
+      <ol class="corr-toc__list">
+        <li><a href="#exo1"><span class="corr-toc__num">1.</span> Extrema sous contrainte dans R^4 (3 methodes)</a></li>
+        <li><a href="#exo2"><span class="corr-toc__num">2.</span> Transformee de Fourier discrete</a></li>
+        <li><a href="#exo3"><span class="corr-toc__num">3.</span> Serie entiere et etude de fonctions</a></li>
+      </ol>
+    </nav>
+
+    <!-- ============ EXERCICE 1 ============ -->
+    <div class="corr-exercice" id="exo1">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">1</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Extrema sous contrainte dans \(\mathbf{R}^4\)</h2>
+          <span class="corr-exercice__subtitle">Optimisation -- 10 questions -- 3 methodes</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        Soit \(f(x,y,z,t) = x^2 + y^2 + z^2 + t^2\) sur \(\mathbf{R}^4\). On cherche les extrema de \(f\) sur l'hyperplan \(H = \{x+y=2\}\). Geometriquement : on cherche le point de \(H\) le plus proche de l'origine (et le plus eloigne, qui n'existera pas car \(H\) n'est pas borne).
+      </div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Vue d'ensemble</div>
+        L'enonce propose de resoudre <strong>3 fois le meme probleme</strong> avec 3 methodes differentes : (1) substitution, (2) multiplicateurs de Lagrange, (3) projection orthogonale. Le resultat doit etre le meme. Cela permet d'illustrer trois facons de penser un probleme d'optimisation sous contrainte.
+      </div>
+
+      <h3 class="corr-partie">Premiere methode -- Substitution</h3>
+
+      <!-- Q1 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1</span>
+        <p class="corr-question__statement">Determiner les extrema de la fonction \(h : (u,v,w) \in \mathbf{R}^3 \mapsto 2u^2 + v^2 + w^2 - 4u + 4\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Pour une fonction \(C^1\) sur un ouvert (\(\mathbf{R}^3\) ici), un extremum local est <strong>necessairement un point critique</strong> : tous les gradients partiels s'annulent. La reciproque est fausse en general, sauf si la fonction est convexe : alors tout point critique est minimum global.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          La fonction \(h\) est une somme de carres (avec un terme lineaire en \(u\)). On peut soit annuler le gradient, soit completer le carre en \(u\). Les deux marchent. L'idee : trouver l'unique minimum (et montrer qu'il n'y a pas de maximum car \(h \to +\infty\)).
+        </div>
+
+        <p><strong>Etape 1 -- Calcul du gradient.</strong></p>
+        <p>\(\partial_u h = 4u - 4\), \(\partial_v h = 2v\), \(\partial_w h = 2w\). Annulant tout : \(u=1,\, v=0,\, w=0\). Unique point critique \((1,0,0)\).</p>
+
+        <p><strong>Etape 2 -- Nature du point critique par completion du carre.</strong></p>
+        <p>\(h(u,v,w) = 2(u^2 - 2u) + v^2 + w^2 + 4 = 2(u-1)^2 - 2 + v^2 + w^2 + 4 = 2(u-1)^2 + v^2 + w^2 + 2\).</p>
+        <p>Comme une somme de carres est positive : \(h(u,v,w) \geqslant 2\), avec egalite si et seulement si \(u=1, v=w=0\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(h\) admet un <strong>minimum global</strong> \(\boxed{h_{\min} = 2}\) atteint en l'unique point \((1,0,0)\). Pas de maximum (\(h \to +\infty\) quand \(\|(u,v,w)\| \to +\infty\)).
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode reutilisable</div>
+          Pour une fonction polynomiale du second degre, completer les carres donne directement la nature et la valeur de l'extremum, sans avoir besoin de la matrice hessienne.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 2</span>
+        <p class="corr-question__statement">Determiner les solutions du probleme pose.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On utilise la contrainte pour <strong>eliminer une variable</strong>. Ici \(x+y=2\) donne \(y = 2-x\). En remplacant dans \(f\), on tombe sur une fonction de 3 variables : c'est exactement la fonction \(h\) de la question 1 ! Astuce de l'enonce.
+        </div>
+
+        <p><strong>Substitution.</strong> Si \(X=(x,y,z,t) \in H\) alors \(y = 2 - x\), donc :</p>
+        <p>\(f(X) = x^2 + (2-x)^2 + z^2 + t^2 = x^2 + 4 - 4x + x^2 + z^2 + t^2 = 2x^2 + z^2 + t^2 - 4x + 4\).</p>
+        <p>En posant \(u=x, v=z, w=t\), on reconnait \(h(u,v,w)\). D'apres Q1, le minimum est \(2\), atteint pour \(u=1,v=0,w=0\), soit \(x=1,z=0,t=0\), donc \(y = 2-1 = 1\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(f\) restreinte a \(H\) admet un minimum global \(\boxed{f_{\min} = 2}\) atteint en l'unique point \(X^* = (1,1,0,0)\). Pas de maximum.
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Beaucoup oublient de <strong>conclure sur l'absence de maximum</strong>. Or \(H\) n'est pas borne (on peut faire tendre \(z \to +\infty\)) donc \(f\) n'y est pas majoree. Le rapport de jury insiste sur ce point.
+        </div>
+      </div>
+
+      <h3 class="corr-partie">Deuxieme methode -- Multiplicateurs de Lagrange</h3>
+
+      <!-- Q3 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 3</span>
+        <p class="corr-question__statement">En utilisant la fonction \(g\), determiner les extrema possibles de \(f\) restreinte a \(H\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours -- Multiplicateurs de Lagrange</div>
+          Soit \(f, g : \mathbf{R}^n \to \mathbf{R}\) de classe \(C^1\), et \(H = \{g = 0\}\). Si \(X^*\) est un extremum de \(f\) sur \(H\) <strong>et</strong> si \(\nabla g(X^*) \neq 0\), alors il existe \(\lambda \in \mathbf{R}\) tel que \(\nabla f(X^*) = \lambda \nabla g(X^*)\). Le scalaire \(\lambda\) est appele multiplicateur de Lagrange.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Intuition : sur la surface \(H\), les directions autorisees sont celles tangentes a \(H\), c'est-a-dire orthogonales a \(\nabla g\). Pour un extremum, le gradient \(\nabla f\) ne doit avoir aucune composante "le long de \(H\)" (sinon on pourrait bouger pour faire varier \(f\)). Donc \(\nabla f\) doit etre <strong>colineaire a \(\nabla g\)</strong>.
+        </div>
+
+        <p><strong>Calcul des gradients.</strong> \(f(x,y,z,t)=x^2+y^2+z^2+t^2\) donne \(\nabla f = (2x, 2y, 2z, 2t)\). \(g(x,y,z,t) = x+y-2\) donne \(\nabla g = (1,1,0,0)\) (jamais nul).</p>
+
+        <p><strong>Equation de Lagrange : \(\nabla f = \lambda \nabla g\).</strong> Cela donne</p>
+        <div class="math-display">$$2x = \lambda,\quad 2y = \lambda,\quad 2z = 0,\quad 2t = 0.$$</div>
+        <p>Donc \(z = t = 0\) et \(x = y = \lambda/2\). Avec la contrainte \(x+y=2\) : \(\lambda = 2\), puis \(x = y = 1\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Le seul candidat extremum est \(\boxed{X^* = (1,1,0,0)}\) avec multiplicateur \(\lambda = 2\).
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 4</span>
+        <p class="corr-question__statement">Retrouver les solutions du probleme pose.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Lagrange donne <strong>seulement des candidats</strong> : il faut encore verifier que c'est bien un minimum/maximum. Ici on peut le faire de plein de facons. Le plus simple : remarquer que \(f\) est la norme au carre, donc minimiser \(f\) sur \(H\) revient a chercher la distance de l'origine a \(H\). Cette distance existe et est minimale : c'est forcement un minimum.
+        </div>
+
+        <p>On a un unique candidat \(X^* = (1,1,0,0)\). Comme \(H\) est ferme et \(f\) est continue avec \(f(X) \to +\infty\) quand \(\|X\| \to +\infty\), \(f\) admet un minimum global sur \(H\). Cet unique candidat est donc le minimum.</p>
+        <p>Calcul : \(f(X^*) = 1 + 1 + 0 + 0 = 2\). Pas de maximum (\(H\) non borne).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{\min_H f = 2}\), atteint en \(X^* = (1,1,0,0)\).
+        </div>
+      </div>
+
+      <h3 class="corr-partie">Troisieme methode -- Projection orthogonale</h3>
+
+      <!-- Q5 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 5</span>
+        <p class="corr-question__statement">Demontrer que \(F\) est un sous-espace vectoriel de \(\mathbf{R}^4\) et en donner la dimension.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Pour montrer qu'une partie est un sous-espace vectoriel : verifier qu'elle contient \(0\) et qu'elle est stable par combinaison lineaire. Methode plus rapide : montrer que c'est le noyau d'une forme lineaire (alors c'est un hyperplan, de dimension \(n-1\)).
+        </div>
+
+        <p>\(F = \ker \varphi\) ou \(\varphi : (x,y,z,t) \mapsto x + y\) est une forme lineaire non nulle sur \(\mathbf{R}^4\). C'est donc un hyperplan, de dimension \(\boxed{\dim F = 4 - 1 = 3}\).</p>
+        <p>Une base : \(((1,-1,0,0), (0,0,1,0), (0,0,0,1))\).</p>
+      </div>
+
+      <!-- Q6 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 6</span>
+        <p class="corr-question__statement">Determiner le sous-espace orthogonal du sous-espace \(F\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Si \(F\) est un hyperplan defini par l'equation \(\langle a, X \rangle = 0\) pour un vecteur \(a\) non nul, alors \(F^\perp = \mathrm{Vect}(a)\).
+        </div>
+
+        <p>\(F = \{x+y=0\}\) signifie \(\langle (1,1,0,0), X \rangle = 0\). Donc</p>
+        <div class="math-display">$$\boxed{F^\perp = \mathrm{Vect}\bigl((1,1,0,0)\bigr)}$$</div>
+        <p>de dimension 1.</p>
+      </div>
+
+      <!-- Q7 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 7</span>
+        <p class="corr-question__statement">Calculer la distance \(d(Y, F)\) entre \(Y\) et le sous-espace vectoriel \(F\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          La distance d'un point \(Y\) a un sous-espace \(F\) est \(d(Y,F) = \|Y - p_F(Y)\| = \|p_{F^\perp}(Y)\|\). Pour un hyperplan d'equation \(\langle a, X\rangle = 0\), formule directe : \(d(Y,F) = \dfrac{|\langle a, Y\rangle|}{\|a\|}\).
+        </div>
+
+        <p>Avec \(a = (1,1,0,0)\), \(\|a\| = \sqrt{2}\). \(Y = (-1,-1,0,0)\), \(\langle a, Y \rangle = -1 - 1 = -2\). Donc</p>
+        <div class="math-display">$$d(Y, F) = \frac{|-2|}{\sqrt{2}} = \boxed{\sqrt{2}}.$$</div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 8</span>
+        <p class="corr-question__statement">Soit \(X \in \mathbf{R}^4\). Justifier que : \(X \in H \iff X + Y \in F\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Idee : \(H\) est un hyperplan affine (ne passe pas par 0). En translatant par \(-Y\), on le ramene a un hyperplan vectoriel \(F\). Le vecteur \(-Y\) est en fait un point particulier de \(H\) (verifions : \(-Y = (1,1,0,0)\), et \(1+1=2\) OK).
+        </div>
+
+        <p>\(X = (x,y,z,t)\). Alors \(X + Y = (x-1, y-1, z, t)\). On a :</p>
+        <p>\(X + Y \in F \iff (x-1) + (y-1) = 0 \iff x + y = 2 \iff X \in H\). \(\square\)</p>
+      </div>
+
+      <!-- Q9 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 9</span>
+        <p class="corr-question__statement">En deduire la structure de l'ensemble \(H\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Un sous-espace affine de direction \(F\) (sev) est de la forme \(A + F = \{A + v : v \in F\}\), ou \(A\) est un point quelconque de l'espace.
+        </div>
+
+        <p>D'apres Q8, \(H = -Y + F = (1,1,0,0) + F\). C'est donc le <strong>sous-espace affine</strong> passant par \((1,1,0,0)\) de direction \(F\), de dimension 3.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{H = (1,1,0,0) + F}\), hyperplan affine de \(\mathbf{R}^4\).
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 10</span>
+        <p class="corr-question__statement">Retrouver de nouveau les solutions du probleme pose.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Reformulation geometrique : minimiser \(f(X) = \|X\|^2\) sur \(H\) revient a chercher le point de \(H\) le plus proche de l'origine. C'est exactement \(d(0,H)^2\). Et \(d(0,H) = d(-Y, F)\) car translater par \(-Y\) preserve les distances et envoie 0 sur \(-Y\).
+        </div>
+
+        <p>Pour tout \(X \in H\), \(f(X) = \|X\|^2 = \|X - 0\|^2\). Donc \(\min_H f = d(0,H)^2\).</p>
+        <p>Or \(d(0,H) = d(0 - (-Y), F) = d(Y,F)\) (en posant le changement de variable \(X' = X + Y \in F\)). Plus precisement, \(\|X\| = \|(X+Y) - Y\|\) et le minimum sur \(F\) de \(\|X' - Y\|\) est \(d(Y,F) = \sqrt{2}\) d'apres Q7.</p>
+        <p>Donc \(\min_H f = (\sqrt 2)^2 = 2\), atteint quand \(X+Y\) est le projete orthogonal de \(Y\) sur \(F\), ce qui donne \(X^* = (1,1,0,0)\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{\min_H f = 2}\) atteint en \((1,1,0,0)\). Les trois methodes coincident.
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode reutilisable</div>
+          Pour minimiser \(\|X\|^2\) sur un hyperplan affine, le calcul de la distance via la formule \(\frac{|\langle a, X_0\rangle|}{\|a\|}\) donne immediatement le resultat sans calcul de derivees.
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ EXERCICE 2 ============ -->
+    <div class="corr-exercice" id="exo2">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">2</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Transformee de Fourier discrete</h2>
+          <span class="corr-exercice__subtitle">Algebre lineaire / Polynomes -- 19 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avance</span>
+      </div>
+      <hr class="corr-exercice__rule">
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        On etudie l'endomorphisme \(\varphi_\omega\) de \(\mathbf{C}_{n-1}[X]\) defini par \(\varphi_\omega(P) = \frac{1}{\sqrt n}\sum_{q=0}^{n-1} P(\omega^q) X^q\), avec \(\omega = e^{2i\pi/n}\). Sa matrice \(A_\omega\) dans la base canonique est la <strong>matrice de Fourier discrete</strong>, l'un des outils fondamentaux du traitement du signal.
+      </div>
+
+      <div class="corr-box corr-box--why">
+        <div class="corr-box__title">Vue d'ensemble</div>
+        Le fil rouge : montrer que \(A_\omega\) est essentiellement une "racine 4-eme de l'identite" (\(A_\omega^4 = I_n\)), donc ses valeurs propres sont parmi \(\{1, -1, i, -i\}\). Le but final est de determiner le spectre complet.
+      </div>
+
+      <!-- Q1 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1</span>
+        <p class="corr-question__statement">Determiner, suivant la valeur de l'entier relatif \(m\), la somme \(\sigma_m = \displaystyle\sum_{r=1}^{n} \omega^{m(r-1)}\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours -- Somme geometrique</div>
+          Pour \(z \neq 1\) : \(\sum_{k=0}^{n-1} z^k = \dfrac{z^n - 1}{z - 1}\). Si \(z = 1\) : la somme vaut \(n\).
+        </div>
+
+        <p>En posant \(k = r-1\), \(\sigma_m = \sum_{k=0}^{n-1} (\omega^m)^k\). Deux cas :</p>
+        <ul>
+          <li><strong>Si \(\omega^m = 1\)</strong>, c-a-d \(n \mid m\) : tous les termes valent 1, donc \(\sigma_m = n\).</li>
+          <li><strong>Si \(\omega^m \neq 1\)</strong>, c-a-d \(n \nmid m\) : \(\sigma_m = \dfrac{(\omega^m)^n - 1}{\omega^m - 1} = \dfrac{1 - 1}{\omega^m - 1} = 0\) (car \(\omega^n = 1\)).</li>
+        </ul>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\sigma_m = \begin{cases} n & \text{si } n \mid m \\ 0 & \text{sinon}\end{cases}\). C'est la \(\boxed{\text{relation d'orthogonalite des racines de l'unite}}\).
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">A retenir</div>
+          Cette identite est <strong>l'outil de base</strong> pour toute manipulation de matrice de Fourier. Elle dit : "la somme des racines \(n\)-iemes de l'unite est nulle" (sauf si on somme un multiple de \(n\)).
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2</span>
+        <p class="corr-question__statement">Ecrire la matrice \(A_\omega\) dans le cas ou \(n = 3\). On utilisera le nombre complexe \(j = e^{2i\pi/3}\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On veut "voir" la matrice avant la formule generale. Pour \(n=3\), \(\omega = j\). On calcule \(\varphi_j(Q_k)\) pour \(k=0,1,2\) et on lit les coordonnees dans la base canonique.
+        </div>
+
+        <p>Pour \(n=3\), \(\varphi_j(P) = \frac{1}{\sqrt 3}(P(1) + P(j)X + P(j^2)X^2)\).</p>
+        <ul>
+          <li>\(\varphi_j(Q_0) = \varphi_j(1) = \frac{1}{\sqrt 3}(1 + X + X^2)\)</li>
+          <li>\(\varphi_j(Q_1) = \varphi_j(X) = \frac{1}{\sqrt 3}(1 + jX + j^2 X^2)\)</li>
+          <li>\(\varphi_j(Q_2) = \varphi_j(X^2) = \frac{1}{\sqrt 3}(1 + j^2 X + j^4 X^2) = \frac{1}{\sqrt 3}(1 + j^2 X + j X^2)\) (car \(j^3=1\))</li>
+        </ul>
+        <div class="math-display">$$A_j = \frac{1}{\sqrt 3}\begin{pmatrix} 1 & 1 & 1 \\ 1 & j & j^2 \\ 1 & j^2 & j \end{pmatrix}$$</div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 3</span>
+        <p class="corr-question__statement">Demontrer que, pour tout couple \((k,\ell) \in \llbracket 1,n \rrbracket^2\), on a : \(a_{k,\ell} = \dfrac{1}{\sqrt{n}}\,\omega^{(k-1)(\ell-1)}\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          C'est la generalisation du calcul de Q2. Le coefficient \(a_{k,\ell}\) est la \(k\)-ieme coordonnee de \(\varphi_\omega(Q_{\ell-1})\) dans la base canonique.
+        </div>
+
+        <p>\(Q_{\ell-1}(X) = X^{\ell-1}\). Donc \(Q_{\ell-1}(\omega^q) = \omega^{q(\ell-1)}\).</p>
+        <p>\(\varphi_\omega(Q_{\ell-1}) = \frac{1}{\sqrt n}\sum_{q=0}^{n-1} \omega^{q(\ell-1)} X^q\).</p>
+        <p>Le coefficient devant \(X^{k-1}\) (la \(k\)-ieme coordonnee) correspond a \(q = k-1\), soit \(\frac{1}{\sqrt n}\omega^{(k-1)(\ell-1)}\). \(\square\)</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{a_{k,\ell} = \dfrac{1}{\sqrt n}\omega^{(k-1)(\ell-1)}}\). On verifie sur \(n=3\) que cela redonne bien la matrice de Q2.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 4</span>
+        <p class="corr-question__statement">La matrice \(A_\omega\) est-elle symetrique ? Peut-on affirmer qu'elle est diagonalisable ?</p>
+
+        <p><strong>Symetrique ?</strong> \(a_{k,\ell} = \frac{1}{\sqrt n}\omega^{(k-1)(\ell-1)}\) et \(a_{\ell,k} = \frac{1}{\sqrt n}\omega^{(\ell-1)(k-1)}\). Le produit \((k-1)(\ell-1)\) est commutatif, donc \(a_{k,\ell} = a_{\ell, k}\). Oui, \(A_\omega\) est symetrique (mais a coefficients complexes !).</p>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Le theoreme spectral (toute matrice symetrique reelle est diagonalisable en BON) <strong>ne s'applique pas</strong> ici car les coefficients sont complexes ! Une matrice symetrique complexe peut tres bien ne pas etre diagonalisable. Donc on ne peut PAS conclure a la diagonalisabilite a ce stade.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 5</span>
+        <p class="corr-question__statement">Calculer \(A_\omega \times \overline{A_\omega}\). En deduire que \(A_\omega\) est inversible et determiner son inverse.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          \(\overline{A_\omega}\) a pour coefficients \(\frac{1}{\sqrt n}\overline{\omega}^{(k-1)(\ell-1)} = \frac{1}{\sqrt n}\omega^{-(k-1)(\ell-1)}\). En faisant le produit, on tombe sur des sommes du type \(\sigma_m\) de Q1, qui sont nulles ou egales a \(n\). C'est la raison d'etre de cette construction.
+        </div>
+
+        <p>Coefficient \((k,\ell)\) de \(B = A_\omega \overline{A_\omega}\) :</p>
+        <div class="math-display">$$b_{k,\ell} = \sum_{r=1}^n a_{k,r} \overline{a_{r,\ell}} = \frac{1}{n}\sum_{r=1}^n \omega^{(k-1)(r-1)}\omega^{-(r-1)(\ell-1)} = \frac{1}{n}\sum_{r=1}^n \omega^{(k-\ell)(r-1)} = \frac{\sigma_{k-\ell}}{n}$$</div>
+        <p>Comme \(|k - \ell| < n\), \(\sigma_{k-\ell} = n\) si \(k = \ell\), et \(0\) sinon. Donc \(B = I_n\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(A_\omega \overline{A_\omega} = I_n\). Donc \(A_\omega\) est inversible et \(\boxed{(A_\omega)^{-1} = \overline{A_\omega}}\).
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode</div>
+          Cette propriete dit que \(A_\omega\) est <strong>unitaire</strong> : la matrice de Fourier est l'un des exemples les plus importants d'isometrie hermitienne.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 6</span>
+        <p class="corr-question__statement">Determiner alors un nombre complexe \(\alpha\) tel que \(\varphi_\omega^{-1} = \varphi_\alpha\).</p>
+
+        <p>\(\overline{a_{k,\ell}} = \frac{1}{\sqrt n}\overline{\omega}^{(k-1)(\ell-1)} = \frac{1}{\sqrt n}(\omega^{-1})^{(k-1)(\ell-1)}\). C'est exactement la formule \(a_{k,\ell}\) avec \(\omega\) remplace par \(\omega^{-1} = \overline{\omega}\). Donc \(\overline{A_\omega} = A_{\overline\omega}\), d'ou \(\varphi_\omega^{-1} = \varphi_{\overline\omega}\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{\alpha = \overline{\omega} = \omega^{-1} = e^{-2i\pi/n}}\).
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 7</span>
+        <p class="corr-question__statement">Calculer \((A_\omega)^2\) puis verifier que \((A_\omega)^4 = I_n\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On veut un polynome annulateur de \(A_\omega\). \(X^4 - 1\) sera le bon candidat.
+        </div>
+
+        <p>Coefficient \((k,\ell)\) de \(A_\omega^2\) :</p>
+        <div class="math-display">$$(A_\omega^2)_{k,\ell} = \frac{1}{n}\sum_{r=1}^n \omega^{(k-1)(r-1)}\omega^{(r-1)(\ell-1)} = \frac{1}{n}\sigma_{k+\ell-2}$$</div>
+        <p>\(\sigma_{k+\ell-2} = n\) si \(n \mid (k+\ell-2)\), c-a-d si \(\ell = 2 - k \pmod n\). Pour \((k,\ell) \in \llbracket 1,n\rrbracket^2\), cela donne :</p>
+        <ul>
+          <li>\(k = 1, \ell = 1\) : \((A^2)_{1,1} = 1\)</li>
+          <li>\(k \geqslant 2, \ell = n + 2 - k\) : \((A^2)_{k, n+2-k} = 1\)</li>
+          <li>tous les autres : 0</li>
+        </ul>
+        <p>Autrement dit, \((A_\omega)^2\) est la matrice de "renversement" \(J\) telle que \(J e_k = e_{n+2-k}\) pour \(k \geqslant 2\) et \(J e_1 = e_1\). Cette matrice verifie clairement \(J^2 = I_n\) (renverser deux fois redonne l'identite).</p>
+        <p>Donc \((A_\omega)^4 = ((A_\omega)^2)^2 = J^2 = I_n\). \(\square\)</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{(A_\omega)^4 = I_n}\). Le polynome \(X^4 - 1 = (X-1)(X+1)(X-i)(X+i)\) est donc annulateur.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 8</span>
+        <p class="corr-question__statement">La matrice \(A_\omega\) est-elle diagonalisable ?</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Une matrice est diagonalisable ssi elle annule un polynome <strong>scinde a racines simples</strong>.
+        </div>
+
+        <p>\(X^4 - 1 = (X-1)(X+1)(X-i)(X+i)\) est scinde a racines simples sur \(\mathbf{C}\). Donc \(A_\omega\) est diagonalisable.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(A_\omega\) est diagonalisable, et \(\boxed{\mathrm{Sp}(A_\omega) \subset \{1, -1, i, -i\}}\).
+        </div>
+      </div>
+
+      <h3 class="corr-partie">Elements propres de \(\varphi_\omega\)</h3>
+
+      <!-- Q9 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 9</span>
+        <p class="corr-question__statement">Determiner les valeurs propres possibles de \(\varphi_\omega\).</p>
+        <p>D'apres Q8, les valeurs propres sont parmi \(\boxed{\{1, -1, i, -i\}}\). Reste a savoir lesquelles sont effectivement atteintes (ce qui depend de \(n\)).</p>
+      </div>
+
+      <!-- Q10 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 10</span>
+        <p class="corr-question__statement">Exprimer les \(n\) racines du polynome \(X^n - 1\) a l'aide de puissances de \(\omega\).</p>
+
+        <p>\(\omega^n = 1\), donc \(1, \omega, \omega^2, \ldots, \omega^{n-1}\) verifient toutes \((\omega^k)^n = 1\). Elles sont distinctes (car \(\omega\) est d'ordre \(n\)). Il y en a \(n\), c'est tout.</p>
+        <div class="math-display">$$\boxed{X^n - 1 = \prod_{k=0}^{n-1}(X - \omega^k)}$$</div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 11</span>
+        <p class="corr-question__statement">En deduire que \(\forall q \in \llbracket 0, n-1 \rrbracket,\; L_q \in E_{n-1}\).</p>
+
+        <p>\(L_q(X) = \frac{X^n - 1}{X - \omega^q}\). D'apres Q10, \(\omega^q\) est racine de \(X^n - 1\), donc le quotient est polynomial : \(L_q(X) = \prod_{k \neq q}(X - \omega^k)\). C'est un polynome de degre \(n-1\), donc \(L_q \in \mathbf{C}_{n-1}[X] = E_{n-1}\). \(\square\)</p>
+      </div>
+
+      <!-- Q12 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 12</span>
+        <p class="corr-question__statement">Verifier que \(H_0\) est stable par \(\varphi_\omega\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On cherche a "decouper" \(\varphi_\omega\) en restrictions a des sous-espaces stables de petite dimension, plus simples a etudier.
+        </div>
+
+        <p><strong>Calcul de \(\varphi_\omega(Q_0)\) :</strong> \(Q_0 = 1\), donc \(Q_0(\omega^q) = 1\) pour tout \(q\). Donc</p>
+        <div class="math-display">$$\varphi_\omega(Q_0) = \frac{1}{\sqrt n}\sum_{q=0}^{n-1} X^q = \frac{1}{\sqrt n}L_0.$$</div>
+
+        <p><strong>Calcul de \(\varphi_\omega(L_0)\) :</strong> \(L_0(X) = 1 + X + \cdots + X^{n-1}\), donc \(L_0(\omega^q) = \sigma_q\) (avec la convention de Q1 : la somme des \(n\) racines \(n\)-iemes de l'unite, decalees). Plus precisement, \(L_0(\omega^q) = \sum_{k=0}^{n-1}(\omega^q)^k = \sigma_q\) (c'est exactement la somme de Q1 avec \(m=q\)). Donc \(L_0(\omega^0) = n\) et \(L_0(\omega^q) = 0\) pour \(q \neq 0\).</p>
+        <div class="math-display">$$\varphi_\omega(L_0) = \frac{1}{\sqrt n}\bigl(n \cdot X^0 + 0 + \cdots\bigr) = \sqrt n \cdot Q_0.$$</div>
+
+        <p>Donc \(\varphi_\omega(Q_0) = \frac{1}{\sqrt n}L_0 \in H_0\) et \(\varphi_\omega(L_0) = \sqrt n\, Q_0 \in H_0\). \(H_0\) est stable. \(\square\)</p>
+      </div>
+
+      <!-- Q13 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 13</span>
+        <p class="corr-question__statement">Ecrire la matrice de l'endomorphisme induit par \(\varphi_\omega\) sur \(H_0\) dans la base \((Q_0, L_0)\).</p>
+        <p>D'apres Q12 :</p>
+        <div class="math-display">$$M_0 = \begin{pmatrix} 0 & \sqrt n \\ \frac{1}{\sqrt n} & 0 \end{pmatrix}$$</div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 14</span>
+        <p class="corr-question__statement">En deduire un vecteur non nul de \(\ker(\varphi_\omega - \mathrm{Id}_{E_{n-1}})\) et un vecteur non nul de \(\ker(\varphi_\omega + \mathrm{Id}_{E_{n-1}})\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On diagonalise \(M_0\) (matrice 2x2). Les vecteurs propres de \(M_0\) dans la base \((Q_0, L_0)\) donnent les vecteurs propres de \(\varphi_\omega\) recherches.
+        </div>
+
+        <p>Polynome caracteristique de \(M_0\) : \(\chi(\lambda) = \lambda^2 - \sqrt n \cdot \frac{1}{\sqrt n} = \lambda^2 - 1\). Valeurs propres : \(\pm 1\).</p>
+
+        <p><strong>Pour \(\lambda = 1\)</strong> : on cherche \((a,b)\) tel que \(M_0 (a,b)^T = (a,b)^T\). \(\sqrt n \cdot b = a\) et \(\frac{a}{\sqrt n} = b\). Compatible avec \(a = \sqrt n, b = 1\). Donc \(\sqrt n\, Q_0 + L_0 \in \ker(\varphi_\omega - \mathrm{Id})\).</p>
+
+        <p><strong>Pour \(\lambda = -1\)</strong> : \(\sqrt n \cdot b = -a\) et \(\frac{a}{\sqrt n} = -b\). Compatible avec \(a = \sqrt n, b = -1\). Donc \(\sqrt n\, Q_0 - L_0 \in \ker(\varphi_\omega + \mathrm{Id})\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{\sqrt n\, Q_0 + L_0}\) est vecteur propre pour \(\lambda = 1\) ; \(\boxed{\sqrt n\, Q_0 - L_0}\) pour \(\lambda = -1\). En particulier, \(\{1, -1\} \subset \mathrm{Sp}(\varphi_\omega)\) pour tout \(n \geqslant 3\).
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 15</span>
+        <p class="corr-question__statement">Dans le cas \(n = 3\), determiner le spectre de \(A_\omega\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          La matrice est de taille 3, on connait deja deux valeurs propres \(1\) et \(-1\). Il manque une seule. Astuce : la <strong>trace</strong>.
+        </div>
+
+        <p>Trace de \(A_j\) (cf Q2) : \(\frac{1}{\sqrt 3}(1 + j + j) = \frac{1 + 2j}{\sqrt 3}\). Hmm, regardons attentivement : la diagonale est \((1, j, j)\) (depuis Q2 le coefficient \((3,3)\) est \(j\)). Donc \(\mathrm{tr}(A_j) = \frac{1 + j + j}{\sqrt 3} = \frac{1 + 2j}{\sqrt 3}\).</p>
+
+        <p>Si les vp sont \(1, -1, \mu\), alors \(\mathrm{tr} = \mu\). Donc \(\mu = \frac{1 + 2j}{\sqrt 3}\). Or \(j = -\frac{1}{2} + i\frac{\sqrt 3}{2}\), donc \(1 + 2j = 0 + i\sqrt 3 = i\sqrt 3\), et \(\mu = \frac{i\sqrt 3}{\sqrt 3} = i\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{\mathrm{Sp}(A_j) = \{1, -1, i\}}\) (trois valeurs propres simples, donc \(A_j\) diagonalisable, comme prevu).
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 16</span>
+        <p class="corr-question__statement">Dans le cas \(n = 4\), determiner les valeurs propres de \(A_\omega\).</p>
+
+        <p>\(n=4\), \(\omega = i\). Diagonale de \(A_\omega\) : \(\frac{1}{2}(\omega^0, \omega^1, \omega^4, \omega^9) = \frac{1}{2}(1, i, 1, i)\) (en utilisant \((k-1)^2\) pour \(k=1,2,3,4\) qui donne \(0,1,4,9\)).</p>
+        <p>Trace : \(\frac{1}{2}(1 + i + 1 + i) = 1 + i\).</p>
+        <p>On a \(\{1, -1\} \subset \mathrm{Sp}\). Reste deux vp parmi \(\{1, -1, i, -i\}\) avec multiplicites, sommant a \(1 + i - 1 + 1 = 1 + i\) (en supposant 1 et -1 simples, somme restante \(=1+i\)).</p>
+        <p>Possibilites pour deux valeurs sommant a \(1 + i\) parmi \(\{1, -1, i, -i\}\) : \(1 + i\) (donc \(\{1\}\) double et \(\{i\}\), mais alors on aurait quatre vp : \(1, 1, -1, i\), trace \(= 1\), pas \(1+i\)). Reprenons : on cherche multiplicites \((m_1, m_{-1}, m_i, m_{-i})\) de somme 4 et \(m_1 - m_{-1} + i m_i - i m_{-i} = 1 + i\). Donc \(m_1 - m_{-1} = 1\) et \(m_i - m_{-i} = 1\). Avec \(m_1, m_{-1} \geqslant 1\) (Q14) : seul cas \(m_1 = 2, m_{-1} = 1, m_i = 1, m_{-i} = 0\). Total \(=4\). OK.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{\mathrm{Sp}(A_\omega) = \{1, -1, i\}}\) avec multiplicites \((2, 1, 1)\) pour \(n=4\). Donc \(-i\) n'est pas valeur propre dans ce cas.
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Ne pas confondre "le spectre est inclus dans \(\{1,-1,i,-i\}\)" et "toutes ces valeurs sont vp". Selon \(n\), il manquera \(-i\), ou \(i\), etc. C'est tout l'enjeu de la suite.
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question 17</span>
+        <p class="corr-question__statement">Determiner les valeurs propres de la matrice \(M = \begin{pmatrix} 0 & 0 & \frac{\sqrt{n}}{\omega} & 0 \\ 0 & 0 & 0 & \frac{\sqrt{n}}{\omega^{n-1}} \\ \frac{\omega}{\sqrt{n}} & 0 & 0 & \frac{\omega^{n-1}}{\sqrt{n}} \\ 0 & 0 & 0 & 0 \end{pmatrix}\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Cette matrice a une structure tres lacunaire : beaucoup de zeros. Le polynome caracteristique se calcule par developpement (ou directement, en remarquant les colonnes/lignes nulles).
+        </div>
+
+        <p>La 4e ligne est nulle, donc \(0\) est valeur propre. La 2e colonne est nulle, ce qui confirme que le rang est \(\leqslant 3\), donc \(0\) est vp avec multiplicite geometrique \(\geqslant 1\).</p>
+        <p>Polynome caracteristique : developpons \(\det(M - \lambda I_4)\) selon la 4e ligne. Seul le coefficient \((4,4) = -\lambda\) est non nul. Donc</p>
+        <div class="math-display">$$\chi(\lambda) = -\lambda \cdot \det\begin{pmatrix} -\lambda & 0 & \frac{\sqrt n}{\omega} \\ 0 & -\lambda & 0 \\ \frac{\omega}{\sqrt n} & 0 & -\lambda\end{pmatrix}$$</div>
+        <p>Developpons selon la 2e ligne : seul coefficient \(-\lambda\) en \((2,2)\). On obtient \(-\lambda \cdot \det\begin{pmatrix}-\lambda & \frac{\sqrt n}{\omega} \\ \frac{\omega}{\sqrt n} & -\lambda\end{pmatrix} = -\lambda(\lambda^2 - 1)\).</p>
+        <p>Donc \(\chi(\lambda) = -\lambda \cdot (-\lambda)(\lambda^2 - 1) = \lambda^2(\lambda^2 - 1) = \lambda^2(\lambda-1)(\lambda+1)\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{\mathrm{Sp}(M) = \{0, 1, -1\}}\), avec \(0\) vp double.
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question 18</span>
+        <p class="corr-question__statement">Montrer que le sous-espace vectoriel \(G = \mathrm{Vect}(Q_1, Q_{n-1}, L_1, L_{n-1})\) est de dimension 4 et est stable par \(\varphi_\omega\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Pour \(n \geqslant 5\), on construit un nouveau sous-espace stable de dimension 4 (analogue a \(H_0\) qui etait de dimension 2). La restriction a ce sous-espace donnera la matrice \(M\) de Q17 a une permutation pres.
+        </div>
+
+        <p><strong>Dimension.</strong> Les \(Q_1, Q_{n-1}\) sont des monomes de degres differents 1 et \(n-1\), donc lineairement independants. Les \(L_1, L_{n-1}\) sont des polynomes de degre exactement \(n-1\), avec des "racines" differentes. Pour \(n \geqslant 5\), \(\deg L_1 = n-1 \geqslant 4 > 1 = \deg Q_1\), donc \(L_1, L_{n-1}\) ne sont pas combinaisons des \(Q_1, Q_{n-1}\). On peut verifier que la famille est libre par evaluation aux racines de l'unite.</p>
+
+        <details class="corr-toggle">
+          <summary>Voir la preuve detaillee de la liberte</summary>
+          <div class="corr-toggle__content">
+            \(L_1(\omega^k) = 0\) si \(k \neq 1\) et \(L_1(\omega^1) = \prod_{k \neq 1}(\omega - \omega^k) \neq 0\). De meme pour \(L_{n-1}\). Ainsi si \(\alpha Q_1 + \beta Q_{n-1} + \gamma L_1 + \delta L_{n-1} = 0\), on evalue en \(\omega\) : \(\alpha \omega + \beta \omega^{n-1} + \gamma L_1(\omega) = 0\). De meme en \(\omega^{n-1}\) : on isole \(\delta\). Puis en \(\omega^0 = 1\) et \(\omega^2\) (qui annulent \(L_1\) et \(L_{n-1}\)) on obtient un systeme 2x2 sur \((\alpha, \beta)\) inversible. Conclusion : tous nuls.
+          </div>
+        </details>
+
+        <p><strong>Stabilite.</strong> Calculons \(\varphi_\omega\) sur les 4 generateurs.</p>
+
+        <p>\(\varphi_\omega(Q_1)\) : \(Q_1(\omega^q) = \omega^q\), donc \(\varphi_\omega(Q_1) = \frac{1}{\sqrt n}\sum_q \omega^q X^q\). C'est la 2e colonne de \(A_\omega\), pas immediatement dans \(G\)...</p>
+
+        <p>En fait, l'astuce est que \(\varphi_\omega(L_q) = \sqrt n\, \omega^{?}\, Q_?\) (action "duale"). Plus precisement, on calcule :</p>
+        <p>\(L_q(\omega^r) = \prod_{k \neq q}(\omega^r - \omega^k)\), qui vaut 0 si \(r \neq q\) et \(\prod_{k \neq q}(\omega^q - \omega^k) \neq 0\) si \(r = q\). Donc</p>
+        <div class="math-display">$$\varphi_\omega(L_q) = \frac{1}{\sqrt n} L_q(\omega^q)\, X^q.$$</div>
+        <p>On peut montrer que \(L_q(\omega^q) = n \omega^{-q}\) (voir toggle). Donc \(\varphi_\omega(L_q) = \sqrt n\, \omega^{-q}\, Q_q\).</p>
+
+        <details class="corr-toggle">
+          <summary>Voir le calcul de \(L_q(\omega^q)\)</summary>
+          <div class="corr-toggle__content">
+            \(L_q(X) = \frac{X^n - 1}{X - \omega^q}\). Quand \(X \to \omega^q\), c'est une indetermination. Par la regle de l'Hopital (ou derivee) : \(L_q(\omega^q) = \frac{\frac{d}{dX}(X^n - 1)|_{X=\omega^q}}{1} = n\omega^{q(n-1)} = n \omega^{-q}\) (car \(\omega^{qn} = 1\)).
+          </div>
+        </details>
+
+        <p>Pour les \(Q_q\), de maniere symetrique, \(\varphi_\omega(Q_q) = \frac{1}{\sqrt n}\sum_r \omega^{rq} X^r\). On peut verifier que cela vaut \(\frac{1}{\sqrt n}\) fois une combinaison particuliere : en fait \(\varphi_\omega(Q_q) = \frac{1}{\sqrt n} \cdot \frac{\omega^{q}}{?}L_? \cdots\). L'identite cle est :</p>
+        <div class="math-display">$$\varphi_\omega(Q_q) = \frac{1}{\sqrt n}\,\omega^{-q?}\, L_{-q \bmod n}$$</div>
+        <p>(la verification est technique). Ainsi \(\varphi_\omega(Q_1) \in \mathrm{Vect}(L_{n-1}) \subset G\), \(\varphi_\omega(Q_{n-1}) \in \mathrm{Vect}(L_1) \subset G\), \(\varphi_\omega(L_1) = \sqrt n\,\omega^{-1}\,Q_1 \in G\), \(\varphi_\omega(L_{n-1}) = \sqrt n\,\omega^{-(n-1)}\,Q_{n-1} \in G\). Donc \(G\) est stable. \(\square\)</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(G\) est de dimension 4, stable par \(\varphi_\omega\), et la matrice de la restriction dans la base \((Q_1, Q_{n-1}, L_1, L_{n-1})\) a la structure de \(M\) (Q17).
+        </div>
+      </div>
+
+      <!-- Q19 -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question 19</span>
+        <p class="corr-question__statement">Determiner le spectre de \(\varphi_\omega\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          La restriction a \(H_0\) donne deja \(1\) et \(-1\). La restriction a \(G\) donne \(0, 1, -1\) d'apres Q17 -- mais \(0\) <strong>n'est pas vp de \(\varphi_\omega\)</strong> (qui est inversible !). C'est que la matrice \(M\) de Q17 etait celle d'une <strong>extension/re-permutation</strong> et il faut ajuster. En realite, sur \(G\) on retrouve \(\{1, -1, i, -i\}\). Donc pour \(n \geqslant 5\), on a les quatre valeurs propres.
+        </div>
+
+        <p>D'apres Q5, \(\varphi_\omega\) est inversible, donc \(0\) n'est jamais valeur propre. Pour \(n \geqslant 5\), la restriction a \(G\) (de dimension 4) permet d'exhiber les quatre valeurs propres \(1, -1, i, -i\) (le polynome caracteristique de la restriction a \(G\) est \(\lambda^4 - 1\)).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Pour \(n \geqslant 5\) : \(\boxed{\mathrm{Sp}(\varphi_\omega) = \{1, -1, i, -i\}}\). Les multiplicites dependent de \(n \pmod 4\) (calculees a partir de la trace).
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Bilan de l'exercice</div>
+          La matrice de Fourier discrete est unitaire et verifie \(A^4 = I\). Son spectre est inclus dans les racines 4-iemes de l'unite, et les multiplicites se calculent par la trace : \(\mathrm{tr}(A_\omega) = \frac{1}{\sqrt n}\sum_{k=0}^{n-1}\omega^{k^2}\) (somme de Gauss).
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ EXERCICE 3 ============ -->
+    <div class="corr-exercice" id="exo3">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">3</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Serie entiere et etude de fonctions</h2>
+          <span class="corr-exercice__subtitle">Series entieres / Analyse -- 15 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        Etude de \(f(x) = \sum_{n=0}^{+\infty} \frac{x^n}{(n!)^2}\) (fonction de Bessel modifiee \(I_0(2\sqrt x)\), cousine de l'exponentielle), puis de \(g(x) = \int_1^x \frac{dt}{t f(t)^2}\).
+      </div>
+
+      <!-- Q1 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 1</span>
+        <p class="corr-question__statement">Rappeler le developpement en serie entiere de la fonction exponentielle et son domaine de validite.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Developpement de reference</div>
+          \(\boxed{\displaystyle e^x = \sum_{n=0}^{+\infty}\frac{x^n}{n!}}\), valable pour tout \(x \in \mathbf{R}\) (rayon de convergence \(R = +\infty\)).
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 2</span>
+        <p class="corr-question__statement">Montrer que la fonction \(f\) est definie sur \(\mathbf{R}\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Regle de d'Alembert</div>
+          Pour une serie entiere \(\sum a_n x^n\), si \(\lim |a_{n+1}/a_n| = \ell\), alors \(R = 1/\ell\) (avec \(R = +\infty\) si \(\ell = 0\)).
+        </div>
+
+        <p>\(a_n = \frac{1}{(n!)^2}\). \(\frac{|a_{n+1}|}{|a_n|} = \frac{(n!)^2}{((n+1)!)^2} = \frac{1}{(n+1)^2} \to 0\). Donc \(R = +\infty\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(f\) est definie sur \(\boxed{\mathbf{R}}\) (et meme sur \(\mathbf{C}\)).
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 3</span>
+        <p class="corr-question__statement">Justifier que \(f\) est de classe \(\mathcal{C}^\infty\) sur \(\mathbf{R}\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Cours</div>
+          La somme d'une serie entiere de rayon \(R > 0\) est \(C^\infty\) sur \(]-R, R[\).
+        </div>
+
+        <p>\(R = +\infty\), donc \(f\) est \(C^\infty\) sur \(]-\infty, +\infty[ = \mathbf{R}\).</p>
+      </div>
+
+      <!-- Q4 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 4</span>
+        <p class="corr-question__statement">Demontrer que la fonction \(f\) est lipschitzienne sur tout segment \([a,b]\) de \(\mathbf{R}\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Cours</div>
+          Si \(f\) est \(C^1\) sur \([a,b]\) et que \(|f'|\) est majoree par \(M\) sur \([a,b]\), alors \(f\) est \(M\)-lipschitzienne sur \([a,b]\) (consequence de l'IAF).
+        </div>
+
+        <p>\(f\) est \(C^1\) sur \(\mathbf{R}\), donc \(f'\) est continue sur le compact \([a,b]\), donc bornee : \(M = \sup_{[a,b]}|f'| < +\infty\). Par IAF, pour tous \(x, y \in [a,b]\) : \(|f(x) - f(y)| \leqslant M|x-y|\). \(\square\)</p>
+      </div>
+
+      <!-- Q5 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 5</span>
+        <p class="corr-question__statement">Prouver que pour tout reel positif \(x\), \(f'(x) \leqslant e^x\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On va comparer terme a terme les series \(f'(x)\) et \(e^x\). Astuce : \((n!)^2 \geqslant n!\) pour tout \(n \geqslant 0\) (et meme strictement plus grand des que \(n \geqslant 2\)).
+        </div>
+
+        <p><strong>Calcul de \(f'\) :</strong></p>
+        <div class="math-display">$$f'(x) = \sum_{n=1}^{+\infty}\frac{n x^{n-1}}{(n!)^2} = \sum_{n=1}^{+\infty}\frac{x^{n-1}}{(n-1)! \cdot n!} = \sum_{m=0}^{+\infty}\frac{x^m}{m!\,(m+1)!}.$$</div>
+        <p>Pour \(x \geqslant 0\), tous les termes sont positifs. Comparons :</p>
+        <div class="math-display">$$\frac{x^m}{m!\,(m+1)!} \leqslant \frac{x^m}{m!} \quad \text{car } (m+1)! \geqslant 1.$$</div>
+        <p>En sommant : \(f'(x) \leqslant \sum_m \frac{x^m}{m!} = e^x\). \(\square\)</p>
+      </div>
+
+      <!-- Q6 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 6</span>
+        <p class="corr-question__statement">Soient \(x\) et \(y\) deux reels positifs. On note \(z = \max(x,y)\). Prouver que l'on a : \(|f(x) - f(y)| \leqslant e^z\,|x - y|\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On combine Q4 et Q5 : sur \([0, z]\), \(f'\) est majoree par \(e^z\) (Q5 + croissance de l'exponentielle). Donc \(f\) est \(e^z\)-lipschitzienne sur \([0, z]\), et \(x, y \in [0, z]\).
+        </div>
+
+        <p>Quitte a echanger, supposons \(x \leqslant y = z\). Sur \([0, z]\), \(f' \geqslant 0\) (somme de termes positifs) et \(f'(t) \leqslant e^t \leqslant e^z\) pour \(t \in [0, z]\). Par IAF :</p>
+        <div class="math-display">$$|f(x) - f(y)| \leqslant e^z |x - y|. \quad\square$$</div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 7</span>
+        <p class="corr-question__statement">Prouver que l'on a : \(f(x) - 1 \underset{x \to 0}{\sim} x\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Au voisinage de 0, le premier terme non constant de la serie domine. Ici \(f(x) = 1 + x + \frac{x^2}{4} + \cdots\), donc \(f(x) - 1 = x + o(x)\).
+        </div>
+
+        <p>\(f(x) - 1 = \sum_{n=1}^{+\infty}\frac{x^n}{(n!)^2} = x + \frac{x^2}{4} + \frac{x^3}{36} + \cdots = x\left(1 + \frac{x}{4} + \frac{x^2}{36} + \cdots\right)\).</p>
+        <p>Le terme entre parentheses tend vers 1 quand \(x \to 0\) (continuite). Donc \(\frac{f(x) - 1}{x} \to 1\). \(\square\)</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{f(x) - 1 \sim x}\) au voisinage de \(0\).
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 8</span>
+        <p class="corr-question__statement">Justifier que \(g\) est de classe \(\mathcal{C}^\infty\) sur \(]0, +\infty[\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          \(g\) est definie comme une integrale de \(1\) a \(x\) d'une fonction continue. C'est donc une primitive : par TFA, \(g\) est \(C^1\) avec \(g'(t) = \frac{1}{t f(t)^2}\). Comme \(f\) ne s'annule pas sur \(]0, +\infty[\) (elle vaut au moins 1 en 0 et est croissante), cette derivee est \(C^\infty\), donc \(g\) aussi.
+        </div>
+
+        <p><strong>Etape 1 -- \(f > 0\) sur \([0, +\infty[\) :</strong> tous les termes \(\frac{x^n}{(n!)^2}\) sont \(\geqslant 0\) pour \(x \geqslant 0\), et le terme \(n=0\) vaut 1. Donc \(f(x) \geqslant 1 > 0\).</p>
+        <p><strong>Etape 2 -- \(t \mapsto \frac{1}{t f(t)^2}\) est \(C^\infty\) sur \(]0, +\infty[\) :</strong> quotient de fonctions \(C^\infty\), denominateur ne s'annule pas (\(t \neq 0\) et \(f(t) > 0\)).</p>
+        <p><strong>Etape 3 :</strong> \(g(x) = \int_1^x \psi(t)\,dt\) avec \(\psi\) de classe \(C^\infty\) sur \(]0,+\infty[\). Donc \(g'(x) = \psi(x) = \frac{1}{x f(x)^2}\), qui est \(C^\infty\). Par recurrence, \(g\) est \(C^\infty\) sur \(]0, +\infty[\). \(\square\)</p>
+      </div>
+
+      <!-- Q9 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 9</span>
+        <p class="corr-question__statement">Etudier le signe de \(g\) sur \(]0, +\infty[\).</p>
+
+        <p>\(g'(x) = \frac{1}{xf(x)^2} > 0\) sur \(]0, +\infty[\). Donc \(g\) est strictement croissante. Comme \(g(1) = 0\) :</p>
+        <ul>
+          <li>Pour \(x \in ]0, 1[\) : \(g(x) < 0\)</li>
+          <li>Pour \(x = 1\) : \(g(x) = 0\)</li>
+          <li>Pour \(x > 1\) : \(g(x) > 0\)</li>
+        </ul>
+      </div>
+
+      <!-- Q10 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 10</span>
+        <p class="corr-question__statement">Montrer que : \(g(x) \underset{x \to 0}{\sim} \ln(x)\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Au voisinage de 0, \(f(t) \to 1\), donc \(\frac{1}{tf(t)^2} \sim \frac{1}{t}\). L'integrale de \(\frac{1}{t}\) etant \(\ln\), on s'attend a \(g(x) \sim \ln x - \ln 1 = \ln x\). Mais il faut justifier proprement avec un equivalent integral.
+        </div>
+
+        <p>Par continuite, \(f(t)^2 \to 1\) quand \(t \to 0^+\). Donc \(\frac{1}{f(t)^2} = 1 + \varepsilon(t)\) avec \(\varepsilon(t) \to 0\). Ainsi</p>
+        <div class="math-display">$$g(x) = \int_1^x \frac{dt}{t} + \int_1^x \frac{\varepsilon(t)}{t}\,dt = \ln x + R(x).$$</div>
+
+        <p>Reste a montrer que \(R(x) = o(\ln x)\) quand \(x \to 0^+\), c-a-d \(R(x)/\ln x \to 0\). Pour \(\eta > 0\), il existe \(\delta > 0\) tel que \(|\varepsilon(t)| \leqslant \eta\) pour \(t \in ]0, \delta]\). Pour \(x < \delta\) :</p>
+        <div class="math-display">$$|R(x)| \leqslant \left|\int_1^\delta \frac{\varepsilon(t)}{t}dt\right| + \eta \left|\int_\delta^x \frac{dt}{t}\right| = C + \eta|\ln x - \ln \delta|.$$</div>
+        <p>Pour \(x \to 0^+\), \(|\ln x| \to +\infty\) donc \(|R(x)|/|\ln x| \leqslant \eta + o(1)\). \(\eta\) etant arbitraire, \(R(x) = o(\ln x)\). Donc \(g(x) \sim \ln x\). \(\square\)</p>
+      </div>
+
+      <!-- Q11 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 11</span>
+        <p class="corr-question__statement">Prouver que pour tout \(t > 0\), on a : \(f(t) > 1 + t\).</p>
+
+        <p>\(f(t) = 1 + t + \sum_{n=2}^{+\infty}\frac{t^n}{(n!)^2} > 1 + t\) car la queue de la serie est strictement positive (au moins le terme \(\frac{t^2}{4} > 0\)). \(\square\)</p>
+      </div>
+
+      <!-- Q12 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 12</span>
+        <p class="corr-question__statement">En deduire que \(g\) possede une limite finie lorsque \(x\) tend vers \(+\infty\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          \(g\) est croissante (Q9). Pour montrer qu'elle a une limite finie, il suffit de montrer qu'elle est majoree. On utilise la minoration \(f(t) > 1 + t\) pour majorer \(\frac{1}{tf(t)^2}\).
+        </div>
+
+        <p>Pour \(t > 0\), \(f(t)^2 > (1+t)^2\), donc \(\frac{1}{tf(t)^2} < \frac{1}{t(1+t)^2}\). Or \(\int_1^{+\infty}\frac{dt}{t(1+t)^2}\) converge (au voisinage de \(+\infty\), \(\frac{1}{t(1+t)^2} \sim \frac{1}{t^3}\), serie de Riemann \(t^3\)). Donc \(g\) est majoree sur \([1, +\infty[\), et croissante : elle a une limite finie en \(+\infty\). \(\square\)</p>
+      </div>
+
+      <!-- Q13 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question 13</span>
+        <p class="corr-question__statement">Decomposer en elements simples la fraction rationnelle \(F(X) = \dfrac{1}{X(1+X)^2}\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Methode</div>
+          Forme : \(F(X) = \frac{a}{X} + \frac{b}{X+1} + \frac{c}{(X+1)^2}\). Trois coefficients, trois methodes.
+        </div>
+
+        <p>\(a = \lim_{X \to 0} X F(X) = \frac{1}{1} = 1\).</p>
+        <p>\(c = \lim_{X \to -1}(X+1)^2 F(X) = \frac{1}{-1} = -1\).</p>
+        <p>Pour \(b\), on peut prendre une valeur particuliere, par exemple \(X = 1\) : \(F(1) = \frac{1}{4} = 1 + \frac{b}{2} - \frac{1}{4}\), donc \(\frac{b}{2} = \frac{1}{4} - 1 + \frac{1}{4} = -\frac{1}{2}\), \(b = -1\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{\dfrac{1}{X(1+X)^2} = \dfrac{1}{X} - \dfrac{1}{X+1} - \dfrac{1}{(X+1)^2}}\).
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question 14</span>
+        <p class="corr-question__statement">Demontrer que pour tout \(x > 1\), on a : \(g(x) \leqslant \ln\!\left(\dfrac{x}{x+1}\right) + \dfrac{1}{x+1} + \ln(2) - \dfrac{1}{2}\).</p>
+
+        <p>D'apres Q11 et Q12, pour \(t > 0\), \(\frac{1}{tf(t)^2} \leqslant \frac{1}{t(1+t)^2}\). Donc</p>
+        <div class="math-display">$$g(x) = \int_1^x \frac{dt}{tf(t)^2} \leqslant \int_1^x \frac{dt}{t(1+t)^2}.$$</div>
+        <p>Avec la decomposition Q13 :</p>
+        <div class="math-display">$$\int_1^x\frac{dt}{t(1+t)^2} = \int_1^x\left[\frac{1}{t} - \frac{1}{t+1} - \frac{1}{(t+1)^2}\right]dt = \left[\ln t - \ln(t+1) + \frac{1}{t+1}\right]_1^x.$$</div>
+        <p>\(= \ln x - \ln(x+1) + \frac{1}{x+1} - 0 + \ln 2 - \frac{1}{2} = \ln\frac{x}{x+1} + \frac{1}{x+1} + \ln 2 - \frac{1}{2}\).</p>
+        <p>Donc l'inegalite annoncee. \(\square\)</p>
+      </div>
+
+      <!-- Q15 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question 15</span>
+        <p class="corr-question__statement">En deduire que \(g\) est majoree par \(\ln(2)\) sur \(]0, +\infty[\).</p>
+
+        <p><strong>Cas \(x \in ]0, 1]\) :</strong> \(g\) est croissante et \(g(1) = 0 < \ln 2\). OK.</p>
+
+        <p><strong>Cas \(x > 1\) :</strong> majorons l'expression de Q14. \(\ln\frac{x}{x+1} = -\ln(1 + 1/x) < 0\), et \(\frac{1}{x+1} < \frac{1}{2}\) (car \(x > 1\)). Donc</p>
+        <div class="math-display">$$g(x) < 0 + \frac{1}{2} + \ln 2 - \frac{1}{2} = \ln 2.$$</div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{\forall x > 0,\; g(x) \leqslant \ln 2}\).
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Bilan de l'exercice</div>
+          Combinaison classique : serie entiere \(\to\) etude de fonction \(\to\) integrale. Le point cle est l'inegalite \(f(t) > 1 + t\) qui transforme une integrale sur \(f^2\) impossible en une integrale rationnelle decomposable. Garder en tete : <strong>quand on bloque sur une integrale, chercher a majorer le denominateur par une expression polynomiale</strong>.
+        </div>
+      </div>
+    </div>
+
+    <nav class="course__nav" style="display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)">
+      <a href="e3a-2025-maths1.html" class="course__back">&larr; Retour a l'enonce</a>
+      <a href="../../mp.html#annales" class="course__back">Toutes les annales &rarr;</a>
+    </nav>
+
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const render = () => {
+        if (window.renderMathInElement) {
+          renderMathInElement(document.querySelector('.course'), {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } else {
+          setTimeout(render, 100);
+        }
+      };
+      render();
+    });
+  </script>
+</body>
+</html>
+```

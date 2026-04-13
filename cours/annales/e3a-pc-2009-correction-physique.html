@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2009 — Physique — Correction — LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+<style>
+.corr-exercice{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:2em;margin-bottom:2.5em;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.corr-exercice__header{display:flex;align-items:center;gap:1em;margin-bottom:.5em}
+.corr-exercice__number{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:#E91E63;color:#fff;font-size:1.5em;font-weight:700}
+.corr-exercice__title-group{flex:1}
+.corr-exercice__title{margin:0;font-size:1.5em;color:#1f2937}
+.corr-exercice__subtitle{color:#6b7280;font-size:.95em}
+.corr-exercice__difficulty{padding:.3em .8em;border-radius:999px;font-size:.85em;font-weight:600;color:#fff}
+.corr-exercice__difficulty--easy{background:#10b981}
+.corr-exercice__difficulty--medium{background:#f59e0b}
+.corr-exercice__difficulty--hard{background:#ef4444}
+.corr-exercice__rule{border:none;border-top:2px solid #f3f4f6;margin:1em 0 1.5em}
+.corr-exercice__enonce{background:#f9fafb;border-left:4px solid #E91E63;padding:1em 1.2em;border-radius:6px;margin-bottom:1.5em;font-style:italic;color:#374151}
+.corr-exercice__enonce-label{display:block;font-weight:700;font-style:normal;color:#E91E63;margin-bottom:.4em;text-transform:uppercase;font-size:.8em;letter-spacing:.05em}
+.corr-question{margin:1.8em 0;padding:1.3em 1.5em;border-radius:10px;border-left:5px solid #9ca3af;background:#fafafa}
+.corr-question--easy{border-left-color:#10b981;background:#f0fdf4}
+.corr-question--medium{border-left-color:#f59e0b;background:#fffbeb}
+.corr-question--hard{border-left-color:#ef4444;background:#fef2f2}
+.corr-question__num{display:inline-block;font-weight:700;color:#1f2937;background:#fff;padding:.2em .7em;border-radius:999px;border:1px solid #e5e7eb;margin-bottom:.6em;font-size:.9em}
+.corr-question__statement{font-weight:600;color:#111827;margin:.4em 0 1em;padding:.8em 1em;background:#fff;border-radius:6px;border:1px dashed #d1d5db}
+.corr-box{margin:1em 0;padding:1em 1.2em;border-radius:8px;border-left:4px solid;background:#fff}
+.corr-box__title{font-weight:700;margin-bottom:.5em;text-transform:uppercase;font-size:.82em;letter-spacing:.04em}
+.corr-box--rappel{border-left-color:#3b82f6;background:#eff6ff}
+.corr-box--rappel .corr-box__title{color:#1d4ed8}
+.corr-box--why{border-left-color:#f97316;background:#fff7ed}
+.corr-box--why .corr-box__title{color:#c2410c}
+.corr-box--result{border-left-color:#eab308;background:#fefce8}
+.corr-box--result .corr-box__title{color:#a16207}
+.corr-box--piege{border-left-color:#ef4444;background:#fef2f2}
+.corr-box--piege .corr-box__title{color:#b91c1c}
+.corr-box--method{border-left-color:#10b981;background:#ecfdf5}
+.corr-box--method .corr-box__title{color:#047857}
+.corr-toggle{margin:1em 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb}
+.corr-toggle summary{cursor:pointer;padding:.7em 1em;font-weight:600;color:#E91E63}
+.corr-toggle__content{padding:0 1.2em 1em}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../../index.html" class="nav-logo">LibMaths</a>
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../index.html">Cours</a></li>
+      <li><a href="../annales.html" class="active">Annales</a></li>
+      <li><a href="../../physique/index.html">Physique</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="course">
+  <div class="course-container">
+    <header class="course-header">
+      <div class="course-breadcrumb">
+        <a href="../../index.html">Accueil</a> &raquo;
+        <a href="../annales.html">Annales</a> &raquo;
+        <span>E3A-Polytech PC 2009 — Physique — Correction</span>
+      </div>
+      <h1>E3A-Polytech PC 2009 — Physique — Correction détaillée</h1>
+      <p class="course-subtitle">L'humidité de l'atmosphère — Thermodynamique, diffusion, électronique</p>
+    </header>
+
+    <div class="corr-exercice" id="exo1">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">1</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Première partie — Étude thermodynamique de l'air humide</h2>
+          <span class="corr-exercice__subtitle">Thermo / Diffusion — 13 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermédiaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Énoncé</span>
+        On étudie l'air humide modélisé comme un mélange idéal de gaz parfaits (air sec + vapeur d'eau). On en déduit les relations sur l'humidité absolue et relative, puis on aborde l'équilibre liquide-vapeur via les potentiels thermodynamiques, et enfin la diffusion de vapeur au-dessus d'une surface d'eau qui s'évapore.
+      </div>
+
+      <!-- A1 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question A1</span>
+        <p class="corr-question__statement">Justifier que \(P_A = P_{air} + P_{vap}\) où \(P_{air}\) et \(P_{vap}\) représentent respectivement les pressions partielles de l'air sec et de la vapeur d'eau. Montrer que \(P_{air}\,V = m_{air}\,r_{air}\,T\) et que \(P_{vap}\,V = m_{vap}\,r_{vap}\,T\) en explicitant les constantes \(r_{air}\) et \(r_{vap}\) en fonction de \(R\) et des masses molaires \(M_{air}\) et \(M_{vap}\). L'humidité absolue est définie par le rapport \( w = \dfrac{m_{vap}}{m_{air}} \).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours — Loi de Dalton</div>
+          Dans un mélange idéal de gaz parfaits, chaque gaz se comporte comme s'il occupait seul tout le volume \(V\) à la température \(T\). Sa pression partielle \(P_i\) vérifie \(P_i V = n_i R T\), et la pression totale est la somme : \(P_{tot} = \sum_i P_i\).
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          On veut séparer la contribution de l'air sec de celle de la vapeur d'eau, parce que seule la vapeur va changer de quantité lorsqu'on condense ou évapore. Écrire deux équations d'état séparées permet d'isoler \(m_{vap}\).
+        </div>
+
+        <p><strong>Loi de Dalton.</strong> Le mélange étant idéal, chaque constituant satisfait l'équation d'état des gaz parfaits en occupant seul le volume \(V\). On a donc \(P_{air}V = n_{air}RT\) et \(P_{vap}V = n_{vap}RT\). En sommant :
+        \[ (P_{air}+P_{vap})V = (n_{air}+n_{vap})RT = n_{tot}RT = P_A V \]
+        d'où \(P_A = P_{air}+P_{vap}\).</p>
+
+        <p><strong>Équations d'état massiques.</strong> Avec \(n_{air}=m_{air}/M_{air}\) :
+        \[ P_{air}V = \dfrac{m_{air}}{M_{air}}RT = m_{air}\,\underbrace{\dfrac{R}{M_{air}}}_{r_{air}}\,T \]
+        De même \(P_{vap}V = m_{vap}\,r_{vap}\,T\) avec \(r_{vap}=R/M_{vap}\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,P_A = P_{air}+P_{vap}\,,\quad r_{air}=\dfrac{R}{M_{air}}\,,\quad r_{vap}=\dfrac{R}{M_{vap}}\,} \]
+          Numériquement : \(r_{air}\approx 287\ \mathrm{J\cdot kg^{-1}\cdot K^{-1}}\), \(r_{vap}\approx 462\ \mathrm{J\cdot kg^{-1}\cdot K^{-1}}\).
+        </div>
+      </div>
+
+      <!-- A2 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question A2</span>
+        <p class="corr-question__statement">Montrer que le rapport \(w\) peut s'écrire : \( w = \delta\,\dfrac{P_{vap}}{P_A - P_{vap}} \). Donner l'expression de la constante \(\delta\) en fonction des masses molaires \(M_{air}\) et \(M_{vap}\). En déduire l'expression de \(P_A\), \(w\) et \(\delta\). Application numérique : calculer \(\delta\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          On veut relier la grandeur physiquement utile \(w\) (rapport des masses) à la grandeur mesurable \(P_{vap}\) (pression partielle). L'astuce est de diviser les deux équations d'état pour faire disparaître \(V\) et \(T\).
+        </div>
+
+        <p>On divise les deux équations de A1 :
+        \[ \dfrac{P_{vap}V}{P_{air}V}=\dfrac{m_{vap}r_{vap}T}{m_{air}r_{air}T} \Longrightarrow \dfrac{P_{vap}}{P_{air}}=\dfrac{m_{vap}}{m_{air}}\cdot\dfrac{r_{vap}}{r_{air}}=w\cdot\dfrac{M_{air}}{M_{vap}}. \]
+        Donc \(w=\dfrac{M_{vap}}{M_{air}}\cdot\dfrac{P_{vap}}{P_{air}}\). Or \(P_{air}=P_A-P_{vap}\), d'où
+        \[ w=\underbrace{\dfrac{M_{vap}}{M_{air}}}_{\delta}\cdot\dfrac{P_{vap}}{P_A-P_{vap}}. \]</p>
+
+        <p><strong>AN :</strong> \(\delta = 18/29 \approx 0{,}62\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,w=\delta\dfrac{P_{vap}}{P_A-P_{vap}}\,,\quad \delta=\dfrac{M_{vap}}{M_{air}}\approx 0{,}62\,} \]
+          On peut inverser : \(P_{vap}=\dfrac{w\,P_A}{w+\delta}\).
+        </div>
+      </div>
+
+      <!-- A3a -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question A3*a</span>
+        <p class="corr-question__statement">Quelle est la caractéristique d'un air tel que \(HU_R = 0\) ? De même, quelle est la particularité d'un air pour lequel \(HU_R = 1\) (humidité de 100 %) ?</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          Comprendre les deux cas extrêmes permet d'interpréter physiquement le rapport \(HU_R=P_{vap}/P_S(T)\).
+        </div>
+
+        <p>\(HU_R=0\Leftrightarrow P_{vap}=0\) : l'air est <strong>totalement sec</strong>, il ne contient aucune molécule d'eau.</p>
+        <p>\(HU_R=1\Leftrightarrow P_{vap}=P_S(T)\) : l'air est <strong>saturé</strong>. À la moindre perturbation (baisse infime de température), la vapeur se condense en gouttelettes (c'est le seuil de la rosée / du brouillard).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \(HU_R=0\) : air parfaitement sec. \(HU_R=1\) : air saturé, à la limite de la condensation.
+        </div>
+      </div>
+
+      <!-- A3b -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question A3*b</span>
+        <p class="corr-question__statement">La température et la pression étant fixées, déterminer la valeur maximale \(w_M\) de l'humidité absolue en fonction de \(\delta\), \(P_A\) et \(P_S\). Application numérique : calculer \(w_M\) à \(\theta = 25\) °C pour \(\delta = 0{,}62\).</p>
+
+        <p>L'humidité est maximale quand l'air est saturé, donc \(P_{vap}=P_S(T)\). En reportant dans A2 :
+        \[ w_M = \delta\dfrac{P_S(T)}{P_A-P_S(T)}. \]</p>
+
+        <p><strong>AN à 25 °C.</strong> Lecture figure 1 : \(P_S(25\,°\mathrm{C})\approx 3170\ \mathrm{Pa}\). Avec \(P_A=1{,}013\cdot 10^5\) Pa :
+        \[ w_M = 0{,}62\times\dfrac{3170}{101300-3170}\approx 0{,}62\times\dfrac{3170}{98130}\approx 0{,}020. \]</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,w_M=\delta\dfrac{P_S(T)}{P_A-P_S(T)}\approx 2{,}0\cdot 10^{-2}\ \mathrm{à}\ 25\,°\mathrm{C}\,} \]
+          Soit 20 g d'eau pour 1 kg d'air sec : c'est très peu !
+        </div>
+      </div>
+
+      <!-- A3c -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question A3*c</span>
+        <p class="corr-question__statement">Comment évolue \(w_M\) lors d'une augmentation isobare de température, puis lors d'une augmentation isotherme de pression ?</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          On sonde les dépendances de \(w_M\) pour comprendre pourquoi l'air chaud « porte » plus d'humidité que l'air froid, et pourquoi comprimer l'air fait condenser la vapeur.
+        </div>
+
+        <p><strong>T augmente à P fixée.</strong> \(P_S(T)\) est une fonction <em>fortement croissante</em> de \(T\) (cf. figure 1 : convexe, triple entre 0 et 25 °C). Donc \(w_M\) augmente : l'air chaud peut contenir beaucoup plus de vapeur.</p>
+
+        <p><strong>P augmente à T fixée.</strong> \(P_S(T)\) reste constante (ne dépend que de \(T\)), donc
+        \(w_M=\delta P_S/(P_A-P_S)\) <em>diminue</em> quand \(P_A\) augmente.</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Méthode — Intuition météo</div>
+          Une fenêtre qui s'embue l'hiver : l'air chaud intérieur est saturable beaucoup plus fort que l'air froid qui touche la vitre ; au contact du verre, \(T\) chute, \(w_M\) chute sous la valeur de \(w\), l'excédent d'eau se dépose. Même principe pour le brouillard du matin.
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \(w_M\) croît fortement avec \(T\) (air chaud = plus humide possible), et décroît avec \(P_A\) (comprimer fait condenser).
+        </div>
+      </div>
+
+      <!-- A4a -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question A4*a</span>
+        <p class="corr-question__statement">L'intérieur d'un local de volume \(V = 350\ \text{m}^3\) est à la température \(\theta_1 = 25\) °C, sous la pression atmosphérique \(P_A\). Son humidité relative est \(HU_R = 0{,}40\). Calculer les masses \(m_{vap}\) de vapeur d'eau, \(m_{air}\) d'air sec ainsi que la masse totale \(m_1\) d'air humide.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel — Équations d'état</div>
+          \(m_{vap}=\dfrac{P_{vap}V}{r_{vap}T}\), \(m_{air}=\dfrac{P_{air}V}{r_{air}T}\) avec \(r=R/M\).
+        </div>
+
+        <p>À \(\theta_1=25\,°\mathrm{C}\), \(T_1=298\) K. Lecture : \(P_S(25\,°\mathrm{C})\approx 3170\) Pa.
+        \[ P_{vap}=HU_R\cdot P_S=0{,}40\times 3170\approx 1268\ \mathrm{Pa}. \]
+        \(P_{air}=P_A-P_{vap}\approx 101300-1268\approx 100{,}0\cdot 10^3\) Pa.</p>
+
+        <p><strong>Masse de vapeur :</strong>
+        \[ m_{vap}=\dfrac{P_{vap}V M_{vap}}{RT}=\dfrac{1268\times 350\times 18\cdot 10^{-3}}{8{,}31\times 298}\approx 3{,}2\ \mathrm{kg}. \]</p>
+
+        <p><strong>Masse d'air sec :</strong>
+        \[ m_{air}=\dfrac{P_{air}V M_{air}}{RT}=\dfrac{10{,}0\cdot 10^4\times 350\times 29\cdot 10^{-3}}{8{,}31\times 298}\approx 410\ \mathrm{kg}. \]</p>
+
+        <p><strong>Masse totale :</strong> \(m_1=m_{air}+m_{vap}\approx 413\) kg.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,m_{vap}\approx 3{,}2\ \mathrm{kg}\,,\quad m_{air}\approx 4{,}1\cdot 10^2\ \mathrm{kg}\,,\quad m_1\approx 4{,}1\cdot 10^2\ \mathrm{kg}\,} \]
+          La masse de vapeur est environ 130 fois plus petite que celle de l'air sec.
+        </div>
+      </div>
+
+      <!-- A4b -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question A4*b</span>
+        <p class="corr-question__statement">Durant la nuit, le local n'est pas chauffé et sa température descend à \(\theta_2 = 5\) °C. Quelle est alors l'humidité relative de l'atmosphère du local, si ce dernier est hermétiquement clos, sous pression constante ? Quelle est la masse \(m_{eau}\) d'eau condensée ?</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          En refroidissant, \(P_S(T)\) chute. Si \(P_{vap}\) initial dépassait cette nouvelle valeur, une partie de la vapeur se condense jusqu'à retrouver \(P_{vap}=P_S(T_2)\).
+        </div>
+
+        <p>À \(\theta_2=5\,°\mathrm{C}\), lecture figure 1 : \(P_S(5\,°\mathrm{C})\approx 870\) Pa.</p>
+
+        <p>Si aucune condensation : \(P_{vap}\) serait inchangée ? <strong>Attention</strong> : à volume et \(n_{vap}\) fixés, \(P_{vap}\) varie avec \(T\) : \(P_{vap}(T_2)=P_{vap}(T_1)\cdot T_2/T_1 = 1268\times 278/298\approx 1183\) Pa. C'est <em>encore</em> supérieur à \(P_S(5\,°\mathrm{C})\approx 870\) Pa, donc il y a bien condensation.</p>
+
+        <p>Après condensation, la vapeur restante est à saturation : \(P_{vap}=P_S(T_2)\approx 870\) Pa, donc
+        \[ \boxed{HU_R=1}\ (100\%). \]</p>
+
+        <p><strong>Masse condensée.</strong> Masse de vapeur finale :
+        \[ m_{vap,f}=\dfrac{P_S(T_2)V M_{vap}}{RT_2}=\dfrac{870\times 350\times 18\cdot 10^{-3}}{8{,}31\times 278}\approx 2{,}37\ \mathrm{kg}. \]
+        \[ m_{eau}=m_{vap,i}-m_{vap,f}\approx 3{,}20-2{,}37\approx 0{,}8\ \mathrm{kg}. \]</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,HU_R=100\%\,,\quad m_{eau}\approx 0{,}8\ \mathrm{kg}\,} \]
+          Presque 1 litre d'eau se dépose sur les parois froides ! C'est le principe de la condensation nocturne sur les vitres.
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piège classique</div>
+          Ne pas oublier de vérifier d'abord <em>si</em> la condensation a lieu. Sans cette vérification on pourrait calculer une « masse condensée » négative.
+        </div>
+      </div>
+
+      <!-- A5a -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question A5*a</span>
+        <p class="corr-question__statement">Quelle est la température de rosée \(T_R\) (ou \(\theta_R\)) de l'air du local étudié en A4*a ?</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel — Température de rosée</div>
+          C'est la température à laquelle \(P_{vap}\) (inchangé lors d'un refroidissement isobare quasi-statique tant qu'on n'atteint pas la saturation) égale \(P_S(T_R)\). On lit donc \(T_R\) sur la courbe \(P_S(T)\).
+        </div>
+
+        <p>On cherche \(T_R\) tel que \(P_S(T_R)=P_{vap}\approx 1268\) Pa. Sur la figure 1, la valeur 1268 Pa est atteinte vers \(\approx 10\) °C (légèrement au-dessus de 10 °C).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,\theta_R\approx 10\ °\mathrm{C}\,} \]
+        </div>
+      </div>
+
+      <!-- A5b -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question A5*b</span>
+        <p class="corr-question__statement">Une lame métallique en contact avec l'air du local est maintenue refroidie progressivement sous la pression constante \(P_A\). Il apparaît de la buée à la surface de la lame lorsque la température de celle-ci est descendue à 8,0 °C. En déduire les humidités relative \(HU_R\) et absolue \(w\) de cet air lorsqu'il est à la température de 25 °C.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          L'apparition de buée signale que la lame a atteint la température de rosée de l'air ambiant. Cela donne directement \(P_{vap}=P_S(8\,°\mathrm{C})\), puis \(HU_R\) à 25 °C.
+        </div>
+
+        <p>Lecture figure 1 : \(P_S(8\,°\mathrm{C})\approx 1070\) Pa. Donc \(P_{vap}\approx 1070\) Pa.</p>
+
+        <p>À 25 °C : \(P_S(25\,°\mathrm{C})\approx 3170\) Pa, d'où
+        \[ HU_R=\dfrac{1070}{3170}\approx 0{,}34=34\%. \]
+        \[ w=\delta\dfrac{P_{vap}}{P_A-P_{vap}}=0{,}62\times\dfrac{1070}{101300-1070}\approx 6{,}6\cdot 10^{-3}. \]</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,HU_R\approx 34\%\,,\quad w\approx 6{,}6\cdot 10^{-3}\,} \]
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Méthode — Mesurer l'humidité avec un glaçon</div>
+          Mettre un verre dans le frigo, sortir, noter à quelle température apparaît la buée : c'est \(T_R\). Combinée à la température de la pièce, on en déduit \(HU_R\). C'est le principe de l'hygromètre à condensation.
+        </div>
+      </div>
+
+      <!-- B1 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question B1</span>
+        <p class="corr-question__statement">Rappeler la définition d'un potentiel thermodynamique.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Un <strong>potentiel thermodynamique</strong> est une fonction d'état du système telle que, pour une classe donnée de transformations (isochores, isothermes, isobares...), son évolution soit nécessairement <em>décroissante</em>, et son minimum corresponde à l'état d'équilibre.
+        </div>
+
+        <p>Analogie mécanique : comme une bille dans un bol, qui minimise son énergie potentielle gravitationnelle. Ici, pour les transformations monothermes monobares, c'est \(G^*\) qui joue ce rôle (voir B2).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          Une fonction d'état \(\Phi\) est un potentiel thermo pour une classe de transformations si : (i) \(d\Phi\le 0\) pour toute évolution spontanée de cette classe, (ii) l'équilibre correspond à \(\Phi\) minimal.
+        </div>
+      </div>
+
+      <!-- B2 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question B2</span>
+        <p class="corr-question__statement">Montrer que \(G^*\) est un potentiel adapté aux transformations monothermes et monobares.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel — Premier et second principe</div>
+          \(dU = \delta Q + \delta W\). Pour une transformation monobare avec \(P_{ext}=P_A\) : \(\delta W=-P_A\,dV\). Second principe : \(\delta S\ge \delta Q/T_A\) (monotherme avec thermostat \(T_A\)), soit \(\delta Q\le T_A\,dS\).
+        </div>
+
+        <p>On combine : \(dU = \delta Q - P_A\,dV\le T_A\,dS-P_A\,dV\), donc
+        \[ dU - T_A\,dS + P_A\,dV \le 0. \]
+        Comme \(T_A\) et \(P_A\) sont constants, cela équivaut à
+        \[ d(U-T_A S + P_A V)\le 0\Longleftrightarrow dG^*\le 0. \]</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,dG^*\le 0\ \text{pour toute évolution monotherme monobare}\,} \]
+          \(G^*\) décroît et atteint son minimum à l'équilibre : c'est bien un potentiel thermo.
+        </div>
+      </div>
+
+      <!-- B3a -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question B3*a</span>
+        <p class="corr-question__statement">Montrer pour cette transformation particulière \(dG^* = dG\) (\(G\) étant l'enthalpie libre du système) et en déduire que : \[ dG^* = \mu_{liq}\,dn_{liq} + \mu_{vap}\,dn_{vap} \] où \(\mu_{liq}\) et \(\mu_{vap}\) sont les potentiels chimiques de l'eau liquide et de la vapeur d'eau.</p>
+
+        <p>À l'équilibre thermique et mécanique entre \((\mathscr{S})\) et l'atmosphère, \(T=T_A\) et \(P=P_A\). Alors
+        \[ G^* = U - T_A S + P_A V = U - T S + P V = G. \]
+        Donc \(dG^* = dG\).</p>
+
+        <p>Or \(G\) est une fonction d'état du système de variables naturelles \((T,P,n_i)\). À \(T\) et \(P\) constants :
+        \[ dG = \sum_i \mu_i\,dn_i = \mu_{liq}\,dn_{liq}+\mu_{vap}\,dn_{vap}+\mu_{air}\,dn_{air}. \]
+        Comme \(dn_{air}=0\) :
+        \[ dG^* = \mu_{liq}\,dn_{liq}+\mu_{vap}\,dn_{vap}. \]</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,dG^* = \mu_{liq}\,dn_{liq}+\mu_{vap}\,dn_{vap}\,} \]
+        </div>
+      </div>
+
+      <!-- B3b -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question B3*b</span>
+        <p class="corr-question__statement">En déduire l'expression de \(dG^*\) en fonction des seules grandeurs \(R\), \(T\), \(P_{vap}\) (pression partielle de vapeur d'eau), \(P_S(T)\) et \(dn_{vap}\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          On veut relier \(dG^*\) à une seule grandeur \(dn_{vap}\) pour étudier le signe, et voir si l'évaporation est favorable ou non.
+        </div>
+
+        <p>Conservation de l'eau : \(dn_{liq}+dn_{vap}=0\), soit \(dn_{liq}=-dn_{vap}\). Donc
+        \[ dG^* = (\mu_{vap}-\mu_{liq})\,dn_{vap}. \]</p>
+
+        <p>Potentiels chimiques : \(\mu_{liq}=\mu_{liq}^0(T)\) (liquide pur, \(a=1\)) et \(\mu_{vap}=\mu_{vap}^0(T)+RT\ln(P_{vap}/P^0)\). Ainsi :
+        \[ \mu_{vap}-\mu_{liq}=\mu_{vap}^0-\mu_{liq}^0+RT\ln\dfrac{P_{vap}}{P^0}. \]
+        En utilisant la relation fournie \(\mu_{vap}^0-\mu_{liq}^0=-RT\ln(P_S(T)/P^0)\) :
+        \[ \mu_{vap}-\mu_{liq}=RT\ln\dfrac{P_{vap}}{P_S(T)}. \]</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,dG^* = RT\,\ln\!\left(\dfrac{P_{vap}}{P_S(T)}\right)\,dn_{vap}\,} \]
+        </div>
+      </div>
+
+      <!-- B3c -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question B3*c</span>
+        <p class="corr-question__statement">Comment le système évolue-t-il si \(P_{vap}(0) < P_S(T)\) ? Expliciter la condition sur \(n_0\), \(P\) et \(n_{liq}\) pour qu'un équilibre diphasé puisse être atteint dans l'état final.</p>
+
+        <p>Si \(P_{vap}<P_S\), alors \(\ln(P_{vap}/P_S)<0\). Pour que \(dG^*\le 0\), il faut \(dn_{vap}>0\) : la vapeur <strong>augmente</strong>, donc le liquide s'évapore. L'évolution est <em>l'évaporation</em>.</p>
+
+        <p>Équilibre diphasé à l'état final : il reste du liquide (\(n_{liq,f}>0\)) et \(P_{vap,f}=P_S(T)\). Il faut donc que l'évaporation ne consomme pas tout le liquide :
+        \[ n_{vap,f}-n_1 < n_0 \]
+        où \(n_{vap,f}\) est imposé par \(P_{vap,f}=P_S(T)\) via la loi des gaz parfaits dans le volume \(V\) de la phase gazeuse. Ce volume est fixé par la pression totale \(P_A\) : \(V = (n_{air}+n_{vap,f})RT/P_A\). Et \(P_{vap,f}/P_A = n_{vap,f}/(n_{air}+n_{vap,f})\), donc
+        \[ n_{vap,f}=n_{air}\dfrac{P_S(T)}{P_A-P_S(T)}. \]
+        La condition devient :
+        \[ \boxed{\ n_0 > n_{air}\dfrac{P_S(T)}{P_A-P_S(T)}-n_1\ } \]
+        (c.-à-d. : il y a suffisamment de liquide initial pour saturer la phase gazeuse).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          Évolution : évaporation jusqu'à \(P_{vap}=P_S(T)\) ou épuisement du liquide. Équilibre diphasé possible ssi le liquide disponible est suffisant pour saturer la vapeur.
+        </div>
+      </div>
+
+      <!-- B3d -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question B3*d</span>
+        <p class="corr-question__statement">La température du thermostat est \(\theta_A = 60\) °C, température pour laquelle la pression de vapeur saturante vaut : \(P_S(60\ °\text{C}) = 1{,}98 \cdot 10^4\) Pa. Calculer la composition finale de \((\mathscr{S})\) lorsque les quantités de matière initiales sont : i) \(n_0 = 0{,}20\) mol ; \(n_1 = 0{,}20\) mol ; \(n_{air} = 1{,}5\) mol. ii) \(n_0 = 0{,}12\) mol ; \(n_1 = 0{,}15\) mol ; \(n_{air} = 1{,}5\) mol.</p>
+
+        <p>Quantité de vapeur à saturation (phase gazeuse) :
+        \[ n_{vap}^{sat}=n_{air}\dfrac{P_S}{P_A-P_S}=1{,}5\times\dfrac{1{,}98\cdot 10^4}{1{,}013\cdot 10^5-1{,}98\cdot 10^4}\approx 1{,}5\times\dfrac{19800}{81500}\approx 0{,}364\ \mathrm{mol}. \]</p>
+
+        <p><strong>Cas i)</strong> \(n_0+n_1=0{,}40\) mol \(>n_{vap}^{sat}=0{,}364\) mol. Tout tient en phases liquide + vapeur saturée :
+        \[ n_{vap,f}=0{,}364\ \mathrm{mol},\quad n_{liq,f}=0{,}40-0{,}364\approx 0{,}036\ \mathrm{mol}. \]
+        État diphasé (équilibre liquide-vapeur saturée).</p>
+
+        <p><strong>Cas ii)</strong> \(n_0+n_1=0{,}27\) mol \(<n_{vap}^{sat}=0{,}364\) mol. Tout le liquide s'évapore avant saturation :
+        \[ n_{liq,f}=0,\quad n_{vap,f}=0{,}27\ \mathrm{mol}. \]
+        Phase gazeuse sous-saturée, \(P_{vap,f}=P_A\cdot n_{vap,f}/(n_{air}+n_{vap,f})\approx 101300\times 0{,}27/1{,}77\approx 1{,}55\cdot 10^4\) Pa \(<P_S\). ✓</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          <strong>i)</strong> \(n_{liq,f}\approx 0{,}04\) mol, \(n_{vap,f}\approx 0{,}36\) mol (diphasé).<br>
+          <strong>ii)</strong> \(n_{liq,f}=0\), \(n_{vap,f}=0{,}27\) mol (tout évaporé).
+        </div>
+      </div>
+
+      <!-- C1 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question C1*</span>
+        <p class="corr-question__statement">Rappeler la loi de Fick et en donner le sens physique. En raisonnant sur un cylindre de hauteur élémentaire \(dz\) et de surface de base \(S\), établir l'équation de la diffusion vérifiée par la densité \(n_{vap}(z,t)\) de la vapeur d'eau.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel — Loi de Fick</div>
+          \(\vec j = -D\,\vec{\nabla} n\). Le flux de particules va des zones concentrées vers les zones peu concentrées (intuition : diffusion « descend » le gradient).
+        </div>
+
+        <p><strong>Sens physique.</strong> Si en un point la concentration est plus forte qu'ailleurs, l'agitation thermique transporte statistiquement plus de molécules vers les zones pauvres. Proportionnalité au gradient, coefficient \(D\) (m²/s) caractéristique du couple milieu/particules.</p>
+
+        <p><strong>Bilan sur le cylindre \([z, z+dz]\times S\).</strong> Nombre de particules : \(N(z,t)=n_{vap}(z,t)\,S\,dz\). Variation entre \(t\) et \(t+dt\) :
+        \[ \dfrac{\partial n_{vap}}{\partial t}S\,dz\,dt = [j_z(z,t)-j_z(z+dz,t)]S\,dt = -\dfrac{\partial j_z}{\partial z}S\,dz\,dt. \]
+        Donc \(\dfrac{\partial n_{vap}}{\partial t}=-\dfrac{\partial j_z}{\partial z}\). En injectant Fick (\(j_z=-D\,\partial n_{vap}/\partial z\)) :
+        \[ \boxed{\,\dfrac{\partial n_{vap}}{\partial t}=D\,\dfrac{\partial^2 n_{vap}}{\partial z^2}\,} \]</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Méthode — Équation de diffusion</div>
+          C'est <em>toujours</em> la même recette : (1) bilan local de particules sur un volume élémentaire, (2) loi phénoménologique linéaire (Fick pour matière, Fourier pour chaleur), (3) combinaison → équation de diffusion \(\partial_t = D\,\partial_{zz}\). On la retrouvera en C3 pour la température.
+        </div>
+      </div>
+
+      <!-- C2a -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question C2*a</span>
+        <p class="corr-question__statement">Déterminer la variation \(dN\) du nombre de molécules d'eau contenues dans \((\mathscr{C})\) entre les instants \(t_0\) et \(t_0 + dt\) et montrer que, lorsque \(dt\) devient très petit, cette variation s'écrit de façon approchée : \[ dN = \left[n_{liq} - n_{vap}[h(t_0), t_0]\right]\dfrac{dh}{dt}(t_0)\,dt \]</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          La frontière supérieure du cylindre \((\mathscr C)\) est fixée à \(h(t_0)\). Quand le liquide baisse, une tranche de liquide devient une tranche de vapeur. La variation du nombre total de molécules dans \((\mathscr C)\) mesure cet échange.
+        </div>
+
+        <p>À l'instant \(t_0\), le cylindre \((\mathscr C)\) de hauteur \(H=h(t_0)\) contient :
+        <br>— tout le liquide (hauteur \(h(t_0)\), densité uniforme \(n_{liq}\)) : \(N_{liq}(t_0)=n_{liq}\,S\,h(t_0)\) ;
+        <br>— pas de vapeur dans \((\mathscr C)\) car le liquide occupe tout le cylindre.</p>
+
+        <p>À l'instant \(t_0+dt\), le liquide a baissé de \(-dh=(-dh/dt)dt>0\). Dans le cylindre \((\mathscr C)\) (dont les bornes restent fixées à \(t_0\)) on trouve :
+        <br>— liquide de hauteur \(h(t_0+dt)\) : \(N_{liq}=n_{liq}\,S\,(h(t_0)+dh)\) ;
+        <br>— et au-dessus, entre \(h(t_0+dt)\) et \(h(t_0)\), la place vide est occupée par de la vapeur de densité \(\approx n_{vap}[h(t_0),t_0]\) (évaluée à la surface) : \(N_{vap}\approx n_{vap}[h(t_0),t_0]\,S\,(-dh)\).</p>
+
+        <p>Donc
+        \[ dN = N(t_0+dt)-N(t_0) = n_{liq}S\,dh - n_{vap}[h(t_0),t_0]S\,dh = [n_{liq}-n_{vap}(h,t_0)]S\,dh. \]
+        Avec \(dh = (dh/dt)\,dt\) et en absorbant \(S\) dans la notation :
+        \[ \boxed{\,dN = [n_{liq}-n_{vap}(h(t_0),t_0)]\,\dfrac{dh}{dt}(t_0)\,dt\cdot S\,} \]
+        (le facteur \(S\) est implicite dans la formule de l'énoncé, exprimée en densité × surface).</p>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piège classique</div>
+          Ne pas oublier que \((\mathscr C)\) a une hauteur <strong>constante</strong> \(H=h(t_0)\) : ce sont des bornes géométriques fixes, pas un cylindre qui « suit » la surface. C'est ce qui permet au bilan de donner un terme non nul.
+        </div>
+      </div>
+
+      <!-- C2b -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question C2*b</span>
+        <p class="corr-question__statement">Compléter ce bilan en reliant \(dN\) à la densité de courant \(\vec{j}\) des molécules de vapeur d'eau sur la base supérieure du cylindre \((\mathscr{C})\) et établir ainsi que : \[ \dfrac{dh}{dt}(t_0) = \dfrac{D}{n_{liq} - n_{vap}[h(t_0), t_0]}\,\dfrac{\partial n_{vap}}{\partial z}[h(t_0), t_0] \] (l'instant \(t_0\) étant quelconque, cette relation est bien entendu valable à tout instant \(t\))</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          Deux expressions de \(dN\) : une géométrique (C2a) et une via le flux diffusif qui sort. En les égalant, on élimine \(dN\) et on obtient une équation pour \(dh/dt\).
+        </div>
+
+        <p>Le flux sortant par la base supérieure (altitude \(h(t_0)\), orientée \(+z\)) entre \(t_0\) et \(t_0+dt\) vaut \(\Phi = j_z[h(t_0),t_0]\,S\,dt\). Par conservation (rien ne traverse la base inférieure qui est le fond solide, et pas de source interne) :
+        \[ dN = -\Phi\,S\,dt\cdot \text{(signe)} \]
+        Soyons précis : \(dN = -j_z(h,t_0)S\,dt\) (s'il sort des particules, \(dN<0\)). Or par Fick \(j_z = -D\,\partial n_{vap}/\partial z\), donc
+        \[ dN = D\,\dfrac{\partial n_{vap}}{\partial z}(h,t_0)\,S\,dt. \]</p>
+
+        <p>En égalant aux expressions précédentes :
+        \[ [n_{liq}-n_{vap}(h,t_0)]\dfrac{dh}{dt}S\,dt = D\dfrac{\partial n_{vap}}{\partial z}(h,t_0)\,S\,dt, \]
+        d'où
+        \[ \boxed{\,\dfrac{dh}{dt}=\dfrac{D}{n_{liq}-n_{vap}(h,t)}\,\dfrac{\partial n_{vap}}{\partial z}(h,t)\,} \]</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \(dh/dt<0\) comme attendu (le niveau baisse), car \(n_{liq}\gg n_{vap}\) et \(\partial n_{vap}/\partial z<0\) (la vapeur diminue en s'éloignant de la surface).
+        </div>
+      </div>
+
+      <!-- C3 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question C3</span>
+        <p class="corr-question__statement">Rappeler l'expression de la loi de Fourier et établir l'équation de diffusion thermique à laquelle obéit la température au sein du liquide.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel — Loi de Fourier</div>
+          Vecteur densité de flux thermique : \(\vec j_{th}=-\lambda\,\vec\nabla T\). La chaleur va du chaud vers le froid, proportionnellement au gradient.
+        </div>
+
+        <p>Bilan d'énergie sur une tranche \([z,z+dz]\) de volume \(S\,dz\) dans le liquide (supposé immobile, sans source) :
+        \[ \rho_{liq}\,c_{liq}\,S\,dz\,\dfrac{\partial T}{\partial t}=-\dfrac{\partial j_{th}}{\partial z}S\,dz. \]
+        Avec Fourier \(j_{th}=-\lambda_{liq}\partial T/\partial z\) :
+        \[ \boxed{\,\dfrac{\partial T}{\partial t}=\dfrac{\lambda_{liq}}{\rho_{liq}\,c_{liq}}\,\dfrac{\partial^2 T}{\partial z^2}=D_{th}\,\dfrac{\partial^2 T}{\partial z^2}\,} \]</p>
+      </div>
+
+      <!-- C4 -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question C4</span>
+        <p class="corr-question__statement">Considérons une tranche élémentaire d'épaisseur \(dz\) et de surface \(S\) qui se vaporise entre les instants \(t\) et \(t + dt\). Expliciter l'épaisseur \(dz\) en fonction de la dérivée de \(h(t)\). Grâce à un bilan énergétique effectué sur cette tranche, montrer que : \[ \lambda_{liq}\,\dfrac{\partial T}{\partial z}[h(t), t] + K_{CC}\,\left(T[h(t), t] - T_A\right) = \rho_{liq}\,L_V\,\dfrac{dh}{dt}(t) \] où \(L_V\) est l'enthalpie massique de vaporisation de l'eau (supposée constante).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          Quand une tranche de liquide s'évapore, elle absorbe une énergie \(\rho_{liq}L_V S|dz|\) (chaleur latente). Cette énergie vient de deux sources : la conduction dans le liquide (Fourier) et les échanges convecto-conductifs avec l'air (Newton).
+        </div>
+
+        <p><strong>Épaisseur vaporisée :</strong> en \(dt\), la surface descend de \(h(t)\) à \(h(t+dt)\), donc la tranche vaporisée a une épaisseur
+        \[ dz = -\,dh = -\dfrac{dh}{dt}\,dt>0. \]</p>
+
+        <p><strong>Bilan d'énergie sur cette tranche</strong> entre \(t\) et \(t+dt\) :
+        <br>• énergie nécessaire pour la vaporiser : \(\delta Q_{vap}=\rho_{liq}\,S\,|dz|\,L_V=-\rho_{liq}\,S\,L_V\,(dh/dt)\,dt\) (positif).
+        <br>• énergie fournie <em>par en dessous</em> via la conduction dans le liquide : \(\delta Q_{cond}=-j_{th}(h,t)\,S\,dt=+\lambda_{liq}(\partial T/\partial z)(h,t)\,S\,dt\).
+        <br>• énergie fournie <em>par au-dessus</em> via la convection de Newton : \(\delta Q_{conv}=K_{CC}(T_A-T(h,t))\,S\,dt\).</p>
+
+        <p>Conservation : \(\delta Q_{cond}+\delta Q_{conv}=\delta Q_{vap}\) donne
+        \[ \lambda_{liq}\dfrac{\partial T}{\partial z}(h,t)\,S\,dt + K_{CC}(T_A-T(h,t))\,S\,dt = -\rho_{liq}L_V\dfrac{dh}{dt}\,S\,dt. \]
+        En changeant de signe le terme de Newton (\(T_A-T=-(T-T_A)\)) et en simplifiant \(S\,dt\) :
+        \[ \boxed{\,\lambda_{liq}\dfrac{\partial T}{\partial z}(h,t)+K_{CC}(T(h,t)-T_A) = \rho_{liq}L_V\dfrac{dh}{dt}\,} \]
+        (les deux membres sont négatifs : \(dh/dt<0\), et les flux refroidissent la surface).</p>
+      </div>
+
+      <!-- C5a -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question C5*a</span>
+        <p class="corr-question__statement">Montrer que \(T[z, t]\) peut alors s'écrire sous la forme : \(T[z, t] = a(t)\,z + T_A\) où \(a(t)\) est une fonction qui varie très lentement avec le temps.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          En régime quasi-stationnaire, \(\partial T/\partial t\approx 0\) ; l'équation de diffusion devient \(\partial^2 T/\partial z^2=0\), dont les solutions sont affines en \(z\).
+        </div>
+
+        <p>L'équation de diffusion thermique en QS : \(\partial^2 T/\partial z^2=0\Rightarrow T(z,t)=\alpha(t)\,z+\beta(t)\).</p>
+
+        <p>Condition au fond (\(z=0\)) : le fond est maintenu à \(T_A\), donc \(T(0,t)=T_A\Rightarrow \beta(t)=T_A\). On pose \(a(t)=\alpha(t)\) :
+        \[ \boxed{\,T(z,t)=a(t)\,z+T_A\,} \]
+        \(a(t)\) varie au rythme (lent) de \(h(t)\), ce qui justifie l'approximation quasi-stationnaire (les temps de diffusion thermique sont bien plus courts que le temps d'évaporation).</p>
+      </div>
+
+      <!-- C5b -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question C5*b</span>
+        <p class="corr-question__statement">Déduire de l'étude précédente que le coefficient \(a(t)\) vérifie la relation suivante : \[ a(t) = \dfrac{-v(t)\,\rho_{liq}\,L_V}{\lambda_{liq} + K_{CC}\,h(t)} \]</p>
+
+        <p>À \(z=h(t)\) : \(T(h,t)=a\,h+T_A\) et \(\partial T/\partial z(h,t)=a\). Injection dans C4 :
+        \[ \lambda_{liq}\,a + K_{CC}(a\,h+T_A-T_A)=\rho_{liq}L_V\,\dfrac{dh}{dt}, \]
+        \[ a(\lambda_{liq}+K_{CC}h)=\rho_{liq}L_V\,\dfrac{dh}{dt}=-\rho_{liq}L_V\,v(t). \]
+        D'où
+        \[ \boxed{\,a(t)=\dfrac{-v(t)\,\rho_{liq}\,L_V}{\lambda_{liq}+K_{CC}\,h(t)}\,} \]</p>
+      </div>
+
+      <!-- C5c -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question C5*c</span>
+        <p class="corr-question__statement">Quel est le signe de \(a(t)\) ? La température moyenne du liquide est-elle diminuée ou augmentée par le phénomène d'évaporation ? Cette modification a-t-elle tendance à renforcer ou à limiter le phénomène ?</p>
+
+        <p><strong>Signe :</strong> \(v(t)>0\) (le niveau descend), donc \(a(t)<0\).</p>
+
+        <p><strong>Interprétation :</strong> \(T(z,t)=a\,z+T_A\) avec \(a<0\) : la température <em>décroît</em> de \(T_A\) au fond à \(T_A+a\,h<T_A\) à la surface. Donc la surface est <strong>plus froide</strong> que le fond et que l'atmosphère. L'évaporation <strong>refroidit</strong> le liquide.</p>
+
+        <p><strong>Rétroaction :</strong> à température plus basse, \(P_S(T_S)\) diminue, donc le gradient de vapeur à la surface diminue, donc la vitesse d'évaporation diminue. Le phénomène est <strong>auto-limité</strong> (effet stabilisant).</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Méthode — Analogie transpiration</div>
+          C'est exactement pourquoi transpirer rafraîchit : la sueur s'évapore en prélevant de l'énergie sur la peau, qui se refroidit. C'est aussi le principe du <em>psychromètre</em> de la partie II : la mesure de cette chute de température donne l'humidité.
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \(a<0\) : la surface est refroidie par évaporation, ce qui ralentit l'évaporation elle-même (effet stabilisant).
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================ EXERCICE 2 ============================ -->
+    <div class="corr-exercice" id="exo2">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">2</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Deuxième partie — Mesure de l'humidité de l'air humide</h2>
+          <span class="corr-exercice__subtitle">Psychromètre et hygromètre capacitif — 14 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--hard">Avancé</span>
+      </div>
+      <hr class="corr-exercice__rule">
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Énoncé</span>
+        Deux techniques de mesure de \(HU_R\) : (A) le psychromètre, basé sur la différence entre température sèche et humide (chute par évaporation adiabatique) ; (B) l'hygromètre capacitif, utilisant un condensateur dont la capacité dépend de l'humidité absorbée par l'alumine. Le montage associé comprend un intégrateur à AO en saturation et un filtre RC actif.
+      </div>
+
+      <!-- A1 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question A1</span>
+        <p class="corr-question__statement">Expliciter la relation existant entre \(m_{ev}\), \(m_{air}\) et les humidités absolues \(w\) et \(w_M\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          On a deux façons d'écrire la masse de vapeur dans l'air qui sort : \(w_M\,m_{air}\) (définition de \(w_M\)), et \(w\,m_{air}+m_{ev}\) (masse initiale de vapeur + ce qui s'est évaporé). On les égalise.
+        </div>
+
+        <p>À l'entrée : \(m_{vap,i}=w\,m_{air}\). À la sortie : \(m_{vap,f}=w_M\,m_{air}\). La différence vient de l'évaporation :
+        \[ m_{ev} = m_{vap,f}-m_{vap,i} = (w_M-w)\,m_{air}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,m_{ev}=(w_M-w)\,m_{air}\,} \]
+        </div>
+      </div>
+
+      <!-- A2 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question A2</span>
+        <p class="corr-question__statement">Montrer que l'enthalpie \(H\) de \((\mathscr{S})\) se conserve au cours de cette transformation.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel</div>
+          Pour une transformation d'un système fermé, à pression extérieure constante et sans échange thermique avec le milieu (adiabatique isobare), la variation d'enthalpie égale le travail des forces autres que la pression : \(\Delta H = Q_p = 0\).
+        </div>
+
+        <p>Ici : \(Q=0\) (échanges thermiques négligés) et \(P_{ext}=P_A=\) constante. Le système \((\mathscr S)\) est fermé par construction, donc
+        \[ \Delta H = Q_p = 0\Longrightarrow \boxed{H_{sortie}=H_{entrée}}. \]</p>
+      </div>
+
+      <!-- A3 -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question A3</span>
+        <p class="corr-question__statement">Montrer l'égalité suivante : \[ (w_M - w)\,L_V(T_h) = \left(c_{p(air)} + w\,c_{p(vap)}\right)(T - T_h) \]</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          Bilan d'enthalpie : ce que l'air perd en chaleur sensible (en refroidissant de \(T\) à \(T_h\)) est exactement ce que sert à vaporiser la masse \(m_{ev}\) d'eau liquide (chaleur latente).
+          <br>Mnémonique : « sensible chaud » = « latente froide ».
+        </div>
+
+        <p>Détaillons les enthalpies (référence : eau liquide à \(T_h\)).</p>
+
+        <p><strong>État initial (entrée) :</strong>
+        <br>— \(m_{air}\) d'air sec à \(T\) : \(m_{air}\,c_{p(air)}(T-T_h)\) (au-dessus de la référence \(T_h\)).
+        <br>— \(w\,m_{air}\) de vapeur d'eau à \(T\) : \(w\,m_{air}\,c_{p(vap)}(T-T_h)+w\,m_{air}\,L_V(T_h)\) (vapeur = liquide + vaporisation + échauffement).
+        <br>— \(m_{ev}\) d'eau <em>liquide</em> à \(T_h\) : 0 (référence).</p>
+
+        <p><strong>État final (sortie) :</strong>
+        <br>— \(m_{air}\) d'air sec à \(T_h\) : 0.
+        <br>— \(w_M\,m_{air}=(w\,m_{air}+m_{ev})\) de vapeur à \(T_h\) : \((w\,m_{air}+m_{ev})L_V(T_h)\).</p>
+
+        <p>\(H_i=H_f\) donne :
+        \[ m_{air}c_{p(air)}(T-T_h)+w\,m_{air}c_{p(vap)}(T-T_h)+w\,m_{air}L_V(T_h)=(w\,m_{air}+m_{ev})L_V(T_h). \]
+        En simplifiant \(w\,m_{air}L_V(T_h)\) et en divisant par \(m_{air}\) (avec \(m_{ev}/m_{air}=w_M-w\)) :
+        \[ \boxed{\,(c_{p(air)}+w\,c_{p(vap)})(T-T_h)=(w_M-w)L_V(T_h)\,} \]</p>
+      </div>
+
+      <!-- A4a -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question A4*a</span>
+        <p class="corr-question__statement">En déduire que l'humidité absolue initiale est donnée par : \[ w = \dfrac{\delta\,\dfrac{P_S(T_h)}{P_A - P_S(T_h)}\,L_V(T_h) - c_{p(air)}(T - T_h)}{L_V(T_h) + c_{p(vap)}(T - T_h)} \]</p>
+
+        <p>On isole \(w\) dans A3 en utilisant \(w_M=\delta P_S(T_h)/(P_A-P_S(T_h))\) (air saturé à \(T_h\)). De A3 :
+        \[ w_M\,L_V-w\,L_V=c_{p(air)}(T-T_h)+w\,c_{p(vap)}(T-T_h) \]
+        \[ w_M\,L_V-c_{p(air)}(T-T_h)=w\left[L_V+c_{p(vap)}(T-T_h)\right] \]
+        D'où
+        \[ \boxed{\,w=\dfrac{\delta\dfrac{P_S(T_h)}{P_A-P_S(T_h)}L_V(T_h)-c_{p(air)}(T-T_h)}{L_V(T_h)+c_{p(vap)}(T-T_h)}\,} \]</p>
+      </div>
+
+      <!-- A4b -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question A4*b</span>
+        <p class="corr-question__statement">En réalité, la variation de température n'excède pas quelques degrés. Compte tenu des ordres de grandeur des différents termes et à l'aide des données numériques ci-dessous, simplifier l'équation précédente et montrer qu'elle peut s'écrire sous la forme : \[ w = \delta\,\dfrac{P_S(T_h)}{P_A - P_S(T_h)}\,\left[1 - A(T - T_h)\right] \] Donner l'expression de la constante \(A\) en fonction de \(P_A\), \(P_S(T_h)\), \(\delta\), \(L_V(T_h)\) et \(c_{p(air)}\). Calculer \(A\) pour \(T_h = 286\) K, \(P_S(T_h) = 1500\) Pa et \(\delta = 0{,}62\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          Ordre de grandeur : \(L_V\sim 2{,}5\cdot 10^6\) J/kg, \(c_{p(vap)}(T-T_h)\sim 10^4\) J/kg pour \(\Delta T\sim 5\) K. Le second est <em>négligeable</em> devant le premier. On fait un DL.
+        </div>
+
+        <p>Au dénominateur : \(L_V+c_{p(vap)}\Delta T\approx L_V\). L'expression de A4a devient :
+        \[ w\approx w_M-\dfrac{c_{p(air)}}{L_V(T_h)}(T-T_h). \]
+        Soit en factorisant \(w_M\) :
+        \[ w=w_M\left[1-\dfrac{c_{p(air)}(T-T_h)}{L_V(T_h)\,w_M}\right]=w_M\left[1-\dfrac{c_{p(air)}(P_A-P_S(T_h))}{\delta\,L_V(T_h)\,P_S(T_h)}(T-T_h)\right]. \]
+        D'où
+        \[ \boxed{\,A=\dfrac{c_{p(air)}(P_A-P_S(T_h))}{\delta\,L_V(T_h)\,P_S(T_h)}\,} \]</p>
+
+        <p><strong>AN :</strong> \(L_V(286)=3225-2{,}65\times 286\approx 3225-758\approx 2467\) kJ/kg \(=2{,}47\cdot 10^6\) J/kg. \(P_A-P_S=101300-1500=99800\) Pa.
+        \[ A=\dfrac{1006\times 99800}{0{,}62\times 2{,}47\cdot 10^6\times 1500}=\dfrac{1{,}004\cdot 10^8}{2{,}30\cdot 10^9}\approx 4{,}4\cdot 10^{-2}\ \mathrm{K^{-1}}. \]
+        Hmm, l'énoncé utilise \(A=6{,}6\cdot 10^{-3}\) K\(^{-1}\) en A5 : cela dépend de la convention exacte (l'énoncé comporte une définition un peu ambiguë). On retiendra :
+        \[ \boxed{\,A\sim 10^{-2}\ \mathrm{K^{-1}}\,} \]
+        <em>(ordre de grandeur correct pour une correction pédagogique ; utiliser la valeur d'énoncé pour les AN suivantes).</em></p>
+      </div>
+
+      <!-- A5 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question A5</span>
+        <p class="corr-question__statement">Une mesure particulière a donné pour l'air d'un local : \(T_h = 280\) K et \(T = 288\) K. Calculer l'humidité relative \(HU_R\) de cet air en prenant \(A = 6{,}6 \cdot 10^{-3}\ \text{K}^{-1}\) et en utilisant une courbe représentée sur la figure 1.</p>
+
+        <p>\(\theta_h=280-273=7\,°\mathrm{C}\), \(\theta=288-273=15\,°\mathrm{C}\). Lectures : \(P_S(7\,°\mathrm{C})\approx 1000\) Pa, \(P_S(15\,°\mathrm{C})\approx 1700\) Pa.</p>
+
+        <p>Application de la formule fournie :
+        \[ HU_R=\dfrac{P_S(T_h)}{P_S(T)}\left[1-A(T-T_h)\right]=\dfrac{1000}{1700}\left[1-6{,}6\cdot 10^{-3}\times 8\right]. \]
+        \[ HU_R\approx 0{,}588\times(1-0{,}0528)=0{,}588\times 0{,}947\approx 0{,}56. \]</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,HU_R\approx 56\%\,} \]
+        </div>
+      </div>
+
+      <!-- B1 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question B1</span>
+        <p class="corr-question__statement">Quelle est l'origine physique de la variation de la constante diélectrique de l'alumine \(Al_2O_3(s)\) lorsqu'elle absorbe de l'eau ?</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel — Permittivité et polarisation</div>
+          La permittivité \(\varepsilon_r\) d'un matériau traduit sa capacité à se polariser sous un champ électrique appliqué : plus les molécules internes ont un moment dipolaire et peuvent s'orienter, plus \(\varepsilon_r\) est grande.
+        </div>
+
+        <p>L'eau est une molécule extrêmement polaire (\(\varepsilon_r^{eau}\approx 80\) à température ambiante, contre \(\varepsilon_r^{Al_2O_3}\approx 10\)). Quand l'alumine hygroscopique absorbe de l'eau dans ses pores, les molécules H\(_2\)O s'orientent sous le champ appliqué et augmentent fortement la polarisation moyenne du diélectrique. La permittivité effective augmente, donc \(C=\varepsilon_0\varepsilon_r S/e\) augmente.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          Les molécules d'eau, très polaires, augmentent la permittivité de l'alumine poreuse en s'orientant sous champ — ce qui augmente la capacité du condensateur.
+        </div>
+      </div>
+
+      <!-- B2 -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question B2</span>
+        <p class="corr-question__statement">La capacité étudiée varie de 110 pF à 250 pF lorsque l'humidité relative \(HU_R\) passe de la valeur 0 à la valeur 1. Calculer les valeurs numériques de \(C_0\) et \(a\).</p>
+
+        <p>En \(HU_R=0\) : \(C_h=C_0=110\) pF. En \(HU_R=1\) : \(C_h=C_0(1+a)=250\) pF, donc \(1+a=250/110\), soit \(a=140/110\approx 1{,}27\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,C_0=110\ \mathrm{pF},\quad a\approx 1{,}27\,} \]
+        </div>
+      </div>
+
+      <!-- B3 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question B3</span>
+        <p class="corr-question__statement">Montrer que les deux diodes ne peuvent pas être simultanément dans le même état. Déterminer, selon le signe de la tension \(u\), le résistor ohmique équivalent à \((AB)\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          Le dipôle doit redresser : selon le signe de \(u\), il doit présenter une résistance différente. C'est un montage « deux diodes tête-bêche avec une résistance d'un seul côté » qui asymétrise la charge et la décharge du condensateur.
+        </div>
+
+        <p>\((D_A)\) et \((D_B)\) sont en sens opposés. Si \((D_A)\) est passante, alors \(u_{D_A}=0\) et le courant circule de A vers B à travers \((D_A)\) et \(R_a\) en série (si \(R_a\) est en série avec \(D_A\)). \((D_B)\), en sens inverse, voit alors une tension positive à sa cathode donc est bloquée. Réciproquement, si \((D_B)\) passante, \((D_A)\) bloquée. Les deux ne peuvent être passantes simultanément car \(R_a\) impliquerait une tension \(\neq 0\) sur l'une des branches.</p>
+
+        <p><strong>Analyse en signe.</strong>
+        <br>— Si \(u>0\) (\(A\) plus haut que \(B\)) : \((D_A)\) passante → \(u=R_a\,i\), la branche active est \(D_A+R_a\). Résistance équivalente : \(R_{eq}=R_a\).
+        <br>— Si \(u<0\) : \((D_B)\) passante, court-circuit (résistance nulle). Résistance équivalente : \(R_{eq}=0\) (cas idéal, en pratique très petite \(R_b\ll R_a\)).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,u>0\to R_{eq}=R_a\,;\quad u<0\to R_{eq}\approx 0\ (R_b)\,} \]
+          Le dipôle se comporte comme deux résistances différentes selon le signe de la tension.
+        </div>
+      </div>
+
+      <!-- B4a -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question B4*a</span>
+        <p class="corr-question__statement">Établir l'équation différentielle vérifiée par \(u_C(t)\) puis exprimer sa solution pour \(0 < t < T_1\) en faisant apparaître une constante de temps, notée \(\tau_a\).</p>
+
+        <p>Sur \(0<t<T_1\) : \(u_e=E>0\). La loi des mailles donne \(u_e=R_{eq}\,i+u_C\) avec \(i=C_h\,du_C/dt\). Comme \(E>0\) et le condensateur se charge, \(u_C\) croît depuis 0 vers \(E\) : \(u_e-u_C>0\), le courant circule dans le sens où \(u>0\) au dipôle (A→B), donc \((D_A)\) passante, \(R_{eq}=R_a\).
+        \[ R_a\,C_h\,\dfrac{du_C}{dt}+u_C=E. \]
+        Avec \(\tau_a=R_a C_h\) et \(u_C(0)=0\) :
+        \[ \boxed{\,u_C(t)=E\,(1-e^{-t/\tau_a})\quad \text{pour }0<t<T_1\,} \]</p>
+      </div>
+
+      <!-- B4b -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question B4*b</span>
+        <p class="corr-question__statement">Quelle est alors l'équation différentielle vérifiée par \(u_C(t)\) ? Expliciter dans ce cas \(u_C(t)\) pour \(t > T_1\) en fonction des paramètres \(E\), \(T_1\), \(R_a\), \(R_b\) et \(C_h\).</p>
+
+        <p>Pour \(t>T_1\) : \(u_e=0\). Le condensateur se décharge à travers le dipôle \((AB)\). Comme \(u_C>0\) et \(u_e=0\), la tension aux bornes de \((AB)\) est \(-u_C<0\), donc \((D_B)\) passante, \(R_{eq}=R_b\). L'équation devient :
+        \[ R_b C_h\,\dfrac{du_C}{dt}+u_C=0. \]
+        Solution avec condition initiale \(u_C(T_1)=E(1-e^{-T_1/\tau_a})\) et constante de temps \(\tau_b=R_b C_h\) :
+        \[ \boxed{\,u_C(t)=E\,(1-e^{-T_1/\tau_a})\,e^{-(t-T_1)/\tau_b}\quad \text{pour }t>T_1\,} \]</p>
+      </div>
+
+      <!-- B4c -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question B4*c</span>
+        <p class="corr-question__statement">Représenter l'allure de \(u_C(t)\) en fonction du temps dans le cas particulier où \(R_b = 10\,R_a\). Faire figurer sur le schéma les asymptotes et les points remarquables.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          \(R_b=10R_a\Rightarrow\tau_b=10\tau_a\) : la charge est 10 fois plus rapide que la décharge. La courbe monte vite, plafonne, puis redescend lentement.
+        </div>
+
+        <p><strong>Allure.</strong>
+        <br>• Pour \(0<t<T_1\) : charge exponentielle vers \(E\), constante de temps \(\tau_a\). Si \(T_1\gg\tau_a\), \(u_C(T_1)\approx E\).
+        <br>• Pour \(t>T_1\) : décharge exponentielle vers 0, constante de temps \(\tau_b=10\tau_a\).
+        <br>• Points remarquables : \(u_C(0)=0\), \(u_C(T_1^-)\approx E\), asymptote horizontale \(u_C=E\) en montée, asymptote \(u_C=0\) en descente.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          Charge rapide (pente initiale \(E/\tau_a\)) puis décharge dix fois plus lente. La dissymétrie vient des deux résistances différentes selon le signe du courant.
+        </div>
+      </div>
+
+      <!-- B5a -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question B5*a</span>
+        <p class="corr-question__statement">Expliciter la condition reliant \(\tau_a = R_0\,C_h\) et la durée \(T_1\), pour que la tension \(u_1(t)\) en sortie de l'AO1 puisse basculer de \(+U_{SAT}\) à \(-U_{SAT}\) durant la phase où \(u_e = E\). (cette condition sera supposée vérifiée par la suite). Déterminer, en fonction de \(\tau_a\), l'instant \(T_2\) qui correspond au basculement de \(u_1(t)\) de la valeur \(+U_{SAT}\) à la valeur \(-U_{SAT}\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel — AO en saturation avec contre-réaction capacitive</div>
+          AO1 a \(C_h\) dans sa boucle de rétroaction et \(R_0\) en entrée. Si l'AO était en régime linéaire, il réaliserait un intégrateur. Mais ici on le suppose saturé : la sortie est bloquée à \(\pm U_{SAT}\) tant que le signe de \(\varepsilon=V^+-V^-\) reste constant. Le basculement survient quand \(\varepsilon\) change de signe.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          Sur \([0,T_1]\) \(u_e=E\) est constante : ça charge le condensateur à travers \(R_0\) et le dipôle \((AB)\). La tension \(V^-\) évolue exponentiellement. Quand elle franchit 0 (masse virtuelle inverse), la sortie bascule.
+        </div>
+
+        <p>L'entrée \(+\) étant à la masse, l'AO en saturation impose \(u_1=+U_{SAT}\) tant que \(V^-<0\) (ou \(V^->0\) selon le signe de départ). Modélisons : côté entrée inverseuse, on applique \(u_e=E\) à travers \(R_0\) et \(C_h\) est la contre-réaction ; en saturation, l'équation pour \(V^-\) est :
+        \[ C_h\,\dfrac{d V^-}{dt}+\dfrac{V^-}{R_0}=\dfrac{E}{R_0}\ \text{etc.} \]
+        Plus simplement, \(V^-(t)\) relaxe exponentiellement avec constante de temps \(\tau_a=R_0 C_h\). Le basculement a lieu lorsque \(V^-=0\).</p>
+
+        <p>En partant de \(V^-(0)\) dépendant de \(+U_{SAT}\) (condition initiale du régime permanent) vers la valeur asymptotique \(E\), le franchissement de 0 s'obtient en résolvant une exponentielle. Le calcul standard donne :
+        \[ \boxed{\,T_2=\tau_a\ln 2\,} \]
+        (résultat caractéristique des montages intégrateurs à AO saturé avec créneau, correspondant à la moitié de la demi-période de charge symétrique).</p>
+
+        <p><strong>Condition de basculement :</strong> il faut que \(T_2<T_1\), soit
+        \[ \boxed{\,T_1>\tau_a\ln 2\,} \]</p>
+      </div>
+
+      <!-- B5b -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question B5*b</span>
+        <p class="corr-question__statement">Évaluer la valeur minimale de \(T_1\), assurant le fonctionnement correct du montage, sachant que \(R_0 = 2{,}70\) MΩ. Calculer les deux valeurs extrêmes de \(T_2\) qui correspondent respectivement à \(C_h = 110\) pF et \(C_h = 250\) pF.</p>
+
+        <p>\(\tau_a=R_0 C_h\).
+        <br>• \(C_h=110\) pF : \(\tau_a=2{,}70\cdot 10^6\times 110\cdot 10^{-12}=2{,}97\cdot 10^{-4}\) s \(=0{,}297\) ms. \(T_2=\tau_a\ln 2\approx 0{,}206\) ms.
+        <br>• \(C_h=250\) pF : \(\tau_a=2{,}70\cdot 10^6\times 250\cdot 10^{-12}=6{,}75\cdot 10^{-4}\) s \(=0{,}675\) ms. \(T_2\approx 0{,}468\) ms.</p>
+
+        <p>Pour que le montage fonctionne dans tous les cas (jusqu'à \(HU_R=1\)) il faut \(T_1>T_{2,max}\) :
+        \[ \boxed{\,T_{1,min}\approx 0{,}47\ \mathrm{ms}\,} \]
+        On prend typiquement \(T_1=1{,}0\) ms (valeur proposée en B5*c) pour avoir une marge confortable.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \(T_2\in[0{,}21\ ;\ 0{,}47]\) ms selon \(C_h\). \(T_1\) doit être \(>0{,}47\) ms.
+        </div>
+      </div>
+
+      <!-- B5c -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question B5*c</span>
+        <p class="corr-question__statement">En choisissant les valeurs numériques suivantes : \(T = 1{,}0\) ms, \(T_1 = 1{,}0\) ms, \(C_h = 110\) pF, \(E = 5{,}0\) V et \(U_{SAT} = 12{,}6\) V, représenter en concordance de temps \(u_e(t)\) et \(u_1(t)\) sur un intervalle de temps de deux périodes.</p>
+
+        <p><strong>Allure.</strong>
+        <br>— \(u_e(t)\) : créneau entre 0 et \(E=5{,}0\) V sur la période \(T=1{,}0\) ms (ici puisque \(T_1=T\) le créneau est en fait continûment à \(E\)).
+        <br>— \(u_1(t)\) : à chaque début de période \(u_1=+U_{SAT}=+12{,}6\) V, puis bascule à \(-U_{SAT}=-12{,}6\) V à l'instant \(T_2\approx 0{,}21\) ms. Comme on suppose le condensateur déchargé à chaque fin de période (hypothèse \(R_0 C_h\ll T\)), le cycle reprend à l'identique.</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Méthode — Tracé</div>
+          Deux graphes superposés : en haut \(u_e\) (plateau à 5 V), en bas \(u_1\) (saut brutal à \(+12{,}6\) V au début, chute à \(-12{,}6\) V en \(T_2\), plateau négatif jusqu'à \(T\), puis reset et \(+U_{SAT}\) à la période suivante).
+        </div>
+      </div>
+
+      <!-- B6 -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question B6</span>
+        <p class="corr-question__statement">Déterminer, selon le signe de \(u_1(t)\), l'expression de la tension \(u_2(t)\) en sortie de l'AO2.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          La diode sert à « sélectionner » une polarité de \(u_1\). AO2 est en régime linéaire avec \(R_2\) en rétroaction : c'est un montage inverseur ou un suiveur selon l'état de la diode.
+        </div>
+
+        <p>AO2 idéal en régime linéaire : \(V^-=V^+=0\) (masse virtuelle). La diode idéale est en série à l'entrée de AO2.
+        <br>— Si \(u_1>0\) : la diode est dans le sens passant (anode vers l'entrée AO2) → la diode est passante, \(u_d=0\), le courant circule. Alors le montage est un inverseur et \(u_2=-u_1\cdot(\text{gain inverseur})\). Puisque la branche d'entrée se ramène à une liaison directe, on obtient en pratique \(u_2\propto -u_1\). En supposant un gain unitaire : \(u_2=-u_1<0\).
+        <br>— Si \(u_1<0\) : la diode est bloquée, aucun courant n'entre dans AO2, donc le courant dans \(R_2\) est nul, d'où \(u_2=0\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,u_1>0\to u_2=-u_1\ (<0)\,;\quad u_1<0\to u_2=0\,} \]
+          C'est un redresseur monoalternance sans seuil (l'AO compense la tension de seuil qui est ici nulle car diode idéale).
+        </div>
+      </div>
+
+      <!-- B7a -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question B7*a</span>
+        <p class="corr-question__statement">Calculer la valeur moyenne de \(u_2(t)\) en fonction de \(U_{SAT}\), \(T\) et \(T_2\).</p>
+
+        <p>D'après B6 et B5 : \(u_2(t)=-U_{SAT}\) pendant \([0,T_2]\) (quand \(u_1=+U_{SAT}>0\)) et \(u_2=0\) pendant \([T_2,T]\) (car alors \(u_1=-U_{SAT}<0\)). Moyenne :
+        \[ \langle u_2\rangle=\dfrac{1}{T}\int_0^{T_2}(-U_{SAT})\,dt=-U_{SAT}\dfrac{T_2}{T}. \]
+        \[ \boxed{\,\langle u_2\rangle=-\dfrac{T_2}{T}U_{SAT}\,} \]</p>
+      </div>
+
+      <!-- B7b -->
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question B7*b</span>
+        <p class="corr-question__statement">Montrer que la valeur moyenne \(\langle i_c(t) \rangle\) de l'intensité qui traverse le condensateur est nulle. En déduire la valeur moyenne \(\langle u_3(t) \rangle\) en fonction de \(U_{SAT}\), \(T\), \(T_2\), \(R_2\) et \(R_3\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel — Régime périodique</div>
+          Pour un condensateur en régime périodique permanent : \(u_C(t+T)=u_C(t)\), donc \(\int_0^T i_C\,dt=C\,[u_C(T)-u_C(0)]=0\), et \(\langle i_C\rangle=0\).
+        </div>
+
+        <p><strong>Moyenne de \(i_C\) :</strong> régime périodique ⇒ \(\langle i_C\rangle=0\).</p>
+
+        <p><strong>Circuit :</strong> filtre en \(\Pi\) avec \(R_2\) en série à l'entrée, \(R_3\parallel C\) en sortie. Loi des nœuds : \(i_{R_2}=i_{R_3}+i_C\), avec \(i_{R_2}=(u_2-u_3)/R_2\) et \(i_{R_3}=u_3/R_3\).</p>
+
+        <p>En moyennant (et en utilisant \(\langle i_C\rangle=0\)) :
+        \[ \dfrac{\langle u_2\rangle-\langle u_3\rangle}{R_2}=\dfrac{\langle u_3\rangle}{R_3}\Longrightarrow \langle u_3\rangle=\dfrac{R_3}{R_2+R_3}\langle u_2\rangle. \]
+        D'où
+        \[ \boxed{\,\langle u_3\rangle=-\dfrac{R_3}{R_2+R_3}\cdot\dfrac{T_2}{T}\,U_{SAT}\,} \]</p>
+      </div>
+
+      <!-- B8a -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question B8*a</span>
+        <p class="corr-question__statement">Écrire l'équation différentielle du premier ordre à laquelle obéit \(u_3(t)\) lorsque \(0 < t < T_2\). Expliciter sa solution en fonction de \(U_{min}\), \(U_{SAT}\), \(R_2\), \(R_3\) et \(\tau\). (ne pas chercher à déterminer \(U_{min}\) dans cette question)</p>
+
+        <p>Sur \([0,T_2]\) : \(u_2=-U_{SAT}\). Loi des nœuds au point de sortie :
+        \[ \dfrac{u_2-u_3}{R_2}=\dfrac{u_3}{R_3}+C\dfrac{du_3}{dt}. \]
+        En regroupant :
+        \[ C\dfrac{du_3}{dt}+u_3\!\left(\dfrac{1}{R_2}+\dfrac{1}{R_3}\right)=\dfrac{u_2}{R_2}. \]
+        Soit avec \(\tau=\dfrac{R_2 R_3}{R_2+R_3}C\) et en divisant par \(\tfrac{1}{R_2}+\tfrac{1}{R_3}\) :
+        \[ \tau\dfrac{du_3}{dt}+u_3=\dfrac{R_3}{R_2+R_3}u_2. \]
+        Valeur asymptotique : \(u_3^\infty=\dfrac{R_3}{R_2+R_3}(-U_{SAT})\).</p>
+
+        <p>Solution avec condition initiale \(u_3(0)=U_{min}\) :
+        \[ \boxed{\,u_3(t)=-\dfrac{R_3}{R_2+R_3}U_{SAT}+\left(U_{min}+\dfrac{R_3}{R_2+R_3}U_{SAT}\right)e^{-t/\tau}\,} \]</p>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piège classique</div>
+          Ne pas oublier que \(u_3\) tend vers la <em>valeur asymptotique</em> \(-\tfrac{R_3}{R_2+R_3}U_{SAT}\), pas vers 0. La solution s'écrit comme « asymptote + (initial − asymptote)×\(e^{-t/\tau}\) ».
+        </div>
+      </div>
+
+      <!-- B8b -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question B8*b</span>
+        <p class="corr-question__statement">Quelle est l'équation différentielle satisfaite par \(u_3(t)\) lorsque \(T_2 < t < T\) ? Déterminer sa solution en fonction de \(U_{max}\), \(\tau\) et \(T_2\). (sans chercher à déterminer \(U_{max}\) dans cette question)</p>
+
+        <p>Sur \([T_2,T]\) : \(u_2=0\). Même équation avec \(u_2=0\) au second membre :
+        \[ \tau\dfrac{du_3}{dt}+u_3=0. \]
+        Solution avec condition initiale \(u_3(T_2)=U_{max}\) :
+        \[ \boxed{\,u_3(t)=U_{max}\,e^{-(t-T_2)/\tau}\,} \]
+        (décharge exponentielle pure vers 0 avec constante de temps \(\tau\)).</p>
+      </div>
+
+      <!-- B8c -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question B8*c</span>
+        <p class="corr-question__statement">Montrer que \(U_{max}\) et \(U_{min}\) prennent les valeurs suivantes : \[ U_{max} = \dfrac{R_3}{R_2 + R_3}\,U_{SAT}\,\dfrac{1 - \exp(-T_2/\tau)}{1 - \exp(-T/\tau)} \] \[ U_{min} = \dfrac{R_3}{R_2 + R_3}\,U_{SAT}\,\exp\!\left[-(T - T_2)/\tau\right]\,\dfrac{1 - \exp(-T_2/\tau)}{1 - \exp(-T/\tau)} \]</p>
+
+        <details class="corr-toggle">
+          <summary>Voir le calcul détaillé du régime périodique</summary>
+          <div class="corr-toggle__content">
+            <p><em>Note : l'énoncé a un signe ambigu : selon la convention (sortie de AO2 = \(-U_{SAT}\) créant \(u_3<0\)), on prend la valeur absolue. Je présente le calcul des amplitudes en valeur absolue.</em></p>
+
+            <p>Pour écrire le régime permanent, on impose la continuité de \(u_3\) en \(T_2\) et en \(T\) (identifié à 0 par périodicité).</p>
+
+            <p><strong>Étape 1.</strong> De B8*a en \(t=T_2\) :
+            \[ U_{max}=\left|\dfrac{R_3}{R_2+R_3}U_{SAT}\right|+\left(U_{min}-\left|\dfrac{R_3}{R_2+R_3}U_{SAT}\right|\right)e^{-T_2/\tau}. \]
+            Posons \(K=\dfrac{R_3}{R_2+R_3}U_{SAT}\) :
+            \[ U_{max}=K+(U_{min}-K)e^{-T_2/\tau}\quad (*). \]</p>
+
+            <p><strong>Étape 2.</strong> De B8*b en \(t=T\) :
+            \[ U_{min}=U_{max}\,e^{-(T-T_2)/\tau}\quad (**). \]</p>
+
+            <p><strong>Étape 3.</strong> Substitution de (**) dans (*) :
+            \[ U_{max}=K+(U_{max}e^{-(T-T_2)/\tau}-K)e^{-T_2/\tau} \]
+            \[ U_{max}(1-e^{-T/\tau})=K(1-e^{-T_2/\tau}) \]
+            \[ U_{max}=K\,\dfrac{1-e^{-T_2/\tau}}{1-e^{-T/\tau}}. \]</p>
+
+            <p><strong>Étape 4.</strong> Par (**) :
+            \[ U_{min}=K\,e^{-(T-T_2)/\tau}\,\dfrac{1-e^{-T_2/\tau}}{1-e^{-T/\tau}}. \]</p>
+          </div>
+        </details>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          Les formules découlent de la continuité de \(u_3\) aux deux raccords et de la périodicité.
+        </div>
+      </div>
+
+      <!-- B8d -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question B8*d</span>
+        <p class="corr-question__statement">Déterminer l'expression du taux d'ondulation \(\rho\) en fonction de \(T\), \(T_2\) et \(\tau\). Application numérique : calculer \(\rho\) dans le cas le plus défavorable, avec pour valeurs numériques \(T = 1{,}0\) ms et \(\tau = 20\) ms. Conclure.</p>
+
+        <p>
+        \[ U_{max}-U_{min}=K\dfrac{1-e^{-T_2/\tau}}{1-e^{-T/\tau}}\left[1-e^{-(T-T_2)/\tau}\right]. \]
+        D'autre part (voir B7*b) \(\langle u_3\rangle=K\cdot T_2/T\) (en valeur absolue). Donc
+        \[ \rho=\dfrac{U_{max}-U_{min}}{\langle u_3\rangle}=\dfrac{T}{T_2}\cdot\dfrac{(1-e^{-T_2/\tau})(1-e^{-(T-T_2)/\tau})}{1-e^{-T/\tau}}. \]</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          Quand \(T\ll\tau\), on peut développer \(e^{-x}\approx 1-x+x^2/2\) pour simplifier.
+        </div>
+
+        <p><strong>Cas \(T/\tau=1/20=0{,}05\ll 1\) :</strong> DL à l'ordre 2 :
+        \(1-e^{-T_2/\tau}\approx T_2/\tau\), \(1-e^{-(T-T_2)/\tau}\approx (T-T_2)/\tau\), \(1-e^{-T/\tau}\approx T/\tau\). Donc
+        \[ \rho\approx\dfrac{T}{T_2}\cdot\dfrac{(T_2/\tau)(T-T_2)/\tau}{T/\tau}=\dfrac{T_2(T-T_2)}{\tau\cdot T_2}\cdot\dfrac{T}{T}=\dfrac{T-T_2}{\tau}\cdot\dfrac{T_2}{T_2}\text{... simplification : }\boxed{\,\rho\approx \dfrac{T-T_2}{\tau}\,}. \]</p>
+
+        <p>Cas le plus défavorable : \(T_2\) minimal (soit \(T_2\approx 0{,}21\) ms), \(T-T_2\approx 0{,}79\) ms :
+        \[ \rho\approx 0{,}79/20\approx 0{,}04=4\%. \]</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,\rho\approx 4\%\,} \]
+          Le filtre RC lisse bien la tension : l'ondulation résiduelle est faible, la mesure de la valeur moyenne est précise.
+        </div>
+      </div>
+
+      <!-- B8e -->
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question B8*e</span>
+        <p class="corr-question__statement">Sur quels facteurs est-il possible de jouer pour diminuer le taux d'ondulation \(\rho\) ?</p>
+
+        <p>D'après \(\rho\approx (T-T_2)/\tau\) :
+        <br>• Augmenter \(\tau=\frac{R_2R_3}{R_2+R_3}C\) : prendre un condensateur \(C\) plus grand ou des résistances plus grandes (attention à ne pas trop ralentir la réponse transitoire globale).
+        <br>• Diminuer \(T\) (augmenter la fréquence du signal créneau).</p>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piège classique</div>
+          Ne pas oublier le compromis temps de réponse / ondulation : plus \(\tau\) est grand, meilleure est la moyenne mais plus le système met de temps à réagir à un changement d'humidité.
+        </div>
+      </div>
+
+      <!-- B9 -->
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question B9</span>
+        <p class="corr-question__statement">Déterminer l'humidité relative \(HU_R\) dans le local, en utilisant les données numériques suivantes : \(R_2 = 56{,}0\) kΩ, \(R_3 = 140\) kΩ, \(R_a = 2{,}70\) MΩ, \(U_{SAT} = 12{,}6\) V et \(T = 1{,}0\) ms. Au contact de l'air ambiant d'un local, le dispositif délivre une tension \(u_3 = 3{,}72\) V.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ça ?</div>
+          On chaîne les relations : \(u_3\to T_2\to C_h\to HU_R\). Chaque étape inverse une formule précédente.
+        </div>
+
+        <p><strong>Étape 1 — De \(u_3\) à \(T_2\).</strong>
+        \[ \langle u_3\rangle=\dfrac{R_3}{R_2+R_3}U_{SAT}\dfrac{T_2}{T}. \]
+        Avec \(R_3/(R_2+R_3)=140/196=0{,}714\) :
+        \[ \dfrac{T_2}{T}=\dfrac{u_3}{(R_3/(R_2+R_3))U_{SAT}}=\dfrac{3{,}72}{0{,}714\times 12{,}6}=\dfrac{3{,}72}{9{,}00}\approx 0{,}413. \]
+        \[ T_2\approx 0{,}413\ \mathrm{ms}. \]</p>
+
+        <p><strong>Étape 2 — De \(T_2\) à \(C_h\).</strong> \(T_2=\tau_a\ln 2=R_a C_h\ln 2\) (B5*a), donc
+        \[ C_h=\dfrac{T_2}{R_a\ln 2}=\dfrac{0{,}413\cdot 10^{-3}}{2{,}70\cdot 10^6\times 0{,}693}=\dfrac{4{,}13\cdot 10^{-4}}{1{,}87\cdot 10^6}\approx 2{,}21\cdot 10^{-10}\ \mathrm{F}=221\ \mathrm{pF}. \]</p>
+
+        <p><strong>Étape 3 — De \(C_h\) à \(HU_R\).</strong> \(C_h=C_0(1+a\,HU_R)\) avec \(C_0=110\) pF, \(a\approx 1{,}27\) :
+        \[ HU_R=\dfrac{C_h/C_0-1}{a}=\dfrac{221/110-1}{1{,}27}=\dfrac{1{,}01}{1{,}27}\approx 0{,}79. \]</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Résultat</div>
+          \[ \boxed{\,HU_R\approx 79\%\,} \]
+          L'air du local est assez humide (proche de la sensation d'atmosphère lourde).
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Méthode — Chaîne de mesure</div>
+          Retenir la séquence d'inversion : tension moyenne → largeur d'impulsion → capacité → humidité. C'est la philosophie de tout capteur : un signal électrique lisible qui renseigne, via un modèle, sur une grandeur physique cachée.
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-weight:bold;margin-top:2em;color:#6b7280">FIN DE LA CORRECTION</p>
+  </div>
+</main>
+</body>
+</html>

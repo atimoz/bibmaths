@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correction E3A-Polytech PC 2013 - Physique | LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+<style>
+.corr-exercice { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.corr-exercice__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+.corr-exercice__number { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #E91E63; color: #fff; border-radius: 50%; font-weight: 700; font-size: 1.25rem; flex-shrink: 0; }
+.corr-exercice__title-group { flex: 1; }
+.corr-exercice__title { margin: 0; font-size: 1.4rem; color: #111827; }
+.corr-exercice__subtitle { font-size: 0.9rem; color: #6b7280; }
+.corr-exercice__difficulty { padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+.corr-exercice__difficulty--standard { background: #dcfce7; color: #166534; }
+.corr-exercice__difficulty--intermediaire { background: #fef3c7; color: #92400e; }
+.corr-exercice__difficulty--avance { background: #fee2e2; color: #991b1b; }
+.corr-exercice__rule { border: none; border-top: 2px solid #f3f4f6; margin: 1rem 0 1.5rem; }
+.corr-exercice__enonce { background: #f9fafb; border-left: 4px solid #9ca3af; padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 2rem; font-size: 0.95rem; color: #374151; }
+.corr-exercice__enonce-label { display: block; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.5rem; }
+.corr-question { border-left: 4px solid #e5e7eb; padding: 1rem 0 1rem 1.5rem; margin-bottom: 2rem; }
+.corr-question--easy { border-left-color: #22c55e; }
+.corr-question--medium { border-left-color: #f59e0b; }
+.corr-question--hard { border-left-color: #ef4444; }
+.corr-question__num { display: inline-block; font-weight: 700; color: #111827; background: #f3f4f6; padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.9rem; margin-bottom: 0.75rem; }
+.corr-question__statement { font-style: italic; color: #4b5563; background: #f9fafb; padding: 0.9rem 1rem; border-radius: 6px; margin: 0.5rem 0 1.25rem; border-left: 3px solid #d1d5db; }
+.corr-box { padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid; }
+.corr-box__title { font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.corr-box--rappel { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a8a; }
+.corr-box--rappel .corr-box__title { color: #1d4ed8; }
+.corr-box--why { background: #fff7ed; border-left-color: #f97316; color: #7c2d12; }
+.corr-box--why .corr-box__title { color: #c2410c; }
+.corr-box--result { background: #fefce8; border-left-color: #eab308; color: #713f12; }
+.corr-box--result .corr-box__title { color: #a16207; }
+.corr-box--piege { background: #fef2f2; border-left-color: #ef4444; color: #7f1d1d; }
+.corr-box--piege .corr-box__title { color: #b91c1c; }
+.corr-box--method { background: #f0fdf4; border-left-color: #22c55e; color: #14532d; }
+.corr-box--method .corr-box__title { color: #15803d; }
+.corr-toggle { margin: 1rem 0; border: 1px solid #e5e7eb; border-radius: 6px; padding: 0.5rem 1rem; background: #f9fafb; }
+.corr-toggle summary { cursor: pointer; font-weight: 600; color: #4b5563; }
+.corr-toggle__content { padding-top: 0.75rem; color: #374151; }
+.corr-part { margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #E91E63; color: #E91E63; font-size: 1.15rem; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../../index.html" class="nav-logo">LibMaths</a>
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../../physique/index.html">Physique</a></li>
+      <li><a href="../index.html">Annales</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="course">
+  <div class="course-header">
+    <div class="breadcrumb">
+      <a href="../../index.html">Accueil</a> &gt;
+      <a href="../../physique/index.html">Physique</a> &gt;
+      <a href="../index.html">Annales</a> &gt;
+      <a href="e3a-pc-2013-physique.html">E3A PC 2013 - Physique</a> &gt;
+      <span>Correction</span>
+    </div>
+    <h1>Correction - E3A-Polytech PC 2013 - Physique</h1>
+    <p class="course-subtitle">Decongelation des aliments par micro-ondes - Correction detaillee et pedagogique</p>
+  </div>
+
+<!-- ============================================================ -->
+<!--  PREMIERE PARTIE : GEOMETRIE DE LA MOLECULE D'EAU            -->
+<!-- ============================================================ -->
+
+<div class="corr-exercice">
+  <div class="corr-exercice__header">
+    <div class="corr-exercice__number">1</div>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Premiere partie - Geometrie de la molecule d'eau</h2>
+      <p class="corr-exercice__subtitle">Electrostatique, modele de Thomson, dipole induit (Q1 a Q16)</p>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-part">A / Approche electrostatique de la molecule d'eau</div>
+
+  <!-- ===== QUESTION A1 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question A1</div>
+    <div class="corr-question__statement">
+      Rappeler l'expression du potentiel electrostatique V(M) cree dans le vide par la charge ponctuelle \( q_1 \) en un point M situe a la distance r du point O (le potentiel sera pris nul a l'infini).
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      Le potentiel electrostatique cree par une charge ponctuelle \(q\) placee en un point O est, en tout point M situe a la distance \(r = OM\), donne par la loi de Coulomb :
+      \[ V(M) = \frac{q}{4\pi\varepsilon_0\,r} \]
+      avec la convention \(V \to 0\) quand \(r \to +\infty\).
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      C'est le point de depart de toute la partie : on va construire l'energie d'interaction de la molecule d'eau a partir de ce potentiel. Il faut savoir l'ecrire sans hesiter.
+    </div>
+
+    <p>Ici, la charge \(q_1\) est placee en O. Le potentiel qu'elle cree au point M distant de \(r\) vaut :</p>
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{V(M) = \frac{q_1}{4\pi\varepsilon_0\,r}} \]
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A2 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question A2</div>
+    <div class="corr-question__statement">
+      En deduire l'energie potentielle d'interaction electrostatique \( W_{12} \) entre les deux particules chargees \( q_1 \) et \( q_2 \).
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      L'energie potentielle d'interaction entre deux charges ponctuelles est l'energie que possede la charge \(q_2\) placee dans le potentiel cree par \(q_1\) : \(W_{12} = q_2 \cdot V_1(N)\).
+    </div>
+
+    <p>La charge \(q_2\) est placee en N, a la distance \(L\) de O. Le potentiel cree par \(q_1\) en N vaut \(V_1(N) = \frac{q_1}{4\pi\varepsilon_0\,L}\). L'energie d'interaction est donc :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{W_{12} = \frac{q_1\,q_2}{4\pi\varepsilon_0\,L}} \]
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">Piege classique</div>
+      Ne pas confondre le potentiel (en V) et l'energie (en J). L'energie est le produit de la charge qui "subit" par le potentiel cree par l'autre charge. Ne pas oublier le signe de chaque charge.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A3 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question A3</div>
+    <div class="corr-question__statement">
+      Exprimer l'energie potentielle d'interaction gravitationnelle \( W_{grav,12} \) entre les deux particules chargees \( q_1 \) et \( q_2 \). Calculer le rapport \( \eta = \left| W_{12} / W_{grav,12} \right| \) si la charge \( q_1 \) est celle d'un hydrogene H\(^+\) et \( q_2 \) un ion oxygene O\(^{2-}\). Qu'en deduire pour une etude energetique de la molecule d'eau ?
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      L'energie potentielle gravitationnelle entre deux masses \(m_1\) et \(m_2\) separees de \(L\) vaut :
+      \[ W_{grav,12} = -\frac{G\,m_1\,m_2}{L} \]
+      Elle est toujours negative (attraction).
+    </div>
+
+    <p><strong>Expression de \(W_{grav,12}\) :</strong></p>
+    \[ W_{grav,12} = -\frac{G\,m_1\,m_2}{L} \]
+
+    <p><strong>Calcul du rapport \(\eta\) :</strong></p>
+    <p>Pour H\(^+\) : \(q_1 = +e\), \(m_1 = m_H = 1{,}7 \times 10^{-27}\) kg.</p>
+    <p>Pour O\(^{2-}\) : \(q_2 = -2e\), \(m_2 = m_O = 2{,}7 \times 10^{-26}\) kg.</p>
+
+    \[ \eta = \frac{|W_{12}|}{|W_{grav,12}|} = \frac{\dfrac{|q_1\,q_2|}{4\pi\varepsilon_0\,L}}{\dfrac{G\,m_1\,m_2}{L}} = \frac{|q_1\,q_2|}{4\pi\varepsilon_0\,G\,m_1\,m_2} \]
+
+    <p>Le \(L\) se simplifie ! Le rapport ne depend pas de la distance. Calculons :</p>
+
+    \[ \eta = \frac{2 \times (1{,}6 \times 10^{-19})^2}{4\pi \times 8{,}8 \times 10^{-12} \times 6{,}7 \times 10^{-11} \times 1{,}7 \times 10^{-27} \times 2{,}7 \times 10^{-26}} \]
+
+    <p>Numerateur : \(2 \times 2{,}56 \times 10^{-38} = 5{,}12 \times 10^{-38}\).</p>
+    <p>Denominateur : \(4\pi \times 8{,}8 \times 10^{-12} \times 6{,}7 \times 10^{-11} \times 4{,}59 \times 10^{-53}\).</p>
+    <p>Soit : \(4\pi \times 8{,}8 \times 10^{-12} \approx 1{,}11 \times 10^{-10}\), puis \(1{,}11 \times 10^{-10} \times 6{,}7 \times 10^{-11} = 7{,}4 \times 10^{-21}\), puis \(7{,}4 \times 10^{-21} \times 4{,}59 \times 10^{-53} \approx 3{,}4 \times 10^{-73}\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\eta \approx 1{,}5 \times 10^{35}} \]
+      L'interaction electrostatique est environ \(10^{35}\) fois plus intense que l'interaction gravitationnelle. Par consequent, pour une etude energetique de la molecule d'eau, <strong>on peut totalement negliger la gravitation</strong>.
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">Methode reutilisable</div>
+      Comparer deux interactions par leur rapport est un grand classique. Remarquer que la distance \(L\) se simplifie : le rapport est intrinseque aux particules, il ne depend pas de leur separation.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A4 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question A4</div>
+    <div class="corr-question__statement">
+      Determiner l'energie d'interaction electrostatique \( W_{HH} \) entre les deux ions H\(^+\), puis l'energie d'interaction \( W_{OH} \) entre un ion H\(^+\) et l'ion O\(^{2-}\), en fonction notamment de la charge elementaire e, de L et de l'angle \( \theta \).
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On cherche l'energie totale de la molecule pour trouver l'angle d'equilibre \(2\theta\). Il faut d'abord calculer chaque contribution d'interaction.
+    </div>
+
+    <p><strong>Geometrie (figure 2) :</strong> L'ion O\(^{2-}\) est au sommet, les deux H\(^+\) sont en bas, chacun a distance \(L\) de O, formant un angle \(2\theta\) au sommet O.</p>
+
+    <p><strong>Distance H-H :</strong> Les deux ions H\(^+\) forment un triangle isocele avec O. L'angle au sommet est \(2\theta\), les deux cotes valent \(L\). La distance H-H vaut, par la formule du triangle isocele :</p>
+    \[ d_{HH} = 2L\sin\theta \]
+    <p>(On projette : chaque H\(^+\) est a distance \(L\sin\theta\) de l'axe de symetrie.)</p>
+
+    <p><strong>Energie H-H :</strong> Les deux ions H\(^+\) ont chacun la charge \(+e\) :</p>
+    \[ W_{HH} = \frac{(+e)(+e)}{4\pi\varepsilon_0 \cdot 2L\sin\theta} = \frac{e^2}{8\pi\varepsilon_0\,L\,\sin\theta} \]
+
+    <p><strong>Energie O-H :</strong> L'ion O\(^{2-}\) a la charge \(-2e\), chaque H\(^+\) a la charge \(+e\), et la distance O-H vaut \(L\) :</p>
+    \[ W_{OH} = \frac{(-2e)(+e)}{4\pi\varepsilon_0\,L} = \frac{-2e^2}{4\pi\varepsilon_0\,L} = \frac{-e^2}{2\pi\varepsilon_0\,L} \]
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{W_{HH} = \frac{e^2}{8\pi\varepsilon_0\,L\,\sin\theta}} \qquad \boxed{W_{OH} = -\frac{e^2}{2\pi\varepsilon_0\,L}} \]
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A5 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question A5</div>
+    <div class="corr-question__statement">
+      Expliquer les signes de \( W_{HH} \) et \( W_{OH} \). Justifier la presence du facteur 2.
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      Verifier que l'on comprend la physique derriere les formules : signe = attractif ou repulsif, facteur 2 = deux liaisons identiques.
+    </div>
+
+    <p><strong>Signe de \(W_{HH}\) :</strong> \(W_{HH} > 0\). Les deux ions H\(^+\) portent des charges de meme signe (positives). L'interaction est repulsive, ce qui correspond a une energie d'interaction positive : il faut fournir de l'energie pour rapprocher deux charges de meme signe.</p>
+
+    <p><strong>Signe de \(W_{OH}\) :</strong> \(W_{OH} < 0\). L'ion O\(^{2-}\) (negatif) et l'ion H\(^+\) (positif) portent des charges de signes opposes. L'interaction est attractive, l'energie est negative : les charges s'attirent et sont liees.</p>
+
+    <p><strong>Facteur 2 :</strong> L'energie totale est \(W = W_{HH} + 2\,W_{OH}\). Le facteur 2 traduit le fait qu'il y a <strong>deux liaisons O-H identiques</strong> dans la molecule d'eau (deux ions H\(^+\) a la meme distance de O\(^{2-}\), par symetrie). Chaque liaison contribue une fois \(W_{OH}\), donc au total \(2\,W_{OH}\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      L'energie totale de la molecule vaut :
+      \[ \boxed{W(\theta) = \frac{e^2}{8\pi\varepsilon_0\,L}\left(\frac{1}{\sin\theta} - 8\right)} \]
+      en regroupant \(W_{HH} + 2W_{OH}\).
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A6 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question A6</div>
+    <div class="corr-question__statement">
+      Quelle est la valeur de l'angle \( \theta_0 \) de l'angle a l'equilibre, prevu par la modelisation precedente ? Cet equilibre est-il stable ? Comment expliquer simplement la valeur de \( \theta_0 \) ?
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On cherche l'angle qui minimise l'energie potentielle totale de la molecule. C'est un raisonnement standard en mecanique : l'equilibre stable correspond a un minimum d'energie potentielle.
+    </div>
+
+    <p>L'energie totale est \(W(\theta) = \frac{e^2}{8\pi\varepsilon_0 L}\left(\frac{1}{\sin\theta} - 8\right)\). Le terme \(-8\) est constant, donc on cherche le minimum de \(\frac{1}{\sin\theta}\) pour \(\theta \in\, ]0, \pi/2]\) (l'angle \(\theta\) est le demi-angle au sommet, donc \(\theta \in\, ]0, \pi/2]\)).</p>
+
+    <p>La fonction \(\frac{1}{\sin\theta}\) est decroissante sur \(]0, \pi/2]\) et atteint son minimum en \(\theta = \pi/2\), ou \(\sin\theta = 1\).</p>
+
+    <p>On peut aussi deriver :</p>
+    \[ \frac{dW}{d\theta} = \frac{e^2}{8\pi\varepsilon_0 L}\left(-\frac{\cos\theta}{\sin^2\theta}\right) \]
+    <p>Cette derivee s'annule quand \(\cos\theta_0 = 0\), soit \(\theta_0 = \pi/2\).</p>
+
+    <p>La derivee seconde en \(\theta_0 = \pi/2\) est positive (on peut le verifier), donc l'equilibre est <strong>stable</strong>.</p>
+
+    <p><strong>Interpretation physique simple :</strong> l'angle \(\theta_0 = \pi/2\) correspond a \(2\theta_0 = \pi\), soit une molecule d'eau <strong>lineaire</strong> (les trois atomes sont alignes). Cela maximise la distance H-H, ce qui minimise la repulsion H\(^+\)-H\(^+\). C'est logique : les deux charges positives cherchent a s'eloigner le plus possible l'une de l'autre.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\theta_0 = \frac{\pi}{2}, \text{ soit } 2\theta_0 = 180°} \]
+      L'equilibre est stable. La molecule est predite lineaire : les deux H\(^+\) s'eloignent au maximum.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A7 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question A7</div>
+    <div class="corr-question__statement">
+      En faisant appel a vos connaissances acquises dans le cours de chimie, expliquer quelle valeur est attendue pour \( \theta_0 \). Le resultat de la question precedente est-il satisfaisant ?
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours (chimie)</div>
+      En chimie, la theorie VSEPR (ou methode de Gillespie) prevoit que la molecule d'eau H\(_2\)O a une geometrie coudee, avec un angle \(\widehat{HOH} \approx 104{,}5°\), soit \(\theta \approx 52°\).
+    </div>
+
+    <p>Le modele purement electrostatique de charges ponctuelles predit une molecule lineaire (\(2\theta_0 = 180°\)), ce qui est <strong>tres different</strong> de la valeur experimentale de \(104{,}5°\). Ce modele est donc trop simpliste : il ne prend pas en compte l'etendue spatiale des nuages electroniques. C'est pourquoi la suite du sujet introduit le modele de Thomson, qui corrige ce defaut en tenant compte de la taille finie de l'ion O\(^{2-}\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      La valeur experimentale est \(2\theta \approx 104{,}5°\), soit \(\theta \approx 52°\). Le modele des charges ponctuelles est insatisfaisant ; il faut raffiner la description de O\(^{2-}\).
+    </div>
+  </div>
+
+  <div class="corr-part">Modele de Thomson et dipole induit (Q8-Q16)</div>
+
+  <!-- ===== QUESTION A8 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question A8</div>
+    <div class="corr-question__statement">
+      Evaluer le champ electrique \( \vec{E}(M) \) cree par le noyau seul en un point M interieur a la boule \( \mathcal{B} \), en fonction notamment de q, R et \( \overrightarrow{OM} \).
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      Le theoreme de Gauss relie le flux du champ electrique a travers une surface fermee a la charge interieure :
+      \[ \oiint_S \vec{E}\cdot d\vec{S} = \frac{Q_{int}}{\varepsilon_0} \]
+      Pour une distribution a symetrie spherique, on choisit une sphere de Gauss de rayon \(r\).
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On etudie le modele de Thomson : le "noyau" (ici, la charge positive \(+q\)) est reparti uniformement dans une boule de rayon \(R\). Il faut connaitre le champ a l'interieur de cette boule pour trouver la position d'equilibre de l'electron.
+    </div>
+
+    <p><strong>Symetrie :</strong> la distribution est a symetrie spherique. Le champ est radial : \(\vec{E}(M) = E(r)\,\vec{u}_r\), ou \(r = OM\).</p>
+
+    <p><strong>Surface de Gauss :</strong> sphere de rayon \(r < R\) centree en O.</p>
+
+    <p><strong>Charge interieure :</strong> la charge totale \(+q\) est repartie uniformement dans le volume \(\frac{4}{3}\pi R^3\). La densite volumique est \(\rho_v = \frac{q}{\frac{4}{3}\pi R^3}\). La charge contenue dans la sphere de rayon \(r\) est :</p>
+    \[ Q_{int} = \rho_v \cdot \frac{4}{3}\pi r^3 = q\,\frac{r^3}{R^3} \]
+
+    <p><strong>Application du theoreme de Gauss :</strong></p>
+    \[ E(r) \cdot 4\pi r^2 = \frac{q\,r^3}{\varepsilon_0\,R^3} \]
+    \[ E(r) = \frac{q\,r}{4\pi\varepsilon_0\,R^3} \]
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\vec{E}(M) = \frac{q}{4\pi\varepsilon_0\,R^3}\,\overrightarrow{OM}} \]
+      Le champ est dirige radialement vers l'exterieur (si \(q > 0\)) et croit lineairement avec la distance au centre, comme un "ressort de rappel".
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">Methode reutilisable</div>
+      Pour une distribution spherique uniforme, le champ interieur est toujours proportionnel a \(\overrightarrow{OM}\). C'est le meme resultat qu'en gravitation (champ de gravite a l'interieur d'une planete homogene).
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A9 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question A9</div>
+    <div class="corr-question__statement">
+      Exprimer la force de LORENTZ subie par la charge -q. En deduire sa position d'equilibre, reperee par le vecteur \( \vec{r}_{eq} \), de la charge -q dans le champ du noyau. L'equilibre est-il stable ?
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      Avant de perturber l'atome avec un champ exterieur, on verifie que l'electron est bien au centre quand il n'y a aucune perturbation.
+    </div>
+
+    <p>La force subie par la charge \(-q\) placee en M dans le champ du noyau est :</p>
+    \[ \vec{F} = (-q)\,\vec{E}(M) = (-q)\,\frac{q}{4\pi\varepsilon_0\,R^3}\,\overrightarrow{OM} = -\frac{q^2}{4\pi\varepsilon_0\,R^3}\,\overrightarrow{OM} \]
+
+    <p>C'est une force de rappel vers O (proportionnelle a \(\overrightarrow{OM}\) avec un coefficient negatif, comme un ressort). A l'equilibre, \(\vec{F} = \vec{0}\), donc \(\overrightarrow{OM} = \vec{0}\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\vec{r}_{eq} = \vec{0}} \]
+      L'equilibre est en O (le centre de la boule). Cet equilibre est <strong>stable</strong> car la force est une force de rappel : si on ecarte la charge \(-q\) du centre, elle y est ramenee.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A10 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question A10</div>
+    <div class="corr-question__statement">
+      Quelle est la nouvelle position d'equilibre, reperee par \( \vec{r}'_{eq} \), de la charge -q en fonction de \( \vec{E}_0 \), q, \( \varepsilon_0 \) et R ? (la valeur du champ \( \vec{E}_0 \) sera supposee suffisamment faible pour que cette position d'equilibre se situe a l'interieur de la sphere de centre R).
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On applique un champ exterieur uniforme \(\vec{E}_0\). L'electron se deplace : on cherche sa nouvelle position d'equilibre. Cela permettra de calculer le moment dipolaire induit.
+    </div>
+
+    <p>La charge \(-q\) est soumise a deux forces :</p>
+    <ul>
+      <li>La force du noyau : \(\vec{F}_{noyau} = -\frac{q^2}{4\pi\varepsilon_0 R^3}\,\overrightarrow{OM}\)</li>
+      <li>La force du champ exterieur : \(\vec{F}_{ext} = (-q)\,\vec{E}_0\)</li>
+    </ul>
+
+    <p>A l'equilibre, la somme des forces est nulle :</p>
+    \[ -\frac{q^2}{4\pi\varepsilon_0 R^3}\,\vec{r}'_{eq} + (-q)\,\vec{E}_0 = \vec{0} \]
+    \[ \frac{q^2}{4\pi\varepsilon_0 R^3}\,\vec{r}'_{eq} = -q\,\vec{E}_0 \]
+    \[ \vec{r}'_{eq} = -\frac{4\pi\varepsilon_0 R^3}{q}\,\vec{E}_0 \]
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\vec{r}'_{eq} = -\frac{4\pi\varepsilon_0\,R^3}{q}\,\vec{E}_0} \]
+      L'electron se deplace dans le sens oppose au champ (ce qui est logique : une charge negative est poussee dans le sens contraire de \(\vec{E}_0\)).
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A11 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question A11</div>
+    <div class="corr-question__statement">
+      Montrer que l'atome acquiert alors un moment dipolaire \( \vec{p}_i \) (dit induit) de la forme : \( \vec{p}_i = \varepsilon_0\,\alpha_{ato}\,\vec{E}_0 \), ou \( \alpha_{ato} \) sera exprime en fonction de R.
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      Le moment dipolaire d'un ensemble de charges est \(\vec{p} = \sum_i q_i\,\vec{r}_i\). Pour un dipole constitue de \(+q\) en O et \(-q\) en M, on a \(\vec{p} = q\,\overrightarrow{NP}\) (du negatif vers le positif), soit ici \(\vec{p} = (-q)\,\vec{r}'_{eq} + q\,\vec{0}\).
+    </div>
+
+    <p>Le moment dipolaire de l'atome est la somme des contributions :</p>
+    <ul>
+      <li>Charge \(+q\) (noyau) en O : contribution \(q \cdot \vec{0} = \vec{0}\)</li>
+      <li>Charge \(-q\) (electron) en \(\vec{r}'_{eq}\) : contribution \((-q)\,\vec{r}'_{eq}\)</li>
+    </ul>
+
+    <p>Donc :</p>
+    \[ \vec{p}_i = (-q)\,\vec{r}'_{eq} = (-q)\left(-\frac{4\pi\varepsilon_0 R^3}{q}\right)\vec{E}_0 = 4\pi\varepsilon_0\,R^3\,\vec{E}_0 \]
+
+    <p>On identifie avec \(\vec{p}_i = \varepsilon_0\,\alpha_{ato}\,\vec{E}_0\) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\alpha_{ato} = 4\pi\,R^3} \]
+      La polarisabilite atomique \(\alpha_{ato}\) est proportionnelle au cube du rayon de l'atome. Plus l'atome est gros, plus il se polarise facilement.
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">Methode reutilisable</div>
+      Le modele de Thomson donne une polarisabilite \(\alpha = 4\pi R^3\) pour une sphere uniformement chargee. Ce resultat est tres proche de celui obtenu en mecanique quantique pour les gaz rares.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A12 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question A12</div>
+    <div class="corr-question__statement">
+      Exprimer le champ \( \vec{E}_0 \) en fonction notamment de la charge elementaire e, L et \( \theta \).
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On revient a la molecule d'eau. Le champ \(\vec{E}_0\) qui deforme le nuage electronique de O\(^{2-}\) est celui cree par les deux ions H\(^+\) au centre O. Il faut le calculer pour obtenir le dipole induit.
+    </div>
+
+    <p>Les deux ions H\(^+\) (charge \(+e\) chacun) sont situes symetriquement par rapport a l'axe \(\vec{u}_y\) (vertical, passant par O et la bissectrice de l'angle). Chacun est a la distance \(L\) de O.</p>
+
+    <p>Par symetrie, les composantes horizontales (\(\vec{u}_x\)) des deux champs s'annulent. Seule subsiste la composante selon \(\vec{u}_y\).</p>
+
+    <p>Le champ cree par un ion H\(^+\) en O a pour module \(\frac{e}{4\pi\varepsilon_0 L^2}\). Sa composante selon \(\vec{u}_y\) (vers O) est \(\frac{e}{4\pi\varepsilon_0 L^2}\cos\theta\). Par symetrie, les deux H\(^+\) contribuent de maniere identique.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\vec{E}_0 = \frac{2e\cos\theta}{4\pi\varepsilon_0\,L^2}\,\vec{u}_y = \frac{e\cos\theta}{2\pi\varepsilon_0\,L^2}\,\vec{u}_y} \]
+      Le champ est dirige selon \(\vec{u}_y\) (de H\(^+\) vers O\(^{2-}\), c'est-a-dire vers le haut sur la figure 4).
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">Piege classique</div>
+      Bien identifier la direction de \(\vec{u}_y\) sur la figure 4. Le champ pointe du cote des H\(^+\) vers O. Attention au signe de la projection.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A13 ===== -->
+  <div class="corr-question corr-question--hard">
+    <div class="corr-question__num">Question A13</div>
+    <div class="corr-question__statement">
+      Ecrire \( W_{tot}(\theta) \) sous la forme : \( W_{tot}(\theta) = \dfrac{e^2}{8\pi\varepsilon_0\,L}\left(A_1 + \dfrac{A_2}{\sin\theta} + A_3\cos^2\theta\right) \). En deduire les coefficients \( A_1 \), \( A_2 \) et \( A_3 \) en fonction de L et R.
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On construit l'energie totale en ajoutant a l'energie des charges ponctuelles (Q5) l'energie de deformation du nuage electronique. C'est la cle pour obtenir un angle non trivial.
+    </div>
+
+    <p><strong>L'energie de deformation :</strong> On nous donne \(W' = -\frac{1}{2}\vec{p}_i \cdot \vec{E}_0\).</p>
+
+    <p>Le moment dipolaire induit est \(\vec{p}_i = \varepsilon_0\,\alpha_{ato}\,\vec{E}_0 = 4\pi\varepsilon_0 R^3\,\vec{E}_0\).</p>
+
+    <p>Donc :</p>
+    \[ W' = -\frac{1}{2}\varepsilon_0\,\alpha_{ato}\,E_0^2 = -\frac{1}{2} \cdot 4\pi\varepsilon_0 R^3 \cdot \left(\frac{e\cos\theta}{2\pi\varepsilon_0 L^2}\right)^2 \]
+
+    \[ W' = -2\pi\varepsilon_0 R^3 \cdot \frac{e^2\cos^2\theta}{4\pi^2\varepsilon_0^2 L^4} = -\frac{R^3\,e^2\cos^2\theta}{2\pi\varepsilon_0\,L^4} \]
+
+    <p><strong>L'energie totale :</strong> \(W_{tot} = W + W'\) avec \(W = W_{HH} + 2W_{OH}\) donne en Q5 :</p>
+
+    \[ W_{tot} = \frac{e^2}{8\pi\varepsilon_0 L}\left(\frac{1}{\sin\theta} - 8\right) - \frac{R^3 e^2\cos^2\theta}{2\pi\varepsilon_0 L^4} \]
+
+    <p>On factorise par \(\frac{e^2}{8\pi\varepsilon_0 L}\) :</p>
+
+    \[ W_{tot} = \frac{e^2}{8\pi\varepsilon_0 L}\left(-8 + \frac{1}{\sin\theta} - \frac{4R^3}{L^3}\cos^2\theta\right) \]
+
+    <p>On identifie avec la forme demandee \(A_1 + \frac{A_2}{\sin\theta} + A_3\cos^2\theta\) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{A_1 = -8, \qquad A_2 = 1, \qquad A_3 = -\frac{4R^3}{L^3}} \]
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A14 ===== -->
+  <div class="corr-question corr-question--hard">
+    <div class="corr-question__num">Question A14</div>
+    <div class="corr-question__statement">
+      En deduire les positions d'equilibre. Les calculer sachant que le rayon de l'ion O\(^{2-}\) vaut R \( \simeq 1{,}0.10^{-10} \) m.
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">Methode reutilisable</div>
+      Pour trouver les extrema de \(W_{tot}(\theta)\), on derive par rapport a \(\theta\) et on annule la derivee.
+    </div>
+
+    <p>On derive \(W_{tot}\) par rapport a \(\theta\) (en ne gardant que le terme entre parentheses, le prefacteur etant positif) :</p>
+    \[ \frac{d}{d\theta}\left(\frac{1}{\sin\theta} - \frac{4R^3}{L^3}\cos^2\theta\right) = -\frac{\cos\theta}{\sin^2\theta} + \frac{8R^3}{L^3}\cos\theta\sin\theta \]
+
+    <p>A l'equilibre, cette derivee est nulle :</p>
+    \[ \cos\theta\left(-\frac{1}{\sin^2\theta} + \frac{8R^3}{L^3}\sin\theta\right) = 0 \]
+
+    <p><strong>Deux cas :</strong></p>
+    <ul>
+      <li>\(\cos\theta_0 = 0\), soit \(\theta_0 = \pi/2\) (molecule lineaire, comme avant)</li>
+      <li>\(\frac{8R^3}{L^3}\sin\theta = \frac{1}{\sin^2\theta}\), soit \(\sin^3\theta = \frac{L^3}{8R^3}\), d'ou \(\sin\theta = \frac{L}{2R}\)</li>
+    </ul>
+
+    <p><strong>Application numerique :</strong> avec \(L = 1{,}0 \times 10^{-10}\) m et \(R = 1{,}0 \times 10^{-10}\) m :</p>
+    \[ \sin\theta = \frac{L}{2R} = \frac{1{,}0 \times 10^{-10}}{2 \times 1{,}0 \times 10^{-10}} = 0{,}5 \]
+    \[ \theta = 30° \quad \Rightarrow \quad 2\theta = 60° \]
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      Les deux positions d'equilibre sont :
+      \[ \boxed{\theta_0 = 90° \quad (2\theta_0 = 180°, \text{ molecule lineaire})} \]
+      \[ \boxed{\theta_0 = 30° \quad (2\theta_0 = 60°, \text{ molecule coudee})} \]
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A15 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question A15</div>
+    <div class="corr-question__statement">
+      Tracer l'allure de \( W_{tot}(\theta) \) en fonction de \( \theta \). En deduire la stabilite des positions d'equilibre obtenues precedemment.
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      Il faut determiner lequel des deux equilibres est stable (minimum d'energie potentielle) et lequel est instable (maximum).
+    </div>
+
+    <p><strong>Analyse de la courbe :</strong></p>
+    <ul>
+      <li>Quand \(\theta \to 0^+\) : \(\frac{1}{\sin\theta} \to +\infty\), donc \(W_{tot} \to +\infty\). Les deux H\(^+\) se rapprochent infiniment : la repulsion diverge.</li>
+      <li>En \(\theta = 30°\) : on a un extremum. Comme la courbe vient de \(+\infty\) et redescend, c'est un <strong>minimum local</strong>.</li>
+      <li>En \(\theta = 90°\) : c'est l'autre extremum. La courbe remonte apres le minimum en \(\theta = 30°\), donc \(\theta = 90°\) est un <strong>maximum local</strong>.</li>
+    </ul>
+
+    <p><strong>Allure :</strong> la courbe part de \(+\infty\) en \(\theta = 0^+\), descend jusqu'a un minimum en \(\theta = 30°\), remonte pour atteindre un maximum local en \(\theta = 90°\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      <ul>
+        <li>\(\theta_0 = 30°\) (\(2\theta_0 = 60°\)) : <strong>equilibre stable</strong> (minimum d'energie potentielle)</li>
+        <li>\(\theta_0 = 90°\) (\(2\theta_0 = 180°\)) : <strong>equilibre instable</strong> (maximum local d'energie potentielle)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== QUESTION A16 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question A16</div>
+    <div class="corr-question__statement">
+      Commenter ces resultats.
+    </div>
+
+    <p>Le modele de Thomson avec un ion O\(^{2-}\) etendu predit un angle d'equilibre stable \(2\theta_0 = 60°\). Cette valeur est plus proche de la realite experimentale (\(104{,}5°\)) que le modele purement ponctuel (\(180°\)), en ce sens que la molecule est desormais predite <strong>coudee</strong> et non lineaire.</p>
+
+    <p>Cependant, la valeur \(60°\) reste assez eloignee de \(104{,}5°\). Ce modele semi-classique reste trop simpliste : une description precise necessite la mecanique quantique (hybridation des orbitales, paires libres...). Neanmoins, le progres est significatif : la prise en compte de la taille finie du nuage electronique de l'oxygene (via le dipole induit) introduit un terme en \(\cos^2\theta\) qui brise la monotonie et cree un equilibre coude.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      Le modele de Thomson ameliore notablement la prediction en predisant une molecule coudee (\(60°\) au lieu de \(180°\)), mais reste quantitativement imprecis. La valeur exacte (\(104{,}5°\)) necessite un traitement quantique.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  DEUXIEME PARTIE : PROPAGATION D'UNE MICRO-ONDE              -->
+<!-- ============================================================ -->
+
+<div class="corr-exercice">
+  <div class="corr-exercice__header">
+    <div class="corr-exercice__number">2</div>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Deuxieme partie - Propagation d'une micro-onde dans un aliment surgele</h2>
+      <p class="corr-exercice__subtitle">Maxwell, susceptibilite complexe, onde amortie, Poynting (Q1b a Q18b)</p>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--avance">Avance</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-part">B / Electromagnetisme dans un milieu dielectrique</div>
+
+  <!-- ===== QUESTION B1 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question B1</div>
+    <div class="corr-question__statement">
+      La molecule d'eau est-elle polaire ? (justifier clairement la reponse). Calculer l'ordre de grandeur du moment dipolaire en supposant comme dans la partie A que la molecule est une association de trois ions (utiliser le cas echeant pour la valeur de l'angle \( \widehat{HOH} \) l'ordre de grandeur \(2\theta = 90°\)). La quantite ainsi obtenue est-elle a votre avis superieure ou inferieure a la valeur experimentale ? Pourquoi ?
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      Une molecule est polaire si son centre de charges positives ne coincide pas avec son centre de charges negatives. Autrement dit, si le moment dipolaire permanent est non nul.
+    </div>
+
+    <p><strong>La molecule d'eau est polaire.</strong> Justification : la molecule d'eau est coudee (angle \(\widehat{HOH} \approx 104{,}5°\)), donc les deux moments dipolaires des liaisons O-H ne se compensent pas. Le barycentre des charges positives (les deux H\(^+\)) ne coincide pas avec le centre de la charge negative (O\(^{2-}\)). Le moment dipolaire permanent est non nul.</p>
+
+    <p><strong>Calcul de l'ordre de grandeur :</strong> Avec le modele ionique et \(2\theta = 90°\), soit \(\theta = 45°\) :</p>
+    <p>Le barycentre des deux charges \(+e\) (les deux H\(^+\)) est situe sur l'axe de symetrie, a la distance \(d = L\cos\theta = L\cos 45° = \frac{L}{\sqrt{2}}\) de O.</p>
+    <p>La charge \(-2e\) est en O. Le moment dipolaire est (du negatif vers le positif) :</p>
+    \[ p = 2e \cdot d = 2e \cdot L\cos\theta = 2 \times 1{,}6 \times 10^{-19} \times 1{,}0 \times 10^{-10} \times \cos 45° \]
+    \[ p = 2 \times 1{,}6 \times 10^{-29} \times \frac{\sqrt{2}}{2} \approx 2{,}3 \times 10^{-29}\ \text{C.m} \]
+
+    <p>En Debye : \(1\) D \(= 3{,}336 \times 10^{-30}\) C.m, donc \(p \approx 6{,}8\) D.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{p \approx 2{,}3 \times 10^{-29}\ \text{C.m} \approx 7\ \text{D}} \]
+      Cette valeur est <strong>superieure</strong> a la valeur experimentale (\(p_{exp} \approx 1{,}85\) D) car le modele ionique suppose des transferts de charge complets (\(+e\) et \(-2e\)), alors qu'en realite les liaisons O-H sont covalentes polaires (partage partiel des electrons).
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B2 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question B2</div>
+    <div class="corr-question__statement">
+      Definir le vecteur polarisation \( \vec{P} \) d'un milieu dielectrique et rappeler l'unite de cette grandeur. Pourquoi la polarisation \( \vec{P} \) de l'eau ou d'un aliment contenant de l'eau est-elle consideree comme nulle ?
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      Le vecteur polarisation \(\vec{P}\) est le moment dipolaire par unite de volume : \(\vec{P} = n\langle\vec{p}\rangle\), ou \(n\) est la densite volumique de dipoles et \(\langle\vec{p}\rangle\) le moment dipolaire moyen. Son unite est le C.m\(^{-2}\).
+    </div>
+
+    <p><strong>Definition :</strong> Le vecteur polarisation \(\vec{P}\) d'un milieu dielectrique est la densite volumique de moment dipolaire electrique. En un point du milieu, c'est la somme des moments dipolaires des molecules contenues dans un petit volume autour de ce point, divisee par ce volume.</p>
+
+    <p>\(\vec{P}\) s'exprime en <strong>C.m\(^{-2}\)</strong> (Coulomb par metre carre).</p>
+
+    <p><strong>Pourquoi \(\vec{P} = \vec{0}\) en l'absence de champ ?</strong> Bien que chaque molecule d'eau possede un moment dipolaire permanent \(\vec{p}\), en l'absence de champ electrique exterieur, l'agitation thermique oriente les dipoles de facon aleatoire dans toutes les directions de l'espace. La moyenne statistique \(\langle\vec{p}\rangle = \vec{0}\), donc \(\vec{P} = \vec{0}\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \(\vec{P}\) est la densite volumique de moment dipolaire (unite : C.m\(^{-2}\)). En l'absence de champ, \(\vec{P} = \vec{0}\) car l'agitation thermique desordonne aleatoirement les dipoles.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B3 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question B3</div>
+    <div class="corr-question__statement">
+      Quelles sont les possibilites d'orientation a l'equilibre du dipole \( \vec{p} \) dans le champ \( \vec{E} \) ? Preciser leurs stabilites.
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      L'energie potentielle d'un dipole \(\vec{p}\) dans un champ uniforme \(\vec{E}\) est \(W = -\vec{p}\cdot\vec{E} = -pE\cos\alpha\), ou \(\alpha\) est l'angle entre \(\vec{p}\) et \(\vec{E}\).
+    </div>
+
+    <p>Les positions d'equilibre correspondent aux extrema de \(W(\alpha) = -pE\cos\alpha\), c'est-a-dire \(\frac{dW}{d\alpha} = pE\sin\alpha = 0\), soit \(\alpha = 0\) ou \(\alpha = \pi\).</p>
+
+    <ul>
+      <li><strong>\(\alpha = 0\) :</strong> \(\vec{p}\) parallele a \(\vec{E}\) (meme sens). \(W = -pE\) (minimum). <strong>Equilibre stable.</strong></li>
+      <li><strong>\(\alpha = \pi\) :</strong> \(\vec{p}\) antiparallele a \(\vec{E}\) (sens oppose). \(W = +pE\) (maximum). <strong>Equilibre instable.</strong></li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      Deux equilibres : \(\vec{p} \parallel \vec{E}\) (meme sens, stable) et \(\vec{p}\) antiparallele a \(\vec{E}\) (instable). Physiquement, le dipole tend a s'aligner avec le champ.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B4 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question B4</div>
+    <div class="corr-question__statement">
+      Decrire qualitativement l'effet de l'oscillation temporelle du champ sur l'orientation du dipole. Que se passe-t-il si la pulsation \( \omega \) est progressivement augmentee ? Quelles sont les consequences sur la conversion d'energie ou sur thermique ?
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      C'est le coeur physique du probleme : comprendre pourquoi un four a micro-ondes chauffe ! Les dipoles tentent de suivre le champ oscillant, et c'est ce "frottement" qui produit de la chaleur.
+    </div>
+
+    <p><strong>A basse frequence :</strong> le dipole a le temps de s'aligner avec le champ a chaque instant. Il suit l'oscillation du champ sans retard. Il y a peu de dissipation.</p>
+
+    <p><strong>Quand la pulsation augmente :</strong> le dipole met un certain temps a s'orienter (temps de relaxation \(\tau\)). Si \(\omega\) augmente, le dipole prend du retard sur le champ. Il ne s'aligne plus parfaitement : il y a un dephasage croissant entre \(\vec{P}\) et \(\vec{E}\).</p>
+
+    <p><strong>A tres haute frequence :</strong> le dipole ne peut plus suivre du tout. La polarisation devient negligeable.</p>
+
+    <p><strong>Consequences thermiques :</strong> Le dephasage entre le champ et la polarisation implique que le travail du champ sur les dipoles n'est pas entierement restitue. Une partie de l'energie electromagnetique est convertie de facon irreversible en agitation thermique (chaleur). C'est le <strong>principe du chauffage par micro-ondes</strong>. L'effet est maximal quand \(\omega \sim 1/\tau\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      Le dipole tente de suivre le champ oscillant mais prend du retard. Ce dephasage provoque une conversion irreversible d'energie electromagnetique en chaleur : c'est le principe du chauffage dielectrique (micro-ondes).
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B5 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question B5</div>
+    <div class="corr-question__statement">
+      Donner le sens physique des grandeurs \( \chi_0 \) et \( \tau \). Pour cette derniere, etudier l'expression de l'evolution de la polarisation \( \vec{P} \) dans le cas ou le champ electrique serait annule a partir de t = 0.
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On doit comprendre la physique de l'equation de relaxation \(\tau\frac{\partial \vec{P}}{\partial t} + \vec{P} = \varepsilon_0\chi_0\vec{E}\) avant de l'utiliser dans les calculs.
+    </div>
+
+    <p><strong>Sens physique de \(\chi_0\) :</strong> c'est la <strong>susceptibilite electrique statique</strong> du milieu. En regime stationnaire (\(\partial\vec{P}/\partial t = 0\)), l'equation donne \(\vec{P} = \varepsilon_0\chi_0\vec{E}\), donc \(\chi_0\) mesure l'ampleur de la polarisation a basse frequence. Plus \(\chi_0\) est grand, plus le milieu se polarise facilement.</p>
+
+    <p><strong>Sens physique de \(\tau\) :</strong> c'est le <strong>temps de relaxation</strong> de la polarisation. Il mesure le retard de la reponse des dipoles au champ exterieur.</p>
+
+    <p><strong>Evolution quand \(\vec{E} = \vec{0}\) pour \(t > 0\) :</strong></p>
+    <p>L'equation devient : \(\tau\frac{d\vec{P}}{dt} + \vec{P} = \vec{0}\), soit :</p>
+    \[ \frac{d\vec{P}}{dt} = -\frac{\vec{P}}{\tau} \]
+    <p>C'est une equation differentielle du premier ordre, de solution :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\vec{P}(t) = \vec{P}(0)\,\exp\left(-\frac{t}{\tau}\right)} \]
+      La polarisation decroit exponentiellement vers zero avec le temps caracteristique \(\tau\). Apres un temps \(\tau\), la polarisation a ete divisee par \(e \approx 2{,}7\). Cela confirme que \(\tau\) est le temps de relaxation dielectrique.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B6 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question B6</div>
+    <div class="corr-question__statement">
+      Montrer que la susceptibilite complexe \( \underline{\chi}(\omega) \) du milieu dielectrique s'ecrit : \( \underline{\chi}(\omega) = \chi_1(\omega) + j\chi_2(\omega) \), avec \( \chi_1(\omega) = \chi_0\,\dfrac{1}{1+\omega^2\tau^2} \) et \( \chi_2(\omega) = \chi_0\,\dfrac{\beta\omega\tau}{1+\omega^2\tau^2} \), ou \( \beta \) est un nombre qu'il conviendra d'expliciter.
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">Methode reutilisable</div>
+      En notation complexe, \(\partial/\partial t \to j\omega\). On cherche \(\underline{\chi}\) telle que \(\underline{P} = \varepsilon_0\underline{\chi}\,\underline{E}\).
+    </div>
+
+    <p>L'equation de relaxation est : \(\tau\frac{\partial\vec{P}}{\partial t} + \vec{P} = \varepsilon_0\chi_0\vec{E}\).</p>
+    <p>En notation complexe, avec la convention \(e^{j\omega t}\), on remplace \(\partial/\partial t\) par \(j\omega\) :</p>
+    \[ j\omega\tau\,\underline{P} + \underline{P} = \varepsilon_0\chi_0\,\underline{E} \]
+    \[ \underline{P}(1 + j\omega\tau) = \varepsilon_0\chi_0\,\underline{E} \]
+    \[ \underline{P} = \frac{\varepsilon_0\chi_0}{1 + j\omega\tau}\,\underline{E} \]
+
+    <p>On identifie \(\underline{\chi} = \frac{\chi_0}{1 + j\omega\tau}\). On separe partie reelle et imaginaire en multipliant par le conjugue :</p>
+
+    \[ \underline{\chi} = \frac{\chi_0(1 - j\omega\tau)}{(1+j\omega\tau)(1-j\omega\tau)} = \frac{\chi_0(1 - j\omega\tau)}{1 + \omega^2\tau^2} \]
+
+    \[ \underline{\chi} = \frac{\chi_0}{1 + \omega^2\tau^2} - j\frac{\chi_0\omega\tau}{1+\omega^2\tau^2} \]
+
+    <p>On identifie : \(\chi_1 = \frac{\chi_0}{1+\omega^2\tau^2}\) et \(\chi_2 = \frac{\chi_0\,\beta\,\omega\tau}{1+\omega^2\tau^2}\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\beta = -1} \]
+      La partie imaginaire est negative : \(\chi_2 = -\frac{\chi_0\omega\tau}{1+\omega^2\tau^2}\). C'est la signature de l'absorption (dissipation d'energie).
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">Piege classique</div>
+      Le signe de \(\beta\) depend de la convention choisie pour la notation complexe. Avec la convention \(e^{j\omega t}\) (celle de l'enonce), on obtient \(\beta = -1\). Certains ouvrages utilisent \(e^{-i\omega t}\) et obtiennent \(\beta = +1\).
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B7 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question B7</div>
+    <div class="corr-question__statement">
+      Donner l'allure des courbes \( \chi_1(\omega) \) et \( \chi_2(\omega) \). Faire intervenir les valeurs \( \chi_0 \) et \( 1/\tau \) sur les traces. Commenter ces courbes (limites basse et haute pulsation, point(s) particulier(s)).
+    </div>
+
+    <p><strong>Courbe de \(\chi_1(\omega)\) :</strong></p>
+    <ul>
+      <li>\(\omega = 0\) : \(\chi_1 = \chi_0\) (susceptibilite statique)</li>
+      <li>\(\omega = 1/\tau\) : \(\chi_1 = \chi_0/2\)</li>
+      <li>\(\omega \to +\infty\) : \(\chi_1 \to 0\)</li>
+    </ul>
+    <p>C'est une fonction decroissante, partant de \(\chi_0\) et tendant vers 0. Allure d'une lorentzienne decroissante.</p>
+
+    <p><strong>Courbe de \(|\chi_2(\omega)|\) :</strong> (on trace la valeur absolue puisque \(\chi_2 < 0\))</p>
+    <ul>
+      <li>\(\omega = 0\) : \(|\chi_2| = 0\)</li>
+      <li>\(\omega = 1/\tau\) : \(|\chi_2| = \chi_0/2\) (maximum)</li>
+      <li>\(\omega \to +\infty\) : \(|\chi_2| \to 0\)</li>
+    </ul>
+    <p>C'est une courbe en cloche, maximale pour \(\omega = 1/\tau\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      <ul>
+        <li><strong>A basse pulsation</strong> (\(\omega \ll 1/\tau\)) : \(\chi_1 \approx \chi_0\) et \(|\chi_2| \approx 0\). Le milieu suit le champ sans retard, pas d'absorption.</li>
+        <li><strong>A \(\omega = 1/\tau\)</strong> : \(\chi_1 = \chi_0/2\) et \(|\chi_2|\) est maximal a \(\chi_0/2\). C'est la frequence de relaxation : absorption maximale.</li>
+        <li><strong>A haute pulsation</strong> (\(\omega \gg 1/\tau\)) : \(\chi_1 \to 0\) et \(|\chi_2| \to 0\). Les dipoles ne peuvent plus suivre : le milieu se comporte comme le vide.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B8 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question B8</div>
+    <div class="corr-question__statement">
+      Rappeler l'equation locale de conservation de la charge. En deduire l'expression de la densite volumique de charges liees s'ecrit : \( \rho_l = K\,div\,\vec{P} \), ou K est une constante a expliciter. Preciser l'unite de la densite de courants lies \( \vec{j}_l \) dans le Systeme International.
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      L'equation de conservation de la charge relie la densite de courant a la densite de charge :
+      \[ \text{div}\,\vec{j} + \frac{\partial \rho}{\partial t} = 0 \]
+    </div>
+
+    <p>Pour les charges et courants lies, l'equation de conservation locale de la charge s'ecrit :</p>
+    \[ \text{div}\,\vec{j}_l + \frac{\partial \rho_l}{\partial t} = 0 \]
+
+    <p>Or \(\vec{j}_l = \frac{\partial \vec{P}}{\partial t}\), donc :</p>
+    \[ \text{div}\left(\frac{\partial\vec{P}}{\partial t}\right) + \frac{\partial \rho_l}{\partial t} = 0 \]
+    \[ \frac{\partial}{\partial t}\left(\text{div}\,\vec{P} + \rho_l\right) = 0 \]
+
+    <p>Donc \(\text{div}\,\vec{P} + \rho_l = \text{constante}\). En l'absence de charges et de polarisation (\(\vec{P} = \vec{0}\), \(\rho_l = 0\)), cette constante vaut zero. D'ou :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\rho_l = -\text{div}\,\vec{P}} \qquad (K = -1) \]
+      L'unite de \(\vec{j}_l = \frac{\partial\vec{P}}{\partial t}\) est celle de \(\vec{P}\) divisee par un temps, soit : <strong>A.m\(^{-2}\)</strong> (ampere par metre carre).
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B9 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question B9</div>
+    <div class="corr-question__statement">
+      Ecrire les equations de MAXWELL dans le materiau dielectrique, en faisant intervenir les seuls champs electrique \( \vec{E} \) et magnetique \( \vec{B} \).
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      Dans un milieu dielectrique sans charges libres ni courants libres, les equations de Maxwell s'ecrivent avec les charges et courants lies (\(\rho_l\) et \(\vec{j}_l\)).
+    </div>
+
+    <p>Le milieu est depourvu de charges libres (\(\rho_{libre} = 0\)) et de courants libres (\(\vec{j}_{libre} = \vec{0}\)). Les charges et courants totaux sont donc uniquement les charges et courants lies :</p>
+
+    <p><strong>Maxwell-Gauss :</strong></p>
+    \[ \text{div}\,\vec{E} = \frac{\rho_l}{\varepsilon_0} = -\frac{\text{div}\,\vec{P}}{\varepsilon_0} \]
+
+    <p><strong>Maxwell-flux :</strong></p>
+    \[ \text{div}\,\vec{B} = 0 \]
+
+    <p><strong>Maxwell-Faraday :</strong></p>
+    \[ \overrightarrow{\text{rot}}\,\vec{E} = -\frac{\partial\vec{B}}{\partial t} \]
+
+    <p><strong>Maxwell-Ampere :</strong></p>
+    \[ \overrightarrow{\text{rot}}\,\vec{B} = \mu_0\vec{j}_l + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t} = \mu_0\frac{\partial\vec{P}}{\partial t} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t} \]
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\text{div}\,\vec{E} = -\frac{\text{div}\,\vec{P}}{\varepsilon_0}} \qquad \boxed{\text{div}\,\vec{B} = 0} \]
+      \[ \boxed{\overrightarrow{\text{rot}}\,\vec{E} = -\frac{\partial\vec{B}}{\partial t}} \qquad \boxed{\overrightarrow{\text{rot}}\,\vec{B} = \mu_0\frac{\partial\vec{P}}{\partial t} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}} \]
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B10 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question B10</div>
+    <div class="corr-question__statement">
+      Montrer que le champ \( \vec{E} \) est transverse. Que dire de la direction de \( \vec{u} \) ?
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On verifie que l'onde electromagnetique dans le dielectrique est bien transverse, comme dans le vide.
+    </div>
+
+    <p>L'onde s'ecrit \(\underline{\vec{E}} = E_0\,\exp j(\omega t - \underline{k}x)\,\vec{u}\). Le champ ne depend que de \(x\) et \(t\) (propagation selon \(\vec{u}_x\)). La polarisation, liee lineairement a \(\vec{E}\), s'ecrit aussi \(\underline{\vec{P}} = \varepsilon_0\underline{\chi}\,\underline{\vec{E}}\), proportionnelle a \(\vec{u}\).</p>
+
+    <p>Appliquons Maxwell-Gauss : \(\text{div}\,\vec{E} = -\frac{\text{div}\,\vec{P}}{\varepsilon_0}\).</p>
+    <p>Or \(\text{div}\,\vec{P} = \varepsilon_0\underline{\chi}\,\text{div}\,\vec{E}\), donc : \(\text{div}\,\vec{E}(1 + \underline{\chi}) = 0\). Comme \(1 + \underline{\chi} \neq 0\) en general, on a \(\text{div}\,\vec{E} = 0\).</p>
+
+    <p>Calculons explicitement : \(\text{div}\,\vec{E} = \frac{\partial E_x}{\partial x} + \frac{\partial E_y}{\partial y} + \frac{\partial E_z}{\partial z}\). Comme \(\vec{E} = E_0 e^{j(\omega t - \underline{k}x)}\vec{u}\), les derivees par rapport a \(y\) et \(z\) sont nulles. La composante selon \(\vec{u}_x\) de \(\vec{E}\) est \(E_0\,u_x\,e^{j(\omega t - \underline{k}x)}\). Sa derivee en \(x\) vaut \(-j\underline{k}\,E_0\,u_x\,e^{j(\omega t-\underline{k}x)}\).</p>
+
+    <p>La condition \(\text{div}\,\vec{E} = 0\) impose \(u_x = 0\) (car \(\underline{k} \neq 0\) et \(E_0 \neq 0\)). Donc \(\vec{u}\) n'a pas de composante selon \(\vec{u}_x\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \(\vec{E}\) est <strong>transverse</strong> : le champ electrique est perpendiculaire a la direction de propagation \(\vec{u}_x\). Le vecteur \(\vec{u}\) est dans le plan \((y,z)\), perpendiculaire a \(\vec{u}_x\).
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B11 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question B11</div>
+    <div class="corr-question__statement">
+      Trouver une equation verifiee seulement par le champ electrique \( \vec{E} \) (equation de propagation).
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">Methode reutilisable</div>
+      On prend le rotationnel de Maxwell-Faraday et on utilise Maxwell-Ampere pour eliminer \(\vec{B}\). La formule \(\overrightarrow{\text{rot}}(\overrightarrow{\text{rot}}\,\vec{A}) = \overrightarrow{\text{grad}}(\text{div}\,\vec{A}) - \Delta\vec{A}\) est donnee dans l'enonce.
+    </div>
+
+    <p>On part de Maxwell-Faraday : \(\overrightarrow{\text{rot}}\,\vec{E} = -\frac{\partial\vec{B}}{\partial t}\).</p>
+    <p>On prend le rotationnel des deux membres :</p>
+    \[ \overrightarrow{\text{rot}}(\overrightarrow{\text{rot}}\,\vec{E}) = -\frac{\partial}{\partial t}(\overrightarrow{\text{rot}}\,\vec{B}) \]
+
+    <p>A gauche : \(\overrightarrow{\text{rot}}(\overrightarrow{\text{rot}}\,\vec{E}) = \overrightarrow{\text{grad}}(\text{div}\,\vec{E}) - \Delta\vec{E} = -\Delta\vec{E}\) car \(\text{div}\,\vec{E} = 0\).</p>
+
+    <p>A droite, on utilise Maxwell-Ampere :</p>
+    \[ -\frac{\partial}{\partial t}\left(\mu_0\frac{\partial\vec{P}}{\partial t} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}\right) = -\mu_0\frac{\partial^2\vec{P}}{\partial t^2} - \mu_0\varepsilon_0\frac{\partial^2\vec{E}}{\partial t^2} \]
+
+    <p>Or \(\vec{P} = \varepsilon_0\underline{\chi}\vec{E}\) en notation complexe, donc \(\frac{\partial^2\vec{P}}{\partial t^2} = \varepsilon_0\underline{\chi}\frac{\partial^2\vec{E}}{\partial t^2}\) (pour une onde monochromatique). D'ou :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\Delta\vec{E} = \mu_0\varepsilon_0(1 + \underline{\chi})\frac{\partial^2\vec{E}}{\partial t^2}} \]
+      C'est l'equation de propagation (ou equation de d'Alembert modifiee) dans le dielectrique. Par rapport au vide, on a remplace \(\varepsilon_0\) par \(\varepsilon_0(1+\underline{\chi})\).
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B12 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question B12</div>
+    <div class="corr-question__statement">
+      En deduire l'equation de dispersion, soit l'expression de \( \underline{k}^2 \) en fonction de \( \omega \), c et \( \underline{\chi} \).
+    </div>
+
+    <p>On injecte l'onde plane \(\underline{\vec{E}} = E_0\,e^{j(\omega t - \underline{k}x)}\,\vec{u}_y\) dans l'equation de propagation. Les substitutions sont : \(\Delta \to -\underline{k}^2\) et \(\frac{\partial^2}{\partial t^2} \to -\omega^2\). D'ou :</p>
+    \[ -\underline{k}^2\,\underline{\vec{E}} = -\mu_0\varepsilon_0(1+\underline{\chi})\,\omega^2\,\underline{\vec{E}} \]
+
+    <p>En simplifiant par \(\underline{\vec{E}}\) (non nul) et en utilisant \(c^2 = \frac{1}{\mu_0\varepsilon_0}\) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\underline{k}^2 = \frac{\omega^2}{c^2}(1 + \underline{\chi})} \]
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B13 ===== -->
+  <div class="corr-question corr-question--hard">
+    <div class="corr-question__num">Question B13</div>
+    <div class="corr-question__statement">
+      En supposant que \( \chi_0 \gg 1 \) et \( \omega\tau \ll 1 \), trouver deux nombres reels \( r_1 \) et \( r_2 \) (a exprimer en fonction de \( \chi_0 \), \( \omega \), \(\tau\) et c) tels que \( 1 + \underline{\chi} \simeq (r_1 + jr_2)^2 \). (la relation \( \sqrt{1+x} \simeq 1 + x/2 \) pour \( x \ll 1 \) pourra etre utilisee)
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On veut ecrire \(\underline{k} = r_1 \cdot \omega/c + j r_2 \cdot \omega/c\) sous une forme exploitable. Il faut prendre la "racine carree" de \(1 + \underline{\chi}\).
+    </div>
+
+    <p>On a \(1 + \underline{\chi} = 1 + \frac{\chi_0}{1+j\omega\tau}\). Avec \(\omega\tau \ll 1\) :</p>
+    \[ \frac{\chi_0}{1+j\omega\tau} \approx \chi_0(1 - j\omega\tau) \]
+    <p>(developpement au premier ordre en \(\omega\tau\))</p>
+
+    \[ 1 + \underline{\chi} \approx 1 + \chi_0 - j\chi_0\omega\tau \]
+
+    <p>Comme \(\chi_0 \gg 1\), on a \(1 + \chi_0 \approx \chi_0\), donc :</p>
+    \[ 1 + \underline{\chi} \approx \chi_0\left(1 - j\omega\tau\right) \]
+
+    <p>On cherche la racine carree : \(\sqrt{1 + \underline{\chi}} \approx \sqrt{\chi_0}\sqrt{1 - j\omega\tau}\).</p>
+    <p>Avec \(\omega\tau \ll 1\), on utilise \(\sqrt{1+x} \approx 1 + x/2\) avec \(x = -j\omega\tau\) :</p>
+    \[ \sqrt{1 - j\omega\tau} \approx 1 - \frac{j\omega\tau}{2} \]
+
+    <p>Donc :</p>
+    \[ \sqrt{1 + \underline{\chi}} \approx \sqrt{\chi_0}\left(1 - \frac{j\omega\tau}{2}\right) = \sqrt{\chi_0} - j\frac{\sqrt{\chi_0}\,\omega\tau}{2} \]
+
+    <p>On identifie \((r_1 + jr_2)\) avec \(\sqrt{1 + \underline{\chi}}\) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{r_1 = \sqrt{\chi_0}} \qquad \boxed{r_2 = -\frac{\sqrt{\chi_0}\,\omega\tau}{2}} \]
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B14 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question B14</div>
+    <div class="corr-question__statement">
+      Ecrire le vecteur d'onde \( \underline{k} \) sous la forme \( \underline{k} = k_1 + jk_2 \). Exprimer les parties reelle et imaginaire \( k_1 \) et \( k_2 \), en fonction de \( \omega \), \( \chi_0 \), c et \( \tau \).
+    </div>
+
+    <p>De l'equation de dispersion \(\underline{k}^2 = \frac{\omega^2}{c^2}(1+\underline{\chi})\), on obtient :</p>
+    \[ \underline{k} = \frac{\omega}{c}\sqrt{1+\underline{\chi}} = \frac{\omega}{c}(r_1 + jr_2) \]
+
+    <p>Donc \(k_1 = \frac{\omega\,r_1}{c}\) et \(k_2 = \frac{\omega\,r_2}{c}\).</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{k_1 = \frac{\omega\sqrt{\chi_0}}{c}} \qquad \boxed{k_2 = -\frac{\omega^2\tau\sqrt{\chi_0}}{2c}} \]
+    </div>
+
+    <div class="corr-box corr-box--piege">
+      <div class="corr-box__title">Piege classique</div>
+      Attention au signe de \(k_2\). On a \(k_2 < 0\), ce qui, dans l'exponentielle \(e^{-j\underline{k}x} = e^{-jk_1 x}e^{+|k_2|x}\) ou \(e^{-j\underline{k}x} = e^{-jk_1 x}e^{-k_2 x}\), donne une attenuation \(e^{-|k_2|x} = e^{k_2 x}\) (puisque \(k_2 < 0\)). Verifier que l'onde s'attenue bien dans le sens de propagation.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B15 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question B15</div>
+    <div class="corr-question__statement">
+      En deduire l'expression precise du champ electrique reel \( \vec{E} \) en faisant notamment intervenir \( k_1 \) et \( k_2 \). Commenter la forme de l'onde obtenue : est-elle plane, progressive (ou non) ; stationnaire (ou non), par exemple ? Quelle est l'effet de la perturbation \( k_2 \) sur la propagation ? Quelle est sa polarisation ? (toutes ces reponses seront clairement justifiees)
+    </div>
+
+    <p>Le champ complexe est : \(\underline{\vec{E}} = E_0\,e^{j(\omega t - \underline{k}x)}\,\vec{u}_y = E_0\,e^{j(\omega t - (k_1 + jk_2)x)}\,\vec{u}_y\).</p>
+
+    <p>Developpons l'exponentielle :</p>
+    \[ \underline{\vec{E}} = E_0\,e^{-jk_1 x}\,e^{+k_2 x}\,e^{j\omega t}\,\vec{u}_y \]
+
+    <p>Comme \(k_2 < 0\), on peut ecrire \(k_2 = -|k_2|\) et le terme \(e^{k_2 x} = e^{-|k_2|x}\) decroit avec \(x\).</p>
+
+    <p>Le champ reel est la partie reelle :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\vec{E}(x,t) = E_0\,e^{-|k_2|\,x}\cos(\omega t - k_1\,x)\,\vec{u}_y} \]
+      <ul>
+        <li><strong>Onde plane</strong> : oui, les surfaces d'onde sont les plans \(x = \text{cte}\).</li>
+        <li><strong>Onde progressive</strong> : oui, elle se propage dans le sens des \(x\) croissants (terme \(\omega t - k_1 x\) avec \(k_1 > 0\)).</li>
+        <li><strong>Non stationnaire</strong> : non, ce n'est pas une onde stationnaire (pas de produit de fonctions separees de \(x\) seul et \(t\) seul pour la phase).</li>
+        <li><strong>Effet de \(k_2\)</strong> : le terme \(e^{-|k_2|x}\) amortit l'amplitude au cours de la propagation. L'onde s'attenue exponentiellement a cause de la dissipation dans le dielectrique.</li>
+        <li><strong>Polarisation</strong> : rectiligne, selon \(\vec{u}_y\).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B16 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question B16</div>
+    <div class="corr-question__statement">
+      Exprimer la longueur d'onde \( \lambda \) de l'onde dans le dielectrique. Ecrire l'amplitude sous la forme \( E_0\,\exp(-x/\delta) \) et exprimer \( \delta \) en fonction de \( k_1 \), et(ou) \( k_2 \). Pourquoi l'amplitude de l'onde varie-t-elle ? Preciser le sens physique de \( \delta \).
+    </div>
+
+    <p><strong>Longueur d'onde :</strong> La partie oscillante est \(\cos(\omega t - k_1 x)\). La longueur d'onde est la periodicite spatiale :</p>
+    \[ \lambda = \frac{2\pi}{k_1} = \frac{2\pi c}{\omega\sqrt{\chi_0}} \]
+
+    <p><strong>Profondeur de penetration :</strong> L'amplitude decroit comme \(E_0\,e^{-|k_2|x}\). On ecrit \(e^{-x/\delta}\) avec :</p>
+    \[ \delta = \frac{1}{|k_2|} = \frac{2c}{\omega^2\tau\sqrt{\chi_0}} \]
+
+    <p><strong>Pourquoi l'amplitude varie-t-elle ?</strong> Parce que le milieu est dissipatif : une partie de l'energie electromagnetique est absorbee par les dipoles (conversion en chaleur par frottement visqueux lie a la relaxation). La partie imaginaire de \(\underline{\chi}\) traduit cette absorption.</p>
+
+    <p><strong>Sens physique de \(\delta\) :</strong> c'est la <strong>profondeur de penetration</strong> (ou epaisseur de peau). A la distance \(\delta\), l'amplitude du champ a ete divisee par \(e \approx 2{,}7\). C'est la distance caracteristique sur laquelle l'onde penetre dans le milieu avant d'etre significativement attenuee.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\lambda = \frac{2\pi c}{\omega\sqrt{\chi_0}}} \qquad \boxed{\delta = \frac{1}{|k_2|} = \frac{2c}{\omega^2\tau\sqrt{\chi_0}}} \]
+    </div>
+  </div>
+
+  <!-- ===== QUESTION B17 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question B17</div>
+    <div class="corr-question__statement">
+      Calculer \( \omega \), \( \lambda \), puis \( \delta \) pour une frequence f = 2,45 GHz. Commenter le resultat.
+    </div>
+
+    <p><strong>Pulsation :</strong></p>
+    \[ \omega = 2\pi f = 2\pi \times 2{,}45 \times 10^9 \approx 1{,}54 \times 10^{10}\ \text{rad.s}^{-1} \]
+
+    <p><strong>Verification de \(\omega\tau \ll 1\) :</strong> \(\omega\tau = 1{,}54 \times 10^{10} \times 1{,}0 \times 10^{-12} = 1{,}54 \times 10^{-2} \ll 1\). OK, l'approximation est valide.</p>
+
+    <p><strong>Longueur d'onde dans le dielectrique :</strong></p>
+    \[ \lambda = \frac{2\pi c}{\omega\sqrt{\chi_0}} = \frac{c}{f\sqrt{\chi_0}} = \frac{3{,}0 \times 10^8}{2{,}45 \times 10^9 \times \sqrt{75}} \]
+    \[ \lambda = \frac{3{,}0 \times 10^8}{2{,}45 \times 10^9 \times 8{,}66} = \frac{3{,}0 \times 10^8}{2{,}12 \times 10^{10}} \approx 1{,}4 \times 10^{-2}\ \text{m} = 1{,}4\ \text{cm} \]
+
+    <p><strong>Profondeur de penetration :</strong></p>
+    \[ \delta = \frac{2c}{\omega^2\tau\sqrt{\chi_0}} = \frac{2 \times 3{,}0 \times 10^8}{(1{,}54 \times 10^{10})^2 \times 1{,}0 \times 10^{-12} \times 8{,}66} \]
+    \[ \delta = \frac{6{,}0 \times 10^8}{2{,}37 \times 10^{20} \times 8{,}66 \times 10^{-12}} = \frac{6{,}0 \times 10^8}{2{,}05 \times 10^9} \approx 0{,}29\ \text{m} \approx 29\ \text{cm} \]
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\omega \approx 1{,}54 \times 10^{10}\ \text{rad.s}^{-1}} \]
+      \[ \boxed{\lambda \approx 1{,}4\ \text{cm}} \]
+      \[ \boxed{\delta \approx 29\ \text{cm}} \]
+    </div>
+
+    <p><strong>Commentaire :</strong> La profondeur de penetration \(\delta \approx 29\) cm est du meme ordre de grandeur que l'epaisseur typique d'un aliment (quelques cm a quelques dizaines de cm). Cela signifie que l'onde penetre significativement dans l'aliment, mais est aussi partiellement absorbee. Ce n'est ni trop faible (sinon l'aliment ne chaufferait pas), ni trop fort (sinon l'interieur ne serait pas atteint). La frequence de 2,45 GHz est un bon compromis.</p>
+  </div>
+
+  <!-- ===== QUESTION B18 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question B18</div>
+    <div class="corr-question__statement">
+      Faire un calcul de puissance, donner la direction du vecteur de POYNTING moyen, ainsi que l'expression de sa dependance par rapport aux variables spatiales.
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      Le vecteur de Poynting est \(\vec{\Pi} = \frac{1}{\mu_0}\vec{E} \wedge \vec{B}\). Sa valeur moyenne temporelle donne la puissance transportee par unite de surface.
+    </div>
+
+    <p><strong>Direction :</strong> Le vecteur de Poynting est proportionnel a \(\vec{E} \wedge \vec{B}\). L'onde se propage selon \(\vec{u}_x\), le champ \(\vec{E}\) est selon \(\vec{u}_y\), et \(\vec{B}\) est selon \(\vec{u}_z\) (par Maxwell-Faraday). Donc \(\vec{\Pi}\) est dirige selon \(\vec{u}_x\), dans le sens de propagation.</p>
+
+    <p><strong>Dependance spatiale :</strong> L'amplitude du champ electrique decroit comme \(e^{-|k_2|x}\), et celle du champ magnetique aussi. Le vecteur de Poynting, proportionnel au produit \(E \times B\), decroit donc comme le carre de l'amplitude :</p>
+
+    \[ \langle\vec{\Pi}\rangle \propto E_0^2\,e^{-2|k_2|x}\,\vec{u}_x \]
+
+    <p>Plus precisement, pour une onde plane progressive dans un milieu d'indice reel \(n \approx \sqrt{\chi_0}\) (au premier ordre) :</p>
+    \[ \langle\Pi\rangle = \frac{E_0^2}{2\mu_0 c}\sqrt{\chi_0}\,e^{-2|k_2|x} = \frac{E_0^2\sqrt{\chi_0}}{2\mu_0 c}\,e^{-x/\delta'} \]
+    <p>avec \(\delta' = \frac{1}{2|k_2|} = \frac{\delta}{2}\) la profondeur de penetration en puissance.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      Le vecteur de Poynting moyen est dirige selon \(\vec{u}_x\) (sens de propagation) et decroit exponentiellement :
+      \[ \boxed{\langle\vec{\Pi}\rangle = \frac{E_0^2\sqrt{\chi_0}}{2\mu_0 c}\,e^{-2|k_2|\,x}\,\vec{u}_x} \]
+      La puissance transportee decroit en \(e^{-2|k_2|x}\), soit en \(e^{-x/(\delta/2)}\). L'energie est progressivement absorbee par le milieu et convertie en chaleur.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  TROISIEME PARTIE : DECONGELATION D'UN ALIMENT              -->
+<!-- ============================================================ -->
+
+<div class="corr-exercice">
+  <div class="corr-exercice__header">
+    <div class="corr-exercice__number">3</div>
+    <div class="corr-exercice__title-group">
+      <h2 class="corr-exercice__title">Troisieme partie - Decongelation d'un aliment</h2>
+      <p class="corr-exercice__subtitle">Diffusion thermique classique et chauffage micro-ondes (Q1c a Q7c, Q1d a Q6d)</p>
+    </div>
+    <span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermediaire</span>
+  </div>
+  <hr class="corr-exercice__rule">
+
+  <div class="corr-part">C / Decongelation "classique"</div>
+
+  <!-- ===== QUESTION C1 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question C1</div>
+    <div class="corr-question__statement">
+      En considerant une tranche elementaire d'aliment comprise entre x et x+dx, etablir l'equation de diffusion thermique satisfaite par la temperature de l'aliment : \( \dfrac{\partial T(x,t)}{\partial t} = D_{th}\,\dfrac{\partial^2 T(x,t)}{\partial x^2} \), ou D\(_{th}\) est une constante a expliciter en fonction des caracteristiques de l'aliment.
+    </div>
+
+    <div class="corr-box corr-box--rappel">
+      <div class="corr-box__title">Rappel de cours</div>
+      La loi de Fourier donne le flux thermique : \(\vec{j}_{th} = -\lambda_{th}\,\overrightarrow{\text{grad}}\,T\). Le bilan d'energie sur un volume elementaire, en l'absence de sources, donne l'equation de la chaleur.
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On etablit l'equation de diffusion thermique pour decrire comment la chaleur se propage dans l'aliment quand il est chauffe par ses bords. C'est un grand classique de la thermique.
+    </div>
+
+    <p>Considerons une tranche d'aliment entre \(x\) et \(x+dx\), de section \(S\). Son volume est \(S\,dx\) et sa masse \(\rho\,S\,dx\).</p>
+
+    <p><strong>Bilan thermique :</strong> La variation d'energie interne de cette tranche pendant \(dt\) est :</p>
+    \[ dU = \rho\,S\,dx\,c_m\,\frac{\partial T}{\partial t}\,dt \]
+
+    <p><strong>Flux thermique entrant :</strong> Par la loi de Fourier (en 1D, \(\vec{j}_{th} = -\lambda_{th}\frac{\partial T}{\partial x}\vec{u}_x\)) :</p>
+    <ul>
+      <li>Flux entrant par la face en \(x\) : \(\Phi_{in} = -\lambda_{th}\frac{\partial T}{\partial x}\bigg|_x \cdot (-S) = +\lambda_{th}\,S\,\frac{\partial T}{\partial x}\bigg|_x\) (le flux sort selon \(-\vec{u}_x\) a gauche, donc entre dans la tranche).</li>
+      <li>Flux sortant par la face en \(x+dx\) : \(\Phi_{out} = \lambda_{th}\,S\,\frac{\partial T}{\partial x}\bigg|_{x+dx}\).</li>
+    </ul>
+
+    <p>La puissance thermique nette recue par la tranche est :</p>
+    \[ \Phi_{net} = \lambda_{th}\,S\left(\frac{\partial T}{\partial x}\bigg|_x - \frac{\partial T}{\partial x}\bigg|_{x+dx}\right) \cdot (-1) \]
+
+    <p>Plus rigoureusement, le bilan est \(dU = (\Phi_{in} - \Phi_{out})\,dt\), soit :</p>
+    \[ \rho\,c_m\,S\,dx\,\frac{\partial T}{\partial t} = \lambda_{th}\,S\left(\frac{\partial T}{\partial x}\bigg|_{x+dx} - \frac{\partial T}{\partial x}\bigg|_x\right) \cdot (-1) \cdot (-1) = \lambda_{th}\,S\,\frac{\partial^2 T}{\partial x^2}\,dx \]
+
+    <p>En simplifiant par \(S\,dx\) :</p>
+    \[ \rho\,c_m\,\frac{\partial T}{\partial t} = \lambda_{th}\,\frac{\partial^2 T}{\partial x^2} \]
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\frac{\partial T}{\partial t} = D_{th}\frac{\partial^2 T}{\partial x^2} \quad \text{avec} \quad D_{th} = \frac{\lambda_{th}}{\rho\,c_m}} \]
+      <p><strong>Application numerique :</strong> \(D_{th} = \frac{1{,}0}{1{,}1 \times 10^3 \times 2{,}0 \times 10^3} = \frac{1{,}0}{2{,}2 \times 10^6} \approx 4{,}5 \times 10^{-7}\ \text{m}^2.\text{s}^{-1}\).</p>
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">Methode reutilisable</div>
+      La diffusivite thermique \(D_{th} = \lambda_{th}/(\rho c_m)\) a la dimension de m\(^2\).s\(^{-1}\). Elle mesure la "vitesse" a laquelle la chaleur se repand. Plus \(D_{th}\) est grand, plus la diffusion est rapide.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION C2 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question C2</div>
+    <div class="corr-question__statement">
+      En considerant les conditions aux limites, exprimer les valeurs possibles de \( \mu \) en faisant intervenir un entier n.
+    </div>
+
+    <p>On cherche la temperature sous la forme \(T(x,t) = T_{ext} + f(x)g(t)\) avec \(f(x) = \sin(\mu x)\).</p>
+
+    <p><strong>Conditions aux limites :</strong></p>
+    <ul>
+      <li>En \(x = 0\) : \(T(0,t) = T_{ext}\), donc \(f(0) = 0\). Or \(\sin(0) = 0\) : OK, toujours verifie.</li>
+      <li>En \(x = L\) : \(T(L,t) = T_{ext}\), donc \(f(L) = 0\). Cela impose \(\sin(\mu L) = 0\), soit \(\mu L = n\pi\) avec \(n\) entier strictement positif.</li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\mu_n = \frac{n\pi}{L}, \quad n \in \mathbb{N}^*} \]
+    </div>
+  </div>
+
+  <!-- ===== QUESTION C3 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question C3</div>
+    <div class="corr-question__statement">
+      En resolvant l'equation de diffusion thermique, montrer que la temperature T(x,t) s'ecrit alors sous la forme : \( T(x,t) = T_{ext} + \theta\,\sin(\mu x)\,\exp(-\nu t) \), ou \( \theta \) est une constante (qui ne sera pas determinee). Exprimer la constante \( \nu \) en fonction de D\(_{th}\), L et n.
+    </div>
+
+    <p>On injecte \(T = T_{ext} + \theta\sin(\mu x)\,g(t)\) dans l'equation de diffusion :</p>
+    \[ \theta\sin(\mu x)\,g'(t) = D_{th}\,\theta\,(-\mu^2)\sin(\mu x)\,g(t) \]
+
+    <p>En simplifiant par \(\theta\sin(\mu x)\) (non nul en general) :</p>
+    \[ g'(t) = -D_{th}\mu^2\,g(t) \]
+
+    <p>C'est une equation differentielle du premier ordre de solution \(g(t) = A\,e^{-D_{th}\mu^2 t}\). On pose \(\nu = D_{th}\mu^2\).</p>
+
+    <p>Avec \(\mu = n\pi/L\) :</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\nu_n = D_{th}\,\mu_n^2 = D_{th}\frac{n^2\pi^2}{L^2}} \]
+      La temperature s'ecrit bien \(T(x,t) = T_{ext} + \theta\sin\left(\frac{n\pi x}{L}\right)\exp(-\nu_n t)\).
+    </div>
+  </div>
+
+  <!-- ===== QUESTION C4 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question C4</div>
+    <div class="corr-question__statement">
+      Tracer, dans le cas n = 1, l'allure de la temperature de l'aliment T(x,t) au debut de la decongelation, pour t\(_1\) = 0\(^+\), puis au bout d'un certain temps, pour t\(_2\) = 5 h (calculer notamment exp\((-\nu t_2)\)).
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On visualise comment la temperature evolue dans l'aliment au cours du temps : d'abord tres froide au centre, puis elle se rechauffe progressivement depuis les bords.
+    </div>
+
+    <p><strong>Calcul de \(\nu_1\) pour \(n = 1\) :</strong></p>
+    \[ \nu_1 = D_{th}\frac{\pi^2}{L^2} = 4{,}5 \times 10^{-7} \times \frac{\pi^2}{(0{,}20)^2} = 4{,}5 \times 10^{-7} \times \frac{9{,}87}{0{,}04} \]
+    \[ \nu_1 \approx 4{,}5 \times 10^{-7} \times 247 \approx 1{,}1 \times 10^{-4}\ \text{s}^{-1} \]
+
+    <p><strong>Calcul de \(e^{-\nu_1 t_2}\) pour \(t_2 = 5\) h \(= 18000\) s :</strong></p>
+    \[ \nu_1 t_2 = 1{,}1 \times 10^{-4} \times 18000 \approx 2{,}0 \]
+    \[ e^{-\nu_1 t_2} \approx e^{-2} \approx 0{,}14 \]
+
+    <p><strong>Allure des courbes :</strong></p>
+    <p>La condition initiale est \(\theta = T_{ini} - T_{ext} = -20 - 20 = -40\) K (pour le mode \(n=1\), le coefficient \(\theta\) est negatif car l'aliment est plus froid que l'exterieur).</p>
+
+    <ul>
+      <li><strong>Pour \(t_1 = 0^+\) :</strong> \(T(x,0) = T_{ext} + \theta\sin(\pi x/L)\). Le profil est une sinusoide inversee (car \(\theta < 0\)) : \(T = 20°\)C aux bords (\(x = 0\) et \(x = L\)), et \(T \approx 20 - 40 = -20°\)C au centre (\(x = L/2\)). Le profil en \(x\) est une arche de sinusoide retournee.</li>
+      <li><strong>Pour \(t_2 = 5\) h :</strong> \(T(x,t_2) = T_{ext} + \theta\,e^{-2}\sin(\pi x/L) \approx 20 - 40 \times 0{,}14 \sin(\pi x/L) = 20 - 5{,}4\sin(\pi x/L)\). Au centre : \(T \approx 20 - 5{,}4 \approx 14{,}6°\)C. Le profil garde la meme forme sinusoidale mais avec une amplitude reduite (l'aliment s'est beaucoup rechauffe).</li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[\boxed{e^{-\nu_1 t_2} \approx 0{,}14}\]
+      A \(t_1 = 0^+\), le centre est a \(-20°\)C et les bords a \(+20°\)C (sinusoide inversee). A \(t_2 = 5\) h, le centre est a environ \(+14{,}6°\)C : l'aliment s'est presque entierement rechauffe, mais le centre est encore un peu plus froid que les bords.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION C5 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question C5</div>
+    <div class="corr-question__statement">
+      Commenter l'evolution de la temperature au cours du temps. Critiquer les deux courbes obtenues.
+    </div>
+
+    <p><strong>Evolution :</strong> Au cours du temps, le profil de temperature reste sinusoidal mais l'amplitude de l'ecart a \(T_{ext}\) decroit exponentiellement. La temperature tend uniformement vers \(T_{ext} = 20°\)C. Le centre de l'aliment, qui est le point le plus froid, est le dernier a se rechauffer.</p>
+
+    <p><strong>Critique :</strong></p>
+    <ul>
+      <li>A \(t_1 = 0^+\), le profil sinusoidal n'est pas correct physiquement : la temperature initiale reelle est <strong>uniforme</strong> a \(T_{ini} = -20°\)C dans tout l'aliment, pas sinusoidale. Le mode \(n = 1\) seul ne suffit pas a representer une condition initiale constante. Il faudrait sommer une infinite de modes (serie de Fourier), comme dans la Q5 de l'enonce.</li>
+      <li>Le modele neglige le changement d'etat (fusion de la glace) qui absorbe une grande quantite de chaleur latente sans changer la temperature.</li>
+    </ul>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      La temperature converge exponentiellement vers \(T_{ext}\). La representation par un seul mode est trop simpliste pour decrire la condition initiale (uniforme), mais donne le bon comportement aux temps longs.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION C6 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question C6</div>
+    <div class="corr-question__statement">
+      Estimer numeriquement la duree necessaire pour degeler l'aliment et commenter le resultat.
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On veut estimer le temps de decongelation "classique" pour montrer que c'est tres long, ce qui motive l'utilisation des micro-ondes.
+    </div>
+
+    <p>Le point le plus froid est le centre (\(x = L/2\)). Pour que l'aliment soit "degele", il faut que la temperature atteigne \(T_{fin} = 0°\)C partout, donc en particulier au centre.</p>
+
+    <p>Aux temps longs, le mode fondamental (\(n = 1\)) domine (les harmoniques superieurs decroissent plus vite car \(\nu_n \propto n^2\)). On estime donc la duree avec le mode \(n = 1\) :</p>
+    \[ T(L/2, t) \approx T_{ext} + \theta_1\,\sin(\pi/2)\,e^{-\nu_1 t} = 20 + \theta_1\,e^{-\nu_1 t} \]
+
+    <p>On veut \(T(L/2, t) = 0°\)C, soit :</p>
+    \[ 0 = 20 + \theta_1\,e^{-\nu_1 t} \]
+
+    <p>Avec \(\theta_1 \approx -40\) K (ecart initial entre le centre et \(T_{ext}\) pour le mode fondamental; plus rigoureusement, le coefficient de Fourier donne \(\theta_1 = -4 \times 40/\pi \approx -51\) K, mais restons a l'ordre de grandeur) :</p>
+    \[ e^{-\nu_1 t} = \frac{20}{40} = 0{,}5, \quad \text{soit} \quad \nu_1 t = \ln 2 \approx 0{,}69 \]
+    \[ t = \frac{0{,}69}{\nu_1} = \frac{0{,}69}{1{,}1 \times 10^{-4}} \approx 6300\ \text{s} \approx 1{,}8\ \text{h} \]
+
+    <p>En tenant compte plus proprement de la serie de Fourier et de la chaleur latente, la duree reelle est encore plus longue.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{t_{decongel} \sim \text{quelques heures} \quad (\text{estimation} : 2 \text{ a } 6\ \text{h})} \]
+      C'est <strong>tres long</strong> pour une application industrielle. La decongelation par conduction thermique est lente car la diffusivite thermique des aliments est faible.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION C7 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question C7</div>
+    <div class="corr-question__statement">
+      Pouvait-on avoir une idee de son ordre de grandeur sans faire les calculs precedents ?
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">Methode reutilisable</div>
+      Pour un probleme de diffusion, le temps caracteristique est toujours de l'ordre de \(t \sim L^2/D\), ou \(L\) est la dimension typique et \(D\) la diffusivite.
+    </div>
+
+    <p>Oui ! Le temps caracteristique de diffusion thermique sur une longueur \(L\) est :</p>
+    \[ t_{diff} \sim \frac{L^2}{D_{th}} = \frac{(0{,}20)^2}{4{,}5 \times 10^{-7}} = \frac{0{,}04}{4{,}5 \times 10^{-7}} \approx 9 \times 10^4\ \text{s} \approx 25\ \text{h} \]
+
+    <p>C'est un ordre de grandeur un peu plus eleve (car c'est le temps pour que toute la piece atteigne l'equilibre, pas juste le centre arrive a 0°C), mais on retrouve bien un temps de <strong>plusieurs heures</strong>.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{t \sim \frac{L^2}{D_{th}} \sim 10^4 \text{ a } 10^5\ \text{s}} \]
+      L'analyse dimensionnelle et la connaissance du temps de diffusion \(L^2/D\) suffisent a donner le bon ordre de grandeur.
+    </div>
+  </div>
+
+  <div class="corr-part">D / Decongelation par micro-ondes</div>
+
+  <!-- ===== QUESTION D1 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question D1</div>
+    <div class="corr-question__statement">
+      Comment interpreter qualitativement l'augmentation brusque de la capacite thermique au voisinage de T' ?
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      La capacite thermique passe de 2 a 20 kJ.K\(^{-1}\).kg\(^{-1}\) au voisinage de T' = -3°C. On doit relier cela a un phenomene physique connu.
+    </div>
+
+    <p>L'augmentation brusque de la capacite thermique au voisinage de T' correspond au <strong>changement d'etat</strong> (fusion de la glace en eau liquide). Lors du changement d'etat, l'aliment absorbe une grande quantite d'energie (chaleur latente de fusion) sans que sa temperature augmente beaucoup. Cela se traduit par une capacite thermique apparente tres elevee : il faut fournir beaucoup d'energie pour changer de quelques degres la temperature dans l'intervalle de fusion.</p>
+
+    <p>En realite, pour un corps pur, la fusion se fait a temperature constante (pic de Dirac de \(c_m\)). Pour un aliment, la presence de differents solutes (sel, sucres...) etale la transition sur un intervalle de temperature (de T' a \(T_{fin}\)), d'ou un "plateau" eleve plutot qu'un pic infini.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      L'augmentation de \(c_m\) traduit la <strong>chaleur latente de fusion</strong> de l'eau contenue dans l'aliment, etalee sur un intervalle de temperature a cause du caractere multi-composants de l'aliment.
+    </div>
+  </div>
+
+  <!-- ===== QUESTION D2 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question D2</div>
+    <div class="corr-question__statement">
+      Calculer le transfert thermique (chaleur) que doit recevoir l'aliment pour passer de T\(_{ini}\) a T\(_{fin}\).
+    </div>
+
+    <p>L'aliment a une masse \(m = \rho\,S\,L = 1{,}1 \times 10^3 \times 1{,}0 \times 0{,}20 = 220\) kg.</p>
+
+    <p>Le transfert thermique comprend deux etapes :</p>
+
+    <p><strong>Etape 1 : de \(T_{ini} = -20°\)C a \(T' = -3°\)C (domaine A)</strong></p>
+    \[ Q_A = m\,c_{m,A}\,(T' - T_{ini}) = 220 \times 2{,}0 \times 10^3 \times ((-3) - (-20)) = 220 \times 2000 \times 17 \]
+    \[ Q_A = 7{,}48 \times 10^6\ \text{J} = 7{,}5\ \text{MJ} \]
+
+    <p><strong>Etape 2 : de \(T' = -3°\)C a \(T_{fin} = 0°\)C (domaine B)</strong></p>
+    \[ Q_B = m\,c_{m,B}\,(T_{fin} - T') = 220 \times 20 \times 10^3 \times (0 - (-3)) = 220 \times 20000 \times 3 \]
+    \[ Q_B = 1{,}32 \times 10^7\ \text{J} = 13{,}2\ \text{MJ} \]
+
+    <p><strong>Total :</strong></p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{Q = Q_A + Q_B = 7{,}5 + 13{,}2 \approx 20{,}7\ \text{MJ} \approx 21\ \text{MJ}} \]
+      La majeure partie de l'energie (environ 64%) est consommee par le changement d'etat (domaine B), conformement a la grande valeur de \(c_{m,B}\).
+    </div>
+  </div>
+
+  <!-- ===== QUESTION D3 ===== -->
+  <div class="corr-question corr-question--medium">
+    <div class="corr-question__num">Question D3</div>
+    <div class="corr-question__statement">
+      Sachant que chacune des deux ondes envoyees sur l'aliment possede une puissance \( \mathcal{P}_0^i \), calculer la duree \( \Delta t \) de la decongelation. Pourquoi n'est-ce qu'une estimation ?
+    </div>
+
+    <p>La puissance totale recue par l'aliment est au maximum \(2\mathcal{P}_0^i = 2 \times 5{,}0 = 10\) kW = \(10^4\) W (si toute la puissance est absorbee).</p>
+
+    \[ \Delta t = \frac{Q}{2\mathcal{P}_0^i} = \frac{2{,}07 \times 10^7}{10^4} = 2{,}07 \times 10^3\ \text{s} \approx 2070\ \text{s} \approx 35\ \text{min} \]
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\Delta t \approx 35\ \text{min}} \]
+      C'est beaucoup plus rapide que la decongelation classique (quelques heures).
+    </div>
+
+    <p><strong>Pourquoi n'est-ce qu'une estimation ?</strong></p>
+    <ul>
+      <li>On a suppose que <strong>toute</strong> la puissance est absorbee, or une partie de l'onde traverse l'aliment sans etre totalement absorbee (la profondeur de penetration est du meme ordre que l'epaisseur).</li>
+      <li>On a neglige les pertes thermiques (fuites laterales, rayonnement).</li>
+      <li>Le chauffage n'est pas uniforme : certaines zones sont plus chauffees que d'autres.</li>
+      <li>Les proprietes physiques changent avec la temperature (domaines A et B).</li>
+    </ul>
+  </div>
+
+  <!-- ===== QUESTION D4 ===== -->
+  <div class="corr-question corr-question--hard">
+    <div class="corr-question__num">Question D4</div>
+    <div class="corr-question__statement">
+      Si l'aliment est dans l'etat congele A, calculer (numeriquement) la fraction de puissance \( \dfrac{\mathcal{P}_j^i}{\mathcal{P}_0^i} \) de l'onde arrivant en x = 0, qui est absorbee dans la tranche j (j = 1,...,5). Calculer ensuite la fraction de la puissance provenant des deux ondes \( \dfrac{\mathcal{P}_j^i}{2\mathcal{P}_0^i} \) absorbee dans la tranche j (j = 1,...,5). Calculer enfin la duree \( \Delta t_j \) requise pour chauffer la tranche 1 jusqu'a la temperature T' (toute conduction thermique est negligee a ce stade). Preciser l'etat dans lequel se trouvent alors les autres tranches.
+    </div>
+
+    <div class="corr-box corr-box--method">
+      <div class="corr-box__title">Methode reutilisable</div>
+      L'aliment est divise en 5 tranches d'epaisseur egale \(\ell = L/5 = 0{,}04\) m. La puissance decroit exponentiellement : \(\mathcal{P}(x) = \mathcal{P}_0^i e^{-\alpha x}\). La puissance absorbee dans une tranche est la difference entre la puissance entrant et la puissance sortant.
+    </div>
+
+    <p><strong>Donnees :</strong> Etat A : \(\alpha_A = 25\) m\(^{-1}\). Epaisseur d'une tranche : \(\ell = L/5 = 0{,}04\) m.</p>
+
+    <p>\(\alpha_A \ell = 25 \times 0{,}04 = 1{,}0\). Donc \(e^{-\alpha_A \ell} = e^{-1} \approx 0{,}368\).</p>
+
+    <p><strong>Puissance de l'onde gauche (arrivant en \(x=0\)) absorbee dans chaque tranche :</strong></p>
+    <p>La puissance entrant dans la tranche \(j\) est \(\mathcal{P}_0^i\,e^{-\alpha_A (j-1)\ell}\), et la puissance sortant est \(\mathcal{P}_0^i\,e^{-\alpha_A j\ell}\). La fraction absorbee est :</p>
+    \[ \frac{\Delta\mathcal{P}_j}{\mathcal{P}_0^i} = e^{-(j-1)\alpha_A\ell} - e^{-j\alpha_A\ell} = e^{-(j-1)} - e^{-j} = e^{-(j-1)}(1 - e^{-1}) \]
+
+    <p>Avec \(1 - e^{-1} = 1 - 0{,}368 = 0{,}632\) :</p>
+    <table style="border-collapse:collapse; margin:1rem 0;">
+      <tr><th style="padding:0.3rem 1rem; border:1px solid #ccc;">Tranche j</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">1</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">2</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">3</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">4</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">5</th></tr>
+      <tr><td style="padding:0.3rem 1rem; border:1px solid #ccc;">\(\Delta\mathcal{P}_j/\mathcal{P}_0^i\)</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,632</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,233</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,086</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,031</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,012</td></tr>
+    </table>
+
+    <p><strong>Avec les deux ondes :</strong> L'onde venant de \(x = L\) voit les tranches dans l'ordre inverse (la tranche 5 est la premiere atteinte). Par symetrie, la puissance absorbee par l'onde droite dans la tranche \(j\) est celle de l'onde gauche dans la tranche \(6-j\).</p>
+
+    <p>La fraction de la puissance <strong>totale</strong> \(2\mathcal{P}_0^i\) absorbee dans la tranche \(j\) est :</p>
+    \[ \frac{\mathcal{P}_j^{tot}}{2\mathcal{P}_0^i} = \frac{1}{2}\left(\frac{\Delta\mathcal{P}_j^{gauche}}{\mathcal{P}_0^i} + \frac{\Delta\mathcal{P}_{6-j}^{gauche}}{\mathcal{P}_0^i}\right) \]
+
+    <table style="border-collapse:collapse; margin:1rem 0;">
+      <tr><th style="padding:0.3rem 1rem; border:1px solid #ccc;">Tranche j</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">1</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">2</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">3</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">4</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">5</th></tr>
+      <tr><td style="padding:0.3rem 1rem; border:1px solid #ccc;">Gauche</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,632</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,233</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,086</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,031</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,012</td></tr>
+      <tr><td style="padding:0.3rem 1rem; border:1px solid #ccc;">Droite</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,012</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,031</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,086</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,233</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,632</td></tr>
+      <tr><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>\(\mathcal{P}_j^{tot}/(2\mathcal{P}_0^i)\)</strong></td><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>0,322</strong></td><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>0,132</strong></td><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>0,086</strong></td><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>0,132</strong></td><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>0,322</strong></td></tr>
+    </table>
+
+    <p>La repartition est symetrique. Les tranches de bord (1 et 5) recoivent le plus d'energie.</p>
+
+    <p><strong>Duree pour chauffer la tranche 1 jusqu'a T' :</strong></p>
+    <p>Masse d'une tranche : \(m_{tr} = \rho\,S\,\ell = 1{,}1 \times 10^3 \times 1{,}0 \times 0{,}04 = 44\) kg.</p>
+    <p>Chaleur necessaire pour amener la tranche 1 de \(T_{ini} = -20°\)C a \(T' = -3°\)C :</p>
+    \[ Q_1 = m_{tr}\,c_{m,A}\,(T' - T_{ini}) = 44 \times 2000 \times 17 = 1{,}50 \times 10^6\ \text{J} \]
+
+    <p>Puissance absorbee par la tranche 1 : \(\mathcal{P}_1^{tot} = 2 \times 0{,}322 \times \mathcal{P}_0^i = 0{,}644 \times 5000 = 3220\) W.</p>
+
+    \[ \Delta t_1 = \frac{Q_1}{\mathcal{P}_1^{tot}} = \frac{1{,}50 \times 10^6}{3220} \approx 466\ \text{s} \approx 7{,}8\ \text{min} \]
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      \[ \boxed{\Delta t_1 \approx 8\ \text{min}} \]
+      <p>A cet instant, la tranche 1 (et par symetrie la tranche 5) viennent d'atteindre T'. Les tranches 2, 3 et 4 sont encore dans l'etat congele A car elles recoivent moins de puissance et n'ont pas encore atteint T'.</p>
+      <p>Estimations des temperatures des autres tranches a cet instant (en supposant le meme temps \(\Delta t_1\)) :</p>
+      <ul>
+        <li>Tranche 2 : \(\Delta T_2 = \frac{\mathcal{P}_2^{tot}\,\Delta t_1}{m_{tr}\,c_{m,A}} = \frac{0{,}264 \times 5000 \times 466}{44 \times 2000} \approx 7°\)C, soit \(T_2 \approx -13°\)C. Etat A.</li>
+        <li>Tranche 3 (centre) : \(\Delta T_3 \approx \frac{0{,}172 \times 5000 \times 466}{88000} \approx 4{,}6°\)C, soit \(T_3 \approx -15{,}4°\)C. Etat A.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== QUESTION D5 ===== -->
+  <div class="corr-question corr-question--hard">
+    <div class="corr-question__num">Question D5</div>
+    <div class="corr-question__statement">
+      L'aliment est ensuite suppose etre entierement dans l'etat intermediaire B. Calculer de meme la fraction de puissance totale \( \dfrac{\mathcal{P}_j^i}{2\mathcal{P}_0^i} \) absorbee dans la tranche j (j = 1,...,5). Conclure.
+    </div>
+
+    <p><strong>Donnees :</strong> Etat B : \(\alpha_B = 100\) m\(^{-1}\). Epaisseur d'une tranche : \(\ell = 0{,}04\) m.</p>
+
+    <p>\(\alpha_B\ell = 100 \times 0{,}04 = 4{,}0\). Donc \(e^{-\alpha_B\ell} = e^{-4} \approx 0{,}018\).</p>
+
+    <p>\(1 - e^{-4} = 0{,}982\).</p>
+
+    <p><strong>Puissance de l'onde gauche absorbee dans chaque tranche :</strong></p>
+    \[ \frac{\Delta\mathcal{P}_j}{\mathcal{P}_0^i} = e^{-(j-1)\alpha_B\ell}(1-e^{-\alpha_B\ell}) = e^{-4(j-1)} \times 0{,}982 \]
+
+    <table style="border-collapse:collapse; margin:1rem 0;">
+      <tr><th style="padding:0.3rem 1rem; border:1px solid #ccc;">Tranche j</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">1</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">2</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">3</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">4</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">5</th></tr>
+      <tr><td style="padding:0.3rem 1rem; border:1px solid #ccc;">\(\Delta\mathcal{P}_j/\mathcal{P}_0^i\) (gauche)</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,982</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">0,018</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">\(\approx 0\)</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">\(\approx 0\)</td><td style="padding:0.3rem 1rem; border:1px solid #ccc;">\(\approx 0\)</td></tr>
+    </table>
+
+    <p>La quasi-totalite de l'onde est absorbee dans la premiere tranche ! Avec les deux ondes :</p>
+
+    <table style="border-collapse:collapse; margin:1rem 0;">
+      <tr><th style="padding:0.3rem 1rem; border:1px solid #ccc;">Tranche j</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">1</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">2</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">3</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">4</th><th style="padding:0.3rem 1rem; border:1px solid #ccc;">5</th></tr>
+      <tr><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>\(\mathcal{P}_j^{tot}/(2\mathcal{P}_0^i)\)</strong></td><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>0,491</strong></td><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>0,009</strong></td><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>\(\approx 0\)</strong></td><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>0,009</strong></td><td style="padding:0.3rem 1rem; border:1px solid #ccc;"><strong>0,491</strong></td></tr>
+    </table>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      Dans l'etat B (en cours de decongelation), l'attenuation est beaucoup plus forte (\(\alpha_B = 100\) m\(^{-1}\) contre \(\alpha_A = 25\) m\(^{-1}\)). La quasi-totalite de l'energie est absorbee par les tranches de bord (1 et 5). <strong>Le centre de l'aliment ne recoit pratiquement aucune energie.</strong>
+    </div>
+
+    <p><strong>Conclusion :</strong> Il y a un probleme majeur : les bords de l'aliment, une fois degelee (etat B), absorbent presque toute l'energie et continuent de chauffer, tandis que le centre reste congele. On obtient une decongelation tres <strong>non uniforme</strong> : les bords cuisent pendant que le centre est encore glace. C'est le phenomene bien connu des plats decongeles au micro-ondes avec des bords brulants et un centre encore gele.</p>
+  </div>
+
+  <!-- ===== QUESTION D6 ===== -->
+  <div class="corr-question corr-question--easy">
+    <div class="corr-question__num">Question D6</div>
+    <div class="corr-question__statement">
+      Expliquer la pertinence de ce procede.
+    </div>
+
+    <div class="corr-box corr-box--why">
+      <div class="corr-box__title">Pourquoi cette question ?</div>
+      On nous dit que l'aliment est decongele par micro-ondes dans une piece tres froide (de -50°C a -60°C). Il faut comprendre pourquoi cela resout le probleme de non-uniformite.
+    </div>
+
+    <p>En placant l'aliment dans une piece tres froide (-50°C a -60°C), on assure que :</p>
+
+    <ul>
+      <li><strong>Les bords se refroidissent en permanence</strong> par conduction/convection avec l'air ambiant tres froid. L'energie deposee par les micro-ondes dans les bords est en partie evacuee vers l'exterieur froid. Cela empeche les bords de surchauffer et de depasser \(T_{fin}\).</li>
+      <li><strong>Les bords restent plus longtemps dans l'etat A</strong> (congele), ou l'attenuation est plus faible (\(\alpha_A = 25\) m\(^{-1}\)). L'onde peut donc mieux penetrer jusqu'au centre de l'aliment.</li>
+      <li><strong>Si un bord commence a degeler (etat B)</strong>, le froid ambiant le ramene rapidement sous T', le faisant repasser dans l'etat A. Cela equilibre la repartition d'energie.</li>
+    </ul>
+
+    <p>Le resultat net est une decongelation <strong>beaucoup plus uniforme</strong> : le centre et les bords arrivent approximativement au meme moment a la temperature finale. C'est le principe utilise dans l'industrie agro-alimentaire pour la decongelation de blocs alimentaires.</p>
+
+    <div class="corr-box corr-box--result">
+      <div class="corr-box__title">Resultat</div>
+      Placer l'aliment dans une enceinte tres froide compense le surchauffage des bords en evacuant l'exces de chaleur. Les bords restent dans l'etat A (faible attenuation), ce qui permet a l'onde de penetrer plus profondement. La decongelation est alors sensiblement uniforme.
+    </div>
+  </div>
+</div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correction E3A-Polytech PC 2016 - Physique | LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+<style>
+.corr-exercice { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.corr-exercice__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+.corr-exercice__number { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #E91E63; color: #fff; border-radius: 50%; font-weight: 700; font-size: 1.25rem; flex-shrink: 0; }
+.corr-exercice__title-group { flex: 1; }
+.corr-exercice__title { margin: 0; font-size: 1.4rem; color: #111827; }
+.corr-exercice__subtitle { font-size: 0.9rem; color: #6b7280; }
+.corr-exercice__difficulty { padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+.corr-exercice__difficulty--standard { background: #dcfce7; color: #166534; }
+.corr-exercice__difficulty--intermediaire { background: #fef3c7; color: #92400e; }
+.corr-exercice__difficulty--avance { background: #fee2e2; color: #991b1b; }
+.corr-exercice__rule { border: none; border-top: 2px solid #f3f4f6; margin: 1rem 0 1.5rem; }
+.corr-exercice__enonce { background: #f9fafb; border-left: 4px solid #9ca3af; padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 2rem; font-size: 0.95rem; color: #374151; }
+.corr-exercice__enonce-label { display: block; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.5rem; }
+.corr-question { border-left: 4px solid #e5e7eb; padding: 1rem 0 1rem 1.5rem; margin-bottom: 2rem; }
+.corr-question--easy { border-left-color: #22c55e; }
+.corr-question--medium { border-left-color: #f59e0b; }
+.corr-question--hard { border-left-color: #ef4444; }
+.corr-question__num { display: inline-block; font-weight: 700; color: #111827; background: #f3f4f6; padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.9rem; margin-bottom: 0.75rem; }
+.corr-question__statement { font-style: italic; color: #4b5563; background: #f9fafb; padding: 0.9rem 1rem; border-radius: 6px; margin: 0.5rem 0 1.25rem; border-left: 3px solid #d1d5db; }
+.corr-box { padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid; }
+.corr-box__title { font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.corr-box--rappel { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a8a; }
+.corr-box--rappel .corr-box__title { color: #1d4ed8; }
+.corr-box--why { background: #fff7ed; border-left-color: #f97316; color: #7c2d12; }
+.corr-box--why .corr-box__title { color: #c2410c; }
+.corr-box--result { background: #fefce8; border-left-color: #eab308; color: #713f12; }
+.corr-box--result .corr-box__title { color: #a16207; }
+.corr-box--piege { background: #fef2f2; border-left-color: #ef4444; color: #7f1d1d; }
+.corr-box--piege .corr-box__title { color: #b91c1c; }
+.corr-box--method { background: #f0fdf4; border-left-color: #22c55e; color: #14532d; }
+.corr-box--method .corr-box__title { color: #15803d; }
+.corr-toggle { margin: 1rem 0; border: 1px solid #e5e7eb; border-radius: 6px; padding: 0.5rem 1rem; background: #f9fafb; }
+.corr-toggle summary { cursor: pointer; font-weight: 600; color: #4b5563; }
+.corr-toggle__content { padding-top: 0.75rem; color: #374151; }
+.corr-part { margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #E91E63; color: #E91E63; font-size: 1.15rem; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="nav__container">
+<a href="../../index.html" class="nav__logo">LibMaths</a>
+<ul class="nav__menu">
+<li><a href="../../index.html">Accueil</a></li>
+<li><a href="../index.html">Cours</a></li>
+<li><a href="../../physique/index.html">Physique</a></li>
+<li><a href="../../annales.html">Annales</a></li>
+</ul>
+</div>
+</nav>
+
+<main class="course">
+<div class="course__container">
+<header class="course__header">
+<div class="course__breadcrumb">
+<a href="../../index.html">Accueil</a> &gt;
+<a href="../../physique/index.html">Physique</a> &gt;
+<a href="../../annales.html">Annales</a> &gt;
+<a href="e3a-pc-2016-physique.html">E3A PC 2016 Physique</a> &gt;
+Correction
+</div>
+<h1 class="course__title">Correction — E3A-Polytech PC 2016 Physique</h1>
+<p class="course__subtitle">Colonnes d'absorption — Correction pedagogique detaillee</p>
+</header>
+
+<!-- ============ VUE D'ENSEMBLE ============ -->
+<div class="corr-exercice" id="intro">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Vue d'ensemble du sujet</span>
+Ce probleme porte sur la <strong>depollution de gaz par absorption dans un solvant</strong>. Pensez a une colonne verticale ou un gaz sale monte et ou un liquide propre descend : le polluant passe du gaz vers le liquide, un peu comme un sucre qui se dissout dans du cafe. L'objectif est de determiner deux parametres cles — le coefficient de transfert \(k_L\) et l'aire interfaciale \(a\) — en combinant modelisation physique (bilans de matiere, EDO) et traitement numerique (moindres carres, Nelder-Mead, Euler, trapezes). Le sujet mele donc physico-chimie et informatique, ce qui est typique de l'epreuve de modelisation E3A.
+</div>
+</div>
+
+<!-- ============ PARTIE I ============ -->
+<div class="corr-exercice" id="partie1">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">I</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Presentation du probleme</h2>
+<span class="corr-exercice__subtitle">Contexte et description du reacteur — pas de questions</span>
+</div>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Resume</span>
+Cette partie pose le decor : une colonne d'absorption industrielle, un reacteur de laboratoire a pression constante, et deux experiences a mener (sans et avec reactif B). Aucune question n'est posee ici, mais il faut bien comprendre le schema du reacteur (figure 2) : le polluant A entre par le haut a debit variable \(F_A\), la pression \(P_A\) est maintenue constante a 1,0 bar, et le solvant occupe un volume \(V_{liq} = 1{,}0\) L en bas.
+</div>
+</div>
+
+<!-- ============ PARTIE II.1 ============ -->
+<div class="corr-exercice" id="partie2-1">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">II.1</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Cas sans reactif B</h2>
+<span class="corr-exercice__subtitle">Absorption physique — Questions Q1.1 a Q1.10</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--standard">Standard</span>
+</div>
+<hr class="corr-exercice__rule">
+
+<!-- Q1.1 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q1.1</span>
+<p class="corr-question__statement">Calculer la valeur de la concentration \(C_A^*\) en mol.m\(^{-3}\) a partir de la loi de Henry. On donne la constante de Henry pour A : \(H = 26{,}0\) bar.L.mol\(^{-1}\). On pourra s'appuyer sur l'analyse dimensionnelle pour ecrire la loi de Henry.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Loi de Henry</div>
+La loi de Henry relie la pression partielle d'un gaz au-dessus d'un liquide a la concentration du gaz dissous dans ce liquide, a l'equilibre. C'est un peu comme dire : plus on appuie fort sur le gaz (pression elevee), plus il se dissout dans le liquide. Dimensionnellement, si \(H\) a pour unite bar.L.mol\(^{-1}\), alors \(P_A^* = H \times C_A^*\), soit \(C_A^* = P_A^*/H\).
+</div>
+
+<p>On applique la loi de Henry a l'interface :</p>
+\[ P_A^* = H \times C_A^* \quad \Longrightarrow \quad C_A^* = \frac{P_A^*}{H} \]
+
+<p>Application numerique avec \(P_A^* = P_A = 1{,}0\) bar et \(H = 26{,}0\) bar.L.mol\(^{-1}\) :</p>
+\[ C_A^* = \frac{1{,}0}{26{,}0} = 3{,}85 \times 10^{-2} \text{ mol.L}^{-1} \]
+
+<p>Conversion en mol.m\(^{-3}\) (1 L = \(10^{-3}\) m\(^3\), donc 1 mol.L\(^{-1}\) = \(10^3\) mol.m\(^{-3}\)) :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{C_A^* = 38{,}5 \text{ mol.m}^{-3}} \]
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+La constante de Henry est donnee en bar.L.mol\(^{-1}\). Si on oublie la conversion L \(\to\) m\(^3\), on obtient un resultat faux d'un facteur \(10^3\). Pensez toujours a verifier les unites finales.
+</div>
+</div>
+
+<!-- Q1.2 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q1.2</span>
+<p class="corr-question__statement">Verifier que l'expression \(k_L \times a \times (C_A^* - C_A) \times V_{liq}\) est bien homogene a un debit molaire.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode — Analyse dimensionnelle</div>
+Pour verifier l'homogeneite, on remplace chaque grandeur par son unite et on verifie qu'on obtient mol.s\(^{-1}\).
+</div>
+
+<p>Analysons unite par unite :</p>
+<ul>
+<li>\(k_L\) : m.s\(^{-1}\) (conductance de transfert)</li>
+<li>\(a\) : m\(^2\).m\(^{-3}\) = m\(^{-1}\) (aire interfaciale par unite de volume)</li>
+<li>\(C_A^* - C_A\) : mol.m\(^{-3}\) (difference de concentration)</li>
+<li>\(V_{liq}\) : m\(^3\) (volume de liquide)</li>
+</ul>
+
+<p>Produit des unites :</p>
+\[ [\text{m.s}^{-1}] \times [\text{m}^{-1}] \times [\text{mol.m}^{-3}] \times [\text{m}^3] = \text{mol.s}^{-1} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+L'expression est bien homogene a un <strong>debit molaire</strong> (mol.s\(^{-1}\)).
+</div>
+</div>
+
+<!-- Q1.3 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q1.3</span>
+<p class="corr-question__statement">Sachant qu'a l'instant initial la concentration \(C_A\) de A dans la phase liquide est nulle, expliquer qualitativement comment \(C_A\) va evoluer au cours du temps. Preciser le signe du terme \(k_L \times a \times (C_A^* - C_A) \times V_{liq}\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+Avant de se lancer dans les equations, on veut comprendre physiquement ce qui se passe. C'est comme remplir un verre d'eau : au debut le verre est vide (le solvant ne contient pas de A), donc le flux est maximal. Au fur et a mesure que le solvant se sature, le flux diminue.
+</div>
+
+<p>A \(t = 0\), \(C_A = 0\) et \(C_A^* > 0\). Le polluant A va se transferer du gaz vers le liquide car il y a un gradient de concentration favorable. La concentration \(C_A\) va donc <strong>augmenter progressivement</strong> au cours du temps.</p>
+
+<p>Au fur et a mesure que \(C_A\) augmente, la difference \(C_A^* - C_A\) diminue, donc le transfert ralentit. La concentration \(C_A\) tend asymptotiquement vers \(C_A^*\) (equilibre).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\(C_A\) croit de 0 vers \(C_A^*\). Le terme \(k_L \times a \times (C_A^* - C_A) \times V_{liq}\) est <strong>positif</strong> a tout instant (car \(C_A < C_A^*\)), ce qui correspond bien a un transfert de A du gaz vers le liquide.
+</div>
+</div>
+
+<!-- Q1.4 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q1.4</span>
+<p class="corr-question__statement">Ecrire le bilan de matiere sur le polluant A dans la phase gazeuse. Preciser le terme d'entree et le terme de sortie intervenant dans le bilan de matiere.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Bilan de matiere en regime permanent</div>
+Pour un reacteur ouvert parfaitement agite en regime permanent, le bilan s'ecrit : Entree = Sortie (pas d'accumulation). Ici, A entre dans le reacteur par le haut (debit \(F_A\)) et en sort en traversant l'interface gaz-liquide.
+</div>
+
+<p>La phase gazeuse est un reacteur ouvert parfaitement agite en regime permanent. Le bilan de matiere sur A s'ecrit :</p>
+\[ \text{Entree} = \text{Sortie} \]
+<ul>
+<li><strong>Terme d'entree</strong> : \(F_A\) (debit molaire de A qui entre dans le reacteur par le haut)</li>
+<li><strong>Terme de sortie</strong> : \(F_A^* = k_L \times a \times (C_A^* - C_A) \times V_{liq}\) (debit molaire de A qui traverse l'interface vers le liquide)</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{F_A = k_L \times a \times (C_A^* - C_A) \times V_{liq}} \]
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+Ce bilan dit simplement : tout le gaz A qui entre dans le reacteur finit par traverser l'interface vers le liquide (pas de stockage dans le gaz). C'est logique puisque la pression est maintenue constante.
+</div>
+</div>
+
+<!-- Q1.5 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q1.5</span>
+<p class="corr-question__statement">Ecrire le bilan de matiere sur le polluant A dans la phase liquide. Preciser le terme d'entree et le terme d'accumulation.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Reacteur semi-ferme</div>
+Dans un reacteur semi-ferme, il y a une entree mais pas de sortie. Le bilan s'ecrit : Accumulation = Entree. L'accumulation, c'est la variation de la quantite de matiere stockee dans le reacteur par unite de temps.
+</div>
+
+<p>La phase liquide est un reacteur semi-ferme parfaitement agite en regime transitoire. Le bilan de matiere sur A s'ecrit :</p>
+\[ \text{Accumulation} = \text{Entree} \]
+
+<ul>
+<li><strong>Terme d'entree</strong> : \(k_L \times a \times (C_A^* - C_A) \times V_{liq}\) (flux de A a travers l'interface)</li>
+<li><strong>Terme d'accumulation</strong> : \(\dfrac{d(C_A \times V_{liq})}{dt}\) (variation de la quantite de A dans le liquide)</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\frac{d(C_A \times V_{liq})}{dt} = k_L \times a \times (C_A^* - C_A) \times V_{liq}} \]
+</div>
+</div>
+
+<!-- Q1.6 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q1.6</span>
+<p class="corr-question__statement">Simplifier le bilan en considerant que le volume de la phase liquide reste constant au cours du temps.</p>
+
+<p>Si \(V_{liq}\) est constant, on peut le sortir de la derivee a gauche et simplifier par \(V_{liq}\) des deux cotes :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\frac{dC_A}{dt} = k_L \times a \times (C_A^* - C_A)} \]
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+On obtient une EDO du premier ordre lineaire a coefficients constants. C'est une equation tres classique qui decrit un phenomene de relaxation : \(C_A\) rejoint \(C_A^*\) avec une constante de temps \(\tau = 1/(k_L \times a)\).
+</div>
+</div>
+
+<!-- Q1.7 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q1.7</span>
+<p class="corr-question__statement">Resoudre l'equation differentielle obtenue a la question precedente en considerant que la concentration initiale de A dans la phase liquide est nulle. On pourra effectuer un changement de variable.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode — EDO du premier ordre</div>
+L'equation \(\frac{dC_A}{dt} = k_L a (C_A^* - C_A)\) est de la forme \(y' = \alpha(\beta - y)\). On pose \(u = C_A^* - C_A\) pour se ramener a \(u' = -\alpha\, u\), dont la solution est une exponentielle decroissante.
+</div>
+
+<p>Posons \(u = C_A^* - C_A\). Alors \(\dfrac{du}{dt} = -\dfrac{dC_A}{dt}\) (car \(C_A^*\) est constant). L'equation devient :</p>
+\[ -\frac{du}{dt} = k_L a \cdot u \quad \Longrightarrow \quad \frac{du}{dt} = -k_L a \cdot u \]
+
+<p>La solution est :</p>
+\[ u(t) = u(0) \, e^{-k_L a \, t} \]
+
+<p>Condition initiale : \(C_A(0) = 0\), donc \(u(0) = C_A^* - 0 = C_A^*\).</p>
+
+<p>On revient a \(C_A\) :</p>
+\[ C_A^* - C_A(t) = C_A^* \, e^{-k_L a \, t} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{C_A(t) = C_A^* \left(1 - e^{-k_L a \, t}\right)} \]
+</div>
+</div>
+
+<!-- Q1.8 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q1.8</span>
+<p class="corr-question__statement">Donner l'expression de la concentration de A en fonction du temps. Verifier que \(C_A\) evolue bien de la maniere prevue a la question Q1.3).</p>
+
+<p>L'expression a deja ete obtenue a la question precedente :</p>
+\[ C_A(t) = C_A^* \left(1 - e^{-k_L a \, t}\right) \]
+
+<p>Verification de coherence avec Q1.3 :</p>
+<ul>
+<li>A \(t = 0\) : \(C_A(0) = C_A^*(1 - 1) = 0\). Conforme.</li>
+<li>Quand \(t \to +\infty\) : \(e^{-k_L a\, t} \to 0\), donc \(C_A \to C_A^*\). La concentration tend vers l'equilibre. Conforme.</li>
+<li>\(C_A\) est une fonction croissante du temps (sa derivee \(C_A^* k_L a \, e^{-k_L a\, t}\) est positive). Conforme.</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\(C_A(t)\) part de 0, croit de facon exponentielle et tend vers \(C_A^*\), conformement a l'analyse qualitative de Q1.3.
+</div>
+</div>
+
+<!-- Q1.9 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q1.9</span>
+<p class="corr-question__statement">Etablir l'expression du debit molaire \(F_A\) en fonction du temps. Verifier l'homogeneite de la relation.</p>
+
+<p>D'apres le bilan sur la phase gazeuse (Q1.4) :</p>
+\[ F_A = k_L a (C_A^* - C_A) V_{liq} \]
+
+<p>On injecte l'expression de \(C_A(t)\) :</p>
+\[ C_A^* - C_A(t) = C_A^* \, e^{-k_L a \, t} \]
+
+<p>D'ou :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{F_A(t) = k_L a \cdot C_A^* \cdot V_{liq} \cdot e^{-k_L a \, t}} \]
+</div>
+
+<p><strong>Verification de l'homogeneite :</strong></p>
+\[ [\text{s}^{-1}] \times [\text{mol.m}^{-3}] \times [\text{m}^3] \times [1] = \text{mol.s}^{-1} \]
+<p>Le produit \(k_L a\) a pour unite s\(^{-1}\) (car \(k_L\) en m.s\(^{-1}\) et \(a\) en m\(^{-1}\)). L'expression est bien homogene a un debit molaire.</p>
+</div>
+
+<!-- Q1.10 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q1.10</span>
+<p class="corr-question__statement">Preciser vers quelle valeur tend le debit molaire \(F_A\) pour des temps importants et indiquer vers quelle valeur tend la concentration \(C_A\) dans ce cas.</p>
+
+<p>Quand \(t \to +\infty\) :</p>
+<ul>
+<li>\(e^{-k_L a \, t} \to 0\), donc \(F_A \to 0\) : le debit d'entree tend vers zero.</li>
+<li>\(C_A \to C_A^*\) : la concentration dans le liquide atteint la valeur d'equilibre.</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{F_A \xrightarrow[t \to +\infty]{} 0 \quad \text{et} \quad C_A \xrightarrow[t \to +\infty]{} C_A^*} \]
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+C'est logique physiquement : quand le solvant est sature en polluant (\(C_A = C_A^*\)), il n'y a plus de force motrice pour le transfert. Il n'y a donc plus besoin d'alimenter le reacteur en gaz A pour maintenir la pression constante, d'ou \(F_A \to 0\).
+</div>
+</div>
+
+</div><!-- fin partie II.1 -->
+
+<!-- ============ PARTIE II.2 ============ -->
+<div class="corr-exercice" id="partie2-2">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">II.2</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Cas avec reactif B</h2>
+<span class="corr-exercice__subtitle">Absorption avec reaction chimique — Questions Q2.1 a Q2.7</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermediaire</span>
+</div>
+<hr class="corr-exercice__rule">
+
+<!-- Q2.1 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q2.1</span>
+<p class="corr-question__statement">Le bilan de matiere sur la phase gazeuse est-il modifie ? Justifier.</p>
+
+<p>Non, le bilan sur la phase gazeuse n'est <strong>pas modifie</strong>.</p>
+
+<p>La reaction \(A + B \to \text{produits}\) a lieu dans la <strong>phase liquide</strong> uniquement. De plus, B ne passe pas dans la phase gazeuse (hypothese de l'enonce). Du point de vue de la phase gazeuse, la situation est identique : A entre par le haut au debit \(F_A\) et traverse l'interface vers le liquide.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Le bilan sur la phase gazeuse reste : \(\boxed{F_A = k_L a (C_A^* - C_A) V_{liq}}\). La reaction n'affecte que la phase liquide.
+</div>
+</div>
+
+<!-- Q2.2 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q2.2</span>
+<p class="corr-question__statement">Indiquer la dimension de \(r_{app}\). Preciser son unite dans le systeme SI.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode — Analyse dimensionnelle</div>
+On analyse les unites de chaque facteur dans l'expression \(r_{app} = a \times C_A^* \times \sqrt{D_A \times k \times C_B}\).
+</div>
+
+<p>Dimensions de chaque grandeur :</p>
+<ul>
+<li>\(a\) : m\(^{-1}\) (m\(^2\).m\(^{-3}\))</li>
+<li>\(C_A^*\) : mol.m\(^{-3}\)</li>
+<li>\(D_A\) : m\(^2\).s\(^{-1}\)</li>
+<li>\(k\) : m\(^3\).mol\(^{-1}\).s\(^{-1}\)</li>
+<li>\(C_B\) : mol.m\(^{-3}\)</li>
+</ul>
+
+<p>Sous la racine :</p>
+\[ [D_A \times k \times C_B] = \text{m}^2\text{.s}^{-1} \times \text{m}^3\text{.mol}^{-1}\text{.s}^{-1} \times \text{mol.m}^{-3} = \text{m}^2\text{.s}^{-2} \]
+
+<p>Donc \(\sqrt{D_A k C_B}\) a pour unite m.s\(^{-1}\).</p>
+
+<p>Au total :</p>
+\[ [r_{app}] = \text{m}^{-1} \times \text{mol.m}^{-3} \times \text{m.s}^{-1} = \text{mol.m}^{-3}\text{.s}^{-1} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{[r_{app}] = \text{mol.m}^{-3}\text{.s}^{-1}} \]
+C'est bien une vitesse volumique de reaction (quantite de matiere consommee par unite de volume et par unite de temps).
+</div>
+</div>
+
+<!-- Q2.3 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q2.3</span>
+<p class="corr-question__statement">Ecrire le nouveau bilan de matiere sur A dans la phase liquide en prenant en compte le nouveau terme correspondant a la reaction chimique (on fera particulierement attention au signe).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Bilan avec reaction</div>
+Pour un reacteur semi-ferme avec reaction, le bilan devient : Accumulation = Entree - Disparition par reaction. La reaction consomme A, donc le terme de reaction se soustrait.
+</div>
+
+<p>Le bilan sur A dans la phase liquide s'ecrit maintenant :</p>
+\[ \frac{d(C_A \times V_{liq})}{dt} = \underbrace{k_L a (C_A^* - C_A) V_{liq}}_{\text{entree par l'interface}} - \underbrace{r_{app} \times V_{liq}}_{\text{disparition par reaction}} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\frac{d(C_A V_{liq})}{dt} = k_L a (C_A^* - C_A) V_{liq} - a \, C_A^* \sqrt{D_A k C_B}\; V_{liq}} \]
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+Le signe moins devant le terme de reaction est crucial : la reaction <strong>consomme</strong> A, elle reduit la quantite de A dans le liquide. Beaucoup de candidats se trompent de signe ici.
+</div>
+</div>
+
+<!-- Q2.4 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q2.4</span>
+<p class="corr-question__statement">Simplifier le bilan en considerant que le volume de la phase liquide reste constant.</p>
+
+<p>Avec \(V_{liq}\) constant, on divise par \(V_{liq}\) :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\frac{dC_A}{dt} = k_L a (C_A^* - C_A) - a \, C_A^* \sqrt{D_A k C_B}} \]
+</div>
+</div>
+
+<!-- Q2.5 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q2.5</span>
+<p class="corr-question__statement">Ecrire le bilan de matiere sur B dans la phase liquide en considerant que la phase liquide est un reacteur ferme parfaitement agite.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+B est deja dans le solvant au depart et ne sort pas du liquide (pas de passage vers le gaz). C'est donc un reacteur ferme pour B : il n'y a ni entree ni sortie, seulement la consommation par la reaction chimique.
+</div>
+
+<p>Pour B, le reacteur est ferme (pas d'entree, pas de sortie). Le bilan s'ecrit :</p>
+\[ \text{Accumulation} = -\text{Disparition par reaction} \]
+
+<p>La reaction \(A + B \to \text{produits}\) consomme B avec le meme debit volumique que A (stoechiometrie 1:1). La vitesse apparente \(r_{app}\) represente la vitesse de consommation des deux reactifs.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\frac{d(C_B V_{liq})}{dt} = - r_{app} \times V_{liq} = - a \, C_A^* \sqrt{D_A k C_B}\; V_{liq}} \]
+</div>
+</div>
+
+<!-- Q2.6 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q2.6</span>
+<p class="corr-question__statement">Simplifier ce bilan en considerant que le volume de la phase liquide reste constant.</p>
+
+<p>On divise par \(V_{liq}\) constant :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\frac{dC_B}{dt} = - a \, C_A^* \sqrt{D_A k C_B}} \]
+</div>
+</div>
+
+<!-- Q2.7 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q2.7</span>
+<p class="corr-question__statement">Donner le systeme de deux equations differentielles ordinaires qui regit l'evolution des concentrations de A et de B dans la phase liquide en fonction du temps.</p>
+
+<p>En rassemblant les resultats de Q2.4 et Q2.6 :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\begin{cases} \dfrac{dC_A}{dt} = k_L a\,(C_A^* - C_A) - a\,C_A^*\sqrt{D_A\,k\,C_B} \\[10pt] \dfrac{dC_B}{dt} = -a\,C_A^*\sqrt{D_A\,k\,C_B} \end{cases}} \]
+avec les conditions initiales \(C_A(0) = 0\) et \(C_B(0) = C_{B0} = 1\,000{,}0\) mol.m\(^{-3}\).
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+Ce systeme couple deux EDO non lineaires (a cause du \(\sqrt{C_B}\)). On ne peut pas le resoudre analytiquement en general, d'ou la necessite d'utiliser une methode numerique (Euler) dans la partie III. C'est un systeme tres representatif de ce qu'on rencontre en genie des procedes.
+</div>
+</div>
+
+</div><!-- fin partie II.2 -->
+
+<!-- ============ PARTIE III.1 ============ -->
+<div class="corr-exercice" id="partie3-1">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">III.1</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Determination du produit \(k_L \times a\)</h2>
+<span class="corr-exercice__subtitle">Lecture de donnees, moindres carres, Nelder-Mead — Questions Q3.1 a Q3.6</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermediaire</span>
+</div>
+<hr class="corr-exercice__rule">
+
+<!-- Q3.1.a -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q3.1.a</span>
+<p class="corr-question__statement">Indiquer la syntaxe a utiliser pour charger le fichier &laquo; data.txt &raquo; qui contient les donnees experimentales. Donner le code permettant de creer trois vecteurs \(t^{exp}\), \(F_A^{exp1}\) et \(F_A^{exp2}\) correspondant respectivement aux donnees des premiere, deuxieme et troisieme colonnes. Donner egalement le code qui permet de determiner le nombre de points experimentaux \(n\).</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode — Lecture de fichier en Python</div>
+On utilise <code>np.loadtxt</code> pour charger les donnees. Les colonnes sont separees par des espaces (delimiteur par defaut). On extrait chaque colonne avec le parametre <code>usecols</code>, en se rappelant que Python indexe a partir de 0.
+</div>
+
+<p>En Python :</p>
+<pre><code>import numpy as np
+
+t_exp = np.loadtxt('data.txt', usecols=[0])
+Fa_exp1 = np.loadtxt('data.txt', usecols=[1])
+Fa_exp2 = np.loadtxt('data.txt', usecols=[2])
+n = len(t_exp)
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+On charge chaque colonne separement avec <code>np.loadtxt</code> et <code>usecols</code>. Le nombre de points \(n\) est la longueur de n'importe lequel des vecteurs.
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+En Python, la premiere colonne porte le numero 0, pas 1. C'est une source d'erreur frequente. De plus, le delimiteur par defaut de <code>np.loadtxt</code> est l'espace, donc il n'est pas necessaire de preciser <code>delimiter=' '</code>.
+</div>
+</div>
+
+<!-- Q3.1.b -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q3.1.b</span>
+<p class="corr-question__statement">Donner la syntaxe permettant de tracer sur un graphe l'evolution du debit molaire de A en fonction du temps dans le cas ou seul le phenomene d'absorption physique est etudie.</p>
+
+<pre><code>import matplotlib.pyplot as plt
+
+plt.plot(t_exp, Fa_exp1)
+plt.xlabel('Temps (s)')
+plt.ylabel('Debit molaire FA (mol/s)')
+plt.title('Absorption physique de A')
+plt.show()
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+On utilise <code>plt.plot</code> pour tracer \(F_A^{exp1}\) en fonction de \(t^{exp}\), suivi de <code>plt.show()</code> pour afficher.
+</div>
+</div>
+
+<!-- Q3.2 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q3.2</span>
+<p class="corr-question__statement">Ecrire une fonction <code>sme(k1a, t_exp, Fa_exp1)</code> qui retourne la valeur de la quantite \(S\). Cette fonction aura comme argument d'entree le produit \(k_L \times a\) et les vecteurs \(t^{exp}\) et \(F_A^{exp1}\) crees a la question Q3.1.a).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Moindres carres</div>
+La methode des moindres carres minimise la somme des carres des ecarts entre modele et experience : \(S = \sum_{i=1}^{n} (F_A^{exp,i} - F_A^{th}(t_i))^2\). On cherche le parametre \(k_L a\) qui rend \(S\) le plus petit possible, comme trouver le reglage de volume qui fait que la musique colle le mieux a ce qu'on veut.
+</div>
+
+<p>On rappelle que \(F_A^{th}(t) = k_L a \cdot C_A^* \cdot V_{liq} \cdot e^{-k_L a\, t}\) d'apres Q1.9.</p>
+
+<p>Donnees numeriques : \(C_A^* = 38{,}5\) mol.m\(^{-3}\), \(V_{liq} = 1{,}0 \times 10^{-3}\) m\(^3\).</p>
+
+<pre><code>def sme(k1a, t_exp, Fa_exp1):
+    CA_star = 1.0 / 26.0 * 1000  # mol/m^3
+    Vliq = 1.0e-3                 # m^3
+    Fa_th = k1a * CA_star * Vliq * np.exp(-k1a * t_exp)
+    S = sum((Fa_exp1 - Fa_th)**2)
+    return S
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+La fonction calcule le debit theorique pour chaque instant experimental, puis somme les carres des ecarts.
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+Ne pas oublier la conversion de \(V_{liq}\) en m\(^3\) : 1,0 L = \(1{,}0 \times 10^{-3}\) m\(^3\). De meme, \(C_A^*\) doit etre en mol.m\(^{-3}\).
+</div>
+</div>
+
+<!-- Q3.3.a -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q3.3.a</span>
+<p class="corr-question__statement">Soit \(f(x)\) une fonction dont on cherche le minimum. Soient \(x_M\) et \(x_N\) les abscisses des extremites d'un segment \([MN]\). Ecrire le code permettant de reindexer les deux extremites du segment de maniere a ce que \(f(x_M)\) soit inferieure ou egale a \(f(x_N)\).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+Dans Nelder-Mead, on veut toujours que M soit le "meilleur" point (celui ou f est la plus petite) et N le "pire". On echange si besoin, comme quand on range deux cartes dans l'ordre croissant.
+</div>
+
+<pre><code># Reindexation : on veut f(xM) &lt;= f(xN)
+if f(xM) > f(xN):
+    xM, xN = xN, xM
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Un simple echange conditionnel (swap) en Python grace a l'affectation multiple.
+</div>
+</div>
+
+<!-- Q3.3.b -->
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Q3.3.b</span>
+<p class="corr-question__statement">Partant du segment \([MN]\) reindexe, ecrire le code permettant de transformer le segment \([MN]\) au cours d'une iteration de la methode de Nelder-Mead. Chaque etape du code devra etre commentee.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode — Nelder-Mead 1D</div>
+L'algorithme suit 4 etapes : (1) reflexion de N par rapport a M, (2) si la reflexion ameliore : on essaie d'etirer encore plus loin, (3) sinon : on contracte, (4) si la contraction n'ameliore pas : on essaie l'autre cote. A chaque etape, N est remplace par le meilleur candidat.
+</div>
+
+<pre><code># Reflexion de N par rapport a M
+xR = xM + (xM - xN)
+
+if f(xR) < f(xM):
+    # La reflexion ameliore : on tente un etirement
+    xE = xM + 2 * (xM - xN)
+    if f(xR) < f(xE):
+        # R est meilleur que E : on garde R
+        xN = xR
+    else:
+        # E est meilleur : on garde E
+        xN = xE
+else:
+    # La reflexion n'ameliore pas : on contracte
+    xC1 = xM + 0.5 * (xM - xN)
+    if f(xC1) < f(xM):
+        # La contraction ameliore : on garde C1
+        xN = xC1
+    else:
+        # Sinon on prend C2 (homothetie de C1 par rapport a M)
+        xC2 = xM - 0.5 * (xM - xN)
+        xN = xC2
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+A chaque iteration, le point N (le "pire") est remplace par R, E, C1 ou C2, ce qui rapproche le segment du minimum.
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+Attention a la definition de \(C_2\) dans l'enonce : \(x_{C_2} = x_M - \frac{1}{2}(x_M - x_N)\), c'est l'image de \(C_1\) par l'homothetie de centre \(M\) et de rapport \(-1\). En d'autres termes, \(C_2\) est du meme cote que \(N\) par rapport a \(M\), a mi-chemin entre \(M\) et \(N\).
+</div>
+</div>
+
+<!-- Q3.3.c -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q3.3.c</span>
+<p class="corr-question__statement">Construire une boucle permettant de realiser des iterations successives de la methode de Nelder-Mead. On prendra \(x_M^0 = 1\) et \(x_N^0 = 10^5\) pour les abscisses des deux extremites du segment initial. Cette boucle sera interrompue lorsque l'ecart relatif sera inferieur a \(10^{-4}\) ou lorsque le nombre maximum d'iterations sera atteint (itrmax = 1 000).</p>
+
+<pre><code>xM = 1.0
+xN = 1e5
+itrmax = 1000
+itr = 0
+
+while abs((xM - xN) / xN) >= 1e-4 and itr < itrmax:
+    # Reindexation
+    if f(xM) > f(xN):
+        xM, xN = xN, xM
+
+    # Reflexion
+    xR = xM + (xM - xN)
+
+    if f(xR) < f(xM):
+        xE = xM + 2 * (xM - xN)
+        if f(xR) < f(xE):
+            xN = xR
+        else:
+            xN = xE
+    else:
+        xC1 = xM + 0.5 * (xM - xN)
+        if f(xC1) < f(xM):
+            xN = xC1
+        else:
+            xC2 = xM - 0.5 * (xM - xN)
+            xN = xC2
+
+    itr = itr + 1
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+La boucle <code>while</code> itere tant que la convergence n'est pas atteinte (ecart relatif \(\geq 10^{-4}\)) et que le nombre maximal d'iterations n'est pas depasse.
+</div>
+</div>
+
+<!-- Q3.4 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q3.4</span>
+<p class="corr-question__statement">La methode de Nelder-Mead appliquee a la fonction \(S(k_L \times a)\) a conduit a \((k_L \times a)_{opt} = 5{,}0 \times 10^{-3}\). Donner le code permettant de calculer le debit molaire theorique grace a la valeur optimisee.</p>
+
+<pre><code>k1a_opt = 5.0e-3
+CA_star = 1.0 / 26.0 * 1000  # mol/m^3
+Vliq = 1.0e-3                 # m^3
+
+Fa_th = k1a_opt * CA_star * Vliq * np.exp(-k1a_opt * t_exp)
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+On calcule directement \(F_A^{th}\) aux instants experimentaux en utilisant la formule de Q1.9 avec \((k_L a)_{opt} = 5{,}0 \times 10^{-3}\) s\(^{-1}\).
+</div>
+</div>
+
+<!-- Q3.5 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q3.5</span>
+<p class="corr-question__statement">Indiquer la syntaxe a utiliser pour comparer sur un meme graphe les debits molaires theorique et experimental. Expliquer l'interet de comparer la courbe theorique et les points experimentaux.</p>
+
+<pre><code>plt.plot(t_exp, Fa_exp1, 'o', label='Experimental')
+plt.plot(t_exp, Fa_th, '-', label='Modele')
+plt.xlabel('Temps (s)')
+plt.ylabel('Debit molaire FA (mol/s)')
+plt.title('Comparaison modele / experience')
+plt.legend()
+plt.show()
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+On trace les deux courbes sur le meme graphe avec des marqueurs differents. L'interet est de <strong>valider visuellement le modele</strong> : si la courbe theorique passe bien a travers les points experimentaux, cela confirme que le modele est pertinent et que la valeur de \((k_L a)_{opt}\) est correcte. Si l'accord est mauvais, cela peut indiquer que le modele est inadequat.
+</div>
+</div>
+
+<!-- Q3.6 -->
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Q3.6</span>
+<p class="corr-question__statement">Ecrire le code permettant de reindexer les sommets du simplexe \(X = \{x_1, x_2, ..., x_{p+1}\}\) de sorte que les valeurs que prend la fonction \(z(x)\) en chaque sommet soient classees de maniere croissante. On supposera que la fonction \(z(x)\) est deja definie.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Tri par selection</div>
+Le tri par selection parcourt la liste et, a chaque etape \(i\), cherche le plus petit element parmi les positions \(i\) a \(n\), puis l'echange avec l'element en position \(i\). C'est comme ranger un jeu de cartes : on cherche la plus petite, on la met en premier, puis on cherche la plus petite parmi les restantes, etc.
+</div>
+
+<pre><code># X est une liste de p+1 sommets
+# z(x) est la fonction a evaluer
+p1 = len(X)  # nombre de sommets = p + 1
+
+for i in range(p1 - 1):
+    # Chercher l'indice du minimum parmi X[i], ..., X[p1-1]
+    imin = i
+    for j in range(i + 1, p1):
+        if z(X[j]) < z(X[imin]):
+            imin = j
+    # Echanger X[i] et X[imin]
+    X[i], X[imin] = X[imin], X[i]
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Apres execution, les sommets du simplexe sont reindexes de sorte que \(z(X[0]) \leq z(X[1]) \leq \ldots \leq z(X[p])\).
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+La generalisation de Nelder-Mead a \(p\) variables necessite de trier les \(p+1\) sommets du simplexe selon les valeurs de la fonction objectif. Le tri par selection a une complexite \(O(n^2)\), ce qui est acceptable pour les petites tailles de simplexe rencontrees en pratique.
+</div>
+</div>
+
+</div><!-- fin partie III.1 -->
+
+<!-- ============ PARTIE III.2 ============ -->
+<div class="corr-exercice" id="partie3-2">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">III.2</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Determination de \(a\) et \(k_L\)</h2>
+<span class="corr-exercice__subtitle">Methode d'Euler, moindres carres — Questions Q3.7 a Q3.11</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--avance">Avance</span>
+</div>
+<hr class="corr-exercice__rule">
+
+<!-- Q3.7 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q3.7</span>
+<p class="corr-question__statement">Ecrire deux fonctions <code>g(t,CA,CB,A,k1a)</code> et <code>H(t,CA,CB,A)</code> permettant de calculer les valeurs des fonctions \(g(t, C_A, C_B, a, k_L a)\) et \(h(t, C_A, C_B, a)\).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Systeme d'EDO de Q2.7</div>
+\(\dfrac{dC_A}{dt} = g = k_L a\,(C_A^* - C_A) - a\,C_A^*\sqrt{D_A\,k\,C_B}\) et \(\dfrac{dC_B}{dt} = h = -a\,C_A^*\sqrt{D_A\,k\,C_B}\).
+</div>
+
+<pre><code>import numpy as np
+
+CA_star = 1.0 / 26.0 * 1000  # 38.46 mol/m^3
+DA = 1.83e-9                   # m^2/s
+k_cin = 0.10                   # m^3/(mol.s)
+
+def g(t, CA, CB, A, k1a):
+    return k1a * (CA_star - CA) - A * CA_star * np.sqrt(DA * k_cin * CB)
+
+def H(t, CA, CB, A):
+    return -A * CA_star * np.sqrt(DA * k_cin * CB)
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Les deux fonctions traduisent directement le systeme d'EDO de Q2.7 en code. Notez que <code>A</code> represente l'aire interfaciale \(a\) (pour eviter la confusion avec le polluant A) et <code>H</code> represente la fonction \(h\) (majuscule pour eviter la confusion avec la constante de Henry).
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+La fonction <code>H</code> est en majuscule dans l'enonce pour ne pas confondre avec la constante de Henry \(H\). De meme, l'argument <code>A</code> (aire interfaciale) ne doit pas etre confondu avec le polluant A. Il faut etre attentif aux conventions de nommage imposees par l'enonce.
+</div>
+</div>
+
+<!-- Q3.8.a -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q3.8.a</span>
+<p class="corr-question__statement">Donner la syntaxe permettant de calculer le pas de temps \(\Delta t\) ainsi que le nombre d'intervalles \(m\) en fonction de \(t_0\), \(t_f\), et l'intervalle entre deux mesures experimentales.</p>
+
+<pre><code>t0 = t_exp[0]                      # premier temps experimental
+tf = t_exp[-1]                     # dernier temps experimental (Python : indice -1)
+Dt_exp = t_exp[1] - t_exp[0]      # intervalle entre 2 mesures
+Dt = Dt_exp / 100                  # pas d'Euler (100 fois plus petit)
+m = int((tf - t0) / Dt)           # nombre d'intervalles (entier)
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\(\Delta t = \Delta t^{exp}/100\) et \(m = (t_f - t_0)/\Delta t\), converti en entier.
+</div>
+</div>
+
+<!-- Q3.8.b -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q3.8.b</span>
+<p class="corr-question__statement">Donner une expression de \(C_A(t + \Delta t)\) a l'ordre 1 en fonction de \(C_A\) et \(\frac{dC_A}{dt}\) evaluees en \(t\) a l'aide d'un developpement limite.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Developpement de Taylor</div>
+Le developpement de Taylor a l'ordre 1 d'une fonction \(f\) autour de \(t\) donne : \(f(t + \Delta t) = f(t) + \Delta t \cdot f'(t) + o(\Delta t)\). C'est l'approximation lineaire : on suit la tangente sur un petit intervalle.
+</div>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{C_A(t + \Delta t) = C_A(t) + \Delta t \cdot \frac{dC_A}{dt}\bigg|_t + o(\Delta t)} \]
+</div>
+</div>
+
+<!-- Q3.8.c -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q3.8.c</span>
+<p class="corr-question__statement">En deduire une valeur approchee de \(\frac{dC_A}{dt}\big|_t\) a l'ordre 0. Faire de meme pour \(\frac{dC_B}{dt}\big|_t\).</p>
+
+<p>En isolant la derivee dans le developpement de Taylor :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\frac{dC_A}{dt}\bigg|_t \approx \frac{C_A(t + \Delta t) - C_A(t)}{\Delta t}} \]
+\[ \boxed{\frac{dC_B}{dt}\bigg|_t \approx \frac{C_B(t + \Delta t) - C_B(t)}{\Delta t}} \]
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+C'est le coeur de la methode d'Euler : on remplace la derivee (qu'on ne sait pas calculer exactement) par un taux d'accroissement (qu'on sait calculer). Plus \(\Delta t\) est petit, plus l'approximation est bonne.
+</div>
+</div>
+
+<!-- Q3.8.d -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q3.8.d</span>
+<p class="corr-question__statement">Donner une expression de \(\left.\frac{dC_A}{dt}\right|_{t_j}\) en fonction de \(\Delta t\), \(C_{A,j}\) et \(C_{A,j+1}\). De meme pour \(\left.\frac{dC_B}{dt}\right|_{t_j}\).</p>
+
+<p>En utilisant les notations discretes :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\left.\frac{dC_A}{dt}\right|_{t_j} \approx \frac{C_{A,j+1} - C_{A,j}}{\Delta t}} \]
+\[ \boxed{\left.\frac{dC_B}{dt}\right|_{t_j} \approx \frac{C_{B,j+1} - C_{B,j}}{\Delta t}} \]
+</div>
+</div>
+
+<!-- Q3.8.e -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q3.8.e</span>
+<p class="corr-question__statement">Donner le systeme de deux equations permettant de calculer \(C_{A,j+1}\) et \(C_{B,j+1}\) en fonction de \(C_{A,j}\), \(C_{B,j}\), \(\Delta t\), \(g\) et \(h\).</p>
+
+<p>En isolant \(C_{A,j+1}\) et \(C_{B,j+1}\) et en utilisant \(\frac{dC_A}{dt}\big|_{t_j} = g(t_j, C_{A,j}, C_{B,j}, a, k_L a)\) et \(\frac{dC_B}{dt}\big|_{t_j} = h(t_j, C_{A,j}, C_{B,j}, a)\) :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\begin{cases} C_{A,j+1} = C_{A,j} + \Delta t \cdot g(t_j, C_{A,j}, C_{B,j}, a, k_L a) \\[6pt] C_{B,j+1} = C_{B,j} + \Delta t \cdot h(t_j, C_{A,j}, C_{B,j}, a) \end{cases}} \]
+</div>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+C'est le schema d'Euler explicite : connaissant les concentrations a l'instant \(t_j\), on calcule celles a l'instant \(t_{j+1}\) en avancant d'un pas \(\Delta t\) dans la direction de la derivee. On itere ainsi pas a pas depuis les conditions initiales.
+</div>
+</div>
+
+<!-- Q3.8.f -->
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Q3.8.f</span>
+<p class="corr-question__statement">Ecrire une fonction <code>Euler(G, H, t0, tf, CA0, CB0, Dt, m, a, k1a)</code> qui retourne deux vecteurs : le vecteur temps et le vecteur correspondant a la concentration \(C_A\) calculee par la methode d'Euler.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode — Implementation d'Euler</div>
+On cree deux tableaux pour stocker les concentrations, on initialise avec les conditions initiales, puis on boucle de \(j=0\) a \(j=m-1\) en appliquant le schema d'Euler a chaque pas.
+</div>
+
+<pre><code>def Euler(G, H, t0, tf, CA0, CB0, Dt, m, a, k1a):
+    # Initialisation des vecteurs
+    t = np.zeros(m + 1)
+    CA = np.zeros(m + 1)
+    CB = np.zeros(m + 1)
+
+    # Conditions initiales
+    t[0] = t0
+    CA[0] = CA0
+    CB[0] = CB0
+
+    # Boucle d'Euler
+    for j in range(m):
+        t[j + 1] = t[j] + Dt
+        CA[j + 1] = CA[j] + Dt * G(t[j], CA[j], CB[j], a, k1a)
+        CB[j + 1] = CB[j] + Dt * H(t[j], CA[j], CB[j], a)
+
+    return t, CA
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+La fonction retourne le vecteur temps et le vecteur \(C_A\). On note que \(C_B\) est aussi calculee (necessaire pour le couplage) mais n'est pas retournee.
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+Les tableaux ont \(m+1\) elements (de l'indice 0 a \(m\)), car on stocke aussi la condition initiale. La boucle va de 0 a \(m-1\) (Python : <code>range(m)</code>).
+</div>
+</div>
+
+<!-- Q3.9 -->
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Q3.9</span>
+<p class="corr-question__statement">Donner le code permettant de creer un vecteur \(F_A^{th2}\) contenant les valeurs du debit molaire de A calcule aux instants particuliers \(t_i^{exp}\) a partir des valeurs de la concentration de A calculees en utilisant la fonction Euler.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+Euler calcule \(C_A\) a chaque petit pas \(\Delta t\), mais on n'a besoin du debit \(F_A\) qu'aux instants des mesures experimentales (tous les \(\Delta t^{exp}\) = 100 pas). Il faut donc extraire les bonnes valeurs de \(C_A\) et les convertir en debit via la relation \(F_A = k_L a (C_A^* - C_A) V_{liq}\).
+</div>
+
+<pre><code># Resolution par Euler
+t_euler, CA_euler = Euler(g, H, t0, tf, 0, 1000.0, Dt, m, a, k1a_opt)
+
+# Extraction aux instants experimentaux : tous les 100 pas
+Fa_th2 = np.zeros(n)
+for i in range(n):
+    j = i * 100  # indice dans le vecteur Euler correspondant a t_exp[i]
+    Fa_th2[i] = k1a_opt * (CA_star - CA_euler[j]) * Vliq
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+On utilise le fait que \(\Delta t = \Delta t^{exp}/100\), donc le \(i\)-eme point experimental correspond a l'indice \(100 \times i\) dans le vecteur Euler. Le debit est calcule via le bilan sur la phase gazeuse (Q2.1) : \(F_A = k_L a (C_A^* - C_A) V_{liq}\).
+</div>
+</div>
+
+<!-- Q3.10 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q3.10</span>
+<p class="corr-question__statement">Donner le code permettant de construire une fonction <code>sme2(a, t_exp, Fa_exp2)</code> qui retourne la valeur de la quantite \(S_2\).</p>
+
+<pre><code>def sme2(a, t_exp, Fa_exp2):
+    # Resolution d'Euler avec l'aire interfaciale a
+    t_euler, CA_euler = Euler(g, H, t0, tf, 0, 1000.0, Dt, m, a, k1a_opt)
+
+    # Calcul du debit theorique aux instants experimentaux
+    n = len(t_exp)
+    Fa_th2 = np.zeros(n)
+    for i in range(n):
+        j = i * 100
+        Fa_th2[i] = k1a_opt * (CA_star - CA_euler[j]) * Vliq
+
+    # Somme des moindres carres
+    S2 = sum((Fa_exp2 - Fa_th2)**2)
+    return S2
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+La fonction <code>sme2</code> a la meme structure que <code>sme</code>, sauf qu'elle utilise Euler pour calculer le debit theorique au lieu d'une formule analytique. Pour chaque valeur candidate de \(a\), on resout le systeme complet et on compare aux donnees experimentales.
+</div>
+</div>
+
+<!-- Q3.11 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q3.11</span>
+<p class="corr-question__statement">La methode de Nelder-Mead appliquee a \(S_2(a)\) conduit a \(a_{opt} = 10{,}0\) m\(^2\).m\(^{-3}\). Indiquer le code pour calculer \(k_L\) et afficher les valeurs de \(a_{opt}\) et \(k_L\).</p>
+
+<p>On connait le produit \((k_L \times a)_{opt} = 5{,}0 \times 10^{-3}\) s\(^{-1}\) et l'aire \(a_{opt} = 10{,}0\) m\(^{-1}\). Le coefficient de transfert est simplement le quotient :</p>
+
+<pre><code>a_opt = 10.0                           # m^2/m^3
+kL = k1a_opt / a_opt                   # m/s
+
+print("Aire interfaciale a =", a_opt, "m^2/m^3")
+print("Coefficient de transfert kL =", kL, "m/s")
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{k_L = \frac{(k_L \times a)_{opt}}{a_{opt}} = \frac{5{,}0 \times 10^{-3}}{10{,}0} = 5{,}0 \times 10^{-4} \text{ m.s}^{-1}} \]
+</div>
+</div>
+
+</div><!-- fin partie III.2 -->
+
+<!-- ============ PARTIE III.3 ============ -->
+<div class="corr-exercice" id="partie3-3">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">III.3</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Simulations et predictions</h2>
+<span class="corr-exercice__subtitle">Influence de \(C_{B0}\), integration par trapezes — Questions Q3.12 a Q3.15</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermediaire</span>
+</div>
+<hr class="corr-exercice__rule">
+
+<!-- Q3.12 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q3.12</span>
+<p class="corr-question__statement">Expliquer qualitativement comment doit varier le debit molaire en entree du reacteur avec la concentration initiale du reactif B.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+Avant de coder une simulation, on veut deviner le resultat. C'est un reflexe essentiel en sciences : avoir une intuition physique avant de lancer le calcul permet de detecter les erreurs.
+</div>
+
+<p>Quand la concentration initiale \(C_{B0}\) augmente :</p>
+<ul>
+<li>La reaction \(A + B \to \text{produits}\) est plus rapide (car \(r_{app}\) depend de \(\sqrt{C_B}\)).</li>
+<li>Le polluant A est consomme plus vite dans le liquide, ce qui maintient \(C_A\) a un niveau bas.</li>
+<li>La force motrice du transfert \((C_A^* - C_A)\) reste donc plus grande.</li>
+<li>Le debit d'entree \(F_A = k_L a (C_A^* - C_A) V_{liq}\) reste plus eleve plus longtemps.</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Le debit molaire \(F_A\) <strong>augmente</strong> (reste plus eleve et pendant plus longtemps) quand la concentration initiale \(C_{B0}\) du reactif B augmente.
+</div>
+</div>
+
+<!-- Q3.13 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Q3.13</span>
+<p class="corr-question__statement">Justifier le concept &laquo; d'acceleration du transfert par la reaction chimique &raquo;.</p>
+
+<p>Sans reaction (experience 1), le transfert de A ralentit au fur et a mesure que le solvant se sature (\(C_A \to C_A^*\), donc \(F_A \to 0\)).</p>
+
+<p>Avec reaction (experience 2), le reactif B consomme le polluant A dans le liquide, ce qui maintient \(C_A\) nettement en dessous de \(C_A^*\). La force motrice du transfert \((C_A^* - C_A)\) est donc plus grande que dans le cas sans reaction.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+La reaction chimique "vide" continuellement le liquide en polluant A, ce qui maintient un gradient de concentration favorable et <strong>accelere le transfert</strong> par rapport a l'absorption physique seule. C'est pourquoi on observe experimentalement que \(F_A^{exp2} > F_A^{exp1}\) a tout instant.
+</div>
+</div>
+
+<!-- Q3.14 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q3.14</span>
+<p class="corr-question__statement">Ecrire le code qui permettrait de realiser une prediction du debit molaire \(F_A^{th}\) a l'aide du modele et des parametres optimises en prenant \(C_{B0}\) comme valeur pour la concentration initiale du reactif B, une valeur rentree par l'utilisateur. On prendra le meme pas \(\Delta t\) et comme duree d'integration 1 000 s.</p>
+
+<pre><code># Saisie par l'utilisateur
+CB0 = float(input("Entrer la concentration initiale CB0 (mol/m^3) : "))
+
+# Parametres de la simulation
+t0_sim = 0.0
+tf_sim = 1000.0
+m_sim = int((tf_sim - t0_sim) / Dt)
+
+# Resolution par Euler
+t_sim, CA_sim = Euler(g, H, t0_sim, tf_sim, 0, CB0, Dt, m_sim, a_opt, k1a_opt)
+
+# Calcul du debit molaire
+Fa_sim = k1a_opt * (CA_star - CA_sim) * Vliq
+
+# Trace
+plt.plot(t_sim, Fa_sim)
+plt.xlabel('Temps (s)')
+plt.ylabel('Debit molaire FA (mol/s)')
+plt.title('Prediction pour CB0 = ' + str(CB0) + ' mol/m^3')
+plt.show()
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+On utilise <code>input</code> pour la saisie de \(C_{B0}\), puis Euler avec les parametres optimises (\(a_{opt}\), \(k_L a_{opt}\)) pour calculer l'evolution de \(C_A\), et enfin le bilan de matiere pour obtenir \(F_A\).
+</div>
+</div>
+
+<!-- Q3.15 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Q3.15</span>
+<p class="corr-question__statement">On souhaite calculer la quantite de matiere de polluant A, \(n_A\), a partir du debit molaire \(F_A^{th}\) obtenu a la question precedente par integration sur l'intervalle 0 - 1 000 s. La methode utilisee pour realiser l'integration est la methode des trapezes. Donner le code permettant de calculer \(n_A\) par cette methode.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel — Methode des trapezes</div>
+L'integrale \(\int_a^b f(t)\,dt\) est approchee en decoupant \([a,b]\) en \(m\) intervalles et en approximant l'aire sous la courbe par des trapezes : \(\int_a^b f(t)\,dt \approx \sum_{j=0}^{m-1} \frac{f(t_j) + f(t_{j+1})}{2} \Delta t\). C'est plus precis que la methode des rectangles car on prend la moyenne des valeurs aux deux extremites de chaque intervalle.
+</div>
+
+<p>On integre le debit \(F_A\) sur \([0, 1\,000]\) s pour obtenir la quantite de matiere totale :</p>
+\[ n_A = \int_0^{1000} F_A(t)\,dt \approx \sum_{j=0}^{m_{sim}-1} \frac{F_A(t_j) + F_A(t_{j+1})}{2}\,\Delta t \]
+
+<pre><code># Methode des trapezes
+nA = 0.0
+for j in range(m_sim):
+    nA = nA + (Fa_sim[j] + Fa_sim[j + 1]) / 2.0 * Dt
+
+print("Quantite de matiere de A absorbee : nA =", nA, "mol")
+</code></pre>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+La quantite de matiere \(n_A\) est obtenue par integration numerique du debit molaire. La methode des trapezes est d'ordre 2 en \(\Delta t\), ce qui est suffisant pour notre pas d'integration deja petit.
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+Ne pas oublier de multiplier par \(\Delta t\) dans la formule des trapezes. Une erreur frequente est d'ecrire la somme sans le pas d'integration, ce qui donne un resultat sans unite temporelle.
+</div>
+</div>
+
+</div><!-- fin partie III.3 -->
+
+</div><!-- course__container -->
+</main>
+</body>
+</html>

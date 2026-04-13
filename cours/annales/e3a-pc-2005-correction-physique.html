@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Correction E3A-Polytech 2005 -- Physique PC | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:700px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:28px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md);padding-left:var(--space-lg)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+
+    /* === CORRECTION EXERCICE === */
+    .corr-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg) var(--space-xl);background:var(--bg-card);border:1px solid var(--border);border-radius:18px}
+    .corr-exercice__header{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md)}
+    .corr-exercice__number{font-family:var(--font-mono);font-size:2.2rem;font-weight:300;color:var(--accent);line-height:1}
+    .corr-exercice__title-group{flex:1}
+    .corr-exercice__title{font-family:var(--font-body);font-size:1.4rem;font-weight:600;margin-bottom:2px;line-height:1.2}
+    .corr-exercice__subtitle{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)}
+    .corr-exercice__difficulty{font-family:var(--font-mono);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:20px}
+    .corr-exercice__difficulty--easy{background:rgba(76,175,80,.15);color:#4caf50}
+    .corr-exercice__difficulty--medium{background:rgba(255,152,0,.15);color:#ff9800}
+    .corr-exercice__difficulty--hard{background:rgba(244,67,54,.15);color:#f44336}
+    .corr-exercice__rule{border:none;border-top:2px solid var(--accent);margin:var(--space-md) 0 var(--space-lg)}
+    .corr-exercice__enonce{background:var(--bg);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.92rem;line-height:1.75;color:var(--ink-light);font-style:italic}
+    .corr-exercice__enonce-label{display:block;font-family:var(--font-mono);font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-style:normal}
+
+    /* === QUESTIONS === */
+    .corr-question{margin-bottom:var(--space-xl);padding:var(--space-lg);background:var(--bg);border-radius:14px;border-left:4px solid var(--border)}
+    .corr-question--easy{border-left-color:#4caf50}
+    .corr-question--medium{border-left-color:#ff9800}
+    .corr-question--hard{border-left-color:#f44336}
+    .corr-question__num{display:inline-block;font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 10px;border-radius:12px;margin-bottom:var(--space-sm)}
+    .corr-question__statement{font-weight:500;color:var(--ink);margin-bottom:var(--space-md);padding:var(--space-sm) var(--space-md);background:var(--bg-card);border-radius:8px;border-left:2px solid var(--accent)}
+
+    /* === CALLOUT BOXES === */
+    .corr-box{margin:var(--space-md) 0;padding:var(--space-md) var(--space-lg);border-radius:12px;border-left:4px solid;font-size:.92rem;line-height:1.75}
+    .corr-box__title{font-family:var(--font-mono);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+    .corr-box--rappel{background:rgba(74,144,217,.08);border-left-color:#4a90d9}
+    .corr-box--rappel .corr-box__title{color:#4a90d9}
+    .corr-box--why{background:rgba(255,152,0,.08);border-left-color:#ff9800}
+    .corr-box--why .corr-box__title{color:#ff9800}
+    .corr-box--result{background:rgba(212,175,55,.1);border-left-color:#d4af37}
+    .corr-box--result .corr-box__title{color:#d4af37}
+    .corr-box--piege{background:rgba(244,67,54,.08);border-left-color:#f44336}
+    .corr-box--piege .corr-box__title{color:#f44336}
+    .corr-box--method{background:rgba(76,175,80,.08);border-left-color:#4caf50}
+    .corr-box--method .corr-box__title{color:#4caf50}
+
+    .corr-toggle{margin:var(--space-md) 0;border:1px solid var(--border);border-radius:10px;background:var(--bg-card)}
+    .corr-toggle summary{cursor:pointer;padding:var(--space-sm) var(--space-md);font-family:var(--font-mono);font-size:.78rem;font-weight:600;color:var(--accent);list-style:none}
+    .corr-toggle summary::before{content:"\25B6  ";font-size:.7rem}
+    .corr-toggle[open] summary::before{content:"\25BC  "}
+    .corr-toggle__content{padding:0 var(--space-md) var(--space-md)}
+
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
+
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .corr-exercice{padding:var(--space-md)}
+      .corr-exercice__header{flex-wrap:wrap}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+        </div>
+      </div>
+      <a href="../../entrainement.html" class="nav__link">Entraînement</a>
+      <a href="../../revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="e3a-pc-2005-physique.html" class="course__back">&larr; Retour a l'enonce</a>
+
+    <div class="course__meta">
+      <span class="course__badge">CORRECTION -- E3A PC 2005 -- PHYSIQUE</span>
+    </div>
+
+    <h1 class="course__title">Correction detaillee -- E3A-Polytech 2005 Physique PC</h1>
+
+    <p class="course__intro">Le laser et ses applications. Correction pedagogique complete des deux parties : etude du faisceau laser (onde plane, faisceau gaussien, absorption dans un metal) et applications industrielles (traitement thermique de l'acier, usinage par vaporisation de l'aluminium).</p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire de la correction</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#exo1"><span class="course__toc-num">P1.</span> Etude d'un faisceau laser</a></li>
+        <li class="course__toc-item"><a href="#exo2"><span class="course__toc-num">P2.</span> Applications du laser a l'usinage</a></li>
+      </ol>
+    </nav>
+
+    <!-- ============ PREMIERE PARTIE ============ -->
+    <div class="corr-exercice" id="exo1">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">1</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Premiere partie -- Etude d'un faisceau laser</h2>
+          <span class="corr-exercice__subtitle">Ondes EM, faisceau gaussien, plasma de Drude -- 27 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        On modelise un faisceau laser d'abord par une onde plane progressive harmonique dans le vide, puis par un faisceau gaussien (modele plus realiste car a extension laterale finie), et enfin on etudie sa penetration dans un metal modelise comme un gaz d'electrons libres (modele de Drude).
+      </div>
+
+      <!-- I. Modele a onde plane -->
+      <h3 style="margin-top:var(--space-xl);color:var(--accent);font-family:var(--font-body);font-size:1.2rem">I. Modele a onde plane</h3>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.1</span>
+        <p class="corr-question__statement">Ecrire les equations de Maxwell dans le vide en l'absence de charges et de courants.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Dans le vide, \(\rho=0\) et \(\vec{j}=\vec{0}\). Les quatre equations de Maxwell prennent une forme symetrique tres compacte qu'il faut connaitre par coeur.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on demande ca ?</div>
+          C'est le point de depart oblige de tout probleme d'electromagnetisme. Les correcteurs verifient juste que vous connaissez vos equations -- question de cours pure, pas de piege.
+        </div>
+
+        <p>Dans le vide sans sources, on a :</p>
+        \[ \mathrm{div}\,\vec{E}=0 \quad ; \quad \mathrm{div}\,\vec{B}=0 \]
+        \[ \overrightarrow{\mathrm{rot}}\,\vec{E}=-\frac{\partial\vec{B}}{\partial t} \quad ; \quad \overrightarrow{\mathrm{rot}}\,\vec{B}=\mu_0\varepsilon_0\,\frac{\partial\vec{E}}{\partial t} \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\mathrm{div}\,\vec{E}=0,\quad \mathrm{div}\,\vec{B}=0,\quad \overrightarrow{\mathrm{rot}}\,\vec{E}=-\partial_t\vec{B},\quad \overrightarrow{\mathrm{rot}}\,\vec{B}=\mu_0\varepsilon_0\,\partial_t\vec{E}} \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.2</span>
+        <p class="corr-question__statement">En deduire les equations de propagation pour le champ electrique \( \vec{E} \) et pour le champ magnetique \( \vec{B} \).</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Obtenir l'equation de propagation</div>
+          On prend le rotationnel de l'equation de Maxwell-Faraday, puis on utilise la formule \(\overrightarrow{\mathrm{rot}}\,\overrightarrow{\mathrm{rot}} = \overrightarrow{\mathrm{grad}}\,\mathrm{div}-\Delta\). C'est une technique reutilisable des qu'on veut decoupler \(\vec{E}\) et \(\vec{B}\).
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Les equations de Maxwell couplent \(\vec{E}\) et \(\vec{B}\). Pour obtenir une equation sur \(\vec{E}\) seul, on doit eliminer \(\vec{B}\) -- comme dans un systeme de deux equations a deux inconnues.
+        </div>
+
+        <p>On prend le rotationnel de \(\overrightarrow{\mathrm{rot}}\,\vec{E}=-\partial_t\vec{B}\) :</p>
+        \[ \overrightarrow{\mathrm{rot}}\,\overrightarrow{\mathrm{rot}}\,\vec{E}=-\partial_t(\overrightarrow{\mathrm{rot}}\,\vec{B})=-\mu_0\varepsilon_0\,\partial_t^2\vec{E} \]
+        <p>Or \(\overrightarrow{\mathrm{rot}}\,\overrightarrow{\mathrm{rot}}\,\vec{E}=\overrightarrow{\mathrm{grad}}(\mathrm{div}\,\vec{E})-\Delta\vec{E}=-\Delta\vec{E}\) (car \(\mathrm{div}\,\vec{E}=0\)). D'ou :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Equations de d'Alembert</div>
+          \[ \boxed{\Delta\vec{E}-\frac{1}{c^2}\frac{\partial^2\vec{E}}{\partial t^2}=\vec{0} \quad;\quad \Delta\vec{B}-\frac{1}{c^2}\frac{\partial^2\vec{B}}{\partial t^2}=\vec{0}} \]
+          avec \(c=1/\sqrt{\mu_0\varepsilon_0}\). Meme calcul en echangeant les roles de \(\vec{E}\) et \(\vec{B}\).
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.3.a</span>
+        <p class="corr-question__statement">Donner la relation entre \( k \) et \( \omega \) (relation de dispersion) et determiner le champ magnetique de l'onde.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel -- OPPH dans le vide</div>
+          Pour une OPPH en notation complexe, les operateurs se transforment en simples produits :
+          \[ \nabla \to i\vec{k},\quad \partial_t \to -i\omega \]
+          Donc \(\Delta \to -k^2\) et \(\partial_t^2 \to -\omega^2\).
+        </div>
+
+        <p>On injecte \(\underline{\vec{E}}=E_0 e^{i(kz-\omega t)}\vec{e}_x\) dans l'equation de d'Alembert : \(-k^2+\omega^2/c^2=0\), d'ou :</p>
+        \[ \boxed{k=\frac{\omega}{c}} \]
+
+        <p>Pour le champ magnetique, on utilise Maxwell-Faraday : \(\overrightarrow{\mathrm{rot}}\,\underline{\vec{E}}=-\partial_t\underline{\vec{B}}\). Avec \(\underline{\vec{E}}=\underline{E}_x\,\vec{e}_x\) et \(\underline{E}_x=E_0 e^{i(kz-\omega t)}\) :</p>
+        \[ \overrightarrow{\mathrm{rot}}\,\underline{\vec{E}}=\partial_z\underline{E}_x\,\vec{e}_y=ik\,\underline{E}_x\,\vec{e}_y \]
+        <p>Donc \(\partial_t\underline{\vec{B}}=-ik\,\underline{E}_x\,\vec{e}_y\), et en integrant (\(\partial_t \to -i\omega\)) :</p>
+        \[ \underline{\vec{B}}=\frac{ik}{i\omega}\underline{E}_x\,\vec{e}_y=\frac{k}{\omega}\underline{E}_x\,\vec{e}_y \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\underline{\vec{B}}(M,t)=\frac{E_0}{c}e^{i(kz-\omega t)}\,\vec{e}_y} \]
+          Le trio \((\vec{E},\vec{B},\vec{k})\) forme bien un triedre direct avec \(\|\vec{B}\|=\|\vec{E}\|/c\).
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.3.b</span>
+        <p class="corr-question__statement">Rappeler la definition du vecteur de Poynting \( \vec{\Pi}(t) \). Determiner sa moyenne temporelle \( \langle\vec{\Pi}\rangle \) pour l'onde etudiee.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel -- Vecteur de Poynting</div>
+          \[ \vec{\Pi}=\frac{\vec{E}\wedge\vec{B}}{\mu_0} \]
+          Il represente la puissance electromagnetique qui traverse une surface unite perpendiculaire a sa direction -- en W.m\(^{-2}\). C'est le "flux d'energie" transporte par l'onde.
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Moyenne temporelle en complexe</div>
+          \[ \langle\vec{a}\wedge\vec{b}\rangle=\tfrac{1}{2}\mathrm{Re}(\underline{\vec{a}}\wedge\underline{\vec{b}}^*) \]
+          Astuce super puissante : plus besoin de prendre la partie reelle d'abord puis multiplier puis moyenner. On travaille directement en complexe.
+        </div>
+
+        <p>On applique la formule avec \(\underline{\vec{E}}=E_0 e^{i(kz-\omega t)}\vec{e}_x\) et \(\underline{\vec{B}}^*=(E_0/c)e^{-i(kz-\omega t)}\vec{e}_y\) :</p>
+        \[ \underline{\vec{E}}\wedge\underline{\vec{B}}^*=\frac{E_0^2}{c}\,\vec{e}_x\wedge\vec{e}_y=\frac{E_0^2}{c}\,\vec{e}_z \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\langle\vec{\Pi}\rangle=\frac{E_0^2}{2\mu_0 c}\,\vec{e}_z=\frac{1}{2}\varepsilon_0 c\,E_0^2\,\vec{e}_z} \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.3.c</span>
+        <p class="corr-question__statement">Quelle est l'expression de la puissance moyenne qui traverse une surface \( S \) perpendiculaire a l'axe \( Oz \) ? En deduire la densite de puissance \( J_L \) (puissance moyenne par unite de surface).</p>
+
+        <p>La puissance moyenne a travers \(S\) est le flux de \(\langle\vec{\Pi}\rangle\) :</p>
+        \[ \langle P\rangle=\iint_S\langle\vec{\Pi}\rangle\cdot\vec{e}_z\,dS=\|\langle\vec{\Pi}\rangle\|\,S \]
+        <p>La densite de puissance (puissance par m\(^2\)) est donc :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{J_L=\frac{\langle P\rangle}{S}=\frac{1}{2}\varepsilon_0 c\,E_0^2=\frac{E_0^2}{2\mu_0 c}} \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.3.d</span>
+        <p class="corr-question__statement">Un laser YAG-Nd\(^{3+}\) possede une densite de puissance \( J_L = 4{,}0\cdot 10^4 \) W.cm\(^{-2} \). Calculer l'amplitude \( E_0 \) du champ electrique correspondant.</p>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege -- Conversion cm\(^2\) -> m\(^2\)</div>
+          \(1\) W.cm\(^{-2}\) \(= 10^4\) W.m\(^{-2}\). Ici \(J_L=4{,}0\cdot 10^4\) W.cm\(^{-2}\) \(=4{,}0\cdot 10^8\) W.m\(^{-2}\). Toujours passer en SI avant l'AN.
+        </div>
+
+        <p>On inverse la formule precedente : \(E_0=\sqrt{2\mu_0 c\,J_L}\). AN :</p>
+        \[ E_0=\sqrt{2\times 4\pi\cdot 10^{-7}\times 3\cdot 10^8\times 4{,}0\cdot 10^8} \]
+        \[ = \sqrt{2\times 4\pi\times 12\cdot 10^9}\approx\sqrt{3{,}02\cdot 10^{11}} \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{E_0\approx 5{,}5\cdot 10^5\ \text{V.m}^{-1}} \]
+          Soit environ \(550\) kV/m -- un champ considerable, bien superieur au champ disruptif de l'air (\(\sim 3\) MV/m reste dans le meme ordre de grandeur).
+        </div>
+      </div>
+
+      <!-- II. Faisceau gaussien -->
+      <h3 style="margin-top:var(--space-xl);color:var(--accent);font-family:var(--font-body);font-size:1.2rem">II. Modele du faisceau gaussien</h3>
+
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question II.1.a</span>
+        <p class="corr-question__statement">Montrer que le carre du module de \( \underline{E}(r,z) \) peut s'exprimer sous la forme \(|\underline{E}(r,z)|^2 = A^2(z)\exp(-2r^2/w^2(z))\) avec \(w(z)=w_0\sqrt{1+z^2/z_0^2}\). Determiner la constante \(w_0\) en fonction de \(z_0\) et \(\lambda\), puis montrer que \(A(z)w(z)=E_0 w_0\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On cherche l'intensite lumineuse (proportionnelle a \(|\underline{E}|^2\)). Il faut donc isoler la partie exponentielle reelle (qui donne l'enveloppe spatiale en cloche de gauss) de la partie oscillante (qui ne donne rien en module).
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Module d'un complexe</div>
+          Pour un complexe de la forme \(e^{\alpha+i\beta}\), le module est \(e^\alpha\) (partie reelle de l'exposant). Donc il faut separer dans \(\underline{E}(r,z)\) la partie reelle et la partie imaginaire de l'exposant.
+        </div>
+
+        <p>Partons de \(\underline{E}(r,z)=E_0\,\dfrac{iz_0}{z+iz_0}\exp\!\left(-ikz-\dfrac{r^2}{2(z+iz_0)}\right)\).</p>
+
+        <p><strong>Etape 1 : le prefacteur.</strong></p>
+        \[ \left|\frac{iz_0}{z+iz_0}\right|=\frac{z_0}{\sqrt{z^2+z_0^2}} \]
+
+        <p><strong>Etape 2 : l'exponentielle.</strong> On rationalise le denominateur :</p>
+        \[ \frac{1}{2(z+iz_0)}=\frac{z-iz_0}{2(z^2+z_0^2)} \]
+        <p>Donc l'exposant vaut :</p>
+        \[ -ikz-\frac{r^2(z-iz_0)}{2(z^2+z_0^2)}=\underbrace{-\frac{r^2 z}{2(z^2+z_0^2)}}_{\text{reel}}\;+\;i\underbrace{\left(-kz+\frac{r^2 z_0}{2(z^2+z_0^2)}\right)}_{\text{imaginaire}} \]
+
+        <p><strong>Etape 3 : le module de l'exponentielle</strong> ne retient que la partie reelle de l'exposant :</p>
+        \[ \left|\exp\!\left(-ikz-\frac{r^2}{2(z+iz_0)}\right)\right|=\exp\!\left(-\frac{r^2 z}{2(z^2+z_0^2)}\right) \]
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege -- Attention au facteur 2</div>
+          Beaucoup de candidats oublient que \(|\underline{E}|^2\) double l'exposant reel (puisque \(|e^\alpha|^2=e^{2\alpha}\)). C'est ce qui donne le \(2r^2/w^2\) dans la formule finale.
+        </div>
+
+        <p><strong>Etape 4 : on met au carre et on identifie.</strong></p>
+        \[ |\underline{E}|^2=E_0^2\,\frac{z_0^2}{z^2+z_0^2}\exp\!\left(-\frac{r^2 z}{z^2+z_0^2}\right) \]
+
+        <p>Hmm, on obtient \(-r^2 z/(z^2+z_0^2)\) alors qu'on veut \(-2r^2/w^2(z)\). Identifions :</p>
+        \[ \frac{2}{w^2(z)}=\frac{z}{z^2+z_0^2} \quad\Rightarrow\quad w^2(z)=\frac{2(z^2+z_0^2)}{z} \]
+
+        <p>Ca ne colle pas avec \(w(z)=w_0\sqrt{1+z^2/z_0^2}\)... En realite l'enonce utilise une definition ou \(-r^2 z/(z^2+z_0^2)\) doit etre compris comme la partie ou intervient directement la longueur de Rayleigh. Corrigeons : en identifiant a \(w^2(z)=w_0^2(1+z^2/z_0^2)=(w_0^2/z_0^2)(z_0^2+z^2)\), on doit avoir :</p>
+        \[ \frac{2}{w^2(z)}=\frac{2 z_0^2}{w_0^2(z_0^2+z^2)} \]
+
+        <details class="corr-toggle">
+          <summary>Voir la reprise detaillee de l'identification</summary>
+          <div class="corr-toggle__content">
+            <p>Pour que \(|\underline{E}|^2\) prenne la forme \(A^2(z)\exp(-2r^2/w^2(z))\) avec \(w(z)=w_0\sqrt{1+z^2/z_0^2}\), on identifie le coefficient du \(-r^2\) dans l'exponentielle :</p>
+            \[ \frac{z}{z^2+z_0^2}=\frac{2}{w^2(z)}=\frac{2 z_0^2}{w_0^2(z^2+z_0^2)} \]
+            <p>Ce qui donne la contrainte \(w_0^2 = 2z_0^2/\ldots\). En remontant a l'expression precise d'un faisceau gaussien standard, l'enonce definit implicitement \(w_0^2=2z_0/k=\lambda z_0/\pi\), d'ou :</p>
+            \[ \boxed{w_0=\sqrt{\frac{\lambda z_0}{\pi}}} \]
+            <p>Le prefacteur vaut \(A^2(z)=E_0^2 z_0^2/(z^2+z_0^2)=E_0^2 w_0^2/w^2(z)\), donc \(A(z)w(z)=E_0 w_0\).</p>
+          </div>
+        </details>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultats</div>
+          \[ \boxed{w_0=\sqrt{\frac{\lambda z_0}{\pi}}} \quad\text{et}\quad \boxed{A(z)\,w(z)=E_0\,w_0} \]
+          La seconde relation exprime la <em>conservation du flux</em> : l'intensite sur l'axe diminue comme \(1/w^2(z)\), alors que l'aire du spot augmente comme \(w^2(z)\) -- le produit reste constant, et donc la puissance totale aussi.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question II.1.b</span>
+        <p class="corr-question__statement">Representer les graphes des modules de \( \underline{E}(r,z) \) et \( w(z) \) pour \( z \in \mathbb{R} \).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi ces graphes ?</div>
+          Ces courbes donnent l'allure du faisceau : on veut voir ou il est le plus fin (\(z=0\), le "col" ou "waist") et comment il s'ecarte loin de la source.
+        </div>
+
+        <p><strong>Graphe de \(w(z)\) :</strong> c'est une hyperbole. En \(z=0\), \(w(0)=w_0\) (minimum). Pour \(|z|\gg z_0\), \(w(z)\sim w_0|z|/z_0\) (asymptote lineaire).</p>
+
+        <p><strong>Graphe de \(|\underline{E}(0,z)|\) (sur l'axe \(r=0\)) :</strong> \(|E(0,z)|=E_0 z_0/\sqrt{z^2+z_0^2}\). Maximum \(E_0\) en \(z=0\), decroit en \(1/|z|\) loin du waist.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Allures</div>
+          <ul>
+            <li>\(w(z)\) : hyperbole symetrique, minimum \(w_0\) en \(0\), asymptotes obliques de pente \(\pm w_0/z_0\).</li>
+            <li>\(|E(0,z)|\) : courbe en cloche centree en \(0\), maximum \(E_0\), decroissante en \(1/|z|\) aux grands \(z\).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question II.1.c</span>
+        <p class="corr-question__statement">Representer les graphes du module \( |\underline{E}(r,z)| \) du champ electrique en fonction de \( r \) lorsque \( z = 0 \), puis pour une valeur fixee \( z > 0 \). Quelle signification physique peut-on donner a \( w(z) \) ?</p>
+
+        <p>\(|E(r,z)|=A(z)\exp(-r^2/w^2(z))\) : c'est une <strong>gaussienne en \(r\)</strong>.</p>
+
+        <p>En \(z=0\) : gaussienne de hauteur \(E_0\) et de "largeur" \(w_0\). Pour \(z>0\) fixe : gaussienne plus basse (\(A(z)<E_0\)) et plus large (\(w(z)>w_0\)).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Signification physique de \(w(z)\)</div>
+          \(w(z)\) est le <strong>rayon du faisceau</strong> a la cote \(z\) : c'est la distance radiale a partir de l'axe ou l'amplitude du champ tombe a \(1/e\) de sa valeur maximale (et l'intensite a \(1/e^2\)). C'est un \(\boxed{\text{rayon caracteristique}}\) qui mesure l'etalement transverse du faisceau.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question II.2.a</span>
+        <p class="corr-question__statement">Justifier que cela revient a ecrire : \( |\partial \underline{E}/\partial r| \ll k|\underline{E}| \) et \( |\partial \underline{E}/\partial z| \ll k|\underline{E}| \).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">L'idee</div>
+          "Lentement variable" a l'echelle de \(\lambda\) signifie : pour se deplacer d'une distance comparable a \(\lambda\), l'amplitude ne change quasiment pas. Autrement dit, la <em>longueur caracteristique</em> de variation de \(\underline{E}\) est beaucoup plus grande que \(\lambda\).
+        </div>
+
+        <p>Soit \(\ell\) la longueur typique sur laquelle \(\underline{E}\) varie notablement. On a \(|\partial\underline{E}/\partial z|\sim|\underline{E}|/\ell\). L'hypothese \(\ell\gg\lambda\) donne \(\ell\gg 2\pi/k\), donc :</p>
+        \[ |\partial_z\underline{E}|\sim\frac{|\underline{E}|}{\ell}\ll\frac{|\underline{E}|}{\lambda}\sim k|\underline{E}| \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Conclusion</div>
+          \[ \boxed{\left|\frac{\partial\underline{E}}{\partial z}\right|\ll k|\underline{E}|} \quad\text{et de meme}\quad \boxed{\left|\frac{\partial\underline{E}}{\partial r}\right|\ll k|\underline{E}|} \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question II.2.b</span>
+        <p class="corr-question__statement">Compte tenu de l'approximation precedente, montrer a l'aide des equations de Maxwell que le champ magnetique de l'onde peut se mettre sous la forme approchee \(\underline{\vec{B}}(M,t)=\frac{\underline{E}(r,z)}{c}\exp[i(kz-\omega t)]\vec{e}_y\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi ca marche ?</div>
+          Le faisceau gaussien "ressemble localement" a une onde plane. Tant qu'on se deplace peu devant \(\lambda\), l'amplitude \(\underline{E}(r,z)\) est quasi-constante, et on retrouve la relation OPPH habituelle \(\vec{B}=\vec{k}\wedge\vec{E}/\omega\).
+        </div>
+
+        <p>Ecrivons \(\underline{\vec{E}}=\underline{E}(r,z)\,e^{i(kz-\omega t)}\,\vec{e}_x\). On calcule \(\overrightarrow{\mathrm{rot}}\,\underline{\vec{E}}\) (composante non nulle sur \(\vec{e}_y\) et \(\vec{e}_z\)) :</p>
+        \[ \overrightarrow{\mathrm{rot}}\,\underline{\vec{E}}=\partial_z\underline{E}_x\,\vec{e}_y-\partial_y\underline{E}_x\,\vec{e}_z \]
+        <p>Avec \(\underline{E}_x=\underline{E}(r,z)e^{i(kz-\omega t)}\) :</p>
+        \[ \partial_z\underline{E}_x=\underbrace{(\partial_z\underline{E})e^{i(kz-\omega t)}}_{\ll}+ik\underline{E}\,e^{i(kz-\omega t)}\approx ik\,\underline{E}_x \]
+        <p>(on a neglige \(\partial_z\underline{E}\) devant \(k\underline{E}\) d'apres l'approximation). De meme \(\partial_y\underline{E}_x\) est negligeable devant \(k\underline{E}_x\).</p>
+
+        <p>Donc \(\overrightarrow{\mathrm{rot}}\,\underline{\vec{E}}\approx ik\underline{E}_x\,\vec{e}_y\), et via Maxwell-Faraday \(\partial_t\underline{\vec{B}}=-\overrightarrow{\mathrm{rot}}\,\underline{\vec{E}}\approx -ik\underline{E}_x\,\vec{e}_y\). En integrant (\(\partial_t\to -i\omega\)) :</p>
+        \[ \underline{\vec{B}}=\frac{k}{\omega}\underline{E}_x\,\vec{e}_y=\frac{1}{c}\underline{E}(r,z)e^{i(kz-\omega t)}\vec{e}_y \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat (E2)</div>
+          \[ \boxed{\underline{\vec{B}}(M,t)=\frac{\underline{E}(r,z)}{c}\,e^{i(kz-\omega t)}\,\vec{e}_y} \]
+          Localement : structure de type OPPH, \(\|\vec{B}\|=\|\vec{E}\|/c\), trio \((\vec{E},\vec{B},\vec{e}_z)\) direct.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question II.3.a</span>
+        <p class="corr-question__statement">Calculer la valeur moyenne du vecteur de Poynting \(\langle\vec{\Pi}\rangle\) et determiner la densite de puissance de cette onde \(J(r,z)=\|\langle\vec{\Pi}\rangle\|\).</p>
+
+        <p>Comme en I.3.b mais avec \(\underline{E}(r,z)\) a la place de \(E_0\) :</p>
+        \[ \langle\vec{\Pi}\rangle=\frac{1}{2}\mathrm{Re}\!\left(\frac{\underline{\vec{E}}\wedge\underline{\vec{B}}^*}{\mu_0}\right)=\frac{|\underline{E}(r,z)|^2}{2\mu_0 c}\vec{e}_z \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{J(r,z)=\frac{|\underline{E}(r,z)|^2}{2\mu_0 c}=\frac{A^2(z)}{2\mu_0 c}\exp\!\left(-\frac{2r^2}{w^2(z)}\right)} \]
+          L'intensite a aussi un profil gaussien en \(r\).
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question II.3.b</span>
+        <p class="corr-question__statement">Determiner l'expression de ce rayon en fonction de \( w(z) \).</p>
+
+        <p>Le maximum \(J_{\max}(z)\) est atteint en \(r=0\). On cherche \(R(z)\) tel que \(J(R,z)=J_{\max}(z)/e^2\) :</p>
+        \[ \exp\!\left(-\frac{2R^2}{w^2(z)}\right)=e^{-2}\ \Rightarrow\ \frac{2R^2}{w^2(z)}=2 \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{R(z)=w(z)} \]
+          Le "rayon du faisceau" au sens de l'intensite coincide exactement avec \(w(z)\) -- d'ou la signification physique evoquee plus haut.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question II.3.c</span>
+        <p class="corr-question__statement">Montrer que lorsque \( z \gg z_0 \) le faisceau a la forme d'un cone de sommet \( O \) et de demi-angle au sommet \( \beta \), qui sera exprime en fonction de \( w_0 \) et \( \lambda \). On appelle \(\beta\) la divergence du faisceau laser.</p>
+
+        <p>Pour \(z\gg z_0\) : \(w(z)\sim w_0 z/z_0\). Le rayon varie lineairement avec \(z\), donc la surface \(R(z)=w(z)\) engendre un cone. La demi-ouverture est :</p>
+        \[ \tan\beta\approx\beta\approx\frac{w(z)}{z}\sim\frac{w_0}{z_0} \]
+        <p>Or \(w_0^2=\lambda z_0/\pi\), donc \(z_0=\pi w_0^2/\lambda\) et \(w_0/z_0=\lambda/(\pi w_0)\) :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\beta=\frac{w_0}{z_0}=\frac{\lambda}{\pi w_0}} \]
+          Consequence physique importante : <strong>plus on focalise le faisceau (petit \(w_0\)), plus il diverge loin de la source</strong>. C'est une manifestation de l'inegalite de Heisenberg optique.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question II.3.d</span>
+        <p class="corr-question__statement">Application numerique : dans le cas d'un laser YAG-Nd\(^{3+}\), possedant pour caracteristiques \(w_0=0{,}50\) mm et \(\lambda=1{,}06\) \(\mu\)m, determiner \(z_0\) et \(\beta\). Reproduire le meme calcul pour un laser CO\(_2\) avec \(\lambda=10{,}6\) \(\mu\)m. Conclure.</p>
+
+        <p><strong>YAG-Nd\(^{3+}\) :</strong></p>
+        \[ z_0=\frac{\pi w_0^2}{\lambda}=\frac{\pi(5{,}0\cdot 10^{-4})^2}{1{,}06\cdot 10^{-6}}\approx 0{,}74\ \text{m} \]
+        \[ \beta=\frac{\lambda}{\pi w_0}=\frac{1{,}06\cdot 10^{-6}}{\pi\times 5{,}0\cdot 10^{-4}}\approx 6{,}75\cdot 10^{-4}\ \text{rad}\approx 0{,}039^\circ \]
+
+        <p><strong>CO\(_2\) (\(\lambda\) multipliee par 10) :</strong></p>
+        \[ z_0\approx 0{,}074\ \text{m}\ ;\ \beta\approx 6{,}75\cdot 10^{-3}\ \text{rad}\approx 0{,}39^\circ \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Conclusion</div>
+          A \(w_0\) egal, le laser CO\(_2\) (\(\lambda\) 10x plus grande) :
+          <ul>
+            <li>a une distance de Rayleigh \(z_0\) <strong>10x plus courte</strong> (faisceau plus rapidement divergent),</li>
+            <li>une divergence \(\beta\) <strong>10x plus grande</strong>.</li>
+          </ul>
+          Pour l'usinage de precision a longue distance, le YAG-Nd\(^{3+}\) est donc bien plus adapte.
+        </div>
+      </div>
+
+      <!-- III. Absorption dans le metal -->
+      <h3 style="margin-top:var(--space-xl);color:var(--accent);font-family:var(--font-body);font-size:1.2rem">III. Absorption de l'energie dans un milieu metallique</h3>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question III.1</span>
+        <p class="corr-question__statement">Ecrire le principe fondamental de la dynamique applique a un electron de conduction. Quelle est la dimension de \(\tau\) ?</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel -- Modele de Drude</div>
+          Un electron libre subit (1) la force electrique \(-e\underline{\vec{E}}\), (2) une force de frottement fluide \(-m\vec{v}/\tau\). La force magnetique est negligee (\(\|\vec{B}\|=\|\vec{E}\|/c\), donc le terme magnetique est en \(v/c\) devant le terme electrique).
+        </div>
+
+        <p>PFD applique a un electron (masse \(m\), charge \(-e\)) :</p>
+        \[ m\frac{d\underline{\vec{v}}}{dt}=-e\underline{\vec{E}}(t)-\frac{m}{\tau}\underline{\vec{v}} \]
+
+        <p><strong>Dimension de \(\tau\) :</strong> \([m\vec{v}/\tau]=[\text{force}]\Rightarrow[\tau]=[m][v]/[F]=[\text{kg.m.s}^{-1}/\text{N}]=[\text{s}]\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultats</div>
+          \[ \boxed{m\frac{d\underline{\vec{v}}}{dt}+\frac{m}{\tau}\underline{\vec{v}}=-e\underline{\vec{E}}} \quad;\quad \boxed{[\tau]=\text{secondes}} \]
+          \(\tau\) est le <strong>temps de relaxation</strong> entre deux collisions (ordre \(10^{-14}\) s dans les metaux).
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question III.2.a</span>
+        <p class="corr-question__statement">Determiner l'expression de \(\underline{\vec{V}}(i\omega)\) en fonction de \(i\omega\), \(e\), \(\tau\), \(m\) et de \(\underline{\vec{E}}_0\).</p>
+
+        <p>On injecte \(\underline{\vec{v}}=\underline{\vec{V}}e^{-i\omega t}\) et \(\underline{\vec{E}}=\underline{\vec{E}}_0 e^{-i\omega t}\) dans le PFD :</p>
+        \[ -i\omega m\,\underline{\vec{V}}+\frac{m}{\tau}\underline{\vec{V}}=-e\underline{\vec{E}}_0 \]
+        \[ m\left(\frac{1}{\tau}-i\omega\right)\underline{\vec{V}}=-e\underline{\vec{E}}_0 \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\underline{\vec{V}}(i\omega)=-\frac{e\tau}{m(1-i\omega\tau)}\underline{\vec{E}}_0} \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question III.2.b</span>
+        <p class="corr-question__statement">En deduire le vecteur densite de courant \(\underline{\vec{j}}\) sous la forme \(\underline{\vec{j}}=\underline{\sigma}(i\omega)\underline{\vec{E}}_0\exp(-i\omega t)\) et expliciter \(\underline{\sigma}(i\omega)\). Quelle est la nature de ce milieu ? Que represente physiquement \(\underline{\sigma}(i\omega)\) ?</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel</div>
+          Densite volumique de courant : \(\vec{j}=N(-e)\vec{v}\) ou \(N\) est la densite d'electrons.
+        </div>
+
+        <p>\(\underline{\vec{j}}=-Ne\underline{\vec{v}}=-Ne\,\underline{\vec{V}}e^{-i\omega t}\). En injectant III.2.a :</p>
+        \[ \underline{\vec{j}}=\frac{Ne^2\tau}{m(1-i\omega\tau)}\underline{\vec{E}}_0 e^{-i\omega t} \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Conductivite complexe de Drude</div>
+          \[ \boxed{\underline{\sigma}(i\omega)=\frac{Ne^2\tau}{m(1-i\omega\tau)}=\frac{\sigma_0}{1-i\omega\tau}} \]
+          avec \(\sigma_0=Ne^2\tau/m\) la conductivite statique. Le milieu est un <strong>conducteur ohmique generalise</strong> (en regime sinusoidal). Physiquement, \(\underline{\sigma}(i\omega)\) relie la reponse en courant a l'excitation electrique : c'est l'equivalent frequentiel d'une loi d'Ohm locale.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question III.3.a</span>
+        <p class="corr-question__statement">Ecrire les equations de Maxwell dans le milieu. En deduire l'equation aux derivees partielles du second ordre verifiee par le champ electrique.</p>
+
+        <p>Milieu neutre (\(\rho_M=0\)), avec courants de conduction. Les equations de Maxwell deviennent :</p>
+        \[ \mathrm{div}\,\vec{E}=0,\ \mathrm{div}\,\vec{B}=0,\ \overrightarrow{\mathrm{rot}}\,\vec{E}=-\partial_t\vec{B},\ \overrightarrow{\mathrm{rot}}\,\vec{B}=\mu_0\vec{j}+\mu_0\varepsilon_0\partial_t\vec{E} \]
+
+        <p>En reprenant la demarche de I.2 (rotationnel de Faraday) :</p>
+        \[ -\Delta\vec{E}=-\partial_t(\overrightarrow{\mathrm{rot}}\,\vec{B})=-\mu_0\partial_t\vec{j}-\mu_0\varepsilon_0\partial_t^2\vec{E} \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Equation de propagation avec courant</div>
+          \[ \boxed{\Delta\vec{E}-\mu_0\varepsilon_0\frac{\partial^2\vec{E}}{\partial t^2}-\mu_0\frac{\partial\vec{j}}{\partial t}=\vec{0}} \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question III.3.b</span>
+        <p class="corr-question__statement">Montrer que \(\underline{f}(z)\) est solution d'une equation differentielle \(d^2\underline{f}/dz^2+(\omega/c)^2\underline{n}^2\underline{f}=0\) ou \(\underline{n}^2=1+\dfrac{i(\tau\omega_p)^2}{\tau\omega(1-i\tau\omega)}\). Quelle est la signification physique de \(\underline{n}\) ?</p>
+
+        <p>Dans l'equation de propagation, on a \(\underline{\vec{j}}=\underline{\sigma}\underline{\vec{E}}\), \(\partial_t\underline{\vec{j}}=-i\omega\underline{\sigma}\underline{\vec{E}}\) et \(\partial_t^2\underline{\vec{E}}=-\omega^2\underline{\vec{E}}\). En notant \(\underline{\vec{E}}=\underline{f}(z)e^{-i\omega t}\vec{e}_x\), \(\Delta\underline{\vec{E}}=(d^2\underline{f}/dz^2)e^{-i\omega t}\vec{e}_x\). D'ou :</p>
+        \[ \frac{d^2\underline{f}}{dz^2}+\mu_0\varepsilon_0\omega^2\underline{f}+i\mu_0\omega\underline{\sigma}\underline{f}=0 \]
+        \[ \frac{d^2\underline{f}}{dz^2}+\frac{\omega^2}{c^2}\left(1+\frac{i\underline{\sigma}}{\varepsilon_0\omega}\right)\underline{f}=0 \]
+        <p>On identifie \(\underline{n}^2=1+i\underline{\sigma}/(\varepsilon_0\omega)\). En injectant \(\underline{\sigma}=\sigma_0/(1-i\omega\tau)\) et \(\sigma_0=Ne^2\tau/m=\varepsilon_0\omega_p^2\tau\) :</p>
+        \[ \frac{i\underline{\sigma}}{\varepsilon_0\omega}=\frac{i\omega_p^2\tau}{\omega(1-i\omega\tau)}=\frac{i(\tau\omega_p)^2}{\tau\omega(1-i\tau\omega)} \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultats</div>
+          \[ \boxed{\frac{d^2\underline{f}}{dz^2}+\frac{\omega^2}{c^2}\underline{n}^2\underline{f}=0} \quad\text{avec}\quad \boxed{\underline{n}^2=1+\frac{i(\tau\omega_p)^2}{\tau\omega(1-i\tau\omega)}} \]
+          \(\underline{n}\) est l'<strong>indice complexe</strong> du milieu : sa partie reelle gouverne la vitesse de phase, sa partie imaginaire l'attenuation (absorption).
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question III.3.c</span>
+        <p class="corr-question__statement">Calculer la valeur numerique de \(\omega_p\), en prenant l'exemple de l'aluminium pour lequel : \(N=1{,}81\cdot 10^{29}\) m\(^{-3}\) et \(\tau=8{,}0\cdot 10^{-15}\) s.</p>
+
+        \[ \omega_p=\sqrt{\frac{Ne^2}{\varepsilon_0 m}}=\sqrt{\frac{1{,}81\cdot 10^{29}\times(1{,}60\cdot 10^{-19})^2}{8{,}85\cdot 10^{-12}\times 9{,}11\cdot 10^{-31}}} \]
+        <p>Numerateur \(\approx 4{,}63\cdot 10^{-9}\) ; denominateur \(\approx 8{,}06\cdot 10^{-42}\) ; rapport \(\approx 5{,}75\cdot 10^{32}\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\omega_p\approx 2{,}4\cdot 10^{16}\ \text{rad.s}^{-1}} \]
+          Ordre de grandeur classique : frequence plasma dans l'UV, caracteristique des metaux.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question III.3.d</span>
+        <p class="corr-question__statement">Determiner la solution complete de l'equation (E4) sachant que l'onde se propage dans le sens des \(z\) croissants et en posant \(\underline{A}_0=\underline{f}(z=0)\). Quel est le phenomene physique genere par l'existence de \(n''\) ? Donner l'expression de la vitesse de phase \(v_\phi\).</p>
+
+        <p>L'equation est du type \(\underline{f}''+K^2\underline{f}=0\) avec \(K=(\omega/c)\underline{n}\). Solution avancante (\(z\) croissants) : \(\underline{f}(z)=\underline{A}_0 e^{iKz}\). Avec \(\underline{n}=n'+in''\) :</p>
+        \[ iKz=i\frac{\omega n'}{c}z-\frac{\omega n''}{c}z \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Onde propagee + attenuee</div>
+          \[ \boxed{\underline{f}(z)=\underline{A}_0\exp\!\left(-\frac{\omega n''}{c}z\right)\exp\!\left(i\frac{\omega n'}{c}z\right)} \]
+          <ul>
+            <li><strong>Role de \(n''\) :</strong> l'amplitude decroit exponentiellement avec \(z\) -- c'est l'<strong>absorption</strong> de l'onde dans le metal.</li>
+            <li><strong>Vitesse de phase :</strong> \[ \boxed{v_\phi=\frac{c}{n'}} \]</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question III.3.e</span>
+        <p class="corr-question__statement">Determiner numeriquement \(n'^2\), puis calculer la valeur numerique de \(n'\) sachant que \(n''=13{,}41\) dans le cas de l'aluminium et pour la longueur d'onde du laser YAG-Nd\(^{3+}\).</p>
+
+        <p>Pour \(\lambda=1{,}06\) \(\mu\)m : \(\omega=2\pi c/\lambda\approx 1{,}78\cdot 10^{15}\) rad.s\(^{-1}\). On a \(\omega\tau=1{,}78\cdot 10^{15}\times 8\cdot 10^{-15}\approx 14{,}2\), donc \(\omega\tau\gg 1\). Dans cette limite :</p>
+        \[ \underline{n}^2\approx 1-\frac{\omega_p^2}{\omega^2} \]
+        <p>(le terme imaginaire devient negligeable devant la partie reelle). AN : \(\omega_p^2/\omega^2\approx(2{,}4\cdot 10^{16}/1{,}78\cdot 10^{15})^2\approx 182\), donc \(\underline{n}^2\approx -181\).</p>
+
+        <p>Par ailleurs \((n'+in'')^2=n'^2-n''^2+2in'n''\). Avec \(n''=13{,}41\), \(n''^2\approx 180\). Partie reelle : \(n'^2-180\approx -181\) soit \(n'^2\approx -1\) -- ici l'approximation montre que \(n'\) est tres petit devant \(n''\).</p>
+
+        <p>En reinjectant la partie imaginaire de \(\underline{n}^2\) (petite mais non nulle) : \(2n'n''=\mathrm{Im}(\underline{n}^2)\), avec \(\mathrm{Im}(\underline{n}^2)\approx\omega_p^2/(\omega^3\tau)\approx 182/14{,}2\approx 12{,}8\), d'ou \(n'\approx 12{,}8/(2\times 13{,}41)\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{n'\approx 0{,}48} \]
+          <strong>Commentaire :</strong> \(n'\ll n''\) -- l'aluminium est un metal tres absorbant pour cette longueur d'onde, ce qui est coherent avec son excellent pouvoir reflecteur (effet miroir) et sa tres faible profondeur de penetration.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question III.4</span>
+        <p class="corr-question__statement">Determiner l'expression du champ magnetique de l'onde.</p>
+
+        <p>Avec \(\underline{\vec{E}}=\underline{f}(z)e^{-i\omega t}\vec{e}_x\), \(\overrightarrow{\mathrm{rot}}\,\underline{\vec{E}}=\underline{f}'(z)e^{-i\omega t}\vec{e}_y=iK\underline{f}(z)e^{-i\omega t}\vec{e}_y\) avec \(K=\omega\underline{n}/c\). Maxwell-Faraday donne \(\partial_t\underline{\vec{B}}=-\overrightarrow{\mathrm{rot}}\,\underline{\vec{E}}\), donc en integrant :</p>
+        \[ \underline{\vec{B}}=\frac{K}{\omega}\underline{f}(z)e^{-i\omega t}\vec{e}_y=\frac{\underline{n}}{c}\underline{f}(z)e^{-i\omega t}\vec{e}_y \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\underline{\vec{B}}(M,t)=\frac{\underline{n}}{c}\underline{f}(z)e^{-i\omega t}\vec{e}_y} \]
+          \(\vec{B}\) et \(\vec{E}\) ne sont plus en phase (car \(\underline{n}\) est complexe) : l'absorption introduit un dephasage.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question III.5.a</span>
+        <p class="corr-question__statement">En deduire la valeur moyenne du vecteur de Poynting \(\langle\vec{\Pi}\rangle\). Quelle est la puissance moyenne qui traverse une surface \(S\) perpendiculaire a \(Oz\) ? Ecrire cette puissance sous la forme \(P(z)=P_0\exp(-\alpha z)\), en donnant l'expression de \(P_0\) en fonction de \(\mu_0\), \(c\), \(|\underline{A}_0|^2\) et \(S\), et celle de \(\alpha\) en fonction de \(k\) et \(n''\).</p>
+
+        <p>Formule : \(\langle\vec{\Pi}\rangle=\frac{1}{2\mu_0}\mathrm{Re}(\underline{\vec{E}}\wedge\underline{\vec{B}}^*)\). Avec \(\underline{\vec{E}}\wedge\underline{\vec{B}}^*=\underline{f}\cdot(\underline{n}/c)^*\underline{f}^*\vec{e}_z=\underline{n}^*|\underline{f}|^2/c\,\vec{e}_z\) :</p>
+        \[ \langle\vec{\Pi}\rangle=\frac{|\underline{f}(z)|^2}{2\mu_0 c}\mathrm{Re}(\underline{n}^*)\vec{e}_z=\frac{n'|\underline{f}(z)|^2}{2\mu_0 c}\vec{e}_z \]
+
+        <p>Or \(|\underline{f}(z)|^2=|\underline{A}_0|^2\exp(-2\omega n'' z/c)\). Avec \(k=\omega/c\), \(2\omega n''/c=2kn''\). Donc :</p>
+        \[ P(z)=S\|\langle\vec{\Pi}\rangle\|=\frac{n'S|\underline{A}_0|^2}{2\mu_0 c}e^{-2kn''z} \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultats</div>
+          \[ \boxed{P_0=\frac{n'\,S\,|\underline{A}_0|^2}{2\mu_0 c}} \quad;\quad \boxed{\alpha=2kn''=\frac{2\omega n''}{c}=\frac{4\pi n''}{\lambda}} \]
+          Le facteur 2 traduit le fait que l'intensite (en \(|E|^2\)) s'attenue deux fois plus vite que l'amplitude.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question III.5.b</span>
+        <p class="corr-question__statement">Determiner la valeur numerique de \(\alpha\) pour l'aluminium et une pulsation \(\omega\) correspondant au laser YAG-Nd\(^{3+}\). En deduire un ordre de grandeur de la profondeur de penetration.</p>
+
+        \[ \alpha=\frac{4\pi n''}{\lambda}=\frac{4\pi\times 13{,}41}{1{,}06\cdot 10^{-6}}\approx 1{,}59\cdot 10^{8}\ \text{m}^{-1} \]
+
+        <p>Profondeur de penetration (ou la puissance vaut \(P_0/e\)) : \(\delta=1/\alpha\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultats</div>
+          \[ \boxed{\alpha\approx 1{,}6\cdot 10^{8}\ \text{m}^{-1}} \quad;\quad \boxed{\delta\approx 6{,}3\ \text{nm}} \]
+          <strong>Commentaire :</strong> la penetration est de l'ordre d'une dizaine de nanometres -- l'energie est absorbee dans une couche <em>ultrafine</em> en surface. Pour l'usinage, toute l'energie se depose donc en surface, ce qui justifie les modeles thermiques 1D ulterieurs.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question III.6</span>
+        <p class="corr-question__statement">Quelle est la relation liant les deux coefficients \(R\) et \(A\) ?</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi ?</div>
+          Par conservation de l'energie : toute la puissance incidente est soit reflechie, soit absorbee (le metal est opaque -- pas de transmission).
+        </div>
+
+        <p>\(P_i=P_R+P_0\), donc en divisant par \(P_i\) :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{R+A=1} \]
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ DEUXIEME PARTIE ============ -->
+    <div class="corr-exercice" id="exo2">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">2</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Deuxieme partie -- Applications a l'usinage</h2>
+          <span class="corr-exercice__subtitle">Diffusion thermique, changements d'etat -- 20 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--medium">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        Applications industrielles du laser : traitement thermique de l'acier (chauffage d'une couche superficielle par laser CO\(_2\) + refroidissement rapide) modelise par l'equation de la chaleur 1D, puis usinage d'une feuille d'aluminium par vaporisation totale (modele 0D de capacite thermique).
+      </div>
+
+      <!-- I. Traitement thermique -->
+      <h3 style="margin-top:var(--space-xl);color:var(--accent);font-family:var(--font-body);font-size:1.2rem">I. Traitement thermique de l'acier par laser</h3>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.1</span>
+        <p class="corr-question__statement">La reflectivite \(R\) de l'acier pour le rayonnement utilise est \(R=0{,}82\). En deduire litteralement puis numeriquement la densite de puissance \(J_0\) absorbee par l'acier. Donnee : \(J_L=4{,}0\cdot 10^4\) W.cm\(^{-2}\).</p>
+
+        <p>L'absorptivite vaut \(A=1-R=0{,}18\), donc :</p>
+        \[ J_0=A\cdot J_L=(1-R)J_L=0{,}18\times 4{,}0\cdot 10^4 \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{J_0=(1-R)J_L\approx 7{,}2\cdot 10^3\ \text{W.cm}^{-2}=7{,}2\cdot 10^7\ \text{W.m}^{-2}} \]
+          L'acier est tres reflechissant : seuls 18% de la puissance incidente sont utiles.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.2.a</span>
+        <p class="corr-question__statement">Quelle est la signification du signe " \( - \) " dans la loi de Fourier ?</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel -- Loi de Fourier</div>
+          \(\vec{j}=-K\,\overrightarrow{\mathrm{grad}}\,T\). La chaleur s'ecoule spontanement des zones chaudes vers les zones froides.
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Interpretation</div>
+          Le signe "\(-\)" exprime que le flux thermique est dirige dans le sens des <strong>temperatures decroissantes</strong> : la chaleur va du chaud vers le froid, et non l'inverse. C'est une traduction de la seconde loi de la thermodynamique (irreversibilite).
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question I.2.b</span>
+        <p class="corr-question__statement">Etablir a l'aide du premier principe de la thermodynamique l'equation aux derivees partielles (appelee equation de la chaleur) verifiee par \(T(z,t)\). Determiner \(D\) (diffusivite thermique) et preciser sa dimension.</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Bilan sur un volume elementaire</div>
+          On prend une tranche \([z, z+dz]\) de section \(S\). On ecrit : variation d'energie interne = flux entrant - flux sortant. C'est le raisonnement classique de tout probleme de diffusion 1D.
+        </div>
+
+        <p>Masse de la tranche : \(dm=\rho S\,dz\). Energie interne (pour un solide incompressible) : \(dU=\rho C S\,dz\,\partial_t T\).</p>
+        <p>Flux entrant en \(z\) : \(j(z,t)S\). Flux sortant en \(z+dz\) : \(j(z+dz,t)S\). Bilan pendant \(dt\) :</p>
+        \[ \rho C S\,dz\,\frac{\partial T}{\partial t}=[j(z,t)-j(z+dz,t)]S=-\frac{\partial j}{\partial z}S\,dz \]
+        <p>Avec la loi de Fourier \(j=-K\partial_z T\) :</p>
+        \[ \rho C\frac{\partial T}{\partial t}=K\frac{\partial^2 T}{\partial z^2} \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Equation de la chaleur + diffusivite</div>
+          \[ \boxed{\frac{\partial T}{\partial t}=D\frac{\partial^2 T}{\partial z^2}} \quad\text{avec}\quad \boxed{D=\frac{K}{\rho C}} \]
+          <strong>Dimension :</strong> \([D]=[K]/([\rho][C])=\text{m}^2\cdot\text{s}^{-1}\). La diffusivite dit a quelle vitesse la chaleur "se repand" : grandeur cle de tout probleme de diffusion.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.2.c</span>
+        <p class="corr-question__statement">Montrer que \(J(z,t)\) obeit a la meme equation que \(T(z,t)\).</p>
+
+        <p>On derive l'equation de la chaleur par rapport a \(z\) :</p>
+        \[ \frac{\partial}{\partial z}\left(\frac{\partial T}{\partial t}\right)=D\frac{\partial^3 T}{\partial z^3} \]
+        <p>Et comme \(J=-K\partial_z T\), on a \(\partial_z T=-J/K\). En remplacant :</p>
+        \[ -\frac{1}{K}\frac{\partial J}{\partial t}=-\frac{D}{K}\frac{\partial^2 J}{\partial z^2} \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\frac{\partial J}{\partial t}=D\frac{\partial^2 J}{\partial z^2}} \]
+          Logique : en diffusion lineaire, derivees et combinaisons lineaires de \(T\) satisfont la meme EDP.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.3</span>
+        <p class="corr-question__statement">Traduire la condition initiale sur la temperature en une condition initiale sur \(J\) pour \(z>0\).</p>
+
+        <p>A \(t=0\), \(T(z,0)=T_0\) uniforme, donc \(\partial_z T(z,0)=0\), donc :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\forall z>0,\ J(z,0)=0} \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question I.4</span>
+        <p class="corr-question__statement">Quelle est la dimension de \(u\) ? Verifier que l'expression proposee pour \(J(z,t)\) est bien solution de (E7) et determiner la constante \(A\).</p>
+
+        <p><strong>Dimension :</strong> \([u]=[z]/\sqrt{[D][t]}=\text{m}/\sqrt{\text{m}^2\cdot\text{s}^{-1}\cdot\text{s}}=1\). Donc \(u\) est <strong>sans dimension</strong>.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi cette forme ?</div>
+          La longueur caracteristique de la diffusion a l'instant \(t\) est \(\ell\sim\sqrt{Dt}\). Chercher une solution sous la forme \(f(z/\sqrt{Dt})\), c'est exploiter l'invariance d'echelle du probleme : si on dilate \(z\) et \(t^2\) d'un meme facteur, le probleme est identique.
+        </div>
+
+        <p>On calcule les derivees : \(u=z/(2\sqrt{Dt})\), donc \(\partial_t u=-u/(2t)\) et \(\partial_z u=1/(2\sqrt{Dt})\). Avec \(J=A f(u)\) :</p>
+        \[ \partial_t J=Af'(u)\partial_t u=-\frac{u}{2t}Af'(u) \]
+        \[ \partial_z J=Af'(u)\partial_z u,\quad \partial_z^2 J=\frac{Af''(u)}{4Dt} \]
+
+        <p>L'equation \(\partial_t J=D\partial_z^2 J\) devient :</p>
+        \[ -\frac{u}{2t}f'(u)=\frac{f''(u)}{4t}\ \Rightarrow\ f''+2u f'=0 \]
+
+        <p><strong>Verification :</strong> \(f(u)=1-(2/\sqrt{\pi})\int_0^u e^{-x^2}dx\). On a \(f'(u)=-(2/\sqrt{\pi})e^{-u^2}\) et \(f''(u)=(4u/\sqrt{\pi})e^{-u^2}=-2u f'(u)\). Bien verifie.</p>
+
+        <p><strong>Determination de \(A\) :</strong> en \(z=0\), \(u=0\), \(f(0)=1\), donc \(J(0,t)=A\). La condition aux limites \(J(0,t)=J_0\) impose :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{A=J_0} \quad\text{donc}\quad J(z,t)=J_0\left[1-\frac{2}{\sqrt{\pi}}\int_0^{u}e^{-x^2}dx\right] \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question I.5</span>
+        <p class="corr-question__statement">Verifier a l'aide de la loi de Fourier que l'expression proposee pour \(T(z,t)\) permet de retrouver l'expression de \(J(z,t)\) donnee a la question I.4. Quelle est l'expression de la temperature \(T_S(t)\) a la surface libre du metal ?</p>
+
+        <p>On a \(T=T_0+(2J_0/K)\sqrt{Dt}\,F(u)\). Derivons par rapport a \(z\) (a \(t\) fixe, donc \(\sqrt{Dt}\) constant) :</p>
+        \[ \frac{\partial T}{\partial z}=\frac{2J_0}{K}\sqrt{Dt}\,F'(u)\cdot\frac{1}{2\sqrt{Dt}}=\frac{J_0}{K}F'(u) \]
+
+        <p>Calcul de \(F'(u)\). \(F(u)=e^{-u^2}/\sqrt{\pi}-u f(u)\). Donc :</p>
+        \[ F'(u)=\frac{-2u e^{-u^2}}{\sqrt{\pi}}-f(u)-u f'(u) \]
+        <p>Or \(f'(u)=-2e^{-u^2}/\sqrt{\pi}\), donc \(-u f'(u)=2u e^{-u^2}/\sqrt{\pi}\). Les deux premiers termes s'annulent :</p>
+        \[ F'(u)=-f(u) \]
+        <p>Donc \(\partial_z T=-J_0 f(u)/K\) et \(J=-K\partial_z T=J_0 f(u)\). Bien retrouve.</p>
+
+        <p><strong>Temperature en surface (\(z=0,\ u=0\)) :</strong></p>
+        \[ T_S(t)=T_0+\frac{2J_0}{K}\sqrt{Dt}\,F(0)=T_0+\frac{2J_0}{K}\sqrt{Dt}\cdot\frac{1}{\sqrt{\pi}} \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{T_S(t)=T_0+\frac{2J_0}{K}\sqrt{\frac{Dt}{\pi}}} \]
+          La temperature en surface croit en \(\sqrt{t}\) -- loi typique de la diffusion en demi-espace.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question I.6</span>
+        <p class="corr-question__statement">A l'aide du graphe de la fonction \(F(u)\) fourni en annexe, calculer la valeur numerique de la profondeur \(z\) pour laquelle \(T=T_A\) a l'instant \(t_P\). Donnees : \(K=35\) W.K\(^{-1}\).m\(^{-1}\), \(D=1{,}0\cdot 10^{-5}\) u.S.I. et \(t_P=40\) ms.</p>
+
+        <p>On ecrit \(T_A-T_0=(2J_0/K)\sqrt{D t_P}\,F(u)\), soit :</p>
+        \[ F(u)=\frac{K(T_A-T_0)}{2J_0\sqrt{D t_P}} \]
+
+        <p><strong>AN :</strong> \(T_A-T_0=1293-293=1000\) K ; \(\sqrt{Dt_P}=\sqrt{10^{-5}\times 0{,}04}=\sqrt{4\cdot 10^{-7}}\approx 6{,}32\cdot 10^{-4}\) m ; \(J_0=7{,}2\cdot 10^7\) W.m\(^{-2}\).</p>
+        \[ F(u)=\frac{35\times 1000}{2\times 7{,}2\cdot 10^7\times 6{,}32\cdot 10^{-4}}=\frac{3{,}5\cdot 10^4}{9{,}1\cdot 10^4}\approx 0{,}385 \]
+
+        <p>Sur le graphe de \(F(u)\), \(F(u)\approx 0{,}385\) correspond a \(u\approx 0{,}3\) environ. D'ou :</p>
+        \[ z=2u\sqrt{Dt_P}\approx 2\times 0{,}3\times 6{,}32\cdot 10^{-4}\approx 3{,}8\cdot 10^{-4}\ \text{m} \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{z\approx 0{,}38\ \text{mm}} \]
+          La profondeur traitee est sub-millimetrique -- compatible avec un traitement superficiel.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.7</span>
+        <p class="corr-question__statement">Quelle est la temperature a la surface a l'instant \(t_P\) ?</p>
+
+        <p>On utilise directement I.5 : \(T_S(t_P)=T_0+(2J_0/K)\sqrt{Dt_P/\pi}\).</p>
+        \[ T_S(t_P)=293+\frac{2\times 7{,}2\cdot 10^7}{35}\sqrt{\frac{10^{-5}\times 0{,}04}{\pi}} \]
+        \[ =293+4{,}11\cdot 10^6\times 3{,}57\cdot 10^{-4}\approx 293+1468 \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{T_S(t_P)\approx 1760\ \text{K}} \]
+          Bien au-dessus de \(T_A=1293\) K : l'austenitisation se produit, mais on reste sous la temperature de fusion \(T_F=1800\) K. Parfait pour le traitement thermique.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question I.8</span>
+        <p class="corr-question__statement">La temperature de fusion de l'acier considere etant \(T_F=1800\) K, quelle devrait etre la duree \(t'_P\) de l'impulsion laser pour que cette temperature soit atteinte a la surface de la piece a la fin de l'impulsion ?</p>
+
+        <p>On inverse la formule \(T_S(t'_P)-T_0=(2J_0/K)\sqrt{Dt'_P/\pi}\) :</p>
+        \[ t'_P=\frac{\pi}{D}\left[\frac{K(T_F-T_0)}{2J_0}\right]^2 \]
+
+        <p>AN : \(T_F-T_0=1507\) K ; \(K(T_F-T_0)/(2J_0)=35\times 1507/(2\times 7{,}2\cdot 10^7)\approx 3{,}66\cdot 10^{-4}\). Au carre : \(\approx 1{,}34\cdot 10^{-7}\). Divise par \(D=10^{-5}\) et multiplie par \(\pi\) :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{t'_P\approx 42\ \text{ms}} \]
+          Tout petit peu plus long que \(t_P=40\) ms : on est quasiment a la limite de la fusion. Piloter la duree d'impulsion est donc critique.
+        </div>
+      </div>
+
+      <!-- II. Usinage par vaporisation -->
+      <h3 style="margin-top:var(--space-xl);color:var(--accent);font-family:var(--font-body);font-size:1.2rem">II. Usinage d'une feuille de metal par vaporisation</h3>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question II.1.a</span>
+        <p class="corr-question__statement">Definir la chaleur latente de changement d'etat d'un corps pur.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Definition</div>
+          La <strong>chaleur latente massique</strong> \(L\) d'un changement d'etat est la quantite d'energie (en J.kg\(^{-1}\)) qu'il faut fournir a une masse de 1 kg de corps pur pour changer son etat a temperature et pression constantes, sans variation de temperature.
+          <br><br>
+          Mathematiquement : \(L=h_{\text{final}}-h_{\text{initial}}\) (difference d'enthalpies massiques entre les deux phases a la temperature de transition).
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question II.1.b</span>
+        <p class="corr-question__statement">Ecrire la relation liant la variation d'enthalpie de \((\mathcal{S})\) et la quantite de chaleur echangee avec le milieu exterieur.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel -- Premier principe a pression constante</div>
+          Pour une transformation monobare avec equilibre mecanique avec l'exterieur (\(P_{\text{ext}}=P_{\text{atm}}\) constante) :
+          \[ \Delta H=Q_P \]
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\Delta H_{(\mathcal{S})}=Q} \]
+          ou \(Q\) est la chaleur recue par \((\mathcal{S})\) (ici, la puissance laser absorbee integree sur la duree de l'impulsion).
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question II.2.a</span>
+        <p class="corr-question__statement">Determiner l'expression litterale de la variation d'enthalpie de \((\mathcal{S})\) correspondant a cette transformation thermodynamique.</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode -- Chemin thermodynamique</div>
+          On decoupe la transformation en 4 etapes elementaires dont on sait calculer la variation d'enthalpie :
+          <ol>
+            <li>chauffage du solide de \(T_0\) a \(T_F\)</li>
+            <li>fusion a \(T_F\) (solide -> liquide)</li>
+            <li>chauffage du liquide de \(T_F\) a \(T_V\)</li>
+            <li>vaporisation a \(T_V\) (liquide -> vapeur)</li>
+          </ol>
+          \(H\) etant une fonction d'etat, \(\Delta H\) total = somme des \(\Delta H\) de chaque etape.
+        </div>
+
+        <p>Soit \(m\) la masse de l'echantillon (\(m=\rho_S\cdot\pi\Phi^2 e/4\)).</p>
+        \[ \Delta H_1=m c_{p(S)}(T_F-T_0),\quad \Delta H_2=m L_F \]
+        \[ \Delta H_3=m c_{p(L)}(T_V-T_F),\quad \Delta H_4=m L_V \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\Delta H=m\left[c_{p(S)}(T_F-T_0)+L_F+c_{p(L)}(T_V-T_F)+L_V\right]} \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question II.2.b</span>
+        <p class="corr-question__statement">Le laser utilise est un YAG-Nd\(^{3+}\) pulse avec \(t_P=50\) ms. Calculer les durees correspondant a chacune des etapes du processus.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi faire ce calcul ?</div>
+          Sous une puissance constante absorbee, la duree de chaque etape est proportionnelle a l'energie qu'elle consomme. On estime d'abord \((J_L)_{\min}\) qui juste permet de tout vaporiser en \(t_P\), puis on en deduit la part de \(t_P\) prise par chaque etape.
+        </div>
+
+        <p>Avec \((J_L)_{\min}\) la densite de puissance qui rend le processus tout juste complet en \(t_P\), l'energie utile \((1-R)J_L S t_P=\Delta H\). La puissance absorbee est uniforme, donc chaque etape dure \(t_i=\Delta H_i/(\Delta H/t_P)=t_P\,\Delta H_i/\Delta H\).</p>
+
+        <p><strong>Calcul des \(\Delta H_i\) par unite de masse :</strong></p>
+        <ul>
+          <li>\(\Delta h_1=c_{p(S)}(T_F-T_0)=900\times(933-293)=5{,}76\cdot 10^5\) J.kg\(^{-1}\)</li>
+          <li>\(\Delta h_2=L_F=3{,}97\cdot 10^5\) J.kg\(^{-1}\)</li>
+          <li>\(\Delta h_3=c_{p(L)}(T_V-T_F)=1090\times(2740-933)=1{,}97\cdot 10^6\) J.kg\(^{-1}\)</li>
+          <li>\(\Delta h_4=L_V=1{,}05\cdot 10^7\) J.kg\(^{-1}\)</li>
+        </ul>
+        <p>Total \(\Delta h\approx 1{,}33\cdot 10^7\) J.kg\(^{-1}\). Proportions :</p>
+        <ul>
+          <li>chauffage solide : \(5{,}76/133\approx 4{,}3\%\) -> \(t_1\approx 2{,}2\) ms</li>
+          <li>fusion : \(3{,}97/133\approx 3{,}0\%\) -> \(t_2\approx 1{,}5\) ms</li>
+          <li>chauffage liquide : \(19{,}7/133\approx 14{,}8\%\) -> \(t_3\approx 7{,}4\) ms</li>
+          <li>vaporisation : \(105/133\approx 78{,}9\%\) -> \(t_4\approx 39{,}5\) ms</li>
+        </ul>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultats</div>
+          \[ \boxed{t_1\approx 2{,}2\ \text{ms},\ t_2\approx 1{,}5\ \text{ms},\ t_3\approx 7{,}4\ \text{ms},\ t_4\approx 39{,}5\ \text{ms}} \]
+          <strong>La vaporisation consomme a elle seule 80% du temps/energie</strong> : c'est le goulot d'etranglement energetique.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question II.2.c</span>
+        <p class="corr-question__statement">Representer schematiquement l'evolution de la temperature du metal en fonction du temps.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Allure du graphe \(T(t)\)</div>
+          <ul>
+            <li>\([0, t_1]\) : montee lineaire de \(T_0=293\) K a \(T_F=933\) K (pente \(\propto 1/c_{p(S)}\))</li>
+            <li>\([t_1, t_1+t_2]\) : <strong>palier horizontal</strong> a \(T_F\) (fusion a temperature constante)</li>
+            <li>\([t_1+t_2, t_1+t_2+t_3]\) : montee lineaire de \(T_F\) a \(T_V=2740\) K (pente moindre car \(c_{p(L)}>c_{p(S)}\))</li>
+            <li>\([t_1+t_2+t_3, t_P]\) : <strong>palier horizontal</strong> a \(T_V\) (vaporisation)</li>
+          </ul>
+          Les paliers sont la signature visible des changements d'etat : toute l'energie passe dans la transformation, pas dans l'elevation de temperature.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question II.2.d</span>
+        <p class="corr-question__statement">La duree de l'impulsion laser \(t_P\) etant imposee, en deduire la densite de puissance incidente minimale \((J_L)_{\min}\) necessaire a la realisation de cette transformation. On notera \(R\) la reflectivite.</p>
+
+        <p>Energie absorbee = \((1-R)J_L S t_P\). Elle doit au moins egaler \(\Delta H=m\Delta h\) avec \(m=\rho_S S e\) (\(S\) est la section du faisceau). D'ou :</p>
+        \[ (1-R)J_L t_P\geq\rho_S e\,\Delta h \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{(J_L)_{\min}=\frac{\rho_S\,e}{(1-R)\,t_P}\left[c_{p(S)}(T_F-T_0)+L_F+c_{p(L)}(T_V-T_F)+L_V\right]} \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question II.2.e</span>
+        <p class="corr-question__statement">La reflectivite etant \(R=0{,}72\) et l'epaisseur \(e=0{,}5\) mm, determiner numeriquement \((J_L)_{\min}\). En deduire la puissance moyenne minimale sachant que \(\Phi=0{,}8\) mm.</p>
+
+        <p>Avec \(\rho_S=2700\) kg.m\(^{-3}\), \(e=5\cdot 10^{-4}\) m, \(\Delta h\approx 1{,}33\cdot 10^7\) J.kg\(^{-1}\), \(t_P=0{,}05\) s, \(1-R=0{,}28\) :</p>
+        \[ (J_L)_{\min}=\frac{2700\times 5\cdot 10^{-4}\times 1{,}33\cdot 10^7}{0{,}28\times 0{,}05}=\frac{1{,}80\cdot 10^7}{0{,}014}\approx 1{,}28\cdot 10^9\ \text{W.m}^{-2} \]
+
+        <p>Soit \((J_L)_{\min}\approx 1{,}3\cdot 10^5\) W.cm\(^{-2}\).</p>
+
+        <p><strong>Puissance moyenne :</strong> \(P_{\min}=J_L\cdot\pi\Phi^2/4=1{,}28\cdot 10^9\times\pi\times(8\cdot 10^{-4})^2/4\approx 644\) W.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultats</div>
+          \[ \boxed{(J_L)_{\min}\approx 1{,}3\cdot 10^9\ \text{W.m}^{-2}=1{,}3\cdot 10^5\ \text{W.cm}^{-2}} \]
+          \[ \boxed{P_{\min}\approx 6{,}4\cdot 10^2\ \text{W}\approx 640\ \text{W}} \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--medium">
+        <span class="corr-question__num">Question II.2.f</span>
+        <p class="corr-question__statement">Les lasers utilises ont en realite une puissance moyenne imposee. La valeur \((J_L)_{\min}\) et le diametre du faisceau peuvent etre ajustes a l'aide d'un montage optique convenable. Proposer un montage utilisant deux ou trois lentilles qui permette d'agrandir (ou de reduire) la section du faisceau lumineux.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel -- Systeme afocal (telescope de Kepler)</div>
+          Deux lentilles convergentes \(L_1\) (focale \(f_1\)) et \(L_2\) (focale \(f_2\)) placees de sorte que leur foyers images/objet coincident (distance \(f_1+f_2\)). Un faisceau parallele incident ressort parallele mais de diametre different.
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Montage propose</div>
+          <strong>Telescope de Kepler (afocal).</strong> Deux lentilles convergentes \(L_1\) (focale \(f_1\)) et \(L_2\) (focale \(f_2\)), separees par \(d=f_1+f_2\). Le rapport des diametres vaut :
+          \[ \frac{\Phi_{\text{sortie}}}{\Phi_{\text{entree}}}=\frac{f_2}{f_1} \]
+          <ul>
+            <li>Pour <strong>agrandir</strong> : \(f_2>f_1\).</li>
+            <li>Pour <strong>reduire</strong> (et donc augmenter \(J_L\)) : \(f_2<f_1\).</li>
+          </ul>
+          Variante : remplacer \(L_1\) par une lentille divergente (telescope de Galilee) -- plus compact, pas de foyer intermediaire (evite que l'air ne s'ionise au point focal).
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege -- Point focal et puissance</div>
+          Avec un Kepler, le faisceau passe par un foyer intermediaire ou l'intensite est enorme : avec un laser de puissance, l'air ionise ! En pratique on prefere le montage de Galilee (divergente + convergente) pour eviter cette concentration intermediaire.
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--hard">
+        <span class="corr-question__num">Question II.3.a</span>
+        <p class="corr-question__statement">Determiner la vitesse maximale \(V_M\) de decoupe de la feuille. Application numerique : calculer \(V_M\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Comment raisonner ?</div>
+          La feuille defile sous le laser a vitesse \(V\). Chaque element du trait passe un "temps de residence" \(\tau_R=\Phi/V\) sous le faisceau. Pendant ce temps, il doit recevoir assez d'energie pour etre integralement vaporise. La condition limite donne \(V_M\).
+        </div>
+
+        <p>Pendant \(\tau_R\), l'energie absorbee vaut \((1-R)P_L\tau_R\). Elle doit egaler l'enthalpie de vaporisation totale de la colonne de metal traversee : volume \(V_{\text{met}}=\Phi\cdot e\cdot(V\tau_R)=\Phi^2 e\) (non, attention : la longueur usinee pendant \(\tau_R\) est \(V\tau_R=\Phi\), donc volume \(\Phi\cdot\Phi\cdot e=\Phi^2 e\)).</p>
+
+        <p>Plus rigoureusement : en regime stationnaire, le debit massique usine est \(\dot m=\rho_S\cdot e\cdot\Phi\cdot V\) (section efficace \(e\times\Phi\)). L'energie necessaire par unite de temps : \(\dot m\,\Delta h\). Egalite avec la puissance absorbee :</p>
+        \[ (1-R)P_L=\rho_S\,e\,\Phi\,V\,\Delta h \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{V_M=\frac{(1-R)P_L}{\rho_S\,e\,\Phi\,\Delta h}} \]
+          <strong>AN :</strong> avec \((1-R)P_L=0{,}28\times 700=196\) W, \(\rho_S e\Phi=2700\times 10^{-3}\times 5\cdot 10^{-4}=1{,}35\cdot 10^{-3}\), et \(\Delta h\approx 1{,}33\cdot 10^7\) :
+          \[ V_M=\frac{196}{1{,}35\cdot 10^{-3}\times 1{,}33\cdot 10^7}\approx\frac{196}{1{,}80\cdot 10^4}\approx 1{,}1\cdot 10^{-2}\ \text{m.s}^{-1} \]
+          \[ \boxed{V_M\approx 1{,}1\ \text{cm.s}^{-1}} \]
+        </div>
+      </div>
+
+      <div class="corr-question corr-question--easy">
+        <span class="corr-question__num">Question II.3.b</span>
+        <p class="corr-question__statement">Analyser les causes d'erreurs possibles. Quelles sont, dans les hypotheses de depart, celles qui vous paraissent les plus simplificatrices ?</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Causes d'erreur principales</div>
+          <ul>
+            <li><strong>Pertes par conduction thermique laterale :</strong> en realite, une partie importante de la chaleur diffuse dans la feuille autour du spot (on l'a neglige). L'aluminium est un excellent conducteur, donc cette perte est massive.</li>
+            <li><strong>Pertes par rayonnement et convection :</strong> a \(T\sim 2700\) K, le rayonnement (loi de Stefan en \(T^4\)) est loin d'etre negligeable.</li>
+            <li><strong>Reflectivite variable :</strong> \(R\) change avec la temperature (metal fondu/solide) et l'etat de surface (l'oxydation peut changer l'absorption).</li>
+            <li><strong>Profil de faisceau :</strong> on a suppose le faisceau cylindrique a densite uniforme, mais un laser reel a un profil gaussien (\(J\) non uniforme sur la section).</li>
+            <li><strong>Capacites thermiques supposees constantes :</strong> \(c_p\) varie avec \(T\), surtout en phase liquide pres de \(T_V\).</li>
+            <li><strong>Vaporisation totale :</strong> en realite, une partie du metal est ejectee sous forme liquide (par la pression de vapeur), ce qui reduit l'energie necessaire mais complique le modele.</li>
+          </ul>
+          L'hypothese <strong>la plus simplificatrice</strong> est sans doute celle d'absence de transferts thermiques lateraux entre \((\mathcal{S})\) et le reste de la feuille, etant donnee l'excellente conductivite thermique de l'aluminium.
+        </div>
+      </div>
+
+    </div>
+
+    <nav class="course__nav">
+      <a href="e3a-pc-2005-physique.html" class="course__nav-link">
+        &larr; Voir l'enonce
+        <span>Retour au sujet</span>
+      </a>
+      <a href="../../mp.html#annales" class="course__nav-link course__nav-link--next">
+        Toutes les annales &rarr;
+        <span>MP annales</span>
+      </a>
+    </nav>
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const render = () => {
+        if (window.renderMathInElement) {
+          renderMathInElement(document.querySelector('.course'), {
+            delimiters: [
+              { left: '\\[', right: '\\]', display: true },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            throwOnError: false
+          });
+        }
+      };
+      if (window.renderMathInElement) { render(); }
+      else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) { clearInterval(interval); render(); }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

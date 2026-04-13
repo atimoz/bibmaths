@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E3A-Polytech MP | LibMaths</title>
+  <title>E3A-Polytech MP | Omniscience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t&&t!=='dark')d.setAttribute('data-theme',t)})(document.documentElement)</script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -29,9 +29,6 @@
 .e3a-accent .filter-btn--active:hover {
   background: #D81B60;
   border-color: #D81B60;
-  color: #fff;
-}
-[data-theme="dark"] .e3a-accent .filter-btn--active {
   color: #fff;
 }
 
@@ -91,13 +88,13 @@
   font-size: 0.62rem;
   padding: 2px 8px;
   border-radius: 6px;
-  background: rgba(233,30,99,0.08);
-  color: #E91E63;
-  font-weight: 500;
-}
-[data-theme="dark"] .annale-chip {
   background: rgba(233,30,99,0.15);
   color: #F48FB1;
+  font-weight: 500;
+}
+[data-theme="light"] .annale-chip {
+  background: rgba(233,30,99,0.08);
+  color: #E91E63;
 }
 .annale-card__actions {
   display: flex;
@@ -457,15 +454,15 @@
 .quiz-choice--correct {
   border-color: #4CAF50 !important;
   background: rgba(76,175,80,0.08) !important;
-  color: #2E7D32 !important;
+  color: #81C784 !important;
 }
 .quiz-choice--wrong {
   border-color: #f44336 !important;
   background: rgba(244,67,54,0.08) !important;
-  color: #C62828 !important;
+  color: #EF9A9A !important;
 }
-[data-theme="dark"] .quiz-choice--correct { color: #81C784 !important; }
-[data-theme="dark"] .quiz-choice--wrong { color: #EF9A9A !important; }
+[data-theme="light"] .quiz-choice--correct { color: #2E7D32 !important; }
+[data-theme="light"] .quiz-choice--wrong { color: #C62828 !important; }
 .quiz-choice--answered { cursor: default; }
 .quiz-explanation {
   background: var(--bg-card);
@@ -577,205 +574,103 @@
 </head>
 <body>
 
-  <div class="bg-grid" aria-hidden="true"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo"><span class="sidebar__logo-full">Omniscience</span><span class="sidebar__logo-short">O</span></div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Programme</span>
+        <a href="index.html" class="sidebar__link" data-tooltip="Accueil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span class="sidebar__link-text">Accueil</span>
+        </a>
+        <a href="mpsi.html" class="sidebar__link" data-tooltip="MPSI">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MPSI — 1ere annee</span>
+        </a>
+        <a href="mp.html" class="sidebar__link" data-tooltip="MP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MP — 2eme annee</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Concours</span>
+        <a href="e3a.html" class="sidebar__link sidebar__link--active" data-tooltip="E3A-Polytech">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="9" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">E3A</text></svg>
+          <span class="sidebar__link-text">E3A-Polytech</span>
+        </a>
+        <a href="mp.html#annales" class="sidebar__link" data-tooltip="CCINP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="10" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">CC</text></svg>
+          <span class="sidebar__link-text">CCINP</span>
+        </a>
+        <a href="mp.html#annales" class="sidebar__link" data-tooltip="Centrale">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="10" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">CS</text></svg>
+          <span class="sidebar__link-text">Centrale</span>
+        </a>
+        <a href="mp.html#annales" class="sidebar__link" data-tooltip="Mines-Ponts">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="13" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">M</text></svg>
+          <span class="sidebar__link-text">Mines-Ponts</span>
+        </a>
+        <a href="mp.html#annales" class="sidebar__link" data-tooltip="X-ENS">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="13" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">X</text></svg>
+          <span class="sidebar__link-text">X-ENS</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Outils</span>
+        <a href="entrainement.html" class="sidebar__link" data-tooltip="Entrainement">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="sidebar__link-text">Entrainement</span>
+        </a>
+        <a href="revision.html" class="sidebar__link" data-tooltip="Revision">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <span class="sidebar__link-text">Revision</span>
+        </a>
+        <a href="parcours.html" class="sidebar__link" data-tooltip="Parcours">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span class="sidebar__link-text">Mon Parcours</span>
+        </a>
+        <a href="statistiques.html" class="sidebar__link" data-tooltip="Statistiques">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          <span class="sidebar__link-text">Statistiques</span>
+        </a>
+        <a href="timer.html" class="sidebar__link" data-tooltip="Timer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span class="sidebar__link-text">Timer</span>
+        </a>
+      </div>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__collapse-btn" id="sidebarCollapse" aria-expanded="true" aria-label="Replier le menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+        <span class="sidebar__collapse-label">Replier</span>
+      </button>
+      <button class="sidebar__theme-toggle" id="themeToggle" aria-label="Changer de theme">
+        <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span class="sidebar__theme-label">Theme</span>
+      </button>
+      <div class="sidebar__subject-switch">
+        <a href="index.html" class="sidebar__subject-btn sidebar__subject-btn--active">Maths</a>
+        <a href="physique/index.html" class="sidebar__subject-btn">Physique</a>
+      </div>
+    </div>
+  </aside>
 
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="site-switcher">
-      <span class="site-switcher__brand">Lib</span>
-      <div class="site-switcher__toggle">
-        <a href="index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
-        <a href="physique/index.html" class="site-switcher__btn">Physique</a>
-      </div>
-    </div>
-    <div class="nav__links">
-      <a href="index.html" class="nav__link">Accueil</a>
-      <div class="nav__dropdown">
-        <a href="mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mpsi.html#cours" class="dropdown__item">Cours</a>
-          <a href="mpsi.html#exercices" class="dropdown__item">Exercices</a>
-          <a href="mpsi.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="mpsi.html#methodes" class="dropdown__item">Methodes</a>
-        </div>
-      </div>
-      <div class="nav__dropdown">
-        <a href="mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mp.html#cours" class="dropdown__item">Cours</a>
-          <a href="mp.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="mp.html#methodes" class="dropdown__item">Methodes</a>
-          <a href="mp.html#concours" class="dropdown__item">Concours</a>
-          <a href="mp.html#annales" class="dropdown__item">Annales</a>
-        </div>
-      </div>
-      <a href="e3a.html" class="nav__link nav__link--active">E3A</a>
-      <a href="entrainement.html" class="nav__link">Entrainement</a>
-      <a href="revision.html" class="nav__link">Revision</a>
-    </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
-      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  <header class="topbar" id="topbar">
+    <button class="topbar__hamburger" id="menuBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
-    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
-      <span></span><span></span>
+    <span class="topbar__logo">Omniscience</span>
+    <button class="topbar__theme-toggle" id="themeToggleMobile" aria-label="Changer de theme">
+      <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-  </nav>
-
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
-      <a href="index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
-      <a href="physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mp.html" class="mobile-menu__page-link">MP — Math Spe</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="e3a.html" class="mobile-menu__page-link mobile-menu__page-link--active">E3A-Polytech MP</a>
-    </div>
-  </div>
-
-  <!-- Page Header -->
-  <header class="page-header e3a-accent">
-    <div class="page-header__inner">
-      <a href="mp.html" class="page-header__back">&larr; MP</a>
-      <p class="page-header__eyebrow">Concours</p>
-      <h1 class="page-header__title">E3A-Polytech MP</h1>
-      <p class="page-header__subtitle">Annales, cours cibles, flashcards et quiz pour preparer E3A</p>
-      <div class="page-header__filters" id="filters">
-        <button class="filter-btn filter-btn--active" data-filter="annales">Annales</button>
-        <button class="filter-btn" data-filter="resumes">Resumes</button>
-        <button class="filter-btn" data-filter="flashcards">Flashcards</button>
-        <button class="filter-btn" data-filter="quiz">Quiz</button>
-        <button class="filter-btn" data-filter="physique">Physique</button>
-      </div>
-    </div>
   </header>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <main class="program e3a-accent">
+  <main class="main-content">
 
-    <!-- ═══════════════════════════════════════════ -->
-    <!-- ONGLET 1 : ANNALES                         -->
-    <!-- ═══════════════════════════════════════════ -->
-    <div data-type="annales">
-
-      <div class="annales-grid">
-
-        <!-- 2025 -->
-        <div class="annale-card">
-          <div class="annale-card__year">2025</div>
-          <div class="annale-card__theme">Optimisation, DFT, Bessel</div>
-          <div class="annale-card__meta">3 exercices</div>
-          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
-          <div class="annale-card__tags">
-            <span class="annale-chip">Calcul diff</span>
-            <span class="annale-chip">Series entieres</span>
-            <span class="annale-chip">Integrales</span>
-          </div>
-          <div class="annale-card__actions">
-            <a href="cours/annales/e3a-2025-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
-            <a href="cours/annales/e3a-2025-correction.html" class="annale-btn annale-btn--correction">Correction</a>
-          </div>
-        </div>
-
-        <!-- 2024 -->
-        <div class="annale-card">
-          <div class="annale-card__year">2024</div>
-          <div class="annale-card__theme">Geometrique, cos(n)/n, A^T=3A^2-A-I, Convolution</div>
-          <div class="annale-card__meta">4 exercices</div>
-          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
-          <div class="annale-card__tags">
-            <span class="annale-chip">Probabilites</span>
-            <span class="annale-chip">Series entieres</span>
-            <span class="annale-chip">Reduction</span>
-            <span class="annale-chip">Integrales</span>
-          </div>
-          <div class="annale-card__actions">
-            <a href="cours/annales/e3a-2024-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
-            <a href="cours/annales/e3a-2024-correction.html" class="annale-btn annale-btn--correction">Correction</a>
-          </div>
-        </div>
-
-        <!-- 2023 -->
-        <div class="annale-card">
-          <div class="annale-card__year">2023</div>
-          <div class="annale-card__theme">Endo R_n[X], Gamma, Operateur integral, Matrices aleatoires</div>
-          <div class="annale-card__meta">4 exercices</div>
-          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
-          <div class="annale-card__tags">
-            <span class="annale-chip">Reduction</span>
-            <span class="annale-chip">Integrales</span>
-            <span class="annale-chip">Probabilites</span>
-            <span class="annale-chip">Algebre lineaire</span>
-          </div>
-          <div class="annale-card__actions">
-            <a href="cours/annales/e3a-2023-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
-            <a href="cours/annales/e3a-2023-correction.html" class="annale-btn annale-btn--correction">Correction</a>
-          </div>
-        </div>
-
-        <!-- 2022 -->
-        <div class="annale-card">
-          <div class="annale-card__year">2022</div>
-          <div class="annale-card__theme">Gamma/Gauss, Max urnes, Cauchy-Schwarz, Circulantes</div>
-          <div class="annale-card__meta">4 exercices</div>
-          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
-          <div class="annale-card__tags">
-            <span class="annale-chip">Integrales</span>
-            <span class="annale-chip">Probabilites</span>
-            <span class="annale-chip">Euclidiens</span>
-            <span class="annale-chip">Reduction</span>
-          </div>
-          <div class="annale-card__actions">
-            <a href="cours/annales/e3a-2022-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
-            <a href="cours/annales/e3a-2022-correction.html" class="annale-btn annale-btn--correction">Correction</a>
-          </div>
-        </div>
-
-        <!-- 2021 -->
-        <div class="annale-card">
-          <div class="annale-card__year">2021</div>
-          <div class="annale-card__theme">Series fonctions, Endo symetrique, Generatrices, Forme lineaire</div>
-          <div class="annale-card__meta">4 exercices</div>
-          <span class="annale-card__diff annale-card__diff--easy">Standard-Intermediaire</span>
-          <div class="annale-card__tags">
-            <span class="annale-chip">Series</span>
-            <span class="annale-chip">Euclidiens</span>
-            <span class="annale-chip">Probabilites</span>
-            <span class="annale-chip">Algebre lineaire</span>
-          </div>
-          <div class="annale-card__actions">
-            <a href="cours/annales/e3a-2021-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
-            <a href="cours/annales/e3a-2021-correction.html" class="annale-btn annale-btn--correction">Correction</a>
-          </div>
-        </div>
-
-        <!-- 2020 -->
-        <div class="annale-card">
-          <div class="annale-card__year">2020</div>
-          <div class="annale-card__theme">Geometrique, Prod ch, Suites Z, R_n[X], Cesaro</div>
-          <div class="annale-card__meta">5 exercices</div>
-          <span class="annale-card__diff annale-card__diff--medium">Intermediaire</span>
-          <div class="annale-card__tags">
-            <span class="annale-chip">Probabilites</span>
-            <span class="annale-chip">Series entieres</span>
-            <span class="annale-chip">Suites</span>
-            <span class="annale-chip">Reduction</span>
-            <span class="annale-chip">Euclidiens</span>
-          </div>
-          <div class="annale-card__actions">
-            <a href="cours/annales/e3a-2020-maths1.html" class="annale-btn annale-btn--enonce">Enonce</a>
-            <a href="cours/annales/e3a-2020-correction.html" class="annale-btn annale-btn--correction">Correction</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Ancien format E3A (2015-2019) : Maths 1 + Maths 2 -->
+<!-- Ancien format E3A (2015-2019) : Maths 1 + Maths 2 -->
       <h3 style="font-family:var(--font-display);font-size:1.3rem;font-weight:400;color:var(--ink-muted);margin:var(--space-xl) 0 var(--space-md);text-align:center">Ancien format E3A (2015-2019)</h3>
       <p style="text-align:center;font-size:.8rem;color:var(--ink-muted);margin-bottom:var(--space-lg)">2 epreuves : Maths 1 (4h, exercices) + Maths 2 (3h, probleme)</p>
 
@@ -1486,11 +1381,13 @@
 
   </main>
 
+  </main><!-- end main-content -->
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <span class="footer__logo">&int; LibMaths</span>
+        <span class="footer__logo">&int; Omniscience</span>
         <p class="footer__tagline">La beaute des mathematiques, en ligne.</p>
       </div>
       <div class="footer__links">
@@ -1510,7 +1407,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; 2026 LibMaths &mdash; Projet open source</span>
+      <span>&copy; 2026 Omniscience &mdash; Projet open source</span>
     </div>
   </footer>
 

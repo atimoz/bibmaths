@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correction E3A-Polytech PC 2014 - Physique | LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+<style>
+.corr-exercice { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.corr-exercice__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+.corr-exercice__number { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #E91E63; color: #fff; border-radius: 50%; font-weight: 700; font-size: 1.25rem; flex-shrink: 0; }
+.corr-exercice__title-group { flex: 1; }
+.corr-exercice__title { margin: 0; font-size: 1.4rem; color: #111827; }
+.corr-exercice__subtitle { font-size: 0.9rem; color: #6b7280; }
+.corr-exercice__difficulty { padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+.corr-exercice__difficulty--standard { background: #dcfce7; color: #166534; }
+.corr-exercice__difficulty--intermediaire { background: #fef3c7; color: #92400e; }
+.corr-exercice__difficulty--avance { background: #fee2e2; color: #991b1b; }
+.corr-exercice__rule { border: none; border-top: 2px solid #f3f4f6; margin: 1rem 0 1.5rem; }
+.corr-exercice__enonce { background: #f9fafb; border-left: 4px solid #9ca3af; padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 2rem; font-size: 0.95rem; color: #374151; }
+.corr-exercice__enonce-label { display: block; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.5rem; }
+.corr-question { border-left: 4px solid #e5e7eb; padding: 1rem 0 1rem 1.5rem; margin-bottom: 2rem; }
+.corr-question--easy { border-left-color: #22c55e; }
+.corr-question--medium { border-left-color: #f59e0b; }
+.corr-question--hard { border-left-color: #ef4444; }
+.corr-question__num { display: inline-block; font-weight: 700; color: #111827; background: #f3f4f6; padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.9rem; margin-bottom: 0.75rem; }
+.corr-question__statement { font-style: italic; color: #4b5563; background: #f9fafb; padding: 0.9rem 1rem; border-radius: 6px; margin: 0.5rem 0 1.25rem; border-left: 3px solid #d1d5db; }
+.corr-box { padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid; }
+.corr-box__title { font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.corr-box--rappel { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a8a; }
+.corr-box--rappel .corr-box__title { color: #1d4ed8; }
+.corr-box--why { background: #fff7ed; border-left-color: #f97316; color: #7c2d12; }
+.corr-box--why .corr-box__title { color: #c2410c; }
+.corr-box--result { background: #fefce8; border-left-color: #eab308; color: #713f12; }
+.corr-box--result .corr-box__title { color: #a16207; }
+.corr-box--piege { background: #fef2f2; border-left-color: #ef4444; color: #7f1d1d; }
+.corr-box--piege .corr-box__title { color: #b91c1c; }
+.corr-box--method { background: #f0fdf4; border-left-color: #22c55e; color: #14532d; }
+.corr-box--method .corr-box__title { color: #15803d; }
+.corr-toggle { margin: 1rem 0; border: 1px solid #e5e7eb; border-radius: 6px; padding: 0.5rem 1rem; background: #f9fafb; }
+.corr-toggle summary { cursor: pointer; font-weight: 600; color: #4b5563; }
+.corr-toggle__content { padding-top: 0.75rem; color: #374151; }
+.corr-part { margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #E91E63; color: #E91E63; font-size: 1.15rem; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="nav__container">
+<a href="../../index.html" class="nav__logo">LibMaths</a>
+<ul class="nav__menu">
+<li><a href="../../index.html">Accueil</a></li>
+<li><a href="../index.html">Cours</a></li>
+<li><a href="../../physique/index.html">Physique</a></li>
+<li><a href="../../annales.html">Annales</a></li>
+</ul>
+</div>
+</nav>
+
+<main class="course">
+<div class="course__container">
+<header class="course__header">
+<div class="course__breadcrumb">
+<a href="../../index.html">Accueil</a> &gt;
+<a href="../../physique/index.html">Physique</a> &gt;
+<a href="../../annales.html">Annales</a> &gt;
+<a href="e3a-pc-2014-physique.html">E3A PC 2014 Physique</a> &gt;
+Correction
+</div>
+<h1 class="course__title">Correction — E3A-Polytech PC 2014 Physique</h1>
+<p class="course__subtitle">Transferts thermiques dans un avion &amp; GPS / ionosphere — Correction pedagogique detaillee</p>
+</header>
+
+<!-- ============ INTRODUCTION ============ -->
+<div class="corr-exercice" id="intro">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Vue d'ensemble du sujet</span>
+Ce probleme de physique, adosse au fonctionnement d'un Airbus A340, couvre quatre grands themes. La <strong>premiere partie</strong> pose les bases des transferts thermiques : conduction, convection, nombres adimensionnels (Reynolds, Peclet, Nusselt, Biot). La <strong>deuxieme partie</strong> applique tout cela au fuselage cylindrique de l'avion pour calculer les flux thermiques. La <strong>troisieme partie</strong> aborde la climatisation et la pressurisation en cabine via le premier principe en regime permanent (echangeur, turbine, detente). Enfin, la <strong>quatrieme partie</strong> traite du GPS et de la propagation des ondes dans l'ionosphere (plasma, relation de dispersion, vitesse de groupe). Les parties sont largement independantes : c'est un sujet ou l'on peut aller chercher des points partout.
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!--                PREMIERE PARTIE                                -->
+<!-- ============================================================ -->
+<div class="corr-exercice" id="exo1">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">1</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Phenomenes physiques dominants</h2>
+<span class="corr-exercice__subtitle">Transferts thermiques &mdash; Questions A1 a C8</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--standard">Standard</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Enonce</span>
+On etudie les differents modes de transfert thermique dans un fluide au voisinage d'un obstacle solide. On introduit les nombres adimensionnels classiques (Reynolds, Peclet, Biot) et on etudie les echanges conducto-convectifs entre un solide et un fluide, en regime permanent.
+</div>
+
+<h3 class="corr-part">A / Transferts thermiques a l'interieur d'un fluide</h3>
+
+<!-- ===== A1 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question A1</span>
+<p class="corr-question__statement">Donner une definition du phenomene de conduction thermique et un exemple d'application pratique. Rappeler la loi de Fourier, liant les grandeurs physiques a definir avec precision.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+On commence par les fondamentaux. Pensez a une cuillere en metal dans une tasse de the chaud : le manche chauffe progressivement sans que le metal ne se deplace. C'est exactement la conduction : un transfert de chaleur de proche en proche, a travers la matiere immobile.
+</div>
+
+<p><strong>Definition :</strong> La <em>conduction thermique</em> est le mode de transfert de chaleur au sein d'un milieu materiel, sans deplacement macroscopique de matiere. L'energie est transmise de proche en proche par les vibrations des atomes (dans un solide) ou par les collisions moleculaires (dans un fluide au repos).</p>
+
+<p><strong>Exemple pratique :</strong> l'isolation thermique d'une maison. Les murs, constitues de materiaux peu conducteurs (laine de verre, polystyrene), ralentissent la conduction de chaleur entre l'interieur chaud et l'exterieur froid.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel : Loi de Fourier</div>
+La densite de courant thermique (ou vecteur densite de flux thermique) \(\vec{j}_Q\) est liee au gradient de temperature par :
+\[ \boxed{\vec{j}_Q = -\lambda \,\overrightarrow{\mathrm{grad}}\,T} \]
+<ul>
+<li>\(\vec{j}_Q\) : densite de courant thermique, en W.m\(^{-2}\)</li>
+<li>\(\lambda\) : conductivite thermique du milieu, en W.m\(^{-1}\).K\(^{-1}\)</li>
+<li>\(T\) : champ de temperature, en K</li>
+</ul>
+Le signe \(-\) traduit le fait que la chaleur va des zones chaudes vers les zones froides (dans le sens des temperatures decroissantes).
+</div>
+</div>
+
+<!-- ===== A2 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question A2</span>
+<p class="corr-question__statement">Proposer une definition du phenomene de convection thermique. Preciser la distinction faite entre convection naturelle et convection forcee ; donner un exemple de chaque.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+La convection, c'est le transport de chaleur par le mouvement du fluide lui-meme. Imaginez une casserole d'eau sur le feu : l'eau chaude du fond monte, l'eau froide du dessus descend. C'est bien plus efficace que la conduction seule.
+</div>
+
+<p><strong>Definition :</strong> La <em>convection thermique</em> est le transfert de chaleur associe au deplacement macroscopique d'un fluide. Le fluide en mouvement transporte avec lui son energie thermique d'une region a une autre.</p>
+
+<p><strong>Convection naturelle (ou libre) :</strong> le mouvement du fluide est engendre par les differences de masse volumique dues aux ecarts de temperature (le fluide chaud, moins dense, monte). <em>Exemple :</em> l'air chaud qui monte au-dessus d'un radiateur de chauffage central.</p>
+
+<p><strong>Convection forcee :</strong> le mouvement du fluide est impose par un agent exterieur (ventilateur, pompe, vent). <em>Exemple :</em> le refroidissement d'un processeur d'ordinateur par un ventilateur, ou bien l'ecoulement de l'air autour du fuselage d'un avion en vol.</p>
+</div>
+
+<!-- ===== A3 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question A3</span>
+<p class="corr-question__statement">Decrire une consequence pratique de la notion de viscosite d'un fluide (en s'appuyant eventuellement sur un exemple).</p>
+
+<p>La <em>viscosite</em> traduit les frottements internes dans un fluide : les couches de fluide en mouvement les unes par rapport aux autres exercent des forces tangentielles qui s'opposent au glissement relatif.</p>
+
+<p><strong>Consequence pratique :</strong> Lorsqu'un fluide s'ecoule le long d'une paroi solide (par exemple l'air le long de l'aile d'un avion), la viscosite cree une <em>couche limite</em> : une zone au voisinage de la paroi ou la vitesse du fluide varie de zero (a la paroi, condition d'adherence) jusqu'a la vitesse de l'ecoulement loin de la paroi. Cette couche limite est responsable de la trainee aerodynamique et joue un role essentiel dans les echanges thermiques entre le fluide et le solide.</p>
+</div>
+
+<h3 class="corr-part">B / Importance relative de ces phenomenes dans un fluide</h3>
+
+<!-- ===== B1 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question B1</span>
+<p class="corr-question__statement">Evaluer l'ordre de grandeur du terme : \( \rho (\vec{v} \cdot \overrightarrow{grad})\vec{v} \), dit &laquo; convectif &raquo;.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+Pour evaluer un ordre de grandeur, on remplace chaque grandeur par sa valeur caracteristique et chaque derivee partielle \(\partial / \partial u\) par \(1/U\) (inverse de la grandeur caracteristique associee).
+</div>
+
+<p>Le terme convectif fait intervenir \(\vec{v}\) (valeur caracteristique \(V\)) et \(\overrightarrow{\mathrm{grad}}\) (derivee spatiale, donc division par \(L\)). On a donc :</p>
+\[ \rho(\vec{v}\cdot\overrightarrow{\mathrm{grad}})\vec{v} \sim \rho \cdot V \cdot \frac{V}{L} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\text{Ordre de grandeur du terme convectif} \sim \frac{\rho V^2}{L}} \]
+</div>
+</div>
+
+<!-- ===== B2 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question B2</span>
+<p class="corr-question__statement">Evaluer l'ordre de grandeur du terme : \( \eta \Delta \vec{v} \), dit &laquo; de viscosite &raquo;.</p>
+
+<p>Le laplacien \(\Delta\) est une derivee seconde par rapport a l'espace. La valeur caracteristique de \(\vec{v}\) est \(V\) et la dimension caracteristique est \(L\), donc :</p>
+\[ \eta \Delta \vec{v} \sim \eta \cdot \frac{V}{L^2} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\text{Ordre de grandeur du terme de viscosite} \sim \frac{\eta V}{L^2}} \]
+</div>
+</div>
+
+<!-- ===== B3 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question B3</span>
+<p class="corr-question__statement">En deduire l'expression du nombre de Reynolds Re, defini par : \[ \text{Re} = \frac{\text{importance du terme convectif}}{\text{importance du terme de viscosite}} \] en fonction de V, L, \( \rho \) et \( \eta \).</p>
+
+<p>On forme le rapport des deux ordres de grandeur precedents :</p>
+\[ \text{Re} = \frac{\rho V^2 / L}{\eta V / L^2} = \frac{\rho V^2}{L} \times \frac{L^2}{\eta V} = \frac{\rho V L}{\eta} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathrm{Re} = \frac{\rho V L}{\eta}} \]
+</div>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+On definit souvent la viscosite cinematique \(\nu = \eta/\rho\), ce qui donne \(\mathrm{Re} = VL/\nu\). Cette forme est parfois plus pratique car \(\nu\) est tabulee pour les fluides courants.
+</div>
+</div>
+
+<!-- ===== B4 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question B4</span>
+<p class="corr-question__statement">Rappeler l'interpretation usuelle de la valeur numerique du nombre de Reynolds sur les caracteristiques globales d'un ecoulement.</p>
+
+<p>Le nombre de Reynolds compare l'importance des effets d'inertie (convection) aux effets visqueux :</p>
+<ul>
+<li><strong>Re petit</strong> (typiquement Re &lt; 2000 pour un ecoulement en conduite) : les forces visqueuses dominent. L'ecoulement est <em>laminaire</em>, regulier, en couches paralleles qui ne se melangent pas. Pensez a du miel qui s'ecoule lentement.</li>
+<li><strong>Re grand</strong> (typiquement Re &gt; 4000) : les forces d'inertie dominent. L'ecoulement est <em>turbulent</em>, irregulier, avec des tourbillons a toutes les echelles. Pensez a la fumee d'une cigarette qui, apres quelques centimetres de montee reguliere, se desorganise en volutes.</li>
+<li>Entre les deux, il existe une zone de <em>transition</em>.</li>
+</ul>
+</div>
+
+<!-- ===== B5 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question B5</span>
+<p class="corr-question__statement">Exprimer, d'une part la puissance \( d^2\mathcal{P}_1 \) entrant par conduction thermique dans ce volume a travers la section S (a l'abscisse x), et d'autre part la puissance \( d^2\mathcal{P}_2 \) sortant par conduction thermique de ce volume a travers la section S (a l'abscisse x + dx). En deduire l'expression de la puissance \( d^2\mathcal{P} \) recue par le volume Sdx par conduction thermique, en fonction de \( \lambda \), S et d'une derivee spatiale de T(x,t).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+On cherche a comparer la puissance apportee par conduction (diffusion de chaleur a travers la matiere immobile) et par convection (transport de chaleur par le fluide en mouvement). C'est le premier pas vers le nombre de Peclet.
+</div>
+
+<p>D'apres la loi de Fourier, la densite de courant thermique en 1D est \(j_Q = -\lambda \frac{\partial T}{\partial x}\). La puissance traversant la section \(S\) a l'abscisse \(x\) est :</p>
+\[ d^2\mathcal{P}_1 = -\lambda \frac{\partial T}{\partial x}\bigg|_x \cdot (-S) = \lambda S \frac{\partial T}{\partial x}\bigg|_x \]
+<p>(Le signe est choisi pour que \(d^2\mathcal{P}_1\) soit la puissance <em>entrant</em> dans le volume, donc dans le sens des \(x\) croissants, on prend le flux entrant par la face gauche.)</p>
+
+<p>De meme, la puissance sortant par la face droite en \(x+\mathrm{d}x\) :</p>
+\[ d^2\mathcal{P}_2 = \lambda S \frac{\partial T}{\partial x}\bigg|_{x+\mathrm{d}x} \]
+
+<p>La puissance nette recue par le volume est :</p>
+\[ d^2\mathcal{P} = d^2\mathcal{P}_1 - d^2\mathcal{P}_2 = \lambda S \left[\frac{\partial T}{\partial x}\bigg|_x - \frac{\partial T}{\partial x}\bigg|_{x+\mathrm{d}x}\right] = -\lambda S \frac{\partial^2 T}{\partial x^2}\,\mathrm{d}x \]
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+Attention aux signes ! La convention est que \(d^2\mathcal{P}\) est la puissance <em>recue</em>. Il faut bien distinguer ce qui entre (face en \(x\)) et ce qui sort (face en \(x+\mathrm{d}x\)). Verifiez par un cas simple : si \(\partial^2 T/\partial x^2 > 0\), le profil de temperature est convexe, la tranche recoit de la chaleur des deux cotes, donc \(d^2\mathcal{P}\) doit etre positif.
+</div>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{d^2\mathcal{P} = \lambda S \frac{\partial^2 T}{\partial x^2}\,\mathrm{d}x} \]
+(avec le bon signe, provenant du developpement de Taylor a l'ordre 1 du gradient).
+</div>
+</div>
+
+<!-- ===== B6 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question B6</span>
+<p class="corr-question__statement">Determiner la masse dm de fluide traversant la section S situee a l'abscisse x, entre les instants t et t + dt. En faisant un bilan de l'enthalpie ainsi apportee pendant la duree dt, etablir l'expression de la puissance \( d^2\mathcal{P}' \) recue par convection par le volume Sdx de fluide, en fonction de \( \rho \), S, c, v et d'une autre derivee spatiale de T(x,t).</p>
+
+<p><strong>Masse traversant la section S :</strong></p>
+<p>Pendant la duree \(\mathrm{d}t\), le fluide de vitesse \(v\) parcourt une distance \(v\,\mathrm{d}t\). Le volume de fluide traversant \(S\) est \(S \cdot v\,\mathrm{d}t\), soit :</p>
+\[ \mathrm{d}m = \rho\,S\,v\,\mathrm{d}t \]
+
+<p><strong>Bilan enthalpique pour la convection :</strong></p>
+<p>L'enthalpie massique du gaz parfait (ou fluide incompressible) est \(h = cT + \mathrm{cste}\). L'enthalpie apportee par le fluide entrant en \(x\) pendant \(\mathrm{d}t\) est \(\mathrm{d}m \cdot c\,T(x)\). L'enthalpie emportee en \(x+\mathrm{d}x\) est \(\mathrm{d}m \cdot c\,T(x+\mathrm{d}x)\). La puissance recue par convection est donc :</p>
+\[ d^2\mathcal{P}' = \frac{\mathrm{d}m}{\mathrm{d}t}\,c\,[T(x) - T(x+\mathrm{d}x)] = \rho S v\,c\,\left[-\frac{\partial T}{\partial x}\,\mathrm{d}x\right] \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{d^2\mathcal{P}' = -\rho\,S\,c\,v\,\frac{\partial T}{\partial x}\,\mathrm{d}x} \]
+</div>
+</div>
+
+<!-- ===== B7 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question B7</span>
+<p class="corr-question__statement">Montrer que ce rapport peut s'ecrire : \( \frac{d^2\mathcal{P}'}{d^2\mathcal{P}} = \frac{\rho c v L}{\lambda} = \text{Pe} \), appele nombre de Peclet.</p>
+
+<p>En raisonnant en ordres de grandeur (comme pour le nombre de Reynolds), on evalue :</p>
+<ul>
+<li>\(d^2\mathcal{P}' \sim \rho S c v \dfrac{T}{L}\,\mathrm{d}x\) (la derivee premiere \(\partial T/\partial x\) est de l'ordre de \(T/L\))</li>
+<li>\(d^2\mathcal{P} \sim \lambda S \dfrac{T}{L^2}\,\mathrm{d}x\) (la derivee seconde \(\partial^2 T/\partial x^2\) est de l'ordre de \(T/L^2\))</li>
+</ul>
+
+<p>Le rapport est :</p>
+\[ \frac{d^2\mathcal{P}'}{d^2\mathcal{P}} \sim \frac{\rho S c v \frac{T}{L}\,\mathrm{d}x}{\lambda S \frac{T}{L^2}\,\mathrm{d}x} = \frac{\rho c v L}{\lambda} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathrm{Pe} = \frac{\rho c v L}{\lambda}} \]
+</div>
+</div>
+
+<!-- ===== B8 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question B8</span>
+<p class="corr-question__statement">En deduire son interpretation physique.</p>
+
+<p>Le nombre de Peclet compare l'importance du <strong>transfert thermique par convection</strong> a celle du <strong>transfert thermique par conduction</strong> dans le fluide :</p>
+<ul>
+<li><strong>Pe grand</strong> (\(\mathrm{Pe} \gg 1\)) : la convection domine largement la conduction. Le fluide emporte la chaleur beaucoup plus vite qu'elle ne diffuse. C'est le cas usuel pour l'air autour d'un avion en vol.</li>
+<li><strong>Pe petit</strong> (\(\mathrm{Pe} \ll 1\)) : la conduction domine. Le transfert de chaleur se fait essentiellement par diffusion, comme dans un fluide quasi-immobile.</li>
+</ul>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+On peut aussi ecrire \(\mathrm{Pe} = \mathrm{Re} \times \mathrm{Pr}\), ou \(\mathrm{Pr} = \eta c / \lambda\) est le nombre de Prandtl (qui ne depend que du fluide). Le nombre de Prandtl compare la diffusivite de quantite de mouvement a la diffusivite thermique.
+</div>
+</div>
+
+<h3 class="corr-part">C / Echanges avec un corps exterieur</h3>
+
+<!-- ===== C1 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question C1</span>
+<p class="corr-question__statement">Verifier l'homogeneite de h, pour toute valeur de p ou de q.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+On part de \(h = a\frac{\lambda}{L}(\mathrm{Pe})^p(\mathrm{Re})^q\). Puisque Pe et Re sont des nombres sans dimension, \((\mathrm{Pe})^p(\mathrm{Re})^q\) est aussi sans dimension. Il suffit de verifier que \(\lambda/L\) a bien la dimension de \(h\).
+</div>
+
+<p>La dimension de \(h\) se deduit de la loi de Newton \(\varphi = h(T_S - T_\infty)\Sigma\), soit \([\varphi] = [h][\Delta T][\Sigma]\). Donc :</p>
+\[ [h] = \frac{[\varphi]}{[\Delta T][\Sigma]} = \frac{\mathrm{W}}{\mathrm{K} \cdot \mathrm{m}^2} = \mathrm{W.m^{-2}.K^{-1}} \]
+
+<p>Verifions \(\lambda / L\) :</p>
+\[ \left[\frac{\lambda}{L}\right] = \frac{\mathrm{W.m^{-1}.K^{-1}}}{\mathrm{m}} = \mathrm{W.m^{-2}.K^{-1}} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\(\lambda/L\) a bien la dimension de \(h\), et comme Pe et Re sont sans dimension, l'expression est homogene pour toute valeur de \(p\) et \(q\).
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question C2</span>
+<p class="corr-question__statement">En deduire les valeurs des exposants p et q.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+On connait experimentalement la dependance de \(h\) en \(v^{1/2}\lambda^{2/3}\). On va identifier les exposants \(p\) et \(q\) en exprimant Pe et Re en fonction de \(v\) et \(\lambda\), puis en comparant.
+</div>
+
+<p>On developpe \(h = a\frac{\lambda}{L}(\mathrm{Pe})^p(\mathrm{Re})^q\) en remplacant :</p>
+\[ \mathrm{Pe} = \frac{\rho c v L}{\lambda}, \qquad \mathrm{Re} = \frac{\rho v L}{\eta} \]
+\[ h = a\frac{\lambda}{L}\left(\frac{\rho c v L}{\lambda}\right)^p\left(\frac{\rho v L}{\eta}\right)^q \]
+
+<p>La dependance en \(v\) donne un exposant \(p + q\). La dependance en \(\lambda\) donne un exposant \(1 - p\). D'apres les resultats experimentaux :</p>
+\[ p + q = \frac{1}{2} \qquad \text{et} \qquad 1 - p = \frac{2}{3} \]
+
+<p>De la seconde equation : \(p = 1/3\). En substituant dans la premiere : \(q = 1/2 - 1/3 = 1/6\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{p = \frac{1}{3}, \qquad q = \frac{1}{6}} \]
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question C3</span>
+<p class="corr-question__statement">Rappeler l'equation differentielle dont T(x) est solution. Ecrire (sans chercher a la resoudre) l'equation qui traduit la condition &laquo; aux limites &raquo; en x = E.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+En regime permanent, sans source interne, le bilan d'energie sur une tranche du solide conduit a l'equation de la chaleur stationnaire en 1D.
+</div>
+
+<p><strong>Equation differentielle :</strong> En regime permanent et sans source interne, la loi de Fourier combinee a la conservation de l'energie donne :</p>
+\[ \boxed{\frac{\mathrm{d}^2 T}{\mathrm{d}x^2} = 0} \]
+<p>Autrement dit, le profil de temperature est <em>lineaire</em> dans le solide (en geometrie plane).</p>
+
+<p><strong>Condition aux limites en \(x = E\) :</strong> En \(x = E\), le flux de chaleur quittant le solide par conduction est integralement transfere au fluide par conducto-convection :</p>
+\[ \boxed{-\lambda_S \frac{\mathrm{d}T}{\mathrm{d}x}\bigg|_{x=E} = h\,(T_S - T_\infty)} \]
+<p>avec \(T_S = T(x = E)\).</p>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question C4</span>
+<p class="corr-question__statement">Definir la notion de resistance thermique, en precisant soigneusement l'analogie avec les grandeurs electriques usuelles. Exprimer les resistances thermiques, respectivement \( R_\lambda \) associee a la conduction dans le solide et \( R_h \) associee a la conducto-convection a l'interface solide-fluide. En deduire la resistance thermique \( R_e \) de l'ensemble, ainsi que l'expression du flux thermique \( \varphi \) present en fonction de \( T_0 \), \( T_\infty \) et \( R_e \).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+L'analogie electrique est un outil tres puissant pour les transferts thermiques. En electricite, \(U = RI\). Ici, la difference de temperature joue le role de la tension, le flux thermique joue le role du courant, et la resistance thermique joue le role de la resistance electrique. Si deux resistances sont en serie, on les additionne.
+</div>
+
+<p><strong>Definition :</strong> Par analogie avec la loi d'Ohm \(U = RI\), on definit la resistance thermique \(R_{th}\) par :</p>
+\[ \Delta T = R_{th} \times \varphi \]
+<p>ou \(\Delta T\) est l'ecart de temperature (analogue de la tension), \(\varphi\) est le flux thermique (analogue du courant), et \(R_{th}\) est la resistance thermique (analogue de la resistance electrique).</p>
+
+<p><strong>Resistance de conduction \(R_\lambda\) :</strong> Le flux de conduction a travers le solide d'epaisseur \(E\) et de section \(\Sigma\) est \(\varphi = \lambda_S \Sigma \frac{T_0 - T_S}{E}\), soit :</p>
+\[ T_0 - T_S = \frac{E}{\lambda_S \Sigma}\,\varphi \quad \Longrightarrow \quad \boxed{R_\lambda = \frac{E}{\lambda_S \Sigma}} \]
+
+<p><strong>Resistance de conducto-convection \(R_h\) :</strong> La loi de Newton donne \(\varphi = h(T_S - T_\infty)\Sigma\), soit :</p>
+\[ T_S - T_\infty = \frac{1}{h\Sigma}\,\varphi \quad \Longrightarrow \quad \boxed{R_h = \frac{1}{h\Sigma}} \]
+
+<p><strong>Resistance totale :</strong> Les deux transferts se font en serie (le meme flux traverse les deux). Par analogie avec les resistances en serie en electricite :</p>
+\[ \boxed{R_e = R_\lambda + R_h = \frac{E}{\lambda_S \Sigma} + \frac{1}{h\Sigma}} \]
+
+<p><strong>Flux thermique :</strong></p>
+\[ \boxed{\varphi = \frac{T_0 - T_\infty}{R_e} = \frac{T_0 - T_\infty}{\dfrac{E}{\lambda_S \Sigma} + \dfrac{1}{h\Sigma}}} \]
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question C5</span>
+<p class="corr-question__statement">Exprimer le nombre de Biot en fonction de \( R_\lambda \) et \( R_h \), puis en fonction de E, h et \( \lambda_S \).</p>
+
+<p>Le nombre de Biot est defini par \(\mathrm{Bi} = \dfrac{T_0 - T_S}{T_S - T_\infty}\).</p>
+
+<p>Or, par l'analogie electrique, \(T_0 - T_S = R_\lambda \varphi\) et \(T_S - T_\infty = R_h \varphi\). Donc :</p>
+\[ \boxed{\mathrm{Bi} = \frac{R_\lambda}{R_h}} \]
+
+<p>En remplacant par les expressions :</p>
+\[ \mathrm{Bi} = \frac{E/(\lambda_S \Sigma)}{1/(h\Sigma)} = \frac{Eh}{\lambda_S} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathrm{Bi} = \frac{R_\lambda}{R_h} = \frac{Eh}{\lambda_S}} \]
+</div>
+</div>
+
+<!-- ===== C6 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question C6</span>
+<p class="corr-question__statement">En deduire l'expression du gradient de temperature dans le solide : \[ \frac{dT}{dx} = -\frac{\text{Bi}}{E} \cdot \frac{T_0 - T_\infty}{1 + \text{Bi}} \]</p>
+
+<p>Dans le solide, le profil est lineaire (equation \(\mathrm{d}^2T/\mathrm{d}x^2 = 0\)), donc :</p>
+\[ \frac{\mathrm{d}T}{\mathrm{d}x} = \frac{T_S - T_0}{E} = -\frac{T_0 - T_S}{E} \]
+
+<p>Or, on peut ecrire \(T_0 - T_S\) en fonction de \(T_0 - T_\infty\) grace au nombre de Biot. On a \(T_0 - T_\infty = (T_0 - T_S) + (T_S - T_\infty)\), et \(T_0 - T_S = \mathrm{Bi}\,(T_S - T_\infty)\), donc :</p>
+\[ T_0 - T_\infty = \mathrm{Bi}\,(T_S - T_\infty) + (T_S - T_\infty) = (1 + \mathrm{Bi})(T_S - T_\infty) \]
+\[ T_0 - T_S = \mathrm{Bi}\,(T_S - T_\infty) = \frac{\mathrm{Bi}}{1 + \mathrm{Bi}}\,(T_0 - T_\infty) \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\frac{\mathrm{d}T}{\mathrm{d}x} = -\frac{\mathrm{Bi}}{E}\cdot\frac{T_0 - T_\infty}{1 + \mathrm{Bi}}} \]
+</div>
+</div>
+
+<!-- ===== C7 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question C7</span>
+<p class="corr-question__statement">Representer graphiquement l'allure de la carte de temperature dans le solide et le fluide, pour Bi = 1, puis pour Bi \( \gg \) 1.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+Dans le solide (\(0 \leq x \leq E\)), le profil est lineaire de \(T_0\) a \(T_S\). Dans le fluide (\(x > E\)), la temperature est uniforme et vaut \(T_\infty\). Le saut entre \(T_S\) et \(T_\infty\) se fait a l'interface.
+</div>
+
+<p><strong>Cas Bi = 1 :</strong> \(T_0 - T_S = T_S - T_\infty\), donc \(T_S\) est a mi-chemin entre \(T_0\) et \(T_\infty\). La chute de temperature est repartie equitablement entre le solide et l'interface. La pente dans le solide est moderee, et le saut a l'interface est egal a la chute dans le solide.</p>
+
+<p><strong>Cas Bi \(\gg\) 1 :</strong> \(T_0 - T_S \gg T_S - T_\infty\), donc \(T_S \approx T_\infty\). Presque toute la chute de temperature a lieu dans le solide (forte pente), et le saut a l'interface est negligeable. Le solide constitue le goulot d'etranglement thermique.</p>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+N'oubliez pas de representer le saut a l'interface en \(x = E\) : la temperature n'est <em>pas</em> continue a l'interface solide-fluide dans ce modele (la couche limite est negligee et remplacee par le coefficient \(h\)).
+</div>
+</div>
+
+<!-- ===== C8 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question C8</span>
+<p class="corr-question__statement">En deduire l'interpretation physique du nombre de Biot.</p>
+
+<p>Le nombre de Biot compare la <strong>resistance thermique de conduction dans le solide</strong> a la <strong>resistance thermique de conducto-convection a l'interface</strong> :</p>
+<ul>
+<li><strong>Bi \(\ll\) 1</strong> : la resistance de conduction est negligeable devant la resistance de conducto-convection. La temperature dans le solide est quasi-uniforme (le solide est un bon conducteur ou est mince). Le facteur limitant est l'echange avec le fluide.</li>
+<li><strong>Bi \(\gg\) 1</strong> : la resistance de conduction domine. Le gradient de temperature est essentiellement dans le solide. Le facteur limitant est la conduction dans le solide.</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \mathrm{Bi} = \frac{R_\lambda}{R_h} = \frac{\text{resistance de conduction dans le solide}}{\text{resistance de conducto-convection a l'interface}} \]
+</div>
+</div>
+
+</div><!-- fin partie 1 -->
+
+
+<!-- ============================================================ -->
+<!--                DEUXIEME PARTIE                                -->
+<!-- ============================================================ -->
+<div class="corr-exercice" id="exo2">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">2</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Echanges thermiques du fuselage d'un avion</h2>
+<span class="corr-exercice__subtitle">Conduction cylindrique, rayonnement &mdash; Questions D1 a D9</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermediaire</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Enonce</span>
+Le fuselage, assimile a un cylindre de rayon interieur \(R_{INT}\), d'epaisseur \(e\) et de longueur \(L\), est constitue d'un materiau de conductivite \(\lambda_C\). On etudie la conduction en geometrie cylindrique, le rayonnement, et la conducto-convection exterieure.
+</div>
+
+<!-- ===== D1 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question D1</span>
+<p class="corr-question__statement">Montrer que cette densite de courant de chaleur s'ecrit : \( \vec{j}(r) = \frac{K}{r}\vec{e}_r \), ou K est une constante.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+En geometrie cylindrique, la chaleur se repartit sur des surfaces de plus en plus grandes a mesure qu'on s'eloigne de l'axe (la surface laterale du cylindre augmente comme \(2\pi r L\)). Du coup, la densite de flux thermique doit decroitre en \(1/r\) pour que la puissance totale traversant chaque cylindre coaxial soit la meme. C'est analogue au champ electrique cree par un fil infini charge.
+</div>
+
+<p>En regime permanent et sans source interne, la conservation de l'energie impose que le flux thermique total traversant toute surface cylindrique coaxiale de rayon \(r\) soit constant. La surface laterale d'un cylindre de rayon \(r\) et de longueur \(L\) est \(S(r) = 2\pi r L\). Donc :</p>
+\[ \Phi = j(r) \cdot 2\pi r L = \text{constante} \]
+\[ j(r) = \frac{\Phi}{2\pi r L} = \frac{K}{r} \quad \text{avec } K = \frac{\Phi}{2\pi L} = \text{constante} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\vec{j}(r) = \frac{K}{r}\,\vec{e}_r} \]
+ou \(K\) est une constante liee au flux total traversant le fuselage.
+</div>
+</div>
+
+<!-- ===== D2 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question D2</span>
+<p class="corr-question__statement">En deduire la loi de variation de la temperature T(r) en fonction de \( R_{INT} \), \( R_{EXT} \), \( T_{INT} \), \( T_{EXT} \) et r.</p>
+
+<p>D'apres la loi de Fourier : \(\vec{j} = -\lambda_C \overrightarrow{\mathrm{grad}}\,T\), soit en coordonnees cylindriques :</p>
+\[ \frac{K}{r} = -\lambda_C \frac{\mathrm{d}T}{\mathrm{d}r} \]
+\[ \mathrm{d}T = -\frac{K}{\lambda_C}\frac{\mathrm{d}r}{r} \]
+
+<p>En integrant entre \(R_{INT}\) (ou \(T = T_{INT}\)) et \(r\) :</p>
+\[ T(r) - T_{INT} = -\frac{K}{\lambda_C}\ln\frac{r}{R_{INT}} \]
+
+<p>On determine \(K\) avec la condition en \(r = R_{EXT}\) ou \(T = T_{EXT}\) :</p>
+\[ T_{EXT} - T_{INT} = -\frac{K}{\lambda_C}\ln\frac{R_{EXT}}{R_{INT}} \quad \Longrightarrow \quad K = -\frac{\lambda_C(T_{EXT} - T_{INT})}{\ln(R_{EXT}/R_{INT})} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{T(r) = T_{INT} + (T_{EXT} - T_{INT})\,\frac{\ln(r/R_{INT})}{\ln(R_{EXT}/R_{INT})}} \]
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+Le profil n'est <em>pas</em> lineaire en \(r\) mais en \(\ln r\). C'est la difference fondamentale entre la geometrie plane et la geometrie cylindrique.
+</div>
+</div>
+
+<!-- ===== D3 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D3</span>
+<p class="corr-question__statement">Exprimer la puissance thermique totale \( \Phi \) traversant le fuselage de l'interieur vers l'exterieur, en fonction de \( R_{INT} \), \( R_{EXT} \), L, \( T_{INT} \), \( T_{EXT} \) et \( \lambda_C \).</p>
+
+<p>On calcule \(\Phi\) a partir de \(\Phi = j(r) \cdot 2\pi r L = K \cdot 2\pi L\) :</p>
+\[ \Phi = 2\pi L K = 2\pi L \cdot \frac{\lambda_C(T_{INT} - T_{EXT})}{\ln(R_{EXT}/R_{INT})} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\Phi = \frac{2\pi \lambda_C L\,(T_{INT} - T_{EXT})}{\ln(R_{EXT}/R_{INT})}} \]
+</div>
+</div>
+
+<!-- ===== D4 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D4</span>
+<p class="corr-question__statement">Justifier cette expression : \( \mathcal{P}_{solaire} = 2\,R_{EXT}\,L\,\varepsilon\,\varphi_S \).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+Le soleil n'eclaire qu'une face du cylindre. Imaginez le cylindre vu de face depuis le soleil : ce que vous voyez, c'est un rectangle, pas la surface cylindrique complete. C'est la surface <em>projetee</em> qui compte.
+</div>
+
+<p>Les rayons solaires arrivent paralleles. La puissance recue par le cylindre est proportionnelle a la surface de sa <em>projection</em> sur un plan perpendiculaire aux rayons. Vue du soleil, la projection du cylindre de rayon \(R_{EXT}\) et de longueur \(L\) est un rectangle de largeur \(2R_{EXT}\) (le diametre) et de longueur \(L\). Donc :</p>
+<ul>
+<li>Surface projetee : \(2R_{EXT} \times L\)</li>
+<li>Puissance incidente : \(\varphi_S \times 2R_{EXT}L\)</li>
+<li>Fraction absorbee (le reste est reflechi par la peinture blanche) : facteur \(\varepsilon\)</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathcal{P}_{solaire} = 2\,R_{EXT}\,L\,\varepsilon\,\varphi_S} \]
+La surface projetee (et non la surface totale \(2\pi R_{EXT}L\)) intervient car les rayons sont paralleles.
+</div>
+</div>
+
+<!-- ===== D5 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question D5</span>
+<p class="corr-question__statement">Etablir l'expression litterale de \( \mathcal{P}_R \), traduisant le bilan radiatif global de puissance recue par le fuselage, lie a toutes les formes de rayonnement.</p>
+
+<p>Le fuselage recoit et emet du rayonnement sur toute sa surface laterale exterieure \(S_{ext} = 2\pi R_{EXT} L\). Le bilan radiatif comprend trois termes :</p>
+<ol>
+<li><strong>Puissance solaire absorbee :</strong> \(\mathcal{P}_{solaire} = 2R_{EXT}L\,\varepsilon\,\varphi_S\)</li>
+<li><strong>Puissance recue de l'atmosphere (corps noir a \(T_{Mh}\)) :</strong> \(\sigma T_{Mh}^4 \times 2\pi R_{EXT}L\)</li>
+<li><strong>Puissance emise par le fuselage (a \(T_{EXT}\)) :</strong> \(-\sigma T_{EXT}^4 \times 2\pi R_{EXT}L\) (signe negatif car c'est une perte)</li>
+</ol>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathcal{P}_R = 2R_{EXT}L\,\varepsilon\,\varphi_S + 2\pi R_{EXT}L\,\sigma\left(T_{Mh}^4 - T_{EXT}^4\right)} \]
+</div>
+</div>
+
+<!-- ===== D6 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question D6</span>
+<p class="corr-question__statement">Ecrire (sans chercher a la resoudre) l'equation traduisant le bilan thermique de la face externe du fuselage, en regime permanent, prenant en compte tous les phenomenes physiques presents : conduction, conducto-convection et rayonnement.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+En regime permanent, la face externe ne stocke pas d'energie. Toute la puissance qu'elle recoit est egale a toute la puissance qu'elle cede. On ecrit un bilan : (ce qui arrive) = (ce qui part), ou equivalemment (somme de tout) = 0.
+</div>
+
+<p>La face externe recoit :</p>
+<ul>
+<li>De l'interieur par conduction : \(\Phi = \dfrac{2\pi\lambda_C L(T_{INT} - T_{EXT})}{\ln(R_{EXT}/R_{INT})}\)</li>
+<li>Du rayonnement (bilan) : \(\mathcal{P}_R = 2R_{EXT}L\varepsilon\varphi_S + 2\pi R_{EXT}L\sigma(T_{Mh}^4 - T_{EXT}^4)\)</li>
+</ul>
+<p>La face externe cede a l'air exterieur par conducto-convection :</p>
+<ul>
+<li>\(\mathcal{P}_{cc} = h \cdot 2\pi R_{EXT}L \cdot (T_{EXT} - T_A)\)</li>
+</ul>
+
+<p>Le bilan en regime permanent donne :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\frac{2\pi\lambda_C L(T_{INT} - T_{EXT})}{\ln(R_{EXT}/R_{INT})} + 2R_{EXT}L\varepsilon\varphi_S + 2\pi R_{EXT}L\sigma(T_{Mh}^4 - T_{EXT}^4) = h\cdot 2\pi R_{EXT}L(T_{EXT} - T_A)} \]
+</div>
+
+<p>Cette equation, implicite en \(T_{EXT}\) (a cause du terme en \(T_{EXT}^4\)), n'est pas resoluble analytiquement. L'enonce indique que sa resolution numerique donne \(T_{EXT} = 234\) K.</p>
+</div>
+
+<!-- ===== D7 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D7</span>
+<p class="corr-question__statement">Evaluer numeriquement le flux thermique \( \Phi \) associe a la conduction thermique, puis la puissance \( \mathcal{P}_{cc} \) echangee par conducto-convection a la face externe du fuselage.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel : Donnees numeriques</div>
+\(L = 60\) m, \(R_{INT} = 5{,}3\) m, \(e = 0{,}3\) m, \(\lambda_C = 0{,}03\) W.m\(^{-1}\).K\(^{-1}\), \(T_{INT} = 293\) K, \(T_A = 220\) K, \(T_{EXT} = 234\) K, \(h = 20\) W.m\(^{-2}\).K\(^{-1}\), \(\ln(5{,}6/5{,}3) \simeq 5 \times 10^{-2}\).
+</div>
+
+<p><strong>Flux de conduction :</strong></p>
+\[ \Phi = \frac{2\pi \times 0{,}03 \times 60 \times (293 - 234)}{5 \times 10^{-2}} = \frac{2\pi \times 0{,}03 \times 60 \times 59}{0{,}05} \]
+\[ \Phi = \frac{2\pi \times 106{,}2}{0{,}05} = \frac{667}{0{,}05} \approx 1{,}3 \times 10^4 \text{ W} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\Phi \approx 1{,}3 \times 10^4 \text{ W} \approx 13 \text{ kW}} \]
+</div>
+
+<p><strong>Puissance de conducto-convection :</strong></p>
+\[ \mathcal{P}_{cc} = h \times 2\pi R_{EXT} L \times (T_{EXT} - T_A) \]
+\[ \mathcal{P}_{cc} = 20 \times 2\pi \times 5{,}6 \times 60 \times (234 - 220) = 20 \times 2\pi \times 5{,}6 \times 60 \times 14 \]
+\[ \mathcal{P}_{cc} = 20 \times 2\pi \times 4704 \approx 20 \times 29\,560 \approx 5{,}9 \times 10^5 \text{ W} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathcal{P}_{cc} \approx 6 \times 10^5 \text{ W} \approx 600 \text{ kW}} \]
+</div>
+</div>
+
+<!-- ===== D8 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D8</span>
+<p class="corr-question__statement">Commenter l'importance relative de chacun des trois termes (conduction, conducto-convection et bilan radiatif).</p>
+
+<p>Recapitulons les ordres de grandeur :</p>
+<ul>
+<li><strong>Conduction dans le fuselage :</strong> \(\Phi \approx 1{,}3 \times 10^4\) W = 13 kW</li>
+<li><strong>Conducto-convection exterieure :</strong> \(\mathcal{P}_{cc} \approx 6 \times 10^5\) W = 600 kW</li>
+<li><strong>Bilan radiatif :</strong> \(\mathcal{P}_R \approx 6 \times 10^5\) W = 600 kW (donne par l'enonce)</li>
+</ul>
+
+<p>La conduction dans le fuselage est <strong>environ 50 fois plus faible</strong> que la conducto-convection et le rayonnement. La bonne isolation thermique du fuselage (\(\lambda_C\) tres faible) fait que le transfert a travers la paroi est le terme le plus petit du bilan.</p>
+
+<p>La conducto-convection et le rayonnement sont du <strong>meme ordre de grandeur</strong>, et dominent largement. Ce sont eux qui fixent la temperature exterieure \(T_{EXT}\) du fuselage.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi c'est important ?</div>
+Cela signifie que l'isolation du fuselage est tres efficace : malgre le froid glacial a l'exterieur (-53 degres C !), la fuite de chaleur par la paroi ne represente que quelques kW. C'est la conducto-convection <em>exterieure</em> (vent a grande vitesse) et le rayonnement qui dominent le bilan thermique de la surface.
+</div>
+</div>
+
+<!-- ===== D9 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D9</span>
+<p class="corr-question__statement">Evaluer numeriquement son ordre de grandeur, et commenter (faire reference aux resultats des questions C7 et C8).</p>
+
+<p>Le nombre de Biot de l'avion est defini par :</p>
+\[ \mathrm{Bi} = \frac{T_{INT} - T_{EXT}}{T_{EXT} - T_A} = \frac{293 - 234}{234 - 220} = \frac{59}{14} \approx 4{,}2 \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathrm{Bi} \approx 4} \]
+</div>
+
+<p><strong>Commentaire :</strong> Le nombre de Biot est superieur a 1, ce qui correspond au cas <strong>Bi \(\gg\) 1</strong> etudie a la question C7 : l'essentiel de la chute de temperature a lieu <em>dans le solide</em> (le fuselage), entre \(T_{INT} = 293\) K et \(T_{EXT} = 234\) K (soit 59 K), tandis que le saut a l'interface exterieure est plus faible (14 K seulement).</p>
+
+<p>Conformement a l'interpretation de C8, la resistance thermique de conduction dans le fuselage (liee a l'epaisseur et a la faible conductivite de l'isolant) est le facteur dominant. L'echange conducto-convectif avec l'air exterieur est relativement facile (le vent est rapide, donc \(h\) est grand).</p>
+</div>
+
+</div><!-- fin partie 2 -->
+
+
+<!-- ============================================================ -->
+<!--                TROISIEME PARTIE                               -->
+<!-- ============================================================ -->
+<div class="corr-exercice" id="exo3">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">3</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Climatisation et pressurisation</h2>
+<span class="corr-exercice__subtitle">Thermodynamique, premier principe &mdash; Questions E1 a F9</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermediaire</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Enonce</span>
+On etudie le systeme de climatisation de l'A340 : bilan thermique de la cabine, premier principe en regime permanent applique a l'echangeur, la turbine et la vanne de detente, puis bilan energetique global.
+</div>
+
+<h3 class="corr-part">E / Bilan thermique</h3>
+
+<!-- ===== E1 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E1</span>
+<p class="corr-question__statement">Avec les hypotheses precedemment posees, evaluer numeriquement la puissance \( \mathcal{P} \) traduisant le bilan thermique global pour l'air contenu dans la cabine. Faut-il chauffer ou refroidir la cabine pour la maintenir a temperature constante ?</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel : Donnees</div>
+250 passagers, 70 W par passager. Conduction a travers le fuselage : 10 kW (perte). On neglige conducto-convection interne et rayonnement interne.
+</div>
+
+<p>Le bilan thermique de la cabine comprend :</p>
+<ul>
+<li><strong>Apport des passagers :</strong> \(250 \times 70 = 17\,500\) W = 17,5 kW (source de chaleur)</li>
+<li><strong>Perte par conduction a travers le fuselage :</strong> 10 kW (la chaleur fuit vers l'exterieur froid)</li>
+</ul>
+
+<p>Le bilan net est :</p>
+\[ \mathcal{P} = 17\,500 - 10\,000 = 7\,500 \text{ W} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathcal{P} \approx 7{,}5 \text{ kW}} \]
+</div>
+</div>
+
+<!-- ===== E2 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E2</span>
+<p class="corr-question__statement">Faut-il chauffer ou refroidir la cabine pour la maintenir a temperature constante ?</p>
+
+<p>Le bilan est <strong>positif</strong> (\(\mathcal{P} > 0\)) : la cabine recoit globalement plus de chaleur (des passagers) qu'elle n'en perd (par conduction). Pour maintenir \(T_{INT}\) constante, il faut donc <strong>refroidir</strong> la cabine, c'est-a-dire evacuer cet exces de 7,5 kW.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi c'est important ?</div>
+C'est contre-intuitif ! Alors qu'il fait -53 degres C a l'exterieur, il faut <em>refroidir</em> la cabine. La bonne isolation thermique du fuselage est tellement efficace que les pertes par conduction ne suffisent pas a evacuer la chaleur produite par 250 passagers.
+</div>
+</div>
+
+<!-- ===== E3 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E3</span>
+<p class="corr-question__statement">Pourquoi le constructeur a-t-il neanmoins choisi une bonne isolation thermique de l'avion, caracterisee par la faible valeur de \( \lambda_C \), alors que l'air exterieur est tres froid ?</p>
+
+<p>Plusieurs raisons justifient ce choix :</p>
+<ul>
+<li><strong>Confort thermique :</strong> sans isolation, la paroi interieure serait tres froide (proche de \(T_A = 220\) K = -53 degres C). Les passagers assis pres du hublot ressentiraient un froid intense par rayonnement vers cette paroi glaciale, meme si l'air de la cabine est a 20 degres C.</li>
+<li><strong>Condensation :</strong> une paroi froide provoquerait la condensation de la vapeur d'eau de l'air interieur, creant du givre a l'interieur de la cabine.</li>
+<li><strong>Regulation :</strong> l'isolation permet un controle fin de la temperature. Sans elle, les pertes seraient enormes et dependraient fortement des conditions exterieures, rendant la climatisation instable.</li>
+<li><strong>Economie d'energie :</strong> en vol au sol ou a basse altitude (ou il fait plus chaud dehors), il pourrait falloir chauffer. L'isolation limite alors la puissance necessaire.</li>
+</ul>
+</div>
+
+<h3 class="corr-part">F / Premier principe en regime permanent</h3>
+
+<!-- ===== F1 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F1</span>
+<p class="corr-question__statement">Etablir la relation : \( D_m(h_S - h_E) = p_{mec} + p_{th} \), sachant qu'il est possible de negliger la variation d'energie cinetique et d'energie potentielle du fluide lors de la traversee de la machine (hypotheses valables dans la suite du probleme).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel : Premier principe pour un systeme ouvert</div>
+Pour un systeme ouvert en regime permanent, le premier principe s'ecrit : la variation d'enthalpie du fluide est egale a la somme des transferts thermiques et mecaniques (hors travail des forces de pression, deja compte dans l'enthalpie).
+</div>
+
+<p>Considerons le fluide entre l'entree E et la sortie S de la machine. En regime permanent, le debit massique est le meme en entree et en sortie : \(D_m\).</p>
+
+<p>Le premier principe pour un systeme ouvert en regime permanent s'ecrit, pour une masse \(\delta m = D_m\,\mathrm{d}t\) traversant la machine pendant \(\mathrm{d}t\) :</p>
+\[ \delta m\,(h_S - h_E) + \underbrace{\frac{1}{2}\delta m(v_S^2 - v_E^2)}_{\approx\, 0} + \underbrace{\delta m\,g(z_S - z_E)}_{\approx\, 0} = \delta Q + \delta W_{utile} \]
+
+<p>En negligeant les variations d'energie cinetique et d'energie potentielle, et en divisant par \(\mathrm{d}t\) :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{D_m(h_S - h_E) = p_{mec} + p_{th}} \]
+ou \(p_{mec}\) est la puissance mecanique utile recue (hors forces de pression) et \(p_{th}\) la puissance thermique recue.
+</div>
+</div>
+
+<!-- ===== F2 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question F2</span>
+<p class="corr-question__statement">Exprimer l'enthalpie massique h d'un gaz parfait en fonction de sa temperature T, de sa masse molaire M, de R et d'une constante \( h_0 \).</p>
+
+<p>Pour un gaz parfait, l'enthalpie massique ne depend que de la temperature. La capacite calorifique massique a pression constante est \(c_P = \dfrac{\gamma R}{(\gamma - 1)M}\). Donc :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{h = c_P T + h_0 = \frac{\gamma R}{(\gamma - 1)M}\,T + h_0} \]
+</div>
+</div>
+
+<!-- ===== F3 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question F3</span>
+<p class="corr-question__statement">Evaluer numeriquement le debit massique \( D_m \) de l'air injecte a cette temperature \( T_S \) pour compenser le bilan thermique \( \mathcal{P} \) de la cabine evalue a la question E1.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+On injecte de l'air a \(T_K = 289\) K dans la cabine a \(T_{INT} = 293\) K. L'air injecte absorbe la chaleur excedentaire en se rechauffant de \(T_K\) a \(T_{INT}\). Le premier principe donne \(\mathcal{P} = D_m c_P (T_{INT} - T_K)\).
+</div>
+
+<p>On a \(\mathcal{P} = D_m c_P (T_{INT} - T_K)\), soit :</p>
+\[ D_m = \frac{\mathcal{P}}{c_P(T_{INT} - T_K)} \]
+
+<p>Calculons \(c_P\) :</p>
+\[ c_P = \frac{\gamma R}{(\gamma - 1)M} = \frac{1{,}4 \times 8{,}3}{0{,}4 \times 0{,}029} = \frac{11{,}62}{0{,}0116} \approx 1\,002 \text{ J.kg}^{-1}.\text{K}^{-1} \approx 10^3 \text{ J.kg}^{-1}.\text{K}^{-1} \]
+
+\[ D_m = \frac{7\,500}{1\,000 \times (293 - 289)} = \frac{7\,500}{4\,000} \approx 1{,}9 \text{ kg.s}^{-1} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{D_m \approx 2 \text{ kg.s}^{-1}} \]
+</div>
+</div>
+
+<!-- ===== F4 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question F4</span>
+<p class="corr-question__statement">Commenter ce resultat sachant que l'ordre de grandeur, a la pression interne de la cabine, du minimum necessaire pour renouveler l'oxygene consomme par la respiration des 250 passagers est un debit d'air de l'ordre de 50 g.s\(^{-1}\).</p>
+
+<p>Le debit necessaire pour la climatisation (\(D_m \approx 2\) kg.s\(^{-1}\)) est environ <strong>40 fois superieur</strong> au debit minimal pour le renouvellement de l'oxygene (50 g.s\(^{-1}\) = 0,05 kg.s\(^{-1}\)).</p>
+
+<p>C'est donc la <strong>contrainte thermique</strong> (evacuer la chaleur des passagers) qui dimensionne le systeme de ventilation, et non la contrainte de renouvellement d'air. Le renouvellement d'oxygene est automatiquement assure, et meme tres largement depasse.</p>
+</div>
+
+<!-- ===== F5 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F5</span>
+<p class="corr-question__statement">Determiner la temperature \( T_O \), en utilisant la relation etablie en F1.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+La voie 2 comporte une vanne de detente : c'est un dispositif ou le fluide passe brusquement d'une haute pression a une basse pression, sans echange de chaleur ni de travail mecanique. Pour un gaz parfait, la temperature est inchangee lors d'une telle detente (enthalpie constante et \(h\) ne depend que de \(T\)).
+</div>
+
+<p>La vanne de detente fonctionne de facon adiabatique (\(p_{th} = 0\)) et sans travail mecanique (\(p_{mec} = 0\)). Le premier principe en regime permanent donne :</p>
+\[ D_m(h_S - h_E) = 0 \quad \Longrightarrow \quad h_S = h_E \]
+
+<p>Pour un gaz parfait, \(h\) ne depend que de \(T\), donc :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{T_O = T_R = 520 \text{ K}} \]
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+Pour un gaz parfait, une detente de Joule-Thomson (vanne de detente) est <em>isotherme</em>. Attention, pour un gaz reel, ce ne serait pas le cas (effet Joule-Thomson). Ici, l'air est assimile a un gaz parfait, donc \(T_O = T_R\).
+</div>
+</div>
+
+<!-- ===== F6 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F6</span>
+<p class="corr-question__statement">En adaptant cette meme relation au cas du melange considere a la derniere etape du dispositif, determiner l'expression litterale de x, puis evaluer sa valeur numerique.</p>
+
+<p>Le melange des deux voies est adiabatique et sans travail mecanique. Soit \(x\) la fraction du debit allant vers la voie 1 (echangeur + turbine, sortie a \(T_S = 273\) K) et \((1-x)\) la fraction allant vers la voie 2 (vanne, sortie a \(T_O = 520\) K). Le melange doit etre a \(T_K = 289\) K.</p>
+
+<p>Le bilan enthalpique du melange donne :</p>
+\[ x D_m c_P T_S + (1-x)D_m c_P T_O = D_m c_P T_K \]
+\[ x T_S + (1-x)T_O = T_K \]
+\[ x(T_S - T_O) = T_K - T_O \]
+\[ x = \frac{T_K - T_O}{T_S - T_O} = \frac{T_K - T_R}{T_S - T_R} \]
+
+<p>Application numerique :</p>
+\[ x = \frac{289 - 520}{273 - 520} = \frac{-231}{-247} \approx 0{,}935 \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{x = \frac{T_K - T_R}{T_S - T_R} \approx 0{,}94} \]
+</div>
+
+<p>Environ 94 % du debit passe par la voie 1 (echangeur + turbine). C'est logique : la voie 2 sort a 520 K (trop chaud), donc il en faut tres peu pour remonter la temperature du melange de 273 K a 289 K.</p>
+</div>
+
+<!-- ===== F7 ===== -->
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question F7</span>
+<p class="corr-question__statement">Etablir la relation qui permettrait de calculer la temperature \( T_1 \).</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+La voie 1 comprend : (1) un echangeur isobare qui amene l'air de \(T_R\) a \(T_1\) a la pression \(P_R\), puis (2) une turbine adiabatique reversible (isentropique) qui amene l'air de \(T_1, P_R\) a \(T_S, P_{INT}\). La relation isentropique pour un gaz parfait relie \(T_1\) a \(T_S\), \(P_R\) et \(P_{INT}\).
+</div>
+
+<p>La turbine fonctionne de facon reversible et adiabatique, donc la transformation est <em>isentropique</em>. Pour un gaz parfait en transformation isentropique, la loi de Laplace donne :</p>
+\[ T_1 P_R^{-(\gamma-1)/\gamma} = T_S P_{INT}^{-(\gamma-1)/\gamma} \]
+
+<p>Soit :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{T_1 = T_S \left(\frac{P_R}{P_{INT}}\right)^{(\gamma-1)/\gamma}} \]
+</div>
+
+<p><strong>Verification numerique :</strong> \(\frac{\gamma - 1}{\gamma} = \frac{0{,}4}{1{,}4} = \frac{2}{7}\).</p>
+\[ T_1 = 273 \times \left(\frac{4 \times 10^5}{8 \times 10^4}\right)^{2/7} = 273 \times 5^{2/7} \]
+<p>On a \(5^{2/7} = e^{(2/7)\ln 5} = e^{(2/7)\times 1{,}61} = e^{0{,}46} \approx 1{,}58\), soit \(T_1 \approx 273 \times 1{,}58 \approx 432\) K.</p>
+<p>On retrouve bien la valeur \(T_1 = 432\) K indiquee par l'enonce.</p>
+</div>
+
+<!-- ===== F8 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F8</span>
+<p class="corr-question__statement">Exprimer la puissance \( \mathcal{P}_{Reac} \) recue par l'air qui passe au contact du reacteur, puis la puissance \( \mathcal{P}_{Turb} \) recue par la fraction de l'air traversant la turbine. Evaluer numeriquement leurs ordres de grandeur.</p>
+
+<p><strong>Puissance du reacteur :</strong> Le reacteur fonctionne de facon adiabatique et reversible (isentropique). La totalite du debit \(D_m\) le traverse. Le premier principe donne :</p>
+\[ \mathcal{P}_{Reac} = p_{mec} = D_m c_P (T_R - T_A) \]
+\[ \mathcal{P}_{Reac} = 2 \times 1\,000 \times (520 - 220) = 2 \times 1\,000 \times 300 = 6 \times 10^5 \text{ W} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathcal{P}_{Reac} = D_m c_P(T_R - T_A) \approx 600 \text{ kW}} \]
+</div>
+
+<p><strong>Puissance de la turbine :</strong> La turbine est adiabatique ; seule la fraction \(x D_m\) du debit la traverse. L'air entre a \(T_1 = 432\) K et sort a \(T_S = 273\) K. La turbine <em>fournit</em> du travail mecanique (c'est une machine motrice), donc \(p_{mec} < 0\) pour l'air :</p>
+\[ \mathcal{P}_{Turb} = x D_m c_P (T_S - T_1) \]
+\[ \mathcal{P}_{Turb} = 0{,}94 \times 2 \times 1\,000 \times (273 - 432) = 1{,}88 \times 1\,000 \times (-159) \approx -3 \times 10^5 \text{ W} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathcal{P}_{Turb} = x D_m c_P(T_S - T_1) \approx -300 \text{ kW}} \]
+Le signe negatif signifie que l'air <em>cede</em> du travail mecanique a la turbine (qui peut le restituer sous une autre forme, ou le dissiper).
+</div>
+</div>
+
+<!-- ===== F9 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question F9</span>
+<p class="corr-question__statement">En deduire la puissance \( \mathcal{P}_{TOT} \) totale necessaire a la climatisation et a la pressurisation de l'avion. Commenter.</p>
+
+<p>La puissance totale est la somme des puissances mecaniques fournies a l'air :</p>
+\[ \mathcal{P}_{TOT} = \mathcal{P}_{Reac} + \mathcal{P}_{Turb} = 600 + (-300) = 300 \text{ kW} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathcal{P}_{TOT} \approx 300 \text{ kW}} \]
+</div>
+
+<p><strong>Commentaire :</strong> Cette puissance de 300 kW est considerable. Pour un A340 dont chaque reacteur fournit une puissance de l'ordre de quelques MW, la climatisation et la pressurisation representent une fraction significative (de l'ordre de quelques pourcents) de la puissance totale de l'avion. C'est loin d'etre negligeable : evacuer 7,5 kW de chaleur excedentaire necessite en realite 300 kW de puissance mecanique, soit un facteur 40. C'est le cout energetique de la pressurisation (il faut comprimer l'air de 0,25 bar a 0,8 bar) et du refroidissement.</p>
+</div>
+
+</div><!-- fin partie 3 -->
+
+
+<!-- ============================================================ -->
+<!--                QUATRIEME PARTIE                               -->
+<!-- ============================================================ -->
+<div class="corr-exercice" id="exo4">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">4</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Suivi de la trajectoire de l'avion</h2>
+<span class="corr-exercice__subtitle">GPS, ondes dans l'ionosphere &mdash; Questions G1 a G15</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermediaire</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Enonce</span>
+On etudie le principe du GPS (mesure de distance par temps de propagation), puis les effets de l'ionosphere (milieu plasma) sur la propagation des ondes electromagnetiques : relation de dispersion, vitesse de phase et de groupe, et erreur induite sur la localisation.
+</div>
+
+<!-- ===== G1 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question G1</span>
+<p class="corr-question__statement">Ecrire l'equation reliant les grandeurs \( x_i \), \( y_i \), \( z_i \), x, y, z, \( t_e \), \( t_r \) et c, en supposant que la vitesse de propagation de l'onde demeure celle de la lumiere c = 3.10\(^8\) m.s\(^{-1}\), sur l'integralite de son parcours.</p>
+
+<p>La distance entre le satellite \(i\) (position \((x_i, y_i, z_i)\)) et l'avion (position \((x, y, z)\)) est parcourue a la vitesse \(c\) pendant la duree \(t_r - t_e\). On a donc :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{(x - x_i)^2 + (y - y_i)^2 + (z - z_i)^2 = c^2(t_r - t_e)^2} \]
+</div>
+
+<p>C'est l'equation d'une sphere centree sur le satellite \(i\), de rayon \(c(t_r - t_e)\). L'avion se trouve sur cette sphere.</p>
+</div>
+
+<!-- ===== G2 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question G2</span>
+<p class="corr-question__statement">Combien de satellites sont-ils necessaires pour pouvoir determiner la position de l'avion ?</p>
+
+<p>On a 3 inconnues : \(x\), \(y\), \(z\). Chaque satellite fournit une equation (une sphere). L'intersection de deux spheres est un cercle, celle de trois spheres donne generalement deux points (dont l'un est souvent aberrant, par exemple sous la surface de la Terre).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{3 \text{ satellites sont necessaires}} \]
+(en supposant les horloges parfaitement synchronisees).
+</div>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+En pratique, comme on le verra a la question G5, un 4e satellite est necessaire pour compenser le decalage d'horloge du recepteur.
+</div>
+</div>
+
+<!-- ===== G3 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question G3</span>
+<p class="corr-question__statement">Sachant que les satellites gravitent sur une orbite situee a environ 2.10\(^4\) km d'altitude (alors qu'un avion vole a 5 km d'altitude), quel est l'ordre de grandeur de la duree de propagation de l'onde ?</p>
+
+<p>La distance satellite-avion est de l'ordre de \(d \approx 2 \times 10^4\) km \(= 2 \times 10^7\) m (l'altitude de l'avion est negligeable devant celle du satellite).</p>
+
+\[ \Delta t = \frac{d}{c} = \frac{2 \times 10^7}{3 \times 10^8} \approx 0{,}067 \text{ s} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\Delta t \approx 70 \text{ ms} \approx 0{,}07 \text{ s}} \]
+</div>
+</div>
+
+<!-- ===== G4 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question G4</span>
+<p class="corr-question__statement">Estimer l'erreur sur la determination de la distance satellite-avion resultant d'une incertitude d'un millionieme de seconde sur la mesure de cette duree. Commenter.</p>
+
+<p>Une incertitude de \(\delta t = 10^{-6}\) s sur le temps de propagation entraine une erreur sur la distance :</p>
+\[ \delta d = c \times \delta t = 3 \times 10^8 \times 10^{-6} = 300 \text{ m} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\delta d = 300 \text{ m}} \]
+</div>
+
+<p><strong>Commentaire :</strong> Une erreur de seulement un millionieme de seconde (1 microseconde) sur la mesure du temps engendre une erreur de 300 m sur la position. C'est enorme pour la navigation aerienne ! Il faut donc des horloges extremement precises (horloges atomiques) pour obtenir une precision metrique.</p>
+</div>
+
+<!-- ===== G5 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question G5</span>
+<p class="corr-question__statement">Comment le systeme G.P.S. peut-il eliminer cette cause d'erreur ?</p>
+
+<p>L'horloge du recepteur est decalee d'un meme \(\Delta t\) inconnu par rapport a toutes les horloges des satellites. Ce decalage constitue une <strong>4e inconnue</strong>, en plus de \(x\), \(y\), \(z\).</p>
+
+<p>Pour resoudre un systeme de 4 inconnues, il faut 4 equations, donc :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Il suffit d'utiliser un <strong>4e satellite</strong>. Chaque satellite fournit une equation de la forme :
+\[ (x - x_i)^2 + (y - y_i)^2 + (z - z_i)^2 = c^2(t_r + \Delta t - t_e)^2 \]
+Avec 4 satellites, on obtient 4 equations a 4 inconnues \((x, y, z, \Delta t)\), ce qui permet de determiner simultanement la position et le decalage d'horloge.
+</div>
+</div>
+
+<!-- ===== G6 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question G6</span>
+<p class="corr-question__statement">Rappeler les equations de Maxwell dans un tel milieu et indiquer celles qui pourront etre negligees ou prises en compte.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel : Equations de Maxwell</div>
+Les quatre equations de Maxwell dans un milieu non magnetique s'ecrivent :
+<ul>
+<li>Maxwell-Gauss : \(\mathrm{div}\,\vec{E} = \rho_{libre}/\varepsilon_0\)</li>
+<li>Maxwell-flux : \(\mathrm{div}\,\vec{B} = 0\)</li>
+<li>Maxwell-Faraday : \(\overrightarrow{\mathrm{rot}}\,\vec{E} = -\dfrac{\partial \vec{B}}{\partial t}\)</li>
+<li>Maxwell-Ampere : \(\overrightarrow{\mathrm{rot}}\,\vec{B} = \mu_0 \vec{j} + \mu_0 \varepsilon_0 \dfrac{\partial \vec{E}}{\partial t}\)</li>
+</ul>
+</div>
+
+<p>Dans le plasma :</p>
+<ul>
+<li><strong>Maxwell-Gauss :</strong> Le plasma est globalement neutre (autant de charges + que de charges -), donc \(\rho_{libre} = 0\) en moyenne. On a \(\mathrm{div}\,\vec{E} = 0\).</li>
+<li><strong>Maxwell-flux :</strong> \(\mathrm{div}\,\vec{B} = 0\), toujours verifiee (pas de monopoles magnetiques).</li>
+<li><strong>Maxwell-Faraday :</strong> \(\overrightarrow{\mathrm{rot}}\,\vec{E} = -\dfrac{\partial \vec{B}}{\partial t}\), toujours prise en compte.</li>
+<li><strong>Maxwell-Ampere :</strong> \(\overrightarrow{\mathrm{rot}}\,\vec{B} = \mu_0 \vec{j} + \mu_0\varepsilon_0 \dfrac{\partial \vec{E}}{\partial t}\), prise en compte avec le courant \(\vec{j}\) du aux electrons mobiles du plasma.</li>
+</ul>
+</div>
+
+<!-- ===== G7 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question G7</span>
+<p class="corr-question__statement">Realiser un bilan des forces subies par un electron du plasma et indiquer celles qui pourront etre negligees ou prises en compte.</p>
+
+<p>Un electron du plasma subit :</p>
+<ul>
+<li><strong>Force electrique :</strong> \(\vec{F}_E = -e\vec{E}\). C'est la force dominante, toujours prise en compte.</li>
+<li><strong>Force magnetique (Lorentz) :</strong> \(\vec{F}_B = -e\vec{v} \times \vec{B}\). Pour une onde EM, \(|\vec{B}| = |\vec{E}|/c\) et la vitesse de l'electron \(v \ll c\), donc \(|\vec{F}_B| \ll |\vec{F}_E|\). <strong>Negligeable.</strong></li>
+<li><strong>Poids :</strong> \(\vec{P} = m\vec{g}\). Completement negligeable a l'echelle atomique devant les forces electriques. <strong>Negligeable.</strong></li>
+<li><strong>Forces de collision :</strong> Le plasma est peu dense, les collisions sont rares. <strong>Negligeable.</strong></li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Seule la <strong>force electrique</strong> \(\vec{F} = -e\vec{E}\) est retenue.
+</div>
+</div>
+
+<!-- ===== G8 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question G8</span>
+<p class="corr-question__statement">Determiner, en notation complexe, l'expression de la vitesse \( \vec{v} \) d'un electron du plasma soumis a l'onde. En deduire l'expression de la densite volumique de courant \( \vec{j} \) dans le plasma.</p>
+
+<p>Le principe fondamental de la dynamique applique a un electron (\(m\) sa masse, \(-e\) sa charge) donne :</p>
+\[ m\frac{\mathrm{d}\vec{v}}{\mathrm{d}t} = -e\vec{E} \]
+
+<p>En notation complexe, \(\vec{E} = E_0 e^{j(\omega t - kz)}\vec{e}_x\), et on cherche \(\vec{v}\) sous la forme \(\vec{v} = v_0 e^{j(\omega t - kz)}\vec{e}_x\). La derivee temporelle donne un facteur \(j\omega\) :</p>
+\[ m \cdot j\omega \cdot v_0 = -eE_0 \]
+\[ v_0 = \frac{-eE_0}{jm\omega} = \frac{eE_0}{jm\omega} \times (-1) = \frac{je}{ m\omega}E_0 \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\vec{v} = \frac{-e}{jm\omega}\vec{E} = \frac{je}{m\omega}\vec{E}} \]
+</div>
+
+<p>La densite volumique de courant est due aux \(n\) electrons par unite de volume, chacun de charge \(-e\) :</p>
+\[ \vec{j} = n(-e)\vec{v} = -ne \times \frac{-e}{jm\omega}\vec{E} = \frac{ne^2}{jm\omega}\vec{E} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\vec{j} = \frac{ne^2}{jm\omega}\vec{E}} \]
+</div>
+</div>
+
+<!-- ===== G9 ===== -->
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question G9</span>
+<p class="corr-question__statement">Etablir l'equation de propagation de l'onde dans ce milieu.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+On prend le rotationnel de Maxwell-Faraday et on utilise Maxwell-Ampere pour eliminer \(\vec{B}\). La relation vectorielle \(\overrightarrow{\mathrm{rot}}(\overrightarrow{\mathrm{rot}}\,\vec{C}) = \overrightarrow{\mathrm{grad}}(\mathrm{div}\,\vec{C}) - \Delta\vec{C}\) simplifie le calcul puisque \(\mathrm{div}\,\vec{E} = 0\) dans le plasma neutre.
+</div>
+
+<p>On part de Maxwell-Faraday :</p>
+\[ \overrightarrow{\mathrm{rot}}\,\vec{E} = -\frac{\partial \vec{B}}{\partial t} \]
+
+<p>On en prend le rotationnel :</p>
+\[ \overrightarrow{\mathrm{rot}}(\overrightarrow{\mathrm{rot}}\,\vec{E}) = -\frac{\partial}{\partial t}(\overrightarrow{\mathrm{rot}}\,\vec{B}) \]
+
+<p>Le membre de gauche se simplifie (car \(\mathrm{div}\,\vec{E} = 0\)) :</p>
+\[ \overrightarrow{\mathrm{rot}}(\overrightarrow{\mathrm{rot}}\,\vec{E}) = -\Delta\vec{E} \]
+
+<p>Pour le membre de droite, on utilise Maxwell-Ampere :</p>
+\[ \overrightarrow{\mathrm{rot}}\,\vec{B} = \mu_0\vec{j} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t} \]
+
+<p>En remplacant \(\vec{j}\) par son expression et en derivant par rapport au temps :</p>
+\[ -\Delta\vec{E} = -\mu_0\frac{\partial\vec{j}}{\partial t} - \mu_0\varepsilon_0\frac{\partial^2\vec{E}}{\partial t^2} \]
+
+<p>Or \(\dfrac{\partial\vec{j}}{\partial t} = \dfrac{ne^2}{jm\omega}\dfrac{\partial\vec{E}}{\partial t}\). En notation complexe, \(\dfrac{\partial}{\partial t} \to j\omega\), donc \(\dfrac{\partial\vec{j}}{\partial t} = \dfrac{ne^2}{m}\vec{E}\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\Delta\vec{E} - \mu_0\varepsilon_0\frac{\partial^2\vec{E}}{\partial t^2} = \frac{\mu_0 ne^2}{m}\vec{E}} \]
+ou, de facon equivalente :
+\[ \Delta\vec{E} = \frac{1}{c^2}\frac{\partial^2\vec{E}}{\partial t^2} + \frac{ne^2}{\varepsilon_0 m}\cdot\frac{\vec{E}}{c^2} \cdot \varepsilon_0 \mu_0 = \mu_0\varepsilon_0\frac{\partial^2\vec{E}}{\partial t^2} + \mu_0\frac{ne^2}{m}\vec{E} \]
+</div>
+</div>
+
+<!-- ===== G10 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question G10</span>
+<p class="corr-question__statement">Rappeler l'equation de propagation des ondes electromagnetiques dans le vide et verifier la compatibilite avec l'equation de propagation obtenue dans le plasma en precisant votre methode. En deduire la relation de dispersion reliant le module k du vecteur d'onde et la pulsation \( \omega \) de l'onde se propageant dans le plasma.</p>
+
+<p><strong>Equation de propagation dans le vide :</strong></p>
+\[ \Delta\vec{E} = \mu_0\varepsilon_0\frac{\partial^2\vec{E}}{\partial t^2} = \frac{1}{c^2}\frac{\partial^2\vec{E}}{\partial t^2} \]
+
+<p><strong>Compatibilite :</strong> Si \(n = 0\) (pas de plasma), le terme supplementaire \(\mu_0\frac{ne^2}{m}\vec{E}\) disparait, et on retrouve bien l'equation de propagation dans le vide.</p>
+
+<p><strong>Relation de dispersion :</strong> On injecte l'onde plane \(\vec{E} = E_0 e^{j(\omega t - kz)}\vec{e}_x\). Les derivees donnent \(\Delta \to -k^2\) et \(\partial^2/\partial t^2 \to -\omega^2\). L'equation de propagation devient :</p>
+\[ -k^2 = -\frac{\omega^2}{c^2} + \frac{\mu_0 ne^2}{m} \]
+
+<p>Posons \(\omega_0^2 = \dfrac{ne^2}{\varepsilon_0 m}\) (pulsation de plasma). Comme \(\mu_0 = 1/(\varepsilon_0 c^2)\), on a \(\mu_0 ne^2/m = \omega_0^2/c^2\). Donc :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{k^2 = \frac{\omega^2 - \omega_0^2}{c^2}} \]
+avec \(\omega_0^2 = \dfrac{ne^2}{\varepsilon_0 m}\) la pulsation de plasma.
+</div>
+</div>
+
+<!-- ===== G11 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question G11</span>
+<p class="corr-question__statement">Montrer que la propagation de l'onde n'est possible que si sa pulsation est superieure a une valeur \( \omega_0 \) dont l'expression sera ecrite en fonction de n et de constantes physiques. Dans le domaine \( \omega > \omega_0 \), representer graphiquement la courbe k(\( \omega \)) et commenter le cas limite correspondant a \( \omega \) tendant vers l'infini.</p>
+
+<p>Pour que l'onde se propage, il faut que \(k^2 > 0\), soit :</p>
+\[ \omega^2 - \omega_0^2 > 0 \quad \Longleftrightarrow \quad \omega > \omega_0 \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+La propagation n'est possible que pour \(\omega > \omega_0\) avec :
+\[ \boxed{\omega_0 = \sqrt{\frac{ne^2}{\varepsilon_0 m}}} \]
+C'est la <strong>pulsation de plasma</strong> (ou pulsation de coupure).
+</div>
+
+<p><strong>Allure de la courbe \(k(\omega)\) :</strong></p>
+\[ k = \frac{1}{c}\sqrt{\omega^2 - \omega_0^2} \]
+<ul>
+<li>Pour \(\omega = \omega_0\) : \(k = 0\) (la courbe part de l'origine en \(\omega_0\)).</li>
+<li>Pour \(\omega \to +\infty\) : \(k \approx \omega/c\), c'est-a-dire la droite de lumiere (asymptote). On retrouve la propagation dans le vide quand la frequence est tres elevee devant la frequence de plasma.</li>
+<li>La courbe est toujours en dessous de la droite \(k = \omega/c\).</li>
+</ul>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi c'est important ?</div>
+A haute frequence, le plasma devient « transparent » : les electrons sont trop lourds pour suivre les oscillations rapides du champ, et l'onde se propage comme dans le vide. C'est pour cela que les signaux GPS (1,6 GHz) traversent l'ionosphere, alors que les ondes radio basse frequence (quelques MHz) sont reflechies.
+</div>
+</div>
+
+<!-- ===== G12 ===== -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question G12</span>
+<p class="corr-question__statement">Deux vitesses sont associees a la propagation d'une onde : sa vitesse de phase \( v_\varphi \) et sa vitesse de groupe \( v_g \). Rappeler leurs definitions en fonction de k et de \( \omega \), puis donner leurs expressions en fonction de \( \omega \), \( \omega_0 \) et c pour l'onde se propageant dans le plasma.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel : Definitions</div>
+<ul>
+<li><strong>Vitesse de phase :</strong> \(v_\varphi = \dfrac{\omega}{k}\) — vitesse de propagation des surfaces d'egale phase.</li>
+<li><strong>Vitesse de groupe :</strong> \(v_g = \dfrac{\mathrm{d}\omega}{\mathrm{d}k}\) — vitesse de propagation de l'enveloppe d'un paquet d'ondes (vitesse de l'energie et de l'information).</li>
+</ul>
+</div>
+
+<p><strong>Vitesse de phase :</strong></p>
+\[ v_\varphi = \frac{\omega}{k} = \frac{\omega}{\frac{1}{c}\sqrt{\omega^2 - \omega_0^2}} = \frac{c}{\sqrt{1 - \omega_0^2/\omega^2}} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{v_\varphi = \frac{c}{\sqrt{1 - \dfrac{\omega_0^2}{\omega^2}}}} \]
+On note que \(v_\varphi > c\) : la vitesse de phase est superieure a \(c\) dans le plasma. Ce n'est pas en contradiction avec la relativite car la vitesse de phase ne transporte pas d'information.
+</div>
+
+<p><strong>Vitesse de groupe :</strong> On part de \(k = \frac{1}{c}\sqrt{\omega^2 - \omega_0^2}\), donc \(\frac{\mathrm{d}k}{\mathrm{d}\omega} = \frac{1}{c}\cdot\frac{\omega}{\sqrt{\omega^2 - \omega_0^2}}\), et :</p>
+\[ v_g = \frac{\mathrm{d}\omega}{\mathrm{d}k} = c\cdot\frac{\sqrt{\omega^2 - \omega_0^2}}{\omega} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{v_g = c\sqrt{1 - \frac{\omega_0^2}{\omega^2}}} \]
+On note que \(v_g < c\) et que \(v_\varphi \cdot v_g = c^2\).
+</div>
+</div>
+
+<!-- ===== G13 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question G13</span>
+<p class="corr-question__statement">Laquelle de ces deux vitesses est concernee pour la mesure de la distance separant l'avion du satellite ?</p>
+
+<p>Le signal GPS est un train d'ondes de courte duree (un « pulse »). C'est la vitesse a laquelle se deplace ce paquet d'ondes — c'est-a-dire la vitesse a laquelle l'information (le temps d'emission) est transportee — qui determine le temps de propagation mesure.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+C'est la <strong>vitesse de groupe</strong> \(v_g\) qui est pertinente pour la mesure de distance GPS.
+</div>
+</div>
+
+<!-- ===== G14 ===== -->
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question G14</span>
+<p class="corr-question__statement">En appelant H l'epaisseur du plasma, donner l'expression litterale de l'erreur \( \Delta d \) commise sur la determination de la distance satellite-avion, erreur realisee en negligeant la presence de l'ionosphere.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+Le GPS suppose que l'onde voyage a la vitesse \(c\) sur tout le trajet. Mais dans l'ionosphere (epaisseur \(H\)), l'onde voyage a la vitesse de groupe \(v_g < c\), donc elle met plus de temps que prevu. Le GPS surestime alors la distance.
+</div>
+
+<p>Le temps reel de traversee de l'ionosphere est \(t_{reel} = H/v_g\). Le temps suppose par le GPS (a la vitesse \(c\)) est \(t_{GPS} = H/c\). La distance supposee par le GPS pour cette portion est \(c \cdot t_{reel} = cH/v_g\), alors que la distance reelle est \(H\). L'erreur est donc :</p>
+\[ \Delta d = \frac{cH}{v_g} - H = H\left(\frac{c}{v_g} - 1\right) \]
+
+<p>Or, \(v_g = c\sqrt{1 - \omega_0^2/\omega^2}\). Pour \(\omega \gg \omega_0\) (ce qui est le cas du GPS a 1,6 GHz), on peut faire un developpement limite :</p>
+\[ \frac{1}{v_g} = \frac{1}{c}\frac{1}{\sqrt{1 - \omega_0^2/\omega^2}} \approx \frac{1}{c}\left(1 + \frac{\omega_0^2}{2\omega^2}\right) \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\Delta d = H\left(\frac{c}{v_g} - 1\right) \approx \frac{H\,\omega_0^2}{2\omega^2} = \frac{ne^2 H}{2\varepsilon_0 m \omega^2}} \]
+</div>
+</div>
+
+<!-- ===== G15 ===== -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question G15</span>
+<p class="corr-question__statement">Commenter ce resultat.</p>
+
+<p>L'enonce indique que pour la frequence du GPS (1,6 GHz), l'erreur est <strong>de l'ordre du metre</strong>.</p>
+
+<p><strong>Commentaires :</strong></p>
+<ul>
+<li>Cette erreur, bien que modeste en valeur absolue, est significative pour la navigation de precision. Elle depend de la densite electronique \(n\) de l'ionosphere, qui varie selon l'heure du jour (maximum en milieu de journee, quand le rayonnement solaire UV ionise davantage l'atmosphere).</li>
+<li>L'erreur decroit comme \(1/\omega^2\) : plus la frequence est elevee, plus l'onde « ignore » le plasma. C'est l'une des raisons pour lesquelles les signaux GPS utilisent des frequences en bande L (autour de 1,5 GHz).</li>
+<li>En pratique, les recepteurs GPS modernes utilisent <strong>deux frequences differentes</strong> (L1 et L2). Puisque l'erreur depend de \(\omega\), la comparaison des deux signaux permet de corriger l'effet de l'ionosphere et d'atteindre une precision centimetrique (GPS differentiel).</li>
+</ul>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+L'erreur est positive (\(\Delta d > 0\)) : le GPS <em>surestime</em> la distance, car l'onde est ralentie dans l'ionosphere. C'est coherent avec le fait que \(v_g < c\).
+</div>
+</div>
+
+</div><!-- fin partie 4 -->
+
+</div><!-- course__container -->
+</main>
+</body>
+</html>

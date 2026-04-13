@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2007 - Physique | LibMaths</title>
+<link rel="stylesheet" href="../../main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav__container">
+    <a href="../../index.html" class="nav__logo">LibMaths</a>
+    <ul class="nav__links">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../index.html">Cours</a></li>
+      <li><a href="../../physique/index.html">Physique</a></li>
+      <li><a href="../../parcours.html">Mon Parcours</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="course">
+  <div class="course__container">
+    <header class="course__header">
+      <div class="course__breadcrumb">
+        <a href="../../index.html">Accueil</a> &rsaquo;
+        <a href="../../physique/index.html">Physique</a> &rsaquo;
+        <span>E3A-Polytech PC 2007</span>
+      </div>
+      <h1 class="course__title">E3A-Polytech PC 2007 &mdash; Physique</h1>
+      <p class="course__subtitle">Concours ENSAM - ESTP - ARCHIMEDE &mdash; Epreuve de Physique PC &mdash; Duree 4 heures</p>
+    </header>
+
+    <section class="annale-info">
+      <div class="annale-info__grid">
+        <div class="annale-info__item"><strong>Concours :</strong> E3A-Polytech (ENSAM - ESTP - ARCHIMEDE)</div>
+        <div class="annale-info__item"><strong>Filiere :</strong> PC</div>
+        <div class="annale-info__item"><strong>Annee :</strong> 2007</div>
+        <div class="annale-info__item"><strong>Duree :</strong> 4 heures</div>
+        <div class="annale-info__item"><strong>Calculatrice :</strong> autorisee</div>
+      </div>
+    </section>
+
+    <div class="annale-warning">
+      <strong>Sujet retranscrit avec schemas</strong>
+      <p>Ce probleme etudie les ondes elastiques dans les milieux solides et leurs applications dans les phenomenes sismiques. Il est constitue de trois parties totalement independantes. La premiere partie est consacree aux proprietes microscopiques et macroscopiques des ondes elastiques et etablit le lien entre les parametres microscopiques regissant les interactions entre les atomes (la raideur \(K\) des ressorts modelisant, dans l'approximation lineaire, les interactions electromagnetiques entre les atomes lorsqu'ils se deplacent au voisinage de leur position d'equilibre). La deuxieme partie s'interesse a la propagation d'ondes elastiques longitudinales (ondes P) qui peuvent se propager a l'interieur de la Terre apres une explosion ou un seisme. L'etude de cette propagation permet d'acceder a des informations importantes concernant la structure geologique interne du globe terrestre. Enfin, la troisieme partie est consacree sur la detection par un des moyens d'un sismographe electromagnetique.</p>
+      <p><em>Remarques preliminaires importantes : il est rappele aux candidat(e)s que : les explications des phenomenes etudies interviennent dans la notation au meme titre que les developpements analytiques et les applications numeriques ; tout au long de l'enonce, les paragraphes en italiques ont pour objet d'aider a la comprehension du probleme mais ne donnent pas lieu a des questions ; tout resultat fourni dans l'enonce peut etre admis et utilise par la suite, meme s'il n'a pas ete demontre par le candidat(e).</em></p>
+      <p>Dans tout le probleme, le referentiel terrestre (R<sub>T</sub>), suppose galileen sera utilise.</p>
+    </div>
+
+    <nav class="annale-toc">
+      <h2>Sommaire</h2>
+      <ol>
+        <li><a href="#exo1">Premiere partie &mdash; Onde elastique dans un barreau solide</a>
+          <ul>
+            <li><a href="#partA1">A &mdash; Modele microscopique et approximation des milieux continus</a></li>
+            <li><a href="#partB1">B &mdash; Modele macroscopique et module d'Young</a></li>
+            <li><a href="#partC1">C &mdash; Liaison interatomique et module d'Young</a></li>
+          </ul>
+        </li>
+        <li><a href="#exo2">Deuxieme partie &mdash; Etude des ondes sismiques terrestres</a>
+          <ul>
+            <li><a href="#partA2">A &mdash; Etude locale</a></li>
+            <li><a href="#partB2">B &mdash; Etude a grande echelle</a></li>
+          </ul>
+        </li>
+        <li><a href="#exo3">Troisieme partie &mdash; Sismographe electromagnetique</a>
+          <ul>
+            <li><a href="#partA3">A &mdash; Bobine en circuit ouvert</a></li>
+            <li><a href="#partB3">B &mdash; Etude du dispositif de detection des vibrations</a></li>
+          </ul>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- ============ PREMIERE PARTIE ============ -->
+    <section id="exo1" class="annale-exercice">
+      <h2>Premiere partie &mdash; Onde elastique dans un barreau solide</h2>
+
+      <h3 id="partA1">A &mdash; Modele microscopique et approximation des milieux continus</h3>
+      <p><em>A l'echelle microscopique, un materiau solide homogene peut etre modelise par une chaine infinie d'atomes assimiles a des points materiels de meme masse \(m\) et relies entre eux par des ressorts identiques, de longueur a vide \(a\) et de raideur \(K\). Ces ressorts modelisent, dans l'approximation lineaire, les interactions electromagnetiques entre les atomes lorsqu'ils se deplacent au voisinage de leur position d'equilibre.</em></p>
+      <p><em>Considerons un modele unidimensionnel dans lequel tous les atomes se deplacent sans frottement sur un axe \(Ox\). La figure 1 represente cette disposition ou chaque atome est numerote par son rang \(n\). Lorsqu'il est en equilibre mecanique, l'atome \((n)\) est situe a l'abscisse \(x_n(eq) = n\,a\) ; en dehors de l'equilibre, sa position devient \(x_n(t) = x_n(eq) + u_n(t)\).</em></p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 1 : Chaine infinie d'atomes</div>
+        <p>Schema d'une chaine infinie d'atomes alignes sur l'axe \(Ox\). Chaque atome (represente par une masse) est relie a ses voisins par un ressort de raideur \(K\) et de longueur a vide \(a\). Sont representes successivement les atomes de rang \((n-1)\), \((n)\) et \((n+1)\), situes respectivement aux abscisses \((n-1)a\), \(na\) et \((n+1)a\) a l'equilibre. Les deplacements hors equilibre sont notes \(u_{n-1}(t)\), \(u_n(t)\) et \(u_{n+1}(t)\), orientes selon \(Ox\).</p>
+      </div>
+
+      <div class="annale-question" id="Q1a">
+        <h4>A1*a.</h4>
+        <p>Etablir l'expression de la resultante des forces exercees par les atomes \((n-1)\) et \((n+1)\) sur l'atome \((n)\).</p>
+      </div>
+
+      <div class="annale-question" id="Q1b">
+        <h4>A1*b.</h4>
+        <p>En deduire l'equation differentielle du mouvement de l'atome \((n)\) et montrer qu'elle peut s'ecrire :
+        \[ \frac{d^2 u_n}{dt^2} = \omega_0^2\,(u_{n+1} + u_{n-1} - 2 u_n), \]
+        en explicitant \(\omega_0\) en fonction de \(K\) et \(m\).</p>
+        <p><em>L'equation precedente admet des solutions sinusoidales de pulsation \(\omega\). Afin de les etudier, introduisons la representation complexe \(\underline{u_n}(t)\) et cherchons ces solutions sous la forme \(\underline{u_n} = \underline{U_n}\exp(j\omega t)\) ou \(\underline{U_n}\) designe l'amplitude complexe du deplacement de l'atome \((n)\).</em></p>
+      </div>
+
+      <div class="annale-question" id="Q2a">
+        <h4>A2*a.</h4>
+        <p>Etablir la relation entre \(\omega\), \(\omega_0\), \(\underline{U_{n-1}}\), \(\underline{U_n}\), \(\underline{U_{n+1}}\).</p>
+      </div>
+
+      <div class="annale-question" id="Q2b">
+        <h4>A2*b.</h4>
+        <p>Quelle est la valeur particuliere de \(\omega\) associee a une solution telle que \(\underline{U_{n+1}} = \underline{U_n}\) pour toute valeur de \(n\) ? Quelle interpretation physique peut-on en donner ?</p>
+      </div>
+
+      <div class="annale-question" id="Q2c">
+        <h4>A2*c.</h4>
+        <p>Determiner de meme la pulsation correspondant a \(\underline{U_n} = -\underline{U_{n-1}}\) pour toute valeur de \(n\).</p>
+        <p><em>Dans la suite de cette partie, nous chercherons les solutions particulieres de la forme \(\underline{u_n}(t) = \underline{A}\exp[j(\omega t - k\,na)]\) ou \(\underline{A}\) est une amplitude complexe independante de \(n\) et \(k\) un nombre reel.</em></p>
+      </div>
+
+      <div class="annale-question" id="Q3a">
+        <h4>A3*a.</h4>
+        <p>Quelle signification physique peut-on attacher a ce type de deplacement ? Quelle hypothese fait-on en supposant que \(\underline{A}\) est independant de \(n\) ?</p>
+      </div>
+
+      <div class="annale-question" id="Q3b">
+        <h4>A3*b.</h4>
+        <p>Verifier que l'expression proposee est bien solution de l'equation etablie en <a href="#Q1b">A1*b</a>, a condition que \(k\), \(\omega\), \(\omega_0\) et \(a\) soient relies par une equation a expliciter.</p>
+      </div>
+
+      <div class="annale-question" id="Q3c">
+        <h4>A3*c.</h4>
+        <p>Pourquoi est-il possible de restreindre les valeurs de \(k\) a l'intervalle \([\,-\pi/a,\ \pi/a\,]\) ?</p>
+      </div>
+
+      <div class="annale-question" id="Q3d">
+        <h4>A3*d.</h4>
+        <p>Montrer que le deplacement \(\underline{u_n}(t)\) reproduit exactement le deplacement \(\underline{u_{n-1}}(t)\), mais avec un retard temporel \(\tau\) dont on donnera l'expression en fonction de \(\omega_0\), \(k\) et \(a\). En deduire qu'il est possible de definir une vitesse de phase \(V_{\varphi} = \omega / k\). La propagation est-elle ou non dispersive ?</p>
+        <p><em>Considerons desormais le cas particulier ou \(k\) est positif.</em></p>
+      </div>
+
+      <div class="annale-question" id="Q4a">
+        <h4>A4*a.</h4>
+        <p>Determiner la vitesse de phase \(V_{\varphi}\) et la vitesse de groupe \(V_g\) en fonction de \(\omega_0\), \(k\) et \(a\).</p>
+      </div>
+
+      <div class="annale-question" id="Q4b">
+        <h4>A4*b.</h4>
+        <p>Quelles sont les valeurs limites de ces deux vitesses lorsque \(k \to 0\) ? Commenter.</p>
+      </div>
+
+      <div class="annale-question" id="Q4c">
+        <h4>A4*c.</h4>
+        <p>Etudier de meme les limites lorsque \(k \to \pi/a\). Quelle signification physique peut-on attribuer aux resultats obtenus ?</p>
+        <p><em>L'approximation des milieux continus consiste a definir une fonction continue et derivable \(u(x,t)\) des variables d'espace \(x\) et de temps \(t\) telle que \(u(x,t) = u_n(t)\) lorsque \(x = na\). Supposons de plus que \(u\) varie tres peu d'un atome a l'echelle de \(a\). En considerant que l'atome \((n)\) occupe l'abscisse \(x\), remarquons que :
+        \[ u(x-a,t) = u(na - a, t) = u_{n-1}(t) \quad \text{et} \quad u(x+a,t) = u(na + a, t) = u_{n+1}(t). \]</em></p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 2 : Representation de \(u(x,t)\) a \(t\) fixe</div>
+        <p>Graphe continu et derivable de la fonction \(u(x,t)\) trace a \(t\) fixe sur un axe horizontal \(x\). Sur la courbe sont marques trois points d'abscisses \((n-1)a\), \(na\) et \((n+1)a\), correspondant respectivement aux valeurs \(u_{n-1}\), \(u_n\) et \(u_{n+1}\). Ces points sont proches les uns des autres illustrant le fait que \(u\) varie peu a l'echelle de \(a\).</p>
+      </div>
+
+      <div class="annale-question" id="Q5">
+        <h4>A5.</h4>
+        <p>En utilisant un developpement limite a l'ordre 2, montrer que la fonction \(u(x,t)\) verifie une equation de d'Alembert de la forme
+        \[ \frac{\partial^2 u}{\partial x^2} - \frac{1}{C^2}\,\frac{\partial^2 u}{\partial t^2} = 0, \]
+        et exprimer la celerite \(C\) en fonction de \(K\), \(m\) et \(a\). Comparer \(C\) a une expression obtenue en <a href="#Q4b">A4</a> et interpreter le resultat.</p>
+      </div>
+
+      <h3 id="partB1">B &mdash; Modele macroscopique et module d'Young</h3>
+      <p><em>Un barreau solide est initialement immobile dans un referentiel galileen d'axe \(Ox\). Lorsqu'il est au repos, ce barreau est un cylindre homogene d'axe \(Ox\), taille dans un materiau de masse volumique \(\rho\), dont l'aire de chaque section sera notee \(S\).</em></p>
+      <p><em>Soumis a des deformations longitudinales (onde de compression-dilatation) se propage a l'interieur du barreau dans la direction de \(Ox\) ; cette onde est caracterisee par le champ scalaire des deplacements \(u(x,t)\) tel qu'une section situee a l'abscisse \(x\) en l'absence d'onde se deplace a l'abscisse \(x + u(x,t)\) lors du passage de celle-ci (figure 3).</em></p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 3 : Onde elastique longitudinale dans un barreau</div>
+        <p>Barreau cylindrique d'axe horizontal \(Ox\), oriente vers la droite. A l'interieur du cylindre sont dessinees des lignes sinusoidales representant des plans de section deformes. Une section initialement a l'abscisse \(x\) (repere par une ligne verticale en pointilles) se deplace de la quantite \(u(x,t)\) vers une nouvelle position a l'abscisse \(x + u(x,t)\). Les deux positions (au repos et deformee) sont indiquees par des fleches. L'origine \(O\) est a gauche.</p>
+      </div>
+
+      <p><em>Dans la limite des petites deformations, la matiere situee a gauche de la section deplacee en \(x + u(x,t)\) exerce sur celle-ci une force de rappel \(\vec{F}_g\) dont l'expression generale est : \(\vec{F}_g = -E\,\dfrac{\partial u}{\partial x}(x,t)\,S\,\vec{e}_x\), ou \(E\) designe le module d'elasticite d'Young. De meme, la matiere situee a droite de la section exerce sur celle-ci une force \(\vec{F}_d\).</em></p>
+
+      <div class="annale-question" id="Q6">
+        <h4>B1.</h4>
+        <p>Etablir la dimension de \(E\) et justifier que \(\vec{F}_d = -\vec{F}_g\).</p>
+        <p><em>En l'absence d'onde, une tranche elementaire de barreau situee entre les abscisses \(x\) et \(x + dx\) possede un volume \(dV = S\,dx\). Lors du passage de l'onde, son volume devient \(dV'\). La dilatation volumique \(\delta\) de cette tranche est alors definie comme le quotient \(\delta = \dfrac{dV' - dV}{dV}\).</em></p>
+      </div>
+
+      <div class="annale-question" id="Q7">
+        <h4>B2.</h4>
+        <p>Expliciter la relation entre \(\delta\) et \(\dfrac{\partial u(x,t)}{\partial x}\).</p>
+      </div>
+
+      <div class="annale-question" id="Q8">
+        <h4>B3.</h4>
+        <p>En appliquant le principe fondamental de la dynamique a cette tranche, montrer que dans la limite des petits deplacements \(u(x,t)\) satisfait a une equation de d'Alembert de la forme :
+        \[ \frac{\partial^2 u}{\partial x^2} - \frac{1}{C^2}\,\frac{\partial^2 u}{\partial t^2} = 0. \]
+        Exprimer la celerite \(C\) en fonction de \(E\) et \(\rho\).</p>
+      </div>
+
+      <h3 id="partC1">C &mdash; Liaison interatomique et module d'Young</h3>
+      <p><em>Au sein d'un reseau cristallin metallique, l'energie potentielle d'interaction de deux atomes \(A\) et \(B\) distants de \(r\) peut s'ecrire : \(E_p(r) = -\dfrac{\alpha}{r^6} + \dfrac{\mu}{r^{10}}\), ou \(\alpha\) et \(\mu\) sont deux constantes positives.</em></p>
+      <p><em>La force exercee par \(A\) sur \(B\) est de la forme \(\vec{F}_{AB} = F(r)\,\vec{u}\), ou \(\vec{u}\) designe le vecteur unitaire directeur de la droite \((AB)\), dirige de \(A\) vers \(B\).</em></p>
+
+      <div class="annale-question" id="Q9a">
+        <h4>C1*a.</h4>
+        <p>Determiner l'expression de \(F(r)\) en fonction de \(\lambda\), \(\mu\) et \(r\). La distance d'equilibre entre deux atomes etant \(r_0\), exprimer \(\lambda\) et \(\mu\) en fonction de \(r_0\) et de \(E_0 = E_p(r_0)\).</p>
+      </div>
+
+      <div class="annale-question" id="Q9b">
+        <h4>C1*b.</h4>
+        <p>Calculer les valeurs numeriques de \(\mu\) (exprime en eV.nm<sup>10</sup>) et \(E_0(r_0)\) (exprime en eV) pour des atomes eloignes de \(r_0 = 0{,}274\) nm ; \(\lambda = 0{,}37\) eV.nm<sup>6</sup>. (Rappelons qu'un electron-volt est egal a \(1{,}6.10^{-19}\) J.) Quel sens concret peut-on donner a \(E_0(r_0)\) ?</p>
+      </div>
+
+      <div class="annale-question" id="Q9c">
+        <h4>C1*c.</h4>
+        <p>Tracer l'allure de la courbe \(E_p(r)\) en indiquant ses points remarquables. Dans quels domaines de \(r\) la force entre les deux atomes est-elle attractive ou repulsive ?</p>
+      </div>
+
+      <div class="annale-question" id="Q10">
+        <h4>C2.</h4>
+        <p>Effectuer un developpement limite de \(F(r)\), montrer que pour de petits deplacements autour de la position d'equilibre \(r_0\), la force exercee est equivalente a celle d'un ressort dont on explicitera la raideur \(K\) en fonction de \(\lambda\) et \(r_0\). Calculer \(K\) (exprime en N.m<sup>-1</sup>) pour le tungstene.</p>
+        <p><em>Le tungstene cristallise dans un systeme cubique centre. La maille est un cube d'arete \(a\) dont les atomes occupent tous les sommets du cube ainsi que le centre. Dans cette structure, chaque atome \(A\) possede huit plus proches voisins, tous situes a une meme distance \(r_0\) de \(A\), \(r_0\) etant la distance d'equilibre introduite en C1*a.</em></p>
+      </div>
+
+      <div class="annale-question" id="Q11a">
+        <h4>C3*a.</h4>
+        <p>Exprimer la relation entre \(r_0\) et \(a\) puis calculer \(a\) (exprime en nm).</p>
+      </div>
+
+      <div class="annale-question" id="Q11b">
+        <h4>C3*b.</h4>
+        <p>Quel est le nombre d'atomes par maille cubique ? Donner l'expression de la masse volumique \(\rho\) du metal en fonction de \(M\) (masse d'un atome) et \(a\).</p>
+      </div>
+
+      <div class="annale-question" id="Q12">
+        <h4>C3*c.</h4>
+        <p>Une etude approfondie de la propagation des ondes elastiques longitudinales dans ce milieu tridimensionnel montre que, dans l'hypothese des interactions limitees aux atomes les plus proches voisins et dans la limite des grandes longueurs d'onde \((k \to 0)\), l'expression de la celerite obtenue en A5 doit etre remplacee par :
+        \[ C = \sqrt{\frac{K}{3m}}\,a, \]
+        ou \(K\) est la raideur du ressort. En comparant cette expression aux resultats obtenus dans la partie B, il est possible de relier le module d'elasticite d'Young \(E\) aux parametres microscopiques du metal.</p>
+      </div>
+
+      <div class="annale-question" id="Q13a">
+        <h4>C4*a.</h4>
+        <p>Exprimer le module \(E\), d'abord en fonction de \(K\), \(a\) et \(m\), puis en fonction de \(\lambda\) et \(r_0\).</p>
+      </div>
+
+      <div class="annale-question" id="Q13b">
+        <h4>C4*b.</h4>
+        <p>Calculer le module \(E\) du tungstene, a l'aide des donnees numeriques precedemment fournies.</p>
+      </div>
+    </section>
+
+    <!-- ============ DEUXIEME PARTIE ============ -->
+    <section id="exo2" class="annale-exercice">
+      <h2>Deuxieme partie &mdash; Etude des ondes sismiques terrestres</h2>
+      <p><em>Les ondes sismiques sont des ondes de deformation elastique qui se propagent a l'interieur du globe terrestre (ondes de volume) ou en surface (ondes de Love et de Rayleigh). Ces ondes peuvent etre longitudinales (la deformation se fait dans le sens de la propagation de l'onde) ou transversales (deformation perpendiculaire a la direction de propagation). Dans ce dernier cas, il s'agit d'ondes de cisaillement.</em></p>
+      <p><em>Nous allons etudier dans cette partie un type particulier d'ondes de volume longitudinales : les ondes P. La propagation de ces ondes a la Terre peut etre decrite au moyen d'une analogie avec l'optique geometrique : l'onde se propage le long de « rayons » le long desquels elle avance a une celerite \(C\). Dans un milieu homogene, les rayons sismiques sont des segments de droite. A l'interface entre deux milieux, il y a reflexion et refraction du rayon incident, selon les lois de Snell-Descartes (figure 4), notamment :</em></p>
+      <ul>
+        <li><em>l'angle entre le rayon reflechi et la normale au dioptre est egal a l'angle d'incidence,</em></li>
+        <li><em>les angles d'incidence \(i\) et de refraction \(r\) verifient : \(\dfrac{\sin i}{C_1} = \dfrac{\sin r}{C_2}\).</em></li>
+      </ul>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 4 : Lois de Snell-Descartes</div>
+        <p>Schema d'un dioptre horizontal separant deux milieux de celerites \(C_1\) (milieu superieur) et \(C_2\) (milieu inferieur). Un rayon incident arrive dans le milieu superieur avec un angle \(i\) par rapport a la normale verticale au dioptre. Un rayon reflechi repart dans le milieu superieur avec le meme angle \(i\), et un rayon refracte penetre dans le milieu inferieur avec un angle \(r\) par rapport a la normale. Les angles sont mesures par rapport a la normale.</p>
+      </div>
+
+      <h3 id="partA2">A &mdash; Etude locale</h3>
+      <p><em>La courbure de la Terre est negligee. Le sol est divise en deux couches homogenes : la croute terrestre d'epaisseur \(h\) dans laquelle la celerite des ondes est \(C_1\) et le manteau a l'interieur duquel leur celerite vaut \(C_2 > C_1\). Une explosion a lieu en un point \(S\) proche de la surface et les ondes produites sont detectees par un capteur lui aussi en surface, place en \(M\), a une distance \(x\) de \(S\). Le capteur recoit trois ondes qui sont representees sur la figure 5.</em></p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 5 : Les trois types d'onde arrivant sur le capteur</div>
+        <p>Coupe verticale schematique montrant la source \(S\) en surface a gauche et le capteur \(M\) en surface a droite, separes d'une distance horizontale \(x\). La croute d'epaisseur \(h\) (celerite \(C_1\)) est representee en partie superieure ; le manteau (celerite \(C_2 > C_1\)) est en partie inferieure. Trois trajets sont dessines :<br>
+        (1) l'onde directe : segment horizontal direct de \(S\) a \(M\) dans la croute.<br>
+        (2) l'onde reflechie : trajet en "V" qui descend de \(S\) au point \(P\) sur l'interface croute/manteau, puis remonte vers \(M\).<br>
+        (3) l'onde refractee : trajet qui descend de \(S\) vers le point \(P\) sur l'interface avec un angle limite de refraction, se propage horizontalement le long de l'interface croute/manteau de \(P\) a \(P'\) (parallele a la surface) dans le manteau, puis remonte de \(P'\) vers \(M\) avec l'angle limite.</p>
+      </div>
+
+      <div class="annale-question" id="Q14">
+        <h4>A1.</h4>
+        <p>L'onde qui se propage parallelement a la surface est l'onde directe. Determiner son temps de propagation \(\tau_1\) en fonction de \(C_1\) et \(x\).</p>
+      </div>
+
+      <div class="annale-question" id="Q15">
+        <h4>A2.</h4>
+        <p>Le capteur recoit une deuxieme onde qui s'est reflechie en \(P_1\) sur la surface de separation entre la croute terrestre et le manteau. Exprimer son temps de propagation \(\tau_2\) en fonction de \(C_1\), \(x\) et \(h\).</p>
+      </div>
+
+      <div class="annale-question" id="Q16a">
+        <h4>A3*a.</h4>
+        <p>Une troisieme onde peut se propager jusqu'au capteur apres s'etre refractee en \(P\) dans le manteau, puis etre ressortie en \(P'\). Quel doit etre l'angle d'incidence \(\alpha\) pour que l'onde refractee se propage le long de l'interface plane (trajet PP') ? Montrer que cette onde ne peut etre detectee que si \(x\) est superieur a une distance minimale \(x_m\) dont on exprimera en fonction de \(h\), \(C_1\) et \(C_2\).</p>
+      </div>
+
+      <div class="annale-question" id="Q16b">
+        <h4>A3*b.</h4>
+        <p>Etablir le temps de propagation \(\tau_3\) de cette troisieme onde en fonction de \(C_1\), \(C_2\), \(x\) et \(h\) pour \(x > x_m\).</p>
+      </div>
+
+      <div class="annale-question" id="Q17">
+        <h4>A4.</h4>
+        <p>Tracer sur un meme graphe les allures des temps de propagation \(\tau_1\), \(\tau_2\) et \(\tau_3\) en fonction de la distance \(x\).</p>
+        <p><em>Les courbes ainsi obtenues sont appelees hodochrones. Les geophysiciens les utilisent pour obtenir des informations sur l'epaisseur de la croute terrestre et les celerites des ondes sismiques dans la croute et le manteau. En disposant plusieurs capteurs a differentes distances \(x\) du lieu de l'explosion et en mesurant le temps de propagation de l'onde qui arrive la premiere, on obtient la courbe representee sur la figure 6.</em></p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 6 : Resultats experimentaux</div>
+        <p>Graphe experimental avec en abscisse la distance \(x\) (km) variant de 0 a 200 km et en ordonnee le temps \(\tau\) (s) variant de 0 a 30 s. La courbe resultante est composee de deux segments de droites paraissant se raccorder vers \(x \approx 100\) km : un premier segment de pente plus forte partant de l'origine et montant jusqu'a environ \((100\text{ km},\ 20\text{ s})\), puis un second segment de pente plus faible allant jusqu'a environ \((200\text{ km},\ 27\text{ s})\), qui extrapole a une ordonnee a l'origine non nulle positive.</p>
+      </div>
+
+      <div class="annale-question" id="Q18a">
+        <h4>A5*a.</h4>
+        <p>Deduire de la figure les vitesses de propagation \(C_1\) et \(C_2\) puis, en considerant l'intersection des deux courbes, evaluer l'epaisseur \(h\) de la croute terrestre.</p>
+      </div>
+
+      <div class="annale-question" id="Q18b">
+        <h4>A5*b.</h4>
+        <p>Determiner une nouvelle valeur numerique de \(h\) en exploitant la prolongation de la deuxieme courbe jusqu'en \(x = 0\). Que pensez-vous de la precision des mesures ?</p>
+      </div>
+
+      <h3 id="partB2">B &mdash; Etude a grande echelle</h3>
+      <p><em>A grande echelle, la courbure de la Terre ne peut plus etre negligee : celle-ci est donc assimilable a une boule de centre \(O\) et de rayon \(R_T\) (figure 7). Nous supposerons que la Terre est constituee d'un noyau de rayon \(R_N\) inferieur a \(R_T\) ou la celerite des ondes sismiques P vaut \(C_2 = 9\) km.s<sup>-1</sup>, entoure du manteau solide d'epaisseur \(R_T - R_N\), a l'interieur duquel la celerite vaut \(C_1 = 11\) km.s<sup>-1</sup>. Dans cette partie, l'epaisseur de la croute terrestre sera totalement negligee.</em></p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 7 : Noyau et manteau terrestres</div>
+        <p>Coupe circulaire de la Terre : grand cercle de centre \(O\) et de rayon \(R_T\) delimitant la surface. A l'interieur, un second cercle concentrique de rayon \(R_N\) delimite le noyau. La couronne comprise entre les deux cercles est le manteau (celerite \(C_1\)), la region interne est le noyau (celerite \(C_2\)). Un point \(S\) est repere sur la surface en haut (source) et un point \(M\) egalement en surface, sur le cote. L'angle \(\theta = (\vec{OS}, \vec{OM})\) est indique au centre \(O\). Le trajet d'un rayon sismique issu de \(S\) est esquisse a travers le manteau.</p>
+      </div>
+
+      <p><em>Un tremblement de Terre localise en un point \(S\) (a la surface de la Terre) emet des ondes sismiques P dans toutes les directions. Des detecteurs sont places en differents points \(M\) de la surface terrestre, situes dans le meme plan meridien et reperes par l'angle \(\theta = (\vec{OS},\vec{OM})\).</em></p>
+
+      <div class="annale-question" id="Q19a">
+        <h4>B1*a.</h4>
+        <p>Considerons les ondes issues de \(S\) qui arrivent en \(M\) en empruntant le trajet direct \(SM\). Ces ondes ne se propageant que dans le manteau. Donner leur temps de propagation \(\tau\) en fonction de \(R_T\), \(\theta\) et \(C_1\).</p>
+      </div>
+
+      <div class="annale-question" id="Q19b">
+        <h4>B1*b.</h4>
+        <p>Montrer que ces ondes ne peuvent atteindre le point \(M\) lorsque \(\theta\) est superieur a une valeur \(\theta_{max}\). Determiner l'expression de \(\theta_{max}\) en fonction de \(R_T\) et \(R_N\).</p>
+      </div>
+
+      <div class="annale-question" id="Q19c">
+        <h4>B1*c.</h4>
+        <p>Des mesures ont montre que \(\theta_{max} = 106^{\circ}\). En deduire la valeur numerique de \(R_N\) sachant que \(R_T = 6{,}4.10^3\) km.</p>
+        <p><em>Considerons maintenant les ondes issues de \(S\) qui subissent une refraction en \(N\) et penetrent a l'interieur du noyau. Ces rayons subissent une deuxieme refraction en \(N'\) et atteignent un point \(M\) sur la surface terrestre, repere par l'angle \(\theta\) (figure 8). Posons \(\varphi = (\vec{OS}, \vec{ON})\) et appelons \(\Omega\) le projete orthogonal de \(S\) sur \(ON\). L'angle d'incidence du rayon sismique en \(N\) est note \(\alpha\) ; son angle de refraction est appele \(r\).</em></p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 8 : Trajet du rayon refracte</div>
+        <p>Schema representant en coupe la Terre avec le noyau (cercle de rayon \(R_N\)) a l'interieur d'un cercle de rayon \(R_T\). Le point source \(S\) est en haut, le point \(M\) est positionne selon l'angle \(\theta\). Le rayon issu de \(S\) atteint le noyau au point \(N\), avec un angle d'incidence \(\alpha\) (entre \(SN\) et la normale \(ON\)), puis se refracte dans le noyau avec l'angle \(r\), traverse le noyau en ligne droite jusqu'en \(N'\) ou il se refracte a nouveau pour sortir et atteindre \(M\). Le point \(\Omega\) (projete orthogonal de \(S\) sur \(ON\)) est indique. Les angles \(\varphi = (\vec{OS}, \vec{ON})\) et \(\theta\) sont notes au centre \(O\).</p>
+      </div>
+
+      <div class="annale-question" id="Q20a">
+        <h4>B2*a.</h4>
+        <p>Peut-il y avoir une reflexion totale en \(N\) ?</p>
+      </div>
+
+      <div class="annale-question" id="Q20b">
+        <h4>B2*b.</h4>
+        <p>Montrer que ce type de rayon ne peut exister que si \(\varphi\) est inferieur a un angle maximum \(\varphi_{max}\) dont on donnera l'expression en fonction de \(R_N\) et \(R_T\). Calculer \(\varphi_{max}\) connaissant \(R_N = 3{,}9.10^3\) km et \(R_T = 6{,}4.10^3\) km.</p>
+      </div>
+
+      <div class="annale-question" id="Q20c">
+        <h4>B2*c.</h4>
+        <p>En utilisant le point \(\Omega\) comme intermediaire de calcul, montrer que :
+        \[ \sin \alpha = \frac{R_T\,\sin\varphi}{\sqrt{R_T^2 + R_N^2 - 2 R_T R_N \cos\varphi}}. \]</p>
+      </div>
+
+      <div class="annale-question" id="Q20d">
+        <h4>B2*d.</h4>
+        <p>Determiner l'expression de \(\theta\) en fonction de \(r\) et \(\varphi\). En deduire que \(\theta\) peut encore s'ecrire :
+        \[ \theta = \pi + 2\varphi - 2\arcsin\!\left(\frac{C_1}{C_2}\,\frac{R_T\,\sin\varphi}{\sqrt{R_T^2 + R_N^2 - 2 R_T R_N \cos\varphi}}\right). \]</p>
+        <p><em>Le graphique ci-dessous (figure 9) donne l'evolution de \(\theta\) en fonction de \(\varphi\), selon l'expression obtenue en B2*d. (les angles sont exprimes en degres.)</em></p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 9 : Evolution de l'angle \(\theta\) en fonction de l'angle \(\varphi\)</div>
+        <p>Graphe donnant \(\theta\) (degres, ordonnee variant de 130 a 190) en fonction de \(\varphi\) (degres, abscisse variant de 0 a 60). La courbe part d'environ \(\theta \approx 180^{\circ}\) en \(\varphi = 0\), descend jusqu'a un minimum autour de \(\theta \approx 145^{\circ}\) pour \(\varphi \approx 30^{\circ}\)-\(35^{\circ}\), puis remonte vers environ \(\theta \approx 170^{\circ}\) pour \(\varphi \approx 55^{\circ}\)-\(60^{\circ}\). La courbe presente donc un minimum.</p>
+      </div>
+
+      <div class="annale-question" id="Q20e">
+        <h4>B2*e.</h4>
+        <p>Expliquer l'existence d'une « zone d'ombre » sur la surface terrestre, a l'interieur de laquelle aucune onde issue de \(S\) ne peut etre detectee. Determiner numeriquement les valeurs limites de \(\theta\) qui caracterisent cette zone d'ombre.</p>
+      </div>
+    </section>
+
+    <!-- ============ TROISIEME PARTIE ============ -->
+    <section id="exo3" class="annale-exercice">
+      <h2>Troisieme partie &mdash; Sismographe electromagnetique</h2>
+      <p><em>Un sismographe est un appareil destine a enregistrer les mouvements du sol associes aux phenomenes sismiques. Ces mouvements sont tres variables en amplitude et en frequence selon la nature de la source, la distance entre la source et l'epicentre du seisme et la nature de l'onde enregistree.</em></p>
+      <p><em>Nous allons etudier dans cette partie un sismographe electromagnetique (figure 10). Ce type d'appareil ne possede qu'un seul degre de liberte : il est sensible aux vibrations verticales du sol. Pour obtenir de facon complete, il est donc necessaire d'utiliser trois sismographes : un capteur de deplacements verticaux et deux capteurs de deplacements horizontaux.</em></p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 10 : Sismographe electromagnetique</div>
+        <p>Schema d'un sismographe electromagnetique vertical. Un bati rigide \((R_0)\) repose sur le sol. A l'interieur du bati est suspendu, par un ressort de raideur \(K\) et de longueur a vide \(L_0\), un solide \((S)\) mobile verticalement. Ce solide porte une bobine \((b)\) d'inductance propre \(L\) et de resistance \(R\) constituee de spires circulaires jointives de meme rayon. La bobine est entierement plongee dans un entrefer cylindrique annulaire comportant un aimant permanent \((A)\) solidaire du bati qui cree un champ magnetique radial. Le repere \((O_T\,;\,\vec{e}_z)\) est lie au sol, le repere \((O_1\,;\,\vec{e}_z)\) est lie au bati \((R_0)\), le point \(G\) est le centre d'inertie de l'equipage mobile. Les cotes \(z_G\) (position de \(G\) par rapport a \(O_1\)) et \(Z_0(t)\) (position du bati par rapport a \(O_T\)) sont indiques. La bobine se trouve dans l'entrefer. A cote du schema, un vecteur \(\vec{g}\) pointe vers le bas indiquant la pesanteur.</p>
+      </div>
+
+      <p><em>Le dispositif etudie est compose :</em></p>
+      <ul>
+        <li><em>d'un bati rigide \((R_0)\) reposant sur le sol,</em></li>
+        <li><em>d'un aimant permanent \((A)\) solidaire du bati et dont la fonction est de creer un champ magnetique radial de norme constante en tout point de son entrefer cylindrique (hors de ce champ magnetique sera notee \(B\)),</em></li>
+        <li><em>d'une bobine \((b)\) d'inductance propre \(L\), de resistance \(R\), constituee de spires circulaires jointives de meme rayon. Cette bobine est entierement plongee dans l'entrefer de l'aimant ; elle est eventuellement parcourue par un courant d'intensite \(i\) dont l'orientation est precisee sur la figure 11.</em></li>
+        <li><em>d'un solide \((S)\) solidaire de la bobine et mobile par rapport au bati, suspendu en \(C\) a un ressort de raideur \(K\) et de longueur a vide \(L_0\). L'autre extremite du ressort est attachee au bati en \(D\). L'ensemble « solide + bobine » constitue l'equipage mobile, de masse totale \(m\) et de centre d'inertie \(G\).</em></li>
+      </ul>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 11 : Entrefer et bobine (orientation)</div>
+        <p>Vue de dessus de la bobine \((b)\) (cercle) entouree par l'aimant \((A)\) et traversee par un champ magnetique radial \(\vec{B}\) (fleches partant du centre vers la peripherie en toile d'araignee). Le courant \(i\) circule dans la bobine dans le sens trigonometrique (indique par une fleche courbe ou par l'orientation des spires).</p>
+      </div>
+
+      <p><em>En l'absence de secousse sismique, le sol definit un referentiel galileen \((R_T)\) que l'on munit du repere vertical \((O_T\,;\,\vec{e}_z)\) ; le ressort provoque le deplacement du bati qui repose sur le sol. On note un second referentiel qui sera note \((R_0)\) et qui possede un mouvement vertical de translation rectiligne par rapport a \((R_T)\). \((R_0)\) est muni du repere vertical \((O_1\,;\,\vec{e}_z)\), parallele a celui de \((R_T)\), de telle sorte que la cote de \(O_1\) par rapport a \(O\) soit \(Z_0(t)\) (figure 10).</em></p>
+      <p><em>L'acceleration de la pesanteur est supposee uniforme : \(\vec{g} = -g\,\vec{e}_z\).</em></p>
+
+      <h3 id="partA3">A &mdash; Bobine en circuit ouvert</h3>
+      <p><em>Dans cette partie la bobine est en circuit ouvert. L'intensite du courant electrique qui la parcourt est donc nulle.</em></p>
+
+      <div class="annale-question" id="Q21">
+        <h4>A1.</h4>
+        <p>Le referentiel \((R_0)\) est-il galileen ? Quelles sont, en fonction des derivees temporelles de \(Z_0\), les expressions de la vitesse d'entrainement \(\vec{v}_e\) et de l'acceleration d'entrainement \(\vec{a}_e\) de \((R_0)\) par rapport a \((R_T)\) ?</p>
+      </div>
+
+      <div class="annale-question" id="Q22">
+        <h4>A2.</h4>
+        <p>En l'absence d'onde sismique \((Z_0\) constant), l'equipage mobile est en equilibre mecanique par rapport a \((R_0)\). Quelle est alors la longueur \(L_{eq}\) du ressort en fonction de \(K\), \(L_0\), \(g\) et \(m\) ?</p>
+        <p><em>Les vibrations du sol entrainent un deplacement de l'equipage mobile par rapport a sa position d'equilibre. Les mouvements verticaux etant les seuls etudies, la cote du centre d'inertie \(G\) devient a l'instant \(t\) : \(z_G(t) = z_{Geq} + z(t)\) (\(z_{Geq}\) etant la cote a l'equilibre mecanique). La longueur du ressort est alors \(L(t)\).</em></p>
+      </div>
+
+      <div class="annale-question" id="Q23">
+        <h4>A3.</h4>
+        <p>Ecrire la relation entre les grandeurs \(L(t)\), \(L_{eq}\) et \(z(t)\).</p>
+      </div>
+
+      <div class="annale-question" id="Q24">
+        <h4>A4.</h4>
+        <p>En raisonnant dans le referentiel \((R_0)\), etablir l'equation differentielle a laquelle satisfait \(z\) puis la mettre sous la forme
+        \[ \frac{d^2 z}{dt^2} + \omega_0^2\, z = -\frac{d^2 Z_0}{dt^2}, \]
+        en explicitant \(\omega_0\) en fonction de \(K\) et \(m\).</p>
+      </div>
+
+      <h3 id="partB3">B &mdash; Etude du dispositif de detection des vibrations</h3>
+      <p><em>La bobine est constituee d'un enroulement de fil de longueur totale \(\ell\) ; elle est maintenant parcourue par un courant electrique d'intensite \(i\).</em></p>
+
+      <div class="annale-question" id="Q25">
+        <h4>B1.</h4>
+        <p>Determiner la resultante des actions mecaniques exercees sur la bobine par le champ magnetique \(\vec{B}\) de l'aimant. En deduire que l'equation differentielle etablie en A4 doit desormais etre remplacee par l'equation :
+        \[ \frac{d^2 z}{dt^2} + \gamma\,i + \omega_0^2\,z = -\frac{d^2 Z_0}{dt^2}. \]
+        Donner l'expression du coefficient \(\gamma\) en fonction de \(B\), \(\ell\) et \(m\).</p>
+        <p><em>La bobine est reliee au circuit electronique represente ci-dessous dans lequel l'amplificateur operationnel est suppose ideal et fonctionne en regime lineaire (figure 12).</em></p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 12 : Montage electronique</div>
+        <p>Schema d'un montage electronique utilisant un amplificateur operationnel (AO) ideal. La bobine \((L, R_b)\) produit une tension \(u_1(t)\) aux bornes d'une entree du circuit. Le montage \((E)\) est compose d'une resistance \(R\) en serie avec un condensateur de capacite \(C\), l'ensemble etant branche en boucle de retroaction entre la sortie et l'entree inverseuse de l'AO. L'entree non-inverseuse est reliee a la masse. La tension de sortie est notee \(u(t)\). Un courant \(i\) circule dans la branche contenant la bobine.</p>
+      </div>
+
+      <div class="annale-question" id="Q26a">
+        <h4>B2*a.</h4>
+        <p>Exprimer la force electromotrice \(e\) induite dans la bobine par le champ magnetique de l'aimant en fonction de \(B\), \(dz/dt\) et \(\ell\).</p>
+      </div>
+
+      <div class="annale-question" id="Q26b">
+        <h4>B2*b.</h4>
+        <p>Quelle est l'origine physique du courant electrique qui traverse la bobine ? Etablir l'equation electrique qui relie, en regime quelconque (pas necessairement sinusoidal), l'intensite \(i\) a \(e\), \(L\), \(R_b\) et \(R\).</p>
+        <p><em>Lors du passage d'une onde sismique, le mouvement du bati est une fonction sinusoidale du temps de la forme \(Z_0(t) = Z_0\cos(\omega t + \varphi)\). Interessons-nous au regime sinusoidal force de l'ensemble du dispositif : toutes les grandeurs sont donc des fonctions sinusoidales du temps de meme pulsation \(\omega\). Rappelons qu'a toute grandeur sinusoidale \(q(t) = Q\cos(\omega t + \varphi')\) est possible d'associer une representation complexe \(\underline{q}(t) = Q\exp[j(\omega t + \varphi')] = \underline{Q}\exp(j\omega t)\), ou \(\underline{Q} = Q\exp(j\varphi')\) designe l'amplitude complexe de \(q\). Posons en particulier : \(\underline{Z_0}(t) = Z_0 \exp(j\omega t)\) et \(\underline{u}(t) = U\exp(j\omega t)\).</em></p>
+      </div>
+
+      <div class="annale-question" id="Q27a">
+        <h4>B3*a.</h4>
+        <p>Determiner la relation entre \(\underline{Z}\) et \(\underline{i}\) (amplitudes complexes de \(z\) et \(i\)). La resistance \(R\) du dispositif electronique etant ajustee de sorte que \(L\omega \ll (R + R_b)\), quelle est alors la relation approchee reliant \(\underline{z}\) et \(\underline{i}\) ?</p>
+      </div>
+
+      <div class="annale-question" id="Q27b">
+        <h4>B3*b.</h4>
+        <p>Quel nom donne-t-on usuellement a ce montage ? Expliciter la relation entre les amplitudes complexes \(\underline{U_1}\) et \(\underline{U}\).</p>
+      </div>
+
+      <div class="annale-question" id="Q27c">
+        <h4>B3*c.</h4>
+        <p>Determiner a partir de l'equation etablie en <a href="#Q25">B1</a>, l'equation reliant \(\underline{Z}\) et \(\underline{Z_0}\) et en deduire l'expression de la fonction de transfert electromecanique \(\underline{H}(j\omega) = \underline{U}/\underline{Z_0}\) du dispositif, en l'ecrivant sous la forme :
+        \[ \underline{H}(j\omega) = -H_0\,\frac{\omega^2}{\omega_0^2 - \omega^2 + 2 j\lambda\omega}. \]
+        Quelles sont les expressions du coefficient d'amortissement \(\lambda\) et de \(H_0\) ?</p>
+      </div>
+
+      <div class="annale-question" id="Q28">
+        <h4>B4*a.</h4>
+        <p>Etablir les expressions du gain \(G(\omega) = |\underline{H}(j\omega)|\) et de l'argument \(\phi(\omega) = \arg \underline{H}\) de la fonction de transfert electromecanique. Representer leur allure en fonction de \(\omega\).</p>
+      </div>
+
+      <div class="annale-question" id="Q29">
+        <h4>B4*b.</h4>
+        <p>Tracer le diagramme de Bode de \(\underline{H}(j\omega)\) (amplitude et phase) en y precisant les asymptotes et les points remarquables. Quelle est la nature du filtre realise par ce dispositif ?</p>
+        <p><em>Un sismographe fonctionne de maniere optimale lorsque le quotient \(U/Z_0\) entre l'amplitude reelle \(U\) de la tension \(u(t)\) et l'amplitude \(Z_0\) du deplacement du sol est une constante independante de la frequence des vibrations.</em></p>
+      </div>
+
+      <div class="annale-question" id="Q30a">
+        <h4>B5*a.</h4>
+        <p>Dans ce cas, le sismographe doit-il avoir une pulsation propre \(\omega_0\) importante ou au contraire peu elevee ? Comment doit-on choisir la masse \(m\) de l'equipage mobile ainsi que la raideur \(K\) du ressort ?</p>
+      </div>
+
+      <div class="annale-question" id="Q30b">
+        <h4>B5*b.</h4>
+        <p>Pour une frequence propre \(f_0 = \omega_0 / 2\pi\) donnee, quel est le domaine de frequences pour lequel le comportement du sismographe differe de moins de 1% de son comportement optimal ?</p>
+      </div>
+
+      <div class="annale-question" id="Q30c">
+        <h4>B5*c.</h4>
+        <p>Dans le cas d'un seisme proche, les frequences de l'onde variant habituellement entre 1 Hz et 10 Hz. En deduire un ordre de grandeur de \(f_M\), valeur maximale de la frequence propre \(f_0\) permettant d'assurer un fonctionnement ideal.</p>
+      </div>
+
+      <div class="annale-question" id="Q30d">
+        <h4>B5*d.</h4>
+        <p>Application numerique : le ressort utilise a une raideur de l'ordre de 5000 N.m<sup>-1</sup>. Quelle masse minimale doit posseder l'equipage mobile pour assurer le bon fonctionnement de l'appareil ?</p>
+      </div>
+
+      <p style="text-align:center;margin-top:2em;"><strong>FIN DE L'EPREUVE</strong></p>
+    </section>
+  </div>
+</main>
+</body>
+</html>

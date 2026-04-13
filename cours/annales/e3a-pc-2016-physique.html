@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2016 - Physique - LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../../index.html" class="nav-logo">LibMaths</a>
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../../physique/index.html">Physique</a></li>
+      <li><a href="../index.html">Annales</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="course">
+  <div class="course-header">
+    <div class="breadcrumb">
+      <a href="../../index.html">Accueil</a> &gt;
+      <a href="../../physique/index.html">Physique</a> &gt;
+      <a href="../index.html">Annales</a> &gt;
+      <span>E3A-Polytech PC 2016 - Physique</span>
+    </div>
+    <h1>E3A-Polytech PC 2016 - Physique</h1>
+    <p class="course-subtitle">Concours Communs Polytechniques - Epreuve specifique - Filiere PC - Modelisation de systemes physiques ou chimiques - Duree 4 h</p>
+  </div>
+
+  <div class="annale-info">
+    <div class="annale-warning">
+      <strong>Sujet retranscrit avec schemas</strong>
+      <p><em>N.B. : le candidat attachera la plus grande importance a la clarte, a la precision et a la concision de la redaction. Si un candidat est amene a reperer ce qui peut lui sembler etre une erreur d'enonce, il le signalera sur sa copie et devra poursuivre sa composition en expliquant les raisons des initiatives qu'il a ete amene a prendre.</em></p>
+      <p>Les calculatrices sont autorisees.</p>
+    </div>
+
+    <h2>Table des matieres</h2>
+    <ul class="toc">
+      <li><a href="#exo1">Determination du coefficient de transfert d'un polluant dans une colonne d'absorption</a>
+        <ul>
+          <li><a href="#partie1">I. Presentation du probleme</a></li>
+          <li><a href="#partie2">II. Modelisation des phenomenes</a>
+            <ul>
+              <li><a href="#partie2-1">II.1 Cas ou le solvant ne contient pas le reactif B (Q1.1 a Q1.10)</a></li>
+              <li><a href="#partie2-2">II.2 Cas ou le reactif B est present dans le solvant (Q2.1 a Q2.7)</a></li>
+            </ul>
+          </li>
+          <li><a href="#partie3">III. Traitement numerique des donnees experimentales</a>
+            <ul>
+              <li><a href="#partie3-1">III.1 Determination de la valeur du produit \(k_L \times a\) (Q3.1 a Q3.6)</a></li>
+              <li><a href="#partie3-2">III.2 Determination des valeurs de \(a\) et \(k_L\) (Q3.7 a Q3.11)</a></li>
+              <li><a href="#partie3-3">III.3 Utilisation du modele pour realiser des simulations (Q3.12 a Q3.15)</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <article class="annale-exercice" id="exo1">
+    <h2 id="partie1">I. Presentation du probleme</h2>
+
+    <p>Les procedes d'absorption sont souvent utilises pour la depollution des gaz. Ces procedes reposent sur l'absorption preferentielle du gaz polluant par un solvant et sont la plupart du temps mis en oeuvre dans des colonnes d'absorption (figure 1). Lors du contact entre les deux phases (gazeuse et liquide), le polluant est transfere du gaz vers le solvant. On recupere un gaz purifie en sortie haute de colonne et le solvant charge du polluant en pied de colonne.</p>
+
+    <p>Un exemple courant est l'absorption du dioxyde de carbone present dans les gaz de combustion a l'aide d'un solvant amine pour eviter de rejeter ce gaz a effet de serre directement dans l'atmosphere.</p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 1</div>
+      <p>Schema d'une colonne d'absorption utilisee dans l'industrie pour la depollution d'un gaz. La colonne est verticale, avec le solvant entrant par le haut et le melange gaz + polluant entrant par le bas. Le gaz purifie sort en haut a droite, et le solvant + polluant sort en bas.</p>
+    </div>
+
+    <p>Pour dimensionner les colonnes d'absorption, on a besoin de connaitre la conductance de transfert du polluant dans le solvant (notee \(k_L\), unite : m.s\(^{-1}\)). Pour determiner ce parametre, on realise une etude dans un reacteur de laboratoire dans les conditions de fonctionnement sont beaucoup plus simples et beaucoup mieux definies que dans une veritable colonne d'absorption. Le reacteur de laboratoire utilise est un reacteur triphasique gaz-liquide.</p>
+
+    <p>Une des specificites de ce reacteur est qu'il est alimente par un debit variable de polluant qui est ajuste au cours du temps de maniere a maintenir la pression de la phase gazeuse constante (figure 2, page 3). Au cours d'une experience, on enregistre le debit molaire de polluant A qui entre dans le reacteur en fonction du temps. D'apres la loi de Dalton, la pression totale est egale a la somme des pressions partielles des especes dans la phase gazeuse. Comme A est seul dans la phase gazeuse, la pression totale est egale a la pression partielle de A, notee \(P_A\). On suppose que le reacteur est isotherme.</p>
+
+    <p>La determination directe de la conductance de transfert d'un polluant dans un solvant n'est pas aisee. On procede en deux etapes pour la determiner :</p>
+    <ul>
+      <li>on determine d'abord la valeur du produit \(k_L \times a\), ou \(a\) est l'aire interfaciale entre le liquide et le gaz par unite de volume de la phase liquide (unite de \(a\) : m\(^2\).m\(^{-3}\)), grace a une premiere experience ou le seul phenomene qui a lieu est l'absorption physique du polluant A dans le solvant ;</li>
+      <li>on determine ensuite les valeurs des deux parametres \(k_L\) et \(a\) de maniere independante grace a une seconde experience avec le meme solvant mais qui contient cette fois-ci un reactif B qui reagit avec le gaz polluant A (absorption physique avec reaction chimique). On supposera que la reaction chimique en phase liquide s'ecrit : \(A + B \rightarrow produits\).</li>
+    </ul>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 2</div>
+      <p>Schema du reacteur de laboratoire utilise pour la determination de la conductance de transfert du polluant A. L'entree de A (debit \(F_A\)) se fait par le haut. Le reacteur contient du gaz A avec \(P_A = 1{,}0\) bar dans la partie superieure, et du liquide : solvant (volume \(V_{liq} = 1{,}0\) litre) dans la partie inferieure. Les annotations indiquent : \(F_A\) : debit molaire de A qui entre dans le reacteur. \(P_A\) : pression partielle de A dans la phase gazeuse. \(V_{liq}\) : volume de la phase liquide (solvant).</p>
+    </div>
+
+    <p>On enregistre le debit molaire de A qui entre dans le reacteur en fonction du temps pour les deux experiences (sans reaction et avec reaction avec le reactif B). Les donnees se trouvent dans un fichier nomme &laquo; data.txt &raquo;. La premiere colonne correspond au temps (s). La deuxieme et troisieme colonnes correspondent aux debits molaires de A enregistres au cours des deux experiences (sans et avec reaction respectivement). Les colonnes sont separees par des espaces (tableau 1, page 7).</p>
+
+    <h2 id="partie2">II. Modelisation des phenomenes</h2>
+
+    <p>Dans cette partie, on demande d'etablir les modeles qui vont representer l'evolution du debit molaire d'entree \(F_A\) en fonction du temps. Les modeles sont obtenus en realisant des bilans de matiere.</p>
+
+    <h3 id="partie2-1">II.1 Cas ou le solvant ne contient pas le reactif B</h3>
+
+    <section class="question" id="Q1">
+      <h4>Q1.1)</h4>
+      <p>On considere tout d'abord l'absorption du polluant A dans le solvant (cas ou le solvant ne contient pas le reactif B). Le phenomene qui regit le transfert de A a l'interface entre les deux phases est la diffusion, phenomene localise au niveau de la couche limite situee a proximite de l'interface (zone delimitee par des pointilles sur la figure 3, page 4).</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 3</div>
+        <p>Schema representant l'interface gaz - liquide. A gauche, la zone gaz avec la pression partielle \(P_A\). L'interface est representee par une ligne verticale. A droite, la zone liquide avec la concentration \(C_A\). La couche limite est representee par une zone en pointilles a proximite de l'interface, cote liquide. On note \(P_A^*\) la pression a l'interface cote gaz, et \(C_A^*\) la concentration a l'interface cote liquide.</p>
+      </div>
+
+      <p>La pression a l'interface \(P_A^*\) est egale a la pression partielle \(P_A\) dans la phase gazeuse car le polluant A est seul dans cette phase. La pression dans la phase gazeuse est maintenue constante (\(P_A^* = P_A = 1{,}0\) bar). A l'interface, la loi de Henry permet de relier la pression \(P_A^*\) et la concentration \(C_A^*\). D'apres cette loi, la concentration de gaz dissous dans un liquide est proportionnelle a la pression partielle du gaz en contact avec le liquide a l'equilibre thermodynamique et a temperature constante.</p>
+
+      <p>Calculer la valeur de la concentration \(C_A^*\) en mol.m\(^{-3}\) a partir de la loi de Henry. On donne la constante de Henry pour A : \(H = 26{,}0\) bar.L.mol\(^{-1}\). On pourra s'appuyer sur l'analyse dimensionnelle pour ecrire la loi de Henry.</p>
+    </section>
+
+    <section class="question" id="Q2">
+      <h4>Q1.2)</h4>
+      <p>Le debit molaire \(F_A^*\) qui traverse l'interface gaz-liquide vers le solvant s'ecrit :
+      \(k_L \times a \times (C_A^* - C_A) \times V_{liq}\), ou \(C_A^*\) est la concentration du polluant a l'interface, \(C_A\) est la concentration de A dans le solvant (figure 3) et \(V_{liq}\) est le volume de la phase liquide.</p>
+      <p>Verifier que l'expression \(k_L \times a \times (C_A^* - C_A) \times V_{liq}\) est bien homogene a un debit molaire.</p>
+    </section>
+
+    <section class="question" id="Q3">
+      <h4>Q1.3)</h4>
+      <p>Sachant qu'a l'instant initial la concentration \(C_A\) de A dans la phase liquide est nulle, expliquer qualitativement comment \(C_A\) va evoluer au cours du temps. Preciser le signe du terme \(k_L \times a \times (C_A^* - C_A) \times V_{liq}\).</p>
+    </section>
+
+    <section class="question" id="Q4">
+      <h4>Q1.4)</h4>
+      <p>On considere que la phase gazeuse se comporte comme un reacteur ouvert parfaitement agite en regime permanent (il n'y a donc pas d'accumulation de A dans cette phase) dans lequel il n'y a pas de reaction (le gaz ne fait que transiter dans cette partie du reacteur). On precise que les grandeurs intensives (temperature, pression, concentration) dans un reacteur ouvert parfaitement agite sont identiques en tout point.</p>
+      <p>Ecrire le bilan de matiere sur le polluant A dans la phase gazeuse. Preciser le terme d'entree et le terme de sortie intervenant dans le bilan de matiere.</p>
+    </section>
+
+    <section class="question" id="Q5">
+      <h4>Q1.5)</h4>
+      <p>La phase liquide est modelisee par un reacteur semi-ferme parfaitement agite fonctionnant en regime transitoire. Ce type de reacteur peut etre considere comme un reacteur ferme parfaitement agite (contenant initialement le solvant dans le cas present) possedant une entree permettant l'ajout d'une espece au cours du temps (le polluant A dans le cas present).</p>
+      <p>Pour simplifier le probleme, on suppose que le volume de la couche limite (zone a proximite de l'interface dans laquelle on observe un gradient de concentration du polluant du a sa diffusion de l'interface vers la phase liquide, figure 3, page 4) est tres faible et que la concentration de A dans la phase liquide est homogene. En d'autres termes, on considere que la concentration de A passe instantanement de \(C_A^*\), a l'interface, a \(C_A\) dans la phase liquide comme indique sur le schema de la figure 4.</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 4</div>
+        <p>Schema simplifie de l'interface gaz-liquide. A gauche, la zone gaz avec la pression \(P_A\). L'interface est representee par une ligne verticale. La pression a l'interface cote gaz est \(P_A^*\). La concentration a l'interface cote liquide est \(C_A^*\). A droite, la zone liquide avec la concentration \(C_A\) uniforme. La transition de \(C_A^*\) a \(C_A\) est abrupte.</p>
+      </div>
+
+      <p>Ecrire le bilan de matiere sur le polluant A dans la phase liquide. Preciser le terme d'entree et le terme d'accumulation.</p>
+    </section>
+
+    <section class="question" id="Q6">
+      <h4>Q1.6)</h4>
+      <p>Simplifier le bilan en considerant que le volume de la phase liquide reste constant au cours du temps.</p>
+    </section>
+
+    <section class="question" id="Q7">
+      <h4>Q1.7)</h4>
+      <p>Resoudre l'equation differentielle obtenue a la question precedente en considerant que la concentration initiale de A dans la phase liquide est nulle. On pourra effectuer un changement de variable.</p>
+    </section>
+
+    <section class="question" id="Q8">
+      <h4>Q1.8)</h4>
+      <p>Donner l'expression de la concentration de A en fonction du temps. Verifier que \(C_A\) evolue bien de la maniere prevue a la question <strong>Q1.3)</strong>, page 4.</p>
+    </section>
+
+    <section class="question" id="Q9">
+      <h4>Q1.9)</h4>
+      <p>Etablir l'expression du debit molaire \(F_A\) en fonction du temps. Verifier l'homogeneite de la relation.</p>
+    </section>
+
+    <section class="question" id="Q10">
+      <h4>Q1.10)</h4>
+      <p>Preciser vers quelle valeur tend le debit molaire \(F_A\) pour des temps importants et indiquer vers quelle valeur tend la concentration \(C_A\) dans ce cas.</p>
+    </section>
+
+    <h3 id="partie2-2">II.2 Cas ou le reactif B est present dans le solvant</h3>
+
+    <section class="question" id="Q11">
+      <h4>Q2.1)</h4>
+      <p>On considere maintenant le cas ou le reactif B est present dans le solvant (a la concentration initiale \(C_{B0}\) de 1 000,0 mol.m\(^{-3}\)) et ou il y a reaction entre A et B dans la phase liquide. Pour simplifier, on suppose que le reactif B ne passe pas dans la phase gazeuse (figure 5, page 6). On suppose egalement que la phase liquide est parfaitement agitee et que le volume reste constant. On precise que, comme dans le cas precedent, la concentration \(C_A\) de A dans la phase liquide est nulle a l'instant initial.</p>
+      <p>Le bilan de matiere sur la phase gazeuse est-il modifie ? Justifier.</p>
+    </section>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 5</div>
+      <p>Schema du reacteur dans le cas de la deuxieme experience. L'entree de A (debit \(F_A\)) se fait par le haut. Le reacteur contient du gaz A avec \(P_A = 1{,}0\) bar dans la partie superieure. La partie inferieure contient le liquide : solvant + B avec le volume \(V_{liq} = 1{,}0\) litre.</p>
+    </div>
+
+    <section class="question" id="Q12">
+      <h4>Q2.2)</h4>
+      <p>Des etudes prealables ont montre que la vitesse apparente de la reaction dans la phase liquide (notee \(r_{app}\)) est impactee par les phenomenes de diffusion de A dans la couche limite et qu'elle peut s'ecrire sous la forme \(r_{app} = a \times C_A^* \times \sqrt{D_A \times k \times C_B}\) pour une reaction d'ordre un par rapport a chacun des deux reactifs. \(D_A\) est la diffusivite de A dans la phase liquide (\(1{,}83 \times 10^{-9}\) m\(^2\).s\(^{-1}\)), \(k\) est la constante cinetique vraie de la reaction entre A et B (\(k = 0{,}10\) m\(^3\).mol\(^{-1}\).s\(^{-1}\)) et \(C_B\) est la concentration de B dans la phase liquide.</p>
+      <p>Indiquer la dimension de \(r_{app}\). Preciser son unite dans le systeme SI.</p>
+    </section>
+
+    <section class="question" id="Q13">
+      <h4>Q2.3)</h4>
+      <p>Ecrire le nouveau bilan de matiere sur A dans la phase liquide en prenant en compte le nouveau terme correspondant a la reaction chimique (on fera particulierement attention au signe).</p>
+    </section>
+
+    <section class="question" id="Q14">
+      <h4>Q2.4)</h4>
+      <p>Simplifier le bilan en considerant que le volume de la phase liquide reste constant.</p>
+    </section>
+
+    <section class="question" id="Q15">
+      <h4>Q2.5)</h4>
+      <p>Ecrire le bilan de matiere sur B dans la phase liquide en considerant que la phase liquide est un reacteur ferme parfaitement agite.</p>
+    </section>
+
+    <section class="question" id="Q16">
+      <h4>Q2.6)</h4>
+      <p>Simplifier ce bilan en considerant que le volume de la phase liquide reste constant.</p>
+    </section>
+
+    <section class="question" id="Q17">
+      <h4>Q2.7)</h4>
+      <p>Donner le systeme de deux equations differentielles ordinaires qui regit l'evolution des concentrations de A et de B dans la phase liquide en fonction du temps.</p>
+    </section>
+
+    <h2 id="partie3">III. Traitement numerique des donnees experimentales</h2>
+
+    <p>Dans cette partie, on propose de comparer les modeles etablis dans la partie II aux resultats experimentaux pour determiner la valeur de l'aire interfaciale \(a\) et celle du coefficient de transfert \(k_L\) en utilisant des outils numeriques.</p>
+
+    <p>Les portions de programme demandees au candidat peuvent etre realisees dans le langage Python ou dans le langage Scilab. Cependant, toutes les questions seront traitees dans le meme langage. On veillera a apporter les commentaires suffisants a la comprehension du programme et utiliser des noms de variables explicites. Il est demande de repondre precisement aux questions posees (par exemple, on ecrira une fonction uniquement lorsque cela est explicitement demande). Des annexes sont disponibles a la fin de l'enonce.</p>
+
+    <h3 id="partie3-1">III.1 Determination de la valeur du produit \(k_L \times a\)</h3>
+
+    <p>Dans cette partie, on va determiner la valeur du produit \(k_L \times a\) a partir des donnees experimentales enregistrees en l'absence de reaction dans la phase liquide. Si l'expression du debit molaire de A demandee a la question <strong>Q1.9)</strong>, page 5, n'a pas ete trouvee, on utilisera la notation formelle suivante pour ecrire le code : \(F_A = f(t, (k_L \times a))\).</p>
+
+    <section class="question" id="Q18">
+      <h4>Q3.1)</h4>
+      <p>Les donnees experimentales sont disponibles sous forme d'un fichier texte nomme &laquo; data.txt &raquo; dans lequel les informations sont presentees sous forme de colonnes (tableau 1). La premiere colonne du fichier correspond au temps (unite : s), la deuxieme au debit molaire de A (unite : mol.s\(^{-1}\)) entrant dans le reacteur enregistre au cours de la premiere experience (cas de l'absorption dans le solvant sans reaction) et la troisieme colonne au debit molaire de A (unite : mol.s\(^{-1}\)) entrant dans le reacteur enregistre au cours de la seconde experience (en presence du reactif B).</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Tableau 1</div>
+        <p>Donnees experimentales contenues dans le fichier &laquo; data.txt &raquo; :
+        <br>0.0 &emsp; 1.9231E-04 &emsp; 1.9230E-04
+        <br>10.0 &emsp; 1.8293E-04 &emsp; 1.9108E-04
+        <br>20.0 &emsp; 1.7601E-04 &emsp; 1.8993E-04
+        <br>30.0 &emsp; 1.6552E-04 &emsp; 1.8878E-04
+        <br>40.0 &emsp; 1.5745E-04 &emsp; 1.8771E-04
+        <br>... &emsp; ... &emsp; ...
+        <br>50.0 &emsp; 1.4977E-04 &emsp; 1.8667E-04</p>
+      </div>
+    </section>
+
+    <section class="question" id="Q19">
+      <h4>Q3.1.a)</h4>
+      <p>Indiquer la syntaxe a utiliser pour charger le fichier &laquo; data.txt &raquo; qui contient les donnees experimentales. Donner le code permettant de creer trois vecteurs \(t^{exp}\), \(F_A^{exp1}\) et \(F_A^{exp2}\) correspondant respectivement aux donnees des premiere, deuxieme et troisieme colonnes. Donner egalement le code qui permet de determiner le nombre de points experimentaux \(n\).</p>
+    </section>
+
+    <section class="question" id="Q20">
+      <h4>Q3.1.b)</h4>
+      <p>Donner la syntaxe permettant de tracer sur un graphe l'evolution du debit molaire de A en fonction du temps dans le cas ou seul le phenomene d'absorption physique est etudie.</p>
+    </section>
+
+    <section class="question" id="Q21">
+      <h4>Q3.2)</h4>
+      <p>On souhaite determiner la valeur du produit \(k_L \times a\) grace au modele etabli a la question <strong>Q1.9)</strong>, page 5, par une methode d'optimisation numerique de parametres. La methode utilisee est celle des moindres carres. Il s'agit d'une methode qui permet de comparer des donnees experimentales a un modele mathematique la plupart du temps issu d'une theorie.</p>
+      <p>Dans le cas present, le modele mathematique correspond a l'expression du debit molaire \(F_A\), que l'on notera \(F_A^{th}\) par la suite, determinee a la question <strong>Q1.9)</strong>, page 5. Ce debit molaire est une fonction du temps \(t\) et du produit \(k_L \times a\) que l'on souhaite determiner. La methode des moindres carres donne la valeur optimale du produit \(k_L \times a\) qui permet de calculer un debit molaire theorique \(F_A^{th}\) representant le mieux le debit molaire experimental \(F_A^{exp1}\). Cette valeur optimale est celle qui permet de minimiser la somme quadratique des deviations des mesures aux predictions. Cette somme, notee \(S(k_L \times a)\), peut se mettre sous la forme suivante :</p>
+      <p>\[ S(k_L \times a) = \sum_{i=1}^{n} \left( F_A^{exp,i} - F_A^{th}(k_L \times a) \right)^2 \]</p>
+      <p>avec \(n\) le nombre de points experimentaux, \(i\) l'indice correspondant au point experimental enregistre au temps \(t_i^{exp}\) (\(1 \leq i \leq n\)), \(F_A^{exp,i}\) le debit molaire experimental obtenu au temps \(t_i^{exp}\) et \(F_A^{th}(k_L \times a)\) le debit molaire theorique calcule au temps \(t_i^{exp}\) grace au modele etabli a la question <strong>Q1.9)</strong>, page 5.</p>
+      <p>Ecrire une fonction <code>sme(k1a,t_exp,Fa_exp1)</code> qui retourne la valeur de la quantite \(S\). Cette fonction aura comme argument d'entree le produit \(k_L \times a\) et les vecteurs \(t^{exp}\) et \(F_A^{exp1}\) crees a la question <strong>Q3.1.a)</strong>, page 7.</p>
+    </section>
+
+    <section class="question" id="Q22">
+      <h4>Q3.3)</h4>
+      <p>Une des methodes utilisees pour trouver le minimum d'une fonction \(f\) est celle proposee par Nelder-Mead. Il s'agit d'un algorithme d'optimisation non lineaire base sur le concept de simplexe a \(n + 1\) sommets dans un espace a \(n\) dimensions. Dans le cas d'une fonction d'une variable (\(n = 1\)), un simplexe est un segment.</p>
+      <p>L'algorithme de Nelder-Mead est une procedure iterative. Partant d'un segment initial \([MN]\), l'algorithme va generer une succession de segments par des transformations simples au cours des iterations : le segment se deplace et se reduit jusqu'a ce que ses extremites se rapprochent d'un point ou la fonction presente un minimum (ce minimum peut etre un minimum local).</p>
+      <p>Soient \(x_M\) et \(x_N\) les abscisses des points \(M\) et \(N\). Les transformations subies par le segment (illustrees en figure 6, page 9) sont basees sur la comparaison des valeurs de la fonction \(f\) aux extremites du segment.</p>
+      <ul>
+        <li>La premiere etape consiste a reindexer les deux extremites du segment de maniere a ce que \(f(x_M) \leq f(x_N)\).</li>
+        <li>L'extremite \(N\) pour laquelle la fonction \(f\) est maximale est remplacee par une nouvelle extremite. On introduit alors le point \(R\), reflexion de \(N\) par rapport a \(M\), tel que \(x_R = x_M + (x_M - x_N)\).</li>
+        <li>Si \(f(x_R) &lt; f(x_M)\), le segment est etire dans cette direction (car la reflexion se rapproche du minimum). On introduit un point \(E\) (etirement du segment) tel que \(x_E = x_M + 2(x_M - x_N)\) qui permet eventuellement de se rapprocher encore un peu plus du minimum. Le point \(N\) est substitue par le point \(R\) si \(f(x_R) &lt; f(x_E)\), sinon par \(E\).</li>
+        <li>Si \(f(x_R) &gt; f(x_M)\), le segment est contracte dans la direction opposee a la reflexion (car la reflexion s'eloigne du minimum). On introduit le point \(C_1\) (contraction du segment) qui est defini par \(x_{C_1} = x_M + 1/2\,(x_M - x_N)\). Si \(f(x_{C_1}) &lt; f(x_M)\), \(N\) est remplace par \(C_1\). Sinon \(N\) est remplace par le point \(C_2\), homothetie de rapport \(-1\) et de centre \(M\) du point \(C_1\) (\(x_{C_2} = x_M + 1/2\,(x_M - x_N)\)).</li>
+      </ul>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 6</div>
+        <p>Illustration des transformations subies par le segment initial \([MN]\) dans la methode d'optimisation de Nelder-Mead. Cinq lignes horizontales representent les positions successives :
+        <br>- Segment initial, tel que \(f(x_M) \leq f(x_N)\) : points \(N\) et \(M\) de gauche a droite.
+        <br>- Le point \(R\), reflexion de \(N\) par rapport a \(M\) : points \(N\), \(M\), \(R\).
+        <br>- Le point \(E\), etirement du segment, tel que \(x_E = x_M + 2(x_M - x_N)\) : points \(N\), \(M\), \(R\), \(E\).
+        <br>- Le point \(C_1\), contraction du segment, tel que \(x_{C_1} = x_M + 1/2\,(x_M - x_N)\) : points \(N\), \(C_1\), \(M\), \(R\), \(E\).
+        <br>- Le point \(C_2\), image de \(C_1\) par homothetie de centre \(M\) et de rapport \(-1\) : points \(N\), \(C_2\), \(M\), \(C_1\), \(R\), \(E\).</p>
+      </div>
+    </section>
+
+    <section class="question" id="Q23">
+      <h4>Q3.3.a)</h4>
+      <p>Soit \(f(x)\) une fonction dont on cherche le minimum. Soient \(x_M\) et \(x_N\) les abscisses des extremites d'un segment \([MN]\). Ecrire le code permettant de reindexer les deux extremites du segment de maniere a ce que \(f(x_M)\) soit inferieure ou egale a \(f(x_N)\).</p>
+    </section>
+
+    <section class="question" id="Q24">
+      <h4>Q3.3.b)</h4>
+      <p>Partant du segment \([MN]\) reindexe, ecrire le code permettant de transformer le segment \([MN]\) au cours d'une iteration de la methode de Nelder-Mead. Chaque etape du code devra etre commentee.</p>
+    </section>
+
+    <section class="question" id="Q25">
+      <h4>Q3.3.c)</h4>
+      <p>Construire une boucle permettant de realiser des iterations successives de la methode de Nelder-Mead. On prendra \(x_M^0 = 1\) et \(x_N^0 = 10^5\) pour les abscisses des deux extremites du segment initial \([MN]\). Cette boucle sera interrompue lorsque l'ecart relatif \(abs\left(\frac{x_M - x_N}{x_N}\right)\) sera inferieur a \(10^{-4}\) ou lorsque le nombre maximum d'iterations, fixe par l'utilisateur, sera atteint soit <code>itrmax</code> \(= 1\,000\).</p>
+    </section>
+
+    <section class="question" id="Q26">
+      <h4>Q3.4)</h4>
+      <p>La methode de Nelder-Mead appliquee a la fonction \(S(k_L \times a)\) a conduit a \((k_L \times a)_{opt} = 5{,}0 \times 10^{-3}\). Donner le code permettant de calculer le debit molaire theorique grace a la valeur optimisee du produit \((k_L \times a)_{opt}\).</p>
+    </section>
+
+    <section class="question" id="Q27">
+      <h4>Q3.5)</h4>
+      <p>Indiquer la syntaxe a utiliser pour comparer sur un meme graphe les debits molaires theorique et experimental. Expliquer l'interet de comparer la courbe theorique et les points experimentaux.</p>
+    </section>
+
+    <section class="question" id="Q28">
+      <h4>Q3.6)</h4>
+      <p>On souhaite developper un algorithme de tri permettant de reindexer les sommets d'un simplexe a \(p + 1\) sommets (\(X = \{x_1, x_2, ..., x_{p+1}\}\)) dans le cadre de la generalisation de la methode de Nelder-Mead appliquee a une fonction quelconque \(z(x)\) de \(p\) variables (\(x \in \mathbb{R}^p\)). On propose d'utiliser la methode du tri par selection pour reindexer le simplexe de sorte que les valeurs que prend la fonction \(z(x)\) en chaque sommet du simplexe soient classees de maniere croissante.</p>
+      <p>La methode du tri par selection repose sur la recherche du plus petit element d'une liste. Une fois identifie, on echange cet element avec le premier element de la liste. Il s'agit d'une procedure iterative (figure 7). Lors de la premiere iteration, on echange le premier element (\(i = 1\)) avec le plus petit de la liste. Lors de la \(i\)eme iteration, on echange le \(i\)eme element par le plus petit element en ne considerant que ceux a partir de la \(i\)eme position.</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 7</div>
+        <p>Representation schematique des trois premieres iterations de la methode de tri par selection :
+        <br>Vecteur initial : 10 &ensp; 2 &ensp; -3 &ensp; 5 &ensp; 1 &ensp; 20 &ensp; 60 &ensp; 48 &ensp; -15 &ensp; 9
+        <br>1ere iteration : <strong>-15</strong> &ensp; 2 &ensp; -3 &ensp; 5 &ensp; 1 &ensp; 20 &ensp; 60 &ensp; 48 &ensp; <strong>10</strong> &ensp; 9
+        <br>2eme iteration : -15 &ensp; <strong>-3</strong> &ensp; <strong>2</strong> &ensp; 5 &ensp; 1 &ensp; 20 &ensp; 60 &ensp; 48 &ensp; 10 &ensp; 9
+        <br>3eme iteration : -15 &ensp; -3 &ensp; <strong>1</strong> &ensp; 5 &ensp; <strong>2</strong> &ensp; 20 &ensp; 60 &ensp; 48 &ensp; 10 &ensp; 9</p>
+      </div>
+
+      <p>Ecrire le code permettant de reindexer les sommets du simplexe \(X = \{x_1, x_2, ..., x_{p+1}\}\) de sorte que les valeurs que prend la fonction \(z(x)\) en chaque sommet du simplexe soient classees de maniere croissante. On supposera que la fonction \(z(x)\) est deja definie.</p>
+    </section>
+
+    <h3 id="partie3-2">III.2 Determination des valeurs de \(a\) et \(k_L\)</h3>
+
+    <p>Dans cette partie, on souhaite determiner la valeur de l'aire interfaciale \(a\) en comparant les debits molaires experimentaux obtenus lors de la deuxieme experience (en presence du reactif B dans le solvant) avec le debit molaire theorique calcule a partir du modele etabli a la question <strong>Q2.7)</strong>, page 6. Ce modele est un systeme de deux equations differentielles ordinaires que l'on peut ecrire sous la forme suivante :</p>
+    <p>\[ \frac{dC_A}{dt} = g(t, C_A, C_B, a, (k_L \times a)) \]</p>
+    <p>\[ \frac{dC_B}{dt} = h(t, C_A, C_B, a) \]</p>
+    <p>La fonction \(g\) est une fonction du produit \(k_L \times a\) dont la valeur a ete determinee grace a la premiere experience (\((k_L \times a)_{opt} = 5{,}0 \times 10^{-3}\) s\(^{-1}\)), du temps \(t\), les concentrations \(C_A\) et \(C_B\) de A et B dans le solvant et de l'aire interfaciale \(a\). La fonction \(h\) est une fonction du temps \(t\), des concentrations \(C_A\) et \(C_B\) dans le solvant et de l'aire interfaciale \(a\).</p>
+    <p>On propose d'utiliser la methode d'Euler pour resoudre le systeme d'equations differentielles.</p>
+
+    <section class="question" id="Q29">
+      <h4>Q3.7)</h4>
+      <p>Ecrire deux fonctions <code>g(t,CA,CB,A,k1a)</code> et <code>H(t,CA,CB,A)</code> permettant de calculer les valeurs des fonctions \(g(t, C_A, C_B, a, (k_L \times a))\) et \(h(t, C_A, C_B, a)\).</p>
+    </section>
+
+    <section class="question" id="Q30">
+      <h4>Q3.8)</h4>
+      <p>La methode utilisee pour resoudre le systeme d'equations differentielles est la methode d'Euler a pas fixe. On note \(t_0\) le temps initial, \(t_f\) le temps final d'integration et \(\Delta t\) le pas d'integration.</p>
+    </section>
+
+    <section class="question" id="Q31">
+      <h4>Q3.8.a)</h4>
+      <p>Soient \(n\) le nombre d'experiences realisees et \(\Delta t^{exp}\) l'intervalle de temps entre deux mesures experimentales successives du debit molaire du polluant A. Pour realiser la comparaison entre les debits molaires theoriques et experimentaux, on ne s'interesse qu'aux valeurs du debit molaire theorique \(F_A^{th2}\) aux instants particuliers \(t_i^{exp} = \Delta t^{exp} \times i\) avec \(i\) variant de 1 a \(n\).</p>
+      <p>La methode d'Euler ne permet d'obtenir un resultat correct que si le pas d'integration, \(\Delta t\), est suffisamment faible. Par consequent, on souhaite utiliser un pas d'integration \(\Delta t\) cent fois plus petit que l'intervalle de temps entre deux mesures experimentales \(\Delta t^{exp}\). Le temps d'integration est donc discretise en intervalles de duree \(\Delta t\) et les valeurs des concentrations \(C_A\) et \(C_B\) sont calculees aux instants particuliers \(t_j = \Delta t \times j\) avec \(j\) variant de 0 a \(m\).</p>
+      <p>Donner la syntaxe permettant de calculer le pas de temps \(\Delta t\) ainsi que le nombre d'intervalles \(m\) (\(m\) est un nombre entier) en fonction de \(t_0\) (le premier element du vecteur \(t^{exp}\)), \(t_f\) (le dernier element du vecteur \(t^{exp}\)), l'intervalle de temps entre deux mesures experimentales successives du debit molaire).</p>
+    </section>
+
+    <section class="question" id="Q32">
+      <h4>Q3.8.b)</h4>
+      <p>Donner une expression de \(C_A(t + \Delta t)\) a l'ordre 1 (\(o(\Delta t)\)) en fonction de \(C_A\) et \(\frac{dC_A}{dt}\) evaluees en \(t\) a l'aide d'un developpement limite de la fonction \(t \mapsto C_A(t)\).</p>
+    </section>
+
+    <section class="question" id="Q33">
+      <h4>Q3.8.c)</h4>
+      <p>En deduire une valeur approchee de \(\frac{dC_A}{dt}\bigg|_t\) a l'ordre 0 (\(o(1)\)) en fonction de \(C_A(t)\), \(C_A(t + \Delta t)\) et \(\Delta t\). Faire de meme pour donner une valeur approchee de \(\frac{dC_B}{dt}\bigg|_t\) a l'ordre 0 (\(o(1)\)) en fonction de \(C_B(t)\), \(C_B(t + \Delta t)\) et \(\Delta t\).</p>
+    </section>
+
+    <section class="question" id="Q34">
+      <h4>Q3.8.d)</h4>
+      <p>On note \(C_{A,j}\) et \(C_{B,j}\) les concentrations \(C_A(t_j)\) et \(C_B(t_j)\). De meme, on note \(C_{A,j+1}\) et \(C_{B,j+1}\) les concentrations \(C_A(t_{j+1})\) et \(C_B(t_{j+1})\). Donner une expression de la derivee par rapport au temps de \(C_A\) evaluee a l'instant \(t_j\), notee \(\left.\frac{dC_A}{dt}\right|_{t_j}\), en fonction de \(\Delta t\), \(C_{A,j}\) et \(C_{A,j+1}\). De meme, donner une expression de la derivee par rapport au temps de \(C_B\) evaluee a l'instant \(t_j\), notee \(\left.\frac{dC_B}{dt}\right|_{t_j}\), en fonction de \(\Delta t\), \(C_{B,j}\) et \(C_{B,j+1}\).</p>
+    </section>
+
+    <section class="question" id="Q35">
+      <h4>Q3.8.e)</h4>
+      <p>Donner le systeme de deux equations permettant de calculer \(C_{A,j+1}\) et \(C_{B,j+1}\) en fonction de \(C_{A,j}\), \(C_{B,j}\), \(\Delta t\), \(g(t_j, C_{A,j}, C_{B,j}, a, (k_L \times a))\) et \(h(t_j, C_{A,j}, C_{B,j}, a)\).</p>
+    </section>
+
+    <section class="question" id="Q36">
+      <h4>Q3.8.f)</h4>
+      <p>Ecrire une fonction <code>Euler(G,H,t0,tf,CA0,CB0,Dt,m,a,k1a)</code> qui retourne deux vecteurs : le vecteur temps et le vecteur correspondant a la concentration \(C_A\) calculee par la methode d'Euler.</p>
+    </section>
+
+    <section class="question" id="Q37">
+      <h4>Q3.9)</h4>
+      <p>On souhaite utiliser la methode des moindres carres pour determiner la valeur optimale de l'aire interfaciale \(a\) en utilisant une strategie similaire a celle utilisee pour obtenir la valeur optimisee du produit \((k_L \times a)\). Pour cela, on a besoin de connaitre les valeurs du debit molaire de A \(F_A^{th2}\) calcule aux instants particuliers \(t_i^{exp} = \Delta t^{exp} \times i\) avec \(i\) variant de 1 a \(n\).</p>
+      <p>Donner le code permettant de creer un vecteur \(F_A^{th2}\) contenant les valeurs du debit molaire de A calcule aux instants particuliers \(t_i^{exp}\) a partir des valeurs de la concentration de A (\(C_A^{th2}\)) calculees en utilisant la fonction <code>Euler</code> de la question <strong>Q3.8.f)</strong>.</p>
+    </section>
+
+    <section class="question" id="Q38">
+      <h4>Q3.10)</h4>
+      <p>La valeur optimale de l'aire interfaciale \(a\) est celle qui permet de minimiser la fonction \(S_2(a)\) qui peut se mettre sous la forme suivante :</p>
+      <p>\[ S_2(a) = \sum_{i=1}^{n} \left( F_A^{exp2,i} - F_A^{th2}(a) \right)^2 \]</p>
+      <p>avec \(F_A^{exp2,i}\) le debit molaire experimental obtenu au temps \(t_i^{exp}\) (question <strong>Q3.9)</strong>, page 11) et \(n\) le nombre de points experimentaux.</p>
+      <p>Donner le code permettant de construire une fonction <code>sme2(a,t_exp,Fa_exp2)</code> qui retourne la valeur de la quantite \(S_2\). Cette fonction aura comme argument d'entree l'aire interfaciale \(a\) et les vecteurs \(t^{exp}\) et \(F_A^{exp2}\) crees a la question <strong>Q3.1.a)</strong>, page 7.</p>
+    </section>
+
+    <section class="question" id="Q39">
+      <h4>Q3.11)</h4>
+      <p>La methode de Nelder-Mead appliquee a la fonction \(S_2(a)\) conduit a \(a_{opt} = 10{,}0\) m\(^2\).m\(^{-1}\). Indiquer le code pour calculer le coefficient de transfert \(k_L\) et afficher les valeurs de \(a_{opt}\) et \(k_L\) a l'ecran.</p>
+    </section>
+
+    <h3 id="partie3-3">III.3 Utilisation du modele pour realiser des simulations</h3>
+
+    <p>Maintenant que l'on connait les valeurs des parametres \(a\) et \(k_L\), on souhaite utiliser le modele pour realiser des predictions. On propose d'etudier l'influence de la concentration initiale \(C_{B0}\) du reactif B dans la phase liquide sur le debit molaire en entree du reacteur (\(F_A^{th}\)).</p>
+
+    <section class="question" id="Q40">
+      <h4>Q3.12)</h4>
+      <p>Expliquer qualitativement comment doit varier le debit molaire en entree du reacteur avec la concentration initiale du reactif B.</p>
+    </section>
+
+    <section class="question" id="Q41">
+      <h4>Q3.13)</h4>
+      <p>Justifier le concept &laquo; d'acceleration du transfert par la reaction chimique &raquo;.</p>
+    </section>
+
+    <section class="question" id="Q42">
+      <h4>Q3.14)</h4>
+      <p>Ecrire le code qui permettrait de realiser une prediction du debit molaire \(F_A^{th}\) a l'aide du modele et des parametres optimises (\(a_L\) et \(a\)) en prenant \(C_{B0}\) comme valeur pour la concentration initiale du reactif B, une valeur rentree par l'utilisateur (unite : mol.m\(^{-3}\)). On prendra le meme pas \(\Delta t\) que precedemment et comme duree d'integration 1 000 s.</p>
+    </section>
+
+    <section class="question" id="Q43">
+      <h4>Q3.15)</h4>
+      <p>On souhaite calculer la quantite de matiere de polluant A, \(n_A\), a partir du debit molaire \(F_A^{th}\) obtenu a la question precedente par integration sur l'intervalle \(0 - 1\,000\) s. La methode utilisee pour realiser l'integration est la methode des trapezes. Donner le code permettant de calculer \(n_A\) par cette methode.</p>
+    </section>
+  </article>
+
+  <article class="annale-exercice" id="exo2">
+    <h2>ANNEXE A : COMMANDES ET FONCTIONS USUELLES DE SCILAB</h2>
+
+    <h3>A=[a b c d;e f g h;i j k l]</h3>
+    <p><em>Description :</em> commande permettant de creer une matrice dont la premiere ligne contient les elements \(a, b, c, d\), la seconde ligne contient les elements \(e, f, g, h\) et la troisieme, les elements \(i, j, k, l\).</p>
+    <p>Exemple : <code>A=[1 2 3 4 5;3 10 11 12 20;0 1 0 0 2]</code></p>
+
+    <h3>A(i,j)</h3>
+    <p><em>Description :</em> fonction qui retourne l'element \((i, j)\) de la matrice \(A\). Pour acceder a l'integralite de la ligne \(i\) de la matrice \(A\), on ecrit \(A(i,:)\). De meme, pour obtenir toute la colonne \(j\) de la matrice \(A\), on utilise la syntaxe \(A(:,j)\).</p>
+    <p><em>Argument d'entree :</em> les coordonnees de l'element dans la matrice \(A\).</p>
+    <p><em>Argument de sortie :</em> l'element \((i, j)\) de la matrice \(A\).</p>
+
+    <h3>x=[x1:Dx:x2]</h3>
+    <p><em>Description :</em> commande pour creer un vecteur dont les elements sont espaces de \(Dx\) et dont le premier element est \(x_1\) et le dernier element est le plus grand multiple de \(Dx\) inferieur ou egal a \(x_2\).</p>
+    <p><strong>ATTENTION :</strong> le vecteur ainsi cree est un vecteur ligne. Pour convertir un vecteur ligne en un vecteur colonne, on le transpose en utilisant l'apostrophe &laquo; ' &raquo; : <code>x_transx'</code>.</p>
+
+    <h3>zeros(n,m)</h3>
+    <p><em>Description :</em> fonction creant une matrice (tableau) de dimensions \(n \times m\) dont tous les elements sont nuls.</p>
+    <p><em>Arguments d'entree :</em> deux entiers \(n\) et \(m\) correspondant aux dimensions de la matrice a creer.</p>
+    <p><em>Argument de sortie :</em> un tableau (matrice) d'elements nuls.</p>
+
+    <h3>plot(x,y)</h3>
+    <p><em>Description :</em> fonction permettant de tracer sur un graphique \(n\) points dont les abscisses sont contenues dans le vecteur \(x\) et les ordonnees dans le vecteur \(y\).</p>
+    <p><em>Arguments d'entree :</em> un vecteur d'abscisses \(x\) (tableau de dimension \(n\)) et un vecteur d'ordonnees \(y\) (tableau de dimension \(n\)).</p>
+
+    <h3>readl("nom_fichier",m,n)</h3>
+    <p><em>Description :</em> fonction permettant de lire les donnees sous forme de matrice dans un fichier texte et de les stocker dans une matrice.</p>
+    <p><em>Arguments d'entree :</em> un nom de fichier contenant des donnees sous forme de matrice de dimension \((m,n)\) et les dimensions de la matrice \(m\) (nombre de lignes) et \(n\) (nombre de colonnes). On prend \(m = -1\) si le nombre de lignes n'est pas connu a priori.</p>
+
+    <h3>sum(x)</h3>
+    <p><em>Description :</em> fonction permettant de faire la somme des elements d'un vecteur ou tableau.</p>
+    <p><em>Arguments d'entree :</em> un vecteur ou un tableau de reels, entiers ou complexes.</p>
+    <p><em>Argument de sortie :</em> un scalaire \(y\) qui est la somme des elements de \(x\).</p>
+
+    <h2>ANNEXE B : FONCTIONS DE PYTHON</h2>
+
+    <h3>B.1. BIBLIOTHEQUE NUMPY DE PYTHON</h3>
+    <p>Dans les exemples ci-dessous, la bibliotheque numpy a prealablement ete importee a l'aide de la commande : <strong>import numpy as np</strong></p>
+    <p>On peut alors utiliser les fonctions de la bibliotheque, dont voici quelques exemples :</p>
+
+    <h4>np.array(liste)</h4>
+    <p><em>Description :</em> fonction permettant de creer une matrice (de type tableau) a partir d'une liste.</p>
+    <p><em>Argument d'entree :</em> une liste definissant un tableau a 1 dimension (vecteur) ou 2 dimensions (matrice).</p>
+    <p><em>Argument de sortie :</em> un tableau (matrice).</p>
+
+    <h4>A[i,j]</h4>
+    <p><em>Description :</em> fonction qui retourne l'element \((i + 1, j + 1)\) de la matrice \(A\). Pour acceder a l'integralite de la ligne \(i+1\) de la matrice \(A\), on ecrit \(A[i,:]\). De meme, pour obtenir toute la colonne \(j+1\) de la matrice \(A\), on utilise la syntaxe \(A[:,j]\).</p>
+    <p><strong>ATTENTION : en langage Python, les lignes d'un tableau \(A\) de dimension \(n \times m\) sont numerotees de 0 a \(n - 1\) et les colonnes sont numerotees de 0 a \(m - 1\).</strong></p>
+
+    <h4>np.zeros(n,m)</h4>
+    <p><em>Description :</em> fonction creant une matrice (tableau) de dimensions \(n \times m\) dont tous les elements sont nuls.</p>
+    <p><em>Argument d'entree :</em> un tuple de deux entiers correspondant aux dimensions de la matrice a creer.</p>
+    <p><em>Argument de sortie :</em> un tableau (matrice) d'elements nuls.</p>
+
+    <h4>np.linspace(Min,Max,nbElements)</h4>
+    <p><em>Description :</em> fonction creant un vecteur (tableau) de <code>nbElements</code> nombres regulierement espaces entre <code>Min</code> et <code>Max</code>. Le 1er element est egal a <code>Min</code>, le dernier est egal a <code>Max</code> et les elements sont espaces de \((Max - Min)/(nbElements - 1)\).</p>
+    <p><em>Arguments d'entree :</em> un tuple de 3 entiers.</p>
+    <p><em>Argument de sortie :</em> un tableau (vecteur).</p>
+
+    <h4>np.loadtxt('nom_fichier',delimiter='string',usecols=[n])</h4>
+    <p><em>Description :</em> fonction permettant de lire les donnees sous forme de matrice dans un fichier texte et de les stocker sous forme de vecteurs.</p>
+    <p><em>Arguments d'entree :</em> le nom du fichier qui contient les donnees a charger, le type de caractere utilise dans ce fichier pour separer les donnees (par exemple un espace ou une virgule) et le numero de la colonne a charger (ATTENTION. La premiere colonne porte le numero 0).</p>
+    <p><em>Argument de sortie :</em> un tableau.</p>
+
+    <h3>B.2. BIBLIOTHEQUE MATPLOTLIB.PYPLOT DE PYTHON</h3>
+    <p>Cette bibliotheque permet de tracer des graphiques. Dans les exemples ci-dessous, la bibliotheque matplotlib.pyplot a prealablement ete importee a l'aide de la commande : <strong>import matplotlib.pyplot as plt</strong></p>
+    <p>On peut alors utiliser les fonctions de la bibliotheque, dont voici quelques exemples :</p>
+
+    <h4>plt.plot(x,y)</h4>
+    <p><em>Description :</em> fonction permettant de tracer un graphique de \(n\) points dont les abscisses sont contenues dans le vecteur \(x\) et les ordonnees dans le vecteur \(y\). Cette fonction doit etre suivie de la fonction <strong>plt.show()</strong> pour que le graphique soit affiche.</p>
+    <p><em>Arguments d'entree :</em> un vecteur d'abscisses \(x\) (tableau de dimension \(n\)) et un vecteur d'ordonnees \(y\) (tableau de dimension \(n\)).</p>
+    <p><em>Argument de sortie :</em> un graphique.</p>
+
+    <h4>plt.title('titre')</h4>
+    <p><em>Description :</em> fonction permettant d'afficher le titre d'un graphique.</p>
+    <p><em>Argument d'entree :</em> une chaine de caracteres.</p>
+
+    <h4>plt.xlabel('nom')</h4>
+    <p><em>Description :</em> fonction permettant d'afficher le contenu de nom en abscisse d'un graphique.</p>
+    <p><em>Argument d'entree :</em> une chaine de caracteres.</p>
+
+    <h4>plt.ylabel('nom')</h4>
+    <p><em>Description :</em> fonction permettant d'afficher le contenu de nom en ordonnee d'un graphique.</p>
+    <p><em>Argument d'entree :</em> une chaine de caracteres.</p>
+
+    <h4>plt.show()</h4>
+    <p><em>Description :</em> fonction realisant l'affichage d'un graphe prealablement cree par la commande <strong>plt.plot(x,y)</strong>. Elle doit etre appelee apres la fonction plt.plot et apres les fonctions plt.xlabel et plt.ylabel.</p>
+
+    <h3>B.3. FONCTION INTRINSEQUE DE PYTHON</h3>
+
+    <h4>sum(x)</h4>
+    <p><em>Description :</em> fonction permettant de faire la somme des elements d'un vecteur ou tableau.</p>
+    <p><em>Arguments d'entree :</em> un vecteur ou un tableau de reel, entier ou complexe.</p>
+    <p><em>Argument de sortie :</em> un scalaire \(y\) qui est la somme des elements de \(x\).</p>
+  </article>
+</main>
+</body>
+</html>

@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correction E3A-Polytech PC 2017 - Physique | LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+<style>
+.corr-exercice { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.corr-exercice__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+.corr-exercice__number { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #E91E63; color: #fff; border-radius: 50%; font-weight: 700; font-size: 1.25rem; flex-shrink: 0; }
+.corr-exercice__title-group { flex: 1; }
+.corr-exercice__title { margin: 0; font-size: 1.4rem; color: #111827; }
+.corr-exercice__subtitle { font-size: 0.9rem; color: #6b7280; }
+.corr-exercice__difficulty { padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+.corr-exercice__difficulty--standard { background: #dcfce7; color: #166534; }
+.corr-exercice__difficulty--intermediaire { background: #fef3c7; color: #92400e; }
+.corr-exercice__difficulty--avance { background: #fee2e2; color: #991b1b; }
+.corr-exercice__rule { border: none; border-top: 2px solid #f3f4f6; margin: 1rem 0 1.5rem; }
+.corr-exercice__enonce { background: #f9fafb; border-left: 4px solid #9ca3af; padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 2rem; font-size: 0.95rem; color: #374151; }
+.corr-exercice__enonce-label { display: block; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.5rem; }
+.corr-question { border-left: 4px solid #e5e7eb; padding: 1rem 0 1rem 1.5rem; margin-bottom: 2rem; }
+.corr-question--easy { border-left-color: #22c55e; }
+.corr-question--medium { border-left-color: #f59e0b; }
+.corr-question--hard { border-left-color: #ef4444; }
+.corr-question__num { display: inline-block; font-weight: 700; color: #111827; background: #f3f4f6; padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.9rem; margin-bottom: 0.75rem; }
+.corr-question__statement { font-style: italic; color: #4b5563; background: #f9fafb; padding: 0.9rem 1rem; border-radius: 6px; margin: 0.5rem 0 1.25rem; border-left: 3px solid #d1d5db; }
+.corr-box { padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid; }
+.corr-box__title { font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.corr-box--rappel { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a8a; }
+.corr-box--rappel .corr-box__title { color: #1d4ed8; }
+.corr-box--why { background: #fff7ed; border-left-color: #f97316; color: #7c2d12; }
+.corr-box--why .corr-box__title { color: #c2410c; }
+.corr-box--result { background: #fefce8; border-left-color: #eab308; color: #713f12; }
+.corr-box--result .corr-box__title { color: #a16207; }
+.corr-box--piege { background: #fef2f2; border-left-color: #ef4444; color: #7f1d1d; }
+.corr-box--piege .corr-box__title { color: #b91c1c; }
+.corr-box--method { background: #f0fdf4; border-left-color: #22c55e; color: #14532d; }
+.corr-box--method .corr-box__title { color: #15803d; }
+.corr-toggle { margin: 1rem 0; border: 1px solid #e5e7eb; border-radius: 6px; padding: 0.5rem 1rem; background: #f9fafb; }
+.corr-toggle summary { cursor: pointer; font-weight: 600; color: #4b5563; }
+.corr-toggle__content { padding-top: 0.75rem; color: #374151; }
+.corr-part { margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #E91E63; color: #E91E63; font-size: 1.15rem; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="nav__container">
+<a href="../../index.html" class="nav__logo">LibMaths</a>
+<ul class="nav__menu">
+<li><a href="../../index.html">Accueil</a></li>
+<li><a href="../index.html">Cours</a></li>
+<li><a href="../../physique/index.html">Physique</a></li>
+<li><a href="../../annales.html">Annales</a></li>
+</ul>
+</div>
+</nav>
+
+<main class="course">
+<div class="course__container">
+<header class="course__header">
+<div class="course__breadcrumb">
+<a href="../../index.html">Accueil</a> &gt;
+<a href="../../physique/index.html">Physique</a> &gt;
+<a href="../../annales.html">Annales</a> &gt;
+<a href="e3a-pc-2017-physique.html">E3A PC 2017 Physique</a> &gt;
+Correction
+</div>
+<h1 class="course__title">Correction — E3A-Polytech PC 2017 Physique</h1>
+<p class="course__subtitle">Soleil, photovoltaique et transport d'energie electrique — Correction pedagogique detaillee</p>
+</header>
+
+<!-- ============ VUE D'ENSEMBLE ============ -->
+<div class="corr-exercice" id="intro">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Vue d'ensemble du sujet</span>
+Ce probleme suit le parcours de l'energie solaire depuis sa production jusqu'a sa consommation domestique. On commence par le <strong>rayonnement du Soleil</strong> (corps noir, loi de Wien, loi de Stefan-Boltzmann), puis on estime la <strong>temperature interne du Soleil</strong> par un modele thermodynamique (gravitation, statique des fluides, gaz parfait). On dimensionne ensuite une <strong>centrale photovoltaique</strong> concrete. La deuxieme partie traite du <strong>transport de l'energie</strong> : onduleur DC/AC avec etude de Fourier et programmation Python, dimensionnement des cables (modele de Drude, effet de peau, equations de Maxwell), et enfin propagation des signaux dans une ligne electrique (equations des telegraphistes, ondes progressives, adaptation d'impedance). Le sujet est tres transversal : thermodynamique, electromagnetisme, electronique, et informatique.
+</div>
+</div>
+
+<!-- ======================================================================== -->
+<!--                   PARTIE A : RAYONNEMENT DU SOLEIL                       -->
+<!-- ======================================================================== -->
+<div class="corr-exercice" id="partieA">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">A</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Approche descriptive du rayonnement du Soleil</h2>
+<span class="corr-exercice__subtitle">Corps noir, Wien, Stefan-Boltzmann — 5 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--standard">Standard</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Contexte</span>
+On assimile le Soleil a un corps noir de rayon \(R_S\). On utilise les lois du rayonnement thermique (Wien, Stefan-Boltzmann) pour estimer sa temperature de surface, la puissance qu'il rayonne, et l'energie recue par la Terre.
+</div>
+
+<!-- A1 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question A1</span>
+<p class="corr-question__statement">Estimer la valeur numerique de la temperature \( T_S \) du Soleil assimile a un corps noir. Le raisonnement devra etre explicite.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+La loi de Wien relie la couleur d'un objet chaud a sa temperature. Le Soleil apparait jaune, ce qui correspond a un maximum d'emission autour de 500 nm. En utilisant cette information et la loi de Wien, on peut remonter a la temperature de surface.
+</div>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+On lit sur le spectre du Document 2 la longueur d'onde du maximum d'emission, puis on applique la loi de Wien \(\lambda_{\max} T = 2{,}898 \times 10^{-3}\) m.K.
+</div>
+
+<p>D'apres le Document 2, le spectre solaire presente un maximum aux alentours de \(\lambda_{\max} \simeq 500\) nm (dans le visible, zone jaune-vert). La loi de Wien (equation (1) de l'enonce) donne :</p>
+\[ T_S = \frac{2{,}898 \times 10^{-3}}{\lambda_{\max}} = \frac{2{,}898 \times 10^{-3}}{500 \times 10^{-9}} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{T_S \simeq 5\,800 \text{ K}} \]
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+Ne pas oublier de convertir les nm en m. Aussi, la lecture graphique est approximative : toute valeur entre 5500 K et 6000 K est acceptable.
+</div>
+</div>
+
+<!-- A2 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question A2</span>
+<p class="corr-question__statement">Exprimer le flux surfacique d'energie \( \phi_S \) emis par le Soleil en fonction de \( T_S \) et de \( \sigma \). En deduire l'expression de la puissance totale rayonnee par le Soleil \( \mathcal{P}_S \) en fonction de \( T_S \), \( R_S \) et \( \sigma \).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+La loi de Stefan-Boltzmann donne le flux surfacique (puissance par unite de surface) emis par un corps noir : \(\phi = \sigma T^4\). Pour obtenir la puissance totale, on multiplie par la surface totale de l'objet.
+</div>
+
+<p>Le flux surfacique emis par la surface du Soleil est donne directement par la loi de Stefan-Boltzmann :</p>
+\[ \phi_S = \sigma T_S^4 \]
+
+<p>Le Soleil est une sphere de rayon \(R_S\), donc sa surface totale vaut \(S = 4\pi R_S^2\). La puissance totale rayonnee est le flux surfacique multiplie par la surface :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\phi_S = \sigma T_S^4 \qquad \text{et} \qquad \mathcal{P}_S = 4\pi R_S^2 \sigma T_S^4} \]
+</div>
+
+<p>C'est comme une ampoule : le flux surfacique, c'est la luminosite par cm\(^2\) de filament ; la puissance totale, c'est la luminosite totale en watts marquee sur la boite.</p>
+</div>
+
+<!-- A3 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question A3</span>
+<p class="corr-question__statement">Exprimer le flux surfacique d'energie recu par la Terre \( \phi_T \) en fonction de \( \sigma \), \( T_S \), \( R_S \) et \( d_{ST} \) et montrer que la puissance totale recue par la Terre, notee \( \mathcal{P}_T \), s'ecrit \[ \mathcal{P}_T = \sigma T_S^4 \pi \frac{R_S^2 R_T^2}{d_{ST}^2} \;. \] Faire l'application numerique de \( \phi_T \).</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+Le Soleil rayonne dans toutes les directions. A la distance \(d_{ST}\), sa puissance se repartit uniformement sur une sphere de rayon \(d_{ST}\). La Terre n'intercepte qu'une toute petite fraction de cette puissance, proportionnelle a la surface de son disque vu du Soleil.
+</div>
+
+<p>A la distance \(d_{ST}\) du Soleil, la puissance \(\mathcal{P}_S\) se repartit sur une sphere de surface \(4\pi d_{ST}^2\). Le flux surfacique a cette distance vaut :</p>
+\[ \phi_T = \frac{\mathcal{P}_S}{4\pi d_{ST}^2} = \frac{4\pi R_S^2 \sigma T_S^4}{4\pi d_{ST}^2} = \sigma T_S^4 \frac{R_S^2}{d_{ST}^2} \]
+
+<p>Les rayons solaires arrivent parallelement sur la Terre. Celle-ci intercepte la meme puissance qu'un disque de rayon \(R_T\), de surface \(\pi R_T^2\). Donc :</p>
+\[ \mathcal{P}_T = \phi_T \times \pi R_T^2 = \sigma T_S^4 \pi \frac{R_S^2 R_T^2}{d_{ST}^2} \]
+
+<p><strong>Application numerique de \(\phi_T\) :</strong></p>
+\[ \phi_T = 5{,}67 \times 10^{-8} \times (5800)^4 \times \frac{(7{,}0 \times 10^8)^2}{(1{,}5 \times 10^{11})^2} \]
+\[ \phi_T = 5{,}67 \times 10^{-8} \times 1{,}13 \times 10^{15} \times 2{,}18 \times 10^{-5} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\phi_T \simeq 1\,400 \text{ W} \cdot \text{m}^{-2}} \]
+C'est la <strong>constante solaire</strong>, une valeur classique a retenir.
+</div>
+</div>
+
+<!-- A4 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question A4</span>
+<p class="corr-question__statement">Proposer une explication pour l'ecart entre la valeur trouvee a la question precedente pour \( \phi_T \) et celle mesuree de 900 W &middot; m\(^{-2}\). On pourra s'aider des documents.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+On trouve environ 1400 W/m\(^2\) au sommet de l'atmosphere mais seulement 900 W/m\(^2\) au sol. L'atmosphere joue un role de filtre.
+</div>
+
+<p>L'ecart entre \(\phi_T \simeq 1\,400\) W.m\(^{-2}\) (au sommet de l'atmosphere) et \(\phi'_T \simeq 900\) W.m\(^{-2}\) (au sol) s'explique par <strong>l'absorption atmospherique</strong>. Le Document 2 montre les bandes d'absorption dues a differentes molecules :</p>
+<ul>
+<li>l'ozone O\(_3\) absorbe les UV (protection contre les rayons dangereux) ;</li>
+<li>l'eau H\(_2\)O et le dioxyde de carbone CO\(_2\) absorbent dans l'infrarouge ;</li>
+<li>le dioxygene O\(_2\) absorbe egalement certaines longueurs d'onde.</li>
+</ul>
+<p>A cela s'ajoutent la <strong>diffusion</strong> par les molecules (diffusion Rayleigh, qui donne sa couleur bleue au ciel) et la <strong>reflexion</strong> par les nuages.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+L'atmosphere terrestre absorbe, diffuse et reflechit une partie du rayonnement solaire, ce qui reduit le flux d'environ 1400 W.m\(^{-2}\) a environ 900 W.m\(^{-2}\) au sol.
+</div>
+</div>
+
+<!-- A5 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question A5</span>
+<p class="corr-question__statement">A partir de \( \phi'_T \), estimer l'energie recue en un jour par la Terre. Comparer cette valeur a la consommation journaliere de l'humanite valant environ \( 1{,}7 \times 10^{18} \) J. Commenter la pertinence de developper l'energie photovoltaique pour assurer les besoins energetiques de l'humanite.</p>
+
+<p>L'energie recue par la Terre en un jour vaut la puissance interceptee multipliee par la duree d'un jour :</p>
+\[ E_{\text{jour}} = \phi'_T \times \pi R_T^2 \times \Delta t \]
+<p>avec \(\Delta t = 24 \times 3600 = 86\,400\) s. Numeriquement :</p>
+\[ E_{\text{jour}} = 900 \times \pi \times (6{,}4 \times 10^6)^2 \times 86\,400 \]
+\[ E_{\text{jour}} \simeq 900 \times 1{,}29 \times 10^{14} \times 8{,}64 \times 10^4 \simeq 1{,}0 \times 10^{22} \text{ J} \]
+
+<p>La consommation journaliere de l'humanite est de \(1{,}7 \times 10^{18}\) J. Le rapport vaut :</p>
+\[ \frac{E_{\text{jour}}}{E_{\text{humanite}}} \simeq \frac{10^{22}}{1{,}7 \times 10^{18}} \simeq 6\,000 \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{E_{\text{jour}} \simeq 10^{22} \text{ J}} \]
+La Terre recoit en un jour environ <strong>6000 fois</strong> la consommation energetique journaliere de l'humanite. Meme avec un rendement photovoltaique modeste (15 %), il suffirait de couvrir une infime fraction de la surface terrestre pour subvenir aux besoins mondiaux. Cela justifie pleinement le developpement de l'energie photovoltaique.
+</div>
+</div>
+
+</div><!-- fin partie A -->
+
+<!-- ======================================================================== -->
+<!--                   PARTIE B : TEMPERATURE DU SOLEIL                       -->
+<!-- ======================================================================== -->
+<div class="corr-exercice" id="partieB">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">B</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Estimation de la temperature du Soleil</h2>
+<span class="corr-exercice__subtitle">Gravitation, statique des fluides, gaz parfait — 8 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermediaire</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Contexte</span>
+On modelise le Soleil comme une sphere de masse volumique uniforme \(\rho_S\) et on utilise la statique des fluides pour estimer la pression puis la temperature en son sein. Hypotheses : \(H_1\) (densite uniforme), \(H_2\) (fluide au repos), \(H_3\) (gaz parfait d'hydrogene ionise).
+</div>
+
+<!-- B1 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question B1</span>
+<p class="corr-question__statement">Montrer par des considerations d'invariances et de symetries que l'expression du champ de gravitation \( \vec{g_S}(M) \) cree par le Soleil a une distance \( r \) de son centre se met sous la forme \( \vec{g_S}(M) = g_S(r) \, \vec{u_r} \).</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+Pour determiner la forme d'un champ, on etudie les symetries et invariances de la distribution de masse. C'est exactement la meme demarche qu'en electrostatique avec le theoreme de Gauss.
+</div>
+
+<p><strong>Invariances :</strong> La distribution de masse est une sphere homogene. Elle est invariante par rotation autour de tout axe passant par O, donc le champ ne depend ni de \(\theta\) ni de \(\varphi\) : \(\vec{g_S} = \vec{g_S}(r)\).</p>
+
+<p><strong>Symetries :</strong> Tout plan contenant le point M et passant par O est un plan de symetrie de la distribution de masse. Le champ de gravitation, qui est un vecteur polaire (comme le champ electrique), doit appartenir a tous ces plans de symetrie. L'intersection de tous ces plans est la droite (OM), donc le champ est porte par \(\vec{u_r}\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\vec{g_S}(M) = g_S(r)\,\vec{u_r}} \]
+Le champ est radial et ne depend que de la distance \(r\) au centre.
+</div>
+</div>
+
+<!-- B2 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question B2</span>
+<p class="corr-question__statement">Exprimer la masse volumique moyenne \( \rho_S \) en fonction de \( M_S \) et \( R_S \). Par analogie avec l'electrostatique, utiliser le theoreme de Gauss pour determiner l'expression de \( g_S(r) \) lorsque \( r &lt; R_S \) en fonction de \( \mathcal{G} \), \( \rho_s \) et \( r \).</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+Le theoreme de Gauss gravitationnel est l'analogue exact du theoreme de Gauss en electrostatique. Le flux du champ de gravitation a travers une surface fermee est proportionnel a la masse contenue a l'interieur : \(\oiint \vec{g} \cdot d\vec{S} = -4\pi \mathcal{G} M_{\text{int}}\).
+</div>
+
+<p>La masse volumique moyenne est la masse totale divisee par le volume total :</p>
+\[ \rho_S = \frac{m_S}{\frac{4}{3}\pi R_S^3} \]
+
+<p>On applique le theoreme de Gauss gravitationnel sur une sphere de rayon \(r < R_S\) centree en O. Par symetrie, \(\vec{g_S}\) est constant sur cette surface :</p>
+\[ \oiint_{\mathcal{S}(r)} \vec{g_S} \cdot d\vec{S} = g_S(r) \times 4\pi r^2 = -4\pi \mathcal{G} M_{\text{int}}(r) \]
+
+<p>La masse interieure est celle de la sphere de rayon \(r\) :</p>
+\[ M_{\text{int}}(r) = \rho_S \times \frac{4}{3}\pi r^3 \]
+
+<p>On en deduit :</p>
+\[ g_S(r) \times 4\pi r^2 = -4\pi \mathcal{G} \times \rho_S \times \frac{4}{3}\pi r^3 \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\rho_S = \frac{m_S}{\frac{4}{3}\pi R_S^3}} \qquad \boxed{g_S(r) = -\frac{4}{3}\pi \mathcal{G} \rho_S r \quad (r < R_S)} \]
+Le champ de gravitation croit lineairement avec \(r\) a l'interieur du Soleil (comme le champ electrique dans une sphere uniformement chargee). Le signe negatif signifie que le champ est dirige vers le centre : la gravite attire vers l'interieur.
+</div>
+</div>
+
+<!-- B3 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question B3</span>
+<p class="corr-question__statement">Donner la definition d'un volume mesoscopique. Rappeler sans demonstration l'expression de la force volumique equivalente aux forces de pression. En appliquant la deuxieme loi de Newton au volume mesoscopique considere, retrouver l'equation d'Euler.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+Un volume mesoscopique est assez grand pour contenir un nombre enorme de particules (description continue valide) mais assez petit pour que les grandeurs macroscopiques (pression, vitesse, densite) y soient uniformes. C'est le "grain" de la mecanique des fluides.
+</div>
+
+<p><strong>Definition :</strong> Un volume mesoscopique (aussi appele particule de fluide) est un volume suffisamment grand pour contenir un tres grand nombre de particules (ce qui permet de definir des grandeurs macroscopiques comme la pression et la masse volumique), mais suffisamment petit pour que ces grandeurs soient uniformes dans tout le volume.</p>
+
+<p><strong>Force volumique de pression :</strong> Les forces de pression exercees par le fluide environnant sur un element de volume se traduisent par une force volumique (force par unite de volume) :</p>
+\[ \vec{f}_{\text{pression}} = -\overrightarrow{\text{grad}}(P) \]
+
+<p><strong>Equation d'Euler :</strong> On applique le PFD a un element de volume \(d\tau\) de masse \(\rho\,d\tau\). Les forces sont : les forces de pression et la gravite (\(\rho\,\vec{g_S}\)). On divise par \(d\tau\) :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\rho_S \frac{d\vec{v}}{dt} = -\overrightarrow{\text{grad}}(P) + \rho_S \vec{g_S}} \]
+C'est l'equation d'Euler pour un fluide parfait (sans viscosite) soumis a la gravite.
+</div>
+</div>
+
+<!-- B4 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question B4</span>
+<p class="corr-question__statement">Simplifier l'equation d'Euler precedente pour montrer que la loi de la statique des fluides a l'interieur du Soleil s'ecrit \[ \overrightarrow{\text{grad}}(P) = -\rho_S^2 \mathcal{G} \frac{4}{3} \pi r \, \vec{u_r} \;. \]</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+L'hypothese \(H_2\) dit que le fluide est au repos, donc \(\vec{v} = \vec{0}\) et l'acceleration est nulle. L'equation d'Euler se reduit alors a un simple equilibre entre la pression et la gravite.
+</div>
+
+<p>Avec \(H_2\) (fluide au repos), \(\vec{v} = \vec{0}\) et l'equation d'Euler se simplifie en :</p>
+\[ \overrightarrow{\text{grad}}(P) = \rho_S \vec{g_S} \]
+
+<p>On injecte l'expression de \(\vec{g_S}\) trouvee en B2 : \(\vec{g_S} = -\frac{4}{3}\pi \mathcal{G} \rho_S r\,\vec{u_r}\)</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\overrightarrow{\text{grad}}(P) = -\rho_S^2 \mathcal{G} \frac{4}{3}\pi r\,\vec{u_r}} \]
+</div>
+
+<p>Physiquement, le gradient de pression est dirige vers le centre (le signe moins multiplie par \(\vec{u_r}\) pointe vers le centre). La pression augmente quand on s'enfonce vers le centre du Soleil : la matiere d'au-dessus ecrase celle du dessous par gravite.</p>
+</div>
+
+<!-- B5 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question B5</span>
+<p class="corr-question__statement">A partir de l'equation (3), determiner l'expression de \( P(r) \) en fonction de \( P_O \), \( \mathcal{G} \), \( r \) et \( \rho_S \). En supposant que la pression a l'exterieur du Soleil est nulle \( P(R_S) = 0 \), determiner l'expression de \( P_O \).</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+L'equation (3) avec l'expression du gradient en spheriques donne \(\frac{\partial P}{\partial r} = -\frac{4}{3}\pi \mathcal{G} \rho_S^2 r\). On integre par rapport a \(r\) entre 0 et \(r\), puis on utilise la condition aux limites \(P(R_S) = 0\) pour trouver \(P_O\).
+</div>
+
+<p>D'apres l'equation (3), en projetant sur \(\vec{u_r}\) (le gradient en spheriques donne \(\frac{\partial P}{\partial r}\) pour la composante radiale) :</p>
+\[ \frac{dP}{dr} = -\frac{4}{3}\pi \mathcal{G} \rho_S^2 r \]
+
+<p>On integre entre 0 et \(r\) :</p>
+\[ P(r) - P(0) = -\frac{4}{3}\pi \mathcal{G} \rho_S^2 \frac{r^2}{2} \]
+\[ P(r) = P_O - \frac{2}{3}\pi \mathcal{G} \rho_S^2 r^2 \]
+
+<p>La condition aux limites \(P(R_S) = 0\) donne :</p>
+\[ 0 = P_O - \frac{2}{3}\pi \mathcal{G} \rho_S^2 R_S^2 \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{P(r) = P_O - \frac{2}{3}\pi \mathcal{G} \rho_S^2 r^2} \qquad \boxed{P_O = \frac{2}{3}\pi \mathcal{G} \rho_S^2 R_S^2} \]
+</div>
+
+<p>La pression est maximale au centre et decroit comme \(r^2\) jusqu'a zero a la surface. C'est un profil parabolique, comme une montagne de pression dont le sommet est au centre du Soleil.</p>
+</div>
+
+<!-- B6 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question B6</span>
+<p class="corr-question__statement">Justifier que la masse molaire moyenne du gaz vaut environ \( \mathcal{M} \simeq \frac{1}{2} m_p \mathcal{N}_A \) et effectuer l'application numerique. Quelle est de plus la relation dans ce modele entre \( \mathcal{M} \), la pression \( P \), la temperature \( T \), la constante \( R \) des gaz parfaits et la masse volumique \( \rho_S \) du Soleil ?</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+Le Soleil est un plasma d'hydrogene ionise : pour chaque proton, il y a un electron. Chaque "molecule" du gaz est donc soit un proton (masse \(m_p\)), soit un electron (masse \(m_e \ll m_p\)). La masse molaire moyenne est la masse totale par mole de particules.
+</div>
+
+<p>L'hydrogene totalement ionise est un melange equimolaire de protons H\(^+\) et d'electrons e\(^-\). Pour une mole de protons, il y a une mole d'electrons, soit 2 moles de particules au total. La masse totale de ces 2 moles de particules est \(\mathcal{N}_A m_p + \mathcal{N}_A m_e \simeq \mathcal{N}_A m_p\) (car \(m_e \ll m_p\)).</p>
+
+<p>La masse molaire moyenne (masse par mole de particules) vaut donc :</p>
+\[ \mathcal{M} = \frac{\mathcal{N}_A m_p}{2} = \frac{1}{2} m_p \mathcal{N}_A \]
+
+<p><strong>Application numerique :</strong> \(\mathcal{M} = \frac{1}{2} \times 1{,}7 \times 10^{-27} \times 6{,}0 \times 10^{23} \simeq 5{,}1 \times 10^{-4}\) kg/mol \(\simeq 0{,}5\) g/mol.</p>
+
+<p><strong>Relation gaz parfait :</strong> Pour un gaz parfait, \(PV = nRT\) avec \(n = m/\mathcal{M}\) et \(\rho_S = m/V\), donc :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathcal{M} \simeq 5{,}1 \times 10^{-4} \text{ kg/mol}} \qquad \boxed{P = \frac{\rho_S R T}{\mathcal{M}}} \]
+</div>
+</div>
+
+<!-- B7 -->
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question B7</span>
+<p class="corr-question__statement">Deduire des questions precedentes l'expression de la temperature dans le Soleil \( T(r) \) en fonction de \( \rho_S \), \( \mathcal{G} \), \( r \), \( R_S \), \( R \) et \( \mathcal{M} \). Quelle est la partie la plus chaude de la photosphere ? En considerant que la lumiere est produite sur la couche interne de la photosphere, calculer la temperature a laquelle est emis le rayonnement electromagnetique du Soleil. Comparer a la valeur obtenue dans la partie A.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+On combine la loi du gaz parfait \(P = \rho_S RT/\mathcal{M}\) avec l'expression de \(P(r)\) trouvee en B5 pour obtenir \(T(r)\). Puis on evalue a la couche interne de la photosphere, situee a \(r = R_S - 400\) km.
+</div>
+
+<p>De la loi des gaz parfaits : \(T(r) = \frac{P(r) \mathcal{M}}{\rho_S R}\). On injecte \(P(r) = P_O - \frac{2}{3}\pi \mathcal{G}\rho_S^2 r^2\) et \(P_O = \frac{2}{3}\pi \mathcal{G}\rho_S^2 R_S^2\) :</p>
+
+\[ T(r) = \frac{\mathcal{M}}{\rho_S R}\left(\frac{2}{3}\pi \mathcal{G}\rho_S^2 R_S^2 - \frac{2}{3}\pi \mathcal{G}\rho_S^2 r^2\right) \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{T(r) = \frac{2\pi \mathcal{G} \rho_S \mathcal{M}}{3R}(R_S^2 - r^2)} \]
+</div>
+
+<p>\(T(r)\) decroit quand \(r\) augmente. La <strong>partie la plus chaude de la photosphere</strong> est donc sa couche interne (celle la plus proche du centre), a \(r = R_S - 400\) km.</p>
+
+<p><strong>Application numerique :</strong> Calculons d'abord \(\rho_S\) :</p>
+\[ \rho_S = \frac{2{,}0 \times 10^{30}}{\frac{4}{3}\pi (7{,}0 \times 10^8)^3} = \frac{2{,}0 \times 10^{30}}{1{,}44 \times 10^{27}} \simeq 1{,}4 \times 10^3 \text{ kg/m}^3 \]
+
+<p>A la couche interne de la photosphere, \(r = R_S - 400 \times 10^3 \simeq R_S\) (400 km est negligeable devant \(R_S = 7{,}0 \times 10^8\) m). Donc \(R_S^2 - r^2 = R_S^2 - (R_S - h)^2 \simeq 2R_S h\) avec \(h = 400\) km :</p>
+
+\[ T = \frac{2\pi \times 6{,}7 \times 10^{-11} \times 1{,}4 \times 10^3 \times 5{,}1 \times 10^{-4}}{3 \times 8{,}3} \times 2 \times 7{,}0 \times 10^8 \times 4{,}0 \times 10^5 \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{T_{\text{photosphere}} \sim 5\,000 - 7\,000 \text{ K}} \]
+L'ordre de grandeur est compatible avec la valeur de \(T_S \simeq 5\,800\) K obtenue en A1 par la loi de Wien. Le modele, bien que tres simplifie, donne un resultat raisonnable.
+</div>
+</div>
+
+<!-- B8 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question B8</span>
+<p class="corr-question__statement">D'apres votre culture scientifique, discuter de la validite des hypotheses \( H_1 \) et \( H_2 \). Peut-on considerer un gaz de particules chargees comme un gaz parfait ? Discuter de la validite de l'hypothese \( H_3 \). Que dire du modele propose ?</p>
+
+<p><strong>Hypothese \(H_1\)</strong> (masse volumique uniforme) : En realite, le Soleil est beaucoup plus dense en son centre (environ 150 000 kg/m\(^3\)) qu'en surface (environ 10\(^{-4}\) kg/m\(^3\)). L'hypothese est donc tres grossiere, mais elle permet d'obtenir un ordre de grandeur.</p>
+
+<p><strong>Hypothese \(H_2\)</strong> (fluide au repos) : Le Soleil presente des mouvements de convection importants dans ses couches externes (zone convective). Il y a aussi des eruptions solaires, des vents solaires, etc. L'hypothese est approximative.</p>
+
+<p><strong>Hypothese \(H_3\)</strong> (gaz parfait) : Un plasma de particules chargees n'est pas un gaz parfait au sens strict, car les interactions coulombiennes a longue portee entre particules chargees ne sont pas negligeables. Cependant, a tres haute temperature, l'energie cinetique domine largement l'energie d'interaction, et l'approximation du gaz parfait reste raisonnable en premiere approche.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Le modele est tres simplifie : chaque hypothese est discutable. Neanmoins, il fournit un <strong>ordre de grandeur correct</strong> de la temperature de surface du Soleil, ce qui est remarquable pour un modele aussi simple. C'est la puissance des arguments d'echelle en physique.
+</div>
+</div>
+
+</div><!-- fin partie B -->
+
+<!-- ======================================================================== -->
+<!--                   PARTIE C : CENTRALE PHOTOVOLTAIQUE                     -->
+<!-- ======================================================================== -->
+<div class="corr-exercice" id="partieC">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">C</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Etude d'une centrale photovoltaique</h2>
+<span class="corr-exercice__subtitle">Caracteristique I(U), Python, rendement — 5 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--standard">Standard</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Contexte</span>
+On etudie une centrale photovoltaique comparable a celle de Martillac (126 modules de 4 panneaux, chaque panneau contenant \(9 \times 6\) cellules de 16 cm x 16 cm). La caracteristique I(U) d'une cellule est donnee pour differents eclairements.
+</div>
+
+<!-- C1 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question C1</span>
+<p class="corr-question__statement">Decrire precisement mais succinctement un protocole experimental permettant de mesurer la caracteristique d'une cellule photovoltaique telle que presentee sur la Figure 2.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+Pour tracer une caracteristique I(U), on fait varier la tension aux bornes du generateur en changeant la charge, et on mesure le courant correspondant.
+</div>
+
+<p>On eclaire la cellule photovoltaique avec un flux lumineux controle (lampe calibree ou soleil avec pyranometre). On place en parallele de la cellule une <strong>resistance variable</strong> (rheostat) qui joue le role de charge. On branche :</p>
+<ul>
+<li>un <strong>voltmetre</strong> en parallele aux bornes de la cellule pour mesurer \(U\) ;</li>
+<li>un <strong>amperemetre</strong> en serie avec la charge pour mesurer \(I\).</li>
+</ul>
+
+<p>On fait varier la resistance du rheostat de 0 (court-circuit, \(U = 0\), \(I = I_{cc}\)) a l'infini (circuit ouvert, \(I = 0\), \(U = U_{co}\)). Pour chaque valeur de la resistance, on releve le couple \((U, I)\). On trace ensuite les points experimentaux \(I = f(U)\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Cellule eclairee + rheostat en charge + voltmetre en parallele + amperemetre en serie. On fait varier la resistance et on releve les couples (U, I).
+</div>
+</div>
+
+<!-- C2 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question C2</span>
+<p class="corr-question__statement">Ecrire une fonction <code>MaxPuissance</code> en langage Python prenant en argument <code>Liste_U</code> et <code>Liste_I</code> et renvoyant la tension \( U_m \) et l'intensite \( I_m \) correspondant au maximum de la puissance fournie par la cellule photovoltaique.</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+La puissance fournie par la cellule est \(P = U \times I\). Elle n'est pas maximale ni en court-circuit (ou \(U = 0\)) ni en circuit ouvert (ou \(I = 0\)), mais pour un point intermediaire qu'on appelle le MPP (Maximum Power Point). On cherche ce point numeriquement.
+</div>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+<pre><code>def MaxPuissance(Liste_U, Liste_I):
+    Pmax = Liste_U[0] * Liste_I[0]
+    Um = Liste_U[0]
+    Im = Liste_I[0]
+    for k in range(1, len(Liste_U)):
+        P = Liste_U[k] * Liste_I[k]
+        if P > Pmax:
+            Pmax = P
+            Um = Liste_U[k]
+            Im = Liste_I[k]
+    return Um, Im</code></pre>
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+Ne pas oublier de renvoyer le couple \((U_m, I_m)\) et non pas la puissance maximale elle-meme. La question demande explicitement la tension et l'intensite.
+</div>
+</div>
+
+<!-- C3 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question C3</span>
+<p class="corr-question__statement">Determiner la tension \( E \) aux bornes d'un module, l'intensite \( I_{mod} \) traversant ce module et la puissance \( \mathcal{P}_{mod} \) delivree par ce module. Retrouver l'ordre de grandeur de 100 kW delivre par la centrale solaire de Martillac.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+En serie, les tensions s'additionnent et le courant est le meme. En parallele, les courants s'additionnent et la tension est la meme. Un panneau a \(9 \times 6 = 54\) cellules en serie. Un module a 4 panneaux en parallele.
+</div>
+
+<p>Chaque panneau contient \(9 \times 6 = 54\) cellules en <strong>serie</strong>. La tension aux bornes d'un panneau est donc \(54 \times U_m = 54 \times 0{,}55 = 29{,}7\) V, et le courant est \(I_m = 5{,}8\) A.</p>
+
+<p>Un module comporte 4 panneaux en <strong>parallele</strong>. La tension est la meme, les courants s'additionnent :</p>
+\[ E = 54 \times U_m = 54 \times 0{,}55 \simeq 29{,}7 \text{ V} \simeq 30 \text{ V} \]
+\[ I_{mod} = 4 \times I_m = 4 \times 5{,}8 = 23{,}2 \text{ A} \]
+\[ \mathcal{P}_{mod} = E \times I_{mod} = 29{,}7 \times 23{,}2 \simeq 689 \text{ W} \]
+
+<p>La centrale comporte 126 modules :</p>
+\[ \mathcal{P}_{\text{centrale}} = 126 \times 689 \simeq 86{,}8 \text{ kW} \simeq 87 \text{ kW} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{E \simeq 30 \text{ V}} \qquad \boxed{I_{mod} \simeq 23 \text{ A}} \qquad \boxed{\mathcal{P}_{mod} \simeq 690 \text{ W}} \]
+\[ \boxed{\mathcal{P}_{\text{centrale}} \simeq 87 \text{ kW}} \]
+On retrouve bien l'<strong>ordre de grandeur de 100 kW</strong>.
+</div>
+</div>
+
+<!-- C4 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question C4</span>
+<p class="corr-question__statement">D'apres vous, en vous appuyant sur le document 4 et en argumentant, quelle est la composition des cellules utilisees dans la centrale de Martillac ?</p>
+
+<p>Calculons le rendement de la centrale. La surface totale de cellules est :</p>
+\[ S = 126 \times 4 \times 54 \times (0{,}16)^2 = 126 \times 4 \times 54 \times 0{,}0256 = 696{,}7 \text{ m}^2 \]
+<p>La puissance solaire recue vaut \(\phi'_T \times S = 900 \times 696{,}7 \simeq 627\) kW. Le rendement est :</p>
+\[ \eta = \frac{\mathcal{P}_{\text{centrale}}}{\phi'_T \times S} = \frac{87}{627} \simeq 13{,}9\% \simeq 14\% \]
+
+<p>D'apres le Document 4, le rendement moyen d'un panneau cristallin est de <strong>14,5 %</strong>, celui du silicium amorphe est de 6 a 8 %. Notre rendement de ~14 % correspond au silicium cristallin.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\text{Silicium cristallin (monocristallin ou polycristallin), avec un rendement d'environ 14 \%}} \]
+</div>
+</div>
+
+<!-- C5 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question C5</span>
+<p class="corr-question__statement">Quel est l'ordre de grandeur de la puissance delivree par la centrale lorsque, par temps partiellement nuageux, l'eclairement baisse a 700 W &middot; m\(^{-2}\) ? Commenter sur l'usage des centrales photovoltaiques.</p>
+
+<p>D'apres la Figure 2, pour un eclairement de 700 W/m\(^{2}\), le courant de court-circuit descend a environ 6 A (contre ~8 A a 900 W/m\(^2\)). En premiere approximation, \(I_m\) diminue dans le meme rapport : \(I_m' \simeq 5{,}8 \times \frac{6}{8} \simeq 4{,}35\) A. La tension au MPP varie peu : \(U_m' \simeq 0{,}55\) V.</p>
+
+<p>La puissance d'un module devient :</p>
+\[ \mathcal{P}'_{mod} = 54 \times 0{,}55 \times 4 \times 4{,}35 \simeq 517 \text{ W} \]
+\[ \mathcal{P}'_{\text{centrale}} = 126 \times 517 \simeq 65 \text{ kW} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathcal{P}'_{\text{centrale}} \sim 65 \text{ kW}} \]
+La puissance chute d'environ 25 a 35 % par temps nuageux. Cela illustre le principal inconvenient des centrales photovoltaiques : la <strong>dependance aux conditions meteorologiques</strong> et l'intermittence de la production. Il est necessaire de coupler ces installations a des systemes de stockage ou a d'autres sources d'energie pour garantir un approvisionnement regulier.
+</div>
+</div>
+
+</div><!-- fin partie C -->
+
+<!-- ======================================================================== -->
+<!--                   PARTIE D : ONDULEUR                                    -->
+<!-- ======================================================================== -->
+<div class="corr-exercice" id="partieD">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">D</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Transformation en courant alternatif grace a un onduleur</h2>
+<span class="corr-exercice__subtitle">Electronique, Fourier, Python — 13 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--intermediaire">Intermediaire</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Contexte</span>
+On etudie la transformation de la tension continue \(E \simeq 30\) V en tension alternative a 50 Hz grace a un onduleur en pont en H, d'abord a commande symetrique, puis a commande decalee (MLI). Un filtre RL est utilise pour extraire le fondamental.
+</div>
+
+<!-- D1 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D1</span>
+<p class="corr-question__statement">Representer le schema electrique equivalent de l'onduleur lorsque \( nT &lt; t \leq nT + T/2 \) et lorsque \( nT + T/2 &lt; t \leq (n+1)\,T \). Representer alors l'allure de la tension \( u(t) \) en sortie de l'onduleur. Quelle est la tension efficace \( U_{eff} \) de \( u(t) \) ?</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+Le pont en H est un circuit classique d'electronique de puissance. En fermant les bons interrupteurs, on connecte la charge soit dans un sens, soit dans l'autre, ce qui cree une tension alternativement positive et negative a partir d'une source continue.
+</div>
+
+<p><strong>Premiere demi-periode</strong> (\(K_1, K_3\) fermes, \(K_2, K_4\) ouverts) : le courant circule de \(+E\) a travers \(K_1\), la charge, puis \(K_3\) vers la masse. La tension aux bornes de la charge vaut \(u = +E\).</p>
+
+<p><strong>Deuxieme demi-periode</strong> (\(K_2, K_4\) fermes, \(K_1, K_3\) ouverts) : le courant circule dans l'autre sens : \(u = -E\).</p>
+
+<p>La tension \(u(t)\) est donc un <strong>signal carre</strong> d'amplitude \(E\), de periode \(T = 1/f_r\), alternant entre \(+E\) et \(-E\).</p>
+
+<p>La tension efficace d'un signal carre d'amplitude \(E\) se calcule :</p>
+\[ U_{eff}^2 = \frac{1}{T}\int_0^T u^2(t)\,dt = \frac{1}{T}\left[\int_0^{T/2} E^2\,dt + \int_{T/2}^T E^2\,dt\right] = E^2 \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+La tension \(u(t)\) est un <strong>signal carre</strong> de periode \(T = 1/f_r\) alternant entre \(+E\) et \(-E\).
+\[ \boxed{U_{eff} = E \simeq 30 \text{ V}} \]
+</div>
+</div>
+
+<!-- D2 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D2</span>
+<p class="corr-question__statement">Rappeler l'expression de l'impedance \( \underline{Z}_L \) d'une inductance \( L \) ainsi que celle, \( \underline{Z}_R \), d'une resistance \( R \). En deduire que l'expression de la fonction de transfert \( \underline{H}(f) = \dfrac{\underline{s}}{\underline{u}} \) est \[ \underline{H}(f) = \frac{1}{1 + j\dfrac{f}{f_0}} \;, \] ou l'expression de \( f_0 \) est a determiner en fonction de \( R \) et \( L \).</p>
+
+<p>Les impedances valent : \(\underline{Z}_L = jL\omega = j2\pi fL\) et \(\underline{Z}_R = R\).</p>
+
+<p>Le circuit est un diviseur de tension \(L\) en serie, \(R\) en derivation. La tension de sortie \(s\) est aux bornes de \(R\) :</p>
+\[ \underline{H}(f) = \frac{\underline{Z}_R}{\underline{Z}_L + \underline{Z}_R} = \frac{R}{jL\omega + R} = \frac{1}{1 + j\frac{L\omega}{R}} = \frac{1}{1 + j\frac{2\pi fL}{R}} = \frac{1}{1 + j\frac{f}{f_0}} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\underline{Z}_L = jL\omega \qquad \underline{Z}_R = R} \]
+\[ \boxed{f_0 = \frac{R}{2\pi L}} \]
+</div>
+</div>
+
+<!-- D3 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D3</span>
+<p class="corr-question__statement">Quelle est la nature de ce filtre ? Est-il adapte pour filtrer \( u(t) \) en un signal sinusoidal a 50 Hz ? Determiner le gain \( G = |\underline{H}(f)| \) du filtre. Exprimer la frequence de coupure a \( -3 \) dB de ce filtre, notee \( f_c \), en fonction de \( f_0 \).</p>
+
+<p>Ce filtre laisse passer les basses frequences et attenue les hautes frequences : c'est un <strong>filtre passe-bas du premier ordre</strong>. Il est adapte pour filtrer \(u(t)\) car on souhaite conserver le fondamental a 50 Hz et eliminer les harmoniques de frequences plus elevees.</p>
+
+<p>Le gain vaut :</p>
+\[ G = |\underline{H}(f)| = \frac{1}{\sqrt{1 + \left(\frac{f}{f_0}\right)^2}} \]
+
+<p>La frequence de coupure a \(-3\) dB est definie par \(G(f_c) = \frac{1}{\sqrt{2}} G_{\max}\). Comme \(G_{\max} = 1\) :</p>
+\[ \frac{1}{\sqrt{1 + (f_c/f_0)^2}} = \frac{1}{\sqrt{2}} \implies f_c/f_0 = 1 \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Filtre <strong>passe-bas du premier ordre</strong>.
+\[ \boxed{G = \frac{1}{\sqrt{1 + (f/f_0)^2}}} \qquad \boxed{f_c = f_0} \]
+</div>
+</div>
+
+<!-- D4 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question D4</span>
+<p class="corr-question__statement">En sortie du filtre, quels sont les rangs des harmoniques \( S_n \) presents dans le signal \( s(t) \) ? L'amplitude \( S_3 \) de l'harmonique de rang trois est-elle negligeable devant celle du fondamental ? Meme question avec l'harmonique de rang cinq d'amplitude \( S_5 \). Commenter.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+Un signal carre n'a que des harmoniques impairs. Le filtre attenue chaque harmonique selon son gain a la frequence correspondante. On choisit \(f_0 = f_r = 50\) Hz.
+</div>
+
+<p>D'apres la decomposition (7), les harmoniques presents dans \(u(t)\) sont de rang impair : 1, 3, 5, 7, ... avec des amplitudes \(U_n = 1/n\). Seuls les harmoniques <strong>impairs</strong> sont presents en sortie du filtre.</p>
+
+<p>L'amplitude de l'harmonique de rang \(n\) apres filtrage est \(S_n = U_n \times G(nf_r)\). Avec \(f_0 = f_r\) :</p>
+\[ S_n = \frac{1}{n} \times \frac{1}{\sqrt{1 + n^2}} \]
+
+<p>Pour le fondamental (\(n = 1\)) : \(S_1 = \frac{1}{\sqrt{2}} \simeq 0{,}707\)</p>
+
+<p>Pour l'harmonique 3 : \(S_3 = \frac{1}{3} \times \frac{1}{\sqrt{10}} \simeq 0{,}105\)</p>
+
+<p>Rapport : \(\frac{S_3}{S_1} = \frac{\sqrt{2}}{3\sqrt{10}} \simeq 0{,}149 \simeq 15\%\)</p>
+
+<p>Pour l'harmonique 5 : \(S_5 = \frac{1}{5} \times \frac{1}{\sqrt{26}} \simeq 0{,}039\)</p>
+
+<p>Rapport : \(\frac{S_5}{S_1} \simeq \frac{0{,}039}{0{,}707} \simeq 5{,}5\%\)</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+L'harmonique 3 represente encore environ <strong>15 %</strong> du fondamental : ce n'est <strong>pas negligeable</strong>. L'harmonique 5 represente environ 5,5 % : c'est plus faible mais pas completement negligeable. Le filtrage n'est pas suffisant avec un filtre du premier ordre et la commande symetrique : le signal en sortie n'est pas sinusoidal. Il faut ameliorer soit le filtre (ordre superieur), soit la commande de l'onduleur.
+</div>
+</div>
+
+<!-- D5 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D5</span>
+<p class="corr-question__statement">Commenter et justifier la facon dont a ete definie la fonction p dans le code ci-dessus.</p>
+
+<p>La fonction <code>p(t)</code> definit un signal triangulaire de frequence \(f_p = 400\) Hz et d'amplitude \(\alpha\sqrt{2}U_r\). Analysons sa construction :</p>
+
+<ul>
+<li><strong>Parite :</strong> La premiere ligne <code>if t&lt;0: return p(-t)</code> rend la fonction paire : \(p(-t) = p(t)\). Le signal triangulaire est en effet une fonction paire (symetrique par rapport a l'axe vertical).</li>
+<li><strong>Periodicite :</strong> L'operation <code>n = t%Tp</code> ramene \(t\) dans l'intervalle \([0, T_p[\) par le modulo, assurant la periodicite du signal.</li>
+<li><strong>Forme triangulaire :</strong> Sur la premiere demi-periode \([0, T_p/2]\), la fonction varie lineairement de \(-A_p\) a \(+A_p\) (pente \(4A_p/T_p\)). Sur la seconde demi-periode, elle varie lineairement de \(+A_p\) a \(-A_p\). Cela produit bien un signal triangulaire.</li>
+</ul>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+La fonction utilise la parite et le modulo pour definir efficacement un signal triangulaire periodique a partir de deux segments lineaires sur une periode. L'amplitude est \(\alpha\sqrt{2}U_r\) et la frequence est \(f_p = 400\) Hz.
+</div>
+</div>
+
+<!-- D6 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D6</span>
+<p class="corr-question__statement">Dans cette nouvelle sequence, on montre que si \( K_1 \) et \( K_3 \) sont fermes alors \( u(t) = +E \), si \( K_2 \) et \( K_4 \) sont fermes alors \( u(t) = -E \) et \( u(t) = 0 \) sinon. On associe alors a chaque interrupteur un entier valant 0 si l'interrupteur est ouvert et 1 s'il est ferme. Elaborer une fonction Python nommee <code>tension</code> prenant en arguments les quatre valeurs des interrupteurs \( K_1 \), \( K_2 \), \( K_3 \) et \( K_4 \) et renvoyant la tension \( u \) en sortie de l'onduleur.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+<pre><code>def tension(K1, K2, K3, K4):
+    if K1 == 1 and K3 == 1:
+        return E
+    elif K2 == 1 and K4 == 1:
+        return -E
+    else:
+        return 0</code></pre>
+</div>
+
+<p>On traduit directement les trois cas decrits par l'enonce. La variable \(E\) est supposee definie globalement (par exemple \(E = 30\)).</p>
+</div>
+
+<!-- D7 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question D7</span>
+<p class="corr-question__statement">Elaborer une fonction Python nommee <code>onduleur</code> prenant comme argument un flottant representant le temps \( t \), temps auquel sont evaluees les conditions d'ouverture de la sequence donnee precedemment a l'equation (8), et renvoyant la valeur de la tension en sortie de l'onduleur a cet instant \( t \).</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+On applique les conditions de l'equation (8) pour determiner l'etat de chaque interrupteur a l'instant \(t\), puis on appelle la fonction <code>tension</code>.
+</div>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+<pre><code>def onduleur(t):
+    if Ur(t) > p(t):
+        K1 = 1
+        K4 = 0
+    else:
+        K1 = 0
+        K4 = 1
+    if -Ur(t) > p(t):
+        K2 = 1
+        K3 = 0
+    else:
+        K2 = 0
+        K3 = 1
+    return tension(K1, K2, K3, K4)</code></pre>
+</div>
+</div>
+
+<!-- D8 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D8</span>
+<p class="corr-question__statement">Donner les instructions en langage Python pour construire les deux listes a enregistrer dans les variables respectives <code>Liste_t</code> et <code>Liste_u</code> et contenant respectivement les valeurs des temps \( t_k \) et des tensions \( u(t_k) \).</p>
+
+<p>On a \(N = 40\,000\), \(T_N = 20T\), et on veut \(N+1\) points de \(t_0 = 0\) a \(t_N = T_N\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+<pre><code>N = 40000
+TN = 20 * T
+Liste_t = [k * TN / N for k in range(N + 1)]
+Liste_u = [onduleur(t) for t in Liste_t]</code></pre>
+</div>
+</div>
+
+<!-- D9 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D9</span>
+<p class="corr-question__statement">Ecrire alors en langage Python les commandes permettant de tracer le graphique de \( u(t) \) et de se representer le fonctionnement de l'onduleur comme dans l'exemple page suivante de la Figure 6. On ne se souciera ni des legendes ni des axes.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+<pre><code>from matplotlib.pyplot import plot, show
+plot(Liste_t, Liste_u)
+show()</code></pre>
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+L'enonce precise qu'on utilise <code>plot</code> directement. Il faut l'importer depuis <code>matplotlib.pyplot</code>. Ne pas oublier <code>show()</code> pour afficher le graphique.
+</div>
+</div>
+
+<!-- D10 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D10</span>
+<p class="corr-question__statement">Quelle est la frequence d'echantillonnage \( f_e \) de ce signal ? Justifier qualitativement pourquoi un si grand nombre de points de calcul du signal a ete choisi ?</p>
+
+<p>Le pas temporel est \(\Delta t = T_N / N = 20T / 40\,000 = T / 2\,000\). La frequence d'echantillonnage est :</p>
+\[ f_e = \frac{1}{\Delta t} = \frac{N}{T_N} = \frac{40\,000}{20 \times 0{,}02} = 10^5 \text{ Hz} = 100 \text{ kHz} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{f_e = 100 \text{ kHz}} \]
+Un grand nombre de points est necessaire car le signal de sortie de l'onduleur a commande decalee comporte des commutations tres rapides (a la frequence \(f_p = 400\) Hz et ses multiples). Pour echantillonner correctement ces transitions franches sans aliasing (theoreme de Shannon : \(f_e > 2 f_{\max}\)), il faut une frequence d'echantillonnage bien superieure a la plus haute frequence significative du signal.
+</div>
+</div>
+
+<!-- D11 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D11</span>
+<p class="corr-question__statement">Ecrire la ligne de code Python permettant d'importer le module <code>fftpack</code> de la bibliotheque <code>scipy</code>.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+<pre><code>from scipy import fftpack</code></pre>
+</div>
+</div>
+
+<!-- D12 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question D12</span>
+<p class="corr-question__statement">A partir du spectre presente sur la Figure 7, verifier si la frequence du fondamental, notee \( f_1 \), est compatible avec celle deduite du signal temporel de la Figure 6, et commenter la presence des autres harmoniques.</p>
+
+<p>D'apres la Figure 6, le signal \(u(t)\) a une periode de \(T = 20\) ms, soit \(f_1 = 1/T = 50\) Hz. Sur le spectre de la Figure 7, le pic dominant est bien a <strong>50 Hz</strong>, ce qui est coherent.</p>
+
+<p>Contrairement a la commande symetrique (harmoniques 3, 5, 7...), les harmoniques de faible rang (3, 5, 7...) ont quasiment disparu. Les harmoniques restants se situent autour de \(f_p = 400\) Hz et ses multiples. On observe notamment des pics vers 700-900 Hz. Cela s'explique par le principe de la modulation de largeur d'impulsion (MLI) : les commutations a 400 Hz repoussent le contenu harmonique vers les hautes frequences, loin du fondamental.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Le fondamental est a \(f_1 = 50\) Hz, coherent avec la Figure 6. Les harmoniques de rang bas sont fortement reduits par rapport a la commande symetrique ; les harmoniques restants sont regroupes autour de \(f_p\) et ses multiples (hautes frequences), ce qui facilite le filtrage.
+</div>
+</div>
+
+<!-- D13 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question D13</span>
+<p class="corr-question__statement">Calculer les amplitudes relatives des harmoniques \( S_1/E \), \( S_{11}/E \) et \( S_{13}/E \) apres le filtre. Quelle est l'allure du signal de sortie \( s(t) \) en sortie de filtre lorsque l'onduleur est a commande decalee ? Quel avantage y-aurait-il a utiliser un onduleur a commande decalee dans ce montage ?</p>
+
+<p>Les amplitudes apres filtrage sont \(S_n = A_n \times G(nf_r)\) avec \(G(f) = \frac{1}{\sqrt{1+(f/f_0)^2}}\) et \(f_0 = f_r = 50\) Hz.</p>
+
+<p><strong>Fondamental</strong> (\(n = 1\), \(f = 50\) Hz) :</p>
+\[ S_1/E = 0{,}89 \times \frac{1}{\sqrt{1+1}} = \frac{0{,}89}{\sqrt{2}} \simeq 0{,}63 \]
+
+<p><strong>Harmonique 11</strong> (\(f = 550\) Hz) :</p>
+\[ S_{11}/E = 0{,}017 \times \frac{1}{\sqrt{1+11^2}} = \frac{0{,}017}{\sqrt{122}} \simeq 1{,}5 \times 10^{-3} \]
+
+<p><strong>Harmonique 13</strong> (\(f = 650\) Hz) :</p>
+\[ S_{13}/E = 0{,}17 \times \frac{1}{\sqrt{1+13^2}} = \frac{0{,}17}{\sqrt{170}} \simeq 0{,}013 \]
+
+<p>Les rapports par rapport au fondamental valent \(S_{11}/S_1 \simeq 0{,}24\%\) et \(S_{13}/S_1 \simeq 2{,}1\%\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{S_1/E \simeq 0{,}63 \qquad S_{11}/E \simeq 1{,}5 \times 10^{-3} \qquad S_{13}/E \simeq 0{,}013} \]
+Les harmoniques sont <strong>negligeables</strong> devant le fondamental. Le signal \(s(t)\) est pratiquement <strong>sinusoidal</strong> a 50 Hz. L'avantage de la commande decalee est de repousser les harmoniques parasites vers les hautes frequences (autour de \(f_p\)), ou le filtre passe-bas du premier ordre les attenue tres efficacement. On obtient un signal de sortie bien plus propre qu'avec la commande symetrique, <strong>sans modifier le filtre</strong>.
+</div>
+</div>
+
+</div><!-- fin partie D -->
+
+<!-- ======================================================================== -->
+<!--                   PARTIE E : DIMENSIONNEMENT DES CABLES                  -->
+<!-- ======================================================================== -->
+<div class="corr-exercice" id="partieE">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">E</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Dimensionnement des cables</h2>
+<span class="corr-exercice__subtitle">Drude, Maxwell, effet de peau, Python — 16 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--avance">Avance</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Contexte</span>
+On etudie un cable cylindrique infini de rayon \(r_c\) parcouru par un courant alternatif. Le modele de Drude permet de relier les proprietes microscopiques du metal a sa conductivite. Les equations de Maxwell conduisent a l'effet de peau : le courant se concentre en peripherie du cable. On termine par des questions de methodes numeriques en Python.
+</div>
+
+<!-- E1 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E1</span>
+<p class="corr-question__statement">Dans le modele presente ci-dessus, appliquer la deuxieme loi de Newton a un electron du milieu et donner l'equation differentielle verifiee par sa vitesse \( \vec{v} \). Faut-il prendre en compte le poids de l'electron ? Justifier.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+Le modele de Drude traite les electrons comme des particules classiques soumises a : la force electrique, la force magnetique (force de Lorentz) et une force de frottement visqueux modelisant les collisions avec le reseau cristallin.
+</div>
+
+<p>On applique le PFD a un electron de charge \(-e\) et de masse \(m_e\). Les forces sont : la force de Lorentz et la force de frottement :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{m_e \frac{d\vec{v}}{dt} = -e(\vec{E} + \vec{v} \wedge \vec{B}) - \frac{m_e}{\tau}\vec{v}} \]
+</div>
+
+<p><strong>Le poids est negligeable :</strong> comparons le poids \(m_e g \simeq 9{,}1 \times 10^{-31} \times 10 \simeq 10^{-29}\) N a la force electrique \(eE \simeq 1{,}6 \times 10^{-19} \times E_0\). Meme pour un champ electrique infime de 1 mV/m, la force electrique est de l'ordre de \(10^{-22}\) N, soit \(10^7\) fois plus grande que le poids. Le poids est totalement negligeable.</p>
+</div>
+
+<!-- E2 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E2</span>
+<p class="corr-question__statement">On note \( \mu_0 \) la permeabilite du vide et \( \varepsilon_0 \) la permittivite du vide. Ecrire pour le milieu considere les quatre equations de Maxwell.</p>
+
+<p>Le milieu est electriquement neutre (\(\rho = 0\)) et on a \(\vec{D} = \varepsilon_0 \vec{E}\), \(\vec{B} = \mu_0 \vec{H}\). Les quatre equations de Maxwell sont :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\text{div}\,\vec{E} = 0} \quad \text{(Maxwell-Gauss, milieu neutre)} \]
+\[ \boxed{\text{div}\,\vec{B} = 0} \quad \text{(Maxwell-flux)} \]
+\[ \boxed{\overrightarrow{\text{rot}}\,\vec{E} = -\frac{\partial \vec{B}}{\partial t}} \quad \text{(Maxwell-Faraday)} \]
+\[ \boxed{\overrightarrow{\text{rot}}\,\vec{B} = \mu_0 \vec{j_c} + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t}} \quad \text{(Maxwell-Ampere)} \]
+</div>
+</div>
+
+<!-- E3 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E3</span>
+<p class="corr-question__statement">Justifier que la force magnetique subie par un electron est negligeable devant la force electrique. Simplifier alors l'equation du mouvement d'un electron.</p>
+
+<p>L'ordre de grandeur de la force magnetique est \(evB\). Pour une onde electromagnetique, \(B \sim E/c\). Donc le rapport des forces vaut :</p>
+\[ \frac{F_{\text{mag}}}{F_{\text{elec}}} \sim \frac{evB}{eE} \sim \frac{v}{c} \]
+
+<p>La vitesse de derive des electrons dans un conducteur est de l'ordre de \(v \sim 10^{-3}\) m/s, donc \(v/c \sim 10^{-12}\). La force magnetique est completement negligeable.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{m_e \frac{d\vec{v}}{dt} = -e\vec{E} - \frac{m_e}{\tau}\vec{v}} \]
+</div>
+</div>
+
+<!-- E4 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E4</span>
+<p class="corr-question__statement">Exprimer \( \vec{\underline{v}} \) en fonction de \( e \), \( \underline{E_0} \), \( \tau \), \( m_e \) et \( \omega \). En deduire l'expression du vecteur densite de courant \( \vec{\underline{j_c}} \) en fonction des memes variables et de \( n_0 \).</p>
+
+<p>En regime sinusoidal force, l'equation du mouvement devient :</p>
+\[ j\omega m_e \underline{v_0} = -e\underline{E_0} - \frac{m_e}{\tau}\underline{v_0} \]
+\[ \underline{v_0} = \frac{-e\tau}{m_e(1+j\omega\tau)}\underline{E_0} \]
+
+<p>Le vecteur densite de courant est \(\vec{\underline{j_c}} = -n_0 e \vec{\underline{v}}\) (les electrons ont une charge \(-e\)) :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\vec{\underline{v}} = \frac{-e\tau}{m_e(1+j\omega\tau)}\underline{E_0}\,e^{j\omega t}\,\vec{u_z}} \]
+\[ \boxed{\vec{\underline{j_c}} = \frac{n_0 e^2 \tau}{m_e(1+j\omega\tau)}\underline{E_0}\,e^{j\omega t}\,\vec{u_z}} \]
+</div>
+</div>
+
+<!-- E5 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E5</span>
+<p class="corr-question__statement">Rappeler l'expression de la loi d'Ohm locale en fonction de \( \vec{\underline{j_c}} \), \( \vec{E} \) et de la conductivite electrique \( \gamma \). En deduire que la conductivite complexe \( \underline{\gamma} \) en regime permanent sinusoidal s'exprime \[ \underline{\gamma} = \frac{\gamma_0}{1 + j\tau\omega} \;, \] et donner l'expression de \( \gamma_0 \) en fonction de \( n_0 \), \( e \), \( \tau \) et \( m_e \).</p>
+
+<p>La loi d'Ohm locale : \(\vec{j_c} = \gamma \vec{E}\). En comparant avec E4 :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\vec{j_c} = \gamma \vec{E}} \qquad \boxed{\gamma_0 = \frac{n_0 e^2 \tau}{m_e}} \]
+</div>
+</div>
+
+<!-- E6 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E6</span>
+<p class="corr-question__statement">Calculer \( \gamma_0 \). Par des calculs d'ordre de grandeurs, simplifier l'expression de la conductivite \( \underline{\gamma} \) ainsi que l'equation de Maxwell-Ampere.</p>
+
+<p><strong>Calcul de \(\gamma_0\) :</strong></p>
+\[ \gamma_0 = \frac{10^{29} \times (1{,}6 \times 10^{-19})^2 \times 10^{-14}}{9{,}1 \times 10^{-31}} \simeq 2{,}8 \times 10^7 \text{ S/m} \]
+
+<p><strong>Simplification :</strong> \(\tau\omega = 10^{-14} \times 2\pi \times 50 \simeq 3 \times 10^{-12} \ll 1\), donc \(\underline{\gamma} \simeq \gamma_0\).</p>
+
+<p><strong>Maxwell-Ampere :</strong> Le courant de deplacement est negligeable : \(\gamma_0 / (\varepsilon_0 \omega) \simeq 10^{16} \gg 1\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\gamma_0 \simeq 2{,}8 \times 10^7 \text{ S/m}} \qquad \boxed{\underline{\gamma} \simeq \gamma_0} \]
+\[ \boxed{\overrightarrow{\text{rot}}\,\vec{B} \simeq \mu_0 \gamma_0 \vec{E}} \]
+</div>
+</div>
+
+<!-- E7 -->
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question E7</span>
+<p class="corr-question__statement">Deduire des equations de Maxwell et de la loi d'Ohm locale que le vecteur densite de courant \( \vec{\underline{j_c}}(r) \) verifie \[ \Delta \vec{\underline{j_c}} = \left(\frac{1+j}{\delta}\right)^2 \vec{\underline{j_c}} \;. \] Determiner l'expression de \( \delta \) et le calculer numeriquement dans le cas etudie. Quel nom donne-t-on couramment a \( \delta \) ?</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+On prend le rotationnel de Maxwell-Faraday, on utilise l'identite vectorielle, et on injecte Maxwell-Ampere simplifiee et la loi d'Ohm.
+</div>
+
+<p>On part de Maxwell-Faraday et on prend le rotationnel. Avec \(\text{div}\,\vec{E} = 0\) et Maxwell-Ampere simplifiee :</p>
+\[ \Delta\vec{\underline{E}} = j\omega\mu_0\gamma_0\,\vec{\underline{E}} \]
+
+<p>Avec la loi d'Ohm \(\vec{\underline{j_c}} = \gamma_0\vec{\underline{E}}\) : \(\Delta\vec{\underline{j_c}} = j\omega\mu_0\gamma_0\,\vec{\underline{j_c}}\).</p>
+
+<p>On identifie : \(j\omega\mu_0\gamma_0 = \left(\frac{1+j}{\delta}\right)^2 = \frac{2j}{\delta^2}\), donc \(\delta^2 = \frac{2}{\omega\mu_0\gamma_0}\).</p>
+
+\[ \delta = \sqrt{\frac{2}{2\pi \times 50 \times 4\pi \times 10^{-7} \times 2{,}8 \times 10^7}} \simeq 0{,}024 \text{ m} \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\delta = \sqrt{\frac{2}{\mu_0 \gamma_0 \omega}} \simeq 24 \text{ mm}} \]
+\(\delta\) est la <strong>profondeur de penetration</strong> (ou <strong>epaisseur de peau</strong>). Elle represente la distance sur laquelle le courant penetre dans le conducteur.
+</div>
+
+<p>Analogie : la profondeur de peau, c'est comme l'epaisseur de bronzage d'un gateau au soleil. Le courant ne "bronze" que la surface du cable, pas son coeur.</p>
+</div>
+
+<!-- E8 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E8</span>
+<p class="corr-question__statement">En etudiant les courbes representatives de \( I(b)/I_{tot} \) pour differents rayons, quelle est la zone du cable la plus sollicitee pour transporter le courant ? Est-il utile de fabriquer des cables dont le rayon vaut plusieurs fois \( \delta \) ? Justifier.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+La zone <strong>peripherique</strong> (les quelques \(\delta\) les plus externes) du cable est la plus sollicitee. Il n'est pas utile de fabriquer des cables de rayon tres superieur a quelques \(\delta\), car le coeur ne participe quasiment pas au transport du courant.
+</div>
+</div>
+
+<!-- E9 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E9</span>
+<p class="corr-question__statement">Au debut du reseau basse tension, la section des cables est \( s = 240 \) mm\(^2\). Commenter.</p>
+
+<p>Le rayon correspondant est \(r_c = \sqrt{s/\pi} = \sqrt{240 \times 10^{-6} / \pi} \simeq 8{,}7\) mm. On a \(r_c \simeq 0{,}36\,\delta < \delta\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Le rayon du cable (\(\simeq 8{,}7\) mm) est <strong>inferieur a la profondeur de peau</strong> (\(\delta \simeq 24\) mm). A 50 Hz, l'effet de peau est peu marque : le courant circule de maniere uniforme dans toute la section. Le dimensionnement est dicte par d'autres considerations (pertes Joule, echauffement) et non par l'effet de peau.
+</div>
+</div>
+
+<!-- E10 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E10</span>
+<p class="corr-question__statement">En pratique, pour faire circuler des courants intenses, on utilise plusieurs fils de faible rayon isoles les uns des autres, plutot qu'un seul fil de gros rayon. Justifier ce choix.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+En utilisant plusieurs fils fins isoles (cable torone), chaque fil a un rayon comparable a \(\delta\), ce qui assure que le courant circule dans toute leur section. La section effective est ainsi maximisee. Avec un seul fil de gros rayon (\(r_c \gg \delta\)), le coeur serait inutile. De plus, les fils fins offrent une meilleure <strong>flexibilite mecanique</strong>.
+</div>
+</div>
+
+<!-- E11 -->
+<div class="corr-question corr-question--hard">
+<span class="corr-question__num">Question E11</span>
+<p class="corr-question__statement">Proposer une explication permettant a \( I(b)/I_{tot} \) d'etre superieur a 1 pour certaines valeurs de \( b \), comme cela peut s'observer sur la Figure 8 dans le cas ou \( r_c = 5\delta \).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Le vecteur densite de courant \(\underline{j_c}(r)\) est complexe : le courant n'est pas en phase en tout point. Il peut y avoir des <strong>courants de sens opposes</strong> dans certaines zones, de sorte que le courant dans la couronne externe depasse le courant total net. Le rapport des modules peut donc etre superieur a 1.
+</div>
+</div>
+
+<!-- E12 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E12</span>
+<p class="corr-question__statement">Expliquer en quelques phrases et avec un schema le principe d'integration numerique par la methode des rectangles.</p>
+
+<p>La methode des rectangles consiste a approcher l'aire sous la courbe \(f(x)\) entre \(a\) et \(b\) par une somme de rectangles. On decoupe \([a,b]\) en \(n\) sous-intervalles de largeur \(h = (b-a)/n\). Sur chaque sous-intervalle, on approche l'aire par un rectangle de hauteur \(f(x_k)\) et de largeur \(h\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \int_a^b f(x)\,dx \simeq h \sum_{k=0}^{n-1} f(a + kh) \]
+On remplace la courbe par des marches d'escalier dont la somme des aires approche l'integrale.
+</div>
+</div>
+
+<!-- E13 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E13</span>
+<p class="corr-question__statement">Elaborer une fonction Python nommee <code>Rectangles</code> prenant comme arguments une fonction \( f \), deux flottants \( a \) et \( b \) et un nombre de points de calcul \( n \) et renvoyant la valeur approchee par la methode des rectangles de \( \displaystyle\int_a^b f(x) \, \text{d}x \) calculee sur \( n \) points.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+<pre><code>def Rectangles(f, a, b, n):
+    h = (b - a) / n
+    S = 0
+    for k in range(n):
+        S = S + f(a + k * h)
+    return S * h</code></pre>
+</div>
+</div>
+
+<!-- E14 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question E14</span>
+<p class="corr-question__statement">Quelle est la complexite de calcul de cet algorithme ? On donnera la reponse sous la forme \( \mathcal{O}(k) \) ou \( k \) est une grandeur a determiner en fonction de \( n \).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\mathcal{O}(n)} \]
+La complexite est lineaire en le nombre de points.
+</div>
+</div>
+
+<!-- E15 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E15</span>
+<p class="corr-question__statement">A partir de la Figure 9, estimer l'evolution de l'erreur en fonction de \( n \) pour des valeurs de \( n \) pas trop elevees. On donnera la reponse sous la forme \( |\epsilon| = \mathcal{O}(k) \) ou \( k \) est une grandeur a determiner en fonction de \( n \). Comparer les trois methodes d'integration numerique.</p>
+
+<div class="corr-box corr-box--method">
+<div class="corr-box__title">Methode</div>
+En echelle log-log, une droite de pente \(-\alpha\) correspond a \(|\epsilon| \propto n^{-\alpha}\).
+</div>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{|\epsilon|_{\text{rectangles}} = \mathcal{O}(1/n) \qquad |\epsilon|_{\text{trapezes}} = \mathcal{O}(1/n^2) \qquad |\epsilon|_{\text{Simpson}} = \mathcal{O}(1/n^4)} \]
+Simpson converge le plus vite, les trapezes sont intermediaires, les rectangles sont les plus lents.
+</div>
+</div>
+
+<!-- E16 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question E16</span>
+<p class="corr-question__statement">Passer une certaine valeur de \( n \), on remarque que l'erreur augmente legerement avec \( n \). Ceci est visible sur la Figure 9 pour la methode des trapezes ou de Simpson. Proposer une explication a cela.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Pour de tres grandes valeurs de \(n\), le pas \(h\) devient si petit que les <strong>erreurs d'arrondi</strong> dues a la representation en virgule flottante dominent. Ces erreurs s'accumulent sur les \(n\) sous-intervalles et finissent par depasser l'erreur de methode. C'est un phenomene de <strong>catastrophe par cancellation</strong> (perte de chiffres significatifs lors de soustractions de nombres proches).
+</div>
+</div>
+
+</div><!-- fin partie E -->
+
+<!-- ======================================================================== -->
+<!--                   PARTIE F : PROPAGATION DANS LA LIGNE                   -->
+<!-- ======================================================================== -->
+<div class="corr-exercice" id="partieF">
+<div class="corr-exercice__header">
+<span class="corr-exercice__number">F</span>
+<div class="corr-exercice__title-group">
+<h2 class="corr-exercice__title">Propagation de la tension le long d'une ligne electrique</h2>
+<span class="corr-exercice__subtitle">Telegraphistes, ondes, adaptation d'impedance — 12 questions</span>
+</div>
+<span class="corr-exercice__difficulty corr-exercice__difficulty--avance">Avance</span>
+</div>
+<hr class="corr-exercice__rule">
+<div class="corr-exercice__enonce">
+<span class="corr-exercice__enonce-label">Contexte</span>
+On etudie la propagation des signaux electriques dans une ligne monophasee de longueur \(L_c\), modelisee par des cellules elementaires (\(\ell\,dx\), \(\alpha\,dx\)). On etablit les equations des telegraphistes, on etudie les ondes progressives, puis on ajoute des pertes.
+</div>
+
+<!-- F1 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question F1</span>
+<p class="corr-question__statement">L'ordre de grandeur de \( L_c \) est de 50 km. L'Approximation des Regimes Quasi-Stationnaires (ARQS) est-elle valable en tout point du cable ? Justifier. On rappelle que la frequence du signal est \( f_r = 50 \) Hz.</p>
+
+<div class="corr-box corr-box--rappel">
+<div class="corr-box__title">Rappel</div>
+L'ARQS est valable lorsque les dimensions du systeme sont petites devant la longueur d'onde du signal.
+</div>
+
+<p>La longueur d'onde du signal a 50 Hz :</p>
+\[ \lambda = \frac{c}{f_r} = \frac{3 \times 10^8}{50} = 6\,000 \text{ km} \]
+
+<p>\(L_c / \lambda = 50/6\,000 \simeq 1\%\).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+L'ARQS n'est <strong>pas rigoureusement valable sur toute la longueur</strong> du cable. Les phenomenes de propagation doivent etre pris en compte. En revanche, l'ARQS est valable <strong>localement</strong> sur un troncon \(dx \ll \lambda\), ce qui permet d'ecrire les lois de Kirchhoff sur chaque cellule elementaire.
+</div>
+
+<div class="corr-box corr-box--piege">
+<div class="corr-box__title">Piege classique</div>
+L'ARQS n'est pas valable globalement (c'est pour cela qu'on etudie la propagation), mais elle est valable localement sur un troncon \(dx\). C'est toute la subtilite des equations des telegraphistes.
+</div>
+</div>
+
+<!-- F2 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F2</span>
+<p class="corr-question__statement">Montrer que l'application des lois de l'electrocinetique dans l'ARQS permet d'etablir les deux equations suivantes \[ \begin{cases} v(x,t) \;=\; \ell\,\text{d}x\,\dfrac{\partial i}{\partial t}(x,t) + v(x + \text{d}x, t) \;, \\ i(x,t) \;=\; \alpha\,\text{d}x\,\dfrac{\partial v}{\partial t}(x + \text{d}x, t) + i(x + \text{d}x, t) \;. \end{cases} \]</p>
+
+<p><strong>Loi des mailles :</strong> La tension aux bornes de l'inductance \(\ell\,dx\) vaut \(\ell\,dx\,\frac{\partial i}{\partial t}\). En parcourant la maille :</p>
+\[ v(x,t) = \ell\,dx\,\frac{\partial i}{\partial t}(x,t) + v(x+dx,t) \]
+
+<p><strong>Loi des noeuds :</strong> Le courant dans la capacite \(\alpha\,dx\) vaut \(\alpha\,dx\,\frac{\partial v}{\partial t}(x+dx,t)\). Par conservation :</p>
+\[ i(x,t) = \alpha\,dx\,\frac{\partial v}{\partial t}(x+dx,t) + i(x+dx,t) \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+Les deux equations sont retrouvees par simple application de la loi des mailles et de la loi des noeuds sur la cellule elementaire.
+</div>
+</div>
+
+<!-- F3 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F3</span>
+<p class="corr-question__statement">En deduire que \( v(x,t) \) verifie une equation de D'Alembert et exprimer la celerite \( c \) des ondes associees en fonction de \( \ell \) et \( \alpha \).</p>
+
+<p>On reecrit sous forme differentielle :</p>
+\[ -\frac{\partial v}{\partial x} = \ell\,\frac{\partial i}{\partial t} \qquad -\frac{\partial i}{\partial x} = \alpha\,\frac{\partial v}{\partial t} \]
+
+<p>On derive la premiere par rapport a \(x\), la seconde par rapport a \(t\), et on combine :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\frac{\partial^2 v}{\partial x^2} = \frac{1}{c^2}\frac{\partial^2 v}{\partial t^2} \qquad \text{avec} \qquad c = \frac{1}{\sqrt{\ell\alpha}}} \]
+C'est l'equation de D'Alembert, equation de propagation d'une onde de celerite \(c\).
+</div>
+</div>
+
+<!-- F4 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F4</span>
+<p class="corr-question__statement">Determiner la relation de dispersion des ondes dans ce milieu entre la pulsation et le nombre d'onde note \( k \). Donner la definition d'un milieu dispersif et d'un milieu absorbant. Le milieu est-il dispersif ? Est-il absorbant ? Les reponses devront etre succinctement justifiees.</p>
+
+<p>On injecte \(v = V_0 e^{j(\omega t - kx)}\) dans l'equation de D'Alembert :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{k = \omega\sqrt{\ell\alpha}} \]
+<p><strong>Milieu dispersif :</strong> la vitesse de phase \(v_\varphi = \omega/k\) depend de la frequence.</p>
+<p><strong>Milieu absorbant :</strong> le nombre d'onde \(k\) a une partie imaginaire.</p>
+<p>Ici, \(k\) est <strong>reel</strong> et <strong>proportionnel a \(\omega\)</strong>. Le milieu n'est <strong>ni dispersif, ni absorbant</strong>.</p>
+</div>
+</div>
+
+<!-- F5 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F5</span>
+<p class="corr-question__statement">Donner la forme des OPPH incidentes et reflechies en tension. En utilisant les relations de l'equation (11), exprimer l'impedance du milieu pour les ondes incidentes, notee \( \underline{Z}_+ \), et pour les ondes reflechies \( \underline{Z}_- \), en fonction de \( \ell \) et \( \alpha \). Quelle est l'unite des impedances \( \underline{Z}_+ \) et \( \underline{Z}_- \) ?</p>
+
+<p>Les OPPH en tension :</p>
+\[ \underline{v}_+(x,t) = \underline{V}_+ e^{j(\omega t - kx)} \qquad \underline{v}_-(x,t) = \underline{V}_- e^{j(\omega t + kx)} \]
+
+<p>En utilisant \(-\frac{\partial v}{\partial x} = \ell\frac{\partial i}{\partial t}\) :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\underline{Z}_+ = \sqrt{\frac{\ell}{\alpha}} \qquad \underline{Z}_- = -\sqrt{\frac{\ell}{\alpha}}} \]
+L'unite est l'<strong>ohm</strong> (\(\Omega\)).
+</div>
+</div>
+
+<!-- F6 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F6</span>
+<p class="corr-question__statement">Ecrire, sans les resoudre, les deux equations correspondantes aux conditions de bord et permettant d'obtenir \( \underline{V}_- \) et \( \underline{V}_+ \).</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\underline{V}_+ + \underline{V}_- = \sqrt{2}\,U_r} \quad \text{(en } x = 0\text{)} \]
+\[ \boxed{\underline{V}_+ e^{-jkL_c} + \underline{V}_- e^{jkL_c} = R'\left(\frac{\underline{V}_+}{\underline{Z}_+}e^{-jkL_c} + \frac{\underline{V}_-}{\underline{Z}_-}e^{jkL_c}\right)} \quad \text{(en } x = L_c\text{)} \]
+</div>
+</div>
+
+<!-- F7 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F7</span>
+<p class="corr-question__statement">Determiner l'expression de \( R' \) en fonction de \( \ell \) et \( \alpha \) afin d'annuler l'onde reflechie. Qualitativement, quel est l'avantage de cette situation d'un point de vue energetique ?</p>
+
+<div class="corr-box corr-box--why">
+<div class="corr-box__title">Pourquoi on fait ca ?</div>
+L'adaptation d'impedance est un concept fondamental en physique des ondes. Quand la charge a la meme impedance que la ligne, toute l'energie est transmise et rien n'est reflechi.
+</div>
+
+<p>Pour \(\underline{V}_- = 0\), il faut \(R' = \underline{Z}_+\) :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{R' = \sqrt{\frac{\ell}{\alpha}}} \]
+C'est la condition d'<strong>adaptation d'impedance</strong>. Toute l'energie est absorbee par la charge, sans reflexion ni ondes stationnaires.
+</div>
+</div>
+
+<!-- F8 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F8</span>
+<p class="corr-question__statement">Quelles sont les deux nouvelles equations differentielles couplees et du premier ordre verifiees par \( v(x,t) \) et \( i(x,t) \) ?</p>
+
+<p>On ajoute \(r\,dx\) en serie et \(g\,dx\) en admittance parallele :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{-\frac{\partial v}{\partial x} = ri + \ell\frac{\partial i}{\partial t}} \]
+\[ \boxed{-\frac{\partial i}{\partial x} = gv + \alpha\frac{\partial v}{\partial t}} \]
+Ce sont les <strong>equations des telegraphistes</strong> generalisees (avec pertes).
+</div>
+</div>
+
+<!-- F9 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F9</span>
+<p class="corr-question__statement">On considere des solutions de la forme \( \underline{v}(x,t) = \underline{V}(x) \exp(j\omega t) \) et \( \underline{i}(x,t) = \underline{I}(x) \exp(j\omega t) \). Montrer que \( \underline{V}(x) \) est solution de l'equation differentielle \[ \frac{\text{d}^2 \underline{V}}{\text{d}x^2} = \underline{Z}_s \, \underline{Y}_p \, \underline{V} \;, \] avec \( \underline{Z}_s = j\ell\omega + r \) et \( \underline{Y}_p = j\alpha\omega + g \).</p>
+
+<p>En regime sinusoidal :</p>
+\[ -\frac{d\underline{V}}{dx} = \underline{Z}_s \underline{I} \qquad -\frac{d\underline{I}}{dx} = \underline{Y}_p \underline{V} \]
+
+<p>On derive la premiere et on injecte la seconde :</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{\frac{d^2\underline{V}}{dx^2} = \underline{Z}_s\,\underline{Y}_p\,\underline{V}} \]
+avec \(\underline{Z}_s = r + j\ell\omega\) et \(\underline{Y}_p = g + j\alpha\omega\).
+</div>
+</div>
+
+<!-- F10 -->
+<div class="corr-question corr-question--easy">
+<span class="corr-question__num">Question F10</span>
+<p class="corr-question__statement">Sans chercher a determiner les expressions de \( k'(\omega) \) et de \( k''(\omega) \), preciser si ce milieu est dispersif et/ou absorbant.</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+<ul>
+<li><strong>Absorbant :</strong> Oui, car \(k'' > 0\) provoque une decroissance exponentielle en \(e^{-k''x}\).</li>
+<li><strong>Dispersif :</strong> A priori oui, car \(k'(\omega)\) et \(k''(\omega)\) dependent de \(\omega\) de maniere non triviale.</li>
+</ul>
+</div>
+</div>
+
+<!-- F11 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F11</span>
+<p class="corr-question__statement">Quels sont les avantages de choisir les parametres des cables tels que \( \ell g = r\alpha \) ?</p>
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+<ul>
+<li><strong>Pas de dispersion :</strong> \(k' = \omega\sqrt{\ell\alpha}\) est proportionnel a \(\omega\). Le signal n'est pas deforme.</li>
+<li><strong>Attenuation minimale :</strong> \(k''\) est minimal pour cette condition.</li>
+<li>Le signal arrive attenue mais non deforme en bout de ligne.</li>
+</ul>
+</div>
+</div>
+
+<!-- F12 -->
+<div class="corr-question corr-question--medium">
+<span class="corr-question__num">Question F12</span>
+<p class="corr-question__statement">Calculer numeriquement \( k'' \) lorsque \( \ell g = r\alpha \). En l'absence d'onde reflechie, calculer la variation relative de l'amplitude de la tension aux bornes de \( R' \) lorsque l'on prend en compte les pertes dans la ligne par rapport au cas sans perte. Commenter.</p>
+
+<p><strong>Calcul de \(k''\) :</strong></p>
+\[ k'' = g\sqrt{\frac{\ell}{\alpha}} = 2{,}1 \times 10^{-9} \times \sqrt{\frac{1{,}0 \times 10^{-7}}{6{,}3 \times 10^{-12}}} = 2{,}1 \times 10^{-9} \times 126 \simeq 2{,}6 \times 10^{-7} \text{ m}^{-1} \]
+
+<p><strong>Variation relative :</strong></p>
+\[ k'' L_c = 2{,}6 \times 10^{-7} \times 50 \times 10^3 = 1{,}3 \times 10^{-2} \]
+\[ e^{-k'' L_c} - 1 \simeq -k''L_c \simeq -1{,}3\% \]
+
+<div class="corr-box corr-box--result">
+<div class="corr-box__title">Resultat</div>
+\[ \boxed{k'' \simeq 2{,}6 \times 10^{-7} \text{ m}^{-1}} \]
+La variation relative de l'amplitude est d'environ \(\boxed{-1{,}3\%}\). Les pertes sont <strong>tres faibles</strong> sur 50 km : l'amplitude ne diminue que d'environ 1 %. Le transport d'energie en basse tension sur cette distance est tres efficace avec la condition \(\ell g = r\alpha\).
+</div>
+</div>
+
+</div><!-- fin partie F -->
+
+</div><!-- course__container -->
+</main>
+
+<footer class="footer">
+<p>&copy; LibMaths 2025. Sujet original : Concours E3A-Polytech 2017.</p>
+</footer>
+
+</body>
+</html>

@@ -6,7 +6,7 @@
   <title>E3A 2018 -- Maths 1 | LibMaths</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -20,6 +20,16 @@
     .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
     .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
     .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
     .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
     .annale-info__item{display:flex;flex-direction:column;gap:4px}
     .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
@@ -42,7 +52,6 @@
     .course__nav-link--next{text-align:right}
     .annale-warning{background:linear-gradient(135deg,rgba(255,170,0,.08),rgba(255,170,0,.03));border:1px solid rgba(255,170,0,.25);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.85rem;line-height:1.7;color:var(--ink-light)}
     .annale-warning strong{color:var(--ink);font-weight:600}
-    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     @media(max-width:680px){
       .course__title{font-size:1.3rem}
       .course{padding-left:var(--space-md);padding-right:var(--space-md)}
@@ -84,7 +93,7 @@
         </div>
       </div>
     </div>
-      <a href="../../entrainement.html" class="nav__link">Entraînement</a>
+      <a href="../../entrainement.html" class="nav__link">Entrainement</a>
       <a href="../../revision.html" class="nav__link">Revision</a>
     </div>
     <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
@@ -113,12 +122,14 @@
 
     <h1 class="course__title">E3A 2018 -- Mathematiques 1</h1>
 
-    <div class="annale-warning">
-      <strong>Enonce non disponible en version texte.</strong> Le PDF de ce sujet est numerise (image) et ne permet pas l'extraction automatique du texte. Veuillez consulter directement le <a href="https://www.vmaths.fr/e3a-2018-maths1.pdf" target="_blank" rel="noopener">PDF sur vmaths.fr</a>.
+    <div style="margin-bottom:var(--space-xl)">
+      <a href="e3a-2018-correction.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#E91E63;color:#fff;border-radius:10px;font-family:var(--font-body);font-size:.85rem;font-weight:600;text-decoration:none;transition:background .2s">
+        <span>&#9998;</span> Voir la correction detaillee
+      </a>
     </div>
 
     <p class="course__intro">
-      Epreuve de mathematiques 1, filiere MP. Duree : 4 heures. Le sujet est disponible uniquement au format PDF (document numerise).
+      Epreuve de mathematiques 1, filiere MP. Duree : 4 heures. Le sujet comporte 3 exercices independants : constante d'Euler et developpement asymptotique des sommes harmoniques, matrices orthogonales a coefficients dans \(\{-1, 1\}\) (matrices de Hadamard), et probabilites discretes (nombre de valeurs distinctes et probleme des anniversaires).
     </p>
 
     <div class="annale-info">
@@ -142,16 +153,293 @@
         <span class="annale-info__label">Duree</span>
         <span class="annale-info__value">4 heures</span>
       </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Series, constante d'Euler, matrices de Hadamard, probabilites discretes</span>
+      </div>
     </div>
 
-    <div class="annale-exercice">
-      <h2 class="annale-exercice__title">Sujet au format PDF</h2>
-      <p class="annale-exercice__intro">Ce sujet est disponible uniquement sous forme de document numerise (image). L'extraction automatique du texte n'est pas possible.</p>
-      <p style="text-align:center;margin:var(--space-xl) 0">
-        <a href="https://www.vmaths.fr/e3a-2018-maths1.pdf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--accent);color:#fff;border-radius:10px;font-family:var(--font-body);font-size:.95rem;font-weight:600;text-decoration:none;transition:opacity .2s">
-          Telecharger le PDF du sujet
-        </a>
-      </p>
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#exo1"><span class="course__toc-num">1.</span> Constante d'Euler et developpement asymptotique</a></li>
+        <li class="course__toc-item"><a href="#exo2"><span class="course__toc-num">2.</span> Matrices orthogonales a coefficients dans {-1, 1}</a></li>
+        <li class="course__toc-item"><a href="#exo3"><span class="course__toc-num">3.</span> Nombre de valeurs distinctes et probleme des anniversaires</a></li>
+      </ol>
+    </nav>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 1                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="annale-exercice" id="exo1">
+      <h2 class="annale-exercice__title">Exercice 1 -- Constante d'Euler et developpement asymptotique</h2>
+
+      <p class="annale-exercice__intro">Pour tout entier naturel \(n\) dans \(\mathbb{N}^*\), on note</p>
+      <div class="math-display">$$h_n = \sum_{k=1}^{n} \frac{1}{k}, \qquad f_n = h_n - \ln(n).$$</div>
+      <p class="annale-exercice__intro">On considere les suites \((u_n)_{n \in \mathbb{N}^*}\) et \((v_n)_{n \in \mathbb{N}^*}\) definies par :</p>
+      <div class="math-display">$$u_1 = 1 \text{ et pour } n \geqslant 2, \; u_n = \frac{1}{n} + \ln\!\left(1 - \frac{1}{n}\right) \;;\; v_n = \frac{1}{n} - \ln\!\left(1 + \frac{1}{n}\right).$$</div>
+
+      <div class="question" id="Q1">
+        <span class="question__num">1.</span>
+        <p>Rappeler le domaine de definition de la fonction \((x \mapsto x + \ln(1 - x))\). Preciser son developpement de Taylor a l'ordre 2 en 0.</p>
+      </div>
+
+      <div class="question" id="Q2">
+        <span class="question__num">2.</span>
+        <p>Soit \(n\) un entier naturel non nul. Quel est le signe de \(u_n\) ?</p>
+      </div>
+
+      <div class="question" id="Q3">
+        <span class="question__num">3.</span>
+        <p>Justifier que la serie \(\displaystyle\sum_{n \geqslant 1} u_n\) est convergente.</p>
+      </div>
+
+      <div class="question" id="Q4">
+        <span class="question__num">4.</span>
+        <p>Etudier la fonction \((f : x \mapsto x - \ln(1 + x))\) sur \([0, 1]\).</p>
+      </div>
+
+      <div class="question" id="Q5">
+        <span class="question__num">5.</span>
+        <p>Justifier que la serie \(\displaystyle\sum_{n \geqslant 1} v_n\) est convergente.</p>
+      </div>
+
+      <div class="question" id="Q6">
+        <span class="question__num">6.</span>
+        <p>Soit \(n\) un entier naturel non nul. Exprimer en fonction de \(n\), \(u_n - v_n\).</p>
+        <p>En deduire une expression de \(\displaystyle\sum_{n=1}^{N} (v_n - u_n)\) en fonction de \(N\) pour tout entier naturel \(N\) superieur ou egal a 3.</p>
+      </div>
+
+      <div class="question" id="Q7">
+        <span class="question__num">7.</span>
+        <p>Que peut-on dire des suites \(\left(\displaystyle\sum_{n=1}^{N} v_n\right)_{N \in \mathbb{N}^*}\) et \(\left(\displaystyle\sum_{n=1}^{N} u_n\right)_{N \in \mathbb{N}^*}\) ? Justifier que \(\displaystyle\sum_{n \geqslant 1} u_n = \sum_{n \geqslant 1} v_n\).</p>
+      </div>
+
+      <p class="annale-exercice__intro">Dans la suite de l'exercice, on note \(\gamma\) la somme des series \(\displaystyle\sum_{n \geqslant 1} u_n\) et \(\displaystyle\sum_{n \geqslant 1} v_n\).</p>
+
+      <div class="question" id="Q8">
+        <span class="question__num">8.</span>
+        <p>Demontrer que \(\gamma\) est dans l'intervalle \(]0, 1[\).</p>
+      </div>
+
+      <div class="question" id="Q9">
+        <span class="question__num">9.</span>
+        <p>Soit \(n\) un entier naturel non nul. Justifier que :</p>
+        <div class="math-display">$$\ln(n+1) \leqslant h_n \leqslant 1 + \ln(n)$$</div>
+      </div>
+
+      <div class="question" id="Q10">
+        <span class="question__num">10.</span>
+        <p>Justifier que la suite \((f_n)_{n \in \mathbb{N}^*}\) est decroissante.</p>
+      </div>
+
+      <div class="question" id="Q11">
+        <span class="question__num">11.</span>
+        <p>Demontrer que la suite \((f_n)_{n \in \mathbb{N}^*}\) est convergente et de limite \(\gamma\).</p>
+        <p><em>Indication :</em> Exprimer les sommes partielles de la serie \(\displaystyle\sum_{n \geqslant 1} u_n\) en fonction des termes de la suite \((f_n)\).</p>
+      </div>
+
+      <div class="question" id="Q12">
+        <span class="question__num">12.</span>
+        <p>Soit \(r\) un entier naturel \(> 1\).</p>
+        <ol>
+          <li>(a) Dessiner le graphe de la fonction \((x \mapsto (1/x^r))\) sur \(\mathbb{R}^{+*}\).</li>
+          <li>(b) Soit \(a\) un nombre reel \(> 0\). Exprimer en fonction de \(a\) et \(r\) :
+            <div class="math-display">$$I(a) = \int_a^{+\infty} \frac{\mathrm{d}t}{t^r}$$</div>
+          </li>
+          <li>(c) Soit \((w_n)_{n \in \mathbb{N}}\) une suite de nombres reels qui converge vers 0 et telle que la suite \(\left(n^r(w_{n+1} - w_n)\right)_{n \in \mathbb{N}}\) est convergente vers une limite \(\ell\) telle que \(\ell > 0\).
+            <ol>
+              <li>i. Soient \(a, b\) dans \(\mathbb{R}^{+*}\) tels que \(0 < a < \ell < b\). Justifier l'existence d'un entier naturel \(N\) superieur ou egal a 2 tel que pour tout entier naturel \(n > N\), on ait les inegalites :
+                <div class="math-display">$$a \leqslant n^r(w_{n+1} - w_n) \leqslant b.$$</div>
+              </li>
+              <li>ii. Demontrer que pour tout entier naturel \(n\) superieur ou egal a \(N\) :
+                <div class="math-display">$$a \int_N^{n+1} \frac{\mathrm{d}t}{t^r} \leqslant w_{n+1} - w_N \leqslant b \int_{N-1}^{n} \frac{\mathrm{d}t}{t^r}$$</div>
+              </li>
+              <li>iii. En deduire l'encadrement
+                <div class="math-display">$$-b\,I(N - 1) \leqslant w_N \leqslant -a\,I(N)$$</div>
+                ou \(I\) a ete defini dans la question 12(b).
+              </li>
+              <li>iv. Demontrer que la suite \((n^{r-1} w_n)_{n \in \mathbb{N}}\) est convergente et expliciter en fonction de \(\ell\) et \(r\) sa limite.</li>
+              <li>v. Ce resultat reste-t-il vrai si la limite \(\ell\) de la suite \(\left(n^r(w_{n+1} - w_n)\right)_{n \in \mathbb{N}}\) est 0 ?</li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+
+      <div class="question" id="Q13">
+        <span class="question__num">13.</span>
+        <p>Demontrer qu'il existe un nombre reel \(\alpha\) qu'on explicitera tel que :</p>
+        <div class="math-display">$$\forall n \in \mathbb{N}^*,\quad \sum_{k=1}^{n} \frac{1}{k} = \ln(n) + \gamma + \frac{\alpha}{n} + o\!\left(\frac{1}{n}\right)$$</div>
+        <p><em>Indication :</em> On appliquera les resultats de la question 12 a une suite bien choisie.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 2                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="annale-exercice" id="exo2">
+      <h2 class="annale-exercice__title">Exercice 2 -- Matrices orthogonales a coefficients dans \(\{-1, 1\}\)</h2>
+
+      <p class="annale-exercice__intro">Soit \(n\) un entier naturel strictement superieur a 1. On note \(E\) l'espace vectoriel euclidien \(\mathbb{R}^n\) muni du produit scalaire canonique \(\langle\;,\;\rangle\) :</p>
+      <div class="math-display">$$\forall \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}, \begin{pmatrix} y_1 \\ \vdots \\ y_n \end{pmatrix} \in \mathbb{R}^n,\quad \left\langle \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}, \begin{pmatrix} y_1 \\ \vdots \\ y_n \end{pmatrix} \right\rangle = \sum_{i=1}^{n} x_i y_i.$$</div>
+      <p class="annale-exercice__intro">On note \(\| \;\|\) la norme associee et \(e_1, \ldots, e_n\) la base canonique de \(E\).</p>
+
+      <div class="question" id="Q2-1">
+        <span class="question__num">1.</span>
+        <p>Soit \(M\) une matrice dans \(\mathcal{M}_n(\mathbb{R})\). On note \(v_1, \ldots, v_n\) ses vecteurs colonnes.</p>
+        <ol>
+          <li>(a) Exprimer en fonction des \(v_1, \ldots, v_n\) les coefficients de la matrice \({}^t\!M\,M\).</li>
+          <li>(b) Dans le cas particulier ou les vecteurs \(v_1, \ldots, v_n\) sont orthogonaux deux a deux, demontrer que
+            <div class="math-display">$$|\!\det(M)| = \|v_1\| \, \|v_2\| \cdots \|v_n\|.$$</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="question" id="Q2-2">
+        <span class="question__num">2.</span>
+        <p>Determiner les matrices dans \(\mathcal{M}_n(\mathbb{R})\) qui sont diagonales et orthogonales.</p>
+      </div>
+
+      <p class="annale-exercice__intro">On note \(\mathcal{H}_n\) l'ensemble des matrices \(M\) dans \(\mathcal{M}_n(\mathbb{R})\) telles que :</p>
+      <ul>
+        <li>Tous les coefficients de \(M\) sont dans \(\{-1, 1\}\).</li>
+        <li>Les vecteurs colonnes de la matrice \(M\) sont orthogonaux 2 a 2.</li>
+      </ul>
+      <p class="annale-exercice__intro">Par exemple, on pourra constater que :</p>
+      <div class="math-display">$$\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \in \mathcal{H}_2 \quad\text{et}\quad \begin{pmatrix} 1 & 1 & -1 & 1 \\ -1 & -1 & -1 & 1 \\ 1 & -1 & -1 & -1 \\ -1 & 1 & -1 & -1 \end{pmatrix} \in \mathcal{H}_4$$</div>
+
+      <div class="question" id="Q2-3">
+        <span class="question__num">3.</span>
+        <p>Ecrire une fonction en Python qui lorsqu'elle prend en entree la liste des colonnes d'une matrice \(M\), de taille \(n\), renvoie 1 si la matrice est dans \(\mathcal{H}_n\) et 0 sinon.</p>
+      </div>
+
+      <div class="question" id="Q2-4">
+        <span class="question__num">4.</span>
+        <p>Soit \(M \in \mathcal{H}_n\).</p>
+        <ol>
+          <li>(a) Quelle est la norme d'un vecteur colonne de \(M\) ?</li>
+          <li>(b) Que vaut \(|\!\det(M)|\) ?</li>
+        </ol>
+      </div>
+
+      <div class="question" id="Q2-5">
+        <span class="question__num">5.</span>
+        <p>Soit \(M \in \mathcal{H}_n\). On suppose que le premier vecteur colonne de \(M\) est le vecteur</p>
+        <div class="math-display">$$v_1 = \sum_{i=1}^{n} e_i = \begin{pmatrix} 1 \\ \vdots \\ 1 \end{pmatrix}.$$</div>
+        <p>Soit, pour \(i\) dans \([\![2, n]\!]\), \(v_i = \displaystyle\sum_{j=1}^{n} m_{j,i}\, e_j\), le \(i\)-eme vecteur colonne de \(M\). Demontrer que le nombre de \(m_{j,i}\) egaux a 1 est egal au nombre de \(m_{j,i}\) egaux a \(-1\).</p>
+      </div>
+
+      <div class="question" id="Q2-6">
+        <span class="question__num">6.</span>
+        <p>On suppose que \(\mathcal{H}_n\) est non vide. Demontrer que \(\mathcal{H}_n\) contient une matrice \(M_0\) dont la premiere colonne est le vecteur \(v_1 = \displaystyle\sum_{i=1}^{n} e_i = \begin{pmatrix} 1 \\ \vdots \\ 1 \end{pmatrix}\).</p>
+      </div>
+
+      <div class="question" id="Q2-7">
+        <span class="question__num">7.</span>
+        <p>Lorsque \(\mathcal{H}_n\) est non vide, que peut-on en dire de la parite de \(n\) ?</p>
+      </div>
+
+      <div class="question" id="Q2-8">
+        <span class="question__num">8.</span>
+        <p>On suppose \(n > 2\) et \(\mathcal{H}_n\) non vide. Soit \(M_0\) une matrice dans \(\mathcal{H}_n\) dont la premiere colonne est le vecteur \(v_1 = \displaystyle\sum_{i=1}^{n} e_i = \begin{pmatrix} 1 \\ \vdots \\ 1 \end{pmatrix}\).</p>
+        <ol>
+          <li>(a) Demontrer que \(\det(M_0)\) est un entier relatif multiple de \(2^{n-1}\).</li>
+          <li>(b) Demontrer que \(n\) est un entier naturel multiple de 4.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--                      EXERCICE 3                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="annale-exercice" id="exo3">
+      <h2 class="annale-exercice__title">Exercice 3 -- Nombre de valeurs distinctes et probleme des anniversaires</h2>
+
+      <p class="annale-exercice__intro">Soient \(a\) et \(b\) des entiers naturels tels que \(a \leqslant b\). On rappelle que \([\![a, b]\!]\) designe l'ensemble des entiers naturels \(k\) tels que \(a \leqslant k \leqslant b\).</p>
+      <p class="annale-exercice__intro">Si \(S\) est un ensemble fini, on note \(|S|\) son cardinal.</p>
+      <p class="annale-exercice__intro">Si \(X\) est une variable aleatoire a valeurs dans une partie finie de \(\mathbb{N}\), on note \(\mathbb{E}(X)\) son esperance.</p>
+      <p class="annale-exercice__intro">Soit \(n\) un entier naturel superieur ou egal a 2 et soit \(\ell\) un entier naturel non nul. Soient \(X_1, \ldots, X_n\) des variables aleatoires independantes et de meme loi uniforme sur l'ensemble \([\![1, \ell]\!]\).</p>
+      <p class="annale-exercice__intro">On note \(U_n\) le nombre de valeurs distinctes prises par les variables \(X_1, \ldots, X_n\) : Si \(k_1, \ldots, k_n\) sont les valeurs prises respectivement par les variables \(X_1, \ldots, X_n\), alors \(U_n\) prend la valeur \(|S|\) ou \(S = \{k_1, \ldots, k_n\}\), pour tout \((k_1, \ldots, k_n)\) dans \([\![1, \ell]\!]^n\).</p>
+      <p class="annale-exercice__intro">Si \(S\) est une partie de \([\![1, \ell]\!]\), on note &laquo; \(\{X_1, \ldots, X_n\} = S\) &raquo; la reunion des evenements &laquo; \((X_1, \ldots, X_n) = (k_1, \ldots, k_n)\) &raquo;, pour tout \((k_1, \ldots, k_n)\) dans \([\![1, \ell]\!]^n\) tels que \(S = \{k_1, \ldots, k_n\}\).</p>
+
+      <div class="question" id="Q3-1">
+        <span class="question__num">1.</span>
+        <p>On suppose dans cette question seulement \(n = 2\) et \(\ell \geqslant 2\).</p>
+        <ol>
+          <li>(a) Justifier que \(U_2\) ne prend que les valeurs 1 et 2.</li>
+          <li>(b) Calculer \(P(U_2 = 1)\) et \(P(U_2 = 2)\).</li>
+          <li>(c) Calculer \(\mathbb{E}(U_2)\).</li>
+        </ol>
+      </div>
+
+      <div class="question" id="Q3-2">
+        <span class="question__num">2.</span>
+        <p>On se propose de simuler en Python la variable aleatoire \(U_n\) pour \(n = 10\) dans le cas ou \(\ell = 25\).</p>
+        <ol>
+          <li>(a) Ecrire une fonction <code>simuU</code> qui renvoie une realisation de \(U_{10}\).<br>
+          On pourra utiliser la fonction : <code>random.randint</code><br>
+          L'instruction <code>random.randint(1,25)</code> fournit un nombre entier aleatoire dans \([\![1, 25]\!]\) uniformement.</li>
+          <li>(b) Ecrire une fonction <code>espU</code> qui renvoie une approximation de l'esperance de \(U_{10}\). Quel theoreme utilisez-vous pour justifier que le resultat de cette fonction est une approximation de l'esperance de \(U_{10}\) ? Enoncez precisement ce theoreme.</li>
+        </ol>
+      </div>
+
+      <div class="question" id="Q3-3">
+        <span class="question__num">3.</span>
+        <p>Quel est l'ensemble des valeurs prises par \(U_n\) ?</p>
+      </div>
+
+      <div class="question" id="Q3-4">
+        <span class="question__num">4.</span>
+        <p>Soit \(\ell\) dans \([\![1, n]\!]\). Soit \(S\) une partie de \([\![1, \ell]\!]\). Quelle est la probabilite de l'evenement &laquo; \(X_1 \in S\) &raquo; en fonction de \(|S|\) ?</p>
+      </div>
+
+      <div class="question" id="Q3-5">
+        <span class="question__num">5.</span>
+        <p>Soit \(a\) dans \([\![1, \ell]\!]\). Exprimer \(P(X_1 \neq a, \ldots, X_{n-1} \neq a)\), la probabilite qu'aucune des variables \(X_1, \ldots, X_{n-1}\) ne prenne la valeur \(a\), en fonction de \(n\) et \(\ell\).</p>
+      </div>
+
+      <div class="question" id="Q3-6">
+        <span class="question__num">6.</span>
+        <p>En deduire \(P(X_1 \neq X_n, \ldots, X_{n-1} \neq X_n)\), la probabilite que la valeur prise par \(X_n\) soit differente de toutes les valeurs prises par les autres variables, en fonction de \(n\) et \(\ell\).</p>
+      </div>
+
+      <div class="question" id="Q3-7">
+        <span class="question__num">7.</span>
+        <p>Justifier</p>
+        <div class="math-display">$$P(X_1 \neq X_n, \ldots, X_{n-1} \neq X_n) = \sum_{S \in \mathcal{P}_\ell} P\!\left(\{X_1, \ldots, X_{n-1}\} = S\right) \left(\frac{\ell - |S|}{\ell}\right)$$</div>
+        <p>ou \(\mathcal{P}_\ell\) designe l'ensemble des parties non vides de \([\![1, \ell]\!]\).</p>
+      </div>
+
+      <div class="question" id="Q3-8">
+        <span class="question__num">8.</span>
+        <p>En deduire dans le cas ou \(n \geqslant 3\) :</p>
+        <div class="math-display">$$\mathbb{E}(U_{n-1}) = \ell\left(1 - P(X_1 \neq X_n, \ldots, X_{n-1} \neq X_n)\right)$$</div>
+      </div>
+
+      <div class="question" id="Q3-9">
+        <span class="question__num">9.</span>
+        <p>Exprimer \(\mathbb{E}(U_n)\) en fonction de \(n\) et \(\ell\).</p>
+      </div>
+
+      <div class="question" id="Q3-10">
+        <span class="question__num">10.</span>
+        <p>Determiner la limite de \(\mathbb{E}(U_n)\) lorsque \(\ell\) est fixe et \(n\) tend vers \(+\infty\). Interpretez votre resultat.</p>
+      </div>
+
+      <div class="question" id="Q3-11">
+        <span class="question__num">11.</span>
+        <p>Determiner la limite de \(\mathbb{E}(U_n)\) lorsque \(n\) est fixe et \(\ell\) tend vers \(+\infty\). Interpretez votre resultat.</p>
+      </div>
+
+      <div class="question" id="Q3-12">
+        <span class="question__num">12.</span>
+        <p>On s'interesse aux possibles partages de dates d'anniversaire dans un groupe de \(n\) personnes. On suppose que les annees sont toutes de 365 jours et que les dates d'anniversaire sont uniformement reparties sur chaque jour de l'annee. On fait aussi l'hypothese que les dates d'anniversaire de \(n\) personnes choisies au hasard sont independantes mutuellement.</p>
+        <p>Soit \(D_n\) le nombre de dates d'anniversaire d'un groupe de \(n\) personnes choisies au hasard.</p>
+        <ol>
+          <li>(a) Exprimer en fonction de \(n\) le nombre moyen de dates d'anniversaire d'un groupe de \(n\) personnes, c'est-a-dire \(\mathbb{E}(D_n)\).</li>
+          <li>(b) Quelle est la limite de ce nombre moyen lorsque \(n\) tend vers \(+\infty\) ?</li>
+        </ol>
+      </div>
     </div>
 
     <nav class="course__nav">

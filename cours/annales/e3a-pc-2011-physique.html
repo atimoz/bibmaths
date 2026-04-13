@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E3A-Polytech 2011 -- Physique PC | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-body);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-body);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
+    .question ol li{margin-bottom:4px}
+    .annale-figure{background:var(--bg-card);border:1px dashed var(--border);border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0;font-size:.9rem;line-height:1.7;color:var(--ink-light)}
+    .annale-figure__label{font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;display:block}
+    .annale-figure p{font-size:.9rem;color:var(--ink-light);margin-bottom:0}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    .annale-warning{background:linear-gradient(135deg,rgba(255,170,0,.08),rgba(255,170,0,.03));border:1px solid rgba(255,170,0,.25);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.85rem;line-height:1.7;color:var(--ink-light)}
+    .annale-warning strong{color:var(--ink);font-weight:600}
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <a href="../../entrainement.html" class="nav__link">Entraînement</a>
+      <a href="../../revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">E3A-POLYTECH 2011 -- PHYSIQUE PC</span>
+    </div>
+
+    <h1 class="course__title">E3A-Polytech 2011 -- Physique PC</h1>
+
+    <div class="annale-warning">
+      <strong>Sujet retranscrit avec schemas</strong> a partir du sujet officiel ARTS ET METIERS ParisTech -- ESTP -- ARCHIMEDE (epreuve de Physique PC, duree 4 heures, calculatrice autorisee).
+    </div>
+
+    <p class="course__intro">Ce probleme consacre aux <em>mesures thermiques</em> comporte cinq volets totalement independants, focalises sur l'utilisation de capteurs : thermometre a resistance, thermistance, thermocouple, doigt de gant et thermometre a diode. Il s'agit de determiner, selon les applications, les temperatures de gaz, de liquides ou de solides.</p>
+
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">E3A-Polytech (Arts et Metiers ParisTech -- ESTP -- ARCHIMEDE)</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">PC</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Physique</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2011</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Duree</span>
+        <span class="annale-info__value">4 heures</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Thermometrie, capteurs, pont de Wheatstone, bolometrie, thermocouple, transferts thermiques, equation de la chaleur, jonction PN</span>
+      </div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#exo1"><span class="course__toc-num">I.</span> Thermometrie par resistance metallique</a></li>
+        <li class="course__toc-item"><a href="#exo2"><span class="course__toc-num">II.</span> Thermometrie par thermistance</a></li>
+        <li class="course__toc-item"><a href="#exo3"><span class="course__toc-num">III.</span> Thermocouple et temperature variable d'un fluide</a></li>
+        <li class="course__toc-item"><a href="#exo4"><span class="course__toc-num">IV.</span> Mesure de la temperature d'un liquide a l'aide d'un doigt de gant</a></li>
+        <li class="course__toc-item"><a href="#exo5"><span class="course__toc-num">V.</span> Thermometrie a diode</a></li>
+      </ol>
+    </nav>
+
+    <!-- INTRODUCTION -->
+    <div class="annale-exercice" id="introduction">
+      <h2 class="annale-exercice__title">Mesures thermiques</h2>
+
+      <p class="annale-exercice__intro">Ce probleme consacre aux mesures thermiques comporte cinq volets, totalement independants, focalises sur l'utilisation de capteurs, tels que thermometre a resistance, thermistance, thermocouple, doigt de gant et thermometre a diode, dans le but de determiner, selon les applications, les temperatures de gaz, de liquides ou de solides.</p>
+
+      <p class="annale-exercice__intro"><strong>Remarques preliminaires importantes</strong> : il est rappele aux candidat(e)s que</p>
+      <ul>
+        <li>les explications des phenomenes etudies interviennent dans la notation au meme titre que les developpements analytiques et les applications numeriques ; les resultats exprimes sans unite ne seront pas comptabilises ;</li>
+        <li>tout au long de l'enonce, les paragraphes en italiques ont pour objet d'aider a la comprehension du probleme mais ne donnent pas lieu a des questions ;</li>
+        <li>tout resultat fourni dans l'enonce peut etre admis et utilise par la suite, meme s'il n'a pas ete demontre par le(la) candidat(e) ;</li>
+        <li>les documents-reponses A et B devront etre completes puis remis avec la copie ;</li>
+        <li>les temperatures absolues, exprimees en kelvin seront notees \( T \), celles en degre Celsius utiliseront la lettre \( t \), avec pour correspondance : \( T = t + 273 \).</li>
+      </ul>
+    </div>
+
+    <!-- PARTIE I -->
+    <div class="annale-exercice" id="exo1">
+      <h2 class="annale-exercice__title">Premiere partie -- Thermometrie par resistance metallique</h2>
+
+      <p class="annale-exercice__intro">Les capteurs de temperature utilisent generalement des sondes metalliques (ou des thermistances) ; par nature, ces elements ne fournissent pas de reponse lineaire.</p>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">A / Etude preliminaire : linearisation</h3>
+      </div>
+
+      <p class="annale-exercice__intro">La methode de linearisation la plus simple consiste a associer, en parallele du capteur, une resistance \( R_p \), dite de linearisation, dont la valeur est determinee de facon qu'autour d'une temperature choisie, la tension de mesure ait une variation quasi-lineaire en fonction de la temperature.</p>
+
+      <p class="annale-exercice__intro">Considerons un capteur de temperature constitue d'une resistance \( R(T) \) a la resistivite \( \rho(K) \) ; alimente sous un courant \( I \), il fournit une tension \( V \) a ses bornes. Placons une resistance \( R_p \) independante de la temperature, en parallele de \( R(T) \), comme represente ci-dessous (figure 1).</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 1</div>
+        <p>Schema de principe en deux temps. A gauche : un dipole \( R(T) \) seul, parcouru par le courant \( I \) entrant par le haut, avec un voltmetre \( V \) branche en parallele aux bornes du dipole. Au milieu, une fleche horizontale notee "linearisation" indique le passage au montage suivant. A droite : le meme dipole \( R(T) \) parcouru par \( I \), mais cette fois associe en parallele a une resistance \( R_p \), l'ensemble etant mesure par un voltmetre \( V \) place aux bornes du groupement parallele.</p>
+      </div>
+
+      <p class="annale-exercice__intro">La linearisation de la reponse du capteur au voisinage d'une temperature \( T_0 \) correspond mathematiquement a l'existence d'un point d'inflexion sur la variation de la resistance \( R_d(T) \) du dipole ainsi forme, pour la temperature \( T_0 \), soit : \( \displaystyle \left( \dfrac{d^2 R_d(T)}{dT^2} \right)_{T = T_0} = 0 \).</p>
+
+      <div class="question" id="Q1"><span class="question__num">A.1</span><p>Donner l'expression de la resistance \( R_d(T) \) du dipole forme par \( R(T) \) et \( R_p \).</p></div>
+
+      <div class="question" id="Q2"><span class="question__num">A.2</span><p>Traduire la condition de linearisation ; en deduire l'expression de la resistance \( R_p \) permettant cette linearisation, en fonction de \( R(T_0) \), \( \displaystyle \left( \dfrac{dR(T)}{dT} \right)_{T = T_0} \) et \( \displaystyle \left( \dfrac{d^2 R(T)}{dT^2} \right)_{T = T_0} \). Le capteur est caracterise par son coefficient thermique, note \( \displaystyle \alpha_R(T) = \dfrac{1}{R(T)} \left( \dfrac{dR(T)}{dT} \right)_T \).</p></div>
+
+      <div class="question" id="Q3"><span class="question__num">A.3</span><p>Preciser le sens physique de ce coefficient.</p></div>
+
+      <div class="question" id="Q4"><span class="question__num">A.4</span><p>Exprimer le coefficient thermique \( \alpha_d(T) \) en fonction de \( \alpha(T) \), \( R(T) \) et \( R_p \). Comparer \( \alpha_d(T) \) a \( \alpha(T) \) ; puis conclure.</p></div>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">B / Etude d'une resistance metallique au nickel</h3>
+      </div>
+
+      <p class="annale-exercice__intro">Considerons une resistance de nickel modelisable, sur l'etendue de mesure \( [-50\,°\mathrm{C} \,;\, 350\,°\mathrm{C}] \), par l'expression suivante : \( R(t) = R_0\left[1 + At + Bt^2\right] \), avec \( R_0 = 100\,\Omega \) ; \( A \) et \( B \) sont deux constantes, de valeurs respectives \( A = 5{,}5\cdot 10^{-3}\,(°\mathrm{C})^{-1} \) et \( B = 6{,}7\cdot 10^{-6}\,(°\mathrm{C})^{-2} \).</p>
+
+      <div class="question" id="Q5"><span class="question__num">B.1</span><p>Calculer les valeurs des resistances \( R(t_1 = -50\,°\mathrm{C}) = R_1 \) et \( R(t_2 = 350\,°\mathrm{C}) = R_2 \), aux bornes de l'intervalle de mesure, puis celle de la resistance \( R(t_0 = 150\,°\mathrm{C}) \).</p></div>
+
+      <div class="question" id="Q6"><span class="question__num">B.2</span><p>Tracer (sur le document-reponse A) les variations de la resistance \( R(t) \) dans l'intervalle de mesure ; analyser le trace. Calculer le coefficient thermique a la temperature de \( 150\,°\mathrm{C} \).</p></div>
+
+      <div class="question" id="Q7"><span class="question__num">B.3</span><p>Determiner l'expression de la resistance \( R_p \) necessaire pour l'operation de linearisation autour de \( t_0 = 150\,°\mathrm{C} \) (en fonction de \( R_0 \), \( A \), \( B \) et \( t_0 \)), puis calculer sa valeur. En deduire la valeur du coefficient thermique (de la thermistance lineraisee) a la temperature de \( 150\,°\mathrm{C} \) du dipole linearise.</p></div>
+
+      <p class="annale-exercice__intro">Etudions maintenant l'evolution de la resistance \( R_d(t) \) du dipole en fonction de la temperature.</p>
+
+      <div class="question" id="Q8"><span class="question__num">B.4</span><p>Ecrire l'expression de la resistance \( R_d(t) \) du dipole en fonction de la temperature et des constantes \( R_0 \), \( A \), \( B \) et \( R_p \). Calculer les valeurs numeriques \( R_d(t_1 = -50\,°\mathrm{C}) = R_{d1} \) et \( R_d(t_2 = 350\,°\mathrm{C}) = R_{d2} \) aux bornes de l'intervalle de mesure, puis tracer, sur le meme graphe que precedemment, les variations de la resistance \( R_d(t) \) dans l'intervalle de mesure ; analyser de nouveau ce trace.</p></div>
+
+      <div class="question" id="Q9"><span class="question__num">B.5</span><p>En deduire une loi affine simple du type \( R_a(t) = at + b \), en evaluant les constantes \( a \) et \( b \).</p></div>
+
+      <p class="annale-exercice__intro">Le calcul de la resistance \( R_p \) necessite de connaitre l'expression mathematique de l'evolution avec la temperature du capteur et surtout les valeurs numeriques des coefficients qu'elle renferme. L'utilisateur ne disposant pas toujours de ces donnees ou manquant de precision, a la possibilite de determiner \( R_p \) en n'effectuant qu'un nombre limite de mesures de la caracteristique du capteur. \( R_p \) s'obtient avec trois mesures, a trois temperatures : \( t_0 \) autour de laquelle la caracteristique doit etre lineaire, \( t_1 \) et \( t_2 \), temperatures extremes de la plage de mesure.</p>
+
+      <div class="question" id="Q10"><span class="question__num">B.6</span><p>Ecrire la relation liant les trois valeurs de resistance \( R_d(t_0) \), \( R_d(t_1) \) et \( R_d(t_2) \), en considerant que la linearisation est parfaitement realisee sur la plage \( [t_1\,;\,t_2] \), centree sur \( t_0 \).</p></div>
+
+      <div class="question" id="Q11"><span class="question__num">B.7</span><p>En deduire l'expression de la resistance de linearisation \( R_p \) en fonction de \( R(t_0) \), \( R(t_1) \) et \( R(t_2) \), puis calculer sa valeur ; comparer a la methode precedente.</p></div>
+    </div>
+
+    <!-- PARTIE II -->
+    <div class="annale-exercice" id="exo2">
+      <h2 class="annale-exercice__title">Deuxieme partie -- Thermometrie par thermistance</h2>
+
+      <p class="annale-exercice__intro">Dans une utilisation bolometrique<sup>(*)</sup>, une thermistance (capteur realise a partir d'oxydes metalliques semi-conducteurs polycristallins) permet de determiner le flux radiatif emis par une cible et d'en deduire, sans contact, sa temperature de surface. Ce type de composant intervient dans les nouvelles cameras thermiques ou chacun des pixels de l'imageur est un microbolometre de principe identique a celui decrit ci-apres.</p>
+
+      <p class="annale-exercice__intro">Dans une utilisation bolometrique, une thermistance possede une resistance \( R(T) \) qui est donnee par la loi : \( \displaystyle R(T) = R_0\,\exp\!\beta\left[\dfrac{1}{T} - \dfrac{1}{T_0}\right] \), ou \( B \) est une constante positive et \( T_0 \) une temperature de reference. Le constructeur donne comme caracteristiques : \( R(T_1) = 5000\,\Omega \), a \( t_1 = 25\,°\mathrm{C} \) et \( R(T_2) = 309\,\Omega \), a \( t_2 = 120\,°\mathrm{C} \).</p>
+
+      <p class="annale-exercice__intro" style="font-size:.85rem"><sup>(*)</sup> Un bolometre est un capteur capable de convertir l'energie du rayonnement electromagnetique qu'il recoit, en chaleur, puis en signal electrique.</p>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">C / Etude de la thermistance</h3>
+      </div>
+
+      <div class="question" id="Q12"><span class="question__num">C.1</span><p>Calculer la valeur de \( B \) (preciser son unite).</p></div>
+
+      <div class="question" id="Q13"><span class="question__num">C.2</span><p>Determiner, en fonction de \( B \) et \( T \), le coefficient thermique \( \displaystyle \alpha_{Th}(T) = \dfrac{1}{R(T)} \left( \dfrac{dR(T)}{dT} \right)_T \). Calculer ce coefficient a \( 150\,°\mathrm{C} \) et comparer le a celui d'une resistance au nickel.</p></div>
+
+      <div class="question" id="Q14"><span class="question__num">C.3</span><p>Etablir une expression de \( R(T) \) en fonction de \( R(T_1) \), \( B \), \( T \) et \( T_1 \), puis calculer \( R(T) \) pour les deux valeurs suivantes de la temperature : \( 5\,°\mathrm{C} \) et \( 110\,°\mathrm{C} \).</p></div>
+
+      <p class="annale-exercice__intro">La thermistance R(T) est montee en pont simple avec trois resistances independantes de la temperature : \( R_C = 5000\,\Omega \) ; le pont est alimente par une source de courant continu parfaite \( I_0 = 2 \) mA (figure 2.a).</p>
+
+      <div class="question" id="Q15"><span class="question__num">C.4</span><p>Exprimer \( V_C - V_D \) en fonction \( R_C \), \( R(T) \) et \( I_0 \). Ainsi que les tensions \( V_A - V_C \) et \( V_B - V_D \).</p></div>
+
+      <div class="question" id="Q16"><span class="question__num">C.5</span><p>Determiner la tension de mesure \( V_{\mathrm{mes}} \) en fonction de \( R_C \), \( R(T) \) et \( I_0 \) ; en deduire le signe de la tension \( V_{\mathrm{mes}} \). Exprimer la resistance \( R(T) \) en fonction des memes grandeurs et de \( V_{\mathrm{mes}} \).</p></div>
+
+      <p class="annale-exercice__intro">Le montage precedent est place dans une enceinte thermostatee a \( t_s = 25\,°\mathrm{C} \) (figure 2b).</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 2a</div>
+        <p>Pont a quatre branches alimente en courant. Quatre noeuds disposes en losange : sommet \( C \), bas \( D \), gauche \( A \), droite \( B \). Branches : entre \( C \) et \( A \) une resistance \( R_C \), entre \( C \) et \( B \) une resistance \( R_C \), entre \( A \) et \( D \) la thermistance \( R(T) \), entre \( B \) et \( D \) une resistance \( R_C \). Le generateur de courant constant \( I_0 \) est branche entre les noeuds \( C \) (entree, fleche montante a gauche du sommet \( C \)) et \( D \) (sortie). La tension de mesure \( V_{\mathrm{mes}} \) est relevee entre les noeuds \( A \) et \( B \) (au milieu du losange).</p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 2b</div>
+        <p>Meme montage en pont que la figure 2a (sommet \( C \), losange avec resistances \( R_C \) sur trois branches et la thermistance \( R(T) \) sur la branche restante, alimentation par \( I_0 \), mesure \( V_{\mathrm{mes}} \) entre les bornes \( A \) et \( B \)) mais l'ensemble est place dans une enceinte thermostatee maintenue a la temperature \( t_s \), figuree par un grand encadre entourant la totalite du pont.</p>
+      </div>
+
+      <div class="question" id="Q17"><span class="question__num">C.6</span><p>Quelle pourrait etre la tension de mesure a l'issue d'un raisonnement trop simpliste ?</p></div>
+
+      <p class="annale-exercice__intro">Une fois l'equilibre atteint dans le caisson, une tension de desequilibre du pont \( V_{\mathrm{mes}} = -15 \) mV est mesuree.</p>
+
+      <div class="question" id="Q18"><span class="question__num">C.7</span><p>Expliquer l'existence de cette tension de desequilibre. Calculer la resistance de la thermistance pour cette tension de desequilibre du pont ; en deduire sa temperature \( t \) (en \( °\mathrm{C} \)) et l'ecart de temperature \( \Delta t_s = t - t_s \), tout en justifiant son origine.</p></div>
+
+      <p class="annale-exercice__intro">Notons \( P_J \) la puissance dissipee par effet Joule dans la thermistance, \( K_a \) (en \( \mathrm{W\cdot K^{-1}} \)) son coefficient global d'echange thermique avec l'enceinte, \( M \) sa masse et \( c_p \) sa capacite thermique massique.</p>
+
+      <div class="question" id="Q19"><span class="question__num">C.8</span><p>Etablir l'equation differentielle traduisant le bilan thermique, sur une duree \( dt \), de la thermistance ; en deduire, en regime permanent, la relation entre la puissance dissipee par effet Joule \( \mathscr{P}_J \) et son auto-echauffement \( \Delta t_s \).</p></div>
+
+      <div class="question" id="Q20"><span class="question__num">C.9</span><p>Exprimer la puissance dissipee par effet Joule \( \mathscr{P}_J \) en fonction de \( R(T) \), \( R_C \) et \( I_0 \) ; puis la calculer pour \( t_s = 25\,°\mathrm{C} \). En deduire la valeur du coefficient global d'echange thermique \( K_a \).</p></div>
+
+      <p class="annale-exercice__intro">Les calculs montrent que, sur la gamme d'utilisation de cette thermistance, les puissances dissipees et les echauffements associes varient relativement peu. Ainsi, pour simplifier les calculs ulterieurs, les valeurs precedemment obtenues pour ces grandeurs pourront etre conservees.</p>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">D / Application bolometrique</h3>
+      </div>
+
+      <p class="annale-exercice__intro">Considerons maintenant l'utilisation de la thermistance en bolometre ; une fenetre est pratiquee dans l'enceinte pour y loger une optique permettant a un rayonnement exterieur d'atteindre la thermistance et d'y etre en grande partie absorbe (figure 3a). Ces modifications n'entrainent pas d'evolution des caracteristiques du composant precedemment etudie. Designons par \( \Phi_a \) la puissance du rayonnement absorbe par la thermistance.</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 3a</div>
+        <p>Pont en losange identique a la figure 2 (resistances \( R_C \), thermistance \( R(T) \), courant \( I_0 \), mesure \( V_{\mathrm{mes}} \)) place a l'interieur d'une enceinte fermee. Sur la paroi gauche de l'enceinte, des fleches horizontales pointant vers la droite representent un rayonnement incident qui traverse une ouverture (fenetre) et vient frapper la thermistance \( R(T) \) au centre du pont.</p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 3b</div>
+        <p>Meme dispositif que la figure 3a, mais l'enceinte est elle-meme entouree d'une seconde paroi formant un four porte a la temperature \( T_p \). En haut de la figure, l'inscription \( T_p \) designe la paroi de l'enceinte exterieure (chauffee). Les fleches representant le rayonnement traversent la fenetre dans la paroi interne et atteignent la thermistance \( R(T) \) en passant par l'optique.</p>
+      </div>
+
+      <div class="question" id="Q21"><span class="question__num">D.1</span><p>Etablir le bilan thermique de la thermistance ; en deduire, en regime permanent, la relation entre l'echauffement total \( \Delta T \) de la thermistance, son auto-echauffement \( \Delta T_s \) et la puissance thermique \( \Phi_a \) absorbee.</p></div>
+
+      <p class="annale-exercice__intro">Afin d'etalonner le bolometre, le systeme est place en regard d'une paroi (portee a la temperature \( t_p = 700\,°\mathrm{C} \)), dont il aura la charge de mesurer sa temperature (figure 3b). On a verifie au prealable que l'on peut perturber l'enceinte thermostatee tout en laissant suffisamment de rayonnement atteindre la thermistance pour que la puissance thermique \( \Phi_a \) absorbee par la thermistance provoque une deviation du pont : \( V_{\mathrm{mes}} = -250 \) mV.</p>
+
+      <div class="question" id="Q22"><span class="question__num">D.2</span><p>Deduire de ces donnees la valeur de la resistance \( R(T) \) associee a cet etalonnage, son echauffement \( \Delta T \) et la valeur de la puissance absorbee \( \Phi_a \).</p></div>
+
+      <p class="annale-exercice__intro">La paroi etant maintenant portee a une temperature \( t'_p \) inconnue, la puissance thermique absorbee \( \Phi'_a \) par la thermistance provoque une nouvelle deviation du pont, \( V'_{\mathrm{mes}} = -100 \) mV.</p>
+
+      <div class="question" id="Q23"><span class="question__num">D.3</span><p>Determiner la nouvelle valeur de la resistance \( R(T) \) associee a cette mesure, son echauffement \( \Delta T' \) et la valeur de la puissance absorbee \( \Phi'_a \).</p></div>
+
+      <p class="annale-exercice__intro">Le flux rayonne par la paroi varie comme la puissance quatrieme de la temperature : \( \Phi_a = kT^4 \). La geometrie du dispositif optique n'est pas modifiee entre l'etalonnage et la mesure proprement dite.</p>
+
+      <div class="question" id="Q24"><span class="question__num">D.4</span><p>En deduire la temperature \( t'_p \) inconnue.</p></div>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">E / Application a un dispositif de securite</h3>
+      </div>
+
+      <p class="annale-exercice__intro">Le caractere non lineaire de la thermistance peut etre mis a profit dans un dispositif de securite ou de controle-regulation de temperature. Considerons le montage ci-dessous (figure 4) alimente sous une tension \( V = 15 \) V, ou la thermistance, de resistance \( R(T) \) est introduite dans un montage en pont, associe a un amplificateur operationnel suppose ideal, alimente entre \( +V_{CC} \) et \( -V_{CC} \) (non alimentation n'est pas representee pour la clarte du schema). En cas de fonctionnement en regime de saturation, les tensions de saturation seront notees \( \pm V_{\mathrm{SAT}} \) avec \( V_{\mathrm{SAT}} = 12 \) V. Les resistances utilisees ont les valeurs suivantes : \( R_1 = 1\,\mathrm{k}\Omega \), \( R_2 = 10\,\mathrm{k}\Omega \), \( R_3 = 1\,\mathrm{M}\Omega \) et \( R_4 = 15\,\mathrm{k}\Omega \).</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 4</div>
+        <p>Montage en pont autour d'un amplificateur operationnel. Alimentation \( +V \) en haut. Branche de gauche du pont entre \( +V \) et la masse : resistance \( R_1 \) en serie avec la thermistance \( R(T) \), point milieu note \( P \). Branche de droite : resistance \( R_2 \) en serie avec la resistance \( R_3 \), point milieu note \( Q \). L'A.O. est branche avec son entree inverseuse (-) reliee au point \( P \) (entre \( R_1 \) et \( R(T) \)) et son entree non-inverseuse (+) reliee au point \( Q \) (entre \( R_2 \) et \( R_3 \)). La sortie de l'A.O. delivre la tension \( V_S \) ; une resistance de reaction \( R_4 \) relie cette sortie a l'entree non-inverseuse (point \( Q \)). Les noeuds bas des deux branches sont reliees a la masse (terre symbole).</p>
+      </div>
+
+      <div class="question" id="Q25"><span class="question__num">E.1</span><p>Determiner l'expression de la tension \( V_- \) sur l'entree inverseuse de l'A.O., en fonction de \( R_1 \), \( R(T) \) et \( V \). Exprimer la tension \( V_+ \) sur la borne non-inverseuse de l'A.O., en fonction de \( V \), \( V_S \), \( R_2 \), \( R_3 \) et \( R_4 \).</p></div>
+
+      <div class="question" id="Q26"><span class="question__num">E.2</span><p>Expliquer le fonctionnement de l'A.O. et determiner (en le justifiant) les expressions, minimale \( V_L \) et maximale \( V_H \) de la tension \( V_+ \) en fonction de \( V \), \( V_{\mathrm{SAT}} \), \( R_2 \) et \( R_4 \).</p></div>
+
+      <div class="question" id="Q27"><span class="question__num">E.3</span><p>Representer les variations de la tension de sortie \( V_S \) en fonction de l'entree inverseuse \( V_- \) de l'A.O. (echelle proposee : 1 cm pour 2 volts) ; en deduire le cycle du dispositif. Comment l'ecart \( \Delta V = V_H - V_L \) est-il appele ?</p></div>
+
+      <div class="question" id="Q28"><span class="question__num">E.4</span><p>Calculer les resistances \( R(T) \) associees aux valeurs de \( V_L \) et \( V_H \), puis les temperatures correspondantes. Discuter le mode de fonctionnement de ce dispositif et son interet.</p></div>
+    </div>
+
+    <!-- PARTIE III -->
+    <div class="annale-exercice" id="exo3">
+      <h2 class="annale-exercice__title">Troisieme partie -- Thermocouple et temperature variable d'un fluide</h2>
+
+      <p class="annale-exercice__intro">Un thermocouple est constitue de deux conducteurs metalliques de caracteristiques thermoelectriques differentes et possede deux jonctions : l'une est a la temperature a mesurer \( t_M \) (c'est le capteur de temperature), l'autre a une temperature fixe \( t_R \) (servant de reference). Vu de l'exterieur, le thermocouple est un dipole qui est le siege d'une force electromotrice thermoelectrique (effet Seebeck) qui ne depend que de l'ecart \( t_M - t_R \).</p>
+
+      <p class="annale-exercice__intro">Un thermocouple fer-constantan, initialement a la temperature \( t_0 \), est plonge dans un fluide de circuit de chauffage, variant sinusoidalement en fonction du temps, \( t_{f_0} = t_i + t_a \sin\!\omega t \) ; \( \omega \) est la pulsation associee a la periode \( P \). La temperature initiale du capteur est toujours \( t_0 \). Le coefficient d'echange conducto-convectif entre le capteur et le fluide est notee \( h \).</p>
+
+      <p class="annale-exercice__intro">Dans un premier temps, le fluide possede une temperature \( t_{f_0} \) constante.</p>
+
+      <div class="question" id="Q29"><span class="question__num">F.1</span><p>Realiser le bilan energetique du thermocouple associe a un echauffement de \( dt \) sa temperature \( t \), pendant l'intervalle de temps \( d\tau \). En deduire l'equation differentielle verifiee par \( t \), \( t_{f_0} \) et \( \tau \), en posant \( \displaystyle k = \dfrac{hS}{\rho V c_p} \).</p></div>
+
+      <div class="question" id="Q30"><span class="question__num">F.2</span><p>Resoudre cette equation differentielle, afin d'etablir la loi de variation \( t(\tau) \). Tracer (sommairement) cette evolution (preciser la duree), en vous servant des differentes donnees. Analyser ce trace, en termes de temps de reponse du capteur.</p></div>
+
+      <p class="annale-exercice__intro">Le thermocouple est maintenant destine a la mesure de la temperature d'un fluide de circuit de chauffage, variant sinusoidalement en fonction du temps, \( t_{f_0} = t_i + t_a \sin\!\omega t \) ; \( \omega \) est la pulsation associee a la periode \( P \). La temperature initiale du capteur est toujours \( t_0 \).</p>
+
+      <div class="question" id="Q31"><span class="question__num">F.3</span><p>Ecrire la nouvelle equation differentielle regissant la fonction \( t(\tau) \) du thermocouple. Ecrire sa solution sous forme du changement de variable \( \theta(\tau) = t(\tau) - t_i \).</p></div>
+
+      <div class="question" id="Q32"><span class="question__num">F.4</span><p>Ecrire la solution \( \theta_t(\tau) \) correspondant au regime transitoire.</p></div>
+
+      <p class="annale-exercice__intro">En regime harmonique, la solution particuliere prend la forme : \( \theta_p(\tau) = A\sin(\omega\tau - \Psi) \), \( \Psi \) correspondant a un dephasage tel que \( \tan\Psi = \omega/k \).</p>
+
+      <div class="question" id="Q33"><span class="question__num">F.5</span><p>Determiner l'expression de \( A \) en fonction de \( k \), \( \omega \) et \( t_a \).</p></div>
+
+      <div class="question" id="Q34"><span class="question__num">F.6</span><p>En prenant en compte les conditions initiales, ecrire l'expression globale de la temperature \( t(\tau) \) en fonction de \( t_0 \), \( T_i \), \( t_a \), \( P \), \( k \) et \( t \).</p></div>
+
+      <p class="annale-exercice__intro">Sur le document-reponse B, est tracee l'evolution de la temperature reelle du fluide sur une duree de 15 minutes.</p>
+
+      <div class="question" id="Q35"><span class="question__num">F.7</span><p>Sur ce meme graphique, reproduire, en vous aidant de l'ensemble des donnees fournies, le trace de la temperature \( t(\tau) \) precedemment etablie.</p></div>
+
+      <div class="question" id="Q36"><span class="question__num">F.8</span><p>Analyser avec soin les differents termes de la temperature \( t(\tau) \) et leurs caracteristiques, ainsi que leurs implications dans la reponse du thermocouple aux variations de la temperature du fluide.</p></div>
+
+      <p class="annale-exercice__intro"><strong>Donnees</strong> : \( t_0 = 60\,°\mathrm{C} \), \( t_i = 100\,°\mathrm{C} \), \( t_a = 50\,°\mathrm{C} \), \( P = 10 \) min, \( d = 1 \) mm, \( L = 30 \) mm, \( \rho = 7900\,\mathrm{kg\cdot m^{-3}} \), \( c_p = 460\,\mathrm{J\cdot kg^{-1}\cdot K^{-1}} \), \( h = 30\,\mathrm{W\cdot m^{-2}\cdot K^{-1}} \).</p>
+    </div>
+
+    <!-- PARTIE IV -->
+    <div class="annale-exercice" id="exo4">
+      <h2 class="annale-exercice__title">Quatrieme partie -- Mesure de la temperature d'un liquide a l'aide d'un doigt de gant muni d'un thermocouple</h2>
+
+      <p class="annale-exercice__intro">Dans un tube en acier inoxydable (de conductivite thermique \( \lambda \)), de diametre interieur \( D_{\mathrm{INT}} \), circule de l'eau a la vitesse \( v \), dont on veut connaitre la temperature \( T_{\mathrm{eau}} \) (consideree comme constante dans le tube). Pour realiser cette mesure, une tige soudee au doigt de gant, egalement en acier inoxydable, est soudee sur le tube. Ce doigt de gant est un cylindre creux, ferme a une extremite, de longueur \( L \), de diametre exterieur \( d_{\mathrm{EXT}} \), d'epaisseur \( e \) et dont la section a pour aire \( -\sigma'/dx \). Il est destine a recevoir un thermocouple devant mesurer la temperature du fluide. Le dispositif est schematise sur la figure 5a.</p>
+
+      <p class="annale-exercice__intro"><strong>Hypotheses de l'etude :</strong></p>
+      <ul>
+        <li>le regime permanent est realise ;</li>
+        <li>le doigt de gant se comporte comme une ailette de refroidissement dont l'une des extremites est fermee, du contact du fluide a l'extremite ouverte a la sortie du tube, notee \( T_p \) ;</li>
+        <li>le contact entre le thermocouple et l'extremite interieure du doigt de gant est suppose parfait (les transferts thermiques sont consideres comme negligeables devant les transferts entre la paroi laterale du gant et l'eau) ;</li>
+        <li>les transferts thermiques entre la paroi laterale du doigt de gant et l'eau sont consideres comme regis par la loi de Newton, fournissant la puissance surfacique echangee : \( P_{th} = h(T - T_e) \), \( h \) etant le coefficient de transfert.</li>
+      </ul>
+
+      <p class="annale-exercice__intro">Considerons un element infinitesimal du doigt de gant, compris entre les cotes \( x \) et \( x + dx \), de volume \( -\sigma'/dx \), comme illustre sur la figure 5b. (schema agrandi pour plus de clarte).</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 5a</div>
+        <p>Coupe en long d'un tube horizontal dans lequel circule un fluide de gauche a droite (fleches \( v_{FL} \)). En haut du tube, un doigt de gant cylindrique vertical descendant est soude sur la paroi superieure ; il est ferme en bas, ouvert en haut, et sa longueur dans le fluide est notee \( L \). A l'interieur du doigt de gant est introduit un thermocouple (fil dessine au centre du doigt). Cotes : \( x = 0 \) au sommet (jonction avec le tube), \( x = L \) a l'extremite fermee. Le diametre exterieur du doigt de gant est note \( d_{\mathrm{EXT}} \), et le diametre interieur du tube est \( D_{\mathrm{INT}} \). La temperature de l'eau est \( T_{\mathrm{eau}} \) ; la temperature au sommet du doigt (paroi du tube) est notee \( T_p \). La paroi du tube et le doigt de gant sont hachures (acier).</p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 5b</div>
+        <p>Vue agrandie d'un element infinitesimal du doigt de gant. A gauche : coupe longitudinale d'une portion du doigt entre les cotes \( x \) et \( x + dx \), avec deux fleches horizontales : \( \Phi_x \) entrant a la cote \( x \) (par conduction le long du gant) et \( \Phi_{x+dx} \) sortant a la cote \( x + dx \). Une fleche horizontale supplementaire notee \( \Phi_{th} \) represente la puissance evacuee par convection vers le fluide. A droite : section transverse circulaire du doigt de gant (anneau), de diametre exterieur \( d_{\mathrm{EXT}} \), avec mention "section de surface \( -\sigma'/dx \)".</p>
+      </div>
+
+      <div class="question" id="Q37"><span class="question__num">G.1</span><p>Realiser le bilan thermique sur cet element de cylindre, apres avoir explicite chacun des flux intervenant dans les echanges entre l'eau, le doigt de gant et l'air.</p></div>
+
+      <div class="question" id="Q38"><span class="question__num">G.2</span><p>Sachant que les coefficients d'echanges conducto-convectifs respectifs \( h_{rs} \) (vis a vis du fluide en mouvement) et \( h_{ra} \) (vis a vis de l'air inerte dans le doigt de gant) sont, pour le rapport d'environ 1000/1, effectuer les simplifications qui s'imposent dans le bilan precedent.</p></div>
+
+      <div class="question" id="Q39"><span class="question__num">G.3</span><p>Deduire de ce bilan simplifie l'equation differentielle verifiee par la temperature \( T(x) \) d'un point du doigt de gant, a la cote \( x \).</p></div>
+
+      <p class="annale-exercice__intro">Pour simplifier ecritures et calculs, introduisons la variable adimensionnee : \( \displaystyle \xi = \dfrac{x}{L} \), ainsi que la grandeur : \( \displaystyle \theta(\xi) = \dfrac{T(x) - T_{\mathrm{eau}}}{T_p - T_{\mathrm{eau}}} \).</p>
+
+      <div class="question" id="Q40"><span class="question__num">G.4</span><p>Montrer que l'equation differentielle precedente s'ecrit maintenant : \( \displaystyle \dfrac{d^2\theta(\xi)}{d\xi^2} - \Omega^2\,\theta(\xi) = 0 \). Expliciter la quantite \( \Omega^2 \) en fonction de \( d_{\mathrm{EXT}} \), \( h_{FL} \), \( \lambda \) et \( -\sigma'/L \), puis preciser ses dimensions a partir de celles des grandeurs precedentes.</p></div>
+
+      <div class="question" id="Q41"><span class="question__num">G.5</span><p>Resoudre cette equation differentielle, apres avoir justifie les conditions aux limites suivantes : \( \theta(0) = 1 \) ainsi que \( \displaystyle \left(\dfrac{d\theta}{d\xi}\right)_1 = 0 \). Ecrire la solution \( \theta(\xi) \) en fonction de \( \xi \), \( \Omega \) et \( L \).</p></div>
+
+      <p class="annale-exercice__intro">Pour que le dispositif (thermocouple associe au doigt de gant) remplisse parfaitement ses fonctions, il convient que l'ecart entre la temperature \( T(L) \) mesuree par le thermocouple au contact du fond du doigt et la temperature reelle \( T_{\mathrm{eau}} \) de l'eau, ne soit pas superieur a \( 0{,}5\,\% \) de la difference entre la temperature de l'eau \( T_{\mathrm{eau}} \) et celle de la paroi du tube \( T_p \).</p>
+
+      <div class="question" id="Q42"><span class="question__num">G.6</span><p>Exprimer la longueur que doit posseder le doigt de gant (exprimer en fonction de la grandeur \( \Omega \)) pour que cette condition soit remplie. Realiser, a partir des donnees fournies, les applications numeriques necessaires afin de calculer la longueur de doigt de gant desiree. Commenter le resultat obtenu.</p></div>
+
+      <p class="annale-exercice__intro">L'etude precedemment menee partait de l'hypothese que le flux surfacique en bout du doigt de gant etait nul. Une autre approche consiste a considerer un doigt de gant « infini », c'est a dire suffisamment long pour que la temperature en son extremite tende vers la temperature de l'eau qui l'enveloppe.</p>
+
+      <div class="question" id="Q43"><span class="question__num">G.7</span><p>Reprendre l'equation differentielle etablie en Q.3, ou figure la grandeur \( \Omega \). Resoudre cette equation differentielle et ecrire la nouvelle solution \( T(x) \) en fonction de \( T_{\mathrm{eau}} \), \( T_p \), \( \Omega \) et \( x \).</p></div>
+
+      <div class="question" id="Q44"><span class="question__num">G.8</span><p>Reprendre le critere introduit precedemment et determiner l'expression de la nouvelle longueur \( L' \) du doigt.</p></div>
+
+      <div class="question" id="Q45"><span class="question__num">G.9</span><p>Calculer \( L' \) et comparer a la valeur trouvee avec la premiere hypothese.</p></div>
+
+      <p class="annale-exercice__intro"><strong>Donnees</strong> : \( D_{\mathrm{INT}} = 30 \) mm, \( d_{\mathrm{EXT}} = 4 \) mm, \( e = 1 \) mm, \( \lambda = 17\,\mathrm{W\cdot m^{-1}\cdot K^{-1}} \), \( h_{FL} = 4500\,\mathrm{W\cdot m^{-2}\cdot K^{-1}} \), \( h_a = 5\,\mathrm{W\cdot m^{-2}\cdot K^{-1}} \), \( \mathrm{Ch}(a-b) = \mathrm{Ch}(a)\,\mathrm{Ch}(b) - \mathrm{Sh}(a)\,\mathrm{Sh}(b) \), \( \mathrm{Ch}(6) \approx 200 \).</p>
+    </div>
+
+    <!-- PARTIE V -->
+    <div class="annale-exercice" id="exo5">
+      <h2 class="annale-exercice__title">Cinquieme partie -- Thermometrie a diode</h2>
+
+      <p class="annale-exercice__intro">Considerons un capteur de temperature utilisant une diode au silicium ; la jonction PN<sup>(**)</sup> de cette diode est polarisee en direct. Traversee par un courant \( I \), elle presente une chute de tension \( V_J \) a ses bornes (figure 6), ces deux grandeurs etant reliees par la loi de Shockley : \( \displaystyle I = I_S\,[\exp(qV_J/kT) - 1] \) ou \( k \) est la constante de Boltzmann et \( T \) la temperature absolue. En se placant dans l'approximation \( kT \ll E_g \), le courant de saturation \( I_S \) s'ecrit de facon approchee : \( \displaystyle I_S = A T^3\exp(-E_g/kT) \), ou \( E_g \) est la largeur de la bande interdite du semiconducteur (en eV) et \( A \) une constante. La caracteristique de la diode est tracee sur la figure 7.</p>
+
+      <p class="annale-exercice__intro" style="font-size:.85rem"><sup>(**)</sup> Jonction d'un semi-conducteur P et d'un semi-conducteur N.</p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 6</div>
+        <p>Schema du dipole de mesure. Une diode (zone P en haut, zone N en bas, fleche conventionnelle) est branchee en serie avec une resistance \( R_S \) (cote anode P, en haut). L'ensemble est parcouru par le courant \( I \) (fleche descendante). La tension aux bornes de la diode seule est notee \( V_J \) (de l'anode P vers la cathode N).</p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 7</div>
+        <p>Caracteristique courant-tension \( I(V_D) \) de la diode tracee a 25 °C. Axe des abscisses \( V_D \) (en V) gradue de 0 a 1 par pas de 0,2. Axe des ordonnees \( I \) (en mA) gradue de 0 a 5 par pas de 1. La courbe est nulle ou tres faible jusqu'aux environs de \( V_D \approx 0{,}55\)–\(0{,}6 \) V puis croit rapidement (allure exponentielle de la diode), passant par environ 2,5 mA pour \( V_D \approx 0{,}65 \) V et continue vers les valeurs superieures.</p>
+      </div>
+
+      <div class="question" id="Q46"><span class="question__num">H.1</span><p>Montrer que, des que \( V_J > 200 \) mV (pour une temperature de jonction inferieure a \( 80\,°\mathrm{C} \)), l'expression de \( I \) peut se simplifier et permet d'ecrire \( V_J \) en fonction de \( I \) et \( I_S \).</p></div>
+
+      <div class="question" id="Q47"><span class="question__num">H.2</span><p>En deduire l'expression de \( V_J \) en fonction de la temperature, sous la forme : \( V_J = \alpha + \beta T + \gamma T \ln T \). Analyser cette relation et identifier les constantes \( \alpha \), \( \beta \) et \( \gamma \).</p></div>
+
+      <p class="annale-exercice__intro">La diode est alimentee par un courant constant \( I_0 \). La temperature \( T \) de la jonction varie autour d'une temperature \( T_0 \) prise comme reference, telle que \( T = T_0 + \Delta T \).</p>
+
+      <div class="question" id="Q48"><span class="question__num">H.3</span><p>Etablir, a l'aide d'un developpement limite au premier ordre en \( \Delta T \), la relation entre \( V_J(T_0 + \Delta T) \), \( V_J(T_0) \) et \( \Delta T \).</p></div>
+
+      <p class="annale-exercice__intro">La resistance des regions N et P de la diode pouvant se modeliser par une resistance serie \( R_S \), dont l'expression, en fonction de la temperature, s'ecrit : \( R_S(T) = R_S(T_0)[1 + \Delta T/T_0]^{5/2} \).</p>
+
+      <div class="question" id="Q49"><span class="question__num">H.4</span><p>Realiser le developpement limite au premier ordre en \( \Delta T \) de la resistance \( R_S(T) \). Ecrire la tension \( V_D(T) \) aux bornes de la diode en fonction de \( V_J(T) \), puis etablir cette relation entre \( V_D(T_0 + \Delta T) \), \( V_D(T_0) \) et \( \Delta T/T_0 \). En deduire la sensibilite \( S_D(T_0) = (\Delta V_D / \Delta T)_{T_0} \).</p></div>
+
+      <div class="question" id="Q50"><span class="question__num">H.5</span><p>Exprimer l'erreur engendree par la derive du courant d'alimentation, sous la forme \( \displaystyle \Delta_d = 0{,}02\,\mathrm{mA} \). A partir des donnees et de la caracteristique de la diode a 25 °C, calculer pour \( \Delta_d = 0{,}02 \) mA. Analyser les resultats.</p></div>
+
+      <p class="annale-exercice__intro"><strong>Donnees</strong> : \( q = -e = 1{,}6\cdot 10^{-19}\,\mathrm{C} \), \( k = 1{,}38\cdot 10^{-23}\,\mathrm{J\cdot K^{-1}} \), \( E_g = 1{,}14\,\mathrm{eV} = 1{,}83\cdot 10^{-19}\,\mathrm{J} \), \( I_0 = 2{,}5\,\mathrm{mA} \), \( R_S(25\,°\mathrm{C}) = 10\,\Omega \).</p>
+
+      <p class="annale-exercice__intro"><strong>FIN DE L'EPREUVE</strong></p>
+    </div>
+
+    <!-- DOCUMENTS REPONSES -->
+    <div class="annale-exercice" id="documents-reponses">
+      <h2 class="annale-exercice__title">Documents-reponses</h2>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Document-reponse A</div>
+        <p>Repere quadrille vierge a completer et a rendre avec la copie. Axe horizontal : temperature \( t \) (en °C) graduee de \( -50 \) a \( 350 \) par pas de 50. Axe vertical : resistance \( R(t) \), \( R_d(t) \) graduee de 50 a 350 (en \( \Omega \)) par pas de 50. La grille permet de tracer les variations de \( R(t) \) (resistance au nickel) et \( R_d(t) \) (dipole linearise).</p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Document-reponse B</div>
+        <p>Repere quadrille a completer et a rendre avec la copie, montrant l'evolution reelle de la temperature du fluide \( T_{f_0}(\tau) \). Axe horizontal : temps \( \tau \) (en min) gradue de 0 a 15 par pas de 5. Axe vertical : temperature \( t \) (en °C) graduee de 0 a 150 par pas de 50. Une courbe sinusoidale est deja tracee : elle oscille entre environ 50 °C et 150 °C avec une periode visuelle d'environ 10 minutes (deux maxima et un minimum sur l'intervalle de 0 a 15 min), centree autour de 100 °C. L'eleve doit y superposer le trace de \( t(\tau) \) calcule a la question F.7.</p>
+      </div>
+    </div>
+
+    <nav class="course__nav">
+      <a href="../../mp.html#annales" class="course__nav-link">
+        &larr; Retour
+        <span>Toutes les annales</span>
+      </a>
+    </nav>
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '\\[', right: '\\]', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

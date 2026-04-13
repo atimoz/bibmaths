@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2015 - Physique - LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../../index.html" class="nav-logo">LibMaths</a>
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../../physique/index.html">Physique</a></li>
+      <li><a href="../index.html">Annales</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="course">
+  <div class="course-header">
+    <div class="breadcrumb">
+      <a href="../../index.html">Accueil</a> &gt;
+      <a href="../../physique/index.html">Physique</a> &gt;
+      <a href="../index.html">Annales</a> &gt;
+      <span>E3A-Polytech PC 2015 - Physique</span>
+    </div>
+    <h1>E3A-Polytech PC 2015 - Physique</h1>
+    <p class="course-subtitle">Concours Communs Polytechniques - Epreuve specifique filiere PC - Modelisation de systemes physiques ou chimiques - Duree 4 h</p>
+  </div>
+
+  <div class="annale-info">
+    <div class="annale-warning">
+      <strong>Sujet retranscrit avec schemas</strong>
+      <p>N.B. : le candidat attachera la plus grande importance a la clarte, a la precision et a la concision de la redaction. Si un candidat est amene a reperer ce qui peut lui sembler etre une erreur d'enonce, il le signalera sur sa copie et devra poursuivre sa composition en expliquant les raisons des initiatives qu'il a ete amene a prendre.</p>
+      <p><strong>Les calculatrices sont interdites.</strong></p>
+      <p>Le sujet comporte deux parties independantes. Le candidat precisera au debut de sa copie le langage de programmation (Python ou Scilab) qu'il a choisi et toutes les questions seront traitees dans le meme langage. Un bonus sera accorde aux copies soignees avec des programmes bien commentes. Plusieurs fonctions du langage Scilab sont rappelees en annexe A. Les candidats choisissant le langage Python pourront utiliser les bibliotheques numpy et matplotlib.pyplot. Une documentation simplifiee de plusieurs fonctions de ces bibliotheques est presente en annexes B et C.</p>
+    </div>
+
+    <h2>Table des matieres</h2>
+    <ul class="toc">
+      <li><a href="#exo1">Partie I : Etude preliminaire (I.A a I.C)</a></li>
+      <li><a href="#exo2">Partie II : Resolution numerique (II.A a II.C)</a></li>
+    </ul>
+  </div>
+
+  <article class="annale-exercice" id="exo1">
+    <h2>Simulation numerique du transfert thermique dans un mur en regime transitoire</h2>
+
+    <p>On etudie les transferts thermiques dans le mur d'une maison, figure 1(a). La temperature a l'interieur de la maison est constante dans le temps et egale a \( T_{int} = 20 \) &deg;C. Aux temps negatifs (\( t &lt; 0 \)), la temperature exterieure est egale a \( T_{ext} = 10 \) &deg;C. A \( t = 0 \), elle chute brusquement a \( T_{ext}^2 = -10 \) &deg;C et elle reste egale a cette valeur aux temps positifs (\( t &gt; 0 \)), figure 1(b). On souhaite etudier l'evolution du profil de temperature dans le mur au cours du temps.</p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figures 1</div>
+      <p>(a) Schema du mur etudie. Le mur est represente en coupe, hachure, d'epaisseur \( e \), avec un repere \( (O, x, y, z) \). L'axe \( x \) est oriente de l'interieur vers l'exterieur, perpendiculairement au mur. A gauche du mur (interieur), la temperature est \( T_{int} \). A droite du mur (exterieur), la temperature est \( T_{ext} \).</p>
+      <p>(b) Evolution de la temperature exterieure au cours du temps. Le graphe montre \( T_{ext} \) en fonction de \( t \). Pour \( t &lt; 0 \), \( T_{ext} = T_{ext}^1 \). A \( t = 0 \), saut brusque vers \( T_{ext}^2 \), puis la temperature reste a \( T_{ext}^2 \) pour \( t &gt; 0 \).</p>
+    </div>
+
+    <p>Le mur a une epaisseur \( e = 40 \) cm. Les proprietes physiques du mur sont constantes : conductivite thermique \( \lambda = 1{,}65 \) W.m\(^{-2}\).K\(^{-1}\), capacite thermique massique \( c_p = 1\,000 \) J.kg\(^{-1}\).K\(^{-1}\), masse volumique \( \rho = 2\,150 \) kg.m\(^{-3}\).</p>
+
+    <h3>Partie I : Etude preliminaire</h3>
+
+    <p>Dans cette partie, on etablit l'equation gouvernant les variations de la temperature et on la resout en regime permanent.</p>
+
+    <h4>I.A. Equation gouvernant la temperature</h4>
+
+    <p>On suppose que la temperature dans le mur \( T \) ne depend que du temps \( t \) et de la coordonnee \( x \).</p>
+
+    <section class="question" id="Q1">
+      <h4>Question I.A.1.</h4>
+      <p>A quelle condition peut-on supposer que la temperature ne depend pas des coordonnees \( y \) et \( z \) ?</p>
+    </section>
+
+    <section class="question" id="Q2">
+      <h4>Question I.A.2.</h4>
+      <p>Donner l'equation generale qui decrit le transport de chaleur dans un solide en l'absence de source d'energie. Comment cette equation se simplifie-t-elle sous les hypotheses de la question I.A.1 ?</p>
+    </section>
+
+    <h4>I.B. Conditions aux limites</h4>
+
+    <p>On envisage plusieurs types de conditions aux limites.</p>
+    <ol>
+      <li>(i) La temperature est imposee aux limites du systeme.</li>
+      <li>(ii) La paroi exterieure est isolee par un materiau de tres faible conductivite.</li>
+    </ol>
+
+    <section class="question" id="Q3">
+      <h4>Question I.B.1.</h4>
+      <p>Traduire chacune de ces conditions aux limites sur la fonction \( T(x,t) \) et/ou sa derivee.</p>
+    </section>
+
+    <p>Dans toute la suite, on adoptera des conditions aux limites de type temperature imposee.</p>
+
+    <h4>I.C. Solutions en regime permanent</h4>
+
+    <section class="question" id="Q4">
+      <h4>Question I.C.1.</h4>
+      <p>Resoudre l'equation obtenue a la question I.A.2. en regime permanent, avec les conditions aux limites de temperatures imposees (question I.B.(i))</p>
+      <ul>
+        <li>pour un instant particulier negatif \( t_1 &lt; 0 \),</li>
+        <li>pour un instant particulier positif \( t_2 &gt; 0 \), tres longtemps apres la variation de temperature exterieure, quand le regime permanent est de nouveau etabli dans le mur.</li>
+      </ul>
+    </section>
+
+    <section class="question" id="Q5">
+      <h4>Question I.C.2.</h4>
+      <p>Quelle est la nature des profils \( T(x) \) obtenus (en regime permanent) a ces deux instants ? Tracer a la main les deux profils sur un meme graphique sur la copie.</p>
+    </section>
+
+    <section class="question" id="Q6">
+      <h4>Question I.C.3.</h4>
+      <p>Sur le meme graphique, tracer a la main qualitativement les profils intermediaires a differents instants entre la variation brutale de la temperature exterieure (\( t = 0 \)) et l'instant \( t_2 \) ou le regime est de nouveau permanent.</p>
+    </section>
+  </article>
+
+  <article class="annale-exercice" id="exo2">
+    <h2>Partie II : Resolution numerique</h2>
+
+    <h4>II.A. Equation a resoudre</h4>
+
+    <p>On cherche a resoudre numeriquement l'equation aux derivees partielles :</p>
+    <p>\[ a\,\frac{\partial T}{\partial t} = \frac{\partial^2 T}{\partial x^2} \qquad (1) \]</p>
+    <p>ou \( a \) est une constante. A l'equation (1) sont associees les conditions :</p>
+    <p>\[ T(0,t) = T_{int} \quad \text{pour tout } t &gt; 0 \]</p>
+    <p>\[ T(e,t) = T_{ext2} \quad \text{pour tout } t &gt; 0 \]</p>
+    <p>\[ T(x,0) = ax + b \quad \text{pour tout } x \in [0, e] \]</p>
+
+    <section class="question" id="Q7">
+      <h4>Question II.A.1.</h4>
+      <p>Quelle est l'expression de \( a \) en fonction des parametres physiques du mur ?</p>
+    </section>
+
+    <section class="question" id="Q8">
+      <h4>Question II.A.2.</h4>
+      <p>Exprimer \( a \) et \( b \) en fonction de \( T_{int} \), \( T_{ext1} \) et \( e \).</p>
+    </section>
+
+    <p>Pour effectuer la resolution de l'equation (1), nous utiliserons la methode des differences finies presentee dans la partie II.B.</p>
+
+    <h4>II.B. Methode des differences finies</h4>
+
+    <h5>II.B.1. Discretisation dans l'espace et dans le temps</h5>
+
+    <p>On divise l'intervalle \([0, e]\), representant l'epaisseur du mur, en \( N + 2 \) points, numerotes de 0 a \( N + 1 \), regulierement espaces de \( \Delta x \) (figure 2, page suivante). Cette division est appelee &laquo; discretisation &raquo;. La distance \( \Delta x \) est appelee le &laquo; pas d'espace &raquo;. A l'interieur du mur (frontieres interieure et exterieure exclues) se trouvent donc \( N \) points. On cherche a obtenir la temperature en ces points particuliers a chaque instant.</p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 2</div>
+      <p>Discretisation spatiale dans la direction \( x \). L'axe horizontal represente la position \( x \) allant de 0 a \( e \). Les points sont numerotes de 0 a \( N+1 \), regulierement espaces de \( \Delta x \). Les points intermediaires visibles sont : 0, 1, 2, ..., \( i-1 \), \( i \), \( i+1 \), ..., \( N-1 \), \( N \), \( N+1 \).</p>
+    </div>
+
+    <section class="question" id="Q9">
+      <h4>Question II.B.1.a.</h4>
+      <p>Donner l'expression de \( \Delta x \) en fonction de \( N \) et de l'epaisseur du mur \( e \).</p>
+    </section>
+
+    <section class="question" id="Q10">
+      <h4>Question II.B.1.b.</h4>
+      <p>Donner l'abscisse \( x_i \) du \( i^e \) point en fonction de \( i \) et \( \Delta x \), sachant que \( x_0 = 0 \) et \( x_{N+1} = e \).</p>
+    </section>
+
+    <p>Le temps est discretise en \( ItMax \) intervalles de duree \( \Delta t \) et on ne s'interesse au profil de temperature qu'aux instants particuliers \( t_k = k\,\Delta t \). L'intervalle elementaire de temps \( \Delta t \) est appele le &laquo; pas de temps &raquo;.</p>
+
+    <p>Pour resoudre l'equation (1), deux methodes sont proposees :</p>
+    <ul>
+      <li>methode utilisant un schema explicite,</li>
+      <li>methode utilisant un schema implicite.</li>
+    </ul>
+
+    <h5>II.B.2. Methode utilisant un schema explicite</h5>
+
+    <section class="question" id="Q11">
+      <h4>Question II.B.2.a.</h4>
+      <p>A l'aide d'un developpement limite de la fonction \( x \mapsto T(x,t) \), donner une expression de \( T(x + \Delta x, t) \) a l'ordre 3 (\( o(\Delta x^3) \)) en fonction de \( T \) et de ses derivees partielles par rapport a \( x \) evaluees en \( (x, t) \). De meme, donner une expression de \( T(x - \Delta x, t) \) a l'ordre 3.</p>
+    </section>
+
+    <section class="question" id="Q12">
+      <h4>Question II.B.2.b.</h4>
+      <p>En deduire une expression approchee a l'ordre 1 (\( o(\Delta x) \)) de \( \left.\dfrac{\partial^2 T}{\partial x^2}\right|_{x,t} \) (derivee partielle spatiale seconde de \( T \) evaluee au point \( x \) a l'instant \( t \)) en fonction de \( T(x + \Delta x, t) \), \( T(x - \Delta x, t) \), \( T(x, t) \) et \( \Delta x \).</p>
+    </section>
+
+    <p>On note \( T_i^k \) la temperature \( T(x_i, t_k) \), evaluee au point d'abscisse \( x_i \) a l'instant \( t_k \). De meme, on note \( T_{i+1}^k = T(x_i + \Delta x, t_k) \) et \( T_{i-1}^k = T(x_i - \Delta x, t_k) \).</p>
+
+    <section class="question" id="Q13">
+      <h4>Question II.B.2.c.</h4>
+      <p>Deduire de la question precedente une expression approchee de \( \left.\dfrac{\partial^2 T}{\partial x^2}\right|_{x_i, t_k} \) (derivee partielle spatiale seconde de \( T \) evaluee en \( x_i \) a l'instant \( t_k \)) en fonction de \( T_i^k \), \( T_{i+1}^k \), \( T_{i-1}^k \) et \( \Delta x \).</p>
+    </section>
+
+    <section class="question" id="Q14">
+      <h4>Question II.B.2.d.</h4>
+      <p>A l'aide d'un developpement limite de la fonction \( t \mapsto T(x,t) \), donner une expression de \( T(x, t + \Delta t) \) a l'ordre 1 (\( o(\Delta t) \)) en fonction de \( T \) et de sa derivee partielle par rapport a \( t \) evaluees en \( (x, t) \).</p>
+    </section>
+
+    <section class="question" id="Q15">
+      <h4>Question II.B.2.e.</h4>
+      <p>En deduire une valeur approchee de \( \left.\dfrac{\partial T}{\partial t}\right|_{x,t} \) (derivee partielle par rapport au temps de \( T \) evaluee au point \( x \) a l'instant \( t \)) a l'ordre 0 (\( o(1) \)) en fonction de \( T(x, t + \Delta t) \), \( T(x, t) \) et \( \Delta t \).</p>
+    </section>
+
+    <section class="question" id="Q16">
+      <h4>Question II.B.2.f.</h4>
+      <p>Donner une expression de \( \left.\dfrac{\partial T}{\partial t}\right|_{x_i, t_k} \) (derivee partielle par rapport au temps de \( T \) evaluee en \( x_i \) a l'instant \( t_k \)) en fonction de \( \Delta t \), \( T_i^k \) et \( T_i^{k+1} \), avec \( T_i^{k+1} = T(x_i, t_k + \Delta t) \).</p>
+    </section>
+
+    <section class="question" id="Q17">
+      <h4>Question II.B.2.g.</h4>
+      <p>L'equation (1) est valable en chaque point d'abscisse \( x_i \) et a chaque instant \( t_k \). Ecrire la forme approchee de cette equation au point \( i \) et a l'instant \( k \) en approchant \( \left.\dfrac{\partial^2 T}{\partial x^2}\right|_{x_i, t_k} \) avec la formule obtenue a la question II.B.2.c. et en approchant \( \left.\dfrac{\partial T}{\partial t}\right|_{x_i, t_k} \) avec la formule obtenue a la question II.B.2.f.</p>
+    </section>
+
+    <section class="question" id="Q18">
+      <h4>Question II.B.2.h.</h4>
+      <p>Montrer que l'equation obtenue a la question II.B.2.g peut s'ecrire sous la forme :</p>
+      <p>\[ T_i^{k+1} = r\,T_{i-1}^k + (1 - 2r)\,T_i^k + r\,T_{i+1}^k \qquad (2) \]</p>
+      <p>en precisant la valeur du parametre \( r \) en fonction de \( \Delta x \), \( \Delta t \) et \( a \).</p>
+    </section>
+
+    <section class="question" id="Q19">
+      <h4>Question II.B.2.i.</h4>
+      <p>L'equation (2) est appellee schema numerique explicite. Si on connait la temperature en tous les points \( x_1, x_2, ..., x_{N-1}, x_N \) a l'instant \( t_k \), on peut calculer grace a elle la temperature en tous les points a l'instant ulterieur \( t_{k+1} \). L'equation (2) est-elle valable dans tout le domaine, c'est-a-dire pour toute valeur de \( i \), \( 0 \leq i \leq N + 1 \) ? Que valent \( T_0^k \) et \( T_{N+1}^k \) ?</p>
+    </section>
+
+    <section class="question" id="Q20">
+      <h4>Question II.B.2.j.</h4>
+      <p>Dans cette question, on elabore une fonction <code>schema_explicite</code> permettant de calculer la temperature en chaque point du mur au cours du temps selon la formule (2). Parmi les variables d'entree se trouvent un vecteur \( T0 \) de dimension \( N \), defini en dehors de la fonction, contenant les valeurs de la temperature aux points de discretisation a l'instant initial. Au sein de la fonction, un algorithme calculera iterativement la temperature avec un nombre maximal d'iterations <code>ItMax</code>. En sortie de la fonction, on recuperera le nombre d'iterations reellement effectuees, <code>nbIter</code> et une matrice <code>T_tous_k</code>, de dimensions \( N \times ItMax \). Chaque colonne de cette matrice contient le vecteur \( T^k \) dont les elements sont les valeurs de la temperature aux \( N \) points \( x_1, ..., x_N \) (points a l'interieur du mur) a l'instant \( k \) :</p>
+      <p>\[ \boldsymbol{T}^k = \begin{pmatrix} T_1^k \\ T_2^k \\ \vdots \\ T_{N-1}^k \\ T_N^k \end{pmatrix} \quad \text{et} \quad \texttt{T\_tous\_k} = \begin{pmatrix} T_1^1 & T_1^2 & \cdots & T_1^{k+1} & T_1^{ItMax} \\ T_2^1 & T_2^2 & \cdots & T_2^{k+1} & T_2^{ItMax} \\ \vdots & \vdots & & \vdots & \vdots \\ T_{N-1}^1 & T_{N-1}^2 & \cdots & T_{N-1}^{k+1} & T_{N-1}^{ItMax} \\ T_N^1 & T_N^2 & \cdots & T_N^{k+1} & T_N^{ItMax} \end{pmatrix} \]</p>
+      <p>On souhaite arreter le calcul lorsque la temperature ne varie presque plus dans le temps. Dans ce but, on evaluera la norme 2 de \( \boldsymbol{T}^k - \boldsymbol{T}^{k-1} \) a chaque iteration. La definition de la norme 2 est rappellee a la question II.B.2.j.(vi).</p>
+    </section>
+
+    <section class="question" id="Q21">
+      <h4>Question II.B.2.j.<em>i</em>)</h4>
+      <p>Ecrire l'en-tete de la fonction en precisant bien les parametres d'entree et de sortie.</p>
+    </section>
+
+    <section class="question" id="Q22">
+      <h4>Question II.B.2.j.<em>ii</em>)</h4>
+      <p>Le schema numerique (2) permet d'approcher avec succes la solution a la condition \( r &lt; 1/2 \). Programmer un test qui avertit l'utilisateur si cette condition n'est pas respectee.</p>
+    </section>
+
+    <section class="question" id="Q23">
+      <h4>Question II.B.2.j.<em>iii</em>)</h4>
+      <p>Affecter la valeur 2 000 a <code>ItMax</code>. Creer la matrice <code>T_tous_k</code> de dimensions \( N \times ItMax \) en la remplissant de zeros.</p>
+    </section>
+
+    <section class="question" id="Q24">
+      <h4>Question II.B.2.j.<em>iv</em>)</h4>
+      <p>Remplacer la premiere colonne de <code>T_tous_k</code> par le vecteur des valeurs initiales \( T0 \).</p>
+    </section>
+
+    <section class="question" id="Q25">
+      <h4>Question II.B.2.j.<em>v</em>)</h4>
+      <p>Calculer le profil de temperature a l'instant \( k = 1 \) (\( t = \Delta t \)), en distinguant le cas \( i = 1 \), le cas \( 2 \leq i \leq N - 1 \) et le cas \( i = N \). Affecter ces valeurs a la deuxieme colonne de <code>T_tous_k</code>.</p>
+    </section>
+
+    <section class="question" id="Q26">
+      <h4>Question II.B.2.j.<em>vi</em>)</h4>
+      <p>Ecrire une fonction <code>calc_norme</code> qui calcule la norme 2 d'un vecteur. On rappelle que la norme 2 d'un vecteur \( V \) s'ecrit :</p>
+      <p>\[ \|V\|_2 = \sqrt{\sum_{i=1}^{N} V_i^2} \qquad \text{avec} \quad V = \begin{pmatrix} V_1 \\ V_2 \\ \vdots \\ V_N \end{pmatrix} \]</p>
+    </section>
+
+    <section class="question" id="Q27">
+      <h4>Question II.B.2.j.<em>vii</em>)</h4>
+      <p>Elaborer une boucle permettant de calculer iterativement le profil de temperature aux instants \( t_k = k\,\Delta t \) avec \( k \geq 2 \). Cette boucle sera interrompue lorsque la norme 2 du vecteur \( \boldsymbol{T}^k - \boldsymbol{T}^{k-1} \) deviendra inferieure a \( 10^{-5} \) ou lorsque le nombre d'iterations atteindra la valeur <code>ItMax</code> (prevoir les deux cas). Utiliser, pour cela, la fonction <code>calc_norme</code> definie a la question II.B.2.j.(vi).</p>
+    </section>
+
+    <section class="question" id="Q28">
+      <h4>Question II.B.2.j.<em>viii</em>)</h4>
+      <p>Ecrire la fin de la fonction afin de renvoyer tous les arguments de sortie definis au debut de la question II.B.2.j.</p>
+    </section>
+
+    <h5>II.B.3. Methode utilisant un schema implicite</h5>
+
+    <p>Le schema explicite (2) ne converge que si le pas de temps \( \Delta t \) est suffisamment faible par rapport au pas d'espace \( \Delta x \). Si l'on souhaite effectuer un calcul pour un temps physique long, beaucoup d'iterations seront necessaires et le temps de calcul sera tres long. C'est pourquoi on prefere d'autres types de schemas appeles schemas implicites.</p>
+
+    <p>Dans cette partie, la derivee partielle seconde par rapport a \( x \) de la temperature apparaissant dans l'equation (1) est evaluee au point d'abscisse \( x_i \) et a l'instant \( k + 1 \) :</p>
+    <p>\[ \left.\frac{\partial^2 T}{\partial x^2}\right|_{x_i, t_{k+1}} \approx \left.\frac{\partial^2 T}{\partial x^2}\right|_{x_i, t_{k+1}} \]</p>
+    <p>et la derivee partielle par rapport a \( t \) est evaluee au point d'abscisse \( x_i \) et a l'instant \( k \) :</p>
+    <p>\[ \left.\frac{\partial T}{\partial t}\right|_{x_i, t_k} \approx \left.\frac{\partial T}{\partial t}\right|_{x_i, t_k} \]</p>
+
+    <section class="question" id="Q29">
+      <h4>Question II.B.3.a.</h4>
+      <p>Donner la nouvelle expression approchee de l'equation (1) definie en page 3.</p>
+    </section>
+
+    <section class="question" id="Q30">
+      <h4>Question II.B.3.b.</h4>
+      <p>Montrer que l'equation obtenue a la question II.B.3.a. peut etre mise sous la forme</p>
+      <p>\[ T_i^k = -r\,T_{i-1}^{k+1} + (1 + 2r)\,T_i^{k+1} - r\,T_{i+1}^{k+1}. \qquad (3) \]</p>
+    </section>
+
+    <p>L'equation (3) est appelee schema implicite car la temperature a l'instant \( t_k \) est exprimee en fonction de la temperature a l'instant ulterieur \( t_{k+1} \).</p>
+
+    <p>Le systeme d'equations ainsi obtenu peut etre ecrit sous la forme :</p>
+    <p>\[ M\,\boldsymbol{T}^{k+1} = \boldsymbol{T}^k + r\,\boldsymbol{v} \qquad (4) \]</p>
+    <p>ou \( M \) est une matrice carree \( N \times N \) et \( \boldsymbol{T}^k \) et \( \boldsymbol{T}^{k+1} \) sont les vecteurs de dimension \( N \) definis par :</p>
+    <p>\[ \boldsymbol{T}^k = \begin{pmatrix} T_1^k \\ T_2^k \\ \vdots \\ T_{N-1}^k \\ T_N^k \end{pmatrix} \quad \text{et} \quad \boldsymbol{T}^{k+1} = \begin{pmatrix} T_1^{k+1} \\ T_2^{k+1} \\ \vdots \\ T_{N-1}^{k+1} \\ T_N^{k+1} \end{pmatrix} \]</p>
+    <p>et \( \boldsymbol{v} \) est un vecteur de taille \( N \) faisant intervenir les conditions aux limites.</p>
+
+    <section class="question" id="Q31">
+      <h4>Question II.B.3.c.</h4>
+      <p>Preciser l'expression de la matrice \( M \) et l'expression du vecteur \( \boldsymbol{v} \).</p>
+    </section>
+
+    <section class="question" id="Q32">
+      <h4>Question II.B.3.d.</h4>
+      <p>Le but de cette question est d'ecrire une fonction <code>CalcTkp1</code> qui permet de resoudre un systeme matriciel tridiagonal en utilisant l'algorithme de Thomas presente ci-dessous.</p>
+      <p><strong>Algorithme de Thomas :</strong></p>
+      <p>On cherche a resoudre un systeme matriciel tridiagonal de la forme :</p>
+      <p>\[ M\,\boldsymbol{u} = \boldsymbol{d} \qquad (5) \]</p>
+      <p>ou \( M \) est une matrice de dimensions \( N \times N \) tridiagonale, c'est-a-dire une matrice dont tous les elements sont nuls, sauf sur la diagonale principale, la diagonale superieure et la diagonale inferieure :</p>
+      <div class="annale-figure">
+        <div class="annale-figure__label">Matrice M</div>
+        <p>Matrice tridiagonale \( N \times N \) avec les elements \( b_1, c_1 \) sur la premiere ligne, \( a_2, b_2, c_2 \) sur la deuxieme ligne, etc. Les elements de la diagonale principale sont \( b_1, b_2, ..., b_N \), de la diagonale superieure \( c_1, c_2, ..., c_{N-1} \) et de la diagonale inferieure \( a_2, a_3, ..., a_N \). Tous les autres elements sont nuls.</p>
+      </div>
+      <p>et ou les vecteurs \( \boldsymbol{u} \) et \( \boldsymbol{d} \), de dimension \( N \), s'ecrivent :</p>
+      <p>\[ \boldsymbol{u} = \begin{pmatrix} u_1 \\ u_2 \\ u_3 \\ \vdots \\ u_{N-1} \\ u_N \end{pmatrix} \quad \text{et} \quad \boldsymbol{d} = \begin{pmatrix} d_1 \\ d_2 \\ d_3 \\ \vdots \\ d_{N-1} \\ d_N \end{pmatrix} \]</p>
+      <p>Dans cet algorithme, on calcule d'abord les coefficients suivants :</p>
+      <p>\[ c_1' = \frac{c_1}{b_1} \]</p>
+      <p>\[ c_i' = \frac{c_i}{b_i - a_i\,c_{i-1}'} \quad \text{pour } i = 2, 3, ..., N-1 \]</p>
+      <p>et</p>
+      <p>\[ d_1' = \frac{d_1}{b_1} \]</p>
+      <p>\[ d_i' = \frac{d_i - a_i\,d_{i-1}'}{b_i - a_i\,c_{i-1}'} \quad \text{pour } i = 2, 3, ..., N. \]</p>
+      <p>Les inconnues \( u_1, u_2, ..., u_N \) sont alors obtenues par les formules :</p>
+      <p>\[ u_N = d_N' \]</p>
+      <p>\[ u_i = d_i' - c_i'\,u_{i+1} \quad \text{pour } i = N-1, N-2, ..., 2, 1. \]</p>
+    </section>
+
+    <section class="question" id="Q33">
+      <h4>Question II.B.3.d.<em>i</em>)</h4>
+      <p>En utilisant l'algorithme de Thomas, ecrire une fonction <code>CalcTkp1</code> qui permet de calculer le vecteur \( \boldsymbol{u} \), solution du systeme matriciel (5), a partir de la matrice \( M \) et du vecteur \( \boldsymbol{d} \).</p>
+    </section>
+
+    <section class="question" id="Q34">
+      <h4>Question II.B.3.e.</h4>
+      <p>Dans cette question, une fonction <code>schema_implicite</code> est elaboree avec les memes arguments d'entree et de sortie que la fonction <code>schema_explicite</code> (definis a la question II.B.2.j.) et qui utilise les memes criteres d'arret (definis a la question II.B.2.j.(vii)).</p>
+    </section>
+
+    <section class="question" id="Q35">
+      <h4>Question II.B.3.e.<em>i</em>)</h4>
+      <p>Ecrire l'en-tete de la fonction en precisant les parametres d'entree et de sortie.</p>
+    </section>
+
+    <section class="question" id="Q36">
+      <h4>Question II.B.3.e.<em>ii</em>)</h4>
+      <p>Affecter la valeur 2 000 a <code>ItMax</code>. Creer la matrice <code>T_tous_k</code> dont les dimensions sont \( N \times ItMax \) en la remplissant de zeros.</p>
+    </section>
+
+    <section class="question" id="Q37">
+      <h4>Question II.B.3.e.<em>iii</em>)</h4>
+      <p>Remplacer la 1\(^{ere}\) colonne de <code>T_tous_k</code> par le vecteur des valeurs initiales \( T0 \).</p>
+    </section>
+
+    <section class="question" id="Q38">
+      <h4>Question II.B.3.e.<em>iv</em>)</h4>
+      <p>Definir la matrice \( M \) et le vecteur \( \boldsymbol{v} \) qui interviennent dans l'equation (4).</p>
+    </section>
+
+    <section class="question" id="Q39">
+      <h4>Question II.B.3.e.<em>v</em>)</h4>
+      <p>Calculer le profil de temperature a l'instant \( k = 1 \) (\( t = \Delta t \)). Affecter ces valeurs a la deuxieme colonne de <code>T_tous_k</code>.</p>
+    </section>
+
+    <section class="question" id="Q40">
+      <h4>Question II.B.3.e.<em>vi</em>)</h4>
+      <p>Elaborer une boucle permettant de calculer iterativement le profil de temperature aux instants obtenus \( t_k = k \times \Delta t \) avec \( k \geq 2 \), en prevoyant un arret lorsque la norme 2 du vecteur \( \boldsymbol{T}^k - \boldsymbol{T}^{k-1} \) deviendra inferieure a \( 10^{-5} \) ou lorsque le nombre d'iterations atteindra la valeur <code>ItMax</code> (prevoir les deux cas). Utiliser pour cela la fonction <code>calc_norme</code> definie a la question II.B.2.j.(vi).</p>
+    </section>
+
+    <section class="question" id="Q41">
+      <h4>Question II.B.3.e.<em>vii</em>)</h4>
+      <p>Ecrire la fin de la fonction afin de renvoyer tous les arguments de sortie definis au debut de la question II.B.2.j.</p>
+    </section>
+
+    <h4>II.C. Programme principal</h4>
+
+    <h5>II.C.1. Debut du programme</h5>
+
+    <section class="question" id="Q42">
+      <h4>Question II.C.1.a.</h4>
+      <p>Definir les variables <code>epais</code> (epaisseur du mur), <code>conduc</code> (conductivite thermique), <code>rho</code> (masse volumique), <code>Cp</code> (capacite thermique massique), <code>Tint</code> (temperature interieure), <code>Text1</code> (temperature exterieure pour les instants \( t &lt; 0 \)), <code>Text2</code> (temperature exterieure pour les instants \( t &gt; 0 \)), \( N \) (nombre de points de calcul a l'interieur du mur) et <code>dt</code> (intervalle de temps elementaire) et leur affecter les valeurs correspondant au probleme physique defini au debut de l'enonce. On prendra un nombre de points de discretisation \( N = 60 \) et un pas de temps \( \Delta t \) de 25 secondes.</p>
+    </section>
+
+    <section class="question" id="Q43">
+      <h4>Question II.C.1.b.</h4>
+      <p>Calculer les coefficients \( a \) et \( b \) avec la formule trouvee a la question II.A.2.</p>
+    </section>
+
+    <section class="question" id="Q44">
+      <h4>Question II.C.1.c.</h4>
+      <p>Creer un vecteur \( x \) dont les elements \( x_1, x_2, ..., x_N \) sont definis a la question II.B.1.b.</p>
+    </section>
+
+    <section class="question" id="Q45">
+      <h4>Question II.C.1.d.</h4>
+      <p>Calculer le vecteur des temperatures initiales \( T0 \).</p>
+    </section>
+
+    <section class="question" id="Q46">
+      <h4>Question II.C.1.e.</h4>
+      <p>Calculer <code>alpha</code> selon la formule trouvee a la question II.A.1. Calculer \( r \) en utilisant la formule calculee a la question II.B.2.h.</p>
+    </section>
+
+    <h5>II.C.2. Calcul des temperatures</h5>
+
+    <section class="question" id="Q47">
+      <h4>Question II.C.2.a.</h4>
+      <p>Ecrire un morceau de programme qui demande a l'utilisateur quel schema (explicite ou implicite) il souhaite utiliser et qui appelle la fonction correspondante.</p>
+    </section>
+
+    <h5>II.C.3. Analyse du resultat</h5>
+
+    <section class="question" id="Q48">
+      <h4>Question II.C.3.a.</h4>
+      <p>Ecrire un morceau de programme permettant de tracer sur un meme graphique le profil de temperature en fonction de \( x \) tous les 100 pas de temps.</p>
+    </section>
+
+    <section class="question" id="Q49">
+      <h4>Question II.C.3.b.</h4>
+      <p>Faire afficher le temps en heures au bout duquel le regime permanent est etabli.</p>
+    </section>
+
+    <p><strong>Fin de l'enonce</strong></p>
+
+    <h3>Annexe A : Commandes et fonctions usuelles de Scilab</h3>
+
+    <p><strong><code>A=[a b c d;e f g h;i j k l]</code></strong></p>
+    <p><em>Description :</em> commande permettant de creer une matrice dont la premiere ligne contient les elements \( a, b, c, d \), la seconde ligne contient les elements \( e, f, g, h \) et la troisieme, les elements \( i, j, k, l \).</p>
+    <p><em>Exemple :</em> <code>A=[1 2 3 4 5;3 10 11 12 20;0 1 0 0 2]</code></p>
+
+    <p><strong><code>A(i,j)</code></strong></p>
+    <p><em>Arguments d'entree :</em> les coordonnees de l'element dans le tableau \( A \).</p>
+    <p><em>Argument de sortie :</em> l'element \( (i, j) \) de la matrice \( A \).</p>
+    <p><em>Description :</em> fonction qui retourne l'element \( (i, j) \) de la matrice \( A \). Pour obtenir toute la colonne \( j \) de la matrice \( A \), on utilise la syntaxe \( A(:, j) \). De meme, pour acceder a l'integralite de la ligne \( i \) de la matrice \( A \), on ecrit \( A(i, :) \).</p>
+
+    <p><strong><code>x=[x1:Dx:x2]</code></strong></p>
+    <p><em>Description :</em> commande permettant de creer un vecteur dont les elements sont espaces de \( Dx \) et dont le premier element est \( x_1 \) et le dernier element est le plus grand multiple de \( Dx \) inferieur ou egal a \( x_2 \).</p>
+    <p><em>ATTENTION :</em> le vecteur ainsi cree est un vecteur ligne. Pour convertir un vecteur ligne en un vecteur colonne, on le transpose en utilisant l'apostrophe <code>' </code> : <code>x_tran=x'</code>.</p>
+
+    <p><strong><code>zeros(n,m)</code></strong></p>
+    <p><em>Arguments d'entree :</em> deux entiers \( n \) et \( m \) correspondant aux dimensions de la matrice a creer.</p>
+    <p><em>Argument de sortie :</em> un tableau (matrice) d'elements nuls.</p>
+    <p><em>Description :</em> fonction creant une matrice (tableau) de dimensions \( n \times m \) dont tous les elements sont nuls.</p>
+
+    <p><strong><code>plot(x,y)</code></strong></p>
+    <p><em>Arguments d'entree :</em> un vecteur d'abscisses \( x \) (tableau de dimension \( n \)) et un vecteur d'ordonnees \( y \) (tableau de dimension \( n \)).</p>
+    <p><em>Description :</em> fonction permettant de tracer sur un graphique \( n \) points dont les abscisses sont contenues dans le vecteur \( x \) et les ordonnees dans le vecteur \( y \).</p>
+
+    <h3>Annexe B : Bibliotheque numpy de Python</h3>
+
+    <p>Dans les exemples ci-dessous, la bibliotheque numpy a prealablement ete importee a l'aide de la commande : <code>import numpy as np</code></p>
+
+    <p><strong><code>np.array(liste)</code></strong></p>
+    <p><em>Argument d'entree :</em> une liste definissant un tableau a 1 dimension (vecteur) ou 2 dimensions (matrice).</p>
+    <p><em>Argument de sortie :</em> un tableau (matrice).</p>
+    <p><em>Description :</em> fonction permettant de creer une matrice (de type tableau) a partir d'une liste.</p>
+
+    <p><strong><code>A[i,j]</code></strong></p>
+    <p><em>Arguments d'entree :</em> un tuple contenant les coordonnees de l'element dans le tableau \( A \).</p>
+    <p><em>Argument de sortie :</em> l'element \( (i + 1, j + 1) \) de la matrice \( A \).</p>
+    <p><em>Description :</em> fonction qui retourne l'element \( (i + 1, j + 1) \) de la matrice \( A \). Pour obtenir toute la colonne \( j + 1 \) de la matrice \( A \), on utilise la syntaxe \( A[:, j] \). De meme, pour acceder a l'integralite de la ligne \( i + 1 \) de la matrice \( A \), on ecrit \( A[i, :] \).</p>
+    <p><em>ATTENTION :</em> en langage Python, les lignes d'un \( A \) de dimension \( n \times m \) sont numerotees de 0 a \( n - 1 \) et les colonnes sont numerotees de 0 a \( m - 1 \).</p>
+
+    <p><strong><code>np.zeros((n,m))</code></strong></p>
+    <p><em>Arguments d'entree :</em> un tuple de deux entiers correspondant aux dimensions de la matrice a creer.</p>
+    <p><em>Argument de sortie :</em> un tableau (matrice) d'elements nuls.</p>
+    <p><em>Description :</em> fonction creant une matrice (tableau) de dimensions \( n \times m \) dont tous les elements sont nuls.</p>
+
+    <p><strong><code>np.linspace(Min,Max,nbElements)</code></strong></p>
+    <p><em>Arguments d'entree :</em> un tuple de 3 entiers.</p>
+    <p><em>Argument de sortie :</em> un tableau (vecteur).</p>
+    <p><em>Description :</em> fonction creant un tableau (vecteur) de <code>nbElements</code> nombres espaces regulierement entre <code>Min</code> et <code>Max</code>. Le 1\(^{er}\) element est egal a <code>Min</code>, le dernier est egal a <code>Max</code> et les elements sont espaces de \( (Max - Min)/(nbElements - 1) \).</p>
+
+    <h3>Annexe C : Bibliotheque matplotlib.pyplot de Python</h3>
+
+    <p>Cette bibliotheque permet de tracer des graphiques. Dans les exemples ci-dessous, la bibliotheque matplotlib.pyplot a prealablement ete importee a l'aide de la commande : <code>import matplotlib.pyplot as plt</code></p>
+
+    <p><strong><code>plt.plot(x,y)</code></strong></p>
+    <p><em>Arguments d'entree :</em> un vecteur d'abscisses \( x \) (tableau de dimension \( n \)) et un vecteur d'ordonnees \( y \) (tableau de dimension \( n \)).</p>
+    <p><em>Description :</em> fonction permettant de tracer sur un graphique \( n \) points dont les abscisses sont contenues dans le vecteur \( x \) et les ordonnees dans le vecteur \( y \). Cette fonction doit etre suivie de la fonction <code>plt.show()</code> pour que le graphique soit affiche.</p>
+
+    <p><strong><code>plt.xlabel(nom)</code></strong></p>
+    <p><em>Argument d'entree :</em> une chaine de caracteres.</p>
+    <p><em>Description :</em> fonction permettant d'afficher le contenu de <code>nom</code> en abscisse d'un graphique.</p>
+
+    <p><strong><code>plt.ylabel(nom)</code></strong></p>
+    <p><em>Argument d'entree :</em> une chaine de caracteres.</p>
+    <p><em>Description :</em> fonction permettant d'afficher le contenu de <code>nom</code> en ordonnee d'un graphique.</p>
+
+    <p><strong><code>plt.show()</code></strong></p>
+    <p><em>Description :</em> fonction realisant l'affichage d'un graphe prealablement cree par la commande <code>plt.plot(x,y)</code>. Elle doit etre appelee apres la fonction <code>plt.plot</code> et apres les fonctions <code>plt.xlabel</code> et <code>plt.ylabel</code>.</p>
+  </article>
+</main>
+</body>
+</html>

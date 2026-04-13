@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon Parcours | LibMaths</title>
+  <title>Mon Parcours | Omniscience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t&&t!=='dark')d.setAttribute('data-theme',t)})(document.documentElement)</script>
   <link rel="stylesheet" href="style.css">
   <style>
     /* ═══════════════════════════════════════════════
@@ -95,7 +95,7 @@
     }
     .empty-step:hover {
       border-color: var(--accent);
-      box-shadow: 0 4px 20px rgba(196,135,59,.06);
+      box-shadow: 0 4px 20px rgba(139,92,246,.06);
     }
     .empty-step__num {
       font-family: var(--font-display); font-size: 2rem; font-weight: 300;
@@ -211,10 +211,10 @@
     }
     .error-bar__track {
       width: 120px; height: 6px;
-      background: rgba(0,0,0,.04); border-radius: 3px;
+      background: rgba(255,255,255,.06); border-radius: 3px;
       overflow: hidden; flex-shrink: 0;
     }
-    [data-theme="dark"] .error-bar__track { background: rgba(255,255,255,.06); }
+    [data-theme="light"] .error-bar__track { background: rgba(0,0,0,.04); }
     .error-bar__fill {
       height: 100%; border-radius: 3px;
       transition: width .6s var(--ease-out);
@@ -237,7 +237,7 @@
     }
     .chapter-progress-card:hover {
       border-color: var(--accent);
-      box-shadow: 0 4px 20px rgba(196,135,59,.06);
+      box-shadow: 0 4px 20px rgba(139,92,246,.06);
     }
     .chapter-progress-card__name {
       font-family: var(--font-display); font-size: 1.15rem; font-weight: 400;
@@ -257,10 +257,10 @@
       display: block; margin-bottom: 2px;
     }
     .chapter-progress-card__bar {
-      height: 5px; background: rgba(0,0,0,.04);
+      height: 5px; background: rgba(255,255,255,.06);
       border-radius: 3px; overflow: hidden;
     }
-    [data-theme="dark"] .chapter-progress-card__bar { background: rgba(255,255,255,.06); }
+    [data-theme="light"] .chapter-progress-card__bar { background: rgba(0,0,0,.04); }
     .chapter-progress-card__bar-fill {
       height: 100%; border-radius: 3px;
       background: var(--accent);
@@ -305,10 +305,10 @@
       font-family: var(--font-mono); font-size: .6rem;
       letter-spacing: .05em; text-transform: uppercase;
       color: var(--ink-muted);
-      background: rgba(0,0,0,.03);
+      background: rgba(255,255,255,.06);
       padding: 2px 8px; border-radius: 6px;
     }
-    [data-theme="dark"] .timeline-item__theme { background: rgba(255,255,255,.06); }
+    [data-theme="light"] .timeline-item__theme { background: rgba(0,0,0,.03); }
     .timeline-item__subject {
       font-family: var(--font-display); font-size: 1.1rem; font-weight: 400;
       margin-bottom: 6px;
@@ -359,26 +359,371 @@
       color: var(--accent); font-weight: 600;
     }
 
-    /* ═══ Dark Mode Overrides ═══ */
-    [data-theme="dark"] .kpi-grid {
-      background: var(--bg-card); border-color: var(--border);
-      box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    /* ═══ CALENDRIER 7 JOURS ═══ */
+    .cal7 {
+      max-width: none; margin: 0 auto var(--space-3xl);
+      padding: 0 var(--space-md);
+      animation: revealUp .6s var(--ease-out) .15s both;
     }
-    [data-theme="dark"] .kpi-card + .kpi-card::before { background: var(--border); }
-    [data-theme="dark"] .curve-container {
-      background: var(--bg-card); border-color: var(--border);
-      box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    .cal7__header { margin-bottom: var(--space-lg); }
+    .cal7__badge {
+      display: inline-block;
+      font-family: var(--font-mono); font-size: .6rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: #E91E63; background: rgba(233,30,99,.08);
+      padding: 4px 12px; border-radius: 6px;
+      margin-bottom: var(--space-sm);
     }
-    [data-theme="dark"] .error-bar { background: var(--bg-card); border-color: var(--border); }
-    [data-theme="dark"] .chapter-progress-card { background: var(--bg-card); border-color: var(--border); }
-    [data-theme="dark"] .timeline-item { background: var(--bg-card); border-color: var(--border); }
-    [data-theme="dark"] .timeline-item::before { border-color: var(--bg-card); }
-    [data-theme="dark"] .empty-step { background: var(--bg-card); border-color: var(--border); }
-    [data-theme="dark"] .conseils-box { background: var(--bg-card); }
+    .cal7__title {
+      font-family: var(--font-display); font-size: 2rem; font-weight: 400;
+      letter-spacing: -.02em; margin-bottom: var(--space-xs);
+    }
+    .cal7__subtitle {
+      font-size: .88rem; color: var(--ink-muted); line-height: 1.7; max-width: 600px;
+    }
+
+    /* ── Overview pills ── */
+    .cal7__overview {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-bottom: var(--space-lg);
+    }
+    .cal7__pill {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 16px;
+      text-align: center; min-width: 90px;
+    }
+    .cal7__pill strong {
+      display: block; font-family: var(--font-display); font-size: 1.4rem; font-weight: 400;
+      margin-bottom: 2px;
+    }
+    .cal7__pill span {
+      font-family: var(--font-mono); font-size: .55rem; font-weight: 400;
+      letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted);
+    }
+    .cal7__pill--math strong { color: #E91E63; }
+    .cal7__pill--phys strong { color: #4A90D9; }
+    .cal7__pill--fiche strong { color: #4CAF50; }
+    .cal7__pill--total strong { color: var(--accent); }
+    .cal7__pill--progress strong { color: #F5A623; }
+
+    /* ── FullCalendar — Notion Calendar aesthetic ── */
+    #cal7Fc {
+      margin-bottom: var(--space-lg);
+      border-radius: 0;
+      border: none;
+      background: transparent;
+    }
+
+    /* Core variables — Notion-dark palette */
+    .fc {
+      --fc-border-color: rgba(255,255,255,.06);
+      --fc-page-bg-color: transparent;
+      --fc-neutral-bg-color: transparent;
+      --fc-today-bg-color: rgba(255,255,255,.015);
+      --fc-list-event-hover-bg-color: rgba(255,255,255,.04);
+      --fc-small-font-size: .75rem;
+      font-family: var(--font-body);
+    }
+
+    /* Toolbar — Notion style: large month left, controls right */
+    .fc .fc-toolbar {
+      padding: 0 0 14px;
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .fc .fc-toolbar-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: var(--ink);
+    }
+    .fc .fc-toolbar-chunk { display: flex; align-items: center; gap: 6px; }
+    .fc .fc-toolbar-chunk:first-child { order: 0; }
+    .fc .fc-toolbar-chunk:nth-child(2) { order: 1; }
+    .fc .fc-toolbar-chunk:last-child { order: 2; }
+    .fc .fc-button-group { border-radius: 6px; overflow: hidden; }
+    .fc .fc-button {
+      font-family: var(--font-body);
+      font-size: .78rem;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--ink-muted);
+      padding: 5px 14px;
+      border-radius: 6px;
+      transition: all .12s;
+      box-shadow: none;
+    }
+    .fc .fc-button:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.12);
+      color: var(--ink-light);
+    }
+    .fc .fc-button-active, .fc .fc-button:active {
+      background: rgba(255,255,255,.1) !important;
+      color: var(--ink) !important;
+      border-color: rgba(255,255,255,.12) !important;
+      box-shadow: none !important;
+    }
+    .fc .fc-button:focus { box-shadow: none !important; outline: none; }
+    .fc .fc-button:disabled { opacity: .3; }
+    .fc .fc-prev-button, .fc .fc-next-button {
+      padding: 4px 8px;
+      background: transparent;
+      border: none;
+      color: var(--ink-muted);
+    }
+    .fc .fc-prev-button:hover, .fc .fc-next-button:hover { color: var(--ink); background: rgba(255,255,255,.05); }
+
+    /* Scrollgrid — remove all double borders */
+    .fc .fc-scrollgrid { border: none !important; }
+    .fc .fc-scrollgrid-section > td { border: none; }
+    .fc .fc-scrollgrid-section > th { border: none; }
+    .fc .fc-timegrid-divider { display: none; }
+
+    /* Column headers — Notion style: "lun. 13" */
+    .fc .fc-col-header { background: transparent; }
+    .fc .fc-col-header-cell {
+      padding: 8px 0 10px;
+      font-family: var(--font-body);
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .fc .fc-col-header-cell-cushion {
+      color: var(--ink-muted);
+      text-decoration: none;
+      padding: 4px 0;
+    }
+
+    /* Today header — red circle on date number (Notion) */
+    .fc .fc-day-today .fc-col-header-cell-cushion {
+      color: var(--ink);
+      font-weight: 600;
+      position: relative;
+    }
+
+    /* Time axis */
+    .fc .fc-timegrid-slot {
+      height: 36px;
+      border-color: rgba(255,255,255,.04);
+    }
+    .fc .fc-timegrid-slot-minor { border-top-style: none; }
+    .fc .fc-timegrid-slot-label {
+      font-family: var(--font-body);
+      font-size: .65rem;
+      font-weight: 400;
+      color: rgba(255,255,255,.25);
+      vertical-align: top;
+      padding-top: 0;
+    }
+    .fc .fc-timegrid-slot-label-cushion { padding: 0 8px 0 0; text-align: right; }
+    .fc .fc-timegrid-axis {
+      font-family: var(--font-body);
+      font-size: .65rem;
+      color: rgba(255,255,255,.25);
+      border: none;
+      width: 44px;
+    }
+
+    /* Grid lines — ultra subtle like Notion */
+    .fc .fc-timegrid-col { border-color: rgba(255,255,255,.04); }
+    .fc td, .fc th { border-color: rgba(255,255,255,.04); }
+
+    /* Now indicator — red line (Notion) */
+    .fc .fc-timegrid-now-indicator-container { overflow: visible; }
+    .fc .fc-timegrid-now-indicator-line {
+      border-color: #EB5757;
+      border-width: 2px 0 0;
+    }
+    .fc .fc-timegrid-now-indicator-arrow {
+      border-color: #EB5757;
+      border-width: 5px 0 5px 8px;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+    }
+
+    /* All-day slot — Notion: "la journee" */
+    .fc .fc-timegrid-axis-cushion { font-size: .68rem; color: rgba(255,255,255,.2); }
+
+    /* Events — Notion style: rounded, opaque, clean */
+    .fc .fc-event {
+      border-radius: 4px;
+      border: none;
+      border-left: 3px solid;
+      padding: 3px 7px 3px 6px;
+      cursor: pointer;
+      font-size: .68rem;
+      line-height: 1.3;
+      font-family: var(--font-body);
+      transition: filter .12s, transform .12s;
+      overflow: hidden;
+      margin: 2px 3px;
+    }
+    .fc .fc-event:hover {
+      filter: brightness(1.15);
+      transform: scale(1.01);
+      z-index: 10 !important;
+    }
+    .fc .fc-event-main { overflow: hidden; }
+    .fc .fc-event-title {
+      font-weight: 500;
+      font-size: .63rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .fc .fc-event-time {
+      font-family: var(--font-body);
+      font-size: .55rem;
+      font-weight: 400;
+      opacity: .7;
+    }
+
+    /* Light theme overrides */
+    [data-theme="light"] .fc {
+      --fc-border-color: rgba(0,0,0,.06);
+      --fc-today-bg-color: rgba(0,0,0,.015);
+    }
+    [data-theme="light"] .fc .fc-button { background: rgba(0,0,0,.03); border-color: rgba(0,0,0,.08); color: var(--ink-muted); }
+    [data-theme="light"] .fc .fc-button:hover { background: rgba(0,0,0,.06); border-color: rgba(0,0,0,.12); }
+    [data-theme="light"] .fc .fc-button-active { background: rgba(0,0,0,.08) !important; color: var(--ink) !important; }
+    [data-theme="light"] .fc .fc-timegrid-slot { border-color: rgba(0,0,0,.04); }
+    [data-theme="light"] .fc .fc-timegrid-slot-label { color: rgba(0,0,0,.3); }
+    [data-theme="light"] .fc td, [data-theme="light"] .fc th { border-color: rgba(0,0,0,.04); }
+    [data-theme="light"] .fc .fc-col-header-cell { border-bottom-color: rgba(0,0,0,.06); }
+    [data-theme="light"] .fc .fc-event:hover { filter: brightness(.95); }
+    [data-theme="light"] .fc .fc-timegrid-now-indicator-line { border-color: #E03E3E; }
+    [data-theme="light"] .fc .fc-timegrid-now-indicator-arrow { border-color: #E03E3E; border-top-color: transparent; border-bottom-color: transparent; }
+
+
+
+    /* ── Popover ── */
+    .cal7__pop {
+      position: fixed; z-index: 300;
+      background: var(--bg-surface, #18181b);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      padding: 16px 18px;
+      min-width: 240px; max-width: min(420px, calc(100vw - 24px)); width: max-content;
+      box-shadow: 0 8px 32px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.04);
+      animation: popIn .15s ease-out;
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(.95) translateY(4px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .cal7__pop-close {
+      position: absolute; top: 8px; right: 10px;
+      background: none; border: none; color: var(--ink-muted);
+      cursor: pointer; font-size: 1rem; padding: 4px; line-height: 1;
+    }
+    .cal7__pop-close:hover { color: var(--ink); }
+    .cal7__pop-type {
+      font-size: .6rem; font-family: var(--font-mono);
+      letter-spacing: .05em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 4px;
+      display: inline-block; margin-bottom: 8px;
+    }
+    .cal7__pop-title { font-size: .95rem; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+    .cal7__pop-desc { font-size: .78rem; color: var(--ink-light); line-height: 1.5; margin-bottom: 10px; }
+    .cal7__pop-meta { font-size: .65rem; color: var(--ink-faint); margin-bottom: 12px; }
+    .cal7__pop-actions { display: flex; gap: 8px; }
+    .cal7__pop-btn {
+      flex: 1; padding: 8px 14px; border-radius: 7px;
+      font-size: .78rem; font-weight: 500; text-align: center;
+      text-decoration: none; transition: all .12s; cursor: pointer;
+    }
+    .cal7__pop-btn--primary { background: var(--accent); color: #fff; border: none; }
+    .cal7__pop-btn--primary:hover { filter: brightness(1.15); }
+    .cal7__pop-btn--secondary {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: var(--ink-light);
+    }
+    .cal7__pop-btn--secondary:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.15); }
+    .cal7__pop-check {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 10px; font-size: .72rem; color: var(--ink-muted); cursor: pointer;
+    }
+    .cal7__pop-check input {
+      appearance: none; -webkit-appearance: none;
+      width: 15px; height: 15px; border: 1.5px solid rgba(255,255,255,.15);
+      border-radius: 4px; cursor: pointer; transition: all .12s; background: transparent;
+    }
+    .cal7__pop-check input:checked {
+      background: #4CAF50; border-color: #4CAF50;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.5 6l2.5 2.5 4.5-5' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size: 11px; background-position: center; background-repeat: no-repeat;
+    }
+    .cal7__diff {
+      display: inline-block; font-family: var(--font-mono); font-size: .52rem; font-weight: 500;
+      letter-spacing: .04em; text-transform: uppercase; padding: 1px 6px; border-radius: 3px;
+      margin-left: 4px; vertical-align: middle;
+    }
+    .cal7__diff--std { color: #4CAF50; background: rgba(76,175,80,.1); }
+    .cal7__diff--inter { color: #F5A623; background: rgba(245,166,35,.1); }
+    .cal7__diff--av { color: #E5342E; background: rgba(229,52,46,.1); }
+    /* Light popover */
+    [data-theme="light"] .cal7__pop { background: #fff; border-color: rgba(0,0,0,.08); box-shadow: 0 8px 32px rgba(0,0,0,.12); }
+    [data-theme="light"] .cal7__pop-btn--secondary { background: rgba(0,0,0,.03); border-color: rgba(0,0,0,.08); }
+    [data-theme="light"] .cal7__pop-check input { border-color: rgba(0,0,0,.15); }
+
+    /* ── Supplementary cards ── */
+    .cal7__cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px;
+    }
+    .cal7__card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+    }
+    .cal7__card summary {
+      padding: 18px 20px; cursor: pointer; list-style: none;
+      display: flex; align-items: center; gap: 10px; user-select: none;
+    }
+    .cal7__card summary::-webkit-details-marker { display: none; }
+    .cal7__card summary::before {
+      content: '\25B6'; font-size: .55rem; color: var(--ink-muted);
+      transition: transform .2s; flex-shrink: 0;
+    }
+    .cal7__card[open] > summary::before { transform: rotate(90deg); }
+    .cal7__card-title {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 400; flex: 1;
+    }
+    .cal7__card-icon {
+      font-size: .7rem; background: rgba(233,30,99,.08);
+      color: #E91E63; padding: 3px 8px; border-radius: 5px;
+      font-family: var(--font-mono); font-weight: 600; letter-spacing: .04em;
+    }
+    .cal7__card-body {
+      padding: 0 20px 18px;
+    }
+    .cal7__card-body ol, .cal7__card-body ul {
+      padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;
+    }
+    .cal7__card-body li {
+      font-size: .82rem; color: var(--ink-light); line-height: 1.55;
+    }
+    .cal7__card-body li strong { color: var(--ink); }
+    .cal7__card-body li em {
+      font-style: normal; font-family: var(--font-mono); font-size: .65rem; color: var(--ink-muted);
+    }
 
     /* ═══ Responsive ═══ */
     @media (max-width: 680px) {
       .parcours__title { font-size: 2.2rem; }
+      .cal7__title { font-size: 1.5rem; }
+      .cal7__cards { grid-template-columns: 1fr; }
+      .fc .fc-toolbar { flex-direction: column; gap: 8px; }
+      .fc .fc-toolbar-title { font-size: .9rem; }
       .kpi-grid { grid-template-columns: repeat(2, 1fr); }
       .kpi-card { padding: 20px 12px; }
       .kpi-card__value { font-size: 1.8rem; }
@@ -393,108 +738,124 @@
       .empty-state__steps { grid-template-columns: 1fr; }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js"></script>
 </head>
 <body>
 
-  <div class="bg-grid" aria-hidden="true"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo"><span class="sidebar__logo-full">Omniscience</span><span class="sidebar__logo-short">O</span></div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Programme</span>
+        <a href="index.html" class="sidebar__link" data-tooltip="Accueil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span class="sidebar__link-text">Accueil</span>
+        </a>
+        <a href="mpsi.html" class="sidebar__link" data-tooltip="MPSI">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MPSI — 1ere annee</span>
+        </a>
+        <a href="mp.html" class="sidebar__link" data-tooltip="MP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MP — 2eme annee</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Concours</span>
+        <a href="mp.html#annales-e3a" class="sidebar__link" data-tooltip="E3A-Polytech">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="9" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">E3A</text></svg>
+          <span class="sidebar__link-text">E3A-Polytech</span>
+        </a>
+        <a href="mp.html#annales-ccinp" class="sidebar__link" data-tooltip="CCINP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="10" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">CC</text></svg>
+          <span class="sidebar__link-text">CCINP</span>
+        </a>
+        <a href="mp.html#annales-centrale" class="sidebar__link" data-tooltip="Centrale">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="10" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">CS</text></svg>
+          <span class="sidebar__link-text">Centrale</span>
+        </a>
+        <a href="mp.html#annales-mines" class="sidebar__link" data-tooltip="Mines-Ponts">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="13" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">M</text></svg>
+          <span class="sidebar__link-text">Mines-Ponts</span>
+        </a>
+        <a href="mp.html#annales-xens" class="sidebar__link" data-tooltip="X-ENS">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="13" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">X</text></svg>
+          <span class="sidebar__link-text">X-ENS</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Outils</span>
+        <a href="entrainement.html" class="sidebar__link" data-tooltip="Entrainement">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="sidebar__link-text">Entrainement</span>
+        </a>
+        <a href="revision.html" class="sidebar__link" data-tooltip="Revision">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <span class="sidebar__link-text">Revision</span>
+        </a>
+        <a href="parcours.html" class="sidebar__link sidebar__link--active" data-tooltip="Parcours">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span class="sidebar__link-text">Mon Parcours</span>
+        </a>
+              <a href="statistiques.html" class="sidebar__link" data-tooltip="Statistiques">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          <span class="sidebar__link-text">Statistiques</span>
+        </a>
+        <a href="timer.html" class="sidebar__link" data-tooltip="Timer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span class="sidebar__link-text">Timer</span>
+        </a>
+</div>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__collapse-btn" id="sidebarCollapse" aria-expanded="true" aria-label="Replier le menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+        <span class="sidebar__collapse-label">Replier</span>
+      </button>
+      <button class="sidebar__theme-toggle" id="themeToggle" aria-label="Changer de theme">
+        <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span class="sidebar__theme-label">Theme</span>
+      </button>
+      <div class="sidebar__subject-switch">
+        <a href="index.html" class="sidebar__subject-btn sidebar__subject-btn--active">Maths</a>
+        <a href="physique/index.html" class="sidebar__subject-btn">Physique</a>
+      </div>
+    </div>
+  </aside>
 
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="site-switcher">
-      <span class="site-switcher__brand">Lib</span>
-      <div class="site-switcher__toggle">
-        <a href="index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
-        <a href="physique/index.html" class="site-switcher__btn">Physique</a>
-      </div>
-    </div>
-    <div class="nav__links">
-      <a href="index.html" class="nav__link">Accueil</a>
-      <div class="nav__dropdown">
-        <a href="mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mpsi.html#cours" class="dropdown__item">Cours</a>
-          <a href="mpsi.html#exercices" class="dropdown__item">Exercices</a>
-          <a href="mpsi.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="mpsi.html#methodes" class="dropdown__item">Methodes</a>
-        </div>
-      </div>
-      <div class="nav__dropdown">
-        <a href="mp.html" class="nav__link nav__link--has-sub">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mp.html#cours" class="dropdown__item">Cours</a>
-          <a href="mp.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="mp.html#methodes" class="dropdown__item">Methodes</a>
-          <a href="mp.html#concours" class="dropdown__item">Concours</a>
-          <a href="mp.html#annales" class="dropdown__item">Annales</a>
-          <a href="mp.html#statistiques" class="dropdown__item">Statistiques</a>
-        </div>
-      </div>
-      <a href="entrainement.html" class="nav__link">Entrainement</a>
-      <a href="revision.html" class="nav__link">Revision</a>
-      <a href="parcours.html" class="nav__link nav__link--active">Mon Parcours</a>
-    </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
-      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  <header class="topbar" id="topbar">
+    <button class="topbar__hamburger" id="menuBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
-    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
-      <span></span><span></span>
+    <span class="topbar__logo">Omniscience</span>
+    <button class="topbar__theme-toggle" id="themeToggleMobile" aria-label="Changer de theme">
+      <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-  </nav>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
-      <a href="index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
-      <a href="physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mpsi.html" class="mobile-menu__page-link">MPSI</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mp.html" class="mobile-menu__page-link">MP</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="entrainement.html" class="mobile-menu__page-link">Entrainement</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="revision.html" class="mobile-menu__page-link">Revision</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="parcours.html" class="mobile-menu__page-link mobile-menu__page-link--active">Mon Parcours</a>
-    </div>
-  </div>
+  <main class="main-content">
 
-  <main class="parcours">
+    <div class="parcours">
+      <a href="index.html" class="parcours__back">&larr; Accueil</a>
+      <h1 class="parcours__title">Mon Parcours</h1>
+      <p class="parcours__subtitle">Suivi de progression, programmes de revision et statistiques personnalisees.</p>
+    </div>
 
-    <a href="mp.html" class="parcours__back">&larr; MP</a>
-    <h1 class="parcours__title">Mon Parcours</h1>
-    <p class="parcours__subtitle">Suivi de tes essais, progression et conseils personnalises.</p>
-
-    <!-- ═══ EMPTY STATE ═══ -->
-    <div class="empty-state" id="emptyState">
-      <div class="empty-state__icon">&#x1F4DD;</div>
-      <h2 class="empty-state__heading">Aucun essai pour l'instant</h2>
-      <p class="empty-state__text">Envoie une photo de ta copie dans le chat Claude pour commencer.</p>
-      <div class="empty-state__steps">
-        <div class="empty-step">
-          <div class="empty-step__num">1</div>
-          <div class="empty-step__label">Fais un exercice sur papier</div>
-        </div>
-        <div class="empty-step">
-          <div class="empty-step__num">2</div>
-          <div class="empty-step__label">Prends en photo</div>
-        </div>
-        <div class="empty-step">
-          <div class="empty-step__num">3</div>
-          <div class="empty-step__label">Envoie dans le chat</div>
-        </div>
-        <div class="empty-step">
-          <div class="empty-step__num">4</div>
-          <div class="empty-step__label">Claude corrige et note</div>
-        </div>
+    <!-- ═══ PROGRAMME 1 SEMAINE E3A ═══ -->
+    <section class="cal7" id="programme7j">
+      <div class="cal7__header">
+        <div class="cal7__badge">7 JOURS</div>
+        <h2 class="cal7__title">Programme E3A-Polytech</h2>
+        <p class="cal7__subtitle">Maths le matin &middot; Physique l&rsquo;apres-midi &middot; Fiches le soir &mdash; base sur 26 ans d&rsquo;annales.</p>
       </div>
-    </div>
+      <div class="cal7__overview" id="cal7Overview"></div>
+      <div id="cal7Fc"></div>
+      <div class="cal7__cards" id="cal7Cards"></div>
+
+    </section>
 
     <!-- ═══ DASHBOARD (hidden until data) ═══ -->
     <div class="dashboard" id="dashboard">
@@ -560,16 +921,246 @@
     </div>
   </main>
 
+  </main><!-- end main-content -->
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer__inner">
-      <p class="footer__copy">&copy; 2026 LibMaths</p>
+      <p class="footer__copy">&copy; 2026 Omniscience</p>
     </div>
   </footer>
 
+  <script src="data/programme-7j.js"></script>
   <script src="main.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', async function() {
+
+    /* ══════════════════════════════════════════════
+       CALENDRIER 7 JOURS — Rendu dynamique
+       ══════════════════════════════════════════════ */
+
+    if (typeof PROGRAMME_7J !== 'undefined') {
+      const P = PROGRAMME_7J;
+      const progress = JSON.parse(localStorage.getItem('omniscience-prog7-progress') || '{}');
+
+      // ── Overview pills ──
+      const ov = document.getElementById('cal7Overview');
+      if (ov) {
+        const done = Object.values(progress).filter(Boolean).length;
+        ov.innerHTML = [
+          { v: P.meta.totalHours + 'h', l: 'Total', c: 'total' },
+          { v: P.meta.mathHours + 'h', l: 'Maths', c: 'math' },
+          { v: P.meta.physHours + 'h', l: 'Physique', c: 'phys' },
+          { v: P.meta.ficheHours + 'h', l: 'Fiches', c: 'fiche' },
+          { v: P.meta.exerciseCount.total, l: 'Exercices', c: 'total' },
+          { v: done + '/' + P.meta.exerciseCount.total, l: 'Completes', c: 'progress' },
+        ].map(p => '<div class="cal7__pill cal7__pill--' + p.c + '"><strong>' + p.v + '</strong><span>' + p.l + '</span></div>').join('');
+      }
+
+      // ── FullCalendar ──
+      const fcEl = document.getElementById('cal7Fc');
+      if (fcEl && typeof FullCalendar !== 'undefined') {
+        // Base date: next Monday (or today if Monday)
+        const now = new Date();
+        const dayOfWeek = now.getDay();
+        const baseDate = new Date(now);
+        baseDate.setDate(now.getDate() + ((8 - dayOfWeek) % 7 || 7) - 7); // This Monday
+        if (dayOfWeek === 1) baseDate.setDate(now.getDate()); // Already Monday
+        else baseDate.setDate(now.getDate() - dayOfWeek + 1); // Go to Monday
+
+        // Convert slots to FullCalendar events
+        function parseTime(timeStr) {
+          // "9h00" or "12h30" -> { h: 9, m: 0 }
+          const match = timeStr.match(/(\d+)h(\d+)/);
+          return match ? { h: parseInt(match[1]), m: parseInt(match[2]) } : { h: 9, m: 0 };
+        }
+
+        const colors = P.meta.colors;
+        const fcEvents = [];
+        P.days.forEach((day, i) => {
+          const dayDate = new Date(baseDate);
+          dayDate.setDate(baseDate.getDate() + i);
+          const dateStr = dayDate.toISOString().split('T')[0]; // "2026-04-13"
+
+          day.slots.forEach(s => {
+            const parts = s.time.split('\u2013').map(t => t.trim()); // split on "–"
+            if (parts.length < 2) return;
+            const start = parseTime(parts[0]);
+            const end = parseTime(parts[1]);
+            const pad = n => String(n).padStart(2, '0');
+
+            fcEvents.push({
+              id: s.id,
+              title: s.label + (s.source ? ' \u2014 ' + s.source : ''),
+              start: dateStr + 'T' + pad(start.h) + ':' + pad(start.m) + ':00',
+              end: dateStr + 'T' + pad(end.h) + ':' + pad(end.m) + ':00',
+              backgroundColor: colors[s.type] || colors.pause,
+              borderColor: colors[s.type] || colors.pause,
+              textColor: '#fff',
+              extendedProps: { dayIndex: i, slotData: s }
+            });
+          });
+        });
+
+        const isMobile = window.innerWidth < 680;
+        const fc = new FullCalendar.Calendar(fcEl, {
+          initialView: isMobile ? 'timeGridDay' : 'timeGridWeek',
+          initialDate: baseDate,
+          headerToolbar: {
+            left: 'prev,next',
+            center: 'title',
+            right: 'today timeGridWeek,timeGridDay'
+          },
+          buttonText: { today: "Aujourd\u2019hui", week: 'Semaine', day: 'Jour' },
+          slotMinTime: '08:30:00',
+          slotMaxTime: '20:30:00',
+          slotDuration: '00:30:00',
+          allDaySlot: false,
+          weekends: true,
+          height: 'auto',
+          expandRows: true,
+          locale: 'fr',
+          firstDay: 1,
+          dayHeaderFormat: { weekday: 'short', day: 'numeric', month: 'short' },
+          nowIndicator: true,
+          events: fcEvents,
+          eventClick: showPopover,
+          eventDidMount: function(info) {
+            const slot = info.event.extendedProps.slotData;
+            if (slot && slot.difficulty) {
+              info.el.title = slot.source + ' [' + slot.difficulty + '] — ' + slot.duration;
+            }
+          }
+        });
+        fc.render();
+      }
+
+      // ── Popover ──
+      let popEl = null;
+      const typeLabel = { math:'Maths', physics:'Physique', cours:'Cours', correction:'Correction', fiche:'Fiches', annale:'Annale' };
+
+      function showPopover(info) {
+        closePopover();
+        info.jsEvent.preventDefault();
+        info.jsEvent.stopPropagation();
+        const slot = info.event.extendedProps.slotData;
+        if (!slot || slot.type === 'pause') return;
+
+        const rect = info.el.getBoundingClientRect();
+        const colors = P.meta.colors;
+        const typeColor = colors[slot.type] || colors.pause;
+        const diffClass = slot.difficulty === 'Standard' ? 'std' : slot.difficulty === 'Intermediaire' ? 'inter' : 'av';
+
+        popEl = document.createElement('div');
+        popEl.className = 'cal7__pop';
+
+        let html = '<button class="cal7__pop-close">\u00d7</button>';
+        html += '<span class="cal7__pop-type" style="background:' + typeColor + '20;color:' + typeColor + '">' + (typeLabel[slot.type] || slot.type) + '</span>';
+        html += '<div class="cal7__pop-title">' + (slot.source || slot.label) + '</div>';
+        if (slot.difficulty) html += '<span class="cal7__diff cal7__diff--' + diffClass + '">' + slot.difficulty + '</span>';
+        html += '<div class="cal7__pop-desc">' + slot.content + '</div>';
+        html += '<div class="cal7__pop-meta">' + slot.time + ' \u00b7 ' + slot.duration + '</div>';
+
+        if (slot.links && slot.links.length > 0) {
+          html += '<div class="cal7__pop-actions">';
+          slot.links.forEach(function(l, i) {
+            html += '<a href="' + l.href + '" class="cal7__pop-btn cal7__pop-btn--' + (i === 0 ? 'primary' : 'secondary') + '">' + l.text + '</a>';
+          });
+          html += '</div>';
+        }
+
+        html += '<label class="cal7__pop-check"><input type="checkbox" data-slot="' + slot.id + '"' + (progress[slot.id] ? ' checked' : '') + '> Marquer comme fait</label>';
+
+        popEl.innerHTML = html;
+        document.body.appendChild(popEl);
+
+        // Position: right or left of the event
+        var popW = popEl.offsetWidth || 300;
+        var popH = popEl.offsetHeight || 200;
+        var midX = rect.left + rect.width / 2;
+        var spaceRight = window.innerWidth - rect.right;
+        var spaceLeft = rect.left;
+        var left, top;
+        if (spaceRight >= popW + 12) {
+          left = rect.right + 8;
+        } else if (spaceLeft >= popW + 12) {
+          left = rect.left - popW - 8;
+        } else {
+          left = spaceRight > spaceLeft ? rect.right + 8 : rect.left - popW - 8;
+        }
+        top = rect.top + rect.height / 2 - popH / 2;
+        if (top + popH > window.innerHeight - 8) top = window.innerHeight - popH - 8;
+        if (top < 8) top = 8;
+        if (left < 8) left = 8;
+        if (left + popW > window.innerWidth - 8) left = window.innerWidth - popW - 8;
+        popEl.style.left = left + 'px';
+        popEl.style.top = top + 'px';
+
+        popEl.querySelector('.cal7__pop-close').addEventListener('click', closePopover);
+        var cb = popEl.querySelector('[data-slot]');
+        if (cb) cb.addEventListener('change', function() {
+          progress[this.dataset.slot] = this.checked;
+          localStorage.setItem('omniscience-prog7-progress', JSON.stringify(progress));
+          updateProgressPill();
+        });
+      }
+
+      function closePopover() { if (popEl) { popEl.remove(); popEl = null; } }
+      document.addEventListener('click', function(e) {
+        if (popEl && !popEl.contains(e.target) && !e.target.closest('.fc-event')) closePopover();
+      });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePopover(); });
+
+      function updateProgressPill() {
+        const done = Object.values(progress).filter(Boolean).length;
+        const pill = ov ? ov.querySelector('.cal7__pill--progress strong') : null;
+        if (pill) pill.textContent = done + '/' + P.meta.exerciseCount.total;
+      }
+
+      // ── Supplementary cards ──
+      const cards = document.getElementById('cal7Cards');
+      if (cards) {
+        let cardsHtml = '';
+
+        // Method protocol
+        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">6 ETAPES</span><span class="cal7__card-title">' + P.method.title + '</span></summary><div class="cal7__card-body"><ol>';
+        P.method.steps.forEach(s => {
+          cardsHtml += '<li><strong>' + s.action + '</strong> \u2014 ' + s.detail + (s.time ? ' <em>(' + s.time + ')</em>' : '') + '</li>';
+        });
+        cardsHtml += '</ol></div></details>';
+
+        // Last day protocol
+        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">J-1</span><span class="cal7__card-title">' + P.lastDay.title + '</span></summary><div class="cal7__card-body"><ol>';
+        P.lastDay.steps.forEach(s => {
+          cardsHtml += '<li><strong>' + s.when + '</strong> \u2014 ' + s.action + ' <em>(' + s.time + ')</em></li>';
+        });
+        cardsHtml += '</ol></div></details>';
+
+        // Math reflexes
+        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">20</span><span class="cal7__card-title">Reflexes maths</span></summary><div class="cal7__card-body"><ol>';
+        P.reflexes.math.forEach(r => { cardsHtml += '<li>' + r + '</li>'; });
+        cardsHtml += '</ol></div></details>';
+
+        // Physics formulas
+        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">10</span><span class="cal7__card-title">Formules physique</span></summary><div class="cal7__card-body"><ol>';
+        P.reflexes.physics.forEach(r => { cardsHtml += '<li>' + r + '</li>'; });
+        cardsHtml += '</ol></div></details>';
+
+        // Errors
+        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">10</span><span class="cal7__card-title">Erreurs classiques a eviter</span></summary><div class="cal7__card-body"><ol>';
+        P.reflexes.errors.forEach(r => { cardsHtml += '<li>' + r + '</li>'; });
+        cardsHtml += '</ol></div></details>';
+
+        // Fiche template
+        cardsHtml += '<details class="cal7__card"><summary><span class="cal7__card-icon">MODELE</span><span class="cal7__card-title">' + P.ficheTemplate.title + '</span></summary><div class="cal7__card-body"><ul>';
+        P.ficheTemplate.sections.forEach(s => {
+          cardsHtml += '<li><strong>' + s.name + '</strong> \u2014 ' + s.desc + '</li>';
+        });
+        cardsHtml += '</ul><p style="margin-top:12px;font-size:.78rem;color:var(--ink-muted)"><strong>Ne pas inclure :</strong> ' + P.ficheTemplate.dontInclude.join(', ') + '</p></div></details>';
+
+        cards.innerHTML = cardsHtml;
+      }
+    }
 
     /* ══════════════════════════════════════════════
        PARCOURS DASHBOARD — Logic
@@ -583,13 +1174,13 @@
       const data = await res.json();
 
       if (!data.totalEssais || data.totalEssais === 0) {
-        emptyState.style.display = '';
+        if (emptyState) emptyState.style.display = '';
         dashboard.classList.remove('active');
         return;
       }
 
       // Has data — show dashboard
-      emptyState.style.display = 'none';
+      if (emptyState) emptyState.style.display = 'none';
       dashboard.classList.add('active');
 
       buildKPIs(data);
@@ -601,7 +1192,7 @@
 
     } catch (err) {
       console.error('Parcours: erreur chargement profil.json', err);
-      emptyState.style.display = '';
+      if (emptyState) emptyState.style.display = '';
       dashboard.classList.remove('active');
     }
 

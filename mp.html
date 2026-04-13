@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MP — Math Spé | LibMaths</title>
+  <title>MP — Math Spe | Omniscience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t&&t!=='dark')d.setAttribute('data-theme',t)})(document.documentElement)</script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -20,12 +20,11 @@
 .annale-tab:hover .annale-tab__dot{transform:scale(1.3)}
 .annale-tab__icon{font-size:.5rem;letter-spacing:1px;color:var(--ink-muted);transition:color .2s}
 .annale-tab__label{font-weight:600;letter-spacing:.01em}
-.annale-tab__count{font-family:var(--font-mono);font-size:.65rem;font-weight:400;color:var(--ink-muted);background:rgba(0,0,0,.04);padding:1px 6px;border-radius:6px;transition:all .2s}
-[data-theme="dark"] .annale-tab__count{background:rgba(255,255,255,.06)}
-.annale-tab.active{border-color:var(--ink);background:var(--ink);color:#fff}
-.annale-tab.active .annale-tab__count{background:rgba(255,255,255,.18);color:#fff}
-.annale-tab.active .annale-tab__icon{color:rgba(255,255,255,.7)}
-.annale-tab.active .annale-tab__dot{background:#fff;box-shadow:none}
+.annale-tab__count{font-family:var(--font-mono);font-size:.65rem;font-weight:400;color:var(--ink-muted);background:var(--bg-card);padding:1px 6px;border-radius:6px;transition:all .2s}
+.annale-tab.active{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.annale-tab.active .annale-tab__count{background:rgba(255,255,255,.18);color:var(--bg)}
+.annale-tab.active .annale-tab__icon{color:var(--bg)}
+.annale-tab.active .annale-tab__dot{background:var(--bg);box-shadow:none}
 .annale-tab--ccinp.active{border-color:#4A90D9;background:linear-gradient(135deg,#4A90D9,#3a7bc8)}
 .annale-tab--centrale.active{border-color:#D4873B;background:linear-gradient(135deg,#D4873B,#c07830)}
 .annale-tab--mines.active{border-color:#4CAF50;background:linear-gradient(135deg,#4CAF50,#43a047)}
@@ -46,78 +45,115 @@
 </head>
 <body>
 
-  <div class="bg-grid" aria-hidden="true"></div>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo"><span class="sidebar__logo-full">Omniscience</span><span class="sidebar__logo-short">O</span></div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Programme</span>
+        <a href="index.html" class="sidebar__link" data-tooltip="Accueil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span class="sidebar__link-text">Accueil</span>
+        </a>
+        <a href="mpsi.html" class="sidebar__link" data-tooltip="MPSI">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MPSI — 1ere annee</span>
+        </a>
+        <a href="mp.html" class="sidebar__link sidebar__link--active" data-tooltip="MP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MP — 2eme annee</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Concours</span>
+        <a href="mp.html#annales-e3a" class="sidebar__link" data-tooltip="E3A-Polytech">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="9" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">E3A</text></svg>
+          <span class="sidebar__link-text">E3A-Polytech</span>
+        </a>
+        <a href="mp.html#annales-ccinp" class="sidebar__link" data-tooltip="CCINP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="10" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">CC</text></svg>
+          <span class="sidebar__link-text">CCINP</span>
+        </a>
+        <a href="mp.html#annales-centrale" class="sidebar__link" data-tooltip="Centrale">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="10" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">CS</text></svg>
+          <span class="sidebar__link-text">Centrale</span>
+        </a>
+        <a href="mp.html#annales-mines" class="sidebar__link" data-tooltip="Mines-Ponts">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="13" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">M</text></svg>
+          <span class="sidebar__link-text">Mines-Ponts</span>
+        </a>
+        <a href="mp.html#annales-xens" class="sidebar__link" data-tooltip="X-ENS">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="13" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">X</text></svg>
+          <span class="sidebar__link-text">X-ENS</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Outils</span>
+        <a href="entrainement.html" class="sidebar__link" data-tooltip="Entrainement">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="sidebar__link-text">Entrainement</span>
+        </a>
+        <a href="revision.html" class="sidebar__link" data-tooltip="Revision">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <span class="sidebar__link-text">Revision</span>
+        </a>
+        <a href="parcours.html" class="sidebar__link" data-tooltip="Parcours">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span class="sidebar__link-text">Mon Parcours</span>
+        </a>
+              <a href="statistiques.html" class="sidebar__link" data-tooltip="Statistiques">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          <span class="sidebar__link-text">Statistiques</span>
+        </a>
+        <a href="timer.html" class="sidebar__link" data-tooltip="Timer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span class="sidebar__link-text">Timer</span>
+        </a>
+</div>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__collapse-btn" id="sidebarCollapse" aria-expanded="true" aria-label="Replier le menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+        <span class="sidebar__collapse-label">Replier</span>
+      </button>
+      <button class="sidebar__theme-toggle" id="themeToggle" aria-label="Changer de theme">
+        <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span class="sidebar__theme-label">Theme</span>
+      </button>
+      <div class="sidebar__subject-switch">
+        <a href="index.html" class="sidebar__subject-btn sidebar__subject-btn--active">Maths</a>
+        <a href="physique/index.html" class="sidebar__subject-btn">Physique</a>
+      </div>
+    </div>
+  </aside>
 
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="site-switcher">
-      <span class="site-switcher__brand">Lib</span>
-      <div class="site-switcher__toggle">
-        <a href="index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
-        <a href="physique/index.html" class="site-switcher__btn">Physique</a>
-      </div>
-    </div>
-    <div class="nav__links">
-      <a href="index.html" class="nav__link">Accueil</a>
-      <div class="nav__dropdown">
-        <a href="mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mpsi.html#cours" class="dropdown__item">Cours</a>
-          <a href="mpsi.html#exercices" class="dropdown__item">Exercices</a>
-          <a href="mpsi.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="mpsi.html#methodes" class="dropdown__item">Méthodes</a>
-        </div>
-      </div>
-      <div class="nav__dropdown">
-        <a href="mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mp.html#cours" class="dropdown__item">Cours</a>
-          <a href="mp.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="mp.html#methodes" class="dropdown__item">Méthodes</a>
-          <a href="mp.html#concours" class="dropdown__item">Concours</a>
-          <a href="mp.html#annales" class="dropdown__item">Annales</a>
-          <a href="mp.html#statistiques" class="dropdown__item">Statistiques</a>
-        </div>
-      </div>
-      <a href="entrainement.html" class="nav__link">Entraînement</a>
-      <a href="revision.html" class="nav__link">Révision</a>
-      <a href="e3a.html" class="nav__link">E3A-Polytech</a>
-      <a href="parcours.html" class="nav__link">Mon Parcours</a>
-    </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
-      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  <!-- Mobile top bar -->
+  <header class="topbar" id="topbar">
+    <button class="topbar__hamburger" id="menuBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
-    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
-      <span></span><span></span>
+    <span class="topbar__logo">Omniscience</span>
+    <button class="topbar__theme-toggle" id="themeToggleMobile" aria-label="Changer de theme">
+      <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-  </nav>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
-      <a href="index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
-      <a href="physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mpsi.html" class="mobile-menu__page-link">MPSI — Math Sup</a>
-    </div>
-    <div class="mobile-menu__group">
-      <a href="mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP — Math Spé</a>
-    </div>
-  </div>
+  <main class="main-content">
 
   <!-- Page Header -->
   <header class="page-header">
     <div class="page-header__inner">
       <a href="index.html" class="page-header__back">← Accueil</a>
-      <p class="page-header__eyebrow">Deuxième année</p>
+      <p class="page-header__eyebrow">Deuxieme annee</p>
       <h1 class="page-header__title">MP</h1>
       <p class="page-header__subtitle">Mathematiques — 16 chapitres et annales de concours.</p>
       <div class="page-header__filters" id="filters">
         <button class="filter-btn filter-btn--active" data-filter="cours">Cours</button>
         <button class="filter-btn" data-filter="fiches">Fiches</button>
-        <button class="filter-btn" data-filter="methodes">Méthodes</button>
+        <button class="filter-btn" data-filter="methodes">Methodes</button>
         <button class="filter-btn" data-filter="concours">Concours</button>
         <button class="filter-btn" data-filter="annales">Annales</button>
         <button class="filter-btn" data-filter="statistiques">Statistiques</button>
@@ -127,31 +163,31 @@
   </header>
 
   <!-- Program Content -->
-  <main class="program">
+  <div class="program">
 
-    <!-- Algèbre & Bilinéaire -->
+    <!-- Algebre & Bilineaire -->
     <div class="chapter-group" data-type="cours">
-      <h2 class="chapter-group__title">Algèbre &amp; Formes bilinéaires</h2>
+      <h2 class="chapter-group__title">Algebre &amp; Formes bilineaires</h2>
       <div class="chapter-grid">
         <a href="cours/mp-01-complements-algebre-lineaire.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">01</span>
-          <h3 class="chapter-card__title">Compléments d'algèbre linéaire</h3>
-          <p class="chapter-card__desc">Dualité, sous-espaces stables, polynôme caractéristique minimal.</p>
+          <h3 class="chapter-card__title">Complements d'algebre lineaire</h3>
+          <p class="chapter-card__desc">Dualite, sous-espaces stables, polynome caracteristique minimal.</p>
         </a>
         <a href="cours/mp-02-reduction-avancee.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">02</span>
-          <h3 class="chapter-card__title">Réduction avancée</h3>
-          <p class="chapter-card__desc">Cayley-Hamilton, sous-espaces caractéristiques, décomposition de Dunford.</p>
+          <h3 class="chapter-card__title">Reduction avancee</h3>
+          <p class="chapter-card__desc">Cayley-Hamilton, sous-espaces caracteristiques, decomposition de Dunford.</p>
         </a>
         <a href="cours/mp-03-formes-bilineaires-quadratiques.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">03</span>
-          <h3 class="chapter-card__title">Formes bilinéaires et quadratiques</h3>
-          <p class="chapter-card__desc">Formes bilinéaires symétriques, formes quadratiques, signature.</p>
+          <h3 class="chapter-card__title">Formes bilineaires et quadratiques</h3>
+          <p class="chapter-card__desc">Formes bilineaires symetriques, formes quadratiques, signature.</p>
         </a>
         <a href="cours/mp-04-espaces-euclidiens.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">04</span>
           <h3 class="chapter-card__title">Espaces euclidiens</h3>
-          <p class="chapter-card__desc">Endomorphismes symétriques, théorème spectral, adjoint.</p>
+          <p class="chapter-card__desc">Endomorphismes symetriques, theoreme spectral, adjoint.</p>
         </a>
         <a href="cours/mp-05-endomorphismes-remarquables.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">05</span>
@@ -160,8 +196,8 @@
         </a>
         <a href="cours/mp-06-topologie-evn.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">06</span>
-          <h3 class="chapter-card__title">Topologie des espaces vectoriels normés</h3>
-          <p class="chapter-card__desc">Normes, équivalence, ouverts, fermés, compacité en dimension finie.</p>
+          <h3 class="chapter-card__title">Topologie des espaces vectoriels normes</h3>
+          <p class="chapter-card__desc">Normes, equivalence, ouverts, fermes, compacite en dimension finie.</p>
         </a>
       </div>
     </div>
@@ -172,110 +208,110 @@
       <div class="chapter-grid">
         <a href="cours/mp-07-suites-series-fonctions.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">07</span>
-          <h3 class="chapter-card__title">Suites et séries de fonctions</h3>
-          <p class="chapter-card__desc">Convergence uniforme, théorèmes d'interversion, approximation.</p>
+          <h3 class="chapter-card__title">Suites et series de fonctions</h3>
+          <p class="chapter-card__desc">Convergence uniforme, theoremes d'interversion, approximation.</p>
         </a>
         <a href="cours/mp-08-series-entieres-avancees.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">08</span>
-          <h3 class="chapter-card__title">Séries entières avancées</h3>
-          <p class="chapter-card__desc">Produit de Cauchy, séries de Fourier, fonctions analytiques.</p>
+          <h3 class="chapter-card__title">Series entieres avancees</h3>
+          <p class="chapter-card__desc">Produit de Cauchy, series de Fourier, fonctions analytiques.</p>
         </a>
       </div>
     </div>
 
-    <!-- Fonctions & Intégration -->
+    <!-- Fonctions & Integration -->
     <div class="chapter-group" data-type="cours">
-      <h2 class="chapter-group__title">Fonctions &amp; Intégration</h2>
+      <h2 class="chapter-group__title">Fonctions &amp; Integration</h2>
       <div class="chapter-grid">
         <a href="cours/mp-10-integration-segment.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">10</span>
-          <h3 class="chapter-card__title">Intégration sur un segment</h3>
-          <p class="chapter-card__desc">Intégrale de Riemann, fonctions en escalier, convergence dominée.</p>
+          <h3 class="chapter-card__title">Integration sur un segment</h3>
+          <p class="chapter-card__desc">Integrale de Riemann, fonctions en escalier, convergence dominee.</p>
         </a>
         <a href="cours/mp-11-integrales-generalisees.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">11</span>
-          <h3 class="chapter-card__title">Intégrales généralisées</h3>
-          <p class="chapter-card__desc">Convergence absolue, fonctions définies par des intégrales, Gamma et Bêta.</p>
+          <h3 class="chapter-card__title">Integrales generalisees</h3>
+          <p class="chapter-card__desc">Convergence absolue, fonctions definies par des integrales, Gamma et Beta.</p>
         </a>
         <a href="cours/mp-12-fonctions-plusieurs-variables.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">12</span>
           <h3 class="chapter-card__title">Fonctions de plusieurs variables</h3>
-          <p class="chapter-card__desc">Différentiabilité, gradient, matrice jacobienne, extrema.</p>
+          <p class="chapter-card__desc">Differentiabilite, gradient, matrice jacobienne, extrema.</p>
         </a>
       </div>
     </div>
 
-    <!-- Séries -->
+    <!-- Series -->
     <div class="chapter-group" data-type="cours">
-      <h2 class="chapter-group__title">Séries</h2>
+      <h2 class="chapter-group__title">Series</h2>
       <div class="chapter-grid">
         <a href="cours/mp-14-familles-sommables.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">14</span>
           <h3 class="chapter-card__title">Familles sommables</h3>
-          <p class="chapter-card__desc">Sommabilité, convergence commutative, produit de Cauchy généralisé.</p>
+          <p class="chapter-card__desc">Sommabilite, convergence commutative, produit de Cauchy generalise.</p>
         </a>
       </div>
     </div>
 
-    <!-- Calcul différentiel -->
+    <!-- Calcul differentiel -->
     <div class="chapter-group" data-type="cours">
-      <h2 class="chapter-group__title">Calcul différentiel</h2>
+      <h2 class="chapter-group__title">Calcul differentiel</h2>
       <div class="chapter-grid">
         <a href="cours/mp-16-equations-differentielles-lineaires.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">16</span>
-          <h3 class="chapter-card__title">Équations différentielles linéaires</h3>
-          <p class="chapter-card__desc">Systèmes différentiels, exponentielle de matrice, résolvante.</p>
+          <h3 class="chapter-card__title">Equations differentielles lineaires</h3>
+          <p class="chapter-card__desc">Systemes differentiels, exponentielle de matrice, resolvante.</p>
         </a>
         <a href="cours/mp-17-calcul-differentiel.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">17</span>
-          <h3 class="chapter-card__title">Calcul différentiel</h3>
-          <p class="chapter-card__desc">Différentielle, fonctions implicites, extrema liés, théorème d'inversion.</p>
+          <h3 class="chapter-card__title">Calcul differentiel</h3>
+          <p class="chapter-card__desc">Differentielle, fonctions implicites, extrema lies, theoreme d'inversion.</p>
         </a>
       </div>
     </div>
 
-    <!-- Probabilités -->
+    <!-- Probabilites -->
     <div class="chapter-group" data-type="cours">
-      <h2 class="chapter-group__title">Probabilités</h2>
+      <h2 class="chapter-group__title">Probabilites</h2>
       <div class="chapter-grid">
         <a href="cours/mp-18-variables-aleatoires-densite.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">18</span>
-          <h3 class="chapter-card__title">Variables aléatoires à densité</h3>
-          <p class="chapter-card__desc">Lois continues, fonction de répartition, espérance, convergences.</p>
+          <h3 class="chapter-card__title">Variables aleatoires a densite</h3>
+          <p class="chapter-card__desc">Lois continues, fonction de repartition, esperance, convergences.</p>
         </a>
         <a href="cours/mp-19-convergences-statistiques.html" class="chapter-card chapter-card--link">
           <span class="chapter-card__num">19</span>
-          <h3 class="chapter-card__title">Couples de variables à densité</h3>
-          <p class="chapter-card__desc">Loi conjointe, marginales, indépendance, loi conditionnelle.</p>
+          <h3 class="chapter-card__title">Couples de variables a densite</h3>
+          <p class="chapter-card__desc">Loi conjointe, marginales, independance, loi conditionnelle.</p>
         </a>
       </div>
     </div>
 
-    <!-- ═══ FICHES DE RÉVISION ═══ -->
+    <!-- ═══ FICHES DE REVISION ═══ -->
     <div class="fiches-section" data-type="fiches" style="display:none">
 
       <div class="chapter-group">
-        <h2 class="chapter-group__title">Algèbre &amp; Formes bilinéaires</h2>
+        <h2 class="chapter-group__title">Algebre &amp; Formes bilineaires</h2>
         <div class="chapter-grid">
           <a href="cours/fiches/mp-01-complements-algebre-lineaire.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">01</span>
-            <h3 class="chapter-card__title">Compléments d'algèbre linéaire</h3>
-            <p class="chapter-card__desc">Théorème du rang, dualité, hyperplans, projections.</p>
+            <h3 class="chapter-card__title">Complements d'algebre lineaire</h3>
+            <p class="chapter-card__desc">Theoreme du rang, dualite, hyperplans, projections.</p>
           </a>
           <a href="cours/fiches/mp-02-reduction-avancee.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">02</span>
-            <h3 class="chapter-card__title">Réduction avancée</h3>
-            <p class="chapter-card__desc">Cayley-Hamilton, diagonalisation, Dunford, polynôme minimal.</p>
+            <h3 class="chapter-card__title">Reduction avancee</h3>
+            <p class="chapter-card__desc">Cayley-Hamilton, diagonalisation, Dunford, polynome minimal.</p>
           </a>
           <a href="cours/fiches/mp-03-formes-bilineaires.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">03</span>
-            <h3 class="chapter-card__title">Formes bilinéaires et quadratiques</h3>
-            <p class="chapter-card__desc">Formes quadratiques, signature, critère de Sylvester.</p>
+            <h3 class="chapter-card__title">Formes bilineaires et quadratiques</h3>
+            <p class="chapter-card__desc">Formes quadratiques, signature, critere de Sylvester.</p>
           </a>
           <a href="cours/fiches/mp-04-espaces-euclidiens.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">04</span>
             <h3 class="chapter-card__title">Espaces euclidiens</h3>
-            <p class="chapter-card__desc">Cauchy-Schwarz, projection orthogonale, théorème spectral.</p>
+            <p class="chapter-card__desc">Cauchy-Schwarz, projection orthogonale, theoreme spectral.</p>
           </a>
           <a href="cours/fiches/mp-05-endomorphismes-remarquables.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">05</span>
@@ -285,7 +321,7 @@
           <a href="cours/fiches/mp-06-topologie-evn.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">06</span>
             <h3 class="chapter-card__title">Topologie des EVN</h3>
-            <p class="chapter-card__desc">Normes, ouverts, fermés, compacité, connexité.</p>
+            <p class="chapter-card__desc">Normes, ouverts, fermes, compacite, connexite.</p>
           </a>
         </div>
       </div>
@@ -295,28 +331,28 @@
         <div class="chapter-grid">
           <a href="cours/fiches/mp-07-suites-series-fonctions.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">07</span>
-            <h3 class="chapter-card__title">Suites et séries de fonctions</h3>
-            <p class="chapter-card__desc">CVU, CVN, théorèmes d'interversion.</p>
+            <h3 class="chapter-card__title">Suites et series de fonctions</h3>
+            <p class="chapter-card__desc">CVU, CVN, theoremes d'interversion.</p>
           </a>
           <a href="cours/fiches/mp-08-series-entieres.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">08</span>
-            <h3 class="chapter-card__title">Séries entières avancées</h3>
-            <p class="chapter-card__desc">Rayon, Abel, DSE classiques, résolution d'EDL.</p>
+            <h3 class="chapter-card__title">Series entieres avancees</h3>
+            <p class="chapter-card__desc">Rayon, Abel, DSE classiques, resolution d'EDL.</p>
           </a>
           <a href="cours/fiches/mp-09-espaces-metriques.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">09</span>
-            <h3 class="chapter-card__title">Espaces métriques complets</h3>
-            <p class="chapter-card__desc">Complétude, Banach, point fixe, densité.</p>
+            <h3 class="chapter-card__title">Espaces metriques complets</h3>
+            <p class="chapter-card__desc">Completude, Banach, point fixe, densite.</p>
           </a>
           <a href="cours/fiches/mp-10-integration-segment.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">10</span>
-            <h3 class="chapter-card__title">Intégration sur un segment</h3>
+            <h3 class="chapter-card__title">Integration sur un segment</h3>
             <p class="chapter-card__desc">TFC, IPP, Taylor, sommes de Riemann.</p>
           </a>
           <a href="cours/fiches/mp-11-integrales-generalisees.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">11</span>
-            <h3 class="chapter-card__title">Intégrales généralisées</h3>
-            <p class="chapter-card__desc">Gamma, Wallis, Gauss, intégrales à paramètre.</p>
+            <h3 class="chapter-card__title">Integrales generalisees</h3>
+            <p class="chapter-card__desc">Gamma, Wallis, Gauss, integrales a parametre.</p>
           </a>
           <a href="cours/fiches/mp-12-calcul-differentiel.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">12</span>
@@ -325,50 +361,50 @@
           </a>
           <a href="cours/fiches/mp-13-series-fourier.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">13</span>
-            <h3 class="chapter-card__title">Séries de Fourier</h3>
+            <h3 class="chapter-card__title">Series de Fourier</h3>
             <p class="chapter-card__desc">Coefficients, Parseval, convergence ponctuelle et normale.</p>
           </a>
           <a href="cours/fiches/mp-14-familles-sommables.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">14</span>
             <h3 class="chapter-card__title">Familles sommables</h3>
-            <p class="chapter-card__desc">Fubini, produit de Cauchy, lien séries-sommabilité.</p>
+            <p class="chapter-card__desc">Fubini, produit de Cauchy, lien series-sommabilite.</p>
           </a>
           <a href="cours/fiches/mp-15-series-fonctions.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">15</span>
-            <h3 class="chapter-card__title">Séries de fonctions</h3>
-            <p class="chapter-card__desc">CVN, CVU, continuité, intégration et dérivation terme à terme.</p>
+            <h3 class="chapter-card__title">Series de fonctions</h3>
+            <p class="chapter-card__desc">CVN, CVU, continuite, integration et derivation terme a terme.</p>
           </a>
         </div>
       </div>
 
       <div class="chapter-group">
-        <h2 class="chapter-group__title">Calcul différentiel &amp; EDL</h2>
+        <h2 class="chapter-group__title">Calcul differentiel &amp; EDL</h2>
         <div class="chapter-grid">
           <a href="cours/fiches/mp-16-equations-differentielles.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">16</span>
-            <h3 class="chapter-card__title">Équations différentielles linéaires</h3>
-            <p class="chapter-card__desc">EDL1/2, systèmes X'=AX, exponentielle de matrice.</p>
+            <h3 class="chapter-card__title">Equations differentielles lineaires</h3>
+            <p class="chapter-card__desc">EDL1/2, systemes X'=AX, exponentielle de matrice.</p>
           </a>
           <a href="cours/fiches/mp-17-calcul-differentiel.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">17</span>
-            <h3 class="chapter-card__title">Calcul différentiel</h3>
-            <p class="chapter-card__desc">Différentiabilité, règle de la chaîne, fonctions implicites.</p>
+            <h3 class="chapter-card__title">Calcul differentiel</h3>
+            <p class="chapter-card__desc">Differentiabilite, regle de la chaine, fonctions implicites.</p>
           </a>
         </div>
       </div>
 
       <div class="chapter-group">
-        <h2 class="chapter-group__title">Probabilités</h2>
+        <h2 class="chapter-group__title">Probabilites</h2>
         <div class="chapter-grid">
           <a href="cours/fiches/mp-18-probabilites.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">18</span>
-            <h3 class="chapter-card__title">Variables aléatoires à densité</h3>
-            <p class="chapter-card__desc">Lois discrètes et continues, convergences, loi des grands nombres.</p>
+            <h3 class="chapter-card__title">Variables aleatoires a densite</h3>
+            <p class="chapter-card__desc">Lois discretes et continues, convergences, loi des grands nombres.</p>
           </a>
           <a href="cours/fiches/mp-19-convergences-statistiques.html" class="chapter-card chapter-card--link">
             <span class="chapter-card__num">19</span>
             <h3 class="chapter-card__title">Convergences et statistiques</h3>
-            <p class="chapter-card__desc">Convergence en proba/loi, LFGN, TCL, Bienaymé-Tchebychev.</p>
+            <p class="chapter-card__desc">Convergence en proba/loi, LFGN, TCL, Bienayme-Tchebychev.</p>
           </a>
         </div>
       </div>
@@ -414,7 +450,7 @@
 
       <div class="concours-panel__header">
         <h2 class="concours-panel__title">Annales MP</h2>
-        <p class="concours-panel__desc">82 sujets d'epreuves ecrites — CCINP, Centrale-Supelec, Mines-Ponts, X-ENS, E3A-Polytech — de 2016 a 2025.</p>
+        <p class="concours-panel__desc">116 sujets d'epreuves ecrites — CCINP, Centrale-Supelec, Mines-Ponts, X-ENS, E3A-Polytech — de 2000 a 2025.</p>
       </div>
 
       <!-- Filtre par banque -->
@@ -422,7 +458,7 @@
         <button class="annale-tab annale-tab--all active" data-abq="all" onclick="window._abqFilter(this)">
           <span class="annale-tab__icon">&#9632;&#9632;&#9632;</span>
           <span class="annale-tab__label">Toutes</span>
-          <span class="annale-tab__count">82</span>
+          <span class="annale-tab__count">116</span>
         </button>
         <button class="annale-tab annale-tab--ccinp" data-abq="ccinp" onclick="window._abqFilter(this)">
           <span class="annale-tab__dot" style="--tab-color:#4A90D9"></span>
@@ -447,7 +483,7 @@
         <button class="annale-tab annale-tab--e3a" data-abq="e3a" onclick="window._abqFilter(this)">
           <span class="annale-tab__dot" style="--tab-color:#E91E63"></span>
           <span class="annale-tab__label">E3A-Polytech</span>
-          <span class="annale-tab__count">12</span>
+          <span class="annale-tab__count">46</span>
         </button>
       </div>
       <script>
@@ -464,25 +500,16 @@
       <!-- CCINP -->
       <div class="annale-banque" data-banque="ccinp">
       <div class="chapter-group"><h2 class="chapter-group__title">CCINP</h2>
-        <div class="chapter-grid">
-          <a href="cours/annales/ccinp-2025-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2025</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2025-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2025</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2024-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2024-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2023-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2023-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2022-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2022</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2022-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2022</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2021-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2021</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2021-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2021</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2020-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2020</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2020-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2020</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/ccinp-2019-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2019</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/ccinp-2019-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2019</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/ccinp-2018-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2018</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/ccinp-2018-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2018</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/ccinp-2017-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2017</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/ccinp-2017-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2017</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
+        <div class="annale-year-grid">
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2025</span><div class="annale-year__links"><a href="cours/annales/ccinp-2025-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/ccinp-2025-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2024</span><div class="annale-year__links"><a href="cours/annales/ccinp-2024-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/ccinp-2024-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2023</span><div class="annale-year__links"><a href="cours/annales/ccinp-2023-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/ccinp-2023-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2022</span><div class="annale-year__links"><a href="cours/annales/ccinp-2022-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/ccinp-2022-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2021</span><div class="annale-year__links"><a href="cours/annales/ccinp-2021-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/ccinp-2021-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2020</span><div class="annale-year__links"><a href="cours/annales/ccinp-2020-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/ccinp-2020-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2019</span><div class="annale-year__links"><a href="cours/annales/ccinp-2019-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/ccinp-2019-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2018</span><div class="annale-year__links"><a href="cours/annales/ccinp-2018-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/ccinp-2018-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2017</span><div class="annale-year__links"><a href="cours/annales/ccinp-2017-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/ccinp-2017-maths2.html" class="annale-year__link">Maths 2</a></div></div>
         </div>
       </div>
       </div>
@@ -490,25 +517,16 @@
       <!-- Centrale-Supelec -->
       <div class="annale-banque" data-banque="centrale">
       <div class="chapter-group"><h2 class="chapter-group__title">Centrale-Supelec</h2>
-        <div class="chapter-grid">
-          <a href="cours/annales/centrale-2025-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2025</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2025-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2025</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2024-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2024-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2023-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2023-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2022-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2022</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2022-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2022</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2021-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2021</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2021-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2021</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2020-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2020</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2020-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2020</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2019-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2019</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2019-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2019</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2018-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2018</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2018-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2018</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2017-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2017</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/centrale-2017-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2017</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
+        <div class="annale-year-grid">
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2025</span><div class="annale-year__links"><a href="cours/annales/centrale-2025-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/centrale-2025-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2024</span><div class="annale-year__links"><a href="cours/annales/centrale-2024-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/centrale-2024-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2023</span><div class="annale-year__links"><a href="cours/annales/centrale-2023-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/centrale-2023-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2022</span><div class="annale-year__links"><a href="cours/annales/centrale-2022-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/centrale-2022-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2021</span><div class="annale-year__links"><a href="cours/annales/centrale-2021-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/centrale-2021-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2020</span><div class="annale-year__links"><a href="cours/annales/centrale-2020-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/centrale-2020-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2019</span><div class="annale-year__links"><a href="cours/annales/centrale-2019-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/centrale-2019-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2018</span><div class="annale-year__links"><a href="cours/annales/centrale-2018-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/centrale-2018-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2017</span><div class="annale-year__links"><a href="cours/annales/centrale-2017-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/centrale-2017-maths2.html" class="annale-year__link">Maths 2</a></div></div>
         </div>
       </div>
       </div>
@@ -516,47 +534,50 @@
       <!-- Mines-Ponts -->
       <div class="annale-banque" data-banque="mines">
       <div class="chapter-group"><h2 class="chapter-group__title">Mines-Ponts</h2>
-        <div class="chapter-grid">
-          <a href="cours/annales/mines-2025-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2025</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2025-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2025</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2024-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2024-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2023-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2023-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2022-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2022</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2022-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2022</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2021-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2021</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2021-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2021</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2020-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2020</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2020-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2020</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2019-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2019</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2019-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2019</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2018-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2018</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2018-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2018</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2017-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2017</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/mines-2017-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2017</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
+        <div class="annale-year-grid">
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2025</span><div class="annale-year__links"><a href="cours/annales/mines-2025-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/mines-2025-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2024</span><div class="annale-year__links"><a href="cours/annales/mines-2024-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/mines-2024-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2023</span><div class="annale-year__links"><a href="cours/annales/mines-2023-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/mines-2023-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2022</span><div class="annale-year__links"><a href="cours/annales/mines-2022-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/mines-2022-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2021</span><div class="annale-year__links"><a href="cours/annales/mines-2021-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/mines-2021-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2020</span><div class="annale-year__links"><a href="cours/annales/mines-2020-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/mines-2020-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2019</span><div class="annale-year__links"><a href="cours/annales/mines-2019-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/mines-2019-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2018</span><div class="annale-year__links"><a href="cours/annales/mines-2018-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/mines-2018-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2017</span><div class="annale-year__links"><a href="cours/annales/mines-2017-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/mines-2017-maths2.html" class="annale-year__link">Maths 2</a></div></div>
         </div>
       </div>
       </div>
 
       <!-- E3A-Polytech -->
       <div class="annale-banque" data-banque="e3a">
-      <div class="chapter-group"><h2 class="chapter-group__title" style="color:#E91E63">E3A-Polytech</h2>
-        <h3 style="font-size:.85rem;font-weight:500;color:var(--ink-muted);margin:var(--space-sm) 0 var(--space-md)">Mathematiques</h3>
-        <div class="chapter-grid">
-          <a href="cours/annales/e3a-2025-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2025</span><h3 class="chapter-card__title">Maths</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/e3a-2024-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/e3a-2023-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/e3a-2022-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2022</span><h3 class="chapter-card__title">Maths</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/e3a-2021-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2021</span><h3 class="chapter-card__title">Maths</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-          <a href="cours/annales/e3a-2020-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2020</span><h3 class="chapter-card__title">Maths</h3><p class="chapter-card__desc">Enonce + correction</p></a>
-        </div>
-        <h3 style="font-size:.85rem;font-weight:500;color:var(--ink-muted);margin:var(--space-lg) 0 var(--space-md)">Corrections detaillees pedagogiques</h3>
-        <div class="chapter-grid">
-          <a href="cours/annales/e3a-2025-correction.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2025</span><h3 class="chapter-card__title">Maths — Correction</h3><p class="chapter-card__desc">3 exercices corriges pas a pas</p></a>
-          <a href="cours/annales/e3a-2024-correction.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths — Correction</h3><p class="chapter-card__desc">4 exercices corriges pas a pas</p></a>
-          <a href="cours/annales/e3a-2023-correction.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths — Correction</h3><p class="chapter-card__desc">4 exercices corriges pas a pas</p></a>
-          <a href="cours/annales/e3a-2020-correction.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2020</span><h3 class="chapter-card__title">Maths — Correction</h3><p class="chapter-card__desc">5 exercices corriges pas a pas</p></a>
+      <div class="chapter-group"><h2 class="chapter-group__title">E3A-Polytech</h2>
+        <div class="annale-year-grid">
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2025</span><div class="annale-year__links"><a href="cours/annales/e3a-2025-maths1.html" class="annale-year__link">Maths</a><a href="cours/annales/e3a-2025-correction.html" class="annale-year__link annale-year__link--corr">Correction</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2024</span><div class="annale-year__links"><a href="cours/annales/e3a-2024-maths1.html" class="annale-year__link">Maths</a><a href="cours/annales/e3a-2024-correction.html" class="annale-year__link annale-year__link--corr">Correction</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2023</span><div class="annale-year__links"><a href="cours/annales/e3a-2023-maths1.html" class="annale-year__link">Maths</a><a href="cours/annales/e3a-2023-correction.html" class="annale-year__link annale-year__link--corr">Correction</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2022</span><div class="annale-year__links"><a href="cours/annales/e3a-2022-maths1.html" class="annale-year__link">Maths</a><a href="cours/annales/e3a-2022-correction.html" class="annale-year__link annale-year__link--corr">Correction</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2021</span><div class="annale-year__links"><a href="cours/annales/e3a-2021-maths1.html" class="annale-year__link">Maths</a><a href="cours/annales/e3a-2021-correction.html" class="annale-year__link annale-year__link--corr">Correction</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2020</span><div class="annale-year__links"><a href="cours/annales/e3a-2020-maths1.html" class="annale-year__link">Maths</a><a href="cours/annales/e3a-2020-correction.html" class="annale-year__link annale-year__link--corr">Correction</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2019</span><div class="annale-year__links"><a href="cours/annales/e3a-2019-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2019-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2019-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2019-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2018</span><div class="annale-year__links"><a href="cours/annales/e3a-2018-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2018-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2018-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2018-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2017</span><div class="annale-year__links"><a href="cours/annales/e3a-2017-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2017-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2017-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2017-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2016</span><div class="annale-year__links"><a href="cours/annales/e3a-2016-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2016-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2016-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2016-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2015</span><div class="annale-year__links"><a href="cours/annales/e3a-2015-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2015-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2015-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2015-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2014</span><div class="annale-year__links"><a href="cours/annales/e3a-2014-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2014-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2014-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2014-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2013</span><div class="annale-year__links"><a href="cours/annales/e3a-2013-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2013-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2013-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2013-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2012</span><div class="annale-year__links"><a href="cours/annales/e3a-2012-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2012-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2012-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2012-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2011</span><div class="annale-year__links"><a href="cours/annales/e3a-2011-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2011-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2011-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2011-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2010</span><div class="annale-year__links"><a href="cours/annales/e3a-2010-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2010-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2010-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2010-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2009</span><div class="annale-year__links"><a href="cours/annales/e3a-2009-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2009-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2009-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2009-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2008</span><div class="annale-year__links"><a href="cours/annales/e3a-2008-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2008-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2008-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2008-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2007</span><div class="annale-year__links"><a href="cours/annales/e3a-2007-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2007-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2007-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2007-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2006</span><div class="annale-year__links"><a href="cours/annales/e3a-2006-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2006-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2006-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2006-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2005</span><div class="annale-year__links"><a href="cours/annales/e3a-2005-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2005-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2005-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2005-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2004</span><div class="annale-year__links"><a href="cours/annales/e3a-2004-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2004-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2004-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2004-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2003</span><div class="annale-year__links"><a href="cours/annales/e3a-2003-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2003-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2002</span><div class="annale-year__links"><a href="cours/annales/e3a-2002-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2002-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2002-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2002-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2001</span><div class="annale-year__links"><a href="cours/annales/e3a-2001-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2001-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2000</span><div class="annale-year__links"><a href="cours/annales/e3a-2000-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/e3a-2000-correction.html" class="annale-year__link annale-year__link--corr">Corr. 1</a><span class="annale-year__sep"></span><a href="cours/annales/e3a-2000-maths2.html" class="annale-year__link">Maths 2</a><a href="cours/annales/e3a-2000-correction.html" class="annale-year__link annale-year__link--corr">Corr. 2</a></div></div>
         </div>
       </div>
       </div>
@@ -564,23 +585,16 @@
       <!-- X-ENS -->
       <div class="annale-banque" data-banque="xens">
       <div class="chapter-group"><h2 class="chapter-group__title">X-ENS</h2>
-        <div class="chapter-grid">
-          <a href="cours/annales/xens-2024-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2024-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2024</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2023-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2023-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2023</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2022-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2022</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2022-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2022</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2021-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2021</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2021-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2021</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2020-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2020</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2019-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2019</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2019-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2019</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2018-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2018</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2018-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2018</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2017-maths1.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2017</span><h3 class="chapter-card__title">Maths 1</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2017-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2017</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
-          <a href="cours/annales/xens-2016-maths2.html" class="chapter-card chapter-card--link chapter-card--annale"><span class="chapter-card__num">2016</span><h3 class="chapter-card__title">Maths 2</h3><p class="chapter-card__desc">Enonce</p></a>
+        <div class="annale-year-grid">
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2024</span><div class="annale-year__links"><a href="cours/annales/xens-2024-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/xens-2024-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2023</span><div class="annale-year__links"><a href="cours/annales/xens-2023-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/xens-2023-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2022</span><div class="annale-year__links"><a href="cours/annales/xens-2022-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/xens-2022-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2021</span><div class="annale-year__links"><a href="cours/annales/xens-2021-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/xens-2021-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2020</span><div class="annale-year__links"><a href="cours/annales/xens-2020-maths1.html" class="annale-year__link">Maths 1</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2019</span><div class="annale-year__links"><a href="cours/annales/xens-2019-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/xens-2019-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2018</span><div class="annale-year__links"><a href="cours/annales/xens-2018-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/xens-2018-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2017</span><div class="annale-year__links"><a href="cours/annales/xens-2017-maths1.html" class="annale-year__link">Maths 1</a><a href="cours/annales/xens-2017-maths2.html" class="annale-year__link">Maths 2</a></div></div>
+          <div class="annale-year chapter-card--annale"><span class="annale-year__num">2016</span><div class="annale-year__links"><a href="cours/annales/xens-2016-maths2.html" class="annale-year__link">Maths 2</a></div></div>
         </div>
       </div>
       </div>
@@ -591,13 +605,13 @@
     <div data-type="methodes" style="display:none">
 
       <div class="chapter-group">
-        <h2 class="chapter-group__title">Algèbre</h2>
+        <h2 class="chapter-group__title">Algebre</h2>
         <div class="chapter-grid">
           <a href="cours/methodes/mp-m9-groupes-anneaux.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M9</span><h3 class="chapter-card__title">Groupes & Anneaux</h3><p class="chapter-card__desc">Sous-groupes, morphismes, congruences, Euler.</p></a>
-          <a href="cours/methodes/mp-m17-valeurs-propres.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M17</span><h3 class="chapter-card__title">Valeurs propres</h3><p class="chapter-card__desc">Polynôme caractéristique, annulateur, Gershgorin.</p></a>
-          <a href="cours/methodes/mp-m18-algebre-lineaire.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M18</span><h3 class="chapter-card__title">Algèbre linéaire</h3><p class="chapter-card__desc">Rang, décomposition noyaux, dualité, projecteurs.</p></a>
-          <a href="cours/methodes/mp-m2-reduction-diagonalisation.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M2</span><h3 class="chapter-card__title">Réduction</h3><p class="chapter-card__desc">Diagonaliser, A^n, exp(tA), Dunford.</p></a>
-          <a href="cours/methodes/mp-m8-matrices-bilineaire.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M8</span><h3 class="chapter-card__title">Bilinéaire & matrices</h3><p class="chapter-card__desc">Sylvester, rang 1, racine carrée, polaire.</p></a>
+          <a href="cours/methodes/mp-m17-valeurs-propres.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M17</span><h3 class="chapter-card__title">Valeurs propres</h3><p class="chapter-card__desc">Polynome caracteristique, annulateur, Gershgorin.</p></a>
+          <a href="cours/methodes/mp-m18-algebre-lineaire.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M18</span><h3 class="chapter-card__title">Algebre lineaire</h3><p class="chapter-card__desc">Rang, decomposition noyaux, dualite, projecteurs.</p></a>
+          <a href="cours/methodes/mp-m2-reduction-diagonalisation.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M2</span><h3 class="chapter-card__title">Reduction</h3><p class="chapter-card__desc">Diagonaliser, A^n, exp(tA), Dunford.</p></a>
+          <a href="cours/methodes/mp-m8-matrices-bilineaire.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M8</span><h3 class="chapter-card__title">Bilineaire & matrices</h3><p class="chapter-card__desc">Sylvester, rang 1, racine carree, polaire.</p></a>
           <a href="cours/methodes/mp-m4-espaces-euclidiens.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M4</span><h3 class="chapter-card__title">Espaces euclidiens</h3><p class="chapter-card__desc">Projection, Gram-Schmidt, spectral, distance.</p></a>
         </div>
       </div>
@@ -605,35 +619,37 @@
       <div class="chapter-group">
         <h2 class="chapter-group__title">Analyse</h2>
         <div class="chapter-grid">
-          <a href="cours/methodes/mp-m10-topologie-evn.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M10</span><h3 class="chapter-card__title">Topologie des EVN</h3><p class="chapter-card__desc">Normes, ouverts/fermés, continuité, compacité.</p></a>
-          <a href="cours/methodes/mp-m11-series-numeriques.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M11</span><h3 class="chapter-card__title">Séries numériques</h3><p class="chapter-card__desc">Comparaison, d'Alembert, série-intégrale, TSCSA.</p></a>
-          <a href="cours/methodes/mp-m12-suites-fonctions.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M12</span><h3 class="chapter-card__title">Suites de fonctions</h3><p class="chapter-card__desc">CVS, CVU, régularité, Weierstrass.</p></a>
-          <a href="cours/methodes/mp-m3-series-fonctions-cvu.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M3</span><h3 class="chapter-card__title">Séries de fonctions</h3><p class="chapter-card__desc">CVN, interversion intégrale/somme, ζ(s).</p></a>
-          <a href="cours/methodes/mp-m7-series-entieres-edl.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M7</span><h3 class="chapter-card__title">Séries entières</h3><p class="chapter-card__desc">Rayon, DSE, Abel radial, somme de série.</p></a>
-          <a href="cours/methodes/mp-m15-fourier.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M15</span><h3 class="chapter-card__title">Séries de Fourier</h3><p class="chapter-card__desc">Coefficients, Dirichlet, Parseval, EDP.</p></a>
-          <a href="cours/methodes/mp-m14-fonctions-vectorielles.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M14</span><h3 class="chapter-card__title">Fonctions vectorielles</h3><p class="chapter-card__desc">Dérivée n-ième, inégalités, intégrales.</p></a>
-          <a href="cours/methodes/mp-m1-integrales-generalisees.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M1</span><h3 class="chapter-card__title">Intégrales généralisées</h3><p class="chapter-card__desc">Convergence, Leibniz, Gamma, Wallis, Gauss.</p></a>
-          <a href="cours/methodes/mp-m13-integrales-parametre.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M13</span><h3 class="chapter-card__title">Intégrales à paramètre</h3><p class="chapter-card__desc">Continuité/dérivation sous ∫, dominée.</p></a>
+          <a href="cours/methodes/mp-m10-topologie-evn.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M10</span><h3 class="chapter-card__title">Topologie des EVN</h3><p class="chapter-card__desc">Normes, ouverts/fermes, continuite, compacite.</p></a>
+          <a href="cours/methodes/mp-m11-series-numeriques.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M11</span><h3 class="chapter-card__title">Series numeriques</h3><p class="chapter-card__desc">Comparaison, d'Alembert, serie-integrale, TSCSA.</p></a>
+          <a href="cours/methodes/mp-m12-suites-fonctions.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M12</span><h3 class="chapter-card__title">Suites de fonctions</h3><p class="chapter-card__desc">CVS, CVU, regularite, Weierstrass.</p></a>
+          <a href="cours/methodes/mp-m3-series-fonctions-cvu.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M3</span><h3 class="chapter-card__title">Series de fonctions</h3><p class="chapter-card__desc">CVN, interversion integrale/somme.</p></a>
+          <a href="cours/methodes/mp-m7-series-entieres-edl.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M7</span><h3 class="chapter-card__title">Series entieres</h3><p class="chapter-card__desc">Rayon, DSE, Abel radial, somme de serie.</p></a>
+          <a href="cours/methodes/mp-m15-fourier.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M15</span><h3 class="chapter-card__title">Series de Fourier</h3><p class="chapter-card__desc">Coefficients, Dirichlet, Parseval, EDP.</p></a>
+          <a href="cours/methodes/mp-m14-fonctions-vectorielles.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M14</span><h3 class="chapter-card__title">Fonctions vectorielles</h3><p class="chapter-card__desc">Derivee n-ieme, inegalites, integrales.</p></a>
+          <a href="cours/methodes/mp-m1-integrales-generalisees.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M1</span><h3 class="chapter-card__title">Integrales generalisees</h3><p class="chapter-card__desc">Convergence, Leibniz, Gamma, Wallis, Gauss.</p></a>
+          <a href="cours/methodes/mp-m13-integrales-parametre.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M13</span><h3 class="chapter-card__title">Integrales a parametre</h3><p class="chapter-card__desc">Continuite/derivation sous integrale, dominee.</p></a>
         </div>
       </div>
 
       <div class="chapter-group">
-        <h2 class="chapter-group__title">Calcul différentiel & EDL</h2>
+        <h2 class="chapter-group__title">Calcul differentiel & EDL</h2>
         <div class="chapter-grid">
-          <a href="cours/methodes/mp-m5-calcul-differentiel.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M5</span><h3 class="chapter-card__title">Calcul différentiel</h3><p class="chapter-card__desc">Points critiques, hessienne, optimisation.</p></a>
-          <a href="cours/methodes/mp-m16-edl-avancees.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M16</span><h3 class="chapter-card__title">EDL avancées</h3><p class="chapter-card__desc">SDL, exp(tA), coefficients variables, DSE.</p></a>
+          <a href="cours/methodes/mp-m5-calcul-differentiel.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M5</span><h3 class="chapter-card__title">Calcul differentiel</h3><p class="chapter-card__desc">Points critiques, hessienne, optimisation.</p></a>
+          <a href="cours/methodes/mp-m16-edl-avancees.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M16</span><h3 class="chapter-card__title">EDL avancees</h3><p class="chapter-card__desc">SDL, exp(tA), coefficients variables, DSE.</p></a>
         </div>
       </div>
 
       <div class="chapter-group">
-        <h2 class="chapter-group__title">Probabilités</h2>
+        <h2 class="chapter-group__title">Probabilites</h2>
         <div class="chapter-grid">
-          <a href="cours/methodes/mp-m6-probabilites.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M6</span><h3 class="chapter-card__title">Probabilités</h3><p class="chapter-card__desc">Loi du max/min, transfert, Bienaymé-Tchebychev.</p></a>
-          <a href="cours/methodes/mp-m19-probas-avancees.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M19</span><h3 class="chapter-card__title">Probabilités avancées</h3><p class="chapter-card__desc">Bayes, couples, génératrices, Poisson.</p></a>
+          <a href="cours/methodes/mp-m6-probabilites.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M6</span><h3 class="chapter-card__title">Probabilites</h3><p class="chapter-card__desc">Loi du max/min, transfert, Bienayme-Tchebychev.</p></a>
+          <a href="cours/methodes/mp-m19-probas-avancees.html" class="chapter-card chapter-card--link"><span class="chapter-card__num">M19</span><h3 class="chapter-card__title">Probabilites avancees</h3><p class="chapter-card__desc">Bayes, couples, generatrices, Poisson.</p></a>
         </div>
       </div>
 
     </div><!-- end methodes section -->
+
+  </div>
 
   </main>
 
@@ -641,8 +657,8 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <span class="footer__logo">∫ LibMaths</span>
-        <p class="footer__tagline">La beauté des mathématiques, en ligne.</p>
+        <span class="footer__logo">Omniscience</span>
+        <p class="footer__tagline">La beaute des mathematiques, en ligne.</p>
       </div>
       <div class="footer__links">
         <div class="footer__col">
@@ -652,7 +668,7 @@
           <a href="mp.html">MP</a>
         </div>
         <div class="footer__col">
-          <h4 class="footer__col-title">Communauté</h4>
+          <h4 class="footer__col-title">Communaute</h4>
           <a href="#">Contribuer</a>
           <a href="#">GitHub</a>
           <a href="#">Contact</a>
@@ -660,10 +676,63 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; 2026 LibMaths — Projet open source</span>
+      <span>&copy; 2026 Omniscience — Projet open source</span>
     </div>
   </footer>
 
   <script src="main.js?v=10"></script>
+  <script>
+  /* ── Bank-specific hash routing for sidebar concours links ── */
+  (function() {
+    function activateBank(bank) {
+      // 1. Activate the Annales filter tab
+      var filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(function(b) { b.classList.remove('filter-btn--active'); });
+      var annalesBtn = document.querySelector('.filter-btn[data-filter="annales"]');
+      if (annalesBtn) annalesBtn.classList.add('filter-btn--active');
+
+      // 2. Hide all sections, show annales
+      document.querySelectorAll('[data-type]').forEach(function(s) { s.style.display = 'none'; });
+      var annalesSection = document.querySelector('[data-type="annales"]');
+      if (annalesSection) annalesSection.style.display = '';
+
+      // 3. Activate the bank tab
+      document.querySelectorAll('.annale-tab').forEach(function(t) { t.classList.remove('active'); });
+      var tab = document.querySelector('.annale-tab[data-abq="' + bank + '"]');
+      if (tab) tab.classList.add('active');
+
+      // 4. Show only the matching bank
+      document.querySelectorAll('.annale-banque').forEach(function(s) {
+        s.style.display = (s.dataset.banque === bank) ? '' : 'none';
+      });
+    }
+
+    function checkHash() {
+      var h = window.location.hash.replace('#', '');
+      var m = h.match(/^annales-(\w+)$/);
+      if (m) activateBank(m[1]);
+    }
+
+    // Run on load and on hash change
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+
+    // Intercept sidebar links for same-page navigation
+    document.querySelectorAll('.sidebar__link[href*="#annales-"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var current = window.location.pathname.split('/').pop() || 'index.html';
+        if (current === 'mp.html') {
+          e.preventDefault();
+          var bank = link.getAttribute('href').split('#annales-')[1];
+          if (bank) {
+            history.pushState(null, '', '#annales-' + bank);
+            activateBank(bank);
+            window.scrollTo({top: 0, behavior: 'instant'});
+          }
+        }
+      });
+    });
+  })();
+  </script>
 </body>
 </html>

@@ -3,227 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E3A 2012 -- Math B | LibMaths</title>
+  <title>E3A 2012 -- Maths 2 | LibMaths</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <style>
-    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
-    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
-    .course__back:hover{color:var(--accent)}
-    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
-    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
-    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
-    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
-    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
-    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
-    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
-    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
-    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
-    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
-    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
-    .course ol,.course ul{margin-bottom:var(--space-md)}
-    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
-    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
-    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
-    .annale-info__item{display:flex;flex-direction:column;gap:4px}
-    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
-    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
-    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
-    .annale-exercice__title{font-family:var(--font-body);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
-    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
-    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
-    .annale-partie__title{font-family:var(--font-body);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
-    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
-    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
-    .question p{margin-bottom:var(--space-sm)}
-    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
-    .question ol li{margin-bottom:4px}
-    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
-    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
-    .course__nav-link:hover{color:var(--accent)}
-    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
-    .course__nav-link:hover span{color:var(--accent)}
-    .course__nav-link--next{text-align:right}
-    .annale-warning{background:linear-gradient(135deg,rgba(255,170,0,.08),rgba(255,170,0,.03));border:1px solid rgba(255,170,0,.25);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.85rem;line-height:1.7;color:var(--ink-light)}
-    .annale-warning strong{color:var(--ink);font-weight:600}
-    .pdf-download{display:flex;flex-direction:column;align-items:center;gap:var(--space-lg);padding:var(--space-2xl) var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px;margin-bottom:var(--space-2xl);text-align:center}
-    .pdf-download__icon{font-size:3rem;opacity:.6}
-    .pdf-download__text{font-size:1rem;color:var(--ink-light);line-height:1.7;max-width:500px}
-    .pdf-download__btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--accent);color:#fff;border-radius:12px;font-family:var(--font-body);font-size:.95rem;font-weight:600;text-decoration:none;transition:opacity .2s}
-    .pdf-download__btn:hover{opacity:.85}
-    @media(max-width:680px){
-      .course__title{font-size:1.3rem}
-      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
-      .annale-exercice{padding:var(--space-md)}
-      .annale-info{flex-direction:column;gap:var(--space-md)}
-    }
-  </style>
+  <style>.course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}.course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}.course__back:hover{color:var(--accent)}.course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}.course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}.course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}.course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}.course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}.course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}.course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}.course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}.course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}.course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}.course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}.course ol,.course ul{margin-bottom:var(--space-md)}.course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}.math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}.annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}.annale-info__item{display:flex;flex-direction:column;gap:4px}.annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}.annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}.annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}.annale-exercice__title{font-family:var(--font-body);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}.annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}.question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}.question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}.question p{margin-bottom:var(--space-sm)}.question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}.question ol li{margin-bottom:4px}.course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}.course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}.course__nav-link:hover{color:var(--accent)}.course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}.course__nav-link:hover span{color:var(--accent)}.course__nav-link--next{text-align:right}@media(max-width:680px){.course__title{font-size:1.3rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.annale-exercice{padding:var(--space-md)}.annale-info{flex-direction:column;gap:var(--space-md)}}</style>
 </head>
 <body>
-
   <div class="bg-grid" aria-hidden="true"></div>
-
-  <nav class="nav">
-    <div class="site-switcher">
-      <span class="site-switcher__brand">Lib</span>
-      <div class="site-switcher__toggle">
-        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
-        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
-      </div>
-    </div>
-    <div class="nav__links">
-      <a href="../../index.html" class="nav__link">Accueil</a>
-      <div class="nav__dropdown">
-        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
-          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
-          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
-        </div>
-      </div>
-      <div class="nav__dropdown">
-        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
-          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
-          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
-        </div>
-      </div>
-    </div>
-      <a href="../../entrainement.html" class="nav__link">Entrainement</a>
-      <a href="../../revision.html" class="nav__link">Revision</a>
-    </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
-      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    </button>
-    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
-      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
-      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
-    </div>
-    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
-    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
-  </div>
+  <nav class="nav"><div class="site-switcher"><span class="site-switcher__brand">Lib</span><div class="site-switcher__toggle"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a><a href="../../physique/index.html" class="site-switcher__btn">Physique</a></div></div><div class="nav__links"><a href="../../index.html" class="nav__link">Accueil</a><div class="nav__dropdown"><a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mpsi.html#cours" class="dropdown__item">Cours</a><a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a><a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a><a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a></div></div><div class="nav__dropdown"><a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mp.html#cours" class="dropdown__item">Cours</a><a href="../../mp.html#exercices" class="dropdown__item">Exercices</a><a href="../../mp.html#fiches" class="dropdown__item">Fiches</a><a href="../../mp.html#methodes" class="dropdown__item">Methodes</a></div></div></div><a href="../../entrainement.html" class="nav__link">Entrainement</a><a href="../../revision.html" class="nav__link">Revision</a></div><button class="theme-toggle" id="themeToggle" aria-label="Changer de theme"><svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button><button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button></nav>
+  <div class="mobile-menu" id="mobileMenu"><div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a><a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a></div><div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div><div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div></div>
 
   <article class="course">
-
     <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+    <div class="course__meta"><span class="course__badge">E3A 2012</span></div>
+    <h1 class="course__title">E3A 2012 -- Mathematiques 2 (Epreuve B)</h1>
+    <div style="margin-bottom:var(--space-xl)"><a href="e3a-2012-correction.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#E91E63;color:#fff;border-radius:10px;font-family:var(--font-body);font-size:.85rem;font-weight:600;text-decoration:none;transition:background .2s"><span>&#9998;</span> Voir la correction detaillee</a></div>
+    <p class="course__intro">Epreuve de mathematiques B, filiere MP. Duree : 3 heures. 3 exercices independants : projecteurs orthogonaux en espace euclidien, algebre des matrices par blocs et polynome caracteristique, geometrie plane (cercle tangent, courbe parametree, inversion).</p>
+    <div class="annale-info"><div class="annale-info__item"><span class="annale-info__label">Concours</span><span class="annale-info__value">E3A</span></div><div class="annale-info__item"><span class="annale-info__label">Filiere</span><span class="annale-info__value">MP</span></div><div class="annale-info__item"><span class="annale-info__label">Epreuve</span><span class="annale-info__value">Mathematiques B</span></div><div class="annale-info__item"><span class="annale-info__label">Annee</span><span class="annale-info__value">2012</span></div><div class="annale-info__item"><span class="annale-info__label">Duree</span><span class="annale-info__value">3 heures</span></div><div class="annale-info__item"><span class="annale-info__label">Themes</span><span class="annale-info__value">Projecteurs orthogonaux, matrices par blocs, determinant, geometrie plane, inversion</span></div></div>
+    <nav class="course__toc"><span class="course__toc-title">Sommaire</span><ol class="course__toc-list"><li class="course__toc-item"><a href="#exo1"><span class="course__toc-num">I.</span> Projecteurs orthogonaux</a></li><li class="course__toc-item"><a href="#exo2"><span class="course__toc-num">II.</span> Algebre des matrices par blocs</a></li><li class="course__toc-item"><a href="#exo3"><span class="course__toc-num">III.</span> Geometrie plane</a></li></ol></nav>
 
-    <div class="course__meta">
-      <span class="course__badge">E3A 2012</span>
+    <!-- EXERCICE I -->
+    <div class="annale-exercice" id="exo1">
+      <h2 class="annale-exercice__title">Exercice I -- Projecteurs orthogonaux</h2>
+      <p class="annale-exercice__intro">Soit \(E\) un espace euclidien muni d'un produit scalaire note \(\langle\;,\;\rangle\). On note \(\|\;\|\) la norme euclidienne associee. Pour tout \(\pi\), endomorphisme de \(E\), on note \(\pi^*\) son endomorphisme adjoint : \(\forall x, y \in E\), \(\langle \pi(x), y \rangle = \langle x, \pi^*(y) \rangle\). Un projecteur \(\pi\) est dit <em>strict</em> si \(\pi\) n'est ni l'endomorphisme nul, ni l'identite \(\mathrm{Id}_E\). Un projecteur \(\pi\) est dit <em>orthogonal</em> si les sous-espaces vectoriels \(\mathrm{Im}(\pi)\) et \(\ker(\pi)\) sont orthogonaux.</p>
+
+      <div class="question" id="I-1"><span class="question__num">1.</span><p>Soit \(\pi\) un projecteur de \(E\).</p>
+        <ol><li>(a) Demontrer que \(E = \ker(\pi) \oplus \mathrm{Im}(\pi)\).</li>
+        <li>(b) Dans le cas ou \(\pi\) est un projecteur orthogonal, demontrer que :
+          <ol><li>i. Tout vecteur \(x\) dans \(E\) verifie : \(\|\pi(x)\| \leqslant \|x\|\). Dans quel cas a-t-on l'egalite ?</li>
+          <li>ii. Tout vecteur \(x\) dans \(E\) verifie : \(\langle \pi(x), x \rangle \geqslant 0\). Dans quel cas a-t-on l'egalite ?</li></ol>
+        </li>
+        <li>(c) Demontrer que \(\pi\) est un projecteur orthogonal si et seulement si \(\pi = \pi^*\).</li></ol>
+      </div>
+
+      <div class="question" id="I-2"><span class="question__num">2.</span><p>On considere ici le cas particulier du plan euclidien : \(E = \mathbb{R}^2\).</p>
+        <ol><li>(a) Soit \(M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}\). Demontrer que \(M\) est la matrice d'un projecteur strict orthogonal sur une base orthonormee de \(E\) si et seulement si \(d = 1 - a\), \(b = c\) et \(a(1-a) = b^2\).</li>
+        <li>(b) Qu'impose cette derniere egalite pour la valeur \(a\) ?</li>
+        <li>(c) Soit \(M = \begin{pmatrix} a & b \\ b & 1-a \end{pmatrix}\) la matrice d'un projecteur strict orthogonal sur une base orthonormee de \(E\). Exprimer le produit de matrices :
+          <div class="math-display">$$N = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} a & b \\ b & 1-a \end{pmatrix}.$$</div>
+          Justifier que la matrice \(N\) est diagonalisable et que ses valeurs propres sont toutes dans l'intervalle \([0, 1]\).
+        </li>
+        <li>(d) Soient \(\pi_1\) et \(\pi_2\) deux projecteurs stricts orthogonaux sur \(E\). Demontrer que l'endomorphisme \(\pi_1 \circ \pi_2\) est diagonalisable et que ses valeurs propres sont toutes dans l'intervalle \([0, 1]\).</li></ol>
+      </div>
+
+      <div class="question" id="I-3"><span class="question__num">3.</span><p>Soient \(\pi_1\) et \(\pi_2\) deux projecteurs stricts orthogonaux sur un espace euclidien \(E\) de dimension \(n \geqslant 1\).</p>
+        <ol><li>(a) Determiner l'endomorphisme adjoint de \(\pi_1 \circ \pi_2 \circ \pi_1\). En deduire que l'endomorphisme \(\pi_1 \circ \pi_2 \circ \pi_1\) est diagonalisable sur une base orthonormee (on citera precisement le theoreme utilise) et que ses valeurs propres sont toutes dans l'intervalle \([0, 1]\).</li>
+        <li>(b) Demontrer que le sous-espace vectoriel \(\mathrm{Im}(\pi_1)\) est stable par l'endomorphisme \(\pi_1 \circ \pi_2 \circ \pi_1\).</li>
+        <li>(c) Demontrer que le sous-espace vectoriel \(\mathrm{Im}(\pi_1)\) est stable par l'endomorphisme \(\pi_1 \circ \pi_2\) et que celui-ci induit sur \(\mathrm{Im}(\pi_1)\) un endomorphisme diagonalisable dont les valeurs propres sont dans l'intervalle \([0, 1]\).</li>
+        <li>(d) Soit \(G\) le sous-espace vectoriel \((\mathrm{Im}(\pi_1) + \ker(\pi_2))\). On note \(G^\perp\) son orthogonal dans \(E\). Demontrer que \(G^\perp = \ker(\pi_1) \cap \mathrm{Im}(\pi_2)\). Que vaut l'endomorphisme \(\pi_1 \circ \pi_2\) sur \(G^\perp\) ?</li>
+        <li>(e) Demontrer que l'endomorphisme \(\pi_1 \circ \pi_2\) est diagonalisable et que ses valeurs propres sont toutes dans l'intervalle \([0, 1]\).</li>
+        <li>(f) Soit \(r_2\) le rang de \(\pi_2\). Demontrer que \(\mathrm{Tr}(\pi_1 \circ \pi_2) \leqslant r_2\). Etudier le cas d'egalite.</li></ol>
+      </div>
     </div>
 
-    <h1 class="course__title">E3A 2012 -- Mathematiques B</h1>
+    <!-- EXERCICE II -->
+    <div class="annale-exercice" id="exo2">
+      <h2 class="annale-exercice__title">Exercice II -- Algebre des matrices par blocs</h2>
+      <p class="annale-exercice__intro">Etant donne un entier naturel non nul \(n\), \(\mathcal{M}_n(\mathbb{C})\) designe la \(\mathbb{C}\)-algebre des matrices \((n, n)\) a coefficients dans \(\mathbb{C}\). On designe par \(I_n\) la matrice identite de \(\mathcal{M}_n(\mathbb{C})\). Pour \(M \in \mathcal{M}_n(\mathbb{C})\), on note \(\chi_M(\lambda) = \det(\lambda I_n - M)\) son polynome caracteristique.</p>
+      <p class="annale-exercice__intro">Si \(A, B, C, D\) sont quatre matrices dans \(\mathcal{M}_n(\mathbb{C})\), on note \(M_{A,B,C,D}\) la matrice de \(\mathcal{M}_{2n}(\mathbb{C})\) definie par blocs par :</p>
+      <div class="math-display">$$M_{A,B,C,D} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}.$$</div>
 
-    <div class="annale-warning">
-      <strong>Sujet disponible en PDF uniquement.</strong> Ce sujet d'annale est un document scanne dont le texte n'est pas extractible numeriquement. Vous pouvez telecharger le PDF original ci-dessous.
+      <div class="question" id="II-1"><span class="question__num">1.</span><p>Soient \(A, B, C, D, E\) cinq matrices dans \(\mathcal{M}_n(\mathbb{C})\).</p>
+        <ol><li>(a) Exprimer la matrice produit \(M_{A,B,C,D}\,M_{I_n,\, 0_n,\, E,\, I_n}\).</li>
+        <li>(b) On suppose la matrice \(A\) inversible. Justifier l'egalite :
+          <div class="math-display">$$\det M_{A,B,C,D} = \det A \cdot \det(D - CA^{-1}B).$$</div></li></ol>
+      </div>
+
+      <div class="question" id="II-2"><span class="question__num">2.</span><p>On suppose que les matrices \(A\) et \(C\) commutent.</p>
+        <ol><li>(a) On suppose la matrice \(A\) inversible. Demontrer que \(\det M_{A,B,C,D} = \det(AD - CB)\).</li>
+        <li>(b) On ne suppose plus la matrice \(A\) inversible.
+          <ol><li>i. Demontrer qu'il existe des matrices \(U\) et \(V\) dans \(\mathcal{M}_n(\mathbb{C})\) telles que le polynome caracteristique de la matrice \(M_{A,B,C,D}\) verifie \(\chi_{M_{A,B,C,D}}(\lambda) = \det(\lambda^2 I_n + MU + V)\). Expliciter \(U\) et \(V\) en fonction des matrices \(A, B, C\) et \(D\).</li>
+          <li>ii. En deduire que \(\det M_{A,B,C,D} = \det(AD - CB)\).</li></ol>
+        </li></ol>
+      </div>
+
+      <div class="question" id="II-3"><span class="question__num">3.</span><p>Dans cette partie, on suppose que \(A = D = I_n\) et que \(C\) et \(B\) sont deux matrices a coefficients reels transposees l'une de l'autre. On designe la matrice \(M_{I_n, B, {}^tB, I_n}\) par \(S\).</p>
+        <ol><li>(a) Justifier que \({}^tBB\) est une matrice symetrique positive et que ses valeurs propres sont toutes des nombres reels positifs ou nuls.</li>
+        <li>(b) Exprimer le polynome \(\chi_S\) en fonction du polynome \(\chi_{{}^tBB}\).</li>
+        <li>(c) Soit \(T\) une matrice symetrique dans \(\mathcal{M}_n(\mathbb{R})\). Demontrer que \(T\) est definie positive (i.e. tout vecteur non nul \(X\) de \(\mathbb{R}^n\) verifie \({}^tXTX > 0\)) si et seulement si les valeurs propres de \(T\) sont toutes \(> 0\).</li>
+        <li>(d) En deduire que la matrice \(S\) est symetrique definie positive si et seulement si les valeurs propres de la matrice \({}^tBB\) sont toutes \(< 1\).</li></ol>
+      </div>
+
+      <div class="question" id="II-4"><span class="question__num">4.</span><p>On considere la suite de matrices \((A_n)_{n \in \mathbb{N}}\) definies par recurrence par :</p>
+        <div class="math-display">$$A_1 = \begin{pmatrix} 2 & i \\ i & -2 \end{pmatrix} \quad\text{et pour } n > 1,\quad A_n = \begin{pmatrix} 2A_{n-1} & iA_{n-1} \\ iA_{n-1} & -2A_{n-1} \end{pmatrix}.$$</div>
+        <ol><li>(a) Soit \(n > 1\). Determiner une relation de recurrence entre \(\det A_n\) et \(\det A_{n-1}\).</li>
+        <li>(b) Soit \(n \geqslant 1\). Exprimer \(\det A_n\) en fonction de \(n\).</li>
+        <li>(c) Soit \(n > 1\). Exprimer le polynome caracteristique de la matrice \(A_n\), \(\chi_{A_n}\), en fonction de \(\chi_{A_{n-1}}\) et \(\chi_{(-A_{n-1})}\).</li>
+        <li>(d) Soit \(n \geqslant 1\). Determiner les valeurs propres de la matrice \(A_n\).</li></ol>
+      </div>
     </div>
 
-    <div class="annale-info">
-      <div class="annale-info__item">
-        <span class="annale-info__label">Concours</span>
-        <span class="annale-info__value">E3A</span>
+    <!-- EXERCICE III -->
+    <div class="annale-exercice" id="exo3">
+      <h2 class="annale-exercice__title">Exercice III -- Geometrie plane</h2>
+      <p class="annale-exercice__intro">Soit \(\mathcal{P}\) le plan affine euclidien muni d'un repere orthonorme direct \((O, \vec{i}, \vec{j})\).</p>
+
+      <div class="question" id="III-1"><span class="question__num">1.</span><p>Soit \(\mathcal{D}\) la droite \((O, \vec{i})\) et \(\mathcal{D}'\) la droite de vecteur directeur \(\vec{i}\) passant par le point \(B = (0, 1)\). Soit \(\mathcal{C}\) le cercle tangent a \(\mathcal{D}\) en \(O\) et tangent a \(\mathcal{D}'\) en \(B\). Soit \(t \in \mathbb{R}\). Soient \(M_t\) le point sur la droite \(\mathcal{D}'\) d'abscisse \(t\) et \(N_t\) l'intersection de la droite \(OM_t\) et du cercle \(\mathcal{C}\) autre que le point \(O\).</p>
+        <ol><li>(a) Que peut-on dire du triangle \(ON_tB\) ?</li>
+        <li>(b) Determiner l'equation cartesienne du cercle \(\mathcal{C}\) et l'equation cartesienne de la droite \(\mathcal{D}'\).</li>
+        <li>(c) En deduire que le point \(N_t\) a pour coordonnees \((t/(1+t^2),\; 1/(1+t^2))\).</li>
+        <li>(d) Quelles sont les coordonnees du vecteur \(\vec{N_tM_t}\) ?</li></ol>
       </div>
-      <div class="annale-info__item">
-        <span class="annale-info__label">Filiere</span>
-        <span class="annale-info__value">MP</span>
+
+      <div class="question" id="III-2"><span class="question__num">2.</span><p>Pour \(t \in \mathbb{R}\) non nul, on note \(P_t\) le point tel que \(\vec{OP_t} = \vec{N_tM_t}\) ; on pose \(P_0 = O\).</p>
+        <ol><li>(a) Representer la courbe \(\Gamma\) lieu des points \(P_t\) lorsque \(t\) parcourt \(\mathbb{R}\). On precisera les eventuelles asymptotes.</li>
+        <li>(b) Preciser la nature du point \(P_0\) de \(\Gamma\).</li>
+        <li>(c) Calculer l'aire comprise entre la courbe \(\Gamma\) et la droite \(\mathcal{D}'\).</li></ol>
       </div>
-      <div class="annale-info__item">
-        <span class="annale-info__label">Epreuve</span>
-        <span class="annale-info__value">Mathematiques B</span>
-      </div>
-      <div class="annale-info__item">
-        <span class="annale-info__label">Annee</span>
-        <span class="annale-info__value">2012</span>
+
+      <div class="question" id="III-3"><span class="question__num">3.</span><p>Si \(z\) est un nombre complexe, on note \(\bar{z}\) son conjugue. On considere l'application \(\sigma\) definie sur le plan \(\mathcal{P}\) prive du point \(O\) par : l'image par \(\sigma\) du point \(M\) d'affixe \(z\) est le point \(M'\) d'affixe \(1/\bar{z}\).</p>
+        <ol><li>(a) Soit \(M\) un point de \(\mathcal{P}\) distinct de l'origine et soit \(M' = \sigma(M)\). Calculer le produit scalaire \(\vec{OM} \cdot \vec{OM'}\).</li>
+        <li>(b) Soit \(t \in \mathbb{R}\) non nul. Determiner les coordonnees du point \(U_t\), image par \(\sigma\) du point \(P_t\) defini dans la question 2.</li>
+        <li>(c) Quelle est l'image de la courbe \(\Gamma\) par \(\sigma\) ?</li></ol>
       </div>
     </div>
 
-    <div class="pdf-download">
-      <div class="pdf-download__icon">&#128196;</div>
-      <p class="pdf-download__text">
-        Le sujet original est disponible au format PDF. Cliquez sur le bouton ci-dessous pour le telecharger ou le consulter dans votre navigateur.
-      </p>
-      <a href="../../data/pdf-sujets/e3a-2012-mathsB.pdf" class="pdf-download__btn" target="_blank" rel="noopener">
-        &#128229; Telecharger le PDF
-      </a>
-    </div>
-
-    <nav class="course__nav">
-      <a href="e3a-2012-maths1.html" class="course__nav-link">
-        &larr; Precedent
-        <span>E3A 2012 -- Math A</span>
-      </a>
-      <a href="e3a-2011-maths1.html" class="course__nav-link course__nav-link--next">
-        Suivant &rarr;
-        <span>E3A 2011 -- Math A</span>
-      </a>
-    </nav>
-
+    <nav class="course__nav"><a href="e3a-2012-maths1.html" class="course__nav-link">&larr; Precedent<span>E3A 2012 -- Maths 1</span></a><a href="e3a-2013-maths1.html" class="course__nav-link course__nav-link--next">Suivant &rarr;<span>E3A 2013 -- Maths 1</span></a></nav>
   </article>
 
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <span class="footer__logo">Lib<em>Maths</em></span>
-        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
-      </div>
-      <div class="footer__links">
-        <div class="footer__col">
-          <h4 class="footer__col-title">Navigation</h4>
-          <a href="../../index.html">Accueil</a>
-          <a href="../../mpsi.html">MPSI</a>
-          <a href="../../mp.html">MP</a>
-        </div>
-        <div class="footer__col">
-          <h4 class="footer__col-title">Communaute</h4>
-          <a href="#">Contribuer</a>
-          <a href="#">GitHub</a>
-          <a href="#">Contact</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span>&copy; 2026 LibMaths -- Projet open source</span>
-    </div>
-  </footer>
-
+  <footer class="footer"><div class="footer__inner"><div class="footer__brand"><span class="footer__logo">Lib<em>Maths</em></span><p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p></div><div class="footer__links"><div class="footer__col"><h4 class="footer__col-title">Navigation</h4><a href="../../index.html">Accueil</a><a href="../../mpsi.html">MPSI</a><a href="../../mp.html">MP</a></div><div class="footer__col"><h4 class="footer__col-title">Communaute</h4><a href="#">Contribuer</a><a href="#">GitHub</a><a href="#">Contact</a></div></div></div><div class="footer__bottom"><span>&copy; 2026 LibMaths -- Projet open source</span></div></footer>
   <script src="../../main.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.renderMathInElement) {
-        renderMathInElement(document.querySelector('.course'), {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '\\(', right: '\\)', display: false }
-          ],
-          throwOnError: false
-        });
-      } else {
-        const interval = setInterval(() => {
-          if (window.renderMathInElement) {
-            clearInterval(interval);
-            renderMathInElement(document.querySelector('.course'), {
-              delimiters: [
-                { left: '$$', right: '$$', display: true },
-                { left: '\\(', right: '\\)', display: false }
-              ],
-              throwOnError: false
-            });
-          }
-        }, 100);
-      }
-    });
-  </script>
-</body></html>
+  <script>document.addEventListener('DOMContentLoaded',()=>{const r=()=>renderMathInElement(document.querySelector('.course'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});if(window.renderMathInElement)r();else{const i=setInterval(()=>{if(window.renderMathInElement){clearInterval(i);r()}},100)}})</script>
+</body>
+</html>

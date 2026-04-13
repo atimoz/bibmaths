@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E3A 2012 -- Math A | LibMaths</title>
+  <title>E3A 2012 -- Maths 1 | LibMaths</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -14,8 +14,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <style>
     .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
-    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
-    .course__back:hover{color:var(--accent)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}.course__back:hover{color:var(--accent)}
     .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
     .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
     .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
@@ -23,12 +22,10 @@
     .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
     .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
     .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
-    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
-    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}.course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
     .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
     .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
-    .course ol,.course ul{margin-bottom:var(--space-md)}
-    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .course ol,.course ul{margin-bottom:var(--space-md)}.course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
     .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
     .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
     .annale-info__item{display:flex;flex-direction:column;gap:4px}
@@ -41,81 +38,21 @@
     .annale-partie__title{font-family:var(--font-body);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
     .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
     .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
-    .question p{margin-bottom:var(--space-sm)}
-    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
-    .question ol li{margin-bottom:4px}
+    .question p{margin-bottom:var(--space-sm)}.question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}.question ol li{margin-bottom:4px}
     .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
-    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
-    .course__nav-link:hover{color:var(--accent)}
-    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
-    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}.course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}.course__nav-link:hover span{color:var(--accent)}
     .course__nav-link--next{text-align:right}
-    .annale-warning{background:linear-gradient(135deg,rgba(255,170,0,.08),rgba(255,170,0,.03));border:1px solid rgba(255,170,0,.25);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.85rem;line-height:1.7;color:var(--ink-light)}
-    .annale-warning strong{color:var(--ink);font-weight:600}
-    .pdf-download{display:flex;flex-direction:column;align-items:center;gap:var(--space-lg);padding:var(--space-2xl) var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px;margin-bottom:var(--space-2xl);text-align:center}
-    .pdf-download__icon{font-size:3rem;opacity:.6}
-    .pdf-download__text{font-size:1rem;color:var(--ink-light);line-height:1.7;max-width:500px}
-    .pdf-download__btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--accent);color:#fff;border-radius:12px;font-family:var(--font-body);font-size:.95rem;font-weight:600;text-decoration:none;transition:opacity .2s}
-    .pdf-download__btn:hover{opacity:.85}
-    @media(max-width:680px){
-      .course__title{font-size:1.3rem}
-      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
-      .annale-exercice{padding:var(--space-md)}
-      .annale-info{flex-direction:column;gap:var(--space-md)}
-    }
+    @media(max-width:680px){.course__title{font-size:1.3rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.annale-exercice{padding:var(--space-md)}.annale-info{flex-direction:column;gap:var(--space-md)}}
   </style>
 </head>
 <body>
 
   <div class="bg-grid" aria-hidden="true"></div>
 
-  <nav class="nav">
-    <div class="site-switcher">
-      <span class="site-switcher__brand">Lib</span>
-      <div class="site-switcher__toggle">
-        <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a>
-        <a href="../../physique/index.html" class="site-switcher__btn">Physique</a>
-      </div>
-    </div>
-    <div class="nav__links">
-      <a href="../../index.html" class="nav__link">Accueil</a>
-      <div class="nav__dropdown">
-        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
-          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
-          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
-        </div>
-      </div>
-      <div class="nav__dropdown">
-        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
-          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
-          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
-          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
-        </div>
-      </div>
-    </div>
-      <a href="../../entrainement.html" class="nav__link">Entrainement</a>
-      <a href="../../revision.html" class="nav__link">Revision</a>
-    </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
-      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    </button>
-    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
-  </nav>
+  <nav class="nav"><div class="site-switcher"><span class="site-switcher__brand">Lib</span><div class="site-switcher__toggle"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active">Maths</a><a href="../../physique/index.html" class="site-switcher__btn">Physique</a></div></div><div class="nav__links"><a href="../../index.html" class="nav__link">Accueil</a><div class="nav__dropdown"><a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mpsi.html#cours" class="dropdown__item">Cours</a><a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a><a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a><a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a></div></div><div class="nav__dropdown"><a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a><div class="dropdown"><a href="../../mp.html#cours" class="dropdown__item">Cours</a><a href="../../mp.html#exercices" class="dropdown__item">Exercices</a><a href="../../mp.html#fiches" class="dropdown__item">Fiches</a><a href="../../mp.html#methodes" class="dropdown__item">Methodes</a></div></div></div><a href="../../entrainement.html" class="nav__link">Entrainement</a><a href="../../revision.html" class="nav__link">Revision</a></div><button class="theme-toggle" id="themeToggle" aria-label="Changer de theme"><svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button><button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button></nav>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
-      <a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
-      <a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
-    </div>
-    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
-    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
-  </div>
+  <div class="mobile-menu" id="mobileMenu"><div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)"><a href="../../index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a><a href="../../physique/index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a></div><div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div><div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div></div>
 
   <article class="course">
 
@@ -125,105 +62,308 @@
       <span class="course__badge">E3A 2012</span>
     </div>
 
-    <h1 class="course__title">E3A 2012 -- Mathematiques A</h1>
+    <h1 class="course__title">E3A 2012 -- Mathematiques 1 (Epreuve A)</h1>
 
-    <div class="annale-warning">
-      <strong>Sujet disponible en PDF uniquement.</strong> Ce sujet d'annale est un document scanne dont le texte n'est pas extractible numeriquement. Vous pouvez telecharger le PDF original ci-dessous.
+    <div style="margin-bottom:var(--space-xl)">
+      <a href="e3a-2012-correction.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#E91E63;color:#fff;border-radius:10px;font-family:var(--font-body);font-size:.85rem;font-weight:600;text-decoration:none;transition:background .2s">
+        <span>&#9998;</span> Voir la correction detaillee
+      </a>
     </div>
+
+    <p class="course__intro">
+      Epreuve de mathematiques A, filiere MP. Duree : 4 heures. Probleme en 5 parties : etude de la fonction \(f(x) = xe^x\), de sa bijection reciproque \(g\), suites recurrentes definies par \(u_{n+1} = c^{u_n}\), serie entiere \(S(z) = \displaystyle\sum_{n=1}^{+\infty} \frac{n^{n-1}}{n!} z^n\), et espaces vectoriels de fonctions developpables en serie entiere.
+    </p>
 
     <div class="annale-info">
-      <div class="annale-info__item">
-        <span class="annale-info__label">Concours</span>
-        <span class="annale-info__value">E3A</span>
+      <div class="annale-info__item"><span class="annale-info__label">Concours</span><span class="annale-info__value">E3A</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Filiere</span><span class="annale-info__value">MP</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Epreuve</span><span class="annale-info__value">Mathematiques A</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Annee</span><span class="annale-info__value">2012</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Duree</span><span class="annale-info__value">4 heures</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Themes</span><span class="annale-info__value">Fonction exponentielle, bijection reciproque, suites recurrentes, series entieres, espaces vectoriels de fonctions</span></div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#notations"><span class="course__toc-num">0.</span> Notations</a></li>
+        <li class="course__toc-item"><a href="#p1"><span class="course__toc-num">I.</span> Partie I</a></li>
+        <li class="course__toc-item"><a href="#p2"><span class="course__toc-num">II.</span> Partie II</a></li>
+        <li class="course__toc-item"><a href="#p3"><span class="course__toc-num">III.</span> Partie III</a></li>
+        <li class="course__toc-item"><a href="#p4"><span class="course__toc-num">IV.</span> Partie IV</a></li>
+        <li class="course__toc-item"><a href="#p5a"><span class="course__toc-num">V-A.</span> Partie V - A</a></li>
+        <li class="course__toc-item"><a href="#p5b"><span class="course__toc-num">V-B.</span> Partie V - B</a></li>
+      </ol>
+    </nav>
+
+    <!-- NOTATIONS -->
+    <div class="annale-exercice" id="notations">
+      <h2 class="annale-exercice__title">Notations</h2>
+
+      <p class="annale-exercice__intro">Soit \(f\) la fonction de la variable reelle \(x\) definie sur \(\mathbb{R}\) par :</p>
+      <div class="math-display">$$f(x) = xe^x.$$</div>
+
+      <p class="annale-exercice__intro">Soit \(S\) la serie entiere :</p>
+      <div class="math-display">$$S(z) = \sum_{n=1}^{+\infty} \frac{n^{n-1}}{n!} z^n.$$</div>
+    </div>
+
+    <!-- PARTIE I -->
+    <div class="annale-exercice" id="p1">
+      <h2 class="annale-exercice__title">Partie I</h2>
+
+      <div class="question" id="I-1">
+        <span class="question__num">1.</span>
+        <p>Justifier que la fonction \(f\) est de classe \(C^\infty\) sur \(\mathbb{R}\).</p>
       </div>
-      <div class="annale-info__item">
-        <span class="annale-info__label">Filiere</span>
-        <span class="annale-info__value">MP</span>
+
+      <div class="question" id="I-2">
+        <span class="question__num">2.</span>
+        <p>Etablir le tableau de variations de \(f\).</p>
       </div>
-      <div class="annale-info__item">
-        <span class="annale-info__label">Epreuve</span>
-        <span class="annale-info__value">Mathematiques A</span>
+
+      <div class="question" id="I-3">
+        <span class="question__num">3.</span>
+        <p>Representer le graphe de la fonction \(f\) sur \(\mathbb{R}\).</p>
       </div>
-      <div class="annale-info__item">
-        <span class="annale-info__label">Annee</span>
-        <span class="annale-info__value">2012</span>
+
+      <div class="question" id="I-4">
+        <span class="question__num">4.</span>
+        <p>Demontrer que la fonction \(f\) realise une bijection de l'intervalle \([-1, +\infty[\) sur un intervalle que l'on precisera.</p>
+      </div>
+
+      <div class="question" id="I-5">
+        <span class="question__num">5.</span>
+        <p>Justifier l'existence d'une fonction \(g\) continue sur l'intervalle ferme \(\left[-\frac{1}{e}, +\infty\right[\), et de classe \(C^\infty\) sur l'intervalle ouvert \(\left]-\frac{1}{e}, +\infty\right[\) telle que :</p>
+        <div class="math-display">$$\forall x \in \left[-\frac{1}{e}, +\infty\right[, \quad g(x)e^{g(x)} = x.$$</div>
+      </div>
+
+      <p class="annale-exercice__intro">Dans la suite du probleme, on considere la fonction reciproque de la restriction de \(f\) a \([-1, +\infty[\), c'est-a-dire une fonction \(g\) definie et continue sur l'intervalle ferme \(\left[-\frac{1}{e}, +\infty\right[\) et de classe \(C^\infty\) sur l'intervalle ouvert \(\left]-\frac{1}{e}, +\infty\right[\) telle que :</p>
+      <div class="math-display">$$\forall x \in \left[-\frac{1}{e}, +\infty\right[, \quad g(x)e^{g(x)} = x.$$</div>
+    </div>
+
+    <!-- PARTIE II -->
+    <div class="annale-exercice" id="p2">
+      <h2 class="annale-exercice__title">Partie II</h2>
+
+      <div class="question" id="II-1">
+        <span class="question__num">1.</span>
+        <p>Calculer \(g(0)\), \(g\!\left(\frac{-1}{e}\right)\) et \(g(e)\).</p>
+      </div>
+
+      <div class="question" id="II-2">
+        <span class="question__num">2.</span>
+        <p>Exprimer la fonction derivee \(g'\) en fonction de \(g\).</p>
+      </div>
+
+      <div class="question" id="II-3">
+        <span class="question__num">3.</span>
+        <p>Representer le graphe de la fonction \(g\) sur l'intervalle \(\left[-\frac{1}{e}, +\infty\right[\). La fonction \(g\) admet-elle une tangente au point d'abscisse \(-\frac{1}{e}\) ?</p>
+      </div>
+
+      <div class="question" id="II-4">
+        <span class="question__num">4.</span>
+        <p>Demontrer que la fonction \(g\) admet en \(+\infty\) une branche parabolique dont on precisera la direction.</p>
+      </div>
+
+      <div class="question" id="II-5">
+        <span class="question__num">5.</span>
+        <p>Soit \(h\) la primitive de \(g\) definie sur l'intervalle \(\left[-\frac{1}{e}, +\infty\right[\) et qui prend la valeur 0 en 0.</p>
+        <ol>
+          <li>(a) Exprimer \(h(u)\) fonction de \(g(u)\) pour \(u\) dans l'intervalle \(\left]-\frac{1}{e}, +\infty\right[\). (<em>Indication : on pourra faire le changement de variables \(x = g(t)\) dans l'integrale \(\int_0^u g(t)\,dt\).</em>) Ce resultat reste-t-il valable pour \(u = -\frac{1}{e}\) ?</li>
+          <li>(b) En deduire la valeur de \(\int_{1/e}^{0} g(t)\,dt\).</li>
+        </ol>
       </div>
     </div>
 
-    <div class="pdf-download">
-      <div class="pdf-download__icon">&#128196;</div>
-      <p class="pdf-download__text">
-        Le sujet original est disponible au format PDF. Cliquez sur le bouton ci-dessous pour le telecharger ou le consulter dans votre navigateur.
-      </p>
-      <a href="../../data/pdf-sujets/e3a-2012-mathsA.pdf" class="pdf-download__btn" target="_blank" rel="noopener">
-        &#128229; Telecharger le PDF
-      </a>
+    <!-- PARTIE III -->
+    <div class="annale-exercice" id="p3">
+      <h2 class="annale-exercice__title">Partie III</h2>
+
+      <p class="annale-exercice__intro">Soit \(c\) un nombre reel tel que \(0 < c < e^{1/e}\). On considere la suite recurrente \(U = (u_n)_{n \in \mathbb{N}}\) definie par :</p>
+      <div class="math-display">$$\begin{cases} u_0 = c, \\ u_{n+1} = c^{u_n} = e^{u_n \ln c}, \quad \text{si } n \geqslant 1. \end{cases}$$</div>
+
+      <div class="question" id="III-1">
+        <span class="question__num">1.</span>
+        <p>Que dire de la suite \(U\) dans le cas particulier \(c = 1\) ?</p>
+      </div>
+
+      <p class="annale-exercice__intro">On suppose dans la suite de la partie III que \(c \neq 1\).</p>
+
+      <div class="question" id="III-2">
+        <span class="question__num">2.</span>
+        <p>On suppose que la suite \(U\) converge. On note \(\ell\) cette limite. Demontrer que \(\ell = -g(-\ln(c)) / \ln c\).</p>
+      </div>
+
+      <div class="question" id="III-3">
+        <span class="question__num">3.</span>
+        <p>On suppose dans cette question uniquement que \(c = \sqrt{2}\).</p>
+        <ol>
+          <li>(a) Demontrer les inegalites \(u_0 \leqslant u_1 \leqslant 2\).</li>
+          <li>(b) Demontrer que la suite \(U\) est croissante et majoree par 2.</li>
+          <li>(c) Demontrer que la suite \(U\) converge vers 2.</li>
+        </ol>
+      </div>
+
+      <div class="question" id="III-4">
+        <span class="question__num">4.</span>
+        <p>On suppose dans cette question uniquement que \(c = e^{-e}\).</p>
+        <ol>
+          <li>(a) Etablir le tableau de variation de la fonction \(w\) definie par \(w(x) = e^{-ex}\) sur l'intervalle \([0, +\infty[\).</li>
+          <li>(b) En deduire les proprietes suivantes de la suite \(U\) :
+            <ol>
+              <li>i. La suite \((u_{2n})_{n \in \mathbb{N}}\) extraite de \(U\) est monotone et contenue dans \(]0, 1/e[\).</li>
+              <li>ii. La suite \((u_{2n+1})_{n \in \mathbb{N}}\) extraite de \(U\) est monotone et contenue dans \([1/e, 1[\).</li>
+              <li>iii. \(u_0 \leqslant u_2\) (<em>Indication : on pourra comparer \(\ln(u_0)\) et \(\ln(u_2)\).</em>)</li>
+              <li>iv. La suite \((u_{2n})_{n \in \mathbb{N}}\) est croissante et la suite \((u_{2n+1})_{n \in \mathbb{N}}\) est decroissante.</li>
+              <li>v. Un calcul qu'il n'est pas demande d'assurer que la fonction qui envoie le nombre reel \(x\) sur \(w(w(x)) - x\) est strictement decroissante sur l'intervalle \([0, 1]\). Demontrer que la suite \(U\) converge et determiner sa limite.</li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- PARTIE IV -->
+    <div class="annale-exercice" id="p4">
+      <h2 class="annale-exercice__title">Partie IV</h2>
+
+      <div class="question" id="IV-1">
+        <span class="question__num">1.</span>
+        <ol>
+          <li>(a) Demontrer que la suite de terme general \(\left(1 + \frac{1}{n}\right)^n\) converge vers le nombre \(e\).</li>
+          <li>(b) En deduire le rayon de convergence de la serie \(S\).</li>
+        </ol>
+      </div>
+
+      <div class="question" id="IV-2">
+        <span class="question__num">2.</span>
+        <p>On se propose d'etudier le comportement de la serie entiere \(S\) sur le cercle d'equation \(|z| = R\), \(R\) etant le rayon de convergence de \(S\).</p>
+        <ol>
+          <li>(a) Pour tout entier naturel non nul \(n\), on pose :
+            <div class="math-display">$$u_n = \frac{n! e^n}{n^n \sqrt{n}} \quad \text{et} \quad v_n = \ln u_{n+1} - \ln u_n.$$</div>
+            <ol>
+              <li>i. Determiner un equivalent de la suite \(v_n\) lorsque \(n\) tend vers \(+\infty\).</li>
+              <li>ii. En deduire la nature de la serie de terme general \(v_n\).</li>
+              <li>iii. Demontrer que la suite de terme general \(u_n\) a une limite lorsque \(n\) tend vers \(+\infty\). On notera \(\Lambda\) cette limite.</li>
+              <li>iv. En deduire un equivalent de la suite \(\frac{n^{n-1}}{n!}\) lorsque \(n\) tend vers \(+\infty\).</li>
+            </ol>
+          </li>
+          <li>(b) Demontrer que la serie de terme general \(\frac{n^{n-1}}{n!e^n}\) est convergente.</li>
+          <li>(c) Conclure.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- PARTIE V - A -->
+    <div class="annale-exercice" id="p5a">
+      <h2 class="annale-exercice__title">Partie V - A</h2>
+
+      <p class="annale-exercice__intro">Etant donne \(R\) un nombre reel \(> 0\), on note :</p>
+      <ul>
+        <li>\(\mathcal{K}_R\) l'espace vectoriel des fonctions a valeurs reelles de classe \(C^\infty\) sur \(]-R, R[ \setminus \{0\}\),</li>
+        <li>\(\mathcal{C}_R\) le sous-espace vectoriel de \(\mathcal{K}_R\) des fonctions qui se prolongent en des fonctions de classe \(C^\infty\) sur \(]-R, R[\),</li>
+        <li>\(\mathcal{E}_R\) le sous-espace vectoriel de \(\mathcal{C}_R\) des fonctions qui admettent un developpement en serie entiere sur \(]-R, R[\).</li>
+      </ul>
+
+      <p class="annale-exercice__intro">On note \(\phi\) et \(\psi\) les fonctions dans \(\mathcal{K}_R\) definies par :</p>
+      <div class="math-display">$$\forall x \in ]-R, R[ \setminus \{0\}, \quad \phi(x) = x \quad \text{et} \quad \psi(x) = \frac{1}{x}.$$</div>
+
+      <p class="annale-exercice__intro">On remarque que le produit de deux fonctions de \(\mathcal{K}_R\) est une fonction de \(\mathcal{K}_R\). En particulier, si \(h\) est une fonction de \(\mathcal{K}_R\) et si \(n\) est un entier naturel non nul, \(\psi^n h\) est la fonction de \(\mathcal{K}_R\) definie par :</p>
+      <div class="math-display">$$\forall x \in ]-R, R[ \setminus \{0\}, \quad (\psi^n h)(x) = \frac{h(x)}{x^n}.$$</div>
+
+      <p class="annale-exercice__intro">Soit \(\mathcal{L}_R\) l'ensemble des fonctions \(\psi^n h\) ou \(n\) est un entier naturel et \(h\) une fonction dans \(\mathcal{E}_R\).</p>
+
+      <div class="question" id="V-A-1">
+        <span class="question__num">1.</span>
+        <p>Demontrer que \(\mathcal{L}_R\) est un sous-espace vectoriel de \(\mathcal{K}_R\) et que \(\mathcal{L}_R\) contient \(\mathcal{E}_R\).</p>
+      </div>
+
+      <div class="question" id="V-A-2">
+        <span class="question__num">2.</span>
+        <p>Soit \(h\) dans \(\mathcal{L}_R\). Demontrer qu'il existe une unique suite de nombres reels \((\alpha_i(h))_{i \in \mathbb{Z}}\), ayant au plus un nombre fini de termes indexes negativement et non nuls, telle que</p>
+        <div class="math-display">$$\forall x \in ]-R, R[ \setminus \{0\}, \quad h(x) = \sum_{i \in \mathbb{Z}} \alpha_i(h) x^i.$$</div>
+      </div>
+
+      <div class="question" id="V-A-3">
+        <span class="question__num">3.</span>
+        <p>Demontrer que \(\alpha_{-1}\) est une forme lineaire sur \(\mathcal{L}_R\) qui s'annule sur \(\mathcal{E}_R\).</p>
+      </div>
+
+      <div class="question" id="V-A-4">
+        <span class="question__num">4.</span>
+        <p>Soit \(h\) dans \(\mathcal{L}_R\). Demontrer que sa fonction derivee \(h'\) appartient a \(\mathcal{L}_R\) et verifier \(\alpha_{-1}(h') = 0\).</p>
+      </div>
+
+      <div class="question" id="V-A-5">
+        <span class="question__num">5.</span>
+        <p>Soit \(f\) la fonction etudiee dans la partie I.</p>
+        <ol>
+          <li>(a) Demontrer que la fonction \(f'/f\) appartient a \(\mathcal{L}_R\) et expliciter, en fonction de l'entier \(k\), \(\alpha_k(f'/f)\), pour tout entier relatif \(k\).</li>
+          <li>(b) Soit \(n\) un entier naturel. Demontrer que la fonction \(1/f^n\) appartient a \(\mathcal{L}_R\) et expliciter en fonction de l'entier \(k\) \(\alpha_k(1/f^n)\), pour tout entier relatif \(k\).</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- PARTIE V - B -->
+    <div class="annale-exercice" id="p5b">
+      <h2 class="annale-exercice__title">Partie V - B</h2>
+
+      <p class="annale-exercice__intro">On admet que la fonction \(g\) etudiee dans la partie II est developpable en serie entiere sur \(]-1/e, 1/e[\) : il existe une suite \((c_i)_{i \in \mathbb{N}}\) telle que pour tout \(x\) dans \(]-1/e, 1/e[\), \(g(x) = \displaystyle\sum_{i=0}^{+\infty} c_i x^i\). On se propose de calculer les coefficients \((c_i)_{i \in \mathbb{N}}\).</p>
+
+      <div class="question" id="V-B-1">
+        <span class="question__num">1.</span>
+        <p>Determiner \(c_0\) et \(c_1\).</p>
+      </div>
+
+      <div class="question" id="V-B-2">
+        <span class="question__num">2.</span>
+        <p>Demontrer qu'il existe un nombre reel \(R\) tel que \(\forall x \in ]-R, R[\), \(|xe^x| < 1/(2e)\). En deduire que la serie de fonctions \(\sum_{i=0}^{+\infty} c_i f^i\) converge normalement sur \(]-R, R[\) vers la fonction \(\phi\).</p>
+      </div>
+
+      <div class="question" id="V-B-3">
+        <span class="question__num">3.</span>
+        <p>En deduire que la serie de fonctions \(\sum_{i=0}^{+\infty} c_i f^i\) converge normalement sur \(]-R, R[\) vers une fonction developpable en serie entiere sur \(]-R, R[\).</p>
+      </div>
+
+      <div class="question" id="V-B-4">
+        <span class="question__num">4.</span>
+        <p>Soit \(n\) un entier naturel \(\geqslant 1\). Demontrer que la serie de fonctions \(\sum_{i=n}^{+\infty} c_i f^{i-n}\) converge uniformement sur \(]-R, R[\).</p>
+      </div>
+
+      <div class="question" id="V-B-5">
+        <span class="question__num">5.</span>
+        <p>Soit \(n\) un entier naturel.</p>
+        <ol>
+          <li>(a) Demontrer que la serie de fonctions \(\sum_{i=0}^{+\infty} c_i f^i\) converge normalement sur \(]-R, R[\) vers une fonction developpable en serie entiere sur \(]-R, R[\).</li>
+          <li>(b) En deduire que la serie de fonctions \(\sum_{i=n}^{+\infty} c_i f^{i-n}\) converge normalement sur \(]-R, R[\) vers une fonction developpable en serie entiere sur \(]-R, R[\). (<em>Indication : on pourra commencer par justifier qu'une serie entiere de rayon de convergence non nul \(U(x) = \sum_{i=0}^{+\infty} \gamma_i x^i\) et telle que \(U(x)/x^n\) admet une limite finie lorsque \(x\) tend vers 0 verifie \(\gamma_0 = \gamma_1 = \cdots = \gamma_{n-1} = 0\).</em>)</li>
+          <li>(c) Demontrer, pour tout nombre reel \(x\) dans \(]-R, R[ \setminus \{0\}\), l'egalite :
+            <div class="math-display">$$\sum_{i=0}^{n-1} c_i f'(x) f^{i-n-1}(x) + c_n \frac{f'(x)}{f(x)} + \sum_{i=n+1}^{+\infty} c_i f'(x) f^{i-n-1}(x) = \frac{xf'(x)}{f^{n+1}(x)}$$</div>
+          </li>
+          <li>(d) En deduire que :
+            <div class="math-display">$$c_n = \alpha_{-1}\!\left(\frac{\phi f'}{f^{n+1}}\right).$$</div>
+          </li>
+          <li>(e) En considerant la derivee de la fonction \(\phi / f^n\), demontrer que
+            <div class="math-display">$$c_n = \alpha_1\!\left(\frac{-1}{n f^n}\right).$$</div>
+            <p>En deduire la valeur de \(c_n\) en fonction de \(n\), pour tout entier naturel \(n \geqslant 2\).</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="question" id="V-B-6">
+        <span class="question__num">6.</span>
+        <p>Quelle relation peut-on en deduire entre la fonction \(g\) et la serie \(S\) ?</p>
+      </div>
     </div>
 
     <nav class="course__nav">
-      <a href="e3a-2013-maths2.html" class="course__nav-link">
-        &larr; Precedent
-        <span>E3A 2013 -- Math B</span>
-      </a>
-      <a href="e3a-2012-maths2.html" class="course__nav-link course__nav-link--next">
-        Suivant &rarr;
-        <span>E3A 2012 -- Math B</span>
-      </a>
+      <a href="e3a-2011-maths2.html" class="course__nav-link">&larr; Precedent<span>E3A 2011 -- Maths 2</span></a>
+      <a href="e3a-2012-maths2.html" class="course__nav-link course__nav-link--next">Suivant &rarr;<span>E3A 2012 -- Maths 2</span></a>
     </nav>
 
   </article>
 
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <span class="footer__logo">Lib<em>Maths</em></span>
-        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
-      </div>
-      <div class="footer__links">
-        <div class="footer__col">
-          <h4 class="footer__col-title">Navigation</h4>
-          <a href="../../index.html">Accueil</a>
-          <a href="../../mpsi.html">MPSI</a>
-          <a href="../../mp.html">MP</a>
-        </div>
-        <div class="footer__col">
-          <h4 class="footer__col-title">Communaute</h4>
-          <a href="#">Contribuer</a>
-          <a href="#">GitHub</a>
-          <a href="#">Contact</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span>&copy; 2026 LibMaths -- Projet open source</span>
-    </div>
-  </footer>
+  <footer class="footer"><div class="footer__inner"><div class="footer__brand"><span class="footer__logo">Lib<em>Maths</em></span><p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p></div><div class="footer__links"><div class="footer__col"><h4 class="footer__col-title">Navigation</h4><a href="../../index.html">Accueil</a><a href="../../mpsi.html">MPSI</a><a href="../../mp.html">MP</a></div><div class="footer__col"><h4 class="footer__col-title">Communaute</h4><a href="#">Contribuer</a><a href="#">GitHub</a><a href="#">Contact</a></div></div></div><div class="footer__bottom"><span>&copy; 2026 LibMaths -- Projet open source</span></div></footer>
 
   <script src="../../main.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.renderMathInElement) {
-        renderMathInElement(document.querySelector('.course'), {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '\\(', right: '\\)', display: false }
-          ],
-          throwOnError: false
-        });
-      } else {
-        const interval = setInterval(() => {
-          if (window.renderMathInElement) {
-            clearInterval(interval);
-            renderMathInElement(document.querySelector('.course'), {
-              delimiters: [
-                { left: '$$', right: '$$', display: true },
-                { left: '\\(', right: '\\)', display: false }
-              ],
-              throwOnError: false
-            });
-          }
-        }, 100);
-      }
-    });
-  </script>
-</body></html>
+  <script>document.addEventListener('DOMContentLoaded',()=>{const r=()=>renderMathInElement(document.querySelector('.course'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});if(window.renderMathInElement)r();else{const i=setInterval(()=>{if(window.renderMathInElement){clearInterval(i);r()}},100)}})</script>
+</body>
+</html>

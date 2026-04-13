@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiche — Électromagnétisme & Ondes EM | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .badge--tier1{background:rgba(163,42,42,.15);color:#A32A2A;border:1px solid rgba(163,42,42,.3)}
+    [data-theme="dark"] .badge--tier1{background:rgba(212,90,90,.15);color:#D45A5A;border-color:rgba(212,90,90,.3)}
+    .course__chapter{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-muted);letter-spacing:.06em}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course__section{margin-bottom:var(--space-2xl)}
+    .course__section-title{font-family:var(--font-body);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);margin-bottom:var(--space-lg);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .course__section-num{font-family:var(--font-mono);font-size:.85rem;color:var(--accent);font-weight:500}
+    .course__subsection-title{font-family:var(--font-body);font-size:1.3rem;font-weight:600;margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--ink)}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .block{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0 var(--space-lg) 0;position:relative}
+    .block__label{font-family:var(--font-body);font-size:.8rem;font-weight:600;letter-spacing:.03em;margin-bottom:8px;display:block}
+    .block p,.block li{font-size:.9rem;line-height:1.8}
+    .block ul{list-style:none;padding-left:var(--space-md)}
+    .block ul li::before{content:'\2014';color:var(--accent);margin-right:8px}
+    .block--def{background:rgba(37,99,163,.06);border-left:3px solid #2563A3}
+    .block--def .block__label{color:#2563A3}
+    .block--def ul li::before{color:#2563A3}
+    .block--thm{background:rgba(163,42,42,.06);border-left:3px solid #A32A2A}
+    .block--thm .block__label{color:#A32A2A}
+    .block--prop{background:rgba(118,56,163,.06);border-left:3px solid #7638A3}
+    .block--prop .block__label{color:#7638A3}
+    .block--example{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--example .block__label{color:#4B825A}
+    .block--remark{background:rgba(196,135,59,.06);border-left:3px solid var(--accent)}
+    .block--remark .block__label{color:var(--accent)}
+    .block--remark p{color:var(--ink-light);font-size:.875rem}
+    .block--method{background:rgba(75,130,90,.06);border-left:3px solid #4B825A}
+    .block--method .block__label{color:#4B825A}
+    .block--method ol{padding-left:var(--space-lg);font-size:.9rem;line-height:1.8}
+    .block--method ol li{margin-bottom:4px}
+    .block--warning{background:rgba(196,60,60,.06);border-left:3px solid #C43C3C}
+    .block--warning .block__label{color:#C43C3C}
+    .block--warning p{font-size:.875rem}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .formula-table{width:100%;border-collapse:collapse;font-size:.875rem;margin-top:var(--space-sm)}
+    .formula-table th,.formula-table td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+    .formula-table th{font-family:var(--font-mono);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted)}
+    .formula-table td:first-child{font-weight:500;white-space:nowrap}
+    [data-theme="dark"] .block--def{background:rgba(37,99,163,.1);border-left-color:#5A9FD4}
+    [data-theme="dark"] .block--def .block__label{color:#5A9FD4}
+    [data-theme="dark"] .block--def ul li::before{color:#5A9FD4}
+    [data-theme="dark"] .block--thm{background:rgba(163,42,42,.1);border-left-color:#D45A5A}
+    [data-theme="dark"] .block--thm .block__label{color:#D45A5A}
+    [data-theme="dark"] .block--prop{background:rgba(118,56,163,.1);border-left-color:#A87DD4}
+    [data-theme="dark"] .block--prop .block__label{color:#A87DD4}
+    [data-theme="dark"] .block--example{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--example .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--remark{background:rgba(212,160,75,.08)}
+    [data-theme="dark"] .block--method{background:rgba(75,130,90,.1);border-left-color:#6AAF7A}
+    [data-theme="dark"] .block--method .block__label{color:#6AAF7A}
+    [data-theme="dark"] .block--warning{background:rgba(196,60,60,.1);border-left-color:#E06060}
+    [data-theme="dark"] .block--warning .block__label{color:#E06060}
+    @media(max-width:680px){.course__title{font-size:1.3rem}.course__section-title{font-size:1.4rem}.course{padding-left:var(--space-md);padding-right:var(--space-md)}.block{padding:var(--space-md)}}
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+    </div>
+      <a href="../../entrainement.html" class="nav__link">Entra&icirc;nement</a>
+      <a href="../../revision.html" class="nav__link">R&eacute;vision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../parcours.html" class="course__back">&larr; Programme</a>
+
+    <div class="course__meta">
+      <span class="course__badge">PHYSIQUE MP</span>
+      <span class="course__badge badge--tier1">FICHE CONCOURS</span>
+    </div>
+
+    <h1 class="course__title">&Eacute;lectromagn&eacute;tisme &amp; Ondes EM</h1>
+
+    <p class="course__intro">
+      Fiche condens&eacute;e : &eacute;quations de Maxwell, ondes planes progressives monochromatiques, vecteur de Poynting, r&eacute;flexion/transmission, effet de peau. Formules cl&eacute;s et m&eacute;thodes types pour le concours.
+    </p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#sec1"><span class="course__toc-num">I.</span> &Eacute;quations de Maxwell</a></li>
+        <li class="course__toc-item"><a href="#sec2"><span class="course__toc-num">II.</span> Ondes Planes Progressives Monochromatiques (OPPM)</a></li>
+        <li class="course__toc-item"><a href="#sec3"><span class="course__toc-num">III.</span> &Eacute;nergie et Vecteur de Poynting</a></li>
+        <li class="course__toc-item"><a href="#sec4"><span class="course__toc-num">IV.</span> R&eacute;flexion et Transmission</a></li>
+        <li class="course__toc-item"><a href="#sec5"><span class="course__toc-num">V.</span> Effet de peau</a></li>
+        <li class="course__toc-item"><a href="#sec6"><span class="course__toc-num">VI.</span> Formules essentielles</a></li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════ SECTION I ═══════════════ -->
+    <section class="course__section" id="sec1">
+      <h2 class="course__section-title"><span class="course__section-num">I.</span> &Eacute;quations de Maxwell</h2>
+
+      <div class="block block--def">
+        <span class="block__label">D&eacute;finition &mdash; Champs et sources</span>
+        <ul>
+          <li><strong>Champ &eacute;lectrique</strong> \(\vec{E}(\vec{r}, t)\) en V/m &mdash; force par unit&eacute; de charge.</li>
+          <li><strong>Champ magn&eacute;tique</strong> \(\vec{B}(\vec{r}, t)\) en T &mdash; d&eacute;vie les charges en mouvement.</li>
+          <li><strong>Densit&eacute; de charge</strong> \(\rho(\vec{r}, t)\) en C/m&sup3; &mdash; source du champ &eacute;lectrique.</li>
+          <li><strong>Densit&eacute; de courant</strong> \(\vec{j}(\vec{r}, t)\) en A/m&sup2; &mdash; source du champ magn&eacute;tique.</li>
+        </ul>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Th&eacute;or&egrave;me &mdash; Les 4 &eacute;quations de Maxwell</span>
+        <p><strong>Maxwell-Gauss :</strong></p>
+        <div class="math-display">$$\vec{\nabla} \cdot \vec{E} = \frac{\rho}{\varepsilon_0}$$</div>
+        <p><strong>Maxwell-Thomson (flux) :</strong></p>
+        <div class="math-display">$$\vec{\nabla} \cdot \vec{B} = 0$$</div>
+        <p><strong>Maxwell-Faraday :</strong></p>
+        <div class="math-display">$$\vec{\nabla} \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}$$</div>
+        <p><strong>Maxwell-Amp&egrave;re :</strong></p>
+        <div class="math-display">$$\vec{\nabla} \times \vec{B} = \mu_0 \vec{j} + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t}$$</div>
+      </div>
+
+      <div class="block block--method">
+        <span class="block__label">M&eacute;thode &mdash; D&eacute;river l'&eacute;quation de d'Alembert</span>
+        <ol>
+          <li>Prendre le rotationnel de Maxwell-Faraday : \(\vec{\nabla} \times (\vec{\nabla} \times \vec{E}) = -\frac{\partial}{\partial t}(\vec{\nabla} \times \vec{B})\).</li>
+          <li>Utiliser l'identit&eacute; vectorielle : \(\vec{\nabla} \times (\vec{\nabla} \times \vec{E}) = \vec{\nabla}(\vec{\nabla} \cdot \vec{E}) - \Delta \vec{E}\).</li>
+          <li>Dans le vide sans charges : \(\vec{\nabla} \cdot \vec{E} = 0\), donc le premier terme s'annule.</li>
+          <li>Injecter Maxwell-Amp&egrave;re dans le membre de droite :</li>
+        </ol>
+        <div class="math-display">$$\Delta \vec{E} - \mu_0 \varepsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2} = \vec{0}$$</div>
+        <p>C'est l'&eacute;quation de d'Alembert, avec la c&eacute;l&eacute;rit&eacute; \(c = 1/\sqrt{\mu_0 \varepsilon_0}\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION II ═══════════════ -->
+    <section class="course__section" id="sec2">
+      <h2 class="course__section-title"><span class="course__section-num">II.</span> Ondes Planes Progressives Monochromatiques (OPPM)</h2>
+
+      <div class="block block--def">
+        <span class="block__label">D&eacute;finition &mdash; OPPM</span>
+        <p>Une OPPM est une onde de la forme :</p>
+        <div class="math-display">$$\vec{E}(\vec{r}, t) = \vec{E}_0 \, e^{i(\vec{k} \cdot \vec{r} \,- \,\omega t)}$$</div>
+        <ul>
+          <li><strong>Relation de dispersion</strong> dans le vide : \(k^2 = \mu_0 \varepsilon_0 \, \omega^2\), soit \(k = \omega / c\).</li>
+          <li><strong>C&eacute;l&eacute;rit&eacute;</strong> : \(c = \dfrac{1}{\sqrt{\mu_0 \varepsilon_0}} = 3 \times 10^8\) m/s.</li>
+          <li>\(\vec{k}\) est le vecteur d'onde (direction de propagation), \(\omega\) la pulsation.</li>
+        </ul>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Th&eacute;or&egrave;me &mdash; Relation de structure</span>
+        <div class="math-display">$$\vec{B} = \frac{\vec{k} \times \vec{E}}{\omega} = \frac{\hat{n} \times \vec{E}}{c}$$</div>
+        <ul>
+          <li>\(\vec{E}\), \(\vec{B}\), \(\vec{k}\) forment un <strong>tri&egrave;dre direct</strong>.</li>
+          <li>\(\vec{E} \perp \vec{B} \perp \vec{k}\) : l'onde est <strong>transverse</strong>.</li>
+          <li>\(\hat{n} = \vec{k}/k\) est le vecteur unitaire de propagation.</li>
+        </ul>
+      </div>
+
+      <div class="block block--warning">
+        <span class="block__label">Pi&egrave;ge classique</span>
+        <p>Ne pas confondre \(\vec{k}\) (vecteur d'onde) et \(k\) (sa norme). En notation complexe :</p>
+        <div class="math-display">$$\vec{B} = \frac{1}{\omega}(\vec{k} \times \vec{E}_0)\,e^{i(\vec{k}\cdot\vec{r} - \omega t)}$$</div>
+        <p>Ce n'est <strong>pas</strong> \(B = kE/\omega\) (formule scalaire). Il faut garder le produit vectoriel pour avoir la direction correcte de \(\vec{B}\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION III ═══════════════ -->
+    <section class="course__section" id="sec3">
+      <h2 class="course__section-title"><span class="course__section-num">III.</span> &Eacute;nergie et Vecteur de Poynting</h2>
+
+      <div class="block block--def">
+        <span class="block__label">D&eacute;finition &mdash; Densit&eacute;s d'&eacute;nergie</span>
+        <ul>
+          <li><strong>&Eacute;lectrique :</strong> \(\displaystyle u_e = \frac{\varepsilon_0 E^2}{2}\)</li>
+          <li><strong>Magn&eacute;tique :</strong> \(\displaystyle u_m = \frac{B^2}{2\mu_0}\)</li>
+          <li><strong>Totale :</strong> \(u = u_e + u_m\)</li>
+        </ul>
+      </div>
+
+      <div class="block block--thm">
+        <span class="block__label">Th&eacute;or&egrave;me &mdash; Vecteur de Poynting</span>
+        <div class="math-display">$$\vec{\Pi} = \frac{1}{\mu_0} \vec{E} \times \vec{B}$$</div>
+        <p>Le vecteur de Poynting repr&eacute;sente la <strong>puissance surfacique</strong> transport&eacute;e par l'onde (&eacute;lectromagn&eacute;tique), exprim&eacute;e en W/m&sup2;.</p>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Propri&eacute;t&eacute; &mdash; Pour une OPPM</span>
+        <ul>
+          <li><strong>&Eacute;quipartition :</strong> \(u_e = u_m\) &mdash; les densit&eacute;s d'&eacute;nergie &eacute;lectrique et magn&eacute;tique sont &eacute;gales.</li>
+          <li><strong>Moyenne temporelle :</strong> \(\langle \Pi \rangle = c \langle u \rangle\).</li>
+          <li><strong>Expression :</strong> \(\displaystyle \langle \vec{\Pi} \rangle = \frac{c \varepsilon_0 E_0^2}{2} \, \hat{n}\).</li>
+        </ul>
+      </div>
+
+      <div class="block block--method">
+        <span class="block__label">M&eacute;thode &mdash; Calculer l'intensit&eacute; moyenne</span>
+        <ol>
+          <li>&Eacute;crire \(\vec{E}\) en notation r&eacute;elle : \(\vec{E} = \vec{E}_0 \cos(kx - \omega t)\).</li>
+          <li>Calculer \(E^2\) puis la moyenne temporelle : \(\langle E^2 \rangle = E_0^2 / 2\).</li>
+          <li>En d&eacute;duire l'intensit&eacute; moyenne :</li>
+        </ol>
+        <div class="math-display">$$\langle \Pi \rangle = \varepsilon_0 \, c \, \langle E^2 \rangle = \frac{c \, \varepsilon_0 \, E_0^2}{2}$$</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION IV ═══════════════ -->
+    <section class="course__section" id="sec4">
+      <h2 class="course__section-title"><span class="course__section-num">IV.</span> R&eacute;flexion et Transmission</h2>
+
+      <div class="block block--thm">
+        <span class="block__label">Th&eacute;or&egrave;me &mdash; Conditions aux limites</span>
+        <ul>
+          <li><strong>Composante tangentielle de \(\vec{E}\)</strong> : continue &agrave; la travers&eacute;e d'une interface.</li>
+          <li><strong>Composante tangentielle de \(\vec{B}/\mu\)</strong> : continue (en l'absence de courant surfacique).</li>
+          <li><strong>Conducteur parfait :</strong> \(E_{\mathrm{tan}} = 0\) &agrave; la surface &mdash; le champ &eacute;lectrique tangentiel s'annule.</li>
+        </ul>
+      </div>
+
+      <div class="block block--prop">
+        <span class="block__label">Propri&eacute;t&eacute; &mdash; Pression de radiation</span>
+        <ul>
+          <li><strong>R&eacute;flexion totale :</strong> \(\displaystyle P = \frac{2\langle \Pi \rangle}{c}\)</li>
+          <li><strong>Absorption totale :</strong> \(\displaystyle P = \frac{\langle \Pi \rangle}{c}\)</li>
+        </ul>
+        <p>La pression de radiation est doubl&eacute;e en r&eacute;flexion car le transfert d'impulsion est deux fois plus grand (l'onde repart en sens inverse).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION V ═══════════════ -->
+    <section class="course__section" id="sec5">
+      <h2 class="course__section-title"><span class="course__section-num">V.</span> Effet de peau</h2>
+
+      <div class="block block--thm">
+        <span class="block__label">Th&eacute;or&egrave;me &mdash; Profondeur de p&eacute;n&eacute;tration</span>
+        <p>Dans un conducteur de conductivit&eacute; \(\sigma\), une onde &eacute;lectromagn&eacute;tique de pulsation \(\omega\) p&eacute;n&egrave;tre sur une &eacute;paisseur caract&eacute;ristique :</p>
+        <div class="math-display">$$\delta = \sqrt{\frac{2}{\mu_0 \, \sigma \, \omega}}$$</div>
+        <p>L'amplitude d&eacute;cro&icirc;t en \(e^{-z/\delta}\) : le champ est att&eacute;nu&eacute; d'un facteur \(e\) sur une distance \(\delta\).</p>
+      </div>
+
+      <div class="block block--method">
+        <span class="block__label">M&eacute;thode &mdash; Appliquer l'effet de peau</span>
+        <ol>
+          <li>Identifier le conducteur (conductivit&eacute; \(\sigma \neq 0\)) et la fr&eacute;quence \(\omega\) de l'onde.</li>
+          <li>Calculer \(\delta = \sqrt{2 / (\mu_0 \sigma \omega)}\).</li>
+          <li>L'amplitude d&eacute;cro&icirc;t en \(e^{-z/\delta}\) dans le conducteur.</li>
+          <li>Si l'&eacute;paisseur du conducteur \(\gg \delta\) : le conducteur est <strong>opaque</strong> (blindage efficace).</li>
+          <li>Si l'&eacute;paisseur \(\ll \delta\) : le conducteur est <strong>quasi-transparent</strong> &agrave; cette fr&eacute;quence.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION VI ═══════════════ -->
+    <section class="course__section" id="sec6">
+      <h2 class="course__section-title"><span class="course__section-num">VI.</span> Formules essentielles</h2>
+
+      <div class="block block--remark">
+        <span class="block__label">R&eacute;sum&eacute; &mdash; Formulaire</span>
+        <table class="formula-table">
+          <thead>
+            <tr>
+              <th>Grandeur</th>
+              <th>Formule</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>C&eacute;l&eacute;rit&eacute;</td>
+              <td>\(c = 1/\sqrt{\mu_0 \varepsilon_0} = 3 \times 10^8\) m/s</td>
+            </tr>
+            <tr>
+              <td>Relation de dispersion</td>
+              <td>\(k = \omega / c\)</td>
+            </tr>
+            <tr>
+              <td>Structure OPPM</td>
+              <td>\(\vec{B} = (\hat{n} \times \vec{E})/c\)</td>
+            </tr>
+            <tr>
+              <td>&Eacute;nergie &eacute;lectrique</td>
+              <td>\(u_e = \varepsilon_0 E^2 / 2\)</td>
+            </tr>
+            <tr>
+              <td>&Eacute;nergie magn&eacute;tique</td>
+              <td>\(u_m = B^2 / (2\mu_0)\)</td>
+            </tr>
+            <tr>
+              <td>Vecteur de Poynting</td>
+              <td>\(\vec{\Pi} = (\vec{E} \times \vec{B})/\mu_0\)</td>
+            </tr>
+            <tr>
+              <td>Intensit&eacute; moyenne</td>
+              <td>\(\langle \Pi \rangle = c\varepsilon_0 E_0^2 / 2\)</td>
+            </tr>
+            <tr>
+              <td>Pression (r&eacute;flexion)</td>
+              <td>\(P = 2\langle \Pi \rangle / c\)</td>
+            </tr>
+            <tr>
+              <td>Pression (absorption)</td>
+              <td>\(P = \langle \Pi \rangle / c\)</td>
+            </tr>
+            <tr>
+              <td>Profondeur de peau</td>
+              <td>\(\delta = \sqrt{2/(\mu_0 \sigma \omega)}\)</td>
+            </tr>
+            <tr>
+              <td>Maxwell-Gauss</td>
+              <td>\(\vec{\nabla} \cdot \vec{E} = \rho / \varepsilon_0\)</td>
+            </tr>
+            <tr>
+              <td>Maxwell-Thomson</td>
+              <td>\(\vec{\nabla} \cdot \vec{B} = 0\)</td>
+            </tr>
+            <tr>
+              <td>Maxwell-Faraday</td>
+              <td>\(\vec{\nabla} \times \vec{E} = -\partial \vec{B}/\partial t\)</td>
+            </tr>
+            <tr>
+              <td>Maxwell-Amp&egrave;re</td>
+              <td>\(\vec{\nabla} \times \vec{B} = \mu_0 \vec{j} + \mu_0\varepsilon_0 \,\partial \vec{E}/\partial t\)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de math&eacute;matiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaut&eacute;</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths &mdash; Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

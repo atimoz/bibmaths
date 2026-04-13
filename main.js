@@ -1,12 +1,12 @@
 /* ============================================
-   BibMaths — Main JavaScript
+   Omniscience — Main JavaScript
    ============================================ */
 
-// ---- Theme toggle (runs immediately to prevent flash) ----
+// ---- Theme: dark-first (only set light if explicitly chosen) ----
 (function() {
   const saved = localStorage.getItem('bibmaths-theme');
-  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.setAttribute('data-theme', 'dark');
+  if (saved === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
   }
 })();
 
@@ -91,20 +91,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
-  // ---- Theme toggle button ----
-  const themeToggle = document.getElementById('themeToggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      if (isDark) {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('bibmaths-theme', 'light');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('bibmaths-theme', 'dark');
-      }
-    });
+  // ---- Theme toggle button (cycle: dark → light → dark) ----
+  const THEME_CYCLE = ['dark', 'light'];
+
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const idx = THEME_CYCLE.indexOf(current === null ? 'dark' : current);
+    const next = THEME_CYCLE[(idx + 1) % THEME_CYCLE.length];
+
+    if (next === 'dark') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', next);
+    }
+    localStorage.setItem('bibmaths-theme', next);
   }
+
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+
+  const themeToggleMobile = document.getElementById('themeToggleMobile');
+  if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
 
   // ---- KaTeX rendering ----
   if (window.katex) {
@@ -132,40 +139,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ---- Mobile menu ----
+  // ---- Sidebar mobile toggle ----
   const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
+  const sidebar = document.getElementById('sidebar');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
 
-  if (menuBtn && mobileMenu) {
+  if (menuBtn && sidebar) {
     menuBtn.addEventListener('click', () => {
       menuBtn.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
+      sidebar.classList.toggle('sidebar--open');
+      if (sidebarOverlay) sidebarOverlay.classList.toggle('active');
     });
 
-    // Accordion toggles
-    mobileMenu.querySelectorAll('.mobile-menu__toggle').forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        const sub = toggle.nextElementSibling;
-        const wasActive = toggle.classList.contains('active');
-
-        // Close all
-        mobileMenu.querySelectorAll('.mobile-menu__toggle').forEach(t => t.classList.remove('active'));
-        mobileMenu.querySelectorAll('.mobile-menu__sub').forEach(s => s.classList.remove('active'));
-
-        // Open clicked if wasn't active
-        if (!wasActive) {
-          toggle.classList.add('active');
-          sub.classList.add('active');
-        }
+    // Close sidebar on overlay click
+    if (sidebarOverlay) {
+      sidebarOverlay.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        sidebar.classList.remove('sidebar--open');
+        sidebarOverlay.classList.remove('active');
       });
-    });
+    }
 
-    // Close on link click
-    mobileMenu.querySelectorAll('a').forEach(link => {
+    // Close sidebar on link click (mobile)
+    sidebar.querySelectorAll('.sidebar__link').forEach(link => {
       link.addEventListener('click', () => {
         menuBtn.classList.remove('active');
-        mobileMenu.classList.remove('active');
+        sidebar.classList.remove('sidebar--open');
+        if (sidebarOverlay) sidebarOverlay.classList.remove('active');
       });
+    });
+  }
+
+  // ---- Sidebar collapse (desktop) ----
+  const collapseBtn = document.getElementById('sidebarCollapse');
+  if (collapseBtn && sidebar) {
+    collapseBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('sidebar--collapsed');
+      const isCollapsed = sidebar.classList.contains('sidebar--collapsed');
+      collapseBtn.setAttribute('aria-expanded', String(!isCollapsed));
     });
   }
 
@@ -239,12 +250,48 @@ document.addEventListener('DOMContentLoaded', () => {
       applyFilter(hash);
     }
 
+    // Handle #annales-{bank} hashes: activate Annales tab + filter to specific bank
+    function handleAnnalesBankHash(h) {
+      var match = h.match(/^annales-(\w+)$/);
+      if (!match) return false;
+      var bank = match[1];
+      applyFilter('annales');
+      // applyFilter rewrites hash to #annales — restore the bank-specific hash
+      history.replaceState(null, '', '#' + h);
+      // The annales section is now visible; activate the bank tab directly
+      var tabs = document.querySelectorAll('.annale-tab');
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      var tab = document.querySelector('.annale-tab[data-abq="' + bank + '"]');
+      if (tab) tab.classList.add('active');
+      // Show only the matching bank section
+      document.querySelectorAll('.annale-banque').forEach(function(s) {
+        s.style.display = (s.dataset.banque === bank) ? '' : 'none';
+      });
+      return true;
+    }
+    if (hash) handleAnnalesBankHash(hash);
+
     // Listen for hash changes (dropdown nav links like mp.html#fiches)
     window.addEventListener('hashchange', function() {
       const h = window.location.hash.replace('#', '');
+      if (h && handleAnnalesBankHash(h)) return;
       if (h && document.querySelector('.filter-btn[data-filter="' + h + '"]')) {
         applyFilter(h);
       }
+    });
+
+    // Intercept sidebar concours links (mp.html#annales-{bank}) for same-page nav
+    document.querySelectorAll('.sidebar__link[href*="#annales-"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        var href = link.getAttribute('href');
+        if (href.indexOf('mp.html') !== -1 && currentPage === 'mp.html') {
+          e.preventDefault();
+          var bankHash = href.split('#')[1];
+          window.location.hash = bankHash;
+          handleAnnalesBankHash(bankHash);
+        }
+      });
     });
 
     // Intercept same-page dropdown links that point to #cours/#fiches/#exercices/#methodes
@@ -289,18 +336,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---- Nav scroll effect ----
+  // ---- Nav scroll effect (legacy, for content pages with old nav) ----
   const nav = document.querySelector('.nav');
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-
-    if (scrollY > 100) {
-      nav.style.boxShadow = '0 1px 20px rgba(0,0,0,0.06)';
-    } else {
-      nav.style.boxShadow = 'none';
-    }
-  }, { passive: true });
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        nav.style.boxShadow = '0 1px 20px rgba(0,0,0,0.15)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    }, { passive: true });
+  }
 
   // ---- Smooth scroll for anchor links ----
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1066,5 +1112,402 @@ document.addEventListener('DOMContentLoaded', () => {
 
     dash.innerHTML = html;
   }
+
+  // ============================================================
+  //  Mini-timer — persistent floating widget across all pages
+  //  Shows: pomodoro countdown OR clock + current parcours slot
+  //  Expandable card, draggable to 4 corners
+  //  Skips on timer.html (has its own full display)
+  // ============================================================
+  (function initMiniTimer() {
+    if (document.getElementById('timer')) return;
+
+    var miniEl = null;
+    var cardEl = null;
+    var miniInterval = null;
+    var programmeData = null;
+    var programmeLoading = false;
+    var expanded = false;
+    var dragging = false;
+    var dragStartX = 0, dragStartY = 0, dragMoved = false;
+    var currentPos = localStorage.getItem('omni-timer-pos') || 'br';
+
+    // ── Helpers ──
+    function fmtTime(s) {
+      var m = Math.floor(s / 60);
+      var sec = s % 60;
+      return (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    function clockTime() {
+      var now = new Date();
+      return String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+    }
+
+    function modeLabel(mode) {
+      return mode === 'focus' ? 'Focus' : mode === 'shortBreak' ? 'Pause' : mode === 'longBreak' ? 'Pause longue' : mode === 'clock' ? 'Horloge' : mode;
+    }
+
+    function parseTimeToMin(str) {
+      var m = str.match(/(\d+)h(\d+)/);
+      return m ? parseInt(m[1]) * 60 + parseInt(m[2]) : 0;
+    }
+
+    function getTodayDayIndex() {
+      var d = new Date().getDay();
+      return d === 0 ? 6 : d - 1;
+    }
+
+    function remainingMin(slot) {
+      if (!slot) return -1;
+      var parts = slot.time.split('\u2013').map(function(t) { return t.trim(); });
+      if (parts.length < 2) return -1;
+      var endMin = parseTimeToMin(parts[1]);
+      var now = new Date();
+      var nowMin = now.getHours() * 60 + now.getMinutes();
+      return Math.max(0, endMin - nowMin);
+    }
+
+    function slotProgress(slot) {
+      if (!slot) return 0;
+      var parts = slot.time.split('\u2013').map(function(t) { return t.trim(); });
+      if (parts.length < 2) return 0;
+      var startMin = parseTimeToMin(parts[0]);
+      var endMin = parseTimeToMin(parts[1]);
+      var now = new Date();
+      var nowMin = now.getHours() * 60 + now.getMinutes();
+      var total = endMin - startMin;
+      if (total <= 0) return 0;
+      return Math.min(1, Math.max(0, (nowMin - startMin) / total));
+    }
+
+    // ── Programme data ──
+    function findCurrentSlot() {
+      if (!programmeData || !programmeData.days) return null;
+      var dayIdx = getTodayDayIndex();
+      if (dayIdx >= programmeData.days.length) return null;
+      var day = programmeData.days[dayIdx];
+      if (!day || !day.slots) return null;
+
+      var now = new Date();
+      var nowMin = now.getHours() * 60 + now.getMinutes();
+      var current = null;
+      var next = null;
+
+      for (var i = 0; i < day.slots.length; i++) {
+        var s = day.slots[i];
+        var parts = s.time.split('\u2013').map(function(t) { return t.trim(); });
+        if (parts.length < 2) continue;
+        var startMin = parseTimeToMin(parts[0]);
+        var endMin = parseTimeToMin(parts[1]);
+
+        if (nowMin >= startMin && nowMin < endMin) {
+          current = s;
+          next = day.slots[i + 1] || null;
+          break;
+        }
+        if (nowMin < startMin && !next) {
+          next = s;
+        }
+      }
+
+      return { current: current, next: next, day: day, dayIdx: dayIdx };
+    }
+
+    function loadProgramme(cb) {
+      if (programmeData) { cb(); return; }
+      if (typeof PROGRAMME_7J !== 'undefined') { programmeData = PROGRAMME_7J; cb(); return; }
+      if (programmeLoading) return;
+      programmeLoading = true;
+      var script = document.createElement('script');
+      script.src = 'data/programme-7j.js';
+      script.onload = function() {
+        if (typeof PROGRAMME_7J !== 'undefined') programmeData = PROGRAMME_7J;
+        programmeLoading = false;
+        cb();
+      };
+      script.onerror = function() { programmeLoading = false; };
+      document.head.appendChild(script);
+    }
+
+    var typeColors = { cours: '#8B5CF6', math: '#E91E63', physics: '#4A90D9', correction: '#F5A623', fiche: '#4CAF50', annale: '#FF6B35', pause: '#62666d' };
+
+    // ── Position management ──
+    function applyPos() {
+      if (!miniEl) return;
+      miniEl.classList.remove('mini-timer--tl', 'mini-timer--tr', 'mini-timer--bl');
+      if (currentPos === 'tl') miniEl.classList.add('mini-timer--tl');
+      else if (currentPos === 'tr') miniEl.classList.add('mini-timer--tr');
+      else if (currentPos === 'bl') miniEl.classList.add('mini-timer--bl');
+      // br is default (no class needed)
+    }
+
+    function snapToCorner(x, y) {
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      var cx = x, cy = y;
+      // Distances to each corner
+      var corners = [
+        { pos: 'tl', d: Math.hypot(cx - 0, cy - 0) },
+        { pos: 'tr', d: Math.hypot(cx - w, cy - 0) },
+        { pos: 'bl', d: Math.hypot(cx - 0, cy - h) },
+        { pos: 'br', d: Math.hypot(cx - w, cy - h) }
+      ];
+      corners.sort(function(a, b) { return a.d - b.d; });
+      currentPos = corners[0].pos;
+      localStorage.setItem('omni-timer-pos', currentPos);
+      applyPos();
+    }
+
+    // ── Create elements ──
+    function createMini() {
+      miniEl = document.createElement('div');
+      miniEl.className = 'mini-timer';
+      applyPos();
+
+      // Pill (collapsed)
+      var pill = document.createElement('div');
+      pill.className = 'mini-timer__pill';
+      pill.innerHTML = '<svg class="mini-timer__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
+        + '<span class="mini-timer__time"></span>'
+        + '<span class="mini-timer__slot"></span>';
+      miniEl.appendChild(pill);
+
+      // Card (expanded)
+      cardEl = document.createElement('div');
+      cardEl.className = 'mini-timer__card';
+      miniEl.appendChild(cardEl);
+
+      document.body.appendChild(miniEl);
+      initDrag();
+    }
+
+    // ── Expand / Collapse ──
+    function toggleExpand() {
+      expanded = !expanded;
+      if (miniEl) miniEl.classList.toggle('mini-timer--expanded', expanded);
+      if (expanded) updateCard();
+    }
+
+    function collapseCard() {
+      expanded = false;
+      if (miniEl) miniEl.classList.remove('mini-timer--expanded');
+    }
+
+    function updateCard() {
+      if (!cardEl || !expanded) return;
+      loadProgramme(function() {
+        var info = findCurrentSlot();
+        if (!info) { cardEl.innerHTML = '<div class="mt-card__empty">Pas de programme aujourd\'hui</div>'; return; }
+
+        var html = '';
+        // Header
+        html += '<div class="mt-card__header">';
+        html += '<div class="mt-card__clock"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>' + clockTime() + '</span></div>';
+        html += '<span class="mt-card__day">Jour ' + (info.dayIdx + 1) + '/7</span>';
+        html += '</div>';
+
+        // Current
+        html += '<div class="mt-card__section">';
+        if (info.current && info.current.type !== 'pause') {
+          var s = info.current;
+          var rem = remainingMin(s);
+          var pct = Math.round(slotProgress(s) * 100);
+          var color = typeColors[s.type] || '#888';
+          html += '<div class="mt-card__label">En cours</div>';
+          html += '<div class="mt-card__row">';
+          html += '<span class="mt-card__dot" style="background:' + color + '"></span>';
+          html += '<span class="mt-card__name">' + s.label + '</span>';
+          html += '<span class="mt-card__remaining">' + rem + 'min</span>';
+          html += '</div>';
+          if (s.source) html += '<div class="mt-card__source">' + s.source + '</div>';
+          html += '<div class="mt-card__schedule">' + s.time + '</div>';
+          html += '<div class="mt-card__progress"><div class="mt-card__progress-bar" style="width:' + pct + '%;background:' + color + '"></div></div>';
+        } else {
+          html += '<div class="mt-card__label">En cours</div>';
+          html += '<div class="mt-card__empty-slot">Pas de tache en cours</div>';
+        }
+        html += '</div>';
+
+        // Next
+        if (info.next) {
+          var n = info.next;
+          var nColor = typeColors[n.type] || '#888';
+          var nParts = n.time.split('\u2013').map(function(t) { return t.trim(); });
+          html += '<div class="mt-card__section mt-card__section--next">';
+          html += '<div class="mt-card__label">Suivant</div>';
+          html += '<div class="mt-card__row">';
+          html += '<span class="mt-card__dot" style="background:' + nColor + '"></span>';
+          html += '<span class="mt-card__next-time">' + (nParts[0] || '') + '</span>';
+          html += '<span class="mt-card__next-label">' + n.label + '</span>';
+          html += '</div>';
+          if (n.source) html += '<div class="mt-card__source">' + (n.source || n.label) + '</div>';
+          html += '</div>';
+        }
+
+        cardEl.innerHTML = html;
+      });
+    }
+
+    // ── Drag ──
+    function initDrag() {
+      if (!miniEl) return;
+      var pill = miniEl.querySelector('.mini-timer__pill');
+      if (!pill) return;
+
+      function onStart(e) {
+        var ev = e.touches ? e.touches[0] : e;
+        dragStartX = ev.clientX;
+        dragStartY = ev.clientY;
+        dragMoved = false;
+        dragging = true;
+        miniEl.classList.add('mini-timer--dragging');
+        e.preventDefault();
+      }
+
+      function onMove(e) {
+        if (!dragging) return;
+        var ev = e.touches ? e.touches[0] : e;
+        var dx = ev.clientX - dragStartX;
+        var dy = ev.clientY - dragStartY;
+        if (Math.abs(dx) > 5 || Math.abs(dy) > 5) dragMoved = true;
+        if (!dragMoved) return;
+        // Move the widget freely during drag
+        miniEl.style.transition = 'none';
+        miniEl.style.position = 'fixed';
+        var rect = miniEl.getBoundingClientRect();
+        var w = rect.width, h = rect.height;
+        var nx = ev.clientX - w / 2;
+        var ny = ev.clientY - h / 2;
+        nx = Math.max(0, Math.min(window.innerWidth - w, nx));
+        ny = Math.max(0, Math.min(window.innerHeight - h, ny));
+        miniEl.style.left = nx + 'px';
+        miniEl.style.top = ny + 'px';
+        miniEl.style.right = 'auto';
+        miniEl.style.bottom = 'auto';
+      }
+
+      function onEnd(e) {
+        if (!dragging) return;
+        dragging = false;
+        miniEl.classList.remove('mini-timer--dragging');
+        if (dragMoved) {
+          // Snap to nearest corner
+          var rect = miniEl.getBoundingClientRect();
+          var cx = rect.left + rect.width / 2;
+          var cy = rect.top + rect.height / 2;
+          // Reset inline styles
+          miniEl.style.left = '';
+          miniEl.style.top = '';
+          miniEl.style.right = '';
+          miniEl.style.bottom = '';
+          miniEl.style.position = '';
+          miniEl.style.transition = '';
+          snapToCorner(cx, cy);
+        }
+        // Click toggle is handled by the click handler
+      }
+
+      pill.addEventListener('mousedown', onStart);
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onEnd);
+      pill.addEventListener('touchstart', onStart, { passive: false });
+      document.addEventListener('touchmove', onMove, { passive: false });
+      document.addEventListener('touchend', onEnd);
+
+      // Click on pill = toggle expand (if not dragged)
+      pill.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!dragMoved) toggleExpand();
+      });
+    }
+
+    // ── Update pill ──
+    function updateMini() {
+      var isClockMode = localStorage.getItem('omni-timer-clock') === '1';
+      var liveRaw = localStorage.getItem('omni-timer-live');
+      var live = null;
+      try { live = liveRaw ? JSON.parse(liveRaw) : null; } catch(e) {}
+      var pomodoroRunning = live && live.status === 'running' && live.endTime && live.endTime > Date.now();
+
+      if (!isClockMode && !pomodoroRunning) { removeMini(); return; }
+
+      if (!miniEl) createMini();
+
+      // Pomodoro mode
+      if (pomodoroRunning && !isClockMode) {
+        miniEl.classList.remove('mini-timer--clock');
+        var rem = Math.max(0, Math.ceil((live.endTime - Date.now()) / 1000));
+        if (rem <= 0) { localStorage.removeItem('omni-timer-live'); removeMini(); return; }
+        miniEl.querySelector('.mini-timer__time').textContent = modeLabel(live.mode) + '  ' + fmtTime(rem);
+        miniEl.querySelector('.mini-timer__slot').innerHTML = '';
+        if (expanded) updateCard();
+        return;
+      }
+
+      // Clock mode
+      miniEl.classList.add('mini-timer--clock');
+      miniEl.querySelector('.mini-timer__time').textContent = clockTime();
+
+      loadProgramme(function() {
+        var info = findCurrentSlot();
+        var slotEl = miniEl ? miniEl.querySelector('.mini-timer__slot') : null;
+        if (!slotEl) return;
+
+        if (info && info.current && info.current.type !== 'pause') {
+          var s = info.current;
+          var color = typeColors[s.type] || '#888';
+          var rem = remainingMin(s);
+          slotEl.innerHTML = '<span class="mini-timer__dot" style="background:' + color + '"></span>'
+            + '<span class="mini-timer__slot-label">' + (s.source || s.label) + '</span>'
+            + '<span class="mini-timer__slot-sched">' + s.time + '</span>'
+            + '<span class="mini-timer__slot-rem">' + rem + 'min</span>';
+        } else if (info && info.next && info.next.type !== 'pause') {
+          var n = info.next;
+          var nParts = n.time.split('\u2013').map(function(t) { return t.trim(); });
+          slotEl.innerHTML = '<span class="mini-timer__next">' + (nParts[0] || '') + '</span>'
+            + '<span class="mini-timer__slot-label">' + (n.source || n.label) + '</span>';
+        } else {
+          slotEl.innerHTML = '';
+        }
+
+        if (expanded) updateCard();
+      });
+    }
+
+    function removeMini() {
+      if (miniEl) { miniEl.remove(); miniEl = null; cardEl = null; }
+      if (miniInterval) { clearInterval(miniInterval); miniInterval = null; }
+      expanded = false;
+    }
+
+    // ── Close on outside click / Escape ──
+    document.addEventListener('click', function(e) {
+      if (expanded && miniEl && !miniEl.contains(e.target)) collapseCard();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && expanded) collapseCard();
+    });
+
+    // ── Init ──
+    updateMini();
+    var hasTimer = localStorage.getItem('omni-timer-live') || localStorage.getItem('omni-timer-clock');
+    if (hasTimer) {
+      miniInterval = setInterval(updateMini, 1000);
+    }
+
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'omni-timer-live' || e.key === 'omni-timer-clock') {
+        updateMini();
+        if (!miniInterval && (localStorage.getItem('omni-timer-live') || localStorage.getItem('omni-timer-clock'))) {
+          miniInterval = setInterval(updateMini, 1000);
+        }
+        if (!localStorage.getItem('omni-timer-live') && !localStorage.getItem('omni-timer-clock')) {
+          removeMini();
+        }
+      }
+    });
+  })();
 
 });

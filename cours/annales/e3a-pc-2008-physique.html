@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2008 - Physique - Échangeur thermique à fluide caloporteur | LibMaths</title>
+<meta name="description" content="Sujet de physique E3A-Polytech PC 2008 : Échangeur thermique à fluide caloporteur (thermique, mécanique des fluides, induction).">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+<nav class="nav">
+<div class="nav__container">
+<a href="../../index.html" class="nav__logo">LibMaths</a>
+<ul class="nav__menu">
+<li><a href="../../index.html">Accueil</a></li>
+<li><a href="../index.html">Cours</a></li>
+<li><a href="../../annales.html" class="nav__link--active">Annales</a></li>
+<li><a href="../../parcours.html">Mon Parcours</a></li>
+</ul>
+</div>
+</nav>
+
+<main class="course">
+<div class="course__container">
+<a href="../../annales.html" class="course__back">← Retour aux annales</a>
+
+<header class="course__header">
+<div class="course__breadcrumb">E3A-Polytech · PC · 2008 · Physique</div>
+<h1 class="course__title">Échangeur thermique à fluide caloporteur</h1>
+<p class="course__subtitle">Épreuve de Physique PC — Concours ENSAM - ESTP - ARCHIMEDE — Durée : 4 h</p>
+</header>
+
+<div class="annale-info">
+<div class="annale-warning">
+<strong>Sujet retranscrit avec schemas</strong> — Le sujet complet est retranscrit ci-dessous avec la description detaillee de toutes les figures. L'usage de calculatrices est autorise.
+</div>
+<p>Le probleme comprend trois parties qui s'interessent a divers aspects des <strong>echangeurs thermiques a fluide caloporteur</strong>. La premiere partie concerne les transferts thermiques entre le milieu exterieur et un fluide s'ecoulant dans une conduite. La seconde partie est consacree a l'etude simplifiee d'un systeme de regulation permettant par controle du debit. La troisieme partie, presque totalement independante des deux autres, decrit une technique electromagnetique de controle non destructif des tubes metalliques, couramment utilisee pour controler les echangeurs thermiques.</p>
+<p><em>Remarques preliminaires importantes</em> : il est rappele aux candidat(e)s que</p>
+<ul>
+<li>les explications des phenomenes etudies interviennent dans la notation au meme titre que les developpements analytiques et les applications numeriques ;</li>
+<li>tout au long de l'enonce, les paragraphes en italique ont pour objet d'aider a la comprehension du probleme ;</li>
+<li>tout resultat fourni dans l'enonce peut etre admis et utilise par la suite, meme s'il n'a pas ete demontre par les candidat(e)s ;</li>
+<li>les applications numeriques seront toutes donnees avec deux chiffres significatifs. A defaut, elles ne seront pas comptabilisees.</li>
+</ul>
+</div>
+
+<nav class="annale-toc">
+<h2>Sommaire</h2>
+<ul>
+<li><a href="#exo1">Premiere partie — Echanges thermiques a travers un tube cylindrique</a></li>
+<li><a href="#exo2">Deuxieme partie — Controle du debit de fluide</a></li>
+<li><a href="#exo3">Troisieme partie — Controle non destructif des tubes metalliques par courants de Foucault</a></li>
+</ul>
+</nav>
+
+<section class="annale-exercice" id="exo1">
+<h2>PREMIERE PARTIE — ECHANGES THERMIQUES A TRAVERS UN TUBE CYLINDRIQUE</h2>
+
+<h3>1 / Conductance thermique a travers un tube cylindrique</h3>
+<p><em>Considerons un tube cylindrique d'axe Oz, de rayon interieur \(R_1\), de rayon exterieur \(R_2\) et de tres grande longueur (figure 1), fait en un materiau de conductivite thermique notee \(\lambda\).</em></p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 1</div>
+<p>Section droite d'un tube cylindrique circulaire vu selon son axe Oz. Le tube est represente par une couronne : un cercle interieur de rayon \(R_1\) et un cercle exterieur de rayon \(R_2\). Un point M est place a l'interieur de la paroi du tube (entre les deux cercles). Le vecteur \(\vec e_r\) part du centre O vers M, indiquant la direction radiale. L'axe Oz sort du plan de la figure (repere des coordonnees cylindriques).</p>
+</div>
+
+<div class="annale-question" id="Q1">
+<h4>Question 1.a</h4>
+<p>Dans le cas general, rappeler la loi de Fourier qui relie le vecteur densite de courant thermique, note \(\vec j_Q\), au gradient de la temperature.</p>
+</div>
+
+<div class="annale-question" id="Q2">
+<h4>Question 1.b</h4>
+<p>Justifier en quelques mots que la conductivite thermique, telle qu'elle apparait dans la loi de Fourier, est toujours un nombre positif.</p>
+</div>
+
+<p><em>Le systeme est en regime permanent ; la temperature T(r) en un point M du tube ne depend donc que de r, la distance de M a l'axe (coordonnees cylindriques). Les temperatures de surface sont notees \(T_1 = T(R_1)\) et \(T_2 = T(R_2)\).</em></p>
+
+<div class="annale-question" id="Q3">
+<h4>Question 1.c</h4>
+<p>Preciser la direction du vecteur \(\vec j_Q\) dans le tube.</p>
+</div>
+
+<div class="annale-question" id="Q4">
+<h4>Question 1.d</h4>
+<p>Exprimer la puissance thermique \(\mathscr P_{th}\) sortant d'un cylindre de rayon r (\(r_1 < r < r_2\)) et de longueur \(\ell\), en fonction de \(j_Q(r)\) et r.</p>
+</div>
+
+<div class="annale-question" id="Q5">
+<h4>Question 1.e</h4>
+<p>En appliquant le premier principe de la thermodynamique dans un systeme correctement choisi, montrer que la puissance thermique \(\mathscr P_{th}\) est independante de r.</p>
+</div>
+
+<div class="annale-question" id="Q6">
+<h4>Question 1.f</h4>
+<p>En deduire l'expression de la temperature T(r) en fonction de \(\mathscr P_{th}\), r, \(R_1\), \(T_1\), \(\lambda\) et \(\ell\).</p>
+</div>
+
+<div class="annale-question" id="Q7">
+<h4>Question 1.g</h4>
+<p>Etablir que la puissance thermique \(\mathscr P_{th}\) peut s'ecrire :
+\[\mathscr P_{th} = G\,\ell\,(T_1 - T_2),\qquad (1)\]
+\(\mathscr P_{th}\) et \(\ell\) etant en unites S.I., \(R_1\) et \(R_2\) en m.</p>
+</div>
+
+<div class="annale-question" id="Q8">
+<h4>Question 1.h</h4>
+<p>Calculer g pour un tube possedant les caracteristiques suivantes : conductivite thermique \(\lambda = 0{,}40~\mathrm{kW\cdot m^{-1}\cdot K^{-1}}\), rayons \(R_1 = 8{,}0~\mathrm{mm}\) et \(R_2 = 8{,}5~\mathrm{mm}\).</p>
+</div>
+
+<p><em>Le tube precedent est utilise comme « echangeur thermique » permettant les transferts thermiques entre un fluide (appele fluide caloporteur — ici il s'agit d'eau) transportant de la chaleur et le milieu exterieur.</em></p>
+<p><em>Le fluide caloporteur est suppose incompressible, de masse volumique \(\rho\) constante et de capacite thermique massique a pression constante \(C_p\) (phase condensee ideale) ; il s'ecoule dans le tube avec un debit massique \(D_m\).</em></p>
+<p><em>Dans cette partie, tout phenomene de viscosite est neglige. L'ecoulement est suppose uniforme et stationnaire, la vitesse d'ecoulement s'ecrivant en tout point : \(\vec v = v\,\vec e_z\) (v est une constante positive). Dans une section d'abscisse z constante, la temperature du fluide est uniforme et notee \(T_F(z)\).</em></p>
+
+<h3>2 / Premier principe de la thermodynamique applique a une portion de fluide</h3>
+
+<p><em>Afin d'effectuer un bilan thermique permettant de determiner \(T_F(z)\), envisageons le systeme ferme \((\Sigma)\) constitue par le fluide qui, a l'instant t, se trouve entre deux cotes \(z_a\) et \(z_b\) dans le tube (figure 2).</em></p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 2</div>
+<p>Schema d'une portion de tube horizontal d'axe Oz. Deux plans de section droite sont reperes aux abscisses \(z_a\) (a gauche) et \(z_b\) (a droite). Entre ces deux plans se trouve le systeme \((\Sigma)\) qui represente le fluide contenu dans le tube. On indique deux positions : a l'instant t, le systeme est entre \(z_a\) et \(z_b\) ; a l'instant \(t+dt\), le systeme s'est translate de \(v\,dt\) vers la droite. La pression \(P_a\) s'exerce sur la face de gauche (en \(z_a\)) et la pression \(P_b\) sur la face de droite (en \(z_b\)). Le vecteur \(\vec e_z\) indique la direction de l'ecoulement.</p>
+</div>
+
+<p><em>La pression, uniforme sur une section droite du tube, est notee \(P_a\) en \(z_a\) et \(P_b\) en \(z_b\). La section \(S = \pi R_1^2\) est elle-meme supposee constante. Entre les instants t et \(t+dt\), le systeme \((\Sigma)\) se translate de v dt (voir figure 2) selon Oz.</em></p>
+
+<div class="annale-question" id="Q9">
+<h4>Question 2.a</h4>
+<p>Exprimer le debit massique \(D_m\) a travers la section S du tube en fonction de \(\rho\), v et S.</p>
+</div>
+
+<div class="annale-question" id="Q10">
+<h4>Question 2.b</h4>
+<p>Determiner la puissance \(\mathscr P_{pr}\) des forces de pression appliquees sur \((\Sigma)\) en fonction de \(D_m\), \(P_a\), \(P_b\) et \(\rho\).</p>
+</div>
+
+<div class="annale-question" id="Q11">
+<h4>Question 2.c</h4>
+<p>Montrer que la variation d'energie interne de \((\Sigma)\) entre t et t + dt s'ecrit :
+\[dU = D_m\,(u_b - u_a)\,dt,\]
+ou \(u_b\) (resp. \(u_a\)) designe l'energie interne par unite de masse du fluide en \(z_b\) (resp. en \(z_a\)).</p>
+</div>
+
+<div class="annale-question" id="Q12">
+<h4>Question 2.d</h4>
+<p>La puissance thermique totale entrant dans \((\Sigma)\) est notee \(\mathscr P_{th}\). En appliquant le premier principe de la thermodynamique, etablir la relation suivante :
+\[D_m\,C_p\,[T_F(z_b) - T_F(z_a)] = \mathscr P_{th}.\qquad (2)\]</p>
+</div>
+
+<h3>3 / Thermalisation du fluide</h3>
+
+<p><em>Le tube, parcouru par le fluide caloporteur, est mis en contact, sur une longueur L (comprise entre les sections z = 0 et z = L), avec un milieu exterieur de temperature \(T_m\), qui demeure uniforme et constante dans tout l'espace, comme l'illustre la figure 3.</em></p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 3</div>
+<p>Schema longitudinal du tube caloporteur : un rectangle horizontal represente le tube, entoure au-dessus et en dessous par un milieu exterieur a temperature \(T_m\) (repete pour indiquer l'enceinte). L'axe z est horizontal, oriente vers la droite, et l'origine O = 0 marque l'entree de la zone de contact. Une fleche a l'interieur du tube indique le sens d'ecoulement du fluide selon +z.</p>
+</div>
+
+<p><em>Les contacts thermiques sur les faces internes et externes du tube sont supposes parfaits : la temperature \(T_2\) de la surface externe du tube est egale a \(T_m\) et, localement, la temperature \(T_1\) de la surface interne est egale a \(T_F(z)\). Le fluide penetre dans le tube a la temperature d'admission : \(T_{adm} = T_F(0)\).</em></p>
+
+<p><em>Sauf mention contraire, toute conduction thermique au sein du fluide est negligee.</em></p>
+
+<div class="annale-question" id="Q13">
+<h4>Question 3.a</h4>
+<p>En appliquant les relations (1) et (2) a une portion elementaire situee entre z et z + dz, exprimer \(\dfrac{dT_F}{dz}\) en fonction de \(T_F(z)\), \(T_m\) et de la longueur \(\ell_1 = \dfrac{D_m\,C_p}{g}\).</p>
+</div>
+
+<div class="annale-question" id="Q14">
+<h4>Question 3.b</h4>
+<p>Determiner \(T_F(z)\) en fonction de z, \(T_{adm}\), \(T_m\) et \(\ell_1\). Representer graphiquement \(T_F(z)\).</p>
+</div>
+
+<div class="annale-question" id="Q15">
+<h4>Question 3.c</h4>
+<p>Exprimer la puissance thermique totale \(\mathscr P_{th,ech}\) fournie par le fluide caloporteur au milieu en fonction de \(D_m\), \(C_p\), \(T_m\), \(T_{adm}\) et \(\ell_1\).</p>
+</div>
+
+<div class="annale-question" id="Q16">
+<h4>Question 3.d</h4>
+<p>La longueur L est suffisamment grande pour que la puissance thermique \(\mathscr P_{th,ech}\) puisse s'ecrire :
+\[\mathscr P_{th,ech} = D_m\,C_p\,(T_{adm} - T_m).\qquad (3)\]</p>
+<p>Les questions 3.d et 3.e qui suivent prennent en compte la conductivite thermique du fluide de facon a determiner le domaine de validite de l'analyse precedente.</p>
+<p>Le fluide possedant une conductivite thermique \(\lambda_F\) non nulle, reprendre l'analyse du 3.a et ecrire l'equation differentielle verifiee par \(T_F(z)\) sous la forme :
+\[\ell_1\,[T_m - T_F(z)] + \ell_2^{\,2}\,\dfrac{d^2 T_F}{dz^2} = 0,\]
+ou \(\ell_2\) est une longueur que l'on exprimera en fonction de \(\lambda_F\), S et \(C_p\).</p>
+</div>
+
+<div class="annale-question" id="Q17">
+<h4>Question 3.e</h4>
+<p>Par un raisonnement en ordre de grandeur, etablir une condition sur \(\ell_2\) et \(\ell_1\) pour que la contribution des transferts thermiques diffusifs au sein du fluide puisse etre negligee.</p>
+<p>Montrer que cette condition est verifiee si le debit massique est beaucoup plus grand qu'une valeur critique \(D_{mc}\), a exprimer en fonction de S, g, \(\lambda_F\) et \(C_p\).</p>
+<p>Calculer \(D_{mc}\) avec les donnees numeriques suivantes :
+\[\lambda_F = 0{,}58~\mathrm{W\cdot m^{-1}\cdot K^{-1}},\quad C_p = 4{,}2~\mathrm{kJ\cdot K^{-1}\cdot kg^{-1}},\quad g = 40~\mathrm{kW\cdot m^{-1}\cdot K^{-1}},\quad S = 2{,}0\cdot 10^{-4}~\mathrm{m^2}.\]</p>
+<p>Nous supposerons dans toute la suite que les echanges thermiques entre le fluide et le milieu exterieur se font essentiellement par convection, la diffusion thermique au sein du fluide etant negligee.</p>
+</div>
+
+<h3>4 / Chauffage d'une piece</h3>
+
+<p><em>Le tube modelise un radiateur dans une installation domestique de chauffage central. Le milieu exterieur est l'air d'une piece, consideree comme une enceinte fermee ou regne une temperature uniforme mais pouvant dependre du temps, notee \(T_m(t)\) et de pression constante. La capacite thermique de la piece a pression constante est notee \(\Gamma\). La piece n'est pas parfaitement isolee thermiquement par rapport a l'exterieur, ou regne la temperature constante \(T_{ext}\) ; la puissance thermique perdue par la piece vers l'exterieur s'exprime alors sous la forme : \(\mathscr P_{th,fuite} = G_{tube}\,[T_m(t) - T_{ext}]\).</em></p>
+
+<div class="annale-question" id="Q18">
+<h4>Question 4.a</h4>
+<p>Montrer que la temperature de la piece evolue avec le temps selon une equation differentielle de la forme :
+\[\dfrac{dT_m}{dt} = \dfrac{1}{\tau}\,[T_{sl} - T_m(t)].\qquad (4)\]
+Exprimer \(T_{sl}\) et \(\tau\) en fonction de \(T_{adm}\), \(T_{ext}\), \(\Gamma\), \(D_m\), \(G_{tube}\) et \(C_p\).</p>
+</div>
+
+<div class="annale-question" id="Q19">
+<h4>Question 4.b</h4>
+<p>Que representent concretement la temperature \(T_{sl}\) ainsi que le temps \(\tau\) ?</p>
+</div>
+
+<div class="annale-question" id="Q20">
+<h4>Question 4.c</h4>
+<p>Commenter les valeurs limites de \(T_{sl}\) dans les cas respectifs suivants :
+\[G_{tube} \gg D_m C_p \quad\text{et}\quad G_{tube} \ll D_m C_p.\]</p>
+</div>
+
+<div class="annale-question" id="Q21">
+<h4>Question 4.d</h4>
+<p>Calculer numeriquement le debit massique \(D_{m0}\) necessaire pour obtenir \(T_{sl} = 292~\mathrm{K}\), a l'aide des donnees suivantes : temperature exterieure \(T_{ext} = T_0 = 283~\mathrm{K}\), temperature d'admission du fluide \(T_{adm} = 333~\mathrm{K}\) ainsi que les caracteristiques pour la piece consideree : \(\Gamma = 56~\mathrm{kJ\cdot K^{-1}}\) et \(G_{tube} = 40~\mathrm{W\cdot K^{-1}}\).</p>
+</div>
+
+<div class="annale-question" id="Q22">
+<h4>Question 4.e</h4>
+<p>Comparer les debits \(D_{mc}\) et \(D_{m0}\), puis commenter ces resultats.</p>
+<p>Calculer la grandeur \(\tau\) pour le debit \(D_{m0}\).</p>
+<p>Les valeurs de temperature et de debit etudiees dans la suite sont proches des valeurs numeriques de la question 4.d si bien qu'en premiere approche l'equation (4) pourra etre remplacee par l'equation simplifiee suivante (justification non demandee) :
+\[\dfrac{dT_m}{dt} = \dfrac{1}{\tau_0}\,\left[\dfrac{D_m\,C_p}{G_{fluide}}\,(T_{adm} - T_{ext}) + T_{ext} - T_m(t)\right],\quad\text{avec}\quad \tau_0 = \dfrac{\Gamma}{G_{tube}}.\qquad (5)\]</p>
+</div>
+</section>
+
+<section class="annale-exercice" id="exo2">
+<h2>DEUXIEME PARTIE — CONTROLE DU DEBIT DE FLUIDE</h2>
+
+<p><em>Dans une piece d'habitation ou un batiment de stockage, il est souvent souhaitable de maintenir la temperature constante, independamment des variations de la temperature exterieure \(T_{ext}\). Parmi les differents systemes de regulation envisageables, le plus simple consiste a agir sur le debit du fluide caloporteur dans la conduite.</em></p>
+<p><em>Cette partie est consacree a l'analyse simplifiee d'un tel systeme de regulation.</em></p>
+<p><em>La viscosite \(\eta\) du fluide s'ecoulant dans le tube est desormais prise en compte. La pesanteur est negligee. Il est rappele qu'alors, le champ de vitesse \(\vec v(M,t)\) et le champ de pression \(P(M,t)\), dans un fluide incompressible sont relies par l'equation de Navier-Stokes :</em>
+\[\rho\left(\dfrac{\partial \vec v}{\partial t} + (\vec v\cdot\overrightarrow{\mathrm{grad}})\vec v\right) = -\overrightarrow{\mathrm{grad}}\,P + \eta\,\Delta\vec v.\]</p>
+
+<p><em>Pour simplifier les calculs, considerons une geometrie plane (figure 4) :</em></p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 4</div>
+<p>Geometrie plane avec un repere cartesien \((O,\vec e_x,\vec e_z)\). Deux plaques fixes horizontales, parallelles a l'axe Oz, delimitent une zone d'ecoulement : la plaque superieure est en \(x = +a/2\), la plaque inferieure en \(x = -a/2\). Entre les deux plaques s'ecoule un fluide, avec une fleche horizontale indiquant le sens de l'ecoulement selon +z. A droite est precisee l'expression du champ de vitesse : \(\vec v = v(x)\,\vec e_z\). La hauteur totale entre les plaques est notee \(a\).</p>
+</div>
+
+<h3>1 / Ecoulement d'un fluide entre deux plans fixes</h3>
+<p><em>L'espace etant rapporte au triedre cartesien Oxyz de base orthonormee directe \((\vec e_x,\vec e_y,\vec e_z)\), considerons un fluide en ecoulement stationnaire et unidirectionnel entre les deux plans \(x = -a/2\) et \(x = a/2\) (figure 4). Le champ de vitesses est de la forme \(\vec v = v(x)\,\vec e_z\).</em></p>
+
+<div class="annale-question" id="Q23">
+<h4>Question 1.a</h4>
+<p>Exprimer \(\overrightarrow{\mathrm{grad}}\,P\) en fonction de \(\eta\) et de \(\dfrac{d^2 v}{dx^2}\).</p>
+</div>
+
+<div class="annale-question" id="Q24">
+<h4>Question 1.b</h4>
+<p>En deduire que la pression P ne depend que de z et montrer que la quantite \(K = -\dfrac{dP}{dz}\) est une constante.</p>
+</div>
+
+<div class="annale-question" id="Q25">
+<h4>Question 1.c</h4>
+<p>Rappeler les conditions aux limites verifiees par v(x) en \(x = \pm a/2\).</p>
+</div>
+
+<div class="annale-question" id="Q26">
+<h4>Question 1.d</h4>
+<p>Determiner v(x) en fonction de x, K, a et \(\eta\).</p>
+<p>Representer graphiquement le profil de vitesse entre les deux plans. Justifier physiquement pourquoi la grandeur K doit etre strictement positive pour que l'ecoulement soit dirige selon \(\vec e_z\).</p>
+</div>
+
+<div class="annale-question" id="Q27">
+<h4>Question 1.e</h4>
+<p>Montrer que le debit massique total transporte suivant \(\vec e_z\), a travers une section de largeur H selon Oy, s'ecrit : \(D_m = \alpha\,K\,a^3\), en explicitant \(\alpha\) en fonction de \(\eta\), \(\rho\) et H.</p>
+</div>
+
+<h3>2 / Conductance hydraulique</h3>
+<p><em>Considerons le systeme precedent, compris entre les abscisses \(z = 0\) et \(z = L\).</em></p>
+
+<div class="annale-question" id="Q28">
+<h4>Question 2.a</h4>
+<p>Exprimer la quantite K en fonction de \(P(0)\), \(P(L)\) et L.</p>
+</div>
+
+<div class="annale-question" id="Q29">
+<h4>Question 2.b</h4>
+<p>Montrer que le debit a travers une section de largeur H selon Oy peut s'ecrire : \(D_m = G_h\,[P(0) - P(L)]\), ou le terme \(G_h\) sera exprime en fonction de \(\alpha\), a et L.</p>
+</div>
+
+<div class="annale-question" id="Q30">
+<h4>Question 2.c</h4>
+<p>Justifier le nom de « conductance hydraulique » pour \(G_h\) en faisant une analogie electrique. Preciser en particulier l'equivalent electrique de \(D_m\) et celui de la chute de pression \(P(0) - P(L)\).</p>
+</div>
+
+<h3>3 / Controle du debit par changement de section</h3>
+<p><em>Le systeme, toujours invariant selon Oy, presente maintenant un retrecissement ajustable (figure 5) de longueur \(L_r\). Ce retrecissement est obtenu a l'aide d'une piece plane (C) de piece d'obstruction \(\alpha\) coulissant (de facon etanche !) selon Ox dans une ouverture pratiquee dans le plan inferieur. La piece plane est telle que le bord inferieur de la piece, lorsque x represente de \(x_0\) au-dessus de (C), la largeur de la conduite devient \(a - x\).</em></p>
+<p><em>Il est admis que chaque portion (retrecie ou non) se comporte comme le systeme infini etudie aux sous-parties 1 et 2 precedentes.</em></p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 5</div>
+<p>Coupe verticale du systeme de retrecissement. Le conduit principal horizontal, d'axe Oz, a une hauteur \(a\) (entre deux plaques horizontales fixes). Une piece rectangulaire (C) situee sous la plaque inferieure coulisse verticalement selon l'axe Ox : elle peut remonter dans la conduite sur une hauteur x. La longueur totale de la zone retrecie est \(L_r\), beaucoup plus petite que L. A gauche et a droite de (C), la conduite a sa hauteur nominale \(a\) ; au-dessus de (C), la hauteur locale est \(a - x\). L'ensemble est parcouru par un debit selon +z.</p>
+</div>
+
+<div class="annale-question" id="Q31">
+<h4>Question 3.a</h4>
+<p>En considerant le systeme comme une association de conductances hydrauliques, exprimer le debit massique a travers une section droite de largeur H selon Oy en fonction de \(P(0) - P(L)\), \(\alpha\), \(L_r\) et x.</p>
+</div>
+
+<p><em>La difference de pression \(P(0) - P(L)\) etant fixee, le debit est ajuste en modifiant la valeur de x autour d'une valeur moyenne \(x_0\). Les deplacements de (C) sont de faible amplitude, si bien qu'il est possible de poser \(x = x_0 + \varepsilon\), avec \(\varepsilon \ll x_0\).</em></p>
+
+<div class="annale-question" id="Q32">
+<h4>Question 3.b</h4>
+<p>Montrer qu'au premier ordre en \(\varepsilon\), le debit massique peut s'ecrire :
+\[D_m = D_{m0}(1 - b\,\varepsilon),\qquad (6)\]
+en posant \(D_{m0} = \dfrac{\alpha\,[P(0) - P(L)]}{\dfrac{L - L_r}{a^3} + \dfrac{L_r}{(a - x_0)^3}}\) et ou b est une constante positive a exprimer en fonction de L, \(L_r\) et \(x_0\).</p>
+</div>
+
+<h3>4 / Controle du debit par la temperature de la piece — Vanne thermostatique</h3>
+<p><em>Le dispositif etudie reproduit le principe des vannes thermostatiques les plus courantes : pour asservir le debit du fluide dans la conduite a la temperature regnant a l'exterieur \(T_m\), la piece d'obstruction (C) est reliee par une tige rigide sans masse a un piston coulissant dans le cylindre (figure 6), sans frottement. Ce cylindre contient un gaz parfait (dit « gaz de controle ») qui est a chaque instant a la temperature \(T_m\). L'espace entre le piston et le tube est vide.</em></p>
+<p><em>Le poids est neglige ainsi que tout frottement. La piece (C) a un simple mouvement de translation selon Ox. Le systeme est a l'equilibre lorsque la piece est a la temperature \(T_0\) (temperature de consigne) \(T_{ext}\). Dans cette situation, le volume du gaz de controle est \(V_0\) et le debordement de (C) est tel que \(x = x_0\). La pression qui regne dans le fluide est independante de la position de (C).</em></p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 6</div>
+<p>Schema detaille du dispositif de vanne thermostatique. Au-dessus : fluide en ecoulement selon +z dans une conduite horizontale. Sous cette conduite, la piece (C) coulisse verticalement selon x pour obstruer partiellement la conduite. Une tige rigide descend de (C) jusqu'a un piston horizontal situe plus bas. Entre la piece (C) et le piston se trouve un espace « Vide ». Sous le piston, un reservoir (cylindre) est rempli de « gaz de controle » a la temperature \(T_m\) de la piece. La section du piston est notee s. L'aire de la surface est indiquee sur la figure.</p>
+</div>
+
+<div class="annale-question" id="Q33">
+<h4>Question 4.a</h4>
+<p>L'evolution est tres lente, si bien que l'acceleration de (C), \(\dfrac{d^2 x}{dt^2}\), peut etre negligee.<br>Montrer que le gaz de controle evolue a pression constante.</p>
+</div>
+
+<div class="annale-question" id="Q34">
+<h4>Question 4.b</h4>
+<p>La temperature \(T_m\) est voisine de la valeur de consigne : \(T_m = T_{m0} + \delta T_m\). Exprimer la variation dV du gaz de controle en fonction de \(V_0\), \(\delta T_m\) et \(T_{m0}\).</p>
+</div>
+
+<div class="annale-question" id="Q35">
+<h4>Question 4.c</h4>
+<p>En utilisant l'equation (6) et du 3.b, ecrire l'expression du debit \(D_m\) dans la conduite sous la forme : \(D_m = D_{m0}(1 - \beta\,\delta T_m)\), (7), en exprimant \(\beta\) en fonction de b, \(V_0\), s et \(T_{m0}\).</p>
+</div>
+
+<div class="annale-question" id="Q36">
+<h4>Question 4.d</h4>
+<p>Expliquer qualitativement pourquoi ce systeme peut etre utilise comme dispositif de regulation de la temperature de la piece (considerer une situation de chauffage ou \(T_{adm} > T_{ext}\)).</p>
+</div>
+
+<h3>5 / Stabilisation en temperature</h3>
+<p><em>Les resultats etablis ci-dessus sont generalisables au cas d'un tube cylindrique (moyennant une modification du parametre b).</em></p>
+<p><em>La temperature \(T_m\) de l'air hors de la piece subit de petites fluctuations autour d'une valeur moyenne \(T_0\) : \(T_{ext} = T_0 + \delta T_{ext}(t)\). La temperature d'admission \(T_{adm}\) reste inchangee.</em></p>
+<p><em>Les relations (5) et (7) ci-dessus conduisent, apres linearisation, a l'equation :
+\[\dfrac{d(\delta T_m)}{dt} = \dfrac{\delta T_{ext}}{\tau_0} - \left(1 - \dfrac{D_{m0}\,C_p}{G_{tube}}\right)\dfrac{\delta T_m}{\tau_{sl}},\quad\text{avec}\quad \dfrac{1}{\tau_{sl}} = \dfrac{1}{\tau_0}\left(1 + \dfrac{D_{m0}\,C_p}{G_{fluide}}\,\beta\,(T_{adm} - T_0)\right).\qquad (8)\]
+A l'instant \(t = 0\), alors que la temperature dans la piece est \(T_0 + \delta T_0\), la temperature exterieure passe brusquement de \(T_0\) a \(T_0 + \delta T_0\), ou \(\delta T_0\) est constante.</em></p>
+<p><em>Considerons pour commencer un systeme de chauffage pour lequel \(T_{adm} > T_0\).</em></p>
+
+<div class="annale-question" id="Q37">
+<h4>Question 5.a</h4>
+<p>Montrer que \(\delta T_m\) tend, lorsque le temps devient infini, vers une valeur limite notee \(\delta T_{m,\infty}\). Ecrire \(\delta T_{m,\infty}\) en fonction de \(\delta T_0\), \(\tau_{sl}\), \(\tau_0\), \(D_{m0}\), \(C_p\) et \(G_{tube}\).</p>
+</div>
+
+<div class="annale-question" id="Q38">
+<h4>Question 5.b</h4>
+<p>Sans regulation (c'est a dire pour \(\beta = 0\)), la temperature de la piece tendrait vers une limite \(\delta T_{m,\infty,nr}\) au bout d'un temps infini. Exprimer le rapport \(\xi = \dfrac{\delta T_{m,\infty}}{\delta T_{m,\infty,nr}}\) en fonction de \(\tau_{sl}\) et \(\tau_0\).</p>
+</div>
+
+<div class="annale-question" id="Q39">
+<h4>Question 5.c</h4>
+<p>Quelle propriete le rapport \(\xi\) doit-il verifier pour que le dispositif de regulation puisse limiter les variations de temperature dans la piece ? Est-ce le cas ici ?</p>
+</div>
+
+<div class="annale-question" id="Q40">
+<h4>Question 5.d</h4>
+<p>Exprimer le rapport \(\xi\) en fonction des parametres \(D_{m0}\), \(C_p\), \(\beta\), \((T_{adm} - T_0)\) et \(G_{tube}\). Pour chacun de ces parametres, indiquer si une augmentation favorise ou defavorise le fonctionnement du systeme ; commenter ces resultats.</p>
+</div>
+
+<div class="annale-question" id="Q41">
+<h4>Question 5.e</h4>
+<p>Quel sens concret peut-on donner a \(\tau_{sl}\) ?</p>
+<p>Enfin, envisageons le cas d'un dispositif de climatisation pour eau froide, avec \(T_{adm} < T_0\).</p>
+</div>
+
+<div class="annale-question" id="Q42">
+<h4>Question 5.f</h4>
+<p>Montrer que le dispositif de regulation conduit a une temperature stationnaire seulement si \(T_0 - T_{adm}\) est inferieur a une valeur critique \(T_c\) a exprimer en fonction de \(\beta\), \(D_{m0}\), \(C_p\) et \(G_{tube}\).</p>
+</div>
+
+<div class="annale-question" id="Q43">
+<h4>Question 5.g</h4>
+<p>Expliquer que, meme dans le cas d'une evolution stable, ce systeme est inadapte a la regulation de la temperature de la piece.</p>
+</div>
+</section>
+
+<section class="annale-exercice" id="exo3">
+<h2>TROISIEME PARTIE — CONTROLE NON DESTRUCTIF DES TUBES METALLIQUES PAR COURANTS DE FOUCAULT</h2>
+
+<p><em>Nota : en dehors des parametres geometriques du tube, les notations de cette partie sont independantes de celles des parties precedentes.</em></p>
+<p><em>Cette partie s'interesse a une methode de controle des caracteristiques des tubes metalliques, non destructive et qui ne necessite pas le demontage de l'installation ou celle-ci sont utilisees.</em></p>
+<p><em>Le tube etudie a les memes caracteristiques qu'en premiere partie (axe Oz, rayon interieur \(R_1\), rayon exterieur \(R_2\) — voir figure 7). Il est constitue d'un metal de conductivite electrique \(\sigma\). Son epaisseur est notee \(e = R_2 - R_1\).</em></p>
+<p><em>Ce tube est comporte n spires circulaires par unite de longueur, de rayon b et de longueur totale \(\ell\) (figure 7) pouvant etre assimilee a un solenoide infini. Ce solenoide est parcouru par un courant sinusoidal d'intensite \(I(t) = I_0\cos(\omega t)\), dont les variations sont suffisamment lentes pour que l'approximation des regimes quasi-stationnaires soit valable. L'ensemble est plonge dans l'air dont les proprietes electromagnetiques sont celles du vide.</em></p>
+<p><em>Utilisons le systeme de coordonnees cylindriques \((r,\theta,z)\) de base locale \((\vec e_r,\vec e_\theta,\vec e_z)\).</em></p>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 7</div>
+<p>A gauche : vue en perspective d'un solenoide cylindrique d'axe Oz parcouru par le courant \(I(t)\) : les spires entourent un tube cylindrique coaxial de longueur \(\ell\). A droite : vue en coupe dans le plan perpendiculaire a Oz. On voit trois cercles concentriques centres sur Oz : le tube metallique est la couronne entre \(R_1\) et \(R_2\) ; le solenoide est represente par un cercle exterieur de rayon b (avec b > \(R_2\)) et le courant \(I(t)\) circule dans ce cercle exterieur. La base locale \((\vec e_r,\vec e_\theta)\) est representee au niveau d'un point du solenoide.</p>
+</div>
+
+<h3>1 / Courants induits dans le tube</h3>
+<p><em>La bobine, situee entre \(z = 0\) et \(z = \ell\), est assimilee a un solenoide infini : en dehors du volume cylindrique interieur (de rayon b et de longueur \(\ell\)) qu'elle delimite, le champ magnetique cree par I(t) est nul. Dans ce volume, il est uniforme et s'ecrit \(\vec B = B_0(t)\,\vec e_z\).</em></p>
+<p><em>Dans cette sous-partie 1, ce champ magnetique est le seul a prendre en compte. En particulier, l'eventuel champ magnetique cree par les courants susceptibles d'exister dans le tube est neglige.</em></p>
+
+<div class="annale-question" id="Q44">
+<h4>Question 1.a</h4>
+<p>Justifier la direction de \(\vec B\) par un argument de symetrie.</p>
+<p>Rappeler sans demonstration l'expression de \(B_0(t)\) en fonction de n, I(t) et \(\mu_0\) (permeabilite du vide).</p>
+<p><em>Soit une portion du tube comprise entre z et z + dz. L'epaisseur du tube etant tres faible, cette portion peut etre assimilee a une spire circulaire quasi-filiforme de rayon moyen \(R_m = \dfrac{R_1 + R_2}{2}\), comme le montre la figure 8.</em></p>
+</div>
+
+<div class="annale-figure">
+<div class="annale-figure__label">Figure 8</div>
+<p>Portion de tube assimilee a une spire filiforme : une spire circulaire de rayon moyen \(R_m\), situee dans un plan perpendiculaire a l'axe z, est representee avec son contour elementaire d'epaisseur dz selon Oz. Le sens de parcours de la spire est indique par une fleche courbee orientant \(\vec e_\theta\). Le courant induit elementaire \(dI_{ind}\) y circule.</p>
+</div>
+
+<div class="annale-question" id="Q45">
+<h4>Question 1.b</h4>
+<p>Exprimer la conductance electrique dg d'une telle spire en fonction de e, dz, \(R_m\) et \(\sigma\).</p>
+</div>
+
+<div class="annale-question" id="Q46">
+<h4>Question 1.c</h4>
+<p>Determiner la force electromotrice \(e_{ind}\) qui apparait dans la spire du fait des variations de \(B_0(t)\) en fonction de \(\dfrac{dB_0}{dt}\) et \(R_m\) (l'orientation est celle de la figure 8 : sens direct par rapport a \(\vec e_z\)).</p>
+</div>
+
+<div class="annale-question" id="Q47">
+<h4>Question 1.d</h4>
+<p>En deduire l'expression de l'intensite \(dI_{ind}\) (orientee comme sur la figure 8) qui circule dans cette portion de tube, en fonction de e, dz, \(R_m\), \(\mu_0\), n et \(\dfrac{dI}{dt}\).</p>
+</div>
+
+<h3>2 / Champ magnetique cree par les courants induits</h3>
+<p><em>Avec la description precedente, il est possible de considerer la portion de tube situee entre z = 0 et z = \(\ell\) comme une bobine circulaire comportant \(n' = \dfrac{1}{dz}\) spires par unite de longueur, parcourues par un courant d'intensite \(dI_{ind}\).</em></p>
+
+<div class="annale-question" id="Q48">
+<h4>Question 2.a</h4>
+<p>Avec les memes approximations qu'a la sous-partie 1, donner l'expression en tout point du champ magnetique induit \(\vec B_{ind}\) en fonction de \(\sigma\), e, \(R_m\), \(\mu_0\), n et \(\dfrac{dI}{dt}\).</p>
+</div>
+
+<div class="annale-question" id="Q49">
+<h4>Question 2.b</h4>
+<p>Les calculs precedents sont valables si \(\left\|\overrightarrow{B_{ind}}\right\| \ll \|\vec B\|\). Montrer que cette condition est valable (en ordre de grandeur) si \(\omega \ll \omega_c\), ou \(\omega_c\) sera exprimee en fonction de la grandeur \(\delta = \sqrt{\dfrac{2}{\omega\mu_0\sigma}}\) et de \(R_m\).</p>
+<p>Calculer le rapport \(e/\delta_c\) a l'aide des donnees suivantes, puis commenter la valeur obtenue.<br>
+Donnees : \(\sigma = 6{,}0\cdot 10^7~\mathrm{S\cdot m^{-1}}\), \(C_p = 4{,}2~\mathrm{kJ\cdot K^{-1}\cdot kg^{-1}}\), \(R_m = 8{,}3~\mathrm{mm}\), \(e = 0{,}50~\mathrm{mm}\), \(\mu_0 = 4\pi\cdot 10^{-7}~\mathrm{H\cdot m^{-1}}\), frequence de travail : \(f = 100~\mathrm{Hz}\).</p>
+</div>
+
+<div class="annale-question" id="Q50">
+<h4>Question 2.c</h4>
+<p>Que represente la grandeur \(\delta\) ? Quel est le phenomene de l'electromagnetisme des conducteurs qui est neglige si l'est admis que \(\left\|\overrightarrow{B_{ind}}\right\| \ll \|\vec B\|\) ?</p>
+<p><em>Cette approximation \(\left\|\overrightarrow{B_{ind}}\right\| \ll \|\vec B\|\) sera supposee verifiee dans toute la suite de l'etude.</em></p>
+</div>
+
+<h3>3 / Impedance apparente de la bobine excitatrice</h3>
+
+<div class="annale-question" id="Q51">
+<h4>Question 3.a</h4>
+<p>Exprimer le flux \(\Phi_{ind}\) de \(\vec B_{ind}\) a travers la bobine excitatrice en fonction de \(\sigma\), e, \(\ell\), \(B_{ind}\) et \(R_m\).</p>
+</div>
+
+<div class="annale-question" id="Q52">
+<h4>Question 3.b</h4>
+<p>Montrer que la force electromotrice totale d'induction a travers la bobine excitatrice peut s'ecrire sous la forme :
+\[e_{total} = -L\,\dfrac{dI}{dt} + \Gamma\,\dfrac{d^2 I}{dt^2},\]
+ou L est l'inductance propre de la bobine et en posant \(\Gamma = k\,\mu_0^{\,2}\,n^2\,\sigma\,\ell\,e\,R_m^{\,3}\), k etant une constante numerique a expliciter.</p>
+</div>
+
+<div class="annale-question" id="Q53">
+<h4>Question 3.c</h4>
+<p>La bobine excitatrice a une resistance interne R. Quelle est l'impedance complexe \(\underline Z(\omega)\) de cette bobine « a vide » (c'est-a-dire en l'absence du tube), exprimee en fonction de L, \(\omega\) et R ?</p>
+</div>
+
+<div class="annale-question" id="Q54">
+<h4>Question 3.d</h4>
+<p>Expliquer comment le tube entraine une modification de la resistance apparente de la bobine, qui devient alors \(R' = R + \delta R\). Exprimer \(\delta R\) en fonction de \(\Gamma\) et \(\omega\).</p>
+</div>
+
+<div class="annale-question" id="Q55">
+<h4>Question 3.e</h4>
+<p>Calculer \(\delta R\) pour le tube precedent, a une frequence de travail \(f = 100~\mathrm{Hz}\), avec les caracteristiques suivantes pour la bobine : \(n = 3{,}0\cdot 10^4~\mathrm{spires\cdot m^{-1}}\) et \(\ell = 0{,}10~\mathrm{m}\). Commenter le resultat obtenu.</p>
+<p>La mesure de \(\delta R\) permet de mettre en evidence les modifications locales des caracteristiques du tube et donc d'en analyser les defauts eventuels.</p>
+</div>
+
+<div class="annale-question" id="Q56">
+<h4>Question 3.f</h4>
+<p>Discuter qualitativement les types de defauts du tube qui sont susceptibles d'etre mis en evidence par la mesure de \(\delta R\).</p>
+</div>
+
+<div class="annale-question" id="Q57">
+<h4>Question 3.g</h4>
+<p>Quelle est selon vous la frequence optimale \(f_{opt}\) a utiliser pour acceder aux caracteristiques « en volume » du tube ? Realiser l'application numerique avec les valeurs precedentes.</p>
+<p>Que se passerait-il si, comme c'est souvent le cas en pratique, une frequence nettement plus elevee etait utilisee ? Quels types de defauts pourraient alors etre mis en evidence ?</p>
+</div>
+</section>
+
+<p class="annale-fin"><strong>FIN DE L'EPREUVE</strong></p>
+</div>
+</main>
+</body>
+</html>

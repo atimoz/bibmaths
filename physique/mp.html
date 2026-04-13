@@ -3,94 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MP — Physique-Chimie Spe | LibPhysique</title>
+  <title>MP Physique | Omniscience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t&&t!=='dark')d.setAttribute('data-theme',t)})(document.documentElement)</script>
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <style>
-    .annale-filter-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:var(--space-xl);padding:6px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;max-width:720px;margin-left:auto;margin-right:auto}
-    .annale-tab{display:flex;align-items:center;gap:7px;padding:8px 16px;border:1.5px solid transparent;border-radius:10px;background:transparent;font-family:var(--font-body);font-size:.8rem;font-weight:500;color:var(--ink-light);cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1)}
-    .annale-tab:hover{color:var(--ink);background:var(--accent-glow)}
-    .annale-tab__dot{width:8px;height:8px;border-radius:50%;background:var(--tab-color,var(--ink-muted));flex-shrink:0;transition:transform .2s,box-shadow .2s}
-    .annale-tab:hover .annale-tab__dot{transform:scale(1.3)}
-    .annale-tab__icon{font-size:.5rem;letter-spacing:1px;color:var(--ink-muted);transition:color .2s}
-    .annale-tab__label{font-weight:600;letter-spacing:.01em}
-    .annale-tab__count{font-family:var(--font-mono);font-size:.65rem;font-weight:400;color:var(--ink-muted);background:rgba(0,0,0,.04);padding:1px 6px;border-radius:6px;transition:all .2s}
-    [data-theme="dark"] .annale-tab__count{background:rgba(255,255,255,.06)}
-    .annale-tab.active{border-color:var(--ink);background:var(--ink);color:#fff}
-    .annale-tab.active .annale-tab__count{background:rgba(255,255,255,.18);color:#fff}
-    .annale-tab.active .annale-tab__icon{color:rgba(255,255,255,.7)}
-    .annale-tab.active .annale-tab__dot{background:#fff;box-shadow:none}
-    .annale-tab--e3a.active{border-color:#E91E63;background:linear-gradient(135deg,#E91E63,#D81B60)}
-    .annale-tab--e3a:not(.active):hover{background:rgba(233,30,99,.08);color:#E91E63}
-    .annale-tab--e3a:not(.active):hover .annale-tab__dot{box-shadow:0 0 0 3px rgba(233,30,99,.2)}
-    @media(max-width:640px){.annale-filter-bar{gap:4px;padding:4px;border-radius:12px}.annale-tab{padding:6px 10px;font-size:.72rem;gap:5px}.annale-tab__count{display:none}.annale-tab__dot{width:6px;height:6px}}
-  </style>
+<style>
+.annale-filter-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:var(--space-xl);padding:6px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;max-width:720px;margin-left:auto;margin-right:auto}
+.annale-tab{display:flex;align-items:center;gap:7px;padding:8px 16px;border:1.5px solid transparent;border-radius:10px;background:transparent;font-family:var(--font-body);font-size:.8rem;font-weight:500;color:var(--ink-light);cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1)}
+.annale-tab:hover{color:var(--ink);background:var(--accent-glow)}
+.annale-tab__dot{width:8px;height:8px;border-radius:50%;background:var(--tab-color,var(--ink-muted));flex-shrink:0;transition:transform .2s,box-shadow .2s}
+.annale-tab:hover .annale-tab__dot{transform:scale(1.3)}
+.annale-tab__icon{font-size:.5rem;letter-spacing:1px;color:var(--ink-muted);transition:color .2s}
+.annale-tab__label{font-weight:600;letter-spacing:.01em}
+.annale-tab__count{font-family:var(--font-mono);font-size:.65rem;font-weight:400;color:var(--ink-muted);background:var(--bg-card);padding:1px 6px;border-radius:6px;transition:all .2s}
+.annale-tab.active{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.annale-tab.active .annale-tab__count{background:rgba(255,255,255,.18);color:var(--bg)}
+.annale-tab.active .annale-tab__icon{color:var(--bg)}
+.annale-tab.active .annale-tab__dot{background:var(--bg);box-shadow:none}
+.annale-tab--e3a.active{border-color:#E91E63;background:linear-gradient(135deg,#E91E63,#D81B60)}
+.annale-tab--e3a:not(.active):hover{background:rgba(233,30,99,.08);color:#E91E63}
+.annale-tab--e3a:not(.active):hover .annale-tab__dot{box-shadow:0 0 0 3px rgba(233,30,99,.2)}
+.annale-tab--pc.active{border-color:#9C27B0;background:linear-gradient(135deg,#9C27B0,#8E24AA)}
+.annale-tab--pc:not(.active):hover{background:rgba(156,39,176,.08);color:#9C27B0}
+.annale-tab--pc:not(.active):hover .annale-tab__dot{box-shadow:0 0 0 3px rgba(156,39,176,.2)}
+@media(max-width:640px){.annale-filter-bar{gap:4px;padding:4px;border-radius:12px}.annale-tab{padding:6px 10px;font-size:.72rem;gap:5px}.annale-tab__count{display:none}.annale-tab__dot{width:6px;height:6px}}
+</style>
 </head>
 <body>
 
-  <div class="bg-grid" aria-hidden="true"></div>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo"><span class="sidebar__logo-full">Omniscience</span><span class="sidebar__logo-short">O</span></div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Programme</span>
+        <a href="index.html" class="sidebar__link" data-tooltip="Accueil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span class="sidebar__link-text">Accueil</span>
+        </a>
+        <a href="mpsi.html" class="sidebar__link" data-tooltip="MPSI">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MPSI — 1ere annee</span>
+        </a>
+        <a href="mp.html" class="sidebar__link sidebar__link--active" data-tooltip="MP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MP — 2eme annee</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Concours</span>
+        <a href="e3a.html" class="sidebar__link" data-tooltip="E3A MP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="9" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">E3A</text></svg>
+          <span class="sidebar__link-text">E3A-Polytech MP</span>
+        </a>
+        <a href="e3a-pc.html" class="sidebar__link" data-tooltip="E3A PC">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="9" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">E3A</text></svg>
+          <span class="sidebar__link-text">E3A-Polytech PC</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Outils</span>
+        <a href="../entrainement.html" class="sidebar__link" data-tooltip="Entrainement">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="sidebar__link-text">Entrainement</span>
+        </a>
+        <a href="../revision.html" class="sidebar__link" data-tooltip="Revision">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <span class="sidebar__link-text">Revision</span>
+        </a>
+        <a href="../parcours.html" class="sidebar__link" data-tooltip="Parcours">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span class="sidebar__link-text">Mon Parcours</span>
+        </a>
+        <a href="../statistiques.html" class="sidebar__link" data-tooltip="Statistiques">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          <span class="sidebar__link-text">Statistiques</span>
+        </a>
+        <a href="../timer.html" class="sidebar__link" data-tooltip="Timer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span class="sidebar__link-text">Timer</span>
+        </a>
+      </div>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__collapse-btn" id="sidebarCollapse" aria-expanded="true" aria-label="Replier le menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+        <span class="sidebar__collapse-label">Replier</span>
+      </button>
+      <button class="sidebar__theme-toggle" id="themeToggle" aria-label="Changer de theme">
+        <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span class="sidebar__theme-label">Theme</span>
+      </button>
+      <div class="sidebar__subject-switch">
+        <a href="../index.html" class="sidebar__subject-btn">Maths</a>
+        <a href="index.html" class="sidebar__subject-btn sidebar__subject-btn--active">Physique</a>
+      </div>
+    </div>
+  </aside>
 
-  <!-- Navigation (calquee sur mp.html maths) -->
-  <nav class="nav">
-    <div class="site-switcher">
-      <span class="site-switcher__brand">Lib</span>
-      <div class="site-switcher__toggle">
-        <a href="../mp.html" class="site-switcher__btn">Maths</a>
-        <a href="index.html" class="site-switcher__btn site-switcher__btn--active">Physique</a>
-      </div>
-    </div>
-    <div class="nav__links">
-      <a href="index.html" class="nav__link">Accueil</a>
-      <div class="nav__dropdown">
-        <a href="mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mpsi.html" class="dropdown__item">Cours</a>
-        </div>
-      </div>
-      <div class="nav__dropdown">
-        <a href="mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="dropdown">
-          <a href="mp.html#cours" class="dropdown__item">Cours</a>
-          <a href="mp.html#annales" class="dropdown__item">Annales</a>
-        </div>
-      </div>
-      <a href="e3a.html" class="nav__link">E3A-Polytech</a>
-      <a href="../entrainement.html" class="nav__link">Entrainement</a>
-      <a href="../revision.html" class="nav__link">Revision</a>
-    </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
-      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  <!-- Mobile top bar -->
+  <header class="topbar" id="topbar">
+    <button class="topbar__hamburger" id="menuBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
-    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
-  </nav>
+    <span class="topbar__logo">Omniscience</span>
+    <button class="topbar__theme-toggle" id="themeToggleMobile" aria-label="Changer de theme">
+      <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <!-- Mobile menu (calque sur mp.html) -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
-      <a href="../mp.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
-      <a href="index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
-    </div>
-    <div class="mobile-menu__group"><a href="mpsi.html" class="mobile-menu__page-link">MPSI -- Physique Sup</a></div>
-    <div class="mobile-menu__group"><a href="mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Physique Spe</a></div>
-    <div class="mobile-menu__group"><a href="e3a.html" class="mobile-menu__page-link">E3A-Polytech Physique</a></div>
-  </div>
+  <main class="main-content">
 
-  <!-- Page Header (MEME structure que mp.html maths) -->
+  <!-- Page Header -->
   <header class="page-header">
     <div class="page-header__inner">
       <a href="index.html" class="page-header__back">&larr; Accueil</a>
       <p class="page-header__eyebrow">Deuxieme annee</p>
-      <h1 class="page-header__title">MP</h1>
-      <p class="page-header__subtitle">Physique-Chimie -- annales de concours et cours (a venir).</p>
-
-      <!-- MEME classe et structure que mp.html : page-header__filters avec id="filters" -->
+      <h1 class="page-header__title">MP Physique</h1>
+      <p class="page-header__subtitle">Physique-Chimie — annales de concours E3A-Polytech (MP + PC).</p>
       <div class="page-header__filters" id="filters">
         <button class="filter-btn" data-filter="cours">Cours</button>
         <button class="filter-btn filter-btn--active" data-filter="annales">Annales</button>
@@ -98,28 +136,33 @@
     </div>
   </header>
 
-  <!-- Program Content (MEME structure que mp.html : sections avec data-type) -->
-  <main class="program">
+  <!-- Program Content -->
+  <div class="program">
 
-    <!-- ========== ANNALES (data-type="annales", visible par defaut) ========== -->
+    <!-- ========== ANNALES ========== -->
     <div data-type="annales">
 
       <div class="concours-panel__header" style="text-align:center;margin-bottom:var(--space-xl)">
-        <h2 class="concours-panel__title">Annales Physique-Chimie MP</h2>
-        <p class="concours-panel__desc">Sujets et corrections E3A-Polytech -- de 2020 a 2025.</p>
+        <h2 class="concours-panel__title">Annales Physique-Chimie</h2>
+        <p class="concours-panel__desc">E3A-Polytech MP (2020-2025) et PC (2003-2019) — 23 sujets avec corrections.</p>
       </div>
 
-      <!-- Filtre banque (meme structure que mp.html) -->
+      <!-- Filtre banque -->
       <div class="annale-filter-bar" id="annaleFilters">
         <button class="annale-tab annale-tab--all active" data-abq="all" onclick="window._abqFilter(this)">
           <span class="annale-tab__icon">&#9632;&#9632;&#9632;</span>
           <span class="annale-tab__label">Toutes</span>
-          <span class="annale-tab__count">8</span>
+          <span class="annale-tab__count">23</span>
         </button>
         <button class="annale-tab annale-tab--e3a" data-abq="e3a" onclick="window._abqFilter(this)">
           <span class="annale-tab__dot" style="--tab-color:#E91E63"></span>
-          <span class="annale-tab__label">E3A-Polytech</span>
-          <span class="annale-tab__count">8</span>
+          <span class="annale-tab__label">E3A-Polytech MP</span>
+          <span class="annale-tab__count">6</span>
+        </button>
+        <button class="annale-tab annale-tab--pc" data-abq="pc" onclick="window._abqFilter(this)">
+          <span class="annale-tab__dot" style="--tab-color:#9C27B0"></span>
+          <span class="annale-tab__label">E3A-Polytech PC</span>
+          <span class="annale-tab__count">17</span>
         </button>
       </div>
       <script>
@@ -133,9 +176,10 @@
         };
       </script>
 
-      <!-- E3A-Polytech -->
+      <!-- E3A-Polytech MP -->
       <div class="annale-banque" data-banque="e3a">
-      <div class="chapter-group"><h2 class="chapter-group__title" style="color:#E91E63">E3A-Polytech — Physique-Chimie MP</h2>
+      <div class="chapter-group">
+        <h2 class="chapter-group__title" style="color:#E91E63">E3A-Polytech — Physique-Chimie MP</h2>
 
         <h3 style="font-size:.85rem;font-weight:500;color:var(--ink-muted);margin:var(--space-sm) 0 var(--space-md)">Enonces et corrections par annee</h3>
         <div class="chapter-grid">
@@ -178,6 +222,11 @@
             <h3 class="chapter-card__title">Synthese complete</h3>
             <p class="chapter-card__desc">Formules cles + themes recurrents + top 8 exercices</p>
           </a>
+          <a href="e3a.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #E91E63">
+            <span class="chapter-card__num">E3A MP</span>
+            <h3 class="chapter-card__title">Hub E3A-Polytech MP</h3>
+            <p class="chapter-card__desc">Flashcards, quiz, frequences et resume</p>
+          </a>
         </div>
 
         <h3 style="font-size:.85rem;font-weight:500;color:var(--ink-muted);margin:var(--space-lg) 0 var(--space-md)">PDF officiels</h3>
@@ -216,49 +265,134 @@
       </div>
       </div>
 
+      <!-- E3A-Polytech PC -->
+      <div class="annale-banque" data-banque="pc">
+      <div class="chapter-group">
+        <h2 class="chapter-group__title" style="color:#9C27B0">E3A-Polytech — Physique-Chimie PC</h2>
+
+        <h3 style="font-size:.85rem;font-weight:500;color:var(--ink-muted);margin:var(--space-sm) 0 var(--space-md)">17 sujets corriges (2003-2019)</h3>
+        <div class="chapter-grid">
+          <a href="../cours/annales/e3a-2019-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2019</span>
+            <h3 class="chapter-card__title">Gravitation et reactions</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2018-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2018</span>
+            <h3 class="chapter-card__title">Reactions thermiques</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2017-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2017</span>
+            <h3 class="chapter-card__title">Transfert de masse</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2016-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2016</span>
+            <h3 class="chapter-card__title">Transfert de chaleur</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2015-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2015</span>
+            <h3 class="chapter-card__title">Photovoltaique</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2014-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2014</span>
+            <h3 class="chapter-card__title">Decongelation micro-ondes</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2013-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2013</span>
+            <h3 class="chapter-card__title">Contraste de phase</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2012-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2012</span>
+            <h3 class="chapter-card__title">Sujet 2012</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2011-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2011</span>
+            <h3 class="chapter-card__title">Sujet 2011</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2010-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2010</span>
+            <h3 class="chapter-card__title">Sujet 2010</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2009-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2009</span>
+            <h3 class="chapter-card__title">Sujet 2009</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2008-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2008</span>
+            <h3 class="chapter-card__title">Sujet 2008</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2007-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2007</span>
+            <h3 class="chapter-card__title">Sujet 2007</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2006-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2006</span>
+            <h3 class="chapter-card__title">Sujet 2006</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2005-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2005</span>
+            <h3 class="chapter-card__title">Sujet 2005</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2004-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2004</span>
+            <h3 class="chapter-card__title">Sujet 2004</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+          <a href="../cours/annales/e3a-2003-PC-physique.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">2003</span>
+            <h3 class="chapter-card__title">Sujet 2003</h3>
+            <p class="chapter-card__desc">Enonce + <strong>correction</strong></p>
+          </a>
+        </div>
+
+        <h3 style="font-size:.85rem;font-weight:500;color:var(--ink-muted);margin:var(--space-lg) 0 var(--space-md)">Voir aussi</h3>
+        <div class="chapter-grid">
+          <a href="e3a-pc.html" class="chapter-card chapter-card--link chapter-card--annale" style="border-left:3px solid #9C27B0">
+            <span class="chapter-card__num">PC</span>
+            <h3 class="chapter-card__title">Hub E3A-Polytech PC</h3>
+            <p class="chapter-card__desc">Vue d'ensemble des 17 sujets PC</p>
+          </a>
+        </div>
+      </div>
+      </div>
+
     </div><!-- end data-type="annales" -->
 
-    <!-- ========== COURS (data-type="cours", cache par defaut) ========== -->
+    <!-- ========== COURS (hidden, placeholder) ========== -->
     <div class="chapter-group" data-type="cours" style="display:none">
-      <div class="coming-soon">
-        <div class="coming-soon__icon">&#9889;</div>
-        <h2 class="coming-soon__title">Bientot disponible</h2>
-        <p class="coming-soon__desc">
+      <div style="text-align:center;padding:var(--space-2xl) var(--space-lg);background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;">
+        <div style="font-size:2.5rem;margin-bottom:var(--space-md);">&#9889;</div>
+        <h2 style="font-family:var(--font-display);font-size:1.4rem;font-weight:600;margin-bottom:var(--space-sm);">Bientot disponible</h2>
+        <p style="font-size:.9rem;color:var(--ink-muted);line-height:1.7;max-width:440px;margin:0 auto;">
           Les cours de physique-chimie MP sont en cours de preparation.
           Revenez bientot pour decouvrir les chapitres d'electromagnetisme avance, de mecanique quantique et de physique statistique.
         </p>
       </div>
     </div>
 
+  </div>
   </main>
 
-  <!-- Footer (calque sur mp.html) -->
   <footer class="footer">
     <div class="footer__inner">
-      <div class="footer__brand">
-        <span class="footer__logo">Lib<strong>Physique</strong></span>
-        <p class="footer__tagline">Physique-Chimie de prepa, en ligne.</p>
-      </div>
-      <div class="footer__links">
-        <div class="footer__col">
-          <h4 class="footer__col-title">Navigation</h4>
-          <a href="index.html">Accueil</a>
-          <a href="mpsi.html">MPSI</a>
-          <a href="mp.html">MP</a>
-        </div>
-        <div class="footer__col">
-          <h4 class="footer__col-title">Communaute</h4>
-          <a href="#">Contribuer</a>
-          <a href="#">GitHub</a>
-          <a href="#">Contact</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span>&copy; 2026 LibPhysique -- Projet open source</span>
+      <p class="footer__copy">&copy; 2026 Omniscience</p>
     </div>
   </footer>
 
-  <script src="../main.js?v=10"></script>
+  <script src="../main.js"></script>
 </body>
 </html>

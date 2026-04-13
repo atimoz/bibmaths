@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2010 — Physique | bibmaths</title>
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="../../index.html" class="nav__logo">bibmaths</a>
+  <a href="../../physique/index.html" class="nav__link">Physique</a>
+  <a href="../index.html" class="nav__link">Annales</a>
+</nav>
+
+<main class="course">
+  <header class="course__header">
+    <h1>E3A-Polytech PC 2010 — Épreuve de Physique</h1>
+    <p class="course__subtitle">Concours Arts et Métiers ParisTech – ESTP – ARCHIMEDE — Durée 4 h</p>
+  </header>
+
+  <div class="annale-info">
+    <div class="annale-info__item"><strong>Concours :</strong> E3A-Polytech</div>
+    <div class="annale-info__item"><strong>Filière :</strong> PC</div>
+    <div class="annale-info__item"><strong>Année :</strong> 2010</div>
+    <div class="annale-info__item"><strong>Durée :</strong> 4 heures</div>
+    <div class="annale-info__item"><strong>Calculatrices :</strong> autorisées</div>
+  </div>
+
+  <div class="annale-warning">
+    <strong>Sujet retranscrit avec schémas</strong> — Ce problème illustre <strong>le procédé d'injection d'un polymère</strong> dans un moule et comporte trois volets : la réalisation d'un matériau en plaques par injection de polypropylène fondu (première partie), l'étude des phénomènes thermiques associés au procédé d'injection (seconde partie) et la caractérisation rhéologique de la viscosité du polypropylène à l'aide d'un viscosimètre de Couette (troisième partie).
+    <p><em>Remarques préliminaires importantes : il est rappelé aux candidat(e)s que</em></p>
+    <ul>
+      <li>les explications des phénomènes étudiés interviennent dans la notation au même titre que les développements analytiques et les applications numériques ; les résultats exprimés sans unité ne seront pas comptabilisés ;</li>
+      <li>tout au long de l'énoncé, les paragraphes en italiques ont pour objet d'aider à la compréhension du phénomène étudié et au choix des questions ;</li>
+      <li>tout résultat fourni dans l'énoncé peut être admis et utilisé par la suite, même s'il n'a pas été démontré par le/la candidat(e)s.</li>
+    </ul>
+    <p>Le procédé d'injection comporte une première étape dite de <strong>plastification</strong> qui est le passage de l'état solide (sous forme de poudre ou de granulés) à l'état liquide dans la matière. La seconde étape est la mise en forme par écoulement sous pression et remplissage de l'empreinte (moule). La troisième étape est le <strong>compactage</strong>, réalisé tout en assurant le refroidissement du moule. La pièce est ensuite libérée de l'empreinte par éjection.</p>
+  </div>
+
+  <section class="annale-toc">
+    <h2>Sommaire</h2>
+    <ol>
+      <li><a href="#exo1">Première partie — Injection de polymère fondu dans un moule</a>
+        <ul>
+          <li><a href="#partA">A / Écoulement de Poiseuille plan</a></li>
+          <li><a href="#partB">B / Profil de vitesse entre les plaques</a></li>
+        </ul>
+      </li>
+      <li><a href="#exo2">Deuxième partie — Thermique de l'injection</a>
+        <ul>
+          <li><a href="#partC">C / Approche thermique</a></li>
+        </ul>
+      </li>
+      <li><a href="#exo3">Troisième partie — Contrôle de la viscosité du polymère par rhéométrie de Couette</a>
+        <ul>
+          <li><a href="#partD">D / Flot de Couette</a></li>
+          <li><a href="#partE">E / Viscosimètre de Couette</a></li>
+          <li><a href="#partF">F / Contrôle de viscosité</a></li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PREMIERE PARTIE -->
+  <!-- ============================================================ -->
+  <section class="annale-exercice" id="exo1">
+    <h2>Première partie — Injection de polymère fondu dans un moule</h2>
+
+    <p><em>Intéressons-nous à la mise en forme d'une plaque de polypropylène chargée de particules (notée PPc sur la <strong>figure 1a</strong>), destinée à l'impression par sérigraphie. Le procédé utilisé consiste en l'injection du polymère fondu dans un moule maintenu à une température sensiblement constante (30 à 60 °C) de forme parallélépipédique de largeur L, de largeur w et d'épaisseur e (figure 1a). L'échelle n'est pas respectée pour plus de clarté.</em></p>
+
+    <p><em>Le moule en acier est pourvu d'un circuit de refroidissement (par des canaux internes), des capteurs de température et d'un circuit de contrôle automatique de la régulation thermique. La matière première est présente sous la forme de poudre et de granulés ; elle est injectée à une température comprise entre 170 et 300 °C grâce à un dispositif non représenté sur la figure 1a et est injectée sur toute la largeur w du moule, par application d'une surpression <span>\( \Delta P \)</span> à l'extrémité <span>\( x = 0 \)</span>.</em></p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 1a</div>
+      <p>Vue en perspective du moule parallélépipédique de polymère chargé (PPc) : un canal d'injection arrive sur la face gauche du moule (à <span>\( x = 0 \)</span>). Le moule a pour longueur <span>\( L \)</span> selon <span>\( \vec{e}_x \)</span>, pour largeur <span>\( w \)</span> selon <span>\( \vec{e}_y \)</span>, et pour épaisseur <span>\( e \)</span> selon <span>\( \vec{e}_z \)</span>. Le repère cartésien <span>\( (O, \vec{e}_x, \vec{e}_y, \vec{e}_z) \)</span> est indiqué ainsi que le vecteur champ de pesanteur <span>\( \vec{g} \)</span> dirigé selon <span>\( -\vec{e}_z \)</span>.</p>
+    </div>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 1b</div>
+      <p>Vue agrandie d'un élément de fluide infinitésimal à l'intérieur du moule. On y voit un parallélépipède élémentaire de dimensions <span>\( dx \)</span> (selon <span>\( \vec{e}_x \)</span>), <span>\( dy \)</span> (selon <span>\( \vec{e}_y \)</span>) et <span>\( dz \)</span> (selon <span>\( \vec{e}_z \)</span>), centré au point <span>\( M \)</span>. Sur la face située en <span>\( P(x) \)</span> s'exerce la force <span>\( \vec{F}_{vis}(y - dy) \)</span> et sur la face opposée située en <span>\( P(x + dx) \)</span> s'exerce la force <span>\( \vec{F}_{vis}(y) \)</span>. Les pressions <span>\( P(x) \)</span> et <span>\( P(x+dx) \)</span> agissent sur les faces normales à <span>\( \vec{e}_x \)</span>.</p>
+    </div>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 1c</div>
+      <p>Coupe transversale du moule dans le plan <span>\( (O, \vec{e}_x, \vec{e}_z) \)</span> : deux plaques horizontales parallèles, séparées par une épaisseur <span>\( e \)</span>, avec l'axe <span>\( Oz \)</span> centré entre elles (la plaque supérieure est en <span>\( z = +e/2 \)</span>, la plaque inférieure en <span>\( z = -e/2 \)</span>). Entre les deux plaques, le vecteur vitesse <span>\( \vec{V} = V(y)\vec{e}_x \)</span> est représenté par des flèches horizontales. La longueur du domaine selon <span>\( x \)</span> est notée <span>\( L \)</span>.</p>
+    </div>
+
+    <p><em>Le polymère fondu s'écoule selon la direction Ox entre deux plaques parallèles ; ces plans d'équation <span>\( y = \pm e/2 \)</span> constituent les parois inférieure et supérieure du moule. L'écoulement est réalisé dans le champ de la pesanteur, depuis l'ouverture du moule d'abscisse <span>\( x = 0 \)</span> où règne la pression <span>\( P_0 + \Delta P \)</span> (<span>\( \Delta P > 0 \)</span>), vers l'extrémité du moule d'abscisse <span>\( x = L \)</span> où règne la pression <span>\( P_0 \)</span>.</em></p>
+
+    <p><em>Le polymère fondu est assimilé à un fluide newtonien incompressible, de masse volumique <span>\( \mu \)</span>, de capacité thermique massique <span>\( C \)</span> et de conductivité thermique <span>\( \lambda \)</span>. L'espace est rapporté au repère cartésien Oxyz, de base orthonormée directe <span>\( (\vec{e}_x, \vec{e}_y, \vec{e}_z) \)</span>. L'écoulement est réalisé en régime permanent.</em></p>
+
+    <div class="callout callout--donnees">
+      <strong>Données :</strong>
+      <ul>
+        <li>Dimensions du moule : <span>\( L = 1{,}20 \)</span> m, <span>\( w = 0{,}60 \)</span> m et <span>\( e = 12 \)</span> mm</li>
+        <li>Différentiel de pression : <span>\( \Delta P = 2{,}10^7 \)</span> Pa</li>
+        <li>Caractéristique du polypropylène chargé (PPc) :
+          <span>\( \eta \)</span> (à 200 °C) = 500 Pa·s ; <span>\( \mu = 910 \)</span> kg·m<sup>-3</sup> ; <span>\( C = 2340 \)</span> J·kg<sup>-1</sup>·K<sup>-1</sup> ; <span>\( \lambda = 0{,}20 \)</span> W·m<sup>-1</sup>·K<sup>-1</sup>.</li>
+      </ul>
+    </div>
+
+    <h3 id="partA">A / Écoulement de Poiseuille plan</h3>
+
+    <div class="annale-question" id="Q1">
+      <h4>A1°a.</h4>
+      <p>Déterminer la répartition du champ de vitesse entre les plans d'équation <span>\( y = \pm e/2 \)</span>, en justifiant que la vitesse peut s'écrire : <span>\( \vec{V}(M, t) = V(y)\vec{e}_x \)</span>.</p>
+      <p><em>L'écoulement peut être représenté comme la superposition d'une infinité de lames fluides élémentaires (comme représenté sur la figure 1b), la lame comprise entre les ordonnées y et y - dy (avec <span>\( dy > 0 \)</span>), attachée au point <span>\( M(x, y, z) \)</span> possède une vitesse <span>\( \vec{V}(y) \)</span>.</em></p>
+    </div>
+
+    <div class="annale-question" id="Q2">
+      <h4>A1°b.</h4>
+      <p>Comment qualifier cet écoulement ?</p>
+      <p><em>Le frottement entre une lame et les lames supérieure et inférieure directement à son contact se traduit par une force tangentielle de cisaillement (ou de viscosité), parallèle à la direction de l'écoulement et dont la norme s'écrit : <span>\( F_{vis} = \eta S \dfrac{\partial V}{\partial y} \)</span>, S étant la surface de contact entre les lames adjacentes.</em></p>
+    </div>
+
+    <div class="annale-question" id="Q3">
+      <h4>A2.</h4>
+      <p>Que représente <span>\( \eta \)</span> ? Préciser ses dimensions et son unité.</p>
+    </div>
+
+    <div class="annale-question" id="Q4">
+      <h4>A3.</h4>
+      <p>Rappeler la définition d'un fluide newtonien ; existe-t-il d'autres types de fluides ? Citer des exemples.</p>
+    </div>
+
+    <div class="annale-question" id="Q5">
+      <h4>A4°a.</h4>
+      <p>Exprimer l'intensité de la force de pesanteur <span>\( dF_g \)</span> à laquelle est soumis un élément de volume <span>\( dxdydz \)</span> du fluide ; écrire l'intensité de la force de viscosité <span>\( dF_{vis} \)</span> relative à l'élément de surface <span>\( dxdz \)</span>.</p>
+      <p>Évaluer le rapport <span>\( dF_g / dF_{vis} \)</span> en prenant <span>\( g = 9{,}81 \)</span> m·s<sup>-2</sup> et une vitesse de l'ordre du m·s<sup>-1</sup> ; conclure.</p>
+    </div>
+
+    <div class="annale-question" id="Q6">
+      <h4>A4°b.</h4>
+      <p>Exprimer l'intensité de la force de pression <span>\( dF_p \)</span> agissant sur l'élément de fluide d'épaisseur dx et de section dydz. Évaluer le rapport <span>\( dF_p/dF_{vis} \)</span> et conclure.</p>
+      <p><em>L'action de la pesanteur sera négligée dans la suite de cette étude.</em></p>
+    </div>
+
+    <h3 id="partB">B / Profil de vitesse entre les plaques</h3>
+
+    <p><em>Rappel : dans un écoulement de fluide newtonien incompressible, le champ de vitesse <span>\( \vec{V}(M, t) \)</span> et le champ de pression <span>\( P(M, t) \)</span> sont reliés par l'équation de Navier-Stokes :</em></p>
+    <p>\[ \mu\left[\dfrac{\partial \vec{V}}{\partial t} + (\vec{V}\cdot \overrightarrow{\mathrm{grad}})\vec{V}\right] = \vec{f}_{vol} - \overrightarrow{\mathrm{grad}}\, P + \eta \Delta \vec{V} \]</p>
+
+    <div class="annale-question" id="Q7">
+      <h4>B1°a.</h4>
+      <p>Exprimer, en considérant l'élément de fluide de volume <span>\( d^3\tau = dx\,dy\,dz \)</span> (figure 1b), la force volumique de viscosité <span>\( \vec{f}_{vol,\,vis} \)</span>.</p>
+    </div>
+
+    <div class="annale-question" id="Q8">
+      <h4>B1°b.</h4>
+      <p>Écrire la relation de Navier-Stokes, sachant que l'écoulement est stationnaire et unidirectionnel selon Ox. En déduire l'équation différentielle vérifiée par la pression P puis montrer que la quantité <span>\( dP/dx \)</span> est une constante K à expliciter en fonction de <span>\( \Delta P \)</span> et L. Justifier physiquement le signe de K.</p>
+    </div>
+
+    <div class="annale-question" id="Q9">
+      <h4>B2°a.</h4>
+      <p>Préciser les conditions aux limites imposées par le profil en <span>\( y = \pm e/2 \)</span>.</p>
+    </div>
+
+    <div class="annale-question" id="Q10">
+      <h4>B2°b.</h4>
+      <p>Déterminer l'expression de la vitesse <span>\( V(y) \)</span> en fonction de y, K, e et la viscosité dynamique. Exprimer la vitesse maximale <span>\( V_{max} \)</span> du fluide et déduire <span>\( V(y) \)</span> en fonction de <span>\( V_{max} \)</span>, e et la quantité adimensionnée <span>\( (2y/e) \)</span>.</p>
+    </div>
+
+    <div class="annale-question" id="Q11">
+      <h4>B2°c.</h4>
+      <p>Représenter le profil de vitesse <span>\( V(y)/V_{max} \)</span> dans un plan de coupe du moule (figure 1c).</p>
+    </div>
+
+    <div class="annale-question" id="Q12">
+      <h4>B3°a.</h4>
+      <p>Exprimer le débit volumique <span>\( Q_v \)</span> (pour une largeur w du moule dans la direction Oz) en fonction de <span>\( V_{max} \)</span>, de w et e ; en déduire la vitesse moyenne <span>\( \overline{V} \)</span> de l'écoulement.</p>
+    </div>
+
+    <div class="annale-question" id="Q13">
+      <h4>B3°b.</h4>
+      <p>Calculer, à l'aide des données fournies, la vitesse <span>\( V_{max} \)</span>, la vitesse moyenne <span>\( \overline{V} \)</span>, le débit <span>\( Q_v \)</span>. Définir après évaluation le nombre de Reynolds <span>\( R_e \)</span> et commenter la valeur obtenue.</p>
+      <p><em>Le temps de séjour de la matière introduite dans le moule est défini comme le rapport de la longueur de l'écoulement à sa vitesse moyenne.</em></p>
+    </div>
+
+    <div class="annale-question" id="Q14">
+      <h4>B4°a.</h4>
+      <p>Exprimer le temps de séjour minimum <span>\( t_{min} \)</span>. Définir le temps de séjour moyen <span>\( t_{moy} \)</span> en fonction du volume de matière dans le moule et du débit volumique puis l'exprimer en fonction de K, <span>\( \eta \)</span>, L et e.</p>
+    </div>
+
+    <div class="annale-question" id="Q15">
+      <h4>B4°b.</h4>
+      <p>Exprimer le temps de séjour <span>\( t(y) \)</span> pour une tranche de fluide, puis le rapport <span>\( \dfrac{t(y)}{t_{min}} \)</span> en fonction de la quantité adimensionnée <span>\( (2y/e) \)</span>. Analyser cette expression en traçant schématiquement ce rapport en fonction de la variable <span>\( (2y/e) \)</span>.</p>
+    </div>
+
+    <div class="annale-question" id="Q16">
+      <h4>B4°c.</h4>
+      <p>Calculer <span>\( t_{min} \)</span> et <span>\( t_{moy} \)</span> à l'aide des données numériques fournies.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- DEUXIEME PARTIE -->
+  <!-- ============================================================ -->
+  <section class="annale-exercice" id="exo2">
+    <h2>Deuxième partie — Thermique de l'injection</h2>
+
+    <p><em>Dans le procédé d'injection, les phénomènes thermiques sont souvent très lents, mais ce sont eux qui conditionnent pour l'essentiel les temps de cycle et donc le coût de fonctionnement du dispositif. Entre la matière polymère injectée, le moule et le milieu environnant coexistent des échanges thermiques diffusifs, convectifs et radiatifs.</em></p>
+
+    <h3 id="partC">C / Approche thermique</h3>
+
+    <p><em>Intéressons nous à l'évolution de la température du polymère fondu pendant son introduction dans le moule. La puissance volumique reçue par le polymère du fait de sa viscosité s'exprime sous la forme : <span>\( \mathcal{P}_{vol,vis} = \eta\left(\dfrac{\partial V}{\partial y}\right)^2 \)</span>.</em></p>
+
+    <div class="annale-question" id="Q1b">
+      <h4>C1a.</h4>
+      <p>En quels endroits du moule cette puissance volumique est-elle maximale ?</p>
+    </div>
+
+    <div class="annale-question" id="Q2b">
+      <h4>C1b.</h4>
+      <p>En utilisant la répartition de vitesse <span>\( V(y) \)</span> exprimée en fonction de la vitesse moyenne <span>\( \overline{V} \)</span>, exprimer la puissance dissipée par les forces de viscosité vérifie la relation :</p>
+      <p>\[ \mathcal{P}_{vis} = \beta\,\dfrac{\overline{V}^2}{e}\,wL \]</p>
+      <p>et identifier la constante <span>\( \beta \)</span>.</p>
+    </div>
+
+    <div class="annale-question" id="Q3b">
+      <h4>C1c.</h4>
+      <p>Analyser l'impact de la puissance déterminée précédemment sur les variations de température du polymère injecté, dans les tous premiers instants où il pénètre dans le moule, en vous appuyant sur chacune des trois affirmations suivantes :</p>
+      <ol>
+        <li>la viscosité du polymère est élevée (par rapport à l'eau) ;</li>
+        <li>la viscosité d'un polymère décroît quand la température augmente ;</li>
+        <li>la conductivité thermique d'un polymère est faible.</li>
+      </ol>
+    </div>
+
+    <div class="annale-question" id="Q4b">
+      <h4>C1d.</h4>
+      <p><em>Considérons, pour commencer, les tous premiers instants de l'injection : le flux de chaleur évacué par diffusion et même par conducto-convection est négligeable par rapport aux phénomènes dissipatifs précédemment étudiés et le système peut être considéré comme isolé thermiquement de l'extérieur (régime adiabatique).</em></p>
+      <p>Convertir la puissance volumique maximale <span>\( \left[\mathcal{P}_{vol,vis}\right]_{max} \)</span>, dans les tous premiers instants de l'injection, en élévation de température du polymère (sa viscosité dynamique <span>\( \eta \)</span>, sa masse volumique <span>\( \mu \)</span> et sa capacité thermique massique C sont supposées demeurer constantes).</p>
+      <p>En déduire que la variation de température par unité de temps s'écrit : <span>\( \dfrac{dT}{dt} = \psi\,\dfrac{\overline{V}^2}{e^2} \)</span> et identifier la constante <span>\( \psi \)</span>. Calculer cette variation puis analyser le résultat obtenu.</p>
+    </div>
+
+    <div class="annale-question" id="Q5b">
+      <h4>C2°a.</h4>
+      <p><em>Plus loin dans l'écoulement, d'un point de vue spatial comme temporel, les phénomènes diffusifs ne sont plus négligeables et le système tend vers un régime où il devient, en nombre de plus près la répartition de température dans le polymère, considérons l'équation de la chaleur qui, dans le type d'écoulement considéré, s'écrit sous la forme :</em></p>
+      <p>\[ \mu C\,\dfrac{DT}{Dt} = \mathrm{div}(\lambda\,\overrightarrow{\mathrm{grad}}\,T) + \mathcal{P}_{vol,vis} \]</p>
+      <p><em>expression dans laquelle DT/Dt désigne la dérivée particulaire de la température par rapport au temps, <span>\( \lambda \)</span> la conductivité thermique (supposée constante et uniforme) et <span>\( \mathcal{P}_{vol,vis} \)</span> la puissance volumique due à la viscosité (reçue par des mécanismes autres que la diffusion thermique).</em></p>
+      <p><em>Les transferts diffusifs le long de l'axe Ox ainsi que sur la largeur w seront négligés devant ceux qui prédominent dans l'épaisseur de l'écoulement. Les parois du moule sont maintenues à une température constante <span>\( T_P \)</span> grâce à un réseau de canaux conçus pour assurer le refroidissement fluide.</em></p>
+      <p>Établir l'équation différentielle vérifiée par <span>\( \dfrac{\partial T}{\partial x} \)</span>, <span>\( \dfrac{\partial T}{\partial t} \)</span>, <span>\( \dfrac{\partial^2 T}{\partial y^2} \)</span> et la vitesse <span>\( V(y) \)</span>.</p>
+    </div>
+
+    <div class="annale-question" id="Q6b">
+      <h4>C2°b.</h4>
+      <p>Simplifier cette équation, en considérant que le polymère a atteint son régime thermique stationnaire et qu'ainsi, la température ne varie pratiquement plus selon la direction Ox. Tous les autres types d'échanges thermiques (de type convectif comme radiatif) ne seront pas pris en compte.</p>
+    </div>
+
+    <div class="annale-question" id="Q7b">
+      <h4>C2°c.</h4>
+      <p>En déduire la loi de répartition de la température <span>\( T(y) \)</span> selon l'épaisseur de l'écoulement, en fonction de <span>\( T_P \)</span>, <span>\( \eta \)</span>, <span>\( \lambda \)</span>, e et <span>\( \overline{V} \)</span>. Exprimer la valeur maximale <span>\( T_{max} \)</span> atteinte et préciser sa localisation.</p>
+      <p>Représenter le profil de température dans un plan de coupe du moule (Ox, Oy) quand le régime stationnaire est atteint.</p>
+    </div>
+
+    <div class="annale-question" id="Q8b">
+      <h4>C2°d.</h4>
+      <p>Calculer, à l'aide des données numériques, la température maximale obtenue, sachant que la température de la face interne du moule vaut <span>\( T_P = 40\,°\mathrm{C} \)</span>.</p>
+      <p>Calculer le(s) paramètre(s) ayant le plus d'effet sur l'évolution de l'écart de température <span>\( T_{max} - T_P \)</span>. Analyser le résultat obtenu d'un point de vue technique.</p>
+    </div>
+
+    <div class="annale-question" id="Q9b">
+      <h4>C2°e.</h4>
+      <p>Évaluer la température maximale qui serait atteinte si le polypropylène n'était pas chargé de fines particules (dans ce cas, sa viscosité dynamique chuterait à 100 Pa·s).</p>
+      <p>En déduire les avantages de l'introduction de ces particules.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TROISIEME PARTIE -->
+  <!-- ============================================================ -->
+  <section class="annale-exercice" id="exo3">
+    <h2>Troisième partie — Contrôle de la viscosité du polymère par rhéométrie de Couette</h2>
+
+    <p><em>La pression requise pour le moulage des pièces par injection est étroitement corrélée à la viscosité du polymère ; aussi convient-il de vérifier la dépendance de <span>\( \eta \)</span> avec la température, tout en maintenant constante la vitesse de cisaillement (ce qui revient à imposer un couple de rotation constant au moteur).</em></p>
+
+    <p><em>Rappelons que la rhéologie est l'étude de la déformation et de l'écoulement de la matière sous l'effet d'une contrainte.</em></p>
+
+    <h3 id="partD">D / Flot de Couette</h3>
+
+    <p><em>Considérons un écoulement laminaire permanent entre deux cylindres infinis, d'axe commun Oz (dénommé flot de Couette), de rayons respectifs <span>\( R_1 \)</span> et <span>\( R_2 > R_1 \)</span>, animés d'un mouvement de rotation uniforme avec des vitesses angulaires <span>\( \Omega_1 \vec{e}_z \)</span> et <span>\( \Omega_2 \vec{e}_z \)</span> (figures 2a et 2b).</em></p>
+
+    <p><em>Entre les deux cylindres s'écoule un fluide homogène, incompressible, supposé newtonien, de viscosité dynamique <span>\( \eta \)</span> et de masse volumique <span>\( \mu \)</span>. Cet écoulement peut être décrit comme un écoulement de vitesses orthoradiales coaxiales, animées de vitesses angulaires différentes. Aucun gradient de pression n'est appliqué extérieurement suivant l'axe Oz. L'action de la pesanteur est négligée.</em></p>
+
+    <p><em>Dans un système de coordonnées cylindriques <span>\( (r, \theta, z) \)</span>, la vitesse en tout point du fluide et à chaque instant s'écrit : <span>\( \vec{V} = V_r(r, t)\vec{e}_r + V_\theta(r, t)\vec{e}_\theta + V_z(r, t)\vec{e}_z \)</span>.</em></p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 2a</div>
+      <p>Vue en perspective des deux cylindres coaxiaux d'axe commun <span>\( Oz \)</span> (vertical dirigé vers le haut). Le cylindre intérieur a pour rayon <span>\( R_1 \)</span> et tourne à la vitesse angulaire <span>\( \Omega_1 \vec{e}_z \)</span> ; le cylindre extérieur a pour rayon <span>\( R_2 \)</span> et tourne à la vitesse angulaire <span>\( \Omega_2 \vec{e}_z \)</span>. Le repère cylindrique <span>\( (\vec{e}_r, \vec{e}_\theta, \vec{e}_z) \)</span> est indiqué.</p>
+    </div>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 2b</div>
+      <p>Vue en coupe transversale (dans le plan perpendiculaire à <span>\( Oz \)</span>) : deux cercles concentriques centrés en O, le petit cercle de rayon <span>\( R_1 \)</span> (tournant à <span>\( \Omega_1 \)</span>) et le grand cercle de rayon <span>\( R_2 \)</span> (tournant à <span>\( \Omega_2 \)</span>). Le repère cartésien <span>\( (O, x, y) \)</span> est dessiné dans ce plan de coupe.</p>
+    </div>
+
+    <p><em>Relations d'analyse vectorielle en coordonnées cylindriques :</em></p>
+    <p>\[ \overrightarrow{\mathrm{grad}}\, g = \dfrac{\partial g}{\partial r}\vec{e}_r + \dfrac{1}{r}\dfrac{\partial g}{\partial \theta}\vec{e}_\theta + \dfrac{\partial g}{\partial z}\vec{e}_z \]</p>
+    <p>\[ \mathrm{div}\,\vec{V} = \dfrac{1}{r}\dfrac{\partial (r V_r)}{\partial r} + \dfrac{1}{r}\dfrac{\partial V_\theta}{\partial \theta} + \dfrac{\partial V_z}{\partial z} \]</p>
+    <p>\[ \Delta V = \dfrac{1}{r}\dfrac{\partial}{\partial r}\left(r\,\dfrac{\partial V}{\partial r}\right) + \dfrac{1}{r^2}\dfrac{\partial^2 V}{\partial \theta^2} + \dfrac{\partial^2 V}{\partial z^2} \]</p>
+
+    <div class="annale-question" id="Q10b">
+      <h4>D1.</h4>
+      <p>Montrer, en utilisant les caractéristiques de l'écoulement ainsi que les conditions aux limites (fluide au contact des cylindres), que la vitesse est orthoradiale et s'écrit : <span>\( \vec{V} = V(r)\vec{e}_\theta \)</span>.</p>
+      <p><em>Rappel de l'équation de Navier-Stokes : <span>\( \mu\left[\dfrac{\partial \vec{V}}{\partial t} + (\vec{V}\cdot \overrightarrow{\mathrm{grad}})\vec{V}\right] = -\overrightarrow{\mathrm{grad}}\,P + \eta\Delta \vec{V} \)</span>, pour laquelle sont données les expressions du terme inertiel et du laplacien, en coordonnées cylindriques :</em></p>
+      <p>\[ (\vec{V}\cdot\overrightarrow{\mathrm{grad}})\vec{V} = -\dfrac{V^2}{r}\vec{e}_r \quad ; \quad \Delta \vec{V} = \dfrac{1}{r}\dfrac{d}{dr}\left(r\,\dfrac{dV}{dr}\right)\vec{e}_\theta - \dfrac{V}{r^2}\vec{e}_\theta \]</p>
+    </div>
+
+    <div class="annale-question" id="Q11b">
+      <h4>D2.</h4>
+      <p>Projeter l'équation de Navier-Stokes selon <span>\( \vec{e}_r \)</span>. Expliquer ce que traduit physiquement la relation ainsi obtenue. Préciser la conséquence du signe du gradient de pression <span>\( dP/dr \)</span>.</p>
+    </div>
+
+    <div class="annale-question" id="Q12b">
+      <h4>D3°a.</h4>
+      <p>Établir, grâce à la projection de l'équation de Navier-Stokes selon <span>\( \vec{e}_\theta \)</span>, que la vitesse <span>\( V(r) \)</span> doit satisfaire l'équation différentielle suivante :</p>
+      <p>\[ r^2\,\dfrac{d^2V}{dr^2} + r\,\dfrac{dV}{dr} - V = 0 \]</p>
+    </div>
+
+    <div class="annale-question" id="Q13b">
+      <h4>D3°b.</h4>
+      <p>Vérifier qu'une expression de type <span>\( V(r) = A\,r + B/r \)</span> est solution de cette équation différentielle.</p>
+    </div>
+
+    <div class="annale-question" id="Q14b">
+      <h4>D3°c.</h4>
+      <p>Écrire les conditions aux limites pour la vitesse, afin de traduire l'adhérence du fluide sur les parois des deux cylindres. En déduire les expressions des constantes A et B.</p>
+    </div>
+
+    <h3 id="partE">E / Viscosimètre de Couette</h3>
+
+    <p><em>Cet appareil (inventé par M. Couette en 1890) est constitué de deux cylindres concentriques de rayons <span>\( R_1 \)</span> et <span>\( R_2 > R_1 \)</span>, de hauteur h. Le fluide homogène, incompressible, assimilé à un fluide newtonien, de viscosité dynamique inconnue <span>\( \eta \)</span> occupe l'espace entre les deux cylindres. Le grand cylindre est immobile, tandis que le cylindre intérieur tourne à vitesse angulaire uniforme <span>\( \Omega_1 = \Omega \)</span> autour de l'axe vertical Oz (figure 3).</em></p>
+
+    <p><em>La différence <span>\( R_2 - R_1 \)</span> étant faible devant <span>\( R_1 \)</span> et devant h ; ainsi les effets de bord (fond du récipient et niveau supérieur) seront négligés et les résultats obtenus en sous-partie D pourront être appliquées. Les forces de pesanteur demeurent négligeables devant les forces de frottement visqueux.</em></p>
+
+    <div class="annale-question" id="Q15b">
+      <h4>E1.</h4>
+      <p>Préciser les valeurs des constantes A et B de la loi de vitesse <span>\( V(r) \)</span>, dans le cas du viscosimètre de Couette.</p>
+    </div>
+
+    <div class="annale-question" id="Q16b">
+      <h4>E2.</h4>
+      <p>Montrer que cette vitesse peut s'écrire : <span>\( V(r) = K\left(r - \dfrac{\beta}{r}\right) \)</span>. Identifier K et <span>\( \beta \)</span>.</p>
+      <p>Représenter (dans le plan de coupe des cylindres) les variations de <span>\( V(r)/K \)</span> en fonction de r, entre <span>\( R_1 \)</span> et <span>\( R_2 \)</span> ; en déduire le tracé schématique des vecteurs vitesse du fluide entre les deux cylindres.</p>
+    </div>
+
+    <p><em>Intéressons nous à une tranche de fluide comprise entre les cylindres fictifs de rayons r et r + dr ; les contraintes visqueuses s'exerçant sur la couche fluide cylindrique de rayon r sont réductibles à des forces par unité de surface <span>\( d\vec{\Sigma} \)</span>, qui en coordonnées cylindriques s'écrivent :</em></p>
+    <p>\[ \dfrac{d\vec{F}_{vis}}{d\Sigma} = -\eta\,r\,\dfrac{d}{dr}\left(\dfrac{V}{r}\right)\vec{e}_\theta \]</p>
+
+    <div class="annale-question" id="Q17b">
+      <h4>E3°a.</h4>
+      <p>Exprimer la force élémentaire de frottement visqueux <span>\( d\vec{F}_{vis} \)</span> qui s'exerce sur un élément de surface du cylindre fictif de rayon r.</p>
+    </div>
+
+    <div class="annale-question" id="Q18b">
+      <h4>E3°b.</h4>
+      <p>En déduire le moment élémentaire <span>\( d\vec{\Gamma}_{vis} \)</span> par rapport à l'axe Oz de cette force élémentaire de frottement visqueux appliquée sur le même cylindre fictif.</p>
+      <p><em>Réalisons un bilan des actions subies par le système (S) constitué par le fluide en rotation, compris entre les deux cylindres de rayon r et r+dr, d'une hauteur h. Le régime permanent d'écoulement est supposé établi entre les cylindres.</em></p>
+    </div>
+
+    <div class="annale-question" id="Q19b">
+      <h4>E4°a.</h4>
+      <p>Préciser la caractéristique du moment cinétique scalaire <span>\( \sigma_z \)</span>, selon Oz, du système (S).</p>
+    </div>
+
+    <div class="annale-question" id="Q20b">
+      <h4>E4°b.</h4>
+      <p>Appliquer le théorème du moment cinétique scalaire appliqué au système (S). Analyser avec soin les contributions respectives des différentes forces appliquées au système (S) (pression, viscosité, ...).</p>
+    </div>
+
+    <div class="annale-question" id="Q21b">
+      <h4>E4°c.</h4>
+      <p>Déterminer le moment <span>\( \Gamma \)</span> résultant des forces de viscosité s'exerçant sur le cylindre de rayon <span>\( R_1 \)</span>, qu'il est nécessaire d'appliquer sur ce cylindre pour le faire tourner à la vitesse angulaire <span>\( \Omega \)</span> ; l'écrire sous la forme <span>\( \Gamma = K\,\eta\,\Omega \)</span> et identifier K.</p>
+    </div>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 3</div>
+      <p>Schéma en coupe verticale du viscosimètre de Couette : un récipient cylindrique fixe (paroi extérieure, hachurée) contient le polymère de viscosité <span>\( \eta \)</span>. À l'intérieur, un cylindre mobile coaxial tourne à la vitesse angulaire <span>\( \Omega \)</span> autour de l'axe <span>\( Oz \)</span> vertical dirigé vers le haut. Le rayon intérieur <span>\( R_1 \)</span> (cylindre mobile), le rayon extérieur <span>\( R_2 \)</span> (récipient) et la hauteur h du fluide sont cotés sur la figure.</p>
+    </div>
+
+    <h3 id="partF">F / Contrôle de viscosité</h3>
+
+    <p><em>Les rhéomètres industriels travaillent généralement en imposant, par l'intermédiaire d'un moteur électrique, un couple sur le cylindre intérieur, entraînant la mise en rotation du fluide ; un dispositif annexe (encodeur optique) permet la mesure de la vitesse angulaire de rotation du cylindre.</em></p>
+
+    <p><em>De nombreux rhéomètres sont équipés d'un four latéral (procédé Peltier ou four rayonnant) permettant de réaliser des mesures de viscosité jusqu'à 300 °C, afin de se placer dans les conditions usuelles d'un procédé d'injection ou d'extrusion.</em></p>
+
+    <div class="annale-question" id="Q22b">
+      <h4>F1.</h4>
+      <p>Exprimer, en utilisant les résultats précédemment obtenus, la viscosité dynamique <span>\( \eta \)</span> en fonction du couple <span>\( \Gamma \)</span> appliqué au cylindre, de la vitesse angulaire <span>\( \Omega \)</span> et des caractéristiques géométriques du dispositif.</p>
+      <p><em>Afin d'assurer une grande précision dans la détermination de la viscosité, les concepteurs des rhéomètres récents utilisent une méthode optique.</em></p>
+      <p><em>L'axe vertical <span>\( \Delta \)</span> auquel est vissé le cylindre de mesure (de rayon <span>\( R_1 \)</span> et de hauteur h) est entraîné par un moteur électrique puissant capable d'exercer un couple <span>\( \Gamma \)</span> de grandeur variable, et tourne à la vitesse angulaire <span>\( \Omega \)</span>. Deux disques transparents, de faible épaisseur (en polycarbonate) possédant le même axe de symétrie que <span>\( \Delta \)</span>, sont positionnés comme le montre la figure 4 : l'un <span>\( D_0 \)</span> fixe (sans contact avec <span>\( \Delta \)</span>), l'autre <span>\( D_m \)</span> mobile, solidaire de l'axe <span>\( \Delta \)</span>. Ces deux disques sont gravés de fines stries parallèles selon le rayon et à l'image d'un réseau de traits. Ce dispositif est complété par une source lumineuse ponctuelle (LED) émettant l'éclairement <span>\( \mathcal{E}_0 \)</span> au-dessus de <span>\( D_0 \)</span> et par un capteur optique situé au-dessous de <span>\( D_m \)</span>. L'éclairement <span>\( \mathcal{E} \)</span> détecté par ce capteur est proportionnel au carré du cosinus de l'angle formé par les traits des stries des deux disques.</em></p>
+    </div>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 4</div>
+      <p>Schéma du dispositif optique de mesure du couple : un moteur (en haut) entraîne l'axe <span>\( \Delta \)</span> à la vitesse angulaire <span>\( \Omega \)</span>. Sous le moteur sont empilés, le long de l'axe vertical : un disque fixe <span>\( D_0 \)</span> (traversé par l'axe mais non lié), un disque mobile <span>\( D_m \)</span> solidaire de l'axe <span>\( \Delta \)</span>, puis en bas le cylindre de mesure de hauteur h et de rayon <span>\( R_1 \)</span> plongé dans le fluide. Une LED au-dessus envoie un faisceau lumineux qui traverse les deux disques, et un capteur placé en dessous détecte l'éclairement <span>\( \mathcal{E} \)</span>.</p>
+    </div>
+
+    <div class="annale-question" id="Q23b">
+      <h4>F2.</h4>
+      <p>Pour quelle position de <span>\( D_m \)</span> par rapport à <span>\( D_0 \)</span> l'éclairement détecté est-il maximum ? Combien de fois, par tour de rotation de <span>\( D_m \)</span>, cela se produit-il ?</p>
+      <p>En déduire une méthode de mesure de la vitesse angulaire <span>\( \Omega \)</span>.</p>
+      <p><em>En utilisant un jeu de cylindres tels que <span>\( R_1 = 4{,}5 \)</span> cm, <span>\( R_2 = 5{,}0 \)</span> cm et h = 5,0 cm, l'ordinateur pilotant l'expérience a fourni le tracé du couple <span>\( \Gamma \)</span> en fonction de la vitesse de rotation <span>\( \Omega \)</span>, comme le montre la figure 5 ci-dessous, réalisée à 260 °C.</em></p>
+    </div>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 5</div>
+      <p>Graphe du couple <span>\( \Gamma \)</span> (en N·m, en ordonnée, graduée de 0 à 16) en fonction de la vitesse de rotation <span>\( \Omega \)</span> (en tr/min, en abscisse, graduée de 0 à 120). La courbe expérimentale est une droite passant par l'origine ; pour <span>\( \Omega = 120 \)</span> tr/min, <span>\( \Gamma \)</span> vaut environ 16 N·m. La mesure est réalisée à 260 °C.</p>
+    </div>
+
+    <div class="annale-question" id="Q24b">
+      <h4>F3.</h4>
+      <p>Évaluer la viscosité dynamique <span>\( \eta \)</span> du polypropylène fondu. Préciser les facteurs qui vous paraissent limitants pour cette détermination.</p>
+      <p><em>La température du polymère injecté étant un facteur prépondérant de sa viscosité et de la vitesse d'injection, il convient de vérifier la dépendance de <span>\( \eta \)</span> avec la température, tout en maintenant constante la vitesse de cisaillement (ce qui revient à imposer un couple de rotation constant au moteur).</em></p>
+      <p><em>La dépendance en température de la viscosité des fluides newtoniens a été étudiée par Andrade, qui formule la viscosité dynamique comme : <span>\( \eta(T) = \eta_0\,\exp\left\{\dfrac{E}{R}\left(\dfrac{1}{T} - \dfrac{1}{T_0}\right)\right\} \)</span>, où <span>\( \eta_0 \)</span> est la viscosité à une température de référence <span>\( T_0 \)</span>, T la température absolue et R la constante des gaz parfaits.</em></p>
+    </div>
+
+    <div class="annale-question" id="Q25b">
+      <h4>F4°a.</h4>
+      <p>Étudier le sens de variation de la viscosité quand la température croît. Confirmer ce résultat par une approche physico-chimique.</p>
+    </div>
+
+    <div class="annale-question" id="Q26b">
+      <h4>F4°b.</h4>
+      <p>Préciser le sens physique de la grandeur E introduite dans la loi d'Andrade.</p>
+      <p><em>Une campagne de mesures de viscosité d'un polypropylène PPc, à l'aide du dispositif de Couette et sur une gamme étendue de températures a permis de tracer la figure 6 ci-dessous, où le logarithme népérien de la viscosité est tracé en fonction de l'inverse de la température.</em></p>
+    </div>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 6</div>
+      <p>Graphe de <span>\( \ln \eta \)</span> (en ordonnée, graduée de 4 à 7) en fonction de <span>\( 10^3/T(K) \)</span> (en abscisse, graduée de 1,8 à 2,3). Les points expérimentaux s'alignent sur une droite croissante : à <span>\( 10^3/T \approx 1{,}8 \)</span> on a <span>\( \ln \eta \approx 4{,}5 \)</span> et à <span>\( 10^3/T \approx 2{,}3 \)</span> on a <span>\( \ln \eta \approx 7 \)</span>. La droite est ajustée sur les points de mesure.</p>
+    </div>
+
+    <div class="annale-question" id="Q27b">
+      <h4>F4°c.</h4>
+      <p>Calculer la valeur de E, sachant que <span>\( R = 8{,}31 \)</span> J·mol<sup>-1</sup>·K<sup>-1</sup>. Préciser les facteurs chimiques qui influent sur cette grandeur.</p>
+    </div>
+
+    <div class="annale-question" id="Q28b">
+      <h4>F5.</h4>
+      <p>Si la température T d'injection du polymère s'élève d'une quantité <span>\( \Delta T \)</span>, écrire la variation relative <span>\( \Delta \eta/\eta \)</span> de la viscosité dynamique.</p>
+      <p>Calculer la variation de viscosité dynamique consécutive à une variation de température <span>\( \Delta T \)</span> de 5 degrés, autour de 200 °C. Analyser les conséquences d'ordre théorique et technique induites par ce résultat.</p>
+    </div>
+  </section>
+
+  <p class="annale-fin"><strong>FIN DE L'ÉPREUVE</strong></p>
+</main>
+</body>
+</html>

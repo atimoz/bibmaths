@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2013 - Physique - LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../../index.html" class="nav-logo">LibMaths</a>
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../../physique/index.html">Physique</a></li>
+      <li><a href="../index.html">Annales</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="course">
+  <div class="course-header">
+    <div class="breadcrumb">
+      <a href="../../index.html">Accueil</a> &gt;
+      <a href="../../physique/index.html">Physique</a> &gt;
+      <a href="../index.html">Annales</a> &gt;
+      <span>E3A-Polytech PC 2013 - Physique</span>
+    </div>
+    <h1>E3A-Polytech PC 2013 - Physique</h1>
+    <p class="course-subtitle">Concours Arts et Metiers ParisTech - ESTP - Archimede - Epreuve de Physique PC - Duree 4 h</p>
+  </div>
+
+  <div class="annale-info">
+    <div class="annale-warning">
+      <strong>Sujet retranscrit avec schemas</strong>
+      <p>L'usage de calculatrices est autorise. Si, au cours de l'epreuve, le candidat repere ce qui lui semble etre une erreur d'enonce, d'une part il le signale au chef de salle, d'autre part il le signale sur sa copie et poursuit sa composition en indiquant les raisons des initiatives qu'il est amene a prendre.</p>
+      <p><em>Remarques preliminaires importantes :</em> il est rappele aux candidat(e)s que :</p>
+      <ul>
+        <li>les explications des phenomenes etudies interviennent dans la notation au meme titre que les developpements analytiques et les applications numeriques ; les resultats exprimes sans unite ne seront pas comptabilises ;</li>
+        <li>tout au long de l'enonce, les paragraphes en italique ont pour objet d'aider a la comprehension du probleme mais ne donnent pas lieu a des questions ;</li>
+        <li>tout resultat fourni dans l'enonce peut etre admis et utilise par la suite, meme s'il n'a pas ete demontre par le(la) candidat(e) ;</li>
+        <li>les questions comportant le mot &laquo; calculer &raquo; demandent une application numerique.</li>
+      </ul>
+      <p>Le probleme, comportant trois parties independantes, s'interesse a la <strong>decongelation des aliments par micro-ondes</strong> : quelques caracteristiques geometriques de la molecule d'eau sont interpretees dans la premiere partie, puis la propagation d'une onde electromagnetique dans un milieu dielectrique est etudiee dans la deuxieme partie ; enfin l'approche thermique de la decongelation d'un aliment est abordee en troisieme partie.</p>
+      <p><em>Dans l'industrie agro-alimentaire, une decongelation de blocs alimentaires doit etre realisee de maniere a peu pres uniforme et en une duree raisonnable. Une possibilite est d'utiliser des ondes electromagnetiques de frequence f = 2,45 GHz appartenant au domaine des micro-ondes (ce type d'ondes est emis dans les fours a micro-ondes du meme nom). Le principe physique est de faire vibrer les molecules d'eau, ce qui contribue au rechauffement de l'aliment introduit dans le four.</em></p>
+    </div>
+
+    <h2>Table des matieres</h2>
+    <ul class="toc">
+      <li><a href="#exo1">Premiere partie - Geometrie de la molecule d'eau (Q1 a Q16)</a></li>
+      <li><a href="#exo2">Deuxieme partie - Propagation d'une micro-onde dans un aliment surgele (Q1b a Q18b)</a></li>
+      <li><a href="#exo3">Troisieme partie - Decongelation d'un aliment (Q1c a Q6c)</a></li>
+    </ul>
+  </div>
+
+  <article class="annale-exercice" id="exo1">
+    <h2>Premiere partie - Geometrie de la molecule d'eau</h2>
+    <p><em>La structure de la molecule d'eau est complexe et une description precise necessite l'utilisation de la mecanique quantique. Dans cette partie, une modelisation simple permet de comprendre la geometrie de la molecule.</em></p>
+    <p><strong>Donnees :</strong></p>
+    <ul>
+      <li>Constante de gravitation : \( G = 6,7.10^{-11} \) uSI</li>
+      <li>Permittivite du vide : \( \varepsilon_0 = 8,8.10^{-12} \) F.m\(^{-1}\)</li>
+      <li>Charge elementaire : \( e = 1,6.10^{-19} \) C</li>
+      <li>Masse d'un atome d'hydrogene : \( m_H = 1,7.10^{-27} \) kg</li>
+      <li>Masse d'un atome d'oxygene : \( m_O = 2,7.10^{-26} \) kg</li>
+      <li>Distance entre les centres des ions H\(^+\) et O\(^{2-}\) dans H\(_2\)O : \( L = 1,0.10^{-10} \) m</li>
+    </ul>
+
+    <h3>A / Approche electrostatique de la molecule d'eau</h3>
+    <p><em>Une charge ponctuelle \( q_1 \) est fixee au point O.</em></p>
+
+    <section class="question" id="Q1">
+      <h4>Question 1</h4>
+      <p>Rappeler l'expression du potentiel electrostatique V(M) cree dans le vide par la charge ponctuelle \( q_1 \) en un point M situe a la distance r du point O <em>(le potentiel sera pris nul a l'infini)</em>.</p>
+      <p><em>Une deuxieme charge \( q_2 \) est alors placee en un point N, a la distance L de O (figure 1).</em></p>
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 1</div>
+        <p>Schema lineaire montrant deux charges ponctuelles alignees : la charge \( q_1 \) au point O (a gauche) et la charge \( q_2 \) au point N (a droite), separees par une distance L mesuree entre O et N.</p>
+      </div>
+    </section>
+
+    <section class="question" id="Q2">
+      <h4>Question 2</h4>
+      <p>En deduire l'energie potentielle d'interaction electrostatique \( W_{12} \) entre les deux particules chargees \( q_1 \) et \( q_2 \).</p>
+      <p><em>Les deux particules chargees \( q_1 \) et \( q_2 \) ont des masses respectives \( m_1 \) et \( m_2 \).</em></p>
+    </section>
+
+    <section class="question" id="Q3">
+      <h4>Question 3</h4>
+      <p>Exprimer l'energie potentielle d'interaction gravitationnelle \( W_{grav,12} \) entre les deux particules chargees \( q_1 \) et \( q_2 \).</p>
+      <p>Calculer le rapport \( \eta = \left| W_{12} / W_{grav,12} \right| \) si la charge \( q_1 \) est celle d'un hydrogene H\(^+\) et \( q_2 \) un ion oxygene O\(^{2-}\). Qu'en deduire pour une etude energetique de la molecule d'eau ?</p>
+      <p><em>La molecule d'eau peut approximativement etre decrite de la maniere suivante (figure 2) : un ion ponctuel O\(^{2-}\) est a la distance L de deux ions ponctuels H\(^+\), l'angle \( \widehat{HOH} \) etant note \( 2\theta \).</em></p>
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 2</div>
+        <p>Representation de la molecule d'eau : un ion oxygene O\(^{2-}\) au sommet, et deux ions hydrogene H\(^+\) symetriques en dessous, formant un V. L'angle entre les deux liaisons O-H, mesure au sommet O, est note \( 2\theta \). Les deux distances O-H valent L.</p>
+      </div>
+    </section>
+
+    <section class="question" id="Q4">
+      <h4>Question 4</h4>
+      <p>Determiner l'energie d'interaction electrostatique \( W_{HH} \) entre les deux ions H\(^+\), puis l'energie d'interaction \( W_{OH} \) entre un ion H\(^+\) et l'ion O\(^{2-}\), en fonction notamment de la charge elementaire e, de L et de l'angle \( \theta \).</p>
+      <p><em>L'energie potentielle electrostatique W de la molecule d'eau s'exprime, en supposant comme precedemment les charges ponctuelles, sous la forme : \( W = W_{HH} + 2\,W_{OH} \).</em></p>
+    </section>
+
+    <section class="question" id="Q5">
+      <h4>Question 5</h4>
+      <p>Expliquer les signes de \( W_{HH} \) et \( W_{OH} \). Justifier la presence du facteur 2.</p>
+      <p><em>La fonction \( W(L,\theta) \) represente l'energie potentielle de la molecule d'eau. Dans la suite, la longueur L sera supposee fixee. L'expression de l'energie potentielle de la molecule d'eau \( W(\theta) \) sera fonction uniquement de l'angle \( \theta \).</em></p>
+    </section>
+
+    <section class="question" id="Q6">
+      <h4>Question 6</h4>
+      <p>Quelle est la valeur de l'angle \( \theta_0 \) de l'angle a l'equilibre, prevu par la modelisation precedente ? Cet equilibre est-il stable ? Comment expliquer simplement la valeur de \( \theta_0 \) ?</p>
+    </section>
+
+    <section class="question" id="Q7">
+      <h4>Question 7</h4>
+      <p>En faisant appel a vos connaissances acquises dans le cours de chimie, expliquer quelle valeur est attendue pour \( \theta_0 \). Le resultat de la question precedente est-il satisfaisant ?</p>
+      <p><em>Une description plus elaboree de la molecule d'eau fait intervenir l'etendue spatiale de l'ion O\(^{2-}\), les ions H\(^+\) etant toujours consideres comme ponctuels. Le champ cree par les ions H\(^+\) perturbe la repartition de charge a l'interieur de O\(^{2-}\), ce qui par consequent modifie l'energie d'interaction electrostatique totale.</em></p>
+      <p><em>En premiere approche, etudions un atome constitue, selon le modele simplifie de THOMSON (1904), d'un noyau de charge -q reparti uniformement en volume dans une boule \( \mathcal{B} \) de centre O et de rayon R, et d'electrons. Ces electrons sont representes par une charge ponctuelle unique -q, soumise au champ du noyau (figure 3). La position de cette charge -q a un instant quelconque est reperee par le point M.</em></p>
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 3</div>
+        <p>Schema d'un atome simplifie : une boule \( \mathcal{B} \) de centre O et de rayon R representant la distribution volumique de charge du noyau (charge totale +q repartie uniformement). Un point M, situe a l'interieur de la boule, repere la position de la charge ponctuelle -q (electron).</p>
+      </div>
+    </section>
+
+    <section class="question" id="Q8">
+      <h4>Question 8</h4>
+      <p>Evaluer le champ electrique \( \vec{E}(M) \) cree par le noyau seul en un point M interieur a la boule \( \mathcal{B} \), en fonction notamment de q, R et \( \overrightarrow{OM} \).</p>
+    </section>
+
+    <section class="question" id="Q9">
+      <h4>Question 9</h4>
+      <p>Exprimer la force de LORENTZ subie par la charge -q. En deduire sa position d'equilibre, reperee par le vecteur \( \vec{r}_{eq} \), de la charge -q dans le champ du noyau. L'equilibre est-il stable ?</p>
+      <p><em>L'atome est alors place dans un champ electrique exterieur uniforme et stationnaire \( \vec{E}_0 \). Il sera admis que la distribution de charges du noyau n'est pas modifiee par l'action du champ \( \vec{E}_0 \).</em></p>
+    </section>
+
+    <section class="question" id="Q10">
+      <h4>Question 10</h4>
+      <p>Quelle est la nouvelle position d'equilibre, reperee par \( \vec{r}'_{eq} \), de la charge -q en fonction de \( \vec{E}_0 \), q, \( \varepsilon_0 \) et R ? <em>(la valeur du champ \( \vec{E}_0 \) sera supposee suffisamment faible pour que cette position d'equilibre se situe a l'interieur de la sphere de centre R)</em>.</p>
+    </section>
+
+    <section class="question" id="Q11">
+      <h4>Question 11</h4>
+      <p>Montrer que l'atome acquiert alors un moment dipolaire \( \vec{p}_i \) (dit induit) de la forme : \( \vec{p}_i = \varepsilon_0\,\alpha_{ato}\,\vec{E}_0 \), ou \( \alpha_{ato} \) sera exprime en fonction de R.</p>
+      <p><em>Revenons au cas de la molecule d'eau. Elle est desormais modelisee par un ion oxygene O\(^{2-}\) de rayon R centre en O et de deux ions ponctuels H\(^+\). L'angle \( \widehat{HOH} \) est toujours note \( 2\theta \) et la distance du centre O a un ion H\(^+\) vaut L (figure 4, representant le plan de la molecule d'eau).</em></p>
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 4</div>
+        <p>Representation de la molecule d'eau dans le plan : l'ion O\(^{2-}\) est figure par une boule de rayon R centree en O. Les deux ions H\(^+\) sont disposes symetriquement de part et d'autre de la verticale passant par O, a la distance L de O, formant un angle \( 2\theta \) au sommet O. Un repere orthonorme \( (\vec{u}_x, \vec{u}_y) \) est defini : \( \vec{u}_y \) verticale ascendante (vers O depuis le bas), \( \vec{u}_x \) horizontale.</p>
+      </div>
+    </section>
+
+    <section class="question" id="Q12">
+      <h4>Question 12</h4>
+      <p>Exprimer le champ \( \vec{E}_0 \) en fonction notamment de la charge elementaire e, L et \( \theta \).</p>
+      <p><em>L'expression etablie en question A11 donnant le moment dipolaire induit d'un atome est supposee toujours valable dans le cas de l'ion O\(^{2-}\). L'energie potentielle electrostatique associee a la deformation de la repartition de charge s'ecrit alors : \( W = -\vec{p}_i \cdot \vec{F}_0 / 2 \). Au final, l'energie potentielle totale de la repartition de charge vaut \( W_{tot} = W + W' \), ou W a ete determine a la question A5.</em></p>
+    </section>
+
+    <section class="question" id="Q13">
+      <h4>Question 13</h4>
+      <p>Ecrire \( W_{tot}(\theta) \) sous la forme : \( W_{tot}(\theta) = \dfrac{e^2}{8\pi\varepsilon_0\,L}\left(A_1 + \dfrac{A_2}{\sin\theta} + A_3\cos^2\theta\right) \).</p>
+      <p>En deduire les coefficients \( A_1 \), \( A_2 \) et \( A_3 \) en fonction de L et R.</p>
+    </section>
+
+    <section class="question" id="Q14">
+      <h4>Question 14</h4>
+      <p>En deduire les positions d'equilibre. Les calculer sachant que le rayon de l'ion O\(^{2-}\) vaut R \( \simeq 1,0.10^{-10} \) m.</p>
+    </section>
+
+    <section class="question" id="Q15">
+      <h4>Question 15</h4>
+      <p>Tracer l'allure de \( W_{tot}(\theta) \) en fonction de \( \theta \). En deduire la stabilite des positions d'equilibre obtenues precedemment.</p>
+    </section>
+
+    <section class="question" id="Q16">
+      <h4>Question 16</h4>
+      <p>Commenter ces resultats.</p>
+    </section>
+  </article>
+
+  <article class="annale-exercice" id="exo2">
+    <h2>Deuxieme partie - Propagation d'une micro-onde dans un aliment surgele</h2>
+    <p><em>Dans un four a micro-ondes, une onde electromagnetique est creee afin de permettre le rechauffement d'aliments. Le but de cette partie est d'etudier la structure d'une micro-onde au cours de la traversee d'un aliment.</em></p>
+    <p><strong>Donnees :</strong></p>
+    <ul>
+      <li>Pour un champ vectoriel \( \vec{A} \), rappelons que : \( \overrightarrow{rot}\,(\overrightarrow{rot}\,\vec{A}) = \overrightarrow{grad}\,(div\,\vec{A}) - \Delta \vec{A} \).</li>
+      <li>La vitesse de la lumiere dans le vide est \( c = 3,0.10^8 \) m.s\(^{-1}\).</li>
+      <li>Le complexe j est tel que \( j^2 = -1 \).</li>
+    </ul>
+
+    <h3>B / Electromagnetisme dans un milieu dielectrique</h3>
+
+    <section class="question" id="Q1b">
+      <h4>Question 1</h4>
+      <p>La molecule d'eau est-elle polaire ? <em>(justifier clairement la reponse)</em>. Calculer l'ordre de grandeur du moment dipolaire en supposant comme dans la partie A que la molecule est une association de trois ions <em>(utiliser le cas echeant pour la valeur de l'angle \( \widehat{HOH} \) l'ordre de grandeur 2\(\theta\) = 90&deg;)</em>. La quantite ainsi obtenue est-elle a votre avis superieure ou inferieure a la valeur experimentale ? Pourquoi ?</p>
+    </section>
+
+    <section class="question" id="Q2b">
+      <h4>Question 2</h4>
+      <p>Definir le vecteur polarisation \( \vec{P} \) d'un milieu dielectrique et rappeler l'unite de cette grandeur. Pourquoi la polarisation \( \vec{P} \) de l'eau ou d'un aliment contenant de l'eau est-elle consideree comme nulle ?</p>
+      <p><em>Placons un dipole permanent \( \vec{p} \) dans un champ electrique \( \vec{E} \) stationnaire et uniforme spatialement.</em></p>
+    </section>
+
+    <section class="question" id="Q3b">
+      <h4>Question 3</h4>
+      <p>Quelles sont les possibilites d'orientation a l'equilibre du dipole \( \vec{p} \) dans le champ \( \vec{E} \) ? Preciser leurs stabilites.</p>
+      <p><em>Desormais, le champ est suppose oscillant : \( \vec{E}(t) = \vec{E}_0\cos(\omega t) \) ; \( \vec{E}_0 \) est un vecteur donne et la pulsation \( \omega \) est consideree comme faible.</em></p>
+    </section>
+
+    <section class="question" id="Q4b">
+      <h4>Question 4</h4>
+      <p>Decrire qualitativement l'effet de l'oscillation temporelle du champ sur l'orientation du dipole. Que se passe-t-il si la pulsation \( \omega \) est progressivement augmentee ? Quelles sont les consequences sur la conversion d'energie ou sur thermique ?</p>
+      <p><em>Dans la suite de cette partie sera etudiee la propagation d'une micro-onde dans un aliment congele, qui sera considere comme un materiau dielectrique homogene, isotrope, depourvu de courants et de charges libres. Dans ce milieu, la polarisation \( \vec{P} \) verifie l'equation suivante (en presence d'un champ electrique \( \vec{E} \)) :</em></p>
+      <p>\[ \tau\,\dfrac{\partial \vec{P}}{\partial t} + \vec{P} = \varepsilon_0\,\chi_0\,\vec{E},\quad \text{ou } \tau = 1,0.10^{-12}\text{ s et } \chi_0 = 75 \text{ sont des constantes.} \]</p>
+      <p><em>L'onde etudiee s'exprime en notation complexe sous la forme : \( \vec{\underline{E}} = \vec{E}_0\,\exp j(\omega t - \underline{k}\,x)\,\vec{u}_x \), ou \( \vec{E}_0 \) est une constante reelle, \( \omega \) la pulsation, \( \underline{k} = k_1 + jk_2 \) le vecteur d'onde, eventuellement complexe et \( \vec{u} \) un vecteur unitaire fixe. Les autres champs comportent un terme de phase similaire.</em></p>
+    </section>
+
+    <section class="question" id="Q5b">
+      <h4>Question 5</h4>
+      <p>Donner le sens physique des grandeurs \( \chi_0 \) et \( \tau \). Pour cette derniere, etudier l'expression de l'evolution de la polarisation \( \vec{P} \) dans le cas ou le champ electrique serait annule a partir de t = 0.</p>
+    </section>
+
+    <section class="question" id="Q6b">
+      <h4>Question 6</h4>
+      <p>Montrer que la susceptibilite complexe \( \underline{\chi}(\omega) \) du milieu dielectrique s'ecrit :</p>
+      <p>\[ \underline{\chi}(\omega) = \chi_1(\omega) + j\chi_2(\omega),\ \text{avec}\ \chi_1(\omega) = \chi_0\,\dfrac{1}{1+\omega^2\tau^2}\ \text{et}\ \chi_2(\omega) = \chi_0\,\dfrac{\beta\omega\tau}{1+\omega^2\tau^2}, \]</p>
+      <p>ou \( \beta \) est un nombre qu'il conviendra d'expliciter.</p>
+    </section>
+
+    <section class="question" id="Q7b">
+      <h4>Question 7</h4>
+      <p>Donner l'allure des courbes \( \chi_1(\omega) \) et \( \chi_2(\omega) \). Faire intervenir les valeurs \( \chi_0 \) et \( 1/\tau \) sur les traces. Commenter ces courbes (limites basse et haute pulsation, point(s) particulier(s)).</p>
+      <p><em>Dans tout milieu dielectrique possedant la polarisation \( \vec{P} \) existe une densite volumique de courants lies \( \vec{j}_l = \dfrac{\partial \vec{P}}{\partial t} \).</em></p>
+    </section>
+
+    <section class="question" id="Q8b">
+      <h4>Question 8</h4>
+      <p>Rappeler l'equation locale de conservation de la charge. En deduire l'expression de la densite volumique de charges liees s'ecrit : \( \rho_l = K\,div\,\vec{P} \), ou K est une constante a expliciter. Preciser l'unite de la densite de courants lies \( \vec{j}_l \) dans le Systeme International.</p>
+    </section>
+
+    <section class="question" id="Q9b">
+      <h4>Question 9</h4>
+      <p>Ecrire les equations de MAXWELL dans le materiau dielectrique, en faisant intervenir les seuls champs electrique \( \vec{E} \) et magnetique \( \vec{B} \).</p>
+    </section>
+
+    <section class="question" id="Q10b">
+      <h4>Question 10</h4>
+      <p>Montrer que le champ \( \vec{E} \) est transverse. Que dire de la direction de \( \vec{u} \) ?</p>
+      <p><em>Dans la suite, \( \vec{u} \) sera choisi tel que \( \vec{u} = \vec{u}_y \).</em></p>
+    </section>
+
+    <section class="question" id="Q11b">
+      <h4>Question 11</h4>
+      <p>Trouver une equation verifiee seulement par le champ electrique \( \vec{E} \) <em>(equation de propagation)</em>.</p>
+    </section>
+
+    <section class="question" id="Q12b">
+      <h4>Question 12</h4>
+      <p>En deduire l'equation de dispersion, soit l'expression de \( \underline{k}^2 \) en fonction de \( \omega \), c et \( \underline{\chi} \).</p>
+    </section>
+
+    <section class="question" id="Q13b">
+      <h4>Question 13</h4>
+      <p>En supposant que \( \chi_0 \gg 1 \) et \( \omega\tau \ll 1 \), trouver dans premiers reels \( r_1 \) et \( r_2 \) (a exprimer en fonction de \( \chi_0 \), \( \omega \) et c) tels que \( 1 + \underline{\chi} \simeq (r_1 + jr_2)^2 \).</p>
+      <p><em>(la relation \( \sqrt{1+x} \simeq 1 + x/2 \) pour \( x \ll 1 \) pourra etre utilisee)</em></p>
+    </section>
+
+    <section class="question" id="Q14b">
+      <h4>Question 14</h4>
+      <p>Ecrire le vecteur d'onde \( \underline{k} \) sous la forme \( \underline{k} = k_1 + jk_2 \). Exprimer les parties reelle et imaginaire \( k_1 \) et \( k_2 \), en fonction de \( \omega \), \( \chi_0 \), c et \( \tau \).</p>
+    </section>
+
+    <section class="question" id="Q15b">
+      <h4>Question 15</h4>
+      <p>En deduire l'expression precise du champ electrique reel \( \vec{E} \) en faisant notamment intervenir \( k_1 \) et \( k_2 \). Commenter la forme (le terme obtenue : est-elle plane, progressive (ou non) ; stationnaire (ou non), par exemple ?). Quelle est l'effet de la perturbation \( k_2 \) sur la propagation ? Quelle est sa polarisation ? <em>(toutes ces reponses seront clairement justifiees)</em></p>
+    </section>
+
+    <section class="question" id="Q16b">
+      <h4>Question 16</h4>
+      <p>Exprimer la longueur d'onde \( \lambda \) de l'onde dans le dielectrique. Ecrire l'amplitude sous la forme \( E_0\,\exp(-x/\delta) \) et exprimer \( \delta \) en fonction de \( k_1 \), et(ou) \( k_2 \). Pourquoi l'amplitude de l'onde varie-t-elle ? Preciser le sens physique de \( \delta \).</p>
+    </section>
+
+    <section class="question" id="Q17b">
+      <h4>Question 17</h4>
+      <p>Calculer \( \omega \), \( \lambda \), puis \( \delta \) pour une frequence f = 2,45 GHz. Commenter le resultat.</p>
+    </section>
+
+    <section class="question" id="Q18b">
+      <h4>Question 18</h4>
+      <p>Faire un calcul de puissance, donner la direction du vecteur de POYNTING moyen, ainsi que l'expression de sa dependance par rapport aux variables spatiales.</p>
+    </section>
+  </article>
+
+  <article class="annale-exercice" id="exo3">
+    <h2>Troisieme partie - Decongelation d'un aliment</h2>
+    <p><em>L'etude precedente a aborde les principaux phenomenes ayant lieu lors de la propagation d'une micro-onde dans un aliment congele. Cette troisieme partie seront mis en evidence l'interet de la decongelation par micro-ondes, puis la maniere de proceder afin d'obtenir une decongelation sensiblement uniforme.</em></p>
+    <p><em>L'aliment soumis a la decongelation, de forme parallelepipedique, possede une section S = 1,0 m\(^2\) et une epaisseur L = 20 cm. Sa temperature initiale est uniforme, egale a \( T_{ini} = -20\,^\circ C \), et la temperature finale desiree est fixee a \( T_{fin} = 0\,^\circ C \).</em></p>
+
+    <h3>C / Decongelation &laquo; classique &raquo;</h3>
+    <p><em>La maniere la plus simple de proceder a la decongelation consiste a utiliser un fluide plus chaud (air ou eau en pratique).</em></p>
+    <p><em>Jusqu'a la fin du probleme, la situation est supposee unidimensionnelle, c'est-a-dire que les grandeurs d'interet ne dependent que de la variable x (figure 5). De plus, le fluide entourant l'aliment sera simplifie, en supposant qu'elle impose la temperature T\(_{ext}\) = 20 &deg;C aux bords de l'aliment, c'est-a-dire en x = 0 et x = L. Quasi instantanement, les bords de l'aliment acquierent la temperature T\(_{ext}\), puis petit a petit, l'interieur de l'aliment se rechauffe. Pour la simplification du probleme, les fuites thermiques laterales seront negligees.</em></p>
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 5</div>
+      <p>Schema de l'aliment vu en coupe selon x : un rectangle vertical represente la tranche de l'aliment, ses deux faces verticales (a x = 0 et x = L) sont reperees par des fleches portant la mention T\(_{ext}\). L'axe horizontal x est oriente vers la droite, l'origine O coincidant avec la face gauche de l'aliment.</p>
+    </div>
+    <p><em>La capacite thermique massique de l'aliment est notee \( c_m = 2,0\) kJ.K\(^{-1}\).kg\(^{-1}\), sa conductivite thermique \( \lambda_{th} = 1,0\) W.m\(^{-1}\).K\(^{-1}\) et sa masse volumique \( \rho = 1,1.10^3 \) kg.m\(^{-3}\) ; ces grandeurs seront uniformes au sein de l'aliment.</em></p>
+
+    <section class="question" id="Q1c">
+      <h4>Question 1</h4>
+      <p>En considerant une tranche elementaire d'aliment comprise entre x et x+dx, etablir l'equation de diffusion thermique satisfaite par la temperature de l'aliment :</p>
+      <p>\[ \dfrac{\partial T(x,t)}{\partial t} = D_{th}\,\dfrac{\partial^2 T(x,t)}{\partial x^2}, \]</p>
+      <p>ou D\(_{th}\) est une constante a expliciter en fonction des caracteristiques de l'aliment.</p>
+      <p><em>La temperature de l'aliment est dans un premier temps recherchee sous la forme : T(x,t) = T\(_{ext}\) + f(x)g(t). La fonction f(x) sera supposee etre sinusoidale, de la forme f(x) = sin(\(\mu x\)), ou \( \mu \) est une constante positive ; la fonction g(t) sera explicitee ulterieurement.</em></p>
+    </section>
+
+    <section class="question" id="Q2c">
+      <h4>Question 2</h4>
+      <p>En considerant les conditions aux limites, exprimer les valeurs possibles de \( \mu \) en faisant intervenir un entier n.</p>
+    </section>
+
+    <section class="question" id="Q3c">
+      <h4>Question 3</h4>
+      <p>En resolvant l'equation de diffusion thermique, montrer que la temperature T(x,t) s'ecrit alors sous la forme :</p>
+      <p>\[ T(x,t) = T_{ext} + \theta\,\sin(\mu x)\,\exp(-\nu t), \]</p>
+      <p>ou \( \theta \) est une constante (qui ne sera pas determinee). Exprimer la constante \( \nu \) en fonction de D\(_{th}\), L et n.</p>
+    </section>
+
+    <section class="question" id="Q4c">
+      <h4>Question 4</h4>
+      <p>Tracer, dans le cas n = 1, l'allure de la temperature de l'aliment T(x,t) au debut de la decongelation, pour t\(_1\) = 0\(^+\), puis au bout d'un certain temps, pour t\(_2\) = 5 h <em>(calculer notamment exp(-\(\nu t_2\))</em>.</p>
+    </section>
+
+    <section class="question" id="Q5c">
+      <h4>Question 5</h4>
+      <p>Commenter l'evolution de la temperature au cours du temps. Critiquer les deux courbes obtenues.</p>
+      <p><em>Une solution plus generale peut etre obtenue en sommant les solutions obtenues precedemment pour les differentes valeurs des entiers n, les constantes etant desormais indicees :</em></p>
+      <p>\[ T(x,t) = T_{ext} + \sum_{n=1}^{\infty}\theta_n\,\sin(\mu_n x)\,\exp(\nu_n t). \]</p>
+    </section>
+
+    <section class="question" id="Q6c">
+      <h4>Question 6</h4>
+      <p>Estimer numeriquement la duree necessaire pour degeler l'aliment et commenter le resultat.</p>
+    </section>
+
+    <section class="question" id="Q7c">
+      <h4>Question 7</h4>
+      <p>Pouvait-on avoir une idee de son ordre de grandeur sans faire les calculs precedents ?</p>
+
+      <h3>D / Decongelation par micro-ondes</h3>
+      <p><em>Une autre possibilite pour la decongelation est l'emploi d'ondes electromagnetiques. Une micro-onde est envoyee en incidence normale sur les deux faces de l'aliment (figure 6). Ce dernier possede les memes mesures S = 1,0 m\(^2\) et epaisseur L = 20 cm que precedemment.</em></p>
+      <p><em>Afin de simplifier la modelisation de l'aliment, il est possible de le partager (par la pensee) en cinq tranches d'egale epaisseur. Dans chaque tranche, les proprietes thermophysiques de l'aliment et sa temperature seront considerees comme uniformes. La temperature du centre C\(_j\) de la tranche j est notee T\(_j\) (figure 6).</em></p>
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 6</div>
+        <p>Schema de l'aliment partage en cinq tranches d'egale epaisseur, etiquetees C\(_1\), C\(_2\), C\(_3\), C\(_4\), C\(_5\) de gauche a droite, chacune marquee d'une croix indiquant son centre. Deux fleches horizontales convergentes (l'une venant de la gauche au-dessus, l'autre venant de la droite au-dessus) representent les <em>ondes incidentes</em> arrivant en incidence normale sur les deux faces (en x = 0 et x = L). L'axe x est oriente vers la droite.</p>
+      </div>
+      <p><em>Comme cela a ete etudie dans la deuxieme partie, l'onde est absorbee dans l'aliment et sa puissance decroit exponentiellement. Par exemple, la puissance \( \mathcal{P} \) associee a l'onde arrivant en x = 0 varie comme \( \mathcal{P}(x) = \mathcal{P}_0^i\,\exp(-\alpha x) \), ou \( \alpha \) est une constante positive et \( \mathcal{P}_0^i = 5,0\) kW. L'onde provenant de l'extremite x = L est absorbee de la meme maniere.</em></p>
+      <p><em>Une difficulte pour la modelisation provient du fait que les proprietes physiques du materiau dependent de sa temperature. Deux domaines seront distingues :</em></p>
+      <ul>
+        <li><em>domaine A : etat congele : T\(_{ini}\) \( \leq \) T \( \leq \) T' (avec T' = -3 &deg;C)</em></li>
+        <li><em>domaine B : etat en cours de decongelation : T' \( \leq \) T \( \leq \) T\(_{fin}\) (avec T\(_{fin}\) = 0 &deg;C)</em></li>
+      </ul>
+      <p><em>Sur la figure 7, sont representees des modelisations simplifiees des variations de la capacite thermique massique c\(_m\), de la conductivite thermique \( \lambda_{th} \) et de la constante d'attenuation \( \alpha \). Ces quantites comporteront donc en indice le domaine de temperature considere, comme par exemple c\(_{m,A} \). La masse volumique reste, quant a elle, quasiment constante et notee \( \rho = 1,1.10^3 \) kg.m\(^{-3}\).</em></p>
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 7</div>
+        <p>Trois graphiques en escalier, en fonction de la temperature T :</p>
+        <p>1) c\(_m\) (kJ.K\(^{-1}\).kg\(^{-1}\)) : palier a 2 sur le domaine A (de T\(_{ini}\) a T'), saut a un palier a 20 sur le domaine B (de T' a T\(_{fin}\)).</p>
+        <p>2) \( \lambda_{th} \) (W.m\(^{-1}\).K\(^{-1}\)) : palier a 1,0 sur le domaine A, palier a 0,5 sur le domaine B.</p>
+        <p>3) \( \alpha \) (m\(^{-1}\)) : palier a 25 sur le domaine A, palier a 100 sur le domaine B.</p>
+        <p>Les axes horizontaux portent les graduations T\(_{ini}\), T', T\(_{fin}\).</p>
+      </div>
+      <p><em>Dans un premier temps, la diffusion thermique n'est pas prise en compte.</em></p>
+    </section>
+
+    <section class="question" id="Q1d">
+      <h4>Question 1</h4>
+      <p>Comment interpreter qualitativement l'augmentation brusque de la capacite thermique au voisinage de T' ?</p>
+    </section>
+
+    <section class="question" id="Q2d">
+      <h4>Question 2</h4>
+      <p>Calculer le transfert thermique (chaleur) que doit recevoir l'aliment pour passer de T\(_{ini}\) a T\(_{fin}\).</p>
+    </section>
+
+    <section class="question" id="Q3d">
+      <h4>Question 3</h4>
+      <p>Sachant que chacune des deux ondes envoyees sur l'aliment possede une puissance \( \mathcal{P}_0^i \), calculer la duree \( \Delta t \) de la decongelation. Pourquoi n'est-ce qu'une estimation ?</p>
+    </section>
+
+    <section class="question" id="Q4d">
+      <h4>Question 4</h4>
+      <p>Si l'aliment est dans l'etat congele <strong>A</strong>, calculer (numeriquement) la fraction de puissance \( \dfrac{\mathcal{P}_1^i}{\mathcal{P}_0^i} \) de l'onde arrivant en x = 0, qui est absorbee dans la tranche j (j = 1,...,5).</p>
+      <p>Calculer ensuite la fraction de la puissance provenant des deux ondes \( \dfrac{\mathcal{P}_j^i}{2\mathcal{P}_0^i} \) absorbee dans la tranche j (j = 1,...,5).</p>
+      <p>Calculer en suite la duree \( \Delta t_j \) requise pour chauffer la tranche 1 jusqu'a la temperature T' (toute conduction thermique est negligee a ce stade).</p>
+      <p>Preciser l'etat dans lequel se trouvent alors les autres tranches de la meme maniere.</p>
+    </section>
+
+    <section class="question" id="Q5d">
+      <h4>Question 5</h4>
+      <p>L'aliment est ensuite suppose etre entierement dans l'etat intermediaire <strong>B</strong>. Calculer de meme la fraction de puissance totale \( \dfrac{\mathcal{P}_j^i}{2\mathcal{P}_0^i} \) absorbee dans la tranche j (j = 1,...,5).</p>
+      <p>Conclure.</p>
+      <p><em>En pratique, pour pallier le probleme precedent, l'aliment est decongele par micro-ondes dans une piece tres froide, a une temperature de l'ordre de -50 &deg;C a -60 &deg;C.</em></p>
+    </section>
+
+    <section class="question" id="Q6d">
+      <h4>Question 6</h4>
+      <p>Expliquer la pertinence de ce procede.</p>
+    </section>
+  </article>
+</main>
+</body>
+</html>

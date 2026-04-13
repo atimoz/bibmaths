@@ -6,7 +6,7 @@
   <title>E3A 2015 -- Maths 2 | LibMaths</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -20,6 +20,16 @@
     .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
     .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
     .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
     .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
     .annale-info__item{display:flex;flex-direction:column;gap:4px}
     .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
@@ -40,9 +50,6 @@
     .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
     .course__nav-link:hover span{color:var(--accent)}
     .course__nav-link--next{text-align:right}
-    .annale-warning{background:linear-gradient(135deg,rgba(255,170,0,.08),rgba(255,170,0,.03));border:1px solid rgba(255,170,0,.25);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.85rem;line-height:1.7;color:var(--ink-light)}
-    .annale-warning strong{color:var(--ink);font-weight:600}
-    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
     @media(max-width:680px){
       .course__title{font-size:1.3rem}
       .course{padding-left:var(--space-md);padding-right:var(--space-md)}
@@ -84,7 +91,7 @@
         </div>
       </div>
     </div>
-      <a href="../../entrainement.html" class="nav__link">Entraînement</a>
+      <a href="../../entrainement.html" class="nav__link">Entrainement</a>
       <a href="../../revision.html" class="nav__link">Revision</a>
     </div>
     <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
@@ -113,12 +120,14 @@
 
     <h1 class="course__title">E3A 2015 -- Mathematiques 2</h1>
 
-    <div class="annale-warning">
-      <strong>Enonce non disponible en version texte.</strong> Le PDF de ce sujet est numerise (image) et ne permet pas l'extraction automatique du texte. Veuillez consulter directement le <a href="https://www.vmaths.fr/e3a-2015-maths2.pdf" target="_blank" rel="noopener">PDF sur vmaths.fr</a>.
+    <div style="margin-bottom:var(--space-xl)">
+      <a href="e3a-2015-correction.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#E91E63;color:#fff;border-radius:10px;font-family:var(--font-body);font-size:.85rem;font-weight:600;text-decoration:none;transition:background .2s">
+        <span>&#9998;</span> Voir la correction detaillee
+      </a>
     </div>
 
     <p class="course__intro">
-      Epreuve de mathematiques 1, filiere MP. Duree : 3 heures. Le sujet est disponible uniquement au format PDF (document numerise).
+      Epreuve de mathematiques 2, filiere MP. Duree : 3 heures. Probleme en 4 parties autour de la fonction \(f(z) = (e^z - 1)/z\) : inverse d'une serie entiere, developpement en serie entiere de \(1/f\) et nombres de Bernoulli, series de fonctions de classe \(C^\infty\), formule de Leibniz.
     </p>
 
     <div class="annale-info">
@@ -142,16 +151,235 @@
         <span class="annale-info__label">Duree</span>
         <span class="annale-info__value">3 heures</span>
       </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Series entieres, inverse, nombres de Bernoulli, series de fonctions, formule de Leibniz</span>
+      </div>
     </div>
 
-    <div class="annale-exercice">
-      <h2 class="annale-exercice__title">Sujet au format PDF</h2>
-      <p class="annale-exercice__intro">Ce sujet est disponible uniquement sous forme de document numerise (image). L'extraction automatique du texte n'est pas possible.</p>
-      <p style="text-align:center;margin:var(--space-xl) 0">
-        <a href="https://www.vmaths.fr/e3a-2015-maths2.pdf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--accent);color:#fff;border-radius:10px;font-family:var(--font-body);font-size:.95rem;font-weight:600;text-decoration:none;transition:opacity .2s">
-          Telecharger le PDF du sujet
-        </a>
-      </p>
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#p1"><span class="course__toc-num">I.</span> Inverse d'une serie entiere</a></li>
+        <li class="course__toc-item"><a href="#p2a"><span class="course__toc-num">IIA.</span> Developpement en serie entiere de \(1/f\)</a></li>
+        <li class="course__toc-item"><a href="#p2b"><span class="course__toc-num">IIB.</span> Nombres de Bernoulli</a></li>
+        <li class="course__toc-item"><a href="#p3"><span class="course__toc-num">III.</span> Series de fonctions de classe \(C^\infty\)</a></li>
+        <li class="course__toc-item"><a href="#p4"><span class="course__toc-num">IV.</span> Formule de Leibniz et expression de \(\gamma_n\)</a></li>
+      </ol>
+    </nav>
+
+    <p class="annale-exercice__intro">Les differentes parties du probleme ne sont pas independantes. Mais tout resultat d'une partie peut etre admis et utilise dans les parties suivantes.</p>
+    <p class="annale-exercice__intro">Pour tout nombre reel \(R > 0\), on note \(D(0, R)\) le disque ouvert de centre 0 et de rayon \(R\).</p>
+    <p class="annale-exercice__intro">Etant donnes un entier naturel \(n \geqslant 1\) et une fonction \(h\) de classe \(C^{(n)}\) sur un intervalle ouvert \(I\), on note \(h^{(n)}\) la derivee \(n\)-ieme de \(h\) sur \(I\). Si besoin, on pourra noter \(h^{(0)} = h\).</p>
+    <p class="annale-exercice__intro">Dans tout le probleme on note \(f\) la fonction definie sur \(\mathbb{C}\) par :</p>
+    <div class="math-display">$$f(z) = \begin{cases} \dfrac{e^z - 1}{z} & \text{si } z \neq 0 \\ 1 & \text{si } z = 0. \end{cases}$$</div>
+
+    <!-- PARTIE I -->
+    <div class="annale-exercice" id="p1">
+      <h2 class="annale-exercice__title">Partie I -- Inverse d'une serie entiere</h2>
+
+      <p class="annale-exercice__intro">Soit \(S(z) = \displaystyle\sum_{n=0}^{+\infty} a_n z^n\) une serie entiere de rayon de convergence \(R\) non nul et possiblement infini tel que \(a_0 = 1\). On se propose de demontrer qu'il existe un nombre reel \(R'\) tel que \(0 < R' \leqslant R\) et \(T(z) = \displaystyle\sum_{n=0}^{+\infty} b_n z^n\) une serie entiere de rayon de convergence superieur ou egal a \(R'\) telle que :</p>
+      <div class="math-display">$$\forall z \in D(0, R'), \quad S(z)\,T(z) = 1.$$</div>
+      <p class="annale-exercice__intro">Soit \(\rho\) un nombre reel tel que \(0 < \rho < R\).</p>
+
+      <div class="question" id="I-1">
+        <span class="question__num">1.</span>
+        <p>Rappeler la definition precise du rayon de convergence de la serie entiere \(S\).</p>
+      </div>
+
+      <div class="question" id="I-2">
+        <span class="question__num">2.</span>
+        <p>Justifier que la suite \((|a_n| \rho^n)_{n \in \mathbb{N}}\) est bornee.</p>
+      </div>
+
+      <div class="question" id="I-3">
+        <span class="question__num">3.</span>
+        <p>En deduire qu'il existe un nombre reel \(K > 0\) tel que, pour tout entier naturel \(n > 1\),</p>
+        <div class="math-display">$$|a_n| \leqslant \left(\frac{K}{\rho}\right)^n.$$</div>
+      </div>
+
+      <p class="annale-exercice__intro">On considere la suite \((b_n)_{n \in \mathbb{N}}\) definie par recurrence par :</p>
+      <div class="math-display">$$b_0 = 1 \text{ et pour } n > 0, \; b_n = -\left(\sum_{j=1}^{n} a_j\, b_{n-j}\right).$$</div>
+
+      <div class="question" id="I-4">
+        <span class="question__num">4.</span>
+        <p>Demontrer que pour tout entier naturel \(n\),</p>
+        <div class="math-display">$$|b_n| \leqslant \left(\frac{2K}{\rho}\right)^n.$$</div>
+      </div>
+
+      <div class="question" id="I-5">
+        <span class="question__num">5.</span>
+        <p>En deduire que la serie \(T(z) = \displaystyle\sum_{n=0}^{+\infty} b_n z^n\) a un rayon de convergence \(> 0\).</p>
+      </div>
+
+      <div class="question" id="I-6">
+        <span class="question__num">6.</span>
+        <p>Soit \(R'\) le minimum des rayons de convergence des series \(S\) et \(T\). Expliciter les coefficients de la serie produit \(S(z)\,T(z)\), pour \(z\) dans \(D(0, R')\).</p>
+      </div>
+
+      <div class="question" id="I-7">
+        <span class="question__num">7.</span>
+        <p>Conclure.</p>
+      </div>
+    </div>
+
+    <!-- PARTIE IIA -->
+    <div class="annale-exercice" id="p2a">
+      <h2 class="annale-exercice__title">Partie IIA -- Developpement en serie entiere de \(1/f\)</h2>
+
+      <p class="annale-exercice__intro">Soit \(f\) la fonction definie sur la premiere page.</p>
+
+      <div class="question" id="IIA-1">
+        <span class="question__num">1.</span>
+        <p>Justifier precisement que la fonction \(f\), restreinte a \(\mathbb{R}\), est continue en 0.</p>
+      </div>
+
+      <div class="question" id="IIA-2">
+        <span class="question__num">2.</span>
+        <p>Soit \(z\) un nombre complexe. On pose \(z = x + iy\), avec \(x\) et \(y\) reels. Exprimer la partie reelle et la partie imaginaire de \(e^z - 1\) en fonction de \(x\) et de \(y\).</p>
+      </div>
+
+      <div class="question" id="IIA-3">
+        <span class="question__num">3.</span>
+        <p>Determiner l'ensemble des elements \(z\) de \(\mathbb{C}\) tels que \(f(z) = 0\).</p>
+      </div>
+
+      <div class="question" id="IIA-4">
+        <span class="question__num">4.</span>
+        <p>Justifier qu'il existe une fonction \(g\) definie sur le disque \(D(0, 2\pi)\) definie par :</p>
+        <div class="math-display">$$\forall z \in D(0, 2\pi), \quad g(z) = \frac{1}{f(z)}.$$</div>
+      </div>
+
+      <div class="question" id="IIA-5">
+        <span class="question__num">5.</span>
+        <ol>
+          <li>(a) Rappeler le developpement en serie entiere de la fonction exponentielle. Quel en est le rayon de convergence ?</li>
+          <li>(b) En deduire que la fonction \(f\) admet un developpement en serie entiere sur \(\mathbb{C}\) : on montrera qu'il existe une serie entiere \(U(z)\) de rayon de convergence infini telle que \(\forall z \in \mathbb{C}\), \(U(z) = f(z)\). Expliciter les coefficients de la serie entiere \(U\).</li>
+        </ol>
+      </div>
+
+      <div class="question" id="IIA-6">
+        <span class="question__num">6.</span>
+        <p>En utilisant les resultats de la partie I, justifier qu'il existe une serie entiere \(V(z) = \displaystyle\sum_{n=0}^{+\infty} b_n z^n\) et un nombre reel \(R\) dans \(]0, 2\pi[\) telle que le rayon de convergence de \(V(z) = \displaystyle\sum_{n=0}^{+\infty} b_n z^n\) est superieur ou egal a \(R\) et telle que</p>
+        <div class="math-display">$$\forall z \in D(0, R), \quad V(z) = g(z).$$</div>
+      </div>
+
+      <div class="question" id="IIA-7">
+        <span class="question__num">7.</span>
+        <ol>
+          <li>(a) Demontrer que la fonction \(G\) definie par \(\forall t \in \,]-2\pi, 2\pi[\), \(G(t) = t + 2g(t)\), est une fonction paire.</li>
+          <li>(b) Que peut-on en deduire pour les coefficients de la serie \(V(z) = \displaystyle\sum_{n=0}^{+\infty} b_n z^n\) ?</li>
+        </ol>
+      </div>
+
+      <p class="annale-exercice__intro">Dans toute la suite du probleme, on note \((\gamma_n)_{n \in \mathbb{N}}\) la suite de nombres complexes definie par :</p>
+      <div class="math-display">$$\forall z \in D(0, R), \quad g(z) = \sum_{n=0}^{+\infty} \gamma_n z^n.$$</div>
+      <p class="annale-exercice__intro">On admet qu'on peut prendre \(R = 2\pi\).</p>
+    </div>
+
+    <!-- PARTIE IIB -->
+    <div class="annale-exercice" id="p2b">
+      <h2 class="annale-exercice__title">Partie IIB -- Nombres de Bernoulli</h2>
+
+      <div class="question" id="IIB-1">
+        <span class="question__num">1.</span>
+        <p>Justifier que, pour tout entier naturel \(n\), \(\gamma_n\) est un nombre reel.</p>
+      </div>
+
+      <div class="question" id="IIB-2">
+        <span class="question__num">2.</span>
+        <p>Expliciter \(\gamma_0, \gamma_1, \gamma_2, \gamma_3\).</p>
+      </div>
+
+      <div class="question" id="IIB-3">
+        <span class="question__num">3.</span>
+        <p>Justifier les egalites :</p>
+        <div class="math-display">$$\forall n \in \mathbb{N} \setminus \{0\}, \quad \sum_{k=0}^{n} \frac{\gamma_k}{(n - k + 1)!} = 0.$$</div>
+      </div>
+
+      <div class="question" id="IIB-4">
+        <span class="question__num">4.</span>
+        <p>Justifier que, pour tout entier naturel \(n\), \(\gamma_n\) est un nombre rationnel.</p>
+      </div>
+
+      <div class="question" id="IIB-5">
+        <span class="question__num">5.</span>
+        <p>Que peut-on dire de \(\gamma_n\) lorsque \(n\) est un entier naturel impair \(\geqslant 3\) ?</p>
+      </div>
+    </div>
+
+    <!-- PARTIE III -->
+    <div class="annale-exercice" id="p3">
+      <h2 class="annale-exercice__title">Partie III -- Series de fonctions de classe \(C^\infty\)</h2>
+
+      <p class="annale-exercice__intro">Pour tout entier naturel \(n\), on note \(h\) la fonction definie sur \(\mathbb{R}\) qui envoie \(t\) sur \((1 - e^t)\). Soit \(I\) un intervalle ouvert de \(\mathbb{R}\), centre en 0, tel que \(\forall t \in I\), \(|e^t - 1| < 1\).</p>
+      <p class="annale-exercice__intro">Soit \((a_n)_{n \in \mathbb{N}}\) une suite de nombre reels telle que la serie entiere \(S(z) = \displaystyle\sum_{n=0}^{+\infty} a_n z^n\) est de rayon de convergence au moins 1.</p>
+      <p class="annale-exercice__intro">On se propose de demontrer que la serie de fonctions \(S_n = \displaystyle\sum_{n=0}^{+\infty} a_n h^n\) definit une fonction de classe \(C^\infty\) sur \(I\).</p>
+
+      <div class="question" id="III-1">
+        <span class="question__num">1.</span>
+        <p>Expliciter un intervalle ouvert \(I\) de \(\mathbb{R}\), centre en 0, tel que \(\forall t \in I\), \(|e^t - 1| < 1\).</p>
+      </div>
+
+      <div class="question" id="III-2">
+        <span class="question__num">2.</span>
+        <p>Soit \(t \in I\). Demontrer que la serie \(S_n(t) = \displaystyle\sum_{n=0}^{+\infty} a_n h^n(t)\) est convergente.</p>
+      </div>
+
+      <div class="question" id="III-3">
+        <span class="question__num">3.</span>
+        <ol>
+          <li>(a) Soit \(K\) un segment non reduit a un point contenu dans \(I\). Justifier qu'il existe un nombre reel \(r > 0\), qu'on note \(C_K\), tel que \(\forall t \in K\), \(|e^t| \leqslant C_K\).</li>
+          <li>(b) En deduire que \(S_n\) est de classe \(C^1\) sur \(I\) et que
+            <div class="math-display">$$\forall t \in I, \quad S'_n(t) = -e^t \sum_{n=0}^{+\infty} (n+1)a_{n+1} h^n(t).$$</div>
+            On citera precisement le theoreme utilise.
+          </li>
+          <li>(c) Justifier qu'il existe une serie \(\displaystyle\sum_{n=0}^{+\infty} u_n z^n\) de rayon de convergence au moins 1 telle que
+            <div class="math-display">$$\forall t \in I, \quad S'_n(t) = \sum_{n=0}^{+\infty} u_n h^n(t).$$</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="question" id="III-4">
+        <span class="question__num">4.</span>
+        <p>Demontrer que \(S_n\) est de classe \(C^\infty\) sur \(I\) : On pourra demontrer par recurrence sur l'entier naturel \(k \geqslant 1\) que \(S_n\) est de classe \(C^k\) et qu'il existe une serie \(\displaystyle\sum_{n=0}^{+\infty} u_n^{(k)} z^n\) de rayon de convergence au moins 1 telle que la derivee \(k\)-ieme de \(S_n\) verifie</p>
+        <div class="math-display">$$\forall t \in I, \quad (S_n)^{(k)}(t) = \sum_{n=0}^{+\infty} u_n^{(k)} h^n(t).$$</div>
+      </div>
+    </div>
+
+    <!-- PARTIE IV -->
+    <div class="annale-exercice" id="p4">
+      <h2 class="annale-exercice__title">Partie IV -- Formule de Leibniz et expression de \(\gamma_n\)</h2>
+
+      <p class="annale-exercice__intro">On conserve les notations de la partie III, en particulier la fonction \(h\) est la fonction definie sur \(\mathbb{R}\) par \(h(t) = 1 - e^t\) et \(I\) est l'intervalle ouvert defini dans la question III.1.</p>
+
+      <div class="question" id="IV-1">
+        <span class="question__num">1.</span>
+        <p>Demontrer que pour tout \(t \in I\), \(g(t) = \displaystyle\sum_{k=0}^{+\infty} \frac{(1 - e^t)^k}{k+1}\). On justifiera la convergence de cette serie de fonctions.</p>
+      </div>
+
+      <div class="question" id="IV-2">
+        <span class="question__num">2.</span>
+        <ol>
+          <li>(a) Enoncer precisement la formule de Leibniz.</li>
+          <li>(b) Demontrer par recurrence sur l'entier naturel \(k\) que pour tout entier naturel \(n\) tel que \(k > n\), \((h^k)^{(n)}(0) = 0\).</li>
+          <li>(c) Demontrer que pour tous entiers naturels \(n, k\) tels que \(k > n\), et pour tout \(H\), fonction de classe \(C^\infty\) sur \(I\), \((Hh^k)^{(n)}(0) = 0\).</li>
+          <li>(d) En deduire que
+            <div class="math-display">$$g^{(n)}(0) = \sum_{k=0}^{n} \frac{(h^k)^{(n)}(0)}{k+1}.$$</div>
+            <p>On pourra decomposer \(g(t)\), pour \(t \in I\), sous la forme \(g(t) = \displaystyle\sum_{k=0}^{n} \frac{h(t)^k}{k+1} + h(t)^{n+1} H(t)\), avec \(H\) fonction de classe \(C^\infty\) sur \(I\).</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="question" id="IV-3">
+        <span class="question__num">3.</span>
+        <ol>
+          <li>(a) Demontrer que pour tout entier naturel \(n\), et tout entier naturel \(k\) non nul,
+            <div class="math-display">$$(h^k)^{(n)}(0) = \sum_{j=1}^{k} (-1)^j \binom{k}{j}\, j^n.$$</div>
+          </li>
+          <li>(b) Quelle expression de \(\gamma_n\) peut-on en deduire, pour tout entier naturel \(n\) ?</li>
+        </ol>
+      </div>
     </div>
 
     <nav class="course__nav">

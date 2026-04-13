@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E3A-Polytech 2006 -- Correction Physique PC | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:680px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:28px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md);padding-left:var(--space-lg)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+
+    .corr-exercice{margin-bottom:var(--space-2xl);padding:var(--space-xl);background:var(--bg-card);border:1px solid var(--border);border-radius:20px}
+    .corr-exercice__header{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md)}
+    .corr-exercice__number{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--font-body);font-size:1.1rem;font-weight:600;flex-shrink:0}
+    .corr-exercice__title-group{flex:1;min-width:0}
+    .corr-exercice__title{font-family:var(--font-body);font-size:1.35rem;font-weight:600;line-height:1.2;margin:0}
+    .corr-exercice__subtitle{display:block;font-family:var(--font-mono);font-size:.7rem;color:var(--ink-muted);margin-top:2px;letter-spacing:.05em;text-transform:uppercase}
+    .corr-exercice__difficulty{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;white-space:nowrap}
+    .corr-exercice__difficulty--standard{background:rgba(76,175,80,.15);color:#4CAF50}
+    .corr-exercice__difficulty--inter{background:rgba(255,152,0,.15);color:#FF9800}
+    .corr-exercice__difficulty--avance{background:rgba(244,67,54,.15);color:#F44336}
+    .corr-exercice__rule{border:none;border-top:1px solid var(--border);margin:var(--space-md) 0 var(--space-lg)}
+    .corr-exercice__enonce{background:rgba(74,144,217,.05);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.9rem;line-height:1.8;color:var(--ink-light)}
+    .corr-exercice__enonce-label{display:block;font-family:var(--font-mono);font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+
+    .corr-partie{margin:var(--space-xl) 0 var(--space-md);font-family:var(--font-body);font-size:1.15rem;font-weight:600;color:var(--accent);border-bottom:1px dashed var(--border);padding-bottom:6px}
+
+    .corr-question{margin-bottom:var(--space-xl);padding:var(--space-md) var(--space-lg);border-left:3px solid var(--border);background:rgba(0,0,0,.015);border-radius:0 12px 12px 0}
+    [data-theme="dark"] .corr-question{background:rgba(255,255,255,.02)}
+    .corr-question--easy{border-left-color:#4CAF50}
+    .corr-question--medium{border-left-color:#FF9800}
+    .corr-question--hard{border-left-color:#F44336}
+    .corr-question__num{display:inline-block;font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:3px 10px;border-radius:12px;margin-bottom:8px}
+    .corr-question__statement{font-style:italic;color:var(--ink);font-size:.95rem;line-height:1.75;padding:var(--space-sm) var(--space-md);background:rgba(0,0,0,.03);border-radius:8px;margin-bottom:var(--space-md)}
+    [data-theme="dark"] .corr-question__statement{background:rgba(255,255,255,.03)}
+
+    .corr-box{border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0;border-left:4px solid;font-size:.92rem;line-height:1.75}
+    .corr-box__title{font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+    .corr-box--rappel{background:rgba(74,144,217,.08);border-left-color:#4A90D9}
+    .corr-box--rappel .corr-box__title{color:#4A90D9}
+    .corr-box--why{background:rgba(255,152,0,.08);border-left-color:#FF9800}
+    .corr-box--why .corr-box__title{color:#FF9800}
+    .corr-box--result{background:rgba(212,160,23,.1);border-left-color:#D4A017}
+    .corr-box--result .corr-box__title{color:#D4A017}
+    .corr-box--piege{background:rgba(244,67,54,.08);border-left-color:#F44336}
+    .corr-box--piege .corr-box__title{color:#F44336}
+    .corr-box--method{background:rgba(76,175,80,.08);border-left-color:#4CAF50}
+    .corr-box--method .corr-box__title{color:#4CAF50}
+
+    .corr-toggle{margin:var(--space-md) 0;border:1px solid var(--border);border-radius:10px;padding:var(--space-sm) var(--space-md);background:rgba(0,0,0,.02)}
+    [data-theme="dark"] .corr-toggle{background:rgba(255,255,255,.02)}
+    .corr-toggle summary{cursor:pointer;font-family:var(--font-mono);font-size:.78rem;font-weight:500;color:var(--accent);padding:4px 0}
+    .corr-toggle__content{padding:var(--space-sm) 0 0;font-size:.9rem;line-height:1.75}
+
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
+
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .corr-exercice{padding:var(--space-md)}
+      .corr-question{padding:var(--space-sm) var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <a href="../../entrainement.html" class="nav__link">Entrainement</a>
+      <a href="../../revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">E3A-POLYTECH 2006 -- CORRECTION PHYSIQUE PC</span>
+    </div>
+
+    <h1 class="course__title">E3A-Polytech 2006 -- Correction Physique PC</h1>
+
+    <p class="course__intro">Detection des ondes gravitationnelles : interferometre de Michelson, methode Pound-Drever-Hall, filtrage passe-bande, puis mecanique d'un systeme binaire d'etoiles a neutrons. Correction pedagogique detaillee question par question.</p>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#exo1"><span class="course__toc-num">I.</span> Dispositif interferentiel et methode de detection (Q1 -- Q28)</a></li>
+        <li class="course__toc-item"><a href="#exo2"><span class="course__toc-num">II.</span> Rayonnement gravitationnel d'un systeme binaire (Q29 -- Q50)</a></li>
+      </ol>
+    </nav>
+
+    <!-- ==================== PARTIE 1 ==================== -->
+    <div class="corr-exercice" id="exo1">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">1</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Dispositif interferentiel et methode de detection</h2>
+          <span class="corr-exercice__subtitle">Optique ondulatoire -- 28 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--inter">Intermediaire</span>
+      </div>
+      <hr class="corr-exercice__rule">
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        On etudie le principe de detection des ondes gravitationnelles via un interferometre de Michelson. Les bras de longueurs \(d_1\) et \(d_2\) donnent une difference de marche \(\delta_0 = 2(d_2-d_1)\). En presence d'une onde gravitationnelle d'amplitude \(\varepsilon\sim 10^{-21}\), \(\delta\) devient \(\delta_0+\varepsilon L\). On cherche a amplifier ce signal tres faible et a s'affranchir des fluctuations de puissance du LASER grace au montage Pound-Drever-Hall.
+      </div>
+
+      <h3 class="corr-partie">A -- Interferometre de Michelson</h3>
+
+      <!-- Q1 -->
+      <div class="corr-question corr-question--easy" id="Q1">
+        <span class="corr-question__num">Question A1 a</span>
+        <p class="corr-question__statement">Exprimer le signal lumineux complexe \(\underline{s}(M,t)\) resultant de la superposition de ces deux ondes au point \(M\), en fonction de \(a\), \(\omega\), \(t\), \(\varphi_1(M)\) et \(\varphi_2(M)\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Une onde lumineuse monochromatique s'ecrit en complexe \(\underline{s}_i(M,t)=a\exp[j(\omega t-\varphi_i(M))]\). Le principe de superposition en optique lineaire dit que l'onde resultante est la <strong>somme</strong> des deux ondes complexes.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On travaille en complexes parce que la somme de deux cosinus devient une simple addition d'exponentielles : c'est plus pratique qu'une formule trigo compliquee.
+        </div>
+
+        <p>Par superposition :</p>
+        \[ \underline{s}(M,t) = \underline{s}_1+\underline{s}_2 = a\,e^{j(\omega t - \varphi_1(M))} + a\,e^{j(\omega t - \varphi_2(M))}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\underline{s}(M,t) = a\,e^{j\omega t}\left(e^{-j\varphi_1(M)}+e^{-j\varphi_2(M)}\right)} \]
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="corr-question corr-question--medium" id="Q2">
+        <span class="corr-question__num">Question A1 b</span>
+        <p class="corr-question__statement">Montrer que l'eclairement observe en \(M\) peut s'ecrire sous la forme \(I(M) = 2I_0\left[1 + \cos(\varphi_2(M) - \varphi_1(M))\right]\), et exprimer \(I_0\) en fonction de \(a\). Quel est le sens concret de \(I_0\) ?</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          L'eclairement est \(I=|\underline{s}|^2 = \underline{s}\cdot\underline{s}^*\). Identite utile : \(|e^{j\alpha}+e^{j\beta}|^2 = 2+2\cos(\beta-\alpha)\).
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Le detecteur ne « voit » pas l'onde complexe, il mesure l'intensite (module au carre). C'est la seule grandeur physique accessible.
+        </div>
+
+        <p>On calcule le module carre :</p>
+        \[ I(M) = |\underline{s}|^2 = a^2\left|e^{-j\varphi_1}+e^{-j\varphi_2}\right|^2. \]
+        <p>Developpons :</p>
+        \[ \left|e^{-j\varphi_1}+e^{-j\varphi_2}\right|^2 = (e^{-j\varphi_1}+e^{-j\varphi_2})(e^{j\varphi_1}+e^{j\varphi_2}) = 2 + e^{j(\varphi_1-\varphi_2)}+e^{j(\varphi_2-\varphi_1)} = 2+2\cos(\varphi_2-\varphi_1). \]
+        <p>Donc \(I(M) = 2a^2\left[1+\cos(\varphi_2-\varphi_1)\right]\). On identifie :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{I(M)=2I_0\left[1+\cos(\varphi_2-\varphi_1)\right]\ \text{avec}\ I_0 = a^2} \]
+          <strong>Sens concret :</strong> \(I_0\) est l'eclairement recu quand <em>une seule</em> onde arrive sur le detecteur (l'autre miroir etant occulte).
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          Beaucoup de candidats ecrivent \(I=2I_0(1+\cos\delta\varphi)\) sans jamais preciser ce qu'est \(I_0\). Le jury attend <em>explicitement</em> l'interpretation : c'est l'eclairement d'un seul bras.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="corr-question corr-question--easy" id="Q3">
+        <span class="corr-question__num">Question A1 c</span>
+        <p class="corr-question__statement">Posons \(\delta\varphi(M) = \varphi_2(M) - \varphi_1(M)\). Quelle condition doit verifier \(\delta\varphi(M)\) pour que soit observe en \(M\) un maximum d'eclairement ? A quelle condition sur \(\delta\varphi(M)\) l'eclairement est-il minimal en \(M\) ?</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Maximum et minimum d'eclairement correspondent aux franges brillante et sombre. C'est le cosinus qui dicte tout : il oscille entre \(-1\) et \(+1\).
+        </div>
+
+        <p>\(I=2I_0(1+\cos\delta\varphi)\) est max quand \(\cos\delta\varphi=+1\) et min quand \(\cos\delta\varphi=-1\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\text{Max : }\delta\varphi = 2k\pi\ (k\in\mathbb{Z}),\quad I_{\max}=4I_0} \]
+          \[ \boxed{\text{Min : }\delta\varphi = (2k+1)\pi,\quad I_{\min}=0\text{ (frange sombre)}} \]
+        </div>
+      </div>
+
+      <h3 class="corr-partie">2. Source monochromatique</h3>
+
+      <!-- Q4 -->
+      <div class="corr-question corr-question--easy" id="Q4">
+        <span class="corr-question__num">Question A2 a</span>
+        <p class="corr-question__statement">A quelle condition sur \(\delta_0\) dit-on que l'interferometre est au contact optique ? Decrire brievement comment proceder, avec les interferometres utilises en Travaux Pratiques, pour determiner precisement le contact optique.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Le « contact optique » est la configuration ou les deux miroirs sont optiquement superposes : les chemins optiques sont egaux, donc <strong>\(\delta_0 = 0\)</strong>.
+        </div>
+
+        <p><strong>Condition :</strong> \(\boxed{\delta_0 = 2(d_2-d_1) = 0}\).</p>
+
+        <p><strong>Protocole en TP :</strong> on eclaire avec une source a spectre large (lampe blanche). Les franges n'existent que pour \(|\delta| \lesssim \ell_c\) (tres petite longueur de coherence \(\sim\) µm pour la lumiere blanche). On deplace donc \(M_1\) jusqu'a voir apparaitre la frange centrale achromatique (teintes de Newton) : on y est, \(\delta_0 \approx 0\).</p>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode reutilisable</div>
+          Pour trouver le contact optique on utilise TOUJOURS une source blanche : la faible coherence temporelle fournit une « cible » etroite (\(\sim\) 1 µm). A la sodium seul on aurait des franges sur plusieurs mm, impossible de localiser precisement \(\delta=0\).
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="corr-question corr-question--easy" id="Q5">
+        <span class="corr-question__num">Question A2 b</span>
+        <p class="corr-question__statement">Exprimer l'eclairement \(I(\delta_0)\) recu par le detecteur, en fonction de \(I_0\), \(\lambda\) et \(\delta_0\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Difference de marche et dephasage sont lies par \(\delta\varphi = \dfrac{2\pi}{\lambda}\delta = \dfrac{\omega}{c}\delta\).
+        </div>
+
+        <p>On applique directement le resultat de Q2 avec \(\delta\varphi = \tfrac{2\pi}{\lambda}\delta_0\) :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{I(\delta_0) = 2I_0\left[1+\cos\!\left(\frac{2\pi\delta_0}{\lambda}\right)\right]} \]
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="corr-question corr-question--medium" id="Q6">
+        <span class="corr-question__num">Question A2 c</span>
+        <p class="corr-question__statement">En effectuant un developpement limite au premier ordre en \(\varepsilon\), determiner la variation d'eclairement \((\Delta I)_{og} = I(\delta) - I(\delta_0)\) induite par l'onde gravitationnelle en fonction de \(\delta_0\), \(L\), \(\lambda\) et \(\varepsilon\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          DL au premier ordre : \(\cos(x+h) \approx \cos x - h\sin x\) pour \(h\) petit.
+        </div>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          \(\varepsilon\sim 10^{-21}\) est <em>ridiculement</em> petit : le DL est ultra justifie. On veut voir comment \(I\) bouge autour de \(I(\delta_0)\) : c'est une derivee.
+        </div>
+
+        <p>On a \(\delta = \delta_0 + \varepsilon L\), donc \(I(\delta) = 2I_0\left[1+\cos\!\left(\tfrac{2\pi\delta_0}{\lambda}+\tfrac{2\pi\varepsilon L}{\lambda}\right)\right]\).</p>
+        <p>Posons \(h = \dfrac{2\pi\varepsilon L}{\lambda}\ll 1\). Avec \(\cos(x+h)\simeq \cos x - h\sin x\) :</p>
+        \[ I(\delta) \simeq 2I_0\cos\!\left(\tfrac{2\pi\delta_0}{\lambda}\right) + 2I_0 -2I_0\,h\sin\!\left(\tfrac{2\pi\delta_0}{\lambda}\right). \]
+        <p>Par soustraction :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{(\Delta I)_{og} = -\frac{4\pi I_0 L}{\lambda}\varepsilon\,\sin\!\left(\frac{2\pi\delta_0}{\lambda}\right)} \]
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="corr-question corr-question--easy" id="Q7">
+        <span class="corr-question__num">Question A2 d</span>
+        <p class="corr-question__statement">L'eclairement \(I_0\) etant donne, comment faut-il choisir \(\delta_0\) pour que la variation d'eclairement \((\Delta I)_{og}\) soit aussi grande que possible en valeur absolue ?</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On veut que le signal soit <em>maximum</em>. Dans l'expression de Q6, le seul levier sur lequel on peut jouer est \(\sin(2\pi\delta_0/\lambda)\) : il doit valoir \(\pm 1\).
+        </div>
+
+        <p>\(|(\Delta I)_{og}|\) est max quand \(\left|\sin\!\tfrac{2\pi\delta_0}{\lambda}\right|=1\), c'est-a-dire \(\dfrac{2\pi\delta_0}{\lambda} = \dfrac{\pi}{2}+k\pi\), soit \(\delta_0 = \dfrac{\lambda}{4}+k\dfrac{\lambda}{2}\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\delta_0 = \frac{\lambda}{4}+k\frac{\lambda}{2},\ k\in\mathbb{Z}\ \text{ (position de demi-teinte)}} \]
+          On est alors <em>a mi-chemin</em> entre une frange brillante et une frange sombre : c'est la position de plus grande pente du cosinus.
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode</div>
+          Pour detecter une petite variation d'un parametre via une loi en cosinus : toujours travailler au point d'<strong>inflexion</strong>, la ou la pente est maximale. Ici, c'est le point de demi-teinte.
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="corr-question corr-question--easy" id="Q8">
+        <span class="corr-question__num">Question A2 e</span>
+        <p class="corr-question__statement">Pour ameliorer la sensibilite de detection, il est interessant de choisir une longueur \(L\) tres grande. (pour les applications numeriques, prendre \(L = 100\) km) ! Determiner numeriquement la variation relative \(\dfrac{(\Delta I)_{og}}{I_0}\) maximale attendue pour \(\varepsilon = 10^{-21}\).</p>
+
+        <p>A la position optimale, \(\left|\dfrac{(\Delta I)_{og}}{I_0}\right|_{\max} = \dfrac{4\pi L}{\lambda}\varepsilon\).</p>
+        <p>AN : \(L=10^5\) m, \(\lambda = 1{,}06\cdot 10^{-6}\) m, \(\varepsilon=10^{-21}\).</p>
+        \[ \dfrac{4\pi \cdot 10^5}{1{,}06\cdot 10^{-6}}\cdot 10^{-21} \approx 1{,}2\cdot 10^{-9}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\left|\frac{(\Delta I)_{og}}{I_0}\right|_{\max}\simeq 1{,}2\cdot 10^{-9}} \]
+          Environ un milliardieme de l'eclairement -- minuscule, mais mesurable (si tout le reste est bien controle).
+        </div>
+      </div>
+
+      <h3 class="corr-partie">3. Influence de la largeur spectrale</h3>
+
+      <!-- Q9 -->
+      <div class="corr-question corr-question--easy" id="Q9">
+        <span class="corr-question__num">Question A3 a</span>
+        <p class="corr-question__statement">Pourquoi est-il legitime de sommer les eclairements associes a des signaux de pulsations differentes ? Exprimer l'eclairement total \(I_0\) recu par le detecteur, si l'un des miroirs est occulte, en fonction de \(K\) et \(\Delta\omega\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Deux ondes de pulsations differentes sont <strong>incoherentes</strong> entre elles : leur terme d'interference est nul en moyenne temporelle. On somme donc directement les <em>intensites</em>, pas les amplitudes.
+        </div>
+
+        <p>\(I_0 = \displaystyle\int_{\omega_0-\Delta\omega/2}^{\omega_0+\Delta\omega/2} K\,d\omega\) :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{I_0 = K\,\Delta\omega} \]
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="corr-question corr-question--medium" id="Q10">
+        <span class="corr-question__num">Question A3 b</span>
+        <p class="corr-question__statement">Supposons que la difference de marche entre les deux ondes est \(\delta\). Si aucun des miroirs n'est occulte, exprimer l'eclairement \(dI\) associe aux composantes de pulsation situees dans l'intervalle \([\omega_i, \omega_i + d\omega]\), en fonction de \(\omega_0\), \(I_0\), \(\Delta\omega\) et \(d\omega\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Chaque « tranche » de pulsation donne deux ondes coherentes entre elles (elles viennent du meme atome de source). A l'interieur de la tranche, on applique Q2.
+        </div>
+
+        <p>Chaque tranche apporte \(dI_{\text{mono}} = 2K\,d\omega\) dans chaque bras (un mono donne \(Kd\omega\), un interf mono donne \(2Kd\omega[1+\cos(\omega_i\delta/c)]\)). Avec \(K=I_0/\Delta\omega\) :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{dI = 2\,\frac{I_0}{\Delta\omega}\left[1+\cos\!\left(\frac{\omega_i\,\delta}{c}\right)\right]d\omega} \]
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="corr-question corr-question--hard" id="Q11">
+        <span class="corr-question__num">Question A3 c</span>
+        <p class="corr-question__statement">En deduire que l'eclairement \(I(\delta)\) au niveau du detecteur est de la forme : \(I(\delta) = 2I_0\left[1 + V(\delta)\cos\left(\dfrac{\omega_0}{c}\delta\right)\right]\), et exprimer \(V(\delta)\) en fonction de \(\Delta\omega\), \(\delta\) et \(c\). Que vaut \(V(\delta)\) si \(\Delta\omega = 0\) ? Commenter ce resultat.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On integre la formule de Q10 sur tout le spectre. L'integrale du cosinus sur un intervalle fini de pulsations va donner un terme en « sinus cardinal » : c'est la signature du brouillage.
+        </div>
+
+        <p>On integre \(dI\) pour \(\omega_i\in[\omega_0-\Delta\omega/2,\omega_0+\Delta\omega/2]\) :</p>
+        \[ I(\delta) = 2I_0 + \frac{2I_0}{\Delta\omega}\int_{\omega_0-\Delta\omega/2}^{\omega_0+\Delta\omega/2}\cos\!\left(\frac{\omega\,\delta}{c}\right)d\omega. \]
+        <p>Integrale de cosinus :</p>
+        \[ \int \cos(\omega\delta/c)\,d\omega = \frac{c}{\delta}\sin(\omega\delta/c). \]
+        <p>Aux bornes, on obtient \(\tfrac{c}{\delta}[\sin((\omega_0+\Delta\omega/2)\delta/c)-\sin((\omega_0-\Delta\omega/2)\delta/c)]\). Avec \(\sin A-\sin B = 2\cos\!\tfrac{A+B}{2}\sin\!\tfrac{A-B}{2}\) :</p>
+        \[ = \frac{2c}{\delta}\cos\!\left(\frac{\omega_0\delta}{c}\right)\sin\!\left(\frac{\Delta\omega\,\delta}{2c}\right). \]
+        <p>On rassemble :</p>
+        \[ I(\delta) = 2I_0\left[1 + \frac{2c}{\Delta\omega\,\delta}\sin\!\left(\frac{\Delta\omega\,\delta}{2c}\right)\cos\!\left(\frac{\omega_0\delta}{c}\right)\right]. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{V(\delta) = \frac{\sin\!\left(\dfrac{\Delta\omega\,\delta}{2c}\right)}{\dfrac{\Delta\omega\,\delta}{2c}} = \operatorname{sinc}\!\left(\frac{\Delta\omega\,\delta}{2c}\right)} \]
+          Si \(\Delta\omega=0\) : \(V\to 1\), on retrouve la formule monochromatique. C'est coherent : pas de largeur spectrale, pas de brouillage.
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="corr-question corr-question--medium" id="Q12">
+        <span class="corr-question__num">Question A3 d</span>
+        <p class="corr-question__statement">Quelle est la signification concrete du parametre \(|V(\delta)|\) ? Pour une valeur donnee de la largeur \(\Delta\omega\), representer \(|V(\delta)|\) en fonction de \(\delta\), en faisant apparaitre les points remarquables.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Le contraste des franges est \(C = \dfrac{I_{\max}-I_{\min}}{I_{\max}+I_{\min}}\). Ici \(I_{\max}=2I_0(1+|V|)\), \(I_{\min}=2I_0(1-|V|)\), donc \(C = |V|\).
+        </div>
+
+        <p><strong>Signification :</strong> \(|V(\delta)|\) est le <strong>contraste des franges</strong> en fonction de la difference de marche. Plus \(|V|\) est proche de 1, plus les franges sont « nettes ».</p>
+
+        <p><strong>Allure :</strong> sinus cardinal en valeur absolue. Valeur 1 en \(\delta=0\), premier zero en \(\delta = \dfrac{2\pi c}{\Delta\omega}\), puis lobes secondaires decroissants.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Points remarquables :
+          <ul>
+            <li>\(\delta=0\) : \(|V|=1\) (contraste parfait)</li>
+            <li>Premier zero : \(\delta = \pm\dfrac{2\pi c}{\Delta\omega} = \pm\ell_c\)</li>
+            <li>Pour \(|\delta|>\ell_c\) : lobes decroissant en \(1/\delta\), contraste deja tres mauvais</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="corr-question corr-question--easy" id="Q13">
+        <span class="corr-question__num">Question A3 e</span>
+        <p class="corr-question__statement">Justifier que le phenomene d'interferences n'est plus decelable si la difference de marche \(\delta\) est suffisamment grande, en valeur absolue, que la longueur caracteristique \(\ell_c = \dfrac{2\pi c}{\Delta\omega}\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Les differentes composantes spectrales se « dephasent » progressivement. Quand elles ne sont plus en phase, leurs figures d'interferences se superposent en se neutralisant : c'est le <strong>brouillage</strong>.
+        </div>
+
+        <p>Pour \(|\delta| \gtrsim \ell_c\), on a \(\dfrac{\Delta\omega\delta}{2c} \gtrsim \pi\), donc \(|V(\delta)|\) devient petit devant 1. Le contraste des franges chute : on ne distingue plus de maxima ni de minima nets. Le detecteur recoit en pratique \(I\approx 2I_0\) constant, independant de \(\delta\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\ell_c = \dfrac{2\pi c}{\Delta\omega}\) est la <strong>longueur de coherence</strong> de la source. Au-dela, les interferences sont brouillees.
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="corr-question corr-question--medium" id="Q14">
+        <span class="corr-question__num">Question A3 f</span>
+        <p class="corr-question__statement">Determiner en fonction de \(\delta_{0\max}\) la largeur spectrale \(\Delta\omega_{\max}\) maximale permettant d'observer des interferences pour \(\delta = \delta_{0\max}\). Estimer numeriquement \(\dfrac{\Delta\omega_{\max}}{\omega_0}\).</p>
+
+        <p>Condition d'observation : \(\ell_c \gtrsim \delta_{0\max}\), soit \(\dfrac{2\pi c}{\Delta\omega_{\max}} = \delta_{0\max}\).</p>
+
+        \[ \Delta\omega_{\max} = \frac{2\pi c}{\delta_{0\max}}. \]
+
+        <p>AN : \(c=3\cdot 10^8\), \(\delta_{0\max}=10\) m :</p>
+        \[ \Delta\omega_{\max} = \frac{2\pi\cdot 3\cdot 10^8}{10} \approx 1{,}88\cdot 10^8\ \text{rad/s}. \]
+
+        <p>\(\omega_0 = \dfrac{2\pi c}{\lambda} = \dfrac{2\pi\cdot 3\cdot 10^8}{1{,}06\cdot 10^{-6}}\approx 1{,}78\cdot 10^{15}\) rad/s.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\frac{\Delta\omega_{\max}}{\omega_0} = \frac{\lambda}{\delta_{0\max}} \approx 1{,}06\cdot 10^{-7}} \]
+          Soit un LASER ultra monochromatique : une largeur relative d'environ \(10^{-7}\).
+        </div>
+      </div>
+
+      <h3 class="corr-partie">B1. Fluctuations de puissance</h3>
+
+      <!-- Q15 -->
+      <div class="corr-question corr-question--easy" id="Q15">
+        <span class="corr-question__num">Question B1 a</span>
+        <p class="corr-question__statement">Sous l'effet d'une fluctuation de puissance, l'eclairement \(I_0\) devient \(I_0 + \Delta I_0\). En supposant que \(\varepsilon = 0\), determiner la variation correspondante d'eclairement detecte, notee \((\Delta I)_{\text{fluc}}\) en fonction de \(\Delta I_0\), \(\delta_0\) et \(\lambda\).</p>
+
+        <p>Avec \(\varepsilon=0\) : \(I = 2I_0[1+\cos(2\pi\delta_0/\lambda)]\). La derivee partielle par rapport a \(I_0\) :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{(\Delta I)_{\text{fluc}} = 2\Delta I_0\left[1+\cos\!\left(\frac{2\pi\delta_0}{\lambda}\right)\right]} \]
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="corr-question corr-question--medium" id="Q16">
+        <span class="corr-question__num">Question B1 b</span>
+        <p class="corr-question__statement">Comment doit-on choisir \(\delta_0\) pour que le signal detecte soit aussi insensible que possible aux fluctuations de puissance du LASER ? Comparer ce choix a la condition de detection optimale des ondes gravitationnelles etablie au A2°d, et commenter.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Pour etre insensible a \(\Delta I_0\), il faut que le coefficient multiplicatif devant soit nul. Cela revient a placer l'interferometre en frange <em>sombre</em>.
+        </div>
+
+        <p>\((\Delta I)_{\text{fluc}}=0\) quand \(1+\cos(2\pi\delta_0/\lambda)=0\), soit \(\cos=-1\), donc :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\delta_0 = \frac{\lambda}{2}+k\lambda\ \text{ (frange sombre)}} \]
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Contradiction a resoudre !</div>
+          Le choix optimal pour detecter l'onde gravitationnelle (Q7) etait \(\delta_0=\lambda/4+k\lambda/2\) (demi-teinte). Le choix optimal pour se debarrasser des fluctuations du LASER est \(\delta_0=\lambda/2+k\lambda\) (frange sombre). <strong>Ces deux conditions sont incompatibles</strong> ! C'est exactement ce probleme que la methode Pound-Drever-Hall va resoudre.
+        </div>
+      </div>
+
+      <h3 class="corr-partie">B2. Montage Pound-Drever-Hall</h3>
+
+      <!-- Q17 -->
+      <div class="corr-question corr-question--medium" id="Q17">
+        <span class="corr-question__num">Question B2 a</span>
+        <p class="corr-question__statement">Exprimer la nouvelle difference de marche \(\delta\) au niveau du detecteur en fonction de \(\varepsilon\), \(\lambda\), \(\delta_0\), \(L\), \(e\) et \(m\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Une lame de verre d'epaisseur geometrique \(e\) et d'indice \(n\), traversee par un rayon, introduit un chemin optique \(ne\) a la place de \(e\) : elle ajoute donc \((n-1)e\) de chemin optique supplementaire par rapport au meme trajet dans le vide. Dans un Michelson, la lame est traversee <strong>deux fois</strong> (aller-retour).
+        </div>
+
+        <p>La lame 1 (indice \(n_1\)) ajoute \(2(n_1-1)e\) au chemin optique du bras 1. La lame 2 (indice \(n_2\)) ajoute \(2(n_2-1)e\) au bras 2. La nouvelle difference de marche :</p>
+        \[ \delta = \underbrace{\delta_0}_{\text{geometrie}} + \underbrace{\varepsilon L}_{\text{onde grav}} + \underbrace{2(n_2-1)e - 2(n_1-1)e}_{\text{lames}} = \delta_0+\varepsilon L + 2e(n_2-n_1). \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\delta = \delta_0 + \varepsilon L + 2e(n_2-n_1)} \]
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="corr-question corr-question--hard" id="Q18">
+        <span class="corr-question__num">Question B2 b</span>
+        <p class="corr-question__statement">Montrer que l'eclairement peut s'ecrire : \(I = 2I_0\left[1 + \cos(\Phi_0 + \varphi_{og} + 2m\cos(\Omega t))\right]\), et exprimer les constantes \(\Phi_0\) et \(m\) en fonction de parametres choisis parmi \(\lambda\), \(L\), \(\delta_0\), \(e\) et \(\delta_0\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On injecte les indices variables dans \(\delta\) puis on convertit en dephasage. L'idee clef du montage PDH : <em>moduler</em> artificiellement le signal a la pulsation \(\Omega\), pour ensuite extraire la composante d'interet par filtrage.
+        </div>
+
+        <p>Avec \(n_2-n_1 = 2a_0\cos(\Omega t)\) :</p>
+        \[ \delta = \delta_0+\varepsilon L + 4e\,a_0\cos(\Omega t). \]
+        <p>Le dephasage est \(\dfrac{2\pi}{\lambda}\delta\) :</p>
+        \[ \dfrac{2\pi\delta}{\lambda} = \underbrace{\dfrac{2\pi\delta_0}{\lambda}}_{\Phi_0} + \underbrace{\dfrac{2\pi\varepsilon L}{\lambda}}_{\varphi_{og}} + \underbrace{\dfrac{8\pi e\,a_0}{\lambda}}_{2m}\cos(\Omega t). \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\Phi_0 = \frac{2\pi\delta_0}{\lambda}, \quad \varphi_{og}=\frac{2\pi\varepsilon L}{\lambda}, \quad m = \frac{4\pi e\,a_0}{\lambda}} \]
+        </div>
+      </div>
+
+      <h3 class="corr-partie">B3. Filtrage du signal detecte</h3>
+
+      <!-- Q19 -->
+      <div class="corr-question corr-question--easy" id="Q19">
+        <span class="corr-question__num">Question B3 a</span>
+        <p class="corr-question__statement">Expliquer le type de filtrage qu'il convient de faire subir a \(V_e(t)\), pour en extraire la composante proportionnelle a \(I(t)\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Le signal \(I(t) \propto m^2 + 2m\varphi_{og}\cos(\Omega t) + m^2\cos(2\Omega t)\) contient trois morceaux : continu, \(\Omega\), \(2\Omega\). La composante <em>interessante</em> (celle qui contient \(\varphi_{og}\)) oscille a la pulsation \(\Omega\).
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Il faut un <strong>filtre passe-bande centre sur \(\Omega\)</strong> pour ne conserver que la composante a la pulsation \(\Omega\) et eliminer la composante continue (qui contient les fluctuations du LASER !) et la composante a \(2\Omega\).
+        </div>
+      </div>
+
+      <!-- Q20 -->
+      <div class="corr-question corr-question--easy" id="Q20">
+        <span class="corr-question__num">Question B3 b</span>
+        <p class="corr-question__statement">Determiner sans calcul la nature de ce filtre.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Analyse aux limites : en BF (\(\beta\to 0\)) le condensateur d'entree \(C\) bloque : sortie nulle. En HF (\(\beta\to\infty\)) le condensateur de contre-reaction \(C\) court-circuite \(kR\) : gain nul. Conclusion : passe-bande.
+        </div>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \(\boxed{\text{Filtre passe-bande}}\) du 2eme ordre.
+        </div>
+      </div>
+
+      <!-- Q21 -->
+      <div class="corr-question corr-question--hard" id="Q21">
+        <span class="corr-question__num">Question B3 c</span>
+        <p class="corr-question__statement">En se placant en regime sinusoidal etabli de pulsation \(\beta\), montrer que la fonction de transfert \(\underline{H} = \dfrac{V_s}{V_e}\) du montage peut se mettre sous la forme : \(\underline{H} = \dfrac{H_0}{1 + jQ\left(\dfrac{x}{1} - \dfrac{1}{x}\right)}\), ou \(x = \dfrac{\beta}{\Omega_0}\) et \(H_0\), \(\Omega_0\) et \(Q\) sont des constantes a exprimer en fonction de \(R\), \(C\) et \(k\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Pour un AO ideal en contre-reaction negative : \(V_-=V_+=0\) (masse virtuelle), courants nuls dans les entrees. Avec \(Z_e\) l'impedance d'entree et \(Z_r\) l'impedance de retour : \(\underline{H}=-\dfrac{Z_r}{Z_e}\).
+        </div>
+
+        <p>Impedance d'entree (\(R\) en serie avec \(C\)) : \(Z_e = R + \dfrac{1}{jC\beta}\).</p>
+        <p>Impedance de retour (\(kR\) en parallele avec \(C\)) : \(Z_r = \dfrac{kR\cdot 1/(jC\beta)}{kR+1/(jC\beta)} = \dfrac{kR}{1+jkRC\beta}\).</p>
+
+        <p>Alors :</p>
+        \[ \underline{H} = -\frac{Z_r}{Z_e} = -\frac{kR}{1+jkRC\beta}\cdot\frac{jC\beta}{1+jRC\beta} = -\frac{jkRC\beta}{(1+jkRC\beta)(1+jRC\beta)}. \]
+
+        <p>On developpe le denominateur :</p>
+        \[ (1+jkRC\beta)(1+jRC\beta) = 1+j(k+1)RC\beta - kR^2C^2\beta^2. \]
+
+        <p>Donc :</p>
+        \[ \underline{H} = -\frac{jkRC\beta}{1+j(k+1)RC\beta - kR^2C^2\beta^2}. \]
+
+        <p>Divisons haut et bas par \(j(k+1)RC\beta\) :</p>
+        \[ \underline{H} = -\frac{\dfrac{k}{k+1}}{1 + j\left(\dfrac{1}{(k+1)RC\beta}\cdot(-1)(kR^2C^2\beta^2-1)\right)}. \]
+
+        <details class="corr-toggle">
+          <summary>Voir la manipulation algebrique complete</summary>
+          <div class="corr-toggle__content">
+            On part de \(\underline{H}=-\dfrac{jkRC\beta}{1-kR^2C^2\beta^2+j(k+1)RC\beta}\).<br>
+            Divisons numerateur et denominateur par \(j(k+1)RC\beta\) :
+            \[ \underline{H}=-\frac{k/(k+1)}{1 + \dfrac{1-kR^2C^2\beta^2}{j(k+1)RC\beta}}. \]
+            Or \(\dfrac{1-kR^2C^2\beta^2}{j(k+1)RC\beta} = -j\,\dfrac{1-kR^2C^2\beta^2}{(k+1)RC\beta} = j\,\dfrac{kR^2C^2\beta^2-1}{(k+1)RC\beta}\).<br>
+            Factorisant par \(\sqrt{k}RC\beta_0 \cdot\tfrac{1}{\sqrt k}\) ou en posant \(\Omega_0=\dfrac{1}{\sqrt{k}\,RC}\), alors \(kR^2C^2\beta^2 = (\beta/\Omega_0)^2 = x^2\) et \((k+1)RC\beta = (k+1)/\sqrt k\cdot x\).<br>
+            Ainsi :
+            \[ \underline{H} = -\frac{k/(k+1)}{1+j\dfrac{\sqrt{k}}{k+1}\left(x-\dfrac{1}{x}\right)}. \]
+          </div>
+        </details>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{H_0 = -\frac{k}{k+1}, \quad \Omega_0 = \frac{1}{\sqrt{k}\,RC}, \quad Q = \frac{\sqrt{k}}{k+1}} \]
+          (Le signe \(-\) de \(H_0\) traduit simplement l'inversion du montage inverseur.)
+        </div>
+      </div>
+
+      <!-- Q22 -->
+      <div class="corr-question corr-question--medium" id="Q22">
+        <span class="corr-question__num">Question B3 d</span>
+        <p class="corr-question__statement">Definir le gain en decibel associe, note \(G_{dB}\). Pour le trace, supposer \(Q = 10\), et preciser : pour le diagramme de BODE en amplitude, \(G_{dB}\) en fonction de \(\log(x)\) ; les asymptotes du diagramme (pente et ordonnee a l'origine) ; la valeur du gain \(G_{dB}\) en \(x = 1\).</p>
+
+        <p><strong>Definition :</strong> \(G_{dB} = 20\log|\underline{H}(j\beta)|\).</p>
+
+        <p>Ici \(|\underline{H}| = \dfrac{|H_0|}{\sqrt{1+Q^2(x-1/x)^2}}\).</p>
+
+        <p><strong>Asymptote BF</strong> (\(x\ll 1\)) : \(|\underline{H}| \approx \dfrac{|H_0|x}{Q}\). Pente \(+20\) dB/dec.</p>
+        <p><strong>Asymptote HF</strong> (\(x\gg 1\)) : \(|\underline{H}| \approx \dfrac{|H_0|}{Qx}\). Pente \(-20\) dB/dec.</p>
+
+        <p><strong>En \(x=1\)</strong> : \(|\underline{H}|=|H_0|\), donc \(G_{dB}(x=1)= 20\log|H_0|\). C'est le maximum : resonance.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Allure : courbe triangulaire en echelle log, pointe au sommet en \(x=1\), de valeur \(20\log|H_0|\). Les asymptotes se coupent en \(x=1\).
+        </div>
+      </div>
+
+      <!-- Q23 -->
+      <div class="corr-question corr-question--easy" id="Q23">
+        <span class="corr-question__num">Question B3 e</span>
+        <p class="corr-question__statement">Definir et determiner la largeur de la bande passante du filtre a \(-3\) dB en fonction de \(Q\) et \(\Omega_0\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Bande passante a \(-3\) dB : intervalle de pulsations ou \(|\underline{H}|\geq |H_0|/\sqrt{2}\). Pour un passe-bande du second ordre standard : \(\Delta\beta = \Omega_0/Q\).
+        </div>
+
+        <p>\(|\underline{H}|=|H_0|/\sqrt 2\) impose \(Q|x-1/x|=1\), donc \(x^2\mp x/Q -1=0\), dont les solutions positives sont \(x_{\pm}=\pm\tfrac{1}{2Q}+\sqrt{1+\tfrac{1}{4Q^2}}\). Leur difference :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\Delta\beta = \beta_+-\beta_- = \frac{\Omega_0}{Q}} \]
+        </div>
+      </div>
+
+      <!-- Q24 -->
+      <div class="corr-question corr-question--easy" id="Q24">
+        <span class="corr-question__num">Question B3 f</span>
+        <p class="corr-question__statement">A quelle condition entre \(\Omega_0\) et \(\Omega\) le filtre etudie est-il le mieux adapte pour extraire la composante « gravitationnelle » du signal \(V_d(t)\) ?</p>
+
+        <p>La composante utile oscille a \(\Omega\). Pour l'extraire au mieux, il faut que le filtre soit accorde sur \(\Omega\) :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\Omega_0 = \Omega} \]
+          Le maximum de gain tombe alors pile sur la composante interessante, et les composantes a \(0\) et \(2\Omega\) sont fortement attenuees.
+        </div>
+      </div>
+
+      <h3 class="corr-partie">B4. Resultat du filtrage</h3>
+
+      <!-- Q25 -->
+      <div class="corr-question corr-question--hard" id="Q25">
+        <span class="corr-question__num">Question B4 a</span>
+        <p class="corr-question__statement">La condition du B3°f. est supposee remplie. Montrer que le signal de sortie \(V_s(t)\) est en fait la somme de deux composantes sinusoidales de pulsations \(\Omega\) et \(2\Omega\), dont les amplitudes, notees respectivement \(A_\Omega\) et \(A_{2\Omega}\), seront precisees en fonction de \(\gamma\), \(I_0\), \(m\), \(\varepsilon\), \(L\) et \(H_0\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On filtre \(V_e(t) = \gamma I(t) = \gamma I_0[m^2+2m\varphi_{og}\cos\Omega t + m^2\cos 2\Omega t]\). Le continu est elimine (gain nul en \(x=0\)). La composante a \(\Omega\) est amplifiee par \(H_0\) (on est a la resonance). La composante a \(2\Omega\) est attenuee par \(H(2\Omega)\).
+        </div>
+
+        <p><strong>Composante a \(\Omega\) :</strong> amplitude d'entree \(2\gamma I_0 m\varphi_{og}\), gain \(H_0\) :</p>
+        \[ A_\Omega = |H_0|\cdot 2\gamma I_0 m\varphi_{og} = 2\gamma I_0 m |H_0|\cdot\frac{2\pi\varepsilon L}{\lambda}. \]
+
+        <p><strong>Composante a \(2\Omega\) :</strong> a \(x=2\), \(|\underline H(2\Omega)|=\dfrac{|H_0|}{\sqrt{1+Q^2(2-1/2)^2}}=\dfrac{|H_0|}{\sqrt{1+(3Q/2)^2}}\approx \dfrac{2|H_0|}{3Q}\) pour \(Q\gg 1\). Donc :</p>
+        \[ A_{2\Omega} \approx \gamma I_0 m^2\cdot \frac{2|H_0|}{3Q}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{A_\Omega = \frac{4\pi\gamma I_0 m L\varepsilon}{\lambda}\,|H_0|,\qquad A_{2\Omega}\approx \frac{2\gamma I_0 m^2 |H_0|}{3Q}} \]
+          Le rapport \(A_\Omega/A_{2\Omega}\) est d'ordre \(Q\,\varepsilon L/(m\lambda)\).
+        </div>
+      </div>
+
+      <!-- Q26 -->
+      <div class="corr-question corr-question--medium" id="Q26">
+        <span class="corr-question__num">Question B4 b</span>
+        <p class="corr-question__statement">Exprimer la variation \((\Delta V)_{\text{fluc}} = V(I_0 + \Delta I_0, 0) - V(I_0, 0)\) associee a une fluctuation \(\Delta I_0\) de l'eclairement du LASER, en fonction de \(\Delta I_0\), \(m\), \(b\), \(\gamma\), \(Q\) et \(H_0\). Determiner la variation \((\Delta V)_{og} = V(I_0, \varepsilon) - V(I_0, 0)\) associee a une onde gravitationnelle d'amplitude \(\varepsilon\) en fonction de \(\gamma\), \(I_0\), \(\varepsilon\), \(m\) et \(H_0\).</p>
+
+        <p>La tension finale est \(V(I_0,\varepsilon) = bA_{2\Omega}+A_\Omega\).</p>
+
+        <p><strong>Fluctuation (\(\varepsilon=0\)) :</strong> seul \(A_{2\Omega}\) subsiste (car \(A_\Omega \propto \varepsilon = 0\)). Il depend lineairement de \(I_0\), donc :</p>
+        \[ (\Delta V)_{\text{fluc}} = b\,\Delta A_{2\Omega} = b\cdot \frac{2\gamma\,\Delta I_0\,m^2|H_0|}{3Q}. \]
+
+        <p><strong>Onde gravitationnelle (a \(I_0\) constant) :</strong> \(A_{2\Omega}\) ne depend pas de \(\varepsilon\), donc seul \(A_\Omega\) varie :</p>
+        \[ (\Delta V)_{og} = \Delta A_\Omega = \frac{4\pi\gamma I_0 m L|H_0|}{\lambda}\,\varepsilon. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{(\Delta V)_{\text{fluc}} = \frac{2bm^2\gamma|H_0|}{3Q}\Delta I_0} \]
+          \[ \boxed{(\Delta V)_{og} = \frac{4\pi\gamma I_0 m L|H_0|}{\lambda}\varepsilon} \]
+        </div>
+      </div>
+
+      <!-- Q27 -->
+      <div class="corr-question corr-question--hard" id="Q27">
+        <span class="corr-question__num">Question B4 c</span>
+        <p class="corr-question__statement">Pour un LASER et un interferometre donnes, proposer un choix des parametres de la chaine de detection et de filtrage pour ameliorer le rapport \(\dfrac{(\Delta V)_{og}}{(\Delta V)_{\text{fluc}}}\). Est-il vraiment interessant de prendre une valeur de \(m\) tres petite ? Application numerique : Calculer \(\dfrac{(\Delta V)_{og}}{(\Delta V)_{\text{fluc}}}\) avec les valeurs suivantes : \(\dfrac{\Delta I_0}{I_0} = 10^{-5}\), \(m = 0{,}1\), \(b = 10^{-2}\), \(\alpha = 5{,}9 \cdot 10^{11}\), \(Q = 10\), \(\varepsilon = 10^{-21}\). Peut-on detecter les ondes gravitationnelles malgre les fluctuations de puissance du LASER ?</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          On veut le maximum de signal utile (\(\varepsilon\)) par rapport au bruit (\(\Delta I_0\)). On forme explicitement le rapport et on regarde comment il depend de chaque parametre.
+        </div>
+
+        <p>En formant le rapport :</p>
+        \[ \frac{(\Delta V)_{og}}{(\Delta V)_{\text{fluc}}} = \frac{4\pi\gamma I_0 m L|H_0|/\lambda\cdot\varepsilon}{\dfrac{2bm^2\gamma|H_0|}{3Q}\Delta I_0} = \frac{6\pi Q L}{b\,m\,\lambda}\cdot\frac{\varepsilon}{\Delta I_0/I_0}. \]
+
+        <p>Avec \(\alpha = \dfrac{2\pi L}{\lambda}\) (le facteur introduit par l'enonce), on peut reecrire :</p>
+        \[ \frac{(\Delta V)_{og}}{(\Delta V)_{\text{fluc}}} = \frac{3Q\,\alpha}{b\,m}\cdot\frac{\varepsilon}{\Delta I_0/I_0}. \]
+
+        <p><strong>Pour ameliorer le rapport :</strong> prendre \(Q\) grand, \(b\) petit, \(L\) grand, \(m\) petit. <strong>Mais attention :</strong> prendre \(m\) trop petit reduit aussi \(A_\Omega\), qui peut devenir du bruit electronique. Il y a un optimum.</p>
+
+        <p><strong>AN :</strong></p>
+        \[ \frac{(\Delta V)_{og}}{(\Delta V)_{\text{fluc}}} = \frac{3\cdot 10\cdot 5{,}9\cdot 10^{11}}{10^{-2}\cdot 0{,}1}\cdot \frac{10^{-21}}{10^{-5}} \approx \frac{1{,}77\cdot 10^{13}}{10^{-3}}\cdot 10^{-16} = 1{,}77\cdot 10^{16}\cdot 10^{-16} \approx 1{,}8. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\frac{(\Delta V)_{og}}{(\Delta V)_{\text{fluc}}} \approx 1{,}8} \]
+          Le rapport est de l'ordre de 1 : le signal utile est <strong>comparable</strong> au bruit de fluctuation. Detection limite, difficilement exploitable avec ce filtre.
+        </div>
+
+        <div class="corr-box corr-box--piege">
+          <div class="corr-box__title">Piege classique</div>
+          On a envie de dire « il suffit de prendre \(m\) minuscule ». FAUX : plus \(m\) est petit, plus le signal utile chute en absolu et devient noye dans le bruit electronique (photons, thermique). Il y a un compromis.
+        </div>
+      </div>
+
+      <!-- Q28 -->
+      <div class="corr-question corr-question--medium" id="Q28">
+        <span class="corr-question__num">Question B4 d</span>
+        <p class="corr-question__statement">Pourquoi le montage reel est-il mieux adapte au filtrage desire que le filtre etudie auparavant ? En supposant que le reste de la chaine de detection et de filtrage n'est pas modifie, evaluer numeriquement le rapport \(\dfrac{(\Delta V)_{og}}{(\Delta V)_{\text{fluc}}}\) obtenu avec le filtre reel, puis conclure.</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Le filtre reel attenue <em>beaucoup plus</em> la composante \(2\Omega\) que le filtre du second ordre (\(-43\) dB mesure au lieu de \(\sim -15\) dB pour \(Q=10\)). Cette attenuation supplementaire reduit le bruit sans toucher au signal.
+        </div>
+
+        <p>Avec le filtre reel, \(|H(2\Omega)|/|H_0| = 10^{-43/20}\approx 7{,}1\cdot 10^{-3}\), contre \(\sim 2/(3Q)\approx 0{,}067\) pour notre filtre du second ordre. Le rapport est donc environ \(0{,}067/0{,}0071\approx 9{,}4\) fois meilleur.</p>
+
+        \[ \left(\frac{(\Delta V)_{og}}{(\Delta V)_{\text{fluc}}}\right)_{\text{reel}} \approx 1{,}8 \times 9{,}4 \approx 17. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\left.\frac{(\Delta V)_{og}}{(\Delta V)_{\text{fluc}}}\right|_{\text{reel}}\approx 17} \]
+          Le signal est maintenant un ordre de grandeur au-dessus du bruit : la detection devient <strong>possible</strong>. C'est le principe du filtre de LIGO/VIRGO.
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== PARTIE 2 ==================== -->
+    <div class="corr-exercice" id="exo2">
+      <div class="corr-exercice__header">
+        <span class="corr-exercice__number">2</span>
+        <div class="corr-exercice__title-group">
+          <h2 class="corr-exercice__title">Rayonnement gravitationnel d'un systeme binaire</h2>
+          <span class="corr-exercice__subtitle">Mecanique du point, gravitation -- 22 questions</span>
+        </div>
+        <span class="corr-exercice__difficulty corr-exercice__difficulty--standard">Standard</span>
+      </div>
+      <hr class="corr-exercice__rule">
+      <div class="corr-exercice__enonce">
+        <span class="corr-exercice__enonce-label">Enonce</span>
+        On etudie, dans le cadre de la mecanique newtonienne, le mouvement d'un systeme binaire de deux etoiles a neutrons. Le referentiel \((R)\) est galileen. On calcule ensuite la puissance rayonnee sous forme d'ondes gravitationnelles et l'effondrement progressif du systeme vers le contact des deux etoiles.
+      </div>
+
+      <h3 class="corr-partie">1. Point materiel en rotation autour d'un astre</h3>
+
+      <!-- Q29 -->
+      <div class="corr-question corr-question--easy" id="Q29">
+        <span class="corr-question__num">Question 1 a</span>
+        <p class="corr-question__statement">Rappeler l'expression de la force de gravitation subie par \(S\) de la part de \(A\). Montrer que cette force derive d'une energie potentielle \(E_p(r)\) en prenant l'origine de l'energie potentielle a l'infini.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Loi de Newton : \(\vec F = -\dfrac{GMm}{r^2}\vec e_r\) (force attractive). Une force derive d'un potentiel \(E_p\) si \(\vec F = -\vec\nabla E_p\), soit en radial \(F_r = -\dfrac{dE_p}{dr}\).
+        </div>
+
+        <p>\(\vec F = -\dfrac{GMm}{r^2}\vec e_r\). On cherche \(E_p\) telle que \(-\dfrac{dE_p}{dr} = -\dfrac{GMm}{r^2}\), donc \(\dfrac{dE_p}{dr}=\dfrac{GMm}{r^2}\), soit \(E_p(r) = -\dfrac{GMm}{r}+C\). L'origine choisie a l'infini impose \(C=0\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\vec F = -\frac{GMm}{r^2}\vec e_r, \qquad E_p(r) = -\frac{GMm}{r}} \]
+        </div>
+      </div>
+
+      <!-- Q30 -->
+      <div class="corr-question corr-question--easy" id="Q30">
+        <span class="corr-question__num">Question 1 b</span>
+        <p class="corr-question__statement">Montrer que le moment cinetique de \(S\) relativement au point \(A\) dans \((R)\), note \(\vec{L}_{A/(R)}\), est un vecteur constant. En deduire que la trajectoire de \(S\) est situee dans un plan passant par \(A\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Theoreme du moment cinetique : \(\dfrac{d\vec L_A}{dt} = \vec{AS}\wedge\vec F\).
+        </div>
+
+        <p>Comme \(\vec F\parallel \vec{AS}\) (force centrale), \(\vec{AS}\wedge\vec F=\vec 0\). Donc \(\vec L_A = \text{cste}\).</p>
+
+        <p>Comme \(\vec L_A = m\,\vec{AS}\wedge\vec v\) est constant, \(\vec{AS}\) est toujours orthogonal a \(\vec L_A\) : le mouvement est plan, dans le plan passant par \(A\) et orthogonal a \(\vec L_A\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Force centrale \(\Rightarrow\) \(\vec L_A = \text{cste}\) \(\Rightarrow\) <strong>mouvement plan</strong>.
+        </div>
+      </div>
+
+      <!-- Q31 -->
+      <div class="corr-question corr-question--easy" id="Q31">
+        <span class="corr-question__num">Question 1 c</span>
+        <p class="corr-question__statement">Admettons pour simplifier que le point \(S\) ait une trajectoire circulaire de rayon \(R\), avec une vitesse angulaire de rotation \(\omega\). Exprimer \(\omega\) en fonction de \(G\), \(M\) et \(R\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Sur un cercle, l'acceleration est centripete : \(\vec a = -R\omega^2\vec e_r\).
+        </div>
+
+        <p>PFD : \(m(-R\omega^2\vec e_r) = -\dfrac{GMm}{R^2}\vec e_r\). Simplification :</p>
+        \[ R\omega^2 = \dfrac{GM}{R^2}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\omega = \sqrt{\frac{GM}{R^3}}} \]
+        </div>
+      </div>
+
+      <!-- Q32 -->
+      <div class="corr-question corr-question--easy" id="Q32">
+        <span class="corr-question__num">Question 1 d</span>
+        <p class="corr-question__statement">Rappeler l'enonce de la 3eme loi de KEPLER relative a la periode de rotation des satellites autour d'une etoile. Demontrez explicitement cette loi dans le cas d'une trajectoire circulaire.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          <strong>3e loi de Kepler :</strong> pour des satellites en orbite autour d'un meme astre central de masse \(M\), le rapport \(\dfrac{T^2}{a^3}\) (\(a\) : demi-grand axe) est constant, egal a \(\dfrac{4\pi^2}{GM}\).
+        </div>
+
+        <p>Avec \(\omega = 2\pi/T\) et \(\omega^2 = GM/R^3\) :</p>
+        \[ \left(\dfrac{2\pi}{T}\right)^2 = \dfrac{GM}{R^3}\Rightarrow \dfrac{T^2}{R^3} = \dfrac{4\pi^2}{GM}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\dfrac{T^2}{R^3} = \dfrac{4\pi^2}{GM}\quad\text{(independant du satellite)}} \]
+        </div>
+      </div>
+
+      <!-- Q33 -->
+      <div class="corr-question corr-question--easy" id="Q33">
+        <span class="corr-question__num">Question 1 e</span>
+        <p class="corr-question__statement">Montrer que l'energie mecanique du systeme s'ecrit : \(E_m = -\dfrac{GMm}{2R}\). Commenter le signe de cette energie.</p>
+
+        <p>Energie cinetique : \(E_c = \tfrac{1}{2}m v^2 = \tfrac{1}{2}m R^2\omega^2 = \tfrac{1}{2}m\cdot\dfrac{GM}{R} = \dfrac{GMm}{2R}\).</p>
+        <p>Energie potentielle : \(E_p = -\dfrac{GMm}{R}\).</p>
+        <p>Somme :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{E_m = \frac{GMm}{2R} - \frac{GMm}{R} = -\frac{GMm}{2R}} \]
+          <strong>Signe negatif :</strong> le systeme est <em>lie</em>. Il faudrait apporter de l'energie (\(+GMm/(2R)\)) pour l'amener a l'infini au repos (etat libre, \(E_m=0\)).
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode reutilisable</div>
+          Pour une orbite circulaire gravitationnelle : \(E_c = -\tfrac{1}{2}E_p\) et \(E_m = \tfrac{1}{2}E_p\). C'est le theoreme du viriel, a memoriser.
+        </div>
+      </div>
+
+      <h3 class="corr-partie">2. Systeme binaire : point materiel fictif</h3>
+
+      <!-- Q34 -->
+      <div class="corr-question corr-question--easy" id="Q34">
+        <span class="corr-question__num">Question 2 a</span>
+        <p class="corr-question__statement">Justifier que le barycentre \(B\) des deux etoiles est anime dans \((R)\) d'un mouvement rectiligne uniforme de vitesse \(\vec{v_B}\). On notera la norme de sa vitesse \(v_B\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Theoreme du centre d'inertie : \(M_{\text{tot}}\dfrac{d\vec v_B}{dt} = \sum\vec F_{\text{ext}}\).
+        </div>
+
+        <p>Systeme isole : \(\sum\vec F_{\text{ext}} = \vec 0\). Donc \(\vec v_B = \text{cste}\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Le barycentre \(B\) est en MRU dans \((R)\).
+        </div>
+      </div>
+
+      <!-- Q35 -->
+      <div class="corr-question corr-question--easy" id="Q35">
+        <span class="corr-question__num">Question 2 b</span>
+        <p class="corr-question__statement">Definir le referentiel barycentrique du systeme des deux etoiles. Ce referentiel est-il galileen ?</p>
+
+        <p>Le <strong>referentiel barycentrique \((R^*)\)</strong> est le referentiel d'origine \(B\) dont les axes restent paralleles a ceux de \((R)\). Il est en MRU par rapport a \((R)\) galileen, donc <strong>\((R^*)\) est aussi galileen</strong>.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \((R^*)\) est defini par rapport au barycentre \(B\), axes paralleles a \((R)\). <strong>Galileen</strong> car en MRU par rapport a un galileen.
+        </div>
+      </div>
+
+      <!-- Q36 -->
+      <div class="corr-question corr-question--medium" id="Q36">
+        <span class="corr-question__num">Question 2 c</span>
+        <p class="corr-question__statement">Montrer que, dans le referentiel barycentrique, le mouvement du point \(F\) defini par \(\vec{BF} = \vec{A_1 A_2}\) est celui d'un point materiel fictif qui serait soumis a la meme force que celle qui agit sur \(A_2\) et dont on exprimera la masse \(\mu\) en fonction de \(M\).</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Pour deux corps en interaction mutuelle, la <strong>reduction au probleme a un corps</strong> consiste a introduire la masse reduite \(\mu = \dfrac{m_1 m_2}{m_1+m_2}\) et a etudier le mouvement relatif.
+        </div>
+
+        <p>Dans \((R^*)\), \(\vec{BA_1}=-\vec{BA_2}\) (masses egales, barycentre au milieu). Posons \(\vec r = \vec{A_1 A_2} = 2\vec{BA_2}\). Les equations du mouvement de \(A_1\) et \(A_2\) dans \((R^*)\) donnent :</p>
+        \[ M\ddot{\vec{BA_2}} = \vec F_{1\to 2} = -\dfrac{GM^2}{r^2}\vec e_{12},\quad M\ddot{\vec{BA_1}} = -\vec F_{1\to 2}. \]
+        <p>En soustrayant, \(M\ddot{\vec r}= 2\vec F_{1\to 2}\), soit \(\dfrac{M}{2}\ddot{\vec r}=\vec F_{1\to 2}\).</p>
+        <p>Le point fictif \(F\) avec \(\vec{BF}=\vec r\) verifie donc \(\mu\ddot{\vec{BF}}=\vec F_{1\to 2}\) avec \(\mu = M/2\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\mu = \frac{M}{2}\ \text{ (masse reduite pour } m_1=m_2=M\text{)}} \]
+        </div>
+      </div>
+
+      <!-- Q37 -->
+      <div class="corr-question corr-question--medium" id="Q37">
+        <span class="corr-question__num">Question 2 d</span>
+        <p class="corr-question__statement">Admettons pour simplifier que dans le referentiel barycentrique, le point \(F\) est anime d'un mouvement circulaire de rayon \(R\) de centre \(B\). Determiner la vitesse angulaire \(\omega\) de ce mouvement en fonction de \(G\), \(M\) et \(R\).</p>
+
+        <p>L'equation du mouvement de \(F\) est \(\mu R\omega^2 = \dfrac{GM^2}{R^2}\), avec \(\mu=M/2\) :</p>
+        \[ \dfrac{M}{2}R\omega^2 = \dfrac{GM^2}{R^2}\Rightarrow \omega^2 = \dfrac{2GM}{R^3}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\omega = \sqrt{\frac{2GM}{R^3}}} \]
+          (Le facteur 2 vient du fait que la masse attirante effective est \(M+M\) et la masse reduite \(M/2\).)
+        </div>
+      </div>
+
+      <!-- Q38 -->
+      <div class="corr-question corr-question--medium" id="Q38">
+        <span class="corr-question__num">Question 2 e</span>
+        <p class="corr-question__statement">Determiner numeriquement la distance qui separe les deux etoiles. Determiner la norme de la vitesse \(v_A\) des etoiles dans le referentiel barycentrique.</p>
+
+        <p>\(T = 0{,}1\) s, \(\omega = 2\pi/T \approx 62{,}8\) rad/s. Avec \(\omega^2 = 2GM/R^3\) :</p>
+        \[ R = \left(\dfrac{2GM}{\omega^2}\right)^{1/3} = \left(\dfrac{2\cdot 6{,}67\cdot 10^{-11}\cdot 2{,}8\cdot 10^{30}}{(62{,}8)^2}\right)^{1/3}. \]
+        \[ = \left(\dfrac{3{,}74\cdot 10^{20}}{3{,}95\cdot 10^3}\right)^{1/3} = \left(9{,}47\cdot 10^{16}\right)^{1/3}\approx 4{,}56\cdot 10^5\ \text{m}. \]
+
+        <p>Les etoiles sont sur un cercle de rayon \(R/2\) autour de \(B\), donc :</p>
+        \[ v_A = \dfrac{R}{2}\omega \approx \dfrac{4{,}56\cdot 10^5}{2}\cdot 62{,}8 \approx 1{,}43\cdot 10^7\ \text{m/s}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{R\approx 4{,}6\cdot 10^5\ \text{m} = 460\text{ km},\qquad v_A \approx 1{,}4\cdot 10^7\ \text{m/s}} \]
+          Soit environ 5 % de \(c\) : on est a la limite de la mecanique newtonienne (mais on continue quand meme).
+        </div>
+      </div>
+
+      <!-- Q39 -->
+      <div class="corr-question corr-question--easy" id="Q39">
+        <span class="corr-question__num">Question 2 f</span>
+        <p class="corr-question__statement">Decrire les trajectoires des deux points \(A_1\) et \(A_2\) dans le referentiel barycentrique. Illustrer a l'aide d'une representation graphique.</p>
+
+        <p>Dans \((R^*)\), par symetrie (masses egales), \(A_1\) et \(A_2\) decrivent deux cercles concentriques de centre \(B\), de <strong>meme rayon \(R/2\)</strong>, diametralement opposes a chaque instant. Meme periode \(T\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Deux cercles de meme rayon \(R/2\), meme centre \(B\), etoiles en <strong>opposition</strong> (un tour de 180°) a tout instant. Deux points qui tournent a la meme vitesse angulaire autour du barycentre.
+        </div>
+      </div>
+
+      <h3 class="corr-partie">3. Energie mecanique du systeme</h3>
+
+      <!-- Q40 -->
+      <div class="corr-question corr-question--easy" id="Q40">
+        <span class="corr-question__num">Question 3 a</span>
+        <p class="corr-question__statement">Exprimer l'energie cinetique dans \((R)\) du systeme des deux etoiles en fonction de \(M\), \(v_B\) et de l'energie cinetique \(E_c^*\) du systeme dans son referentiel barycentrique.</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          <strong>2eme theoreme de Koenig :</strong> \(E_c = \tfrac{1}{2}M_{\text{tot}}v_B^2 + E_c^*\) (translation du barycentre + mouvement interne).
+        </div>
+
+        <p>Masse totale \(M_{\text{tot}}=2M\), d'ou :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{E_c = \tfrac{1}{2}(2M)v_B^2 + E_c^* = Mv_B^2 + E_c^*} \]
+        </div>
+      </div>
+
+      <!-- Q41 -->
+      <div class="corr-question corr-question--easy" id="Q41">
+        <span class="corr-question__num">Question 3 b</span>
+        <p class="corr-question__statement">Dans le cas du mouvement de \(F\) est circulaire dans le referentiel barycentrique, exprimer l'energie cinetique \(E_c^*\) du systeme des deux etoiles en fonction de \(\omega\), \(M\) et \(R\).</p>
+
+        <p>Dans \((R^*)\), chaque etoile tourne sur un cercle de rayon \(R/2\) a vitesse \(v_A=(R/2)\omega\) :</p>
+        \[ E_c^* = 2\cdot\tfrac{1}{2}M\left(\tfrac{R\omega}{2}\right)^2 = \dfrac{MR^2\omega^2}{4}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{E_c^* = \frac{MR^2\omega^2}{4}} \]
+        </div>
+      </div>
+
+      <!-- Q42 -->
+      <div class="corr-question corr-question--medium" id="Q42">
+        <span class="corr-question__num">Question 3 c</span>
+        <p class="corr-question__statement">Exprimer l'energie mecanique \(E_m\) du systeme des deux etoiles dans le referentiel \((R)\), en fonction de \(M\), \(G\), \(R\) et \(v_B\).</p>
+
+        <p>Energie potentielle d'interaction : \(E_p = -\dfrac{GM^2}{R}\) (une seule paire).</p>
+        <p>\(E_c^*\) avec \(\omega^2=2GM/R^3\) :</p>
+        \[ E_c^* = \dfrac{MR^2}{4}\cdot\dfrac{2GM}{R^3} = \dfrac{GM^2}{2R}. \]
+
+        <p>Donc (avec Koenig) :</p>
+        \[ E_m = Mv_B^2 + \dfrac{GM^2}{2R} - \dfrac{GM^2}{R}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{E_m = Mv_B^2 - \frac{GM^2}{2R}} \]
+        </div>
+      </div>
+
+      <h3 class="corr-partie">4. Effondrement du systeme binaire</h3>
+
+      <!-- Q43 -->
+      <div class="corr-question corr-question--easy" id="Q43">
+        <span class="corr-question__num">Question 4 a</span>
+        <p class="corr-question__statement">Qu'est-ce qu'une force non conservative ? Quelle relation existe-t-il entre \(\dfrac{dE_m}{dt}\) et \(P_{og}\) ? Quelle est la consequence de cette perte d'energie sur la distance \(R\) entre les deux etoiles ?</p>
+
+        <div class="corr-box corr-box--rappel">
+          <div class="corr-box__title">Rappel de cours</div>
+          Force <strong>non conservative</strong> = force ne derivant pas d'une energie potentielle. Son travail depend du chemin, en general dissipe l'energie. Theoreme de l'energie mecanique : \(\dfrac{dE_m}{dt}=P_{\text{NC}}\).
+        </div>
+
+        <p>Ici la puissance non conservative est \(-P_{og}\) (on <em>perd</em> \(P_{og}\)) :</p>
+        \[ \dfrac{dE_m}{dt} = -P_{og}. \]
+
+        <p>Comme \(v_B\) est constante, seule la partie \(-GM^2/(2R)\) varie :</p>
+        \[ \dfrac{d}{dt}\left(-\dfrac{GM^2}{2R}\right) = \dfrac{GM^2}{2R^2}\dfrac{dR}{dt} = -P_{og}<0. \]
+        <p>Donc \(\dfrac{dR}{dt}<0\) : <strong>\(R\) diminue</strong> au cours du temps.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\dfrac{dE_m}{dt} = -P_{og}\ \Rightarrow\ R\text{ decroit}} \]
+          Les deux etoiles se rapprochent : c'est l'effondrement du systeme binaire par emission gravitationnelle.
+        </div>
+      </div>
+
+      <!-- Q44 -->
+      <div class="corr-question corr-question--medium" id="Q44">
+        <span class="corr-question__num">Question 4 b</span>
+        <p class="corr-question__statement">Montrer que \(R\) varie selon une loi : \(\dfrac{dR}{dt} = -\dfrac{\alpha}{R^3}\), et exprimer \(\alpha\) en fonction de \(K\), \(G\) et \(M\).</p>
+
+        <p>On a \(\dfrac{GM^2}{2R^2}\dfrac{dR}{dt} = -P_{og} = -KM^2R^4\omega^6\). Avec \(\omega^2 = 2GM/R^3\), donc \(\omega^6 = 8G^3M^3/R^9\) :</p>
+        \[ P_{og} = K M^2 R^4\cdot\dfrac{8G^3M^3}{R^9} = \dfrac{8KG^3M^5}{R^5}. \]
+
+        <p>Donc :</p>
+        \[ \dfrac{GM^2}{2R^2}\dfrac{dR}{dt} = -\dfrac{8KG^3M^5}{R^5}\ \Rightarrow\ \dfrac{dR}{dt} = -\dfrac{16KG^2M^3}{R^3}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{\dfrac{dR}{dt} = -\dfrac{\alpha}{R^3}\quad\text{avec}\quad \alpha = 16KG^2M^3} \]
+        </div>
+      </div>
+
+      <!-- Q45 -->
+      <div class="corr-question corr-question--medium" id="Q45">
+        <span class="corr-question__num">Question 4 c</span>
+        <p class="corr-question__statement">Au temps \(t = 0\), la distance entre les etoiles est \(R(t = 0) = R_0\). Determiner \(R(t)\) en fonction de \(R_0\), \(t\) et \(\alpha\). Representer graphiquement l'allure de la trajectoire de l'une des deux etoiles dans le referentiel barycentrique.</p>
+
+        <p>Separation des variables : \(R^3\,dR = -\alpha\,dt\). Integration :</p>
+        \[ \dfrac{R^4}{4} - \dfrac{R_0^4}{4} = -\alpha t\ \Rightarrow\ R^4 = R_0^4 - 4\alpha t. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{R(t) = \left(R_0^4 - 4\alpha t\right)^{1/4}} \]
+          Trajectoire d'une etoile : <strong>spirale convergente</strong> dans le plan, avec pas qui diminue de plus en plus vite vers le centre \(B\).
+        </div>
+      </div>
+
+      <!-- Q46 -->
+      <div class="corr-question corr-question--medium" id="Q46">
+        <span class="corr-question__num">Question 4 d</span>
+        <p class="corr-question__statement">Determiner, en fonction de \(R_0\), \(a\) et \(\alpha\) le temps \(t_c\) au bout duquel les deux etoiles entrent en contact. Exprimer en fonction de \(G\), \(M\) et \(a\), la vitesse angulaire de rotation \(\omega_c\) atteinte par le systeme a l'instant \(t_c\). Application numerique : Calculer \(t_c\) et \(\omega_c\) sachant que \(R_0 = 4{,}6 \cdot 10^5\) m et \(M = 2{,}8 \cdot 10^{30}\) kg.</p>
+
+        <p><strong>Contact :</strong> deux spheres de diametre \(a\) se touchent quand la distance centre-a-centre vaut \(a\), donc \(R(t_c) = a\). D'ou :</p>
+        \[ a^4 = R_0^4 - 4\alpha t_c\ \Rightarrow\ \boxed{t_c = \dfrac{R_0^4-a^4}{4\alpha}}. \]
+
+        <p><strong>Vitesse angulaire au contact :</strong> \(\omega_c^2 = \dfrac{2GM}{a^3}\), soit \(\boxed{\omega_c = \sqrt{\dfrac{2GM}{a^3}}}\).</p>
+
+        <p><strong>AN :</strong> avec \(K = 8G/(5c^5)\), \(\alpha = 16\cdot\dfrac{8G}{5c^5}\cdot G^2 M^3 = \dfrac{128G^3M^3}{5c^5}\).</p>
+        \[ G^3 = (6{,}67\cdot 10^{-11})^3 \approx 2{,}97\cdot 10^{-31},\quad M^3 = (2{,}8\cdot 10^{30})^3 \approx 2{,}20\cdot 10^{91}. \]
+        \[ G^3M^3 \approx 6{,}52\cdot 10^{60}. \]
+        \[ c^5 = (3\cdot 10^8)^5 = 2{,}43\cdot 10^{42}. \]
+        \[ \alpha = \dfrac{128\cdot 6{,}52\cdot 10^{60}}{5\cdot 2{,}43\cdot 10^{42}} \approx \dfrac{8{,}35\cdot 10^{62}}{1{,}22\cdot 10^{43}} \approx 6{,}86\cdot 10^{19}\ \text{m}^4/\text{s}. \]
+        \[ R_0^4 = (4{,}6\cdot 10^5)^4 \approx 4{,}48\cdot 10^{22}\ \text{m}^4,\quad a^4=(2\cdot 10^4)^4 = 1{,}6\cdot 10^{17}\ \text{m}^4\ \text{(negligeable)}. \]
+        \[ t_c \approx \dfrac{4{,}48\cdot 10^{22}}{4\cdot 6{,}86\cdot 10^{19}} \approx 163\ \text{s}. \]
+
+        <p>Et \(\omega_c = \sqrt{\dfrac{2\cdot 6{,}67\cdot 10^{-11}\cdot 2{,}8\cdot 10^{30}}{(2\cdot 10^4)^3}} = \sqrt{\dfrac{3{,}74\cdot 10^{20}}{8\cdot 10^{12}}}=\sqrt{4{,}67\cdot 10^7}\approx 6{,}8\cdot 10^3\) rad/s.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{t_c \approx 160\ \text{s},\qquad \omega_c\approx 6{,}8\cdot 10^3\ \text{rad/s}} \]
+          En moins de 3 minutes, les etoiles passent d'une separation de 460 km a une collision ! La frequence du rayonnement gravitationnel grimpe jusqu'a \(\sim\) 1 kHz.
+        </div>
+      </div>
+
+      <!-- Q47 -->
+      <div class="corr-question corr-question--medium" id="Q47">
+        <span class="corr-question__num">Question 4 e</span>
+        <p class="corr-question__statement">Justifier que le modele precedent n'est valable que si la condition \(\left|\dfrac{dR}{dt}\right| \ll R\omega\) est realisee. Cette condition est-elle verifiee jusqu'a l'instant de contact ?</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Le modele suppose un mouvement <em>quasi circulaire</em>. La vitesse de contraction \(|dR/dt|\) (radial) doit rester petite devant la vitesse de rotation \(R\omega\) (orthoradial). Sinon la trajectoire serait plutot une chute libre qu'une spirale.
+        </div>
+
+        <p>\(|dR/dt| = \alpha/R^3\). Et \(R\omega = R\sqrt{2GM/R^3}=\sqrt{2GM/R}\). Condition :</p>
+        \[ \dfrac{\alpha}{R^3}\ll \sqrt{\dfrac{2GM}{R}}\ \Leftrightarrow\ R^{5/2}\gg \dfrac{\alpha}{\sqrt{2GM}}. \]
+
+        <p>Au contact (\(R=a=2\cdot 10^4\) m) : \(|dR/dt| = 6{,}86\cdot 10^{19}/(2\cdot 10^4)^3 = 6{,}86\cdot 10^{19}/8\cdot 10^{12}\approx 8{,}6\cdot 10^6\) m/s. Et \(a\omega_c = 2\cdot 10^4\cdot 6{,}8\cdot 10^3\approx 1{,}36\cdot 10^8\) m/s.</p>
+
+        <p>Rapport : \(8{,}6\cdot 10^6/1{,}36\cdot 10^8\approx 6\%\). La condition \(\ll\) reste verifiee, mais commence a etre limite a l'approche du contact.</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          Condition verifiee au debut (spirale tres lente) et encore valable (a \(\sim 6\%\)) au contact. Le modele newtonien quasi-circulaire reste raisonnable, meme s'il serait invalide un peu plus tot avec des etoiles plus legeres.
+        </div>
+      </div>
+
+      <h3 class="corr-partie">5. Aspect energetique</h3>
+
+      <!-- Q48 -->
+      <div class="corr-question corr-question--medium" id="Q48">
+        <span class="corr-question__num">Question 5 a</span>
+        <p class="corr-question__statement">Determiner la puissance gravitationnelle rayonnee, \(P_{og}(t)\), en fonction de \(t\), \(\alpha\), \(R_0\), \(K\), \(M\) et \(G\). Representer graphiquement \(P_{og}(t)\).</p>
+
+        <p>On a \(P_{og} = \dfrac{8KG^3M^5}{R^5}\) et \(R^4(t) = R_0^4-4\alpha t\), donc \(R^5(t)=(R_0^4-4\alpha t)^{5/4}\) :</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{P_{og}(t) = \dfrac{8KG^3M^5}{(R_0^4-4\alpha t)^{5/4}}} \]
+          Courbe partant d'une valeur finie en \(t=0\), croissant lentement puis <strong>divergeant</strong> (verticale asymptotique) quand \(t\to t_c\). Profil typique « chirp » observe par LIGO.
+        </div>
+      </div>
+
+      <!-- Q49 -->
+      <div class="corr-question corr-question--medium" id="Q49">
+        <span class="corr-question__num">Question 5 b</span>
+        <p class="corr-question__statement">Exprimer la puissance maximale, notee \(P_{og\max}\) rayonnee par le systeme sous forme d'onde gravitationnelle, en fonction de \(K\), \(G\), \(M\) et \(a\). Comparer a la puissance electromagnetique totale emise par notre Soleil \(P_{\text{Sol}} = 4{,}5 \cdot 10^{26}\) W.</p>
+
+        <p>Maximum atteint au contact \(R=a\) :</p>
+        \[ P_{og\max} = \dfrac{8KG^3M^5}{a^5}. \]
+
+        <p>Avec \(K=8G/(5c^5)\) :</p>
+        \[ P_{og\max} = \dfrac{64G^4M^5}{5c^5 a^5}. \]
+
+        <p>AN : \(G^4 \approx 1{,}98\cdot 10^{-41}\), \(M^5 \approx 1{,}72\cdot 10^{152}\), \(a^5=(2\cdot 10^4)^5 = 3{,}2\cdot 10^{21}\), \(c^5=2{,}43\cdot 10^{42}\) :</p>
+        \[ P_{og\max} = \dfrac{64\cdot 1{,}98\cdot 10^{-41}\cdot 1{,}72\cdot 10^{152}}{5\cdot 2{,}43\cdot 10^{42}\cdot 3{,}2\cdot 10^{21}}. \]
+        \[ \text{Numerateur}: 64\cdot 1{,}98\cdot 1{,}72\cdot 10^{111}\approx 2{,}18\cdot 10^{113}. \]
+        \[ \text{Denominateur}: 5\cdot 2{,}43\cdot 3{,}2\cdot 10^{63}\approx 38{,}9\cdot 10^{63}. \]
+        \[ P_{og\max}\approx 5{,}6\cdot 10^{49}\ \text{W}. \]
+
+        <p>Comparaison : \(P_{og\max}/P_{\text{Sol}} \approx 5{,}6\cdot 10^{49}/4{,}5\cdot 10^{26}\approx 1{,}2\cdot 10^{23}\).</p>
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{P_{og\max} = \frac{64G^4M^5}{5c^5 a^5}\approx 5{,}6\cdot 10^{49}\ \text{W}\ \approx 10^{23}\,P_{\text{Sol}}} \]
+          L'ordre de grandeur depasse la puissance de toutes les etoiles de l'univers visible reunies !
+        </div>
+      </div>
+
+      <!-- Q50 -->
+      <div class="corr-question corr-question--hard" id="Q50">
+        <span class="corr-question__num">Question 5 c</span>
+        <p class="corr-question__statement">Determiner l'energie totale \(E_{og}\) rayonnee sous forme gravitationnelle entre les instants \(t = 0\) et \(t_c\), en fonction de \(G\), \(M\), \(R_0\) et \(a\).</p>
+
+        <div class="corr-box corr-box--why">
+          <div class="corr-box__title">Pourquoi on fait ca ?</div>
+          Plutot que d'integrer \(P_{og}(t)\) (faisable mais calculatoire), on utilise la conservation : l'energie rayonnee = la perte d'energie mecanique interne. Aller directement au bilan.
+        </div>
+
+        <p>L'energie mecanique interne (hors \(v_B\)) vaut \(E_m^* = -GM^2/(2R)\). Elle passe de \(-GM^2/(2R_0)\) a \(-GM^2/(2a)\). La perte vaut donc :</p>
+        \[ E_{og} = -\left(-\dfrac{GM^2}{2a}\right)+\left(-\dfrac{GM^2}{2R_0}\right) = \dfrac{GM^2}{2a}-\dfrac{GM^2}{2R_0}. \]
+
+        <div class="corr-box corr-box--result">
+          <div class="corr-box__title">Resultat</div>
+          \[ \boxed{E_{og} = \dfrac{GM^2}{2}\left(\dfrac{1}{a}-\dfrac{1}{R_0}\right)} \]
+          AN : \(\dfrac{GM^2}{2}=\dfrac{6{,}67\cdot 10^{-11}\cdot 7{,}84\cdot 10^{60}}{2}\approx 2{,}6\cdot 10^{50}\) J, et \(1/a-1/R_0\approx 5\cdot 10^{-5}\) m\(^{-1}\), donc \(E_{og}\approx 1{,}3\cdot 10^{46}\) J. Plusieurs pour cent de la masse-energie du systeme !
+        </div>
+
+        <div class="corr-box corr-box--method">
+          <div class="corr-box__title">Methode reutilisable</div>
+          Pour une energie rayonnee <em>integree dans le temps</em> : passer par le bilan energie mecanique initiale - finale, c'est toujours plus rapide que d'integrer la puissance instantanee.
+        </div>
+      </div>
+    </div>
+
+    <nav class="course__nav">
+      <a href="../../mp.html#annales" class="course__nav-link">
+        &larr; Retour
+        <span>Toutes les annales</span>
+      </a>
+      <a href="e3a-2006-physique.html" class="course__nav-link" style="text-align:right">
+        Enonce
+        <span>Sujet d'origine &rarr;</span>
+      </a>
+    </nav>
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const render = () => {
+        if (window.renderMathInElement) {
+          renderMathInElement(document.querySelector('.course'), {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            throwOnError: false
+          });
+          return true;
+        }
+        return false;
+      };
+      if (!render()) {
+        const it = setInterval(() => { if (render()) clearInterval(it); }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

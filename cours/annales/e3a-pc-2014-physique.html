@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E3A-Polytech PC 2014 - Physique - LibMaths</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../../index.html" class="nav-logo">LibMaths</a>
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../../physique/index.html">Physique</a></li>
+      <li><a href="../index.html">Annales</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="course">
+  <div class="course-header">
+    <div class="breadcrumb">
+      <a href="../../index.html">Accueil</a> &gt;
+      <a href="../../physique/index.html">Physique</a> &gt;
+      <a href="../index.html">Annales</a> &gt;
+      <span>E3A-Polytech PC 2014 - Physique</span>
+    </div>
+    <h1>E3A-Polytech PC 2014 - Physique</h1>
+    <p class="course-subtitle">Concours Arts et Metiers ParisTech - ESTP - Polytech - Epreuve de Physique PC - Duree 4 h</p>
+  </div>
+
+  <div class="annale-info">
+    <div class="annale-warning">
+      <strong>Sujet retranscrit avec schemas</strong>
+      <p>L'usage de calculatrices est interdit. Si, au cours de l'epreuve, un candidat repere ce qui lui semble etre une erreur d'enonce, d'une part il le signale au chef de salle, d'autre part il le signale sur sa copie et poursuit sa composition en indiquant les raisons des initiatives qu'il est amene a prendre.</p>
+      <p><em>Remarques preliminaires importantes :</em> il est rappele aux candidat(e)s que :</p>
+      <ul>
+        <li>les explications des phenomenes etudies interviennent dans la notation au meme titre que les developpements analytiques et les applications numeriques ; les resultats exprimes sans unite ne seront pas comptabilises ;</li>
+        <li>tout au long de l'enonce, les paragraphes en <em>italique</em> ont pour objet d'aider a la comprehension du probleme mais ne donnent pas lieu a des questions ;</li>
+        <li>tout resultat fourni dans l'enonce peut etre admis et utilise par la suite, meme s'il n'a pas ete demontre par le(la) candidat(e) ;</li>
+        <li>les questions comportant le mot &laquo; calculer &raquo; demandent une application numerique ;</li>
+        <li>pour les applications numeriques demandees, le bon ordre de grandeur est simplement attendu : le bon premier chiffre significatif (voire les deux premiers si necessaire) et la bonne puissance de dix, ainsi bien sur que l'unite (si necessaire). Le bareme de correction valorisera ces applications numeriques ainsi que tout commentaire judicieux qu'elles susciteront.</li>
+      </ul>
+      <p><em>Ce sujet aborde quelques aspects du <strong>fonctionnement d'un avion de ligne</strong>, transportant 250 passagers (les donnees numeriques correspondent a un Airbus A340).</em></p>
+      <p><em>Les themes abordes concernent une comparaison de l'importance des differents phenomenes physiques mis en jeu afin d'etablir un bilan thermique regissant la temperature et la pression dans l'avion (parametres relatifs au confort des passagers), puis la localisation precise de l'avion en vol afin d'assurer le bon suivi du plan de vol.</em></p>
+      <p><em>Les differentes parties du sujet sont largement independantes.</em></p>
+    </div>
+
+    <h2>Table des matieres</h2>
+    <ul class="toc">
+      <li><a href="#exo1">Premiere partie - Phenomenes physiques dominants (A1 a C8)</a></li>
+      <li><a href="#exo2">Deuxieme partie - Echanges thermiques du fuselage d'un avion (D1 a D9)</a></li>
+      <li><a href="#exo3">Troisieme partie - Climatisation et pressurisation (E1 a F9)</a></li>
+      <li><a href="#exo4">Quatrieme partie - Suivi de la trajectoire de l'avion (G1 a G15)</a></li>
+    </ul>
+  </div>
+
+  <article class="annale-exercice" id="exo1">
+    <h2>Premiere partie - Phenomenes physiques dominants</h2>
+    <p><em>Dans un fluide et en particulier dans sa couche au voisinage du solide, dans laquelle s'effectue l'essentiel du transfert thermique, quatre phenomenes thermiques sont simultanement presents : conduction, convection, rayonnement et creation de chaleur due aux forces de viscosite.</em></p>
+    <p><em>Notations des grandeurs physiques associees au fluide : \( \lambda \) (conductivite thermique), \( \rho \) (masse volumique), c (capacite calorifique massique), \( \eta \) (viscosite dynamique) ; ces grandeurs seront considerees independantes de la temperature. L'acceleration de la pesanteur est notee g, la pression et la vitesse locale, respectivement P et \( \vec{v} \).</em></p>
+    <p><em>L'ecoulement d'un fluide incompressible soumis aux forces de pesanteur, de pression et de viscosite verifie l'equation &laquo; mecanique &raquo; de Navier-Stokes :</em></p>
+    \[ \rho \left[ \frac{\partial \vec{v}}{\partial t} + (\vec{v} \cdot \overrightarrow{grad})\vec{v} \right] = \rho \vec{g} - \overrightarrow{grad}\,P + \eta \Delta \vec{v} \]
+    <p><em>A cette equation mecanique s'ajoute un bilan thermodynamique traduisant les differents modes de transferts thermiques dans le fluide ou par echange avec les corps exterieurs (conduction, convection, rayonnement...).</em></p>
+    <p><em>Dans des conditions donnees d'ecoulement du fluide autour d'un obstacle solide, ces equations peuvent etre simplifiees en n'y conservant que les termes dominants ; il est donc necessaire d'evaluer sommairement l'importance de chacun des phenomenes mecaniques ou thermodynamiques mis en jeu. Pour cela, dans un domaine ou une grandeur g a une valeur caracteristique G et une valeur caracteristique U, l'ordre de grandeur de \( \frac{\partial g}{\partial u} \) sera evalue par \( \frac{G}{U} \), et celui de \( \frac{\partial^2 g}{\partial u^2} \) par \( \frac{G}{U^2} \).</em></p>
+
+    <h3>A / Transferts thermiques a l'interieur d'un fluide</h3>
+
+    <section class="question" id="Q1">
+      <h4>Question A1</h4>
+      <p>Donner une definition du phenomene de conduction thermique et un exemple d'application pratique. Rappeler la loi de Fourier, liant les grandeurs physiques a definir avec precision.</p>
+    </section>
+
+    <section class="question" id="Q2">
+      <h4>Question A2</h4>
+      <p>Proposer une definition du phenomene de convection thermique. Preciser la distinction faite entre convection naturelle et convection forcee ; donner un exemple de chaque.</p>
+    </section>
+
+    <section class="question" id="Q3">
+      <h4>Question A3</h4>
+      <p>Decrire une consequence pratique de la notion de viscosite d'un fluide (en s'appuyant eventuellement sur un exemple).</p>
+    </section>
+
+    <h3>B / Importance relative de ces phenomenes dans un fluide</h3>
+    <p><em>Soit un obstacle de dimension caracteristique L, plonge dans un fluide de vitesse caracteristique V et de viscosite dynamique \( \eta \).</em></p>
+
+    <section class="question" id="Q4">
+      <h4>Question B1</h4>
+      <p>Evaluer l'ordre de grandeur du terme : \( \rho (\vec{v} \cdot \overrightarrow{grad})\vec{v} \), dit &laquo; convectif &raquo;.</p>
+    </section>
+
+    <section class="question" id="Q5">
+      <h4>Question B2</h4>
+      <p>Evaluer l'ordre de grandeur du terme : \( \eta \Delta \vec{v} \), dit &laquo; de viscosite &raquo;.</p>
+    </section>
+
+    <section class="question" id="Q6">
+      <h4>Question B3</h4>
+      <p>En deduire l'expression du nombre de Reynolds Re, defini par :</p>
+      \[ \text{Re} = \frac{\text{importance du terme convectif}}{\text{importance du terme de viscosite}} \]
+      <p>en fonction de V, L, \( \rho \) et \( \eta \).</p>
+    </section>
+
+    <section class="question" id="Q7">
+      <h4>Question B4</h4>
+      <p>Rappeler l'interpretation usuelle de la valeur numerique du nombre de Reynolds sur les caracteristiques globales d'un ecoulement.</p>
+      <p><em>Considerons le cas simple d'un fluide en mouvement a vitesse uniforme et stationnaire \( v = v \vec{e}_x \). Sa temperature evolue au cours de son ecoulement mais ne depend que de la variable x. Raisonnons sur le volume Sdx limite par une section S constante et orthogonale a l'axe Ox ainsi que par les abscisses x et x + dx.</em></p>
+    </section>
+
+    <section class="question" id="Q8">
+      <h4>Question B5</h4>
+      <p>Exprimer, d'une part la puissance \( d^2\mathcal{P}_1 \) entrant par conduction thermique dans ce volume a travers la section S (a l'abscisse x), et d'autre part la puissance \( d^2\mathcal{P}_2 \) sortant par conduction thermique de ce volume a travers la section S (a l'abscisse x + dx).</p>
+      <p>En deduire l'expression de la puissance \( d^2\mathcal{P} \) recue par le volume Sdx par conduction thermique, en fonction de \( \lambda \), S et d'une derivee spatiale de T(x,t).</p>
+    </section>
+
+    <section class="question" id="Q9">
+      <h4>Question B6</h4>
+      <p>Determiner la masse dm de fluide traversant la section S situee a l'abscisse x, entre les instants t et t + dt.</p>
+      <p>En faisant un bilan de l'enthalpie ainsi apportee pendant la duree dt, etablir l'expression de la puissance \( d^2\mathcal{P}' \) recue par convection par le volume Sdx de fluide, en fonction de \( \rho \), S, c, v et d'une autre derivee spatiale de T(x,t).</p>
+      <p><em>Estimons sommairement le rapport \( \frac{d^2\mathcal{P}'}{d^2\mathcal{P}} \), en raisonnant sur des ordres de grandeurs, suivant les regles utilisees pour etablir le nombre de Reynolds.</em></p>
+    </section>
+
+    <section class="question" id="Q10">
+      <h4>Question B7</h4>
+      <p>Montrer que ce rapport peut s'ecrire : \( \frac{d^2\mathcal{P}'}{d^2\mathcal{P}} = \frac{\rho c v L}{\lambda} = \text{Pe} \), appele nombre de Peclet.</p>
+    </section>
+
+    <section class="question" id="Q11">
+      <h4>Question B8</h4>
+      <p>En deduire son interpretation physique.</p>
+    </section>
+
+    <h3>C / Echanges avec un corps exterieur - Transferts thermiques entre un solide et un fluide</h3>
+    <p><em>Lorsqu'un fluide et un solide de temperatures differentes sont en contact, il s'effectue un transfert thermique entre eux ; ce transfert, dit conducto-convectif, se traduit par un flux de chaleur \( \varphi \) algebrique (puissance transferee du solide vers le fluide) donne par la loi empirique de Newton sous la forme : \( \varphi = h\,(T_S - T_\infty) \Sigma \), ou \( T_S \) la temperature du fluide, \( T_\infty \) la temperature du solide a sa surface en contact avec le fluide et \( \Sigma \) la surface de contact. Le fluide est suppose etre partout a la temperature \( T_\infty \) (ce qui signifie que la presence d'une couche limite a l'interface solide-fluide est negligee).</em></p>
+    <p><em>Le coefficient h positif depend de la nature du fluide et fortement de sa vitesse d'ecoulement. Une simple approche intuitive conduit a penser que ce transfert thermique est etroitement lie aux proprietes du fluide au contact (importance de la conduction ou de la convection dans le fluide) et aux caracteristiques de son ecoulement (laminaire ou turbulent). Le coefficient h doit donc pouvoir s'exprimer en fonction des nombres de Peclet et de Reynolds.</em></p>
+    <p><em>Le coefficient h est donne par l'expression : \( h = a \frac{\lambda}{L} (\text{Pe})^p\,(\text{Re})^q \), ou a est un nombre pur dont la valeur depend du choix du systeme d'unites et de la forme exacte du solide.</em></p>
+
+    <section class="question" id="Q12">
+      <h4>Question C1</h4>
+      <p>Verifier l'homogeneite de h, pour toute valeur de p ou de q.</p>
+      <p><em>Des mesures experimentales de transfert thermique en convection forcee permettent d'etablir la dependance de h en fonction de v et \( \lambda \), selon une loi en \( v^{1/2}\lambda^{2/3} \).</em></p>
+    </section>
+
+    <section class="question" id="Q13">
+      <h4>Question C2</h4>
+      <p>En deduire les valeurs des exposants p et q.</p>
+      <p><em>Considerons desormais, en regime permanent, le cas d'un transfert thermique unidirectionnel, la chaleur se propageant selon l'axe Ox, entre un solide et un fluide. Le solide, de conductivite thermique \( \lambda_S \), occupe l'espace entre les plans x = 0 et x = E. Le fluide (espace x > E) est suppose uniforme de valeur \( T_\infty \). Soit T(x) la temperature a l'abscisse x dans le solide, avec T(x = 0) = \( T_0 \), imposee. Notons toujours \( T_S \) la temperature du solide a sa surface en contact avec le fluide : \( T_S = T(x = E) \), dont la valeur est, elle, inconnue. Les expressions demandees seront donnees pour une section \( \Sigma \) orthogonale a Ox.</em></p>
+    </section>
+
+    <section class="question" id="Q14">
+      <h4>Question C3</h4>
+      <p>Rappeler l'equation differentielle dont T(x) est solution. Ecrire (sans chercher a la resoudre) l'equation qui traduit la condition &laquo; aux limites &raquo; en x = E.</p>
+    </section>
+
+    <section class="question" id="Q15">
+      <h4>Question C4</h4>
+      <p>Definir la notion de resistance thermique, en precisant soigneusement l'analogie avec les grandeurs electriques usuelles.</p>
+      <p>Exprimer les resistances thermiques, respectivement \( R_\lambda \) associee a la conduction dans le solide et \( R_h \) associee a la conducto-convection a l'interface solide-fluide.</p>
+      <p>En deduire la resistance thermique \( R_e \) de l'ensemble, ainsi que l'expression du flux thermique \( \varphi \) present en fonction de \( T_0 \), \( T_\infty \) et \( R_e \).</p>
+      <p><em>L'ecart de temperature entre \( T_0 \) et \( T_S \) est la consequence de deux transferts thermiques : dans le solide par conduction thermique (entre x = 0 et x = E ou la temperature passe de \( T_0 \) a \( T_S \)), et au niveau de l'interface solide-fluide (en x = E, ou la temperature passe de \( T_S \) a \( T_\infty \)).</em></p>
+      <p><em>Le nombre de Biot, note Bi, est defini par \( \text{Bi} = \frac{T_0 - T_S}{T_S - T_\infty} \).</em></p>
+    </section>
+
+    <section class="question" id="Q16">
+      <h4>Question C5</h4>
+      <p>Exprimer le nombre de Biot en fonction de \( R_\lambda \) et \( R_h \), puis en fonction de E, h et \( \lambda_S \).</p>
+    </section>
+
+    <section class="question" id="Q17">
+      <h4>Question C6</h4>
+      <p>En deduire l'expression du gradient de temperature dans le solide :</p>
+      \[ \frac{dT}{dx} = -\frac{\text{Bi}}{E} \cdot \frac{T_0 - T_\infty}{1 + \text{Bi}} \]
+    </section>
+
+    <section class="question" id="Q18">
+      <h4>Question C7</h4>
+      <p>Representer graphiquement l'allure de la carte de temperature dans le solide et le fluide, pour Bi = 1, puis pour Bi \( \gg \) 1.</p>
+    </section>
+
+    <section class="question" id="Q19">
+      <h4>Question C8</h4>
+      <p>En deduire l'interpretation physique du nombre de Biot.</p>
+    </section>
+  </article>
+
+  <article class="annale-exercice" id="exo2">
+    <h2>Deuxieme partie - Echanges thermiques du fuselage d'un avion</h2>
+    <p><em>Le fuselage d'un avion, assimile a un cylindre de rayon interieur \( R_{INT} \), d'epaisseur e et de longueur L, est constitue d'un materiau de conductivite thermique \( \lambda_C \). Seule la surface laterale de ce cylindre sera prise en compte (la longueur L, grande devant \( R_{INT} \), permet de negliger l'influence des extremites). L'etude est faite en coordonnees cylindriques dont l'axe est confondu avec l'axe de revolution du cylindre. Le rayon exterieur du fuselage est note \( R_{EXT} \) (soit \( R_{EXT} = R_{INT} + e \)).</em></p>
+
+    <div class="annale-figure">
+      <div class="annale-figure__label">Figure 1</div>
+      <p>Schema en perspective d'un cylindre representant le fuselage de l'avion. Le cylindre a un rayon interieur \( R_{INT} \) et un rayon exterieur \( R_{EXT} \), avec une epaisseur e de paroi. La longueur du cylindre est notee L. L'axe de revolution du cylindre est horizontal. Un angle \( \theta \) est indique sur la section circulaire droite.</p>
+    </div>
+
+    <p><em>Dans l'avion, l'air interieur est immobile. La conducto-convection au niveau de la face interieure du fuselage est negligee ; ainsi la temperature de la face interne du fuselage et celle de l'air interieur sont identiques, de valeur notee \( T_{INT} \).</em></p>
+    <p><em>A l'exterieur de l'avion qui se deplace a la vitesse v, l'air situe au contact du fuselage est a la temperature \( T_A \). La temperature de la face externe du fuselage est notee \( T_{EXT} \) et h est le coefficient de conducto-convection a cette interface.</em></p>
+    <p><em>La temperature moyenne de l'atmosphere, compte tenu des couches situees a grande distance de l'avion, est notee \( T_{Mh} \).</em></p>
+    <p><em>Le fuselage constitue ainsi une zone de transfert thermique entre l'air interieur et l'air exterieur ; dans l'epaisseur du fuselage, supposons pour simplifier que la temperature ne depende que de la distance r a l'axe.</em></p>
+    <p><em>L'etude qui suit a pour objectif de determiner le flux thermique traversant le fuselage, en regime permanent.</em></p>
+    <p><em>Interessons-nous dans un premier temps a la conduction thermique dans l'epaisseur du fuselage. Soit \( \vec{j}(r) \) la densite de courant de chaleur qui y regne.</em></p>
+
+    <section class="question" id="Q1b">
+      <h4>Question D1</h4>
+      <p>Montrer que cette densite de courant de chaleur s'ecrit : \( \vec{j}(r) = \frac{K}{r}\vec{e}_r \), ou K est une constante.</p>
+    </section>
+
+    <section class="question" id="Q2b">
+      <h4>Question D2</h4>
+      <p>En deduire la loi de variation de la temperature T(r) en fonction de \( R_{INT} \), \( R_{EXT} \), \( T_{INT} \), \( T_{EXT} \) et r.</p>
+    </section>
+
+    <section class="question" id="Q3b">
+      <h4>Question D3</h4>
+      <p>Exprimer la puissance thermique totale \( \Phi \) traversant le fuselage de l'interieur vers l'exterieur, en fonction de \( R_{INT} \), \( R_{EXT} \), L, \( T_{INT} \), \( T_{EXT} \) et \( \lambda_C \).</p>
+    </section>
+
+    <section class="question" id="Q4b">
+      <h4>Question D4</h4>
+      <p><em>La face externe du fuselage echange aussi de la chaleur selon plusieurs formes de rayonnement.</em></p>
+      <p><em>L'une d'entre elles, due au <strong>soleil</strong>, est caracterisee par un apport de puissance \( \varphi_S \) par unite de surface orthogonale aux rayons solaires, mais dont une partie est reflechie par la peinture (blanche) du fuselage ; seule la fraction \( \varepsilon \varphi_S \) est finalement absorbee par l'avion. Le bilan de la puissance solaire recue par l'avion s'exprime alors ainsi : \( \mathcal{P}_{solaire} = 2\,R_{EXT}\,L\,\varepsilon\,\varphi_S \).</em></p>
+      <p>Justifier cette expression.</p>
+      <p><em>Admettons que tout element de surface du fuselage recoive de l'atmosphere de temperature moyenne \( T_{Mh} \) la puissance surfacique \( \sigma T_{Mh}^4 \), et emette par ailleurs un rayonnement associe a sa temperature \( T_{EXT} \), de puissance surfacique \( \sigma T_{EXT}^4 \), \( \sigma \) etant une constante.</em></p>
+    </section>
+
+    <section class="question" id="Q5b">
+      <h4>Question D5</h4>
+      <p>Etablir l'expression litterale de \( \mathcal{P}_R \), traduisant le bilan radiatif global de puissance recue par le fuselage, lie a toutes les formes de rayonnement.</p>
+      <p><em>L'ensemble des phenomenes decrits precedemment permet d'etablir le bilan thermique de la face externe du fuselage.</em></p>
+    </section>
+
+    <section class="question" id="Q6b">
+      <h4>Question D6</h4>
+      <p>Ecrire (sans chercher a la resoudre) l'equation traduisant le bilan thermique de la face externe du fuselage, en regime permanent, prenant en compte tous les phenomenes physiques presents : conduction, conducto-convection et rayonnement.</p>
+      <p><em>Pour un Airbus A340 en vol de croisiere, les valeurs numeriques sont les suivantes :</em></p>
+      <p><em>L = 60 m, \( R_{INT} \) = 5,3 m, e = 0,3 m, \( \lambda_C \) = 0,03 SI, \( T_{INT} \) = 293 K, \( T_A \) = 220 K, \( T_{Mh} \) = 290 K, h = 20 SI, \( \varphi_S \) = 700 W.m\(^{-2}\), \( \varepsilon \) = 0,25.</em></p>
+      <p><em>La resolution de l'equation de la question precedente donne \( T_{EXT} \) = 234 K.</em></p>
+    </section>
+
+    <section class="question" id="Q7b">
+      <h4>Question D7</h4>
+      <p>Evaluer numeriquement le flux thermique \( \Phi \) associe a la conduction thermique, puis la puissance \( \mathcal{P}_{cc} \) echangee par conducto-convection a la face externe du fuselage.</p>
+      <p><em>Donnee : \( \ln\left(\frac{5{,}6}{5{,}3}\right) \simeq 5.10^{-2} \).</em></p>
+      <p><em>Dans ces conditions, le terme lie au bilan radiatif a pour valeur numerique : \( \sim 6.10^5 \) W.</em></p>
+    </section>
+
+    <section class="question" id="Q8b">
+      <h4>Question D8</h4>
+      <p>Commenter l'importance relative de chacun des trois termes (conduction, conducto-convection et bilan radiatif).</p>
+      <p><em>Par analogie avec la question C5, definissons le nombre de Biot correspondant au cas de l'avion par \( \text{Bi} = \frac{T_{INT} - T_{EXT}}{T_{EXT} - T_A} \).</em></p>
+    </section>
+
+    <section class="question" id="Q9b">
+      <h4>Question D9</h4>
+      <p>Evaluer numeriquement son ordre de grandeur, et commenter (faire reference aux resultats des questions C7 et C8).</p>
+    </section>
+  </article>
+
+  <article class="annale-exercice" id="exo3">
+    <h2>Troisieme partie - Climatisation et pressurisation</h2>
+    <p><em>Pour assurer un confort satisfaisant a l'interieur de l'avion, le cahier des charges d'un Airbus A340 impose le maintien, en altitude de croisiere, dans la cabine transportant 250 passagers, d'une pression \( P_{INT} = 8{,}0.10^4 \) Pa et d'une temperature \( T_{INT} \) = 293 K, alors qu'a l'exterieur l'atmosphere est a la pression \( P_A = 2{,}5.10^4 \) Pa et a la temperature \( T_A \) = 220 K.</em></p>
+    <p><em>Chaque passager, assis et calme, degage une puissance thermique de 70 W.</em></p>
+    <p><em>La conducto-convection sur la face interne du fuselage, ainsi que le bilan radiatif a l'interieur de l'avion, sont consideres comme negligeables ; seule la conduction thermique a travers le fuselage est prise en compte dans cette partie, avec une puissance estimee a 10 kW.</em></p>
+
+    <h3>E / Bilan thermique</h3>
+
+    <section class="question" id="Q1c">
+      <h4>Question E1</h4>
+      <p>Avec les hypotheses precedemment posees, evaluer numeriquement la puissance \( \mathcal{P} \) traduisant le bilan thermique global pour l'air contenu dans la cabine. Faut-il chauffer ou refroidir la cabine pour la maintenir a temperature constante ?</p>
+    </section>
+
+    <section class="question" id="Q2c">
+      <h4>Question E2</h4>
+      <p>Faut-il chauffer ou refroidir la cabine pour la maintenir a temperature constante ?</p>
+    </section>
+
+    <section class="question" id="Q3c">
+      <h4>Question E3</h4>
+      <p>Pourquoi le constructeur a-t-il neanmoins choisi une bonne isolation thermique de l'avion, caracterisee par la faible valeur de \( \lambda_C \), alors que l'air exterieur est tres froid ?</p>
+      <p><em>Pour remplir les conditions souhaitees de temperature et de pression dans la cabine, un systeme d'air conditionne est utilise, qui assure de plus la pressurisation. L'air est assimile a un gaz parfait de coefficient \( \gamma = c_P/c_V = 1{,}4 \) (independant de la temperature) et de masse molaire M = 29 g. La valeur de la constante des gaz parfaits est : R = 8,3 SI.</em></p>
+    </section>
+
+    <h3>F / Premier principe en regime permanent</h3>
+    <p><em>Soit un fluide s'ecoulant en regime permanent, avec un debit massique \( D_m \). Ce fluide traverse une machine (par exemple un compresseur, un echangeur thermique...) dans laquelle il recoit une puissance thermique massique \( p_{th} \) et une puissance mecanique massique \( p_{mec} \), cette derniere n'incluant pas le travail des forces de pression. Les enthalpies massiques du fluide sont notees \( h_E \) en entree de la machine et \( h_S \) en sortie.</em></p>
+
+    <section class="question" id="Q4c">
+      <h4>Question F1</h4>
+      <p>Etablir la relation : \( D_m(h_S - h_E) = p_{mec} + p_{th} \), sachant qu'il est possible de negliger la variation d'energie cinetique et d'energie potentielle du fluide lors de la traversee de la machine (hypotheses valables dans la suite du probleme).</p>
+    </section>
+
+    <section class="question" id="Q5c">
+      <h4>Question F2</h4>
+      <p>Exprimer l'enthalpie massique h d'un gaz parfait en fonction de sa temperature T, de sa masse molaire M, de R et d'une constante \( h_0 \) (dependant d'une convention sur l'origine des enthalpies, qu'il n'est pas demande d'expliciter).</p>
+      <p><em>Pour assurer une temperature \( T_{INT} \) = 293 K constante a l'interieur de l'avion, de l'air a la temperature \( T_S \) est injecte. Cet air ne doit pas etre trop froid afin de ne pas etre desagreable pour les passagers ; il a ete choisi de fixer \( T_S \) a la valeur 289 K.</em></p>
+    </section>
+
+    <section class="question" id="Q6c">
+      <h4>Question F3</h4>
+      <p>Evaluer numeriquement le debit massique \( D_m \) de l'air injecte a cette temperature \( T_S \) pour compenser le bilan thermique \( \mathcal{P} \) de la cabine evalue a la question E1.</p>
+    </section>
+
+    <section class="question" id="Q7c">
+      <h4>Question F4</h4>
+      <p>Commenter ce resultat sachant que l'ordre de grandeur, a la pression interne de la cabine, du minimum necessaire pour renouveler l'oxygene consomme par la respiration des 250 passagers est un debit d'air de l'ordre de 50 g.s\(^{-1}\).</p>
+      <p><em>L'air injecte provient necessairement de l'exterieur, mais sa temperature et sa pression y sont trop faibles. Il va donc falloir le rechauffer (les reacteurs de l'avion seront utilises comme source de chaleur) et controler sa pression.</em></p>
+      <p><em>Le passage de l'air au voisinage d'un reacteur eleve trop fortement sa temperature et sa pression ; les ajustements en temperature et pression vont se faire par des echanges thermiques avec l'exterieur tres froid, ainsi qu'avec des dispositifs de regulation de pression.</em></p>
+      <p><em>L'air initialement pris a l'exterieur passe au voisinage du reacteur puis est partage selon deux voies avec des debits respectifs adaptes, selon le schema de principe suivant, sur lequel ont ete reportees les valeurs des temperatures et pressions en differents points, expliques dans les indications donnees a la suite de la figure :</em></p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 2</div>
+        <p>Schema de principe du systeme de climatisation et pressurisation de l'avion. L'air exterieur (\( T_A \) = 220 K, \( P_A = 2{,}5.10^4 \) Pa) passe au voisinage du reacteur, dont il sort a \( T_R \) = 520 K, \( P_R = 4.10^5 \) Pa. Puis il est partage en deux voies :</p>
+        <p>Voie 1 : l'air passe dans un echangeur thermique, dont il sort a la temperature \( T_1 \), pression toujours \( P_R = 4.10^5 \) Pa. Puis il traverse une turbine, dont il sort a \( T_S \) = 273 K, \( P_{INT} = 8.10^4 \) Pa, avant d'aller vers la cabine.</p>
+        <p>Voie 2 : l'air passe par une vanne de detente. A sa sortie, l'air est a la pression \( P_{INT} \) et sa temperature est notee \( T_O \).</p>
+        <p>A droite du schema, la cabine est a \( T_K \) = 289 K, \( P_{INT} = 8.10^4 \) Pa.</p>
+        <p>Le melange des deux voies se fait de facon adiabatique pour obtenir un debit \( D_m \) d'air a la temperature \( T_K \) et a la pression \( P_{INT} \) souhaitees.</p>
+      </div>
+
+      <p><em>L'air exterieur qui vient au contact du reacteur est initialement a la temperature \( T_A \) = 220 K et a la pression \( P_A = 2{,}5.10^4 \) Pa. Son debit massique est \( D_m \). En sortie du reacteur, sa temperature et sa pression sont respectivement \( T_R \) = 520 K et \( P_R = 4{,}0.10^5 \) Pa. La transformation s'effectue de facon reversible et adiabatique.</em></p>
+      <p><em>Puis une fraction x du debit part vers l'echangeur (voie 1), le reste s'ecoulent vers la vanne de detente (voie 2).</em></p>
+      <p><em>La voie 1 comprend un echangeur thermique, dont les surfaces externes sont en contact avec l'air exterieur, fonctionnant de facon isobare. A sa sortie, la pression est toujours \( P_R \) mais la temperature est notee \( T_1 \). Puis la traversee d'une turbine qui fonctionne de facon reversible et adiabatique l'amene a la pression \( P_{INT} \) de la cabine et a la temperature \( T_S \) = 273 K.</em></p>
+      <p><em>La voie 2 comporte une vanne de detente, fonctionnant de facon adiabatique sans recevoir de puissance mecanique. A sa sortie, l'air est a la pression \( P_{INT} \) et sa temperature est notee \( T_O \).</em></p>
+      <p><em>Le melange des apports des deux voies est ensuite effectue, sans travail mecanique et de facon adiabatique, pour obtenir un debit \( D_m \) d'air a la temperature \( T_K \) et a la pression \( P_{INT} \) souhaitees.</em></p>
+    </section>
+
+    <section class="question" id="Q8c">
+      <h4>Question F5</h4>
+      <p>Determiner la temperature \( T_1 \), en utilisant la relation etablie en F1.</p>
+    </section>
+
+    <section class="question" id="Q9c">
+      <h4>Question F6</h4>
+      <p>En adaptant cette meme relation au cas du melange considere a la derniere etape du dispositif, determiner l'expression litterale de x, puis evaluer sa valeur numerique.</p>
+    </section>
+
+    <section class="question" id="Q10c">
+      <h4>Question F7</h4>
+      <p>Etablir la relation qui permettrait de calculer la temperature \( T_1 \).</p>
+      <p><em>La resolution numerique (non demandee) conduit a \( T_1 \) = 432 K.</em></p>
+    </section>
+
+    <section class="question" id="Q11c">
+      <h4>Question F8</h4>
+      <p>Exprimer la puissance \( \mathcal{P}_{Reac} \) recue par l'air qui passe au contact du reacteur, puis la puissance \( \mathcal{P}_{Turb} \) recue par la fraction de l'air traversant la turbine. Evaluer numeriquement leurs ordres de grandeur.</p>
+    </section>
+
+    <section class="question" id="Q12c">
+      <h4>Question F9</h4>
+      <p>En deduire la puissance \( \mathcal{P}_{TOT} \) totale necessaire a la climatisation et a la pressurisation de l'avion. Commenter.</p>
+    </section>
+  </article>
+
+  <article class="annale-exercice" id="exo4">
+    <h2>Quatrieme partie - Suivi de la trajectoire de l'avion</h2>
+    <p><em>La trajectoire de l'avion en vol, qui doit etre conforme au plan de vol etabli au prealable par le pilote, est controlee par la mesure des trois coordonnees definissant sa position dans l'espace : sa latitude, sa longitude et son altitude. Pour ces mesures, le systeme G.P.S. est desormais utilise.</em></p>
+    <p><em>Le principe d'un G.P.S. est de determiner la distance separant l'avion de plusieurs satellites dont la position de chacun est parfaitement connue a tout instant.</em></p>
+    <p><em>A l'instant \( t_e \), le satellite numero i emet un signal indiquant tres precisement l'heure d'emission \( t_e \) et les coordonnees \( (x_i, y_i, z_i) \) repérant la position exacte du satellite dans l'espace a cet instant. Ce signal correspond a l'emission d'un train d'ondes, de tres faible duree, de frequence 1,6 GHz. La mesure du temps de propagation de ce train d'ondes du satellite jusqu'a l'avion permet de deduire la distance les separant.</em></p>
+    <p><em>L'avion recoit ce signal a l'instant \( t_r \), dont la valeur est relevee alors qu'il occupe une position dont les coordonnees sont les inconnues (x, y, z).</em></p>
+
+    <section class="question" id="Q1d">
+      <h4>Question G1</h4>
+      <p>Ecrire l'equation reliant les grandeurs \( x_i \), \( y_i \), \( z_i \), x, y, z, \( t_e \), \( t_r \) et c, en supposant que la vitesse de propagation de l'onde demeure celle de la lumiere c = 3.10\(^8\) m.s\(^{-1}\), sur l'integralite de son parcours.</p>
+    </section>
+
+    <section class="question" id="Q2d">
+      <h4>Question G2</h4>
+      <p>Combien de satellites sont-ils necessaires pour pouvoir determiner la position de l'avion ?</p>
+    </section>
+
+    <section class="question" id="Q3d">
+      <h4>Question G3</h4>
+      <p>Sachant que les satellites gravitent sur une orbite situee a environ 2.10\(^4\) km d'altitude (alors qu'un avion vole a 5 km d'altitude), quel est l'ordre de grandeur de la duree de propagation de l'onde ?</p>
+    </section>
+
+    <section class="question" id="Q4d">
+      <h4>Question G4</h4>
+      <p>Estimer l'erreur sur la determination de la distance satellite-avion resultant d'une incertitude d'un millionieme de seconde sur la mesure de cette duree. Commenter.</p>
+      <p><em>Le resultat precedent montre que les horloges des satellites et du recepteur doivent etre synchronisees avec une tres grande precision. Or cette synchronisation est parfaitement assuree entre les differents satellites (tous mis en contact avec une horloge atomique par l'organisme charge du reseau de satellites), mais ne l'est pas pour le recepteur (independant du reseau de satellites) ayant sa propre horloge, qui se trouve decalee d'un meme \( \Delta t \) inconnu avec toutes les horloges des satellites.</em></p>
+    </section>
+
+    <section class="question" id="Q5d">
+      <h4>Question G5</h4>
+      <p>Comment le systeme G.P.S. peut-il eliminer cette cause d'erreur ?</p>
+      <p><em>La methode precedente suppose que la vitesse de propagation de l'onde est effectivement c sur tout le parcours. Or celle-ci est modifiee durant la traversee de l'ionosphere qui est une couche de la haute atmosphere. Ceci introduit une nouvelle cause d'erreur sur la determination de la position a partir du temps de parcours.</em></p>
+      <p><em>L'ionosphere est un plasma ionise peu dense, globalement neutre, comportant par unite de volume n electrons libres et mobiles (charge -e, masse m) et n ions (charge +e, lourds et consideres comme immobiles).</em></p>
+      <p><em>L'onde se propageant dans ce milieu est assimilee a une onde plane, pour laquelle le champ electrique s'ecrit : \( \vec{E} = E_0 \exp[j(\omega t - kz)] \vec{e}_x \), avec \( j^2 = -1 \).</em></p>
+    </section>
+
+    <section class="question" id="Q6d">
+      <h4>Question G6</h4>
+      <p>Rappeler les equations de Maxwell dans un tel milieu et indiquer celles qui pourront etre negligees ou prises en compte.</p>
+    </section>
+
+    <section class="question" id="Q7d">
+      <h4>Question G7</h4>
+      <p>Realiser un bilan des forces subies par un electron du plasma et indiquer celles qui pourront etre negligees ou prises en compte.</p>
+    </section>
+
+    <section class="question" id="Q8d">
+      <h4>Question G8</h4>
+      <p>Determiner, en notation complexe, l'expression de la vitesse \( \vec{v} \) d'un electron du plasma soumis a l'onde. En deduire l'expression de la densite volumique de courant \( \vec{j} \) dans le plasma.</p>
+    </section>
+
+    <section class="question" id="Q9d">
+      <h4>Question G9</h4>
+      <p>Etablir l'equation de propagation de l'onde dans ce milieu.</p>
+      <p><em>Rappel de la relation vectorielle : \( \overrightarrow{rot}(\overrightarrow{rot}\,\vec{C}) = \overrightarrow{grad}(\text{div}\,\vec{C}) - \Delta\vec{C} \).</em></p>
+    </section>
+
+    <section class="question" id="Q10d">
+      <h4>Question G10</h4>
+      <p>Rappeler l'equation de propagation des ondes electromagnetiques dans le vide et verifier la compatibilite avec l'equation de propagation obtenue dans le plasma en precisant votre methode.</p>
+      <p>En deduire la relation de dispersion reliant le module k du vecteur d'onde et la pulsation \( \omega \) de l'onde se propageant dans le plasma.</p>
+    </section>
+
+    <section class="question" id="Q11d">
+      <h4>Question G11</h4>
+      <p>Montrer que la propagation de l'onde n'est possible que si sa pulsation est superieure a une valeur \( \omega_0 \) dont l'expression sera ecrite en fonction de n et de constantes physiques. Dans le domaine \( \omega > \omega_0 \), representer graphiquement la courbe k(\( \omega \)) et commenter le cas limite correspondant a \( \omega \) tendant vers l'infini.</p>
+    </section>
+
+    <section class="question" id="Q12d">
+      <h4>Question G12</h4>
+      <p>Deux vitesses sont associees a la propagation d'une onde : sa vitesse de phase \( v_\varphi \) et sa vitesse de groupe \( v_g \). Rappeler leurs definitions en fonction de k et de \( \omega \), puis donner leurs expressions en fonction de \( \omega \), \( \omega_0 \) et c pour l'onde se propageant dans le plasma.</p>
+    </section>
+
+    <section class="question" id="Q13d">
+      <h4>Question G13</h4>
+      <p>Laquelle de ces deux vitesses est concernee pour la mesure de la distance separant l'avion du satellite ?</p>
+    </section>
+
+    <section class="question" id="Q14d">
+      <h4>Question G14</h4>
+      <p>En appelant H l'epaisseur du plasma, donner l'expression litterale de l'erreur \( \Delta d \) commise sur la determination de la distance satellite-avion, erreur realisee en negligeant la presence de l'ionosphere.</p>
+      <p><em>Pour la frequence de 1,6 GHz du signal G.P.S., et compte tenu de l'epaisseur variable de l'ionosphere selon l'heure du jour, l'application numerique des resultats theoriques precedents permet d'estimer que cette erreur est de l'ordre du metre.</em></p>
+    </section>
+
+    <section class="question" id="Q15d">
+      <h4>Question G15</h4>
+      <p>Commenter ce resultat.</p>
+    </section>
+  </article>
+</main>
+</body>
+</html>

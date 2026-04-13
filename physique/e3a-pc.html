@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr" data-site="physique">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E3A-Polytech PC Physique | Omniscience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t&&t!=='dark')d.setAttribute('data-theme',t)})(document.documentElement)</script>
+  <link rel="stylesheet" href="../style.css">
+<style>
+/* ---- E3A-PC accent (utilise un violet pour distinguer de MP rose) ---- */
+.e3a-pc-accent { --accent: #9C27B0; --accent-light: #CE93D8; --accent-glow: rgba(156,39,176,0.12); }
+
+.e3a-pc-accent .filter-btn:hover {
+  border-color: #9C27B0;
+  color: #9C27B0;
+  background: rgba(156,39,176,0.05);
+}
+.e3a-pc-accent .filter-btn--active {
+  background: #9C27B0;
+  color: #fff;
+  border-color: #9C27B0;
+}
+.e3a-pc-accent .filter-btn--active:hover {
+  background: #7B1FA2;
+  border-color: #7B1FA2;
+  color: #fff;
+}
+[data-theme="dark"] .e3a-pc-accent .filter-btn--active {
+  color: #fff;
+}
+
+/* ---- Annales cards ---- */
+.annales-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  max-width: var(--max-w);
+  margin: 0 auto var(--space-xl);
+  padding: 0 var(--space-lg);
+}
+@media (max-width: 900px) { .annales-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .annales-grid { grid-template-columns: 1fr; } }
+
+.annale-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid #9C27B0;
+  border-radius: 12px;
+  padding: var(--space-lg);
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
+}
+.annale-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(156,39,176,0.08);
+}
+.annale-card--placeholder {
+  opacity: 0.55;
+  border-left-color: var(--border);
+}
+.annale-card__year {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #9C27B0;
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+.annale-card--placeholder .annale-card__year {
+  color: var(--ink-muted);
+}
+.annale-card__theme {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: var(--space-sm);
+}
+.annale-card__meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-md);
+}
+.annale-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: var(--space-md);
+}
+.annale-chip {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(156,39,176,0.08);
+  color: #9C27B0;
+  font-weight: 500;
+}
+[data-theme="dark"] .annale-chip {
+  background: rgba(156,39,176,0.15);
+  color: #CE93D8;
+}
+.annale-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.annale-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.annale-btn--enonce {
+  background: #9C27B0;
+  color: #fff;
+  border-color: #9C27B0;
+}
+.annale-btn--enonce:hover { background: #7B1FA2; }
+.annale-btn--correction {
+  background: transparent;
+  color: #9C27B0;
+  border-color: #9C27B0;
+}
+.annale-btn--correction:hover {
+  background: rgba(156,39,176,0.08);
+}
+.annale-btn--disabled {
+  background: transparent;
+  color: var(--ink-muted);
+  border-color: var(--border);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink-muted);
+  margin: var(--space-2xl) 0 var(--space-lg);
+  text-align: center;
+}
+
+.info-banner {
+  max-width: 720px;
+  margin: 0 auto var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid #9C27B0;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--ink-light);
+}
+.info-banner strong { color: var(--ink); }
+</style>
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo"><span class="sidebar__logo-full">Omniscience</span><span class="sidebar__logo-short">O</span></div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Programme</span>
+        <a href="index.html" class="sidebar__link" data-tooltip="Accueil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span class="sidebar__link-text">Accueil</span>
+        </a>
+        <a href="mpsi.html" class="sidebar__link" data-tooltip="MPSI">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MPSI — 1ere annee</span>
+        </a>
+        <a href="mp.html" class="sidebar__link" data-tooltip="MP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="sidebar__link-text">MP — 2eme annee</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Concours</span>
+        <a href="e3a.html" class="sidebar__link" data-tooltip="E3A MP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="9" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">E3A</text></svg>
+          <span class="sidebar__link-text">E3A-Polytech MP</span>
+        </a>
+        <a href="e3a-pc.html" class="sidebar__link sidebar__link--active" data-tooltip="E3A PC">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><text x="12" y="13" font-size="9" font-weight="700" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">E3A</text></svg>
+          <span class="sidebar__link-text">E3A-Polytech PC</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__heading">Outils</span>
+        <a href="../entrainement.html" class="sidebar__link" data-tooltip="Entrainement">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="sidebar__link-text">Entrainement</span>
+        </a>
+        <a href="../revision.html" class="sidebar__link" data-tooltip="Revision">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <span class="sidebar__link-text">Revision</span>
+        </a>
+        <a href="../parcours.html" class="sidebar__link" data-tooltip="Parcours">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span class="sidebar__link-text">Mon Parcours</span>
+        </a>
+        <a href="../statistiques.html" class="sidebar__link" data-tooltip="Statistiques">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          <span class="sidebar__link-text">Statistiques</span>
+        </a>
+        <a href="../timer.html" class="sidebar__link" data-tooltip="Timer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span class="sidebar__link-text">Timer</span>
+        </a>
+      </div>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__collapse-btn" id="sidebarCollapse" aria-expanded="true" aria-label="Replier le menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+        <span class="sidebar__collapse-label">Replier</span>
+      </button>
+      <button class="sidebar__theme-toggle" id="themeToggle" aria-label="Changer de theme">
+        <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span class="sidebar__theme-label">Theme</span>
+      </button>
+      <div class="sidebar__subject-switch">
+        <a href="../index.html" class="sidebar__subject-btn">Maths</a>
+        <a href="index.html" class="sidebar__subject-btn sidebar__subject-btn--active">Physique</a>
+      </div>
+    </div>
+  </aside>
+
+  <header class="topbar" id="topbar">
+    <button class="topbar__hamburger" id="menuBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="topbar__logo">Omniscience</span>
+    <button class="topbar__theme-toggle" id="themeToggleMobile" aria-label="Changer de theme">
+      <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="program e3a-pc-accent" style="max-width:900px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl);">
+
+      <a href="e3a.html" class="stats-page__back" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.72rem;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-lg);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        E3A MP Physique
+      </a>
+
+      <p style="font-family:var(--font-mono);font-size:.7rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-xs);">Concours -- Filiere PC</p>
+      <h1 style="font-family:var(--font-display);font-size:2.6rem;font-weight:300;letter-spacing:-.03em;line-height:1.1;margin-bottom:var(--space-xs);">E3A-Polytech Physique PC</h1>
+      <p style="font-size:.95rem;color:var(--ink-muted);line-height:1.7;margin-bottom:var(--space-xl);max-width:560px;">Annales corrigees pour preparer l'epreuve de physique-chimie de la filiere PC</p>
+
+      <div class="info-banner">
+        <strong>A propos de l'E3A PC.</strong> Le concours E3A-Polytech (anciennement E3A et avant 2003 ENSAM) propose pour la filiere PC une epreuve de physique-chimie. Avant 2020, l'epreuve etait souvent decoupee en deux parties (Physique 1 / Modelisation et Physique 2). Depuis la reforme de 2020 le concours regroupe physique et chimie en une seule epreuve de 4 heures. Toutes les annales de 2003 a 2019 sont disponibles avec corrections pedagogiques detaillees.
+      </div>
+
+      <h3 class="section-title">17 annales corrigees (2003-2019)</h3>
+
+      <div class="annales-grid">
+
+        <div class="annale-card">
+          <div class="annale-card__year">2019</div>
+          <div class="annale-card__theme">Gravir le mur de Huy (Tour de France)</div>
+          <div class="annale-card__meta">3 parties -- Modelisation cycliste</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Mecanique</span>
+            <span class="annale-chip">Electrostatique</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2019-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2019-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2018</div>
+          <div class="annale-card__theme">Reaction exothermique -- Stabilite thermique (Seveso)</div>
+          <div class="annale-card__meta">2 parties -- 42 questions</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Thermochimie</span>
+            <span class="annale-chip">Euler implicite</span>
+            <span class="annale-chip">Newton-Raphson</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2018-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2018-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2017</div>
+          <div class="annale-card__theme">Soleil, photovoltaique et transport d'energie</div>
+          <div class="annale-card__meta">6 sous-parties -- Physique-Modelisation</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Rayonnement</span>
+            <span class="annale-chip">Onduleur</span>
+            <span class="annale-chip">Effet de peau</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2017-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2017-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2016</div>
+          <div class="annale-card__theme">Colonnes d'absorption -- Transfert de matiere</div>
+          <div class="annale-card__meta">3 parties -- Modelisation + numerique</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Loi de Henry</span>
+            <span class="annale-chip">Nelder-Mead</span>
+            <span class="annale-chip">Euler</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2016-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2016-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2015</div>
+          <div class="annale-card__theme">Transfert thermique dans un mur -- Simulation numerique</div>
+          <div class="annale-card__meta">2 parties -- 49 questions</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Diffusion</span>
+            <span class="annale-chip">Schema explicite/implicite</span>
+            <span class="annale-chip">Thomas</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2015-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2015-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2014</div>
+          <div class="annale-card__theme">Transferts thermiques d'un avion -- GPS et ionosphere</div>
+          <div class="annale-card__meta">4 parties -- Thermique, climatisation, ondes</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Nusselt</span>
+            <span class="annale-chip">1er principe</span>
+            <span class="annale-chip">Dispersion</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2014-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2014-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2013</div>
+          <div class="annale-card__theme">Decongelation des aliments par micro-ondes</div>
+          <div class="annale-card__meta">3 parties -- Molecule d'eau, EM, thermique</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Electrostatique</span>
+            <span class="annale-chip">Maxwell</span>
+            <span class="annale-chip">Diffusion</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2013-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2013-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2012</div>
+          <div class="annale-card__theme">De la phase a l'amplitude et vice versa</div>
+          <div class="annale-card__meta">3 parties -- Electronique, optique, diffusion</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Modulation</span>
+            <span class="annale-chip">Contraste de phase</span>
+            <span class="annale-chip">Zernike</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2012-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2012-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2011</div>
+          <div class="annale-card__theme">Circuits electriques et linearisation</div>
+          <div class="annale-card__meta">Electronique -- Resistance parallele</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Circuits</span>
+            <span class="annale-chip">Linearisation</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2011-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2011-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2010</div>
+          <div class="annale-card__theme">Injection de polymere fondu dans un moule</div>
+          <div class="annale-card__meta">3 parties -- Fluide, thermique, Couette</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Mecanique fluides</span>
+            <span class="annale-chip">Rheologie</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2010-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2010-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2009</div>
+          <div class="annale-card__theme">L'humidite de l'atmosphere</div>
+          <div class="annale-card__meta">2 parties -- Air humide, hygrometre</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Thermodynamique</span>
+            <span class="annale-chip">Changement d'etat</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2009-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2009-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2008</div>
+          <div class="annale-card__theme">Tube cylindrique -- Courants de Foucault</div>
+          <div class="annale-card__meta">3 parties -- Thermique, fluide, CND</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Conduction</span>
+            <span class="annale-chip">Induction</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2008-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2008-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2007</div>
+          <div class="annale-card__theme">Ondes elastiques et sismologie</div>
+          <div class="annale-card__meta">3 parties -- Barreau, seismes, sismographe</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Ondes</span>
+            <span class="annale-chip">Sismographe EM</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2007-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2007-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2006</div>
+          <div class="annale-card__theme">Optique ondulatoire</div>
+          <div class="annale-card__meta">28 questions</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Interferences</span>
+            <span class="annale-chip">Diffraction</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2006-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2006-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2005</div>
+          <div class="annale-card__theme">Ondes EM, faisceau gaussien, plasma de Drude</div>
+          <div class="annale-card__meta">27 questions</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Ondes EM</span>
+            <span class="annale-chip">Plasma</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2005-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2005-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2004</div>
+          <div class="annale-card__theme">Magnetisme et statistique de Boltzmann</div>
+          <div class="annale-card__meta">19 questions</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Magnetisme</span>
+            <span class="annale-chip">Boltzmann</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2004-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2004-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+        <div class="annale-card">
+          <div class="annale-card__year">2003</div>
+          <div class="annale-card__theme">Optique geometrique -- Snell-Descartes</div>
+          <div class="annale-card__meta">5 questions</div>
+          <div class="annale-card__tags">
+            <span class="annale-chip">Optique</span>
+            <span class="annale-chip">Refraction</span>
+          </div>
+          <div class="annale-card__actions">
+            <a href="../cours/annales/e3a-pc-2003-physique.html" class="annale-btn annale-btn--enonce">Enonce</a>
+            <a href="../cours/annales/e3a-pc-2003-correction-physique.html" class="annale-btn annale-btn--correction">Correction</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">&copy; 2026 Omniscience</p>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E3A-Polytech 2005 -- Physique PC | LibMaths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    .course{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:calc(var(--nav-h) + var(--space-xl)) var(--space-lg) var(--space-3xl)}
+    .course__back{display:inline-flex;align-items:center;gap:6px;font-size:.825rem;color:var(--ink-muted);margin-bottom:var(--space-lg);transition:color .3s}
+    .course__back:hover{color:var(--accent)}
+    .course__meta{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md);flex-wrap:wrap}
+    .course__badge{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);padding:4px 12px;border-radius:20px}
+    .course__title{font-family:var(--font-body);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--space-md)}
+    .course__intro{font-size:1.05rem;color:var(--ink-light);line-height:1.8;margin-bottom:var(--space-xl);max-width:640px}
+    .course__toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl)}
+    .course__toc-title{font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--space-md)}
+    .course__toc-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .course__toc-item a{display:flex;align-items:baseline;gap:var(--space-sm);padding:6px 8px;border-radius:8px;font-size:.9rem;color:var(--ink);transition:all .2s}
+    .course__toc-item a:hover{background:var(--accent-glow);color:var(--accent)}
+    .course__toc-num{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);min-width:24px}
+    .course p{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .course ol,.course ul{margin-bottom:var(--space-md)}
+    .course ol li,.course ul li{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:4px}
+    .math-display{text-align:center;padding:var(--space-md) 0;overflow-x:auto}
+    .annale-info{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:var(--space-lg);margin-bottom:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-lg)}
+    .annale-info__item{display:flex;flex-direction:column;gap:4px}
+    .annale-info__label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+    .annale-info__value{font-size:.95rem;color:var(--ink);font-weight:500}
+    .annale-exercice{margin-bottom:var(--space-2xl);padding:var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .annale-exercice__title{font-family:var(--font-body);font-size:1.5rem;font-weight:600;margin-bottom:var(--space-lg);padding-bottom:var(--space-sm);border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:var(--space-sm)}
+    .annale-exercice__intro{font-size:.95rem;line-height:1.85;color:var(--ink);margin-bottom:var(--space-md)}
+    .annale-partie{margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+    .annale-partie__title{font-family:var(--font-body);font-size:1.25rem;font-weight:600;color:var(--accent);margin-bottom:var(--space-md)}
+    .question{margin-bottom:var(--space-lg);padding-left:var(--space-md);border-left:2px solid var(--border)}
+    .question__num{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px;display:block}
+    .question p{margin-bottom:var(--space-sm)}
+    .question ol{padding-left:var(--space-lg);margin-top:var(--space-sm)}
+    .question ol li{margin-bottom:4px}
+    .annale-figure{background:var(--bg-card);border:1px dashed var(--border);border-radius:12px;padding:var(--space-md) var(--space-lg);margin:var(--space-md) 0;font-size:.9rem;line-height:1.7;color:var(--ink-light)}
+    .annale-figure__label{font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;display:block}
+    .annale-figure p{font-size:.9rem;color:var(--ink-light);margin-bottom:0}
+    .course__nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-xl);border-top:1px solid var(--border);margin-top:var(--space-2xl)}
+    .course__nav-link{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--ink-muted);transition:color .3s}
+    .course__nav-link:hover{color:var(--accent)}
+    .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
+    .course__nav-link:hover span{color:var(--accent)}
+    .course__nav-link--next{text-align:right}
+    .annale-warning{background:linear-gradient(135deg,rgba(255,170,0,.08),rgba(255,170,0,.03));border:1px solid rgba(255,170,0,.25);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.85rem;line-height:1.7;color:var(--ink-light)}
+    .annale-warning strong{color:var(--ink);font-weight:600}
+    @media(max-width:680px){
+      .course__title{font-size:1.3rem}
+      .course{padding-left:var(--space-md);padding-right:var(--space-md)}
+      .annale-exercice{padding:var(--space-md)}
+      .annale-info{flex-direction:column;gap:var(--space-md)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="site-switcher">
+      <span class="site-switcher__brand">Lib</span>
+      <div class="site-switcher__toggle">
+        <a href="../../index.html" class="site-switcher__btn">Maths</a>
+        <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active">Physique</a>
+      </div>
+    </div>
+    <div class="nav__links">
+      <a href="../../index.html" class="nav__link">Accueil</a>
+      <div class="nav__dropdown">
+        <a href="../../mpsi.html" class="nav__link nav__link--has-sub">MPSI <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mpsi.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mpsi.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mpsi.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mpsi.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <div class="nav__dropdown">
+        <a href="../../mp.html" class="nav__link nav__link--has-sub nav__link--active">MP <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="dropdown">
+          <a href="../../mp.html#cours" class="dropdown__item">Cours</a>
+          <a href="../../mp.html#exercices" class="dropdown__item">Exercices</a>
+          <a href="../../mp.html#fiches" class="dropdown__item">Fiches</a>
+          <a href="../../mp.html#methodes" class="dropdown__item">Methodes</a>
+        </div>
+      </div>
+      <a href="../../entrainement.html" class="nav__link">Entraînement</a>
+      <a href="../../revision.html" class="nav__link">Revision</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav__menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__group" style="display:flex;gap:8px;padding:0 var(--space-lg)">
+      <a href="../../index.html" class="site-switcher__btn" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Maths</a>
+      <a href="../../physique/index.html" class="site-switcher__btn site-switcher__btn--active" style="flex:1;justify-content:center;border:1px solid var(--border);border-radius:12px;padding:10px">Physique</a>
+    </div>
+    <div class="mobile-menu__group"><a href="../../mpsi.html" class="mobile-menu__page-link">MPSI -- Math Sup</a></div>
+    <div class="mobile-menu__group"><a href="../../mp.html" class="mobile-menu__page-link mobile-menu__page-link--active">MP -- Math Spe</a></div>
+  </div>
+
+  <article class="course">
+
+    <a href="../../mp.html#annales" class="course__back">&larr; Retour aux annales</a>
+
+    <div class="course__meta">
+      <span class="course__badge">E3A-POLYTECH 2005 -- PHYSIQUE PC</span>
+    </div>
+
+    <h1 class="course__title">E3A-Polytech 2005 -- Physique PC</h1>
+
+    <div class="annale-warning">
+      <strong>Sujet retranscrit avec schemas</strong> a partir du sujet officiel ENSAM -- ESTP -- EUCLIDE -- ARCHIMEDE (epreuve de Physique PC, duree 4 heures, calculatrice autorisee).
+    </div>
+
+    <p class="course__intro">Le laser et ses applications. Le sujet est structure en deux parties independantes : etude des caracteristiques d'un faisceau laser (modele d'onde plane, modele du faisceau gaussien, absorption de l'energie du laser dans un milieu metallique) puis traitement thermique d'un acier par usinage laser et usinage d'une feuille de metal par vaporisation.</p>
+
+    <div class="annale-info">
+      <div class="annale-info__item">
+        <span class="annale-info__label">Concours</span>
+        <span class="annale-info__value">E3A-Polytech (ENSAM -- ESTP -- EUCLIDE -- ARCHIMEDE)</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Filiere</span>
+        <span class="annale-info__value">PC</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Epreuve</span>
+        <span class="annale-info__value">Physique</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Annee</span>
+        <span class="annale-info__value">2005</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Duree</span>
+        <span class="annale-info__value">4 heures</span>
+      </div>
+      <div class="annale-info__item">
+        <span class="annale-info__label">Themes</span>
+        <span class="annale-info__value">Ondes electromagnetiques, vecteur de Poynting, faisceau gaussien, plasma de conduction, diffusion thermique, changements d'etat, transferts thermiques par laser</span>
+      </div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#exo1"><span class="course__toc-num">P1.</span> Etude d'un faisceau laser</a></li>
+        <li class="course__toc-item"><a href="#exo2"><span class="course__toc-num">P2.</span> Applications du laser au traitement et a l'usinage de pieces</a></li>
+      </ol>
+    </nav>
+
+    <!-- INTRODUCTION -->
+    <div class="annale-exercice" id="introduction">
+      <h2 class="annale-exercice__title">Le laser et ses applications</h2>
+
+      <p class="annale-exercice__intro">Si, au cours de l'epreuve, un candidat repere ce qui lui semble etre une erreur d'enonce, il le signale sur sa copie et poursuit sa composition en indiquant les raisons des initiatives qu'il est amene a prendre.</p>
+
+      <p class="annale-exercice__intro">Le probleme est centre sur le theme du <em>laser et de ses applications</em> ; il est structure en deux parties independantes : etude des caracteristiques d'un faisceau laser, puis son absorption par un metal dans une premiere partie, traitement thermique d'un acier puis usinage d'un metal par vaporisation, en seconde partie.</p>
+
+      <p class="annale-exercice__intro"><em>Remarques preliminaires importantes.</em> Il est rappele aux candidat(e)s que :</p>
+      <ul>
+        <li>les explications des phenomenes etudies interviennent dans la notation au meme titre que les developpements analytiques et les applications numeriques ;</li>
+        <li>tout au long de l'enonce, les paragraphes en italiques ont pour objet d'aider a la comprehension du probleme mais ne donnent pas lieu a des questions ;</li>
+        <li>tout resultat fourni dans l'enonce peut etre admis et utilise par la suite, meme s'il n'a pas ete demontre par le candidat(e) ;</li>
+        <li>les donnees numeriques generales ainsi qu'un formulaire sont fournies en fin d'enonce.</li>
+      </ul>
+
+      <p class="annale-exercice__intro">Les faisceaux laser de puissance sont actuellement tres utilises dans l'industrie tant dans les domaines du traitement thermique des aciers que du percage, de la decoupe ou de la soudure de materiaux divers. Pour ces applications, on les emploie souvent rencontres sont le laser YAG-Nd<sup>3+</sup> (laser solide constitue d'un cristal de grenat d'yttrium et d'aluminium dope par 1,5 % en poids d'oxyde de neodyme Nd<sub>2</sub>O<sub>3</sub>) dont la transition la plus intense se situe a 1,06 \( \mu \)m et le laser a gaz (CO<sub>2</sub>) emettant dans le domaine infrarouge a 10,6 \( \mu \)m. Ces deux types de laser peuvent fonctionner aussi bien en mode continu qu'en mode impulsionnel.</p>
+    </div>
+
+    <!-- PREMIERE PARTIE -->
+    <div class="annale-exercice" id="exo1">
+      <h2 class="annale-exercice__title">Premiere partie -- Etude d'un faisceau laser</h2>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">I. Modele a onde plane</h3>
+      </div>
+
+      <div class="question" id="Q1"><span class="question__num">I.1</span><p>Ecrire les equations de Maxwell dans le vide en l'absence de charges et de courants.</p></div>
+
+      <div class="question" id="Q2"><span class="question__num">I.2</span><p>En deduire les equations de propagation pour le champ electrique \( \vec{E} \) et pour le champ magnetique \( \vec{B} \).</p></div>
+
+      <p class="annale-exercice__intro"><em>Un faisceau laser peut etre modelise par une onde plane progressive sinusoidale de pulsation \( \omega \) se propageant dans le vide et dans le sens des \( z \) croissants. Le champ electrique de l'onde en un point \( M \) de cote \( z \) est donne par :</em>
+      \[ \underline{\vec{E}}(M,t) = E_0 \exp[i(kz - \omega t)]\,\vec{e}_x \]
+      <em>ou \( E_0 \) est un reel positif et \( i \) le nombre complexe de module unite et d'argument \( +\pi/2 \).</em></p>
+
+      <div class="question" id="Q3"><span class="question__num">I.3.a</span><p>Donner la relation entre \( k \) et \( \omega \) (relation de dispersion) et determiner le champ magnetique de l'onde.</p></div>
+
+      <div class="question" id="Q4"><span class="question__num">I.3.b</span><p>Rappeler la definition du vecteur de Poynting \( \vec{\Pi}(t) \). Determiner sa moyenne temporelle \( \langle\vec{\Pi}\rangle \) pour l'onde etudiee.</p></div>
+
+      <div class="question" id="Q5"><span class="question__num">I.3.c</span><p>Quelle est l'expression de la puissance moyenne qui traverse une surface \( S \) perpendiculaire a l'axe \( Oz \) ? En deduire la densite de puissance \( J_L \) (puissance moyenne par unite de surface).</p></div>
+
+      <div class="question" id="Q6"><span class="question__num">I.3.d</span><p>Un laser YAG-Nd<sup>3+</sup> possede une densite de puissance \( J_L = 4{,}0\cdot 10^4 \) W.cm\(^{-2} \). Calculer l'amplitude \( E_0 \) du champ electrique correspondant.</p></div>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">II. Modele du faisceau gaussien</h3>
+      </div>
+
+      <p class="annale-exercice__intro"><em>Une onde plane etant d'extension infinie, elle ne peut representer de maniere realiste le faisceau du laser dont la section \( S \) est en pratique inferieure a 1 mm\(^2\). Dans un modele plus realiste, l'onde electromagnetique du laser est consideree comme toujours dans le vide et dans le sens des \( z \) croissants ; le champ electrique en un point \( M \) de coordonnees cylindriques \( (r, \theta, z) \) prend la forme :</em>
+      \[ \underline{\vec{E}}(M,t) = \underline{E}(r,z)\,\exp[i(kz - \omega t)]\,\vec{e}_x \]
+      <em>avec \( k = 2\pi/\lambda \), ou \( \lambda \) est la longueur d'onde. Dans cette expression, l'amplitude complexe \( \underline{E}(r,z) \) du champ electrique depend de \( r \) et de \( z \) et s'ecrit :</em>
+      \[ \underline{E}(r,z) = E_0\,\frac{i z_0}{z + i z_0}\,\exp\!\left(-i k z - \frac{r^2}{2(z + i z_0)}\right) \]
+      <em>ou \( z_0 \) est une constante positive appelee distance de Rayleigh et \( E_0 \) un reel positif.</em></p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 1</div>
+        <p>Repere cylindrique \( (\vec{e}_r, \vec{e}_\theta, \vec{e}_z) \) (avec axes cartesiens \( (x,y,z) \) en arriere-plan : \( z \) horizontal vers la droite, \( y \) vertical, \( x \) vers l'avant-droite). Un point \( M \) est place hors de l'axe \( Oz \). Depuis l'origine \( O \), un trait joint \( O \) a \( M \) ; sa projection \( OM' \) sur le plan \( (Ox,Oy) \) a la longueur \( r \) (rayon cylindrique) et fait avec l'axe \( Ox \) l'angle \( \theta \) (azimut). Au point \( M \) sont representes les trois vecteurs unitaires de la base cylindrique : \( \vec{e}_r \) radial sortant (dans le plan \( (Ox,Oy) \) projete), \( \vec{e}_\theta \) orthoradial, et \( \vec{e}_z \) parallele a \( Oz \).</p>
+      </div>
+
+      <div class="question" id="Q7"><span class="question__num">II.1.a</span><p>Montrer que le carre du module de \( \underline{E}(r,z) \) peut s'exprimer sous la forme :
+      \[ |\underline{E}(r,z)|^2 = A^2(z)\,\exp\!\left(-\frac{2 r^2}{w^2(z)}\right) \quad (E1) \]
+      avec \( w(z) = w_0\sqrt{1 + z^2/z_0^{\,2}} \). Determiner la constante \( w_0 \) (\( w_0 > 0 \)) en fonction de \( z_0 \) et \( \lambda \), puis montrer que : \( A(z)\,w(z) = E_0\,w_0 \).</p></div>
+
+      <div class="question" id="Q8"><span class="question__num">II.1.b</span><p>Representer les graphes des modules de \( \underline{E}(r,z) \) et \( w(z) \) pour \( z \in \mathbb{R} \).</p></div>
+
+      <div class="question" id="Q9"><span class="question__num">II.1.c</span><p>Representer les graphes du module \( |\underline{E}(r,z)| \) du champ electrique en fonction de \( r \) lorsque \( z = 0 \), puis pour une valeur fixee \( z > 0 \). Quelle signification physique peut-on donner a \( w(z) \) ?</p></div>
+
+      <p class="annale-exercice__intro"><em>En pratique, l'amplitude complexe du champ electrique est une fonction lentement variable de \( z \) et, ce qui signifie qu'a l'echelle de la longueur d'onde \( \lambda \), les variations de \( \underline{E}(r,z) \) sont negligeables.</em></p>
+
+      <div class="question" id="Q10"><span class="question__num">II.2.a</span><p>Justifier que cela revient a ecrire : \( |\partial \underline{E}/\partial r| \ll k|\underline{E}| \) et \( |\partial \underline{E}/\partial z| \ll k|\underline{E}| \).</p></div>
+
+      <div class="question" id="Q11"><span class="question__num">II.2.b</span><p>Compte tenu de l'approximation precedente, montrer a l'aide des equations de Maxwell que le champ magnetique de l'onde peut se mettre sous la forme approchee :
+      \[ \underline{\vec{B}}(M,t) = \frac{\underline{E}(r,z)}{c}\,\exp[i(kz - \omega t)]\,\vec{e}_y \quad (E2) \]
+      <em>On pourra utiliser les formules d'analyse vectorielle rassemblees en fin d'enonce.</em></p></div>
+
+      <div class="question" id="Q12"><span class="question__num">II.3.a</span><p>Calculer la valeur moyenne du vecteur de Poynting \( \langle\vec{\Pi}\rangle \) et determiner la densite de puissance de cette onde \( J(r,z) = \|\langle\vec{\Pi}\rangle\| \).</p></div>
+
+      <p class="annale-exercice__intro"><em>Etudions la repartition de \( J(r,z) \) en un plan perpendiculaire a \( Oz \) et situe a la cote \( z \) et notons \( J_{\max}(z) \) la valeur maximale de \( J \) dans ce plan. Le rayon \( R(z) \) du faisceau laser a la cote \( z \) est defini comme la valeur de \( r \) pour laquelle \( J = J_{\max}(z)/e^2 \), ou \( e \) est la base du logarithme neperien.</em></p>
+
+      <div class="question" id="Q13"><span class="question__num">II.3.b</span><p>Determiner l'expression de ce rayon en fonction de \( w(z) \).</p></div>
+
+      <div class="question" id="Q14"><span class="question__num">II.3.c</span><p>Montrer que lorsque \( z \gg z_0 \) le faisceau a la forme d'un cone de sommet \( O \) et de demi-angle au sommet \( \beta \), qui sera exprime en fonction de \( w_0 \) et \( \lambda \), puis en fonction de \( w_0 \) et \( \lambda \). On appelle \( \beta \) est appele divergence du faisceau laser.</p></div>
+
+      <div class="question" id="Q15"><span class="question__num">II.3.d</span><p>Application numerique : dans le cas d'un laser YAG-Nd<sup>3+</sup>, possedant pour caracteristiques \( w_0 = 0{,}50 \) mm et \( \lambda = 1{,}06 \) \( \mu \)m, determiner \( z_0 \) et \( \beta \) en metres et en degres. Reproduire le meme calcul pour un laser CO<sub>2</sub> possedant le meme \( w_0 \) mais de longueur d'onde \( \lambda = 10{,}6 \) \( \mu \)m. Conclure.</p></div>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">III. Absorption de l'energie du laser dans un milieu metallique</h3>
+      </div>
+
+      <p class="annale-exercice__intro"><em>L'interaction d'une onde electromagnetique avec un metal se fait essentiellement par l'intermediaire des electrons de conduction. On suppose, dans cette partie, nous modeliserons un metal homogene et electriquement neutre (\( \rho_M = 0 \)) comme un milieu ayant les memes proprietes que le vide (permittivite \( \varepsilon_0 \) et permeabilite \( \mu_0 \)) et constitue d'un ensemble d'electrons de conduction, de charge \( -e \), de masse \( m \) et de densite uniforme \( N \) (nombre d'electrons par unite de volume). Ce metal est fixe par rapport au referentiel du laboratoire, suppose galileen.</em></p>
+
+      <p class="annale-exercice__intro"><em>Etant donne un electron de vitesse \( \vec{v} \), son interaction avec le milieu metallique est modelisee par une force de frottement fluide de la forme :
+      \[ \vec{F} = -\frac{m}{\tau}\vec{v} \]
+      ou \( \tau \) est un coefficient positif.</em></p>
+
+      <p class="annale-exercice__intro"><em>Supposons le metal soumis a un champ electrique sinusoidal de pulsation \( \omega \), de la forme :
+      \[ \underline{\vec{E}}(t) = \underline{\vec{E}}_0\,\exp(-i\omega t) \]
+      ou \( \underline{\vec{E}}_0 \) est un vecteur complexe constant.</em></p>
+
+      <div class="question" id="Q16"><span class="question__num">III.1</span><p>Ecrire le principe fondamental de la dynamique applique a un electron de conduction. Quelle est la dimension de \( \tau \) ?</p></div>
+
+      <p class="annale-exercice__intro"><em>En regime sinusoidal permanent, la vitesse d'un electron s'ecrit, en notation complexe :
+      \[ \underline{\vec{v}} = \underline{\vec{V}}(i\omega)\,\exp(-i\omega t) \]</em></p>
+
+      <div class="question" id="Q17"><span class="question__num">III.2.a</span><p>Determiner l'expression de \( \underline{\vec{V}}(i\omega) \) en fonction de \( i\omega \), \( e \), \( \tau \), \( m \) et de \( \underline{\vec{E}}_0 \).</p></div>
+
+      <div class="question" id="Q18"><span class="question__num">III.2.b</span><p>En deduire le vecteur densite de courant \( \underline{\vec{j}} \) (en notation complexe) sous la forme :
+      \[ \underline{\vec{j}} = \underline{\sigma}(i\omega)\,\underline{\vec{E}}_0\,\exp(-i\omega t) \quad (E3) \]
+      et expliciter la grandeur complexe \( \underline{\sigma}(i\omega) \) en fonction des donnees du probleme. Quelle est la nature de ce milieu (du point de vue des proprietes electromagnetiques) ? Que represente physiquement \( \underline{\sigma}(i\omega) \) ?</p></div>
+
+      <p class="annale-exercice__intro"><em>Etudions maintenant la propagation d'une onde electromagnetique dans le milieu. Supposons que le metal remplit tout le demi-espace \( z > 0 \) et que le champ electrique de l'onde peut s'ecrire :
+      \[ \underline{\vec{E}}(M,t) = \underline{f}(z)\,\exp(-i\omega t)\,\vec{e}_x \]
+      ou \( \underline{f}(z) \) est une grandeur complexe a determiner.</em></p>
+
+      <p class="annale-exercice__intro"><em>On admet que le metal reste un milieu de courant de conduction reliee au champ electrique par l'equation (E3).</em></p>
+
+      <div class="question" id="Q19"><span class="question__num">III.3.a</span><p>Ecrire les equations de Maxwell dans le milieu. En deduire l'equation aux derivees partielles du second ordre verifiee par le champ electrique.</p></div>
+
+      <div class="question" id="Q20"><span class="question__num">III.3.b</span><p>Montrer que la fonction \( \underline{f}(z) \) est solution d'une equation differentielle de la forme :
+      \[ \frac{d^2\underline{f}}{dz^2} + \left(\frac{\omega}{c}\right)^{\!2}\underline{n}^{\,2}\,\underline{f} = 0 \quad (E4) \]
+      ou \( \underline{n} \) est une grandeur complexe telle que :
+      \[ \underline{n}^{\,2} = 1 + \frac{i(\tau\omega_p)^2}{\tau\omega(1 - i\tau\omega)} \quad (E5) \]
+      en introduisant la pulsation \( \omega_p = \sqrt{\dfrac{Ne^2}{\varepsilon_0\,m}} \) (appelee pulsation plasma).</p>
+
+      <p>Quelle est la signification physique de \( \underline{n} \) ?</p></div>
+
+      <div class="question" id="Q21"><span class="question__num">III.3.c</span><p>Calculer la valeur numerique de \( \omega_p \), en prenant l'exemple de l'aluminium pour lequel : \( N = 1{,}81\cdot 10^{29} \) m\(^{-3}\) et \( \tau = 8{,}0\cdot 10^{-15} \) s.U.S.I.</p>
+
+      <p><em>Dans la suite du probleme, nous poserons \( \underline{n} = n' + i\,n'' \), ou \( n' \) et \( n'' \) sont deux nombres reels (\( n' > 0 \)) et \( k = \omega/c \).</em></p></div>
+
+      <div class="question" id="Q22"><span class="question__num">III.3.d</span><p>Determiner la solution complete de l'equation (E4) sachant que l'onde se propage dans le sens des \( z \) croissants et en posant \( \underline{A}_0 = \underline{f}(z = 0) \). Quel est le phenomene physique genere par l'existence de \( n'' \) ? Donner l'expression de la vitesse de phase \( v_\phi \) de cette onde.</p></div>
+
+      <div class="question" id="Q23"><span class="question__num">III.3.e</span><p>Determiner numeriquement \( n'^2 \), puis calculer la valeur numerique de \( n' \) sachant que \( n'' = 13{,}41 \) dans le cas de l'aluminium et pour la longueur d'onde du laser YAG-Nd<sup>3+</sup> (\( \lambda = 1{,}06 \) \( \mu \)m). Commenter le resultat.</p></div>
+
+      <div class="question" id="Q24"><span class="question__num">III.4</span><p>Determiner l'expression du champ magnetique de l'onde.</p></div>
+
+      <div class="question" id="Q25"><span class="question__num">III.5.a</span><p>En deduire la valeur moyenne du vecteur de Poynting \( \langle\vec{\Pi}\rangle \). Quelle est la puissance moyenne qui traverse une surface \( S \) perpendiculaire a \( Oz \) et situee a la cote \( z > 0 \) ? Ecrire cette puissance sous la forme : \( P(z) = P_0\exp(-\alpha z) \), en donnant l'expression de \( P_0 \) en fonction de \( \mu_0 \), \( c \), \( |\underline{A}_0|^2 \), et \( S \), puis celle du parametre reel \( \alpha \) (appele coefficient d'absorption) en fonction de \( k \) et \( n'' \).</p></div>
+
+      <div class="question" id="Q26"><span class="question__num">III.5.b</span><p>Determiner la valeur numerique de \( \alpha \) pour l'aluminium et une pulsation \( \omega \) correspondant au laser YAG-Nd<sup>3+</sup>. En deduire un ordre de grandeur de la profondeur de penetration de l'energie de ce laser dans un echantillon d'aluminium. Commenter le resultat.</p></div>
+
+      <p class="annale-exercice__intro"><em>La puissance moyenne \( P_0 \) transmise a travers la surface \( S \) situee en \( z = 0 \) est entierement absorbee par le metal. Si \( P_i \) designe la puissance moyenne du faisceau laser incident a travers la meme surface \( S \) perpendiculaire a la direction de propagation et \( P_R \) la puissance moyenne reflechie par la surface metallique, la reflectivite \( R \) et l'absorptivite \( A \) de la surface metallique sont definis par les rapports :
+      \[ R = \frac{P_R}{P_i} \quad \text{et} \quad A = \frac{P_0}{P_i} \]</em></p>
+
+      <p class="annale-exercice__intro"><em>Ces coefficients dependent de la longueur d'onde \( \lambda \) du rayonnement utilise.</em></p>
+
+      <div class="question" id="Q27"><span class="question__num">III.6</span><p>Quelle est la relation liant les deux coefficients \( R \) et \( A \) ?</p></div>
+    </div>
+
+    <!-- DEUXIEME PARTIE -->
+    <div class="annale-exercice" id="exo2">
+      <h2 class="annale-exercice__title">Deuxieme partie -- Applications du laser au traitement et a l'usinage de pieces</h2>
+
+      <p class="annale-exercice__intro"><em>La puissance lumineuse du laser absorbee par le metal est convertie en chaleur et utilisee pour usiner des pieces metalliques. Etudions dans la deuxieme partie deux applications pratiques : le traitement thermique de l'acier en vue de son durcissement et l'usinage de pieces metalliques (percage puis decoupe) a l'aide d'un faisceau laser.</em></p>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">I. Traitement thermique de l'acier par laser</h3>
+      </div>
+
+      <p class="annale-exercice__intro"><em>Le traitement thermique consiste en un chauffage de la couche superficielle d'une piece en acier a une temperature superieure a \( T_A = 1293 \) K, a partir de laquelle se forme de l'austenite (austenitisation). Ces couches superficielles doivent etre ensuite refroidies tres rapidement a une temperature inferieure a \( T_C = 993 \) K, ce qui provoque la formation de martensite. La durete de l'acier s'en trouve alors tres fortement augmentee (austenite et martensite sont deux phases du diagramme d'equilibre fer-carbone).</em></p>
+
+      <p class="annale-exercice__intro"><em>Etudions tout d'abord dans ce paragraphe la phase de chauffage de la piece a l'aide d'un laser CO<sub>2</sub>, de longueur d'onde \( \lambda = 10{,}6 \) \( \mu \)m. La section apres laser incident est supposee parfaitement cylindrique, sa section apres laser incident etant donnee ci-dessous, en fonction du temps a un profil de type creneau (puissance par unite de surface) est donnee ci-dessous, en fonction du temps a un profil de type creneau (puissance par unite de surface). Le temps \( t_P \) dans la representation est donnee la duree de l'impulsion laser.</em></p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 2</div>
+        <p>Graphe en creneau representant la densite de puissance incidente \( J_L \) en fonction du temps \( t \). Axes : abscisse \( t \), ordonnee "densite de puissance incidente". La courbe vaut \( 0 \) pour \( t < 0 \), saute brusquement a la valeur \( J_L \) entre \( t = 0 \) et \( t = t_P \), puis retombe a \( 0 \) pour \( t > t_P \). Les valeurs \( J_L \) sur l'ordonnee et \( t_P \) sur l'abscisse sont marquees en pointilles.</p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 3</div>
+        <p>Schema en perspective : un faisceau laser cylindrique vertical descend depuis le haut et frappe la surface horizontale d'une piece metallique massive (parallelepipede rectangle). Sur la piece a traiter (notee "piece a traiter"), la zone d'impact circulaire du faisceau est marquee \( S \) (surface circulaire eclairee). Une fleche pointe le faisceau vertical descendant designe par "faisceau laser incident".</p>
+      </div>
+
+      <div class="question" id="Q28b"><span class="question__num">I.1</span><p>La reflectivite \( R \) de l'acier pour le rayonnement utilise est \( R = 0{,}82 \). En deduire litteralement puis numeriquement la densite de puissance \( J_0 \) absorbee par l'acier. Donnee : \( J_L = 4{,}0\cdot 10^4 \) W.cm\(^{-2} \).</p></div>
+
+      <p class="annale-exercice__intro"><em>Adoptons un modele simplifie dans lequel la piece en acier occupe le demi-espace defini par \( z > 0 \). Pour l'instant \( t < 0 \), l'acier est en equilibre thermique, sa temperature etant uniforme et valant \( T_0 = 293 \) K. On designe par \( \rho \) et \( C \) la masse volumique et la capacite thermique massique de milieu et on suppose que ces grandeurs restent constantes vis a vis de la temperature.</em></p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 4</div>
+        <p>Schema en coupe verticale. Axe vertical \( Oz \) descendant. La surface superieure du milieu (acier) est en \( z = 0 \) ; au-dessus se trouve l'origine \( O \) et le faisceau laser incident represente par plusieurs fleches verticales descendantes (notees \( J_L \) ou eclair) frappant la surface. En dessous, l'acier (note "acier") occupe tout le demi-espace \( z > 0 \) (zone hachuree ou ombragee). L'axe \( Oz \) est oriente vers le bas, vers l'interieur du metal.</p>
+      </div>
+
+      <p class="annale-exercice__intro"><em>Supposons que les echanges thermiques au sein de la piece se fassent exclusivement par conduction thermique (tout transfert en surface par conducto-convectif sera neglige). La distribution de temperature est supposee unidimensionnelle, de la forme : \( T = T(z, t) \). Le vecteur densite de courant thermique, note \( \vec{j} \), est relie a la temperature par la loi de Fourier :
+      \[ \vec{j}(z, t) = -K\,\frac{\partial T}{\partial z}\,\vec{e}_z = j(z, t)\,\vec{e}_z \]
+      ou \( K \) designe la conductivite thermique de l'acier, supposee constante. On rappelle que le flux de \( \vec{j} \) a travers une surface \( S \) represente la quantite de chaleur traversant cette surface par unite de temps.</em></p>
+
+      <div class="question" id="Q29b"><span class="question__num">I.2.a</span><p>Quelle est la signification du signe " \( - \) " dans la loi de Fourier ?</p></div>
+
+      <p class="annale-exercice__intro"><em>Considerons un cylindre a l'interieur du metal, d'axe \( Oz \), dont les bases sont situees dans les plans de cotes \( z \) et \( z + dz \) et designons par \( S \) l'aire de la section du cylindre.</em></p>
+
+      <div class="question" id="Q30b"><span class="question__num">I.2.b</span><p>Etablir a l'aide du premier principe de la thermodynamique l'equation aux derivees partielles (appelee equation de la chaleur) verifiee par la temperature \( T(z, t) \) :
+      \[ \frac{\partial T}{\partial t} = D\,\frac{\partial^2 T}{\partial z^2} \quad (E6) \]
+      Determiner l'expression de \( D \) (diffusivite thermique) et preciser sa dimension.</p></div>
+
+      <div class="question" id="Q31b"><span class="question__num">I.2.c</span><p>Montrer que \( J(z,t) \) obeit a la meme equation que \( T(z,t) \) :
+      \[ \frac{\partial J}{\partial t} = D\,\frac{\partial^2 J}{\partial z^2} \quad (E7) \]</p></div>
+
+      <p class="annale-exercice__intro"><em>Interessons-nous a la phase de chauffage : \( t \in [0, t_P] \). L'interaction laser-acier est prise en compte en supposant que la surface libre de la piece est soumise a une densite de flux de chaleur donnee par :
+      \[ \forall t \in [0, t_P], \quad J(0, t) = J_0\,\vec{e}_z \]</em></p>
+
+      <p class="annale-exercice__intro"><em>\( J_0 \) est la densite de puissance absorbee, supposee independante du temps.</em></p>
+
+      <p class="annale-exercice__intro"><em>Les conditions aux limites et initiale decrivant le phenomene s'ecrivent donc comme suit :
+      \[ \begin{cases} \forall t \in [0, t_P], & J(0,t) = -K\,\dfrac{\partial T}{\partial z}(0,t) = J_0 \\[4pt] \forall z > 0, & T(z, 0) = T_0 \end{cases} \quad (E8) \]</em></p>
+
+      <div class="question" id="Q32b"><span class="question__num">I.3</span><p>Traduire la condition initiale sur la temperature en une condition initiale sur \( J \) pour \( z > 0 \).</p>
+
+      <p><em>Une solution de l'equation (E7) correspondant a notre probleme est de la forme :
+      \[ J(z, t) = A\,f(u) \]
+      ou \( A \) est une constante, \( u \) la grandeur definie par \( u = \dfrac{z}{2\sqrt{D t}} \) et \( f \) une fonction ne dependant que de la variable \( u \) et dont l'expression est :
+      \[ f(u) = 1 - \frac{2}{\sqrt{\pi}}\int_0^u \exp(-x^2)\,dx \]</em></p></div>
+
+      <div class="question" id="Q33b"><span class="question__num">I.4</span><p>Quelle est la dimension de \( u \) ? Verifier que l'expression proposee pour \( J(z, t) \) est bien solution de (E7) et determiner la constante \( A \).</p></div>
+
+      <p class="annale-exercice__intro"><em>Pour \( t \in [0, t_P] \), la temperature en un point de cote \( z \) du metal s'ecrit sous la forme :
+      \[ T(z, t) = T_0 + \frac{2 J_0}{K}\sqrt{D t}\,F(u) \quad (E9) \]
+      avec :
+      \[ F(u) = \frac{\exp(-u^2)}{\sqrt{\pi}} - u\,f(u) \quad (E10) \]</em></p>
+
+      <div class="question" id="Q34b"><span class="question__num">I.5</span><p>Verifier a l'aide de la loi de Fourier que l'expression proposee pour \( T(z, t) \) permet de retrouver l'expression de \( J(z, t) \) donnee a la question I.4. Quelle est l'expression de la temperature \( T_S(t) \) a la surface libre du metal ?</p></div>
+
+      <div class="question" id="Q35b"><span class="question__num">I.6</span><p>A l'aide du graphe de la fonction \( F(u) \) fourni en annexe, calculer la valeur numerique de la profondeur \( z \) pour laquelle \( T = T_A \) a l'instant \( t_P \) (fin de l'impulsion laser). Donnees : \( K = 35 \) W.K\(^{-1}\).m\(^{-1} \), \( D = 1{,}0\cdot 10^{-5} \) u.S.I. et \( t_P = 40 \) ms.</p></div>
+
+      <div class="question" id="Q36b"><span class="question__num">I.7</span><p>Quelle est la temperature a la surface a l'instant \( t_P \) ?</p></div>
+
+      <div class="question" id="Q37b"><span class="question__num">I.8</span><p>La temperature de fusion de l'acier considere etant \( T_F = 1800 \) K, quelle devrait etre la duree \( t'_P \) de l'impulsion laser pour que cette temperature soit atteinte a la surface de la piece a la fin de l'impulsion ?</p></div>
+
+      <div class="annale-partie">
+        <h3 class="annale-partie__title">II. Usinage d'une feuille de metal par vaporisation</h3>
+      </div>
+
+      <p class="annale-exercice__intro"><em>Etudions tout d'abord le percage par vaporisation d'une mince couche d'aluminium deposee sur un substrat thermiquement isolant. Les conditions operatoires sont celles de la figure 5. La feuille metallique horizontale, d'epaisseur constante e, recoit perpendiculairement a sa surface un pulse laser de duree \( t_P \) et de densite de puissance \( J_L \). Le faisceau laser est suppose parfaitement cylindrique, de diametre \( \Phi \).</em></p>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Figure 5</div>
+        <p>Schema en coupe verticale. Un faisceau laser incident vertical descend depuis le haut (fleches descendantes parallèles, note "faisceau laser incident") et frappe la surface superieure d'une fine feuille d'aluminium horizontale d'epaisseur \( e \) (cote verticale "e" indiquee a gauche). La zone eclairee circulaire est notee \( S \) (de diametre \( \Phi \)). Sous la feuille d'aluminium se trouve un substrat (note "substrat") plus epais, hachure. La feuille d'aluminium est etiquetee "feuille d'aluminium".</p>
+      </div>
+
+      <p class="annale-exercice__intro"><em>La feuille metallique est immobile par rapport au faisceau laser. Designons par \( (\mathcal{S}) \) le systeme defini par la masse d'aluminium contenue initialement dans le volume cylindrique de diametre \( \Phi \) et d'epaisseur \( e \) et definissons les hypotheses de travail suivantes :</em></p>
+      <ul>
+        <li><em>la puissance lumineuse absorbee est totalement convertie en chaleur cedee a \( (\mathcal{S}) \) ;</em></li>
+        <li><em>tout echange thermique entre \( (\mathcal{S}) \) et le reste de la feuille metallique est neglige ;</em></li>
+        <li><em>l'epaisseur \( e \) etant petite, il est admis qu'a chaque instant \( t \), la temperature est uniforme dans \( (\mathcal{S}) \) et notee \( T(t) \). Avant l'irradiation, la temperature est egale a \( T_0 = 293 \) K ;</em></li>
+        <li><em>le percage s'effectue sous la pression atmospherique constante \( P_{\text{atm}} = 1 \) bar.</em></li>
+      </ul>
+
+      <div class="question" id="Q38b"><span class="question__num">II.1.a</span><p>Definir la chaleur latente de changement d'etat d'un corps pur.</p></div>
+
+      <div class="question" id="Q39b"><span class="question__num">II.1.b</span><p>Ecrire la relation liant la variation d'enthalpie de \( (\mathcal{S}) \) et la quantite de chaleur echangee avec le milieu exterieur.</p></div>
+
+      <p class="annale-exercice__intro"><em>L'irradiation de l'aluminium provoque son echauffement de \( T_0 \) a la temperature de fusion \( T_F \), sa fusion, puis l'echauffement du metal liquide de \( T_F \) a la temperature de vaporisation \( T_V \) et enfin, sa vaporisation totale.</em></p>
+
+      <div class="question" id="Q40b"><span class="question__num">II.2.a</span><p>Determiner l'expression litterale de la variation d'enthalpie de \( (\mathcal{S}) \) correspondant a cette transformation thermodynamique.</p>
+      <p><em>(Utiliser les grandeurs thermodynamiques fournies dans le tableau en annexe)</em></p></div>
+
+      <div class="question" id="Q41b"><span class="question__num">II.2.b</span><p>Le laser utilise est un YAG-Nd<sup>3+</sup> pulse avec \( t_P = 50 \) ms. Calculer les durees correspondant a chacune des etapes du processus.</p></div>
+
+      <div class="question" id="Q42b"><span class="question__num">II.2.c</span><p>Representer schematiquement l'evolution de la temperature du metal en fonction du temps.</p></div>
+
+      <div class="question" id="Q43b"><span class="question__num">II.2.d</span><p>La duree de l'impulsion laser \( t_P \) etant imposee, en deduire la densite de puissance incidente minimale \( (J_L)_{\min} \) necessaire a la realisation de cette transformation. On notera \( R \) la reflectivite de l'aluminium pour le rayonnement etudie.</p></div>
+
+      <div class="question" id="Q44b"><span class="question__num">II.2.e</span><p>La reflectivite etant \( R = 0{,}72 \) et l'epaisseur de la couche metallique \( e = 0{,}5 \) mm, determiner numeriquement \( (J_L)_{\min} \). En deduire la puissance moyenne minimale du faisceau sachant que le diametre du trou est \( \Phi = 0{,}8 \) mm.</p></div>
+
+      <div class="question" id="Q45b"><span class="question__num">II.2.f</span><p>Les lasers utilises ont en realite une puissance moyenne imposee. La valeur \( (J_L)_{\min} \) et le diametre du faisceau peuvent etre ajustes a l'aide d'un montage optique convenable. Proposer un montage utilisant deux ou trois lentilles (convergentes ou divergentes) qui permette d'agrandir (ou de reduire) la section du faisceau lumineux.</p></div>
+
+      <p class="annale-exercice__intro"><em>Interessons-nous maintenant a la decoupe d'une feuille d'aluminium d'epaisseur constante \( e = 1 \) mm. A cet effet, un laser YAG-Nd\(^{3+}\) restant fixe irradie une feuille metallique deplacee selon un mouvement de translation uniforme de vitesse \( V \), perpendiculairement a la direction du faisceau. Le laser employe fonctionne en mode continu (c'est a dire non pulse) avec une puissance moyenne constante \( P_L = 700 \) W et un diametre \( \Phi = 0{,}5 \) mm. La reflectivite de l'aluminium est \( R = 0{,}72 \).</em></p>
+
+      <div class="question" id="Q46b"><span class="question__num">II.3.a</span><p>Determiner la vitesse maximale \( V_M \) de decoupe de la feuille. Application numerique : calculer \( V_M \).</p>
+
+      <p><em>En realite, la vitesse de decoupe est bien inferieure a la valeur \( V_M \) precedemment calculee.</em></p></div>
+
+      <div class="question" id="Q47b"><span class="question__num">II.3.b</span><p>Analyser les causes d'erreurs possibles. Quelles sont, dans les hypotheses de depart, celles qui vous paraissent les plus simplificatrices ?</p></div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Annexe -- Graphe de \( F(u) \)</div>
+        <p>Graphe de la fonction \( F(u) = \dfrac{\exp(-u^2)}{\sqrt{\pi}} - u\,f(u) \). Axes : abscisse \( u \) graduee de 0 a 3, ordonnee \( F(u) \) graduee de 0 a 0,6. Courbe decroissante partant de \( F(0) \approx 0{,}56 \) (\( = 1/\sqrt{\pi} \)), passant rapidement sous 0,3 vers \( u \approx 0{,}5 \), sous 0,1 vers \( u \approx 1{,}2 \), et tendant asymptotiquement vers 0 pour \( u > 2{,}5 \).</p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Donnees thermodynamiques relatives a l'aluminium</div>
+        <p>Tableau : Temperature de fusion \( T_F = 933 \) K ; Temperature de vaporisation \( T_V = 2740 \) K ; Chaleur latente massique de fusion \( L_F = 397 \) kJ.kg\(^{-1} \) ; Chaleur latente massique de vaporisation \( L_V = 10\,500 \) kJ.kg\(^{-1} \) ; Masse volumique du solide \( \rho_S = 2700 \) kg.m\(^{-3} \) ; Capacite thermique massique a pression constante du solide \( c_{p(S)} = 900 \) J.K\(^{-1} \).kg\(^{-1} \) ; Capacite thermique massique a pression constante du liquide \( c_{p(L)} = 1090 \) J.K\(^{-1} \).kg\(^{-1} \). Les temperatures de changement d'etat ainsi que les chaleurs latentes sont donnees pour la pression \( P_{\text{atm}} = 1 \) bar. Les variations de \( \rho \) et \( c_p \) avec la temperature seront negligees.</p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Donnees numeriques generales</div>
+        <p>Permeabilite du vide : \( \mu_0 = 4\pi\cdot 10^{-7} \) H.m\(^{-1} \). Permittivite du vide : \( \varepsilon_0 = 8{,}85\cdot 10^{-12} \) F.m\(^{-1} \). Celerite de la lumiere dans le vide : \( c = 3{,}0\cdot 10^8 \) m.s\(^{-1} \). Masse de l'electron : \( m = 9{,}11\cdot 10^{-31} \) kg. Charge de l'electron : \( e = 1{,}60\cdot 10^{-19} \) C.</p>
+      </div>
+
+      <div class="annale-figure">
+        <div class="annale-figure__label">Formulaire</div>
+        <p>Gradient (en coordonnees cylindriques) pour un champ scalaire \( f \) :
+        \[ \overrightarrow{\mathrm{grad}}\,f = \frac{\partial f}{\partial r}\,\vec{e}_r + \frac{1}{r}\frac{\partial f}{\partial \theta}\,\vec{e}_\theta + \frac{\partial f}{\partial z}\,\vec{e}_z \]
+        Relations entre operateurs :
+        \[ \overrightarrow{\mathrm{rot}}\,\overrightarrow{\mathrm{rot}}\,\vec{A} = \overrightarrow{\mathrm{grad}}\,\mathrm{div}\,\vec{A} - \Delta\vec{A} \]
+        \[ \overrightarrow{\mathrm{rot}}(f\,\vec{A}) = f\,\overrightarrow{\mathrm{rot}}\,\vec{A} + \overrightarrow{\mathrm{grad}}\,f \wedge \vec{A} \]
+        Laplacien (en coordonnees cylindriques) pour un champ scalaire \( f \) :
+        \[ \Delta f = \frac{1}{r}\frac{\partial}{\partial r}\!\left(r\frac{\partial f}{\partial r}\right) + \frac{1}{r^2}\frac{\partial^2 f}{\partial \theta^2} + \frac{\partial^2 f}{\partial z^2} \]
+        Laplacien vectoriel (en coordonnees cartesiennes) :
+        \[ \Delta\vec{A} = (\Delta A_x)\,\vec{e}_x + (\Delta A_y)\,\vec{e}_y + (\Delta A_z)\,\vec{e}_z \]
+        Valeur moyenne du produit vectoriel de deux fonctions vectorielles sinusoidales de meme pulsation (notation complexe) :
+        \[ \langle\vec{a}\wedge\vec{b}\rangle = \tfrac{1}{2}\,\mathrm{Re}\!\left(\underline{\vec{a}}\wedge\underline{\vec{b}}^{\,*}\right) \]
+        \( \underline{\vec{b}}^{\,*} \) representant le complexe conjugue de \( \underline{\vec{b}} \).</p>
+      </div>
+    </div>
+
+    <nav class="course__nav">
+      <a href="../../mp.html#annales" class="course__nav-link">
+        &larr; Retour
+        <span>Toutes les annales</span>
+      </a>
+    </nav>
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Lib<em>Maths</em></span>
+        <p class="footer__tagline">Cours et exercices de mathematiques, 100 % gratuits.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Navigation</h4>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../mpsi.html">MPSI</a>
+          <a href="../../mp.html">MP</a>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Communaute</h4>
+          <a href="#">Contribuer</a>
+          <a href="#">GitHub</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 LibMaths -- Projet open source</span>
+    </div>
+  </footer>
+
+  <script src="../../main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.course'), {
+          delimiters: [
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (window.renderMathInElement) {
+            clearInterval(interval);
+            renderMathInElement(document.querySelector('.course'), {
+              delimiters: [
+                { left: '\\[', right: '\\]', display: true },
+                { left: '\\(', right: '\\)', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

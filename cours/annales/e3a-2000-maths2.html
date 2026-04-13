@@ -6,7 +6,7 @@
   <title>E3A 2000 -- Maths 2 | LibMaths</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.setAttribute('data-theme','dark')})(document.documentElement)</script>
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -50,13 +50,6 @@
     .course__nav-link span{font-family:var(--font-body);font-size:1.1rem;font-weight:500;color:var(--ink)}
     .course__nav-link:hover span{color:var(--accent)}
     .course__nav-link--next{text-align:right}
-    .annale-warning{background:linear-gradient(135deg,rgba(255,170,0,.08),rgba(255,170,0,.03));border:1px solid rgba(255,170,0,.25);border-radius:12px;padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-xl);font-size:.85rem;line-height:1.7;color:var(--ink-light)}
-    .annale-warning strong{color:var(--ink);font-weight:600}
-    .pdf-download{display:flex;flex-direction:column;align-items:center;gap:var(--space-lg);padding:var(--space-2xl) var(--space-lg);background:var(--bg-card);border:1px solid var(--border);border-radius:16px;margin-bottom:var(--space-2xl);text-align:center}
-    .pdf-download__icon{font-size:3rem;opacity:.6}
-    .pdf-download__text{font-size:1rem;color:var(--ink-light);line-height:1.7;max-width:500px}
-    .pdf-download__btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--accent);color:#fff;border-radius:12px;font-family:var(--font-body);font-size:.95rem;font-weight:600;text-decoration:none;transition:opacity .2s}
-    .pdf-download__btn:hover{opacity:.85}
     @media(max-width:680px){
       .course__title{font-size:1.3rem}
       .course{padding-left:var(--space-md);padding-right:var(--space-md)}
@@ -125,39 +118,165 @@
       <span class="course__badge">E3A 2000</span>
     </div>
 
-    <h1 class="course__title">E3A 2000 -- Maths 2</h1>
+    <h1 class="course__title">E3A 2000 -- Mathematiques 2</h1>
 
-    <div class="annale-warning">
-      <strong>Sujet disponible en PDF uniquement.</strong> Ce sujet d'annale est un document scanne dont le texte n'est pas extractible numeriquement. Vous pouvez telecharger le PDF original ci-dessous.
+    <div style="margin-bottom:var(--space-xl)">
+      <a href="e3a-2000-correction.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#E91E63;color:#fff;border-radius:10px;font-family:var(--font-body);font-size:.85rem;font-weight:600;text-decoration:none;transition:background .2s">
+        <span>&#9998;</span> Voir la correction detaillee
+      </a>
     </div>
+
+    <p class="course__intro">
+      Epreuve de Mathematiques 2, filiere MP. Duree : 3 heures. Trois exercices independants : endomorphismes d'un espace euclidien et projections orthogonales, series entieres et calcul integral (fonction \(\frac{\pi z}{\sin \pi z}\)), reseaux et droites reticulaires.
+    </p>
 
     <div class="annale-info">
-      <div class="annale-info__item">
-        <span class="annale-info__label">Concours</span>
-        <span class="annale-info__value">E3A</span>
+      <div class="annale-info__item"><span class="annale-info__label">Concours</span><span class="annale-info__value">E3A (ENSAM-ESTP-ECRIN-ARCHIMEDE)</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Filiere</span><span class="annale-info__value">MP</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Epreuve</span><span class="annale-info__value">Mathematiques 2</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Annee</span><span class="annale-info__value">2000</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Duree</span><span class="annale-info__value">3 heures</span></div>
+      <div class="annale-info__item"><span class="annale-info__label">Themes</span><span class="annale-info__value">Endomorphismes euclidiens, projections orthogonales, series entieres, reseaux</span></div>
+    </div>
+
+    <nav class="course__toc">
+      <span class="course__toc-title">Sommaire</span>
+      <ol class="course__toc-list">
+        <li class="course__toc-item"><a href="#exo1"><span class="course__toc-num">1.</span> Exercice 1</a></li>
+        <li class="course__toc-item"><a href="#exo2"><span class="course__toc-num">2.</span> Exercice 2</a></li>
+        <li class="course__toc-item"><a href="#exo3"><span class="course__toc-num">3.</span> Exercice 3</a></li>
+      </ol>
+    </nav>
+
+    <!-- EXERCICE 1 -->
+    <div class="annale-exercice" id="exo1">
+      <h2 class="annale-exercice__title">Exercice 1</h2>
+
+      <p class="annale-exercice__intro">Soit \(E\) un espace vectoriel euclidien ; on note \(\mathcal{L}(E)\) l'ensemble des endomorphismes de \(E\) et \(\mathcal{O}(E)\) le groupe orthogonal de \(E\) ; pour tout endomorphisme \(f\), \(f^*\) designe l'adjoint de \(f\) et, pour tout sous-espace vectoriel \(F\) de \(E\), on note \(p_F\) la projection orthogonale de \(E\) sur \(F\) : \(p_F \in \mathcal{L}(E)\).</p>
+
+      <div class="question" id="q1-1">
+        <span class="question__num">1.</span>
+        <p>Soit \(f = p_F \circ g\) ou \(F\) est un sous-espace vectoriel de \(E\) et \(g \in \mathcal{O}(E)\).</p>
+        <ol>
+          <li>(a) Preciser \(\operatorname{Ker} f\) et \(\operatorname{Im} f\) a l'aide de \(F\) et \(g\).</li>
+          <li>(b) Montrer l'existence d'un unique sous-espace vectoriel \(F'\) de \(E\) tel que :
+            <div class="math-display">$$p_F \circ g = g \circ p_{F'}.$$</div>
+          </li>
+          <li>(c) Donner une expression simplifiee de \(f \circ f^* \circ f\).</li>
+        </ol>
       </div>
-      <div class="annale-info__item">
-        <span class="annale-info__label">Filiere</span>
-        <span class="annale-info__value">MP</span>
+
+      <div class="question" id="q1-2">
+        <span class="question__num">2.</span>
+        <p>Soit \(F\) un sous-espace vectoriel fixe de \(E\), distinct de \(E\) et de \(\{0\}\).</p>
+        <ol>
+          <li>(a) Soit \(g \in \mathcal{O}(E)\) : etablir une condition necessaire et suffisante pour que \(p_F\) et \(g\) commutent.</li>
+          <li>(b) Soit \(\mathcal{G}\) l'ensemble des \(p_F \circ g\) tels que \(p_F \circ g = g \circ p_F\) avec \(g \in \mathcal{O}(E)\) ; montrer que \((\mathcal{G}, \circ)\) est un groupe isomorphe a un groupe connu ; \(\mathcal{G}\) est-il un sous-groupe du groupe lineaire de \(E\) ?</li>
+          <li>(c) Montrer que l'ensemble des \(p_F \circ g\) obtenu lorsque \(g\) decrit \(\mathcal{O}(E)\) n'est pas stable pour l'operation de composition.</li>
+        </ol>
       </div>
-      <div class="annale-info__item">
-        <span class="annale-info__label">Epreuve</span>
-        <span class="annale-info__value">Mathematiques 2</span>
-      </div>
-      <div class="annale-info__item">
-        <span class="annale-info__label">Annee</span>
-        <span class="annale-info__value">2000</span>
+
+      <div class="question" id="q1-3">
+        <span class="question__num">3.</span>
+        <p>Soit \(f \in \mathcal{L}(E)\) tel que \(f \circ f^* \circ f = f\).</p>
+        <ol>
+          <li>(a) Etablir que \(f \circ f^*\) est une projection orthogonale.</li>
+          <li>(b) Montrer que : \(\forall x \in (\operatorname{Ker} f)^\perp\), \(\|f(x)\| = \|x\|\).</li>
+          <li>(c) En deduire l'existence d'un sous-espace vectoriel \(F\) de \(E\) et d'une application \(g \in \mathcal{O}(E)\) tels que : \(f = p_F \circ g\).</li>
+        </ol>
       </div>
     </div>
 
-    <div class="pdf-download">
-      <div class="pdf-download__icon">&#128196;</div>
-      <p class="pdf-download__text">
-        Le sujet original est disponible au format PDF. Cliquez sur le bouton ci-dessous pour le telecharger ou le consulter dans votre navigateur.
-      </p>
-      <a href="../../data/pdf-sujets/e3a-2000-maths2.pdf" class="pdf-download__btn" target="_blank" rel="noopener">
-        &#128229; Telecharger le PDF
-      </a>
+    <!-- EXERCICE 2 -->
+    <div class="annale-exercice" id="exo2">
+      <h2 class="annale-exercice__title">Exercice 2</h2>
+
+      <div class="question" id="q2-1">
+        <span class="question__num">1.</span>
+        <ol>
+          <li>(a) Pour quels reels \(x\) la fonction \(x \mapsto f(x) = \displaystyle\int_0^{+\infty} \frac{t^x}{(1+t)^2}\,\mathrm{d}t\) est-elle definie ?</li>
+          <li>(b) Pour \(t > 0\) fixe, developper en serie entiere en 0 la fonction \(x \mapsto \dfrac{t^x}{(1+t)^2}\).</li>
+        </ol>
+      </div>
+
+      <div class="question" id="q2-2">
+        <span class="question__num">2.</span>
+        <ol>
+          <li>(a) Calculer \(\displaystyle\int_0^1 (\ln t)^n\,\mathrm{d}t\) pour tout \(n \in \mathbb{N}\).</li>
+          <li>(b) En deduire que pour tout \(n \in \mathbb{N}\) :
+            <div class="math-display">$$\frac{n!}{4} \leqslant \int_0^1 \frac{|\ln t|^n}{(1+t)^2}\,\mathrm{d}t \leqslant n!$$</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="question" id="q2-3">
+        <span class="question__num">3.</span>
+        <ol>
+          <li>(a) Etablir une relation simple entre \(\displaystyle\int_0^1 \frac{(\ln t)^n}{(1+t)^2}\,\mathrm{d}t\) et \(\displaystyle\int_1^{+\infty} \frac{(\ln t)^n}{(1+t)^2}\,\mathrm{d}t\).</li>
+          <li>(b) Montrer que la fonction \(f\) est developpable en serie entiere en 0 et preciser le rayon de convergence de cette serie entiere.</li>
+        </ol>
+      </div>
+
+      <div class="question" id="q2-4">
+        <span class="question__num">4.</span>
+        <p>On pose dans cette question \(z = \dfrac{1}{2p}\), \(p \in \mathbb{N}^*\) et l'on veut calculer \(\displaystyle\int_1^{+\infty} \frac{t^{1/2p}}{(1+t)^2}\,\mathrm{d}t\).</p>
+        <p>On rappelle que pour \(\omega \in \mathbb{C} \setminus \mathbb{R}\) fixe, la fonction \(u \mapsto \dfrac{1}{u - \omega}\) admet pour primitive sur \(\mathbb{R}\) la fonction \(u \mapsto \ln|u - \omega| + \mathrm{i}\arg(u - \omega)\), ou \(\arg(u - \omega)\) designe l'argument de \(u - \omega\) strictement compris entre \(-\pi\) et \(\pi\).</p>
+        <ol>
+          <li>(a) Montrer que \(\displaystyle\int_0^{+\infty} \frac{t^{1/2p}}{(1+t)^2}\,\mathrm{d}t = \int_0^{+\infty} \frac{\mathrm{d}u}{1 + u^{2p}}\).</li>
+          <li>(b) En precisant les elements de l'ensemble \(\Omega\), etablir la decomposition en elements simples sur \(\mathbb{C}\) :
+            <div class="math-display">$$\frac{1}{1 + u^{2p}} = \frac{1}{2p} \sum_{\omega \in \Omega} \frac{\omega}{u - \omega}$$</div>
+          </li>
+          <li>(c) Montrer qu'en calculant \(\displaystyle\int_0^{+\infty} \frac{\mathrm{d}u}{1 + u^{2p}}\) la partie logarithmique s'annule.</li>
+          <li>(d) En posant \(\alpha = e^{i\pi/p}\), simplifier \((1 - \alpha)\displaystyle\sum_{k=0}^{p-1} k\,\alpha^k\) et en deduire que :
+            <div class="math-display">$$\forall p \in \mathbb{N}^*,\quad \int_0^{+\infty} \frac{t^{1/2p}}{(1+t)^2}\,\mathrm{d}t = \frac{\pi/2p}{\sin(\pi/2p)}$$</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="question" id="q2-5">
+        <span class="question__num">5.</span>
+        <p>Montrer que la fonction \(z \mapsto \pi z - f(z)\sin \pi z\) est developpable en serie entiere en 0 et en deduire que :</p>
+        <div class="math-display">$$\forall z \in \;]-1, +1[,\quad \int_0^{+\infty} \frac{t^z}{(1+t)^2}\,\mathrm{d}t = \frac{\pi z}{\sin \pi z}.$$</div>
+      </div>
+    </div>
+
+    <!-- EXERCICE 3 -->
+    <div class="annale-exercice" id="exo3">
+      <h2 class="annale-exercice__title">Exercice 3</h2>
+
+      <p class="annale-exercice__intro">Soit \(E\) un espace vectoriel euclidien oriente de dimension 3 et \((\vec{a}, \vec{b}, \vec{c})\) une base de \(E\) que l'on ne suppose pas orthonormale ; l'ensemble \(\mathcal{R} = \mathbb{Z}\,\vec{a} + \mathbb{Z}\,\vec{b} + \mathbb{Z}\,\vec{c}\) des combinaisons lineaires de \((\vec{a}, \vec{b}, \vec{c})\) a coefficients entiers forme alors un sous-groupe de \((E, +)\) appele reseau engendre par \((\vec{a}, \vec{b}, \vec{c})\).</p>
+
+      <div class="question" id="q3-1">
+        <span class="question__num">1.</span>
+        <p>Soit \(D\) une droite reticulaire de \(\mathcal{R}\), c'est-a-dire une droite vectorielle de \(E\) contenant au moins un vecteur non nul de \(\mathcal{R}\) ; etablir l'existence dans \(D \cap \mathcal{R}\) de \(\vec{w} = x\,\vec{a} + y\,\vec{b} + z\,\vec{c}\) non nul tel que \(x^2 + y^2 + z^2\) soit minimum et en deduire que \(D \cap \mathcal{R} = \mathbb{Z}\,\vec{w}\).</p>
+      </div>
+
+      <div class="question" id="q3-2">
+        <span class="question__num">2.</span>
+        <p>Notant \(\Delta = \det(\vec{a}, \vec{b}, \vec{c})\) le produit mixte de \((\vec{a}, \vec{b}, \vec{c})\), on pose :</p>
+        <div class="math-display">$$\vec{A} = \frac{1}{\Delta}(\vec{b} \wedge \vec{c}), \quad \vec{B} = \frac{1}{\Delta}(\vec{c} \wedge \vec{a}), \quad \vec{C} = \frac{1}{\Delta}(\vec{a} \wedge \vec{b}).$$</div>
+        <ol>
+          <li>(a) Exprimer simplement le produit scalaire \((x\,\vec{a} + y\,\vec{b} + z\,\vec{c} \mid \alpha\,\vec{A} + \beta\,\vec{B} + \gamma\,\vec{C})\).</li>
+          <li>(b) Montrer que \((\vec{A}, \vec{B}, \vec{C})\) forme une base de \(E\).</li>
+        </ol>
+      </div>
+
+      <div class="question" id="q3-3">
+        <span class="question__num">3.</span>
+        <p>Soit \(P\) un plan reticulaire de \(\mathcal{R}\), c'est-a-dire un plan vectoriel de \(E\) contenant au moins deux vecteurs lineairement independants de \(\mathcal{R}\) ; montrer l'existence d'un couple \((\vec{u}, \vec{v})\) de vecteurs lineairement independants de \(P \cap \mathcal{R}\) tels que \(X^2 + Y^2 + Z^2\) soit minimum lorsque \(\vec{u} \wedge \vec{v} = X\,\vec{A} + Y\,\vec{B} + Z\,\vec{C}\), et en deduire que \(P \cap \mathcal{R} = \mathbb{Z}\,\vec{u} + \mathbb{Z}\,\vec{v}\).</p>
+      </div>
+
+      <div class="question" id="q3-4">
+        <span class="question__num">4.</span>
+        <p>Dans ce qui suit, \(P\) designe un plan reticulaire de \(\mathcal{R}\), comme defini ci-dessus.</p>
+        <ol>
+          <li>(a) Etablir l'existence d'un triplet \((\alpha, \beta, \gamma)\) de nombres entiers relatifs premiers entre eux et tels que, pour \(\vec{w} = x\,\vec{a} + y\,\vec{b} + z\,\vec{c}\), on ait :
+            <div class="math-display">$$[\vec{w} \in P \cap \mathcal{R}] \iff [(x, y, z) \in \mathbb{Z}^3 \text{ et } \alpha x + \beta y + \gamma z = 0].$$</div>
+          </li>
+          <li>(b) Etant donne un tel triplet \((\alpha, \beta, \gamma)\), on definit pour \(k \in \mathbb{Z}\) les plans affines \(\mathcal{P}_k\) d'equations \(\alpha x + \beta y + \gamma z = k\) dans la base \((\vec{a}, \vec{b}, \vec{c})\) ; montrer que les \(\mathcal{P}_k \cap \mathcal{R}\) definissent une partition de l'ensemble.</li>
+          <li>(c) Exprimer la distance entre \(\mathcal{P}_k\) et \(\mathcal{P}_{k+1}\) a l'aide de \(\vec{N} = \alpha\,\vec{A} + \beta\,\vec{B} + \gamma\,\vec{C}\).</li>
+        </ol>
+      </div>
     </div>
 
     <nav class="course__nav">
