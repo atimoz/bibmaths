@@ -1523,13 +1523,38 @@ document.addEventListener('DOMContentLoaded', () => {
       try { live = liveRaw ? JSON.parse(liveRaw) : null; } catch(e) {}
       var pomodoroRunning = live && live.status === 'running' && live.endTime && live.endTime > Date.now();
 
-      if (!isClockMode && !pomodoroRunning) { removeMini(); return; }
+      // Check for running chrono
+      var chronoData = null;
+      try { chronoData = JSON.parse(localStorage.getItem('omni-timer-chrono')); } catch(e) {}
+      var chronoActive = chronoData && (chronoData.running || chronoData.elapsed > 0);
+
+      if (!isClockMode && !pomodoroRunning && !chronoActive) { removeMini(); return; }
 
       if (!miniEl) createMini();
 
+      // Chrono mode — show elapsed time counting up
+      if (chronoActive && !isClockMode && !pomodoroRunning) {
+        miniEl.classList.remove('mini-timer--clock');
+        miniEl.classList.add('mini-timer--chrono');
+        var elapsed = chronoData.elapsed || 0;
+        if (chronoData.running && chronoData.startTime) {
+          elapsed = Math.floor((Date.now() - chronoData.startTime) / 1000);
+        }
+        var ch = Math.floor(elapsed / 3600);
+        var cm = Math.floor((elapsed % 3600) / 60);
+        var cs = elapsed % 60;
+        var chronoDisp = (ch > 0 ? String(ch).padStart(2,'0') + ':' : '') + String(cm).padStart(2,'0') + ':' + String(cs).padStart(2,'0');
+        miniEl.querySelector('.mini-timer__time').textContent = 'Chrono  ' + chronoDisp;
+        miniEl.querySelector('.mini-timer__slot').innerHTML = chronoData.running
+          ? '<span class="mini-timer__dot" style="background:#22c55e"></span><span class="mini-timer__slot-label">En cours</span>'
+          : '<span class="mini-timer__slot-label" style="color:#f59e0b">En pause</span>';
+        if (expanded) updateCard();
+        return;
+      }
+
       // Pomodoro mode
       if (pomodoroRunning && !isClockMode) {
-        miniEl.classList.remove('mini-timer--clock');
+        miniEl.classList.remove('mini-timer--clock', 'mini-timer--chrono');
         var rem = Math.max(0, Math.ceil((live.endTime - Date.now()) / 1000));
         if (rem <= 0) { localStorage.removeItem('omni-timer-live'); removeMini(); return; }
         miniEl.querySelector('.mini-timer__time').textContent = modeLabel(live.mode) + '  ' + fmtTime(rem);
@@ -1539,6 +1564,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Clock mode
+      miniEl.classList.remove('mini-timer--chrono');
       miniEl.classList.add('mini-timer--clock');
       miniEl.querySelector('.mini-timer__time').textContent = clockTime();
 
@@ -1620,18 +1646,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Init ──
     loadDefi();
     updateMini();
-    var hasTimer = localStorage.getItem('omni-timer-live') || localStorage.getItem('omni-timer-clock');
+    var hasTimer = localStorage.getItem('omni-timer-live') || localStorage.getItem('omni-timer-clock') || localStorage.getItem('omni-timer-chrono');
     if (hasTimer) {
       miniInterval = setInterval(updateMini, 1000);
     }
 
     window.addEventListener('storage', function(e) {
-      if (e.key === 'omni-timer-live' || e.key === 'omni-timer-clock') {
+      if (e.key === 'omni-timer-live' || e.key === 'omni-timer-clock' || e.key === 'omni-timer-chrono') {
         updateMini();
-        if (!miniInterval && (localStorage.getItem('omni-timer-live') || localStorage.getItem('omni-timer-clock'))) {
+        if (!miniInterval && (localStorage.getItem('omni-timer-live') || localStorage.getItem('omni-timer-clock') || localStorage.getItem('omni-timer-chrono'))) {
           miniInterval = setInterval(updateMini, 1000);
         }
-        if (!localStorage.getItem('omni-timer-live') && !localStorage.getItem('omni-timer-clock')) {
+        if (!localStorage.getItem('omni-timer-live') && !localStorage.getItem('omni-timer-clock') && !localStorage.getItem('omni-timer-chrono')) {
           removeMini();
         }
       }
