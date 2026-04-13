@@ -782,17 +782,17 @@
       </div>
     </div>
 
-    <!-- Mode buttons (used by startSession, hidden by default) -->
-    <div id="modeButtons" style="display:none">
-      <button id="btnModeNew">Nouvelles</button>
-      <button id="btnModeReview">A revoir</button>
-      <button id="btnModeAll">Toutes</button>
+    <!-- Hidden elements required by JS (never visible) -->
+    <div id="modeButtons" style="display:none!important;position:absolute;pointer-events:none;opacity:0">
+      <button id="btnModeNew"></button>
+      <button id="btnModeReview"></button>
+      <button id="btnModeAll"></button>
     </div>
-    <div id="statsPanel" style="display:none">
-      <span id="statSeen">0</span>
-      <span id="statMastered">0</span>
-      <span id="statDue">0</span>
-      <span id="statStreak">0</span>
+    <div id="statsPanel" style="display:none!important;position:absolute;pointer-events:none;opacity:0">
+      <span id="statSeen"></span>
+      <span id="statMastered"></span>
+      <span id="statDue"></span>
+      <span id="statStreak"></span>
     </div>
 
     <!-- Controls (shown during session) -->
@@ -1713,10 +1713,11 @@
     document.getElementById('retryBtn').addEventListener('click', function() {
       scoreScreen.classList.remove('show');
       introScreen.style.display = 'block';
-      modeButtons.style.display = 'grid';
+      if (modeButtons) modeButtons.style.display = '';
       document.getElementById('filterContainer').style.display = '';
       document.getElementById('chapterProgress').style.display = '';
-      document.getElementById('statsPanel').style.display = '';
+      var _stP = document.getElementById('statsPanel');
+      if (_stP) _stP.style.display = '';
       updateModeBadges();
       updateStats();
     });
