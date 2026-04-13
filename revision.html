@@ -1322,18 +1322,21 @@
       sessionActive = true;
       stopAutoplay();
 
-      introScreen.style.display = 'none';
-      scoreScreen.classList.remove('show');
-      modeButtons.style.display = 'none';
-      document.getElementById('filterContainer').style.display = 'none';
-      document.getElementById('chapterProgress').style.display = 'none';
-      document.getElementById('statsPanel').style.display = 'none';
-      controls.style.display = 'flex';
-      cardScene.style.display = 'block';
-      cardCounter.style.display = 'flex';
-      cardActions.style.display = 'flex';
-      controlBar.style.display = 'flex';
-      kbdLegend.style.display = 'flex';
+      if (introScreen) introScreen.style.display = 'none';
+      if (scoreScreen) scoreScreen.classList.remove('show');
+      if (modeButtons) modeButtons.style.display = 'none';
+      var _fc = document.getElementById('filterContainer');
+      var _cp = document.getElementById('chapterProgress');
+      var _sp = document.getElementById('statsPanel');
+      if (_fc) _fc.style.display = 'none';
+      if (_cp) _cp.style.display = 'none';
+      if (_sp) _sp.style.display = 'none';
+      if (controls) controls.style.display = 'flex';
+      if (cardScene) cardScene.style.display = 'block';
+      if (cardCounter) cardCounter.style.display = 'flex';
+      if (cardActions) cardActions.style.display = 'flex';
+      if (controlBar) controlBar.style.display = 'flex';
+      if (kbdLegend) kbdLegend.style.display = 'flex';
 
       showCard();
     }
