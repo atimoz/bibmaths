@@ -964,6 +964,37 @@ body.clock-mode .timer { letter-spacing: -4px; }
   background: #38bdf8;
   border-color: #38bdf8;
 }
+
+/* Chrono mode — green accent */
+body.chrono-mode .session-dots { display: none; }
+body.chrono-mode .fire-count { display: none; }
+body.chrono-mode .stats-pill { display: none; }
+body.chrono-mode .timer { letter-spacing: -4px; }
+
+.mode-tab--chrono-active {
+  background: var(--green, #22c55e);
+  border-color: var(--green, #22c55e);
+  color: #fff;
+  box-shadow: 0 4px 28px var(--green-glow, rgba(34,197,94,0.3));
+}
+
+.mode-tab--chrono-active:hover {
+  background: #4ade80;
+  border-color: #4ade80;
+}
+
+/* Chrono running state — green glow on button */
+body.chrono-mode .btn-main {
+  background: var(--green, #22c55e);
+  box-shadow: 0 6px 32px var(--green-glow, rgba(34,197,94,0.3));
+}
+body.chrono-mode .btn-main:hover {
+  background: #4ade80;
+}
+body.chrono-mode .btn-main--pause {
+  background: var(--t-pause-bg);
+  box-shadow: none;
+}
   </style>
 </head>
 <body>
@@ -1075,6 +1106,7 @@ body.clock-mode .timer { letter-spacing: -4px; }
         <button class="mode-tab" data-mode="shortBreak">Short Break</button>
         <button class="mode-tab" data-mode="longBreak">Long Break</button>
         <button class="mode-tab" data-mode="clock">Horloge</button>
+        <button class="mode-tab" data-mode="chrono">Chrono</button>
       </div>
 
       <div class="session-dots" id="sessionDots">
@@ -1225,6 +1257,7 @@ body.clock-mode .timer { letter-spacing: -4px; }
       <div class="kbd-hint"><span class="kbd">S</span> Settings</div>
       <div class="kbd-hint"><span class="kbd">F</span> Fullscreen</div>
       <div class="kbd-hint"><span class="kbd">C</span> Horloge</div>
+      <div class="kbd-hint"><span class="kbd">T</span> Chrono</div>
     </div>
 
     <!-- Toast -->
@@ -1323,7 +1356,7 @@ function getDur(mode) {
 }
 
 function render() {
-  if (state.mode === 'clock') return;
+  if (state.mode === 'clock' || state.mode === 'chrono') return;
   timer.textContent = fmt(state.timeLeft);
   document.title = `${fmt(state.timeLeft)} — Omniscience Timer`;
 
@@ -1360,10 +1393,23 @@ function render() {
 
 let interval = null;
 let clockInterval = null;
+let chronoInterval = null;
+let chronoElapsed = 0; // seconds elapsed
+let chronoStartTime = null; // Date.now() when started (for accuracy)
 
 function start() {
   if (state.mode === 'clock') return;
   if (state.status === 'running') return;
+
+  if (state.mode === 'chrono') {
+    state.status = 'running';
+    chronoStartTime = Date.now() - chronoElapsed * 1000;
+    chronoInterval = setInterval(updateChrono, 100);
+    saveChrono();
+    renderChrono();
+    return;
+  }
+
   state.status = 'running';
   state.endTime = Date.now() + state.timeLeft * 1000;
   interval = setInterval(() => {
@@ -1380,6 +1426,16 @@ function start() {
 
 function pause() {
   if (state.status !== 'running') return;
+
+  if (state.mode === 'chrono') {
+    clearInterval(chronoInterval); chronoInterval = null;
+    chronoElapsed = Math.floor((Date.now() - chronoStartTime) / 1000);
+    state.status = 'paused';
+    saveChrono();
+    renderChrono();
+    return;
+  }
+
   clearInterval(interval); interval = null;
   state.status = 'paused';
   state.timeLeft = Math.max(0, Math.ceil((state.endTime - Date.now()) / 1000));
@@ -1389,6 +1445,17 @@ function pause() {
 
 function reset() {
   if (state.mode === 'clock') return;
+
+  if (state.mode === 'chrono') {
+    clearInterval(chronoInterval); chronoInterval = null;
+    chronoElapsed = 0;
+    chronoStartTime = null;
+    state.status = 'idle';
+    saveChrono();
+    renderChrono();
+    return;
+  }
+
   clearInterval(interval); interval = null;
   state.status = 'idle';
   state.timeLeft = getDur(state.mode);
@@ -1397,18 +1464,28 @@ function reset() {
 }
 
 function switchMode(mode) {
-  // Exit clock mode if we were in it
+  // Exit special modes
   exitClockMode();
+  exitChronoMode();
 
   if (state.status === 'running') { clearInterval(interval); interval = null; }
 
   if (mode === 'clock') {
     state.mode = mode;
     enterClockMode();
-    // Update tab highlighting
     modeTabs.forEach(t => {
-      t.classList.remove('mode-tab--active', 'mode-tab--break-active', 'mode-tab--clock-active');
+      t.classList.remove('mode-tab--active', 'mode-tab--break-active', 'mode-tab--clock-active', 'mode-tab--chrono-active');
       if (t.dataset.mode === 'clock') t.classList.add('mode-tab--clock-active');
+    });
+    return;
+  }
+
+  if (mode === 'chrono') {
+    state.mode = mode;
+    enterChronoMode();
+    modeTabs.forEach(t => {
+      t.classList.remove('mode-tab--active', 'mode-tab--break-active', 'mode-tab--clock-active', 'mode-tab--chrono-active');
+      if (t.dataset.mode === 'chrono') t.classList.add('mode-tab--chrono-active');
     });
     return;
   }
@@ -1466,6 +1543,66 @@ function exitClockMode() {
   if (clockInterval) { clearInterval(clockInterval); clockInterval = null; }
   localStorage.removeItem('omni-timer-clock');
   document.body.classList.remove('clock-mode');
+}
+
+// ── Chrono Mode ──
+function enterChronoMode() {
+  if (interval) { clearInterval(interval); interval = null; }
+  state.status = 'idle';
+  saveLiveState();
+  document.body.classList.add('chrono-mode');
+  // Restore from localStorage if we had a running chrono
+  try {
+    var saved = JSON.parse(localStorage.getItem('omni-timer-chrono'));
+    if (saved) {
+      chronoElapsed = saved.elapsed || 0;
+      if (saved.running && saved.startTime) {
+        chronoStartTime = saved.startTime;
+        chronoElapsed = Math.floor((Date.now() - chronoStartTime) / 1000);
+        state.status = 'running';
+        chronoInterval = setInterval(updateChrono, 100);
+      }
+    }
+  } catch(e) {}
+  renderChrono();
+}
+
+function updateChrono() {
+  if (!chronoStartTime) return;
+  chronoElapsed = Math.floor((Date.now() - chronoStartTime) / 1000);
+  renderChrono();
+}
+
+function renderChrono() {
+  var h = Math.floor(chronoElapsed / 3600);
+  var m = Math.floor((chronoElapsed % 3600) / 60);
+  var s = chronoElapsed % 60;
+  var display = (h > 0 ? String(h).padStart(2, '0') + ':' : '') + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  timer.textContent = display;
+  document.title = display + ' — Chrono';
+
+  timer.classList.toggle('timer--paused', state.status === 'paused');
+  btnStart.textContent = state.status === 'running' ? 'Pause' : state.status === 'paused' ? 'Resume' : 'Start';
+  btnStart.classList.toggle('btn-main--pause', state.status === 'running');
+}
+
+function saveChrono() {
+  if (state.mode !== 'chrono') { localStorage.removeItem('omni-timer-chrono'); return; }
+  localStorage.setItem('omni-timer-chrono', JSON.stringify({
+    elapsed: chronoElapsed,
+    running: state.status === 'running',
+    startTime: chronoStartTime
+  }));
+}
+
+function exitChronoMode() {
+  if (chronoInterval) { clearInterval(chronoInterval); chronoInterval = null; }
+  if (state.mode === 'chrono' && state.status !== 'running') {
+    localStorage.removeItem('omni-timer-chrono');
+  }
+  chronoElapsed = 0;
+  chronoStartTime = null;
+  document.body.classList.remove('chrono-mode');
 }
 
 function onEnd() {
@@ -1605,6 +1742,7 @@ document.addEventListener('keydown', e => {
     case 's': $('timerPanel').classList.contains('timer-panel--open') ? closePanel() : openPanel(); break;
     case 'f': !document.fullscreenElement ? document.documentElement.requestFullscreen() : document.exitFullscreen(); break;
     case 'c': switchMode(state.mode === 'clock' ? 'focus' : 'clock'); break;
+    case 't': switchMode(state.mode === 'chrono' ? 'focus' : 'chrono'); break;
     case 'escape': closePanel(); $('statsDrawer').classList.remove('stats-drawer--open'); break;
   }
 });
@@ -1621,6 +1759,14 @@ loadTheme();
       switchMode('clock');
       return;
     }
+    // Check if chrono was running
+    try {
+      var chrono = JSON.parse(localStorage.getItem('omni-timer-chrono'));
+      if (chrono && (chrono.running || chrono.elapsed > 0)) {
+        switchMode('chrono');
+        return;
+      }
+    } catch(e) {}
     const live = JSON.parse(localStorage.getItem('omni-timer-live'));
     if (live && live.status === 'running' && live.endTime > Date.now()) {
       state.mode = live.mode;

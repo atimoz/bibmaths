@@ -1145,7 +1145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function modeLabel(mode) {
-      return mode === 'focus' ? 'Focus' : mode === 'shortBreak' ? 'Pause' : mode === 'longBreak' ? 'Pause longue' : mode === 'clock' ? 'Horloge' : mode;
+      return mode === 'focus' ? 'Focus' : mode === 'shortBreak' ? 'Pause' : mode === 'longBreak' ? 'Pause longue' : mode === 'clock' ? 'Horloge' : mode === 'chrono' ? 'Chrono' : mode;
     }
 
     function parseTimeToMin(str) {
