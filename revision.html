@@ -1729,6 +1729,26 @@
     updateStats();
     updateModeBadges();
 
+    // Auto-start session from URL param (e.g. ?auto=all or ?auto=ch:mp-02)
+    var urlParams = new URLSearchParams(window.location.search);
+    var autoMode = urlParams.get('auto');
+    if (autoMode) {
+      setTimeout(function() {
+        if (autoMode === 'all') {
+          startSession(FLASHCARDS.slice());
+        } else if (autoMode.startsWith('ch:')) {
+          var ch = autoMode.split(':')[1];
+          var filtered = FLASHCARDS.filter(function(c) { return c.ch === ch; });
+          if (filtered.length > 0) startSession(filtered);
+          else startSession(FLASHCARDS.slice());
+        }
+        // Re-render KaTeX after auto-start
+        if (typeof renderKaTeX === 'function') {
+          setTimeout(function() { renderKaTeX(document.getElementById('cardScene')); }, 400);
+        }
+      }, 500);
+    }
+
     // Initial KaTeX render for any static math
     if (typeof renderMathInElement === 'function') {
       renderKaTeX(document.body);

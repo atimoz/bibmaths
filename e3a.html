@@ -1465,6 +1465,12 @@
     window.addEventListener('scroll', animateFreqBars, { passive: true });
     setTimeout(animateFreqBars, 100);
 
+    /* Auto-open flashcards section from URL hash (e.g. e3a.html#flashcards) */
+    if (window.location.hash === '#flashcards' && filters) {
+      var fcBtn = filters.querySelector('[data-filter="flashcards"]');
+      if (fcBtn) { fcBtn.click(); }
+    }
+
     /* ═══════════════════════════════════════════════ */
     /*  FLASHCARDS ENGINE (inline)                    */
     /* ═══════════════════════════════════════════════ */
