@@ -782,19 +782,6 @@
       </div>
     </div>
 
-    <!-- Hidden elements required by JS (never visible) -->
-    <div id="modeButtons" style="display:none!important;position:absolute;pointer-events:none;opacity:0">
-      <button id="btnModeNew"></button>
-      <button id="btnModeReview"></button>
-      <button id="btnModeAll"></button>
-    </div>
-    <div id="statsPanel" style="display:none!important;position:absolute;pointer-events:none;opacity:0">
-      <span id="statSeen"></span>
-      <span id="statMastered"></span>
-      <span id="statDue"></span>
-      <span id="statStreak"></span>
-    </div>
-
     <!-- Controls (shown during session) -->
     <div class="rev__controls" id="controls" style="display:none">
       <div class="rev__progress"><div class="rev__progress-bar" id="progressBar"></div></div>
@@ -1756,27 +1743,6 @@
     buildFilters();
     updateStats();
     updateModeBadges();
-
-    // Auto-start session from URL param (e.g. ?auto=all or ?auto=ch:mp-02)
-    var urlParams = new URLSearchParams(window.location.search);
-    var autoMode = urlParams.get('auto');
-    if (autoMode) {
-      setTimeout(function() {
-        console.log('[auto] starting session, mode=' + autoMode + ', cards=' + FLASHCARDS.length);
-        if (autoMode === 'all') {
-          startSession(FLASHCARDS.slice());
-        } else if (autoMode.startsWith('ch:')) {
-          var ch = autoMode.split(':')[1];
-          var filtered = FLASHCARDS.filter(function(c) { return c.ch === ch; });
-          if (filtered.length > 0) startSession(filtered);
-          else startSession(FLASHCARDS.slice());
-        }
-        // Re-render KaTeX after auto-start
-        if (typeof renderKaTeX === 'function') {
-          setTimeout(function() { renderKaTeX(document.getElementById('cardScene')); }, 400);
-        }
-      }, 500);
-    }
 
     // Initial KaTeX render for any static math
     if (typeof renderMathInElement === 'function') {
