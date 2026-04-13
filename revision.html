@@ -1199,9 +1199,12 @@
       document.getElementById('badgeReview').textContent = reviewCount;
       document.getElementById('badgeAll').textContent = filtered.length;
 
-      document.getElementById('btnModeNew').disabled = newCount === 0;
-      document.getElementById('btnModeReview').disabled = reviewCount === 0;
-      document.getElementById('btnModeAll').disabled = filtered.length === 0;
+      var _mNew = document.getElementById('btnModeNew');
+      var _mRev = document.getElementById('btnModeReview');
+      var _mAll = document.getElementById('btnModeAll');
+      if (_mNew) _mNew.disabled = newCount === 0;
+      if (_mRev) _mRev.disabled = reviewCount === 0;
+      if (_mAll) _mAll.disabled = filtered.length === 0;
     }
 
     // ══════════════════════════════════════════════
@@ -1335,7 +1338,7 @@
       showCard();
     }
 
-    document.getElementById('btnModeNew').addEventListener('click', function() {
+    if (document.getElementById('btnModeNew')) document.getElementById('btnModeNew').addEventListener('click', function() {
       const filtered = getFilteredCards();
       const srs = loadSRS();
       const newCards = filtered.filter(function(c) {
@@ -1345,7 +1348,7 @@
       startSession(newCards);
     });
 
-    document.getElementById('btnModeReview').addEventListener('click', function() {
+    if (document.getElementById('btnModeReview')) document.getElementById('btnModeReview').addEventListener('click', function() {
       const filtered = getFilteredCards();
       const srs = loadSRS();
       const t = today();
@@ -1356,7 +1359,7 @@
       startSession(dueCards);
     });
 
-    document.getElementById('btnModeAll').addEventListener('click', function() {
+    if (document.getElementById('btnModeAll')) document.getElementById('btnModeAll').addEventListener('click', function() {
       startSession(getFilteredCards());
     });
 
