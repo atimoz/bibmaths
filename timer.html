@@ -99,38 +99,7 @@
   --t-pause-bg: rgba(255,255,255,0.08);
 }
 
-/* -- Theme: Clair (warm light mode) -- */
-[data-timer-theme="clair"] {
-  --t-bg: #f5f0e8;
-  --t-text: #1a1410;
-  --t-text-soft: rgba(26,20,16,0.8);
-  --t-text-muted: rgba(26,20,16,0.4);
-  --t-accent: #d4714e;
-  --t-accent-hover: #c25d3a;
-  --t-accent-glow: rgba(212,113,78,0.25);
-  --t-tab-border: rgba(26,20,16,0.18);
-  --t-tab-hover-bg: rgba(26,20,16,0.04);
-  --t-dot-bg: rgba(26,20,16,0.15);
-  --t-dot-current: #1a1410;
-  --t-ctrl-bg: rgba(26,20,16,0.06);
-  --t-ctrl-hover: rgba(26,20,16,0.12);
-  --t-ctrl-color: rgba(26,20,16,0.45);
-  --t-bar-bg: rgba(255,250,242,0.8);
-  --t-bar-border: rgba(26,20,16,0.08);
-  --t-bar-btn: rgba(26,20,16,0.35);
-  --t-bar-btn-hover: rgba(26,20,16,0.06);
-  --t-panel-bg: rgba(255,252,247,0.96);
-  --t-panel-border: rgba(26,20,16,0.08);
-  --t-input-bg: rgba(26,20,16,0.04);
-  --t-input-border: rgba(26,20,16,0.1);
-  --t-toggle-bg: rgba(26,20,16,0.1);
-  --t-shadow: 0 4px 40px rgba(26,20,16,0.06);
-  --t-pill-bg: rgba(255,250,242,0.7);
-  --t-stats-bg: rgba(26,20,16,0.03);
-  --t-stats-border: rgba(26,20,16,0.06);
-  --t-logo-shadow: none;
-  --t-pause-bg: rgba(26,20,16,0.08);
-}
+/* Theme Clair removed — Linear-only aesthetic */
 
 /* ============================================
    Background — per timer theme
@@ -158,32 +127,7 @@
     rgba(255,180,120,0.25) 0%, transparent 65%);
 }
 
-[data-timer-theme="clair"] .bg {
-  background: linear-gradient(160deg, #f5f0e8 0%, #f0e6d6 40%, #ece0d0 100%);
-}
-
-[data-timer-theme="clair"] .main-content,
-[data-timer-theme="clair"] .btn-main,
-[data-timer-theme="clair"] .mode-tab,
-[data-timer-theme="clair"] .timer,
-[data-timer-theme="clair"] .timer-panel__title,
-[data-timer-theme="clair"] .stats-header h3,
-[data-timer-theme="clair"] .section-label,
-[data-timer-theme="clair"] .stat-val,
-[data-timer-theme="clair"] .toggle-text,
-[data-timer-theme="clair"] .theme-card__name {
-  font-family: var(--font-display);
-}
-[data-timer-theme="clair"] .dur-field label,
-[data-timer-theme="clair"] .sound-sel,
-[data-timer-theme="clair"] .toggle-desc,
-[data-timer-theme="clair"] .timer-panel__sub,
-[data-timer-theme="clair"] .stats-pill,
-[data-timer-theme="clair"] .dur-field .unit,
-[data-timer-theme="clair"] .stat-lbl,
-[data-timer-theme="clair"] .theme-card__desc {
-  font-family: var(--font-body);
-}
+/* Clair background/font overrides removed */
 
 /* ============================================
    Main content container for timer
@@ -690,7 +634,7 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-[data-timer-theme="clair"] .toggle::after { background: var(--t-text); }
+/* clair toggle removed */
 
 .toggle--on { background: var(--t-accent); }
 .toggle--on::after { transform: translateX(22px); }
@@ -888,10 +832,7 @@ body:hover .kbd-hints { opacity: 1; }
   border: 1px solid rgba(255,255,255,0.08);
 }
 
-.theme-card__preview--clair {
-  background: linear-gradient(135deg, #f5f0e8 0%, #ece0d0 100%);
-  border: 1px solid rgba(26,20,16,0.1);
-}
+/* clair preview removed */
 
 .theme-card__name {
   font-size: 12px;
@@ -1006,9 +947,7 @@ body.chrono-mode .bg::before {
   inset: 0;
   background: radial-gradient(ellipse 70% 50% at 50% 45%, rgba(34,197,94,0.15) 0%, transparent 65%);
 }
-[data-timer-theme="clair"] body.chrono-mode .bg {
-  background: linear-gradient(160deg, #ecfdf5 0%, #d1fae5 40%, #a7f3d0 100%) !important;
-}
+/* clair chrono bg removed */
   </style>
 </head>
 <body>
@@ -1207,11 +1146,7 @@ body.chrono-mode .bg::before {
           <div class="theme-card__name">Gradient</div>
           <div class="theme-card__desc">Vivid aurora</div>
         </div>
-        <div class="theme-card" data-theme-val="clair">
-          <div class="theme-card__preview theme-card__preview--clair"></div>
-          <div class="theme-card__name">Clair</div>
-          <div class="theme-card__desc">Warm serif</div>
-        </div>
+        <!-- Clair theme removed -->
       </div>
 
       <div class="section-label">Timer Lengths</div>
@@ -1695,7 +1630,7 @@ function loadTheme() {
   } else {
     // Default: check Omniscience preference from localStorage
     const omniTheme = localStorage.getItem('bibmaths-theme');
-    setTheme(omniTheme === 'light' ? 'clair' : 'linear');
+    setTheme('linear');
   }
 }
 
