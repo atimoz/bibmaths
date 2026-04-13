@@ -677,6 +677,8 @@
       transition: all .12s;
     }
     .cal7__pop-card-link:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.15); color: #fff; }
+    .cal7__pop-card-link--flash { background: rgba(245,158,11,.08); border-color: rgba(245,158,11,.2); color: #f59e0b; }
+    .cal7__pop-card-link--flash:hover { background: rgba(245,158,11,.15); border-color: rgba(245,158,11,.3); color: #fbbf24; }
     /* Reflex card structured items */
     .reflex-list { display: flex; flex-direction: column; gap: 2px; }
     .reflex-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
@@ -1302,29 +1304,40 @@
 
         // Contextual card links based on slot type
         var cardLinks = [];
+        var flashLinks = [];
         if (slot.type === 'correction') {
           cardLinks.push({ id: 'card-protocol', label: 'Protocole de correction' });
           cardLinks.push({ id: 'card-errors', label: 'Erreurs classiques' });
+          flashLinks.push({ href: 'revision.html', label: 'Flashcards maths' });
         }
         if (slot.type === 'math') {
           cardLinks.push({ id: 'card-reflexes-math', label: 'Reflexes maths' });
+          flashLinks.push({ href: 'revision.html', label: 'Flashcards maths' });
         }
         if (slot.type === 'physics') {
           cardLinks.push({ id: 'card-reflexes-physics', label: 'Formules physique' });
+          flashLinks.push({ href: 'e3a.html#flashcards', label: 'Flashcards physique' });
         }
         if (slot.type === 'cours') {
           cardLinks.push({ id: 'card-reflexes-math', label: 'Reflexes maths' });
           cardLinks.push({ id: 'card-reflexes-physics', label: 'Formules physique' });
+          flashLinks.push({ href: 'revision.html', label: 'Flashcards maths' });
+          flashLinks.push({ href: 'e3a.html#flashcards', label: 'Flashcards physique' });
         }
         if (slot.type === 'fiche') {
           cardLinks.push({ id: 'card-fiche', label: 'Modele de fiche' });
           cardLinks.push({ id: 'card-reflexes-math', label: 'Reflexes maths' });
+          flashLinks.push({ href: 'revision.html', label: 'Flashcards maths' });
+          flashLinks.push({ href: 'e3a.html#flashcards', label: 'Flashcards physique' });
         }
-        if (cardLinks.length > 0) {
+        if (cardLinks.length > 0 || flashLinks.length > 0) {
           html += '<div class="cal7__pop-cards">';
           html += '<span class="cal7__pop-cards-label">Fiches utiles</span>';
           cardLinks.forEach(function(cl) {
             html += '<a href="#' + cl.id + '" class="cal7__pop-card-link" data-card="' + cl.id + '">' + cl.label + '</a>';
+          });
+          flashLinks.forEach(function(fl) {
+            html += '<a href="' + fl.href + '" class="cal7__pop-card-link cal7__pop-card-link--flash">\u26a1 ' + fl.label + '</a>';
           });
           html += '</div>';
         }
