@@ -5068,6 +5068,122 @@ a.stats-item__q:hover {
 }
 
 /* ============================================
+   Revision Cards (parcours.html)
+   ============================================ */
+#cal7Cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+  margin-top: 28px;
+  padding: 0 4px;
+}
+
+.cal7__card {
+  background: var(--bg-surface, #18181b);
+  border: 1px solid var(--border, rgba(255,255,255,.06));
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .2s ease;
+}
+.cal7__card:hover { border-color: rgba(255,255,255,.12); }
+.cal7__card[open] { border-color: rgba(255,255,255,.1); }
+
+.cal7__card > summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  font-family: var(--font-body);
+  font-size: .82rem;
+  color: var(--ink-light, #e4e4e7);
+  transition: background .15s ease;
+}
+.cal7__card > summary::-webkit-details-marker { display: none; }
+.cal7__card > summary::after {
+  content: '';
+  margin-left: auto;
+  width: 16px;
+  height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") center/contain no-repeat;
+  transition: transform .2s ease;
+  flex-shrink: 0;
+}
+.cal7__card[open] > summary::after { transform: rotate(180deg); }
+.cal7__card > summary:hover { background: rgba(255,255,255,.03); }
+
+.cal7__card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: var(--accent, #7432FF);
+  color: #fff;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.cal7__card-title {
+  font-weight: 600;
+  font-size: .82rem;
+}
+
+.cal7__card-body {
+  padding: 0 16px 16px 16px;
+  font-family: var(--font-body);
+  font-size: .78rem;
+  color: var(--ink-muted, #a1a1aa);
+  line-height: 1.6;
+}
+
+.cal7__card-body ol,
+.cal7__card-body ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.cal7__card-body li {
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,.03);
+}
+.cal7__card-body li:last-child { border-bottom: none; }
+
+.cal7__card-body strong {
+  color: var(--ink-light, #e4e4e7);
+  font-weight: 600;
+}
+
+/* Card icon color variants */
+.cal7__card:nth-child(1) .cal7__card-icon { background: #E91E63; }
+.cal7__card:nth-child(2) .cal7__card-icon { background: #F5A623; }
+.cal7__card:nth-child(3) .cal7__card-icon { background: #4A90D9; }
+.cal7__card:nth-child(4) .cal7__card-icon { background: #4CAF50; }
+.cal7__card:nth-child(5) .cal7__card-icon { background: #ef4444; }
+.cal7__card:nth-child(6) .cal7__card-icon { background: #8B5CF6; }
+
+/* Light theme */
+[data-theme="light"] .cal7__card {
+  background: var(--bg-surface, #fff);
+  border-color: rgba(0,0,0,.08);
+}
+[data-theme="light"] .cal7__card:hover { border-color: rgba(0,0,0,.15); }
+[data-theme="light"] .cal7__card > summary:hover { background: rgba(0,0,0,.02); }
+[data-theme="light"] .cal7__card-body li { border-bottom-color: rgba(0,0,0,.04); }
+
+@media (max-width: 768px) {
+  #cal7Cards { grid-template-columns: 1fr; }
+  .cal7__card > summary { padding: 12px 14px; }
+}
+
+/* ============================================
    Mini-timer — floating widget (all pages)
    ============================================ */
 /* ============================================
