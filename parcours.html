@@ -852,6 +852,8 @@
         <p class="cal7__subtitle">Maths le matin &middot; Physique l&rsquo;apres-midi &middot; Fiches le soir &mdash; base sur 26 ans d&rsquo;annales.</p>
       </div>
       <div class="cal7__overview" id="cal7Overview"></div>
+      <div id="defiZone"></div>
+      <div class="defi-progress" id="defiProgress" style="display:none"></div>
       <div id="cal7Fc"></div>
       <div class="cal7__cards" id="cal7Cards"></div>
 
@@ -1034,6 +1036,197 @@
         });
         fc.render();
       }
+
+      // ── Defi Mode UI ──
+      (function initDefiUI() {
+        var defiZone = document.getElementById('defiZone');
+        var defiProgressBar = document.getElementById('defiProgress');
+        if (!defiZone) return;
+
+        function renderDefiButton() {
+          // Wait for OmniDefi to be available (from main.js)
+          if (typeof OmniDefi === 'undefined') {
+            setTimeout(renderDefiButton, 200);
+            return;
+          }
+
+          OmniDefi.load();
+          if (OmniDefi.isActive()) {
+            defiZone.innerHTML = '<button class="defi-start defi-start--active" disabled>Defi 7 jours en cours — Jour ' + (OmniDefi.progress()?.dayIdx + 1 || '?') + '/7</button>';
+            renderProgressBar();
+            updateCalendarSlotStatus();
+          } else {
+            defiZone.innerHTML = '<button class="defi-start" id="defiBtn">Commencer le defi 7 jours</button>';
+            document.getElementById('defiBtn').addEventListener('click', function() {
+              OmniDefi.start();
+              renderDefiButton();
+            });
+          }
+        }
+
+        function renderProgressBar() {
+          if (!OmniDefi.isActive() || !P || !P.days) { defiProgressBar.style.display = 'none'; return; }
+          var dayIdx = new Date().getDay();
+          dayIdx = dayIdx === 0 ? 6 : dayIdx - 1;
+          if (dayIdx >= P.days.length) { defiProgressBar.style.display = 'none'; return; }
+
+          var day = P.days[dayIdx];
+          var html = '';
+          var totalDur = 0;
+          day.slots.forEach(function(s) {
+            if (s.type === 'pause') return;
+            var dur = parseInt(s.duration) || 60;
+            totalDur += dur;
+          });
+          day.slots.forEach(function(s) {
+            if (s.type === 'pause') return;
+            var dur = parseInt(s.duration) || 60;
+            var pct = (dur / totalDur) * 100;
+            var colors = P.meta.colors;
+            var color = colors[s.type] || '#888';
+            var done = OmniDefi.isComplete(s.id);
+            var nowMin = new Date().getHours() * 60 + new Date().getMinutes();
+            var parts = s.time.split('\u2013').map(function(t) { return t.trim(); });
+            var startM = parts[0].match(/(\d+)h(\d+)/);
+            var endM = parts[1] ? parts[1].match(/(\d+)h(\d+)/) : null;
+            var startMin = startM ? parseInt(startM[1]) * 60 + parseInt(startM[2]) : 0;
+            var endMin = endM ? parseInt(endM[1]) * 60 + parseInt(endM[2]) : 0;
+            var isActive = nowMin >= startMin && nowMin < endMin;
+
+            var cls = 'defi-progress__seg';
+            if (done) cls += ' defi-progress__seg--done';
+            else if (isActive) cls += ' defi-progress__seg--active';
+            html += '<div class="' + cls + '" style="flex:' + pct + ';background:' + color + '" title="' + s.label + '"></div>';
+          });
+          defiProgressBar.innerHTML = html;
+          defiProgressBar.style.display = 'flex';
+        }
+
+        function updateCalendarSlotStatus() {
+          if (!OmniDefi.isActive() || typeof fc === 'undefined') return;
+          // Update FullCalendar events with defi status classes
+          var events = fc.getEvents();
+          var nowMin = new Date().getHours() * 60 + new Date().getMinutes();
+          events.forEach(function(ev) {
+            var el = ev.el;
+            if (!el) return;
+            var slotData = ev.extendedProps?.slotData;
+            if (!slotData) return;
+
+            el.classList.remove('defi-done', 'defi-active', 'defi-missed');
+            if (OmniDefi.isComplete(slotData.id)) {
+              el.classList.add('defi-done');
+            } else {
+              var parts = slotData.time.split('\u2013').map(function(t) { return t.trim(); });
+              var match = parts[0].match(/(\d+)h(\d+)/);
+              var endMatch = parts[1] ? parts[1].match(/(\d+)h(\d+)/) : null;
+              var startMin = match ? parseInt(match[1]) * 60 + parseInt(match[2]) : 0;
+              var endMin = endMatch ? parseInt(endMatch[1]) * 60 + parseInt(endMatch[2]) : 0;
+              if (nowMin >= startMin && nowMin < endMin) el.classList.add('defi-active');
+              else if (nowMin > endMin && slotData.type !== 'pause') el.classList.add('defi-missed');
+            }
+          });
+        }
+
+        // End-of-day recap
+        window.addEventListener('defi-day-end', function(e) {
+          showDayRecap(e.detail.dayIdx);
+        });
+
+        function showDayRecap(dayIdx) {
+          if (!P || !P.days || dayIdx >= P.days.length) return;
+          var day = P.days[dayIdx];
+          var completed = 0, total = 0, missed = [];
+          var mathMin = 0, physMin = 0, ficheMin = 0;
+
+          day.slots.forEach(function(s) {
+            if (s.type === 'pause') return;
+            total++;
+            var dur = parseInt(s.duration) || 60;
+            if (OmniDefi.isComplete(s.id)) {
+              completed++;
+              if (s.type === 'math' || s.type === 'correction') mathMin += dur;
+              else if (s.type === 'physics') physMin += dur;
+              else if (s.type === 'cours' || s.type === 'fiche') ficheMin += dur;
+            } else {
+              missed.push(s);
+            }
+          });
+
+          var totalHours = Math.round((mathMin + physMin + ficheMin) / 60);
+          var globalPct = P.days.length > 0 ? Math.round(((dayIdx + 1) / P.days.length) * 100) : 0;
+
+          // Tomorrow info
+          var tomorrow = P.days[dayIdx + 1] || null;
+          var tomorrowText = tomorrow ? tomorrow.title : 'Programme termine !';
+
+          // Build confetti
+          var confettiColors = ['#E91E63', '#4A90D9', '#8B5CF6', '#4CAF50', '#F5A623', '#FF6B35'];
+          var confettiHTML = '<div class="defi-confetti">';
+          for (var ci = 0; ci < 24; ci++) {
+            var clr = confettiColors[ci % confettiColors.length];
+            var left = Math.random() * 100;
+            var delay = Math.random() * 1.5;
+            confettiHTML += '<span style="left:' + left + '%;background:' + clr + ';animation-delay:' + delay + 's"></span>';
+          }
+          confettiHTML += '</div>';
+
+          var html = '<div class="defi-recap"><div class="defi-recap__card">';
+          html += confettiHTML;
+          html += '<div class="defi-recap__title">Journee ' + (dayIdx + 1) + ' terminee !</div>';
+          html += '<div class="defi-recap__stat"><strong>' + totalHours + 'h de travail</strong> — ' + completed + '/' + total + ' slots completes</div>';
+
+          // Distribution bar
+          var barTotal = mathMin + physMin + ficheMin || 1;
+          html += '<div class="defi-recap__bar">';
+          if (mathMin) html += '<div class="defi-recap__bar-seg" style="flex:' + mathMin + ';background:#E91E63"></div>';
+          if (physMin) html += '<div class="defi-recap__bar-seg" style="flex:' + physMin + ';background:#4A90D9"></div>';
+          if (ficheMin) html += '<div class="defi-recap__bar-seg" style="flex:' + ficheMin + ';background:#4CAF50"></div>';
+          html += '</div>';
+          html += '<div class="defi-recap__bar-legend">' + Math.round(mathMin/60) + 'h maths · ' + Math.round(physMin/60) + 'h physique · ' + Math.round(ficheMin/60) + 'h fiches</div>';
+
+          // Missed slots
+          if (missed.length > 0) {
+            html += '<div class="defi-recap__missed"><div class="defi-recap__missed-label">Slots manques</div>';
+            missed.forEach(function(s) {
+              html += '<div class="defi-recap__missed-item"><span style="color:#ef4444">!</span> ' + s.label + ' (' + s.time + ')</div>';
+            });
+            html += '</div>';
+          }
+
+          // Global progress
+          html += '<div class="defi-recap__global">';
+          html += '<div class="defi-recap__global-label">Progression globale : Jour ' + (dayIdx + 1) + '/7</div>';
+          html += '<div class="defi-recap__global-bar"><div class="defi-recap__global-fill" style="width:' + globalPct + '%"></div></div>';
+          html += '<div class="defi-recap__global-pct">' + globalPct + '%</div>';
+          html += '</div>';
+
+          // Tomorrow
+          html += '<div class="defi-recap__tomorrow">';
+          html += '<div class="defi-recap__tomorrow-label">Demain</div>';
+          html += '<div class="defi-recap__tomorrow-text">' + tomorrowText + '</div>';
+          html += '</div>';
+
+          // Actions
+          html += '<div class="defi-recap__actions">';
+          if (tomorrow) html += '<button class="defi-recap__btn defi-recap__btn--primary" onclick="this.closest(\'.defi-recap\').remove()">Voir le jour ' + (dayIdx + 2) + '</button>';
+          html += '<button class="defi-recap__btn defi-recap__btn--secondary" onclick="this.closest(\'.defi-recap\').remove()">Fermer</button>';
+          html += '</div>';
+
+          html += '</div></div>';
+
+          document.body.insertAdjacentHTML('beforeend', html);
+        }
+
+        // Update every 30s
+        renderDefiButton();
+        setInterval(function() {
+          if (OmniDefi && OmniDefi.isActive()) {
+            renderProgressBar();
+            updateCalendarSlotStatus();
+          }
+        }, 30000);
+      })();
 
       // ── Popover ──
       let popEl = null;

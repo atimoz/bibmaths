@@ -1232,6 +1232,96 @@ document.addEventListener('DOMContentLoaded', () => {
 
     var typeColors = { cours: '#8B5CF6', math: '#E91E63', physics: '#4A90D9', correction: '#F5A623', fiche: '#4CAF50', annale: '#FF6B35', pause: '#62666d' };
 
+    // ── Sound alert for defi mode ──
+    var alertCtx;
+    function playAlert(type) {
+      try {
+        if (!alertCtx) alertCtx = new (window.AudioContext || window.webkitAudioContext)();
+        var vol = 0.7;
+        var freqs = type === 'success' ? [523.25,659.25,783.99,1046.5] : [523.25,659.25,783.99];
+        var now = alertCtx.currentTime;
+        freqs.forEach(function(freq, i) {
+          var osc = alertCtx.createOscillator();
+          var gain = alertCtx.createGain();
+          osc.connect(gain); gain.connect(alertCtx.destination);
+          osc.frequency.value = freq;
+          osc.type = 'sine';
+          gain.gain.setValueAtTime(vol * 0.3, now + i * 0.15);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.15 + 0.4);
+          osc.start(now + i * 0.15);
+          osc.stop(now + i * 0.15 + 0.4);
+        });
+      } catch(e) {}
+    }
+
+    function showMiniToast(msg) {
+      var t = document.createElement('div');
+      t.className = 'mini-toast';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(function() { t.classList.add('mini-toast--show'); }, 10);
+      setTimeout(function() { t.classList.remove('mini-toast--show'); setTimeout(function() { t.remove(); }, 500); }, 4000);
+    }
+
+    // ── Defi (challenge) state ──
+    var defi = null;
+
+    function loadDefi() {
+      try { defi = JSON.parse(localStorage.getItem('omni-defi')); } catch(e) { defi = null; }
+      return defi;
+    }
+
+    function saveDefi() {
+      if (defi) localStorage.setItem('omni-defi', JSON.stringify(defi));
+      else localStorage.removeItem('omni-defi');
+    }
+
+    function startDefi() {
+      defi = {
+        active: true,
+        startDate: new Date().toISOString().split('T')[0],
+        completedSlots: [],
+        skippedSlots: [],
+        currentSlotId: null
+      };
+      saveDefi();
+    }
+
+    function isSlotComplete(slotId) {
+      return defi && defi.completedSlots && defi.completedSlots.indexOf(slotId) !== -1;
+    }
+
+    function completeSlot(slotId) {
+      if (!defi) return;
+      if (defi.completedSlots.indexOf(slotId) === -1) {
+        defi.completedSlots.push(slotId);
+      }
+      saveDefi();
+    }
+
+    function skipSlot(slotId) {
+      if (!defi) return;
+      if (defi.skippedSlots.indexOf(slotId) === -1) {
+        defi.skippedSlots.push(slotId);
+      }
+      saveDefi();
+    }
+
+    function getDefiProgress() {
+      if (!defi) return null;
+      loadProgramme(function() {});
+      if (!programmeData) return null;
+      var dayIdx = getTodayDayIndex();
+      if (dayIdx >= programmeData.days.length) return null;
+      var day = programmeData.days[dayIdx];
+      var totalSlots = day.slots.filter(function(s) { return s.type !== 'pause'; }).length;
+      var doneToday = 0;
+      day.slots.forEach(function(s) {
+        if (s.type !== 'pause' && isSlotComplete(s.id)) doneToday++;
+      });
+      return { total: totalSlots, done: doneToday, pct: totalSlots > 0 ? Math.round(doneToday / totalSlots * 100) : 0, dayIdx: dayIdx };
+    }
+
     // ── Position management ──
     function applyPos() {
       if (!miniEl) return;
@@ -1304,7 +1394,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Header
         html += '<div class="mt-card__header">';
         html += '<div class="mt-card__clock"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>' + clockTime() + '</span></div>';
-        html += '<span class="mt-card__day">Jour ' + (info.dayIdx + 1) + '/7</span>';
+        var prog = getDefiProgress();
+        var progStr = prog ? ' \u2014 ' + prog.pct + '%' : '';
+        html += '<span class="mt-card__day">Jour ' + (info.dayIdx + 1) + '/7' + progStr + '</span>';
         html += '</div>';
 
         // Current
@@ -1472,6 +1564,41 @@ document.addEventListener('DOMContentLoaded', () => {
           slotEl.innerHTML = '';
         }
 
+        // Defi auto-pilot: detect slot transitions
+        if (defi && defi.active && info) {
+          // Check if current slot just ended (slot changed since last tick)
+          if (defi.currentSlotId && info.current && info.current.id !== defi.currentSlotId) {
+            if (!isSlotComplete(defi.currentSlotId)) {
+              completeSlot(defi.currentSlotId);
+              playAlert('bell');
+              var nextLabel = info.current ? (info.current.source || info.current.label) : 'Pause';
+              showMiniToast('Termine ! Prochain : ' + nextLabel);
+            }
+          }
+
+          // Update current slot tracking
+          if (info.current) {
+            defi.currentSlotId = info.current.id;
+            saveDefi();
+          } else if (info.next) {
+            defi.currentSlotId = null;
+          }
+
+          // Check if this is the last slot of the day ending
+          var daySlots = info.day.slots;
+          var lastNonPause = null;
+          for (var li = daySlots.length - 1; li >= 0; li--) {
+            if (daySlots[li].type !== 'pause') { lastNonPause = daySlots[li]; break; }
+          }
+          if (lastNonPause && isSlotComplete(lastNonPause.id) && !defi._dayEndShown) {
+            defi._dayEndShown = true;
+            saveDefi();
+            playAlert('success');
+            showMiniToast('Journee ' + (info.dayIdx + 1) + ' terminee !');
+            window.dispatchEvent(new CustomEvent('defi-day-end', { detail: { dayIdx: info.dayIdx } }));
+          }
+        }
+
         if (expanded) updateCard();
       });
     }
@@ -1491,6 +1618,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ── Init ──
+    loadDefi();
     updateMini();
     var hasTimer = localStorage.getItem('omni-timer-live') || localStorage.getItem('omni-timer-clock');
     if (hasTimer) {
@@ -1508,6 +1636,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
+
+    // ── Expose defi API for parcours.html ──
+    window.OmniDefi = {
+      load: loadDefi,
+      save: saveDefi,
+      start: startDefi,
+      isComplete: isSlotComplete,
+      complete: completeSlot,
+      skip: skipSlot,
+      progress: getDefiProgress,
+      isActive: function() { return defi && defi.active; },
+      abandon: function() { defi = null; saveDefi(); },
+      get: function() { return defi; }
+    };
   })();
 
 });
