@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script>((d)=>{const t=localStorage.getItem('bibmaths-theme');if(t&&t!=='dark')d.setAttribute('data-theme',t)})(document.documentElement)</script>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <style>
     /* ═══════════════════════════════════════════════
        PARCOURS DASHBOARD — "Mon Parcours"
@@ -674,6 +677,17 @@
       transition: all .12s;
     }
     .cal7__pop-card-link:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.15); color: #fff; }
+    /* Reflex card structured items */
+    .reflex-list { display: flex; flex-direction: column; gap: 2px; }
+    .reflex-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .reflex-item:last-child { border-bottom: none; }
+    .reflex-num { flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: .65rem; font-weight: 600; color: var(--ink-muted); background: rgba(255,255,255,.04); border-radius: 6px; margin-top: 2px; }
+    .reflex-content { flex: 1; min-width: 0; }
+    .reflex-title { font-size: .82rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+    .reflex-formula { font-size: .8rem; color: var(--ink-light); line-height: 1.8; margin-bottom: 3px; }
+    .reflex-formula .katex { font-size: .95em; }
+    .reflex-tip { font-size: .72rem; color: var(--ink-muted); font-style: italic; }
+    .reflex-item--error .reflex-num { background: rgba(239,68,68,.08); color: #ef4444; font-style: normal; font-size: .8rem; }
     .cal7__pop-check {
       display: flex; align-items: center; gap: 8px;
       margin-top: 10px; font-size: .72rem; color: var(--ink-muted); cursor: pointer;
@@ -1397,20 +1411,26 @@
         });
         cardsHtml += '</ol></div></details>';
 
-        // Math reflexes
-        cardsHtml += '<details class="cal7__card" id="card-reflexes-math"><summary><span class="cal7__card-icon">20</span><span class="cal7__card-title">Reflexes maths</span></summary><div class="cal7__card-body"><ol>';
-        P.reflexes.math.forEach(r => { cardsHtml += '<li>' + r + '</li>'; });
-        cardsHtml += '</ol></div></details>';
+        // Math reflexes — structured with LaTeX
+        cardsHtml += '<details class="cal7__card" id="card-reflexes-math"><summary><span class="cal7__card-icon">20</span><span class="cal7__card-title">Reflexes maths</span></summary><div class="cal7__card-body"><div class="reflex-list">';
+        P.reflexes.math.forEach((r, i) => {
+          cardsHtml += '<div class="reflex-item"><div class="reflex-num">' + (i + 1) + '</div><div class="reflex-content"><div class="reflex-title">' + r.title + '</div><div class="reflex-formula">' + r.formula + '</div><div class="reflex-tip">' + r.tip + '</div></div></div>';
+        });
+        cardsHtml += '</div></div></details>';
 
-        // Physics formulas
-        cardsHtml += '<details class="cal7__card" id="card-reflexes-physics"><summary><span class="cal7__card-icon">10</span><span class="cal7__card-title">Formules physique</span></summary><div class="cal7__card-body"><ol>';
-        P.reflexes.physics.forEach(r => { cardsHtml += '<li>' + r + '</li>'; });
-        cardsHtml += '</ol></div></details>';
+        // Physics formulas — structured with LaTeX
+        cardsHtml += '<details class="cal7__card" id="card-reflexes-physics"><summary><span class="cal7__card-icon">10</span><span class="cal7__card-title">Formules physique</span></summary><div class="cal7__card-body"><div class="reflex-list">';
+        P.reflexes.physics.forEach((r, i) => {
+          cardsHtml += '<div class="reflex-item"><div class="reflex-num">' + (i + 1) + '</div><div class="reflex-content"><div class="reflex-title">' + r.title + '</div><div class="reflex-formula">' + r.formula + '</div><div class="reflex-tip">' + r.tip + '</div></div></div>';
+        });
+        cardsHtml += '</div></div></details>';
 
-        // Errors
-        cardsHtml += '<details class="cal7__card" id="card-errors"><summary><span class="cal7__card-icon">10</span><span class="cal7__card-title">Erreurs classiques a eviter</span></summary><div class="cal7__card-body"><ol>';
-        P.reflexes.errors.forEach(r => { cardsHtml += '<li>' + r + '</li>'; });
-        cardsHtml += '</ol></div></details>';
+        // Errors — structured with warning icons
+        cardsHtml += '<details class="cal7__card" id="card-errors"><summary><span class="cal7__card-icon">10</span><span class="cal7__card-title">Erreurs classiques a eviter</span></summary><div class="cal7__card-body"><div class="reflex-list">';
+        P.reflexes.errors.forEach((r, i) => {
+          cardsHtml += '<div class="reflex-item reflex-item--error"><div class="reflex-num">\u26a0</div><div class="reflex-content"><div class="reflex-tip" style="color:var(--ink-light);font-style:normal">' + r.text + '</div></div></div>';
+        });
+        cardsHtml += '</div></div></details>';
 
         // Fiche template
         cardsHtml += '<details class="cal7__card" id="card-fiche"><summary><span class="cal7__card-icon">MODELE</span><span class="cal7__card-title">' + P.ficheTemplate.title + '</span></summary><div class="cal7__card-body"><ul>';
@@ -1420,6 +1440,16 @@
         cardsHtml += '</ul><p style="margin-top:12px;font-size:.78rem;color:var(--ink-muted)"><strong>Ne pas inclure :</strong> ' + P.ficheTemplate.dontInclude.join(', ') + '</p></div></details>';
 
         cards.innerHTML = cardsHtml;
+        // Render LaTeX in cards
+        if (typeof renderMathInElement === 'function') {
+          renderMathInElement(cards, {
+            delimiters: [
+              { left: '\\(', right: '\\)', display: false },
+              { left: '$$', right: '$$', display: true }
+            ],
+            throwOnError: false
+          });
+        }
       }
     }
 
