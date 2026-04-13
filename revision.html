@@ -782,6 +782,19 @@
       </div>
     </div>
 
+    <!-- Mode buttons (used by startSession, hidden by default) -->
+    <div id="modeButtons" style="display:none">
+      <button id="btnModeNew">Nouvelles</button>
+      <button id="btnModeReview">A revoir</button>
+      <button id="btnModeAll">Toutes</button>
+    </div>
+    <div id="statsPanel" style="display:none">
+      <span id="statSeen">0</span>
+      <span id="statMastered">0</span>
+      <span id="statDue">0</span>
+      <span id="statStreak">0</span>
+    </div>
+
     <!-- Controls (shown during session) -->
     <div class="rev__controls" id="controls" style="display:none">
       <div class="rev__progress"><div class="rev__progress-bar" id="progressBar"></div></div>
@@ -1195,9 +1208,12 @@
         }
       });
 
-      document.getElementById('badgeNew').textContent = newCount;
-      document.getElementById('badgeReview').textContent = reviewCount;
-      document.getElementById('badgeAll').textContent = filtered.length;
+      var _bn = document.getElementById('badgeNew');
+      var _br = document.getElementById('badgeReview');
+      var _ba = document.getElementById('badgeAll');
+      if (_bn) _bn.textContent = newCount;
+      if (_br) _br.textContent = reviewCount;
+      if (_ba) _ba.textContent = filtered.length;
 
       var _mNew = document.getElementById('btnModeNew');
       var _mRev = document.getElementById('btnModeReview');
@@ -1224,11 +1240,16 @@
         }
       });
 
-      document.getElementById('statSeen').textContent = seen;
-      document.querySelector('#statsPanel .stat-card:first-child .stat-card__label').textContent = 'Vues / ' + FLASHCARDS.length;
-      document.getElementById('statMastered').textContent = mastered;
-      document.getElementById('statDue').textContent = due;
-      document.getElementById('statStreak').textContent = getStreak() + 'j';
+      var _ss = document.getElementById('statSeen');
+      var _sl = document.querySelector('#statsPanel .stat-card:first-child .stat-card__label');
+      var _sm = document.getElementById('statMastered');
+      var _sd = document.getElementById('statDue');
+      var _sk = document.getElementById('statStreak');
+      if (_ss) _ss.textContent = seen;
+      if (_sl) _sl.textContent = 'Vues / ' + FLASHCARDS.length;
+      if (_sm) _sm.textContent = mastered;
+      if (_sd) _sd.textContent = due;
+      if (_sk) _sk.textContent = getStreak() + 'j';
 
       updateChapterProgress(srs);
     }
