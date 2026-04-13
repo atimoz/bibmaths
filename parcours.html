@@ -650,7 +650,7 @@
     .cal7__pop-title { font-size: .95rem; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
     .cal7__pop-desc { font-size: .78rem; color: var(--ink-light); line-height: 1.5; margin-bottom: 10px; }
     .cal7__pop-meta { font-size: .65rem; color: var(--ink-faint); margin-bottom: 12px; }
-    .cal7__pop-actions { display: flex; gap: 8px; }
+    .cal7__pop-actions { display: flex; flex-wrap: wrap; gap: 8px; }
     .cal7__pop-btn {
       flex: 1; padding: 8px 14px; border-radius: 7px;
       font-size: .78rem; font-weight: 500; text-align: center;
@@ -662,6 +662,8 @@
       background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: var(--ink-light);
     }
     .cal7__pop-btn--secondary:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.15); }
+    .cal7__pop-btn--flash { background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.25); color: #f59e0b; }
+    .cal7__pop-btn--flash:hover { background: rgba(245,158,11,.2); border-color: rgba(245,158,11,.35); color: #fbbf24; }
     .cal7__pop-cards {
       display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
       padding-top: 10px; border-top: 1px solid rgba(255,255,255,.06);
@@ -1294,50 +1296,53 @@
         html += '<div class="cal7__pop-desc">' + slot.content + '</div>';
         html += '<div class="cal7__pop-meta">' + slot.time + ' \u00b7 ' + slot.duration + '</div>';
 
+        // Build all action buttons (links + flashcards)
+        var allActions = [];
         if (slot.links && slot.links.length > 0) {
-          html += '<div class="cal7__pop-actions">';
           slot.links.forEach(function(l, i) {
-            html += '<a href="' + l.href + '" class="cal7__pop-btn cal7__pop-btn--' + (i === 0 ? 'primary' : 'secondary') + '">' + l.text + '</a>';
+            allActions.push({ href: l.href, text: l.text, style: i === 0 ? 'primary' : 'secondary' });
+          });
+        }
+        // Add flashcard buttons based on slot type
+        if (slot.type === 'math' || slot.type === 'correction' || slot.type === 'cours' || slot.type === 'fiche') {
+          allActions.push({ href: 'revision.html', text: '\u26a1 Flashcards maths', style: 'flash' });
+        }
+        if (slot.type === 'physics' || slot.type === 'cours' || slot.type === 'fiche') {
+          allActions.push({ href: 'e3a.html#flashcards', text: '\u26a1 Flashcards physique', style: 'flash' });
+        }
+        if (allActions.length > 0) {
+          html += '<div class="cal7__pop-actions">';
+          allActions.forEach(function(a) {
+            html += '<a href="' + a.href + '" class="cal7__pop-btn cal7__pop-btn--' + a.style + '">' + a.text + '</a>';
           });
           html += '</div>';
         }
 
-        // Contextual card links based on slot type
+        // Contextual card links (scroll to revision cards below calendar)
         var cardLinks = [];
-        var flashLinks = [];
         if (slot.type === 'correction') {
           cardLinks.push({ id: 'card-protocol', label: 'Protocole de correction' });
           cardLinks.push({ id: 'card-errors', label: 'Erreurs classiques' });
-          flashLinks.push({ href: 'revision.html', label: 'Flashcards maths' });
         }
         if (slot.type === 'math') {
           cardLinks.push({ id: 'card-reflexes-math', label: 'Reflexes maths' });
-          flashLinks.push({ href: 'revision.html', label: 'Flashcards maths' });
         }
         if (slot.type === 'physics') {
           cardLinks.push({ id: 'card-reflexes-physics', label: 'Formules physique' });
-          flashLinks.push({ href: 'e3a.html#flashcards', label: 'Flashcards physique' });
         }
         if (slot.type === 'cours') {
           cardLinks.push({ id: 'card-reflexes-math', label: 'Reflexes maths' });
           cardLinks.push({ id: 'card-reflexes-physics', label: 'Formules physique' });
-          flashLinks.push({ href: 'revision.html', label: 'Flashcards maths' });
-          flashLinks.push({ href: 'e3a.html#flashcards', label: 'Flashcards physique' });
         }
         if (slot.type === 'fiche') {
           cardLinks.push({ id: 'card-fiche', label: 'Modele de fiche' });
           cardLinks.push({ id: 'card-reflexes-math', label: 'Reflexes maths' });
-          flashLinks.push({ href: 'revision.html', label: 'Flashcards maths' });
-          flashLinks.push({ href: 'e3a.html#flashcards', label: 'Flashcards physique' });
         }
-        if (cardLinks.length > 0 || flashLinks.length > 0) {
+        if (cardLinks.length > 0) {
           html += '<div class="cal7__pop-cards">';
           html += '<span class="cal7__pop-cards-label">Fiches utiles</span>';
           cardLinks.forEach(function(cl) {
             html += '<a href="#' + cl.id + '" class="cal7__pop-card-link" data-card="' + cl.id + '">' + cl.label + '</a>';
-          });
-          flashLinks.forEach(function(fl) {
-            html += '<a href="' + fl.href + '" class="cal7__pop-card-link cal7__pop-card-link--flash">\u26a1 ' + fl.label + '</a>';
           });
           html += '</div>';
         }
