@@ -354,10 +354,7 @@
    Bottom Bar
    ============================================ */
 .bottom-bar {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -643,10 +640,7 @@
    Stats drawer
    ============================================ */
 .stats-pill {
-  position: fixed;
-  bottom: 84px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   padding: 7px 18px;
   border-radius: 24px;
   border: 1px solid var(--t-bar-border);
@@ -1078,28 +1072,28 @@ body.chrono-mode .bg::before {
         </button>
         <button class="btn-main" id="btnStart">Start</button>
       </div>
-    </div>
 
-    <!-- Bottom bar -->
-    <div class="bottom-bar">
-      <div class="fire-count" id="fireCount">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 23c-3.3 0-6-2.2-6-6.5 0-2.2 1-4.5 2.5-6.5.4-.5 1.2-.4 1.4.2.3.8.7 1.3 1.1 1.8 1-2 2.5-4 4-5.5.4-.4 1.1-.3 1.3.3C17.4 9.5 18 12 18 14c0 .8-.1 1.6-.3 2.3C17.1 19.8 14.8 23 12 23z"/></svg>
-        <span>0</span>
+      <!-- Stats pill (inside .app for centering) -->
+      <button class="stats-pill" id="statsPill">Aujourd'hui : <strong id="todayPill">0m</strong></button>
+
+      <!-- Bottom bar (inside .app for centering) -->
+      <div class="bottom-bar">
+        <div class="fire-count" id="fireCount">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 23c-3.3 0-6-2.2-6-6.5 0-2.2 1-4.5 2.5-6.5.4-.5 1.2-.4 1.4.2.3.8.7 1.3 1.1 1.8 1-2 2.5-4 4-5.5.4-.4 1.1-.3 1.3.3C17.4 9.5 18 12 18 14c0 .8-.1 1.6-.3 2.3C17.1 19.8 14.8 23 12 23z"/></svg>
+          <span>0</span>
+        </div>
+        <button class="bar-btn" id="btnStats" title="Statistiques">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </button>
+        <div class="bar-sep"></div>
+        <button class="bar-btn" id="btnSettings2" title="Reglages">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+        <button class="bar-btn" id="btnFS" title="Plein ecran">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </button>
       </div>
-      <button class="bar-btn" id="btnStats" title="Statistiques">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      </button>
-      <div class="bar-sep"></div>
-      <button class="bar-btn" id="btnSettings2" title="Reglages">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      </button>
-      <button class="bar-btn" id="btnFS" title="Plein ecran">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
-      </button>
     </div>
-
-    <!-- Stats pill -->
-    <button class="stats-pill" id="statsPill">Aujourd'hui : <strong id="todayPill">0m</strong></button>
 
     <!-- Stats drawer -->
     <div class="stats-drawer" id="statsDrawer">
